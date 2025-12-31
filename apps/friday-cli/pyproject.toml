@@ -1,0 +1,14 @@
+[project]
+name = "friday-cli"
+version = "0.1.0"
+description = "The Friday Assistant Runtime"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-memory",
+    "typer",
+    "fastapi",
+    "uvicorn"
+]
+
+[tool.uv.sources]
+friday-memory = { workspace = true }

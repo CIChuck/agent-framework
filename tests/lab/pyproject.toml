@@ -1,0 +1,19 @@
+[project]
+name = "friday-lab"
+version = "0.1.0"
+description = "The MRI Suite: Observability and Experiments"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-memory",
+    "friday-cli",
+    "ragas",
+    "arize-phoenix",
+    "streamlit",
+    "pyvis",
+    "pytest",
+    "pytest-asyncio"
+]
+
+[tool.uv.sources]
+friday-memory = { workspace = true }
+friday-cli = { workspace = true }

@@ -1,0 +1,12 @@
+[project]
+name = "friday-optimization"
+version = "0.1.0"
+description = "DSPy optimization playground"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-memory",
+    "dspy-ai"
+]
+
+[tool.uv.sources]
+friday-memory = { workspace = true }

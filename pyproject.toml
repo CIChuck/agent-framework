@@ -1,0 +1,19 @@
+[project]
+name = "friday"
+version = "0.1.0"
+description = "Friday Agentic Framework Workspace"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-core",
+    "friday-memory",
+]
+
+[tool.uv.sources]
+friday-core = { workspace = true }
+friday-memory = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*", "apps/*", "tests/lab"]
+
+[tool.ruff]
+line-length = 88

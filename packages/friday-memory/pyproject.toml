@@ -1,0 +1,29 @@
+[project]
+name = "friday-memory"
+version = "0.1.0"
+description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-core",
+    "friday-memory",
+    "chromadb",
+    "networkx",
+    "litellm",
+    "numpy",
+    "tiktoken",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[tool.uv.sources]
+friday-core = { workspace = true }
+friday-memory = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
