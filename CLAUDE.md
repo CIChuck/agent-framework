@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Friday Framework is a Python-based agentic framework with a modular architecture for building AI agents. It follows a "Mind" (intelligence layer) and "Body" (execution layer) design, with a central "Memory Loop" for context retrieval, learning, and decision-making.
+Friday Framework is a Python-based agentic framework with a modular monorepo architecture. It follows a "Mind" (intelligence layer) and "Body" (execution layer) design, with a central "Memory Loop" for context retrieval, learning, and decision-making.
 
-**Current Status:** v0.1.0 - Early development/scaffold phase. Most code files contain stubs with docstrings referencing specifications.
+**Current Status:** v0.1.0 - Early development phase.
 
 ## Build Commands
 
@@ -14,14 +14,21 @@ Friday Framework is a Python-based agentic framework with a modular architecture
 # Install/sync all dependencies (uses uv workspaces)
 uv sync
 
-# Run tests (from project root)
+# Run all tests
 pytest
 
-# Run a single test file
-pytest tests/lab/experiments/exp_01_telemetry.py
+# Run tests for a specific package
+pytest packages/friday-agent/tests/
 
-# Run main entry point (currently just Hello World)
-python main.py
+# Run a single test file
+pytest packages/friday-tools/tests/test_protocols.py -v
+
+# Lint and format
+uv run ruff check .
+uv run ruff format .
+
+# Type checking
+uv run mypy packages/friday-core/
 ```
 
 ## Monorepo Structure & Dependency Flow
@@ -29,66 +36,70 @@ python main.py
 The project uses `uv` workspaces. Dependencies flow in one direction:
 
 ```
-friday-core (foundation)
+friday-core (protocols, config, logging)
     ↓
-friday-memory (intelligence layer)
+friday-memory (storage adapters, context engineering)
     ↓
-friday-optimization (DSPy integration)
+friday-llm (LiteLLM wrapper for multi-provider LLM calls)
     ↓
-friday-cli (application)
+friday-agent (CopilotAgent, tool registry, Re-Act loop)
     ↓
-friday-lab (tests & observability)
+friday-tools (50+ tools: filesystem, shell, web, git, code execution)
+    ↓
+friday-sandbox (Docker-based isolated code execution)
+    ↓
+friday-mcp (Model Context Protocol client/server)
 ```
 
 | Package | Location | Purpose |
 |---------|----------|---------|
-| friday-core | `packages/friday-core/` | Config, logging, exceptions, abstract protocols |
-| friday-memory | `packages/friday-memory/` | Storage adapters, memory controller, context engineering |
-| friday-optimization | `packages/friday-optimization/` | DSPy prompt optimization |
-| friday-cli | `apps/friday-cli/` | CLI REPL, FastAPI server |
-| friday-lab | `tests/lab/` | "MRI Suite" - experiments, dashboards, pytest fixtures |
+| friday-core | `packages/friday-core/` | Abstract protocols in `interfaces/`, config, logging, exceptions |
+| friday-memory | `packages/friday-memory/` | MemoryController, storage adapters (vector/graph/episodic), ContextAssembler |
+| friday-llm | `packages/friday-llm/` | LiteLLMService wrapping litellm for OpenAI/Anthropic/Ollama |
+| friday-agent | `packages/friday-agent/` | CopilotAgent (Re-Act loop), AgentProfile, DefaultToolRegistry |
+| friday-tools | `packages/friday-tools/` | BaseTool, tool categories (filesystem, shell, web, git, data, text, code) |
+| friday-sandbox | `packages/friday-sandbox/` | SubprocessSandbox for isolated Python execution |
+| friday-mcp | `packages/friday-mcp/` | MCP protocol client, tool adapters, SSE transport |
 
 ## Architecture Patterns
 
-**Protocol-First Design:** Abstract protocols in `friday-core/interfaces/` define contracts. Implementations in `friday-memory/adapters/` are swappable.
+**Protocol-First Design:** Abstract protocols in `friday-core/interfaces/` define contracts:
+- `LLMClient`, `EmbeddingModel` - LLM inference
+- `ToolDefinition`, `ToolRegistry`, `ToolAdapter` - Tool management
+- `VectorStoreAdapter`, `GraphStoreAdapter`, `EpisodicStoreAdapter` - Storage
+- `ContextEngineeringInterface` - Context assembly
+
+**CopilotAgent Flow:**
+1. Initialize session via ContextAssembler
+2. Assemble context (token budgeting with Knapsack algorithm)
+3. Call LLM with tool schemas
+4. Execute tool calls in Re-Act loop (max 10 iterations)
+5. Archive turn to memory
+
+**Tool System:**
+- `BaseTool` abstract class with `name`, `description`, `parameters_schema`, `execute()`
+- `@tool` decorator for function-based tools
+- `ToolManifest` generates LLM-ready tool descriptions
+- `CodeGenerationTool` uses LLM to compose tools into executable code
 
 **Three Memory Stores:**
-- **Graph Store** (NetworkX/ElementX): Structured facts and relationships
+- **Graph Store** (NetworkX): Entities and relationships with Hebbian learning (`hit_count`)
 - **Vector Store** (ChromaDB): Semantic search for documents
 - **Episodic Store**: Short-term conversation history
 
-**Key Components in friday-memory:**
-- `models/` - Pydantic DTOs (GraphNode, GraphEdge, ContextPayload, SessionState)
-- `adapters/` - Storage implementations (vector.py, graph.py, episodic.py)
-- `controller/` - MemoryController facade orchestrating all stores
-- `context/` - Assembler (token budgeting), Extractor (entities/facts), Consolidator (dedup), Layout (prompt structure)
-- `ingestion/` - Document parsing and chunking pipeline
-
 ## Development Conventions
 
-**Specification-Driven:** All development follows the batch specifications in `docs/specs/`:
-- Batch 0: Core utilities
-- Batch 1: Data layer (IO adapters, storage)
-- Batch 2: Intelligence layer (memory controller, context)
-- Batch 2a: Advanced context features
+**Specification-Driven:** Code references specs in `docs/specs/` via `Ref:` comments.
 
-Code modules include `Ref:` comments pointing to relevant spec sections.
+**Pydantic Models:** All data boundaries use Pydantic 2.0+ for validation.
 
-**Inside-Out Development:** Always build from core → memory → optimization → cli.
+**Async Throughout:** Tools and LLM calls are async (`async def execute()`).
 
-**Pydantic Everywhere:** All data models use Pydantic 2.0+ for validation at boundaries.
-
-**Ruff Formatting:** Line length 88 characters.
-
-## Key Concepts
-
-- **Auto-Memorize:** System decides whether info goes to graph (facts) or vector store (documents)
-- **Hebbian Learning:** `hit_count` on graph nodes reinforces frequently accessed knowledge
-- **Knapsack Algorithm:** Context assembler optimizes context to fit token windows
+**Ruff:** Line length 88, Python 3.10+.
 
 ## Environment Variables
 
 Copy `.env.example` to `.env`:
-- `APP_ENV` - development/production
-- `LOG_LEVEL` - INFO/DEBUG
-- `OPENAI_API_KEY` - Required for LLM calls
+- `OPENAI_API_KEY` - For OpenAI models
+- `ANTHROPIC_API_KEY` - For Claude models
+- `OLLAMA_BASE_URL` - For local Ollama (default: http://localhost:11434)

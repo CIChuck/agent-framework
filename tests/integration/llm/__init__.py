@@ -1,0 +1,1 @@
+"""Friday-LLM integration tests."""

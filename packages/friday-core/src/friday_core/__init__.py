@@ -40,6 +40,10 @@ from friday_core.interfaces import (
     ContextEngineeringInterface,
     EpisodicStoreAdapter,
     GraphStoreAdapter,
+    SchemaFormat,
+    ToolAdapter,
+    ToolDefinition,
+    ToolRegistry,
     VectorStoreAdapter,
 )
 
@@ -65,6 +69,11 @@ __all__ = [
     "GraphStoreAdapter",
     # Context Engineering
     "ContextEngineeringInterface",
+    # Tool Management
+    "SchemaFormat",
+    "ToolDefinition",
+    "ToolAdapter",
+    "ToolRegistry",
 ]
 
 __version__ = "0.1.0"

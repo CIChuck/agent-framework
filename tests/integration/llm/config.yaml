@@ -1,0 +1,60 @@
+# Friday-LLM Integration Test Configuration
+#
+# This config file controls the LLM provider and model settings
+# for the interactive chat CLI.
+
+# LLM Provider Settings
+llm:
+  # Model name - LiteLLM requires provider prefix
+  # LM Studio: Use "openai/your-model-name" (OpenAI-compatible API)
+  # Ollama: Use "ollama/llama3" or "ollama/mistral"
+  # OpenAI: Use "gpt-4o-mini" or "gpt-4"
+  # Anthropic: Use "claude-3-5-sonnet-20241022"
+  model: "openai/local-model"
+
+  # API base URL
+  # LM Studio default: http://localhost:1234/v1
+  # Ollama default: http://localhost:11434
+  # OpenAI: Leave empty (uses default)
+  api_base: "http://localhost:1234/v1"
+
+  # API key (required for cloud providers, optional for local)
+  # For LM Studio: Use "lm-studio" or any non-empty string
+  # For Ollama: Leave empty
+  # For OpenAI/Anthropic: Use your actual API key
+  api_key: "lm-studio"
+
+  # Temperature (0.0 = deterministic, 1.0 = creative)
+  temperature: 0.7
+
+  # Max retries for transient errors
+  max_retries: 3
+
+# Chat Settings
+chat:
+  # System prompt for the assistant
+  system_prompt: |
+    You are a helpful AI assistant. Provide clear, concise responses.
+    Format your responses in Markdown when appropriate.
+
+  # Maximum conversation history turns to keep (0 = unlimited)
+  max_history: 20
+
+# Embedding Settings (LM Studio)
+embedding:
+  # Model name for embeddings
+  # LM Studio: Use "openai/<model-name>" since LM Studio is OpenAI-compatible
+  # The model name after "openai/" can be any identifier LM Studio accepts
+  model: "openai/nomic-embed-text-v1.5"
+
+  # API base URL for LM Studio
+  api_base: "http://localhost:1234/v1"
+
+  # API key (use any non-empty string for LM Studio)
+  api_key: "lm-studio"
+
+  # Max retries for transient errors
+  max_retries: 3
+
+  # Timeout in seconds
+  timeout_seconds: 30.0

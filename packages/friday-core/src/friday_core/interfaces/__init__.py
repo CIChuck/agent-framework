@@ -11,13 +11,34 @@ Storage Adapters (Batch 1):
 
 Context Engineering (Batch 2a):
 - ContextEngineeringInterface: Context strategy lifecycle
+
+LLM Interfaces (Batch 3):
+- LLMClient: Chat completion protocol
+- EmbeddingModel: Text embedding protocol
+- ChatCompletionResponse: Structured LLM response
+- ToolCall: Tool call representation
+
+Tool Management (Batch 3):
+- ToolRegistry: Tool registration and resolution
 """
 
 from friday_core.interfaces.context import ContextEngineeringInterface
+from friday_core.interfaces.llm import (
+    ChatCompletionResponse,
+    EmbeddingModel,
+    LLMClient,
+    ToolCall,
+)
 from friday_core.interfaces.memory import (
     EpisodicStoreAdapter,
     GraphStoreAdapter,
     VectorStoreAdapter,
+)
+from friday_core.interfaces.tools import (
+    SchemaFormat,
+    ToolAdapter,
+    ToolDefinition,
+    ToolRegistry,
 )
 
 __all__ = [
@@ -27,4 +48,14 @@ __all__ = [
     "GraphStoreAdapter",
     # Context Engineering
     "ContextEngineeringInterface",
+    # LLM Interfaces
+    "LLMClient",
+    "EmbeddingModel",
+    "ChatCompletionResponse",
+    "ToolCall",
+    # Tool Management
+    "SchemaFormat",
+    "ToolDefinition",
+    "ToolAdapter",
+    "ToolRegistry",
 ]

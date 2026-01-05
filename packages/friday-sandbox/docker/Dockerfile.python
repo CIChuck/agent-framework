@@ -1,0 +1,45 @@
+# Friday Sandbox Python Image
+# Provides a secure, minimal Python environment for code execution
+#
+# Ref: docs/specs/sandbox_specifications.md - Section 9: Docker Image
+
+FROM python:3.11-slim-bookworm
+
+# Labels
+LABEL org.opencontainers.image.title="Friday Sandbox Python"
+LABEL org.opencontainers.image.description="Secure Python execution environment for AI agents"
+LABEL org.opencontainers.image.version="0.1.0"
+LABEL org.opencontainers.image.vendor="Friday Team"
+
+# Security: Create non-root user
+RUN groupadd -r sandbox && useradd -r -g sandbox sandbox
+
+# Install common Python packages for data processing and analysis
+RUN pip install --no-cache-dir \
+    # Data processing
+    numpy>=1.24.0 \
+    pandas>=2.0.0 \
+    # JSON/YAML handling
+    pyyaml>=6.0 \
+    # HTTP requests
+    requests>=2.28.0 \
+    httpx>=0.24.0 \
+    # Pydantic for structured returns
+    pydantic>=2.0.0 \
+    # Date handling
+    python-dateutil>=2.8.0 \
+    # Math
+    sympy>=1.12 \
+    && rm -rf /root/.cache/pip
+
+# Create workspace directory with correct permissions
+RUN mkdir -p /workspace && chown sandbox:sandbox /workspace
+
+# Set working directory
+WORKDIR /workspace
+
+# Switch to non-root user
+USER sandbox
+
+# Default command (will be overridden)
+CMD ["python", "--version"]

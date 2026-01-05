@@ -3,6 +3,7 @@ Memory Extractor (The Harvester).
 Analyzes conversation turns to extract new entities and facts for the Graph.
 
 Ref: Batch 2a Specification, Section 3
+Updated: Batch 3 - Now uses injected LLMClient protocol
 
 Strategies:
 1. Named Entity Extraction (NER): "User mentioned 'Project Alpha'."
@@ -13,9 +14,7 @@ Strategies:
 import json
 import logging
 import uuid
-from typing import Any
-
-import litellm
+from typing import TYPE_CHECKING, Any
 
 from friday_core import TelemetryInterface
 
@@ -26,6 +25,9 @@ from friday_memory.models import (
     InteractionTurn,
     ProvenanceMetadata,
 )
+
+if TYPE_CHECKING:
+    from friday_core.interfaces import LLMClient
 
 
 logger = logging.getLogger(__name__)
@@ -86,12 +88,21 @@ class MemoryExtractor:
     - Named Entity Recognition (NER)
     - Task State Extraction
     - Sentiment/Preference Extraction
+
+    Example:
+        from friday_llm import LiteLLMService
+
+        llm = LiteLLMService(model_name="gpt-4-turbo")
+        extractor = MemoryExtractor(
+            memory_controller=memory,
+            llm=llm,
+        )
     """
 
     def __init__(
         self,
         memory_controller: MemoryController,
-        extraction_model: str = "gpt-4-turbo",
+        llm: "LLMClient",
         telemetry: TelemetryInterface | None = None,
     ) -> None:
         """
@@ -99,11 +110,11 @@ class MemoryExtractor:
 
         Args:
             memory_controller: The memory controller for storing extracted data
-            extraction_model: LLM model for extraction (default: gpt-4-turbo)
+            llm: LLMClient for extraction (injected dependency)
             telemetry: Optional telemetry recorder
         """
         self._memory = memory_controller
-        self._model = extraction_model
+        self._llm = llm
         self._telemetry = telemetry
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
@@ -141,19 +152,17 @@ class MemoryExtractor:
                 assistant_response=turn.assistant_response or "",
             )
 
-            # Call LLM for extraction
-            response = await litellm.acompletion(
-                model=self._model,
+            # Call LLM for extraction using injected client
+            response = await self._llm.chat_completion(
                 messages=[
-                    {"role": "system", "content": "You are a precise information extraction system."},
+                    {"role": "system", "content": "You are a precise information extraction system. Always respond with valid JSON."},
                     {"role": "user", "content": prompt},
                 ],
-                response_format={"type": "json_object"},
                 temperature=0.0,  # Deterministic extraction
             )
 
             # Parse response
-            content = response.choices[0].message.content
+            content = response.content or "{}"
             extracted = json.loads(content)
 
             # Store extracted data
@@ -307,19 +316,17 @@ class MemoryExtractor:
             List of entity names
         """
         try:
-            response = await litellm.acompletion(
-                model=self._model,
+            response = await self._llm.chat_completion(
                 messages=[
                     {
                         "role": "system",
-                        "content": "Extract named entities from the text. Return a JSON array of strings.",
+                        "content": "Extract named entities from the text. Return a JSON object with an 'entities' key containing an array of strings.",
                     },
                     {"role": "user", "content": text},
                 ],
-                response_format={"type": "json_object"},
                 temperature=0.0,
             )
-            content = response.choices[0].message.content
+            content = response.content or "{}"
             result = json.loads(content)
             return result.get("entities", [])
         except Exception as e:

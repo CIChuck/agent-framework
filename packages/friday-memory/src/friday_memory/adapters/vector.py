@@ -1,36 +1,61 @@
 """
 ChromaDB Vector Store Implementation.
-Implements VectorStoreAdapter with LiteLLM embeddings.
+Implements VectorStoreAdapter with injected EmbeddingModel.
 
 Ref: Batch 1 Specification, Section 3.1
+Updated: Batch 3 - Now uses injected EmbeddingModel protocol
 """
 
-from typing import Any
+from typing import TYPE_CHECKING, Any, Protocol
 
 import chromadb
-import litellm
 
 from friday_core import TelemetryInterface, VectorStoreAdapter
+
+if TYPE_CHECKING:
+    from friday_core.interfaces import EmbeddingModel
+
+
+class EmbeddingFunction(Protocol):
+    """Protocol for embedding functions compatible with ChromaVectorStore."""
+
+    async def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        """Embed multiple documents."""
+        ...
+
+    async def embed_query(self, text: str) -> list[float]:
+        """Embed a single query."""
+        ...
 
 
 class ChromaVectorStore(VectorStoreAdapter):
     """
     ChromaDB-based implementation of VectorStoreAdapter.
 
-    Uses LiteLLM for embeddings, providing model-agnostic embedding support.
-    Supports both persistent and ephemeral (in-memory) storage.
+    Uses an injected EmbeddingModel for embeddings, providing model-agnostic
+    embedding support. Supports both persistent and ephemeral (in-memory) storage.
 
     Features:
     - Semantic search with metadata filtering
-    - LiteLLM-powered embeddings (OpenAI, Cohere, etc.)
+    - Injected EmbeddingModel for flexibility (LiteLLM, OpenAI, etc.)
     - Telemetry integration for observability
+
+    Example:
+        from friday_llm import LiteLLMEmbeddingService
+
+        embeddings = LiteLLMEmbeddingService(model_name="text-embedding-3-small")
+        store = ChromaVectorStore(
+            collection_name="my_collection",
+            embedding_function=embeddings,
+        )
     """
 
     def __init__(
         self,
         collection_name: str,
+        embedding_function: "EmbeddingFunction | EmbeddingModel",
+        path: str | None = None,
         persist_directory: str | None = None,
-        embedding_model: str = "text-embedding-3-small",
         telemetry: TelemetryInterface | None = None,
     ) -> None:
         """
@@ -38,17 +63,21 @@ class ChromaVectorStore(VectorStoreAdapter):
 
         Args:
             collection_name: Namespace for this memory (e.g., 'friday_long_term')
+            embedding_function: EmbeddingModel for generating embeddings
+            path: Local path for persistence (alias for persist_directory)
             persist_directory: Local path for persistence. If None, uses ephemeral client.
-            embedding_model: LiteLLM embedding model name (default: text-embedding-3-small)
             telemetry: Optional telemetry recorder for white-box testing
         """
         self._collection_name = collection_name
-        self._embedding_model = embedding_model
+        self._embedding_function = embedding_function
         self._telemetry = telemetry
 
+        # Support both 'path' and 'persist_directory' for convenience
+        storage_path = path or persist_directory
+
         # Initialize ChromaDB client
-        if persist_directory:
-            self._client = chromadb.PersistentClient(path=persist_directory)
+        if storage_path:
+            self._client = chromadb.PersistentClient(path=storage_path)
         else:
             self._client = chromadb.EphemeralClient()
 
@@ -65,7 +94,7 @@ class ChromaVectorStore(VectorStoreAdapter):
 
     async def _get_embeddings(self, texts: list[str]) -> list[list[float]]:
         """
-        Generate embeddings using LiteLLM.
+        Generate embeddings using the injected embedding function.
 
         Args:
             texts: List of texts to embed
@@ -73,11 +102,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         Returns:
             List of embedding vectors
         """
-        response = await litellm.aembedding(
-            model=self._embedding_model,
-            input=texts,
-        )
-        return [item["embedding"] for item in response.data]
+        return await self._embedding_function.embed_documents(texts)
 
     async def add_documents(
         self,
