@@ -14,6 +14,7 @@ This package provides:
 
 # Models
 from friday_memory.models import (
+    ConflictResolutionResponse,
     ConsolidationReport,
     ContextPayload,
     GraphEdge,
@@ -21,6 +22,7 @@ from friday_memory.models import (
     InteractionTurn,
     ProvenanceMetadata,
     SessionState,
+    SummarizationResponse,
     ToolCall,
     ToolResult,
 )
@@ -57,6 +59,8 @@ __all__ = [
     "SessionState",
     "ConsolidationReport",
     "ContextPayload",
+    "SummarizationResponse",
+    "ConflictResolutionResponse",
     # Adapters
     "InMemoryEpisodicStore",
     "ElementXGraphStore",

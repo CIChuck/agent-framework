@@ -256,6 +256,9 @@ class ContextAssembler(ContextEngineeringInterface):
         - Passive: Query is the user's last message
         - Active: Query is an Agent-generated search string
 
+        Context priming (injecting prior session knowledge) is handled
+        by MemoryController.recall().
+
         Args:
             query: The search string
             state: Current session state
@@ -269,7 +272,7 @@ class ContextAssembler(ContextEngineeringInterface):
             span_id = self._telemetry.start_span("context_assembly")
 
         try:
-            # Retrieve from memory controller
+            # Retrieve from memory controller (includes priming if enabled)
             payload = await self._memory.recall(
                 query=query,
                 session_id=state.session_id,

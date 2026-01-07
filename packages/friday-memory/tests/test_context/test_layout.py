@@ -109,7 +109,8 @@ class TestPromptFormatting:
         assert len(messages) >= 2
         assert messages[0]["role"] == "system"
         assert messages[-1]["role"] == "user"
-        assert messages[-1]["content"] == "Hello!"
+        # Speaker name prefix is added by PromptArchitect (default: "User")
+        assert messages[-1]["content"] == "[User]: Hello!"
 
     def test_format_prompt_with_transparency_block(self, architect: PromptArchitect):
         """Test formatting with recent memories (transparency block)."""

@@ -287,3 +287,51 @@ class ChromaVectorStore(VectorStoreAdapter):
             "text": results["documents"][0] if results["documents"] else "",
             "metadata": results["metadatas"][0] if results["metadatas"] else {},
         }
+
+    async def get_all(
+        self, limit: int = 100, where: dict[str, Any] | None = None
+    ) -> list[dict[str, Any]]:
+        """
+        Get all documents from the collection.
+
+        Args:
+            limit: Maximum number of documents to return
+            where: Optional metadata filter dict (e.g., {"type": "insight"})
+
+        Returns:
+            List of documents with id, text, and metadata
+        """
+        results = self._collection.get(
+            limit=limit,
+            where=where,
+            include=["documents", "metadatas"],
+        )
+
+        documents = []
+        for i, doc_id in enumerate(results["ids"]):
+            documents.append({
+                "id": doc_id,
+                "text": results["documents"][i] if results["documents"] else "",
+                "metadata": results["metadatas"][i] if results["metadatas"] else {},
+            })
+
+        return documents
+
+    async def clear(self) -> int:
+        """
+        Clear all documents from the collection.
+
+        Returns:
+            Number of documents deleted
+        """
+        # Get count before clearing
+        count = await self.count()
+
+        if count > 0:
+            # Get all document IDs and delete them
+            results = self._collection.get(limit=count)
+            if results["ids"]:
+                self._collection.delete(ids=results["ids"])
+
+        self._emit_event("vector_store_cleared", {"documents_deleted": count})
+        return count

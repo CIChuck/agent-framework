@@ -5,6 +5,7 @@ description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
 requires-python = ">=3.10"
 dependencies = [
     "friday-core",
+    "friday-llm",
     "chromadb>=0.4.0",
     "networkx>=3.0",
     "numpy>=1.24.0",
@@ -26,6 +27,7 @@ packages = ["src/friday_memory"]
 
 [tool.uv.sources]
 friday-core = { workspace = true }
+friday-llm = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -35,6 +35,8 @@ class PromptArchitect:
         model_name: str = "gpt-4",
         max_tokens: int = 8192,
         output_buffer: int = 1024,
+        user_name: str = "User",
+        assistant_name: str = "Assistant",
     ) -> None:
         """
         Initialize the Prompt Architect.
@@ -43,10 +45,14 @@ class PromptArchitect:
             model_name: The model name for token counting
             max_tokens: Maximum context window tokens
             output_buffer: Reserved tokens for model output
+            user_name: Display name for the user in conversation
+            assistant_name: Display name for the assistant in conversation
         """
         self.model_name = model_name
         self.max_tokens = max_tokens
         self.output_buffer = output_buffer
+        self.user_name = user_name
+        self.assistant_name = assistant_name
 
         # Initialize tokenizer
         try:
@@ -91,21 +97,22 @@ class PromptArchitect:
         messages.append({"role": "system", "content": system_content})
 
         # Add episodic memory (conversation history)
+        # Include speaker names in content for clarity during extraction
         for turn in payload.history:
-            # Add user message
+            # Add user message with name prefix
             messages.append({
                 "role": "user",
-                "content": turn.user_message,
+                "content": f"[{self.user_name}]: {turn.user_message}",
             })
-            # Add assistant response
+            # Add assistant response with name prefix
             if turn.assistant_message:
                 messages.append({
                     "role": "assistant",
-                    "content": turn.assistant_message,
+                    "content": f"[{self.assistant_name}]: {turn.assistant_message}",
                 })
 
-        # Add the current user query
-        messages.append({"role": "user", "content": user_query})
+        # Add the current user query with name prefix
+        messages.append({"role": "user", "content": f"[{self.user_name}]: {user_query}"})
 
         return messages
 

@@ -27,6 +27,7 @@ members = [
     "friday-optimization",
     "friday-sandbox",
     "friday-tools",
+    "friday-transcript",
 ]
 
 [[package]]
@@ -1258,6 +1259,7 @@ dependencies = [
     { name = "friday-memory" },
     { name = "friday-sandbox" },
     { name = "friday-tools" },
+    { name = "friday-transcript" },
 ]
 
 [package.optional-dependencies]
@@ -1277,6 +1279,7 @@ requires-dist = [
     { name = "friday-memory", editable = "packages/friday-memory" },
     { name = "friday-sandbox", editable = "packages/friday-sandbox" },
     { name = "friday-tools", editable = "packages/friday-tools" },
+    { name = "friday-transcript", editable = "packages/friday-transcript" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
@@ -1488,6 +1491,7 @@ source = { editable = "packages/friday-memory" }
 dependencies = [
     { name = "chromadb" },
     { name = "friday-core" },
+    { name = "friday-llm" },
     { name = "networkx", version = "3.4.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "networkx", version = "3.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
@@ -1505,6 +1509,7 @@ dev = [
 requires-dist = [
     { name = "chromadb", specifier = ">=0.4.0" },
     { name = "friday-core", editable = "packages/friday-core" },
+    { name = "friday-llm", editable = "packages/friday-llm" },
     { name = "networkx", specifier = ">=3.0" },
     { name = "numpy", specifier = ">=1.24.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
@@ -1628,6 +1633,30 @@ requires-dist = [
     { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0" },
 ]
 provides-extras = ["dev", "langchain", "anthropic", "openai", "all-adapters"]
+
+[[package]]
+name = "friday-transcript"
+version = "0.1.0"
+source = { editable = "packages/friday-transcript" }
+dependencies = [
+    { name = "aiosqlite" },
+    { name = "pydantic" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiosqlite", specifier = ">=0.19.0" },
+    { name = "pydantic", specifier = ">=2.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+]
+provides-extras = ["dev"]
 
 [[package]]
 name = "frozenlist"

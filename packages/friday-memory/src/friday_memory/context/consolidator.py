@@ -10,20 +10,23 @@ Consolidation Logic:
 3. Conflict Resolution: Handling contradictory facts with lineage tracking
 """
 
-import json
 import logging
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-import litellm
 import tiktoken
 
 from friday_core import TelemetryInterface
 
 from friday_memory.controller import MemoryController
 from friday_memory.models import (
+    ConflictResolutionResponse,
     ConsolidationReport,
     ProvenanceMetadata,
+    SummarizationResponse,
 )
+
+if TYPE_CHECKING:
+    from friday_core.interfaces import LLMClient
 
 
 logger = logging.getLogger(__name__)
@@ -90,7 +93,7 @@ class MemoryConsolidator:
     def __init__(
         self,
         memory_controller: MemoryController,
-        consolidation_model: str = "gpt-4-turbo",
+        llm_client: "LLMClient",
         min_turns_to_consolidate: int = 5,
         max_turns_per_summary: int = 10,
         telemetry: TelemetryInterface | None = None,
@@ -100,22 +103,19 @@ class MemoryConsolidator:
 
         Args:
             memory_controller: The memory controller facade
-            consolidation_model: LLM model for summarization
+            llm_client: LLMClient for summarization and conflict resolution
             min_turns_to_consolidate: Minimum turns before consolidation
             max_turns_per_summary: Maximum turns per summary block
             telemetry: Optional telemetry recorder
         """
         self._memory = memory_controller
-        self._model = consolidation_model
+        self._llm_client = llm_client
         self._min_turns = min_turns_to_consolidate
         self._max_turns = max_turns_per_summary
         self._telemetry = telemetry
 
-        # Initialize tokenizer
-        try:
-            self._encoding = tiktoken.encoding_for_model(consolidation_model)
-        except KeyError:
-            self._encoding = tiktoken.get_encoding("cl100k_base")
+        # Initialize tokenizer (use default encoding)
+        self._encoding = tiktoken.get_encoding("cl100k_base")
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -312,8 +312,7 @@ class MemoryConsolidator:
 
             try:
                 # Call LLM for summarization
-                response = await litellm.acompletion(
-                    model=self._model,
+                response = await self._llm_client.chat_completion(
                     messages=[
                         {
                             "role": "system",
@@ -324,14 +323,17 @@ class MemoryConsolidator:
                             "content": SUMMARIZATION_PROMPT.format(turns=turns_text),
                         },
                     ],
-                    response_format={"type": "json_object"},
+                    response_model=SummarizationResponse,
                     temperature=0.0,
                 )
 
-                content = response.choices[0].message.content
-                result = json.loads(content)
+                # Get the parsed Pydantic model
+                result = response._parsed_model
+                if result is None:
+                    logger.error("Failed to parse summarization response")
+                    continue
 
-                summary_text = result.get("summary", "")
+                summary_text = result.summary
                 summary_tokens = self._count_tokens(summary_text)
 
                 # Store summary as an insight
@@ -395,8 +397,7 @@ class MemoryConsolidator:
                 for f in facts
             )
 
-            response = await litellm.acompletion(
-                model=self._model,
+            response = await self._llm_client.chat_completion(
                 messages=[
                     {
                         "role": "system",
@@ -407,12 +408,21 @@ class MemoryConsolidator:
                         "content": CONFLICT_RESOLUTION_PROMPT.format(facts=facts_text),
                     },
                 ],
-                response_format={"type": "json_object"},
+                response_model=ConflictResolutionResponse,
                 temperature=0.0,
             )
 
-            content = response.choices[0].message.content
-            return json.loads(content)
+            # Get the parsed Pydantic model
+            result = response._parsed_model
+            if result is None:
+                raise ValueError("Failed to parse conflict resolution response")
+
+            return {
+                "has_conflict": result.has_conflict,
+                "resolution": result.resolution,
+                "current_value": result.current_value,
+                "historical_note": result.historical_note,
+            }
 
         except Exception as e:
             logger.error(f"Conflict resolution failed: {e}")

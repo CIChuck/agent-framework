@@ -6,11 +6,12 @@ Tests cover:
 - Context assembly with budgeting
 - Token budget enforcement
 - Checkpoint restoration
+
+Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 """
 
 import uuid
 from datetime import datetime
-from unittest.mock import AsyncMock, patch
 
 import pytest
 
@@ -38,21 +39,6 @@ def create_turn(user_msg: str = "Hello", session_id: str = "test_session") -> In
         assistant_message="Response",
         consolidated=False,
     )
-
-
-@pytest.fixture
-def mock_litellm():
-    """Mock LiteLLM calls."""
-    with patch("friday_memory.adapters.vector.litellm") as mock:
-        async def mock_aembedding(model, input):
-            import random
-            embeddings = [[random.random() for _ in range(1536)] for _ in input]
-            mock_response = AsyncMock()
-            mock_response.data = [{"embedding": emb} for emb in embeddings]
-            return mock_response
-
-        mock.aembedding = mock_aembedding
-        yield mock
 
 
 @pytest.fixture
@@ -99,7 +85,7 @@ class TestContextAssembly:
 
     @pytest.mark.asyncio
     async def test_assemble_context_returns_payload(
-        self, context_assembler: ContextAssembler, mock_litellm
+        self, context_assembler: ContextAssembler
     ):
         """Test that assemble_context returns a ContextPayload."""
         state = await context_assembler.initialize_session("test", "user")
@@ -116,7 +102,7 @@ class TestContextAssembly:
 
     @pytest.mark.asyncio
     async def test_assemble_context_respects_budget(
-        self, context_assembler: ContextAssembler, mock_litellm
+        self, context_assembler: ContextAssembler
     ):
         """Test that assembly respects token budget."""
         state = await context_assembler.initialize_session("budget_test", "user")

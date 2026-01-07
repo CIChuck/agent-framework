@@ -44,6 +44,8 @@ from friday_core.interfaces import (
     ToolAdapter,
     ToolDefinition,
     ToolRegistry,
+    TranscriptBackedEpisodicStore,
+    TranscriptStoreProtocol,
     VectorStoreAdapter,
 )
 
@@ -74,6 +76,9 @@ __all__ = [
     "ToolDefinition",
     "ToolAdapter",
     "ToolRegistry",
+    # Transcript Integration
+    "TranscriptBackedEpisodicStore",
+    "TranscriptStoreProtocol",
 ]
 
 __version__ = "0.1.0"

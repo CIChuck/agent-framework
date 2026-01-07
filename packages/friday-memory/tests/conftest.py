@@ -4,6 +4,7 @@ Shared test fixtures for friday-memory tests.
 
 import uuid
 from datetime import datetime
+from unittest.mock import AsyncMock
 
 import pytest
 
@@ -113,11 +114,39 @@ def graph_store() -> ElementXGraphStore:
 
 
 @pytest.fixture
-def vector_store() -> ChromaVectorStore:
-    """Create an ephemeral vector store."""
-    # Use unique collection name to avoid conflicts between tests
+def mock_embedding_model():
+    """
+    Mock EmbeddingModel protocol.
+
+    Returns deterministic embeddings for testing.
+    """
+    mock = AsyncMock()
+    mock.embed_documents = AsyncMock(
+        side_effect=lambda texts: [[0.1] * 1536 for _ in texts]
+    )
+    mock.embed_query = AsyncMock(return_value=[0.1] * 1536)
+    return mock
+
+
+@pytest.fixture
+def mock_llm_client():
+    """
+    Mock LLMClient protocol.
+
+    Configure response behavior per test as needed.
+    """
+    mock = AsyncMock()
+    return mock
+
+
+@pytest.fixture
+def vector_store(mock_embedding_model) -> ChromaVectorStore:
+    """Create an ephemeral vector store with mock embedding model."""
     collection_name = f"test_collection_{uuid.uuid4().hex[:8]}"
-    return ChromaVectorStore(collection_name=collection_name)
+    return ChromaVectorStore(
+        collection_name=collection_name,
+        embedding_function=mock_embedding_model,
+    )
 
 
 # --- Telemetry Fixtures ---

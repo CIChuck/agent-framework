@@ -19,6 +19,10 @@ Payload Models (Batch 2):
 """
 
 from friday_memory.models.graph import GraphEdge, GraphNode, ProvenanceMetadata
+from friday_memory.models.llm_responses import (
+    ConflictResolutionResponse,
+    SummarizationResponse,
+)
 from friday_memory.models.payload import ContextPayload
 from friday_memory.models.session import (
     ConsolidationReport,
@@ -41,4 +45,7 @@ __all__ = [
     "ConsolidationReport",
     # Payload models
     "ContextPayload",
+    # LLM response models
+    "SummarizationResponse",
+    "ConflictResolutionResponse",
 ]

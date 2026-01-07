@@ -6,11 +6,12 @@ Tests cover:
 - Consolidation bridge (fetch/mark unconsolidated events)
 - Unified recall from multiple stores
 - Identity merging
+
+Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 """
 
 import uuid
 from datetime import datetime
-from unittest.mock import AsyncMock, patch
 
 import pytest
 
@@ -38,21 +39,6 @@ def create_turn(user_msg: str = "Hello", session_id: str = "test_session") -> In
         assistant_message="Response",
         consolidated=False,
     )
-
-
-@pytest.fixture
-def mock_litellm():
-    """Mock LiteLLM embedding calls."""
-    with patch("friday_memory.adapters.vector.litellm") as mock:
-        async def mock_aembedding(model, input):
-            import random
-            embeddings = [[random.random() for _ in range(1536)] for _ in input]
-            mock_response = AsyncMock()
-            mock_response.data = [{"embedding": emb} for emb in embeddings]
-            return mock_response
-
-        mock.aembedding = mock_aembedding
-        yield mock
 
 
 class TestProvenanceEnforcement:
@@ -107,20 +93,20 @@ class TestProvenanceEnforcement:
 
     @pytest.mark.asyncio
     async def test_store_insight_requires_metadata(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
-        """Test that store_insight raises ValueError without metadata."""
+        """Test that store_insight raises ValueError without provenance."""
         with pytest.raises(ValueError, match="Provenance metadata is required"):
-            await memory_controller.store_insight("Test insight", metadata=None)
+            await memory_controller.store_insight("Test insight", provenance=None)
 
     @pytest.mark.asyncio
     async def test_store_insight_with_metadata_succeeds(
-        self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata, mock_litellm
+        self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
     ):
-        """Test that store_insight succeeds with metadata."""
+        """Test that store_insight succeeds with provenance."""
         result = await memory_controller.store_insight(
             "Test insight about Python",
-            metadata=sample_provenance,
+            provenance=sample_provenance,
         )
         assert result is True
 
@@ -194,7 +180,7 @@ class TestUnifiedRecall:
 
     @pytest.mark.asyncio
     async def test_recall_returns_context_payload(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
         """Test that recall returns a ContextPayload."""
         payload = await memory_controller.recall(
@@ -212,7 +198,7 @@ class TestUnifiedRecall:
 
     @pytest.mark.asyncio
     async def test_recall_includes_history(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
         """Test that recall includes episodic history."""
         session_id = "history_test"
@@ -233,7 +219,7 @@ class TestUnifiedRecall:
 
     @pytest.mark.asyncio
     async def test_recall_without_history(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
         """Test recall without history."""
         session_id = "no_history_test"
@@ -253,7 +239,7 @@ class TestUnifiedRecall:
 
     @pytest.mark.asyncio
     async def test_recall_debug_info(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
         """Test that recall populates debug info."""
         payload = await memory_controller.recall(
@@ -357,7 +343,7 @@ class TestTelemetryIntegration:
 
     @pytest.mark.asyncio
     async def test_recall_emits_event(
-        self, memory_controller: MemoryController, mock_litellm
+        self, memory_controller: MemoryController
     ):
         """Test that recall emits telemetry."""
         await memory_controller.recall(

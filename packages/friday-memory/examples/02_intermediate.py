@@ -15,20 +15,20 @@ You'll learn:
 - Entity merging and identity resolution
 
 Prerequisites:
-    pip install friday-memory
+    pip install friday-memory friday-llm
     # Vector store requires: OPENAI_API_KEY or another embedding provider
 
 Run:
     python 02_intermediate.py
 
 Note: This example uses mock embeddings for demonstration.
-      In production, configure your embedding provider.
+      In production, use LiteLLMEmbeddingService from friday-llm.
 """
 
 import asyncio
 import uuid
 from datetime import datetime
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock
 
 from friday_core import DebugTelemetryRecorder
 
@@ -44,20 +44,26 @@ from friday_memory import (
 )
 
 
-def create_mock_litellm():
-    """Create a mock for LiteLLM embeddings (for demo purposes)."""
+def create_mock_embedding_model():
+    """
+    Create a mock EmbeddingModel for demonstration.
+
+    In production, use:
+        from friday_llm import LiteLLMEmbeddingService
+        embedding_model = LiteLLMEmbeddingService(model_name="text-embedding-3-small")
+    """
     mock = AsyncMock()
 
-    async def mock_aembedding(model, input):
+    async def embed_documents(texts):
         import random
+        return [[random.random() for _ in range(1536)] for _ in texts]
 
-        # Generate random embeddings for demo
-        embeddings = [[random.random() for _ in range(1536)] for _ in input]
-        response = AsyncMock()
-        response.data = [{"embedding": emb} for emb in embeddings]
-        return response
+    async def embed_query(text):
+        import random
+        return [random.random() for _ in range(1536)]
 
-    mock.aembedding = mock_aembedding
+    mock.embed_documents = embed_documents
+    mock.embed_query = embed_query
     return mock
 
 
@@ -72,11 +78,15 @@ async def main():
     print("\n[Part 1] Memory Controller Setup")
     print("-" * 40)
 
+    # Create embedding model (mock for demo, use LiteLLMEmbeddingService in production)
+    embedding_model = create_mock_embedding_model()
+
     # Create individual stores
     episodic_store = InMemoryEpisodicStore()
     graph_store = ElementXGraphStore()
     vector_store = ChromaVectorStore(
-        collection_name=f"demo_{uuid.uuid4().hex[:8]}"
+        collection_name=f"demo_{uuid.uuid4().hex[:8]}",
+        embedding_function=embedding_model,
     )
 
     # Create telemetry recorder for observability
@@ -150,7 +160,7 @@ async def main():
     await controller.store_fact(alice)
     await controller.store_fact(bob)
     await controller.store_fact(platform_team)
-    print(f"Stored 3 entity nodes")
+    print("Stored 3 entity nodes")
 
     # Create and store relationships
     alice_manages = GraphEdge(
@@ -181,7 +191,7 @@ async def main():
     await controller.store_fact(alice, alice_manages)
     await controller.store_fact(bob, bob_member)
     await controller.store_fact(alice, alice_mentors)
-    print(f"Stored 3 relationship edges")
+    print("Stored 3 relationship edges")
 
     # Check telemetry
     fact_events = [e for e in telemetry.events if "fact_stored" in str(e)]
@@ -193,35 +203,33 @@ async def main():
     print("\n[Part 3] Storing Insights (Vector Store)")
     print("-" * 40)
 
-    # Mock LiteLLM for embedding generation
-    with patch("friday_memory.adapters.vector.litellm", create_mock_litellm()):
-        # Store insights (summaries, learnings) in the vector store
-        insight_provenance = ProvenanceMetadata(
-            source_id="learning_session_001",
-            source_type="inference",
-            confidence=0.85,
-            author_id="consolidator",
-        )
+    # Store insights (summaries, learnings) in the vector store
+    insight_provenance = ProvenanceMetadata(
+        source_id="learning_session_001",
+        source_type="inference",
+        confidence=0.85,
+        author_id="consolidator",
+    )
 
-        await controller.store_insight(
-            "Alice prefers async standups over daily meetings. "
-            "She values written communication for status updates.",
-            metadata=insight_provenance,
-        )
+    await controller.store_insight(
+        "Alice prefers async standups over daily meetings. "
+        "She values written communication for status updates.",
+        metadata=insight_provenance,
+    )
 
-        await controller.store_insight(
-            "The Platform team follows a bi-weekly sprint cycle with "
-            "retrospectives every other Friday.",
-            metadata=insight_provenance,
-        )
+    await controller.store_insight(
+        "The Platform team follows a bi-weekly sprint cycle with "
+        "retrospectives every other Friday.",
+        metadata=insight_provenance,
+    )
 
-        await controller.store_insight(
-            "Bob is an expert in distributed systems and has been "
-            "mentoring junior engineers on database optimization.",
-            metadata=insight_provenance,
-        )
+    await controller.store_insight(
+        "Bob is an expert in distributed systems and has been "
+        "mentoring junior engineers on database optimization.",
+        metadata=insight_provenance,
+    )
 
-        print("Stored 3 insights in vector store")
+    print("Stored 3 insights in vector store")
 
     # =========================================================================
     # Part 4: Adding Conversation History
@@ -266,26 +274,25 @@ async def main():
     print("\n[Part 5] Unified Recall")
     print("-" * 40)
 
-    with patch("friday_memory.adapters.vector.litellm", create_mock_litellm()):
-        # The recall() method searches all stores in parallel
-        payload = await controller.recall(
-            query="Tell me about Alice and the Platform team",
-            session_id=session_id,
-            include_history=True,
-            history_limit=5,
-            vector_results=3,
-            graph_depth=1,
-        )
+    # The recall() method searches all stores in parallel
+    payload = await controller.recall(
+        query="Tell me about Alice and the Platform team",
+        session_id=session_id,
+        include_history=True,
+        history_limit=5,
+        vector_results=3,
+        graph_depth=1,
+    )
 
-        print(f"Recall Results:")
-        print(f"  History turns: {len(payload.history)}")
-        print(f"  Vector passages: {len(payload.passages)}")
-        print(f"  Graph entities: {len(payload.entities)}")
-        print(f"  Graph facts: {len(payload.facts)}")
+    print("Recall Results:")
+    print(f"  History turns: {len(payload.history)}")
+    print(f"  Vector passages: {len(payload.passages)}")
+    print(f"  Graph entities: {len(payload.entities)}")
+    print(f"  Graph facts: {len(payload.facts)}")
 
-        print(f"\nDebug Info:")
-        for key, value in payload.debug_info.items():
-            print(f"  {key}: {value}")
+    print("\nDebug Info:")
+    for key, value in payload.debug_info.items():
+        print(f"  {key}: {value}")
 
     # =========================================================================
     # Part 6: Entity Resolution (Merging Duplicates)

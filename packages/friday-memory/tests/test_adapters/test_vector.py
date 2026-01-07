@@ -7,44 +7,21 @@ Tests cover:
 - Document deletion
 - Similarity scoring
 
-Note: These tests mock LiteLLM embeddings to avoid API calls.
+Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 """
 
 import uuid
-from unittest.mock import AsyncMock, patch
 
 import pytest
 
 from friday_memory import ChromaVectorStore
 
 
-def mock_embedding(dim: int = 1536) -> list[float]:
-    """Create a mock embedding vector."""
-    import random
-    return [random.random() for _ in range(dim)]
-
-
-@pytest.fixture
-def mock_litellm():
-    """Mock LiteLLM embedding calls."""
-    with patch("friday_memory.adapters.vector.litellm") as mock:
-        # Mock the aembedding function
-        async def mock_aembedding(model, input):
-            # Return mock embeddings for each input text
-            embeddings = [mock_embedding() for _ in input]
-            mock_response = AsyncMock()
-            mock_response.data = [{"embedding": emb} for emb in embeddings]
-            return mock_response
-
-        mock.aembedding = mock_aembedding
-        yield mock
-
-
 class TestChromaVectorStore:
     """Tests for ChromaVectorStore."""
 
     @pytest.mark.asyncio
-    async def test_add_documents(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_add_documents(self, vector_store: ChromaVectorStore):
         """Test adding documents to the store."""
         result = await vector_store.add_documents(
             texts=["Hello world", "Goodbye world"],
@@ -57,7 +34,7 @@ class TestChromaVectorStore:
         assert count == 2
 
     @pytest.mark.asyncio
-    async def test_add_empty_documents(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_add_empty_documents(self, vector_store: ChromaVectorStore):
         """Test adding empty document list."""
         result = await vector_store.add_documents(
             texts=[],
@@ -70,7 +47,7 @@ class TestChromaVectorStore:
         assert count == 0
 
     @pytest.mark.asyncio
-    async def test_query_documents(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_query_documents(self, vector_store: ChromaVectorStore):
         """Test querying documents."""
         # Add documents
         await vector_store.add_documents(
@@ -92,7 +69,7 @@ class TestChromaVectorStore:
         assert all("similarity" in r for r in results)
 
     @pytest.mark.asyncio
-    async def test_query_with_metadata_filter(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_query_with_metadata_filter(self, vector_store: ChromaVectorStore):
         """Test querying with metadata filter."""
         await vector_store.add_documents(
             texts=["Python code", "Java code", "Python tutorial"],
@@ -116,7 +93,7 @@ class TestChromaVectorStore:
             assert result["metadata"]["language"] == "python"
 
     @pytest.mark.asyncio
-    async def test_delete_by_ids(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_delete_by_ids(self, vector_store: ChromaVectorStore):
         """Test deleting documents by ID."""
         await vector_store.add_documents(
             texts=["Doc 1", "Doc 2", "Doc 3"],
@@ -132,13 +109,13 @@ class TestChromaVectorStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_delete_empty_list(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_delete_empty_list(self, vector_store: ChromaVectorStore):
         """Test deleting with empty list."""
         result = await vector_store.delete([])
         assert result is True
 
     @pytest.mark.asyncio
-    async def test_delete_where(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_delete_where(self, vector_store: ChromaVectorStore):
         """Test deleting documents by metadata filter."""
         await vector_store.add_documents(
             texts=["Old doc 1", "Old doc 2", "New doc"],
@@ -158,7 +135,7 @@ class TestChromaVectorStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_get_by_id(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_get_by_id(self, vector_store: ChromaVectorStore):
         """Test getting a document by ID."""
         await vector_store.add_documents(
             texts=["Test document"],
@@ -174,13 +151,13 @@ class TestChromaVectorStore:
         assert doc["metadata"]["key"] == "value"
 
     @pytest.mark.asyncio
-    async def test_get_by_id_not_found(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_get_by_id_not_found(self, vector_store: ChromaVectorStore):
         """Test getting non-existent document."""
         doc = await vector_store.get_by_id("nonexistent")
         assert doc is None
 
     @pytest.mark.asyncio
-    async def test_similarity_scores(self, vector_store: ChromaVectorStore, mock_litellm):
+    async def test_similarity_scores(self, vector_store: ChromaVectorStore):
         """Test that similarity scores are returned."""
         await vector_store.add_documents(
             texts=["Document about cats", "Document about dogs"],
@@ -196,10 +173,16 @@ class TestChromaVectorStore:
             assert "distance" in result
 
     @pytest.mark.asyncio
-    async def test_unique_collection_names(self, mock_litellm):
+    async def test_unique_collection_names(self, mock_embedding_model):
         """Test that different collection names are isolated."""
-        store1 = ChromaVectorStore(collection_name=f"collection_{uuid.uuid4().hex[:8]}")
-        store2 = ChromaVectorStore(collection_name=f"collection_{uuid.uuid4().hex[:8]}")
+        store1 = ChromaVectorStore(
+            collection_name=f"collection_{uuid.uuid4().hex[:8]}",
+            embedding_function=mock_embedding_model,
+        )
+        store2 = ChromaVectorStore(
+            collection_name=f"collection_{uuid.uuid4().hex[:8]}",
+            embedding_function=mock_embedding_model,
+        )
 
         await store1.add_documents(
             texts=["Store 1 doc"],

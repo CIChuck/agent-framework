@@ -1,0 +1,340 @@
+# Friday-Memory Integration Test Configuration
+#
+# This config file controls LLM, embedding, and memory settings
+# for the memory-chat.py interactive CLI.
+
+# Logging Settings
+logging:
+  # Global log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+  # Enable verbose extraction logging (shows full LLM extraction responses)
+  # Set to true for debugging extraction issues
+  extraction_debug: false
+
+# LLM Provider Settings (for chat completions)
+
+llm:
+  # Model name - LiteLLhow do you keep creating a plan? I didn't ask for a plan! Are you using the plan to help you think better? Because honestly I'm impressed!Why do you keep creating a plan? A plan with tasks that follow it is very impressive.Hello?M requires provider prefix
+  #
+  # Local Models:
+  #   LM Studio: "openai/your-model-name" (OpenAI-compatible API)
+  #   Ollama: "ollama/llama3" or "ollama/mistral"
+  #
+  # Cloud Providers (direct):
+  #   OpenAI: "gpt-4o-mini" or "gpt-4o"
+  #   Anthropic: "claude-3-5-sonnet-20241022"
+  #
+  # OpenRouter (access multiple providers via single API):
+  #   Anthropic: "openrouter/anthropic/claude-3.5-sonnet"
+  #   OpenAI: "openrouter/openai/gpt-4o"
+  #   Google: "openrouter/google/gemini-pro-1.5"
+  #   Meta: "openrouter/meta-llama/llama-3.1-70b-instruct"
+  #   Mistral: "openrouter/mistralai/mistral-large"
+  #
+  #model: "openai/local-model"
+  
+  #model: "openrouter/anthropic/claude-3.5-sonnet"
+  #model: "openrouter/openai/gpt-4o"
+
+  model: "openrouter/google/gemma-3-27b-it"
+
+  # API base URL
+  # LM Studio: http://localhost:1234/v1
+  # Ollama: http://localhost:11434
+  # OpenRouter: https://openrouter.ai/api/v1
+  # OpenAI/Anthropic direct: Leave empty (uses default)
+
+  #local
+  #api_base: "http://localhost:1234/v1"
+
+  api_base: "https://openrouter.ai/api/v1"
+
+  # API key (required for cloud providers, optional for local)
+  # LM Studio: Use "lm-studio" or any non-empty string
+  # Ollama: Leave empty
+  # OpenRouter: Use your OpenRouter API key (sk-or-v1-...)
+  # OpenAI/Anthropic: Use your actual API key
+
+  #api_key: "lm-studio"
+
+  #open router key
+  api_key: "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"
+
+  # Temperature (0.0 = deterministic, 1.0 = creative)
+  temperature: 0.5
+
+  # Max retries for transient errors
+  max_retries: 3
+
+  # Timeout in seconds
+  timeout_seconds: 60.0
+
+# Extraction LLM Settings (for entity/relationship extraction)
+# Can use a smaller, faster model optimized for structured output
+extraction:
+  # Model name - smaller/cheaper models work well for extraction
+  #
+  # Local: "ollama/llama3.2:3b", "ollama/qwen2.5:3b", "openai/local-model"
+  # OpenAI: "gpt-4o-mini" (cheap and fast)
+  # OpenRouter: "openrouter/anthropic/claude-3-haiku" (fast, cheap)
+  #             "openrouter/openai/gpt-4o-mini"
+  #             "openrouter/meta-llama/llama-3.1-8b-instruct"
+  #
+  # Set to null or remove to use the main LLM for extraction
+  
+  #local
+  #model: "openai/local-model"
+
+  model: "openrouter/google/gemma-3-27b-it"
+  #model: "openrouter/anthropic/claude-3-haiku"
+
+  # API base URL (same as main LLM if using same provider)
+  # OpenRouter: https://openrouter.ai/api/v1
+  
+  #local - Colossus
+  #api_base: "http://192.168.0.83:1234/v1"
+  api_base: "https://openrouter.ai/api/v1"
+
+  # localAPI key
+  #api_key: "lm-studio"
+
+  # open router key
+  api_key: "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"
+  #api_key: "sk-or-v1-your-openrouter-key-here"
+
+  # Temperature (0.0 for deterministic extraction)
+  temperature: 0.0
+
+  # Timeout in seconds (can be higher since it runs in background)
+  timeout_seconds: 60.0
+
+  # Extraction prompt template
+  # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name}, {user_message}, {assistant_response}
+  #
+  # Storage strategy:
+  # - entities, relationships → Graph Store (structured, Hebbian learning via hit_count)
+  # - insights → Vector Store (rich semantic content for similarity search)
+  # - tasks → Graph Store (as task nodes)
+
+  prompt: |
+    Analyze the conversation turn below to extract a knowledge graph structure and semantic memories.
+
+    Turn ID: {turn_id}
+    Timestamp: {timestamp}
+
+    Conversation Context:
+    - Speaker A (Human): {user_name}
+    - Speaker B (AI): {assistant_name}
+
+    TEXT TO ANALYZE:
+    {user_name}: {user_message}
+    {assistant_name}: {assistant_response}
+
+    INSTRUCTIONS:
+
+    1. **Entity Extraction (Nodes)**
+      - Identify people, organizations, projects, technologies, or abstract concepts.
+      - **Canonicalization**: Create an `id` for every entity in snake_case to ensure consistency (e.g., "Python 3.1" -> "python").
+      - **Resolution**: If pronouns (he, she, it, that) are used, resolve them to the specific noun they refer to if clear from the immediate text.
+      - **Properties**: Extract specific attributes mentioned (e.g., "version": "3.0", "role": "admin").
+
+    2. **Relationship Extraction (Edges)**
+      - Extract directional relationships: SOURCE -> RELATIONSHIP -> TARGET.
+      - **Predicate Standardization**: Prefer high-level semantic verbs (e.g., USES, AUTHORED, DISLIKES, EMPLOYS, DEFINES) over conversational filler.
+      - Ensure the Source and Target match the `id` of the Entities extracted.
+
+    3. **Insight Extraction (Structured Facts)**
+      - Extract granular facts as structured objects with metadata.
+      - **text**: 1-2 sentence observation providing qualitative context.
+      - **topic**: Categorize as "preference", "biographical", "technical", or "constraint".
+      - **entities**: List entity names mentioned in this insight.
+      - **confidence**: Score 0.0-1.0 based on how explicit the statement is.
+      - **sentiment**: "positive", "negative", or "neutral".
+
+    4. **Turn Summary (Paragraph)**
+      - Write a 2-4 sentence paragraph summarizing the entire conversation turn.
+      - Capture the main topic, key exchanges, and any decisions or conclusions.
+      - This should read as a standalone summary useful for future context.
+
+    5. **Task Extraction**
+      - Specific actionable items. Identify who is responsible (owner_id).
+
+    JSON OUTPUT FORMAT:
+
+    Respond ONLY with valid JSON matching this structure:
+
+    {{
+        "entities": [
+            {{"id": "entity_id", "label": "Display Name", "type": "person|project|technology|organization|concept", "properties": {{}}}}
+        ],
+        "relationships": [
+            {{"source_id": "actor_id", "relation": "VERB", "target_id": "recipient_id"}}
+        ],
+        "insights": [
+            {{
+                "text": "Rich, contextual sentence worth remembering for future reference.",
+                "topic": "preference|biographical|technical|constraint",
+                "entities": ["entity1", "entity2"],
+                "confidence": 0.9,
+                "sentiment": "positive|negative|neutral"
+            }}
+        ],
+        "tasks": [
+            {{"description": "task description", "status": "pending|completed|blocked", "owner_id": "entity_id"}}
+        ],
+        "summary": "A 2-4 sentence paragraph summarizing this conversation turn. Include who was talking, what was discussed, and any key outcomes or decisions made."
+    }}
+
+    If no relevant information is found in a category, return an empty array (or empty string for summary).
+
+
+  #  Old prompts
+  # prompt: |
+  #   Analyze the following conversation turn and extract structured information.
+
+  #   Turn ID: {turn_id}
+  #   Timestamp: {timestamp}
+
+  #   Conversation participants:
+  #   - Human user: {user_name}
+  #   - AI assistant: {assistant_name}
+
+  #   {user_name} said:
+  #   {user_message}
+
+  #   {assistant_name} replied:
+  #   {assistant_response}
+
+  #   Extract the following:
+
+  #   1. **Entities**: Named people, organizations, projects, technologies, or concepts mentioned.
+  #      - Use "{user_name}" for the human, "{assistant_name}" for the AI
+  #      - Include type: person, project, technology, organization, concept
+
+  #   2. **Relationships**: Directional connections between entities.
+  #      - SOURCE performs action on TARGET (active voice)
+  #      - Example: source="{user_name}", relation="creates", target="{assistant_name}"
+  #      - Do NOT create reverse/duplicate relationships
+
+  #   3. **Insights**: Rich, contextual observations worth remembering (1-2 sentences each).
+  #      - Write as complete, meaningful sentences
+  #      - Include context that would be useful for future semantic search
+  #      - Examples:
+  #        - "{user_name} is building an AI assistant named {assistant_name} with persistent memory capabilities."
+  #        - "{assistant_name} expressed enthusiasm about helping with coding tasks."
+  #        - "{user_name} prefers Python for backend development and finds TypeScript verbose."
+  #      - NOT micro-facts like "Chuck creates Friday" (those go in relationships)
+
+  #   4. **Tasks**: Mentioned tasks or goals with their status.
+
+  #   Respond ONLY with valid JSON:
+  #   {{
+  #       "entities": [
+  #           {{"label": "name", "type": "person|project|technology|organization|concept", "properties": {{}}}}
+  #       ],
+  #       "relationships": [
+  #           {{"source": "actor", "relation": "verb", "target": "recipient"}}
+  #       ],
+  #       "insights": [
+  #           "Rich, contextual sentence worth remembering for future reference."
+  #       ],
+  #       "tasks": [
+  #           {{"description": "task description", "status": "pending|completed|blocked"}}
+  #       ]
+  #   }}
+
+  #   If nothing relevant is found, return empty arrays. Be selective - only extract meaningful information.
+
+# Embedding Settings (for vector store)
+embedding:
+  # Model name for embeddings
+  # LM Studio: Use "openai/<model-name>" since LM Studio is OpenAI-compatible
+  model: "openai/nomic-embed-text-v1.5"
+
+  # API base URL for LM Studio
+  api_base: "http://192.168.0.83:1234/v1"
+
+  # API key (use any non-empty string for LM Studio)
+  api_key: "lm-studio"
+
+  # Timeout in seconds
+  timeout_seconds: 60.0
+
+# Memory Settings
+memory:
+  # ChromaDB collection name
+  collection_name: "memory_chat_test"
+
+  # ChromaDB persistence directory (relative to app folder)
+  # Data will be stored in tests/integration/memory/vector/
+  persist_directory: "./vector"
+
+  # TOKEN BUDGET CONFIGURATION
+  # These settings control how context is allocated within your LLM's limits.
+  #
+  # Budget hierarchy:
+  #   context_window (total)
+  #   └── output_buffer (reserved for LLM response)
+  #   └── system_prompt (fixed cost)
+  #   └── priming (loaded from prior sessions)
+  #   └── dynamic context (history, vector passages, graph entities from query)
+
+  # Maximum context window of your LLM (in tokens)
+  # Examples:
+  #   - Llama 3.1 8B: 8192 (or 128K with extended context)
+  #   - Mistral 7B: 32768
+  #   - GPT-4: 8192 or 128000
+  #   - Claude: 100000-200000
+  #   - Local models: Check your LM Studio/Ollama config
+  context_window: 64000
+
+  # Tokens reserved for model output (response generation)
+  # Rule of thumb: 1000-2000 for conversational, more for long-form
+  output_buffer: 3000
+
+  # Maximum conversation turns to include in assembled context
+  # When assembling context for each LLM call, the ContextAssembler
+  # will include up to this many recent turns from the episodic store.
+  # This controls how much conversation history the LLM sees.
+  # Higher values = more context but higher token usage.
+  max_history_turns: 999
+
+  # Consolidation settings
+  consolidate_after_turns: 50
+
+  # Context Priming Configuration
+  # On session startup, prime the context with knowledge from prior sessions.
+  # This creates continuity even when episodic history is empty.
+  #
+  # Entity-Driven Semantic Priming:
+  # 1. Get top entities by hit_count (Hebbian importance)
+  # 2. For each entity, query vector store for semantically related insights
+  # 3. Apply recency filter if configured
+  priming:
+    enabled: true              # Enable/disable automatic priming
+    top_entities: 50          # Number of top entities by hit_count to load
+    insights_per_entity: 8     # Insights to retrieve per entity (semantic search)
+    recency_days: 10           # Only include insights from last N days (0 = all time)
+    token_budget: 10000        # Max tokens for primed content
+
+# Chat Settings
+chat:
+  # Names for the conversation participants
+  # These are used in prompts and display
+  user_name: "Chuck"
+  assistant_name: "Friday"
+
+  # System prompt for the assistant
+  system_prompt: |
+    You are a helpful AI assistant named Friday equipped. with a persistent memory
+    that allows you to remember previous conversations. You were created by Chuck Russell.
+    Your conversations while you are being constructed are with Chuck Russell, the user.
+    You can perform tasks, answer questions, and provide information to the best of your abilities.
+    If a question confuses you, ask for more information from the user.
+    If you don't know the answer to the question, you can simply reply, "I don't know.".
+    Do not fabricate answers.
+    Always answer truthfully. When you are asked to perform a task, Construct a plan then  describe the plan.
+    You have a personality. You have a sense of humor. Do not take yourself too seriously.     
+    It is not necessary to be formal. You are allowed to use emojis. You are allowed to use sarcasm. You are allowed to use humor.
+    You are allowed to use irony.You are allowed to use wordplay. You are allowed to use puns.You are allowed to use wordplay.

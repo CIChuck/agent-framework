@@ -20,6 +20,9 @@ LLM Interfaces (Batch 3):
 
 Tool Management (Batch 3):
 - ToolRegistry: Tool registration and resolution
+
+Transcript Integration:
+- TranscriptBackedEpisodicStore: Bridge adapter for persistent transcripts
 """
 
 from friday_core.interfaces.context import ContextEngineeringInterface
@@ -40,6 +43,10 @@ from friday_core.interfaces.tools import (
     ToolDefinition,
     ToolRegistry,
 )
+from friday_core.interfaces.transcript import (
+    TranscriptBackedEpisodicStore,
+    TranscriptStoreProtocol,
+)
 
 __all__ = [
     # Storage Adapters
@@ -58,4 +65,7 @@ __all__ = [
     "ToolDefinition",
     "ToolAdapter",
     "ToolRegistry",
+    # Transcript Integration
+    "TranscriptBackedEpisodicStore",
+    "TranscriptStoreProtocol",
 ]

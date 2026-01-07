@@ -17,11 +17,14 @@ You'll learn:
 - Building LLM-ready prompts
 
 Prerequisites:
-    pip install friday-memory
+    pip install friday-memory friday-llm
     # Vector store requires: OPENAI_API_KEY or another embedding provider
 
 Run:
     python 03_advanced.py
+
+Note: This example uses mock embeddings for demonstration.
+      In production, use LiteLLMEmbeddingService from friday-llm.
 """
 
 import asyncio
@@ -29,7 +32,7 @@ import tempfile
 import uuid
 from datetime import datetime
 from pathlib import Path
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock
 
 from friday_core import DebugTelemetryRecorder
 
@@ -50,19 +53,26 @@ from friday_memory import (
 )
 
 
-def create_mock_litellm():
-    """Create a mock for LiteLLM embeddings (for demo purposes)."""
+def create_mock_embedding_model():
+    """
+    Create a mock EmbeddingModel for demonstration.
+
+    In production, use:
+        from friday_llm import LiteLLMEmbeddingService
+        embedding_model = LiteLLMEmbeddingService(model_name="text-embedding-3-small")
+    """
     mock = AsyncMock()
 
-    async def mock_aembedding(model, input):
+    async def embed_documents(texts):
         import random
+        return [[random.random() for _ in range(1536)] for _ in texts]
 
-        embeddings = [[random.random() for _ in range(1536)] for _ in input]
-        response = AsyncMock()
-        response.data = [{"embedding": emb} for emb in embeddings]
-        return response
+    async def embed_query(text):
+        import random
+        return [random.random() for _ in range(1536)]
 
-    mock.aembedding = mock_aembedding
+    mock.embed_documents = embed_documents
+    mock.embed_query = embed_query
     return mock
 
 
@@ -143,7 +153,7 @@ scalability, and developer experience.
     print(f"  Total characters: {result.total_characters}")
     print(f"  Chunks created: {result.total_chunks}")
 
-    print(f"\nChunk preview (first 2 chunks):")
+    print("\nChunk preview (first 2 chunks):")
     for i, chunk in enumerate(result.chunks[:2]):
         preview = chunk.text[:100].replace("\n", " ")
         print(f"  Chunk {i + 1}: \"{preview}...\"")
@@ -155,11 +165,15 @@ scalability, and developer experience.
     print("\n[Part 2] Full Stack Setup")
     print("-" * 50)
 
+    # Create embedding model (mock for demo, use LiteLLMEmbeddingService in production)
+    embedding_model = create_mock_embedding_model()
+
     # Create stores
     episodic_store = InMemoryEpisodicStore()
     graph_store = ElementXGraphStore()
     vector_store = ChromaVectorStore(
-        collection_name=f"advanced_demo_{uuid.uuid4().hex[:8]}"
+        collection_name=f"advanced_demo_{uuid.uuid4().hex[:8]}",
+        embedding_function=embedding_model,
     )
     telemetry = DebugTelemetryRecorder()
 
@@ -198,25 +212,24 @@ scalability, and developer experience.
     print("\n[Part 3] Populating Memory")
     print("-" * 50)
 
-    with patch("friday_memory.adapters.vector.litellm", create_mock_litellm()):
-        # Store document chunks in vector store
-        chunk_texts = [c.text for c in result.chunks]
-        chunk_metadatas = [
-            {
-                "source": "platform_docs",
-                "chunk_index": i,
-                "doc_id": result.document_id,
-            }
-            for i in range(len(result.chunks))
-        ]
-        chunk_ids = [c.id for c in result.chunks]
+    # Store document chunks in vector store
+    chunk_texts = [c.text for c in result.chunks]
+    chunk_metadatas = [
+        {
+            "source": "platform_docs",
+            "chunk_index": i,
+            "doc_id": result.document_id,
+        }
+        for i in range(len(result.chunks))
+    ]
+    chunk_ids = [c.id for c in result.chunks]
 
-        await vector_store.add_documents(
-            texts=chunk_texts,
-            metadatas=chunk_metadatas,
-            ids=chunk_ids,
-        )
-        print(f"Added {len(chunk_texts)} chunks to vector store")
+    await vector_store.add_documents(
+        texts=chunk_texts,
+        metadatas=chunk_metadatas,
+        ids=chunk_ids,
+    )
+    print(f"Added {len(chunk_texts)} chunks to vector store")
 
     # Create graph entities from document
     doc_provenance = ProvenanceMetadata(
@@ -315,7 +328,7 @@ scalability, and developer experience.
 
     # Initialize a new session
     state = await assembler.initialize_session(session_id, user_id)
-    print(f"Session initialized:")
+    print("Session initialized:")
     print(f"  Session ID: {state.session_id}")
     print(f"  User ID: {state.user_id}")
     print(f"  Turn count: {state.turn_count}")
@@ -326,7 +339,7 @@ scalability, and developer experience.
     state.set_var("session:context", "learning about Platform team")
     state.set_var("app:environment", "development")
 
-    print(f"\nScoped variables set:")
+    print("\nScoped variables set:")
     for key, value in state.scoped_vars.items():
         print(f"  {key}: {value}")
 
@@ -372,15 +385,15 @@ Always be concise and cite your sources when possible."""
 
     # Calculate fixed costs
     fixed_cost = architect.calculate_fixed_costs(system_prompt)
-    print(f"Fixed costs:")
+    print("Fixed costs:")
     print(f"  System prompt: {architect.count_tokens(system_prompt)} tokens")
-    print(f"  Output buffer: 1024 tokens")
+    print("  Output buffer: 1024 tokens")
     print(f"  Total fixed: {fixed_cost} tokens")
 
     # Calculate dynamic limit (available for context)
     dynamic_limit = architect.calculate_dynamic_limit(system_prompt)
-    print(f"\nBudget allocation:")
-    print(f"  Model max tokens: 8192")
+    print("\nBudget allocation:")
+    print("  Model max tokens: 8192")
     print(f"  Dynamic limit: {dynamic_limit} tokens (for context)")
 
     # =========================================================================
@@ -389,22 +402,21 @@ Always be concise and cite your sources when possible."""
     print("\n[Part 7] Context Assembly")
     print("-" * 50)
 
-    with patch("friday_memory.adapters.vector.litellm", create_mock_litellm()):
-        # Assemble context for a new query
-        query = "What are the sprint practices for the Platform team?"
+    # Assemble context for a new query
+    query = "What are the sprint practices for the Platform team?"
 
-        payload = await assembler.assemble_context(
-            query=query,
-            state=state,
-            budget_limit=dynamic_limit,
-        )
+    payload = await assembler.assemble_context(
+        query=query,
+        state=state,
+        budget_limit=dynamic_limit,
+    )
 
-        print(f"Context assembled for query: \"{query}\"")
-        print(f"\nPayload contents:")
-        print(f"  History turns: {len(payload.history)}")
-        print(f"  Vector passages: {len(payload.passages)}")
-        print(f"  Graph entities: {len(payload.entities)}")
-        print(f"  Graph facts: {len(payload.facts)}")
+    print(f"Context assembled for query: \"{query}\"")
+    print("\nPayload contents:")
+    print(f"  History turns: {len(payload.history)}")
+    print(f"  Vector passages: {len(payload.passages)}")
+    print(f"  Graph entities: {len(payload.entities)}")
+    print(f"  Graph facts: {len(payload.facts)}")
 
     # =========================================================================
     # Part 8: Prompt Formatting
@@ -425,7 +437,7 @@ Always be concise and cite your sources when possible."""
         print(f"  [{i + 1}] {role}: \"{content_preview}...\"")
 
     # Show full system prompt structure
-    print(f"\nSystem prompt structure:")
+    print("\nSystem prompt structure:")
     system_content = messages[0]["content"]
     sections = system_content.split("\n## ")
     print(f"  Sections: {len(sections)}")
@@ -447,7 +459,7 @@ Always be concise and cite your sources when possible."""
     checkpoint_turn_id = turn_ids[1]
     restored_state = await assembler.restore_checkpoint(session_id, checkpoint_turn_id)
 
-    print(f"Restored to checkpoint (turn 2):")
+    print("Restored to checkpoint (turn 2):")
     print(f"  Turn count now: {restored_state.turn_count}")
 
     # Verify rollback
@@ -469,7 +481,7 @@ Always be concise and cite your sources when possible."""
         event_name = event.name
         event_types[event_name] = event_types.get(event_name, 0) + 1
 
-    print(f"\nEvent distribution:")
+    print("\nEvent distribution:")
     for event_type, count in sorted(event_types.items()):
         print(f"  {event_type}: {count}")
 

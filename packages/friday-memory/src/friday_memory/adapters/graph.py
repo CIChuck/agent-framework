@@ -126,6 +126,30 @@ class ElementXGraphStore(GraphStoreAdapter):
         )
         return True
 
+    async def update_node(self, node: GraphNode) -> bool:
+        """
+        Updates an existing node in the graph.
+
+        Args:
+            node: The GraphNode with updated data
+
+        Returns:
+            True if successful, False if node doesn't exist
+        """
+        if node.id not in self._graph.nodes:
+            return False
+
+        # Update node data
+        node_data = node.model_dump()
+        self._graph.nodes[node.id].update(node_data)
+        self._save()
+
+        self._emit_event(
+            "graph_node_updated",
+            {"node_id": node.id, "type": node.type, "label": node.label},
+        )
+        return True
+
     async def add_edge(self, edge: GraphEdge) -> bool:
         """
         Adds an edge between two nodes.
@@ -413,6 +437,78 @@ class ElementXGraphStore(GraphStoreAdapter):
                 pass
         return nodes
 
+    async def get_top_nodes(
+        self,
+        n: int = 10,
+        sort_by: str = "hit_count",
+    ) -> list[GraphNode]:
+        """
+        Get top N nodes sorted by specified criteria.
+
+        Args:
+            n: Number of nodes to return
+            sort_by: Sort criteria - "hit_count" or "last_accessed"
+
+        Returns:
+            List of top GraphNodes sorted by the specified criteria
+        """
+        all_nodes = await self.get_all_nodes()
+
+        if sort_by == "hit_count":
+            sorted_nodes = sorted(
+                all_nodes, key=lambda x: x.hit_count, reverse=True
+            )
+        elif sort_by == "last_accessed":
+            sorted_nodes = sorted(
+                all_nodes,
+                key=lambda x: x.last_accessed or datetime.min,
+                reverse=True,
+            )
+        else:
+            sorted_nodes = all_nodes
+
+        return sorted_nodes[:n]
+
+    async def get_all_edges(self) -> list[GraphEdge]:
+        """Get all edges in the graph."""
+        edges = []
+        for source, target, data in self._graph.edges(data=True):
+            try:
+                edges.append(GraphEdge(
+                    source_id=source,
+                    target_id=target,
+                    relation=data.get("relation", "related_to"),
+                    weight=data.get("weight", 1.0),
+                    provenance=data.get("provenance"),
+                ))
+            except Exception:
+                pass
+        return edges
+
+    async def find_by_label(
+        self, label: str, node_type: str | None = None
+    ) -> GraphNode | None:
+        """
+        Find a node by exact label match (case-insensitive).
+
+        Args:
+            label: The label to search for
+            node_type: Optional type filter
+
+        Returns:
+            The matching GraphNode or None if not found
+        """
+        label_lower = label.lower()
+        for node_id in self._graph.nodes:
+            node_data = self._graph.nodes[node_id]
+            if node_data.get("label", "").lower() == label_lower:
+                if node_type is None or node_data.get("type") == node_type:
+                    try:
+                        return GraphNode(**node_data)
+                    except Exception:
+                        pass
+        return None
+
     async def node_count(self) -> int:
         """Get the number of nodes."""
         return len(self._graph.nodes)
@@ -420,3 +516,22 @@ class ElementXGraphStore(GraphStoreAdapter):
     async def edge_count(self) -> int:
         """Get the number of edges."""
         return len(self._graph.edges)
+
+    async def clear(self) -> dict[str, int]:
+        """
+        Clear all nodes and edges from the graph.
+
+        Returns:
+            Dict with counts of deleted nodes and edges
+        """
+        node_count = len(self._graph.nodes)
+        edge_count = len(self._graph.edges)
+
+        self._graph.clear()
+        self._save()
+
+        self._emit_event(
+            "graph_store_cleared",
+            {"nodes_deleted": node_count, "edges_deleted": edge_count},
+        )
+        return {"nodes_deleted": node_count, "edges_deleted": edge_count}
