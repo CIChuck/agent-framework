@@ -344,10 +344,12 @@ class MemoryConsolidator:
                     author_id="memory_consolidator",
                 )
 
-                # Store the summary
+                # Store the summary with type="summary" metadata for priming queries
+                summary_metadata = {"type": "summary"}
                 await self._memory.store_insight(
                     f"[Session Summary] {summary_text}",
                     provenance,
+                    summary_metadata,
                 )
 
                 stats["summaries_created"] += 1

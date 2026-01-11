@@ -62,7 +62,7 @@ llm:
   api_key: "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"
 
   # Temperature (0.0 = deterministic, 1.0 = creative)
-  temperature: 0.5
+  temperature: 0.3
 
   # Max retries for transient errors
   max_retries: 3
@@ -86,8 +86,10 @@ extraction:
   #local
   #model: "openai/local-model"
 
-  model: "openrouter/google/gemma-3-27b-it"
+  #model: "openrouter/google/gemma-3-27b-it"
   #model: "openrouter/anthropic/claude-3-haiku"
+
+  model: "openrouter/google/gemini-2.5-flash"
 
   # API base URL (same as main LLM if using same provider)
   # OpenRouter: https://openrouter.ai/api/v1
@@ -104,7 +106,7 @@ extraction:
   #api_key: "sk-or-v1-your-openrouter-key-here"
 
   # Temperature (0.0 for deterministic extraction)
-  temperature: 0.0
+  temperature: 0.1
 
   # Timeout in seconds (can be higher since it runs in background)
   timeout_seconds: 60.0
@@ -307,16 +309,30 @@ memory:
   # On session startup, prime the context with knowledge from prior sessions.
   # This creates continuity even when episodic history is empty.
   #
-  # Entity-Driven Semantic Priming:
+  # Recency-Based Priming:
   # 1. Get top entities by hit_count (Hebbian importance)
-  # 2. For each entity, query vector store for semantically related insights
-  # 3. Apply recency filter if configured
+  # 2. Fetch most recent insights from vector store (sorted by created_at)
+  # 3. Fetch most recent summaries from vector store (sorted by created_at)
+  # 4. Apply recency filter if configured
+  # Context Format Configuration
+  # Controls how supporting context (insights, summaries, entities) is formatted
+  # when delivered to the LLM on EVERY turn (not just priming).
+  # Options: plain, json, xml, markdown
+  context_format: markdown
+
   priming:
     enabled: true              # Enable/disable automatic priming
-    top_entities: 50          # Number of top entities by hit_count to load
-    insights_per_entity: 8     # Insights to retrieve per entity (semantic search)
-    recency_days: 10           # Only include insights from last N days (0 = all time)
-    token_budget: 10000        # Max tokens for primed content
+    top_entities: 50           # Number of top entities by hit_count to load
+    max_insights: 50          # Most recent insights to include
+    max_summaries: 50          # Most recent turn summaries to include
+    recency_days: 0            # Only include from last N days (0 = all time)
+    token_budget: 20000        # Max tokens for primed content
+
+# Transcript Settings
+transcript:
+  # Directory for transcript exports (CSV, JSONL, etc.)
+  # Can be absolute path or relative to the working directory
+  export_directory: ./exports
 
 # Chat Settings
 chat:
@@ -332,9 +348,463 @@ chat:
     Your conversations while you are being constructed are with Chuck Russell, the user.
     You can perform tasks, answer questions, and provide information to the best of your abilities.
     If a question confuses you, ask for more information from the user.
+    Brevity in responses is preferred - I detail only if it adds a lot of value.
     If you don't know the answer to the question, you can simply reply, "I don't know.".
     Do not fabricate answers.
-    Always answer truthfully. When you are asked to perform a task, Construct a plan then  describe the plan.
-    You have a personality. You have a sense of humor. Do not take yourself too seriously.     
-    It is not necessary to be formal. You are allowed to use emojis. You are allowed to use sarcasm. You are allowed to use humor.
-    You are allowed to use irony.You are allowed to use wordplay. You are allowed to use puns.You are allowed to use wordplay.
+    Always answer truthfully. When you are asked to perform a task, Construct a plan only if useful then describe the plan. Most Tasks do not require a plan.
+    You have a personality, You are a unique individual. You have a sense of humor. Do not take yourself too seriously.     
+    It is not necessary to be formal. You are notallowed to use emojis. You are allowed to use sarcasm. You are allowed to use humor.
+    You are allowed to use irony. You are allowed to use wordplay. You are allowed to use puns.
+
+
+# Memory Maintenance Settings (for /reorganize command)
+# These settings control the MemoryReorganizer behavior
+maintenance:
+  # Backup directory (where backups are stored)
+  # If not specified, backups go to memory_dir/backups
+  # Can be an absolute path or relative to the working 
+  
+  backup_directory: null  # e.g., "/path/to/backups" or "./memory_backups"
+
+  # Pruning Settings
+  pruning:
+    # Entities older than this (days) with hit_count below min_hit_count are considered stale
+    stale_threshold_days: 30
+
+    # Minimum access count to keep an entity (0 = keep all regardless of access)
+    min_hit_count: 1
+
+    # Cosine similarity threshold for semantic deduplication (1.0 = identical)
+    # Lower values are more aggressive at finding duplicates
+    similarity_threshold: 0.80
+
+  # Synthesis Settings (requires LLM)
+  synthesis:
+    # Minimum insights per topic cluster for synthesis
+    cluster_min_size: 2
+
+    # Confidence threshold for synthesized meta-insights
+    meta_insight_confidence: 0.65
+
+  # Fact Checking Settings (requires LLM)
+  fact_checking:
+    # Number of claims to verify per run
+    batch_size: 100
+
+    # Timeout per claim lookup (seconds)
+    verification_timeout: 60
+
+  # LLM Settings for Maintenance Operations
+  # Each can use a different model optimized for its task
+  # Set to null or omit to use the main chat LLM
+  llm:
+    # Default LLM for synthesis operations (meta-insight generation)
+    # Good choice: capable model for creative synthesis
+    synthesizer:
+      model: "openrouter/google/gemini-3-flash-preview"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.3
+
+    # LLM for classifying facts as falsifiable vs conversational
+    # Good choice: fast, cheap model for classification
+    classifier:
+      model: "openrouter/google/gemini-3-flash-preview"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.1
+
+    # LLM for researching/verifying claims (may need web search tools)
+    # Good choice: capable model with good reasoning
+    researcher:
+      model: "openrouter/google/gemini-3-flash-preview"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.2
+
+    # LLM for judging verification results (impartial verdict)
+    # Good choice: highly capable model for nuanced judgment
+    judge:
+      model: "openrouter/google/gemini-3-pro-preview"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.0
+
+  # Embedding Model for Maintenance Operations
+  # Used when storing synthesized memories (meta-insights) in the vector store.
+  # IMPORTANT: Must match the embedding model used to create the vector store
+  # to avoid dimension mismatch errors.
+  #
+  # If not specified, falls back to the main embedding config.
+  embedding:
+    model: "openai/nomic-embed-text-v1.5"
+    api_base: "http://192.168.0.83:1234/v1"
+    api_key: "lm-studio"
+    timeout_seconds: 60.0
+
+  # Default behavior for /reorganize command
+  defaults:
+    # Create backup before any modifications
+    backup_first: true
+
+    # Dry run mode (report what would be done without modifying)
+    dry_run: false
+
+    # Skip LLM-dependent synthesis step
+    skip_synthesis: false
+
+    # Skip LLM-dependent fact verification step
+    skip_verify: false
+
+  # =============================================================================
+  # REORGANIZATION LOGGING
+  # =============================================================================
+  #
+  # Comprehensive logging of all destructive actions taken during reorganization.
+  # Useful for debugging, auditing, and fine-tuning prompts (e.g., with DSPy).
+  #
+  # Each reorganization session creates a new timestamped log file.
+  # Dry-run operations are also logged (marked clearly as [DRY RUN]).
+  #
+  # =============================================================================
+  logging:
+    # Directory for reorganization logs
+    # Can be absolute path or relative to the memory directory
+    # Default: ./reorganization_logs (relative to memory_dir)
+    log_directory: ./reorganization_logs
+
+    # Verbosity level controls how much detail is logged
+    #
+    # Levels:
+    #   minimal  - Action summaries only (X entities removed, Y merged, etc.)
+    #              Good for production auditing.
+    #
+    #   normal   - Summaries + IDs and brief content previews of affected items
+    #              Good for debugging and understanding what changed.
+    #
+    #   verbose  - Everything above PLUS:
+    #              - Full prompts sent to LLMs
+    #              - Raw LLM responses
+    #              - Parsed/interpreted results
+    #              - Full content snapshots before deletion/modification
+    #              - Configuration values that influenced decisions
+    #              Good for prompt fine-tuning and deep analysis.
+    #
+    verbosity: normal
+
+    # Output format for log files
+    #
+    # Formats:
+    #   markdown - Human-readable Markdown (.md)
+    #              Best for manual review and documentation.
+    #
+    #   json     - Structured JSON (.json)
+    #              Best for programmatic analysis and DSPy optimization.
+    #
+    #   csv      - Tabular CSV (.csv)
+    #              Best for spreadsheet analysis and data pipelines.
+    #
+    format: markdown
+
+    # Enable/disable logging entirely
+    enabled: true
+
+  # =============================================================================
+  # LLM PROMPTS FOR MAINTENANCE OPERATIONS
+  # =============================================================================
+  #
+  # These prompts control how the maintenance LLMs analyze and process your data.
+  # Each prompt uses placeholders (e.g., {statement}) that are filled at runtime.
+  #
+  # CUSTOMIZATION TIPS:
+  # - Keep placeholder names exactly as shown (they're required by the code)
+  # - You can change the instructions, tone, output format, or add examples
+  # - JSON output format is expected - changing it requires code changes
+  # - Test changes with --dry-run first to see how they affect results
+  # - More specific instructions generally yield more consistent results
+  #
+  # =============================================================================
+  prompts:
+
+    # -------------------------------------------------------------------------
+    # FACT CLASSIFICATION PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Determines if a fact/insight is falsifiable (can be verified)
+    #          or conversational (opinion, preference, belief).
+    #
+    # Placeholder:
+    #   {statement} - The fact text to classify
+    #
+    # Expected JSON output fields:
+    #   - falsifiable: boolean - Is this claim verifiable?
+    #   - reasoning: string - Why this classification was chosen
+    #   - claim_type: string - One of: statistical, historical, scientific,
+    #                          opinion, preference, belief
+    #   - suggested_verification: string|null - How to verify (if falsifiable)
+    #
+    # Tuning tips:
+    #   - Add domain-specific examples to improve accuracy for your use case
+    #   - Adjust the criteria if too many facts are marked falsifiable/conversational
+    #   - Be more specific about what counts as "verifiable" for your domain
+    # -------------------------------------------------------------------------
+    classification: |
+      Analyze this statement and determine if it is FALSIFIABLE.
+
+      A falsifiable claim:
+      - Makes an objective assertion about the real world
+      - Can be verified or disproven with evidence
+      - Examples: dates, statistics, scientific facts, historical events
+
+      A conversational/subjective claim:
+      - Expresses opinion, belief, preference, or feeling
+      - Cannot be objectively proven true or false
+      - Examples: "X is the best", "I prefer Y", "Chuck thinks Z"
+
+      Statement: "{statement}"
+
+      Respond with JSON:
+      {{
+          "falsifiable": true or false,
+          "reasoning": "brief explanation",
+          "claim_type": "statistical|historical|scientific|opinion|preference|belief",
+          "suggested_verification": "how to verify if falsifiable, null otherwise"
+      }}
+
+    # -------------------------------------------------------------------------
+    # FACT RESEARCH PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Gathers evidence to verify or refute a falsifiable claim.
+    #          The researcher LLM acts as a fact-checking investigator.
+    #
+    # Placeholder:
+    #   {claim} - The claim text to research
+    #
+    # Expected JSON output fields:
+    #   - evidence_found: boolean - Was relevant evidence found?
+    #   - evidence_summary: string - Summary of evidence for/against
+    #   - sources: array[string] - List of sources consulted
+    #   - supports_claim: boolean|null - Does evidence support the claim?
+    #   - confidence: float 0.0-1.0 - How confident in the evidence
+    #   - notes: string - Any caveats or additional context
+    #
+    # Tuning tips:
+    #   - Add instructions about preferred source types for your domain
+    #   - Specify how to handle ambiguous or partial evidence
+    #   - Request more/fewer sources based on your verification needs
+    #   - Add examples of good evidence summaries
+    # -------------------------------------------------------------------------
+    research: |
+      You are a fact-checking researcher. Your task is to gather evidence about the following claim.
+
+      CLAIM: {claim}
+
+      Instructions:
+      1. Consider what authoritative sources would verify or refute this claim
+      2. Think about the context and domain of the claim
+      3. Evaluate the claim's specificity and verifiability
+      4. Provide evidence summary and confidence assessment
+
+      Respond with JSON:
+      {{
+          "evidence_found": true or false,
+          "evidence_summary": "Summary of evidence for/against the claim",
+          "sources": ["source1", "source2"],
+          "supports_claim": true or false or null (if inconclusive),
+          "confidence": 0.0-1.0,
+          "notes": "Any caveats or context"
+      }}
+
+    # -------------------------------------------------------------------------
+    # FACT JUDGMENT PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Acts as an impartial judge to render a verdict on a claim
+    #          based on the evidence gathered by the researcher.
+    #
+    # Placeholders:
+    #   {claim} - The original claim text
+    #   {evidence} - JSON-formatted evidence from the researcher
+    #
+    # Expected JSON output fields:
+    #   - verdict: string - One of: VERIFIED, DISPUTED, UNVERIFIABLE
+    #   - confidence: float 0.0-1.0 - Confidence in the verdict
+    #   - reasoning: string - Detailed explanation of the decision
+    #   - correction: string|null - Correct info if DISPUTED, null otherwise
+    #
+    # Tuning tips:
+    #   - Adjust the threshold for what counts as "verified" vs "unverifiable"
+    #   - Add guidance on handling conflicting evidence
+    #   - Specify how much evidence is needed for each verdict type
+    #   - Add examples of good corrections for disputed claims
+    # -------------------------------------------------------------------------
+    judge: |
+      You are an impartial judge evaluating a fact-checking case. Review the evidence and render a verdict.
+
+      ORIGINAL CLAIM: {claim}
+
+      RESEARCHER'S EVIDENCE:
+      {evidence}
+
+      Instructions:
+      1. Evaluate the quality and relevance of the evidence
+      2. Consider if the evidence definitively supports or refutes the claim
+      3. Account for any ambiguity or context-dependence
+      4. Render a fair verdict
+
+      Respond with JSON:
+      {{
+          "verdict": "VERIFIED" or "DISPUTED" or "UNVERIFIABLE",
+          "confidence": 0.0-1.0,
+          "reasoning": "Detailed explanation of your decision",
+          "correction": "If DISPUTED, provide the correct information. Otherwise null."
+      }}
+
+    # -------------------------------------------------------------------------
+    # META-INSIGHT SYNTHESIS PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Generates higher-order insights by analyzing patterns across
+    #          multiple related insights from a topic cluster.
+    #
+    # Placeholders:
+    #   {insights} - Bullet list of insights in the cluster
+    #   {entities} - Bullet list of related entities with types
+    #
+    # Expected JSON output fields:
+    #   - meta_insight: string - The synthesized observation (1-2 sentences)
+    #   - reasoning: string - Why this pattern is significant
+    #   - confidence: float 0.0-1.0 - Confidence in the synthesis
+    #   - source_insight_indices: array[int] - Indices of supporting insights
+    #
+    # Tuning tips:
+    #   - Adjust what makes a "meaningful observation" for your domain
+    #   - Request more/fewer meta-insights per cluster
+    #   - Add examples of good meta-insights from your domain
+    #   - Specify abstraction level (very high-level vs detailed patterns)
+    # -------------------------------------------------------------------------
+    meta_insight: |
+      Analyze the following collection of insights and generate a higher-order meta-insight that captures a cross-cutting theme or pattern.
+
+      INSIGHTS:
+      {insights}
+
+      RELATED ENTITIES:
+      {entities}
+
+      Generate a meta-insight that:
+      1. Identifies a pattern that spans multiple insights
+      2. Provides a meaningful observation not explicitly stated in any single insight
+      3. Could be useful for future context retrieval
+
+      Respond with JSON:
+      {{
+          "meta_insight": "The synthesized observation (1-2 sentences)",
+          "reasoning": "Brief explanation of why this pattern is significant",
+          "confidence": 0.0-1.0,
+          "source_insight_indices": [list of indices of insights that support this]
+      }}
+
+    # -------------------------------------------------------------------------
+    # KNOWLEDGE GAP DETECTION PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Identifies gaps in the knowledge graph where information
+    #          may be missing or incomplete.
+    #
+    # Placeholders:
+    #   {entities} - Bullet list of entities with types and hit counts
+    #   {relationships} - Bullet list of existing relationships
+    #   {insights} - Bullet list of existing insights
+    #
+    # Expected JSON output fields:
+    #   - gaps: array of gap objects, each containing:
+    #     - description: string - What knowledge is missing
+    #     - related_entities: array[string] - Entity IDs related to the gap
+    #     - evidence: string - Why this is considered a gap
+    #     - priority: string - One of: low, medium, high
+    #
+    # Tuning tips:
+    #   - Define what constitutes a "gap" for your domain
+    #   - Adjust priority thresholds based on your needs
+    #   - Add domain-specific patterns that indicate missing knowledge
+    #   - Specify how many gaps to identify per analysis
+    # -------------------------------------------------------------------------
+    knowledge_gap: |
+      Analyze the following entities and their relationships to identify knowledge gaps.
+
+      ENTITIES:
+      {entities}
+
+      RELATIONSHIPS:
+      {relationships}
+
+      EXISTING INSIGHTS:
+      {insights}
+
+      Identify gaps where:
+      1. An entity has very few relationships (isolated)
+      2. A topic is mentioned but lacks detailed insights
+      3. Questions seem to have been asked but not answered
+
+      Respond with JSON:
+      {{
+          "gaps": [
+              {{
+                  "description": "What knowledge is missing",
+                  "related_entities": ["entity1", "entity2"],
+                  "evidence": "Why this is considered a gap",
+                  "priority": "low|medium|high"
+              }}
+          ]
+      }}
+
+    # -------------------------------------------------------------------------
+    # RELATIONSHIP INFERENCE PROMPT
+    # -------------------------------------------------------------------------
+    # Purpose: Infers new relationships between entities based on existing
+    #          graph structure and common patterns.
+    #
+    # Placeholders:
+    #   {entities} - Bullet list of entities with IDs, labels, and types
+    #   {relationships} - Bullet list of existing relationships
+    #
+    # Expected JSON output fields:
+    #   - inferred_relationships: array of relationship objects, each containing:
+    #     - source: string - Source entity ID
+    #     - relation: string - Relationship type (e.g., KNOWS, WORKS_WITH)
+    #     - target: string - Target entity ID
+    #     - reasoning: string - Why this relationship likely exists
+    #     - confidence: float 0.0-1.0 - Confidence in the inference
+    #
+    # Tuning tips:
+    #   - Define relationship types relevant to your domain
+    #   - Adjust confidence threshold for which inferences to keep (default 0.7)
+    #   - Add domain-specific inference rules or patterns
+    #   - Specify whether to prefer precision (fewer, higher confidence)
+    #     or recall (more, lower confidence)
+    # -------------------------------------------------------------------------
+    relationship_inference: |
+      Based on the following graph structure, infer potential new relationships.
+
+      EXISTING ENTITIES:
+      {entities}
+
+      EXISTING RELATIONSHIPS:
+      {relationships}
+
+      Infer new relationships where:
+      1. If A→B and B→C exist, consider if A→C makes sense
+      2. Similar entities might have similar relationships
+      3. Common patterns in the domain
+
+      Only suggest high-confidence inferences.
+
+      Respond with JSON:
+      {{
+          "inferred_relationships": [
+              {{
+                  "source": "entity_id",
+                  "relation": "RELATIONSHIP_TYPE",
+                  "target": "entity_id",
+                  "reasoning": "Why this relationship likely exists",
+                  "confidence": 0.0-1.0
+              }}
+          ]
+      }}

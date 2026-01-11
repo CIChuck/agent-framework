@@ -297,7 +297,9 @@ class MemoryExtractor:
         """
         stats = {
             "nodes_created": 0,
+            "nodes_skipped": 0,
             "edges_created": 0,
+            "edges_skipped": 0,
             "insights_stored": 0,
             "summaries_stored": 0,
         }
@@ -347,11 +349,12 @@ class MemoryExtractor:
                 if was_created:
                     stats["nodes_created"] += 1
                 else:
-                    logger.debug(f"Entity '{label}' already exists, skipping")
+                    stats["nodes_skipped"] += 1
+                    logger.debug(f"Entity '{label}' already exists, touched hit_count")
             except Exception as e:
                 logger.warning(f"Failed to store entity: {e}")
 
-        # Store relationships as graph edges (with node deduplication)
+        # Store relationships as graph edges (with node and edge deduplication)
         for rel in extracted.get("relationships", []):
             try:
                 # Support both "source"/"target" and "source_id"/"target_id" formats
@@ -367,15 +370,21 @@ class MemoryExtractor:
                 if target_created:
                     stats["nodes_created"] += 1
 
-                # Create the edge
+                # Create the edge (add_edge now has built-in deduplication)
                 edge = GraphEdge(
                     source_id=source_node.id,
                     target_id=target_node.id,
                     relation=rel.get("relation", "related_to"),
                     provenance=provenance,
                 )
-                await self._memory.graph.add_edge(edge)
-                stats["edges_created"] += 1
+                edge_added = await self._memory.graph.add_edge(edge)
+                if edge_added:
+                    stats["edges_created"] += 1
+                else:
+                    stats["edges_skipped"] += 1
+                    logger.debug(
+                        f"Skipped duplicate edge: {source_label} --[{rel.get('relation')}]--> {target_label}"
+                    )
             except Exception as e:
                 logger.warning(f"Failed to store relationship: {e}")
 
@@ -468,7 +477,8 @@ class MemoryExtractor:
                 if was_created:
                     stats["nodes_created"] += 1
                 else:
-                    logger.debug(f"Task '{label}' already exists, skipping")
+                    stats["nodes_skipped"] += 1
+                    logger.debug(f"Task '{label}' already exists, touched hit_count")
             except Exception as e:
                 logger.warning(f"Failed to store task: {e}")
 

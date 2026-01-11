@@ -4,17 +4,26 @@ Physically structures the final prompt to optimize model attention.
 
 Ref: Batch 2a Specification, Section 5
 
-Layout Strategy (Default):
-1. System Block: Identity & Guardrails
-2. Transparency Block: Recent auto-archived memories
-3. Procedural Memory: Few-shot examples
-4. Semantic Memory: Relevant documentation passages (Vector)
-5. Episodic Memory: Conversation history (Last N turns)
-6. State Memory: Scoped variables (User prefs, Env state)
-7. User Trigger: The Query
+Layout Strategy (Optimized for Attention):
+1. System Message: Base prompt (identity & guardrails)
+2. [Future: Function/Tool definitions from Friday-Tools]
+3. Episodic Memory: Conversation history (chronological)
+4. Final Message: Supporting context + User query
+   - Prior knowledge (relationship summaries)
+   - Recent insights (most recent first)
+   - Recent summaries (most recent first)
+   - Known entities (Hebbian-ranked)
+   - Session state
+   - User query
+
+This layout combats "Lost in the Middle" by placing supporting context
+immediately before the query (recency effect) rather than in the system block.
 """
 
+import json
 from typing import Any
+from xml.dom import minidom
+from xml.etree.ElementTree import Element, SubElement, tostring
 
 import tiktoken
 
@@ -72,6 +81,7 @@ class PromptArchitect:
         payload: ContextPayload,
         state: SessionState | None = None,
         tool_definitions: list[dict[str, Any]] | None = None,
+        context_format: str = "plain",
     ) -> list[dict[str, Any]]:
         """
         Arranges messages for optimal model attention.
@@ -84,81 +94,299 @@ class PromptArchitect:
             payload: The assembled context payload
             state: Optional session state for scoped variables
             tool_definitions: Optional tool definitions for the model
+            context_format: Output format for supporting context.
+                Options: "plain" (default), "json", "xml", "markdown"
 
         Returns:
             List of message dicts in OpenAI-compatible format
         """
         messages: list[dict[str, Any]] = []
 
-        # Build the enhanced system prompt with all context blocks
-        system_content = self._build_system_content(
-            system_prompt, payload, state
-        )
+        # 1. System message (base prompt only)
+        system_content = self._build_system_content(system_prompt)
         messages.append({"role": "system", "content": system_content})
 
-        # Add episodic memory (conversation history)
-        # Include speaker names in content for clarity during extraction
+        # 2. Episodic memory (conversation history, chronological)
         for turn in payload.history:
-            # Add user message with name prefix
             messages.append({
                 "role": "user",
                 "content": f"[{self.user_name}]: {turn.user_message}",
             })
-            # Add assistant response with name prefix
             if turn.assistant_message:
                 messages.append({
                     "role": "assistant",
                     "content": f"[{self.assistant_name}]: {turn.assistant_message}",
                 })
 
-        # Add the current user query with name prefix
-        messages.append({"role": "user", "content": f"[{self.user_name}]: {user_query}"})
+        # 3. Final message: supporting context + query
+        # Supporting context is placed immediately before the query for recency effect
+        supporting_context = self._build_supporting_context(payload, state, context_format)
+        if supporting_context:
+            final_content = f"{supporting_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+        else:
+            final_content = f"[{self.user_name}]: {user_query}"
+
+        messages.append({"role": "user", "content": final_content})
 
         return messages
 
-    def _build_system_content(
+    def _build_system_content(self, base_prompt: str) -> str:
+        """
+        Build the system prompt with identity and guardrails only.
+
+        Supporting context (insights, summaries, entities) is now placed
+        at the tail of the context, immediately before the query.
+
+        Args:
+            base_prompt: The base system prompt (identity & guardrails)
+
+        Returns:
+            System prompt content
+        """
+        # For now, just return the base prompt
+        # Future: Add function/tool definitions here when Friday-Tools integration is added
+        return base_prompt
+
+    def _build_supporting_context(
         self,
-        base_prompt: str,
+        payload: ContextPayload,
+        state: SessionState | None,
+        context_format: str = "plain",
+    ) -> str:
+        """
+        Build supporting context block for injection before query.
+
+        Placed at the tail of the context to leverage recency effect.
+        Content is ordered: relationships, insights (recent first),
+        summaries (recent first), entities, state.
+
+        Args:
+            payload: The context payload with insights, summaries, entities
+            state: Optional session state for scoped variables
+            context_format: Output format ("plain", "json", "xml", "markdown")
+
+        Returns:
+            Formatted supporting context string, or empty string if no content
+        """
+        match context_format:
+            case "json":
+                return self._format_context_json(payload, state)
+            case "xml":
+                return self._format_context_xml(payload, state)
+            case "markdown":
+                return self._format_context_markdown(payload, state)
+            case _:  # plain (default)
+                return self._format_context_plain(payload, state)
+
+    def _format_context_plain(
+        self,
         payload: ContextPayload,
         state: SessionState | None,
     ) -> str:
-        """
-        Build the enhanced system prompt with context blocks.
-
-        Order follows the layout strategy for optimal attention:
-        1. Base System (Identity & Guardrails)
-        2. Transparency Block (Recent Memories)
-        3. Semantic Memory (Vector passages)
-        4. State Memory (Scoped variables)
-        """
+        """Format supporting context as plain text (default format)."""
         sections: list[str] = []
 
-        # 1. Base System Prompt (Identity & Guardrails)
-        sections.append(base_prompt)
-
-        # 2. Transparency Block (Recent auto-archived memories)
+        # 1. Relationship summaries (prior knowledge about entities)
         if payload.recent_memories:
-            transparency = self._format_transparency_block(payload.recent_memories)
-            sections.append(transparency)
+            sections.append("## Prior Knowledge")
+            for memory in payload.recent_memories:
+                sections.append(memory)
 
-        # 3. Semantic Memory (Relevant passages from Vector store)
-        if payload.passages:
-            semantic = self._format_semantic_block(payload.passages)
-            sections.append(semantic)
+        # 2. Recent insights (most recent first - already sorted by created_at desc)
+        if payload.insights:
+            sections.append("\n## Recent Insights")
+            for insight in payload.insights:
+                text = insight.get("text", "")
+                sections.append(f"- {text}")
 
-        # 4. Associative Memory (Entities and Facts from Graph)
-        if payload.entities or payload.facts:
-            associative = self._format_associative_block(
-                payload.entities, payload.facts
-            )
-            sections.append(associative)
+        # 3. Recent summaries (most recent first - already sorted by created_at desc)
+        if payload.summaries:
+            sections.append("\n## Conversation Summaries")
+            for summary in payload.summaries:
+                text = summary.get("text", "")
+                sections.append(f"- {text}")
 
-        # 5. State Memory (Scoped variables)
+        # 4. Relevant entities (Hebbian-ranked by hit_count)
+        if payload.entities:
+            sections.append("\n## Known Entities")
+            for entity in payload.entities[:10]:
+                entity_type = getattr(entity, "type", "entity")
+                label = getattr(entity, "label", "unknown")
+                hit_count = getattr(entity, "hit_count", 0)
+                sections.append(f"- {label} ({entity_type}, relevance: {hit_count})")
+
+        # 5. Scoped state variables
         if state and state.scoped_vars:
             state_block = self._format_state_block(state)
-            sections.append(state_block)
+            sections.append(f"\n{state_block}")
 
-        return "\n\n".join(sections)
+        return "\n".join(sections) if sections else ""
+
+    def _format_context_json(
+        self,
+        payload: ContextPayload,
+        state: SessionState | None,
+    ) -> str:
+        """Format supporting context as JSON."""
+        context: dict[str, Any] = {}
+
+        if payload.recent_memories:
+            context["prior_knowledge"] = payload.recent_memories
+
+        if payload.insights:
+            context["recent_insights"] = [
+                {
+                    "text": i.get("text", ""),
+                    "created_at": i.get("metadata", {}).get("created_at", ""),
+                }
+                for i in payload.insights
+            ]
+
+        if payload.summaries:
+            context["conversation_summaries"] = [
+                {
+                    "text": s.get("text", ""),
+                    "created_at": s.get("metadata", {}).get("created_at", ""),
+                }
+                for s in payload.summaries
+            ]
+
+        if payload.entities:
+            context["known_entities"] = [
+                {
+                    "label": getattr(e, "label", "unknown"),
+                    "type": getattr(e, "type", "entity"),
+                    "hit_count": getattr(e, "hit_count", 0),
+                }
+                for e in payload.entities[:10]
+            ]
+
+        if state and state.scoped_vars:
+            context["session_state"] = dict(state.scoped_vars)
+
+        return json.dumps(context, indent=2) if context else ""
+
+    def _format_context_xml(
+        self,
+        payload: ContextPayload,
+        state: SessionState | None,
+    ) -> str:
+        """Format supporting context as XML."""
+        root = Element("supporting_context")
+
+        if payload.recent_memories:
+            prior = SubElement(root, "prior_knowledge")
+            for mem in payload.recent_memories:
+                rel = SubElement(prior, "relationship")
+                rel.text = mem
+
+        if payload.insights:
+            insights_elem = SubElement(root, "recent_insights")
+            for i in payload.insights:
+                insight = SubElement(insights_elem, "insight")
+                created_at = i.get("metadata", {}).get("created_at", "")
+                if created_at:
+                    insight.set("created_at", created_at)
+                insight.text = i.get("text", "")
+
+        if payload.summaries:
+            summaries_elem = SubElement(root, "conversation_summaries")
+            for s in payload.summaries:
+                summary = SubElement(summaries_elem, "summary")
+                created_at = s.get("metadata", {}).get("created_at", "")
+                if created_at:
+                    summary.set("created_at", created_at)
+                summary.text = s.get("text", "")
+
+        if payload.entities:
+            entities_elem = SubElement(root, "known_entities")
+            for e in payload.entities[:10]:
+                entity = SubElement(entities_elem, "entity")
+                entity.set("type", getattr(e, "type", "entity"))
+                entity.set("hit_count", str(getattr(e, "hit_count", 0)))
+                entity.text = getattr(e, "label", "unknown")
+
+        if state and state.scoped_vars:
+            state_elem = SubElement(root, "session_state")
+            for key, value in state.scoped_vars.items():
+                var = SubElement(state_elem, "var")
+                var.set("key", key)
+                var.text = str(value)
+
+        # Check if we have any children
+        if len(root) == 0:
+            return ""
+
+        # Pretty print
+        rough_string = tostring(root, encoding="unicode")
+        reparsed = minidom.parseString(rough_string)
+        # Remove XML declaration line
+        lines = reparsed.toprettyxml(indent="  ").split("\n")
+        return "\n".join(lines[1:]).strip()
+
+    def _format_context_markdown(
+        self,
+        payload: ContextPayload,
+        state: SessionState | None,
+    ) -> str:
+        """Format supporting context as structured markdown with tables."""
+        sections: list[str] = []
+
+        # 1. Prior knowledge as table
+        if payload.recent_memories:
+            sections.append("## Prior Knowledge")
+            sections.append("")
+            sections.append("| Relationship |")
+            sections.append("|--------------|")
+            for mem in payload.recent_memories:
+                sections.append(f"| {mem} |")
+
+        # 2. Recent insights with timestamps
+        if payload.insights:
+            sections.append("")
+            sections.append("## Recent Insights")
+            sections.append("")
+            for i, insight in enumerate(payload.insights, 1):
+                text = insight.get("text", "")
+                created_at = insight.get("metadata", {}).get("created_at", "")
+                timestamp = created_at[:16] if created_at else "N/A"
+                sections.append(f"{i}. **[{timestamp}]** {text}")
+
+        # 3. Summaries with timestamps
+        if payload.summaries:
+            sections.append("")
+            sections.append("## Conversation Summaries")
+            sections.append("")
+            for i, summary in enumerate(payload.summaries, 1):
+                text = summary.get("text", "")
+                created_at = summary.get("metadata", {}).get("created_at", "")
+                timestamp = created_at[:16] if created_at else "N/A"
+                sections.append(f"{i}. **[{timestamp}]** {text}")
+
+        # 4. Entities as table
+        if payload.entities:
+            sections.append("")
+            sections.append("## Known Entities")
+            sections.append("")
+            sections.append("| Entity | Type | Relevance |")
+            sections.append("|--------|------|-----------|")
+            for entity in payload.entities[:10]:
+                label = getattr(entity, "label", "unknown")
+                entity_type = getattr(entity, "type", "entity")
+                hit_count = getattr(entity, "hit_count", 0)
+                sections.append(f"| {label} | {entity_type} | {hit_count} |")
+
+        # 5. Session state as table
+        if state and state.scoped_vars:
+            sections.append("")
+            sections.append("## Session Context")
+            sections.append("")
+            sections.append("| Key | Value |")
+            sections.append("|-----|-------|")
+            for key, value in state.scoped_vars.items():
+                sections.append(f"| {key} | {value} |")
+
+        return "\n".join(sections) if sections else ""
 
     def _format_transparency_block(self, recent_memories: list[str]) -> str:
         """Format the transparency block showing recent auto-archived memories."""

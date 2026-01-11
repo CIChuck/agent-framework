@@ -6,6 +6,7 @@ Ref: Batch 1 Specification, Section 2.2
 """
 
 import json
+import logging
 import pickle
 from datetime import datetime
 from difflib import SequenceMatcher
@@ -13,6 +14,8 @@ from pathlib import Path
 from typing import Any
 
 import networkx as nx
+
+logger = logging.getLogger(__name__)
 
 from friday_core import GraphStoreAdapter, TelemetryInterface
 
@@ -105,16 +108,44 @@ class ElementXGraphStore(GraphStoreAdapter):
 
     # --- CRUD Operations ---
 
-    async def add_node(self, node: GraphNode) -> bool:
+    async def add_node(
+        self,
+        node: GraphNode,
+        check_duplicate: bool = True,
+        skip_if_duplicate: bool = False,
+    ) -> bool:
         """
-        Adds a node to the graph.
+        Adds a node to the graph with optional duplicate detection.
+
+        Duplicate detection is based on label (case-insensitive) and type.
+        This prevents creating multiple nodes representing the same entity.
 
         Args:
             node: The GraphNode to add (must include provenance)
+            check_duplicate: If True, check for existing node with same label/type
+            skip_if_duplicate: If True and duplicate found, skip adding and return False.
+                              If False and duplicate found, logs a warning but still adds.
 
         Returns:
-            True if successful
+            True if node was added, False if skipped as duplicate
         """
+        # Check for duplicate by label (case-insensitive) and type
+        if check_duplicate:
+            existing = await self.find_by_label(node.label, node.type)
+            if existing and existing.id != node.id:
+                if skip_if_duplicate:
+                    logger.debug(
+                        f"Skipping duplicate node: '{node.label}' (type={node.type}) "
+                        f"already exists with id={existing.id}"
+                    )
+                    return False
+                else:
+                    logger.warning(
+                        f"Adding duplicate node: '{node.label}' (type={node.type}) "
+                        f"already exists with id={existing.id}, new id={node.id}. "
+                        f"Consider using find_by_label() first or merge_nodes() after."
+                    )
+
         # Store node data as dict for NetworkX
         node_data = node.model_dump()
         self._graph.add_node(node.id, **node_data)
@@ -150,16 +181,62 @@ class ElementXGraphStore(GraphStoreAdapter):
         )
         return True
 
-    async def add_edge(self, edge: GraphEdge) -> bool:
+    async def add_edge(
+        self,
+        edge: GraphEdge,
+        skip_if_exists: bool = True,
+        update_if_exists: bool = False,
+    ) -> bool:
         """
-        Adds an edge between two nodes.
+        Adds an edge between two nodes with duplicate prevention.
+
+        Duplicate detection is based on source_id, target_id, and relation
+        (case-insensitive relation comparison).
 
         Args:
             edge: The GraphEdge to add (must include provenance)
+            skip_if_exists: If True, skip adding if duplicate exists (default: True)
+            update_if_exists: If True, update existing edge with new data (default: False)
+                             Takes precedence over skip_if_exists.
 
         Returns:
-            True if successful
+            True if edge was added/updated, False if skipped as duplicate
         """
+        # Check for existing edge with same source, target, and relation
+        existing_edge = self._graph.has_edge(edge.source_id, edge.target_id)
+        if existing_edge:
+            existing_data = self._graph.edges[edge.source_id, edge.target_id]
+            existing_relation = existing_data.get("relation", "").lower()
+            new_relation = edge.relation.lower()
+
+            if existing_relation == new_relation:
+                # Duplicate edge detected
+                if update_if_exists:
+                    # Update existing edge with new data
+                    edge_data = edge.model_dump()
+                    edge_data.pop("source_id")
+                    edge_data.pop("target_id")
+                    self._graph.edges[edge.source_id, edge.target_id].update(edge_data)
+                    self._save()
+                    logger.debug(
+                        f"Updated existing edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                    )
+                    self._emit_event(
+                        "graph_edge_updated",
+                        {
+                            "source_id": edge.source_id,
+                            "target_id": edge.target_id,
+                            "relation": edge.relation,
+                        },
+                    )
+                    return True
+                elif skip_if_exists:
+                    logger.debug(
+                        f"Skipping duplicate edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                    )
+                    return False
+                # If neither flag is set, fall through and replace the edge
+
         edge_data = edge.model_dump()
         # Remove source/target from data since they're used as keys
         edge_data.pop("source_id")
@@ -508,6 +585,73 @@ class ElementXGraphStore(GraphStoreAdapter):
                     except Exception:
                         pass
         return None
+
+    async def find_edge(
+        self,
+        source_id: str,
+        target_id: str,
+        relation: str | None = None,
+    ) -> GraphEdge | None:
+        """
+        Find an edge by source, target, and optionally relation.
+
+        Args:
+            source_id: The source node ID
+            target_id: The target node ID
+            relation: Optional relation type filter (case-insensitive)
+
+        Returns:
+            The matching GraphEdge or None if not found
+        """
+        if not self._graph.has_edge(source_id, target_id):
+            return None
+
+        edge_data = self._graph.edges[source_id, target_id]
+
+        # If relation filter specified, check it matches
+        if relation is not None:
+            edge_relation = edge_data.get("relation", "")
+            if edge_relation.lower() != relation.lower():
+                return None
+
+        try:
+            return GraphEdge(
+                source_id=source_id,
+                target_id=target_id,
+                relation=edge_data.get("relation", "related_to"),
+                weight=edge_data.get("weight", 1.0),
+                provenance=edge_data.get("provenance"),
+                properties=edge_data.get("properties", {}),
+            )
+        except Exception:
+            return None
+
+    async def edge_exists(
+        self,
+        source_id: str,
+        target_id: str,
+        relation: str | None = None,
+    ) -> bool:
+        """
+        Check if an edge exists between two nodes.
+
+        Args:
+            source_id: The source node ID
+            target_id: The target node ID
+            relation: Optional relation type to check (case-insensitive)
+
+        Returns:
+            True if the edge exists, False otherwise
+        """
+        if not self._graph.has_edge(source_id, target_id):
+            return False
+
+        if relation is None:
+            return True
+
+        edge_data = self._graph.edges[source_id, target_id]
+        edge_relation = edge_data.get("relation", "")
+        return edge_relation.lower() == relation.lower()
 
     async def node_count(self) -> int:
         """Get the number of nodes."""

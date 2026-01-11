@@ -20,16 +20,22 @@ Commands (prefix with /):
   /clear           - Clear conversation history
   /history         - Show conversation history
   /memory          - Show memory statistics
-  /context         - Show assembled context payload (detailed)
-  /prompt          - Show full formatted prompt sent to LLM
+  /context         - Show assembled context payload (FULL, no truncation)
+  /prompt          - Show full formatted prompt sent to LLM (FULL, no truncation)
+  /prime           - Load and show primed context (works before first turn)
   /debug           - Show debug info from context assembly
   /entities        - List graph entities and relationships
   /facts           - List all documents from vector store (insights + summaries)
   /insights        - List only insights (type='insight') with structured metadata
   /summaries       - List only turn summaries (type='summary')
-  /transcript      - Show full transcript from persistent storage
-  /export [format] - Export transcript (jsonl, markdown, or training)
+  /meta            - List only meta insights (type='meta_insight') from synthesis
+  /sessions        - List all stored transcript sessions
+  /transcript      - Show current session's transcript
+  /transcript <id> - Show transcript for a specific session
+  /transcript export - Export entire database to CSV
+  /export [format] - Export current session (jsonl, markdown, or training)
   /reset           - Clear all memory stores (graph, vector, episodic)
+  /reorganize [opts] - Run memory reorganization (analyze, prune, synthesize)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable
   /help            - Show available commands
@@ -50,11 +56,11 @@ logger = logging.getLogger(__name__)
 
 from friday_core import DebugTelemetryRecorder, TranscriptBackedEpisodicStore
 from friday_llm import (
+    CircuitBreakerOpenError,
     LiteLLMEmbeddingService,
     LiteLLMService,
-    LLMTimeoutError,
     LLMRetryExhaustedError,
-    CircuitBreakerOpenError,
+    LLMTimeoutError,
     ResilienceConfig,
 )
 from friday_memory import (
@@ -68,11 +74,24 @@ from friday_memory import (
     PromptArchitect,
     SessionState,
 )
+from friday_memory.maintenance import MemoryReorganizer
+from friday_memory.maintenance.models import (
+    EmbeddingConfig,
+    FactCheckConfig,
+    LogConfig,
+    LogFormat,
+    LogVerbosity,
+    MaintenanceConfig,
+    PromptsConfig,
+    PruneConfig,
+    SynthesisConfig,
+)
 from friday_transcript import (
-    SQLiteTranscriptStore,
-    TranscriptSession,
+    CSVExporter,
     JSONLExporter,
     MarkdownExporter,
+    SQLiteTranscriptStore,
+    TranscriptSession,
 )
 
 
@@ -117,6 +136,12 @@ class MemoryChatSession:
         user_name: str = "You",
         assistant_name: str = "Assistant",
         transcript_store: "SQLiteTranscriptStore | None" = None,
+        context_format: str = "plain",
+        persist_dir: "Path | None" = None,
+        maintenance_config: "MaintenanceConfig | None" = None,
+        maintenance_llms: "dict[str, LiteLLMService] | None" = None,
+        transcript_export_dir: "Path | None" = None,
+        embedding_function: any = None,
     ):
         self.llm = llm
         self.controller = controller
@@ -131,6 +156,12 @@ class MemoryChatSession:
         self.user_name = user_name
         self.assistant_name = assistant_name
         self.transcript_store = transcript_store
+        self.context_format = context_format
+        self.persist_dir = persist_dir
+        self.maintenance_config = maintenance_config
+        self.maintenance_llms = maintenance_llms or {}
+        self.transcript_export_dir = transcript_export_dir
+        self.embedding_function = embedding_function
 
         # State tracking
         self.state: SessionState | None = None
@@ -178,13 +209,25 @@ class MemoryChatSession:
                 return await self.cmd_insights()
             case "summaries":
                 return await self.cmd_summaries()
+            case "meta":
+                return await self.cmd_meta_insights()
+            case "prime":
+                return await self.cmd_prime()
+            case "sessions":
+                return await self.cmd_sessions()
             case "transcript":
-                return await self.cmd_transcript()
+                # Check for subcommands: /transcript <session_id> or /transcript export
+                arg = parts[1] if len(parts) > 1 else None
+                return await self.cmd_transcript(arg)
             case "export":
                 format_type = parts[1] if len(parts) > 1 else "markdown"
                 return await self.cmd_export(format_type)
             case "reset":
                 return await self.cmd_reset()
+            case "reorganize":
+                # Parse options from remaining args
+                opts = parts[1] if len(parts) > 1 else ""
+                return await self.cmd_reorganize(opts)
             case "vars":
                 return self.cmd_vars()
             case "set":
@@ -238,73 +281,60 @@ Memory Statistics:
 """
 
     def cmd_context(self) -> str:
-        """Show detailed context assembly."""
+        """Show detailed context assembly in configured format (FULL content)."""
         if not self.last_payload:
-            return "No context assembled yet. Send a message first."
+            return "No context assembled yet. Send a message first or use /prime."
 
-        lines = ["=" * 60, "CONTEXT PAYLOAD DETAILS", "=" * 60]
+        lines = ["=" * 60, f"CONTEXT PAYLOAD (format: {self.context_format})", "=" * 60]
 
-        # Summary
+        # Summary counts
         lines.append(f"\nSummary:")
-        lines.append(f"  History turns: {len(self.last_payload.history)} (completed turns from episodic store)")
+        lines.append(f"  History turns: {len(self.last_payload.history)}")
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
         lines.append(f"  Graph facts: {len(self.last_payload.facts)}")
-        lines.append(f"  Recent memories: {len(self.last_payload.recent_memories)}")
-        lines.append(f"\nNote: Current query is not yet a 'turn' until the response is received and saved.")
+        lines.append(f"  Relationship summaries: {len(self.last_payload.recent_memories)}")
+        lines.append(f"  Insights: {len(self.last_payload.insights)}")
+        lines.append(f"  Summaries: {len(self.last_payload.summaries)}")
 
-        # History details
+        # Show formatted supporting context using PromptArchitect
+        lines.append(f"\n--- Supporting Context (format: {self.context_format}) ---")
+        formatted_context = self.architect._build_supporting_context(
+            self.last_payload,
+            self.state,
+            self.context_format,
+        )
+        if formatted_context:
+            lines.append(formatted_context)
+        else:
+            lines.append("  (no supporting context)")
+
+        # History details - FULL content (shown separately since not in supporting context)
         if self.last_payload.history:
             lines.append(f"\n--- History Turns ({len(self.last_payload.history)}) ---")
             for i, turn in enumerate(self.last_payload.history, 1):
                 lines.append(f"\n  Turn {i} [{turn.id[:8]}...]:")
-                user_preview = turn.user_message[:100].replace('\n', ' ')
-                if len(turn.user_message) > 100:
-                    user_preview += "..."
-                lines.append(f"    {self.user_name}: {user_preview}")
-                asst_preview = turn.assistant_message[:100].replace('\n', ' ')
-                if len(turn.assistant_message) > 100:
-                    asst_preview += "..."
-                lines.append(f"    {self.assistant_name}: {asst_preview}")
+                lines.append(f"    {self.user_name}: {turn.user_message}")
+                lines.append(f"    {self.assistant_name}: {turn.assistant_message}")
 
-        # Vector passages
+        # Vector passages (shown separately for reference)
         if self.last_payload.passages:
             lines.append(f"\n--- Vector Passages ({len(self.last_payload.passages)}) ---")
             for i, passage in enumerate(self.last_payload.passages, 1):
-                text = passage.get("text", "")[:150].replace('\n', ' ')
+                text = passage.get("text", "")
                 similarity = passage.get("similarity", 0.0)
                 lines.append(f"\n  Passage {i} (similarity: {similarity:.3f}):")
-                lines.append(f"    {text}...")
-
-        # Graph entities
-        if self.last_payload.entities:
-            lines.append(f"\n--- Graph Entities ({len(self.last_payload.entities)}) ---")
-            for entity in self.last_payload.entities[:10]:
-                props = getattr(entity, 'properties', {})
-                prop_str = ", ".join(f"{k}={v}" for k, v in list(props.items())[:2])
-                lines.append(f"  - {entity.label} ({entity.type}): {prop_str}")
-
-        # Graph facts
-        if self.last_payload.facts:
-            lines.append(f"\n--- Graph Facts ({len(self.last_payload.facts)}) ---")
-            for fact in self.last_payload.facts[:10]:
-                lines.append(f"  - {fact.source_id} --[{fact.relation}]--> {fact.target_id}")
-
-        # Recent memories
-        if self.last_payload.recent_memories:
-            lines.append(f"\n--- Recent Memories ({len(self.last_payload.recent_memories)}) ---")
-            for mem in self.last_payload.recent_memories[:5]:
-                lines.append(f"  - {mem[:100]}...")
+                lines.append(f"    {text}")
 
         lines.append("\n" + "=" * 60)
         return "\n".join(lines)
 
     def cmd_prompt(self) -> str:
-        """Show the full formatted prompt sent to LLM."""
+        """Show the FULL formatted prompt sent to LLM (no truncation for debugging)."""
         if not self.last_messages:
             return "No prompt formatted yet. Send a message first."
 
-        lines = ["=" * 60, "FORMATTED PROMPT (sent to LLM)", "=" * 60]
+        lines = ["=" * 60, f"FORMATTED PROMPT (format: {self.context_format})", "=" * 60]
 
         # Map API roles to configured names
         role_names = {
@@ -320,26 +350,13 @@ Memory Statistics:
             # Map role to display name
             display_name = role_names.get(role, role.upper())
 
-            # Mark the last user message as the current query
+            # Mark the last user message as the current query + supporting context
             is_current_query = (i == len(self.last_messages) - 1 and role == "user")
-            label = f"{display_name} (current query)" if is_current_query else display_name
+            label = f"{display_name} (supporting context + query)" if is_current_query else display_name
             lines.append(f"\n--- Message {i + 1}: {label} ---")
 
-            # For system messages, show full content (contains priming context)
-            if role == "system":
-                # Show first 2000 chars to ensure priming context is visible
-                if len(content) > 2000:
-                    lines.append(content[:2000])
-                    lines.append(f"\n... [{len(content) - 2000} more characters] ...")
-                else:
-                    lines.append(content)
-            else:
-                # For user/assistant, show full content (usually shorter)
-                if len(content) > 300:
-                    lines.append(content[:300])
-                    lines.append(f"... [{len(content) - 300} more characters] ...")
-                else:
-                    lines.append(content)
+            # Show FULL content (no truncation for debugging)
+            lines.append(content)
 
         lines.append("\n" + "=" * 60)
         lines.append(f"Total messages: {len(self.last_messages)}")
@@ -517,22 +534,175 @@ Memory Statistics:
         except Exception as e:
             return f"Error retrieving summaries: {e}"
 
-    async def cmd_transcript(self) -> str:
-        """Show full transcript from persistent storage."""
+    async def cmd_meta_insights(self) -> str:
+        """List only meta insights (type='meta_insight') from the vector store."""
+        try:
+            # Query with type filter for meta_insight
+            documents = await self.controller.vector.get_all(
+                limit=10000,
+                where={"type": "meta_insight"},
+            )
+            if not documents:
+                return "No meta insights in vector store. Run /reorganize with synthesis to generate them."
+
+            lines = ["=" * 60, "META INSIGHTS (type='meta_insight' from vector store)", "=" * 60]
+            lines.append(f"\nTotal meta insights: {len(documents)}\n")
+
+            for i, doc in enumerate(documents, 1):
+                text = doc.get("text", "")
+                metadata = doc.get("metadata", {})
+
+                # Show full meta insight text
+                display_text = text[:500] + "..." if len(text) > 500 else text
+                display_text = display_text.replace("\n", " ")
+
+                lines.append(f"{i}. {display_text}")
+
+                # Show structured metadata
+                meta_parts = []
+                if metadata.get("confidence") is not None:
+                    meta_parts.append(f"confidence: {metadata['confidence']}")
+                if metadata.get("source_type"):
+                    meta_parts.append(f"source: {metadata['source_type']}")
+                if metadata.get("source_memories"):
+                    source_count = len(metadata["source_memories"])
+                    meta_parts.append(f"sources: {source_count} memories")
+                if metadata.get("created_at"):
+                    meta_parts.append(f"created: {metadata['created_at'][:19]}")
+
+                if meta_parts:
+                    lines.append(f"   [{', '.join(meta_parts)}]")
+                lines.append("")
+
+            return "\n".join(lines)
+        except Exception as e:
+            return f"Error retrieving meta insights: {e}"
+
+    async def cmd_prime(self) -> str:
+        """
+        Show current context (works before first turn).
+
+        Triggers a recall() to fetch insights/summaries/entities and populates
+        last_payload so /context works before the first conversation turn.
+        """
+        try:
+            # Fetch context via recall (empty query just to get supporting context)
+            payload = await self.controller.recall(
+                query="",
+                session_id=self.session_id,
+                include_history=True,
+            )
+
+            # Store for /context command
+            self.last_payload = payload
+
+            lines = ["=" * 60, "PRIMED CONTEXT", "=" * 60]
+
+            # Summary counts
+            lines.append(f"\nContext loaded:")
+            lines.append(f"  Entities: {len(payload.entities)}")
+            lines.append(f"  Insights: {len(payload.insights)}")
+            lines.append(f"  Summaries: {len(payload.summaries)}")
+            lines.append(f"  Relationships: {len(payload.recent_memories)}")
+            lines.append(f"  History turns: {len(payload.history)}")
+
+            # Show top entities
+            if payload.entities:
+                lines.append("\n--- Top Entities (by hit_count) ---")
+                for entity in payload.entities[:15]:
+                    hit_count = getattr(entity, 'hit_count', 0)
+                    lines.append(f"  - {entity.label} ({entity.type}, hits: {hit_count})")
+
+            # Show relationship summaries
+            if payload.recent_memories:
+                lines.append("\n--- Relationship Summaries ---")
+                for summary in payload.recent_memories[:10]:
+                    lines.append(f"  {summary}")
+
+            # Show recent insights
+            if payload.insights:
+                lines.append("\n--- Recent Insights (most recent first) ---")
+                for i, insight in enumerate(payload.insights[:5], 1):
+                    text = insight.get("text", "")[:150]
+                    created = insight.get("metadata", {}).get("created_at", "")[:19]
+                    lines.append(f"  {i}. [{created}] {text}...")
+
+            # Show recent summaries
+            if payload.summaries:
+                lines.append("\n--- Recent Summaries (most recent first) ---")
+                for i, summary in enumerate(payload.summaries[:5], 1):
+                    text = summary.get("text", "")[:200]
+                    created = summary.get("metadata", {}).get("created_at", "")[:19]
+                    lines.append(f"  {i}. [{created}] {text}...")
+
+            lines.append("\n" + "=" * 60)
+            lines.append("Use /context for full details, /prompt to see formatted prompt.")
+            return "\n".join(lines)
+
+        except Exception as e:
+            return f"Error fetching primed context: {e}"
+
+    async def cmd_sessions(self) -> str:
+        """List all stored transcript sessions."""
         if not self.transcript_store:
             return "Transcript storage not configured."
 
         try:
+            sessions = await self.transcript_store.list_sessions(limit=1000)
+            if not sessions:
+                return "No transcript sessions found."
+
+            lines = ["=" * 60, f"TRANSCRIPT SESSIONS ({len(sessions)} total)", "=" * 60]
+
+            for session in sessions:
+                # Mark current session
+                current = " [CURRENT]" if session.session_id == self.session_id else ""
+                lines.append(f"\n  {session.session_id}{current}")
+                lines.append(f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                if session.ended_at:
+                    lines.append(f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                lines.append(f"    User: {session.user_id}")
+                lines.append(f"    Model: {session.model_name}")
+                lines.append(f"    Turns: {session.total_turns}, Tokens: {session.total_tokens}")
+
+            lines.append("\n" + "=" * 60)
+            lines.append("Use /transcript <session_id> to view a specific session.")
+            return "\n".join(lines)
+        except Exception as e:
+            return f"Error listing sessions: {e}"
+
+    async def cmd_transcript(self, arg: str | None = None) -> str:
+        """
+        Show transcript from persistent storage.
+
+        Args:
+            arg: Optional argument - either a session_id or "export"
+        """
+        if not self.transcript_store:
+            return "Transcript storage not configured."
+
+        # Handle /transcript export
+        if arg and arg.lower() == "export":
+            return await self._export_all_sessions_csv()
+
+        # Determine which session to show
+        target_session_id = arg if arg else self.session_id
+
+        try:
             entries = await self.transcript_store.get_entries(
-                self.session_id, limit=10000
+                target_session_id, limit=10000
             )
             if not entries:
+                if arg:
+                    return f"No transcript entries found for session: {target_session_id}"
                 return "No transcript entries for this session."
 
-            lines = ["=" * 60, f"TRANSCRIPT ({len(entries)} entries)", "=" * 60]
+            is_current = target_session_id == self.session_id
+            current_marker = " [CURRENT]" if is_current else ""
+            lines = ["=" * 60, f"TRANSCRIPT ({len(entries)} entries){current_marker}", "=" * 60]
 
             # Get session info
-            session = await self.transcript_store.get_session(self.session_id)
+            session = await self.transcript_store.get_session(target_session_id)
             if session:
                 lines.append(f"\nSession: {session.session_id}")
                 lines.append(f"Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
@@ -569,6 +739,42 @@ Memory Statistics:
             return "\n".join(lines)
         except Exception as e:
             return f"Error retrieving transcript: {e}"
+
+    async def _export_all_sessions_csv(self) -> str:
+        """Export entire transcript database to CSV files."""
+        if not self.transcript_store:
+            return "Transcript storage not configured."
+
+        # Determine export directory
+        if self.transcript_export_dir:
+            export_dir = Path(self.transcript_export_dir)
+        else:
+            export_dir = Path("./exports")
+
+        try:
+            # Create timestamped subdirectory
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            output_dir = export_dir / f"transcript_export_{timestamp}"
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            # Use CSVExporter from friday-transcript
+            exporter = CSVExporter(self.transcript_store)
+            counts = await exporter.export_all_sessions(output_dir)
+
+            lines = [
+                "=" * 60,
+                "TRANSCRIPT EXPORT COMPLETE",
+                "=" * 60,
+                f"\nExport directory: {output_dir}",
+                f"\nFiles created:",
+                f"  - sessions.csv ({counts['sessions']} sessions)",
+                f"  - entries.csv ({counts['entries']} entries)",
+                "\n" + "=" * 60,
+            ]
+            return "\n".join(lines)
+
+        except Exception as e:
+            return f"Error exporting transcripts: {e}"
 
     async def cmd_export(self, format_type: str = "markdown") -> str:
         """Export transcript to file."""
@@ -637,6 +843,220 @@ Memory Statistics:
         except Exception as e:
             return f"Error resetting memory: {e}"
 
+    async def cmd_reorganize(self, opts: str = "") -> str:
+        """
+        Run memory reorganization.
+
+        Options (space-separated):
+          --execute       Run for real (default is dry-run)
+          --no-backup     Skip backup before modifications
+          --skip-synthesis Skip LLM-based memory synthesis
+          --skip-verify   Skip LLM-based fact verification
+          --analyze       Just run analysis (no prune/synthesis/verify)
+          --prune         Just run pruning
+          --synthesize    Just run synthesis (meta-insights, relationships)
+          --verify        Just run fact verification
+          --backup        Just create a backup
+
+        Examples:
+          /reorganize                    - Dry run with all steps
+          /reorganize --execute          - Execute all steps with backup
+          /reorganize --analyze          - Just analyze (read-only)
+          /reorganize --execute --prune  - Execute pruning only
+          /reorganize --execute --synthesize - Execute synthesis only
+        """
+        if not self.persist_dir:
+            return "Error: persist_dir not configured for this session."
+
+        # Parse options
+        opt_list = opts.lower().split() if opts else []
+
+        # Determine mode
+        dry_run = "--execute" not in opt_list
+        backup_first = "--no-backup" not in opt_list
+        skip_synthesis = "--skip-synthesis" in opt_list
+        skip_verify = "--skip-verify" in opt_list
+        analyze_only = "--analyze" in opt_list
+        prune_only = "--prune" in opt_list
+        synthesize_only = "--synthesize" in opt_list
+        verify_only = "--verify" in opt_list
+        backup_only = "--backup" in opt_list
+
+        # Use maintenance config from config.yaml or defaults
+        config = self.maintenance_config or MaintenanceConfig()
+
+        # Get LLMs for maintenance operations (fall back to main chat LLM)
+        synthesizer_llm = self.maintenance_llms.get("synthesizer", self.llm)
+        classifier_llm = self.maintenance_llms.get("classifier", self.llm)
+        researcher_llm = self.maintenance_llms.get("researcher", self.llm)
+        judge_llm = self.maintenance_llms.get("judge", self.llm)
+
+        # Create embedding function for maintenance operations
+        # Use config.embedding if available, otherwise fall back to session embedding
+        maintenance_embedding = self.embedding_function
+        if config.embedding and not skip_synthesis:
+            try:
+                from friday_llm import LiteLLMEmbeddingService, ResilienceConfig
+                maintenance_embedding = LiteLLMEmbeddingService(
+                    model_name=config.embedding.model,
+                    api_key=config.embedding.api_key,
+                    api_base=config.embedding.api_base,
+                    resilience=ResilienceConfig(
+                        timeout_seconds=config.embedding.timeout_seconds,
+                    ),
+                )
+            except Exception as e:
+                lines = [f"Warning: Failed to create maintenance embedding service: {e}"]
+                lines.append("Falling back to session embedding function.")
+                print("\n".join(lines))
+
+        # Create reorganizer with the persist_dir, config, LLMs, embedding, and collection name
+        reorganizer = MemoryReorganizer(
+            memory_dir=self.persist_dir,
+            config=config,
+            llm_service=synthesizer_llm if not skip_synthesis else None,
+            classifier_llm=classifier_llm if not skip_verify else None,
+            researcher_llm=researcher_llm if not skip_verify else None,
+            judge_llm=judge_llm if not skip_verify else None,
+            embedding_function=maintenance_embedding,
+            collection_name=config.collection_name,
+        )
+
+        try:
+            lines = ["=" * 60, "MEMORY REORGANIZATION", "=" * 60]
+
+            if backup_only:
+                # Just create a backup
+                lines.append("\nCreating backup...")
+                manifest = await reorganizer.backup()
+                lines.append(f"  Backup ID: {manifest.backup_id[:8]}...")
+                lines.append(f"  Location: {manifest.backup_dir}")
+                lines.append(f"  Files backed up: {len(manifest.files)}")
+                lines.append("\nBackup complete.")
+                return "\n".join(lines)
+
+            if analyze_only:
+                # Just analyze
+                lines.append("\nAnalyzing memory consistency...")
+                report = await reorganizer.analyze()
+                lines.append(f"\nGraph Store:")
+                lines.append(f"  Nodes: {report.graph_stats.get('node_count', 0)}")
+                lines.append(f"  Edges: {report.graph_stats.get('edge_count', 0)}")
+                lines.append(f"\nVector Store:")
+                lines.append(f"  Documents: {report.vector_stats.get('document_count', 0)}")
+                lines.append(f"\nEpisodic Store:")
+                lines.append(f"  Turns: {report.episodic_stats.get('turn_count', 0)}")
+                lines.append(f"\nIssues Found: {len(report.issues)}")
+                lines.append(f"  Critical: {report.severity_counts['critical']}")
+                lines.append(f"  Warning: {report.severity_counts['warning']}")
+                lines.append(f"  Info: {report.severity_counts['info']}")
+
+                if report.duplicate_groups:
+                    lines.append(f"\nDuplicate Entity Groups: {len(report.duplicate_groups)}")
+                    for group in report.duplicate_groups[:5]:
+                        all_ids = [group.primary_id] + group.duplicate_ids[:2]
+                        lines.append(f"  - {group.match_type}: {', '.join(all_ids)}")
+                    if len(report.duplicate_groups) > 5:
+                        lines.append(f"  ... and {len(report.duplicate_groups) - 5} more groups")
+
+                lines.append("\nAnalysis complete.")
+                return "\n".join(lines)
+
+            if prune_only:
+                # Just prune
+                mode = "DRY RUN" if dry_run else "EXECUTING"
+                lines.append(f"\nPruning redundancies ({mode})...")
+                if backup_first and not dry_run:
+                    lines.append("Creating backup first...")
+
+                report = await reorganizer.prune(dry_run=dry_run, backup_first=backup_first)
+                lines.append(f"\nPrune Results:")
+                lines.append(f"  Entities merged: {report.entities_merged}")
+                lines.append(f"  Entities removed: {report.entities_removed}")
+                lines.append(f"  Insights removed: {report.insights_removed}")
+                lines.append(f"  Edges removed: {report.edges_removed}")
+
+                if dry_run:
+                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                else:
+                    lines.append("\nPruning complete.")
+                return "\n".join(lines)
+
+            if synthesize_only:
+                # Just synthesize
+                mode = "DRY RUN" if dry_run else "EXECUTING"
+                lines.append(f"\nSynthesizing memories ({mode})...")
+                if backup_first and not dry_run:
+                    lines.append("Creating backup first...")
+                    await reorganizer.backup()
+
+                report = await reorganizer.synthesize(dry_run=dry_run)
+                lines.append(f"\nSynthesis Results:")
+                lines.append(f"  Topic clusters found: {len(report.topic_clusters)}")
+                lines.append(f"  Meta-insights created: {report.meta_insights_created}")
+                lines.append(f"  Relationships inferred: {report.relationships_inferred}")
+                lines.append(f"  Knowledge gaps identified: {len(report.knowledge_gaps)}")
+
+                if report.synthesized_memories:
+                    lines.append(f"\nSynthesized Memories:")
+                    for mem in report.synthesized_memories[:5]:
+                        content_preview = mem.content[:80] + "..." if len(mem.content) > 80 else mem.content
+                        lines.append(f"  - [{mem.type}] {content_preview}")
+                    if len(report.synthesized_memories) > 5:
+                        lines.append(f"  ... and {len(report.synthesized_memories) - 5} more")
+
+                if dry_run:
+                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                else:
+                    lines.append("\nSynthesis complete.")
+                return "\n".join(lines)
+
+            if verify_only:
+                # Just verify facts
+                mode = "DRY RUN" if dry_run else "EXECUTING"
+                lines.append(f"\nVerifying facts ({mode})...")
+
+                report = await reorganizer.verify(dry_run=dry_run)
+                lines.append(f"\nVerification Results:")
+                lines.append(f"  Facts classified: {report.facts_classified}")
+                lines.append(f"  Claims verified: {report.claims_verified}")
+                lines.append(f"  Claims disputed: {report.claims_disputed}")
+                lines.append(f"  Claims unverifiable: {report.claims_unverifiable}")
+
+                if dry_run:
+                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                else:
+                    lines.append("\nVerification complete.")
+                return "\n".join(lines)
+
+            # Full reorganization
+            mode = "DRY RUN" if dry_run else "EXECUTING"
+            lines.append(f"\nRunning full reorganization ({mode})...")
+            lines.append(f"  Backup first: {backup_first}")
+            lines.append(f"  Skip synthesis: {skip_synthesis}")
+            lines.append(f"  Skip verify: {skip_verify}")
+            lines.append("")
+
+            report = await reorganizer.reorganize(
+                backup_first=backup_first,
+                dry_run=dry_run,
+                skip_synthesis=skip_synthesis,
+                skip_verify=skip_verify,
+            )
+
+            # Show summary
+            summary = reorganizer.generate_report_summary(report)
+            lines.append(summary)
+
+            if dry_run:
+                lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+
+            return "\n".join(lines)
+
+        except Exception as e:
+            logger.exception("Reorganization failed")
+            return f"Error during reorganization: {e}"
+
     def cmd_vars(self) -> str:
         """Show scoped variables."""
         if not self.state or not self.state.scoped_vars:
@@ -661,19 +1081,34 @@ Available Commands:
   /clear           - Clear conversation history
   /history         - Show conversation history
   /memory          - Show memory statistics
-  /context         - Show assembled context payload (detailed)
-  /prompt          - Show full formatted prompt sent to LLM
+  /context         - Show assembled context payload (FULL, no truncation)
+  /prompt          - Show full formatted prompt sent to LLM (FULL, no truncation)
+  /prime           - Load and show primed context (works before first turn)
   /debug           - Show debug info from context assembly
   /entities        - List graph entities and relationships
   /facts           - List all documents from vector store (insights + summaries)
   /insights        - List only insights (type='insight') with structured metadata
   /summaries       - List only turn summaries (type='summary')
-  /transcript      - Show full transcript from persistent storage
-  /export [format] - Export transcript (jsonl, markdown, or training)
+  /meta            - List only meta insights (type='meta_insight') from synthesis
+  /sessions        - List all stored transcript sessions
+  /transcript      - Show current session's transcript
+  /transcript <id> - Show transcript for a specific session
+  /transcript export - Export entire database to CSV
+  /export [format] - Export current session (jsonl, markdown, or training)
   /reset           - Clear all memory stores (graph, vector, episodic)
+  /reorganize [opts] - Run memory reorganization
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable (e.g., /set user:name Alice)
   /help            - Show this help
+
+Reorganize Options:
+  /reorganize              - Dry run full reorganization
+  /reorganize --execute    - Execute full reorganization with backup
+  /reorganize --analyze    - Just analyze (read-only)
+  /reorganize --prune      - Just prune (dry run)
+  /reorganize --backup     - Just create a backup
+  /reorganize --execute --prune --no-backup  - Execute prune without backup
+  /reorganize --skip-synthesis --skip-verify - Skip LLM-dependent steps
 """
 
     async def _background_extract(self, turn: InteractionTurn) -> None:
@@ -709,18 +1144,13 @@ Available Commands:
             budget_limit=dynamic_limit,
         )
 
-        # 2. Format prompt with assembled context
+        # 2. Format prompt with assembled context AND current user input
         messages = await self.assembler.format_prompt(
             system_prompt=self.system_prompt,
             payload=self.last_payload,
+            context_format=self.context_format,
+            user_query=user_input,  # Pass current input directly
         )
-
-        # Replace the last user message with the current input
-        # (format_prompt extracts user_query from last history item, which is stale)
-        if messages and messages[-1]["role"] == "user":
-            messages[-1]["content"] = user_input
-        else:
-            messages.append({"role": "user", "content": user_input})
 
         # Store for debugging
         self.last_messages = messages
@@ -797,6 +1227,98 @@ async def main() -> None:
     memory_config = config.get("memory", {})
     chat_config = config.get("chat", {})
     logging_config = config.get("logging", {})
+    transcript_config = config.get("transcript", {})
+    maintenance_yaml = config.get("maintenance", {})
+
+    # Build MaintenanceConfig from YAML
+    pruning_yaml = maintenance_yaml.get("pruning", {})
+    synthesis_yaml = maintenance_yaml.get("synthesis", {})
+    fact_check_yaml = maintenance_yaml.get("fact_checking", {})
+    prompts_yaml = maintenance_yaml.get("prompts", {})
+    logging_yaml = maintenance_yaml.get("logging", {})
+    maintenance_embedding_yaml = maintenance_yaml.get("embedding", {})
+
+    # Build PromptsConfig - only override prompts that are explicitly set in config
+    prompts_kwargs = {}
+    if prompts_yaml.get("classification"):
+        prompts_kwargs["classification"] = prompts_yaml["classification"]
+    if prompts_yaml.get("research"):
+        prompts_kwargs["research"] = prompts_yaml["research"]
+    if prompts_yaml.get("judge"):
+        prompts_kwargs["judge"] = prompts_yaml["judge"]
+    if prompts_yaml.get("meta_insight"):
+        prompts_kwargs["meta_insight"] = prompts_yaml["meta_insight"]
+    if prompts_yaml.get("knowledge_gap"):
+        prompts_kwargs["knowledge_gap"] = prompts_yaml["knowledge_gap"]
+    if prompts_yaml.get("relationship_inference"):
+        prompts_kwargs["relationship_inference"] = prompts_yaml["relationship_inference"]
+
+    # Build LogConfig - parse verbosity and format strings to enums
+    log_verbosity_str = logging_yaml.get("verbosity", "normal").lower()
+    log_format_str = logging_yaml.get("format", "markdown").lower()
+    try:
+        log_verbosity = LogVerbosity(log_verbosity_str)
+    except ValueError:
+        log_verbosity = LogVerbosity.NORMAL
+    try:
+        log_format = LogFormat(log_format_str)
+    except ValueError:
+        log_format = LogFormat.MARKDOWN
+
+    # Build EmbeddingConfig for maintenance operations
+    # Priority: maintenance.embedding > main embedding config > None
+    maintenance_embedding_config = None
+    if maintenance_embedding_yaml:
+        # Use maintenance-specific embedding config
+        maintenance_embedding_config = EmbeddingConfig(
+            model=maintenance_embedding_yaml.get("model", "openai/nomic-embed-text-v1.5"),
+            api_base=maintenance_embedding_yaml.get("api_base"),
+            api_key=maintenance_embedding_yaml.get("api_key"),
+            timeout_seconds=maintenance_embedding_yaml.get("timeout_seconds", 60.0),
+        )
+    elif embedding_config:
+        # Fall back to main embedding config
+        maintenance_embedding_config = EmbeddingConfig(
+            model=embedding_config.get("model", "openai/nomic-embed-text-v1.5"),
+            api_base=embedding_config.get("api_base"),
+            api_key=embedding_config.get("api_key"),
+            timeout_seconds=embedding_config.get("timeout_seconds", 60.0),
+        )
+
+    # Get collection name - prefer maintenance config, fall back to memory config
+    maintenance_collection_name = (
+        maintenance_yaml.get("collection_name")
+        or memory_config.get("collection_name", "memory_chat_test")
+    )
+
+    maintenance_config = MaintenanceConfig(
+        pruning=PruneConfig(
+            stale_threshold_days=pruning_yaml.get("stale_threshold_days", 90),
+            min_hit_count=pruning_yaml.get("min_hit_count", 1),
+            similarity_threshold=pruning_yaml.get("similarity_threshold", 0.95),
+        ),
+        synthesis=SynthesisConfig(
+            cluster_min_size=synthesis_yaml.get("cluster_min_size", 3),
+            meta_insight_confidence=synthesis_yaml.get("meta_insight_confidence", 0.7),
+        ),
+        fact_checking=FactCheckConfig(
+            batch_size=fact_check_yaml.get("batch_size", 50),
+            verification_timeout=fact_check_yaml.get("verification_timeout", 30),
+        ),
+        prompts=PromptsConfig(**prompts_kwargs) if prompts_kwargs else PromptsConfig(),
+        logging=LogConfig(
+            enabled=logging_yaml.get("enabled", True),
+            log_directory=logging_yaml.get("log_directory", "./reorganization_logs"),
+            verbosity=log_verbosity,
+            format=log_format,
+        ),
+        embedding=maintenance_embedding_config,
+        collection_name=maintenance_collection_name,
+        backup_directory=maintenance_yaml.get("backup_directory"),
+    )
+
+    # Load maintenance LLM configurations
+    maintenance_llm_yaml = maintenance_yaml.get("llm", {})
 
     # Configure logging from config
     log_level_str = logging_config.get("level", "INFO").upper()
@@ -852,6 +1374,9 @@ async def main() -> None:
     print(f"  Available for context: ~{context_window - output_buffer - 500} tokens")
     print(f"Max History Turns: {memory_config.get('max_history_turns', 10)}")
     print()
+    # Context format applies to all turns
+    print(f"Context Format: {memory_config.get('context_format', 'plain')}")
+    print()
     if priming_config.get("enabled", True):
         top_ent = priming_config.get("top_entities", 10)
         insights_per = priming_config.get("insights_per_entity", 3)
@@ -900,6 +1425,37 @@ async def main() -> None:
             extraction_llm = llm
     else:
         extraction_llm = llm
+
+    # 2b. Initialize Maintenance LLM services (for /reorganize command)
+    maintenance_llms: dict[str, LiteLLMService] = {}
+
+    def create_maintenance_llm(role: str) -> LiteLLMService | None:
+        """Create a LiteLLMService for a maintenance role if configured."""
+        role_config = maintenance_llm_yaml.get(role, {})
+        if not role_config or not role_config.get("model"):
+            return None  # Fall back to main LLM
+        try:
+            role_resilience = ResilienceConfig(
+                max_retries=role_config.get("max_retries", 2),
+                timeout_seconds=role_config.get("timeout_seconds", 60.0),
+            )
+            return LiteLLMService(
+                model_name=role_config.get("model"),
+                api_key=role_config.get("api_key"),
+                api_base=role_config.get("api_base"),
+                resilience=role_resilience,
+            )
+        except Exception as e:
+            logger.warning(f"Failed to create {role} LLM: {e}, will use main LLM")
+            return None
+
+    for role in ["synthesizer", "classifier", "researcher", "judge"]:
+        role_llm = create_maintenance_llm(role)
+        if role_llm:
+            maintenance_llms[role] = role_llm
+
+    if maintenance_llms:
+        print(f"Maintenance LLMs: {', '.join(maintenance_llms.keys())}")
 
     # 3. Initialize Embedding service
     try:
@@ -1003,6 +1559,14 @@ async def main() -> None:
     )
     await transcript_store.create_session(transcript_session)
 
+    # Get context format from memory config (applies to all turns, not just priming)
+    context_format = memory_config.get("context_format", "plain")
+
+    # Get transcript export directory from config
+    transcript_export_dir = transcript_config.get("export_directory")
+    if transcript_export_dir:
+        transcript_export_dir = Path(transcript_export_dir)
+
     session = MemoryChatSession(
         llm=llm,
         controller=controller,
@@ -1017,6 +1581,12 @@ async def main() -> None:
         user_name=user_name,
         assistant_name=assistant_name,
         transcript_store=transcript_store,
+        context_format=context_format,
+        persist_dir=persist_dir,
+        maintenance_config=maintenance_config,
+        maintenance_llms=maintenance_llms,
+        transcript_export_dir=transcript_export_dir,
+        embedding_function=embedding,
     )
 
     # Initialize session
@@ -1027,9 +1597,17 @@ async def main() -> None:
     print(f"  - Graph store: {graph_path}")
     print(f"  - Transcript store: {transcript_path}")
 
-    # Trigger priming by doing an initial recall (priming happens on first recall)
+    # Trigger priming and populate session.last_payload for /context command
     if priming_config.get("enabled", True):
         await controller._ensure_session_primed(session_id)
+
+        # Fetch primed context into session.last_payload so /context works immediately
+        session.last_payload = await controller.recall(
+            query="",
+            session_id=session_id,
+            include_history=True,
+        )
+
         priming_info = controller.get_priming_info(session_id)
         if priming_info["primed"] and priming_info["entity_count"] > 0:
             entity_count = priming_info['entity_count']

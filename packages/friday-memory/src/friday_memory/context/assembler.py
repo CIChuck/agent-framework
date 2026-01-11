@@ -441,6 +441,8 @@ class ContextAssembler(ContextEngineeringInterface):
             entities=entities,
             facts=facts,
             recent_memories=original.recent_memories,
+            insights=original.insights,
+            summaries=original.summaries,
             debug_info={
                 **original.debug_info,
                 "pruned": True,
@@ -455,6 +457,8 @@ class ContextAssembler(ContextEngineeringInterface):
         self,
         system_prompt: str,
         payload: ContextPayload,
+        context_format: str = "plain",
+        user_query: str | None = None,
     ) -> list[dict[str, Any]]:
         """
         Physically arranges messages for optimal model attention.
@@ -464,6 +468,10 @@ class ContextAssembler(ContextEngineeringInterface):
         Args:
             system_prompt: The base system prompt
             payload: The assembled context payload
+            context_format: Output format for supporting context.
+                Options: "plain" (default), "json", "xml", "markdown"
+            user_query: The current user message. If None, extracts from
+                the last history item.
 
         Returns:
             List of message dicts in OpenAI-compatible format
@@ -473,16 +481,19 @@ class ContextAssembler(ContextEngineeringInterface):
         if payload.debug_info.get("session_id"):
             state = self._sessions.get(payload.debug_info["session_id"])
 
-        # Extract user query from the last history item or use empty
-        user_query = ""
-        if payload.history:
-            last_turn = payload.history[-1]
-            if hasattr(last_turn, "user_message"):
-                user_query = last_turn.user_message or ""
+        # Use provided user_query, or extract from last history item
+        query = user_query
+        if query is None:
+            query = ""
+            if payload.history:
+                last_turn = payload.history[-1]
+                if hasattr(last_turn, "user_message"):
+                    query = last_turn.user_message or ""
 
         return self._architect.format_prompt(
             system_prompt=system_prompt,
-            user_query=user_query,
+            user_query=query,
             payload=payload,
             state=state,
+            context_format=context_format,
         )

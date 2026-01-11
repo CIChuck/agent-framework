@@ -61,7 +61,9 @@ class MemoryController:
             priming_config: Optional config for context priming on startup
                 - enabled: bool (default True)
                 - top_entities: int (default 10)
-                - recent_facts: int (default 5)
+                - max_insights: int (default 10) - most recent insights to load
+                - max_summaries: int (default 10) - most recent summaries to load
+                - recency_days: int (default 0) - filter to last N days (0 = all)
                 - min_turns: int (default 5) - turns before priming stops
         """
         self.vector = vector_store
@@ -73,7 +75,9 @@ class MemoryController:
         self._priming_config = priming_config or {
             "enabled": True,
             "top_entities": 10,
-            "recent_facts": 5,
+            "max_insights": 10,
+            "max_summaries": 10,
+            "recency_days": 0,
             "min_turns": 5,
         }
 
@@ -168,76 +172,40 @@ class MemoryController:
                 graph_data.get("entities", []) if isinstance(graph_data, dict) else []
             )
             facts = graph_data.get("facts", []) if isinstance(graph_data, dict) else []
-            recent_memories: list[str] = []
 
-            # Inject primed content while session is "cold"
-            primed_entity_count = 0
-            primed_insight_count = 0
-            primed_summary_count = 0
-            primed_relationship_count = 0
-            if session_id:
-                turn_count = self._session_turn_counts.get(session_id, 0)
-                min_turns = self._priming_config.get("min_turns", 5)
+            # Always fetch recent insights and summaries (dynamic loading)
+            # This ensures newly extracted content is immediately available
+            max_insights = self._priming_config.get("max_insights", 10)
+            max_summaries = self._priming_config.get("max_summaries", 10)
+            recency_days = self._priming_config.get("recency_days", 0)
 
-                if turn_count < min_turns and session_id in self._primed_content:
-                    primed_entities, primed_insights, primed_summaries, primed_relationships = (
-                        self._primed_content[session_id]
-                    )
+            recent_insights = await self._fetch_recent_insights(max_insights, recency_days)
+            recent_summaries = await self._fetch_recent_summaries(max_summaries, recency_days)
 
-                    # Add relationship summaries as priming context
-                    # Format: "EntityLabel: relation→Target1, relation→Target2, ..."
-                    if primed_relationships:
-                        recent_memories.append("Prior knowledge:")
-                        for summary in primed_relationships:
-                            recent_memories.append(f"  {summary}")
+            # Get top entities and build relationship summaries
+            top_entities = await self.graph.get_top_nodes(
+                self._priming_config.get("top_entities", 10),
+                sort_by="hit_count",
+            )
 
-                    # Add turn summaries (paragraph summaries of prior conversations)
-                    if primed_summaries:
-                        recent_memories.append("Prior conversation summaries:")
-                        for summary_doc in primed_summaries[:5]:  # Limit to top 5
-                            text = summary_doc.get("text", "")
-                            # Truncate very long summaries
-                            if len(text) > 300:
-                                text = text[:297] + "..."
-                            recent_memories.append(f"  • {text}")
+            # Merge top entities with query entities (dedup by ID)
+            existing_ids = {e.id for e in entities}
+            for entity in top_entities:
+                if entity.id not in existing_ids:
+                    entities.append(entity)
+                    existing_ids.add(entity.id)
 
-                    # Add entity-related insights (from semantic search)
-                    # Format: "[EntityLabel] Insight text..."
-                    if primed_insights:
-                        recent_memories.append("Related insights:")
-                        for insight in primed_insights[:10]:  # Limit to top 10
-                            entity_label = insight.get("related_entity", "")
-                            text = insight.get("text", "")
-                            # Truncate long insights for readability
-                            if len(text) > 150:
-                                text = text[:147] + "..."
-                            recent_memories.append(f"  [{entity_label}] {text}")
-
-                    # Merge primed entities (dedup by ID)
-                    existing_ids = {e.id for e in entities}
-                    for entity in primed_entities:
-                        if entity.id not in existing_ids:
-                            entities.append(entity)
-                            existing_ids.add(entity.id)
-
-                    primed_entity_count = len(primed_entities)
-                    primed_insight_count = len(primed_insights)
-                    primed_summary_count = len(primed_summaries)
-                    primed_relationship_count = len(primed_relationships)
-
-                elif turn_count >= min_turns and session_id in self._primed_content:
-                    # Session is warm, clean up priming cache
-                    del self._primed_content[session_id]
+            # Build relationship summaries for top entities
+            relationship_summaries = await self._build_relationship_summaries(top_entities)
 
             # Record debug info
             debug_info["history_count"] = len(history)
             debug_info["passages_count"] = len(passages)
             debug_info["entities_count"] = len(entities)
             debug_info["facts_count"] = len(facts)
-            debug_info["primed_entities"] = primed_entity_count
-            debug_info["primed_insights"] = primed_insight_count
-            debug_info["primed_summaries"] = primed_summary_count
-            debug_info["primed_relationships"] = primed_relationship_count
+            debug_info["insights_count"] = len(recent_insights)
+            debug_info["summaries_count"] = len(recent_summaries)
+            debug_info["relationships_count"] = len(relationship_summaries)
             debug_info["total_latency"] = time.time() - start_time
 
             self._emit_event("memory_recall_completed", debug_info)
@@ -247,7 +215,9 @@ class MemoryController:
                 passages=passages,
                 entities=entities,
                 facts=facts,
-                recent_memories=recent_memories,
+                recent_memories=relationship_summaries,
+                insights=recent_insights,
+                summaries=recent_summaries,
                 debug_info=debug_info,
             )
 
@@ -275,11 +245,12 @@ class MemoryController:
         if session_id not in self._session_turn_counts:
             self._session_turn_counts[session_id] = 0
 
-        # Load priming content using entity-driven semantic search
+        # Load priming content using recency-based retrieval
         entities, insights, summaries, relationships = await self.prime_context(
             top_entities=self._priming_config.get("top_entities", 10),
-            insights_per_entity=self._priming_config.get("insights_per_entity", 3),
+            max_insights=self._priming_config.get("max_insights", 10),
             recency_days=self._priming_config.get("recency_days", 0),
+            max_summaries=self._priming_config.get("max_summaries", 10),
         )
 
         # Cache for injection during recall
@@ -288,34 +259,34 @@ class MemoryController:
     async def prime_context(
         self,
         top_entities: int = 10,
-        insights_per_entity: int = 3,
+        max_insights: int = 10,
         recency_days: int = 0,
         max_summaries: int = 10,
     ) -> tuple[list[GraphNode], list[dict[str, Any]], list[dict[str, Any]], list[str]]:
         """
-        Retrieve priming context using entity-driven semantic search.
+        Retrieve priming context using recency-based retrieval.
 
         Called on session startup to load prior knowledge when episodic
         history is empty. Creates continuity across sessions.
 
         Algorithm:
         1. Get top N entities by hit_count (Hebbian importance)
-        2. For each entity, query vector store for semantically related insights
-        3. Query for recent turn summaries (type="summary")
+        2. Fetch most recent insights from vector store (sorted by created_at)
+        3. Fetch most recent turn summaries from vector store (sorted by created_at)
         4. Apply recency filter if configured
         5. Build relationship summaries for entity context
 
         Args:
             top_entities: Number of top entities by hit_count to load
-            insights_per_entity: Number of insights to retrieve per entity
+            max_insights: Maximum number of recent insights to include
             recency_days: Only include insights from last N days (0 = all time)
             max_summaries: Maximum number of turn summaries to include
 
         Returns:
             Tuple of (entities, insights, summaries, relationship_summaries)
             - entities: Top GraphNodes by hit_count
-            - insights: Semantically related insights from vector store
-            - summaries: Recent turn summaries from vector store
+            - insights: Most recent insights from vector store
+            - summaries: Most recent turn summaries from vector store
             - relationship_summaries: Concise entity relationship strings
         """
         span_id = None
@@ -358,63 +329,64 @@ class MemoryController:
                         (edge.relation, target_label)
                     )
 
-            # Step 4: Query vector store for insights related to each entity
+            # Step 4: Fetch most recent insights from vector store
             all_insights: list[dict[str, Any]] = []
-            seen_ids: set[str] = set()
-
-            for entity in top_nodes:
-                try:
-                    # Build rich query: entity label + relationship context
-                    query_parts = [entity.label]
-
-                    # Add relationship context (e.g., "creates Friday", "works_with Python")
-                    if entity.id in edges_by_source:
-                        for relation, target in edges_by_source[entity.id][:3]:
-                            query_parts.append(f"{relation} {target}")
-
-                    query_text = " ".join(query_parts)
-                    # Example: "Chuck creates Friday works_with Python"
-
-                    results = await self.vector.query(
-                        query_text=query_text,
-                        n_results=insights_per_entity,
-                        where=where_filter,
-                    )
-
-                    # Deduplicate by ID and track source entity
-                    for result in results:
-                        if result["id"] not in seen_ids:
-                            seen_ids.add(result["id"])
-                            result["related_entity"] = entity.label
-                            all_insights.append(result)
-                except Exception as e:
-                    # Continue if one entity query fails
-                    if self._telemetry:
-                        self._telemetry.capture_event(
-                            "priming_entity_query_failed",
-                            {"entity": entity.label, "error": str(e)},
-                        )
-
-            # Step 5: Query for recent turn summaries
-            turn_summaries: list[dict[str, Any]] = []
             try:
-                # Build query for summaries - use entity labels for semantic matching
-                summary_query = " ".join([e.label for e in top_nodes[:5]])
-                summary_filter = {"type": "summary"}
+                # Build insight filter
+                insight_filter: dict[str, Any] = {"type": "insight"}
                 if where_filter:
-                    # Combine with recency filter if configured
-                    summary_filter.update(where_filter)
+                    insight_filter.update(where_filter)
 
-                summary_results = await self.vector.query(
-                    query_text=summary_query,
-                    n_results=max_summaries,
-                    where=summary_filter,
+                # Fetch insights and sort by created_at descending
+                # Fetch more than needed to account for filtering, then take top N
+                raw_insights = await self.vector.get_all(
+                    limit=max_insights * 3,  # Fetch extra to ensure we get enough after sorting
+                    where=insight_filter,
                 )
-                turn_summaries = summary_results
+
+                # Sort by created_at descending (most recent first)
+                raw_insights.sort(
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                    reverse=True,
+                )
+
+                # Take the top max_insights
+                all_insights = raw_insights[:max_insights]
+
             except Exception as e:
                 if self._telemetry:
                     self._telemetry.capture_event(
-                        "priming_summary_query_failed",
+                        "priming_insight_fetch_failed",
+                        {"error": str(e)},
+                    )
+
+            # Step 5: Fetch most recent turn summaries from vector store
+            turn_summaries: list[dict[str, Any]] = []
+            try:
+                # Build summary filter
+                summary_filter: dict[str, Any] = {"type": "summary"}
+                if where_filter:
+                    summary_filter.update(where_filter)
+
+                # Fetch summaries and sort by created_at descending
+                raw_summaries = await self.vector.get_all(
+                    limit=max_summaries * 3,  # Fetch extra to ensure we get enough after sorting
+                    where=summary_filter,
+                )
+
+                # Sort by created_at descending (most recent first)
+                raw_summaries.sort(
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                    reverse=True,
+                )
+
+                # Take the top max_summaries
+                turn_summaries = raw_summaries[:max_summaries]
+
+            except Exception as e:
+                if self._telemetry:
+                    self._telemetry.capture_event(
+                        "priming_summary_fetch_failed",
                         {"error": str(e)},
                     )
 
@@ -533,6 +505,70 @@ class MemoryController:
                 summaries.append(summary)
 
         return summaries
+
+    async def _fetch_recent_insights(
+        self, max_count: int = 10, recency_days: int = 0
+    ) -> list[dict[str, Any]]:
+        """
+        Fetch most recent insights from vector store, sorted by created_at desc.
+
+        Called on every recall() to ensure newly extracted insights are included.
+
+        Args:
+            max_count: Maximum number of insights to return
+            recency_days: Only include insights from last N days (0 = all time)
+
+        Returns:
+            List of insight dicts, most recent first
+        """
+        where_filter: dict[str, Any] = {"type": "insight"}
+        if recency_days > 0:
+            cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
+            where_filter["created_at"] = {"$gte": cutoff}
+
+        try:
+            raw = await self.vector.get_all(limit=max_count * 3, where=where_filter)
+            raw.sort(
+                key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                reverse=True,
+            )
+            return raw[:max_count]
+        except Exception as e:
+            if self._telemetry:
+                self._emit_event("fetch_recent_insights_failed", {"error": str(e)})
+            return []
+
+    async def _fetch_recent_summaries(
+        self, max_count: int = 10, recency_days: int = 0
+    ) -> list[dict[str, Any]]:
+        """
+        Fetch most recent summaries from vector store, sorted by created_at desc.
+
+        Called on every recall() to ensure newly extracted summaries are included.
+
+        Args:
+            max_count: Maximum number of summaries to return
+            recency_days: Only include summaries from last N days (0 = all time)
+
+        Returns:
+            List of summary dicts, most recent first
+        """
+        where_filter: dict[str, Any] = {"type": "summary"}
+        if recency_days > 0:
+            cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
+            where_filter["created_at"] = {"$gte": cutoff}
+
+        try:
+            raw = await self.vector.get_all(limit=max_count * 3, where=where_filter)
+            raw.sort(
+                key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                reverse=True,
+            )
+            return raw[:max_count]
+        except Exception as e:
+            if self._telemetry:
+                self._emit_event("fetch_recent_summaries_failed", {"error": str(e)})
+            return []
 
     async def _retrieve_episodic(
         self, session_id: str, limit: int

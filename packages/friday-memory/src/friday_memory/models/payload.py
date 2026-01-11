@@ -49,9 +49,24 @@ class ContextPayload(BaseModel):
     recent_memories: list[str] = Field(
         default_factory=list,
         description=(
-            "Facts/insights auto-archived since last turn. "
-            "Gives Agent confidence that Implicit Extraction is working. "
-            "e.g., ['Archived fact: User prefers Python', 'Consolidated 3 turns']"
+            "Relationship summaries for top entities. "
+            "e.g., ['Chuck: creates→Friday, works_with→Python']"
+        ),
+    )
+
+    # --- Dynamic Context (fetched on every recall) ---
+    insights: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description=(
+            "Recent insights from vector store, sorted by created_at desc. "
+            "Most recent first for recency effect."
+        ),
+    )
+    summaries: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description=(
+            "Recent turn summaries from vector store, sorted by created_at desc. "
+            "Most recent first for recency effect."
         ),
     )
 
@@ -68,6 +83,8 @@ class ContextPayload(BaseModel):
             + len(self.passages)
             + len(self.entities)
             + len(self.facts)
+            + len(self.insights)
+            + len(self.summaries)
         )
 
     def is_empty(self) -> bool:

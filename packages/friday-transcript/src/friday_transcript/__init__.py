@@ -18,6 +18,7 @@ from friday_transcript.models.transcript import (
 from friday_transcript.stores.protocol import TranscriptStore
 from friday_transcript.stores.sqlite import SQLiteTranscriptStore
 from friday_transcript.stores.jsonl import JSONLTranscriptStore
+from friday_transcript.exporters.csv import CSVExporter
 from friday_transcript.exporters.jsonl import JSONLExporter
 from friday_transcript.exporters.markdown import MarkdownExporter
 
@@ -33,6 +34,7 @@ __all__ = [
     "SQLiteTranscriptStore",
     "JSONLTranscriptStore",
     # Exporters
+    "CSVExporter",
     "JSONLExporter",
     "MarkdownExporter",
 ]

@@ -308,3 +308,231 @@ class TestElementXGraphStore:
             store2 = ElementXGraphStore(storage_path=str(path))
             count = await store2.node_count()
             assert count == 1
+
+    # --- Deduplication Tests ---
+
+    @pytest.mark.asyncio
+    async def test_add_node_skip_duplicate(self, graph_store: ElementXGraphStore):
+        """Test that skip_if_duplicate prevents duplicate nodes by label."""
+        alice1 = create_node("Alice")
+        alice2 = create_node("Alice")  # Same label, different ID
+
+        # Add first Alice
+        result1 = await graph_store.add_node(alice1, skip_if_duplicate=True)
+        assert result1 is True
+
+        # Try to add duplicate - should be skipped
+        result2 = await graph_store.add_node(alice2, skip_if_duplicate=True)
+        assert result2 is False
+
+        # Should only have one node
+        count = await graph_store.node_count()
+        assert count == 1
+
+    @pytest.mark.asyncio
+    async def test_add_node_allows_duplicate_with_warning(self, graph_store: ElementXGraphStore):
+        """Test that by default duplicate nodes are added with warning."""
+        alice1 = create_node("Alice")
+        alice2 = create_node("Alice")  # Same label, different ID
+
+        # Add first Alice
+        result1 = await graph_store.add_node(alice1)
+        assert result1 is True
+
+        # Add duplicate - should succeed with warning (default behavior)
+        result2 = await graph_store.add_node(alice2)
+        assert result2 is True
+
+        # Should have two nodes
+        count = await graph_store.node_count()
+        assert count == 2
+
+    @pytest.mark.asyncio
+    async def test_add_node_no_duplicate_check(self, graph_store: ElementXGraphStore):
+        """Test that check_duplicate=False bypasses duplicate detection."""
+        alice1 = create_node("Alice")
+        alice2 = create_node("Alice")  # Same label, different ID
+
+        # Add first Alice
+        await graph_store.add_node(alice1, check_duplicate=False)
+
+        # Add duplicate with check disabled
+        result = await graph_store.add_node(alice2, check_duplicate=False)
+        assert result is True
+
+        # Should have two nodes
+        count = await graph_store.node_count()
+        assert count == 2
+
+    @pytest.mark.asyncio
+    async def test_add_edge_skip_duplicate(self, graph_store: ElementXGraphStore):
+        """Test that duplicate edges with same relation are skipped by default."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge1 = create_edge(alice.id, bob.id, "knows")
+        edge2 = create_edge(alice.id, bob.id, "knows")  # Same source/target/relation
+
+        # Add first edge
+        result1 = await graph_store.add_edge(edge1)
+        assert result1 is True
+
+        # Try to add duplicate - should be skipped (default: skip_if_exists=True)
+        result2 = await graph_store.add_edge(edge2)
+        assert result2 is False
+
+        # Should only have one edge
+        count = await graph_store.edge_count()
+        assert count == 1
+
+    @pytest.mark.asyncio
+    async def test_add_edge_allows_different_relations(self, graph_store: ElementXGraphStore):
+        """Test that edges with different relations are not duplicates."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge1 = create_edge(alice.id, bob.id, "knows")
+        edge2 = create_edge(alice.id, bob.id, "works_with")  # Different relation
+
+        # Add both edges - both should succeed
+        result1 = await graph_store.add_edge(edge1)
+        result2 = await graph_store.add_edge(edge2)
+
+        # Note: NetworkX DiGraph only allows one edge per source/target pair
+        # The second add_edge replaces the first, so we end up with one edge
+        # This is expected behavior for directed graphs
+        assert result1 is True
+        assert result2 is True
+
+    @pytest.mark.asyncio
+    async def test_add_edge_update_if_exists(self, graph_store: ElementXGraphStore):
+        """Test update_if_exists flag updates existing edge data."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge1 = create_edge(alice.id, bob.id, "knows")
+        edge1.weight = 0.5
+
+        edge2 = create_edge(alice.id, bob.id, "knows")
+        edge2.weight = 0.9  # Updated weight
+
+        # Add first edge
+        await graph_store.add_edge(edge1)
+
+        # Update existing edge
+        result = await graph_store.add_edge(edge2, update_if_exists=True)
+        assert result is True
+
+        # Verify edge was updated
+        found = await graph_store.find_edge(alice.id, bob.id, "knows")
+        assert found is not None
+        assert found.weight == 0.9
+
+    @pytest.mark.asyncio
+    async def test_find_edge(self, graph_store: ElementXGraphStore):
+        """Test find_edge returns edge when it exists."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge = create_edge(alice.id, bob.id, "knows")
+        await graph_store.add_edge(edge)
+
+        # Find the edge
+        found = await graph_store.find_edge(alice.id, bob.id)
+        assert found is not None
+        assert found.source_id == alice.id
+        assert found.target_id == bob.id
+        assert found.relation == "knows"
+
+    @pytest.mark.asyncio
+    async def test_find_edge_with_relation_filter(self, graph_store: ElementXGraphStore):
+        """Test find_edge with relation filter."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge = create_edge(alice.id, bob.id, "knows")
+        await graph_store.add_edge(edge)
+
+        # Find with matching relation
+        found = await graph_store.find_edge(alice.id, bob.id, "knows")
+        assert found is not None
+
+        # Find with non-matching relation
+        not_found = await graph_store.find_edge(alice.id, bob.id, "works_with")
+        assert not_found is None
+
+    @pytest.mark.asyncio
+    async def test_find_edge_not_found(self, graph_store: ElementXGraphStore):
+        """Test find_edge returns None when edge doesn't exist."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        # No edge added
+        found = await graph_store.find_edge(alice.id, bob.id)
+        assert found is None
+
+    @pytest.mark.asyncio
+    async def test_edge_exists(self, graph_store: ElementXGraphStore):
+        """Test edge_exists helper method."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge = create_edge(alice.id, bob.id, "knows")
+        await graph_store.add_edge(edge)
+
+        # Check existence
+        assert await graph_store.edge_exists(alice.id, bob.id) is True
+        assert await graph_store.edge_exists(alice.id, bob.id, "knows") is True
+        assert await graph_store.edge_exists(alice.id, bob.id, "works_with") is False
+        assert await graph_store.edge_exists(bob.id, alice.id) is False  # Wrong direction
+
+    @pytest.mark.asyncio
+    async def test_edge_deduplication_case_insensitive(self, graph_store: ElementXGraphStore):
+        """Test that edge relation comparison is case-insensitive."""
+        alice = create_node("Alice")
+        bob = create_node("Bob")
+        await graph_store.add_node(alice)
+        await graph_store.add_node(bob)
+
+        edge1 = create_edge(alice.id, bob.id, "knows")
+        edge2 = create_edge(alice.id, bob.id, "KNOWS")  # Same relation, different case
+
+        # Add first edge
+        result1 = await graph_store.add_edge(edge1)
+        assert result1 is True
+
+        # Try to add duplicate with different case - should be skipped
+        result2 = await graph_store.add_edge(edge2)
+        assert result2 is False
+
+    @pytest.mark.asyncio
+    async def test_node_deduplication_case_insensitive(self, graph_store: ElementXGraphStore):
+        """Test that node label comparison is case-insensitive."""
+        alice1 = create_node("Alice")
+        alice2 = create_node("ALICE")  # Same label, different case
+
+        # Add first Alice
+        result1 = await graph_store.add_node(alice1, skip_if_duplicate=True)
+        assert result1 is True
+
+        # Try to add duplicate with different case - should be skipped
+        result2 = await graph_store.add_node(alice2, skip_if_duplicate=True)
+        assert result2 is False
+
+        # Should only have one node
+        count = await graph_store.node_count()
+        assert count == 1

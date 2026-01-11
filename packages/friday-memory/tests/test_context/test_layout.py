@@ -113,7 +113,7 @@ class TestPromptFormatting:
         assert messages[-1]["content"] == "[User]: Hello!"
 
     def test_format_prompt_with_transparency_block(self, architect: PromptArchitect):
-        """Test formatting with recent memories (transparency block)."""
+        """Test formatting with recent memories (now in final user message as prior knowledge)."""
         payload = ContextPayload(
             history=[],
             passages=[],
@@ -129,21 +129,24 @@ class TestPromptFormatting:
             payload=payload,
         )
 
-        system_content = messages[0]["content"]
-        assert "Recent Memories" in system_content
-        assert "dark mode" in system_content
+        # Supporting context is now in the final user message (tail injection)
+        final_message = messages[-1]["content"]
+        assert "Prior Knowledge" in final_message
+        assert "dark mode" in final_message
 
-    def test_format_prompt_with_passages(self, architect: PromptArchitect):
-        """Test formatting with semantic memory passages."""
+    def test_format_prompt_with_insights(self, architect: PromptArchitect):
+        """Test formatting with insights (now in final user message)."""
         payload = ContextPayload(
             history=[],
-            passages=[
-                {"text": "Python is a programming language.", "similarity": 0.95, "metadata": {"source_name": "docs"}},
-                {"text": "Python was created by Guido.", "similarity": 0.85, "metadata": {"source_name": "wiki"}},
-            ],
+            passages=[],
             entities=[],
             facts=[],
             recent_memories=[],
+            insights=[
+                {"text": "Python is a programming language preferred by the user."},
+                {"text": "User has experience with web development."},
+            ],
+            summaries=[],
             debug_info={},
         )
 
@@ -153,18 +156,21 @@ class TestPromptFormatting:
             payload=payload,
         )
 
-        system_content = messages[0]["content"]
-        assert "Relevant Documentation" in system_content
-        assert "Python is a programming language" in system_content
+        # Insights are in the final user message (tail injection)
+        final_message = messages[-1]["content"]
+        assert "Recent Insights" in final_message
+        assert "Python is a programming language" in final_message
 
     def test_format_prompt_with_session_state(self, architect: PromptArchitect):
-        """Test formatting with session state variables."""
+        """Test formatting with session state variables (now in final user message)."""
         payload = ContextPayload(
             history=[],
             passages=[],
             entities=[],
             facts=[],
             recent_memories=[],
+            insights=[],
+            summaries=[],
             debug_info={},
         )
         state = SessionState(
@@ -188,7 +194,8 @@ class TestPromptFormatting:
             state=state,
         )
 
-        system_content = messages[0]["content"]
-        assert "Session Context" in system_content
-        assert "User Preferences" in system_content
-        assert "dark" in system_content
+        # State is now in the final user message (tail injection)
+        final_message = messages[-1]["content"]
+        assert "Session Context" in final_message
+        assert "User Preferences" in final_message
+        assert "dark" in final_message
