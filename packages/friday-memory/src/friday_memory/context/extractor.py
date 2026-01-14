@@ -4,6 +4,7 @@ Analyzes conversation turns to extract new entities and facts for the Graph.
 
 Ref: Batch 2a Specification, Section 3
 Updated: Batch 3 - Now uses injected LLMClient protocol
+Updated: Phase 3 - Added edge embedding support for graph path scoring
 
 Strategies:
 1. Named Entity Extraction (NER): "User mentioned 'Project Alpha'."
@@ -15,7 +16,7 @@ import json
 import logging
 import time
 import uuid
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Awaitable, Callable
 
 from friday_core import TelemetryInterface
 
@@ -28,7 +29,7 @@ from friday_memory.models import (
 )
 
 if TYPE_CHECKING:
-    from friday_core.interfaces import LLMClient
+    from friday_core.interfaces import EmbeddingModel, LLMClient
 
 
 logger = logging.getLogger(__name__)
@@ -126,6 +127,7 @@ class MemoryExtractor:
         prompt_template: str | None = None,
         user_name: str = "User",
         assistant_name: str = "Assistant",
+        embedding_model: "EmbeddingModel | None" = None,
     ) -> None:
         """
         Initialize the Memory Extractor.
@@ -139,6 +141,9 @@ class MemoryExtractor:
                              {user_name}, {assistant_name}, {user_message}, {assistant_response}
             user_name: Name of the human user (for entity extraction)
             assistant_name: Name of the AI assistant (for entity extraction)
+            embedding_model: Optional EmbeddingModel for pre-computing edge embeddings.
+                            If provided, edge embeddings are computed during extraction
+                            for fast graph path scoring at retrieval time.
         """
         self._memory = memory_controller
         self._llm = llm
@@ -146,6 +151,7 @@ class MemoryExtractor:
         self._prompt_template = prompt_template or DEFAULT_EXTRACTION_PROMPT
         self._user_name = user_name
         self._assistant_name = assistant_name
+        self._embedding_model = embedding_model
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -370,12 +376,27 @@ class MemoryExtractor:
                 if target_created:
                     stats["nodes_created"] += 1
 
+                # Compute edge embedding if embedding model is available
+                # This enables fast graph path scoring at retrieval time
+                relation = rel.get("relation", "related_to")
+                edge_embedding: list[float] | None = None
+                if self._embedding_model is not None:
+                    try:
+                        # Create natural language representation of the edge
+                        edge_text = f"{source_node.label} {relation.replace('_', ' ')} {target_node.label}"
+                        embeddings = await self._embedding_model.embed_documents([edge_text])
+                        edge_embedding = embeddings[0] if embeddings else None
+                        logger.debug(f"Computed embedding for edge: {edge_text}")
+                    except Exception as e:
+                        logger.warning(f"Failed to compute edge embedding: {e}")
+
                 # Create the edge (add_edge now has built-in deduplication)
                 edge = GraphEdge(
                     source_id=source_node.id,
                     target_id=target_node.id,
-                    relation=rel.get("relation", "related_to"),
+                    relation=relation,
                     provenance=provenance,
+                    embedding=edge_embedding,  # Pre-computed for fast path scoring
                 )
                 edge_added = await self._memory.graph.add_edge(edge)
                 if edge_added:
@@ -383,7 +404,7 @@ class MemoryExtractor:
                 else:
                     stats["edges_skipped"] += 1
                     logger.debug(
-                        f"Skipped duplicate edge: {source_label} --[{rel.get('relation')}]--> {target_label}"
+                        f"Skipped duplicate edge: {source_label} --[{relation}]--> {target_label}"
                     )
             except Exception as e:
                 logger.warning(f"Failed to store relationship: {e}")

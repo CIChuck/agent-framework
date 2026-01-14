@@ -373,6 +373,87 @@ class EmbeddingConfig(BaseModel):
     )
 
 
+class AccessBufferConfig(BaseModel):
+    """Configuration for the access buffer (lazy access tracking)."""
+
+    max_buffer_size: int = Field(
+        default=1000,
+        ge=1,
+        description="Maximum number of access events to buffer before flushing",
+    )
+    max_buffer_age_seconds: int = Field(
+        default=300,  # 5 minutes
+        ge=1,
+        description="Maximum age of buffer before time-based flush",
+    )
+    wal_enabled: bool = Field(
+        default=False,
+        description="Enable write-ahead log for crash recovery",
+    )
+    wal_path: str | None = Field(
+        default=None,
+        description="Path for WAL file (relative to memory_dir or absolute)",
+    )
+
+
+class LifecycleDecayConfig(BaseModel):
+    """
+    Configuration for memory lifecycle decay.
+
+    This is a simplified version for YAML config; the full DecayConfig
+    with validation is in the lifecycle module.
+    """
+
+    enabled: bool = Field(
+        default=True,
+        description="Enable decay calculations",
+    )
+    decay_rate: float = Field(
+        default=0.01,
+        ge=0.001,
+        le=0.5,
+        description="Lambda for exponential decay. At 0.01: 24h->79%, 72h->49%",
+    )
+    access_boost: float = Field(
+        default=0.2,
+        ge=0.0,
+        le=0.5,
+        description="Score boost on each access",
+    )
+    promotion_threshold: float = Field(
+        default=0.7,
+        ge=0.0,
+        le=1.0,
+        description="Minimum score for SHORT_TERM -> LONG_TERM promotion",
+    )
+    decay_threshold: float = Field(
+        default=0.2,
+        ge=0.0,
+        le=1.0,
+        description="Score below which memory becomes DECAYED",
+    )
+    short_term_min_age_hours: int = Field(
+        default=24,
+        ge=1,
+        description="Minimum hours in SHORT_TERM before promotion eligibility",
+    )
+    decay_check_interval_hours: int = Field(
+        default=24,
+        ge=1,
+        description="How often to run decay calculations",
+    )
+    decayed_retention_days: int = Field(
+        default=30,
+        ge=1,
+        description="Days to retain DECAYED memories before deletion",
+    )
+    # Promotion weights
+    promotion_weight_age: float = Field(default=0.2, ge=0.0, le=1.0)
+    promotion_weight_access: float = Field(default=0.4, ge=0.0, le=1.0)
+    promotion_weight_confidence: float = Field(default=0.2, ge=0.0, le=1.0)
+    promotion_weight_connection: float = Field(default=0.2, ge=0.0, le=1.0)
+
+
 class MaintenanceConfig(BaseModel):
     """Full configuration for maintenance operations."""
 
@@ -395,6 +476,15 @@ class MaintenanceConfig(BaseModel):
     backup_directory: str | None = Field(
         default=None,
         description="Directory for storing backups. If None, uses memory_dir/backups",
+    )
+    # Lifecycle management
+    decay: LifecycleDecayConfig = Field(
+        default_factory=LifecycleDecayConfig,
+        description="Memory lifecycle decay configuration",
+    )
+    access_buffer: AccessBufferConfig = Field(
+        default_factory=AccessBufferConfig,
+        description="Access buffer configuration for lazy access tracking",
     )
 
 
@@ -675,6 +765,73 @@ class VerificationReport(BaseModel):
 
 
 # =============================================================================
+# Lifecycle Report Models
+# =============================================================================
+
+
+class LifecycleReport(BaseModel):
+    """Report from lifecycle maintenance operations."""
+
+    processed_at: datetime = Field(default_factory=datetime.now)
+    dry_run: bool = Field(default=True)
+
+    # Promotion stats
+    promotions_checked: int = Field(default=0)
+    promotions_executed: int = Field(default=0)
+    promotion_failures: int = Field(default=0)
+
+    # Decay stats
+    decays_checked: int = Field(default=0)
+    decays_executed: int = Field(default=0)
+    decay_failures: int = Field(default=0)
+
+    # Reactivation stats
+    reactivations_checked: int = Field(default=0)
+    reactivations_executed: int = Field(default=0)
+
+    # Graph decay linkage
+    graph_nodes_decayed: int = Field(default=0)
+
+    # Details
+    promoted_memory_ids: list[str] = Field(default_factory=list)
+    decayed_memory_ids: list[str] = Field(default_factory=list)
+    reactivated_memory_ids: list[str] = Field(default_factory=list)
+
+    # Errors
+    errors: list[str] = Field(default_factory=list)
+
+
+class OptimizationReport(BaseModel):
+    """Report from latency optimization operations."""
+
+    processed_at: datetime = Field(default_factory=datetime.now)
+    dry_run: bool = Field(default=True)
+
+    # Access buffer flush stats
+    access_buffer_flushed: bool = Field(default=False)
+    short_term_accesses_flushed: int = Field(default=0)
+    long_term_accesses_flushed: int = Field(default=0)
+
+    # Retrieval factor stats
+    retrieval_factors_computed: bool = Field(default=False)
+    short_term_factors_updated: int = Field(default=0)
+    long_term_factors_updated: int = Field(default=0)
+
+    # Edge embedding stats
+    edge_embeddings_backfilled: bool = Field(default=False)
+    edges_embedded: int = Field(default=0)
+    edges_skipped: int = Field(default=0)
+
+    # Timing
+    access_flush_duration_ms: float = Field(default=0.0)
+    factor_compute_duration_ms: float = Field(default=0.0)
+    edge_embed_duration_ms: float = Field(default=0.0)
+
+    # Errors
+    errors: list[str] = Field(default_factory=list)
+
+
+# =============================================================================
 # Full Reorganization Report
 # =============================================================================
 
@@ -692,6 +849,8 @@ class ReorganizationReport(BaseModel):
     prune_report: PruneReport | None = Field(default=None)
     synthesis_report: SynthesisReport | None = Field(default=None)
     verification_report: VerificationReport | None = Field(default=None)
+    lifecycle_report: LifecycleReport | None = Field(default=None)
+    optimization_report: OptimizationReport | None = Field(default=None)
 
     # Overall status
     success: bool = Field(default=False)

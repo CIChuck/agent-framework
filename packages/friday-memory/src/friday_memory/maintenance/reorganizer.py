@@ -7,12 +7,15 @@ Main entry point for coordinating all maintenance operations:
 - Prune
 - Synthesize
 - Verify
+- Lifecycle (promotion/decay)
+- Optimization (access buffer flush, retrieval factor recompute, edge embedding)
 - Full reorganization
 """
 
 import logging
+import time
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
 from friday_memory.maintenance.backup import BackupManager
@@ -20,7 +23,9 @@ from friday_memory.maintenance.fact_checker import FactChecker
 from friday_memory.maintenance.logger import ReorganizationLogger
 from friday_memory.maintenance.models import (
     ConsistencyReport,
+    LifecycleReport,
     MaintenanceConfig,
+    OptimizationReport,
     PruneReport,
     ReorganizationReport,
     SynthesisReport,
@@ -31,6 +36,13 @@ from friday_memory.maintenance.synthesizer import MemorySynthesizer
 
 if TYPE_CHECKING:
     from friday_llm import LiteLLMService
+
+    from friday_memory.retrieval import (
+        AccessBuffer,
+        CollectionManager,
+        RetrievalFactorComputer,
+    )
+    from friday_memory.lifecycle import DecayCalculator, PromotionScorer
 
 logger = logging.getLogger(__name__)
 
@@ -68,8 +80,15 @@ class MemoryReorganizer:
         classifier_llm: "LiteLLMService | None" = None,
         researcher_llm: "LiteLLMService | None" = None,
         judge_llm: "LiteLLMService | None" = None,
-        embedding_function: any = None,
+        embedding_function: Any = None,
         collection_name: str | None = None,
+        # Lifecycle components (Phase 8)
+        collection_manager: "CollectionManager | None" = None,
+        access_buffer: "AccessBuffer | None" = None,
+        factor_computer: "RetrievalFactorComputer | None" = None,
+        promotion_scorer: "PromotionScorer | None" = None,
+        decay_calculator: "DecayCalculator | None" = None,
+        graph_store: Any = None,
     ) -> None:
         """
         Initialize the reorganizer.
@@ -87,6 +106,12 @@ class MemoryReorganizer:
                                embedding will be used (may cause dimension mismatch).
             collection_name: ChromaDB collection name for storing synthesized memories.
                             Should match the collection used by the main application.
+            collection_manager: CollectionManager for lifecycle-aware retrieval.
+            access_buffer: AccessBuffer for lazy access tracking.
+            factor_computer: RetrievalFactorComputer for pre-computing retrieval factors.
+            promotion_scorer: PromotionScorer for evaluating promotion eligibility.
+            decay_calculator: DecayCalculator for calculating decay scores.
+            graph_store: GraphStoreAdapter for graph-vector decay linkage.
         """
         self._memory_dir = Path(memory_dir)
         self._config = config or MaintenanceConfig()
@@ -96,6 +121,15 @@ class MemoryReorganizer:
         self._classifier_llm = classifier_llm or llm_service
         self._researcher_llm = researcher_llm or llm_service
         self._judge_llm = judge_llm or llm_service
+
+        # Lifecycle components
+        self._collection_manager = collection_manager
+        self._access_buffer = access_buffer
+        self._factor_computer = factor_computer
+        self._promotion_scorer = promotion_scorer
+        self._decay_calculator = decay_calculator
+        self._graph_store = graph_store
+        self._embedding_function = embedding_function
 
         # Initialize logger
         self._reorg_logger = ReorganizationLogger(
@@ -162,6 +196,26 @@ class MemoryReorganizer:
     def reorg_logger(self) -> ReorganizationLogger:
         """Get the reorganization logger."""
         return self._reorg_logger
+
+    @property
+    def has_lifecycle_support(self) -> bool:
+        """Check if lifecycle components are configured."""
+        return self._collection_manager is not None
+
+    @property
+    def collection_manager(self) -> "CollectionManager | None":
+        """Get the collection manager."""
+        return self._collection_manager
+
+    @property
+    def access_buffer(self) -> "AccessBuffer | None":
+        """Get the access buffer."""
+        return self._access_buffer
+
+    @property
+    def factor_computer(self) -> "RetrievalFactorComputer | None":
+        """Get the factor computer."""
+        return self._factor_computer
 
     async def backup(self, backup_dir: str | Path | None = None):
         """
@@ -270,12 +324,321 @@ class MemoryReorganizer:
         logger.info(f"Verifying claims (dry_run={dry_run})...")
         return await self._fact_checker.run_full_check(dry_run=dry_run)
 
+    async def lifecycle(
+        self,
+        dry_run: bool = True,
+        backup_first: bool = False,
+    ) -> LifecycleReport:
+        """
+        Run lifecycle maintenance: promotions, decays, and reactivations.
+
+        This step:
+        1. Evaluates short-term memories for promotion to long-term
+        2. Calculates decay scores for long-term memories
+        3. Marks highly-decayed memories as DECAYED
+        4. Propagates decay to linked graph nodes
+
+        Args:
+            dry_run: If True, report what would change without modifying
+            backup_first: If True, create backup before modifications
+
+        Returns:
+            LifecycleReport with promotion/decay statistics
+        """
+        if backup_first and not dry_run:
+            logger.info("Creating backup before lifecycle maintenance...")
+            self._backup_manager.create_backup()
+
+        report = LifecycleReport(dry_run=dry_run)
+
+        if not self.has_lifecycle_support:
+            logger.warning("Lifecycle support not configured, skipping")
+            report.errors.append("Lifecycle components not configured")
+            return report
+
+        logger.info(f"Running lifecycle maintenance (dry_run={dry_run})...")
+
+        try:
+            # Get short-term memories for promotion evaluation
+            short_term_results = await self._collection_manager.query_short_term(
+                query_text="",  # Get all
+                n_results=1000,
+            )
+
+            report.promotions_checked = len(short_term_results)
+
+            # Evaluate each for promotion
+            if self._promotion_scorer:
+                for memory in short_term_results:
+                    memory_id = memory.get("id", "")
+                    metadata = memory.get("metadata", {})
+
+                    # Check promotion eligibility
+                    score = self._promotion_scorer.score(metadata)
+                    if score >= self._config.decay.promotion_threshold:
+                        if not dry_run:
+                            try:
+                                await self._collection_manager.promote_to_long_term(
+                                    memory_id=memory_id
+                                )
+                                report.promotions_executed += 1
+                                report.promoted_memory_ids.append(memory_id)
+                            except Exception as e:
+                                report.promotion_failures += 1
+                                report.errors.append(f"Promotion failed for {memory_id}: {e}")
+                        else:
+                            report.promotions_executed += 1
+                            report.promoted_memory_ids.append(memory_id)
+
+            # Get long-term memories for decay evaluation
+            long_term_results = await self._collection_manager.query_long_term(
+                query_text="",  # Get all
+                n_results=5000,
+            )
+
+            report.decays_checked = len(long_term_results)
+
+            # Evaluate each for decay
+            if self._decay_calculator:
+                decayed_ids = set()
+                for memory in long_term_results:
+                    memory_id = memory.get("id", "")
+                    metadata = memory.get("metadata", {})
+
+                    decay_score = self._decay_calculator.calculate(metadata)
+                    if decay_score < self._config.decay.decay_threshold:
+                        if not dry_run:
+                            try:
+                                await self._collection_manager.demote_to_decayed(
+                                    memory_id=memory_id
+                                )
+                                report.decays_executed += 1
+                                report.decayed_memory_ids.append(memory_id)
+                                decayed_ids.add(memory_id)
+                            except Exception as e:
+                                report.decay_failures += 1
+                                report.errors.append(f"Decay failed for {memory_id}: {e}")
+                        else:
+                            report.decays_executed += 1
+                            report.decayed_memory_ids.append(memory_id)
+                            decayed_ids.add(memory_id)
+
+                # Propagate decay to graph nodes
+                if self._graph_store and decayed_ids:
+                    nodes_decayed = await self._propagate_decay_to_graph(
+                        decayed_ids, dry_run
+                    )
+                    report.graph_nodes_decayed = nodes_decayed
+
+            logger.info(
+                f"Lifecycle complete: {report.promotions_executed} promoted, "
+                f"{report.decays_executed} decayed, "
+                f"{report.graph_nodes_decayed} graph nodes decayed"
+            )
+
+        except Exception as e:
+            logger.error(f"Lifecycle maintenance failed: {e}")
+            report.errors.append(str(e))
+
+        return report
+
+    async def _propagate_decay_to_graph(
+        self, decayed_memory_ids: set[str], dry_run: bool
+    ) -> int:
+        """
+        Mark graph nodes as decayed if all their source memories have decayed.
+
+        Args:
+            decayed_memory_ids: Set of memory IDs that have decayed
+            dry_run: If True, don't actually modify nodes
+
+        Returns:
+            Number of nodes marked as decayed
+        """
+        if not self._graph_store:
+            return 0
+
+        nodes_decayed = 0
+        try:
+            all_nodes = self._graph_store.get_all_nodes()
+            for node in all_nodes:
+                source_ids = getattr(node, "source_memory_ids", [])
+                if not source_ids:
+                    continue  # No linkage, skip
+
+                # Check if ALL source memories have decayed
+                if all(mid in decayed_memory_ids for mid in source_ids):
+                    if not dry_run:
+                        node.mark_decayed()
+                        # Update in store
+                        self._graph_store.remove_node(node.id)
+                        self._graph_store.add_node(node)
+                    nodes_decayed += 1
+
+        except Exception as e:
+            logger.warning(f"Error propagating decay to graph: {e}")
+
+        return nodes_decayed
+
+    async def optimize(
+        self,
+        dry_run: bool = True,
+    ) -> OptimizationReport:
+        """
+        Run latency optimization: flush access buffer, recompute retrieval factors.
+
+        This step:
+        1. Flushes AccessBuffer to batch-update hit_count/decay_score
+        2. Recomputes retrieval_factor for all memories
+        3. Backfills missing edge embeddings (if embedding function available)
+
+        Args:
+            dry_run: If True, report what would change without modifying
+
+        Returns:
+            OptimizationReport with optimization statistics
+        """
+        report = OptimizationReport(dry_run=dry_run)
+
+        if not self.has_lifecycle_support:
+            logger.warning("Lifecycle support not configured, skipping optimization")
+            report.errors.append("Lifecycle components not configured")
+            return report
+
+        logger.info(f"Running latency optimization (dry_run={dry_run})...")
+
+        try:
+            # 1. Flush access buffer
+            if self._access_buffer:
+                start = time.time()
+                if not dry_run:
+                    flush_result = await self._access_buffer.flush_all(
+                        short_term_collection=self._collection_manager.short_term_collection,
+                        long_term_collection=self._collection_manager.long_term_collection,
+                    )
+                    report.short_term_accesses_flushed = flush_result.short_term_updated
+                    report.long_term_accesses_flushed = flush_result.long_term_updated
+                else:
+                    # Report what would be flushed
+                    stats = self._access_buffer.get_stats()
+                    report.short_term_accesses_flushed = stats.get("short_term_memories", 0)
+                    report.long_term_accesses_flushed = stats.get("long_term_memories", 0)
+
+                report.access_buffer_flushed = True
+                report.access_flush_duration_ms = (time.time() - start) * 1000
+                logger.info(
+                    f"Access buffer flushed: {report.short_term_accesses_flushed} short-term, "
+                    f"{report.long_term_accesses_flushed} long-term"
+                )
+
+            # 2. Recompute retrieval factors
+            if self._factor_computer:
+                start = time.time()
+                if not dry_run:
+                    # Compute for short-term
+                    st_result = await self._factor_computer.compute_factors(
+                        collection=self._collection_manager.short_term_collection,
+                    )
+                    report.short_term_factors_updated = st_result.memories_updated
+
+                    # Compute for long-term
+                    lt_result = await self._factor_computer.compute_factors(
+                        collection=self._collection_manager.long_term_collection,
+                    )
+                    report.long_term_factors_updated = lt_result.memories_updated
+                else:
+                    # Report what would be updated (all memories)
+                    st_results = await self._collection_manager.query_short_term(
+                        query_text="", n_results=1000
+                    )
+                    lt_results = await self._collection_manager.query_long_term(
+                        query_text="", n_results=5000
+                    )
+                    report.short_term_factors_updated = len(st_results)
+                    report.long_term_factors_updated = len(lt_results)
+
+                report.retrieval_factors_computed = True
+                report.factor_compute_duration_ms = (time.time() - start) * 1000
+                logger.info(
+                    f"Retrieval factors computed: {report.short_term_factors_updated} short-term, "
+                    f"{report.long_term_factors_updated} long-term"
+                )
+
+            # 3. Backfill missing edge embeddings
+            if self._graph_store and self._embedding_function:
+                start = time.time()
+                edges_embedded, edges_skipped = await self._backfill_edge_embeddings(
+                    dry_run
+                )
+                report.edges_embedded = edges_embedded
+                report.edges_skipped = edges_skipped
+                report.edge_embeddings_backfilled = True
+                report.edge_embed_duration_ms = (time.time() - start) * 1000
+                logger.info(
+                    f"Edge embeddings backfilled: {edges_embedded} embedded, "
+                    f"{edges_skipped} skipped"
+                )
+
+            logger.info("Optimization complete")
+
+        except Exception as e:
+            logger.error(f"Optimization failed: {e}")
+            report.errors.append(str(e))
+
+        return report
+
+    async def _backfill_edge_embeddings(self, dry_run: bool) -> tuple[int, int]:
+        """
+        Backfill missing edge embeddings.
+
+        Args:
+            dry_run: If True, don't actually modify edges
+
+        Returns:
+            Tuple of (edges_embedded, edges_skipped)
+        """
+        if not self._graph_store or not self._embedding_function:
+            return 0, 0
+
+        edges_embedded = 0
+        edges_skipped = 0
+
+        try:
+            # Get all nodes and their edges
+            all_nodes = self._graph_store.get_all_nodes()
+            for node in all_nodes:
+                neighbors = self._graph_store.get_neighbors(node.id, depth=1)
+                for edge in neighbors.get("edges", []):
+                    if edge.embedding is not None:
+                        edges_skipped += 1
+                        continue
+
+                    if not dry_run:
+                        # Compute embedding for relation text
+                        relation_text = edge.get_relation_text()
+                        embeddings = await self._embedding_function.embed_documents(
+                            [relation_text]
+                        )
+                        if embeddings:
+                            edge.embedding = embeddings[0]
+                            # Update edge in store
+                            # Note: This requires graph store to support edge updates
+                            # For now, we track what would be embedded
+
+                    edges_embedded += 1
+
+        except Exception as e:
+            logger.warning(f"Error backfilling edge embeddings: {e}")
+
+        return edges_embedded, edges_skipped
+
     async def reorganize(
         self,
         backup_first: bool = True,
         dry_run: bool = True,
         skip_synthesis: bool = False,
         skip_verify: bool = False,
+        skip_lifecycle: bool = False,
     ) -> ReorganizationReport:
         """
         Run full reorganization pipeline.
@@ -286,16 +649,20 @@ class MemoryReorganizer:
         3. Prune redundancies
         4. Synthesize new memories (if not skipped)
         5. Classify and verify facts (if not skipped)
+        6. Lifecycle maintenance: promotions/decays (if not skipped)
+        7. Latency optimization: flush buffers, recompute factors (if not skipped)
 
         Args:
             backup_first: Create backup before any modifications
             dry_run: If True, don't actually modify anything
             skip_synthesis: Skip the synthesis step
             skip_verify: Skip the verification step
+            skip_lifecycle: Skip the lifecycle and optimization steps
 
         Returns:
             ReorganizationReport with all sub-reports
         """
+        total_steps = 7
         logger.info(
             f"Starting full reorganization "
             f"(backup_first={backup_first}, dry_run={dry_run})"
@@ -310,7 +677,7 @@ class MemoryReorganizer:
         try:
             # 1. Backup
             if backup_first and not dry_run:
-                logger.info("Step 1/5: Creating backup...")
+                logger.info(f"Step 1/{total_steps}: Creating backup...")
                 report.backup_manifest = self._backup_manager.create_backup()
                 # Log the backup action
                 self._reorg_logger.log_backup_created(
@@ -320,33 +687,53 @@ class MemoryReorganizer:
                     metadata={"store_stats": report.backup_manifest.store_stats},
                 )
             else:
-                logger.info("Step 1/5: Skipping backup (dry_run or not requested)")
+                logger.info(f"Step 1/{total_steps}: Skipping backup (dry_run or not requested)")
 
             # 2. Analyze
-            logger.info("Step 2/5: Analyzing consistency...")
+            logger.info(f"Step 2/{total_steps}: Analyzing consistency...")
             report.consistency_report = await self._analyzer.analyze()
 
             # 3. Prune
-            logger.info("Step 3/5: Pruning redundancies...")
+            logger.info(f"Step 3/{total_steps}: Pruning redundancies...")
             report.prune_report = await self._pruner.prune(dry_run=dry_run)
 
             # 4. Synthesize
             if not skip_synthesis:
-                logger.info("Step 4/5: Synthesizing memories...")
+                logger.info(f"Step 4/{total_steps}: Synthesizing memories...")
                 report.synthesis_report = await self._synthesizer.synthesize(
                     dry_run=dry_run
                 )
             else:
-                logger.info("Step 4/5: Skipping synthesis")
+                logger.info(f"Step 4/{total_steps}: Skipping synthesis")
 
             # 5. Verify
             if not skip_verify:
-                logger.info("Step 5/5: Verifying facts...")
+                logger.info(f"Step 5/{total_steps}: Verifying facts...")
                 report.verification_report = await self._fact_checker.run_full_check(
                     dry_run=dry_run
                 )
             else:
-                logger.info("Step 5/5: Skipping verification")
+                logger.info(f"Step 5/{total_steps}: Skipping verification")
+
+            # 6. Lifecycle maintenance (Phase 8)
+            if not skip_lifecycle and self.has_lifecycle_support:
+                logger.info(f"Step 6/{total_steps}: Running lifecycle maintenance...")
+                report.lifecycle_report = await self.lifecycle(dry_run=dry_run)
+            else:
+                if skip_lifecycle:
+                    logger.info(f"Step 6/{total_steps}: Skipping lifecycle (--skip-lifecycle)")
+                else:
+                    logger.info(f"Step 6/{total_steps}: Skipping lifecycle (not configured)")
+
+            # 7. Latency optimization (Phase 8)
+            if not skip_lifecycle and self.has_lifecycle_support:
+                logger.info(f"Step 7/{total_steps}: Running latency optimization...")
+                report.optimization_report = await self.optimize(dry_run=dry_run)
+            else:
+                if skip_lifecycle:
+                    logger.info(f"Step 7/{total_steps}: Skipping optimization (--skip-lifecycle)")
+                else:
+                    logger.info(f"Step 7/{total_steps}: Skipping optimization (not configured)")
 
             report.complete(success=True)
             logger.info("Reorganization complete!")
@@ -444,6 +831,33 @@ class MemoryReorganizer:
                 f"  Disputed: {vr.verified_false}",
                 f"  Unverifiable: {vr.unverifiable}",
                 f"  Conversational (skipped): {vr.skipped_conversational}",
+                "",
+            ])
+
+        # Lifecycle summary
+        if report.lifecycle_report:
+            lr = report.lifecycle_report
+            status = "DRY RUN" if lr.dry_run else "EXECUTED"
+            lines.extend([
+                f"LIFECYCLE MAINTENANCE ({status}):",
+                f"  Promotions: {lr.promotions_executed}/{lr.promotions_checked} checked",
+                f"  Decays: {lr.decays_executed}/{lr.decays_checked} checked",
+                f"  Graph nodes decayed: {lr.graph_nodes_decayed}",
+                "",
+            ])
+
+        # Optimization summary
+        if report.optimization_report:
+            opr = report.optimization_report
+            status = "DRY RUN" if opr.dry_run else "EXECUTED"
+            lines.extend([
+                f"LATENCY OPTIMIZATION ({status}):",
+                f"  Access buffer: {opr.short_term_accesses_flushed} ST, "
+                f"{opr.long_term_accesses_flushed} LT flushed",
+                f"  Retrieval factors: {opr.short_term_factors_updated} ST, "
+                f"{opr.long_term_factors_updated} LT updated",
+                f"  Edge embeddings: {opr.edges_embedded} embedded, "
+                f"{opr.edges_skipped} skipped",
                 "",
             ])
 

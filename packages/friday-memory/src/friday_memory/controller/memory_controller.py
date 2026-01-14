@@ -3,14 +3,21 @@ The Memory Controller Facade.
 Orchestrates parallel retrieval from Vector, Graph, and Episodic stores.
 Handles 'Store Fact', 'Recall', and 'Rollback' operations.
 
+Supports lifecycle-aware retrieval with:
+- Parallel queries to short-term and long-term collections
+- Fast inclusion scoring using pre-computed retrieval_factor
+- Graph path filtering using pre-embedded edges
+- Async access tracking for latency optimization
+
 Ref: Batch 2 Specification, Section 2
+Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 6
 """
 
 import asyncio
 import time
 import uuid
 from datetime import datetime, timedelta
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from friday_core import (
     EpisodicStoreAdapter,
@@ -26,6 +33,14 @@ from friday_memory.models import (
     InteractionTurn,
     ProvenanceMetadata,
 )
+
+if TYPE_CHECKING:
+    from friday_memory.retrieval import (
+        AccessBuffer,
+        CollectionManager,
+        GraphPathScorer,
+        RetrievalFactorComputer,
+    )
 
 
 class MemoryController:
@@ -49,6 +64,10 @@ class MemoryController:
         episodic_store: EpisodicStoreAdapter,
         telemetry: TelemetryInterface | None = None,
         priming_config: dict[str, Any] | None = None,
+        # Lifecycle components (Phase 6)
+        collection_manager: "CollectionManager | None" = None,
+        access_buffer: "AccessBuffer | None" = None,
+        graph_scorer: "GraphPathScorer | None" = None,
     ) -> None:
         """
         Initialize the Memory Controller.
@@ -65,11 +84,19 @@ class MemoryController:
                 - max_summaries: int (default 10) - most recent summaries to load
                 - recency_days: int (default 0) - filter to last N days (0 = all)
                 - min_turns: int (default 5) - turns before priming stops
+            collection_manager: Optional CollectionManager for lifecycle-aware retrieval
+            access_buffer: Optional AccessBuffer for lazy access tracking
+            graph_scorer: Optional GraphPathScorer for graph path filtering
         """
         self.vector = vector_store
         self.graph = graph_store
         self.episodic = episodic_store
         self._telemetry = telemetry
+
+        # Lifecycle components
+        self._collection_manager = collection_manager
+        self._access_buffer = access_buffer
+        self._graph_scorer = graph_scorer
 
         # Priming configuration
         self._priming_config = priming_config or {
@@ -155,8 +182,13 @@ class MemoryController:
             else:
                 tasks.append(_empty_list())
 
-            # Vector retrieval
-            tasks.append(self._retrieve_vector(query, vector_results))
+            # Vector retrieval - use lifecycle-aware when available
+            if self._collection_manager:
+                tasks.append(self._retrieve_vector_lifecycle(query, vector_results))
+                debug_info["lifecycle_enabled"] = True
+            else:
+                tasks.append(self._retrieve_vector(query, vector_results))
+                debug_info["lifecycle_enabled"] = False
 
             # Graph retrieval (entities from query)
             tasks.append(self._retrieve_graph(query, graph_depth))
@@ -667,6 +699,213 @@ class MemoryController:
             )
 
         return {"entities": entities, "facts": facts}
+
+    # --- Lifecycle-Aware Retrieval (Phase 6) ---
+
+    @property
+    def has_lifecycle_support(self) -> bool:
+        """Check if lifecycle components are configured."""
+        return self._collection_manager is not None
+
+    @property
+    def collection_manager(self) -> "CollectionManager | None":
+        """Access to CollectionManager for lifecycle operations."""
+        return self._collection_manager
+
+    @property
+    def access_buffer(self) -> "AccessBuffer | None":
+        """Access to AccessBuffer for lazy tracking."""
+        return self._access_buffer
+
+    @property
+    def graph_scorer(self) -> "GraphPathScorer | None":
+        """Access to GraphPathScorer for path filtering."""
+        return self._graph_scorer
+
+    async def _retrieve_vector_lifecycle(
+        self,
+        query: str,
+        n_results: int,
+        query_embedding: list[float] | None = None,
+    ) -> list[dict[str, Any]]:
+        """
+        Lifecycle-aware vector retrieval using CollectionManager.
+
+        Queries both short-term and long-term collections in parallel,
+        applies fast inclusion scoring using pre-computed retrieval_factor,
+        and records access events asynchronously.
+
+        Args:
+            query: The search query
+            n_results: Number of results per collection
+            query_embedding: Optional pre-computed query embedding
+
+        Returns:
+            Combined and scored results from both collections
+        """
+        if not self._collection_manager:
+            # Fallback to standard retrieval
+            return await self._retrieve_vector(query, n_results)
+
+        start_time = time.time()
+
+        # Query both collections in parallel
+        results = await self._collection_manager.query(
+            query_text=query,
+            n_results=n_results,
+            include_decayed=False,  # Never include decayed in normal retrieval
+        )
+
+        short_term_results = results.get("short_term", [])
+        long_term_results = results.get("long_term", [])
+
+        # Apply fast inclusion scoring to long-term results
+        scored_long_term = self._apply_fast_scoring(long_term_results)
+
+        # Record accesses asynchronously (fire-and-forget)
+        if self._access_buffer:
+            for result in short_term_results:
+                memory_id = result.get("id")
+                if memory_id:
+                    asyncio.create_task(
+                        self._access_buffer.record_access(memory_id, "short_term")
+                    )
+            for result in scored_long_term:
+                memory_id = result.get("id")
+                if memory_id:
+                    asyncio.create_task(
+                        self._access_buffer.record_access(memory_id, "long_term")
+                    )
+
+        # Combine results (short-term first, then long-term sorted by score)
+        combined = short_term_results + sorted(
+            scored_long_term,
+            key=lambda x: x.get("inclusion_score", 0),
+            reverse=True,
+        )
+
+        if self._telemetry:
+            self._emit_event(
+                "lifecycle_vector_retrieval",
+                {
+                    "query_length": len(query),
+                    "short_term_results": len(short_term_results),
+                    "long_term_results": len(scored_long_term),
+                    "total_results": len(combined),
+                    "latency": time.time() - start_time,
+                },
+            )
+
+        return combined
+
+    def _apply_fast_scoring(
+        self,
+        results: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        """
+        Apply fast inclusion scoring using pre-computed retrieval_factor.
+
+        Uses O(1) multiplication instead of expensive exponential calculations.
+        Falls back to similarity score if retrieval_factor is not present.
+
+        Args:
+            results: Vector search results with similarity and metadata
+
+        Returns:
+            Results with inclusion_score added
+        """
+        scored = []
+        for result in results:
+            similarity = result.get("similarity", 0.0)
+            metadata = result.get("metadata", {})
+
+            # Use pre-computed retrieval_factor (falls back to 0.5)
+            retrieval_factor = metadata.get("retrieval_factor", 0.5)
+            inclusion_score = similarity * retrieval_factor
+
+            scored.append({
+                **result,
+                "inclusion_score": inclusion_score,
+            })
+
+        return scored
+
+    async def _retrieve_graph_with_scoring(
+        self,
+        query: str,
+        depth: int,
+        query_embedding: list[float] | None = None,
+    ) -> dict[str, Any]:
+        """
+        Graph retrieval with path scoring using GraphPathScorer.
+
+        Filters irrelevant graph paths based on semantic similarity
+        to the query, using pre-embedded edges for fast scoring.
+
+        Args:
+            query: The search query
+            depth: Graph traversal depth
+            query_embedding: Optional pre-computed query embedding for scoring
+
+        Returns:
+            Dict with entities, facts, and scored_paths
+        """
+        # Get standard graph retrieval results
+        base_result = await self._retrieve_graph(query, depth)
+        entities = base_result.get("entities", [])
+        facts = base_result.get("facts", [])
+
+        # If no scorer or no query embedding, return base results
+        if not self._graph_scorer or not query_embedding:
+            return base_result
+
+        # Score and filter paths using GraphPathScorer
+        scored_paths = []
+        try:
+            # Build paths from entities and their edges
+            all_edges = await self.graph.get_all_edges()
+            entity_ids = {e.id for e in entities}
+
+            # Create node lookup for path scoring
+            all_nodes = await self.graph.get_all_nodes()
+            node_lookup = {n.id: n for n in all_nodes}
+
+            paths_to_score = []
+            for edge in all_edges:
+                if edge.source_id in entity_ids:
+                    source_node = node_lookup.get(edge.source_id)
+                    target_node = node_lookup.get(edge.target_id)
+                    if source_node and target_node:
+                        paths_to_score.append((source_node, edge, target_node))
+
+            # Score paths using pre-embedded edges
+            if paths_to_score:
+                scored_paths = await self._graph_scorer.filter_paths_async(
+                    paths_to_score,
+                    query_embedding,
+                )
+
+            if self._telemetry:
+                self._emit_event(
+                    "graph_path_scoring",
+                    {
+                        "paths_evaluated": len(paths_to_score),
+                        "paths_retained": len(scored_paths),
+                    },
+                )
+
+        except Exception as e:
+            if self._telemetry:
+                self._emit_event(
+                    "graph_path_scoring_failed",
+                    {"error": str(e)},
+                )
+
+        return {
+            "entities": entities,
+            "facts": facts,
+            "scored_paths": scored_paths,
+        }
 
     # --- Core API: Storage (The "Memorize" Loop) ---
 

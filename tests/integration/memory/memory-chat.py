@@ -36,6 +36,8 @@ Commands (prefix with /):
   /export [format] - Export current session (jsonl, markdown, or training)
   /reset           - Clear all memory stores (graph, vector, episodic)
   /reorganize [opts] - Run memory reorganization (analyze, prune, synthesize)
+  /migrate [opts]  - Migrate existing memories to lifecycle metadata
+  /lifecycle [opts] - Run memory lifecycle cycle (promotion, decay, reactivation)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable
   /help            - Show available commands
@@ -64,14 +66,25 @@ from friday_llm import (
     ResilienceConfig,
 )
 from friday_memory import (
+    AccessBuffer,
+    AccessBufferConfig,
     ChromaVectorStore,
+    CollectionConfig,
+    CollectionManager,
     ContextAssembler,
     ContextPayload,
+    DecayConfig,
     ElementXGraphStore,
+    FactorComputerConfig,
+    GraphPathScorer,
+    GraphPathScorerConfig,
     InteractionTurn,
     MemoryController,
     MemoryExtractor,
+    MemoryPromotionService,
     PromptArchitect,
+    PromotionResult,
+    RetrievalFactorComputer,
     SessionState,
 )
 from friday_memory.maintenance import MemoryReorganizer
@@ -142,6 +155,9 @@ class MemoryChatSession:
         maintenance_llms: "dict[str, LiteLLMService] | None" = None,
         transcript_export_dir: "Path | None" = None,
         embedding_function: any = None,
+        promotion_service: "MemoryPromotionService | None" = None,
+        access_buffer: "AccessBuffer | None" = None,
+        factor_computer: "RetrievalFactorComputer | None" = None,
     ):
         self.llm = llm
         self.controller = controller
@@ -162,6 +178,9 @@ class MemoryChatSession:
         self.maintenance_llms = maintenance_llms or {}
         self.transcript_export_dir = transcript_export_dir
         self.embedding_function = embedding_function
+        self.promotion_service = promotion_service
+        self.access_buffer = access_buffer
+        self.factor_computer = factor_computer
 
         # State tracking
         self.state: SessionState | None = None
@@ -228,12 +247,19 @@ class MemoryChatSession:
                 # Parse options from remaining args
                 opts = parts[1] if len(parts) > 1 else ""
                 return await self.cmd_reorganize(opts)
+            case "lifecycle":
+                # Parse options from remaining args
+                opts = parts[1] if len(parts) > 1 else ""
+                return await self.cmd_lifecycle(opts)
             case "vars":
                 return self.cmd_vars()
             case "set":
                 if len(parts) >= 3:
                     return self.cmd_set(parts[1], parts[2])
                 return "Usage: /set <key> <value>"
+            case "migrate":
+                opts = parts[1] if len(parts) > 1 else ""
+                return await self.cmd_migrate(opts)
             case "help":
                 return self.cmd_help()
             case _:
@@ -852,6 +878,7 @@ Memory Statistics:
           --no-backup     Skip backup before modifications
           --skip-synthesis Skip LLM-based memory synthesis
           --skip-verify   Skip LLM-based fact verification
+          --skip-lifecycle Skip lifecycle and optimization steps
           --analyze       Just run analysis (no prune/synthesis/verify)
           --prune         Just run pruning
           --synthesize    Just run synthesis (meta-insights, relationships)
@@ -864,6 +891,7 @@ Memory Statistics:
           /reorganize --analyze          - Just analyze (read-only)
           /reorganize --execute --prune  - Execute pruning only
           /reorganize --execute --synthesize - Execute synthesis only
+          /reorganize --skip-lifecycle   - Skip lifecycle/optimization steps
         """
         if not self.persist_dir:
             return "Error: persist_dir not configured for this session."
@@ -876,6 +904,7 @@ Memory Statistics:
         backup_first = "--no-backup" not in opt_list
         skip_synthesis = "--skip-synthesis" in opt_list
         skip_verify = "--skip-verify" in opt_list
+        skip_lifecycle = "--skip-lifecycle" in opt_list
         analyze_only = "--analyze" in opt_list
         prune_only = "--prune" in opt_list
         synthesize_only = "--synthesize" in opt_list
@@ -910,7 +939,10 @@ Memory Statistics:
                 lines.append("Falling back to session embedding function.")
                 print("\n".join(lines))
 
-        # Create reorganizer with the persist_dir, config, LLMs, embedding, and collection name
+        # Create reorganizer with the persist_dir, config, LLMs, embedding, collection name,
+        # and lifecycle components (Phase 8)
+        # Lifecycle components are accessed through promotion_service
+        has_lifecycle = self.promotion_service is not None and not skip_lifecycle
         reorganizer = MemoryReorganizer(
             memory_dir=self.persist_dir,
             config=config,
@@ -920,6 +952,13 @@ Memory Statistics:
             judge_llm=judge_llm if not skip_verify else None,
             embedding_function=maintenance_embedding,
             collection_name=config.collection_name,
+            # Lifecycle components (Phase 8) - accessed via promotion_service
+            collection_manager=self.promotion_service.collection_manager if has_lifecycle else None,
+            access_buffer=self.access_buffer if has_lifecycle else None,
+            factor_computer=self.factor_computer if has_lifecycle else None,
+            promotion_scorer=self.promotion_service.promotion_scorer if has_lifecycle else None,
+            decay_calculator=self.promotion_service.decay_calculator if has_lifecycle else None,
+            graph_store=self.controller.graph if has_lifecycle else None,
         )
 
         try:
@@ -1035,6 +1074,7 @@ Memory Statistics:
             lines.append(f"  Backup first: {backup_first}")
             lines.append(f"  Skip synthesis: {skip_synthesis}")
             lines.append(f"  Skip verify: {skip_verify}")
+            lines.append(f"  Skip lifecycle: {skip_lifecycle}")
             lines.append("")
 
             report = await reorganizer.reorganize(
@@ -1042,6 +1082,7 @@ Memory Statistics:
                 dry_run=dry_run,
                 skip_synthesis=skip_synthesis,
                 skip_verify=skip_verify,
+                skip_lifecycle=skip_lifecycle,
             )
 
             # Show summary
@@ -1056,6 +1097,210 @@ Memory Statistics:
         except Exception as e:
             logger.exception("Reorganization failed")
             return f"Error during reorganization: {e}"
+
+    async def cmd_lifecycle(self, opts: str = "") -> str:
+        """
+        Run memory lifecycle cycle (promotion, decay, reactivation).
+
+        Options (space-separated):
+          --execute       Run for real (default is dry-run)
+          --stats         Show lifecycle statistics only
+          --optimize      Flush access buffer and recompute retrieval factors
+          --flush         Flush access buffer only
+
+        Examples:
+          /lifecycle              - Dry run lifecycle cycle
+          /lifecycle --execute    - Execute lifecycle cycle
+          /lifecycle --stats      - Show current lifecycle statistics
+          /lifecycle --optimize   - Flush buffer and recompute factors
+        """
+        if not self.promotion_service:
+            return "Error: Lifecycle service not configured. CollectionManager not initialized."
+
+        # Parse options
+        opt_list = opts.lower().split() if opts else []
+        dry_run = "--execute" not in opt_list
+        stats_only = "--stats" in opt_list
+        optimize = "--optimize" in opt_list
+        flush_only = "--flush" in opt_list
+
+        try:
+            lines = ["=" * 60, "MEMORY LIFECYCLE", "=" * 60]
+
+            if stats_only:
+                # Just show statistics
+                lines.append("\nLifecycle Statistics:")
+                stats = await self.promotion_service.collection_manager.get_stats()
+                lines.append(f"  Short-term memories: {stats.get('short_term', 0)}")
+                lines.append(f"  Long-term memories: {stats.get('long_term', 0)}")
+                lines.append(f"  Decayed memories: {stats.get('decayed', 0)}")
+
+                # Show access buffer stats if available
+                if self.access_buffer:
+                    buf_stats = self.access_buffer.get_stats()
+                    lines.append("\nAccess Buffer:")
+                    lines.append(f"  Short-term accesses: {buf_stats['short_term_accesses']}")
+                    lines.append(f"  Long-term accesses: {buf_stats['long_term_accesses']}")
+                    lines.append(f"  Seconds since flush: {buf_stats['seconds_since_flush']}")
+
+                return "\n".join(lines)
+
+            if flush_only:
+                # Just flush access buffer
+                if not self.access_buffer:
+                    return "Access buffer not configured."
+
+                lines.append("\nFlushing access buffer...")
+                flush_result = await self.access_buffer.flush_all(
+                    short_term_collection=self.promotion_service.collection_manager.short_term,
+                    long_term_collection=self.promotion_service.collection_manager.long_term,
+                )
+                lines.append(f"  {flush_result.summary()}")
+                return "\n".join(lines)
+
+            if optimize:
+                # Flush buffer and recompute factors
+                lines.append("\nRunning latency optimization...")
+
+                # Step 1: Flush access buffer
+                if self.access_buffer:
+                    lines.append("\n1. Flushing access buffer...")
+                    flush_result = await self.access_buffer.flush_all(
+                        short_term_collection=self.promotion_service.collection_manager.short_term,
+                        long_term_collection=self.promotion_service.collection_manager.long_term,
+                    )
+                    lines.append(f"   {flush_result.summary()}")
+                else:
+                    lines.append("\n1. Access buffer: not configured (skipped)")
+
+                # Step 2: Recompute retrieval factors
+                if self.factor_computer:
+                    lines.append("\n2. Recomputing retrieval factors...")
+                    factor_result = await self.factor_computer.compute_factors(
+                        self.promotion_service.collection_manager.long_term,
+                        force_update=True,
+                    )
+                    lines.append(f"   {factor_result.summary()}")
+                else:
+                    lines.append("\n2. Factor computer: not configured (skipped)")
+
+                lines.append("\nOptimization complete.")
+                return "\n".join(lines)
+
+            # Run promotion cycle
+            mode = "DRY RUN" if dry_run else "EXECUTING"
+            lines.append(f"\nRunning lifecycle cycle ({mode})...")
+
+            result = await self.promotion_service.run_promotion_cycle(dry_run=dry_run)
+
+            lines.append(f"\nLifecycle Results:")
+            lines.append(f"  Promoted to long-term: {result.promoted_to_long_term}")
+            lines.append(f"  Decayed from long-term: {result.decayed_from_long_term}")
+            lines.append(f"  Reactivated: {result.reactivated}")
+
+            if result.has_errors():
+                lines.append(f"\n  Errors: {len(result.errors)}")
+                for error in result.errors[:5]:
+                    lines.append(f"    - {error}")
+                if len(result.errors) > 5:
+                    lines.append(f"    ... and {len(result.errors) - 5} more")
+
+            # Show current stats after cycle
+            lines.append("\n--- Current Statistics ---")
+            stats = await self.promotion_service.collection_manager.get_stats()
+            lines.append(f"  Short-term: {stats.get('short_term', 0)}")
+            lines.append(f"  Long-term: {stats.get('long_term', 0)}")
+            lines.append(f"  Decayed: {stats.get('decayed', 0)}")
+
+            if dry_run:
+                lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+            else:
+                lines.append("\nLifecycle cycle complete.")
+
+            return "\n".join(lines)
+
+        except Exception as e:
+            logger.exception("Lifecycle cycle failed")
+            return f"Error during lifecycle cycle: {e}"
+
+    async def cmd_migrate(self, opts: str = "") -> str:
+        """
+        Migrate existing memories to include lifecycle metadata.
+
+        Options (space-separated):
+          --force         Execute migration (default is dry-run/preview)
+
+        Examples:
+          /migrate              - Preview what would be migrated
+          /migrate --force      - Execute migration
+
+        Note: Migration is non-destructive (adds fields, doesn't remove data)
+        and idempotent (safe to run multiple times).
+        """
+        if not self.persist_dir:
+            return "Error: persist_dir not configured for this session."
+
+        # Parse options
+        opt_list = opts.lower().split() if opts else []
+        dry_run = "--force" not in opt_list
+
+        from friday_memory.lifecycle import MemoryMigrator
+
+        # Create migrator with available stores
+        migrator = MemoryMigrator(
+            vector_store=self.controller.vector if self.controller else None,
+            graph_store=self.controller.graph if self.controller else None,
+            collection_manager=self.promotion_service.collection_manager if self.promotion_service else None,
+        )
+
+        try:
+            mode = "DRY RUN" if dry_run else "EXECUTING"
+            lines = ["=" * 60, f"MEMORY LIFECYCLE MIGRATION ({mode})", "=" * 60]
+
+            # Check if migration is needed
+            needs_migration = await migrator.check_migration_needed()
+            if not needs_migration and dry_run:
+                lines.append("\nNo migration needed - all memories have lifecycle metadata.")
+                return "\n".join(lines)
+
+            # Run migration
+            report = await migrator.migrate(dry_run=dry_run)
+
+            lines.append(f"\nVector Store:")
+            lines.append(f"  Documents scanned: {report.vectors_scanned}")
+            lines.append(f"  Documents migrated: {report.vectors_migrated}")
+            lines.append(f"  Already migrated: {report.vectors_skipped}")
+
+            lines.append(f"\nGraph Store:")
+            lines.append(f"  Nodes scanned: {report.nodes_scanned}")
+            lines.append(f"  Nodes migrated: {report.nodes_migrated}")
+            lines.append(f"  Already migrated: {report.nodes_skipped}")
+
+            lines.append(f"\nEdges:")
+            lines.append(f"  Edges scanned: {report.edges_scanned}")
+            lines.append(f"  Edges need embedding: {report.edges_migrated}")
+            lines.append(f"  Already have embedding: {report.edges_skipped}")
+
+            if report.errors:
+                lines.append(f"\nErrors ({len(report.errors)}):")
+                for error in report.errors[:5]:
+                    lines.append(f"  - {error}")
+                if len(report.errors) > 5:
+                    lines.append(f"  ... and {len(report.errors) - 5} more")
+
+            if dry_run:
+                if report.needs_migration:
+                    lines.append("\n[DRY RUN - Run '/migrate --force' to apply these changes.]")
+                else:
+                    lines.append("\nNo migration needed.")
+            else:
+                lines.append("\nMigration complete!")
+
+            return "\n".join(lines)
+
+        except Exception as e:
+            logger.exception("Migration failed")
+            return f"Error during migration: {e}"
 
     def cmd_vars(self) -> str:
         """Show scoped variables."""
@@ -1097,6 +1342,8 @@ Available Commands:
   /export [format] - Export current session (jsonl, markdown, or training)
   /reset           - Clear all memory stores (graph, vector, episodic)
   /reorganize [opts] - Run memory reorganization
+  /migrate [opts]  - Migrate memories to lifecycle metadata
+  /lifecycle [opts] - Run memory lifecycle (promotion, decay)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable (e.g., /set user:name Alice)
   /help            - Show this help
@@ -1109,6 +1356,18 @@ Reorganize Options:
   /reorganize --backup     - Just create a backup
   /reorganize --execute --prune --no-backup  - Execute prune without backup
   /reorganize --skip-synthesis --skip-verify - Skip LLM-dependent steps
+  /reorganize --skip-lifecycle - Skip lifecycle/optimization steps
+
+Migration Options:
+  /migrate              - Preview what would be migrated (dry run)
+  /migrate --force      - Execute migration (adds lifecycle metadata)
+
+Lifecycle Options:
+  /lifecycle               - Dry run lifecycle cycle (promotion/decay)
+  /lifecycle --execute     - Execute lifecycle cycle
+  /lifecycle --stats       - Show current lifecycle statistics
+  /lifecycle --optimize    - Flush access buffer and recompute retrieval factors
+  /lifecycle --flush       - Flush access buffer only
 """
 
     async def _background_extract(self, turn: InteractionTurn) -> None:
@@ -1116,18 +1375,18 @@ Reorganize Options:
         try:
             result = await self.extractor.extract(turn)
             if result.get("error"):
-                logger.warning(f"Background extraction error: {result['error']}")
+                logger.debug(f"Background extraction error: {result['error']}")
             else:
                 extracted = result.get("extracted", {})
                 entity_count = len(extracted.get("entities", []))
                 fact_count = len(extracted.get("facts", []))
                 rel_count = len(extracted.get("relationships", []))
-                logger.info(
+                logger.debug(
                     f"Background extraction complete: "
                     f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"
                 )
         except Exception as e:
-            logger.warning(f"Background extraction failed: {e}")
+            logger.debug(f"Background extraction failed: {e}")
 
     async def process_turn(self, user_input: str) -> str | None:
         """Process a user turn and return the response."""
@@ -1501,16 +1760,70 @@ async def main() -> None:
         persist_directory=str(persist_dir),
     )
 
+    # 3b. Create CollectionManager for lifecycle management
+    lifecycle_config = memory_config.get("lifecycle", {})
+    collection_config = CollectionConfig(
+        short_term_collection=memory_config.get("collection_name", "memory_chat_test") + "_short",
+        long_term_collection=memory_config.get("collection_name", "memory_chat_test") + "_long",
+        decayed_collection=memory_config.get("collection_name", "memory_chat_test") + "_decayed",
+    )
+    collection_manager = CollectionManager(
+        embedding_function=embedding,
+        config=collection_config,
+        path=str(persist_dir),
+    )
+
+    # 3c. Create MemoryPromotionService for lifecycle operations
+    decay_config = DecayConfig(
+        decay_rate=lifecycle_config.get("decay_rate", 0.01),
+        short_term_min_age_hours=lifecycle_config.get("short_term_min_age_hours", 24),
+        promotion_threshold=lifecycle_config.get("promotion_threshold", 0.7),
+        decay_threshold=lifecycle_config.get("decay_threshold", 0.2),
+    )
+    promotion_service = MemoryPromotionService(
+        config=decay_config,
+        collection_manager=collection_manager,
+        graph_store=graph,
+    )
+
+    # 3d. Create AccessBuffer for lazy access tracking
+    access_buffer_config = AccessBufferConfig(
+        max_buffer_size=lifecycle_config.get("access_buffer_size", 1000),
+        max_buffer_age_seconds=lifecycle_config.get("access_buffer_age_seconds", 300),
+        decay_score_boost=lifecycle_config.get("decay_score_boost", 0.1),
+    )
+    access_buffer = AccessBuffer(access_buffer_config)
+
+    # 3e. Create RetrievalFactorComputer for pre-computed scores
+    factor_config = FactorComputerConfig(
+        decay_rate=lifecycle_config.get("factor_decay_rate", 0.005),
+        usage_boost_factor=lifecycle_config.get("usage_boost_factor", 0.1),
+    )
+    factor_computer = RetrievalFactorComputer(factor_config)
+
+    # 3f. Create GraphPathScorer for graph path filtering
+    graph_scorer_config = GraphPathScorerConfig(
+        edge_weight=lifecycle_config.get("graph_edge_weight", 0.4),
+        target_weight=lifecycle_config.get("graph_target_weight", 0.6),
+        hit_count_boost=lifecycle_config.get("graph_hit_boost", 0.05),
+        path_threshold=lifecycle_config.get("graph_path_threshold", 0.5),
+    )
+    graph_scorer = GraphPathScorer(graph_scorer_config)
+
     # 4. Create telemetry recorder
     telemetry = DebugTelemetryRecorder()
 
-    # 5. Create MemoryController with priming config
+    # 5. Create MemoryController with priming config and lifecycle components
     controller = MemoryController(
         vector_store=vector,
         graph_store=graph,
         episodic_store=episodic,
         telemetry=telemetry,
         priming_config=priming_config,
+        # Lifecycle components (Phase 6)
+        collection_manager=collection_manager,
+        access_buffer=access_buffer,
+        graph_scorer=graph_scorer,
     )
 
     # 6. Create PromptArchitect (token budgeting) with speaker names
@@ -1531,6 +1844,7 @@ async def main() -> None:
     )
 
     # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names
+    #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)
     extraction_prompt = extraction_config.get("prompt")  # None uses default
     extractor = MemoryExtractor(
         memory_controller=controller,
@@ -1539,6 +1853,7 @@ async def main() -> None:
         prompt_template=extraction_prompt,
         user_name=user_name,
         assistant_name=assistant_name,
+        embedding_model=embedding,  # Pre-compute edge embeddings for graph path scoring
     )
     assembler.set_extractor(extractor)
 
@@ -1587,6 +1902,9 @@ async def main() -> None:
         maintenance_llms=maintenance_llms,
         transcript_export_dir=transcript_export_dir,
         embedding_function=embedding,
+        promotion_service=promotion_service,
+        access_buffer=access_buffer,
+        factor_computer=factor_computer,
     )
 
     # Initialize session
@@ -1596,6 +1914,11 @@ async def main() -> None:
     print("  - Vector store: ChromaDB")
     print(f"  - Graph store: {graph_path}")
     print(f"  - Transcript store: {transcript_path}")
+    print("  - Lifecycle: enabled (short/long/decayed collections)")
+    print("  - Access buffer: enabled (lazy tracking)")
+    print("  - Factor computer: enabled (pre-computed scores)")
+    print("  - Graph scorer: enabled (path filtering)")
+    print("  - Retrieval integration: enabled (lifecycle-aware recall)")
 
     # Trigger priming and populate session.last_payload for /context command
     if priming_config.get("enabled", True):

@@ -335,3 +335,85 @@ class ChromaVectorStore(VectorStoreAdapter):
 
         self._emit_event("vector_store_cleared", {"documents_deleted": count})
         return count
+
+    async def update_metadata(
+        self,
+        doc_id: str,
+        metadata_updates: dict[str, Any],
+    ) -> bool:
+        """
+        Update metadata for an existing document.
+
+        Used for lifecycle management (updating hit_count, decay_score, etc.)
+        without re-embedding the document.
+
+        Args:
+            doc_id: ID of the document to update
+            metadata_updates: Dict of metadata fields to update
+
+        Returns:
+            True if successful, False if document not found
+        """
+        # Get current document
+        existing = await self.get_by_id(doc_id)
+        if not existing:
+            return False
+
+        # Merge updates with existing metadata
+        updated_metadata = {**existing.get("metadata", {}), **metadata_updates}
+
+        # ChromaDB update (upsert with same embedding)
+        self._collection.update(
+            ids=[doc_id],
+            metadatas=[updated_metadata],
+        )
+
+        self._emit_event(
+            "vector_metadata_updated",
+            {
+                "doc_id": doc_id,
+                "updated_fields": list(metadata_updates.keys()),
+                "collection": self._collection_name,
+            },
+        )
+        return True
+
+    async def increment_hit_count(self, doc_id: str) -> int:
+        """
+        Increment the hit_count for a document.
+
+        Convenience method for tracking access frequency in long-term memories.
+
+        Args:
+            doc_id: ID of the document
+
+        Returns:
+            New hit_count value, or -1 if document not found
+        """
+        existing = await self.get_by_id(doc_id)
+        if not existing:
+            return -1
+
+        metadata = existing.get("metadata", {})
+        new_count = metadata.get("hit_count", 0) + 1
+
+        await self.update_metadata(doc_id, {
+            "hit_count": new_count,
+            "last_accessed_at": __import__("datetime").datetime.now().isoformat(),
+        })
+
+        return new_count
+
+    async def get_sample(self, limit: int = 100) -> list[dict[str, Any]]:
+        """
+        Get a sample of documents from the collection.
+
+        Useful for computing statistics without loading all documents.
+
+        Args:
+            limit: Maximum number of documents to return
+
+        Returns:
+            List of documents with id, text, and metadata
+        """
+        return await self.get_all(limit=limit)

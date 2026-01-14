@@ -31,10 +31,12 @@ from friday_memory.maintenance.models import (
     IssueSeverity,
     IssueType,
     KnowledgeGap,
+    LifecycleReport,
     LogConfig,
     LogFormat,
     LogVerbosity,
     MaintenanceConfig,
+    OptimizationReport,
     PromptsConfig,
     PruneConfig,
     PrunedItem,
@@ -95,6 +97,9 @@ __all__ = [
     "ClassifiedFact",
     "VerifiedClaim",
     "VerificationReport",
+    # Lifecycle
+    "LifecycleReport",
+    "OptimizationReport",
     # Full Report
     "ReorganizationReport",
     # Logging

@@ -48,6 +48,38 @@ from friday_memory.context import (
 # Ingestion
 from friday_memory.ingestion import DocumentIngestionPipeline
 
+# Retrieval (Phase 2, 3 & 5)
+from friday_memory.retrieval import (
+    AccessBuffer,
+    AccessBufferConfig,
+    CollectionConfig,
+    CollectionManager,
+    FactorComputeResult,
+    FactorComputerConfig,
+    FlushResult,
+    GraphPathScorer,
+    GraphPathScorerConfig,
+    InclusionScorerConfig,
+    LongTermInclusionScorer,
+    RetrievalFactorComputer,
+    ScoredPath,
+    calculate_inclusion_score_fast,
+)
+
+# Lifecycle (Phase 1 & 4)
+from friday_memory.lifecycle import (
+    DecayCalculator,
+    DecayConfig,
+    MemoryLifecycleMetadata,
+    MemoryMigrator,
+    MemoryPromotionService,
+    MemoryStage,
+    MigrationReport,
+    PromotionResult,
+    PromotionScorer,
+    PromotionState,
+)
+
 __all__ = [
     # Models
     "ProvenanceMetadata",
@@ -74,4 +106,32 @@ __all__ = [
     "MemoryConsolidator",
     # Ingestion
     "DocumentIngestionPipeline",
+    # Retrieval (Phase 2, 3 & 5)
+    "CollectionConfig",
+    "CollectionManager",
+    "InclusionScorerConfig",
+    "LongTermInclusionScorer",
+    "GraphPathScorerConfig",
+    "GraphPathScorer",
+    "ScoredPath",
+    # Latency Optimization (Phase 5)
+    "AccessBufferConfig",
+    "AccessBuffer",
+    "FlushResult",
+    "FactorComputerConfig",
+    "RetrievalFactorComputer",
+    "FactorComputeResult",
+    "calculate_inclusion_score_fast",
+    # Lifecycle (Phase 1 & 4)
+    "MemoryStage",
+    "PromotionState",
+    "MemoryLifecycleMetadata",
+    "DecayConfig",
+    "DecayCalculator",
+    "PromotionScorer",
+    "PromotionResult",
+    "MemoryPromotionService",
+    # Migration (Phase 9)
+    "MemoryMigrator",
+    "MigrationReport",
 ]

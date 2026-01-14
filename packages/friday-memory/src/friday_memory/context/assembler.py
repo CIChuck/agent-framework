@@ -3,7 +3,13 @@ Context Assembler.
 Implements the 'Knapsack' budgeting logic to fit memory into the token window.
 Handles Active Search queries.
 
+Updated for lifecycle-aware budgeting:
+- Uses inclusion_score for relevancy-based ranking
+- Prioritizes short-term over long-term memories
+- Excludes DECAYED memories by default
+
 Ref: Batch 2a Specification, Section 2
+Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 7
 """
 
 import logging
@@ -16,6 +22,7 @@ from friday_core import ContextEngineeringInterface, TelemetryInterface
 
 from friday_memory.context.layout import PromptArchitect
 from friday_memory.controller import MemoryController
+from friday_memory.lifecycle.stages import MemoryStage
 from friday_memory.models import (
     ConsolidationReport,
     ContextPayload,
@@ -305,90 +312,312 @@ class ContextAssembler(ContextEngineeringInterface):
         self, payload: ContextPayload, budget_limit: int
     ) -> ContextPayload:
         """
-        Apply token budget with priority hierarchy.
+        Apply token budget with lifecycle-aware priority hierarchy.
 
         Priority Hierarchy (Drop Order - lowest first):
-        1. Deep History: Turns 10+ ago
-        2. Scoped State: 'app:' vars (Low), 'session:' vars (High)
-        3. Weak Matches: Vector passages with low similarity
-        4. Recent History: Turns 3-10
-        5. Immediate Context: Last 2 Turns, User Query, 'user:' scoped vars
+        1. DECAYED memories: Always excluded
+        2. Deep History: Turns 10+ ago
+        3. Low relevancy long-term: Long-term with inclusion_score < 0.3
+        4. Weak Matches: Vector passages with relevancy_score < 0.5
+        5. Recent History: Turns 3-10
+        6. Immediate Context: Last 2 Turns, User Query, Short-term memories
+
+        Lifecycle-aware enhancements:
+        - Uses inclusion_score (similarity × retrieval_factor) when available
+        - Prioritizes short-term memories (hot context) over long-term
+        - Filters DECAYED memories as safety measure
         """
-        current_tokens = self._estimate_payload_tokens(payload)
+        # Step 0: Filter out any DECAYED memories that slipped through
+        filtered_payload = self._filter_decayed(payload)
+
+        current_tokens = self._estimate_payload_tokens(filtered_payload)
 
         if current_tokens <= budget_limit:
-            return payload
+            return filtered_payload
 
         logger.info(
             f"Context pruning required: {current_tokens} > {budget_limit} tokens"
         )
 
         # Make mutable copies
-        history = list(payload.history)
-        passages = list(payload.passages)
-        entities = list(payload.entities)
-        facts = list(payload.facts)
+        history = list(filtered_payload.history)
+        passages = list(filtered_payload.passages)
+        entities = list(filtered_payload.entities)
+        facts = list(filtered_payload.facts)
+        insights = list(filtered_payload.insights) if filtered_payload.insights else []
+        summaries = list(filtered_payload.summaries) if filtered_payload.summaries else []
+
+        # Separate short-term and long-term passages for lifecycle-aware pruning
+        short_term, long_term = self._separate_by_stage(passages)
 
         # 1. Drop deep history (turns 10+)
         if len(history) > 10:
             history = history[-10:]
-            current_tokens = self._estimate_tokens(history, passages, entities, facts)
+            current_tokens = self._estimate_tokens_full(
+                history, short_term + long_term, entities, facts, insights, summaries
+            )
             if current_tokens <= budget_limit:
-                return self._create_pruned_payload(
-                    payload, history, passages, entities, facts
+                return self._create_pruned_payload_full(
+                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
                 )
 
-        # 2. Drop weak vector matches (similarity < 0.5)
-        passages = [p for p in passages if p.get("similarity", 0) >= 0.5]
-        current_tokens = self._estimate_tokens(history, passages, entities, facts)
+        # 2. Drop low-relevancy long-term memories (inclusion_score < 0.3)
+        long_term = [p for p in long_term if self._get_relevancy_score(p) >= 0.3]
+        current_tokens = self._estimate_tokens_full(
+            history, short_term + long_term, entities, facts, insights, summaries
+        )
         if current_tokens <= budget_limit:
-            return self._create_pruned_payload(
-                payload, history, passages, entities, facts
+            return self._create_pruned_payload_full(
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
             )
 
-        # 3. Drop more history (keep last 5)
+        # 3. Drop weak vector matches (relevancy_score < 0.5)
+        short_term = [p for p in short_term if self._get_relevancy_score(p) >= 0.5]
+        long_term = [p for p in long_term if self._get_relevancy_score(p) >= 0.5]
+        current_tokens = self._estimate_tokens_full(
+            history, short_term + long_term, entities, facts, insights, summaries
+        )
+        if current_tokens <= budget_limit:
+            return self._create_pruned_payload_full(
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+            )
+
+        # 4. Drop more history (keep last 5)
         if len(history) > 5:
             history = history[-5:]
-            current_tokens = self._estimate_tokens(history, passages, entities, facts)
+            current_tokens = self._estimate_tokens_full(
+                history, short_term + long_term, entities, facts, insights, summaries
+            )
             if current_tokens <= budget_limit:
-                return self._create_pruned_payload(
-                    payload, history, passages, entities, facts
+                return self._create_pruned_payload_full(
+                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
                 )
 
-        # 4. Reduce passages to top 3
-        passages = sorted(passages, key=lambda x: x.get("similarity", 0), reverse=True)[:3]
-        current_tokens = self._estimate_tokens(history, passages, entities, facts)
+        # 5. Reduce to top passages by relevancy (keep short-term first)
+        short_term = self._sort_by_relevancy(short_term)[:3]
+        long_term = self._sort_by_relevancy(long_term)[:2]
+        current_tokens = self._estimate_tokens_full(
+            history, short_term + long_term, entities, facts, insights, summaries
+        )
         if current_tokens <= budget_limit:
-            return self._create_pruned_payload(
-                payload, history, passages, entities, facts
+            return self._create_pruned_payload_full(
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
             )
 
-        # 5. Drop entities and facts
+        # 6. Drop insights and summaries
+        insights = insights[:3]
+        summaries = summaries[:3]
+        current_tokens = self._estimate_tokens_full(
+            history, short_term + long_term, entities, facts, insights, summaries
+        )
+        if current_tokens <= budget_limit:
+            return self._create_pruned_payload_full(
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+            )
+
+        # 7. Drop entities and facts
         entities = entities[:5]
         facts = facts[:5]
-        current_tokens = self._estimate_tokens(history, passages, entities, facts)
+        current_tokens = self._estimate_tokens_full(
+            history, short_term + long_term, entities, facts, insights, summaries
+        )
         if current_tokens <= budget_limit:
-            return self._create_pruned_payload(
-                payload, history, passages, entities, facts
+            return self._create_pruned_payload_full(
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
             )
 
-        # 6. Keep only last 2 turns (critical)
+        # 8. Keep only last 2 turns (critical)
         history = history[-2:] if len(history) >= 2 else history
-        passages = passages[:2]
+        short_term = short_term[:2]
+        long_term = []
         entities = []
         facts = []
+        insights = []
+        summaries = []
 
         self._emit_event(
             "context_pruning_warning",
             {
                 "original_tokens": self._estimate_payload_tokens(payload),
                 "budget_limit": budget_limit,
-                "final_tokens": self._estimate_tokens(history, passages, entities, facts),
+                "final_tokens": self._estimate_tokens_full(
+                    history, short_term, entities, facts, insights, summaries
+                ),
             },
         )
 
-        return self._create_pruned_payload(
-            payload, history, passages, entities, facts
+        return self._create_pruned_payload_full(
+            filtered_payload, history, short_term, entities, facts, insights, summaries
+        )
+
+    def _filter_decayed(self, payload: ContextPayload) -> ContextPayload:
+        """
+        Filter out DECAYED memories from the payload.
+
+        Safety measure to ensure DECAYED memories never appear in context,
+        even if they somehow slip through retrieval filters.
+
+        Args:
+            payload: The context payload to filter
+
+        Returns:
+            Filtered payload with no DECAYED memories
+        """
+        filtered_passages = []
+        decayed_count = 0
+
+        for passage in payload.passages:
+            metadata = passage.get("metadata", {})
+            stage = metadata.get("stage", "")
+
+            # Check if memory is decayed
+            if stage == MemoryStage.DECAYED.value or stage == "decayed":
+                decayed_count += 1
+                continue
+
+            filtered_passages.append(passage)
+
+        if decayed_count > 0:
+            logger.info(f"Filtered {decayed_count} DECAYED memories from context")
+            self._emit_event(
+                "decayed_memories_filtered",
+                {"count": decayed_count},
+            )
+
+        # Return new payload if filtering occurred
+        if decayed_count > 0:
+            return ContextPayload(
+                history=payload.history,
+                passages=filtered_passages,
+                entities=payload.entities,
+                facts=payload.facts,
+                recent_memories=payload.recent_memories,
+                insights=payload.insights,
+                summaries=payload.summaries,
+                debug_info={
+                    **payload.debug_info,
+                    "decayed_filtered": decayed_count,
+                },
+            )
+
+        return payload
+
+    def _separate_by_stage(
+        self, passages: list[dict[str, Any]]
+    ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        """
+        Separate passages into short-term and long-term lists.
+
+        Short-term memories are prioritized in budget decisions.
+
+        Args:
+            passages: List of passage dicts
+
+        Returns:
+            Tuple of (short_term, long_term) passage lists
+        """
+        short_term = []
+        long_term = []
+
+        for passage in passages:
+            metadata = passage.get("metadata", {})
+            stage = metadata.get("stage", "")
+
+            if stage == MemoryStage.SHORT_TERM.value or stage == "short_term":
+                short_term.append(passage)
+            else:
+                # Default to long-term if no stage (legacy data)
+                long_term.append(passage)
+
+        return short_term, long_term
+
+    def _get_relevancy_score(self, passage: dict[str, Any]) -> float:
+        """
+        Get the relevancy score for a passage.
+
+        Uses inclusion_score if available (lifecycle-aware scoring),
+        falls back to similarity score.
+
+        Args:
+            passage: Passage dict with similarity/inclusion_score
+
+        Returns:
+            Relevancy score between 0.0 and 1.0
+        """
+        # Prefer inclusion_score (combines similarity + retrieval_factor)
+        if "inclusion_score" in passage:
+            return passage["inclusion_score"]
+
+        # Fall back to similarity
+        return passage.get("similarity", 0.0)
+
+    def _sort_by_relevancy(
+        self, passages: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        """
+        Sort passages by relevancy score (highest first).
+
+        Args:
+            passages: List of passage dicts
+
+        Returns:
+            Sorted list
+        """
+        return sorted(
+            passages,
+            key=lambda x: self._get_relevancy_score(x),
+            reverse=True,
+        )
+
+    def _estimate_tokens_full(
+        self,
+        history: list,
+        passages: list,
+        entities: list,
+        facts: list,
+        insights: list,
+        summaries: list,
+    ) -> int:
+        """Estimate tokens for given content including insights and summaries."""
+        total = self._estimate_tokens(history, passages, entities, facts)
+
+        # Insight tokens
+        for insight in insights:
+            total += self._count_tokens(insight.get("text", ""))
+
+        # Summary tokens
+        for summary in summaries:
+            total += self._count_tokens(summary.get("text", ""))
+
+        return total
+
+    def _create_pruned_payload_full(
+        self,
+        original: ContextPayload,
+        history: list,
+        passages: list,
+        entities: list,
+        facts: list,
+        insights: list,
+        summaries: list,
+    ) -> ContextPayload:
+        """Create a new payload with pruned content including insights/summaries."""
+        return ContextPayload(
+            history=history,
+            passages=passages,
+            entities=entities,
+            facts=facts,
+            recent_memories=original.recent_memories,
+            insights=insights,
+            summaries=summaries,
+            debug_info={
+                **original.debug_info,
+                "pruned": True,
+                "original_history": len(original.history),
+                "original_passages": len(original.passages),
+                "original_insights": len(original.insights) if original.insights else 0,
+                "original_summaries": len(original.summaries) if original.summaries else 0,
+            },
         )
 
     def _estimate_payload_tokens(self, payload: ContextPayload) -> int:

@@ -703,4 +703,106 @@ memory:
 
 ---
 
+#### Memory Lifecycle Management (Staging & Decay)
+
+**Date:** 2026-01-13
+**Category:** Memory System
+**Files Created/Modified:**
+- `packages/friday-memory/src/friday_memory/lifecycle/` (new module)
+  - `stages.py` - MemoryStage enum, PromotionState, MemoryLifecycleMetadata
+  - `decay.py` - DecayConfig, DecayCalculator
+  - `promotion.py` - PromotionScorer, MemoryPromotionService, PromotionResult
+  - `migration.py` - MemoryMigrator, MigrationReport, migrate_to_multi_collection
+- `packages/friday-memory/src/friday_memory/retrieval/` (new components)
+  - `collection_manager.py` - CollectionManager for multi-collection lifecycle storage
+  - `inclusion_scorer.py` - LongTermInclusionScorer for relevancy-based filtering
+  - `graph_scorer.py` - GraphPathScorer with semantic edge/node embedding matching
+  - `access_buffer.py` - AccessBuffer for lazy access tracking with WAL support
+  - `factor_computer.py` - RetrievalFactorComputer for pre-computed scoring factors
+- `packages/friday-memory/src/friday_memory/maintenance/` (enhanced)
+  - `models.py` - LifecycleReport, OptimizationReport
+  - `reorganizer.py` - Lifecycle and optimization steps integrated
+- `tests/integration/memory/memory-chat.py` - `/migrate`, `/reorganize --skip-lifecycle`
+
+**Description:** Implemented a complete memory lifecycle management system that introduces temporal decay, promotion scoring, and multi-stage memory storage. Memories now follow a lifecycle: `EPISODIC → SHORT_TERM → LONG_TERM → DECAYED`.
+
+**Memory Lifecycle Stages:**
+
+| Stage | Description | Retention |
+|-------|-------------|-----------|
+| `EPISODIC` | Raw conversation turns | Hours (existing behavior) |
+| `SHORT_TERM` | Consolidated insights awaiting promotion | Days |
+| `LONG_TERM` | Proven, frequently-accessed memories | Indefinite (with decay) |
+| `DECAYED` | Low-value memories awaiting cleanup | 30 days (soft-delete) |
+
+**Key Components:**
+
+1. **DecayConfig & DecayCalculator**: Configurable exponential decay using formula `score(t) = score_0 * exp(-λ * hours)`. Default decay rate of 0.01/hour results in ~79% remaining after 24 hours, ~19% after one week.
+
+2. **PromotionScorer**: Multi-factor scoring for promotion decisions:
+   - Age factor (20%): Time spent in short-term
+   - Access factor (40%): Frequency of retrieval
+   - Confidence factor (20%): Extraction confidence
+   - Connection factor (20%): Graph relationship count
+
+3. **CollectionManager**: Manages three ChromaDB collections (short_term, long_term, decayed) with unified search and atomic transfers.
+
+4. **AccessBuffer**: Batches access events to reduce database writes. Features include:
+   - Time-based and size-based flush triggers
+   - Write-ahead log (WAL) for crash recovery
+   - Configurable decay score boost on access
+
+5. **RetrievalFactorComputer**: Pre-computes retrieval factors during reorganization, enabling fast inclusion scoring at query time. Target: <165ms retrieval latency.
+
+6. **LongTermInclusionScorer**: Calculates inclusion scores combining:
+   - Semantic similarity
+   - Temporal decay
+   - Usage frequency (hit count)
+
+7. **MemoryMigrator**: Migration utility for upgrading existing memories to include lifecycle metadata. Idempotent and non-destructive.
+
+**Stage Transition Rules:**
+
+| Transition | Trigger | Criteria |
+|------------|---------|----------|
+| SHORT_TERM → LONG_TERM | Reorganization | promotion_score ≥ 0.7 AND age ≥ 24h |
+| LONG_TERM → DECAYED | Decay cycle | decay_score < 0.2 |
+| DECAYED → LONG_TERM | Access | Memory accessed while decayed (reactivation) |
+| DECAYED → DELETED | Retention expiry | age > 30 days + explicit confirmation |
+
+**Impact:** This feature transforms Friday from a "remember everything forever" system to an intelligent memory management system that:
+- Prioritizes frequently-accessed, high-value memories
+- Naturally forgets unused information over time
+- Recovers accidentally-decayed memories through reactivation
+- Optimizes retrieval latency through pre-computed factors
+- Provides observability into memory health via lifecycle reports
+
+**Commands:**
+- `/migrate [--force]` - Upgrade existing memories with lifecycle metadata
+- `/reorganize [--skip-lifecycle]` - Run reorganization with/without lifecycle steps
+- `/status` - Shows lifecycle breakdown (short-term, long-term, decayed counts)
+
+**Configuration:**
+```yaml
+memory:
+  lifecycle:
+    enabled: true
+    decay_rate: 0.01
+    access_boost: 0.2
+    promotion_threshold: 0.7
+    decay_threshold: 0.2
+    short_term_min_age_hours: 24
+    decayed_retention_days: 30
+
+  retrieval:
+    access_buffer:
+      max_buffer_size: 1000
+      max_buffer_age_seconds: 300
+    factor_computer:
+      decay_rate: 0.005
+      usage_boost_factor: 0.1
+```
+
+---
+
 *This document is updated with each feature development session.*

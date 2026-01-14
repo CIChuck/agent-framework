@@ -255,7 +255,7 @@ embedding:
   model: "openai/nomic-embed-text-v1.5"
 
   # API base URL for LM Studio
-  api_base: "http://192.168.0.83:1234/v1"
+  api_base: "http://127.0.0.1:1234/v1"
 
   # API key (use any non-empty string for LM Studio)
   api_key: "lm-studio"
@@ -265,12 +265,51 @@ embedding:
 
 # Memory Settings
 memory:
-  # ChromaDB collection name
+  # ChromaDB collection name (legacy single-collection mode)
   collection_name: "memory_chat_test"
 
   # ChromaDB persistence directory (relative to app folder)
   # Data will be stored in tests/integration/memory/vector/
   persist_directory: "./vector"
+
+  # Multi-Collection Architecture (Phase 2)
+  # Enables separate collections for different memory stages
+  retrieval:
+    # Collection names for staged memories
+    short_term_collection: "memories_short_term"
+    long_term_collection: "memories_long_term"
+    decayed_collection: "memories_decayed"
+
+    # Similarity thresholds per collection
+    # Short-term memories have lower threshold (recent, may be incomplete)
+    short_term_min_similarity: 0.5
+    # Long-term memories require higher relevancy (proven, must be more relevant)
+    long_term_min_similarity: 0.7
+
+    # Default results per collection per query
+    default_n_results: 5
+
+    # Inclusion scoring for long-term memories
+    # These control the relevancy-aware retrieval that penalizes old memories
+    inclusion:
+      # Per-hour decay rate for inclusion scoring (separate from lifecycle decay)
+      decay_rate: 0.005
+      # Logarithmic boost factor for hit_count
+      usage_boost_factor: 0.1
+      # Minimum inclusion score to include memory in context
+      inclusion_threshold: 0.6
+
+    # Graph path scoring (Phase 3)
+    # Controls relevancy filtering for graph traversal paths
+    graph:
+      # Weight for edge relevancy in combined score
+      edge_weight: 0.4
+      # Weight for target node relevancy in combined score
+      target_weight: 0.6
+      # Logarithmic boost factor for hit_count
+      hit_count_boost: 0.05
+      # Minimum score for path inclusion
+      path_threshold: 0.5
 
   # TOKEN BUDGET CONFIGURATION
   # These settings control how context is allocated within your LLM's limits.
@@ -438,7 +477,7 @@ maintenance:
   # If not specified, falls back to the main embedding config.
   embedding:
     model: "openai/nomic-embed-text-v1.5"
-    api_base: "http://192.168.0.83:1234/v1"
+    api_base: "http://127.0.0.1:1234/v1"
     api_key: "lm-studio"
     timeout_seconds: 60.0
 
@@ -808,3 +847,118 @@ maintenance:
               }}
           ]
       }}
+
+# =============================================================================
+# MEMORY LIFECYCLE CONFIGURATION
+# =============================================================================
+#
+# Controls the temporal decay, promotion scoring, and multi-stage memory
+# management system. Memories follow a lifecycle:
+#
+#   EPISODIC → SHORT_TERM → LONG_TERM → DECAYED
+#
+# Stage Transitions:
+#   - SHORT_TERM → LONG_TERM: When promotion_score >= threshold AND age >= min_hours
+#   - LONG_TERM → DECAYED: When decay_score < decay_threshold
+#   - DECAYED → LONG_TERM: When memory is accessed (reactivation)
+#   - DECAYED → DELETED: After retention_days + explicit confirmation
+#
+# =============================================================================
+lifecycle:
+  # Enable/disable the lifecycle management system
+  enabled: true
+
+  # -------------------------------------------------------------------------
+  # DECAY CALCULATION
+  # -------------------------------------------------------------------------
+  # Exponential decay formula: score(t) = score_0 * exp(-λ * hours)
+  #
+  # decay_rate (λ): Controls how fast memories decay without access
+  #   0.01  → ~79% after 24h, ~19% after 1 week (default, moderate)
+  #   0.005 → ~89% after 24h, ~43% after 1 week (slow, conservative)
+  #   0.02  → ~62% after 24h, ~3% after 1 week (fast, aggressive)
+  # -------------------------------------------------------------------------
+  decay_rate: 0.01
+
+  # Score boost when a memory is accessed (0.0-0.5)
+  # Higher = memories recover more from a single access
+  access_boost: 0.2
+
+  # -------------------------------------------------------------------------
+  # PROMOTION THRESHOLDS
+  # -------------------------------------------------------------------------
+  # promotion_threshold: Minimum promotion score for SHORT_TERM → LONG_TERM
+  # Higher = stricter promotion, fewer memories make it to long-term
+  promotion_threshold: 0.7
+
+  # decay_threshold: Score below which LONG_TERM → DECAYED
+  # Lower = memories survive longer, higher = more aggressive cleanup
+  decay_threshold: 0.2
+
+  # -------------------------------------------------------------------------
+  # TIMING
+  # -------------------------------------------------------------------------
+  # Minimum hours in SHORT_TERM before eligible for promotion
+  # Prevents premature promotion of very new memories
+  short_term_min_age_hours: 24
+
+  # Days to retain DECAYED memories before hard deletion
+  # Soft-delete pattern: decayed memories can be recovered if accessed
+  decayed_retention_days: 30
+
+  # -------------------------------------------------------------------------
+  # PROMOTION SCORING WEIGHTS (must sum to 1.0)
+  # -------------------------------------------------------------------------
+  # These weights control how the promotion score is calculated:
+  #   score = (age_factor * age_weight) + (access_factor * access_weight) +
+  #           (confidence_factor * confidence_weight) + (connection_factor * connection_weight)
+  #
+  # Customize based on what matters most for your use case:
+  #   - High access_weight: Prioritize frequently-accessed memories
+  #   - High age_weight: Require memories to "prove" themselves over time
+  #   - High confidence_weight: Trust extraction quality more
+  #   - High connection_weight: Prioritize well-connected memories
+  # -------------------------------------------------------------------------
+  promotion_weight_age: 0.2
+  promotion_weight_access: 0.4
+  promotion_weight_confidence: 0.2
+  promotion_weight_connection: 0.2
+
+  # -------------------------------------------------------------------------
+  # ACCESS BUFFER CONFIGURATION
+  # -------------------------------------------------------------------------
+  # The AccessBuffer batches memory access events to reduce database writes.
+  # Accesses are held in memory and flushed periodically.
+  # -------------------------------------------------------------------------
+  access_buffer:
+    # Maximum number of unique accesses before automatic flush
+    max_buffer_size: 1000
+
+    # Maximum seconds before automatic flush (even if below max_size)
+    max_buffer_age_seconds: 300
+
+    # Optional: Path to write-ahead log for crash recovery
+    # Set to null to disable WAL (faster but less durable)
+    # Example: "./access_buffer.wal"
+    wal_path: null
+
+    # Decay score boost per access when flushing buffer
+    decay_score_boost: 0.1
+
+  # -------------------------------------------------------------------------
+  # RETRIEVAL FACTOR COMPUTER
+  # -------------------------------------------------------------------------
+  # Pre-computes retrieval factors during reorganization for fast scoring.
+  # This enables the calculate_inclusion_score_fast() optimization.
+  # -------------------------------------------------------------------------
+  factor_computer:
+    # Decay rate for retrieval factor calculation (separate from lifecycle decay)
+    # Controls how much age affects retrieval priority
+    decay_rate: 0.005
+
+    # Logarithmic boost factor for hit_count
+    # Higher = popular memories get more retrieval boost
+    usage_boost_factor: 0.1
+
+    # Minimum factor floor (prevents very old memories from scoring 0)
+    min_factor: 0.01
