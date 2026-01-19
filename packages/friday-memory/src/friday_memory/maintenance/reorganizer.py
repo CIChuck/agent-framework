@@ -14,6 +14,7 @@ Main entry point for coordinating all maintenance operations:
 
 import logging
 import time
+import uuid
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -22,7 +23,10 @@ from friday_memory.maintenance.backup import BackupManager
 from friday_memory.maintenance.fact_checker import FactChecker
 from friday_memory.maintenance.logger import ReorganizationLogger
 from friday_memory.maintenance.models import (
+    CleanupReport,
     ConsistencyReport,
+    DeduplicationReport,
+    InsightCluster,
     LifecycleReport,
     MaintenanceConfig,
     OptimizationReport,
@@ -360,9 +364,8 @@ class MemoryReorganizer:
 
         try:
             # Get short-term memories for promotion evaluation
-            short_term_results = await self._collection_manager.query_short_term(
-                query_text="",  # Get all
-                n_results=1000,
+            short_term_results = await self._collection_manager.short_term.get_all(
+                limit=1000,
             )
 
             report.promotions_checked = len(short_term_results)
@@ -378,7 +381,7 @@ class MemoryReorganizer:
                     if score >= self._config.decay.promotion_threshold:
                         if not dry_run:
                             try:
-                                await self._collection_manager.promote_to_long_term(
+                                await self._collection_manager.promote_memory(
                                     memory_id=memory_id
                                 )
                                 report.promotions_executed += 1
@@ -391,9 +394,8 @@ class MemoryReorganizer:
                             report.promoted_memory_ids.append(memory_id)
 
             # Get long-term memories for decay evaluation
-            long_term_results = await self._collection_manager.query_long_term(
-                query_text="",  # Get all
-                n_results=5000,
+            long_term_results = await self._collection_manager.long_term.get_all(
+                limit=5000,
             )
 
             report.decays_checked = len(long_term_results)
@@ -513,8 +515,8 @@ class MemoryReorganizer:
                 start = time.time()
                 if not dry_run:
                     flush_result = await self._access_buffer.flush_all(
-                        short_term_collection=self._collection_manager.short_term_collection,
-                        long_term_collection=self._collection_manager.long_term_collection,
+                        short_term_collection=self._collection_manager.short_term,
+                        long_term_collection=self._collection_manager.long_term,
                     )
                     report.short_term_accesses_flushed = flush_result.short_term_updated
                     report.long_term_accesses_flushed = flush_result.long_term_updated
@@ -537,22 +539,22 @@ class MemoryReorganizer:
                 if not dry_run:
                     # Compute for short-term
                     st_result = await self._factor_computer.compute_factors(
-                        collection=self._collection_manager.short_term_collection,
+                        collection=self._collection_manager.short_term,
                     )
                     report.short_term_factors_updated = st_result.memories_updated
 
                     # Compute for long-term
                     lt_result = await self._factor_computer.compute_factors(
-                        collection=self._collection_manager.long_term_collection,
+                        collection=self._collection_manager.long_term,
                     )
                     report.long_term_factors_updated = lt_result.memories_updated
                 else:
                     # Report what would be updated (all memories)
-                    st_results = await self._collection_manager.query_short_term(
-                        query_text="", n_results=1000
+                    st_results = await self._collection_manager.short_term.get_all(
+                        limit=1000
                     )
-                    lt_results = await self._collection_manager.query_long_term(
-                        query_text="", n_results=5000
+                    lt_results = await self._collection_manager.long_term.get_all(
+                        limit=5000
                     )
                     report.short_term_factors_updated = len(st_results)
                     report.long_term_factors_updated = len(lt_results)
@@ -565,6 +567,10 @@ class MemoryReorganizer:
                 )
 
             # 3. Backfill missing edge embeddings
+            logger.info(
+                f"Edge embedding check: graph_store={self._graph_store is not None}, "
+                f"embedding_function={self._embedding_function is not None}"
+            )
             if self._graph_store and self._embedding_function:
                 start = time.time()
                 edges_embedded, edges_skipped = await self._backfill_edge_embeddings(
@@ -577,6 +583,12 @@ class MemoryReorganizer:
                 logger.info(
                     f"Edge embeddings backfilled: {edges_embedded} embedded, "
                     f"{edges_skipped} skipped"
+                )
+            else:
+                logger.warning(
+                    f"Skipping edge embedding backfill: "
+                    f"graph_store={self._graph_store is not None}, "
+                    f"embedding_function={self._embedding_function is not None}"
                 )
 
             logger.info("Optimization complete")
@@ -604,33 +616,294 @@ class MemoryReorganizer:
         edges_skipped = 0
 
         try:
-            # Get all nodes and their edges
-            all_nodes = self._graph_store.get_all_nodes()
-            for node in all_nodes:
-                neighbors = self._graph_store.get_neighbors(node.id, depth=1)
-                for edge in neighbors.get("edges", []):
-                    if edge.embedding is not None:
-                        edges_skipped += 1
-                        continue
+            # Get all edges directly
+            all_edges = await self._graph_store.get_all_edges()
+            logger.info(f"Edge backfill: found {len(all_edges)} total edges")
 
-                    if not dry_run:
-                        # Compute embedding for relation text
-                        relation_text = edge.get_relation_text()
-                        embeddings = await self._embedding_function.embed_documents(
-                            [relation_text]
-                        )
-                        if embeddings:
-                            edge.embedding = embeddings[0]
-                            # Update edge in store
-                            # Note: This requires graph store to support edge updates
-                            # For now, we track what would be embedded
+            # Collect edges that need embeddings
+            edges_needing_embeddings: list[tuple[str, str, str]] = []  # (source, target, relation_text)
 
-                    edges_embedded += 1
+            for edge in all_edges:
+                if edge.embedding is not None:
+                    edges_skipped += 1
+                    continue
+
+                relation_text = edge.get_relation_text()
+                edges_needing_embeddings.append((edge.source_id, edge.target_id, relation_text))
+
+            logger.info(
+                f"Edge backfill: {len(edges_needing_embeddings)} need embeddings, "
+                f"{edges_skipped} already have embeddings"
+            )
+
+            if not edges_needing_embeddings:
+                return 0, edges_skipped
+
+            edges_embedded = len(edges_needing_embeddings)
+
+            if not dry_run:
+                # Batch compute embeddings for efficiency
+                relation_texts = [e[2] for e in edges_needing_embeddings]
+
+                # Process in batches to avoid overwhelming the embedding API
+                batch_size = 100
+                edges_with_embeddings: list[tuple[str, str, list[float]]] = []
+
+                for i in range(0, len(relation_texts), batch_size):
+                    batch_texts = relation_texts[i : i + batch_size]
+                    batch_edges = edges_needing_embeddings[i : i + batch_size]
+
+                    embeddings = await self._embedding_function.embed_documents(batch_texts)
+
+                    if embeddings:
+                        for (source_id, target_id, _), embedding in zip(batch_edges, embeddings):
+                            edges_with_embeddings.append((source_id, target_id, embedding))
+
+                # Batch update all edges
+                if edges_with_embeddings:
+                    updated = await self._graph_store.update_edges_embeddings(edges_with_embeddings)
+                    logger.info(f"Updated {updated} edge embeddings")
 
         except Exception as e:
             logger.warning(f"Error backfilling edge embeddings: {e}")
 
         return edges_embedded, edges_skipped
+
+    async def cleanup(
+        self,
+        dry_run: bool = True,
+        backup_first: bool = False,
+    ) -> CleanupReport:
+        """
+        Hard delete expired decayed memories and cleanup orphaned graph nodes.
+
+        This step:
+        1. Permanently removes memories that have been in DECAYED state beyond
+           decayed_retention_days (default 30 days)
+        2. Removes graph nodes whose ALL source memories have been deleted
+
+        Args:
+            dry_run: If True, report what would be deleted without modifying
+            backup_first: If True, create backup before modifications
+
+        Returns:
+            CleanupReport with deletion statistics
+        """
+        if backup_first and not dry_run:
+            logger.info("Creating backup before cleanup...")
+            self._backup_manager.create_backup()
+
+        report = CleanupReport(
+            dry_run=dry_run,
+            retention_days=self._config.decay.decayed_retention_days,
+        )
+
+        if not self.has_lifecycle_support:
+            logger.warning("Lifecycle support not configured, skipping cleanup")
+            report.errors.append("Lifecycle components not configured")
+            return report
+
+        logger.info(
+            f"Running cleanup (dry_run={dry_run}, "
+            f"retention_days={self._config.decay.decayed_retention_days})..."
+        )
+
+        try:
+            # 1. Hard delete expired memories
+            delete_result = await self._collection_manager.hard_delete_expired(
+                retention_days=self._config.decay.decayed_retention_days,
+                dry_run=dry_run,
+            )
+
+            report.memories_deleted = delete_result.get("deleted_count", 0)
+            report.deleted_memory_ids = delete_result.get("deleted_ids", [])
+
+            if delete_result.get("error"):
+                report.errors.append(delete_result["error"])
+
+            # 2. Cleanup orphaned graph nodes
+            if (
+                report.deleted_memory_ids
+                and self._graph_store
+                and not delete_result.get("error")
+            ):
+                cleanup_result = await self._collection_manager.cleanup_orphaned_graph_nodes(
+                    deleted_memory_ids=set(report.deleted_memory_ids),
+                    graph_store=self._graph_store,
+                    dry_run=dry_run,
+                )
+
+                report.graph_nodes_deleted = cleanup_result.get("deleted_count", 0)
+                report.deleted_node_ids = cleanup_result.get("deleted_node_ids", [])
+
+                if cleanup_result.get("error"):
+                    report.errors.append(cleanup_result["error"])
+
+            logger.info(
+                f"Cleanup complete: {report.memories_deleted} memories deleted, "
+                f"{report.graph_nodes_deleted} graph nodes cleaned up"
+            )
+
+        except Exception as e:
+            logger.error(f"Cleanup failed: {e}")
+            report.errors.append(str(e))
+
+        return report
+
+    async def dedupe_insights(
+        self,
+        dry_run: bool = True,
+    ) -> DeduplicationReport:
+        """
+        Deduplicate insights by clustering similar ones.
+
+        For each cluster of similar insights, keeps the most recent one
+        and marks others with `superseded_by` metadata.
+
+        This is a batch operation intended to be run during reorganization
+        to reduce redundancy in the insight store.
+
+        Args:
+            dry_run: If True, only report what would be done without modifying
+
+        Returns:
+            DeduplicationReport with statistics and cluster details
+        """
+        report = DeduplicationReport(dry_run=dry_run)
+        logger.info(f"Running insight deduplication (dry_run={dry_run})...")
+
+        try:
+            # Get all insights from vector store
+            if not self._synthesizer:
+                report.errors.append("Synthesizer not configured")
+                return report
+
+            vector_store = self._synthesizer._vector_store
+            if not vector_store:
+                report.errors.append("Vector store not available")
+                return report
+
+            # Fetch all insights
+            all_insights = await vector_store.get_all(
+                limit=10000,
+                where={"type": "insight"},
+            )
+
+            report.insights_scanned = len(all_insights)
+
+            if len(all_insights) < 2:
+                logger.info("Not enough insights to deduplicate")
+                return report
+
+            # Build clusters by entity signature
+            clusters: dict[frozenset[str], list[dict[str, Any]]] = {}
+
+            for insight in all_insights:
+                entities = self._extract_insight_entities(insight)
+                if not entities:
+                    continue  # Can't cluster without entity signature
+
+                entity_key = frozenset(entities)
+                if entity_key not in clusters:
+                    clusters[entity_key] = []
+                clusters[entity_key].append(insight)
+
+            # Process each cluster
+            for entity_key, insights in clusters.items():
+                if len(insights) < 2:
+                    continue  # No duplicates
+
+                # Sort by recency (most recent first)
+                insights.sort(
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                    reverse=True,
+                )
+
+                # Keep the first (most recent), mark others as superseded
+                primary = insights[0]
+                primary_id = primary.get("id", "")
+                superseded_ids = []
+
+                for secondary in insights[1:]:
+                    secondary_id = secondary.get("id", "")
+                    if not secondary_id:
+                        continue
+
+                    superseded_ids.append(secondary_id)
+
+                    if not dry_run:
+                        # Update metadata to mark as superseded
+                        try:
+                            metadata = secondary.get("metadata", {})
+                            metadata["superseded_by"] = primary_id
+                            await vector_store.update(
+                                secondary_id, metadata=metadata
+                            )
+                        except Exception as e:
+                            report.errors.append(
+                                f"Failed to mark {secondary_id} as superseded: {e}"
+                            )
+
+                # Record cluster
+                cluster = InsightCluster(
+                    cluster_id=str(uuid.uuid4())[:8],
+                    primary_insight_id=primary_id,
+                    superseded_ids=superseded_ids,
+                    entity_key=";".join(sorted(entity_key)),
+                )
+                report.clusters.append(cluster)
+                report.insights_superseded += len(superseded_ids)
+
+            report.clusters_found = len(report.clusters)
+
+            logger.info(
+                f"Deduplication complete: {report.clusters_found} clusters found, "
+                f"{report.insights_superseded} insights superseded"
+            )
+
+        except Exception as e:
+            logger.error(f"Insight deduplication failed: {e}")
+            report.errors.append(str(e))
+
+        return report
+
+    def _extract_insight_entities(self, insight: dict[str, Any]) -> set[str]:
+        """
+        Extract entity mentions from an insight for clustering.
+
+        Args:
+            insight: Insight dict with text and metadata
+
+        Returns:
+            Set of normalized entity names
+        """
+        entities: set[str] = set()
+        metadata = insight.get("metadata", {})
+
+        # Primary: use entities_mentioned if available (semicolon-separated)
+        entities_mentioned = metadata.get("entities_mentioned", "")
+        if entities_mentioned:
+            for entity in entities_mentioned.split(";"):
+                entity = entity.strip().lower()
+                if entity:
+                    entities.add(entity)
+
+        # Secondary: extract proper nouns from text
+        if not entities:
+            text = insight.get("text", "") or insight.get("document", "")
+            words = text.split()
+            for word in words:
+                clean_word = word.strip(".,!?\"'()[]")
+                if (
+                    clean_word
+                    and clean_word[0].isupper()
+                    and len(clean_word) > 2
+                    and clean_word.lower()
+                    not in {"the", "this", "that", "they", "their"}
+                ):
+                    entities.add(clean_word.lower())
+
+        return entities
 
     async def reorganize(
         self,
@@ -651,18 +924,19 @@ class MemoryReorganizer:
         5. Classify and verify facts (if not skipped)
         6. Lifecycle maintenance: promotions/decays (if not skipped)
         7. Latency optimization: flush buffers, recompute factors (if not skipped)
+        8. Cleanup: hard delete expired decayed memories (if not skipped)
 
         Args:
             backup_first: Create backup before any modifications
             dry_run: If True, don't actually modify anything
             skip_synthesis: Skip the synthesis step
             skip_verify: Skip the verification step
-            skip_lifecycle: Skip the lifecycle and optimization steps
+            skip_lifecycle: Skip the lifecycle, optimization, and cleanup steps
 
         Returns:
             ReorganizationReport with all sub-reports
         """
-        total_steps = 7
+        total_steps = 8
         logger.info(
             f"Starting full reorganization "
             f"(backup_first={backup_first}, dry_run={dry_run})"
@@ -734,6 +1008,16 @@ class MemoryReorganizer:
                     logger.info(f"Step 7/{total_steps}: Skipping optimization (--skip-lifecycle)")
                 else:
                     logger.info(f"Step 7/{total_steps}: Skipping optimization (not configured)")
+
+            # 8. Cleanup: hard delete expired decayed memories
+            if not skip_lifecycle and self.has_lifecycle_support:
+                logger.info(f"Step 8/{total_steps}: Running cleanup (hard delete expired)...")
+                report.cleanup_report = await self.cleanup(dry_run=dry_run)
+            else:
+                if skip_lifecycle:
+                    logger.info(f"Step 8/{total_steps}: Skipping cleanup (--skip-lifecycle)")
+                else:
+                    logger.info(f"Step 8/{total_steps}: Skipping cleanup (not configured)")
 
             report.complete(success=True)
             logger.info("Reorganization complete!")
@@ -858,6 +1142,18 @@ class MemoryReorganizer:
                 f"{opr.long_term_factors_updated} LT updated",
                 f"  Edge embeddings: {opr.edges_embedded} embedded, "
                 f"{opr.edges_skipped} skipped",
+                "",
+            ])
+
+        # Cleanup summary
+        if report.cleanup_report:
+            cr = report.cleanup_report
+            status = "DRY RUN" if cr.dry_run else "EXECUTED"
+            lines.extend([
+                f"CLEANUP ({status}):",
+                f"  Retention days: {cr.retention_days}",
+                f"  Memories hard deleted: {cr.memories_deleted}",
+                f"  Graph nodes cleaned up: {cr.graph_nodes_deleted}",
                 "",
             ])
 

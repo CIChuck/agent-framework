@@ -12,7 +12,8 @@ Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Storage Archite
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime
+import logging
+from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, Field
@@ -24,6 +25,10 @@ from friday_memory.models.vector_metadata import create_longterm_metadata
 if TYPE_CHECKING:
     from friday_core import TelemetryInterface
     from friday_core.interfaces import EmbeddingModel
+
+    from friday_memory.adapters.graph import GraphStoreAdapter
+
+logger = logging.getLogger(__name__)
 
 
 class CollectionConfig(BaseModel):
@@ -481,4 +486,175 @@ class CollectionManager:
             "short_term_deleted": short_deleted,
             "long_term_deleted": long_deleted,
             "decayed_deleted": decayed_deleted,
+        }
+
+    async def hard_delete_expired(
+        self,
+        retention_days: int = 30,
+        dry_run: bool = True,
+    ) -> dict[str, Any]:
+        """
+        Permanently delete memories decayed beyond retention period.
+
+        Scans decayed collection for memories where:
+            decayed_at + retention_days < now
+
+        This enforces the decayed_retention_days config that was previously
+        not enforced, allowing DECAYED memories to be permanently removed.
+
+        Args:
+            retention_days: Days to retain decayed memories (default 30)
+            dry_run: If True, report what would be deleted without modifying
+
+        Returns:
+            Dict with deleted_count and deleted_ids
+        """
+        cutoff_date = datetime.now() - timedelta(days=retention_days)
+
+        # Get all decayed memories
+        try:
+            decayed_docs = await self._decayed.get_all(limit=10000)
+        except Exception as e:
+            logger.error(f"Error getting decayed memories: {e}")
+            return {"deleted_count": 0, "deleted_ids": [], "error": str(e)}
+
+        expired_ids: list[str] = []
+
+        for doc in decayed_docs:
+            memory_id = doc.get("id")
+            if not memory_id:
+                continue
+
+            metadata = doc.get("metadata", {})
+            decayed_at_str = metadata.get("decayed_at")
+
+            if not decayed_at_str:
+                # Skip memories without decayed_at (need migration first)
+                continue
+
+            try:
+                # Parse decayed_at timestamp
+                if "T" in decayed_at_str:
+                    decayed_at = datetime.fromisoformat(
+                        decayed_at_str.replace("Z", "+00:00")
+                    )
+                else:
+                    decayed_at = datetime.strptime(
+                        decayed_at_str, "%Y-%m-%d %H:%M:%S"
+                    )
+
+                # Check if memory has expired
+                # Note: comparing naive datetimes for simplicity
+                decayed_at_naive = (
+                    decayed_at.replace(tzinfo=None)
+                    if decayed_at.tzinfo
+                    else decayed_at
+                )
+                if decayed_at_naive < cutoff_date:
+                    expired_ids.append(memory_id)
+
+            except (ValueError, TypeError) as e:
+                logger.warning(
+                    f"Could not parse decayed_at for memory {memory_id}: {e}"
+                )
+                continue
+
+        # Actually delete if not dry run
+        if not dry_run and expired_ids:
+            try:
+                await self._decayed.delete(expired_ids)
+                logger.info(f"Hard deleted {len(expired_ids)} expired decayed memories")
+            except Exception as e:
+                logger.error(f"Error deleting expired memories: {e}")
+                return {
+                    "deleted_count": 0,
+                    "deleted_ids": [],
+                    "error": str(e),
+                    "would_delete": expired_ids,
+                }
+
+        self._emit_event(
+            "hard_delete_expired",
+            {
+                "retention_days": retention_days,
+                "dry_run": dry_run,
+                "deleted_count": len(expired_ids),
+            },
+        )
+
+        return {
+            "deleted_count": len(expired_ids),
+            "deleted_ids": expired_ids,
+            "dry_run": dry_run,
+        }
+
+    async def cleanup_orphaned_graph_nodes(
+        self,
+        deleted_memory_ids: set[str],
+        graph_store: "GraphStoreAdapter",
+        dry_run: bool = True,
+    ) -> dict[str, Any]:
+        """
+        Remove graph nodes whose ALL source memories were hard deleted.
+
+        When memories are hard deleted, graph nodes that were derived from
+        those memories become orphaned. This method identifies and removes
+        nodes where all source_memory_ids have been deleted.
+
+        Args:
+            deleted_memory_ids: Set of memory IDs that were hard deleted
+            graph_store: GraphStoreAdapter to remove orphaned nodes from
+            dry_run: If True, report what would be deleted without modifying
+
+        Returns:
+            Dict with deleted_count and deleted_node_ids
+        """
+        if not deleted_memory_ids:
+            return {"deleted_count": 0, "deleted_node_ids": [], "dry_run": dry_run}
+
+        orphaned_node_ids: list[str] = []
+
+        try:
+            all_nodes = await graph_store.get_all_nodes()
+
+            for node in all_nodes:
+                source_memory_ids = getattr(node, "source_memory_ids", [])
+
+                # Skip nodes without source memory links
+                if not source_memory_ids:
+                    continue
+
+                # Check if ALL source memories have been deleted
+                if all(mid in deleted_memory_ids for mid in source_memory_ids):
+                    orphaned_node_ids.append(node.id)
+
+            # Actually delete if not dry run
+            if not dry_run and orphaned_node_ids:
+                for node_id in orphaned_node_ids:
+                    await graph_store.remove_node(node_id)
+                logger.info(
+                    f"Removed {len(orphaned_node_ids)} orphaned graph nodes"
+                )
+
+        except Exception as e:
+            logger.error(f"Error cleaning up orphaned graph nodes: {e}")
+            return {
+                "deleted_count": 0,
+                "deleted_node_ids": [],
+                "error": str(e),
+                "dry_run": dry_run,
+            }
+
+        self._emit_event(
+            "cleanup_orphaned_graph_nodes",
+            {
+                "dry_run": dry_run,
+                "deleted_count": len(orphaned_node_ids),
+            },
+        )
+
+        return {
+            "deleted_count": len(orphaned_node_ids),
+            "deleted_node_ids": orphaned_node_ids,
+            "dry_run": dry_run,
         }

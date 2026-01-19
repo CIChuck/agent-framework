@@ -29,6 +29,15 @@ class ContextPayload(BaseModel):
         description="The immediate narrative thread - recent conversation turns",
     )
 
+    # --- Cross-Session History ---
+    prior_history: list[InteractionTurn] = Field(
+        default_factory=list,
+        description=(
+            "Conversation turns from previous sessions for continuity. "
+            "Merged with history during prompt formatting, ordered chronologically."
+        ),
+    )
+
     # --- Semantic Memory (Vector) ---
     passages: list[dict[str, Any]] = Field(
         default_factory=list,
@@ -69,6 +78,13 @@ class ContextPayload(BaseModel):
             "Most recent first for recency effect."
         ),
     )
+    key_facts: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description=(
+            "Key facts from vector store insights, sorted by created_at desc. "
+            "Each dict contains 'text' and 'metadata' (with created_at timestamp)."
+        ),
+    )
 
     # --- Meta-Cognition ---
     debug_info: dict[str, Any] = Field(
@@ -80,11 +96,13 @@ class ContextPayload(BaseModel):
         """Return total number of items in the payload."""
         return (
             len(self.history)
+            + len(self.prior_history)
             + len(self.passages)
             + len(self.entities)
             + len(self.facts)
             + len(self.insights)
             + len(self.summaries)
+            + len(self.key_facts)
         )
 
     def is_empty(self) -> bool:

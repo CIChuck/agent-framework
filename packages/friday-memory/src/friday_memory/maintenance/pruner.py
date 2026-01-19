@@ -262,6 +262,65 @@ class RedundancyPruner:
 
         return stale_items
 
+    async def identify_stale_edges(self) -> list[PrunedItem]:
+        """
+        Find edges that are stale based on hit_count and age.
+
+        Similar to identify_stale_entities() but for graph edges.
+        Edges without last_accessed (pre-migration) are skipped.
+
+        Returns:
+            List of items that would be pruned
+        """
+        stale_items: list[PrunedItem] = []
+        graph_data = self._load_graph()
+
+        threshold_date = datetime.now() - timedelta(
+            days=self._config.stale_threshold_days
+        )
+
+        for i, edge in enumerate(graph_data.get("edges", [])):
+            hit_count = edge.get("hit_count", 0)
+
+            if hit_count >= self._config.min_hit_count:
+                continue
+
+            # Check last_accessed - skip edges without it (pre-migration)
+            last_accessed_str = edge.get("last_accessed")
+            if not last_accessed_str:
+                continue
+
+            try:
+                if "T" in last_accessed_str:
+                    last_accessed = datetime.fromisoformat(
+                        last_accessed_str.replace("Z", "+00:00")
+                    )
+                else:
+                    last_accessed = datetime.strptime(
+                        last_accessed_str, "%Y-%m-%d %H:%M:%S"
+                    )
+
+                if last_accessed < threshold_date:
+                    source_id = edge.get("source", "?")
+                    target_id = edge.get("target", "?")
+                    relation = edge.get("relation", "unknown")
+                    edge_id = f"{source_id}->{target_id}"
+
+                    stale_items.append(PrunedItem(
+                        item_id=edge_id,
+                        item_type="edge",
+                        store="graph",
+                        reason=(
+                            f"Stale edge: hit_count={hit_count}, "
+                            f"last_accessed={last_accessed.date()}"
+                        ),
+                        content_preview=f"{source_id} --[{relation}]--> {target_id}",
+                    ))
+            except (ValueError, TypeError):
+                pass
+
+        return stale_items
+
     def _merge_entities(
         self,
         primary_id: str,
@@ -406,6 +465,69 @@ class RedundancyPruner:
             self._graph_modified = True
 
         return True
+
+    def _remove_stale_edges(
+        self,
+        stale_edges: list[PrunedItem],
+        dry_run: bool,
+    ) -> int:
+        """
+        Remove stale edges from the graph.
+
+        Args:
+            stale_edges: List of stale edge items from identify_stale_edges()
+            dry_run: If True, don't actually modify
+
+        Returns:
+            Number of edges removed
+        """
+        if not stale_edges:
+            return 0
+
+        graph_data = self._load_graph()
+        edges = graph_data.get("edges", [])
+
+        # Build a set of edge keys to remove
+        # Edge IDs are in format "source_id->target_id"
+        edges_to_remove: set[tuple[str, str]] = set()
+        for item in stale_edges:
+            if "->" in item.item_id:
+                source_id, target_id = item.item_id.split("->", 1)
+                edges_to_remove.add((source_id, target_id))
+
+        if not edges_to_remove:
+            return 0
+
+        removed_count = 0
+
+        # Log removals
+        if self._reorg_logger:
+            for item in stale_edges:
+                self._reorg_logger.log_edge_removed(
+                    edge_id=item.item_id,
+                    reason=item.reason,
+                    content_preview=item.content_preview,
+                )
+
+        if not dry_run:
+            # Filter out stale edges
+            new_edges = []
+            for edge in edges:
+                source_id = edge.get("source", "")
+                target_id = edge.get("target", "")
+                if (source_id, target_id) not in edges_to_remove:
+                    new_edges.append(edge)
+                else:
+                    removed_count += 1
+
+            graph_data["edges"] = new_edges
+            self._graph_modified = True
+
+            logger.info(f"Removed {removed_count} stale edges from graph")
+        else:
+            removed_count = len(stale_edges)
+
+        return removed_count
 
     def _remove_insights(
         self,
@@ -573,15 +695,25 @@ class RedundancyPruner:
             logger.debug("Identifying stale entities...")
             stale_entities = await self.identify_stale_entities()
 
-            edges_removed = 0
+            entity_edges_removed = 0
             for item in stale_entities:
                 report.items.append(item)
                 if self._remove_entity(item.item_id, dry_run, reason=item.reason):
                     report.entities_removed += 1
-                    # Count edges removed (approximate)
-                    edges_removed += 2  # Average estimate
+                    # Count edges removed with entity (approximate)
+                    entity_edges_removed += 2  # Average estimate
 
-            report.edges_removed = edges_removed
+            # 4. Find and remove stale edges
+            logger.debug("Identifying stale edges...")
+            stale_edges = await self.identify_stale_edges()
+
+            for item in stale_edges:
+                report.items.append(item)
+
+            stale_edges_removed = self._remove_stale_edges(stale_edges, dry_run)
+
+            # Total edges removed = from entity removal + direct stale edge removal
+            report.edges_removed = entity_edges_removed + stale_edges_removed
 
             # Save graph if modified
             if not dry_run and self._graph_modified:
@@ -591,7 +723,8 @@ class RedundancyPruner:
                 f"Pruning complete: "
                 f"insights_removed={report.insights_removed}, "
                 f"entities_merged={report.entities_merged}, "
-                f"entities_removed={report.entities_removed}"
+                f"entities_removed={report.entities_removed}, "
+                f"edges_removed={report.edges_removed}"
             )
 
         except Exception as e:

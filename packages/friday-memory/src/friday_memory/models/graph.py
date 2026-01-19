@@ -190,6 +190,23 @@ class GraphEdge(BaseModel):
         "Should be computed during consolidation to avoid retrieval-time latency.",
     )
 
+    # Hebbian learning fields (for edge staleness tracking)
+    hit_count: int = Field(
+        default=0,
+        ge=0,
+        description="Access frequency for Hebbian learning reinforcement",
+    )
+    last_accessed: datetime = Field(default_factory=datetime.now)
+    created_at: datetime = Field(
+        default_factory=datetime.now,
+        description="When the edge was first created",
+    )
+
+    def touch(self) -> None:
+        """Increment hit_count and update last_accessed timestamp."""
+        self.hit_count += 1
+        self.last_accessed = datetime.now()
+
     def get_relation_text(self) -> str:
         """
         Get the text representation of the edge for embedding.

@@ -141,12 +141,15 @@ class MemoryMigrator:
             # Migrate graph store
             await self._migrate_graph_nodes(report, dry_run)
 
-            # Migrate graph edges (add embeddings field if missing)
+            # Migrate graph edges (add staleness tracking fields)
             await self._migrate_graph_edges(report, dry_run)
+
+            # Migrate decayed memories (add decayed_at timestamp if missing)
+            await self._migrate_decayed_timestamps(report, dry_run)
 
             logger.info(
                 f"Migration complete: {report.total_migrated} items migrated, "
-                f"{report.vectors_skipped + report.nodes_skipped} already migrated"
+                f"{report.vectors_skipped + report.nodes_skipped + report.edges_skipped} already migrated"
             )
 
         except Exception as e:
@@ -236,48 +239,144 @@ class MemoryMigrator:
     async def _migrate_graph_edges(
         self, report: MigrationReport, dry_run: bool
     ) -> None:
-        """Migrate graph edges to add embedding field placeholder."""
+        """Migrate graph edges to add staleness tracking fields."""
         if not self._graph_store:
+            logger.info("No graph store provided, skipping edge migration")
+            return
+
+        # Check if this is a real graph store with internal graph access
+        # (required for staleness field migration which needs direct _graph access)
+        # We check for _graph being a networkx graph which is specific to ElementXGraphStore
+        try:
+            import networkx as nx
+
+            if not (
+                hasattr(self._graph_store, "_graph")
+                and isinstance(self._graph_store._graph, nx.Graph)
+            ):
+                logger.info(
+                    "Graph store does not support direct graph access, skipping edge migration"
+                )
+                return
+        except ImportError:
+            logger.info("NetworkX not available, skipping edge migration")
             return
 
         try:
-            # Get all edges via nodes (async)
-            all_nodes = await self._graph_store.get_all_nodes()
-            seen_edges = set()
+            # Get all edges directly
+            all_edges = await self._graph_store.get_all_edges()
+            report.edges_scanned = len(all_edges)
+            now = datetime.now().isoformat()
 
-            for node in all_nodes:
-                # get_neighbors returns list[dict] with neighbor info including edges
-                neighbors = await self._graph_store.get_neighbors(node.id, depth=1)
-                for neighbor in neighbors:
-                    # Each neighbor dict may have edge info
-                    edge_info = neighbor.get("edge", {})
-                    if not edge_info:
+            # Track edges that need migration
+            edges_to_update: list[tuple[str, str]] = []
+
+            for edge in all_edges:
+                # Check if edge needs migration (missing staleness fields)
+                # We need to check the raw edge data in the graph
+                async with self._graph_store._acquire_lock():
+                    if not self._graph_store._graph.has_edge(
+                        edge.source_id, edge.target_id
+                    ):
                         continue
 
-                    # Use source-target-relation as unique key
-                    source_id = edge_info.get("source_id", node.id)
-                    target_id = edge_info.get("target_id", neighbor.get("id", ""))
-                    relation = edge_info.get("relation", "")
-                    edge_key = f"{source_id}-{target_id}-{relation}"
+                    edge_data = self._graph_store._graph.edges[
+                        edge.source_id, edge.target_id
+                    ]
 
-                    if edge_key in seen_edges:
-                        continue
-                    seen_edges.add(edge_key)
+                    needs_migration = (
+                        "hit_count" not in edge_data
+                        or "last_accessed" not in edge_data
+                        or "created_at" not in edge_data
+                    )
 
-                    report.edges_scanned += 1
-
-                    # Check if edge has embedding field
-                    embedding = edge_info.get("embedding")
-                    if embedding is not None:
+                    if not needs_migration:
                         report.edges_skipped += 1
                         continue
 
-                    # Edge needs migration (embedding will be None until backfilled)
-                    report.edges_migrated += 1
+                    edges_to_update.append((edge.source_id, edge.target_id))
+
+            # Perform updates outside the per-edge lock
+            if edges_to_update and not dry_run:
+                async with self._graph_store._acquire_lock():
+                    for source_id, target_id in edges_to_update:
+                        if self._graph_store._graph.has_edge(source_id, target_id):
+                            edge_data = self._graph_store._graph.edges[
+                                source_id, target_id
+                            ]
+                            if "hit_count" not in edge_data:
+                                edge_data["hit_count"] = 0
+                            if "last_accessed" not in edge_data:
+                                edge_data["last_accessed"] = now
+                            if "created_at" not in edge_data:
+                                edge_data["created_at"] = now
+
+                    self._graph_store._save()
+
+            report.edges_migrated = len(edges_to_update)
+            logger.info(
+                f"Edge migration: {report.edges_migrated} migrated, "
+                f"{report.edges_skipped} already have staleness fields"
+            )
 
         except Exception as e:
-            logger.error(f"Error scanning graph edges: {e}")
-            report.errors.append(f"Graph edge scan error: {e}")
+            logger.error(f"Error migrating graph edges: {e}")
+            report.errors.append(f"Graph edge migration error: {e}")
+
+    async def _migrate_decayed_timestamps(
+        self, report: MigrationReport, dry_run: bool
+    ) -> None:
+        """
+        Add decayed_at timestamp to DECAYED memories missing it.
+
+        This is required for hard_delete_expired() to work correctly.
+        """
+        if not self._collection_manager:
+            logger.info("No collection manager provided, skipping decayed timestamp migration")
+            return
+
+        try:
+            # Get all decayed memories
+            decayed_store = getattr(self._collection_manager, "_decayed", None)
+            if not decayed_store:
+                logger.info("No decayed collection found, skipping")
+                return
+
+            decayed_docs = await decayed_store.get_all(limit=10000)
+            now = datetime.now().isoformat()
+            migrated_count = 0
+
+            for doc in decayed_docs:
+                metadata = doc.get("metadata", {})
+
+                # Check if decayed_at is missing
+                if "decayed_at" in metadata:
+                    continue
+
+                if not dry_run:
+                    # Add decayed_at timestamp
+                    # Use migrated_at or created_at as fallback, otherwise use now
+                    decayed_at = (
+                        metadata.get("migrated_at")
+                        or metadata.get("created_at")
+                        or now
+                    )
+                    await decayed_store.update_metadata(
+                        doc["id"], {"decayed_at": decayed_at}
+                    )
+
+                migrated_count += 1
+
+            logger.info(
+                f"Decayed timestamp migration: {migrated_count} memories updated"
+            )
+            # Add to report (reusing vectors fields for simplicity)
+            report.vectors_scanned += len(decayed_docs)
+            report.vectors_migrated += migrated_count
+
+        except Exception as e:
+            logger.error(f"Error migrating decayed timestamps: {e}")
+            report.errors.append(f"Decayed timestamp migration error: {e}")
 
     def _has_lifecycle_metadata(self, metadata: dict) -> bool:
         """Check if metadata contains lifecycle fields."""
@@ -357,6 +456,12 @@ class MemoryMigrator:
         """
         Check if any memories need migration.
 
+        Checks:
+        1. Vector documents for lifecycle metadata (stage field)
+        2. Graph nodes for stage field
+        3. Graph edges for staleness fields (hit_count, last_accessed, created_at)
+        4. Decayed memories for decayed_at timestamp
+
         Returns:
             True if migration is needed, False otherwise
         """
@@ -371,7 +476,7 @@ class MemoryMigrator:
             except Exception as e:
                 logger.warning(f"Error checking vector store: {e}")
 
-        # Check graph store
+        # Check graph store nodes
         if self._graph_store:
             try:
                 nodes = await self._graph_store.get_all_nodes()
@@ -379,7 +484,49 @@ class MemoryMigrator:
                     if not hasattr(node, "stage") or node.stage is None:
                         return True
             except Exception as e:
-                logger.warning(f"Error checking graph store: {e}")
+                logger.warning(f"Error checking graph store nodes: {e}")
+
+        # Check graph store edges for staleness fields
+        if self._graph_store:
+            try:
+                import networkx as nx
+
+                if (
+                    hasattr(self._graph_store, "_graph")
+                    and isinstance(self._graph_store._graph, nx.Graph)
+                ):
+                    edges = await self._graph_store.get_all_edges()
+                    for edge in edges[:10]:  # Sample first 10
+                        async with self._graph_store._acquire_lock():
+                            if self._graph_store._graph.has_edge(
+                                edge.source_id, edge.target_id
+                            ):
+                                edge_data = self._graph_store._graph.edges[
+                                    edge.source_id, edge.target_id
+                                ]
+                                if (
+                                    "hit_count" not in edge_data
+                                    or "last_accessed" not in edge_data
+                                    or "created_at" not in edge_data
+                                ):
+                                    return True
+            except ImportError:
+                pass  # NetworkX not available
+            except Exception as e:
+                logger.warning(f"Error checking graph store edges: {e}")
+
+        # Check decayed memories for decayed_at timestamp
+        if self._collection_manager:
+            try:
+                decayed_store = getattr(self._collection_manager, "_decayed", None)
+                if decayed_store:
+                    decayed_docs = await decayed_store.get_all(limit=10)
+                    for doc in decayed_docs:
+                        metadata = doc.get("metadata", {})
+                        if "decayed_at" not in metadata:
+                            return True
+            except Exception as e:
+                logger.warning(f"Error checking decayed memories: {e}")
 
         return False
 

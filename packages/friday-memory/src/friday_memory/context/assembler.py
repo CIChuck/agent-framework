@@ -288,7 +288,7 @@ class ContextAssembler(ContextEngineeringInterface):
             )
 
             # Apply token budget with priority hierarchy
-            budgeted_payload = self._apply_budget(payload, budget_limit)
+            budgeted_payload = self._apply_budget(payload, budget_limit, query=query)
 
             self._emit_event(
                 "context_assembled",
@@ -309,7 +309,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 self._telemetry.end_span(span_id)
 
     def _apply_budget(
-        self, payload: ContextPayload, budget_limit: int
+        self, payload: ContextPayload, budget_limit: int, query: str = ""
     ) -> ContextPayload:
         """
         Apply token budget with lifecycle-aware priority hierarchy.
@@ -326,9 +326,20 @@ class ContextAssembler(ContextEngineeringInterface):
         - Uses inclusion_score (similarity × retrieval_factor) when available
         - Prioritizes short-term memories (hot context) over long-term
         - Filters DECAYED memories as safety measure
+        - Conditionally excludes summaries when full history is present
+        - Filters insights/summaries by query relevance (keyword overlap)
         """
         # Step 0: Filter out any DECAYED memories that slipped through
         filtered_payload = self._filter_decayed(payload)
+
+        # Step 0.5: Conditionally exclude summaries if history is complete
+        # Summaries are redundant when we have full conversation history
+        filtered_payload = self._apply_conditional_summaries(filtered_payload)
+
+        # Step 0.6: Filter insights by query relevance (keyword overlap)
+        # This reduces irrelevant insights without expensive embedding computation
+        if query:
+            filtered_payload = self._filter_by_query_relevance(filtered_payload, query)
 
         current_tokens = self._estimate_payload_tokens(filtered_payload)
 
@@ -488,12 +499,14 @@ class ContextAssembler(ContextEngineeringInterface):
         if decayed_count > 0:
             return ContextPayload(
                 history=payload.history,
+                prior_history=payload.prior_history,
                 passages=filtered_passages,
                 entities=payload.entities,
                 facts=payload.facts,
                 recent_memories=payload.recent_memories,
                 insights=payload.insights,
                 summaries=payload.summaries,
+                key_facts=payload.key_facts,
                 debug_info={
                     **payload.debug_info,
                     "decayed_filtered": decayed_count,
@@ -501,6 +514,224 @@ class ContextAssembler(ContextEngineeringInterface):
             )
 
         return payload
+
+    def _apply_conditional_summaries(self, payload: ContextPayload) -> ContextPayload:
+        """
+        Conditionally exclude conversation summaries when full history is present.
+
+        Summaries are valuable ONLY when:
+        1. History was truncated (summaries fill the gap for older context)
+        2. Session is "cold" (no recent turns - summaries provide prior knowledge)
+
+        When we have complete recent history, summaries are redundant and waste tokens.
+
+        Args:
+            payload: The context payload to process
+
+        Returns:
+            Payload with summaries cleared if conditions are met
+        """
+        # Define thresholds
+        expected_history_limit = 10  # Typical history limit
+        cold_session_threshold = 3   # If fewer turns, session is "cold"
+
+        history_count = len(payload.history)
+        summaries_count = len(payload.summaries) if payload.summaries else 0
+
+        # No summaries to process
+        if summaries_count == 0:
+            return payload
+
+        # Check if we should include summaries
+        session_is_cold = history_count < cold_session_threshold
+        history_is_complete = history_count >= expected_history_limit
+
+        # Include summaries if session is cold OR history was NOT complete
+        should_include_summaries = session_is_cold or not history_is_complete
+
+        if should_include_summaries:
+            logger.debug(
+                f"Including summaries: session_cold={session_is_cold}, "
+                f"history_complete={history_is_complete}, history_count={history_count}"
+            )
+            return payload
+
+        # Exclude summaries - history is complete and session is warm
+        logger.info(
+            f"Excluding {summaries_count} summaries: full history present "
+            f"({history_count} turns)"
+        )
+        self._emit_event(
+            "summaries_excluded",
+            {
+                "reason": "full_history_present",
+                "summaries_excluded": summaries_count,
+                "history_count": history_count,
+            },
+        )
+
+        return ContextPayload(
+            history=payload.history,
+            prior_history=payload.prior_history,
+            passages=payload.passages,
+            entities=payload.entities,
+            facts=payload.facts,
+            recent_memories=payload.recent_memories,
+            insights=payload.insights,
+            summaries=[],  # Clear summaries
+            key_facts=payload.key_facts,
+            debug_info={
+                **payload.debug_info,
+                "summaries_excluded": summaries_count,
+                "summaries_exclusion_reason": "full_history_present",
+            },
+        )
+
+    def _filter_by_query_relevance(
+        self, payload: ContextPayload, query: str
+    ) -> ContextPayload:
+        """
+        Filter insights by relevance to the current query.
+
+        Uses lightweight keyword/entity overlap scoring to filter out
+        insights that are unlikely to be relevant to the query.
+        This avoids expensive embedding computation while still improving
+        context quality.
+
+        Args:
+            payload: The context payload to filter
+            query: The current user query
+
+        Returns:
+            Filtered payload with relevant insights prioritized
+        """
+        if not payload.insights:
+            return payload
+
+        # Extract keywords from query (lowercased, removing common words)
+        query_keywords = self._extract_keywords(query)
+
+        if not query_keywords:
+            # Can't filter without keywords, return as-is
+            return payload
+
+        # Score and filter insights by keyword overlap
+        scored_insights: list[tuple[dict, float]] = []
+
+        for insight in payload.insights:
+            text = insight.get("text", "") or insight.get("document", "")
+            insight_keywords = self._extract_keywords(text)
+
+            # Calculate overlap score
+            if insight_keywords:
+                overlap = query_keywords & insight_keywords
+                score = len(overlap) / max(len(query_keywords), 1)
+            else:
+                score = 0.0
+
+            # Also check entities_mentioned metadata
+            metadata = insight.get("metadata", {})
+            entities_mentioned = metadata.get("entities_mentioned", "")
+            if entities_mentioned:
+                entity_keywords = {
+                    e.strip().lower() for e in entities_mentioned.split(";") if e.strip()
+                }
+                entity_overlap = query_keywords & entity_keywords
+                entity_score = len(entity_overlap) / max(len(query_keywords), 1)
+                score = max(score, entity_score)
+
+            scored_insights.append((insight, score))
+
+        # Keep insights that have at least some relevance (score > 0)
+        # or always keep at least the top 5 most recent (in case query is novel)
+        relevant = [
+            (insight, score) for insight, score in scored_insights if score > 0
+        ]
+        # Sort by score descending
+        relevant.sort(key=lambda x: x[1], reverse=True)
+
+        # If very few relevant, also keep some recent ones for serendipity
+        if len(relevant) < 5:
+            # Add recent insights that aren't already included
+            relevant_ids = {id(i) for i, _ in relevant}
+            for insight, _ in scored_insights[:10]:
+                if id(insight) not in relevant_ids and len(relevant) < 10:
+                    relevant.append((insight, 0.0))
+
+        filtered_insights = [insight for insight, _ in relevant]
+        excluded_count = len(payload.insights) - len(filtered_insights)
+
+        if excluded_count > 0:
+            logger.debug(
+                f"Filtered {excluded_count} insights by query relevance "
+                f"(kept {len(filtered_insights)})"
+            )
+
+        return ContextPayload(
+            history=payload.history,
+            prior_history=payload.prior_history,
+            passages=payload.passages,
+            entities=payload.entities,
+            facts=payload.facts,
+            recent_memories=payload.recent_memories,
+            insights=filtered_insights,
+            summaries=payload.summaries,
+            key_facts=payload.key_facts,
+            debug_info={
+                **payload.debug_info,
+                "insights_filtered_by_relevance": excluded_count,
+            },
+        )
+
+    def _extract_keywords(self, text: str) -> set[str]:
+        """
+        Extract meaningful keywords from text for relevance scoring.
+
+        Uses simple word extraction with stopword filtering.
+        Lightweight alternative to embedding-based similarity.
+
+        Args:
+            text: The text to extract keywords from
+
+        Returns:
+            Set of lowercase keywords
+        """
+        # Common stopwords to filter out
+        stopwords = {
+            "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
+            "have", "has", "had", "do", "does", "did", "will", "would", "could",
+            "should", "may", "might", "must", "shall", "can", "need", "dare",
+            "ought", "used", "to", "of", "in", "for", "on", "with", "at", "by",
+            "from", "up", "about", "into", "through", "during", "before", "after",
+            "above", "below", "between", "under", "again", "further", "then",
+            "once", "here", "there", "when", "where", "why", "how", "all", "each",
+            "few", "more", "most", "other", "some", "such", "no", "nor", "not",
+            "only", "own", "same", "so", "than", "too", "very", "just", "and",
+            "but", "if", "or", "because", "as", "until", "while", "this", "that",
+            "these", "those", "am", "it", "its", "i", "me", "my", "myself", "we",
+            "our", "ours", "ourselves", "you", "your", "yours", "yourself",
+            "yourselves", "he", "him", "his", "himself", "she", "her", "hers",
+            "herself", "they", "them", "their", "theirs", "themselves", "what",
+            "which", "who", "whom", "also", "get", "got", "getting", "like",
+            "really", "think", "know", "want", "make", "see", "say", "said",
+        }
+
+        # Extract words, lowercase, filter stopwords and short words
+        words = text.lower().split()
+        keywords = set()
+
+        for word in words:
+            # Clean punctuation
+            clean_word = word.strip(".,!?\"'()[]{}:;-")
+            if (
+                clean_word
+                and len(clean_word) > 2
+                and clean_word not in stopwords
+                and not clean_word.isdigit()
+            ):
+                keywords.add(clean_word)
+
+        return keywords
 
     def _separate_by_stage(
         self, passages: list[dict[str, Any]]
@@ -600,23 +831,29 @@ class ContextAssembler(ContextEngineeringInterface):
         facts: list,
         insights: list,
         summaries: list,
+        key_facts: list[str] | None = None,
+        prior_history: list | None = None,
     ) -> ContextPayload:
         """Create a new payload with pruned content including insights/summaries."""
         return ContextPayload(
             history=history,
+            prior_history=prior_history if prior_history is not None else original.prior_history,
             passages=passages,
             entities=entities,
             facts=facts,
             recent_memories=original.recent_memories,
             insights=insights,
             summaries=summaries,
+            key_facts=key_facts if key_facts is not None else original.key_facts,
             debug_info={
                 **original.debug_info,
                 "pruned": True,
                 "original_history": len(original.history),
+                "original_prior_history": len(original.prior_history),
                 "original_passages": len(original.passages),
                 "original_insights": len(original.insights) if original.insights else 0,
                 "original_summaries": len(original.summaries) if original.summaries else 0,
+                "original_key_facts": len(original.key_facts) if original.key_facts else 0,
             },
         )
 
@@ -666,16 +903,19 @@ class ContextAssembler(ContextEngineeringInterface):
         """Create a new payload with pruned content."""
         return ContextPayload(
             history=history,
+            prior_history=original.prior_history,
             passages=passages,
             entities=entities,
             facts=facts,
             recent_memories=original.recent_memories,
             insights=original.insights,
             summaries=original.summaries,
+            key_facts=original.key_facts,
             debug_info={
                 **original.debug_info,
                 "pruned": True,
                 "original_history": len(original.history),
+                "original_prior_history": len(original.prior_history),
                 "original_passages": len(original.passages),
             },
         )

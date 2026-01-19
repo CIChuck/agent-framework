@@ -107,15 +107,22 @@ class PromptArchitect:
         messages.append({"role": "system", "content": system_content})
 
         # 2. Episodic memory (conversation history, chronological)
-        for turn in payload.history:
+        # Merge prior_history + history (prior sessions first, then current session)
+        all_history = list(payload.prior_history) + list(payload.history)
+        for turn in all_history:
+            # Format timestamp for temporal context: [YYYY-MM-DD HH:MM]
+            timestamp_str = ""
+            if turn.timestamp:
+                timestamp_str = f"[{turn.timestamp.strftime('%Y-%m-%d %H:%M')}] "
+
             messages.append({
                 "role": "user",
-                "content": f"[{self.user_name}]: {turn.user_message}",
+                "content": f"{timestamp_str}[{self.user_name}]: {turn.user_message}",
             })
             if turn.assistant_message:
                 messages.append({
                     "role": "assistant",
-                    "content": f"[{self.assistant_name}]: {turn.assistant_message}",
+                    "content": f"{timestamp_str}[{self.assistant_name}]: {turn.assistant_message}",
                 })
 
         # 3. Final message: supporting context + query
@@ -192,28 +199,31 @@ class PromptArchitect:
             for memory in payload.recent_memories:
                 sections.append(memory)
 
-        # 2. Recent insights (most recent first - already sorted by created_at desc)
+        # 2. Key facts (most recent first - already sorted by created_at desc)
+        if payload.key_facts:
+            sections.append("\n## Key Facts")
+            for fact in payload.key_facts:
+                text = fact.get("text", "")
+                created_at = fact.get("metadata", {}).get("created_at", "")
+                timestamp = created_at[:16] if created_at else ""
+                if timestamp:
+                    sections.append(f"- [{timestamp}] {text}")
+                else:
+                    sections.append(f"- {text}")
+
+        # 3. Recent insights (most recent first - already sorted by created_at desc)
         if payload.insights:
             sections.append("\n## Recent Insights")
             for insight in payload.insights:
                 text = insight.get("text", "")
                 sections.append(f"- {text}")
 
-        # 3. Recent summaries (most recent first - already sorted by created_at desc)
+        # 4. Recent summaries (most recent first - already sorted by created_at desc)
         if payload.summaries:
             sections.append("\n## Conversation Summaries")
             for summary in payload.summaries:
                 text = summary.get("text", "")
                 sections.append(f"- {text}")
-
-        # 4. Relevant entities (Hebbian-ranked by hit_count)
-        if payload.entities:
-            sections.append("\n## Known Entities")
-            for entity in payload.entities[:10]:
-                entity_type = getattr(entity, "type", "entity")
-                label = getattr(entity, "label", "unknown")
-                hit_count = getattr(entity, "hit_count", 0)
-                sections.append(f"- {label} ({entity_type}, relevance: {hit_count})")
 
         # 5. Scoped state variables
         if state and state.scoped_vars:
@@ -233,6 +243,15 @@ class PromptArchitect:
         if payload.recent_memories:
             context["prior_knowledge"] = payload.recent_memories
 
+        if payload.key_facts:
+            context["key_facts"] = [
+                {
+                    "text": f.get("text", ""),
+                    "created_at": f.get("metadata", {}).get("created_at", ""),
+                }
+                for f in payload.key_facts
+            ]
+
         if payload.insights:
             context["recent_insights"] = [
                 {
@@ -249,16 +268,6 @@ class PromptArchitect:
                     "created_at": s.get("metadata", {}).get("created_at", ""),
                 }
                 for s in payload.summaries
-            ]
-
-        if payload.entities:
-            context["known_entities"] = [
-                {
-                    "label": getattr(e, "label", "unknown"),
-                    "type": getattr(e, "type", "entity"),
-                    "hit_count": getattr(e, "hit_count", 0),
-                }
-                for e in payload.entities[:10]
             ]
 
         if state and state.scoped_vars:
@@ -280,6 +289,15 @@ class PromptArchitect:
                 rel = SubElement(prior, "relationship")
                 rel.text = mem
 
+        if payload.key_facts:
+            facts_elem = SubElement(root, "key_facts")
+            for f in payload.key_facts:
+                fact_elem = SubElement(facts_elem, "fact")
+                created_at = f.get("metadata", {}).get("created_at", "")
+                if created_at:
+                    fact_elem.set("created_at", created_at)
+                fact_elem.text = f.get("text", "")
+
         if payload.insights:
             insights_elem = SubElement(root, "recent_insights")
             for i in payload.insights:
@@ -297,14 +315,6 @@ class PromptArchitect:
                 if created_at:
                     summary.set("created_at", created_at)
                 summary.text = s.get("text", "")
-
-        if payload.entities:
-            entities_elem = SubElement(root, "known_entities")
-            for e in payload.entities[:10]:
-                entity = SubElement(entities_elem, "entity")
-                entity.set("type", getattr(e, "type", "entity"))
-                entity.set("hit_count", str(getattr(e, "hit_count", 0)))
-                entity.text = getattr(e, "label", "unknown")
 
         if state and state.scoped_vars:
             state_elem = SubElement(root, "session_state")
@@ -341,40 +351,38 @@ class PromptArchitect:
             for mem in payload.recent_memories:
                 sections.append(f"| {mem} |")
 
-        # 2. Recent insights with timestamps
+        # 2. Key facts with timestamps (bullets, most recent first)
+        if payload.key_facts:
+            sections.append("")
+            sections.append("## Key Facts")
+            sections.append("")
+            for fact in payload.key_facts:
+                text = fact.get("text", "")
+                created_at = fact.get("metadata", {}).get("created_at", "")
+                timestamp = created_at[:16] if created_at else "N/A"
+                sections.append(f"- **[{timestamp}]** {text}")
+
+        # 3. Recent insights with timestamps (bullets, not numbered)
         if payload.insights:
             sections.append("")
             sections.append("## Recent Insights")
             sections.append("")
-            for i, insight in enumerate(payload.insights, 1):
+            for insight in payload.insights:
                 text = insight.get("text", "")
                 created_at = insight.get("metadata", {}).get("created_at", "")
                 timestamp = created_at[:16] if created_at else "N/A"
-                sections.append(f"{i}. **[{timestamp}]** {text}")
+                sections.append(f"- **[{timestamp}]** {text}")
 
-        # 3. Summaries with timestamps
+        # 4. Summaries with timestamps (bullets, not numbered)
         if payload.summaries:
             sections.append("")
             sections.append("## Conversation Summaries")
             sections.append("")
-            for i, summary in enumerate(payload.summaries, 1):
+            for summary in payload.summaries:
                 text = summary.get("text", "")
                 created_at = summary.get("metadata", {}).get("created_at", "")
                 timestamp = created_at[:16] if created_at else "N/A"
-                sections.append(f"{i}. **[{timestamp}]** {text}")
-
-        # 4. Entities as table
-        if payload.entities:
-            sections.append("")
-            sections.append("## Known Entities")
-            sections.append("")
-            sections.append("| Entity | Type | Relevance |")
-            sections.append("|--------|------|-----------|")
-            for entity in payload.entities[:10]:
-                label = getattr(entity, "label", "unknown")
-                entity_type = getattr(entity, "type", "entity")
-                hit_count = getattr(entity, "hit_count", 0)
-                sections.append(f"| {label} | {entity_type} | {hit_count} |")
+                sections.append(f"- **[{timestamp}]** {text}")
 
         # 5. Session state as table
         if state and state.scoped_vars:

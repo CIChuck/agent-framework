@@ -20,7 +20,7 @@ Commands (prefix with /):
   /clear           - Clear conversation history
   /history         - Show conversation history
   /memory          - Show memory statistics
-  /context         - Show assembled context payload (FULL, no truncation)
+  /context [--debug] - Show context payload (--debug for token counts)
   /prompt          - Show full formatted prompt sent to LLM (FULL, no truncation)
   /prime           - Load and show primed context (works before first turn)
   /debug           - Show debug info from context assembly
@@ -91,6 +91,7 @@ from friday_memory.maintenance import MemoryReorganizer
 from friday_memory.maintenance.models import (
     EmbeddingConfig,
     FactCheckConfig,
+    LifecycleDecayConfig,
     LogConfig,
     LogFormat,
     LogVerbosity,
@@ -215,7 +216,9 @@ class MemoryChatSession:
             case "memory":
                 return self.cmd_memory()
             case "context":
-                return self.cmd_context()
+                # Check for --debug flag
+                debug_mode = "--debug" in parts[1] if len(parts) > 1 else False
+                return self.cmd_context(debug_mode=debug_mode)
             case "prompt":
                 return self.cmd_prompt()
             case "debug":
@@ -274,22 +277,51 @@ class MemoryChatSession:
         return "Conversation history cleared."
 
     async def cmd_history(self) -> str:
-        """Show conversation history (up to 100 turns from episodic store)."""
+        """Show conversation history including prior sessions with timestamps."""
         try:
-            # Fetch directly from episodic store for comprehensive view
-            turns = await self.controller.episodic.get_turns(self.session_id, limit=100)
-            if not turns:
+            # Get merged history from last_payload if available (includes prior sessions)
+            prior_history = []
+            if self.last_payload and self.last_payload.prior_history:
+                prior_history = self.last_payload.prior_history
+
+            # Fetch current session history from episodic store
+            current_turns = await self.controller.episodic.get_turns(self.session_id, limit=100)
+
+            # Combine: prior sessions first, then current session
+            all_turns = list(prior_history) + list(current_turns)
+
+            if not all_turns:
                 return "No conversation history yet."
 
-            lines = ["=" * 60, f"CONVERSATION HISTORY ({len(turns)} turns)", "=" * 60]
-            for i, turn in enumerate(turns, 1):
-                user_msg = turn.user_message[:100] + "..." if len(turn.user_message) > 100 else turn.user_message
-                asst_msg = turn.assistant_message[:100] + "..." if len(turn.assistant_message) > 100 else turn.assistant_message
+            # Count turns by type
+            prior_count = len(prior_history)
+            current_count = len(current_turns)
+
+            lines = [
+                "=" * 60,
+                f"CONVERSATION HISTORY ({len(all_turns)} total turns)",
+                f"  Prior sessions: {prior_count} turns",
+                f"  Current session: {current_count} turns",
+                "=" * 60
+            ]
+
+            for i, turn in enumerate(all_turns, 1):
+                # Format timestamp
+                timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+
+                # Check if this is from a prior session
+                is_prior = turn.metadata.get("from_prior_session", False) if turn.metadata else False
+                session_marker = " [prior]" if is_prior else ""
+
+                user_msg = turn.user_message[:100] + "..." if len(turn.user_message or "") > 100 else (turn.user_message or "")
+                asst_msg = turn.assistant_message[:100] + "..." if len(turn.assistant_message or "") > 100 else (turn.assistant_message or "")
                 user_msg = user_msg.replace("\n", " ")
                 asst_msg = asst_msg.replace("\n", " ")
-                lines.append(f"\n  Turn {i} [{turn.id[:8]}...]:")
+
+                lines.append(f"\n  [{timestamp}]{session_marker} Turn {i}:")
                 lines.append(f"    {self.user_name}: {user_msg}")
                 lines.append(f"    {self.assistant_name}: {asst_msg}")
+
             return "\n".join(lines)
         except Exception as e:
             return f"Error retrieving history: {e}"
@@ -306,8 +338,12 @@ Memory Statistics:
   Scoped variables: {var_count}
 """
 
-    def cmd_context(self) -> str:
-        """Show detailed context assembly in configured format (FULL content)."""
+    def cmd_context(self, debug_mode: bool = False) -> str:
+        """
+        Show detailed context assembly in configured format (FULL content).
+
+        With --debug flag, shows additional token counts per section.
+        """
         if not self.last_payload:
             return "No context assembled yet. Send a message first or use /prime."
 
@@ -315,13 +351,87 @@ Memory Statistics:
 
         # Summary counts
         lines.append(f"\nSummary:")
-        lines.append(f"  History turns: {len(self.last_payload.history)}")
+        lines.append(f"  Prior session turns: {len(self.last_payload.prior_history)}")
+        lines.append(f"  Current session turns: {len(self.last_payload.history)}")
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
-        lines.append(f"  Graph facts: {len(self.last_payload.facts)}")
+        lines.append(f"  Graph facts (edges): {len(self.last_payload.facts)}")
+        lines.append(f"  Key facts (natural language): {len(self.last_payload.key_facts)}")
         lines.append(f"  Relationship summaries: {len(self.last_payload.recent_memories)}")
         lines.append(f"  Insights: {len(self.last_payload.insights)}")
         lines.append(f"  Summaries: {len(self.last_payload.summaries)}")
+
+        # Debug mode: show token counts and additional info
+        if debug_mode:
+            lines.append(f"\n--- TOKEN ESTIMATES (debug mode) ---")
+            try:
+                import tiktoken
+                enc = tiktoken.get_encoding("cl100k_base")
+
+                # Count tokens per section
+                def count_tokens(text: str) -> int:
+                    return len(enc.encode(text)) if text else 0
+
+                # History tokens
+                history_text = "\n".join(
+                    f"{t.user_message} {t.assistant_message}"
+                    for t in self.last_payload.history
+                )
+                history_tokens = count_tokens(history_text)
+
+                # Insights tokens
+                insights_text = "\n".join(
+                    i.get("text", "") or i.get("document", "")
+                    for i in self.last_payload.insights
+                )
+                insights_tokens = count_tokens(insights_text)
+
+                # Summaries tokens
+                summaries_text = "\n".join(
+                    s.get("text", "") or s.get("document", "")
+                    for s in self.last_payload.summaries
+                )
+                summaries_tokens = count_tokens(summaries_text)
+
+                # Relationships tokens
+                relationships_text = "\n".join(self.last_payload.recent_memories)
+                relationships_tokens = count_tokens(relationships_text)
+
+                # Key facts tokens
+                key_facts_text = "\n".join(
+                    f.get("text", "") for f in self.last_payload.key_facts
+                )
+                key_facts_tokens = count_tokens(key_facts_text)
+
+                # Passages tokens
+                passages_text = "\n".join(
+                    p.get("text", "") for p in self.last_payload.passages
+                )
+                passages_tokens = count_tokens(passages_text)
+
+                # Total formatted context
+                formatted = self.architect._build_supporting_context(
+                    self.last_payload, self.state, self.context_format
+                )
+                formatted_tokens = count_tokens(formatted or "")
+
+                lines.append(f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)")
+                lines.append(f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)")
+                lines.append(f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)")
+                lines.append(f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
+                lines.append(f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)")
+                lines.append(f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)")
+                lines.append(f"  ----------------------------------------")
+                lines.append(f"  Formatted Context: ~{formatted_tokens} tokens (total)")
+
+                # Debug info from payload
+                if self.last_payload.debug_info:
+                    lines.append(f"\n--- DEBUG INFO ---")
+                    for key, value in self.last_payload.debug_info.items():
+                        lines.append(f"  {key}: {value}")
+
+            except ImportError:
+                lines.append("  (tiktoken not available for token counting)")
 
         # Show formatted supporting context using PromptArchitect
         lines.append(f"\n--- Supporting Context (format: {self.context_format}) ---")
@@ -627,10 +737,12 @@ Memory Statistics:
             # Summary counts
             lines.append(f"\nContext loaded:")
             lines.append(f"  Entities: {len(payload.entities)}")
+            lines.append(f"  Key Facts: {len(payload.key_facts)}")
             lines.append(f"  Insights: {len(payload.insights)}")
             lines.append(f"  Summaries: {len(payload.summaries)}")
             lines.append(f"  Relationships: {len(payload.recent_memories)}")
-            lines.append(f"  History turns: {len(payload.history)}")
+            lines.append(f"  Prior session turns: {len(payload.prior_history)}")
+            lines.append(f"  Current session turns: {len(payload.history)}")
 
             # Show top entities
             if payload.entities:
@@ -661,6 +773,29 @@ Memory Statistics:
                     created = summary.get("metadata", {}).get("created_at", "")[:19]
                     lines.append(f"  {i}. [{created}] {text}...")
 
+            # Show key facts
+            if payload.key_facts:
+                lines.append("\n--- Key Facts (from vector store insights) ---")
+                for i, fact in enumerate(payload.key_facts[:5], 1):
+                    text = fact.get("text", "")
+                    created = fact.get("metadata", {}).get("created_at", "")[:19]
+                    display_text = text[:150] + "..." if len(text) > 150 else text
+                    lines.append(f"  {i}. [{created}] {display_text}")
+
+            # Show prior session history
+            if payload.prior_history:
+                lines.append("\n--- Prior Session History ---")
+                # Group by session
+                sessions_seen: set[str] = set()
+                for turn in payload.prior_history[:10]:
+                    session_id = turn.metadata.get("original_session_id", turn.session_id)
+                    if session_id not in sessions_seen:
+                        sessions_seen.add(session_id)
+                        lines.append(f"  Session: {session_id[:12]}...")
+                    timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+                    user_preview = (turn.user_message or "")[:50]
+                    lines.append(f"    [{timestamp}] {user_preview}...")
+
             lines.append("\n" + "=" * 60)
             lines.append("Use /context for full details, /prompt to see formatted prompt.")
             return "\n".join(lines)
@@ -669,7 +804,7 @@ Memory Statistics:
             return f"Error fetching primed context: {e}"
 
     async def cmd_sessions(self) -> str:
-        """List all stored transcript sessions."""
+        """List all stored transcript sessions, marking those in context."""
         if not self.transcript_store:
             return "Transcript storage not configured."
 
@@ -678,12 +813,35 @@ Memory Statistics:
             if not sessions:
                 return "No transcript sessions found."
 
-            lines = ["=" * 60, f"TRANSCRIPT SESSIONS ({len(sessions)} total)", "=" * 60]
+            # Get priming config to determine which sessions are "in context"
+            priming_config = getattr(self.controller, '_priming_config', {})
+            previous_sessions_count = priming_config.get('previous_sessions', 0)
+
+            # Determine which sessions are in context (current + N most recent)
+            in_context_ids: set[str] = {self.session_id}
+            if previous_sessions_count > 0:
+                # Sessions are already ordered newest first
+                prior_sessions = [s for s in sessions if s.session_id != self.session_id]
+                for session in prior_sessions[:previous_sessions_count]:
+                    in_context_ids.add(session.session_id)
+
+            lines = [
+                "=" * 60,
+                f"TRANSCRIPT SESSIONS ({len(sessions)} total)",
+                f"  In context: {len(in_context_ids)} (current + {previous_sessions_count} prior)",
+                "=" * 60
+            ]
 
             for session in sessions:
-                # Mark current session
-                current = " [CURRENT]" if session.session_id == self.session_id else ""
-                lines.append(f"\n  {session.session_id}{current}")
+                # Mark current session and in-context sessions
+                markers = []
+                if session.session_id == self.session_id:
+                    markers.append("CURRENT")
+                elif session.session_id in in_context_ids:
+                    markers.append("IN CONTEXT")
+
+                marker_str = f" [{', '.join(markers)}]" if markers else ""
+                lines.append(f"\n  {session.session_id}{marker_str}")
                 lines.append(f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
                 if session.ended_at:
                     lines.append(f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}")
@@ -884,6 +1042,7 @@ Memory Statistics:
           --synthesize    Just run synthesis (meta-insights, relationships)
           --verify        Just run fact verification
           --backup        Just create a backup
+          --dedupe        Just run insight deduplication (marks duplicates)
 
         Examples:
           /reorganize                    - Dry run with all steps
@@ -892,6 +1051,8 @@ Memory Statistics:
           /reorganize --execute --prune  - Execute pruning only
           /reorganize --execute --synthesize - Execute synthesis only
           /reorganize --skip-lifecycle   - Skip lifecycle/optimization steps
+          /reorganize --dedupe           - Dry run insight deduplication
+          /reorganize --execute --dedupe - Execute insight deduplication
         """
         if not self.persist_dir:
             return "Error: persist_dir not configured for this session."
@@ -910,6 +1071,7 @@ Memory Statistics:
         synthesize_only = "--synthesize" in opt_list
         verify_only = "--verify" in opt_list
         backup_only = "--backup" in opt_list
+        dedupe_only = "--dedupe" in opt_list
 
         # Use maintenance config from config.yaml or defaults
         config = self.maintenance_config or MaintenanceConfig()
@@ -972,6 +1134,41 @@ Memory Statistics:
                 lines.append(f"  Location: {manifest.backup_dir}")
                 lines.append(f"  Files backed up: {len(manifest.files)}")
                 lines.append("\nBackup complete.")
+                return "\n".join(lines)
+
+            if dedupe_only:
+                # Just run insight deduplication
+                mode = "DRY RUN" if dry_run else "EXECUTING"
+                lines.append(f"\nDeduplicating insights ({mode})...")
+                if backup_first and not dry_run:
+                    lines.append("Creating backup first...")
+                    await reorganizer.backup()
+
+                report = await reorganizer.dedupe_insights(dry_run=dry_run)
+                lines.append(f"\nDeduplication Results:")
+                lines.append(f"  Insights scanned: {report.insights_scanned}")
+                lines.append(f"  Clusters found: {report.clusters_found}")
+                lines.append(f"  Insights superseded: {report.insights_superseded}")
+
+                if report.clusters:
+                    lines.append(f"\nClusters (showing up to 10):")
+                    for cluster in report.clusters[:10]:
+                        lines.append(
+                            f"  - {cluster.entity_key}: kept {cluster.primary_insight_id[:8]}..., "
+                            f"superseded {len(cluster.superseded_ids)}"
+                        )
+                    if len(report.clusters) > 10:
+                        lines.append(f"  ... and {len(report.clusters) - 10} more clusters")
+
+                if report.errors:
+                    lines.append(f"\nErrors: {len(report.errors)}")
+                    for error in report.errors[:5]:
+                        lines.append(f"  - {error}")
+
+                if dry_run:
+                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                else:
+                    lines.append("\nDeduplication complete. Superseded insights will be filtered at retrieval.")
                 return "\n".join(lines)
 
             if analyze_only:
@@ -1276,10 +1473,10 @@ Memory Statistics:
             lines.append(f"  Nodes migrated: {report.nodes_migrated}")
             lines.append(f"  Already migrated: {report.nodes_skipped}")
 
-            lines.append(f"\nEdges:")
+            lines.append(f"\nEdges (staleness tracking):")
             lines.append(f"  Edges scanned: {report.edges_scanned}")
-            lines.append(f"  Edges need embedding: {report.edges_migrated}")
-            lines.append(f"  Already have embedding: {report.edges_skipped}")
+            lines.append(f"  Edges migrated: {report.edges_migrated}")
+            lines.append(f"  Already have staleness fields: {report.edges_skipped}")
 
             if report.errors:
                 lines.append(f"\nErrors ({len(report.errors)}):")
@@ -1326,7 +1523,7 @@ Available Commands:
   /clear           - Clear conversation history
   /history         - Show conversation history
   /memory          - Show memory statistics
-  /context         - Show assembled context payload (FULL, no truncation)
+  /context [--debug] - Show context payload (--debug for token counts)
   /prompt          - Show full formatted prompt sent to LLM (FULL, no truncation)
   /prime           - Load and show primed context (works before first turn)
   /debug           - Show debug info from context assembly
@@ -1488,6 +1685,7 @@ async def main() -> None:
     logging_config = config.get("logging", {})
     transcript_config = config.get("transcript", {})
     maintenance_yaml = config.get("maintenance", {})
+    lifecycle_yaml = config.get("lifecycle", {})
 
     # Build MaintenanceConfig from YAML
     pruning_yaml = maintenance_yaml.get("pruning", {})
@@ -1550,6 +1748,21 @@ async def main() -> None:
         or memory_config.get("collection_name", "memory_chat_test")
     )
 
+    # Build LifecycleDecayConfig from lifecycle YAML
+    lifecycle_decay_config = LifecycleDecayConfig(
+        enabled=lifecycle_yaml.get("enabled", True),
+        decay_rate=lifecycle_yaml.get("decay_rate", 0.01),
+        access_boost=lifecycle_yaml.get("access_boost", 0.2),
+        promotion_threshold=lifecycle_yaml.get("promotion_threshold", 0.7),
+        decay_threshold=lifecycle_yaml.get("decay_threshold", 0.2),
+        short_term_min_age_hours=lifecycle_yaml.get("short_term_min_age_hours", 24),
+        decayed_retention_days=lifecycle_yaml.get("decayed_retention_days", 30),
+        promotion_weight_age=lifecycle_yaml.get("promotion_weight_age", 0.2),
+        promotion_weight_access=lifecycle_yaml.get("promotion_weight_access", 0.4),
+        promotion_weight_confidence=lifecycle_yaml.get("promotion_weight_confidence", 0.2),
+        promotion_weight_connection=lifecycle_yaml.get("promotion_weight_connection", 0.2),
+    )
+
     maintenance_config = MaintenanceConfig(
         pruning=PruneConfig(
             stale_threshold_days=pruning_yaml.get("stale_threshold_days", 90),
@@ -1574,6 +1787,7 @@ async def main() -> None:
         embedding=maintenance_embedding_config,
         collection_name=maintenance_collection_name,
         backup_directory=maintenance_yaml.get("backup_directory"),
+        decay=lifecycle_decay_config,
     )
 
     # Load maintenance LLM configurations
@@ -1601,6 +1815,7 @@ async def main() -> None:
         "enabled": True,
         "top_entities": 10,
         "insights_per_entity": 3,
+        "max_facts": 10,
         "recency_days": 0,
         "token_budget": 500,
     })
@@ -1824,6 +2039,8 @@ async def main() -> None:
         collection_manager=collection_manager,
         access_buffer=access_buffer,
         graph_scorer=graph_scorer,
+        # Cross-session history support
+        transcript_store=transcript_store,
     )
 
     # 6. Create PromptArchitect (token budgeting) with speaker names

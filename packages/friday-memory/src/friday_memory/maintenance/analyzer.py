@@ -394,6 +394,59 @@ class ConsistencyAnalyzer:
 
         return issues
 
+    def _find_stale_edges(self, graph_data: dict) -> list[ConsistencyIssue]:
+        """Find edges that are stale based on hit_count and last_accessed."""
+        issues: list[ConsistencyIssue] = []
+        threshold_date = datetime.now() - timedelta(
+            days=self._config.stale_threshold_days
+        )
+
+        for edge in graph_data.get("edges", []):
+            hit_count = edge.get("hit_count", 0)
+
+            if hit_count >= self._config.min_hit_count:
+                continue
+
+            # Check last_accessed
+            last_accessed_str = edge.get("last_accessed")
+
+            # Skip edges without last_accessed (pre-migration edges)
+            # These need migration first, not pruning
+            if not last_accessed_str:
+                continue
+
+            try:
+                # Handle various datetime formats
+                if "T" in last_accessed_str:
+                    last_accessed = datetime.fromisoformat(
+                        last_accessed_str.replace("Z", "+00:00")
+                    )
+                else:
+                    last_accessed = datetime.strptime(
+                        last_accessed_str, "%Y-%m-%d %H:%M:%S"
+                    )
+
+                if last_accessed < threshold_date:
+                    source = edge.get("source", "")
+                    target = edge.get("target", "")
+                    relation = edge.get("relation", "related_to")
+                    issues.append(ConsistencyIssue(
+                        issue_type=IssueType.STALE_EDGE,
+                        severity=IssueSeverity.INFO,
+                        description=(
+                            f"Edge '{source}' --[{relation}]--> '{target}' is stale: "
+                            f"hit_count={hit_count}, "
+                            f"last_accessed={last_accessed.date()}"
+                        ),
+                        affected_ids=[source, target],
+                        store="graph",
+                        suggested_action="Consider pruning this edge",
+                    ))
+            except (ValueError, TypeError):
+                pass
+
+        return issues
+
     def _find_cross_store_issues(
         self,
         graph_data: dict,
@@ -482,6 +535,10 @@ class ConsistencyAnalyzer:
 
         logger.debug("Finding stale entities...")
         for issue in self._find_stale_entities(graph_data):
+            report.add_issue(issue)
+
+        logger.debug("Finding stale edges...")
+        for issue in self._find_stale_edges(graph_data):
             report.add_issue(issue)
 
         logger.debug("Checking cross-store consistency...")

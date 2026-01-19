@@ -6,6 +6,7 @@ Ref: Batch 1 Specification, Section 3.1
 Updated: Batch 3 - Now uses injected EmbeddingModel protocol
 """
 
+import asyncio
 from typing import TYPE_CHECKING, Any, Protocol
 
 import chromadb
@@ -72,6 +73,9 @@ class ChromaVectorStore(VectorStoreAdapter):
         self._embedding_function = embedding_function
         self._telemetry = telemetry
 
+        # Thread safety: asyncio lock for write operations
+        self._lock = asyncio.Lock()
+
         # Support both 'path' and 'persist_directory' for convenience
         storage_path = path or persist_directory
 
@@ -113,6 +117,8 @@ class ChromaVectorStore(VectorStoreAdapter):
         """
         Embeds and stores documents.
 
+        Thread-safe: Uses lock for ChromaDB write operations.
+
         Args:
             texts: List of text chunks to embed and store
             metadatas: List of metadata dicts (should include provenance)
@@ -124,7 +130,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         if not texts:
             return True
 
-        # Generate embeddings via LiteLLM
+        # Generate embeddings via LiteLLM (outside lock - can be slow)
         span_id = None
         if self._telemetry:
             span_id = self._telemetry.start_span("vector_embed")
@@ -135,13 +141,14 @@ class ChromaVectorStore(VectorStoreAdapter):
             if span_id:
                 self._telemetry.end_span(span_id)
 
-        # Add to ChromaDB
-        self._collection.add(
-            documents=texts,
-            embeddings=embeddings,
-            metadatas=metadatas,
-            ids=ids,
-        )
+        # Add to ChromaDB (under lock)
+        async with self._lock:
+            self._collection.add(
+                documents=texts,
+                embeddings=embeddings,
+                metadatas=metadatas,
+                ids=ids,
+            )
 
         self._emit_event(
             "vector_documents_added",
@@ -222,6 +229,8 @@ class ChromaVectorStore(VectorStoreAdapter):
         """
         Removes documents by ID.
 
+        Thread-safe: Uses lock for ChromaDB write operations.
+
         Args:
             ids: List of document IDs to delete
 
@@ -231,7 +240,8 @@ class ChromaVectorStore(VectorStoreAdapter):
         if not ids:
             return True
 
-        self._collection.delete(ids=ids)
+        async with self._lock:
+            self._collection.delete(ids=ids)
 
         self._emit_event(
             "vector_documents_deleted",
@@ -243,23 +253,26 @@ class ChromaVectorStore(VectorStoreAdapter):
         """
         Removes documents matching a metadata filter.
 
+        Thread-safe: Uses lock for ChromaDB write operations.
+
         Args:
             where: Metadata filter (e.g., {'source_type': 'document'})
 
         Returns:
             Number of documents deleted
         """
-        # Get matching IDs first
-        results = self._collection.get(
-            where=where,
-            include=[],
-        )
+        async with self._lock:
+            # Get matching IDs first
+            results = self._collection.get(
+                where=where,
+                include=[],
+            )
 
-        if not results["ids"]:
-            return 0
+            if not results["ids"]:
+                return 0
 
-        count = len(results["ids"])
-        self._collection.delete(ids=results["ids"])
+            count = len(results["ids"])
+            self._collection.delete(ids=results["ids"])
 
         self._emit_event(
             "vector_documents_deleted_where",
@@ -321,17 +334,20 @@ class ChromaVectorStore(VectorStoreAdapter):
         """
         Clear all documents from the collection.
 
+        Thread-safe: Uses lock for ChromaDB write operations.
+
         Returns:
             Number of documents deleted
         """
-        # Get count before clearing
-        count = await self.count()
+        async with self._lock:
+            # Get count before clearing
+            count = self._collection.count()
 
-        if count > 0:
-            # Get all document IDs and delete them
-            results = self._collection.get(limit=count)
-            if results["ids"]:
-                self._collection.delete(ids=results["ids"])
+            if count > 0:
+                # Get all document IDs and delete them
+                results = self._collection.get(limit=count)
+                if results["ids"]:
+                    self._collection.delete(ids=results["ids"])
 
         self._emit_event("vector_store_cleared", {"documents_deleted": count})
         return count
@@ -347,6 +363,8 @@ class ChromaVectorStore(VectorStoreAdapter):
         Used for lifecycle management (updating hit_count, decay_score, etc.)
         without re-embedding the document.
 
+        Thread-safe: Uses lock for ChromaDB write operations.
+
         Args:
             doc_id: ID of the document to update
             metadata_updates: Dict of metadata fields to update
@@ -354,19 +372,25 @@ class ChromaVectorStore(VectorStoreAdapter):
         Returns:
             True if successful, False if document not found
         """
-        # Get current document
-        existing = await self.get_by_id(doc_id)
-        if not existing:
-            return False
+        async with self._lock:
+            # Get current document (under lock to ensure atomicity)
+            results = self._collection.get(
+                ids=[doc_id],
+                include=["documents", "metadatas"],
+            )
+            if not results["ids"]:
+                return False
 
-        # Merge updates with existing metadata
-        updated_metadata = {**existing.get("metadata", {}), **metadata_updates}
+            existing_metadata = results["metadatas"][0] if results["metadatas"] else {}
 
-        # ChromaDB update (upsert with same embedding)
-        self._collection.update(
-            ids=[doc_id],
-            metadatas=[updated_metadata],
-        )
+            # Merge updates with existing metadata
+            updated_metadata = {**existing_metadata, **metadata_updates}
+
+            # ChromaDB update
+            self._collection.update(
+                ids=[doc_id],
+                metadatas=[updated_metadata],
+            )
 
         self._emit_event(
             "vector_metadata_updated",
@@ -383,6 +407,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         Increment the hit_count for a document.
 
         Convenience method for tracking access frequency in long-term memories.
+        Thread-safe: Uses lock for atomic read-modify-write operation.
 
         Args:
             doc_id: ID of the document
@@ -390,17 +415,28 @@ class ChromaVectorStore(VectorStoreAdapter):
         Returns:
             New hit_count value, or -1 if document not found
         """
-        existing = await self.get_by_id(doc_id)
-        if not existing:
-            return -1
+        import datetime
 
-        metadata = existing.get("metadata", {})
-        new_count = metadata.get("hit_count", 0) + 1
+        async with self._lock:
+            # Get current document
+            results = self._collection.get(
+                ids=[doc_id],
+                include=["documents", "metadatas"],
+            )
+            if not results["ids"]:
+                return -1
 
-        await self.update_metadata(doc_id, {
-            "hit_count": new_count,
-            "last_accessed_at": __import__("datetime").datetime.now().isoformat(),
-        })
+            # Increment hit count atomically
+            metadata = results["metadatas"][0] if results["metadatas"] else {}
+            new_count = metadata.get("hit_count", 0) + 1
+            metadata["hit_count"] = new_count
+            metadata["last_accessed_at"] = datetime.datetime.now().isoformat()
+
+            # Update document
+            self._collection.update(
+                ids=[doc_id],
+                metadatas=[metadata],
+            )
 
         return new_count
 

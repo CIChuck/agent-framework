@@ -14,10 +14,14 @@ Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 6
 """
 
 import asyncio
+import logging
 import time
 import uuid
+from collections.abc import Awaitable, Callable
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any
+
+logger = logging.getLogger(__name__)
 
 from friday_core import (
     EpisodicStoreAdapter,
@@ -39,8 +43,47 @@ if TYPE_CHECKING:
         AccessBuffer,
         CollectionManager,
         GraphPathScorer,
-        RetrievalFactorComputer,
     )
+    from friday_transcript import TranscriptStore
+
+
+# Behavioral/conversational relation types to exclude from display
+# These add noise without providing factual knowledge about entities
+BEHAVIORAL_RELATIONS = {
+    "SUGGESTS",
+    "ASKS_ABOUT",
+    "WILL_RESPOND_WITH",
+    "WILL_OFFER",
+    "WILL_PRIORITIZE",
+    "WILL_FOCUS_ON",
+    "WILL_STRIVE_FOR",
+    "FINDS_PERPLEXING",
+    "WISHES_TO_SHARE",
+    "STATES_IMPORTANCE_OF",
+    "NOT_EQUIPPED_TO_ANSWER",
+    "APOLOGIZES_FOR",
+    "RECALLS",
+    "REMEMBERS_DISCUSSION_ABOUT",
+    "WANTS_TO_DISCUSS",
+    "HAS_LIMITED_KNOWLEDGE_ABOUT",
+    "HAS_KNOWLEDGE_GAPS_ABOUT",
+    "LACKS_CAPACITY_TO",
+    "LACKS_ACCESS_TO",
+    "CAN",
+    "CANNOT",
+    "CONFLATED",
+    "UPDATING",
+    "ATTEMPTED_TO_FIND",
+    "THANKS_FOR",
+    "READY_TO_RETAIN",
+    "CONSIDERS_MISPLACED",
+    "MAY_NOT_SHARE",
+    "EXPRESSES_CONFUSION_ABOUT",
+    "INTERESTED_IN",
+    "DISCUSSING",
+    "MENTIONED",
+    "REFERRED_TO",
+}
 
 
 class MemoryController:
@@ -68,6 +111,10 @@ class MemoryController:
         collection_manager: "CollectionManager | None" = None,
         access_buffer: "AccessBuffer | None" = None,
         graph_scorer: "GraphPathScorer | None" = None,
+        # Background recalculation config
+        recalc_interval: int = 5,
+        # Cross-session history support
+        transcript_store: "TranscriptStore | None" = None,
     ) -> None:
         """
         Initialize the Memory Controller.
@@ -84,19 +131,28 @@ class MemoryController:
                 - max_summaries: int (default 10) - most recent summaries to load
                 - recency_days: int (default 0) - filter to last N days (0 = all)
                 - min_turns: int (default 5) - turns before priming stops
+                - previous_sessions: int (default 0) - number of prior sessions to include
+                - previous_session_turns: int (default 5) - max turns per prior session
             collection_manager: Optional CollectionManager for lifecycle-aware retrieval
             access_buffer: Optional AccessBuffer for lazy access tracking
             graph_scorer: Optional GraphPathScorer for graph path filtering
+            recalc_interval: Number of turns between background insight recalculation (0 = disabled)
+            transcript_store: Optional TranscriptStore for cross-session history retrieval
         """
         self.vector = vector_store
         self.graph = graph_store
         self.episodic = episodic_store
         self._telemetry = telemetry
+        self._transcript_store = transcript_store
 
         # Lifecycle components
         self._collection_manager = collection_manager
         self._access_buffer = access_buffer
         self._graph_scorer = graph_scorer
+
+        # Background recalculation settings
+        self._recalc_interval = recalc_interval
+        self._recalc_callback: Callable[[str, list[InteractionTurn]], Awaitable[None]] | None = None
 
         # Priming configuration
         self._priming_config = priming_config or {
@@ -104,9 +160,15 @@ class MemoryController:
             "top_entities": 10,
             "max_insights": 10,
             "max_summaries": 10,
+            "max_facts": 10,
             "recency_days": 0,
             "min_turns": 5,
+            "previous_sessions": 0,  # Cross-session history: number of prior sessions
+            "previous_session_turns": 5,  # Max turns per prior session
         }
+
+        # Thread safety: state lock for session data
+        self._state_lock = asyncio.Lock()
 
         # Priming state per session
         # _primed_content: session_id -> (entities, insights, summaries, relationship_summaries)
@@ -214,6 +276,21 @@ class MemoryController:
             recent_insights = await self._fetch_recent_insights(max_insights, recency_days)
             recent_summaries = await self._fetch_recent_summaries(max_summaries, recency_days)
 
+            # Fetch key facts from graph (factual edges only)
+            max_facts = self._priming_config.get("max_facts", 10)
+            key_facts = await self._fetch_key_facts(limit=max_facts)
+
+            # Fetch prior session history for cross-session continuity
+            prior_history: list[InteractionTurn] = []
+            previous_sessions = self._priming_config.get("previous_sessions", 0)
+            previous_session_turns = self._priming_config.get("previous_session_turns", 5)
+            if previous_sessions > 0 and session_id:
+                prior_history = await self._fetch_prior_session_history(
+                    session_id,
+                    previous_sessions,
+                    previous_session_turns,
+                )
+
             # Get top entities and build relationship summaries
             top_entities = await self.graph.get_top_nodes(
                 self._priming_config.get("top_entities", 10),
@@ -232,11 +309,13 @@ class MemoryController:
 
             # Record debug info
             debug_info["history_count"] = len(history)
+            debug_info["prior_history_count"] = len(prior_history)
             debug_info["passages_count"] = len(passages)
             debug_info["entities_count"] = len(entities)
             debug_info["facts_count"] = len(facts)
             debug_info["insights_count"] = len(recent_insights)
             debug_info["summaries_count"] = len(recent_summaries)
+            debug_info["key_facts_count"] = len(key_facts)
             debug_info["relationships_count"] = len(relationship_summaries)
             debug_info["total_latency"] = time.time() - start_time
 
@@ -244,12 +323,14 @@ class MemoryController:
 
             return ContextPayload(
                 history=history,
+                prior_history=prior_history,
                 passages=passages,
                 entities=entities,
                 facts=facts,
                 recent_memories=relationship_summaries,
                 insights=recent_insights,
                 summaries=recent_summaries,
+                key_facts=key_facts,
                 debug_info=debug_info,
             )
 
@@ -264,20 +345,28 @@ class MemoryController:
         Called internally by recall() on first access to a session.
         Loads top entities, entity-related insights, and relationship summaries.
 
+        Thread-safe: Uses lock to prevent duplicate priming.
+
         Args:
             session_id: The session to prime
         """
-        # Skip if already primed or priming disabled
+        # Quick check without lock first (optimization)
         if session_id in self._primed_content:
             return
         if not self._priming_config.get("enabled", True):
             return
 
-        # Initialize turn count for new session
-        if session_id not in self._session_turn_counts:
-            self._session_turn_counts[session_id] = 0
+        # Check under lock to prevent duplicate priming
+        async with self._state_lock:
+            # Re-check after acquiring lock (another task may have primed)
+            if session_id in self._primed_content:
+                return
 
-        # Load priming content using recency-based retrieval
+            # Initialize turn count for new session
+            if session_id not in self._session_turn_counts:
+                self._session_turn_counts[session_id] = 0
+
+        # Load priming content outside lock (can be slow)
         entities, insights, summaries, relationships = await self.prime_context(
             top_entities=self._priming_config.get("top_entities", 10),
             max_insights=self._priming_config.get("max_insights", 10),
@@ -285,8 +374,11 @@ class MemoryController:
             max_summaries=self._priming_config.get("max_summaries", 10),
         )
 
-        # Cache for injection during recall
-        self._primed_content[session_id] = (entities, insights, summaries, relationships)
+        # Cache for injection during recall (under lock)
+        async with self._state_lock:
+            # Only store if not already primed by another task
+            if session_id not in self._primed_content:
+                self._primed_content[session_id] = (entities, insights, summaries, relationships)
 
     async def prime_context(
         self,
@@ -446,14 +538,14 @@ class MemoryController:
         self, entities: list[GraphNode]
     ) -> list[str]:
         """
-        Build concise relationship summaries for each entity.
+        Build concise relationship summaries for each entity in natural language.
 
-        For each top entity, shows ALL its relationships in a clear directional format:
-        - Outgoing (entity is subject): "EntityLabel relation Target"
-        - Incoming (entity is object): "Source relation EntityLabel"
+        Produces human-readable summaries like:
+        - "Chuck created Friday and shared info about Tara"
+        - "Noli loves AI and Raven"
 
-        This respects edge direction - if there's only one edge between A and B,
-        it will only appear once in the summary (from the source entity's perspective).
+        Filters out behavioral/conversational edges (e.g., SUGGESTS, ASKS_ABOUT)
+        to focus on factual knowledge about entities.
 
         Args:
             entities: List of entities to summarize
@@ -476,67 +568,91 @@ class MemoryController:
         # Get all edges
         all_edges = await self.graph.get_all_edges()
 
-        # Group edges by source and target entity
-        # Each edge is stored with full info to construct natural sentences
-        edges_by_source: dict[
-            str, list[tuple[str, str, str]]
-        ] = {}  # (relation, target_label, target_id)
-        edges_by_target: dict[
-            str, list[tuple[str, str, str]]
-        ] = {}  # (relation, source_label, source_id)
+        # Group edges by source entity, filtering out behavioral edges
+        edges_by_source: dict[str, list[tuple[str, str]]] = {}  # (relation, target_label)
 
         for edge in all_edges:
-            target_label = entity_lookup.get(edge.target_id, edge.target_id[:8])
-            source_label = entity_lookup.get(edge.source_id, edge.source_id[:8])
+            # Filter out behavioral/conversational relations
+            if edge.relation.upper() in BEHAVIORAL_RELATIONS:
+                continue
 
-            # Outgoing: source → target
+            target_label = entity_lookup.get(edge.target_id, edge.target_id[:8])
+
             if edge.source_id not in edges_by_source:
                 edges_by_source[edge.source_id] = []
-            edges_by_source[edge.source_id].append(
-                (edge.relation, target_label, edge.target_id)
-            )
+            edges_by_source[edge.source_id].append((edge.relation, target_label))
 
-            # Incoming: source → target (entity is the target)
-            if edge.target_id not in edges_by_target:
-                edges_by_target[edge.target_id] = []
-            edges_by_target[edge.target_id].append(
-                (edge.relation, source_label, edge.source_id)
-            )
-
-        # Track which entities are in our top list for dedup
-        top_entity_ids = {e.id for e in entities}
-
-        # Build summaries for each top entity
+        # Build natural language summaries for each entity
         summaries = []
         for entity in entities:
-            outgoing = []
-            incoming = []
+            outgoing = edges_by_source.get(entity.id, [])
+            if not outgoing:
+                continue
 
-            # Outgoing edges: entity --relation--> target
-            # Format: "relation target" e.g., "creates Friday"
-            for relation, target_label, _ in edges_by_source.get(entity.id, []):
-                outgoing.append(f"{relation} {target_label}")
+            # Group by relation type and convert to natural language
+            relations_by_type: dict[str, list[str]] = {}
+            for relation, target in outgoing[:10]:  # Limit to 10 relations per entity
+                verb = self._relation_to_natural_verb(relation)
+                if verb not in relations_by_type:
+                    relations_by_type[verb] = []
+                relations_by_type[verb].append(target)
 
-            # Incoming edges: source --relation--> entity
-            # Only include if source is NOT a top entity (to avoid duplication)
-            # If source IS a top entity, that relationship will appear in source's outgoing
-            for relation, source_label, source_id in edges_by_target.get(entity.id, []):
-                if source_id not in top_entity_ids:
-                    # Source is not a top entity, so this is the only place this rel appears
-                    incoming.append(f"{source_label} {relation}")
-
-            # Combine into natural summary
+            # Build natural language parts
             parts = []
-            if outgoing:
-                parts.append(f"→ {'; '.join(outgoing)}")
-            if incoming:
-                parts.append(f"← {'; '.join(incoming)}")
+            for verb, targets in list(relations_by_type.items())[:5]:  # Limit verbs
+                if len(targets) == 1:
+                    parts.append(f"{verb} {targets[0]}")
+                else:
+                    parts.append(f"{verb} {', '.join(targets[:3])}")
 
             if parts:
-                summary = f"{entity.label}: {' | '.join(parts)}"
+                summary = f"{entity.label} {' and '.join(parts)}"
                 summaries.append(summary)
 
         return summaries
+
+    def _relation_to_natural_verb(self, relation: str) -> str:
+        """
+        Convert a relation type to a natural language verb.
+
+        Args:
+            relation: The relation type (e.g., "IS_CREATOR_OF", "LOVES")
+
+        Returns:
+            Natural language verb phrase
+        """
+        mapping = {
+            "IS_CREATOR_OF": "created",
+            "CREATES": "creates",
+            "LOVES": "loves",
+            "IS_A": "is a",
+            "WORKS_FOR": "works for",
+            "PROVIDED_DATA_ABOUT": "shared info about",
+            "HAS": "has",
+            "KNOWS": "knows",
+            "MANAGES": "manages",
+            "OWNS": "owns",
+            "USES": "uses",
+            "RELATED_TO": "is related to",
+            "SUGGESTS": "suggests",
+            "WILL_RESPOND_WITH": "responds with",
+            "WILL_OFFER": "offers",
+            "WILL_PRIORITIZE": "prioritizes",
+            "ASKS_ABOUT": "asks about",
+            "STATES_IMPORTANCE_OF": "values",
+            "FINDS_PERPLEXING": "finds perplexing",
+            "WISHES_TO_SHARE": "wants to share",
+            "HAS_FAVORITE_TEAM": "favors",
+            "FAVORS": "favors",
+            "TAUGHT": "taught",
+            "WORKED_WITH": "worked with",
+            "WAS_DESCRIBED_AS": "was described as",
+        }
+        upper_rel = relation.upper()
+        if upper_rel in mapping:
+            return mapping[upper_rel]
+        # Default: convert underscores to spaces, lowercase
+        return relation.replace("_", " ").lower()
 
     async def _fetch_recent_insights(
         self, max_count: int = 10, recency_days: int = 0
@@ -564,11 +680,96 @@ class MemoryController:
                 key=lambda x: x.get("metadata", {}).get("created_at", ""),
                 reverse=True,
             )
-            return raw[:max_count]
+            # Deduplicate by topic/entities before returning
+            deduped = self._dedupe_by_topic(raw)
+            return deduped[:max_count]
         except Exception as e:
             if self._telemetry:
                 self._emit_event("fetch_recent_insights_failed", {"error": str(e)})
             return []
+
+    def _dedupe_by_topic(self, insights: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """
+        Simple deduplication: if multiple insights mention same entities,
+        keep only the most recent one.
+
+        Also filters out insights marked as superseded during batch deduplication.
+
+        This is a lightweight retrieval-time filter that reduces redundancy
+        without expensive semantic similarity computation.
+
+        Args:
+            insights: List of insight dicts, already sorted by recency
+
+        Returns:
+            Deduplicated list, preserving recency order
+        """
+        seen_entity_sets: dict[frozenset[str], dict[str, Any]] = {}
+        result: list[dict[str, Any]] = []
+
+        for insight in insights:
+            metadata = insight.get("metadata", {})
+
+            # Skip insights that have been superseded by batch deduplication
+            if metadata.get("superseded_by"):
+                continue
+
+            # Extract entities from metadata or text
+            entities = self._extract_insight_entities(insight)
+
+            if not entities:
+                # No entities extracted - include by default
+                result.append(insight)
+                continue
+
+            entity_key = frozenset(entities)
+
+            if entity_key not in seen_entity_sets:
+                seen_entity_sets[entity_key] = insight
+                result.append(insight)
+            # else: skip duplicate topic - we already have a more recent insight
+
+        return result
+
+    def _extract_insight_entities(self, insight: dict[str, Any]) -> set[str]:
+        """
+        Extract entity mentions from an insight for deduplication.
+
+        Checks metadata first, then falls back to simple text extraction.
+
+        Args:
+            insight: Insight dict with text and metadata
+
+        Returns:
+            Set of normalized entity names
+        """
+        entities: set[str] = set()
+        metadata = insight.get("metadata", {})
+
+        # Primary: use entities_mentioned if available (semicolon-separated)
+        entities_mentioned = metadata.get("entities_mentioned", "")
+        if entities_mentioned:
+            for entity in entities_mentioned.split(";"):
+                entity = entity.strip().lower()
+                if entity:
+                    entities.add(entity)
+
+        # Secondary: extract proper nouns/capitalized words from text
+        if not entities:
+            text = insight.get("text", "") or insight.get("document", "")
+            words = text.split()
+            for word in words:
+                # Simple heuristic: capitalized words that aren't sentence starters
+                clean_word = word.strip(".,!?\"'()[]")
+                if (
+                    clean_word
+                    and clean_word[0].isupper()
+                    and len(clean_word) > 2
+                    and clean_word.lower() not in {"the", "this", "that", "they", "their"}
+                ):
+                    entities.add(clean_word.lower())
+
+        return entities
 
     async def _fetch_recent_summaries(
         self, max_count: int = 10, recency_days: int = 0
@@ -600,6 +801,138 @@ class MemoryController:
         except Exception as e:
             if self._telemetry:
                 self._emit_event("fetch_recent_summaries_failed", {"error": str(e)})
+            return []
+
+    async def _fetch_key_facts(self, limit: int = 10) -> list[dict[str, Any]]:
+        """
+        Fetch key facts from vector store insights.
+
+        Retrieves the most recent insights (type='insight') from the vector
+        store, which contain rich, sentence-format facts about entities.
+        Sorted by created_at descending so new insights appear immediately.
+
+        Args:
+            limit: Maximum number of facts to return
+
+        Returns:
+            List of insight documents with 'text' and 'metadata' (most recent first)
+        """
+        try:
+            # Fetch extra insights to allow for sorting by recency
+            logger.debug(f"_fetch_key_facts: Fetching insights from vector store")
+            documents = await self.vector.get_all(
+                limit=limit * 3,  # Fetch extra to ensure we get enough after sorting
+                where={"type": "insight"},
+            )
+            logger.debug(f"_fetch_key_facts: Got {len(documents)} documents from vector store")
+
+            # Sort by created_at descending (most recent first)
+            documents.sort(
+                key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                reverse=True,
+            )
+
+            # Return the most recent insight documents (with metadata for timestamps)
+            facts = [doc for doc in documents[:limit] if doc.get("text")]
+
+            logger.debug(f"_fetch_key_facts: Returning {len(facts)} facts (most recent first)")
+            return facts
+        except Exception as e:
+            logger.error(f"_fetch_key_facts: Exception occurred: {e}")
+            if self._telemetry:
+                self._emit_event("fetch_key_facts_failed", {"error": str(e)})
+            return []
+
+    async def _fetch_prior_session_history(
+        self,
+        current_session_id: str,
+        num_sessions: int,
+        turns_per_session: int,
+    ) -> list[InteractionTurn]:
+        """
+        Fetch conversation turns from previous sessions for cross-session continuity.
+
+        Retrieves the most recent N sessions (excluding current) and returns
+        their conversation turns in chronological order (oldest session first).
+
+        Args:
+            current_session_id: The current session ID to exclude
+            num_sessions: Number of prior sessions to include
+            turns_per_session: Maximum turns to include per session
+
+        Returns:
+            List of InteractionTurns from prior sessions, ordered chronologically
+            (oldest session turns first, newest session turns last)
+        """
+        if num_sessions <= 0 or not self._transcript_store:
+            return []
+
+        try:
+            # List recent sessions (newest first)
+            # Fetch extra to account for current session
+            sessions = await self._transcript_store.list_sessions(
+                limit=num_sessions + 1,
+            )
+
+            # Filter out current session and take the requested number
+            prior_sessions = [
+                s for s in sessions if s.session_id != current_session_id
+            ][:num_sessions]
+
+            if not prior_sessions:
+                return []
+
+            # Fetch turns from each prior session (in chronological order: oldest first)
+            # Reverse the list since list_sessions returns newest first
+            prior_sessions_chronological = list(reversed(prior_sessions))
+
+            all_prior_turns: list[InteractionTurn] = []
+            for session in prior_sessions_chronological:
+                entries = await self._transcript_store.get_entries(
+                    session.session_id,
+                    limit=turns_per_session,
+                )
+
+                # Convert TranscriptEntry to InteractionTurn
+                for entry in entries:
+                    turn = InteractionTurn(
+                        id=entry.id,
+                        session_id=entry.session_id,
+                        user_message=entry.user_message,
+                        assistant_message=entry.assistant_message,
+                        timestamp=entry.timestamp,
+                        tool_calls=entry.tool_calls or [],
+                        tool_results=entry.tool_results or [],
+                        metadata={
+                            "from_prior_session": True,
+                            "original_session_id": entry.session_id,
+                        },
+                    )
+                    all_prior_turns.append(turn)
+
+            logger.debug(
+                f"_fetch_prior_session_history: Retrieved {len(all_prior_turns)} turns "
+                f"from {len(prior_sessions)} prior sessions"
+            )
+
+            self._emit_event(
+                "prior_session_history_fetched",
+                {
+                    "current_session_id": current_session_id,
+                    "prior_sessions_count": len(prior_sessions),
+                    "total_turns": len(all_prior_turns),
+                },
+            )
+
+            return all_prior_turns
+
+        except Exception as e:
+            logger.error(f"_fetch_prior_session_history: Exception occurred: {e}")
+            if self._telemetry:
+                self._emit_event(
+                    "fetch_prior_session_history_failed",
+                    {"error": str(e)},
+                )
             return []
 
     async def _retrieve_episodic(
@@ -658,8 +991,10 @@ class MemoryController:
             for node in matches[:3]:  # Limit matches per term
                 if node not in entities:
                     entities.append(node)
-                    # Touch node for Hebbian learning
+                    # Touch node for Hebbian learning (updates in-memory object)
                     node.touch()
+                    # Persist hit_count to graph store (fire-and-forget)
+                    asyncio.create_task(self.graph.record_node_access(node.id))
 
         # Traverse neighbors for each found entity
         seen_edges: set[tuple[str, str, str]] = set()
@@ -1199,11 +1534,32 @@ class MemoryController:
 
     # --- Utility Methods ---
 
+    def set_recalc_callback(
+        self,
+        callback: Callable[[str, list[InteractionTurn]], Awaitable[None]],
+    ) -> None:
+        """
+        Register a callback for background insight recalculation.
+
+        The callback will be invoked (fire-and-forget) every `recalc_interval` turns
+        with the session_id and recent turns to process.
+
+        This allows the caller (e.g., the chat application) to hook up the
+        MemoryExtractor without creating circular dependencies.
+
+        Args:
+            callback: Async function taking (session_id, recent_turns) as arguments.
+                     Typically calls extractor.extract() on each turn.
+        """
+        self._recalc_callback = callback
+
     async def add_turn(self, session_id: str, turn: InteractionTurn) -> bool:
         """
         Add a conversation turn to episodic memory.
 
         Also increments the session turn count for priming management.
+        Triggers background recalculation when turn count reaches recalc_interval.
+        Thread-safe: Uses lock for turn count updates.
 
         Args:
             session_id: The session ID
@@ -1214,13 +1570,63 @@ class MemoryController:
         """
         result = await self.episodic.add_turn(session_id, turn)
 
-        # Increment turn count for priming management
+        # Increment turn count for priming management (under lock)
+        should_recalc = False
         if result:
-            self._session_turn_counts[session_id] = (
-                self._session_turn_counts.get(session_id, 0) + 1
-            )
+            async with self._state_lock:
+                self._session_turn_counts[session_id] = (
+                    self._session_turn_counts.get(session_id, 0) + 1
+                )
+                # Check if we should trigger recalculation
+                if (
+                    self._recalc_interval > 0
+                    and self._recalc_callback
+                    and self._session_turn_counts[session_id] % self._recalc_interval == 0
+                ):
+                    should_recalc = True
+
+        # Trigger background recalculation (fire-and-forget, outside lock)
+        if should_recalc:
+            asyncio.create_task(self._trigger_background_recalc(session_id))
 
         return result
+
+    async def _trigger_background_recalc(self, session_id: str) -> None:
+        """
+        Trigger background insight recalculation for recent turns.
+
+        Fetches the last `recalc_interval` turns and invokes the registered
+        callback in the background. Errors are logged but don't propagate.
+
+        Args:
+            session_id: The session to recalculate insights for
+        """
+        if not self._recalc_callback:
+            return
+
+        try:
+            # Fetch recent turns (the interval amount)
+            recent_turns = await self.episodic.get_turns(
+                session_id, limit=self._recalc_interval
+            )
+            if recent_turns:
+                self._emit_event(
+                    "background_recalc_triggered",
+                    {
+                        "session_id": session_id,
+                        "turn_count": len(recent_turns),
+                    },
+                )
+                await self._recalc_callback(session_id, recent_turns)
+        except Exception as e:
+            # Log but don't propagate - this is background work
+            self._emit_event(
+                "background_recalc_failed",
+                {
+                    "session_id": session_id,
+                    "error": str(e),
+                },
+            )
 
     def get_priming_info(self, session_id: str) -> dict[str, Any]:
         """

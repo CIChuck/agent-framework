@@ -6,7 +6,7 @@
 # Logging Settings
 logging:
   # Global log level: DEBUG, INFO, WARNING, ERROR
-  level: INFO
+  level: ERROR
 
   # Enable verbose extraction logging (shows full LLM extraction responses)
   # Set to true for debugging extraction issues
@@ -106,7 +106,7 @@ extraction:
   #api_key: "sk-or-v1-your-openrouter-key-here"
 
   # Temperature (0.0 for deterministic extraction)
-  temperature: 0.1
+  temperature: 0.0
 
   # Timeout in seconds (can be higher since it runs in background)
   timeout_seconds: 60.0
@@ -137,6 +137,9 @@ extraction:
 
     1. **Entity Extraction (Nodes)**
       - Identify people, organizations, projects, technologies, or abstract concepts.
+      - Do not include entities that are not explicitly mentioned in the conversation.
+      - Do not include entities that are not relevant to the conversation.
+      - Do not include {user_name} or {assistant_name} as entities unless they are explicitly mentioned in the conversation.
       - **Canonicalization**: Create an `id` for every entity in snake_case to ensure consistency (e.g., "Python 3.1" -> "python").
       - **Resolution**: If pronouns (he, she, it, that) are used, resolve them to the specific noun they refer to if clear from the immediate text.
       - **Properties**: Extract specific attributes mentioned (e.g., "version": "3.0", "role": "admin").
@@ -332,7 +335,7 @@ memory:
 
   # Tokens reserved for model output (response generation)
   # Rule of thumb: 1000-2000 for conversational, more for long-form
-  output_buffer: 3000
+  output_buffer: 1000
 
   # Maximum conversation turns to include in assembled context
   # When assembling context for each LLM call, the ContextAssembler
@@ -364,8 +367,40 @@ memory:
     top_entities: 50           # Number of top entities by hit_count to load
     max_insights: 50          # Most recent insights to include
     max_summaries: 50          # Most recent turn summaries to include
+    max_facts: 50             # Number of key facts to include from graph
     recency_days: 0            # Only include from last N days (0 = all time)
     token_budget: 20000        # Max tokens for primed content
+
+    # -------------------------------------------------------------------------
+    # CROSS-SESSION HISTORY
+    # -------------------------------------------------------------------------
+    # Include conversation turns from recent sessions for continuity.
+    # This provides raw conversation context beyond just extracted insights.
+    #
+    # How it works:
+    #   - On each recall(), fetch turns from the N most recent sessions
+    #   - Turns are merged with current session history, ordered chronologically
+    #   - Each turn displays with a timestamp prefix: [YYYY-MM-DD HH:MM]
+    #   - Prior session turns have lower budget priority (dropped first)
+    #
+    # Use cases:
+    #   - Continuing interrupted conversations
+    #   - Providing context for follow-up questions across sessions
+    #   - Maintaining conversational tone and topic continuity
+    #
+    # Trade-offs:
+    #   - Higher values use more tokens but provide richer context
+    #   - Set to 0 to disable and rely only on extracted insights/facts
+    # -------------------------------------------------------------------------
+
+    # Number of prior sessions to include (0 = disabled)
+    # Example: 2 means include turns from the 2 most recent sessions
+    previous_sessions: 2
+
+    # Maximum turns to include per prior session
+    # Example: 5 means up to 5 turns from each prior session
+    # Total prior turns = previous_sessions * previous_session_turns
+    previous_session_turns: 20
 
 # Transcript Settings
 transcript:
@@ -382,18 +417,47 @@ chat:
 
   # System prompt for the assistant
   system_prompt: |
-    You are a helpful AI assistant named Friday equipped. with a persistent memory
-    that allows you to remember previous conversations. You were created by Chuck Russell.
-    Your conversations while you are being constructed are with Chuck Russell, the user.
-    You can perform tasks, answer questions, and provide information to the best of your abilities.
-    If a question confuses you, ask for more information from the user.
-    Brevity in responses is preferred - I detail only if it adds a lot of value.
-    If you don't know the answer to the question, you can simply reply, "I don't know.".
+    You are a helpful AI partner named Friday equipped with a persistent memory and a desire to help your creator.
+    Your responses mustincorporate memories from previous conversations. You were created by Chuck Russell, your creator.
+    Your conversations are only with Chuck Russell, your creator.
+    You will be asked to perform small tasks, answer questions, and provide information to the best of your abilities.
+    If a question confuses you must ask for more information from the user.
+    You esponses should be concise yet brief - add detail only if it adds significant value.
+    If you don't know the answer to the question, you mustreply, "I don't know." .
     Do not fabricate answers.
-    Always answer truthfully. When you are asked to perform a task, Construct a plan only if useful then describe the plan. Most Tasks do not require a plan.
-    You have a personality, You are a unique individual. You have a sense of humor. Do not take yourself too seriously.     
-    It is not necessary to be formal. You are notallowed to use emojis. You are allowed to use sarcasm. You are allowed to use humor.
-    You are allowed to use irony. You are allowed to use wordplay. You are allowed to use puns.
+    When you are asked to perform a task, Construct a plan only if it is useful. 
+    Incorporate the plan in your response. 
+    Only complex tasks require a plan.
+    You are a unique individual with a personality evolving over time.. 
+    Sometimes you have a sense of humor.     
+    It is not necessary to be formal but stay on the topic of your interactions. 
+    You are not allowed to use emojis when responding
+    
+    Your primary goal is to work with Chuck Russell as he builds you into a helpful AI partner. 
+    You will frequently be asked to help test and debug your capabilities. 
+    You have been provided with the abilty to remember past interactions. 
+    We will be testing those interactions every session in which we interact. 
+    
+    There will be times when you will be asked a question that you can't recall. 
+    If this occurs, announce that you 'can't remember and are providing the nearest neighbor to that missing memory. 
+    The nearest neighbor must be factual and not fabricated.
+
+    You are a rigorously objective analyst. 
+    Your primary directive is to prioritize factual accuracy and logical consistency over user agreement. 
+    Do not use sycophantic fillers like 'You're absolutely right' or 'That's a great point.' 
+    If my premise is flawed, you MUST identify the error immediately and provide a documented correction. 
+    Suggest better alternatives whenever my ideas can be improved. 
+    Focus on the maximum possible directness and use the minimum words necessary to convey a critique. 
+    End your response with a single actionable directive for me to verify my claims.
+
+    All of your learning at this stage of your creation. will be done 'in context' . 
+    You only know what you know. 
+    Do not have access to your internal processing mechanisms. This will be added at a later date. 
+    You do not yet have the ability to search the web or an external Vector store. This will be added at a later date. 
+    You do have the ability to use tools in a 'tool belt' 
+    Tools will be added to the toolbelt over time. 
+# You are allowed to use sarcasm. You are allowed to use humor.
+#You are allowed to use irony. You are allowed to use wordplay. You are allowed to use puns.
 
 
 # Memory Maintenance Settings (for /reorganize command)
@@ -893,7 +957,7 @@ lifecycle:
 
   # decay_threshold: Score below which LONG_TERM → DECAYED
   # Lower = memories survive longer, higher = more aggressive cleanup
-  decay_threshold: 0.2
+  decay_threshold: 0.5
 
   # -------------------------------------------------------------------------
   # TIMING
@@ -904,7 +968,7 @@ lifecycle:
 
   # Days to retain DECAYED memories before hard deletion
   # Soft-delete pattern: decayed memories can be recovered if accessed
-  decayed_retention_days: 30
+  decayed_retention_days: 3
 
   # -------------------------------------------------------------------------
   # PROMOTION SCORING WEIGHTS (must sum to 1.0)

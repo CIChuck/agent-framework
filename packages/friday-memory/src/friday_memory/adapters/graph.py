@@ -5,17 +5,38 @@ Implements GraphStoreAdapter with persistence and schema enforcement.
 Ref: Batch 1 Specification, Section 2.2
 """
 
+import asyncio
 import json
 import logging
 import pickle
+from contextlib import asynccontextmanager
+from dataclasses import dataclass, field
 from datetime import datetime
 from difflib import SequenceMatcher
 from pathlib import Path
+from time import perf_counter
 from typing import Any
 
 import networkx as nx
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class LockMetrics:
+    """Track lock contention for observability."""
+
+    acquisitions: int = 0
+    contentions: int = 0
+    total_wait_ms: float = 0
+    max_wait_ms: float = 0
+
+    def reset(self) -> None:
+        """Reset all metrics."""
+        self.acquisitions = 0
+        self.contentions = 0
+        self.total_wait_ms = 0
+        self.max_wait_ms = 0
 
 from friday_core import GraphStoreAdapter, TelemetryInterface
 
@@ -57,6 +78,10 @@ class ElementXGraphStore(GraphStoreAdapter):
         self._telemetry = telemetry
         self._graph = nx.DiGraph()
 
+        # Thread safety: asyncio lock with metrics
+        self._lock = asyncio.Lock()
+        self._lock_metrics = LockMetrics()
+
         # Load existing graph if path exists
         if self._storage_path and self._storage_path.exists():
             self._load()
@@ -66,27 +91,79 @@ class ElementXGraphStore(GraphStoreAdapter):
         if self._telemetry:
             self._telemetry.capture_event(event_name, data)
 
+    @asynccontextmanager
+    async def _acquire_lock(self, timeout: float = 10.0):
+        """
+        Acquire lock with timeout and metrics tracking.
+
+        Args:
+            timeout: Maximum seconds to wait for lock (default 10s)
+
+        Yields:
+            None after lock is acquired
+
+        Raises:
+            asyncio.TimeoutError: If lock not acquired within timeout
+        """
+        start = perf_counter()
+
+        if self._lock.locked():
+            self._lock_metrics.contentions += 1
+
+        try:
+            await asyncio.wait_for(self._lock.acquire(), timeout=timeout)
+        except asyncio.TimeoutError:
+            logger.error(f"Lock acquisition timeout after {timeout}s")
+            raise
+
+        wait_ms = (perf_counter() - start) * 1000
+        self._lock_metrics.acquisitions += 1
+        self._lock_metrics.total_wait_ms += wait_ms
+        self._lock_metrics.max_wait_ms = max(self._lock_metrics.max_wait_ms, wait_ms)
+
+        try:
+            yield
+        finally:
+            self._lock.release()
+
     def _save(self) -> None:
-        """Persist graph to storage path."""
+        """
+        Atomically persist graph to storage path.
+
+        Uses temp file + rename pattern to prevent corruption on crash.
+        """
         if not self._storage_path:
             return
 
-        if self._storage_path.suffix == ".json":
-            # JSON format - store node/edge data as dicts
-            data = {
-                "nodes": {
-                    nid: self._graph.nodes[nid] for nid in self._graph.nodes
-                },
-                "edges": [
-                    {"source": u, "target": v, **d}
-                    for u, v, d in self._graph.edges(data=True)
-                ],
-            }
-            self._storage_path.write_text(json.dumps(data, default=str, indent=2))
-        else:
-            # Pickle format (default)
-            with open(self._storage_path, "wb") as f:
-                pickle.dump(self._graph, f)
+        # Write to temp file first
+        temp_path = Path(str(self._storage_path) + ".tmp")
+
+        try:
+            if self._storage_path.suffix == ".json":
+                # JSON format - store node/edge data as dicts
+                data = {
+                    "nodes": {
+                        nid: dict(self._graph.nodes[nid]) for nid in self._graph.nodes
+                    },
+                    "edges": [
+                        {"source": u, "target": v, **d}
+                        for u, v, d in self._graph.edges(data=True)
+                    ],
+                }
+                temp_path.write_text(json.dumps(data, default=str, indent=2))
+            else:
+                # Pickle format (default)
+                with open(temp_path, "wb") as f:
+                    pickle.dump(self._graph, f)
+
+            # Atomic rename (on POSIX systems)
+            temp_path.replace(self._storage_path)
+        except Exception as e:
+            logger.error(f"Failed to save graph: {e}")
+            # Clean up temp file if it exists
+            if temp_path.exists():
+                temp_path.unlink()
+            raise
 
     def _load(self) -> None:
         """Load graph from storage path."""
@@ -129,27 +206,28 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             True if node was added, False if skipped as duplicate
         """
-        # Check for duplicate by label (case-insensitive) and type
-        if check_duplicate:
-            existing = await self.find_by_label(node.label, node.type)
-            if existing and existing.id != node.id:
-                if skip_if_duplicate:
-                    logger.debug(
-                        f"Skipping duplicate node: '{node.label}' (type={node.type}) "
-                        f"already exists with id={existing.id}"
-                    )
-                    return False
-                else:
-                    logger.warning(
-                        f"Adding duplicate node: '{node.label}' (type={node.type}) "
-                        f"already exists with id={existing.id}, new id={node.id}. "
-                        f"Consider using find_by_label() first or merge_nodes() after."
-                    )
+        async with self._acquire_lock():
+            # Check for duplicate by label (case-insensitive) and type
+            if check_duplicate:
+                existing = self._find_by_label_unlocked(node.label, node.type)
+                if existing and existing.id != node.id:
+                    if skip_if_duplicate:
+                        logger.debug(
+                            f"Skipping duplicate node: '{node.label}' (type={node.type}) "
+                            f"already exists with id={existing.id}"
+                        )
+                        return False
+                    else:
+                        logger.warning(
+                            f"Adding duplicate node: '{node.label}' (type={node.type}) "
+                            f"already exists with id={existing.id}, new id={node.id}. "
+                            f"Consider using find_by_label() first or merge_nodes() after."
+                        )
 
-        # Store node data as dict for NetworkX
-        node_data = node.model_dump()
-        self._graph.add_node(node.id, **node_data)
-        self._save()
+            # Store node data as dict for NetworkX
+            node_data = node.model_dump()
+            self._graph.add_node(node.id, **node_data)
+            self._save()
 
         self._emit_event(
             "graph_node_added",
@@ -167,13 +245,14 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             True if successful, False if node doesn't exist
         """
-        if node.id not in self._graph.nodes:
-            return False
+        async with self._acquire_lock():
+            if node.id not in self._graph.nodes:
+                return False
 
-        # Update node data
-        node_data = node.model_dump()
-        self._graph.nodes[node.id].update(node_data)
-        self._save()
+            # Update node data
+            node_data = node.model_dump()
+            self._graph.nodes[node.id].update(node_data)
+            self._save()
 
         self._emit_event(
             "graph_node_updated",
@@ -202,48 +281,49 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             True if edge was added/updated, False if skipped as duplicate
         """
-        # Check for existing edge with same source, target, and relation
-        existing_edge = self._graph.has_edge(edge.source_id, edge.target_id)
-        if existing_edge:
-            existing_data = self._graph.edges[edge.source_id, edge.target_id]
-            existing_relation = existing_data.get("relation", "").lower()
-            new_relation = edge.relation.lower()
+        async with self._acquire_lock():
+            # Check for existing edge with same source, target, and relation
+            existing_edge = self._graph.has_edge(edge.source_id, edge.target_id)
+            if existing_edge:
+                existing_data = self._graph.edges[edge.source_id, edge.target_id]
+                existing_relation = existing_data.get("relation", "").lower()
+                new_relation = edge.relation.lower()
 
-            if existing_relation == new_relation:
-                # Duplicate edge detected
-                if update_if_exists:
-                    # Update existing edge with new data
-                    edge_data = edge.model_dump()
-                    edge_data.pop("source_id")
-                    edge_data.pop("target_id")
-                    self._graph.edges[edge.source_id, edge.target_id].update(edge_data)
-                    self._save()
-                    logger.debug(
-                        f"Updated existing edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
-                    )
-                    self._emit_event(
-                        "graph_edge_updated",
-                        {
-                            "source_id": edge.source_id,
-                            "target_id": edge.target_id,
-                            "relation": edge.relation,
-                        },
-                    )
-                    return True
-                elif skip_if_exists:
-                    logger.debug(
-                        f"Skipping duplicate edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
-                    )
-                    return False
-                # If neither flag is set, fall through and replace the edge
+                if existing_relation == new_relation:
+                    # Duplicate edge detected
+                    if update_if_exists:
+                        # Update existing edge with new data
+                        edge_data = edge.model_dump()
+                        edge_data.pop("source_id")
+                        edge_data.pop("target_id")
+                        self._graph.edges[edge.source_id, edge.target_id].update(edge_data)
+                        self._save()
+                        logger.debug(
+                            f"Updated existing edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                        )
+                        self._emit_event(
+                            "graph_edge_updated",
+                            {
+                                "source_id": edge.source_id,
+                                "target_id": edge.target_id,
+                                "relation": edge.relation,
+                            },
+                        )
+                        return True
+                    elif skip_if_exists:
+                        logger.debug(
+                            f"Skipping duplicate edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                        )
+                        return False
+                    # If neither flag is set, fall through and replace the edge
 
-        edge_data = edge.model_dump()
-        # Remove source/target from data since they're used as keys
-        edge_data.pop("source_id")
-        edge_data.pop("target_id")
+            edge_data = edge.model_dump()
+            # Remove source/target from data since they're used as keys
+            edge_data.pop("source_id")
+            edge_data.pop("target_id")
 
-        self._graph.add_edge(edge.source_id, edge.target_id, **edge_data)
-        self._save()
+            self._graph.add_edge(edge.source_id, edge.target_id, **edge_data)
+            self._save()
 
         self._emit_event(
             "graph_edge_added",
@@ -265,11 +345,12 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             True if node existed and was removed
         """
-        if node_id not in self._graph:
-            return False
+        async with self._acquire_lock():
+            if node_id not in self._graph:
+                return False
 
-        self._graph.remove_node(node_id)
-        self._save()
+            self._graph.remove_node(node_id)
+            self._save()
 
         self._emit_event("graph_node_removed", {"node_id": node_id})
         return True
@@ -282,6 +363,9 @@ class ElementXGraphStore(GraphStoreAdapter):
         """
         Gets connected nodes within the specified depth.
 
+        This is a PURE READ operation - no side effects.
+        To record access for Hebbian learning, call record_node_access() separately.
+
         Args:
             node_id: The starting node ID
             depth: How many hops to traverse
@@ -289,56 +373,188 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             List of neighbor node dicts with relationship info
         """
-        if node_id not in self._graph:
-            return []
+        # Take snapshot under lock, process outside
+        async with self._acquire_lock():
+            if node_id not in self._graph:
+                return []
 
-        # Touch the source node (Hebbian learning)
-        if "hit_count" in self._graph.nodes[node_id]:
-            self._graph.nodes[node_id]["hit_count"] += 1
-            self._graph.nodes[node_id]["last_accessed"] = datetime.now().isoformat()
+            neighbors = []
+            visited = {node_id}
 
-        neighbors = []
-        visited = {node_id}
+            # BFS to specified depth
+            current_level = [node_id]
+            for _ in range(depth):
+                next_level = []
+                for nid in current_level:
+                    # Get successors (outgoing edges)
+                    for neighbor in self._graph.successors(nid):
+                        if neighbor not in visited:
+                            visited.add(neighbor)
+                            next_level.append(neighbor)
+                            edge_data = dict(self._graph.edges[nid, neighbor])
+                            neighbors.append(
+                                {
+                                    "node": dict(self._graph.nodes[neighbor]),
+                                    "node_id": neighbor,
+                                    "from_node": nid,
+                                    "relation": edge_data.get("relation", ""),
+                                    "edge_weight": edge_data.get("weight", 1.0),
+                                }
+                            )
+                    # Get predecessors (incoming edges)
+                    for neighbor in self._graph.predecessors(nid):
+                        if neighbor not in visited:
+                            visited.add(neighbor)
+                            next_level.append(neighbor)
+                            edge_data = dict(self._graph.edges[neighbor, nid])
+                            neighbors.append(
+                                {
+                                    "node": dict(self._graph.nodes[neighbor]),
+                                    "node_id": neighbor,
+                                    "from_node": nid,
+                                    "relation": edge_data.get("relation", ""),
+                                    "edge_weight": edge_data.get("weight", 1.0),
+                                }
+                            )
+                current_level = next_level
 
-        # BFS to specified depth
-        current_level = [node_id]
-        for _ in range(depth):
-            next_level = []
-            for nid in current_level:
-                # Get successors (outgoing edges)
-                for neighbor in self._graph.successors(nid):
-                    if neighbor not in visited:
-                        visited.add(neighbor)
-                        next_level.append(neighbor)
-                        edge_data = self._graph.edges[nid, neighbor]
-                        neighbors.append(
-                            {
-                                "node": self._graph.nodes[neighbor],
-                                "node_id": neighbor,
-                                "from_node": nid,
-                                "relation": edge_data.get("relation", ""),
-                                "edge_weight": edge_data.get("weight", 1.0),
-                            }
-                        )
-                # Get predecessors (incoming edges)
-                for neighbor in self._graph.predecessors(nid):
-                    if neighbor not in visited:
-                        visited.add(neighbor)
-                        next_level.append(neighbor)
-                        edge_data = self._graph.edges[neighbor, nid]
-                        neighbors.append(
-                            {
-                                "node": self._graph.nodes[neighbor],
-                                "node_id": neighbor,
-                                "from_node": nid,
-                                "relation": edge_data.get("relation", ""),
-                                "edge_weight": edge_data.get("weight", 1.0),
-                            }
-                        )
-            current_level = next_level
-
-        self._save()
         return neighbors
+
+    async def record_node_access(self, node_id: str) -> bool:
+        """
+        Record access for Hebbian learning - separate from reads.
+
+        Increments hit_count and updates last_accessed timestamp.
+        Call this explicitly when a node is retrieved for use.
+
+        Args:
+            node_id: The ID of the accessed node
+
+        Returns:
+            True if access was recorded, False if node not found
+        """
+        async with self._acquire_lock():
+            if node_id not in self._graph.nodes:
+                return False
+
+            self._graph.nodes[node_id]["hit_count"] = (
+                self._graph.nodes[node_id].get("hit_count", 0) + 1
+            )
+            self._graph.nodes[node_id]["last_accessed"] = datetime.now().isoformat()
+            self._save()
+
+        return True
+
+    async def record_edge_access(self, source_id: str, target_id: str) -> bool:
+        """
+        Record access for Hebbian learning on an edge.
+
+        Increments hit_count and updates last_accessed timestamp.
+        Call this explicitly when an edge is traversed for use.
+
+        Args:
+            source_id: Source node ID of the edge
+            target_id: Target node ID of the edge
+
+        Returns:
+            True if access was recorded, False if edge not found
+        """
+        async with self._acquire_lock():
+            if not self._graph.has_edge(source_id, target_id):
+                return False
+
+            edge_data = self._graph.edges[source_id, target_id]
+            edge_data["hit_count"] = edge_data.get("hit_count", 0) + 1
+            edge_data["last_accessed"] = datetime.now().isoformat()
+            self._save()
+
+        return True
+
+    async def record_edges_access(self, edges: list[tuple[str, str]]) -> int:
+        """
+        Batch record access for multiple edges.
+
+        More efficient than calling record_edge_access() in a loop
+        as it acquires the lock only once.
+
+        Args:
+            edges: List of (source_id, target_id) tuples
+
+        Returns:
+            Number of edges successfully updated
+        """
+        if not edges:
+            return 0
+
+        async with self._acquire_lock():
+            count = 0
+            now = datetime.now().isoformat()
+            for source_id, target_id in edges:
+                if self._graph.has_edge(source_id, target_id):
+                    edge_data = self._graph.edges[source_id, target_id]
+                    edge_data["hit_count"] = edge_data.get("hit_count", 0) + 1
+                    edge_data["last_accessed"] = now
+                    count += 1
+            if count > 0:
+                self._save()
+
+        return count
+
+    async def update_edge_embedding(
+        self, source_id: str, target_id: str, embedding: list[float]
+    ) -> bool:
+        """
+        Update the embedding for an edge.
+
+        Used for backfilling edge embeddings for path relevancy scoring.
+
+        Args:
+            source_id: Source node ID of the edge
+            target_id: Target node ID of the edge
+            embedding: The embedding vector to set
+
+        Returns:
+            True if embedding was updated, False if edge not found
+        """
+        async with self._acquire_lock():
+            if not self._graph.has_edge(source_id, target_id):
+                return False
+
+            edge_data = self._graph.edges[source_id, target_id]
+            edge_data["embedding"] = embedding
+            self._save()
+
+        return True
+
+    async def update_edges_embeddings(
+        self, edges_with_embeddings: list[tuple[str, str, list[float]]]
+    ) -> int:
+        """
+        Batch update embeddings for multiple edges.
+
+        More efficient than calling update_edge_embedding() in a loop
+        as it acquires the lock only once and saves once.
+
+        Args:
+            edges_with_embeddings: List of (source_id, target_id, embedding) tuples
+
+        Returns:
+            Number of edges successfully updated
+        """
+        if not edges_with_embeddings:
+            return 0
+
+        async with self._acquire_lock():
+            count = 0
+            for source_id, target_id, embedding in edges_with_embeddings:
+                if self._graph.has_edge(source_id, target_id):
+                    edge_data = self._graph.edges[source_id, target_id]
+                    edge_data["embedding"] = embedding
+                    count += 1
+            if count > 0:
+                self._save()
+
+        return count
 
     async def find_path(
         self, start_id: str, end_id: str, max_depth: int = 5
@@ -389,33 +605,34 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             True if successful
         """
-        if primary_id not in self._graph or secondary_id not in self._graph:
-            return False
+        async with self._acquire_lock():
+            if primary_id not in self._graph or secondary_id not in self._graph:
+                return False
 
-        # Get secondary's edges
-        in_edges = list(self._graph.in_edges(secondary_id, data=True))
-        out_edges = list(self._graph.out_edges(secondary_id, data=True))
+            # Get secondary's edges
+            in_edges = list(self._graph.in_edges(secondary_id, data=True))
+            out_edges = list(self._graph.out_edges(secondary_id, data=True))
 
-        # Redirect edges to primary
-        for source, _, data in in_edges:
-            if source != primary_id:  # Avoid self-loops
-                self._graph.add_edge(source, primary_id, **data)
+            # Redirect edges to primary
+            for source, _, data in in_edges:
+                if source != primary_id:  # Avoid self-loops
+                    self._graph.add_edge(source, primary_id, **data)
 
-        for _, target, data in out_edges:
-            if target != primary_id:  # Avoid self-loops
-                self._graph.add_edge(primary_id, target, **data)
+            for _, target, data in out_edges:
+                if target != primary_id:  # Avoid self-loops
+                    self._graph.add_edge(primary_id, target, **data)
 
-        # Merge properties (primary wins conflicts)
-        secondary_data = self._graph.nodes[secondary_id]
-        primary_data = self._graph.nodes[primary_id]
+            # Merge properties (primary wins conflicts)
+            secondary_data = self._graph.nodes[secondary_id]
+            primary_data = self._graph.nodes[primary_id]
 
-        for key, value in secondary_data.items():
-            if key not in primary_data or primary_data[key] is None:
-                primary_data[key] = value
+            for key, value in secondary_data.items():
+                if key not in primary_data or primary_data[key] is None:
+                    primary_data[key] = value
 
-        # Remove secondary
-        self._graph.remove_node(secondary_id)
-        self._save()
+            # Remove secondary
+            self._graph.remove_node(secondary_id)
+            self._save()
 
         self._emit_event(
             "graph_node_merged",
@@ -430,6 +647,7 @@ class ElementXGraphStore(GraphStoreAdapter):
         Finds nodes with similar names/labels.
 
         Uses SequenceMatcher for fuzzy string matching.
+        Takes snapshot under lock, processes outside for thread safety.
 
         Args:
             query: The search string
@@ -438,11 +656,18 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             List of matching GraphNodes
         """
+        # Snapshot under lock
+        async with self._acquire_lock():
+            node_data_list = [
+                (node_id, dict(self._graph.nodes[node_id]))
+                for node_id in self._graph.nodes
+            ]
+
+        # Process outside lock
         matches = []
         query_lower = query.lower()
 
-        for node_id in self._graph.nodes:
-            node_data = self._graph.nodes[node_id]
+        for node_id, node_data in node_data_list:
             label = node_data.get("label", "")
 
             # Calculate similarity
@@ -505,11 +730,19 @@ class ElementXGraphStore(GraphStoreAdapter):
             return None
 
     async def get_all_nodes(self) -> list[GraphNode]:
-        """Get all nodes in the graph."""
+        """Get all nodes in the graph. Uses snapshot pattern for thread safety."""
+        # Snapshot under lock
+        async with self._acquire_lock():
+            node_data_list = [
+                dict(self._graph.nodes[node_id])
+                for node_id in self._graph.nodes
+            ]
+
+        # Process outside lock
         nodes = []
-        for node_id in self._graph.nodes:
+        for node_data in node_data_list:
             try:
-                nodes.append(GraphNode(**self._graph.nodes[node_id]))
+                nodes.append(GraphNode(**node_data))
             except Exception:
                 pass
         return nodes
@@ -547,26 +780,48 @@ class ElementXGraphStore(GraphStoreAdapter):
         return sorted_nodes[:n]
 
     async def get_all_edges(self) -> list[GraphEdge]:
-        """Get all edges in the graph."""
+        """Get all edges in the graph. Uses snapshot pattern for thread safety."""
+        # Snapshot under lock
+        async with self._acquire_lock():
+            edge_data_list = [
+                (source, target, dict(data))
+                for source, target, data in self._graph.edges(data=True)
+            ]
+
+        # Process outside lock
         edges = []
-        for source, target, data in self._graph.edges(data=True):
+        for source, target, data in edge_data_list:
             try:
-                edges.append(GraphEdge(
-                    source_id=source,
-                    target_id=target,
-                    relation=data.get("relation", "related_to"),
-                    weight=data.get("weight", 1.0),
-                    provenance=data.get("provenance"),
-                ))
+                # Build edge kwargs, only including optional fields if present
+                edge_kwargs = {
+                    "source_id": source,
+                    "target_id": target,
+                    "relation": data.get("relation", "related_to"),
+                    "weight": data.get("weight", 1.0),
+                    "provenance": data.get("provenance"),
+                    "hit_count": data.get("hit_count", 0),
+                }
+                # Only include embedding if present (None would be default anyway)
+                if data.get("embedding") is not None:
+                    edge_kwargs["embedding"] = data["embedding"]
+                # Only include datetime fields if present (avoid overriding defaults with None)
+                if data.get("last_accessed") is not None:
+                    edge_kwargs["last_accessed"] = data["last_accessed"]
+                if data.get("created_at") is not None:
+                    edge_kwargs["created_at"] = data["created_at"]
+
+                edges.append(GraphEdge(**edge_kwargs))
             except Exception:
                 pass
         return edges
 
-    async def find_by_label(
+    def _find_by_label_unlocked(
         self, label: str, node_type: str | None = None
     ) -> GraphNode | None:
         """
-        Find a node by exact label match (case-insensitive).
+        Internal: Find node by label without acquiring lock.
+
+        MUST be called while already holding self._lock.
 
         Args:
             label: The label to search for
@@ -585,6 +840,22 @@ class ElementXGraphStore(GraphStoreAdapter):
                     except Exception:
                         pass
         return None
+
+    async def find_by_label(
+        self, label: str, node_type: str | None = None
+    ) -> GraphNode | None:
+        """
+        Find a node by exact label match (case-insensitive).
+
+        Args:
+            label: The label to search for
+            node_type: Optional type filter
+
+        Returns:
+            The matching GraphNode or None if not found
+        """
+        async with self._acquire_lock():
+            return self._find_by_label_unlocked(label, node_type)
 
     async def find_edge(
         self,
@@ -668,11 +939,12 @@ class ElementXGraphStore(GraphStoreAdapter):
         Returns:
             Dict with counts of deleted nodes and edges
         """
-        node_count = len(self._graph.nodes)
-        edge_count = len(self._graph.edges)
+        async with self._acquire_lock():
+            node_count = len(self._graph.nodes)
+            edge_count = len(self._graph.edges)
 
-        self._graph.clear()
-        self._save()
+            self._graph.clear()
+            self._save()
 
         self._emit_event(
             "graph_store_cleared",

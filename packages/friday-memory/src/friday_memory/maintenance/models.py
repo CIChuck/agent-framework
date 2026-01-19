@@ -33,6 +33,7 @@ class IssueType(str, Enum):
     DUPLICATE_ENTITY = "duplicate_entity"
     STALE_ENTITY = "stale_entity"
     STALE_INSIGHT = "stale_insight"
+    STALE_EDGE = "stale_edge"
     CROSS_STORE_MISMATCH = "cross_store_mismatch"
     MISSING_INSIGHT = "missing_insight"
     SEMANTIC_DUPLICATE = "semantic_duplicate"
@@ -489,6 +490,55 @@ class MaintenanceConfig(BaseModel):
 
 
 # =============================================================================
+# Context Assembly Configuration
+# =============================================================================
+
+
+class ContextAssemblyConfig(BaseModel):
+    """Configuration for context assembly optimization features."""
+
+    # Entity display
+    entity_format: str = Field(
+        default="natural",
+        description="Entity format: 'natural' (with relationships), 'table' (legacy), 'none'",
+    )
+
+    # Summaries
+    summaries_mode: str = Field(
+        default="conditional",
+        description="Summaries mode: 'always', 'conditional' (skip when history complete), 'never'",
+    )
+    history_threshold_for_summaries: int = Field(
+        default=10,
+        description="Minimum history turns before considering summaries redundant",
+    )
+
+    # Insight deduplication
+    dedupe_insights: bool = Field(
+        default=True,
+        description="Enable topic-based insight deduplication at retrieval",
+    )
+
+    # Query relevance filtering
+    filter_by_relevance: bool = Field(
+        default=True,
+        description="Filter insights by query keyword relevance",
+    )
+    min_relevance_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Minimum relevance score for insights (0 = any overlap)",
+    )
+
+    # Format options
+    numbered_lists: bool = Field(
+        default=False,
+        description="Use numbered lists instead of bullets for insights/summaries",
+    )
+
+
+# =============================================================================
 # Backup Models
 # =============================================================================
 
@@ -831,6 +881,68 @@ class OptimizationReport(BaseModel):
     errors: list[str] = Field(default_factory=list)
 
 
+class CleanupReport(BaseModel):
+    """Report from hard delete and cleanup operations."""
+
+    processed_at: datetime = Field(default_factory=datetime.now)
+    dry_run: bool = Field(default=True)
+
+    # Hard delete stats
+    memories_deleted: int = Field(default=0)
+    deleted_memory_ids: list[str] = Field(default_factory=list)
+
+    # Graph cleanup stats
+    graph_nodes_deleted: int = Field(default=0)
+    deleted_node_ids: list[str] = Field(default_factory=list)
+
+    # Configuration
+    retention_days: int = Field(default=30)
+
+    # Errors
+    errors: list[str] = Field(default_factory=list)
+
+
+class InsightCluster(BaseModel):
+    """A cluster of similar/duplicate insights for deduplication."""
+
+    cluster_id: str = Field(..., description="Unique cluster identifier")
+    primary_insight_id: str = Field(
+        ..., description="ID of the insight kept (most recent + highest confidence)"
+    )
+    superseded_ids: list[str] = Field(
+        default_factory=list, description="IDs of insights marked as superseded"
+    )
+    entity_key: str = Field(
+        default="", description="Entity signature used for clustering"
+    )
+    similarity_score: float = Field(
+        default=0.0,
+        ge=0.0,
+        le=1.0,
+        description="Similarity score within cluster",
+    )
+
+
+class DeduplicationReport(BaseModel):
+    """Report from insight deduplication operations."""
+
+    processed_at: datetime = Field(default_factory=datetime.now)
+    dry_run: bool = Field(default=True, description="Whether this was a dry run")
+
+    # Counts
+    insights_scanned: int = Field(default=0)
+    clusters_found: int = Field(default=0)
+    insights_superseded: int = Field(default=0)
+
+    # Details
+    clusters: list[InsightCluster] = Field(
+        default_factory=list, description="List of insight clusters found"
+    )
+
+    # Errors
+    errors: list[str] = Field(default_factory=list)
+
+
 # =============================================================================
 # Full Reorganization Report
 # =============================================================================
@@ -851,6 +963,8 @@ class ReorganizationReport(BaseModel):
     verification_report: VerificationReport | None = Field(default=None)
     lifecycle_report: LifecycleReport | None = Field(default=None)
     optimization_report: OptimizationReport | None = Field(default=None)
+    cleanup_report: CleanupReport | None = Field(default=None)
+    deduplication_report: DeduplicationReport | None = Field(default=None)
 
     # Overall status
     success: bool = Field(default=False)

@@ -127,17 +127,27 @@ class TestLifecycleIntegration:
     def mock_collection_manager(self):
         """Create a mock collection manager."""
         manager = MagicMock()
-        manager.query_short_term = AsyncMock(return_value=[
+
+        # Create mock short_term collection with async get_all method
+        # Returns list of dictionaries with "id" and "metadata" keys
+        short_term = MagicMock()
+        short_term.get_all = AsyncMock(return_value=[
             {"id": "st_1", "text": "Short term memory", "metadata": {"hit_count": 5}},
             {"id": "st_2", "text": "Another short term", "metadata": {"hit_count": 10}},
         ])
-        manager.query_long_term = AsyncMock(return_value=[
+        manager.short_term = short_term
+
+        # Create mock long_term collection with async get_all method
+        long_term = MagicMock()
+        long_term.get_all = AsyncMock(return_value=[
             {"id": "lt_1", "text": "Long term memory", "metadata": {"decay_score": 0.1}},
         ])
+        manager.long_term = long_term
+
         manager.promote_to_long_term = AsyncMock()
         manager.demote_to_decayed = AsyncMock()
-        manager.short_term_collection = MagicMock()
-        manager.long_term_collection = MagicMock()
+        manager.promote_memory = AsyncMock()
+        manager.demote_memory = AsyncMock()
         return manager
 
     @pytest.fixture

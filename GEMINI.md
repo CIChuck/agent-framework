@@ -1,59 +1,86 @@
-# Gemini Framework Context
+# Friday Framework Context
 
 This document provides a comprehensive overview of the "Friday Framework" project, intended to be used as instructional context for Gemini.
 
 ## Project Overview
 
-The "Friday Framework" is a Python-based agentic framework designed to provide a modular and extensible architecture for building AI agents. The framework is in the early stages of development, with a focus on defining the core components and their interactions.
+The "Friday Framework" is a Python-based agentic framework designed to provide a modular and extensible architecture for building AI agents. It distinguishes itself by separating the agent's "Mind" (intelligence/memory) from its "Body" (execution/tools), allowing for sophisticated context management and long-term learning.
 
-The architecture is designed around the concept of a "Mind" (intelligence layer) and a "Body" (execution layer), with a central "Memory Loop" for context retrieval, learning, and decision-making.
+### Architecture: Mind & Body
 
-### Key Architectural Components:
+The architecture revolves around a central "Memory Loop":
 
-*   **Data Layer:** Handles data ingestion, storage, and retrieval.
-    *   **IO Adapter Protocols:** Abstract interfaces for input/output, ensuring swappability.
-    *   **GraphDB Wrapper (ElementX):** Manages structured knowledge and relationships.
-    *   **Vector/Data Store Adapters:** For semantic search and unstructured data, using technologies like ChromaDB.
-    *   **Document Ingestion Pipeline:** A robust system for parsing, chunking, and embedding files.
-*   **Intelligence Layer:** The "Brain" of the agent.
-    *   **Memory Controller Logic:** Routes information between the data layer and the context engine, and decides what to memorize.
-    *   **Context Engineering Framework:** Gathers and structures the context necessary for the LLM to make decisions.
-*   **Execution Layer:** The "Body" and "Voice" of the agent.
-    *   **LLM Framework (LiteLLM):** Manages interactions with Large Language Models.
-    *   **Tooling Interface (Pydantic):** A system for defining and using tools.
-    *   **Agent Base Class:** The main orchestrator that runs the "Observe -> Think -> Act -> Reflect" loop.
-*   **Supporting Components:**
-    *   **Telemetry Adapter (OpenTelemetry):** For observability and tracing.
-    *   **Guardrails Framework:** For input/output validation and safety.
-    *   **Event Bus:** For asynchronous operations.
+1.  **The Mind (Intelligence Layer):**
+    *   **Memory Controller:** The central "brain" that decides how to store information (structured vs. unstructured) and retrieves relevant context.
+    *   **Context Engine:** Assembles the necessary context for the LLM and extracts new knowledge from interactions.
+    *   **Data Layer:** Manages persistence via:
+        *   **GraphDB (ElementX):** For structured facts and relationships (using Pydantic models).
+        *   **Vector Store:** For unstructured semantic search (e.g., via ChromaDB).
+        *   **IO Adapters:** Abstract protocols ensuring storage technologies can be swapped.
 
-### Core Concepts:
+2.  **The Body (Execution Layer):**
+    *   **Agent Base Class (`AgentBase`):** The orchestrator that implements the `Observe -> Think -> Act -> Reflect` loop.
+    *   **Tool Registry:** Manages tools (Python functions) and resolves their schemas for the LLM.
+    *   **LLM Interface:** Abstracts interactions with Large Language Models (using LiteLLM).
+    *   **Telemetery:** Instrumentation for tracing and observability.
 
-*   **Auto-Memorize:** The framework automatically decides whether to store new information as a structured fact (in the graph database) or as an unstructured document (in the vector store).
-*   **Hebbian Learning:** The system reinforces frequently accessed knowledge by increasing a `hit_count` on graph nodes, making that knowledge "stronger" and more likely to be retrieved in the future.
+### Core Concepts
 
-## Building and Running
+*   **Auto-Memorize:** The framework automatically classifies input as "Facts" (GraphDB) or "Documents" (Vector Store) without manual intervention.
+*   **Hebbian Learning:** Knowledge retrieval is reinforced; frequently accessed graph nodes gain a higher "hit count," increasing their retrieval priority.
+*   **Swappability:** Components like storage backends and LLM providers are hidden behind abstract base classes (Protocols), making them easily replaceable.
 
-The project is currently in the specification and initial development phase. There are no explicit build or run commands defined yet. The `pyproject.toml` file is minimal and does not yet list the full dependencies.
+## Project Structure (Monorepo)
 
-To run the project, you would typically execute the main Python file:
+The project is a monorepo managed by `uv`.
 
+*   `packages/`
+    *   `friday-core`: Shared utilities, logging, and base interfaces.
+    *   `friday-memory`: The "Mind" - Memory controller, ingestion, adapters, and graph/vector logic.
+    *   `friday-agent`: The "Body" - Agent base classes, copilot implementation, and tool orchestration.
+    *   `friday-llm`: LLM service wrappers and configuration.
+    *   `friday-tools`: Standard tool definitions.
+    *   `friday-sandbox`: Secure execution environment for agent code.
+    *   `friday-mcp`: Model Context Protocol implementation.
+    *   `friday-transcript`: Transcript management.
+*   `docs/`: Extensive architectural documentation and specifications.
+*   `apps/`: Application-level implementations (e.g., `friday-cli`).
+
+## Development & Usage
+
+### Prerequisites
+*   Python 3.10+
+*   `uv` (Universal Python Package Manager)
+
+### Build and Run
+This project uses `uv` workspaces. You do not need to install packages individually.
+
+**1. Install Dependencies:**
 ```bash
-python main.py
+uv sync
 ```
 
-However, given the current state of `main.py`, this will only print a "Hello World" message.
+**2. Run Tests:**
+```bash
+uv run pytest
+```
+*   To run specific tests: `uv run pytest packages/friday-memory/tests`
 
-### TODO: Define Build and Run Commands
+**3. Run Examples:**
+Scripts in the `examples` directories demonstrate usage.
+```bash
+uv run python packages/friday-core/examples/01_introductory.py
+```
 
-*   [ ] Define the project dependencies in `pyproject.toml`.
-*   [ ] Create a `Makefile` or add scripts to `pyproject.toml` for common tasks like installing dependencies, running tests, and starting the application.
+### Key Commands (Inferred)
 
-## Development Conventions
+*   **Linting:** `uv run ruff check .`
+*   **Formatting:** `uv run ruff format .`
+*   **Type Checking:** `uv run mypy .`
 
-While not explicitly stated, the documentation suggests a strong emphasis on the following principles:
+## Conventions
 
-*   **Modularity and Swappability:** Components are designed to be independent and replaceable, facilitated by the use of Abstract Base Classes (ABCs) as protocols.
-*   **Strong Typing:** Pydantic is used to enforce data schemas, particularly in the GraphDB, to maintain data integrity.
-*   **Dependency-Driven Development:** The project follows a clear roadmap where components are built in a logical order based on their dependencies.
-*   **Observability:** Telemetry and tracing are considered a core part of the architecture, to be integrated from the early stages.
+*   **Strong Typing:** Heavy use of **Pydantic** models to enforce data schemas, especially for GraphDB nodes/edges and Tool definitions.
+*   **Interfaces:** Reliance on Abstract Base Classes (ABCs) in `friday-core` to define component contracts.
+*   **Async First:** The agent and IO operations are designed to be asynchronous (`async`/`await`).
+*   **Dependency Injection:** Components are typically passed into constructors (e.g., passing `MemoryController` into `AgentBase`), enabling easy testing and modularity.
