@@ -35,6 +35,10 @@ class BaseTool(ABC):
                 return "Does something useful"
 
             @property
+            def category(self) -> str:
+                return "utility"
+
+            @property
             def parameters_schema(self) -> dict[str, Any]:
                 return {
                     "type": "object",
@@ -67,6 +71,31 @@ class BaseTool(ABC):
         """JSON Schema for tool parameters."""
         pass
 
+    @property
+    def category(self) -> str:
+        """
+        Tool category for grouping and filtering.
+
+        Standard categories: filesystem, shell, web, git, code, data, text, utility.
+        Override this property to set a specific category.
+
+        Returns:
+            Category string, defaults to "uncategorized".
+        """
+        return "uncategorized"
+
+    @property
+    def tags(self) -> list[str]:
+        """
+        Optional tags for fine-grained filtering.
+
+        Override this property to add tags like ["read-only", "async", "idempotent"].
+
+        Returns:
+            List of tag strings, empty list by default.
+        """
+        return []
+
     @abstractmethod
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool with given arguments."""
@@ -78,7 +107,7 @@ class BaseTool(ABC):
 
         Args:
             format: Output format - "plain" or "openai".
-                   "plain": {"name": ..., "description": ..., "parameters": ...}
+                   "plain": {"name": ..., "description": ..., "parameters": ..., "category": ..., "tags": ...}
                    "openai": {"type": "function", "function": {...}}
 
         Returns:
@@ -88,12 +117,22 @@ class BaseTool(ABC):
             "name": self.name,
             "description": self.description,
             "parameters": self.parameters_schema,
+            "category": self.category,
+            "tags": self.tags,
         }
 
         if format == SchemaFormat.OPENAI or format == "openai":
+            # OpenAI format doesn't include category/tags in the function spec
+            # but we include them at the top level for filtering
             return {
                 "type": "function",
-                "function": plain_schema,
+                "function": {
+                    "name": self.name,
+                    "description": self.description,
+                    "parameters": self.parameters_schema,
+                },
+                "category": self.category,
+                "tags": self.tags,
             }
 
         return plain_schema
@@ -116,7 +155,7 @@ class FunctionTool(BaseTool):
             '''
             return f"{greeting}, {name}!"
 
-        tool = FunctionTool(greet)
+        tool = FunctionTool(greet, category="utility", tags=["greeting"])
         ```
     """
 
@@ -125,6 +164,8 @@ class FunctionTool(BaseTool):
         func: Callable,
         name: str | None = None,
         description: str | None = None,
+        category: str = "uncategorized",
+        tags: list[str] | None = None,
     ):
         """
         Create a tool from a function.
@@ -133,10 +174,14 @@ class FunctionTool(BaseTool):
             func: The function to wrap (async or sync).
             name: Override the function name.
             description: Override the function docstring.
+            category: Tool category (filesystem, shell, web, etc.).
+            tags: Optional list of tags for filtering.
         """
         self._func = func
         self._name = name or func.__name__
         self._description = description or func.__doc__ or f"Execute {self._name}"
+        self._category = category
+        self._tags = tags or []
         self._schema = self._generate_schema()
 
     @property
@@ -146,6 +191,14 @@ class FunctionTool(BaseTool):
     @property
     def description(self) -> str:
         return self._description
+
+    @property
+    def category(self) -> str:
+        return self._category
+
+    @property
+    def tags(self) -> list[str]:
+        return self._tags
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -224,17 +277,21 @@ class FunctionTool(BaseTool):
 def create_tool(
     name: str | None = None,
     description: str | None = None,
+    category: str = "uncategorized",
+    tags: list[str] | None = None,
 ) -> Callable[[Callable], FunctionTool]:
     """
     Decorator to create a tool from a function.
 
     Example:
         ```python
-        @create_tool(name="greet", description="Greet a person")
+        @create_tool(name="greet", description="Greet a person", category="utility")
         async def greet(name: str) -> str:
             return f"Hello, {name}!"
         ```
     """
     def decorator(func: Callable) -> FunctionTool:
-        return FunctionTool(func, name=name, description=description)
+        return FunctionTool(
+            func, name=name, description=description, category=category, tags=tags
+        )
     return decorator

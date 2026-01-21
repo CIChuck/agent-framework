@@ -4,7 +4,14 @@ Agent Base Abstract Class.
 Defines the shared foundation for all agent implementations.
 Handles memory integration, tool resolution, and telemetry.
 
+Tool Selection Integration (Phase 5):
+- Supports tool_autonomy modes: "manual", "auto", "hybrid"
+- Manages _active_tools state for task-scoped tool selection
+- Integrates with context_engine for tool context management
+- Provides set_tools_for_task(), expand_tools(), clear_tools()
+
 Ref: Batch 3 Specification, Section 4.2
+Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 """
 
 import asyncio
@@ -83,6 +90,11 @@ class AgentBase(ABC):
         # Conversation history for the current session
         self._conversation_history: list[dict[str, Any]] = []
 
+        # Active tools for the current task (tool selection integration)
+        # When populated, _get_tool_schemas() uses these instead of profile.tools
+        self._active_tools: list[dict[str, Any]] = []
+        self._active_tool_names: set[str] = set()
+
     @abstractmethod
     async def run(self, input_signal: Any) -> Any:
         """
@@ -121,15 +133,150 @@ class AgentBase(ABC):
         self._conversation_history = []
         return self.session_state
 
+    # --- Tool Selection Management ---
+
+    def set_tools_for_task(self, tool_names: list[str]) -> None:
+        """
+        Set the active tools for the current task.
+
+        Resolves tool names to schemas and updates the context engine.
+        Used at the start of a task to select which tools are available.
+
+        Args:
+            tool_names: List of tool names to activate.
+
+        Example:
+            agent.set_tools_for_task(["read_file", "write_file", "list_directory"])
+        """
+        schemas = []
+        for name in tool_names:
+            try:
+                schema = self.tool_registry.get_schema(name)
+                schemas.append(schema)
+            except (KeyError, AttributeError):
+                logger.warning(f"Tool '{name}' not found in registry, skipping")
+
+        self._active_tools = schemas
+        self._active_tool_names = {s.get("name", "") for s in schemas}
+
+        # Notify context engine of active tools
+        if hasattr(self.context_engine, "set_active_tools"):
+            self.context_engine.set_active_tools(schemas)
+
+        self._emit_event(
+            "tools_set_for_task",
+            {"tool_count": len(schemas), "tool_names": list(self._active_tool_names)},
+        )
+        logger.debug(f"Set {len(schemas)} active tools for task: {list(self._active_tool_names)}")
+
+    def expand_tools(self, additional_tool_names: list[str]) -> int:
+        """
+        Expand active tools with additional ones.
+
+        Used in hybrid mode when an agent needs to add more tools
+        mid-task without replacing the existing set.
+
+        Args:
+            additional_tool_names: Tool names to add to the active set.
+
+        Returns:
+            Number of tools actually added.
+        """
+        added = 0
+        for name in additional_tool_names:
+            if name in self._active_tool_names:
+                continue  # Already active
+
+            try:
+                schema = self.tool_registry.get_schema(name)
+                self._active_tools.append(schema)
+                self._active_tool_names.add(name)
+                added += 1
+            except (KeyError, AttributeError):
+                logger.warning(f"Tool '{name}' not found in registry, skipping")
+
+        if added > 0:
+            # Update context engine
+            if hasattr(self.context_engine, "set_active_tools"):
+                self.context_engine.set_active_tools(self._active_tools)
+
+            self._emit_event(
+                "tools_expanded",
+                {"tools_added": added, "total_tools": len(self._active_tools)},
+            )
+            logger.debug(f"Expanded tools by {added}, total: {len(self._active_tools)}")
+
+        return added
+
+    def clear_tools(self) -> None:
+        """
+        Clear all active tools.
+
+        Should be called at the end of a task to reset tool state.
+        """
+        self._active_tools = []
+        self._active_tool_names = set()
+
+        # Notify context engine
+        if hasattr(self.context_engine, "clear_tools"):
+            self.context_engine.clear_tools()
+
+        self._emit_event("tools_cleared", {})
+        logger.debug("Cleared all active tools")
+
+    def get_active_tool_names(self) -> list[str]:
+        """Get list of currently active tool names."""
+        return list(self._active_tool_names)
+
+    def _initialize_tools_for_autonomy_mode(self) -> None:
+        """
+        Initialize tools based on the profile's tool_autonomy setting.
+
+        Called at the start of a task to set up initial tools.
+
+        Modes:
+        - manual: Use injected_tools (or profile.tools as fallback)
+        - auto: Don't pre-populate; agent will select via select_tools_for_task()
+        - hybrid: Start with injected_tools; agent can expand later
+        """
+        autonomy = self.profile.tool_autonomy
+
+        if autonomy == "manual":
+            # Use injected tools, fallback to profile.tools
+            tool_names = self.profile.injected_tools or self.profile.tools
+            if tool_names:
+                self.set_tools_for_task(tool_names)
+
+        elif autonomy == "hybrid":
+            # Start with injected + required tools
+            initial_tools = set(self.profile.injected_tools)
+            initial_tools.update(self.profile.required_tools)
+            if initial_tools:
+                self.set_tools_for_task(list(initial_tools))
+
+        elif autonomy == "auto":
+            # Only set required tools; agent will select rest
+            if self.profile.required_tools:
+                self.set_tools_for_task(self.profile.required_tools)
+            # Agent should call select_tools_for_task() after analyzing the task
+
     # --- Tool Infrastructure ---
 
     def _get_tool_schemas(self) -> list[dict[str, Any]]:
         """
-        Resolve profile.tools to JSON schemas for LLM.
+        Get tool schemas for LLM.
+
+        If _active_tools is populated (via set_tools_for_task), returns those.
+        Otherwise falls back to resolving profile.tools from the registry.
 
         Returns:
             List of OpenAI-compatible tool schemas
         """
+        # Prefer active tools if set (tool selection integration)
+        if self._active_tools:
+            return self._active_tools
+
+        # Fallback to profile.tools (legacy behavior)
         schemas = []
         for tool_name in self.profile.tools:
             try:

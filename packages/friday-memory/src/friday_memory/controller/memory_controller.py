@@ -98,7 +98,20 @@ class MemoryController:
     - store_fact(): Write entities/facts to Graph
     - store_insight(): Write summaries to Vector
     - Consolidation proxies for Episodic management
+
+    Token Budget Awareness:
+    - recall() respects token_limit by dynamically adjusting retrieval counts
+    - Uses estimated tokens per item type for budget allocation
     """
+
+    # Token estimates per item type (conservative averages)
+    TOKENS_PER_HISTORY_TURN = 150  # user + assistant messages
+    TOKENS_PER_INSIGHT = 80
+    TOKENS_PER_SUMMARY = 100
+    TOKENS_PER_FACT = 50
+    TOKENS_PER_ENTITY = 30
+    TOKENS_PER_RELATIONSHIP = 40
+    TOKENS_PER_PRIOR_TURN = 150
 
     def __init__(
         self,
@@ -183,6 +196,73 @@ class MemoryController:
         if self._telemetry:
             self._telemetry.capture_event(event_name, data)
 
+    def _calculate_retrieval_limits(
+        self,
+        token_limit: int,
+        history_limit: int,
+        include_prior_sessions: bool = True,
+    ) -> dict[str, int]:
+        """
+        Calculate token-budget-aware retrieval limits.
+
+        Allocates the token budget across different content types using
+        priority-based allocation:
+        1. History (40% of budget) - critical for continuity
+        2. Insights (20%) - extracted knowledge
+        3. Summaries (15%) - conversation context
+        4. Facts/Entities (15%) - graph knowledge
+        5. Prior sessions (10%) - cross-session context
+
+        Args:
+            token_limit: Total available tokens for retrieval
+            history_limit: Maximum history turns (from priming config)
+            include_prior_sessions: Whether to allocate for prior sessions
+
+        Returns:
+            Dict with adjusted limits: {
+                'history': int, 'insights': int, 'summaries': int,
+                'facts': int, 'entities': int, 'prior_turns': int,
+                'relationships': int
+            }
+        """
+        # Budget allocation percentages
+        HISTORY_PERCENT = 0.40
+        INSIGHTS_PERCENT = 0.20
+        SUMMARIES_PERCENT = 0.15
+        FACTS_PERCENT = 0.10
+        ENTITIES_PERCENT = 0.05
+        PRIOR_PERCENT = 0.10 if include_prior_sessions else 0.0
+
+        # Calculate item limits based on token budget
+        history_budget = int(token_limit * HISTORY_PERCENT)
+        insights_budget = int(token_limit * INSIGHTS_PERCENT)
+        summaries_budget = int(token_limit * SUMMARIES_PERCENT)
+        facts_budget = int(token_limit * FACTS_PERCENT)
+        entities_budget = int(token_limit * ENTITIES_PERCENT)
+        prior_budget = int(token_limit * PRIOR_PERCENT)
+
+        # Convert to item counts
+        max_history = min(
+            history_limit,
+            max(1, history_budget // self.TOKENS_PER_HISTORY_TURN)
+        )
+        max_insights = max(1, insights_budget // self.TOKENS_PER_INSIGHT)
+        max_summaries = max(1, summaries_budget // self.TOKENS_PER_SUMMARY)
+        max_facts = max(1, facts_budget // self.TOKENS_PER_FACT)
+        max_entities = max(1, entities_budget // self.TOKENS_PER_ENTITY)
+        max_prior = max(0, prior_budget // self.TOKENS_PER_PRIOR_TURN)
+        max_relationships = max(1, max_entities)  # Match entity count
+
+        return {
+            "history": max_history,
+            "insights": max_insights,
+            "summaries": max_summaries,
+            "facts": max_facts,
+            "entities": max_entities,
+            "prior_turns": max_prior,
+            "relationships": max_relationships,
+        }
+
     # --- Core API: Retrieval (The "Recall" Loop) ---
 
     async def recall(
@@ -222,9 +302,18 @@ class MemoryController:
         if self._telemetry:
             span_id = self._telemetry.start_span("memory_recall")
 
+        # Calculate budget-aware retrieval limits
+        previous_sessions = self._priming_config.get("previous_sessions", 0)
+        limits = self._calculate_retrieval_limits(
+            token_limit=token_limit,
+            history_limit=history_limit,
+            include_prior_sessions=previous_sessions > 0,
+        )
+
         debug_info: dict[str, Any] = {
             "query_length": len(query),
             "token_limit": token_limit,
+            "budget_limits": limits,  # Record the calculated limits
         }
 
         try:
@@ -232,15 +321,15 @@ class MemoryController:
             if session_id and self._priming_config.get("enabled", True):
                 await self._ensure_session_primed(session_id)
 
-            # Parallel retrieval from all stores
+            # Parallel retrieval from all stores (using budget-aware limits)
             tasks = []
 
-            # Episodic retrieval
+            # Episodic retrieval - use budget-limited history count
             async def _empty_list() -> list:
                 return []
 
             if include_history and session_id:
-                tasks.append(self._retrieve_episodic(session_id, history_limit))
+                tasks.append(self._retrieve_episodic(session_id, limits["history"]))
             else:
                 tasks.append(_empty_list())
 
@@ -267,33 +356,32 @@ class MemoryController:
             )
             facts = graph_data.get("facts", []) if isinstance(graph_data, dict) else []
 
-            # Always fetch recent insights and summaries (dynamic loading)
-            # This ensures newly extracted content is immediately available
-            max_insights = self._priming_config.get("max_insights", 10)
-            max_summaries = self._priming_config.get("max_summaries", 10)
+            # Use budget-aware limits for insights and summaries
             recency_days = self._priming_config.get("recency_days", 0)
 
-            recent_insights = await self._fetch_recent_insights(max_insights, recency_days)
-            recent_summaries = await self._fetch_recent_summaries(max_summaries, recency_days)
+            recent_insights = await self._fetch_recent_insights(
+                limits["insights"], recency_days
+            )
+            recent_summaries = await self._fetch_recent_summaries(
+                limits["summaries"], recency_days
+            )
 
-            # Fetch key facts from graph (factual edges only)
-            max_facts = self._priming_config.get("max_facts", 10)
-            key_facts = await self._fetch_key_facts(limit=max_facts)
+            # Fetch key facts from graph using budget-aware limit
+            key_facts = await self._fetch_key_facts(limit=limits["facts"])
 
             # Fetch prior session history for cross-session continuity
             prior_history: list[InteractionTurn] = []
-            previous_sessions = self._priming_config.get("previous_sessions", 0)
             previous_session_turns = self._priming_config.get("previous_session_turns", 5)
-            if previous_sessions > 0 and session_id:
+            if previous_sessions > 0 and session_id and limits["prior_turns"] > 0:
                 prior_history = await self._fetch_prior_session_history(
                     session_id,
                     previous_sessions,
-                    previous_session_turns,
+                    min(previous_session_turns, limits["prior_turns"]),
                 )
 
-            # Get top entities and build relationship summaries
+            # Get top entities using budget-aware limit
             top_entities = await self.graph.get_top_nodes(
-                self._priming_config.get("top_entities", 10),
+                limits["entities"],
                 sort_by="hit_count",
             )
 
@@ -304,8 +392,9 @@ class MemoryController:
                     entities.append(entity)
                     existing_ids.add(entity.id)
 
-            # Build relationship summaries for top entities
-            relationship_summaries = await self._build_relationship_summaries(top_entities)
+            # Build relationship summaries for top entities (budget-limited)
+            all_relationships = await self._build_relationship_summaries(top_entities)
+            relationship_summaries = all_relationships[:limits["relationships"]]
 
             # Record debug info
             debug_info["history_count"] = len(history)

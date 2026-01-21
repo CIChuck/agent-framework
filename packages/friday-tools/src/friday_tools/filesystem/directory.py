@@ -8,14 +8,135 @@ from __future__ import annotations
 
 import fnmatch
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
+from pydantic import BaseModel, Field
+
+from ..base import FridayTool, ToolResult
 from ..definition import BaseTool
 from ..sandbox import FilesystemSandbox
 
 
-class DirectoryListTool(BaseTool):
-    """List directory contents."""
+def _format_size(size: int) -> str:
+    """Format file size in human-readable format."""
+    for unit in ["B", "KB", "MB", "GB"]:
+        if size < 1024:
+            return f"{size:.1f}{unit}" if unit != "B" else f"{size}{unit}"
+        size /= 1024
+    return f"{size:.1f}TB"
+
+
+class DirectoryListTool(FridayTool):
+    """
+    List the contents of a directory.
+
+    Shows files and directories with size and type information.
+    Supports filtering by pattern and sorting options.
+    """
+
+    name = "directory_list"
+    description = "List the contents of a directory with file sizes and types."
+    category = "filesystem"
+    tags = ["directory", "list", "files", "ls"]
+
+    class Input(BaseModel):
+        path: str = Field(
+            description="Path to the directory to list"
+        )
+        pattern: str = Field(
+            default="*",
+            description="Filter pattern (glob-style, e.g., '*.py')"
+        )
+        show_hidden: bool = Field(
+            default=False,
+            description="Include hidden files (starting with .)"
+        )
+        sort_by: Literal["name", "size", "modified"] = Field(
+            default="name",
+            description="Sort by: name, size, or modified"
+        )
+
+    def __init__(self, sandbox: FilesystemSandbox | None = None):
+        self._sandbox = sandbox or FilesystemSandbox()
+
+    async def run(self, args: Input) -> ToolResult:
+        """Execute the directory list tool."""
+        validated_path = self._sandbox.validate_path(args.path)
+
+        if not validated_path.exists():
+            return ToolResult(
+                content=f"Error: Directory not found: {args.path}",
+                error=f"Directory not found: {args.path}"
+            )
+
+        if not validated_path.is_dir():
+            return ToolResult(
+                content=f"Error: Not a directory: {args.path}",
+                error=f"Not a directory: {args.path}"
+            )
+
+        try:
+            entries = []
+            for item in validated_path.iterdir():
+                # Skip hidden files unless requested
+                if not args.show_hidden and item.name.startswith("."):
+                    continue
+
+                # Apply pattern filter
+                if not fnmatch.fnmatch(item.name, args.pattern):
+                    continue
+
+                # Get file info
+                stat = item.stat()
+                entry = {
+                    "name": item.name,
+                    "type": "dir" if item.is_dir() else "file",
+                    "size": stat.st_size,
+                    "modified": stat.st_mtime,
+                }
+                entries.append(entry)
+
+            # Sort entries
+            if args.sort_by == "size":
+                entries.sort(key=lambda x: x["size"], reverse=True)
+            elif args.sort_by == "modified":
+                entries.sort(key=lambda x: x["modified"], reverse=True)
+            else:
+                entries.sort(key=lambda x: x["name"])
+
+            # Format output
+            lines = []
+            for e in entries:
+                type_indicator = "d" if e["type"] == "dir" else "-"
+                size_str = _format_size(e["size"])
+                lines.append(f"{type_indicator} {size_str:>10} {e['name']}")
+
+            if not lines:
+                content = f"Directory is empty (or no matches for '{args.pattern}')"
+            else:
+                content = "\n".join(lines)
+
+            return ToolResult(
+                content=content,
+                data={"entries": entries, "count": len(entries)},
+                metadata={"path": args.path, "pattern": args.pattern}
+            )
+
+        except PermissionError:
+            return ToolResult(
+                content=f"Error: Permission denied: {args.path}",
+                error="Permission denied"
+            )
+        except Exception as e:
+            return ToolResult(
+                content=f"Error: Failed to list directory: {e}",
+                error=str(e)
+            )
+
+
+# Legacy BaseTool version for backwards compatibility
+class DirectoryListToolLegacy(BaseTool):
+    """List directory contents (legacy BaseTool version)."""
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
         self._sandbox = sandbox or FilesystemSandbox()
@@ -74,15 +195,10 @@ class DirectoryListTool(BaseTool):
         try:
             entries = []
             for item in validated_path.iterdir():
-                # Skip hidden files unless requested
                 if not show_hidden and item.name.startswith("."):
                     continue
-
-                # Apply pattern filter
                 if not fnmatch.fnmatch(item.name, pattern):
                     continue
-
-                # Get file info
                 stat = item.stat()
                 entry = {
                     "name": item.name,
@@ -92,7 +208,6 @@ class DirectoryListTool(BaseTool):
                 }
                 entries.append(entry)
 
-            # Sort entries
             if sort_by == "size":
                 entries.sort(key=lambda x: x["size"], reverse=True)
             elif sort_by == "modified":
@@ -100,11 +215,10 @@ class DirectoryListTool(BaseTool):
             else:
                 entries.sort(key=lambda x: x["name"])
 
-            # Format output
             lines = []
             for e in entries:
                 type_indicator = "d" if e["type"] == "dir" else "-"
-                size_str = self._format_size(e["size"])
+                size_str = _format_size(e["size"])
                 lines.append(f"{type_indicator} {size_str:>10} {e['name']}")
 
             if not lines:
@@ -114,14 +228,6 @@ class DirectoryListTool(BaseTool):
 
         except Exception as e:
             return f"Error: Failed to list directory: {e}"
-
-    def _format_size(self, size: int) -> str:
-        """Format file size in human-readable format."""
-        for unit in ["B", "KB", "MB", "GB"]:
-            if size < 1024:
-                return f"{size:.1f}{unit}" if unit != "B" else f"{size}{unit}"
-            size /= 1024
-        return f"{size:.1f}TB"
 
 
 class DirectoryTreeTool(BaseTool):

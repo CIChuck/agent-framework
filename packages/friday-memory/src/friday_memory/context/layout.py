@@ -3,18 +3,26 @@ Prompt Architect (Layout Engine).
 Physically structures the final prompt to optimize model attention.
 
 Ref: Batch 2a Specification, Section 5
+Ref: docs/build-plan/tool-calling-build-plan.md, Phase 4
 
 Layout Strategy (Optimized for Attention):
 1. System Message: Base prompt (identity & guardrails)
-2. [Future: Function/Tool definitions from Friday-Tools]
-3. Episodic Memory: Conversation history (chronological)
-4. Final Message: Supporting context + User query
+2. Episodic Memory: Conversation history (chronological)
+3. Final Message: Supporting context + User query
    - Prior knowledge (relationship summaries)
+   - Key facts (most recent first)
    - Recent insights (most recent first)
    - Recent summaries (most recent first)
-   - Known entities (Hebbian-ranked)
+   - Tool recommendations (NEW - for recency effect)
+   - Tool usage hints (NEW)
    - Session state
    - User query
+
+Tool Context Integration (Hybrid Placement):
+- Full tool schemas are passed via API `tools` parameter (not in prompt)
+- Tool recommendations and hints appear in supporting context
+- Placed immediately before query for maximum recency effect
+- Recommendations include tool name, reason, and suggested parameters
 
 This layout combats "Lost in the Middle" by placing supporting context
 immediately before the query (recency effect) rather than in the system block.
@@ -225,7 +233,33 @@ class PromptArchitect:
                 text = summary.get("text", "")
                 sections.append(f"- {text}")
 
-        # 5. Scoped state variables
+        # 5. Tool recommendations (for recency effect - close to query)
+        if payload.recommended_tools:
+            sections.append("\n## Recommended Tools")
+            for rec in payload.recommended_tools:
+                # Handle both ToolRecommendation objects and dicts
+                if hasattr(rec, "tool_name"):
+                    tool_name = rec.tool_name
+                    reason = rec.reason
+                    suggested = getattr(rec, "suggested_parameters", None)
+                else:
+                    tool_name = rec.get("tool_name", "unknown")
+                    reason = rec.get("reason", "")
+                    suggested = rec.get("suggested_parameters")
+
+                line = f"- {tool_name}: {reason}"
+                if suggested:
+                    params = ", ".join(f"{k}={v}" for k, v in suggested.items())
+                    line += f" (suggested: {params})"
+                sections.append(line)
+
+        # 6. Tool usage hints
+        if payload.tool_usage_hints:
+            sections.append("\n## Tool Usage Notes")
+            for hint in payload.tool_usage_hints:
+                sections.append(f"- {hint}")
+
+        # 7. Scoped state variables
         if state and state.scoped_vars:
             state_block = self._format_state_block(state)
             sections.append(f"\n{state_block}")
@@ -269,6 +303,30 @@ class PromptArchitect:
                 }
                 for s in payload.summaries
             ]
+
+        # Tool recommendations
+        if payload.recommended_tools:
+            recommendations = []
+            for rec in payload.recommended_tools:
+                if hasattr(rec, "tool_name"):
+                    recommendations.append({
+                        "tool_name": rec.tool_name,
+                        "reason": rec.reason,
+                        "relevance_score": getattr(rec, "relevance_score", 0.0),
+                        "suggested_parameters": getattr(rec, "suggested_parameters", None),
+                    })
+                else:
+                    recommendations.append({
+                        "tool_name": rec.get("tool_name", "unknown"),
+                        "reason": rec.get("reason", ""),
+                        "relevance_score": rec.get("relevance_score", 0.0),
+                        "suggested_parameters": rec.get("suggested_parameters"),
+                    })
+            context["recommended_tools"] = recommendations
+
+        # Tool usage hints
+        if payload.tool_usage_hints:
+            context["tool_usage_hints"] = payload.tool_usage_hints
 
         if state and state.scoped_vars:
             context["session_state"] = dict(state.scoped_vars)
@@ -315,6 +373,43 @@ class PromptArchitect:
                 if created_at:
                     summary.set("created_at", created_at)
                 summary.text = s.get("text", "")
+
+        # Tool recommendations
+        if payload.recommended_tools:
+            tools_elem = SubElement(root, "recommended_tools")
+            for rec in payload.recommended_tools:
+                tool_elem = SubElement(tools_elem, "tool")
+                if hasattr(rec, "tool_name"):
+                    tool_elem.set("name", rec.tool_name)
+                    tool_elem.set("relevance", str(getattr(rec, "relevance_score", 0.0)))
+                    reason_elem = SubElement(tool_elem, "reason")
+                    reason_elem.text = rec.reason
+                    suggested = getattr(rec, "suggested_parameters", None)
+                    if suggested:
+                        params_elem = SubElement(tool_elem, "suggested_parameters")
+                        for k, v in suggested.items():
+                            param = SubElement(params_elem, "param")
+                            param.set("name", k)
+                            param.text = str(v)
+                else:
+                    tool_elem.set("name", rec.get("tool_name", "unknown"))
+                    tool_elem.set("relevance", str(rec.get("relevance_score", 0.0)))
+                    reason_elem = SubElement(tool_elem, "reason")
+                    reason_elem.text = rec.get("reason", "")
+                    suggested = rec.get("suggested_parameters")
+                    if suggested:
+                        params_elem = SubElement(tool_elem, "suggested_parameters")
+                        for k, v in suggested.items():
+                            param = SubElement(params_elem, "param")
+                            param.set("name", k)
+                            param.text = str(v)
+
+        # Tool usage hints
+        if payload.tool_usage_hints:
+            hints_elem = SubElement(root, "tool_usage_hints")
+            for hint in payload.tool_usage_hints:
+                hint_elem = SubElement(hints_elem, "hint")
+                hint_elem.text = hint
 
         if state and state.scoped_vars:
             state_elem = SubElement(root, "session_state")
@@ -384,7 +479,33 @@ class PromptArchitect:
                 timestamp = created_at[:16] if created_at else "N/A"
                 sections.append(f"- **[{timestamp}]** {text}")
 
-        # 5. Session state as table
+        # 5. Tool recommendations as table
+        if payload.recommended_tools:
+            sections.append("")
+            sections.append("## Recommended Tools")
+            sections.append("")
+            sections.append("| Tool | Relevance | Reason |")
+            sections.append("|------|-----------|--------|")
+            for rec in payload.recommended_tools:
+                if hasattr(rec, "tool_name"):
+                    tool_name = rec.tool_name
+                    relevance = getattr(rec, "relevance_score", 0.0)
+                    reason = rec.reason
+                else:
+                    tool_name = rec.get("tool_name", "unknown")
+                    relevance = rec.get("relevance_score", 0.0)
+                    reason = rec.get("reason", "")
+                sections.append(f"| `{tool_name}` | {relevance:.2f} | {reason} |")
+
+        # 6. Tool usage hints
+        if payload.tool_usage_hints:
+            sections.append("")
+            sections.append("## Tool Usage Notes")
+            sections.append("")
+            for hint in payload.tool_usage_hints:
+                sections.append(f"- {hint}")
+
+        # 7. Session state as table
         if state and state.scoped_vars:
             sections.append("")
             sections.append("## Session Context")

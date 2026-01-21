@@ -33,15 +33,21 @@ class ToolResult(BaseModel):
 class FridayTool(ToolDefinition, ABC):
     """
     Abstract base class for Friday Tools with automatic Pydantic Schema generation.
-    
+
     Subclasses must:
     1. Define `name` and `description`.
     2. Define `Input` (a Pydantic BaseModel) as a class attribute.
     3. Implement `run(self, args: Input) -> ToolResult`.
+
+    Optional:
+    - Define `category` (default: "uncategorized")
+    - Define `tags` (default: [])
     """
-    
+
     name: str
     description: str
+    category: str = "uncategorized"
+    tags: list[str] = []
     Input: Type[BaseModel]
 
     @property
@@ -52,7 +58,7 @@ class FridayTool(ToolDefinition, ABC):
     def to_schema(self, format: str = "plain") -> dict[str, Any]:
         """
         Convert tool to JSON schema format.
-        
+
         Args:
             format: "plain" (default) or "openai".
         """
@@ -60,12 +66,20 @@ class FridayTool(ToolDefinition, ABC):
             "name": self.name,
             "description": self.description,
             "parameters": self.parameters_schema,
+            "category": self.category,
+            "tags": self.tags,
         }
 
         if format == "openai":
             return {
                 "type": "function",
-                "function": base_schema
+                "function": {
+                    "name": self.name,
+                    "description": self.description,
+                    "parameters": self.parameters_schema,
+                },
+                "category": self.category,
+                "tags": self.tags,
             }
         return base_schema
 

@@ -70,14 +70,21 @@ class CopilotAgent(AgentBase):
                 await self.initialize_session()
 
             # 1. Assemble context for this query
+            # Calculate dynamic budget based on system prompt and tools
+            system_prompt = self.profile.render_system_prompt()
+            tool_schemas = self._get_tool_schemas()
+            budget_limit = self.context_engine.calculate_budget_limit(
+                system_prompt=system_prompt,
+                tool_definitions=tool_schemas if tool_schemas else None,
+            )
+
             context_payload = await self.context_engine.assemble_context(
                 query=input_signal,
                 state=self.session_state,
-                budget_limit=4000,  # Token budget for context
+                budget_limit=budget_limit,
             )
 
-            # 2. Format the system prompt
-            system_prompt = self.profile.render_system_prompt()
+            # 2. Format the prompt (system_prompt already calculated above)
             messages = await self.context_engine.format_prompt(
                 system_prompt=system_prompt,
                 payload=context_payload,

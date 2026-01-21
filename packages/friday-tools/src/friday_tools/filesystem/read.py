@@ -13,61 +13,112 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from pydantic import BaseModel, Field
+
+from ..base import FridayTool, ToolResult
 from ..definition import BaseTool
 from ..sandbox import FilesystemSandbox
 
 
-class FileReadTool(BaseTool):
-    """Read file contents."""
+class FileReadTool(FridayTool):
+    """
+    Read the contents of a text file.
+
+    Reads and returns the full contents of a file with configurable encoding.
+    Useful for examining configuration files, source code, logs, and other
+    text-based files.
+    """
+
+    name = "file_read"
+    description = "Read the contents of a text file."
+    category = "filesystem"
+    tags = ["file", "read", "text", "cat"]
+
+    class Input(BaseModel):
+        path: str = Field(
+            description="Path to the file to read"
+        )
+        encoding: str = Field(
+            default="utf-8",
+            description="File encoding (e.g., utf-8, latin-1, ascii)"
+        )
+        max_lines: int | None = Field(
+            default=None,
+            description="Maximum number of lines to read (None for all)"
+        )
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
         self._sandbox = sandbox or FilesystemSandbox()
 
-    @property
-    def name(self) -> str:
-        return "file_read"
-
-    @property
-    def description(self) -> str:
-        return "Read the contents of a file. Supports text files with various encodings."
-
-    @property
-    def parameters_schema(self) -> dict[str, Any]:
-        return {
-            "type": "object",
-            "properties": {
-                "path": {
-                    "type": "string",
-                    "description": "Path to the file to read",
-                },
-                "encoding": {
-                    "type": "string",
-                    "description": "File encoding (default: utf-8)",
-                    "default": "utf-8",
-                },
-            },
-            "required": ["path"],
-        }
-
-    async def execute(self, **kwargs: Any) -> str:
-        path = kwargs["path"]
-        encoding = kwargs.get("encoding", "utf-8")
-
-        validated_path = self._sandbox.validate_path(path)
+    async def run(self, args: Input) -> ToolResult:
+        """Execute the file read tool."""
+        validated_path = self._sandbox.validate_path(args.path)
 
         if not validated_path.exists():
-            return f"Error: File not found: {path}"
+            return ToolResult(
+                content=f"Error: File not found: {args.path}",
+                error=f"File not found: {args.path}"
+            )
 
         if not validated_path.is_file():
-            return f"Error: Not a file: {path}"
+            return ToolResult(
+                content=f"Error: Not a file: {args.path}",
+                error=f"Not a file: {args.path}"
+            )
 
         try:
-            content = validated_path.read_text(encoding=encoding)
-            return content
+            content = validated_path.read_text(encoding=args.encoding)
+
+            # Apply line limit if specified
+            truncated = False
+            total_lines = 0
+            if args.max_lines is not None:
+                lines = content.splitlines(keepends=True)
+                total_lines = len(lines)
+                if total_lines > args.max_lines:
+                    content = "".join(lines[:args.max_lines])
+                    content += f"\n... ({args.max_lines}/{total_lines} lines)"
+                    truncated = True
+
+            # Get file stats for metadata
+            stat_info = validated_path.stat()
+
+            # Count lines in content
+            line_count = content.count("\n")
+            if content and not content.endswith("\n"):
+                line_count += 1
+
+            return ToolResult(
+                content=content,
+                data={
+                    "path": str(validated_path),
+                    "size_bytes": stat_info.st_size,
+                    "line_count": line_count,
+                    "encoding": args.encoding,
+                },
+                metadata={
+                    "path": args.path,
+                    "encoding": args.encoding,
+                    "truncated": truncated,
+                }
+            )
+
         except UnicodeDecodeError as e:
-            return f"Error: Failed to decode file with encoding {encoding}: {e}"
+            msg = f"Failed to decode with encoding {args.encoding}: {e}"
+            return ToolResult(
+                content=f"Error: {msg}",
+                error=f"Encoding error: {e}"
+            )
+        except PermissionError:
+            return ToolResult(
+                content=f"Error: Permission denied: {args.path}",
+                error="Permission denied"
+            )
         except Exception as e:
-            return f"Error: Failed to read file: {e}"
+            return ToolResult(
+                content=f"Error: Failed to read file: {e}",
+                error=str(e)
+            )
 
 
 class FileReadLinesTool(BaseTool):

@@ -40,10 +40,18 @@ Commands (prefix with /):
   /lifecycle [opts] - Run memory lifecycle cycle (promotion, decay, reactivation)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable
+  /tools [category] - List available tools, optionally filter by category
+  /run-tool <name> [json] - Execute a tool with optional JSON parameters
+  /inject-tools <names> - Inject tools into context for testing
+  /clear-tools       - Clear all injected tools from context
+  /recommend-tools <query> - Test tool recommendations for a query
+  /tool-budget       - Show tool token budget information
   /help            - Show available commands
 """
 
 import asyncio
+import importlib
+import json
 import logging
 import sys
 import uuid
@@ -57,6 +65,7 @@ import yaml
 logger = logging.getLogger(__name__)
 
 from friday_core import DebugTelemetryRecorder, TranscriptBackedEpisodicStore
+from friday_core.interfaces.llm import ChatCompletionResponse, ToolCall
 from friday_llm import (
     CircuitBreakerOpenError,
     LiteLLMEmbeddingService,
@@ -107,6 +116,227 @@ from friday_transcript import (
     SQLiteTranscriptStore,
     TranscriptSession,
 )
+from friday_tools import (
+    DefaultToolRegistry,
+    GetCurrentDateTimeTool,
+)
+
+
+# =============================================================================
+# FRIDAY-TOOLS INTEGRATION
+# =============================================================================
+# Tools are loaded dynamically from YAML configuration (config.yaml).
+# The tool registry is populated with FridayTool instances based on the
+# tools.registry section of the config file.
+#
+# To add new tools, edit config.yaml and add entries to tools.registry.
+# No code changes required for adding/removing tools.
+# =============================================================================
+
+
+def _load_tool_from_config(tool_config: dict[str, Any]) -> Any | None:
+    """
+    Dynamically load a tool class from configuration.
+
+    Args:
+        tool_config: Dictionary with module, class, and optional settings.
+            Required keys: module, class
+            Optional keys: enabled, constructor_args
+
+    Returns:
+        Instantiated tool or None if disabled/failed to load.
+    """
+    tool_name = tool_config.get("name", "unknown")
+
+    # Check if tool is enabled (default: True)
+    if not tool_config.get("enabled", True):
+        logger.info(f"Tool '{tool_name}' is disabled in configuration")
+        return None
+
+    try:
+        module_name = tool_config.get("module")
+        class_name = tool_config.get("class")
+
+        if not module_name or not class_name:
+            logger.warning(f"Tool '{tool_name}' missing required 'module' or 'class' field")
+            return None
+
+        # Dynamic import
+        module = importlib.import_module(module_name)
+        tool_class = getattr(module, class_name)
+
+        # Instantiate with optional constructor arguments
+        constructor_args = tool_config.get("constructor_args", {})
+        tool = tool_class(**constructor_args)
+
+        logger.debug(f"Loaded tool: {tool_name} from {module_name}.{class_name}")
+        return tool
+
+    except ImportError as e:
+        logger.warning(f"Failed to import tool module '{tool_config.get('module')}': {e}")
+        return None
+    except AttributeError as e:
+        logger.warning(f"Tool class '{tool_config.get('class')}' not found in module: {e}")
+        return None
+    except Exception as e:
+        logger.warning(f"Failed to instantiate tool '{tool_name}': {e}")
+        return None
+
+
+def _build_tool_registry(tools_config: dict[str, Any] | None = None) -> DefaultToolRegistry:
+    """
+    Build a tool registry from YAML configuration.
+
+    Args:
+        tools_config: The 'tools' section from config.yaml.
+            If None or tools.enabled is False, returns empty registry.
+            If tools.registry is missing, falls back to default tools.
+
+    Returns:
+        DefaultToolRegistry populated with configured tools.
+    """
+    registry = DefaultToolRegistry()
+
+    # Check if tools are enabled
+    if tools_config is None or not tools_config.get("enabled", True):
+        logger.info("Tools disabled in configuration")
+        return registry
+
+    # Get tool registry list from config
+    tool_definitions = tools_config.get("registry", [])
+
+    if not tool_definitions:
+        # Backward compatibility: if no registry defined, use default tools
+        logger.info("No tools.registry in config, using default tools")
+        registry.register(GetCurrentDateTimeTool())
+        return registry
+
+    # Load each tool from configuration
+    loaded_count = 0
+    for tool_config in tool_definitions:
+        tool = _load_tool_from_config(tool_config)
+        if tool:
+            registry.register(tool)
+            loaded_count += 1
+
+    logger.info(f"Loaded {loaded_count}/{len(tool_definitions)} tools from configuration")
+    return registry
+
+
+# Note: TOOL_REGISTRY and TOOL_SCHEMAS are initialized in main() after config is loaded.
+# This allows tools to be configured via YAML without code changes.
+TOOL_REGISTRY: DefaultToolRegistry | None = None
+TOOL_SCHEMAS: list[dict[str, Any]] = []
+
+
+async def _execute_tool(tool_name: str, **kwargs) -> str:
+    """
+    Execute a tool from the registry.
+
+    Args:
+        tool_name: Name of the tool to execute.
+        **kwargs: Tool parameters.
+
+    Returns:
+        Tool result as string.
+    """
+    tool = TOOL_REGISTRY.get(tool_name)
+    if tool is None:
+        return f"Tool not found: {tool_name}"
+    return await tool.execute(**kwargs)
+
+
+def _validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple[Path, str | None]:
+    """
+    Validate and resolve an export path to prevent path traversal.
+
+    Args:
+        path: The requested export path
+        allowed_base: Base directory exports must stay within (default: current working directory)
+
+    Returns:
+        Tuple of (resolved_path, error_message). Error is None if path is valid.
+    """
+    if allowed_base is None:
+        allowed_base = Path.cwd()
+
+    try:
+        # Resolve to absolute path (resolves symlinks and ..)
+        resolved = path.resolve()
+        allowed_resolved = allowed_base.resolve()
+
+        # Check if resolved path is within allowed directory
+        try:
+            resolved.relative_to(allowed_resolved)
+        except ValueError:
+            return resolved, f"Export path must be within {allowed_resolved}"
+
+        return resolved, None
+
+    except Exception as e:
+        return path, f"Invalid export path: {e}"
+
+
+def _validate_tool_params(
+    params: dict[str, Any],
+    schema: dict[str, Any],
+    tool_name: str,
+) -> str | None:
+    """
+    Validate tool parameters against JSON schema.
+
+    Args:
+        params: Parameters to validate
+        schema: JSON schema for the tool's parameters
+        tool_name: Tool name for error messages
+
+    Returns:
+        Error message if validation fails, None if valid
+    """
+    properties = schema.get("properties", {})
+    required = schema.get("required", [])
+
+    # Check for missing required parameters
+    missing = [r for r in required if r not in params]
+    if missing:
+        return f"Missing required parameter(s) for {tool_name}: {', '.join(missing)}"
+
+    # Check for unknown parameters
+    unknown = [p for p in params if p not in properties]
+    if unknown:
+        valid_params = ", ".join(properties.keys()) if properties else "(none)"
+        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"
+
+    # Type validation for provided parameters
+    type_errors = []
+    for param_name, param_value in params.items():
+        if param_name not in properties:
+            continue
+
+        expected_type = properties[param_name].get("type")
+        if not expected_type:
+            continue
+
+        # Map JSON schema types to Python types
+        type_map = {
+            "string": str,
+            "integer": int,
+            "number": (int, float),
+            "boolean": bool,
+            "array": list,
+            "object": dict,
+        }
+
+        expected_python_type = type_map.get(expected_type)
+        if expected_python_type and not isinstance(param_value, expected_python_type):
+            type_errors.append(
+                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"
+            )
+
+    if type_errors:
+        return f"Type errors for {tool_name}:\n" + "\n".join(type_errors)
+
+    return None  # Validation passed
 
 
 def load_config(config_path: Path) -> dict[str, Any]:
@@ -116,7 +346,83 @@ def load_config(config_path: Path) -> dict[str, Any]:
         sys.exit(1)
 
     with open(config_path) as f:
-        return yaml.safe_load(f)
+        config = yaml.safe_load(f)
+
+    # Validate config structure
+    _validate_config(config, config_path)
+    return config
+
+
+def _validate_config(config: dict[str, Any], config_path: Path) -> None:
+    """
+    Validate config.yaml structure and required fields.
+
+    Exits with descriptive error if validation fails.
+    """
+    errors: list[str] = []
+
+    if not isinstance(config, dict):
+        print(f"Error: {config_path} must contain a YAML dictionary, got {type(config).__name__}")
+        sys.exit(1)
+
+    # Required sections
+    if "llm" not in config:
+        errors.append("Missing required section: 'llm'")
+    else:
+        llm = config["llm"]
+        if not isinstance(llm, dict):
+            errors.append("Section 'llm' must be a dictionary")
+        elif not llm.get("model"):
+            errors.append("Missing required field: 'llm.model'")
+
+    if "embedding" not in config:
+        errors.append("Missing required section: 'embedding'")
+    else:
+        embedding = config["embedding"]
+        if not isinstance(embedding, dict):
+            errors.append("Section 'embedding' must be a dictionary")
+        elif not embedding.get("model"):
+            errors.append("Missing required field: 'embedding.model'")
+
+    # Optional sections with type validation
+    optional_sections = {
+        "memory": dict,
+        "chat": dict,
+        "extraction": dict,
+        "maintenance": dict,
+        "lifecycle": dict,
+        "tools": dict,
+        "logging": dict,
+        "transcript": dict,
+    }
+
+    for section, expected_type in optional_sections.items():
+        if section in config and not isinstance(config[section], expected_type):
+            errors.append(f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}")
+
+    # Validate tools section if present
+    if "tools" in config and isinstance(config["tools"], dict):
+        tools = config["tools"]
+        if "registry" in tools:
+            if not isinstance(tools["registry"], list):
+                errors.append("Section 'tools.registry' must be a list")
+            else:
+                for i, tool_def in enumerate(tools["registry"]):
+                    if not isinstance(tool_def, dict):
+                        errors.append(f"tools.registry[{i}] must be a dictionary")
+                    elif not tool_def.get("name"):
+                        errors.append(f"tools.registry[{i}] missing required field 'name'")
+                    elif not tool_def.get("module"):
+                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'")
+                    elif not tool_def.get("class"):
+                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'")
+
+    if errors:
+        print(f"\nConfiguration errors in {config_path}:")
+        for error in errors:
+            print(f"  - {error}")
+        print("\nPlease fix the configuration and try again.")
+        sys.exit(1)
 
 
 def print_banner() -> None:
@@ -155,7 +461,7 @@ class MemoryChatSession:
         maintenance_config: "MaintenanceConfig | None" = None,
         maintenance_llms: "dict[str, LiteLLMService] | None" = None,
         transcript_export_dir: "Path | None" = None,
-        embedding_function: any = None,
+        embedding_function: Any = None,
         promotion_service: "MemoryPromotionService | None" = None,
         access_buffer: "AccessBuffer | None" = None,
         factor_computer: "RetrievalFactorComputer | None" = None,
@@ -263,6 +569,23 @@ class MemoryChatSession:
             case "migrate":
                 opts = parts[1] if len(parts) > 1 else ""
                 return await self.cmd_migrate(opts)
+            case "tools":
+                category = parts[1] if len(parts) > 1 else None
+                return self.cmd_tools(category)
+            case "run-tool":
+                # Join all parts after "run-tool" (tool name + params)
+                args = " ".join(parts[1:]) if len(parts) > 1 else ""
+                return await self.cmd_run_tool(args)
+            case "inject-tools":
+                tool_names = parts[1] if len(parts) > 1 else ""
+                return self.cmd_inject_tools(tool_names)
+            case "clear-tools":
+                return self.cmd_clear_tools()
+            case "recommend-tools":
+                query = parts[1] if len(parts) > 1 else ""
+                return self.cmd_recommend_tools(query)
+            case "tool-budget":
+                return self.cmd_tool_budget()
             case "help":
                 return self.cmd_help()
             case _:
@@ -496,6 +819,31 @@ Memory Statistics:
 
         lines.append("\n" + "=" * 60)
         lines.append(f"Total messages: {len(self.last_messages)}")
+
+        # Show active tools (passed as separate 'tools' parameter to LLM API)
+        active_tools = self.assembler.active_tools
+        if active_tools:
+            lines.append("")
+            lines.append("=" * 60)
+            lines.append("ACTIVE TOOLS (passed to LLM API as 'tools' parameter)")
+            lines.append("=" * 60)
+            lines.append(f"Function calling enabled with {len(active_tools)} tool(s):\n")
+            for tool in active_tools:
+                name = tool.get("name", "unknown")
+                desc = tool.get("description", "")[:80]
+                category = tool.get("category", "uncategorized")
+                lines.append(f"  • {name} [{category}]")
+                lines.append(f"    {desc}{'...' if len(tool.get('description', '')) > 80 else ''}")
+                # Show parameters briefly
+                params = tool.get("parameters", {}).get("properties", {})
+                if params:
+                    param_names = list(params.keys())
+                    lines.append(f"    Parameters: {', '.join(param_names)}")
+                lines.append("")
+        else:
+            lines.append("")
+            lines.append("(No tools active - streaming mode)")
+
         return "\n".join(lines)
 
     def cmd_debug(self) -> str:
@@ -935,10 +1283,16 @@ Memory Statistics:
         else:
             export_dir = Path("./exports")
 
+        # Validate export path (must be within current directory or persist_dir)
+        allowed_base = self.persist_dir.parent if self.persist_dir else Path.cwd()
+        resolved_dir, path_error = _validate_export_path(export_dir, allowed_base)
+        if path_error:
+            return f"Export path error: {path_error}"
+
         try:
             # Create timestamped subdirectory
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_dir = export_dir / f"transcript_export_{timestamp}"
+            output_dir = resolved_dir / f"transcript_export_{timestamp}"
             output_dir.mkdir(parents=True, exist_ok=True)
 
             # Use CSVExporter from friday-transcript
@@ -1082,6 +1436,17 @@ Memory Statistics:
         researcher_llm = self.maintenance_llms.get("researcher", self.llm)
         judge_llm = self.maintenance_llms.get("judge", self.llm)
 
+        # Track which roles are using fallback LLM
+        fallback_roles = []
+        for role, llm_instance in [
+            ("synthesizer", synthesizer_llm),
+            ("classifier", classifier_llm),
+            ("researcher", researcher_llm),
+            ("judge", judge_llm),
+        ]:
+            if llm_instance is self.llm and role not in self.maintenance_llms:
+                fallback_roles.append(role)
+
         # Create embedding function for maintenance operations
         # Use config.embedding if available, otherwise fall back to session embedding
         maintenance_embedding = self.embedding_function
@@ -1125,6 +1490,11 @@ Memory Statistics:
 
         try:
             lines = ["=" * 60, "MEMORY REORGANIZATION", "=" * 60]
+
+            # Warn about fallback LLMs being used
+            if fallback_roles:
+                lines.append(f"\nNote: Using main chat LLM for: {', '.join(fallback_roles)}")
+                lines.append("(Configure maintenance.llm in config.yaml for dedicated models)")
 
             if backup_only:
                 # Just create a backup
@@ -1293,6 +1663,23 @@ Memory Statistics:
 
         except Exception as e:
             logger.exception("Reorganization failed")
+            error_msg = str(e).lower()
+            # Provide more specific guidance for common failure modes
+            if "embed" in error_msg or "vector" in error_msg:
+                return (
+                    f"Error during reorganization (embedding service): {e}\n"
+                    "Check that your embedding service is running and configured correctly."
+                )
+            elif "timeout" in error_msg:
+                return (
+                    f"Error during reorganization (timeout): {e}\n"
+                    "Consider increasing timeout_seconds in config.yaml."
+                )
+            elif "connection" in error_msg or "connect" in error_msg:
+                return (
+                    f"Error during reorganization (connection): {e}\n"
+                    "Check that LLM/embedding services are reachable."
+                )
             return f"Error during reorganization: {e}"
 
     async def cmd_lifecycle(self, opts: str = "") -> str:
@@ -1418,6 +1805,22 @@ Memory Statistics:
 
         except Exception as e:
             logger.exception("Lifecycle cycle failed")
+            error_msg = str(e).lower()
+            if "embed" in error_msg or "vector" in error_msg:
+                return (
+                    f"Error during lifecycle cycle (embedding service): {e}\n"
+                    "Check that your embedding service is running and configured correctly."
+                )
+            elif "timeout" in error_msg:
+                return (
+                    f"Error during lifecycle cycle (timeout): {e}\n"
+                    "Consider increasing timeout_seconds in config.yaml."
+                )
+            elif "connection" in error_msg or "connect" in error_msg:
+                return (
+                    f"Error during lifecycle cycle (connection): {e}\n"
+                    "Check that LLM/embedding services are reachable."
+                )
             return f"Error during lifecycle cycle: {e}"
 
     async def cmd_migrate(self, opts: str = "") -> str:
@@ -1497,6 +1900,22 @@ Memory Statistics:
 
         except Exception as e:
             logger.exception("Migration failed")
+            error_msg = str(e).lower()
+            if "embed" in error_msg or "vector" in error_msg:
+                return (
+                    f"Error during migration (embedding service): {e}\n"
+                    "Check that your embedding service is running and configured correctly."
+                )
+            elif "timeout" in error_msg:
+                return (
+                    f"Error during migration (timeout): {e}\n"
+                    "Consider increasing timeout_seconds in config.yaml."
+                )
+            elif "connection" in error_msg or "connect" in error_msg:
+                return (
+                    f"Error during migration (connection): {e}\n"
+                    "Check that LLM/embedding services are reachable."
+                )
             return f"Error during migration: {e}"
 
     def cmd_vars(self) -> str:
@@ -1514,6 +1933,277 @@ Memory Statistics:
             return "Session not initialized."
         self.state.set_var(key, value)
         return f"Set {key} = {value}"
+
+    def cmd_tools(self, category: str | None = None) -> str:
+        """
+        List available tools, optionally filtered by category.
+
+        Args:
+            category: Optional category to filter by (e.g., "utility", "filesystem")
+
+        Returns:
+            Formatted string listing available tools
+        """
+        tools = TOOL_SCHEMAS
+
+        if category:
+            tools = [t for t in tools if t.get("category") == category]
+            if not tools:
+                available_categories = sorted(set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS))
+                return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"
+
+        lines = ["=" * 60, f"AVAILABLE TOOLS ({len(tools)} total)", "=" * 60]
+
+        # Group by category
+        by_category: dict[str, list[dict]] = {}
+        for tool in tools:
+            cat = tool.get("category", "uncategorized")
+            by_category.setdefault(cat, []).append(tool)
+
+        for cat, cat_tools in sorted(by_category.items()):
+            lines.append(f"\n[{cat}]")
+            for tool in cat_tools:
+                name = tool.get("name", "unknown")
+                desc = tool.get("description", "")[:60]
+                if len(tool.get("description", "")) > 60:
+                    desc += "..."
+                lines.append(f"  - {name}: {desc}")
+
+                # Show parameters if present
+                params = tool.get("parameters", {}).get("properties", {})
+                if params:
+                    param_names = list(params.keys())
+                    lines.append(f"    Parameters: {', '.join(param_names)}")
+
+        lines.append("")
+        lines.append("Use /run-tool <name> [json_params] to execute a tool")
+        return "\n".join(lines)
+
+    async def cmd_run_tool(self, args: str) -> str:
+        """
+        Execute a tool by name with optional parameters.
+
+        Usage:
+            /run-tool echo hello world           (plain text for single-param tools)
+            /run-tool echo {"message": "hello"}  (JSON format)
+            /run-tool get_current_datetime {"timezone_name": "America/New_York"}
+
+        Args:
+            args: Tool name followed by parameters (JSON or plain text)
+
+        Returns:
+            Tool execution result as string
+        """
+        if not args.strip():
+            available = ", ".join(TOOL_REGISTRY.list_names())
+            return f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
+
+        parts = args.split(maxsplit=1)
+        tool_name = parts[0]
+        params_str = parts[1] if len(parts) > 1 else ""
+
+        if TOOL_REGISTRY is None:
+            return "Error: Tool registry not initialized. Restart memory-chat."
+
+        if tool_name not in TOOL_REGISTRY:
+            available = ", ".join(TOOL_REGISTRY.list_names())
+            return f"Unknown tool: {tool_name}\nAvailable tools: {available}"
+
+        # Parse parameters - try JSON first, then plain text for single-param tools
+        params: dict[str, Any] = {}
+        if params_str:
+            # Try JSON parsing first (if it looks like JSON)
+            if params_str.strip().startswith("{"):
+                try:
+                    params = json.loads(params_str)
+                except json.JSONDecodeError as e:
+                    return f"Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{\"param\": \"value\"}}"
+            else:
+                # Plain text - use as 'message' parameter for tools that support it
+                tool = TOOL_REGISTRY.get(tool_name)
+                if tool is None:
+                    return f"Tool '{tool_name}' not found in registry"
+
+                # Get the tool's parameter schema
+                if hasattr(tool, "parameters_schema"):
+                    schema = tool.parameters_schema
+                    props = schema.get("properties", {})
+                    required = schema.get("required", [])
+
+                    # Determine which param to use for plain text input
+                    param_name = None
+
+                    # Priority 1: If tool has a 'message' param, use it
+                    if "message" in props:
+                        param_name = "message"
+                    # Priority 2: If exactly one required param, use it
+                    elif len(required) == 1:
+                        param_name = required[0]
+                    # Priority 3: If tool has exactly one param, use it
+                    elif len(props) == 1:
+                        param_name = list(props.keys())[0]
+                    # Priority 4: If multiple params but none required, use first
+                    elif len(props) > 0 and len(required) == 0:
+                        param_name = list(props.keys())[0]
+
+                    if param_name:
+                        params = {param_name: params_str}
+                        logger.debug(f"Plain text mapped to {param_name} param")
+                    else:
+                        return f"Plain text not supported for {tool_name} (multiple required params).\nUse JSON: /run-tool {tool_name} {{\"param\": \"value\"}}"
+                else:
+                    return f"Tool {tool_name} has no parameter schema. Use JSON format."
+
+        # Validate parameters against tool schema before execution
+        tool = TOOL_REGISTRY.get(tool_name)
+        if tool and hasattr(tool, "parameters_schema"):
+            schema = tool.parameters_schema
+            validation_error = _validate_tool_params(params, schema, tool_name)
+            if validation_error:
+                return validation_error
+
+        # Execute the tool via the registry
+        try:
+            result = await _execute_tool(tool_name, **params)
+        except TypeError as e:
+            # Handle invalid parameters
+            return f"Invalid parameters for {tool_name}: {e}"
+        except Exception as e:
+            return f"Tool execution error: {type(e).__name__}: {e}"
+
+        return f"Tool: {tool_name}\nResult:\n{result}"
+
+    def cmd_inject_tools(self, tool_names: str) -> str:
+        """
+        Inject tools into the context assembler for testing.
+
+        Usage: /inject-tools get_current_datetime read_file write_file
+
+        Args:
+            tool_names: Space-separated list of tool names to inject
+
+        Returns:
+            Status message about injected tools
+        """
+        if not tool_names.strip():
+            return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"
+
+        names = tool_names.split()
+        schemas = [t for t in TOOL_SCHEMAS if t.get("name") in names]
+
+        if not schemas:
+            available = ", ".join(t.get("name", "?") for t in TOOL_SCHEMAS)
+            return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"
+
+        # Inject into assembler's tool manager
+        self.assembler.set_active_tools(schemas)
+
+        injected_names = [s.get("name") for s in schemas]
+        not_found = [n for n in names if n not in injected_names]
+
+        lines = [f"Injected {len(schemas)} tools into context:"]
+        for s in schemas:
+            lines.append(f"  - {s.get('name')} [{s.get('category', 'uncategorized')}]")
+
+        if not_found:
+            lines.append(f"\nNot found: {', '.join(not_found)}")
+
+        lines.append("\nUse /context to see tools in payload, /recommend-tools to test recommendations")
+        return "\n".join(lines)
+
+    def cmd_clear_tools(self) -> str:
+        """
+        Clear all injected tools from the context.
+
+        Returns:
+            Status message confirming tools cleared
+        """
+        self.assembler.clear_tools()
+        return "All injected tools cleared from context."
+
+    def cmd_recommend_tools(self, query: str) -> str:
+        """
+        Test tool recommendations for a given query.
+
+        Usage: /recommend-tools read the config file
+
+        Args:
+            query: Query string to generate recommendations for
+
+        Returns:
+            Formatted list of tool recommendations with scores
+        """
+        if not query.strip():
+            return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"
+
+        # Generate recommendations using the assembler
+        recommendations = self.assembler.recommend_tools(
+            query=query,
+            available_tools=TOOL_SCHEMAS,
+            top_k=5,
+        )
+
+        if not recommendations:
+            return f"No tool recommendations for: '{query}'\nNote: Tools need keyword matches with the query."
+
+        lines = [
+            "=" * 60,
+            f"TOOL RECOMMENDATIONS for: '{query}'",
+            "=" * 60,
+            "",
+        ]
+
+        for i, rec in enumerate(recommendations, 1):
+            lines.append(f"{i}. {rec.tool_name} (score: {rec.relevance_score:.2f}, confidence: {rec.confidence:.2f})")
+            lines.append(f"   Category: {rec.category}")
+            lines.append(f"   Reason: {rec.reason}")
+            if rec.suggested_parameters:
+                params = ", ".join(f"{k}={v}" for k, v in rec.suggested_parameters.items())
+                lines.append(f"   Suggested params: {params}")
+            lines.append("")
+
+        lines.append("Use /inject-tools <name> to add tools to context")
+        return "\n".join(lines)
+
+    def cmd_tool_budget(self) -> str:
+        """
+        Show tool token budget information.
+
+        Returns:
+            Formatted budget information
+        """
+        # Get active tools from assembler
+        active_tools = self.assembler.active_tools
+
+        if not active_tools:
+            return """Tool Budget Info:
+  No tools currently injected.
+
+Use /inject-tools <name> to inject tools into context.
+Use /tools to list available tools."""
+
+        budget_info = self.assembler.get_tool_budget_info()
+
+        lines = [
+            "=" * 60,
+            "TOOL TOKEN BUDGET",
+            "=" * 60,
+            "",
+            f"Active tools: {budget_info['tool_count']}",
+            f"Estimated tokens: {budget_info['estimated_tokens']}",
+            f"Max tools allowed: {budget_info['max_tools']}",
+            f"Budget limit: {budget_info['budget_limit']} tokens",
+            f"Usage: {budget_info['usage_percent']:.1f}%",
+            "",
+            "Injected tools:",
+        ]
+
+        for tool in active_tools:
+            name = tool.get("name", "unknown")
+            category = tool.get("category", "uncategorized")
+            lines.append(f"  - {name} [{category}]")
+
+        return "\n".join(lines)
 
     def cmd_help(self) -> str:
         """Show available commands."""
@@ -1543,7 +2233,27 @@ Available Commands:
   /lifecycle [opts] - Run memory lifecycle (promotion, decay)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable (e.g., /set user:name Alice)
+  /tools [category] - List available tools (optionally filter by category)
+  /run-tool <name> [json] - Execute a tool with optional JSON parameters
+  /inject-tools <names> - Inject tools into context for testing
+  /clear-tools       - Clear all injected tools from context
+  /recommend-tools <query> - Test tool recommendations for a query
+  /tool-budget       - Show tool token budget information
   /help            - Show this help
+
+Tool Examples:
+  /tools                  - List all available tools
+  /tools utility          - List only utility category tools
+  /run-tool get_current_datetime
+  /run-tool get_current_datetime {"timezone_name": "America/New_York"}
+  /run-tool get_current_datetime {"timezone_name": "Europe/London", "format": "human"}
+
+Tool Context Testing (NEW):
+  /inject-tools get_current_datetime  - Add tools to context
+  /recommend-tools read the config file  - Get tool recommendations
+  /tool-budget              - View token budget for tools
+  /context                  - See tool_schemas and recommended_tools in payload
+  /prompt                   - See recommendations in formatted prompt
 
 Reorganize Options:
   /reorganize              - Dry run full reorganization
@@ -1586,7 +2296,12 @@ Lifecycle Options:
             logger.debug(f"Background extraction failed: {e}")
 
     async def process_turn(self, user_input: str) -> str | None:
-        """Process a user turn and return the response."""
+        """Process a user turn and return the response.
+
+        Supports LLM function calling when tools are injected via /inject-tools.
+        When tools are active, uses non-streaming mode to handle tool_calls.
+        When no tools are active, uses streaming mode for better UX.
+        """
         if not self.state:
             await self.initialize()
 
@@ -1611,18 +2326,35 @@ Lifecycle Options:
         # Store for debugging
         self.last_messages = messages
 
-        # Print assistant name and start streaming
+        # Get active tool schemas (injected via /inject-tools)
+        active_tools = self.assembler.active_tools
+        tool_schemas = None
+        if active_tools:
+            # Convert to OpenAI function calling format
+            tool_schemas = [
+                {
+                    "type": "function",
+                    "function": {
+                        "name": t["name"],
+                        "description": t.get("description", ""),
+                        "parameters": t.get("parameters", {"type": "object", "properties": {}}),
+                    },
+                }
+                for t in active_tools
+            ]
+            logger.debug(f"Function calling enabled with {len(tool_schemas)} tools")
+
+        # Print assistant name
         print(f"\n{self.assistant_name}:")
 
         full_response = ""
         try:
-            # 3. Call LLM with context-enriched prompt (streaming)
-            async for chunk in self.llm.chat_completion_stream(
-                messages=messages,
-                temperature=self.temperature,
-            ):
-                print(chunk, end="", flush=True)
-                full_response += chunk
+            if tool_schemas:
+                # Function calling mode (non-streaming with tool loop)
+                full_response = await self._process_with_tools(messages, tool_schemas)
+            else:
+                # Streaming mode (no tools)
+                full_response = await self._process_streaming(messages)
 
             # Print end newline
             print("\n")
@@ -1666,6 +2398,129 @@ Lifecycle Options:
             print(f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds.")
             return None
 
+    async def _process_streaming(self, messages: list[dict[str, Any]]) -> str:
+        """Process LLM call in streaming mode (no tools)."""
+        full_response = ""
+        async for chunk in self.llm.chat_completion_stream(
+            messages=messages,
+            temperature=self.temperature,
+        ):
+            print(chunk, end="", flush=True)
+            full_response += chunk
+        return full_response
+
+    async def _process_with_tools(
+        self,
+        messages: list[dict[str, Any]],
+        tool_schemas: list[dict[str, Any]],
+        max_iterations: int = 10,
+        max_consecutive_failures: int = 3,
+        max_tool_messages: int = 30,
+    ) -> str:
+        """Process LLM call with function calling support.
+
+        Implements a Re-Act style loop:
+        1. Call LLM with tools
+        2. If tool_calls in response, execute them
+        3. Add tool results to messages
+        4. Loop until no more tool_calls or max iterations
+
+        Args:
+            messages: Conversation messages
+            tool_schemas: Tool schemas in OpenAI function calling format
+            max_iterations: Maximum tool calling iterations (default 10)
+            max_consecutive_failures: Abort after N consecutive tool failures (default 3)
+            max_tool_messages: Maximum messages before pruning (default 30)
+
+        Returns:
+            Final assistant response text
+        """
+        working_messages = list(messages)  # Copy to avoid mutation
+        initial_message_count = len(working_messages)  # For pruning bounds
+        iteration = 0
+        consecutive_failures = 0  # Circuit breaker counter
+
+        while iteration < max_iterations:
+            iteration += 1
+
+            # Call LLM with tools
+            response: ChatCompletionResponse = await self.llm.chat_completion(
+                messages=working_messages,
+                tools=tool_schemas,
+                temperature=self.temperature,
+            )
+
+            # Check if response has tool calls
+            if not response.has_tool_calls:
+                # No tool calls - return the content
+                if response.content:
+                    print(response.content, end="", flush=True)
+                return response.content or ""
+
+            # Process tool calls
+            print(f"  [Calling {len(response.tool_calls)} tool(s)...]")
+
+            # Add assistant message with tool_calls to history
+            assistant_msg: dict[str, Any] = {"role": "assistant", "content": response.content or ""}
+            assistant_msg["tool_calls"] = [
+                {
+                    "id": tc.id,
+                    "type": "function",
+                    "function": {"name": tc.name, "arguments": json.dumps(tc.arguments)},
+                }
+                for tc in response.tool_calls
+            ]
+            working_messages.append(assistant_msg)
+
+            # Execute each tool call
+            for tc in response.tool_calls:
+                tool_name = tc.name
+                tool_args = tc.arguments
+
+                print(f"  → {tool_name}({json.dumps(tool_args)})")
+
+                # Execute the tool
+                try:
+                    result = await _execute_tool(tool_name, **tool_args)
+                    print(f"    ✓ {result[:100]}{'...' if len(result) > 100 else ''}")
+                    consecutive_failures = 0  # Reset on success
+                except Exception as e:
+                    consecutive_failures += 1
+                    result = f"Error executing tool: {e}"
+                    print(f"    ✗ {result}")
+
+                    # Circuit breaker: abort after too many consecutive failures
+                    if consecutive_failures >= max_consecutive_failures:
+                        error_msg = (
+                            f"Tool execution aborted: {consecutive_failures} consecutive failures. "
+                            f"Last error: {e}"
+                        )
+                        print(f"  [CIRCUIT BREAKER: {error_msg}]")
+                        return error_msg
+
+                # Add tool result to messages
+                working_messages.append(
+                    {
+                        "role": "tool",
+                        "tool_call_id": tc.id,
+                        "content": result,
+                    }
+                )
+
+            # Message history bounds: prune if exceeding limit
+            if len(working_messages) > max_tool_messages:
+                # Keep original context + most recent tool messages
+                preserve_count = initial_message_count
+                recent_count = max_tool_messages - preserve_count
+                preserved = working_messages[:preserve_count]
+                recent = working_messages[-recent_count:]
+                working_messages = preserved + recent
+                print(f"  [Pruned message history to {len(working_messages)} messages]")
+
+        # Max iterations reached
+        print(f"  [Warning: Max tool iterations ({max_iterations}) reached]")
+        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request."
+
 
 async def main() -> None:
     """Main chat loop."""
@@ -1686,6 +2541,13 @@ async def main() -> None:
     transcript_config = config.get("transcript", {})
     maintenance_yaml = config.get("maintenance", {})
     lifecycle_yaml = config.get("lifecycle", {})
+    tools_config = config.get("tools", {})
+
+    # Initialize tool registry from YAML configuration
+    global TOOL_REGISTRY, TOOL_SCHEMAS
+    TOOL_REGISTRY = _build_tool_registry(tools_config)
+    TOOL_SCHEMAS = TOOL_REGISTRY.get_schemas()
+    print(f"Tool registry initialized with {len(TOOL_SCHEMAS)} tool(s)")
 
     # Build MaintenanceConfig from YAML
     pruning_yaml = maintenance_yaml.get("pruning", {})
@@ -1902,12 +2764,13 @@ async def main() -> None:
 
     # 2b. Initialize Maintenance LLM services (for /reorganize command)
     maintenance_llms: dict[str, LiteLLMService] = {}
+    maintenance_llm_failures: list[str] = []  # Track which roles failed
 
     def create_maintenance_llm(role: str) -> LiteLLMService | None:
         """Create a LiteLLMService for a maintenance role if configured."""
         role_config = maintenance_llm_yaml.get(role, {})
         if not role_config or not role_config.get("model"):
-            return None  # Fall back to main LLM
+            return None  # Not configured - will fall back to main LLM
         try:
             role_resilience = ResilienceConfig(
                 max_retries=role_config.get("max_retries", 2),
@@ -1920,7 +2783,8 @@ async def main() -> None:
                 resilience=role_resilience,
             )
         except Exception as e:
-            logger.warning(f"Failed to create {role} LLM: {e}, will use main LLM")
+            logger.warning(f"Failed to create {role} LLM: {e}")
+            maintenance_llm_failures.append(f"{role}: {e}")
             return None
 
     for role in ["synthesizer", "classifier", "researcher", "judge"]:
@@ -1928,8 +2792,14 @@ async def main() -> None:
         if role_llm:
             maintenance_llms[role] = role_llm
 
+    # Report maintenance LLM status to user
     if maintenance_llms:
         print(f"Maintenance LLMs: {', '.join(maintenance_llms.keys())}")
+    if maintenance_llm_failures:
+        print(f"Warning: Some maintenance LLMs failed to initialize:")
+        for failure in maintenance_llm_failures:
+            print(f"  - {failure}")
+        print("  /reorganize will use main chat LLM as fallback")
 
     # 3. Initialize Embedding service
     try:
@@ -2126,6 +2996,14 @@ async def main() -> None:
 
     # Initialize session
     await session.initialize()
+
+    # Auto-inject tools if configured
+    tools_context_config = tools_config.get("context", {})
+    if tools_context_config.get("include_in_context", False):
+        session.assembler.set_active_tools(TOOL_SCHEMAS)
+        logger.info(f"Auto-injected {len(TOOL_SCHEMAS)} tools into context")
+        print(f"  - Tools: {len(TOOL_SCHEMAS)} auto-injected")
+
     print(f"Session initialized: {session_id}")
     print(f"Persistence directory: {persist_dir}")
     print("  - Vector store: ChromaDB")
@@ -2166,33 +3044,47 @@ async def main() -> None:
     print("Entity extraction: enabled (LLM-based)")
     print()
 
-    # Main loop
-    while True:
+    # Main loop with cleanup
+    try:
+        while True:
+            try:
+                # Get user input
+                user_input = input(f"{user_name}: ").strip()
+
+                # Skip empty input
+                if not user_input:
+                    continue
+
+                # Handle commands
+                cmd_result = await session.handle_command(user_input)
+                if cmd_result is not None:
+                    if cmd_result == "EXIT":
+                        print("\nGoodbye!")
+                        break
+                    print(cmd_result)
+                    continue
+
+                # Process as chat message
+                await session.process_turn(user_input)
+
+            except KeyboardInterrupt:
+                print("\n\nInterrupted. Goodbye!")
+                break
+            except Exception as e:
+                print(f"\nUnexpected error: {type(e).__name__}: {e}\n")
+
+    finally:
+        # Session cleanup: finalize transcript and resources
+        print("Finalizing session...")
         try:
-            # Get user input
-            user_input = input(f"{user_name}: ").strip()
-
-            # Skip empty input
-            if not user_input:
-                continue
-
-            # Handle commands
-            cmd_result = await session.handle_command(user_input)
-            if cmd_result is not None:
-                if cmd_result == "EXIT":
-                    print("\nGoodbye!")
-                    break
-                print(cmd_result)
-                continue
-
-            # Process as chat message
-            await session.process_turn(user_input)
-
-        except KeyboardInterrupt:
-            print("\n\nInterrupted. Goodbye!")
-            break
+            if transcript_store and session_id:
+                ended = await transcript_store.end_session(session_id)
+                if ended:
+                    logger.info(f"Session {session_id} finalized")
+                else:
+                    logger.warning(f"Session {session_id} could not be finalized")
         except Exception as e:
-            print(f"\nUnexpected error: {type(e).__name__}: {e}\n")
+            logger.warning(f"Error during session cleanup: {e}")
 
 
 if __name__ == "__main__":

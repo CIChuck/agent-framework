@@ -36,9 +36,12 @@ llm:
   
   #model: "openrouter/anthropic/claude-3.5-sonnet"
   #model: "openrouter/openai/gpt-4o"
-
-  model: "openrouter/google/gemma-3-27b-it"
-
+  #model: "openrouter/google/gemma-3-27b-it"
+  #model: "openrouter/openai/gpt-oss-120b"
+  #model: "openrouter/moonshotai/kimi-k2-0905"
+  # model: "openrouter/mistralai/devstral-2512:free"
+  
+  model: "openrouter/anthropic/claude-sonnet-4.5"
   # API base URL
   # LM Studio: http://localhost:1234/v1
   # Ollama: http://localhost:11434
@@ -62,7 +65,7 @@ llm:
   api_key: "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"
 
   # Temperature (0.0 = deterministic, 1.0 = creative)
-  temperature: 0.3
+  temperature: 0.4
 
   # Max retries for transient errors
   max_retries: 3
@@ -331,7 +334,7 @@ memory:
   #   - GPT-4: 8192 or 128000
   #   - Claude: 100000-200000
   #   - Local models: Check your LM Studio/Ollama config
-  context_window: 64000
+  context_window: 32000
 
   # Tokens reserved for model output (response generation)
   # Rule of thumb: 1000-2000 for conversational, more for long-form
@@ -453,9 +456,24 @@ chat:
     All of your learning at this stage of your creation. will be done 'in context' . 
     You only know what you know. 
     Do not have access to your internal processing mechanisms. This will be added at a later date. 
-    You do not yet have the ability to search the web or an external Vector store. This will be added at a later date. 
-    You do have the ability to use tools in a 'tool belt' 
-    Tools will be added to the toolbelt over time. 
+
+    When tools are available, USE THEM directly without asking for permission.
+    Do not describe what you could do - just do it.
+    Do not announce that you are using a particular tool. Just execute and move on.
+
+    Available tool categories:
+    - Datetime tools: For current date/time queries
+    - Filesystem tools: For listing directories, reading files
+    - Utility tools: For testing (echo)
+
+    CRITICAL: Do NOT fabricate information that a tool can provide:
+    - Timestamps in brackets like [2026-01-19 17:23] are message metadata, NOT current time
+    - If asked about time/date and a datetime tool is available, USE IT
+    - If asked to list files and a directory tool is available, USE IT 
+
+# You do not yet have the ability to search the web or an external Vector store. This will be added at a later date. 
+# You do have the ability to use tools in a 'tool belt' 
+# Tools will be added to the toolbelt over time. 
 # You are allowed to use sarcasm. You are allowed to use humor.
 #You are allowed to use irony. You are allowed to use wordplay. You are allowed to use puns.
 
@@ -1026,3 +1044,168 @@ lifecycle:
 
     # Minimum factor floor (prevents very old memories from scoring 0)
     min_factor: 0.01
+
+# =============================================================================
+# TOOL CONFIGURATION
+# =============================================================================
+# Configuration for tool testing in memory-chat. This section enables testing
+# of tool execution and tool context management without requiring the full
+# friday-agent Re-Act loop.
+#
+# Tools in memory-chat are used for two purposes:
+#   1. Testing executable tools via /run-tool command
+#   2. Testing tool context injection (future: schemas in context payload)
+#
+# Currently available executable tools:
+#   - get_current_datetime: Returns current date/time in various formats
+#                          Supports timezone selection and output formatting
+# =============================================================================
+tools:
+  # ---------------------------------------------------------------------------
+  # ENABLE/DISABLE TOOL FEATURES
+  # ---------------------------------------------------------------------------
+  # Master switch for tool functionality. When false, no tools are loaded.
+  # ---------------------------------------------------------------------------
+  enabled: true
+
+  # ---------------------------------------------------------------------------
+  # TOOL REGISTRY
+  # ---------------------------------------------------------------------------
+  # Define which tools to load from the friday-tools package.
+  # Tools are dynamically imported based on module/class paths.
+  #
+  # Each tool entry requires:
+  #   - name: Unique identifier (used in /inject-tools, /run-tool)
+  #   - module: Python module path (e.g., friday_tools.utility)
+  #   - class: Class name to import (e.g., GetCurrentDateTimeTool)
+  #
+  # Optional fields:
+  #   - enabled: true/false (default: true) - Set to false to disable
+  #   - category: Override the tool's default category
+  #   - tags: Override the tool's default tags
+  #   - constructor_args: Dict of arguments to pass to tool constructor
+  #
+  # Example with constructor args (for tools needing configuration):
+  #   - name: shell_execute
+  #     module: friday_tools.shell
+  #     class: ShellExecuteTool
+  #     enabled: false  # Disabled for security
+  #     constructor_args:
+  #       timeout: 30
+  # ---------------------------------------------------------------------------
+  registry:
+    # -------------------------------------------------------------------------
+    # Utility Tools
+    # -------------------------------------------------------------------------
+    # get_current_datetime - Returns current date/time with timezone support
+    #
+    # Usage examples:
+    #   /run-tool get_current_datetime
+    #   /run-tool get_current_datetime {"timezone_name": "America/New_York"}
+    #   /run-tool get_current_datetime {"format": "human"}
+    #
+    # Supported timezones: Any IANA timezone (UTC, America/New_York, etc.)
+    # Supported formats: "iso" (default), "human", "unix"
+    # -------------------------------------------------------------------------
+    - name: get_current_datetime
+      module: friday_tools.utility
+      class: GetCurrentDateTimeTool
+
+    # -------------------------------------------------------------------------
+    # echo - Echoes back the user's message
+    #
+    # Usage examples:
+    #   /run-tool echo {"message": "Hello world"}
+    #   "echo me this" -> returns "me this"
+    #
+    # Useful for testing tool calling pipelines.
+    # -------------------------------------------------------------------------
+    - name: echo
+      module: friday_tools.utility
+      class: EchoTool
+
+    # -------------------------------------------------------------------------
+    # Filesystem Tools
+    # -------------------------------------------------------------------------
+    # directory_list - List directory contents with sizes and types
+    #
+    # Usage examples:
+    #   /run-tool directory_list /path/to/dir
+    #   /run-tool directory_list {"path": ".", "pattern": "*.py"}
+    #   /run-tool directory_list {"path": ".", "show_hidden": true}
+    #
+    # Parameters:
+    #   - path: Directory to list (required)
+    #   - pattern: Glob filter (default: "*")
+    #   - show_hidden: Include hidden files (default: false)
+    #   - sort_by: "name", "size", or "modified" (default: "name")
+    # -------------------------------------------------------------------------
+    - name: directory_list
+      module: friday_tools.filesystem
+      class: DirectoryListTool
+
+    # -------------------------------------------------------------------------
+    # file_read - Read the contents of a text file
+    #
+    # Usage examples:
+    #   /run-tool file_read /path/to/file.txt
+    #   /run-tool file_read {"path": "config.yaml"}
+    #   /run-tool file_read {"path": "large.log", "max_lines": 100}
+    #
+    # Parameters:
+    #   - path: File to read (required)
+    #   - encoding: File encoding (default: "utf-8")
+    #   - max_lines: Limit output to N lines (default: None/all)
+    # -------------------------------------------------------------------------
+    - name: file_read
+      module: friday_tools.filesystem
+      class: FileReadTool
+
+    # -------------------------------------------------------------------------
+    # file_write - Write content to a text file
+    #
+    # Usage examples:
+    #   /run-tool file_write {"path": "test.txt", "content": "Hello world"}
+    #   /run-tool file_write {"path": "notes.md", "content": "# Notes\n"}
+    #
+    # Parameters:
+    #   - path: File to write (required)
+    #   - content: Content to write (required)
+    #   - encoding: File encoding (default: "utf-8")
+    #   - create_dirs: Create parent dirs if needed (default: true)
+    # -------------------------------------------------------------------------
+    - name: file_write
+      module: friday_tools.filesystem
+      class: FileWriteTool
+
+    # -------------------------------------------------------------------------
+    # Shell Tools (disabled by default for security)
+    # -------------------------------------------------------------------------
+    # - name: shell_execute
+    #   module: friday_tools.shell
+    #   class: ShellExecuteTool
+    #   enabled: false
+
+  # ---------------------------------------------------------------------------
+  # CONTEXT SETTINGS (Future Use)
+  # ---------------------------------------------------------------------------
+  # Controls how tools appear in assembled context when context integration
+  # is implemented. These settings prepare for the tool-in-context feature.
+  # ---------------------------------------------------------------------------
+  context:
+    # Maximum number of tools to include in context payload
+    max_tools: 20
+
+    # Maximum percentage of dynamic token budget for tool schemas
+    # Tool schemas can be token-heavy; this limits their impact
+    max_budget_ratio: 0.25
+
+    # Minimum relevance score (0.0-1.0) for tool recommendations
+    # Tools scoring below this threshold won't be recommended
+    recommendation_threshold: 0.5
+
+    # Include tool schemas in context payload (for future LLM tool calling)
+    include_in_context: true
+
+    # Include usage hints in supporting context (recency effect)
+    include_hints: true

@@ -22,6 +22,11 @@ Vector Metadata Models (Lifecycle):
 - VectorDocumentMetadata: TypedDict for vector store metadata
 - InitialVectorMetadata: Pydantic model for new memory creation
 - create_initial_metadata: Helper to create initial metadata
+
+Tool Models (Tool Calling):
+- ToolUsageRecord: Record of a single tool invocation
+- ToolRecommendation: Recommendation for tool use in context
+- ToolSchema: Lightweight tool schema for context payload
 """
 
 from friday_memory.models.graph import (
@@ -48,6 +53,11 @@ from friday_memory.models.vector_metadata import (
     create_initial_metadata,
     create_longterm_metadata,
 )
+from friday_memory.models.tools import (
+    ToolRecommendation,
+    ToolSchema,
+    ToolUsageRecord,
+)
 
 __all__ = [
     # Graph models
@@ -71,4 +81,8 @@ __all__ = [
     "InitialVectorMetadata",
     "create_initial_metadata",
     "create_longterm_metadata",
+    # Tool models
+    "ToolUsageRecord",
+    "ToolRecommendation",
+    "ToolSchema",
 ]

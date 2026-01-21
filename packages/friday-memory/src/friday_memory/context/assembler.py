@@ -8,8 +8,14 @@ Updated for lifecycle-aware budgeting:
 - Prioritizes short-term over long-term memories
 - Excludes DECAYED memories by default
 
+Tool context integration (Phase 3):
+- Integrates ToolContextManager for tool selection and budgeting
+- Provides set_active_tools(), expand_tools(), clear_tools() methods
+- Preserves tool fields through all filtering operations
+
 Ref: Batch 2a Specification, Section 2
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 7
+Ref: docs/build-plan/tool-calling-build-plan.md, Phase 3
 """
 
 import logging
@@ -21,6 +27,7 @@ import tiktoken
 from friday_core import ContextEngineeringInterface, TelemetryInterface
 
 from friday_memory.context.layout import PromptArchitect
+from friday_memory.context.tool_manager import ToolContextManager
 from friday_memory.controller import MemoryController
 from friday_memory.lifecycle.stages import MemoryStage
 from friday_memory.models import (
@@ -28,6 +35,7 @@ from friday_memory.models import (
     ContextPayload,
     InteractionTurn,
     SessionState,
+    ToolRecommendation,
 )
 
 
@@ -53,6 +61,7 @@ class ContextAssembler(ContextEngineeringInterface):
         self,
         memory_controller: MemoryController,
         prompt_architect: PromptArchitect | None = None,
+        tool_manager: ToolContextManager | None = None,
         model_name: str = "gpt-4",
         max_tokens: int = 8192,
         telemetry: TelemetryInterface | None = None,
@@ -63,6 +72,7 @@ class ContextAssembler(ContextEngineeringInterface):
         Args:
             memory_controller: The memory controller facade
             prompt_architect: Optional custom prompt architect
+            tool_manager: Optional tool context manager for tool selection
             model_name: Model name for token counting
             max_tokens: Maximum context window tokens
             telemetry: Optional telemetry recorder
@@ -72,6 +82,7 @@ class ContextAssembler(ContextEngineeringInterface):
             model_name=model_name,
             max_tokens=max_tokens,
         )
+        self._tool_manager = tool_manager or ToolContextManager()
         self._model_name = model_name
         self._max_tokens = max_tokens
         self._telemetry = telemetry
@@ -96,6 +107,142 @@ class ContextAssembler(ContextEngineeringInterface):
     def set_consolidator(self, consolidator: Any) -> None:
         """Set the memory consolidator for consolidation cycles."""
         self._consolidator = consolidator
+
+    # --- Tool Management ---
+
+    def set_active_tools(self, tools: list[dict[str, Any]]) -> None:
+        """
+        Set the active tools for the current task.
+
+        This method allows an agent to inject selected tools into the
+        context assembly process. Only active tools will be included
+        in the context payload.
+
+        Args:
+            tools: List of tool schemas to activate. Each schema should
+                   have 'name', 'description', and 'parameters' fields.
+
+        Example:
+            ```python
+            assembler.set_active_tools([
+                {"name": "read_file", "description": "Read file contents", ...},
+                {"name": "write_file", "description": "Write to file", ...},
+            ])
+            ```
+        """
+        self._tool_manager.set_active_tools(tools)
+        self._emit_event(
+            "active_tools_set",
+            {"tool_count": len(tools), "tool_names": [t.get("name") for t in tools]},
+        )
+
+    def expand_tools(self, additional_tools: list[dict[str, Any]]) -> int:
+        """
+        Expand active tools with additional ones.
+
+        Used in hybrid mode when an agent needs to add more tools
+        mid-task without replacing the existing set.
+
+        Args:
+            additional_tools: Tools to add to the active set.
+
+        Returns:
+            Number of tools actually added (respects max_tools limit).
+        """
+        added = self._tool_manager.expand_tools(additional_tools)
+        if added > 0:
+            self._emit_event(
+                "tools_expanded",
+                {"tools_added": added, "total_tools": len(self._tool_manager.active_tools)},
+            )
+        return added
+
+    def clear_tools(self) -> None:
+        """
+        Clear all active tools and recommendations.
+
+        Should be called at the end of a task to reset tool state.
+        """
+        self._tool_manager.clear_tools()
+        self._emit_event("tools_cleared", {})
+
+    def get_tool_budget_info(
+        self, tools: list[dict[str, Any]] | None = None
+    ) -> dict[str, Any]:
+        """
+        Get information about tool token budget usage.
+
+        Args:
+            tools: Tools to analyze (uses active_tools if None).
+
+        Returns:
+            Dictionary with budget information including:
+            - tool_count: Number of tools
+            - estimated_tokens: Estimated token usage
+            - budget_limit: Maximum allowed tokens
+            - usage_percent: Percentage of budget used
+        """
+        return self._tool_manager.get_budget_info(tools)
+
+    def recommend_tools(
+        self,
+        query: str,
+        available_tools: list[dict[str, Any]] | None = None,
+        top_k: int = 5,
+    ) -> list[ToolRecommendation]:
+        """
+        Generate tool recommendations based on query.
+
+        Uses the ToolContextManager's recommendation logic to suggest
+        relevant tools for a given query.
+
+        Args:
+            query: User query or task description.
+            available_tools: Tools to consider (uses active tools if None).
+            top_k: Maximum recommendations to return.
+
+        Returns:
+            List of ToolRecommendation objects with scores and reasons.
+        """
+        tools = available_tools if available_tools is not None else self._tool_manager.active_tools
+        return self._tool_manager.generate_recommendations(query, tools, top_k)
+
+    @property
+    def active_tools(self) -> list[dict[str, Any]]:
+        """Get currently active tool schemas."""
+        return self._tool_manager.active_tools
+
+    @property
+    def tool_recommendations(self) -> list[ToolRecommendation]:
+        """Get current tool recommendations."""
+        return self._tool_manager.recommendations
+
+    def calculate_budget_limit(
+        self,
+        system_prompt: str,
+        tool_definitions: list[dict[str, Any]] | None = None,
+    ) -> int:
+        """
+        Calculate the available token budget for dynamic content.
+
+        Uses PromptArchitect.calculate_dynamic_limit() to compute:
+        Dynamic_Limit = Model_Max_Tokens - Fixed_Cost
+
+        Fixed_Cost = len(System_Prompt) + len(Tool_Definitions) + Output_Buffer
+
+        Args:
+            system_prompt: The base system prompt
+            tool_definitions: Optional tool definitions
+
+        Returns:
+            Available tokens for dynamic content (context + history)
+        """
+        return self._architect.calculate_dynamic_limit(system_prompt, tool_definitions)
+
+    @property
+    def max_tokens(self) -> int:
+        """Get the maximum context window tokens."""
+        return self._max_tokens
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -254,6 +401,7 @@ class ContextAssembler(ContextEngineeringInterface):
         query: str,
         state: SessionState,
         budget_limit: int,
+        available_tools: list[dict[str, Any]] | None = None,
     ) -> ContextPayload:
         """
         The core 'Recall' step.
@@ -266,13 +414,20 @@ class ContextAssembler(ContextEngineeringInterface):
         Context priming (injecting prior session knowledge) is handled
         by MemoryController.recall().
 
+        Tool context integration:
+        - If available_tools provided, builds tool context with budgeting
+        - If active_tools already set, uses those instead
+        - Tool schemas and recommendations are included in payload
+
         Args:
             query: The search string
             state: Current session state
             budget_limit: Calculated token ceiling (Dynamic_Limit)
+            available_tools: Optional tools to consider for selection.
+                            If None, uses active_tools from tool_manager.
 
         Returns:
-            ContextPayload: Strictly budgeted retrieval results
+            ContextPayload: Strictly budgeted retrieval results with tool context
         """
         span_id = None
         if self._telemetry:
@@ -290,19 +445,64 @@ class ContextAssembler(ContextEngineeringInterface):
             # Apply token budget with priority hierarchy
             budgeted_payload = self._apply_budget(payload, budget_limit, query=query)
 
+            # Build tool context if tools are available
+            tool_schemas: list[dict[str, Any]] = []
+            recommendations: list[ToolRecommendation] = []
+            tool_hints: list[str] = []
+
+            tools_to_use = available_tools if available_tools is not None else self._tool_manager.active_tools
+            if tools_to_use:
+                # Calculate tool budget (25% of total budget by default)
+                tool_budget = int(budget_limit * 0.25)
+
+                tool_schemas, recommendations = self._tool_manager.build_tool_context(
+                    query=query,
+                    budget=tool_budget,
+                    available_tools=tools_to_use,
+                )
+
+                # Generate usage hints based on recommendations
+                if recommendations:
+                    for rec in recommendations[:3]:  # Top 3 hints
+                        tool_hints.append(f"Consider using {rec.tool_name}: {rec.reason}")
+
+            # Create final payload with tool context
+            final_payload = ContextPayload(
+                history=budgeted_payload.history,
+                prior_history=budgeted_payload.prior_history,
+                passages=budgeted_payload.passages,
+                entities=budgeted_payload.entities,
+                facts=budgeted_payload.facts,
+                recent_memories=budgeted_payload.recent_memories,
+                insights=budgeted_payload.insights,
+                summaries=budgeted_payload.summaries,
+                key_facts=budgeted_payload.key_facts,
+                # Tool context fields
+                tool_schemas=tool_schemas,
+                recommended_tools=recommendations,
+                tool_usage_hints=tool_hints,
+                debug_info={
+                    **budgeted_payload.debug_info,
+                    "tool_count": len(tool_schemas),
+                    "recommendation_count": len(recommendations),
+                },
+            )
+
             self._emit_event(
                 "context_assembled",
                 {
                     "session_id": state.session_id,
                     "query_length": len(query),
                     "budget_limit": budget_limit,
-                    "history_count": len(budgeted_payload.history),
-                    "passages_count": len(budgeted_payload.passages),
-                    "entities_count": len(budgeted_payload.entities),
+                    "history_count": len(final_payload.history),
+                    "passages_count": len(final_payload.passages),
+                    "entities_count": len(final_payload.entities),
+                    "tool_count": len(tool_schemas),
+                    "recommendation_count": len(recommendations),
                 },
             )
 
-            return budgeted_payload
+            return final_payload
 
         finally:
             if span_id:
@@ -507,6 +707,10 @@ class ContextAssembler(ContextEngineeringInterface):
                 insights=payload.insights,
                 summaries=payload.summaries,
                 key_facts=payload.key_facts,
+                # Preserve tool fields
+                tool_schemas=payload.tool_schemas,
+                recommended_tools=payload.recommended_tools,
+                tool_usage_hints=payload.tool_usage_hints,
                 debug_info={
                     **payload.debug_info,
                     "decayed_filtered": decayed_count,
@@ -580,6 +784,10 @@ class ContextAssembler(ContextEngineeringInterface):
             insights=payload.insights,
             summaries=[],  # Clear summaries
             key_facts=payload.key_facts,
+            # Preserve tool fields
+            tool_schemas=payload.tool_schemas,
+            recommended_tools=payload.recommended_tools,
+            tool_usage_hints=payload.tool_usage_hints,
             debug_info={
                 **payload.debug_info,
                 "summaries_excluded": summaries_count,
@@ -677,6 +885,10 @@ class ContextAssembler(ContextEngineeringInterface):
             insights=filtered_insights,
             summaries=payload.summaries,
             key_facts=payload.key_facts,
+            # Preserve tool fields
+            tool_schemas=payload.tool_schemas,
+            recommended_tools=payload.recommended_tools,
+            tool_usage_hints=payload.tool_usage_hints,
             debug_info={
                 **payload.debug_info,
                 "insights_filtered_by_relevance": excluded_count,
@@ -845,6 +1057,10 @@ class ContextAssembler(ContextEngineeringInterface):
             insights=insights,
             summaries=summaries,
             key_facts=key_facts if key_facts is not None else original.key_facts,
+            # Preserve tool fields
+            tool_schemas=original.tool_schemas,
+            recommended_tools=original.recommended_tools,
+            tool_usage_hints=original.tool_usage_hints,
             debug_info={
                 **original.debug_info,
                 "pruned": True,
@@ -911,6 +1127,10 @@ class ContextAssembler(ContextEngineeringInterface):
             insights=original.insights,
             summaries=original.summaries,
             key_facts=original.key_facts,
+            # Preserve tool fields
+            tool_schemas=original.tool_schemas,
+            recommended_tools=original.recommended_tools,
+            tool_usage_hints=original.tool_usage_hints,
             debug_info={
                 **original.debug_info,
                 "pruned": True,

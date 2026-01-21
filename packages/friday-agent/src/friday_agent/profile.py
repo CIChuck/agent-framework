@@ -5,9 +5,15 @@ Defines agent identity, capabilities, and configuration.
 Serializable to YAML/JSON for config-driven agents.
 
 Ref: Batch 3 Specification, Section 4.1
+Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 """
 
 from dataclasses import dataclass, field
+from typing import Literal
+
+
+# Tool autonomy modes
+ToolAutonomy = Literal["manual", "auto", "hybrid"]
 
 
 @dataclass
@@ -25,6 +31,17 @@ class AgentProfile:
         temperature: LLM sampling temperature
         max_tokens: Maximum tokens for LLM response
 
+        # Tool autonomy settings
+        tool_autonomy: Tool selection mode ("manual", "auto", "hybrid")
+        injected_tools: Tools always included (for manual/hybrid modes)
+        available_tools: Pool of tools for auto-selection (for auto/hybrid modes)
+        required_tools: Tools that must always be included regardless of selection
+
+    Tool Autonomy Modes:
+        - "manual": Tools must be injected at instantiation; agent cannot self-select
+        - "auto": Agent self-selects tools via LLM reasoning; no injection needed
+        - "hybrid": Injected tools + agent can expand with self-selection
+
     Example:
         profile = AgentProfile(
             name="Friday",
@@ -32,6 +49,9 @@ class AgentProfile:
             goal="Help users with research and organization",
             system_prompt_template="You are {name}, a {role}. Your goal: {goal}",
             tools=["recall_memory", "scratchpad_write", "web_search"],
+            tool_autonomy="hybrid",
+            injected_tools=["recall_memory"],  # Always available
+            available_tools=["web_search", "read_file"],  # Can be selected
         )
     """
 
@@ -49,6 +69,12 @@ class AgentProfile:
     # LLM parameters
     temperature: float = 0.7
     max_tokens: int | None = None
+
+    # Tool autonomy settings
+    tool_autonomy: ToolAutonomy = "manual"
+    injected_tools: list[str] = field(default_factory=list)
+    available_tools: list[str] = field(default_factory=list)
+    required_tools: list[str] = field(default_factory=list)
 
     def render_system_prompt(self, **kwargs) -> str:
         """
@@ -84,6 +110,11 @@ class AgentProfile:
             "context_strategy": self.context_strategy,
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
+            # Tool autonomy settings
+            "tool_autonomy": self.tool_autonomy,
+            "injected_tools": self.injected_tools,
+            "available_tools": self.available_tools,
+            "required_tools": self.required_tools,
         }
 
     @classmethod
@@ -98,4 +129,9 @@ class AgentProfile:
             context_strategy=data.get("context_strategy", "standard"),
             temperature=data.get("temperature", 0.7),
             max_tokens=data.get("max_tokens"),
+            # Tool autonomy settings
+            tool_autonomy=data.get("tool_autonomy", "manual"),
+            injected_tools=data.get("injected_tools", []),
+            available_tools=data.get("available_tools", []),
+            required_tools=data.get("required_tools", []),
         )

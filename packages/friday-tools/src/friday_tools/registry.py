@@ -154,10 +154,84 @@ class DefaultToolRegistry:
             return None
         return tool.to_schema(format)
 
+    def get_tools_by_category(self, category: str) -> list[ToolDefinition]:
+        """
+        Get all tools in a specific category.
+
+        Args:
+            category: Category to filter by (e.g., "filesystem", "web").
+
+        Returns:
+            List of tools in the specified category.
+        """
+        return [
+            tool for tool in self._tools.values()
+            if getattr(tool, "category", "uncategorized") == category
+        ]
+
+    def get_tools_by_tags(
+        self, tags: list[str], match_all: bool = False
+    ) -> list[ToolDefinition]:
+        """
+        Get tools matching specified tags.
+
+        Args:
+            tags: List of tags to filter by.
+            match_all: If True, tool must have ALL tags. If False, ANY tag matches.
+
+        Returns:
+            List of tools matching the tag criteria.
+        """
+        tags_set = set(tags)
+        results = []
+
+        for tool in self._tools.values():
+            tool_tags = set(getattr(tool, "tags", []))
+            if match_all:
+                if tags_set <= tool_tags:  # All requested tags present
+                    results.append(tool)
+            else:
+                if tags_set & tool_tags:  # Any tag matches
+                    results.append(tool)
+
+        return results
+
+    def list_categories(self) -> list[str]:
+        """
+        List all unique categories across registered tools.
+
+        Returns:
+            Sorted list of category strings.
+        """
+        categories = set()
+        for tool in self._tools.values():
+            categories.add(getattr(tool, "category", "uncategorized"))
+        return sorted(categories)
+
+    def get_schemas_by_category(
+        self, category: str, format: str = "plain"
+    ) -> list[dict[str, Any]]:
+        """
+        Get schemas for all tools in a category.
+
+        Args:
+            category: Category to filter by.
+            format: Output format - "plain" or "openai".
+
+        Returns:
+            List of tool schemas for the category.
+        """
+        return [
+            tool.to_schema(format)
+            for tool in self.get_tools_by_category(category)
+        ]
+
     def tool(
         self,
         name: str | None = None,
         description: str | None = None,
+        category: str = "uncategorized",
+        tags: list[str] | None = None,
     ) -> Callable[[Callable], FunctionTool]:
         """
         Decorator to register a function as a tool.
@@ -166,13 +240,16 @@ class DefaultToolRegistry:
             ```python
             registry = DefaultToolRegistry()
 
-            @registry.tool(name="greet", description="Greet someone")
+            @registry.tool(name="greet", description="Greet someone", category="utility")
             async def greet(name: str) -> str:
                 return f"Hello, {name}!"
             ```
         """
         def decorator(func: Callable) -> FunctionTool:
-            tool = FunctionTool(func, name=name, description=description)
+            tool = FunctionTool(
+                func, name=name, description=description,
+                category=category, tags=tags
+            )
             self.register(tool)
             return tool
         return decorator
@@ -203,15 +280,19 @@ def get_default_registry() -> DefaultToolRegistry:
 def tool(
     name: str | None = None,
     description: str | None = None,
+    category: str = "uncategorized",
+    tags: list[str] | None = None,
 ) -> Callable[[Callable], FunctionTool]:
     """
     Decorator to register a function as a tool in the default registry.
 
     Example:
         ```python
-        @tool(name="my_tool")
+        @tool(name="my_tool", category="utility")
         async def my_tool(input: str) -> str:
             return f"Processed: {input}"
         ```
     """
-    return _default_registry.tool(name=name, description=description)
+    return _default_registry.tool(
+        name=name, description=description, category=category, tags=tags
+    )

@@ -6,12 +6,15 @@ Includes recent_memories (Transparency Loop).
 Ref: Batch 2 Specification, Section 1.1
 """
 
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, Field
 
 from friday_memory.models.graph import GraphEdge, GraphNode
 from friday_memory.models.session import InteractionTurn
+
+if TYPE_CHECKING:
+    from friday_memory.models.tools import ToolRecommendation
 
 
 class ContextPayload(BaseModel):
@@ -92,6 +95,32 @@ class ContextPayload(BaseModel):
         description="Debug telemetry: {'vector_latency': 0.1, 'graph_nodes_touched': 15}",
     )
 
+    # --- Tool Context ---
+    # These fields support intelligent tool selection and context integration.
+    # Tool schemas are passed to the LLM API's tools parameter, while
+    # recommendations appear in supporting context for the recency effect.
+    tool_schemas: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description=(
+            "Filtered tool schemas for API tools parameter. "
+            "Contains only actively selected tools, not all available tools."
+        ),
+    )
+    recommended_tools: list[Any] = Field(  # list[ToolRecommendation] at runtime
+        default_factory=list,
+        description=(
+            "Tool recommendations with reasons for supporting context. "
+            "Placed near user query for recency effect."
+        ),
+    )
+    tool_usage_hints: list[str] = Field(
+        default_factory=list,
+        description=(
+            "Natural language hints about tool usage patterns. "
+            "E.g., 'For file operations, read_file is faster than cat for large files.'"
+        ),
+    )
+
     def total_items(self) -> int:
         """Return total number of items in the payload."""
         return (
@@ -103,6 +132,8 @@ class ContextPayload(BaseModel):
             + len(self.insights)
             + len(self.summaries)
             + len(self.key_facts)
+            + len(self.tool_schemas)
+            + len(self.recommended_tools)
         )
 
     def is_empty(self) -> bool:

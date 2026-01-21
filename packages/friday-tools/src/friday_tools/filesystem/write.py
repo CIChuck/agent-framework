@@ -10,68 +10,124 @@ import re
 from pathlib import Path
 from typing import Any
 
+from pydantic import BaseModel, Field
+
+from ..base import FridayTool, ToolResult
 from ..definition import BaseTool
 from ..sandbox import FilesystemSandbox
 
 
-class FileWriteTool(BaseTool):
-    """Write content to a file."""
+class FileWriteTool(FridayTool):
+    """
+    Write content to a text file.
+
+    Creates a new file or overwrites an existing file with the provided content.
+    Can optionally create parent directories if they don't exist.
+    """
+
+    name = "file_write"
+    description = "Write content to a file. Requires overwrite=true if file exists."
+    category = "filesystem"
+    tags = ["file", "write", "create", "save"]
+
+    class Input(BaseModel):
+        path: str = Field(
+            description="Path to the file to write"
+        )
+        content: str = Field(
+            description="Content to write to the file"
+        )
+        overwrite: bool = Field(
+            default=False,
+            description="Set to true to overwrite an existing file"
+        )
+        encoding: str = Field(
+            default="utf-8",
+            description="File encoding (e.g., utf-8, latin-1, ascii)"
+        )
+        create_dirs: bool = Field(
+            default=True,
+            description="Create parent directories if they don't exist"
+        )
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
         self._sandbox = sandbox or FilesystemSandbox()
 
-    @property
-    def name(self) -> str:
-        return "file_write"
+    async def run(self, args: Input) -> ToolResult:
+        """Execute the file write tool."""
+        validated_path = self._sandbox.validate_path(args.path)
 
-    @property
-    def description(self) -> str:
-        return "Write content to a file, creating it if it doesn't exist or overwriting if it does."
+        # Check if file exists (for metadata and overwrite protection)
+        file_existed = validated_path.exists()
 
-    @property
-    def parameters_schema(self) -> dict[str, Any]:
-        return {
-            "type": "object",
-            "properties": {
-                "path": {
-                    "type": "string",
-                    "description": "Path to the file to write",
+        # Overwrite protection: require explicit confirmation for existing files
+        if file_existed and not args.overwrite:
+            stat_info = validated_path.stat()
+            return ToolResult(
+                content=(
+                    f"Error: File already exists: {args.path}\n"
+                    f"Size: {stat_info.st_size} bytes\n"
+                    f"To overwrite, set overwrite=true"
+                ),
+                error="File exists - overwrite not confirmed",
+                data={
+                    "path": str(validated_path),
+                    "exists": True,
+                    "size": stat_info.st_size,
+                    "requires_overwrite": True,
                 },
-                "content": {
-                    "type": "string",
-                    "description": "Content to write to the file",
-                },
-                "encoding": {
-                    "type": "string",
-                    "description": "File encoding (default: utf-8)",
-                    "default": "utf-8",
-                },
-                "create_dirs": {
-                    "type": "boolean",
-                    "description": "Create parent directories if they don't exist",
-                    "default": True,
-                },
-            },
-            "required": ["path", "content"],
-        }
-
-    async def execute(self, **kwargs: Any) -> str:
-        path = kwargs["path"]
-        content = kwargs["content"]
-        encoding = kwargs.get("encoding", "utf-8")
-        create_dirs = kwargs.get("create_dirs", True)
-
-        validated_path = self._sandbox.validate_path(path)
+            )
 
         try:
-            if create_dirs:
+            # Create parent directories if requested
+            if args.create_dirs:
                 validated_path.parent.mkdir(parents=True, exist_ok=True)
 
-            validated_path.write_text(content, encoding=encoding)
-            return f"Successfully wrote {len(content)} bytes to {path}"
+            # Write content
+            validated_path.write_text(args.content, encoding=args.encoding)
 
+            # Get file stats after write
+            stat_info = validated_path.stat()
+
+            # Count lines
+            line_count = args.content.count("\n")
+            if args.content and not args.content.endswith("\n"):
+                line_count += 1
+
+            action = "overwrote" if file_existed else "created"
+            content_msg = f"Successfully {action} {args.path}"
+            content_msg += f" ({len(args.content)} bytes, {line_count} lines)"
+
+            return ToolResult(
+                content=content_msg,
+                data={
+                    "path": str(validated_path),
+                    "bytes_written": len(args.content),
+                    "line_count": line_count,
+                    "created": not file_existed,
+                    "encoding": args.encoding,
+                },
+                metadata={
+                    "path": args.path,
+                    "action": "create" if not file_existed else "overwrite",
+                }
+            )
+
+        except PermissionError:
+            return ToolResult(
+                content=f"Error: Permission denied: {args.path}",
+                error="Permission denied"
+            )
+        except OSError as e:
+            return ToolResult(
+                content=f"Error: Failed to write file: {e}",
+                error=str(e)
+            )
         except Exception as e:
-            return f"Error: Failed to write file: {e}"
+            return ToolResult(
+                content=f"Error: Failed to write file: {e}",
+                error=str(e)
+            )
 
 
 class FileAppendTool(BaseTool):

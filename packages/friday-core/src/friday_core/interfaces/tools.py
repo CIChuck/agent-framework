@@ -37,6 +37,9 @@ class ToolDefinition(Protocol):
         description: Human-readable description for the LLM to understand
                     when to use this tool.
         parameters_schema: JSON Schema defining the tool's parameters.
+        category: Tool category for grouping and filtering (e.g., "filesystem",
+                 "web", "git", "shell", "code", "data", "text", "utility").
+        tags: Optional tags for fine-grained filtering and search.
     """
 
     @property
@@ -52,6 +55,41 @@ class ToolDefinition(Protocol):
     @property
     def parameters_schema(self) -> dict[str, Any]:
         """JSON Schema for tool parameters."""
+        ...
+
+    @property
+    def category(self) -> str:
+        """
+        Tool category for grouping and filtering.
+
+        Standard categories:
+            - "filesystem": File and directory operations
+            - "shell": Command execution
+            - "web": HTTP requests, web scraping
+            - "git": Version control operations
+            - "code": Code analysis, execution, generation
+            - "data": Data processing, transformation
+            - "text": Text manipulation, search
+            - "utility": General utilities (datetime, etc.)
+            - "uncategorized": Default for tools without explicit category
+
+        Returns:
+            Category string, defaults to "uncategorized" if not set.
+        """
+        ...
+
+    @property
+    def tags(self) -> list[str]:
+        """
+        Optional tags for fine-grained filtering.
+
+        Tags provide additional metadata for tool discovery and filtering
+        beyond the primary category. Examples: ["read-only", "async",
+        "requires-auth", "idempotent"].
+
+        Returns:
+            List of tag strings, empty list if no tags.
+        """
         ...
 
     async def execute(self, **kwargs: Any) -> str:
@@ -207,5 +245,39 @@ class ToolRegistry(Protocol):
 
         Returns:
             Tool schema if found, None otherwise.
+        """
+        ...
+
+    def get_tools_by_category(self, category: str) -> list[ToolDefinition]:
+        """
+        Get all tools in a specific category.
+
+        Args:
+            category: Category to filter by (e.g., "filesystem", "web").
+
+        Returns:
+            List of tools in the specified category.
+        """
+        ...
+
+    def get_tools_by_tags(self, tags: list[str], match_all: bool = False) -> list[ToolDefinition]:
+        """
+        Get tools matching specified tags.
+
+        Args:
+            tags: List of tags to filter by.
+            match_all: If True, tool must have ALL tags. If False, ANY tag matches.
+
+        Returns:
+            List of tools matching the tag criteria.
+        """
+        ...
+
+    def list_categories(self) -> list[str]:
+        """
+        List all unique categories across registered tools.
+
+        Returns:
+            Sorted list of category strings.
         """
         ...

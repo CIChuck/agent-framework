@@ -8,6 +8,7 @@ and more.
 Ref: docs/specs/tool_specification.md
 """
 
+from .base import FridayTool, ToolResult
 from .definition import BaseTool, FunctionTool, create_tool
 from .manifest import ToolManifest
 from .protocols import ToolAdapter, ToolDefinition, ToolRegistry
@@ -20,6 +21,9 @@ from .sandbox import (
     ShellSandbox,
 )
 
+# Utility tools
+from .utility import EchoTool, GetCurrentDateTimeTool
+
 __all__ = [
     # Protocols
     "ToolDefinition",
@@ -28,6 +32,8 @@ __all__ = [
     # Base classes
     "BaseTool",
     "FunctionTool",
+    "FridayTool",
+    "ToolResult",
     # Registry
     "DefaultToolRegistry",
     "get_default_registry",
@@ -42,6 +48,9 @@ __all__ = [
     "SecurityError",
     "PathSecurityError",
     "CommandSecurityError",
+    # Utility tools
+    "GetCurrentDateTimeTool",
+    "EchoTool",
 ]
 
 __version__ = "0.1.0"
