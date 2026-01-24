@@ -105,6 +105,12 @@ class TranscriptEntry(BaseModel):
         default_factory=dict, description="Additional metadata"
     )
 
+    # Processing state
+    consolidated: bool = Field(
+        default=False,
+        description="Whether this entry has been extracted to long-term memory"
+    )
+
     class Config:
         """Pydantic configuration."""
 
@@ -157,6 +163,12 @@ class TranscriptSession(BaseModel):
     # Extensible metadata
     metadata: dict[str, Any] = Field(
         default_factory=dict, description="Additional session metadata"
+    )
+
+    # Archive state
+    archived: bool = Field(
+        default=False,
+        description="Whether this session is archived (excluded from context assembly)"
     )
 
     def is_active(self) -> bool:

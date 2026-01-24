@@ -1209,3 +1209,53 @@ tools:
 
     # Include usage hints in supporting context (recency effect)
     include_hints: true
+
+# =============================================================================
+# SESSION SETTINGS
+# =============================================================================
+# Controls session behavior including automatic maintenance on exit.
+# These settings determine what cleanup and optimization runs when you exit.
+# =============================================================================
+session:
+  # ---------------------------------------------------------------------------
+  # EXIT MAINTENANCE
+  # ---------------------------------------------------------------------------
+  # Run memory maintenance automatically when exiting the chat.
+  # This keeps your memory system healthy without manual intervention.
+  # ---------------------------------------------------------------------------
+
+  # Flush access buffer on exit (default: true)
+  # Fast operation (~1 second) - ensures access counts are persisted
+  # Recommended: Always enable
+  flush_on_exit: true
+
+  # Run lifecycle cycle on exit (default: true)
+  # Moderate operation (~2-5 seconds) - processes promotions and decays
+  # - Promotes valuable SHORT_TERM memories to LONG_TERM
+  # - Decays unused LONG_TERM memories
+  # - Propagates decay to graph nodes
+  # Recommended: Enable for regular usage
+  lifecycle_on_exit: true
+
+  # Run reorganization on exit (default: false)
+  # Slow operation (10 seconds to 5 minutes depending on mode)
+  # - Analyzes memory consistency
+  # - Prunes duplicate entities and insights
+  # - Optionally synthesizes meta-insights (full mode)
+  # - Optionally verifies facts (full mode)
+  # Recommended: Enable for power users who want self-maintaining memory
+  reorganize_on_exit: true
+
+  # Reorganization mode: "fast" or "full" (default: "fast")
+  # Only applies when reorganize_on_exit is true
+  #
+  # "fast" mode (~10-30 seconds):
+  #   - Backup, Analyze, Prune
+  #   - No LLM calls
+  #   - Safe for frequent use
+  #
+  # "full" mode (~2-5 minutes):
+  #   - All steps including Synthesize and Verify
+  #   - Requires LLM calls
+  #   - Best for weekly/monthly maintenance
+  reorganize_mode: "fast"

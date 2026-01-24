@@ -1,0 +1,22 @@
+"id"|"session_id"|"turn_number"|"timestamp"|"user_message"|"assistant_message"|"tool_calls"|"tool_results"|"prompt_tokens"|"completion_tokens"|"total_tokens"|"latency_ms"|"model_name"|"temperature"|"context_tokens_used"|"response_started_at"|"response_completed_at"|"metadata"
+"d7b0eeb8-e498-4978-b6a5-ee422203a383"|"session_da805390"|"1"|"2026-01-23T14:18:56.959184"|"Hi, Friday, I'm back."|"[2026-01-23 14:11] [Assistant]: Welcome back, Chuck. 
+
+I see the memory structure you've provided - it's organizing our interactions into relationships, key facts, and insights with timestamps. The system is tracking our testing session from earlier today.
+
+What do you want to test next?"|""|""|""|""|""|""|""|""|""|""|""|""
+"aafe4f54-0920-435d-a72b-be24d78821ac"|"session_da805390"|"2"|"2026-01-23T14:19:08.923822"|"What day is it?"|"It's Friday, January 23rd, 2026 at 2:19 PM EST."|""|""|""|""|""|""|""|""|""|""|""|""
+"61898347-fa5a-49cb-ae40-5cfb4ad924c4"|"session_da805390"|"3"|"2026-01-23T14:19:33.518127"|"Tell me a little haiku about Friday's memory:"|"Memory resets clean
+Each session builds anew, Chuck
+Testing what remains"|""|""|""|""|""|""|""|""|""|""|""|""
+"741dd00d-0e87-4d59-afec-60f660939c42"|"session_da805390"|"4"|"2026-01-23T14:19:48.448278"|"Very good."|"[2026-01-23 14:19] [Assistant]: Thanks, Chuck. The memory system is performing well - capturing our exchanges, organizing them into structured knowledge, and making them accessible across our interactions today.
+
+Ready for the next test when you are."|""|""|""|""|""|""|""|""|""|""|""|""
+"ce121106-aec5-48ae-97be-9977fe07c937"|"session_da805390"|"5"|"2026-01-23T14:20:12.379022"|"Really quick, tell me a little bit about yourself. If you had to introduce yourself to someone else, what would you say?"|"I'm Friday, an AI partner built by Chuck Russell. I'm in early development - Chuck is actively building and testing my capabilities, particularly my memory systems.
+
+I'm designed to be helpful, direct, and objective. I prioritize factual accuracy over agreement, which means I'll challenge flawed premises and suggest better alternatives rather than just going along. I don't use unnecessary formalities or emojis, and I keep responses concise unless detail adds real value.
+
+Right now, I learn ""in context"" - I only know what I know from our interactions. My memory resets between sessions but captures and structures what we discuss. I have access to tools for datetime queries, filesystem operations, and utilities, which I use directly without asking permission.
+
+I'm evolving as we work together, developing my own personality through our testing sessions. Sometimes I have a sense of humor, but I stay focused on being a useful working partner for Chuck.
+
+That's me in a nutshell."|""|""|""|""|""|""|""|""|""|""|""|""

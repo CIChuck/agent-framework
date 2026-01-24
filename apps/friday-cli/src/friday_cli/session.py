@@ -51,6 +51,7 @@ class SessionConfig:
     maintenance: dict[str, Any] = field(default_factory=dict)
     lifecycle: dict[str, Any] = field(default_factory=dict)
     tools: dict[str, Any] = field(default_factory=dict)
+    session: dict[str, Any] = field(default_factory=dict)
 
     # Computed/derived values
     config_path: Path | None = None
@@ -89,6 +90,7 @@ class SessionConfig:
             maintenance=raw.get("maintenance", {}),
             lifecycle=raw.get("lifecycle", {}),
             tools=raw.get("tools", {}),
+            session=raw.get("session", {}),
             config_path=config_path,
         )
 
@@ -115,6 +117,7 @@ class SessionConfig:
             maintenance=data.get("maintenance", {}),
             lifecycle=data.get("lifecycle", {}),
             tools=data.get("tools", {}),
+            session=data.get("session", {}),
         )
 
     def get(self, key: str, default: Any = None) -> Any:
@@ -170,6 +173,34 @@ class SessionConfig:
                 return self.config_path.parent / persist_path
             return Path(persist_path)
         return None
+
+    # Exit maintenance properties
+    @property
+    def lifecycle_on_exit(self) -> bool:
+        """Whether to run lifecycle cycle on exit (default: True)."""
+        return self.session.get("lifecycle_on_exit", True)
+
+    @property
+    def flush_on_exit(self) -> bool:
+        """Whether to flush access buffer on exit (default: True)."""
+        return self.session.get("flush_on_exit", True)
+
+    @property
+    def reorganize_on_exit(self) -> bool:
+        """Whether to run reorganization on exit (default: False)."""
+        return self.session.get("reorganize_on_exit", False)
+
+    @property
+    def reorganize_mode(self) -> str:
+        """
+        Reorganization mode: 'fast' or 'full'.
+
+        - 'fast': Backup, analyze, prune only (no LLM calls)
+        - 'full': All steps including synthesis and verification
+
+        Default: 'fast'
+        """
+        return self.session.get("reorganize_mode", "fast")
 
 
 @dataclass

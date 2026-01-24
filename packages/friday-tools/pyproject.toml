@@ -27,6 +27,8 @@ dependencies = [
     # Math & Dates
     "python-dateutil>=2.8.0",
     "psutil>=7.2.1",
+    # Encoding detection
+    "charset-normalizer>=3.3.0",
 ]
 
 [project.optional-dependencies]
@@ -45,6 +47,23 @@ all-adapters = [
     "friday-tools[langchain]",
     "friday-tools[anthropic]",
     "friday-tools[openai]",
+]
+
+# Document format readers (optional)
+documents = [
+    "pypdf>=4.0",
+    "python-docx>=1.0",
+]
+
+# Spreadsheet readers (optional)
+spreadsheets = [
+    "openpyxl>=3.1",
+]
+
+# All file format support
+all-formats = [
+    "friday-tools[documents]",
+    "friday-tools[spreadsheets]",
 ]
 
 [build-system]

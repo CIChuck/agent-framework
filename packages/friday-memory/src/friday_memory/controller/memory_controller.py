@@ -623,6 +623,37 @@ class MemoryController:
             if span_id:
                 self._telemetry.end_span(span_id)
 
+    def clear_primed_content(self, session_id: str | None = None) -> int:
+        """
+        Clear cached primed content.
+
+        Call this after resetting memory stores to ensure stale primed content
+        is not used in subsequent context assemblies.
+
+        Args:
+            session_id: Specific session to clear, or None to clear all sessions
+
+        Returns:
+            Number of sessions cleared
+        """
+        if session_id:
+            if session_id in self._primed_content:
+                del self._primed_content[session_id]
+                self._emit_event(
+                    "primed_content_cleared",
+                    {"session_id": session_id, "sessions_cleared": 1},
+                )
+                return 1
+            return 0
+        else:
+            count = len(self._primed_content)
+            self._primed_content.clear()
+            self._emit_event(
+                "primed_content_cleared",
+                {"session_id": None, "sessions_cleared": count},
+            )
+            return count
+
     async def _build_relationship_summaries(
         self, entities: list[GraphNode]
     ) -> list[str]:

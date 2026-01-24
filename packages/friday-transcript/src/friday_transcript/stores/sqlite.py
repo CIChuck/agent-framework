@@ -50,6 +50,11 @@ class SQLiteTranscriptStore:
             return
 
         async with aiosqlite.connect(self._db_path) as db:
+            # ACID compliance pragmas
+            await db.execute("PRAGMA foreign_keys = ON")
+            await db.execute("PRAGMA journal_mode = WAL")
+            await db.execute("PRAGMA synchronous = NORMAL")
+
             # Sessions table
             await db.execute("""
                 CREATE TABLE IF NOT EXISTS sessions (
@@ -106,6 +111,28 @@ class SQLiteTranscriptStore:
                 ON sessions(user_id, started_at)
             """)
 
+            # Migration: Add consolidated column if not exists
+            cursor = await db.execute("PRAGMA table_info(entries)")
+            columns = {row[1] for row in await cursor.fetchall()}
+            if "consolidated" not in columns:
+                await db.execute(
+                    "ALTER TABLE entries ADD COLUMN consolidated INTEGER DEFAULT 0"
+                )
+                await db.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_entries_consolidated
+                    ON entries(session_id, consolidated)
+                """)
+                logger.info("Added 'consolidated' column to entries table")
+
+            # Migration: Add archived column to sessions if not exists
+            cursor = await db.execute("PRAGMA table_info(sessions)")
+            session_columns = {row[1] for row in await cursor.fetchall()}
+            if "archived" not in session_columns:
+                await db.execute(
+                    "ALTER TABLE sessions ADD COLUMN archived INTEGER DEFAULT 0"
+                )
+                logger.info("Added 'archived' column to sessions table")
+
             await db.commit()
             self._initialized = True
 
@@ -116,6 +143,7 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             try:
                 await db.execute(
                     """
@@ -145,12 +173,19 @@ class SQLiteTranscriptStore:
             except aiosqlite.IntegrityError:
                 logger.warning(f"Session already exists: {session.session_id}")
                 return False
+            except aiosqlite.OperationalError as e:
+                logger.error(f"Database operational error creating session {session.session_id}: {e}")
+                return False
+            except Exception as e:
+                logger.error(f"Unexpected error creating session {session.session_id}: {e}")
+                return False
 
     async def end_session(self, session_id: str) -> bool:
         """Mark a session as ended."""
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 """
                 UPDATE sessions SET ended_at = ?
@@ -161,11 +196,62 @@ class SQLiteTranscriptStore:
             await db.commit()
             return cursor.rowcount > 0
 
+    async def archive_session(self, session_id: str) -> bool:
+        """
+        Archive a session (soft delete).
+
+        Archived sessions are preserved but excluded from normal queries.
+        Data remains in the database for historical reference.
+
+        Args:
+            session_id: Session to archive
+
+        Returns:
+            True if archived successfully, False if session not found
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            cursor = await db.execute(
+                "UPDATE sessions SET archived = 1 WHERE session_id = ?",
+                (session_id,),
+            )
+            await db.commit()
+            if cursor.rowcount > 0:
+                logger.info(f"Archived session: {session_id}")
+                return True
+            return False
+
+    async def archive_all_sessions(self) -> int:
+        """
+        Archive all non-archived sessions.
+
+        Used for clean slate resets where all prior session history
+        should be excluded from future context assembly.
+
+        Returns:
+            Number of sessions archived
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            cursor = await db.execute(
+                "UPDATE sessions SET archived = 1 WHERE archived = 0 OR archived IS NULL"
+            )
+            await db.commit()
+            count = cursor.rowcount
+            if count > 0:
+                logger.info(f"Archived {count} sessions (clean slate)")
+            return count
+
     async def get_session(self, session_id: str) -> TranscriptSession | None:
         """Retrieve session metadata."""
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             db.row_factory = aiosqlite.Row
             cursor = await db.execute(
                 "SELECT * FROM sessions WHERE session_id = ?",
@@ -182,12 +268,29 @@ class SQLiteTranscriptStore:
         offset: int = 0,
         user_id: str | None = None,
         active_only: bool = False,
+        include_archived: bool = False,
     ) -> list[TranscriptSession]:
-        """List transcript sessions."""
+        """
+        List transcript sessions.
+
+        Args:
+            limit: Maximum number of sessions to return
+            offset: Number of sessions to skip
+            user_id: Filter by user ID
+            active_only: Only return sessions without ended_at
+            include_archived: If False (default), exclude archived sessions
+
+        Returns:
+            List of TranscriptSession objects
+        """
         await self._ensure_initialized()
 
         query = "SELECT * FROM sessions WHERE 1=1"
         params: list[Any] = []
+
+        # Filter out archived sessions by default
+        if not include_archived:
+            query += " AND (archived = 0 OR archived IS NULL)"
 
         if user_id is not None:
             query += " AND user_id = ?"
@@ -200,6 +303,7 @@ class SQLiteTranscriptStore:
         params.extend([limit, offset])
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             db.row_factory = aiosqlite.Row
             cursor = await db.execute(query, params)
             rows = await cursor.fetchall()
@@ -207,6 +311,11 @@ class SQLiteTranscriptStore:
 
     def _row_to_session(self, row: aiosqlite.Row) -> TranscriptSession:
         """Convert database row to TranscriptSession."""
+        # Handle archived column (may not exist in older databases before migration runs)
+        archived = False
+        if "archived" in row.keys():
+            archived = bool(row["archived"])
+
         return TranscriptSession(
             session_id=row["session_id"],
             user_id=row["user_id"],
@@ -219,6 +328,7 @@ class SQLiteTranscriptStore:
             total_tokens=row["total_tokens"],
             total_latency_ms=row["total_latency_ms"],
             metadata=json.loads(row["metadata"] or "{}"),
+            archived=archived,
         )
 
     # --- Entry Management ---
@@ -228,6 +338,7 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             try:
                 # Insert entry
                 await db.execute(
@@ -278,7 +389,13 @@ class SQLiteTranscriptStore:
                 logger.debug(f"Appended entry: {entry.id} (turn {entry.turn_number})")
                 return True
             except aiosqlite.IntegrityError as e:
-                logger.warning(f"Failed to append entry {entry.id}: {e}")
+                logger.warning(f"Integrity error on entry {entry.id}: {e}")
+                return False
+            except aiosqlite.OperationalError as e:
+                logger.error(f"Database operational error on entry {entry.id}: {e}")
+                return False
+            except Exception as e:
+                logger.error(f"Unexpected error saving entry {entry.id}: {e}")
                 return False
 
     async def get_entries(
@@ -307,6 +424,7 @@ class SQLiteTranscriptStore:
         params.extend([limit, offset])
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             db.row_factory = aiosqlite.Row
             cursor = await db.execute(query, params)
             rows = await cursor.fetchall()
@@ -317,6 +435,7 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             db.row_factory = aiosqlite.Row
             cursor = await db.execute(
                 "SELECT * FROM entries WHERE id = ?",
@@ -332,12 +451,75 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 "SELECT COUNT(*) FROM entries WHERE session_id = ?",
                 (session_id,),
             )
             row = await cursor.fetchone()
             return row[0] if row else 0
+
+    # --- Consolidation Management ---
+
+    async def mark_entries_consolidated(self, entry_ids: list[str]) -> int:
+        """Mark entries as consolidated (extracted to long-term memory).
+
+        Args:
+            entry_ids: List of entry IDs to mark as consolidated
+
+        Returns:
+            Number of entries updated
+        """
+        await self._ensure_initialized()
+
+        if not entry_ids:
+            return 0
+
+        placeholders = ",".join("?" * len(entry_ids))
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            try:
+                cursor = await db.execute(
+                    f"UPDATE entries SET consolidated = 1 WHERE id IN ({placeholders})",
+                    entry_ids,
+                )
+                await db.commit()
+                logger.debug(f"Marked {cursor.rowcount} entries as consolidated")
+                return cursor.rowcount
+            except Exception as e:
+                logger.error(f"Failed to mark entries consolidated: {e}")
+                return 0
+
+    async def get_unconsolidated_entries(
+        self,
+        session_id: str,
+        limit: int = 100,
+    ) -> list[TranscriptEntry]:
+        """Get entries not yet consolidated (extracted to long-term memory).
+
+        Args:
+            session_id: Session ID to query
+            limit: Maximum number of entries to return
+
+        Returns:
+            List of unconsolidated entries, ordered by turn number
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = aiosqlite.Row
+            cursor = await db.execute(
+                """
+                SELECT * FROM entries
+                WHERE session_id = ? AND (consolidated = 0 OR consolidated IS NULL)
+                ORDER BY turn_number ASC
+                LIMIT ?
+                """,
+                (session_id, limit),
+            )
+            rows = await cursor.fetchall()
+            return [self._row_to_entry(row) for row in rows]
 
     def _row_to_entry(self, row: aiosqlite.Row) -> TranscriptEntry:
         """Convert database row to TranscriptEntry."""
@@ -371,6 +553,7 @@ class SQLiteTranscriptStore:
             temperature=row["temperature"],
             context_tokens_used=row["context_tokens_used"],
             metadata=json.loads(row["metadata"] or "{}"),
+            consolidated=bool(row["consolidated"]) if "consolidated" in row.keys() else False,
         )
 
     # --- Analytics ---
@@ -380,6 +563,7 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 """
                 SELECT
@@ -409,6 +593,7 @@ class SQLiteTranscriptStore:
         await self._ensure_initialized()
 
         async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
             # Get all latencies for percentile calculation
             cursor = await db.execute(
                 """

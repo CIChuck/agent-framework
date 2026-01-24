@@ -322,6 +322,14 @@ class CommandRegistry(Generic[T]):
                 result = await info.handler(context, **kwargs)
             else:
                 result = info.handler(context, **kwargs)
+
+            # Handle cases where a non-async lambda returns a coroutine or Task
+            # This supports patterns like: lambda ctx: asyncio.create_task(ctx.async_method())
+            if asyncio.iscoroutine(result):
+                result = await result
+            elif isinstance(result, asyncio.Task):
+                result = await result
+
             return True, result
         except TypeError as e:
             # Likely argument mismatch
@@ -428,6 +436,43 @@ class CommandRegistry(Generic[T]):
             categories[info.category][name] = info.description
 
         return categories
+
+    def get_detailed_help(self, cmd_name: str) -> dict[str, Any] | None:
+        """
+        Get detailed help for a specific command.
+
+        Args:
+            cmd_name: Command name (with or without leading /)
+
+        Returns:
+            Dict with keys: name, description, usage, aliases, arguments, category
+            or None if command not found
+        """
+        # Strip leading slash if present
+        if cmd_name.startswith("/"):
+            cmd_name = cmd_name[1:]
+
+        info = self.get(cmd_name)
+        if not info:
+            return None
+
+        return {
+            "name": info.name,
+            "description": info.description,
+            "usage": info.usage,
+            "aliases": info.aliases,
+            "arguments": [
+                {
+                    "name": arg.name,
+                    "required": arg.required,
+                    "default": arg.default,
+                    "description": arg.description,
+                    "choices": arg.choices,
+                }
+                for arg in info.arguments
+            ],
+            "category": info.category,
+        }
 
     def get_command_for_completion(self) -> tuple[list[str], dict[str, str]]:
         """

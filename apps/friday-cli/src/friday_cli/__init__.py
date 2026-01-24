@@ -37,6 +37,7 @@ from .display import (
     display_separator,
     # Domain-specific
     display_help,
+    display_command_help,
     display_tool_budget,
     display_memory_stats,
     display_entities,
@@ -110,6 +111,7 @@ __all__ = [
     "display_separator",
     # Domain-specific
     "display_help",
+    "display_command_help",
     "display_tool_budget",
     "display_memory_stats",
     "display_entities",

@@ -37,7 +37,7 @@ Commands (prefix with /):
   /transcript <id> - Show transcript for a specific session
   /transcript export - Export entire database to CSV
   /export [format] - Export current session (jsonl, markdown, or training)
-  /reset           - Clear all memory stores (graph, vector, episodic)
+  /reset           - Clear all memory stores AND archive all transcripts (clean slate)
   /reorganize [opts] - Run memory reorganization (analyze, prune, synthesize)
   /migrate [opts]  - Migrate existing memories to lifecycle metadata
   /lifecycle [opts] - Run memory lifecycle cycle (promotion, decay, reactivation)
@@ -49,6 +49,8 @@ Commands (prefix with /):
   /clear-tools       - Clear all injected tools from context
   /recommend-tools <query> - Test tool recommendations for a query
   /tool-budget       - Show tool token budget information
+  /read <path>       - Read file (txt, csv, pdf, docx, xlsx) with smart detection
+  /ingest <path>     - Ingest file content into vector memory
   /help            - Show available commands
 """
 
@@ -64,6 +66,9 @@ from typing import Any
 
 import yaml
 
+# File format readers
+from friday_tools.filesystem.readers import ReaderFactory, ReaderResult
+
 # Friday CLI display functions
 from friday_cli import (
     display_error,
@@ -77,6 +82,7 @@ from friday_cli import (
     display_panel,
     display_separator,
     display_help,
+    display_command_help,
     display_tool_budget,
     display_memory_stats,
     display_entities,
@@ -541,31 +547,296 @@ class MemoryChatSession:
     def _register_commands(self) -> None:
         """Register commands with the CommandRegistry.
 
-        This demonstrates the registry pattern for command handling.
-        Commands can be added here or via decorator on methods.
+        Commands are registered with full argument specifications for
+        detailed help display. The help command supports two-tier help:
+        - /help shows all commands
+        - /help <cmd> shows detailed help for a specific command
         """
-        # Example: Register exit/quit with aliases
+        # --- Session commands ---
         self.registry.register(
             "exit",
             lambda ctx: "EXIT",
             aliases=["quit", "q"],
-            description="Exit the chat",
+            description="Exit the chat session",
             category="session",
         )
 
-        # Example: Register help command that uses the registry
-        def cmd_help_registry(ctx):
-            """Show available commands."""
-            commands = ctx.registry.get_help()
-            display_help(commands)
-            return None  # display_help handles output
+        self.registry.register(
+            "clear",
+            lambda ctx: ctx.cmd_clear(),
+            description="Clear conversation history for current session",
+            category="session",
+        )
+
+        # --- Memory commands ---
+        self.registry.register(
+            "history",
+            lambda ctx: asyncio.create_task(ctx.cmd_history()),
+            description="Show conversation history with timestamps and tool calls",
+            category="memory",
+        )
 
         self.registry.register(
-            "help-new",
-            cmd_help_registry,
-            aliases=["?"],
-            description="Show available commands (registry version)",
-            category="general",
+            "memory",
+            lambda ctx: ctx.cmd_memory(),
+            description="Show memory statistics across all stores",
+            category="memory",
+        )
+
+        self.registry.register(
+            "context",
+            lambda ctx, **kwargs: ctx.cmd_context(debug_mode="--debug" in str(kwargs)),
+            arguments=[
+                arg("--debug", required=False, description="Show detailed token counts per section"),
+            ],
+            description="Show assembled context payload that would be sent to LLM",
+            category="memory",
+        )
+
+        self.registry.register(
+            "prompt",
+            lambda ctx: ctx.cmd_prompt(),
+            description="Show full formatted prompt (complete, no truncation)",
+            category="memory",
+        )
+
+        self.registry.register(
+            "prime",
+            lambda ctx: asyncio.create_task(ctx.cmd_prime()),
+            description="Load and show primed context (works before first turn)",
+            category="memory",
+        )
+
+        self.registry.register(
+            "debug",
+            lambda ctx: ctx.cmd_debug(),
+            description="Show debug info from context assembly",
+            category="memory",
+        )
+
+        self.registry.register(
+            "entities",
+            lambda ctx: asyncio.create_task(ctx.cmd_entities()),
+            description="List graph entities and their relationships",
+            category="memory",
+        )
+
+        self.registry.register(
+            "facts",
+            lambda ctx: asyncio.create_task(ctx.cmd_facts()),
+            description="List all documents from vector store (insights + summaries)",
+            category="memory",
+        )
+
+        self.registry.register(
+            "insights",
+            lambda ctx: asyncio.create_task(ctx.cmd_insights()),
+            description="List only insights (type='insight') with structured metadata",
+            category="memory",
+        )
+
+        self.registry.register(
+            "summaries",
+            lambda ctx: asyncio.create_task(ctx.cmd_summaries()),
+            description="List only turn summaries (type='summary')",
+            category="memory",
+        )
+
+        self.registry.register(
+            "meta",
+            lambda ctx: asyncio.create_task(ctx.cmd_meta_insights()),
+            description="List meta insights from synthesis operations",
+            category="memory",
+        )
+
+        self.registry.register(
+            "vars",
+            lambda ctx: ctx.cmd_vars(),
+            description="Show all scoped variables (user:*, session:*, task:*)",
+            category="memory",
+        )
+
+        # --- Transcript commands ---
+        self.registry.register(
+            "sessions",
+            lambda ctx: asyncio.create_task(ctx.cmd_sessions()),
+            description="List all stored transcript sessions",
+            category="transcript",
+        )
+
+        self.registry.register(
+            "transcript",
+            lambda ctx, session_id=None, **kwargs: asyncio.create_task(ctx.cmd_transcript(session_id)),
+            arguments=[
+                arg("session_id", required=False, description="Session ID to view (default: current session)"),
+            ],
+            description="Show transcript for current or specified session. Use 'export' to export DB.",
+            category="transcript",
+        )
+
+        self.registry.register(
+            "export",
+            lambda ctx, format="markdown", **kwargs: asyncio.create_task(ctx.cmd_export(format)),
+            arguments=[
+                arg("format", required=False, default="markdown",
+                    description="Export format", choices=["csv", "jsonl", "markdown", "training"]),
+            ],
+            description="Export current session transcript to ./exports directory",
+            category="transcript",
+        )
+
+        # --- Maintenance commands ---
+        self.registry.register(
+            "reset",
+            lambda ctx, **kwargs: asyncio.create_task(ctx.cmd_reset()),
+            description="Clear all memory stores and archive ALL transcript sessions (clean slate)",
+            category="maintenance",
+        )
+
+        self.registry.register(
+            "reorganize",
+            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_reorganize(opts)),
+            arguments=[
+                arg("--execute", required=False, description="Run for real (default is dry-run)"),
+                arg("--no-backup", required=False, description="Skip backup before modifications"),
+                arg("--skip-synthesis", required=False, description="Skip LLM-based memory synthesis"),
+                arg("--skip-verify", required=False, description="Skip LLM-based fact verification"),
+                arg("--skip-lifecycle", required=False, description="Skip lifecycle and optimization steps"),
+                arg("--analyze", required=False, description="Just run analysis (read-only)"),
+                arg("--prune", required=False, description="Just run pruning"),
+                arg("--synthesize", required=False, description="Just run synthesis (meta-insights, relationships)"),
+                arg("--verify", required=False, description="Just run fact verification"),
+                arg("--backup", required=False, description="Just create a backup"),
+                arg("--dedupe", required=False, description="Just run insight deduplication"),
+            ],
+            description="Run memory reorganization (analyze, prune, synthesize, verify)",
+            category="maintenance",
+        )
+
+        self.registry.register(
+            "lifecycle",
+            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_lifecycle(opts)),
+            arguments=[
+                arg("--execute", required=False, description="Run for real (default is dry-run)"),
+                arg("--stats", required=False, description="Show lifecycle statistics only"),
+                arg("--optimize", required=False, description="Flush access buffer and recompute retrieval factors"),
+                arg("--flush", required=False, description="Flush access buffer only"),
+            ],
+            description="Run memory lifecycle cycle (promotion, decay, reactivation)",
+            category="maintenance",
+        )
+
+        self.registry.register(
+            "migrate",
+            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_migrate(opts)),
+            arguments=[
+                arg("--execute", required=False, description="Run for real (default is dry-run)"),
+                arg("--stats", required=False, description="Show migration statistics only"),
+            ],
+            description="Migrate existing memories to lifecycle metadata",
+            category="maintenance",
+        )
+
+        # --- Testing commands ---
+        self.registry.register(
+            "replay",
+            lambda ctx, csv_path=None, delay="0", **kwargs: asyncio.create_task(
+                ctx.cmd_replay(csv_path, delay)
+            ),
+            arguments=[
+                arg("csv_path", required=True, description="Path to exported CSV transcript file"),
+                arg("delay", required=False, default="0", description="Seconds to wait between turns"),
+            ],
+            description="Replay a transcript CSV through Friday (resets memory first)",
+            category="testing",
+        )
+
+        # --- Tool commands ---
+        self.registry.register(
+            "tools",
+            lambda ctx, category=None, **kwargs: ctx.cmd_tools(category),
+            arguments=[
+                arg("category", required=False, description="Filter by tool category (e.g., utility, filesystem)"),
+            ],
+            description="List available tools, optionally filtered by category",
+            category="tools",
+        )
+
+        self.registry.register(
+            "run-tool",
+            lambda ctx, args="", **kwargs: asyncio.create_task(ctx.cmd_run_tool(args)),
+            arguments=[
+                arg("name", required=True, description="Name of the tool to execute"),
+                arg("json", required=False, description="JSON parameters for the tool"),
+            ],
+            description="Execute a tool with optional JSON parameters",
+            category="tools",
+        )
+
+        self.registry.register(
+            "inject-tools",
+            lambda ctx, tool_names="", **kwargs: ctx.cmd_inject_tools(tool_names),
+            arguments=[
+                arg("names", required=True, description="Comma-separated list of tool names to inject"),
+            ],
+            description="Inject tools into context for testing",
+            category="tools",
+        )
+
+        self.registry.register(
+            "clear-tools",
+            lambda ctx: ctx.cmd_clear_tools(),
+            description="Clear all injected tools from context",
+            category="tools",
+        )
+
+        self.registry.register(
+            "recommend-tools",
+            lambda ctx, query="", **kwargs: ctx.cmd_recommend_tools(query),
+            arguments=[
+                arg("query", required=True, description="Query to get tool recommendations for"),
+            ],
+            description="Test tool recommendations for a query",
+            category="tools",
+        )
+
+        self.registry.register(
+            "tool-budget",
+            lambda ctx: ctx.cmd_tool_budget(),
+            description="Show tool token budget information",
+            category="tools",
+        )
+
+        # --- File commands ---
+        self.registry.register(
+            "read",
+            lambda ctx, file_path="", **kwargs: asyncio.create_task(ctx.cmd_read_file(file_path)),
+            arguments=[
+                arg("path", required=True, description="Path to file (supports txt, csv, pdf, docx, xlsx)"),
+            ],
+            description="Read file with smart format detection",
+            category="files",
+        )
+
+        self.registry.register(
+            "ingest",
+            lambda ctx, file_path="", **kwargs: asyncio.create_task(ctx.cmd_ingest_file(file_path)),
+            arguments=[
+                arg("path", required=True, description="Path to file to ingest into vector memory"),
+            ],
+            description="Ingest file content into vector memory",
+            category="files",
+        )
+
+        self.registry.register(
+            "set",
+            lambda ctx, key="", value="", **kwargs: ctx.cmd_set(key, value),
+            arguments=[
+                arg("key", required=True, description="Variable key (e.g., user:name, session:project)"),
+                arg("value", required=True, description="Value to set"),
+            ],
+            description="Set a scoped variable",
+            category="memory",
         )
 
     async def initialize(self) -> None:
@@ -634,6 +905,7 @@ class MemoryChatSession:
                 format_type = parts[1] if len(parts) > 1 else "markdown"
                 return await self.cmd_export(format_type)
             case "reset":
+                # Reset now always archives all transcripts for clean slate
                 return await self.cmd_reset()
             case "reorganize":
                 # Parse options from remaining args
@@ -669,8 +941,25 @@ class MemoryChatSession:
                 return self.cmd_recommend_tools(query)
             case "tool-budget":
                 return self.cmd_tool_budget()
+            case "read":
+                # /read <path> [--lines N]
+                file_path = parts[1] if len(parts) > 1 else ""
+                max_lines = None
+                if len(parts) > 2 and parts[2].startswith("--lines"):
+                    try:
+                        max_lines = int(parts[2].split("=")[1]) if "=" in parts[2] else 100
+                    except (ValueError, IndexError):
+                        max_lines = 100
+                return await self.cmd_read_file(file_path, max_lines)
+            case "ingest":
+                # /ingest <path> [description]
+                file_path = parts[1] if len(parts) > 1 else ""
+                description = parts[2] if len(parts) > 2 else None
+                return await self.cmd_ingest_file(file_path, description)
             case "help":
-                return self.cmd_help()
+                # Support /help <command> for detailed help
+                cmd_name = parts[1] if len(parts) > 1 else None
+                return self.cmd_help(cmd_name)
             case _:
                 return f"Unknown command: /{cmd}. Type /help for available commands."
 
@@ -1398,23 +1687,41 @@ Memory Statistics:
             return f"Error exporting transcripts: {e}"
 
     async def cmd_export(self, format_type: str = "markdown") -> str:
-        """Export transcript to file."""
+        """
+        Export current session transcript to file in ./exports directory.
+
+        Formats:
+            csv      - Comma-delimited CSV with all fields quoted
+            jsonl    - JSON Lines format
+            markdown - Human-readable markdown
+            training - Chat-format training data
+        """
         if not self.transcript_store:
             return "Transcript storage not configured."
 
         try:
+            # Create exports directory if it doesn't exist
+            export_dir = Path("./exports")
+            export_dir.mkdir(parents=True, exist_ok=True)
+
             # Determine output path
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             base_name = f"transcript_{self.session_id}_{timestamp}"
 
-            if format_type == "jsonl":
-                output_path = Path(f"./{base_name}.jsonl")
+            if format_type == "csv":
+                output_path = export_dir / f"{base_name}.csv"
+                exporter = CSVExporter(self.transcript_store)  # Comma-delimited, all quoted
+                count = await exporter.export_session(self.session_id, output_path)
+                return f"Exported {count} entries to: {output_path}\n(All fields quoted, newlines/tabs removed)"
+
+            elif format_type == "jsonl":
+                output_path = export_dir / f"{base_name}.jsonl"
                 exporter = JSONLExporter(self.transcript_store)
                 count = await exporter.export_session(self.session_id, output_path)
                 return f"Exported {count} entries to: {output_path}"
 
             elif format_type == "training":
-                output_path = Path(f"./{base_name}_training.jsonl")
+                output_path = export_dir / f"{base_name}_training.jsonl"
                 exporter = JSONLExporter(self.transcript_store)
                 count = await exporter.export_training_data(
                     self.session_id, output_path, format_style="chat"
@@ -1422,7 +1729,7 @@ Memory Statistics:
                 return f"Exported {count} training examples to: {output_path}"
 
             elif format_type == "markdown" or format_type == "md":
-                output_path = Path(f"./{base_name}.md")
+                output_path = export_dir / f"{base_name}.md"
                 exporter = MarkdownExporter(
                     self.transcript_store,
                     user_name=self.user_name,
@@ -1432,37 +1739,202 @@ Memory Statistics:
                 return f"Exported {count} entries to: {output_path}"
 
             else:
-                return f"Unknown format: {format_type}. Use: jsonl, markdown, or training"
+                return f"Unknown format: {format_type}. Use: csv, jsonl, markdown, or training"
 
         except Exception as e:
             return f"Error exporting transcript: {e}"
 
-    async def cmd_reset(self) -> str:
-        """Clear all memory stores (graph and vector)."""
+    # -------------------------------------------------------------------------
+    # Replay Mode
+    # -------------------------------------------------------------------------
+
+    def _load_replay_transcript(self, csv_path: Path) -> list[dict[str, Any]]:
+        """
+        Load transcript CSV and extract user prompts for replay.
+
+        Args:
+            csv_path: Path to exported CSV file
+
+        Returns:
+            List of dicts with turn_number, user_message, assistant_message
+        """
+        import csv as csv_module
+
+        if not csv_path.exists():
+            raise FileNotFoundError(f"Transcript file not found: {csv_path}")
+
+        turns = []
+        with open(csv_path, "r", newline="", encoding="utf-8") as f:
+            reader = csv_module.DictReader(f)
+            for row in reader:
+                user_msg = row.get("user_message", "").strip()
+                if user_msg:  # Skip empty user messages
+                    turns.append({
+                        "turn_number": int(row.get("turn_number", 0)),
+                        "user_message": user_msg,
+                        "assistant_message": row.get("assistant_message", ""),
+                    })
+
+        # Sort by turn number to ensure correct order
+        turns.sort(key=lambda x: x["turn_number"])
+        return turns
+
+    async def _replay_transcript(
+        self,
+        turns: list[dict[str, Any]],
+        delay: float = 0.0,
+    ) -> str:
+        """
+        Execute replay of transcript turns.
+
+        Args:
+            turns: List of turn dicts from _load_replay_transcript()
+            delay: Seconds to wait between turns (0 = no delay)
+
+        Returns:
+            Summary of replay results
+        """
+        total = len(turns)
+        console = get_console()
+
+        console.print(f"\n[cyan bold]Starting replay of {total} turns...[/cyan bold]\n")
+
+        for i, turn in enumerate(turns, 1):
+            user_msg = turn["user_message"]
+
+            # Display with replay marker
+            console.print(
+                f"[dim][REPLAY {i}/{total}][/dim] [green]{self.user_name}:[/green] {user_msg}"
+            )
+
+            # Process the turn (normal Friday pipeline)
+            await self.process_turn(user_msg)
+
+            # Optional delay between turns
+            if delay > 0 and i < total:
+                await asyncio.sleep(delay)
+
+        return f"\nReplay complete: {total} turns processed."
+
+    async def cmd_replay(self, csv_path: str | None = None, delay: str = "0") -> str:
+        """
+        Replay a conversation from an exported CSV transcript.
+
+        Performs clean memory reset, then processes each user prompt
+        from the CSV through Friday's normal pipeline.
+
+        Args:
+            csv_path: Path to exported CSV file
+            delay: Seconds to wait between turns (default: 0)
+
+        Usage:
+            /replay exports/transcript_session123_20260123.csv
+            /replay exports/transcript.csv 2.0
+        """
+        if not csv_path:
+            return "Usage: /replay <csv_file> [delay_seconds]\nExample: /replay exports/transcript.csv 1.0"
+
         try:
-            lines = ["Resetting memory stores..."]
+            path = Path(csv_path)
+            delay_secs = float(delay)
+        except ValueError:
+            return f"Invalid delay value: {delay}. Must be a number."
 
+        # Load transcript
+        try:
+            turns = self._load_replay_transcript(path)
+        except FileNotFoundError as e:
+            return str(e)
+        except Exception as e:
+            return f"Error reading CSV: {e}"
+
+        if not turns:
+            return "No user messages found in transcript."
+
+        # Reset memory for clean slate
+        console = get_console()
+        console.print("[yellow]Resetting memory for clean slate...[/yellow]")
+        reset_result = await self.cmd_reset()
+        console.print(reset_result)
+
+        # Execute replay
+        return await self._replay_transcript(turns, delay_secs)
+
+    async def cmd_reset(self) -> str:
+        """
+        Clear all memory stores and archive all transcript sessions.
+
+        This provides a clean slate by:
+        1. Clearing graph store (entities, relationships)
+        2. Clearing vector store (insights, summaries)
+        3. Clearing episodic store (current session turns)
+        4. Archiving ALL transcript sessions (excluded from future context)
+        5. Clearing primed content cache
+
+        After reset, no prior conversation history will appear in context.
+        """
+        lines = ["Resetting memory stores (clean slate)..."]
+
+        try:
             # Clear graph store
+            logger.info("Clearing graph store...")
             graph_result = await self.controller.graph.clear()
-            lines.append(f"  Graph store: cleared {graph_result['nodes_deleted']} nodes, {graph_result['edges_deleted']} edges")
+            lines.append(f"  Graph store: cleared {graph_result.get('nodes_deleted', 0)} nodes, {graph_result.get('edges_deleted', 0)} edges")
+        except Exception as e:
+            logger.error(f"Graph clear failed: {e}", exc_info=True)
+            lines.append(f"  Graph store: ERROR - {e}")
 
+        try:
             # Clear vector store
+            logger.info("Clearing vector store...")
             vector_count = await self.controller.vector.clear()
             lines.append(f"  Vector store: cleared {vector_count} documents")
+        except Exception as e:
+            logger.error(f"Vector clear failed: {e}", exc_info=True)
+            lines.append(f"  Vector store: ERROR - {e}")
 
+        try:
             # Clear episodic store for this session
+            logger.info("Clearing episodic store...")
             await self.controller.episodic.clear_session(self.session_id)
             lines.append(f"  Episodic store: cleared session {self.session_id}")
-
-            # Reset turn tracking
-            self.turn_ids.clear()
-            if self.state:
-                self.state.turn_count = 0
-
-            lines.append("\nMemory reset complete.")
-            return "\n".join(lines)
         except Exception as e:
-            return f"Error resetting memory: {e}"
+            logger.error(f"Episodic clear failed: {e}", exc_info=True)
+            lines.append(f"  Episodic store: ERROR - {e}")
+
+        # Archive ALL transcript sessions - ensures no prior history in context
+        if self.transcript_store:
+            try:
+                logger.info("Archiving all transcript sessions...")
+                archived_count = await self.transcript_store.archive_all_sessions()
+                if archived_count > 0:
+                    lines.append(f"  Transcript: archived {archived_count} sessions")
+                else:
+                    lines.append("  Transcript: no sessions to archive")
+            except Exception as e:
+                logger.error(f"Transcript archive failed: {e}", exc_info=True)
+                lines.append(f"  Transcript: ERROR - {e}")
+
+        # Clear primed content cache - CRITICAL: ensures stale entities/insights
+        # from prior sessions don't persist in memory after reset
+        try:
+            # Clear ALL primed content, not just current session
+            primed_cleared = self.controller.clear_primed_content(session_id=None)
+            if primed_cleared > 0:
+                lines.append(f"  Primed cache: cleared {primed_cleared} sessions")
+            else:
+                lines.append("  Primed cache: no cached content to clear")
+        except Exception as e:
+            logger.error(f"Primed cache clear failed: {e}", exc_info=True)
+            lines.append(f"  Primed cache: ERROR - {e}")
+
+        # Reset turn tracking
+        self.turn_ids.clear()
+        if self.state:
+            self.state.turn_count = 0
+
+        lines.append("\nMemory reset complete. Clean slate achieved.")
+        return "\n".join(lines)
 
     async def cmd_reorganize(self, opts: str = "") -> str:
         """
@@ -2287,44 +2759,225 @@ Use /tools to list available tools."""
 
         return "\n".join(lines)
 
-    def cmd_help(self) -> str:
-        """Show available commands using Rich formatting."""
-        commands = {
-            "/exit, /quit": "Exit the chat",
-            "/clear": "Clear conversation history",
-            "/history": "Show conversation history",
-            "/memory": "Show memory statistics",
-            "/context [--debug]": "Show context payload",
-            "/prompt": "Show full formatted prompt sent to LLM",
-            "/prime": "Load and show primed context",
-            "/debug": "Show debug info from context assembly",
-            "/entities": "List graph entities and relationships",
-            "/facts": "List all vector store documents",
-            "/insights": "List only insights (type='insight')",
-            "/summaries": "List only turn summaries (type='summary')",
-            "/meta": "List meta insights from synthesis",
-            "/sessions": "List stored transcript sessions",
-            "/transcript [id]": "Show session transcript",
-            "/export [format]": "Export session (jsonl, markdown, training)",
-            "/reset": "Clear all memory stores",
-            "/reorganize [opts]": "Run memory reorganization",
-            "/migrate [opts]": "Migrate to lifecycle metadata",
-            "/lifecycle [opts]": "Run lifecycle cycle",
-            "/vars": "Show scoped variables",
-            "/set <key> <val>": "Set a scoped variable",
-            "/tools [category]": "List available tools",
-            "/run-tool <name> [json]": "Execute a tool",
-            "/inject-tools <names>": "Inject tools into context",
-            "/clear-tools": "Clear injected tools",
-            "/recommend-tools <query>": "Get tool recommendations",
-            "/tool-budget": "Show tool token budget",
-            "/help": "Show this help",
-        }
+    async def cmd_read_file(self, file_path: str, max_lines: int | None = None) -> str:
+        """
+        Read a file using the ReaderFactory with smart format detection.
+
+        Supports: text files, PDF, DOCX, CSV, XLSX with automatic encoding detection.
+
+        Usage:
+            /read <path>                    Read entire file
+            /read <path> --lines=100       Limit to 100 lines/rows
+
+        Args:
+            file_path: Path to the file to read
+            max_lines: Optional limit on lines/rows to return
+
+        Returns:
+            File content with metadata
+        """
+        if not file_path:
+            return """Usage: /read <path> [--lines=N]
+
+Examples:
+  /read ./config.yaml           Read a YAML file
+  /read ./data.csv              Read a CSV file (markdown table)
+  /read ./report.pdf            Read a PDF (requires pypdf)
+  /read ./document.docx         Read a Word doc (requires python-docx)
+  /read ./data.xlsx             Read Excel file (requires openpyxl)
+  /read ./log.txt --lines=50    Read first 50 lines
+
+Supported formats: txt, md, yaml, json, py, csv, tsv, pdf, docx, xlsx"""
+
+        path = Path(file_path)
+        if not path.is_absolute():
+            # Make relative to current working directory
+            path = Path.cwd() / path
+
+        if not path.exists():
+            return f"Error: File not found: {file_path}"
+
+        if not path.is_file():
+            return f"Error: Not a file: {file_path}"
+
+        try:
+            factory = ReaderFactory()
+            reader = factory.get_reader(path)
+            reader_name = reader.__class__.__name__
+
+            display_info(f"Reading with {reader_name}...")
+
+            # Read with optional limit
+            result = factory.read(path, limit=max_lines)
+
+            if not result.success:
+                return f"Error reading file: {result.error}"
+
+            # Build output with metadata header
+            lines = [
+                "=" * 60,
+                f"FILE: {path.name}",
+                f"Reader: {reader_name}",
+            ]
+
+            # Add format-specific metadata
+            if result.encoding:
+                lines.append(f"Encoding: {result.encoding}")
+            if result.page_count:
+                lines.append(f"Pages: {result.page_count}")
+            if result.metadata.get("row_count"):
+                lines.append(f"Rows: {result.metadata['row_count']}")
+            if result.metadata.get("column_count"):
+                lines.append(f"Columns: {result.metadata['column_count']}")
+            if result.metadata.get("sheet_names"):
+                lines.append(f"Sheets: {', '.join(result.metadata['sheet_names'])}")
+            if result.truncated:
+                lines.append(f"Truncated at: {result.truncated_at}")
+
+            lines.append("=" * 60)
+            lines.append("")
+            lines.append(result.content)
+
+            return "\n".join(lines)
+
+        except Exception as e:
+            return f"Error reading file: {e}"
+
+    async def cmd_ingest_file(self, file_path: str, description: str | None = None) -> str:
+        """
+        Read a file and ingest its content into vector memory.
+
+        Usage:
+            /ingest <path>                    Ingest file content
+            /ingest <path> "description"      Ingest with custom description
+
+        Args:
+            file_path: Path to the file to ingest
+            description: Optional description for the memory
+
+        Returns:
+            Status message
+        """
+        if not file_path:
+            return """Usage: /ingest <path> [description]
+
+Examples:
+  /ingest ./notes.md                    Ingest markdown notes
+  /ingest ./data.csv "Sales Q4 data"    Ingest with description
+  /ingest ./report.pdf                  Ingest PDF content
+
+The file content will be stored in vector memory for semantic search."""
+
+        path = Path(file_path)
+        if not path.is_absolute():
+            path = Path.cwd() / path
+
+        if not path.exists():
+            return f"Error: File not found: {file_path}"
+
+        if not path.is_file():
+            return f"Error: Not a file: {file_path}"
+
+        try:
+            factory = ReaderFactory()
+            reader = factory.get_reader(path)
+            reader_name = reader.__class__.__name__
+
+            display_info(f"Reading {path.name} with {reader_name}...")
+            result = factory.read(path)
+
+            if not result.success:
+                return f"Error reading file: {result.error}"
+
+            if not result.content.strip():
+                return f"Error: File appears to be empty or unreadable: {file_path}"
+
+            # Prepare content for ingestion
+            content = result.content
+            if len(content) > 10000:
+                # Truncate very large files
+                content = content[:10000] + f"\n\n[Content truncated at 10,000 characters]"
+                display_warning("Large file truncated to 10,000 characters for ingestion")
+
+            # Build metadata
+            doc_description = description or f"Content from {path.name}"
+            metadata = {
+                "source": str(path),
+                "filename": path.name,
+                "file_type": path.suffix.lower(),
+                "reader": reader_name,
+                "ingested_at": datetime.now().isoformat(),
+                "type": "ingested_file",
+            }
+            if result.encoding:
+                metadata["encoding"] = result.encoding
+            if result.page_count:
+                metadata["page_count"] = result.page_count
+
+            display_info("Storing in vector memory...")
+
+            # Add to vector store
+            doc_id = f"ingest_{uuid.uuid4().hex[:8]}"
+            await self.controller.vector.add_documents(
+                texts=[content],
+                metadatas=[metadata],
+                ids=[doc_id],
+            )
+
+            # Also create a brief summary fact
+            summary_text = f"File ingested: {path.name}"
+            if description:
+                summary_text += f" - {description}"
+
+            display_success(f"Ingested {path.name} (id: {doc_id})")
+            return f"""File ingested successfully:
+  Path: {path}
+  Document ID: {doc_id}
+  Size: {len(content):,} characters
+  Type: {reader_name}
+
+Use /facts to view stored documents."""
+
+        except Exception as e:
+            return f"Error ingesting file: {e}"
+
+    def cmd_help(self, cmd_name: str | None = None) -> str:
+        """
+        Show available commands or detailed help for a specific command.
+
+        Two-tier help system:
+        - /help shows all commands with brief descriptions
+        - /help <cmd> shows detailed help for a specific command
+
+        Args:
+            cmd_name: Optional command name for detailed help (e.g., "reset", "reorganize")
+        """
+        if cmd_name:
+            # Detailed help for specific command
+            details = self.registry.get_detailed_help(cmd_name)
+            if not details:
+                return f"Unknown command: /{cmd_name}. Type /help for available commands."
+
+            display_command_help(
+                name=details["name"],
+                description=details["description"],
+                usage=details["usage"],
+                arguments=details["arguments"],
+                aliases=details.get("aliases"),
+            )
+            return ""  # Display already shown
+
+        # Summary help - show all commands from registry
+        commands = self.registry.get_help(categories=False)
+
+        # Add help command itself (not in registry to avoid recursion)
+        commands["/help [command]"] = "Show help (detailed help with command name)"
+
         tips = [
-            "/reorganize --execute: Run with changes",
-            "/lifecycle --stats: View current stats",
-            "/tools utility: Filter by category",
-            "/run-tool get_current_datetime: Example tool call",
+            "/help <command>: Show detailed help for any command",
+            "/reset: Clean slate - clears stores AND archives all transcripts",
+            "/help reorganize: See all reorganization options",
+            "/lifecycle --stats: View current lifecycle stats",
         ]
         display_help(commands, tips=tips)
         return ""  # Display already shown
@@ -2346,6 +2999,151 @@ Use /tools to list available tools."""
                 )
         except Exception as e:
             logger.debug(f"Background extraction failed: {e}")
+
+    async def run_exit_maintenance(
+        self,
+        flush_on_exit: bool = True,
+        lifecycle_on_exit: bool = True,
+        reorganize_on_exit: bool = False,
+        reorganize_mode: str = "fast",
+    ) -> dict[str, Any]:
+        """
+        Run maintenance operations before session exit.
+
+        This method runs the configured maintenance operations in order:
+        1. Flush access buffer (if enabled)
+        2. Run lifecycle cycle (if enabled)
+        3. Run reorganization (if enabled)
+
+        Args:
+            flush_on_exit: Flush access buffer (~1 second)
+            lifecycle_on_exit: Run lifecycle cycle (~2-5 seconds)
+            reorganize_on_exit: Run reorganization (~10s to 5min)
+            reorganize_mode: "fast" (no LLM) or "full" (with LLM calls)
+
+        Returns:
+            Dict with results from each operation
+        """
+        results: dict[str, Any] = {
+            "flush": None,
+            "lifecycle": None,
+            "reorganize": None,
+            "errors": [],
+        }
+
+        # Step 1: Flush access buffer
+        if flush_on_exit and self.access_buffer and self.promotion_service:
+            try:
+                display_info("Flushing access buffer...")
+                flush_result = await self.access_buffer.flush_all(
+                    short_term_collection=self.promotion_service.collection_manager.short_term,
+                    long_term_collection=self.promotion_service.collection_manager.long_term,
+                )
+                results["flush"] = {
+                    "success": True,
+                    "summary": flush_result.summary(),
+                }
+                display_success(f"  {flush_result.summary()}")
+            except Exception as e:
+                results["flush"] = {"success": False, "error": str(e)}
+                results["errors"].append(f"Flush failed: {e}")
+                display_warning(f"  Flush failed: {e}")
+
+        # Step 2: Run lifecycle cycle
+        if lifecycle_on_exit and self.promotion_service:
+            try:
+                display_info("Running lifecycle cycle...")
+                lifecycle_result = await self.promotion_service.run_promotion_cycle(
+                    dry_run=False
+                )
+                results["lifecycle"] = {
+                    "success": True,
+                    "promoted": lifecycle_result.promoted_to_long_term,
+                    "decayed": lifecycle_result.decayed_from_long_term,
+                    "reactivated": lifecycle_result.reactivated,
+                    "summary": lifecycle_result.summary(),
+                }
+                display_success(f"  {lifecycle_result.summary()}")
+            except Exception as e:
+                results["lifecycle"] = {"success": False, "error": str(e)}
+                results["errors"].append(f"Lifecycle failed: {e}")
+                display_warning(f"  Lifecycle failed: {e}")
+
+        # Step 3: Run reorganization
+        if reorganize_on_exit and self.persist_dir:
+            try:
+                display_info(f"Running reorganization ({reorganize_mode} mode)...")
+
+                # Get LLMs for maintenance operations
+                synthesizer_llm = self.maintenance_llms.get("synthesizer", self.llm)
+                classifier_llm = self.maintenance_llms.get("classifier", self.llm)
+                researcher_llm = self.maintenance_llms.get("researcher", self.llm)
+                judge_llm = self.maintenance_llms.get("judge", self.llm)
+
+                # Determine which steps to skip based on mode
+                skip_synthesis = reorganize_mode == "fast"
+                skip_verify = reorganize_mode == "fast"
+
+                # Create reorganizer
+                has_lifecycle = self.promotion_service is not None
+                reorganizer = MemoryReorganizer(
+                    memory_dir=self.persist_dir,
+                    config=self.maintenance_config or MaintenanceConfig(),
+                    llm_service=synthesizer_llm if not skip_synthesis else None,
+                    classifier_llm=classifier_llm if not skip_verify else None,
+                    researcher_llm=researcher_llm if not skip_verify else None,
+                    judge_llm=judge_llm if not skip_verify else None,
+                    embedding_function=self.embedding_function,
+                    collection_name=(
+                        self.maintenance_config.collection_name
+                        if self.maintenance_config
+                        else None
+                    ),
+                    collection_manager=(
+                        self.promotion_service.collection_manager if has_lifecycle else None
+                    ),
+                    access_buffer=self.access_buffer if has_lifecycle else None,
+                    factor_computer=self.factor_computer if has_lifecycle else None,
+                    promotion_scorer=(
+                        self.promotion_service.promotion_scorer if has_lifecycle else None
+                    ),
+                    decay_calculator=(
+                        self.promotion_service.decay_calculator if has_lifecycle else None
+                    ),
+                    graph_store=self.controller.graph if has_lifecycle else None,
+                )
+
+                # Run reorganization
+                report = await reorganizer.reorganize(
+                    backup_first=True,
+                    dry_run=False,
+                    skip_synthesis=skip_synthesis,
+                    skip_verify=skip_verify,
+                    skip_lifecycle=True,  # Already ran lifecycle above
+                )
+
+                # Generate summary
+                summary = reorganizer.generate_report_summary(report)
+                results["reorganize"] = {
+                    "success": True,
+                    "mode": reorganize_mode,
+                    "summary": summary,
+                }
+                # Show condensed output
+                if report.prune_report:
+                    display_success(f"  Entities merged: {report.prune_report.entities_merged}")
+                    display_success(f"  Insights removed: {report.prune_report.insights_removed}")
+                if not skip_synthesis and report.synthesis_report:
+                    display_success(
+                        f"  Meta-insights created: {report.synthesis_report.meta_insights_created}"
+                    )
+
+            except Exception as e:
+                results["reorganize"] = {"success": False, "error": str(e)}
+                results["errors"].append(f"Reorganize failed: {e}")
+                display_warning(f"  Reorganization failed: {e}")
+
+        return results
 
     async def process_turn(self, user_input: str) -> str | None:
         """Process a user turn and return the response.
@@ -2421,8 +3219,14 @@ Use /tools to list available tools."""
                 user_message=user_input,
                 assistant_message=full_response,
             )
-            await self.controller.add_turn(self.session_id, turn)
-            self.turn_ids.append(turn.id)
+            success = await self.controller.add_turn(self.session_id, turn)
+            if success:
+                self.turn_ids.append(turn.id)
+            else:
+                get_console().print(
+                    "[bold red]Warning: Failed to save turn to transcript![/bold red]"
+                )
+                logger.error(f"Failed to persist turn {turn.id} to transcript")
 
             # 5. Extract entities and facts from the turn (background)
             # Run extraction asynchronously so user can continue chatting
@@ -2681,11 +3485,34 @@ Use /tools to list available tools."""
 
 async def main() -> None:
     """Main chat loop."""
+    import argparse
+
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(
+        description="Friday Memory Chat - Interactive memory-aware chat session"
+    )
+    parser.add_argument(
+        "--config",
+        type=str,
+        default=str(Path(__file__).parent / "config.yaml"),
+        help="Path to configuration file (default: config.yaml in script directory)",
+    )
+    parser.add_argument(
+        "--replay",
+        type=str,
+        metavar="CSV_FILE",
+        help="Replay transcript from CSV file (resets memory, processes all prompts)",
+    )
+    parser.add_argument(
+        "--replay-delay",
+        type=float,
+        default=0.0,
+        help="Delay in seconds between replay turns (default: 0)",
+    )
+    args = parser.parse_args()
+
     # Determine config path
-    if len(sys.argv) > 2 and sys.argv[1] == "--config":
-        config_path = Path(sys.argv[2])
-    else:
-        config_path = Path(__file__).parent / "config.yaml"
+    config_path = Path(args.config)
 
     # Load CLI configuration (theme, icons, prompt styling)
     # This looks for cli-config.yaml next to config.yaml
@@ -3226,6 +4053,39 @@ async def main() -> None:
         multiline=False,  # Single-line mode by default
     )
 
+    # Handle replay mode if specified via CLI
+    if args.replay:
+        replay_path = Path(args.replay)
+        if not replay_path.exists():
+            display_error(f"Replay file not found: {replay_path}")
+            return
+
+        # Load transcript
+        try:
+            turns = session._load_replay_transcript(replay_path)
+        except Exception as e:
+            display_error(f"Error loading transcript: {e}")
+            return
+
+        if not turns:
+            display_error("No user messages found in transcript.")
+            return
+
+        display_info(f"Replay mode: {len(turns)} turns from {replay_path}")
+
+        # Reset memory for clean slate
+        get_console().print("[yellow]Resetting memory for replay...[/yellow]")
+        reset_result = await session.cmd_reset()
+        get_console().print(reset_result)
+
+        # Execute replay
+        result = await session._replay_transcript(turns, args.replay_delay)
+        get_console().print(result)
+
+        # Exit after replay completes
+        display_info("Replay complete. Exiting.")
+        return
+
     # Main loop with cleanup
     try:
         while True:
@@ -3261,6 +4121,28 @@ async def main() -> None:
                 display_error(f"Unexpected error: {type(e).__name__}: {e}", exception=e)
 
     finally:
+        # Run exit maintenance if configured
+        try:
+            # Check if any maintenance is enabled
+            should_run_maintenance = (
+                session_config.flush_on_exit
+                or session_config.lifecycle_on_exit
+                or session_config.reorganize_on_exit
+            )
+
+            if should_run_maintenance:
+                get_console().print()
+                display_info("Running exit maintenance...")
+                await session.run_exit_maintenance(
+                    flush_on_exit=session_config.flush_on_exit,
+                    lifecycle_on_exit=session_config.lifecycle_on_exit,
+                    reorganize_on_exit=session_config.reorganize_on_exit,
+                    reorganize_mode=session_config.reorganize_mode,
+                )
+        except Exception as e:
+            display_warning(f"Exit maintenance error: {e}")
+            logger.warning(f"Exit maintenance failed: {e}")
+
         # Session cleanup: finalize transcript and resources
         display_info("Finalizing session...")
         try:

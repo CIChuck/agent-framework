@@ -26,6 +26,7 @@ dependencies = [
     "friday-tools",
     "friday-mcp",
     "friday-transcript",
+    "friday-cli",
 ]
 
 [project.optional-dependencies]
@@ -45,6 +46,7 @@ friday-sandbox = { workspace = true }
 friday-tools = { workspace = true }
 friday-mcp = { workspace = true }
 friday-transcript = { workspace = true }
+friday-cli = { workspace = true }
 
 [tool.uv.workspace]
 members = ["packages/*", "apps/*", "tests/lab"]

@@ -97,9 +97,6 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         # Track turn counts per session for turn_number assignment
         self._turn_counts: dict[str, int] = {}
 
-        # Track consolidated turn IDs per session
-        self._consolidated: dict[str, set[str]] = {}
-
     async def _ensure_session_exists(self, session_id: str) -> None:
         """Create session if it doesn't exist."""
         # Import here to avoid circular import at module level
@@ -135,11 +132,10 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                 "Install it with: pip install friday-transcript"
             ) from e
 
-        # Get next turn number
+        # Get next turn number (don't increment until write succeeds)
         if session_id not in self._turn_counts:
             self._turn_counts[session_id] = await self._store.count_entries(session_id)
-        self._turn_counts[session_id] += 1
-        turn_number = self._turn_counts[session_id]
+        turn_number = self._turn_counts[session_id] + 1
 
         # Convert InteractionTurn to TranscriptEntry
         entry = TranscriptEntry(
@@ -164,7 +160,11 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             metadata=getattr(turn, "metadata", {}),
         )
 
-        return await self._store.append_entry(entry)
+        # Only increment turn count after successful write
+        result = await self._store.append_entry(entry)
+        if result:
+            self._turn_counts[session_id] = turn_number
+        return result
 
     async def get_turns(
         self, session_id: str, limit: int = 10, offset: int = 0
@@ -206,48 +206,83 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                     for tr in entry.tool_results
                 ],
                 metadata=entry.metadata,
-                consolidated=entry.id in self._consolidated.get(session_id, set()),
+                # Use persisted consolidated state from the entry
+                consolidated=getattr(entry, "consolidated", False),
             )
             turns.append(turn)
 
         return turns
 
     async def get_unconsolidated_turns(
-        self, session_id: str
+        self, session_id: str, limit: int = 100
     ) -> list["InteractionTurn"]:
         """
         Get turns that haven't been consolidated yet.
 
-        Since transcripts are append-only, we track consolidated status in memory.
+        Delegates to the underlying store's persistent consolidation tracking.
         """
-        all_turns = await self.get_turns(session_id, limit=10000)
-        consolidated = self._consolidated.get(session_id, set())
-        return [t for t in all_turns if t.id not in consolidated]
+        # Import here to avoid circular import
+        try:
+            from friday_memory import InteractionTurn
+            from friday_memory.models import ToolCall as MemoryToolCall
+            from friday_memory.models import ToolResult as MemoryToolResult
+        except ImportError:
+            return []
+
+        # Delegate to store if it supports persistent consolidation tracking
+        if hasattr(self._store, "get_unconsolidated_entries"):
+            entries = await self._store.get_unconsolidated_entries(session_id, limit)
+            turns = []
+            for entry in entries:
+                turn = InteractionTurn(
+                    id=entry.id,
+                    session_id=entry.session_id,
+                    timestamp=entry.timestamp,
+                    user_message=entry.user_message,
+                    assistant_message=entry.assistant_message,
+                    tool_calls=[
+                        MemoryToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
+                        for tc in entry.tool_calls
+                    ],
+                    tool_results=[
+                        MemoryToolResult(
+                            tool_call_id=tr.tool_call_id,
+                            output=tr.output,
+                            error=tr.error,
+                        )
+                        for tr in entry.tool_results
+                    ],
+                    metadata=entry.metadata,
+                    consolidated=False,  # By definition, these are unconsolidated
+                )
+                turns.append(turn)
+            return turns
+
+        # Fallback: return all turns (legacy stores without consolidation tracking)
+        return await self.get_turns(session_id, limit=limit)
 
     async def mark_consolidated(self, turn_ids: list[str]) -> bool:
         """
-        Mark turns as consolidated.
+        Mark turns as consolidated (extracted to long-term memory).
 
-        Since transcripts are immutable, we track this in memory.
-        For persistence across restarts, consider storing in session metadata.
+        Delegates to the underlying store's persistent consolidation tracking.
         """
-        # Determine session_id from turns (all should be same session)
-        for turn_id in turn_ids:
-            # Find which session this turn belongs to
-            for session_id, turns_set in self._consolidated.items():
-                turns_set.add(turn_id)
-                return True
+        if not turn_ids:
+            return True
 
-            # If session not found, create entry (assumes single session usage)
-            # In practice, you'd want to look this up from the transcript
-            if turn_ids:
-                # Use a default session - in real usage this would be tracked
-                default_session = "default"
-                if default_session not in self._consolidated:
-                    self._consolidated[default_session] = set()
-                self._consolidated[default_session].update(turn_ids)
+        # Delegate to store if it supports persistent consolidation tracking
+        if hasattr(self._store, "mark_entries_consolidated"):
+            count = await self._store.mark_entries_consolidated(turn_ids)
+            return count > 0
 
-        return True
+        # Fallback for stores without persistent consolidation support
+        # Log warning since consolidation state won't persist across restarts
+        import logging
+        logging.getLogger(__name__).warning(
+            "Store doesn't support persistent consolidation tracking; "
+            "consolidation state will be lost on restart"
+        )
+        return False
 
     async def rewind_history(self, session_id: str, target_turn_id: str) -> bool:
         """
@@ -268,17 +303,6 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         Clear local tracking for a session.
 
         Note: This does NOT delete transcript data (which is immutable).
-        It only clears the in-memory tracking state.
+        It only clears the in-memory turn count cache.
         """
         self._turn_counts.pop(session_id, None)
-        self._consolidated.pop(session_id, None)
-
-    def mark_session_consolidated(self, session_id: str, turn_ids: set[str]) -> None:
-        """
-        Bulk mark turns as consolidated for a session.
-
-        Useful for restoring state on startup.
-        """
-        if session_id not in self._consolidated:
-            self._consolidated[session_id] = set()
-        self._consolidated[session_id].update(turn_ids)

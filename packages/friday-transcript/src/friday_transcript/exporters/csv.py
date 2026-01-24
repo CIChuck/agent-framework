@@ -1,11 +1,11 @@
 """
 CSV transcript exporter.
 
-Exports transcripts to pipe-delimited CSV format for spreadsheet analysis,
+Exports transcripts to CSV format for spreadsheet analysis,
 database import, and data processing pipelines.
 
-Note: Uses pipe (|) as delimiter instead of comma to handle natural language
-text containing commas. Import with: pd.read_csv(file, delimiter='|')
+All fields are quoted for safe handling of text containing commas and quotes.
+Text content is sanitized to remove newlines and tabs for single-line records.
 """
 
 import csv
@@ -20,7 +20,7 @@ from friday_transcript.stores.protocol import TranscriptStore
 
 class CSVExporter:
     """
-    Export transcripts to pipe-delimited CSV format.
+    Export transcripts to CSV format.
 
     Provides methods to export:
     - Individual sessions to a single CSV
@@ -35,18 +35,19 @@ class CSVExporter:
     - Backup and archival
 
     Note:
-        Uses pipe (|) delimiter and quotes all fields to safely handle
-        text containing commas, quotes, and newlines.
+        All fields are quoted for safe handling of text containing
+        commas, quotes, and special characters. Text content is
+        sanitized to remove newlines and tabs.
 
         Import example:
             import pandas as pd
-            df = pd.read_csv('entries.csv', delimiter='|')
+            df = pd.read_csv('entries.csv')
     """
 
     def __init__(
         self,
         store: TranscriptStore,
-        delimiter: str = "|",
+        delimiter: str = ",",
         quoting: int = csv.QUOTE_ALL,
     ) -> None:
         """
@@ -54,7 +55,7 @@ class CSVExporter:
 
         Args:
             store: Transcript store to export from
-            delimiter: Field delimiter (default: pipe '|' for safe text handling)
+            delimiter: Field delimiter (default: comma)
             quoting: CSV quoting mode (default: QUOTE_ALL for maximum safety)
         """
         self._store = store
@@ -65,19 +66,33 @@ class CSVExporter:
         """
         Sanitize text for safe CSV export.
 
-        Removes problematic control characters that can break CSV parsers.
+        Removes problematic control characters and whitespace that can
+        break CSV parsers or cause multi-line records:
+        - Null bytes (\x00)
+        - Carriage returns (\r)
+        - Line feeds (\n)
+        - Tabs (\t)
 
         Args:
             text: Text to sanitize (may be None)
 
         Returns:
-            Sanitized text string
+            Sanitized single-line text string
         """
         if not text:
             return ""
         # Remove null bytes (can break parsers)
         text = text.replace("\x00", "")
-        return text
+        # Remove carriage returns and line feeds (prevent multi-line records)
+        text = text.replace("\r\n", " ")  # Windows line endings first
+        text = text.replace("\r", " ")
+        text = text.replace("\n", " ")
+        # Remove tabs
+        text = text.replace("\t", " ")
+        # Collapse multiple spaces into single space
+        while "  " in text:
+            text = text.replace("  ", " ")
+        return text.strip()
 
     def _create_writer(
         self,

@@ -2,10 +2,12 @@
 Filesystem reading tools.
 
 Ref: docs/specs/tool_specification.md - Category 1: Filesystem - Reading
+Ref: docs/build-plan/tool-improvement-build-plan.md - Enhanced file reading
 """
 
 from __future__ import annotations
 
+import itertools
 import os
 import re
 import stat
@@ -18,19 +20,23 @@ from pydantic import BaseModel, Field
 from ..base import FridayTool, ToolResult
 from ..definition import BaseTool
 from ..sandbox import FilesystemSandbox
+from .readers import read_with_smart_encoding
 
 
 class FileReadTool(FridayTool):
     """
-    Read the contents of a text file.
+    Read the contents of a text file with smart encoding detection.
 
-    Reads and returns the full contents of a file with configurable encoding.
+    Reads and returns the contents of a file with automatic encoding detection.
+    Supports pagination with start_line and max_lines for efficient handling of
+    large files. Uses streaming to avoid loading entire file into memory.
+
     Useful for examining configuration files, source code, logs, and other
     text-based files.
     """
 
     name = "file_read"
-    description = "Read the contents of a text file."
+    description = "Read the contents of a text file with smart encoding detection."
     category = "filesystem"
     tags = ["file", "read", "text", "cat"]
 
@@ -39,8 +45,13 @@ class FileReadTool(FridayTool):
             description="Path to the file to read"
         )
         encoding: str = Field(
-            default="utf-8",
-            description="File encoding (e.g., utf-8, latin-1, ascii)"
+            default="auto",
+            description="File encoding. Use 'auto' for automatic detection, or specify explicitly (utf-8, latin-1, etc.)"
+        )
+        start_line: int = Field(
+            default=1,
+            ge=1,
+            description="Starting line number (1-indexed, default: 1)"
         )
         max_lines: int | None = Field(
             default=None,
@@ -67,26 +78,49 @@ class FileReadTool(FridayTool):
             )
 
         try:
-            content = validated_path.read_text(encoding=args.encoding)
-
-            # Apply line limit if specified
-            truncated = False
-            total_lines = 0
-            if args.max_lines is not None:
-                lines = content.splitlines(keepends=True)
-                total_lines = len(lines)
-                if total_lines > args.max_lines:
-                    content = "".join(lines[:args.max_lines])
-                    content += f"\n... ({args.max_lines}/{total_lines} lines)"
-                    truncated = True
+            # Use smart encoding detection
+            explicit_encoding = None if args.encoding == "auto" else args.encoding
+            full_content, encoding_result = read_with_smart_encoding(
+                validated_path,
+                explicit_encoding=explicit_encoding,
+            )
 
             # Get file stats for metadata
             stat_info = validated_path.stat()
 
-            # Count lines in content
-            line_count = content.count("\n")
-            if content and not content.endswith("\n"):
-                line_count += 1
+            # Count total lines
+            all_lines = full_content.splitlines(keepends=True)
+            total_lines = len(all_lines)
+
+            # Apply line range using efficient slicing
+            # start_line is 1-indexed, so subtract 1 for 0-indexed array
+            start_idx = args.start_line - 1
+            truncated = False
+            truncated_at_line = None
+
+            if start_idx >= total_lines:
+                return ToolResult(
+                    content=f"Error: Start line {args.start_line} exceeds file length ({total_lines} lines)",
+                    error=f"Start line out of range"
+                )
+
+            if args.max_lines is not None:
+                end_idx = min(start_idx + args.max_lines, total_lines)
+                selected_lines = all_lines[start_idx:end_idx]
+                if end_idx < total_lines:
+                    truncated = True
+                    truncated_at_line = end_idx
+            else:
+                selected_lines = all_lines[start_idx:]
+
+            content = "".join(selected_lines)
+
+            # Add truncation notice if applicable
+            if truncated:
+                content += f"\n... (showing lines {args.start_line}-{truncated_at_line} of {total_lines})"
+
+            # Count lines in returned content
+            line_count = len(selected_lines)
 
             return ToolResult(
                 content=content,
@@ -94,17 +128,22 @@ class FileReadTool(FridayTool):
                     "path": str(validated_path),
                     "size_bytes": stat_info.st_size,
                     "line_count": line_count,
-                    "encoding": args.encoding,
+                    "total_lines": total_lines,
+                    "encoding": encoding_result.encoding,
+                    "encoding_confidence": encoding_result.confidence,
+                    "encoding_method": encoding_result.method,
                 },
                 metadata={
                     "path": args.path,
-                    "encoding": args.encoding,
+                    "encoding": encoding_result.encoding,
                     "truncated": truncated,
+                    "truncated_at_line": truncated_at_line,
+                    "start_line": args.start_line,
                 }
             )
 
         except UnicodeDecodeError as e:
-            msg = f"Failed to decode with encoding {args.encoding}: {e}"
+            msg = f"Failed to decode file: {e}"
             return ToolResult(
                 content=f"Error: {msg}",
                 error=f"Encoding error: {e}"
@@ -122,7 +161,12 @@ class FileReadTool(FridayTool):
 
 
 class FileReadLinesTool(BaseTool):
-    """Read specific lines from a file."""
+    """Read specific lines from a file.
+
+    .. deprecated::
+        Use FileReadTool with start_line and max_lines parameters instead.
+        This tool is kept for backward compatibility.
+    """
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
         self._sandbox = sandbox or FilesystemSandbox()

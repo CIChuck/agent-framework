@@ -394,7 +394,9 @@ class AgentBase(ABC):
         )
 
         # Store in episodic memory
-        await self.memory.add_turn(self.session_id, turn)
+        success = await self.memory.add_turn(self.session_id, turn)
+        if not success:
+            logger.error(f"Failed to persist turn {turn.id} to memory")
 
         # Trigger async extraction (non-blocking)
         # This allows the agent to continue while extraction happens in background

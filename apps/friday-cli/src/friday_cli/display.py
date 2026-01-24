@@ -379,6 +379,56 @@ def display_help(
         ))
 
 
+def display_command_help(
+    name: str,
+    description: str,
+    usage: str,
+    arguments: list[dict[str, Any]],
+    aliases: list[str] | None = None,
+) -> None:
+    """
+    Display detailed help for a single command.
+
+    Args:
+        name: Command name
+        description: Full description
+        usage: Usage string (e.g., "/reset [--transcript]")
+        arguments: List of argument dicts with name, description, required, default, choices
+        aliases: Optional list of aliases
+    """
+    console = get_console()
+
+    # Header
+    console.print(f"\n[cyan bold]/{name}[/cyan bold]")
+    if aliases:
+        console.print(f"[dim]Aliases: {', '.join('/' + a for a in aliases)}[/dim]")
+
+    # Description
+    console.print(f"\n{description}\n")
+
+    # Usage
+    console.print(f"[yellow]Usage:[/yellow] {usage}\n")
+
+    # Arguments
+    if arguments:
+        console.print("[yellow]Arguments:[/yellow]")
+        for arg in arguments:
+            req_marker = "[red]*[/red] " if arg.get("required") else "  "
+            name_str = f"[green]{arg['name']}[/green]"
+            desc_str = arg.get("description", "")
+
+            # Build suffix with default and choices
+            suffix_parts = []
+            if arg.get("default") is not None:
+                suffix_parts.append(f"default: {arg['default']}")
+            if arg.get("choices"):
+                suffix_parts.append(f"choices: {', '.join(arg['choices'])}")
+            suffix = f" [dim]({', '.join(suffix_parts)})[/dim]" if suffix_parts else ""
+
+            console.print(f"  {req_marker}{name_str}: {desc_str}{suffix}")
+        console.print()
+
+
 def display_tool_budget(
     tools: list[dict[str, Any]],
     circuit_states: dict[str, str] | None = None,
