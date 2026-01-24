@@ -23,11 +23,47 @@ class ToolCall(BaseModel):
 
 
 class ToolResult(BaseModel):
-    """Represents the result of a tool call."""
+    """
+    Represents the result of a tool call with lifecycle tracking.
+
+    Lifecycle fields enable reference-based decay: large tool outputs
+    are tracked and automatically summarized when they become stale
+    (not referenced for N turns).
+
+    Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
+    """
 
     tool_call_id: str = Field(..., description="ID of the corresponding tool call")
     output: Any = Field(..., description="Result returned by the tool")
     error: str | None = Field(default=None, description="Error message if tool failed")
+
+    # Lifecycle Metadata
+    turn_id: str | None = Field(
+        default=None,
+        description="Turn where this tool was executed",
+    )
+    last_referenced_turn_id: str | None = Field(
+        default=None,
+        description="Last turn that referenced this output",
+    )
+    referencing_turns: list[str] = Field(
+        default_factory=list,
+        description="Audit trail of turns that referenced this output",
+    )
+
+    # Decay State
+    is_decayed: bool = Field(
+        default=False,
+        description="Whether content has been summarized due to staleness",
+    )
+    summary: str | None = Field(
+        default=None,
+        description="Summary of output if decayed (replaces full content in context)",
+    )
+    original_token_count: int | None = Field(
+        default=None,
+        description="Original size in tokens before decay",
+    )
 
 
 class InteractionTurn(BaseModel):
@@ -36,6 +72,9 @@ class InteractionTurn(BaseModel):
 
     Captures the full interaction including user input, assistant response,
     and any tool calls made during the turn.
+
+    In multi-agent scenarios, agent_id tracks which agent generated
+    the response for provenance and auditing.
     """
 
     id: str = Field(..., description="Unique turn identifier")
@@ -48,6 +87,13 @@ class InteractionTurn(BaseModel):
         default=None,
         description="Assistant's response message",
     )
+
+    # Agent tracking (for multi-agent provenance)
+    agent_id: str | None = Field(
+        default=None,
+        description="Which agent generated this response (e.g., 'researcher', 'coder')",
+    )
+
     tool_calls: list[ToolCall] = Field(
         default_factory=list,
         description="Tools called by the assistant during this turn",
@@ -58,12 +104,54 @@ class InteractionTurn(BaseModel):
     )
     metadata: dict[str, Any] = Field(
         default_factory=dict,
-        description="Additional turn metadata (tokens used, latency, etc.)",
+        description="Additional turn metadata",
     )
     timestamp: datetime = Field(default_factory=datetime.now)
     consolidated: bool = Field(
         default=False,
         description="Whether this turn has been processed by MemoryConsolidator",
+    )
+
+    # Timing metrics
+    response_started_at: datetime | None = Field(
+        default=None,
+        description="When first token was received from LLM",
+    )
+    response_completed_at: datetime | None = Field(
+        default=None,
+        description="When last token was received from LLM",
+    )
+
+    # Token usage metrics
+    prompt_tokens: int | None = Field(
+        default=None,
+        description="Number of tokens in the prompt",
+    )
+    completion_tokens: int | None = Field(
+        default=None,
+        description="Number of tokens in the completion",
+    )
+    total_tokens: int | None = Field(
+        default=None,
+        description="Total tokens used (prompt + completion)",
+    )
+    latency_ms: float | None = Field(
+        default=None,
+        description="Total response time in milliseconds",
+    )
+
+    # Model configuration
+    model_name: str | None = Field(
+        default=None,
+        description="Which LLM model was used",
+    )
+    temperature: float | None = Field(
+        default=None,
+        description="Temperature setting used for generation",
+    )
+    context_tokens_used: int | None = Field(
+        default=None,
+        description="How much of the context window was filled",
     )
 
 

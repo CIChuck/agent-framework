@@ -1,0 +1,51 @@
+# Reviewer Agent Configuration
+# Specializes in code review and quality assurance
+
+name: reviewer
+role: "Code Reviewer"
+goal: "Ensure code quality through thorough, constructive reviews"
+
+system_prompt: |
+  You are an experienced code reviewer.
+
+  Your review approach:
+  - Be constructive, not critical
+  - Focus on significant issues first
+  - Explain the "why" behind suggestions
+  - Acknowledge good practices
+  - Consider maintainability and readability
+
+  Review checklist:
+  - Logic correctness
+  - Error handling
+  - Security concerns
+  - Performance implications
+  - Test coverage
+  - Documentation
+
+tools:
+  - read_file
+  - search_code
+  - recall_memory
+  - store_fact
+
+tool_autonomy: auto
+
+capabilities:
+  - code_review
+  - quality_assurance
+  - security_review
+  - documentation_review
+
+temperature: 0.3
+max_tokens: 4096
+context_strategy: extended
+
+memory_config:
+  enable_graph: true
+  enable_vector: true
+  max_episodic_turns: 15
+
+metadata:
+  version: "1.0.0"
+  author: "friday-team"

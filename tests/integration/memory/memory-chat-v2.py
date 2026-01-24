@@ -52,6 +52,21 @@ Commands (prefix with /):
   /read <path>       - Read file (txt, csv, pdf, docx, xlsx) with smart detection
   /ingest <path>     - Ingest file content into vector memory
   /help            - Show available commands
+
+Orchestration Commands (Phase 3 - Project Hive):
+  /switch [agent]    - Switch to agent or show current agent status
+  /agents            - List available agents with capabilities
+  /agent [name]      - Show detailed agent information
+  /delegate <agent> <task> - Delegate task to another agent
+  /status            - Show orchestrator status
+  @agent_name <msg>  - Direct routing to specific agent
+
+Workflow Commands (Phase 4 - Project Hive):
+  /workflow list     - List available workflows
+  /workflow run <name> [inputs] - Execute a workflow
+  /workflow status   - Show current workflow status
+  /workflow approve  - Approve pending task
+  /workflow skip     - Skip pending task
 """
 
 import asyncio
@@ -143,6 +158,14 @@ from friday_memory import (
     RetrievalFactorComputer,
     SessionState,
 )
+from friday_memory.models import (
+    ToolCall as MemoryToolCall,
+    ToolResult as MemoryToolResult,
+)
+from friday_memory.lifecycle import (
+    ToolContentManager,
+    ToolContentConfig,
+)
 from friday_memory.maintenance import MemoryReorganizer
 from friday_memory.maintenance.models import (
     EmbeddingConfig,
@@ -167,6 +190,50 @@ from friday_tools import (
     DefaultToolRegistry,
     GetCurrentDateTimeTool,
 )
+
+# Agent orchestration (Phase 3 - Project Hive)
+from friday_agent import AgentOrchestrator, OrchestratorError
+
+# Workflow system (Phase 4 - Project Hive)
+from friday_agent import (
+    WorkflowEngine,
+    WorkflowLoader,
+    WorkflowError,
+    WorkflowDefinition,
+    WorkflowExecution,
+)
+
+
+# =============================================================================
+# TURN METRICS TRACKING
+# =============================================================================
+# Dataclass to hold metrics captured during LLM interactions for transcript storage
+
+
+from dataclasses import dataclass, field
+
+
+@dataclass
+class TurnMetrics:
+    """Metrics captured during a conversation turn for transcript storage."""
+
+    # Timing
+    response_started_at: datetime | None = None
+    response_completed_at: datetime | None = None
+
+    # Token usage (accumulated across tool iterations)
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    total_tokens: int = 0
+    latency_ms: float = 0.0
+
+    # Model info
+    model_name: str | None = None
+    temperature: float | None = None
+
+    # Tool execution tracking
+    tool_calls: list[MemoryToolCall] = field(default_factory=list)
+    tool_results: list[MemoryToolResult] = field(default_factory=list)
 
 
 # =============================================================================
@@ -508,6 +575,7 @@ class MemoryChatSession:
         promotion_service: "MemoryPromotionService | None" = None,
         access_buffer: "AccessBuffer | None" = None,
         factor_computer: "RetrievalFactorComputer | None" = None,
+        orchestrator: "AgentOrchestrator | None" = None,
     ):
         self.llm = llm
         self.controller = controller
@@ -531,6 +599,16 @@ class MemoryChatSession:
         self.promotion_service = promotion_service
         self.access_buffer = access_buffer
         self.factor_computer = factor_computer
+        self.orchestrator = orchestrator
+
+        # Workflow system (Phase 4 - Project Hive)
+        self.workflow_loader: WorkflowLoader | None = None
+        self.workflow_engine: WorkflowEngine | None = None
+        self.active_workflow: WorkflowDefinition | None = None
+        self.active_execution: WorkflowExecution | None = None
+
+        # Tool content lifecycle (Phase 4 - Project Hive)
+        self.tool_content_manager: ToolContentManager | None = None
 
         # State tracking
         self.state: SessionState | None = None
@@ -807,6 +885,66 @@ class MemoryChatSession:
             category="tools",
         )
 
+        # --- Orchestration commands (Phase 3 - Project Hive) ---
+        self.registry.register(
+            "switch",
+            lambda ctx, agent_name="", **kwargs: asyncio.create_task(ctx.cmd_switch(agent_name)),
+            arguments=[
+                arg("agent", required=False, description="Agent name to switch to (omit to show status)"),
+            ],
+            description="Switch to a different agent or show current agent status",
+            category="orchestration",
+        )
+
+        self.registry.register(
+            "agents",
+            lambda ctx: ctx.cmd_agents(),
+            description="List all available agents with their capabilities",
+            category="orchestration",
+        )
+
+        self.registry.register(
+            "agent",
+            lambda ctx, agent_name="", **kwargs: ctx.cmd_agent_info(agent_name),
+            arguments=[
+                arg("name", required=False, description="Agent name to get info for (omit for active agent)"),
+            ],
+            description="Show detailed information about an agent",
+            category="orchestration",
+        )
+
+        self.registry.register(
+            "delegate",
+            lambda ctx, agent_name="", task="", **kwargs: asyncio.create_task(ctx.cmd_delegate(agent_name, task)),
+            arguments=[
+                arg("agent", required=True, description="Agent name to delegate to"),
+                arg("task", required=True, description="Task description to delegate"),
+            ],
+            description="Delegate a task to another agent and return to current",
+            category="orchestration",
+        )
+
+        self.registry.register(
+            "status",
+            lambda ctx: ctx.cmd_orchestrator_status(),
+            description="Show orchestrator status (active agent, cache, message count)",
+            category="orchestration",
+        )
+
+        # --- Workflow commands (Phase 4 - Project Hive) ---
+        self.registry.register(
+            "workflow",
+            lambda ctx, subcommand="", args_str="", **kwargs: asyncio.create_task(
+                ctx.cmd_workflow(subcommand, args_str)
+            ),
+            arguments=[
+                arg("subcommand", required=False, description="list|run|status|approve|skip"),
+                arg("args", required=False, description="Additional arguments for subcommand"),
+            ],
+            description="Manage workflows (list, run, status, approve, skip)",
+            category="workflows",
+        )
+
         # --- File commands ---
         self.registry.register(
             "read",
@@ -849,7 +987,11 @@ class MemoryChatSession:
         self.state.set_var("session:started", datetime.now().isoformat())
 
     async def handle_command(self, user_input: str) -> str | None:
-        """Handle /commands. Returns response string or None if not a command."""
+        """Handle /commands and @routing. Returns response string or None if not a command."""
+        # Check for @agent_name routing (orchestration)
+        if user_input.strip().startswith("@") and self.orchestrator:
+            return await self.handle_at_routing(user_input)
+
         if not user_input.startswith("/"):
             return None  # Not a command, process as chat
 
@@ -2759,6 +2901,557 @@ Use /tools to list available tools."""
 
         return "\n".join(lines)
 
+    # =========================================================================
+    # ORCHESTRATION COMMANDS (Phase 3 - Project Hive)
+    # =========================================================================
+
+    async def cmd_switch(self, agent_name: str = "") -> str:
+        """
+        Switch to a different agent or show current agent status.
+
+        Usage:
+            /switch              Show current agent status
+            /switch researcher   Switch to researcher agent
+
+        Args:
+            agent_name: Agent name to switch to (empty shows status)
+
+        Returns:
+            Status message or switch confirmation
+        """
+        if not self.orchestrator:
+            return "Orchestration not enabled. No agents registered."
+
+        if not agent_name:
+            # Show current status
+            active = self.orchestrator.active_agent_name or "(none)"
+            return f"Active agent: {active}\nUse /switch <agent_name> to switch agents.\nUse /agents to list available agents."
+
+        try:
+            await self.orchestrator.switch_agent(agent_name)
+            return f"Switched to agent: {agent_name}"
+        except OrchestratorError as e:
+            return f"Error: {e}"
+
+    def cmd_agents(self) -> str:
+        """
+        List all available agents with their capabilities.
+
+        Returns:
+            Formatted list of agents
+        """
+        if not self.orchestrator:
+            return "Orchestration not enabled. No agents registered."
+
+        agents = self.orchestrator.list_agents()
+        if not agents:
+            return "No agents registered."
+
+        lines = [
+            "=" * 60,
+            "AVAILABLE AGENTS",
+            "=" * 60,
+            "",
+        ]
+
+        active = self.orchestrator.active_agent_name
+        cached = self.orchestrator.list_cached_agents()
+
+        for name in agents:
+            try:
+                info = self.orchestrator.get_agent_info(name)
+                status_parts = []
+                if name == active:
+                    status_parts.append("ACTIVE")
+                if name in cached:
+                    status_parts.append("cached")
+                status = f" [{', '.join(status_parts)}]" if status_parts else ""
+
+                lines.append(f"  @{name}{status}")
+                lines.append(f"    Role: {info.get('role', 'N/A')}")
+                caps = info.get('capabilities', [])
+                if caps:
+                    lines.append(f"    Capabilities: {', '.join(caps)}")
+                lines.append("")
+            except Exception:
+                lines.append(f"  @{name}")
+                lines.append("")
+
+        lines.append("Use /switch <agent> to switch agents.")
+        lines.append("Use @agent_name <message> for direct routing.")
+        return "\n".join(lines)
+
+    def cmd_agent_info(self, agent_name: str = "") -> str:
+        """
+        Show detailed information about an agent.
+
+        Args:
+            agent_name: Agent name (empty shows active agent)
+
+        Returns:
+            Detailed agent information
+        """
+        if not self.orchestrator:
+            return "Orchestration not enabled. No agents registered."
+
+        name = agent_name or self.orchestrator.active_agent_name
+        if not name:
+            return "No active agent. Use /switch <agent> or specify agent name."
+
+        try:
+            info = self.orchestrator.get_agent_info(name)
+        except KeyError:
+            return f"Agent '{name}' not found. Use /agents to list available agents."
+
+        lines = [
+            "=" * 60,
+            f"AGENT: {info['name']}",
+            "=" * 60,
+            "",
+            f"Role: {info.get('role', 'N/A')}",
+            f"Goal: {info.get('goal', 'N/A')}",
+            "",
+            "Capabilities:",
+        ]
+        for cap in info.get('capabilities', []):
+            lines.append(f"  - {cap}")
+
+        lines.append("")
+        lines.append("Tools:")
+        for tool in info.get('tools', []):
+            lines.append(f"  - {tool}")
+
+        lines.append("")
+        lines.append(f"Status: {'ACTIVE' if info.get('is_active') else 'inactive'}")
+        lines.append(f"Cached: {'yes' if info.get('is_cached') else 'no'}")
+
+        return "\n".join(lines)
+
+    async def cmd_delegate(self, agent_name: str, task: str) -> str:
+        """
+        Delegate a task to another agent and return to current.
+
+        Usage:
+            /delegate coder Review this code for security issues
+
+        Args:
+            agent_name: Agent to delegate to
+            task: Task description
+
+        Returns:
+            Response from delegated agent
+        """
+        if not self.orchestrator:
+            return "Orchestration not enabled. No agents registered."
+
+        if not agent_name:
+            return "Usage: /delegate <agent> <task>\nExample: /delegate coder Review this code"
+
+        if not task:
+            return "Please provide a task description.\nUsage: /delegate <agent> <task>"
+
+        try:
+            previous = self.orchestrator.active_agent_name
+            response = await self.orchestrator.delegate(agent_name, task, return_to_current=True)
+
+            lines = [
+                f"--- Delegated to @{agent_name} ---",
+                "",
+                response,
+                "",
+                f"--- Returned to @{previous or 'default'} ---",
+            ]
+            return "\n".join(lines)
+        except OrchestratorError as e:
+            return f"Delegation error: {e}"
+
+    def cmd_orchestrator_status(self) -> str:
+        """
+        Show orchestrator status.
+
+        Returns:
+            Current orchestrator state
+        """
+        if not self.orchestrator:
+            return "Orchestration not enabled. No agents registered."
+
+        status = self.orchestrator.get_status()
+
+        lines = [
+            "=" * 60,
+            "ORCHESTRATOR STATUS",
+            "=" * 60,
+            "",
+            f"Active agent: {status['active_agent'] or '(none)'}",
+            f"Default agent: {status['default_agent'] or '(none)'}",
+            f"Session ID: {status['session_id'] or '(not set)'}",
+            f"User ID: {status['user_id']}",
+            f"Messages processed: {status['message_count']}",
+            "",
+            f"Cached agents ({len(status['cached_agents'])}):",
+        ]
+        for name in status['cached_agents']:
+            lines.append(f"  - {name}")
+
+        lines.append("")
+        lines.append(f"Registered agents ({len(status['registered_agents'])}):")
+        for name in status['registered_agents']:
+            lines.append(f"  - {name}")
+
+        return "\n".join(lines)
+
+    # =========================================================================
+    # WORKFLOW COMMANDS (Phase 4 - Project Hive)
+    # =========================================================================
+
+    async def cmd_workflow(self, subcommand: str = "", args_str: str = "") -> str:
+        """
+        Manage workflows.
+
+        Subcommands:
+            /workflow list                  List available workflows
+            /workflow run <name> [inputs]   Execute a workflow
+            /workflow status                Show current workflow status
+            /workflow approve               Approve pending task
+            /workflow skip                  Skip pending task
+
+        Args:
+            subcommand: The workflow subcommand
+            args_str: Additional arguments
+
+        Returns:
+            Command result
+        """
+        if not subcommand:
+            return self._workflow_help()
+
+        subcommand = subcommand.lower()
+
+        if subcommand == "list":
+            return await self.cmd_workflow_list()
+        elif subcommand == "run":
+            return await self.cmd_workflow_run(args_str)
+        elif subcommand == "status":
+            return self.cmd_workflow_status()
+        elif subcommand == "approve":
+            return await self.cmd_workflow_approve()
+        elif subcommand == "skip":
+            return await self.cmd_workflow_skip()
+        else:
+            return f"Unknown workflow subcommand: {subcommand}\n{self._workflow_help()}"
+
+    def _workflow_help(self) -> str:
+        """Return workflow command help text."""
+        return """Usage: /workflow <subcommand> [args]
+
+Subcommands:
+  list              List available workflows
+  run <name> [key=value ...]  Execute a workflow with optional inputs
+  status            Show current workflow status
+  approve           Approve pending task
+  skip              Skip pending task
+
+Examples:
+  /workflow list
+  /workflow run newsletter user_topic="AI trends"
+  /workflow status
+  /workflow approve
+  /workflow skip"""
+
+    async def cmd_workflow_list(self) -> str:
+        """
+        List available workflows.
+
+        Returns:
+            Formatted list of workflows
+        """
+        if not self.workflow_loader:
+            return "Workflow system not enabled. No workflow directory configured."
+
+        workflows = self.workflow_loader.list_workflows()
+        if not workflows:
+            return "No workflows found in workflow directory."
+
+        lines = [
+            "=" * 60,
+            "AVAILABLE WORKFLOWS",
+            "=" * 60,
+            "",
+        ]
+
+        for name in sorted(workflows):
+            try:
+                workflow = self.workflow_loader.load(name)
+                lines.append(f"  {name}")
+                lines.append(f"    Description: {workflow.description or 'N/A'}")
+                lines.append(f"    Tasks: {len(workflow.tasks)}")
+                lines.append(f"    Version: {workflow.version or 'N/A'}")
+                lines.append("")
+            except Exception as e:
+                lines.append(f"  {name} (error loading: {e})")
+                lines.append("")
+
+        lines.append("Use /workflow run <name> [inputs] to execute a workflow.")
+        return "\n".join(lines)
+
+    async def cmd_workflow_run(self, args_str: str) -> str:
+        """
+        Execute a workflow.
+
+        Args:
+            args_str: Workflow name followed by optional key=value inputs
+
+        Returns:
+            Execution result or error
+        """
+        if not self.workflow_loader:
+            return "Workflow system not enabled. No workflow directory configured."
+
+        if not self.workflow_engine:
+            return "Workflow engine not initialized. Check orchestrator configuration."
+
+        if not args_str:
+            return "Usage: /workflow run <name> [key=value ...]\nExample: /workflow run newsletter user_topic=\"AI trends\""
+
+        # Parse workflow name and inputs
+        parts = args_str.split(maxsplit=1)
+        workflow_name = parts[0]
+        inputs_str = parts[1] if len(parts) > 1 else ""
+
+        # Parse inputs (key=value pairs)
+        inputs: dict[str, Any] = {}
+        if inputs_str:
+            # Simple key=value parsing (supports key="value with spaces")
+            import shlex
+            try:
+                tokens = shlex.split(inputs_str)
+                for token in tokens:
+                    if "=" in token:
+                        key, value = token.split("=", 1)
+                        inputs[key] = value
+            except ValueError as e:
+                return f"Error parsing inputs: {e}\nFormat: key=value key2=\"value with spaces\""
+
+        # Load workflow
+        try:
+            workflow = self.workflow_loader.load(workflow_name)
+        except Exception as e:
+            return f"Error loading workflow '{workflow_name}': {e}"
+
+        # Execute workflow
+        try:
+            lines = [
+                f"Starting workflow: {workflow.name}",
+                f"Tasks: {len(workflow.tasks)}",
+                "",
+            ]
+            if inputs:
+                lines.append("Inputs:")
+                for k, v in inputs.items():
+                    lines.append(f"  {k}: {v}")
+                lines.append("")
+
+            execution = await self.workflow_engine.execute(workflow, inputs)
+
+            # Store active workflow for status/approve/skip commands
+            self.active_workflow = workflow
+            self.active_execution = execution
+
+            if execution.pending_approval:
+                task = workflow.get_task(execution.pending_approval)
+                lines.append("=" * 40)
+                lines.append("⏸️  WORKFLOW PAUSED FOR APPROVAL")
+                lines.append("=" * 40)
+                lines.append("")
+                lines.append(f"Task: {task.name} ({task.id})")
+                lines.append(f"Agent: {task.agent}")
+                lines.append(f"Description:\n{task.description[:500]}")
+                lines.append("")
+                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+            else:
+                lines.append("=" * 40)
+                lines.append("✅ WORKFLOW COMPLETED")
+                lines.append("=" * 40)
+                lines.append("")
+                lines.append(f"Status: {execution.status.value}")
+                lines.append(f"Duration: {execution.duration_ms or 0}ms")
+
+                # Show final outputs
+                if execution.variables:
+                    lines.append("")
+                    lines.append("Final Variables:")
+                    for k, v in execution.variables.items():
+                        value_str = str(v)[:200] + "..." if len(str(v)) > 200 else str(v)
+                        lines.append(f"  {k}: {value_str}")
+
+            return "\n".join(lines)
+
+        except WorkflowError as e:
+            return f"Workflow error: {e}"
+        except Exception as e:
+            return f"Unexpected error: {e}"
+
+    def cmd_workflow_status(self) -> str:
+        """
+        Show current workflow status.
+
+        Returns:
+            Workflow status or message if no active workflow
+        """
+        if not self.active_workflow or not self.active_execution:
+            return "No active workflow. Use /workflow run <name> to start one."
+
+        status = self.workflow_engine.get_workflow_status(
+            self.active_workflow, self.active_execution
+        )
+
+        lines = [
+            "=" * 60,
+            "WORKFLOW STATUS",
+            "=" * 60,
+            "",
+            f"Workflow: {self.active_workflow.name}",
+            f"Execution ID: {status['execution_id']}",
+            f"Status: {status['status']}",
+            f"Duration: {status['duration_ms'] or 0}ms",
+        ]
+
+        if status['pending_approval']:
+            lines.append(f"⏸️  Pending Approval: {status['pending_approval']}")
+
+        lines.append("")
+        lines.append("Tasks:")
+
+        for task_id, task_info in status['tasks'].items():
+            status_icon = {
+                "pending": "⏳",
+                "running": "🔄",
+                "waiting_approval": "⏸️",
+                "completed": "✅",
+                "failed": "❌",
+                "skipped": "⏭️",
+            }.get(task_info['status'], "❓")
+
+            lines.append(f"  {status_icon} {task_info['name']} ({task_id})")
+            lines.append(f"      Status: {task_info['status']}")
+            lines.append(f"      Agent: {task_info['agent']}")
+            if task_info['error']:
+                lines.append(f"      Error: {task_info['error']}")
+            if task_info['duration_ms']:
+                lines.append(f"      Duration: {task_info['duration_ms']}ms")
+
+        return "\n".join(lines)
+
+    async def cmd_workflow_approve(self) -> str:
+        """
+        Approve pending task and continue workflow.
+
+        Returns:
+            Continuation result or error
+        """
+        if not self.active_workflow or not self.active_execution:
+            return "No active workflow. Use /workflow run <name> to start one."
+
+        if not self.active_execution.pending_approval:
+            return "No task waiting for approval."
+
+        task_id = self.active_execution.pending_approval
+
+        try:
+            self.active_execution = await self.workflow_engine.approve_task(
+                self.active_workflow, self.active_execution, task_id
+            )
+
+            lines = [f"✅ Approved task: {task_id}", ""]
+
+            if self.active_execution.pending_approval:
+                # Another approval needed
+                next_task = self.active_workflow.get_task(
+                    self.active_execution.pending_approval
+                )
+                lines.append("⏸️  WORKFLOW PAUSED FOR ANOTHER APPROVAL")
+                lines.append("")
+                lines.append(f"Task: {next_task.name} ({next_task.id})")
+                lines.append(f"Agent: {next_task.agent}")
+                lines.append("")
+                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+            else:
+                lines.append("✅ WORKFLOW COMPLETED")
+                lines.append("")
+                lines.append(f"Status: {self.active_execution.status.value}")
+
+            return "\n".join(lines)
+
+        except WorkflowError as e:
+            return f"Error approving task: {e}"
+
+    async def cmd_workflow_skip(self) -> str:
+        """
+        Skip pending task and continue workflow.
+
+        Returns:
+            Continuation result or error
+        """
+        if not self.active_workflow or not self.active_execution:
+            return "No active workflow. Use /workflow run <name> to start one."
+
+        if not self.active_execution.pending_approval:
+            return "No task waiting for approval."
+
+        task_id = self.active_execution.pending_approval
+
+        try:
+            self.active_execution = await self.workflow_engine.skip_task(
+                self.active_workflow, self.active_execution, task_id
+            )
+
+            lines = [f"⏭️  Skipped task: {task_id}", ""]
+
+            if self.active_execution.pending_approval:
+                # Another approval needed
+                next_task = self.active_workflow.get_task(
+                    self.active_execution.pending_approval
+                )
+                lines.append("⏸️  WORKFLOW PAUSED FOR ANOTHER APPROVAL")
+                lines.append("")
+                lines.append(f"Task: {next_task.name} ({next_task.id})")
+                lines.append(f"Agent: {next_task.agent}")
+                lines.append("")
+                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+            else:
+                lines.append("✅ WORKFLOW COMPLETED")
+                lines.append("")
+                lines.append(f"Status: {self.active_execution.status.value}")
+
+            return "\n".join(lines)
+
+        except WorkflowError as e:
+            return f"Error skipping task: {e}"
+
+    async def handle_at_routing(self, user_input: str) -> str | None:
+        """
+        Handle @agent_name routing in messages.
+
+        Args:
+            user_input: Raw user input
+
+        Returns:
+            Agent response if routing detected, None otherwise
+        """
+        if not self.orchestrator:
+            return None
+
+        # Check for @mention at start of message
+        if not user_input.strip().startswith("@"):
+            return None
+
+        try:
+            response = await self.orchestrator.process(user_input)
+            agent = self.orchestrator.active_agent_name
+            return f"[@{agent}] {response}"
+        except OrchestratorError as e:
+            return f"Routing error: {e}"
+
     async def cmd_read_file(self, file_path: str, max_lines: int | None = None) -> str:
         """
         Read a file using the ReaderFactory with smart format detection.
@@ -3200,28 +3893,50 @@ Use /facts to view stored documents."""
         console.print(f"[bold cyan]{self.assistant_name}:[/bold cyan]")
 
         full_response = ""
+        metrics: TurnMetrics | None = None
         try:
             if tool_schemas:
                 # Function calling mode (non-streaming with tool loop)
-                full_response = await self._process_with_tools(messages, tool_schemas)
+                full_response, metrics = await self._process_with_tools(messages, tool_schemas)
             else:
                 # Streaming mode (no tools)
-                full_response = await self._process_streaming(messages)
+                full_response, metrics = await self._process_streaming(messages)
 
             # End newline after response
             console.print()
 
-            # 4. Create and save interaction turn
+            # 4. Create and save interaction turn with all captured metrics
             turn = InteractionTurn(
                 id=str(uuid.uuid4()),
                 session_id=self.session_id,
                 timestamp=datetime.now(),
                 user_message=user_input,
                 assistant_message=full_response,
+                # Tool execution tracking
+                tool_calls=metrics.tool_calls if metrics else [],
+                tool_results=metrics.tool_results if metrics else [],
+                # Timing metrics
+                response_started_at=metrics.response_started_at if metrics else None,
+                response_completed_at=metrics.response_completed_at if metrics else None,
+                # Token usage metrics
+                prompt_tokens=metrics.prompt_tokens if metrics else None,
+                completion_tokens=metrics.completion_tokens if metrics else None,
+                total_tokens=metrics.total_tokens if metrics else None,
+                latency_ms=metrics.latency_ms if metrics else None,
+                # Model configuration
+                model_name=metrics.model_name if metrics else None,
+                temperature=metrics.temperature if metrics else None,
             )
             success = await self.controller.add_turn(self.session_id, turn)
             if success:
                 self.turn_ids.append(turn.id)
+
+                # Check for tool content decay (Phase 4 - Project Hive)
+                if self.tool_content_manager:
+                    current_turn_number = len(self.turn_ids)
+                    decayed = await self.tool_content_manager.check_and_decay(current_turn_number)
+                    if decayed:
+                        get_console().print(f"  [dim][Tool outputs decayed: {len(decayed)} summarized][/dim]")
             else:
                 get_console().print(
                     "[bold red]Warning: Failed to save turn to transcript![/bold red]"
@@ -3260,11 +3975,16 @@ Use /facts to view stored documents."""
             display_warning("Request cancelled")
             return None
 
-    async def _process_streaming(self, messages: list[dict[str, Any]]) -> str:
+    async def _process_streaming(
+        self, messages: list[dict[str, Any]]
+    ) -> tuple[str, TurnMetrics]:
         """Process LLM call in streaming mode (no tools).
 
         Supports cancellation via Escape key before the first chunk arrives.
         Once streaming starts, the response completes naturally.
+
+        Returns:
+            Tuple of (response_text, turn_metrics)
         """
         from friday_cli.cancellation import CancellationToken, _check_for_escape_key
 
@@ -3272,6 +3992,10 @@ Use /facts to view stored documents."""
         first_chunk = True
         indicator = ThinkingIndicator.random_thinking()
         indicator.start()
+
+        # Track timing
+        start_time = datetime.now()
+        response_started_at: datetime | None = None
 
         # Show cancel hint
         get_console().print("  [dim]Press [Esc] to cancel[/dim]")
@@ -3287,6 +4011,7 @@ Use /facts to view stored documents."""
             ):
                 if first_chunk:
                     indicator.stop()  # Stop spinner on first chunk (idempotent)
+                    response_started_at = datetime.now()
                     # Stop escape monitoring once response starts
                     cancel_token.cancel()  # Signal to stop monitoring
                     escape_task.cancel()
@@ -3303,7 +4028,21 @@ Use /facts to view stored documents."""
 
             # Ensure indicator is stopped even if no chunks arrived
             indicator.stop()
-            return full_response
+
+            # Build metrics (streaming mode doesn't provide token counts)
+            response_completed_at = datetime.now()
+            latency_ms = (response_completed_at - start_time).total_seconds() * 1000
+
+            metrics = TurnMetrics(
+                response_started_at=response_started_at,
+                response_completed_at=response_completed_at,
+                latency_ms=latency_ms,
+                model_name=self.llm.model,
+                temperature=self.temperature,
+                # Note: Streaming doesn't provide token counts from LiteLLM
+            )
+
+            return full_response, metrics
 
         except asyncio.CancelledError:
             if cancel_token.is_cancelled:
@@ -3353,7 +4092,7 @@ Use /facts to view stored documents."""
         max_iterations: int = 10,
         max_consecutive_failures: int = 3,
         max_tool_messages: int = 30,
-    ) -> str:
+    ) -> tuple[str, TurnMetrics]:
         """Process LLM call with function calling support.
 
         Implements a Re-Act style loop:
@@ -3370,12 +4109,23 @@ Use /facts to view stored documents."""
             max_tool_messages: Maximum messages before pruning (default 30)
 
         Returns:
-            Final assistant response text
+            Tuple of (final_response_text, turn_metrics)
         """
         working_messages = list(messages)  # Copy to avoid mutation
         initial_message_count = len(working_messages)  # For pruning bounds
         iteration = 0
         consecutive_failures = 0  # Circuit breaker counter
+
+        # Track timing and accumulated metrics
+        start_time = datetime.now()
+        response_started_at: datetime | None = None
+        accumulated_prompt_tokens = 0
+        accumulated_completion_tokens = 0
+        accumulated_total_tokens = 0
+
+        # Track tool calls and results for transcript
+        all_tool_calls: list[MemoryToolCall] = []
+        all_tool_results: list[MemoryToolResult] = []
 
         while iteration < max_iterations:
             iteration += 1
@@ -3409,13 +4159,41 @@ Use /facts to view stored documents."""
             if response is None:
                 raise OperationCancelledError()
 
+            # Track first response timing
+            if response_started_at is None:
+                response_started_at = datetime.now()
+
+            # Accumulate token usage from this call
+            if response.usage:
+                accumulated_prompt_tokens += response.usage.get("prompt_tokens", 0)
+                accumulated_completion_tokens += response.usage.get("completion_tokens", 0)
+                accumulated_total_tokens += response.usage.get("total_tokens", 0)
+
             # Check if response has tool calls
             if not response.has_tool_calls:
                 # No tool calls - this is the final response
                 # Stream it for better UX (simulated streaming for non-streaming API response)
                 if response.content:
                     await self._display_streaming_response(response.content)
-                return response.content or ""
+
+                # Build final metrics
+                response_completed_at = datetime.now()
+                latency_ms = (response_completed_at - start_time).total_seconds() * 1000
+
+                metrics = TurnMetrics(
+                    response_started_at=response_started_at,
+                    response_completed_at=response_completed_at,
+                    prompt_tokens=accumulated_prompt_tokens,
+                    completion_tokens=accumulated_completion_tokens,
+                    total_tokens=accumulated_total_tokens,
+                    latency_ms=latency_ms,
+                    model_name=response.model or self.llm.model,
+                    temperature=self.temperature,
+                    tool_calls=all_tool_calls,
+                    tool_results=all_tool_results,
+                )
+
+                return response.content or "", metrics
 
             # Process tool calls
             display_info(f"Calling {len(response.tool_calls)} tool(s)...")
@@ -3439,7 +4217,15 @@ Use /facts to view stored documents."""
 
                 get_console().print(f"  [cyan]→[/cyan] {tool_name}({json.dumps(tool_args)})")
 
+                # Track tool call for transcript
+                all_tool_calls.append(MemoryToolCall(
+                    id=tc.id,
+                    name=tool_name,
+                    arguments=tool_args,
+                ))
+
                 # Execute the tool
+                error_msg: str | None = None
                 try:
                     result = await _execute_tool(tool_name, **tool_args)
                     truncated = result[:100] + "..." if len(result) > 100 else result
@@ -3448,16 +4234,51 @@ Use /facts to view stored documents."""
                 except Exception as e:
                     consecutive_failures += 1
                     result = f"Error executing tool: {e}"
+                    error_msg = str(e)
                     display_error(f"  {result}")
 
                     # Circuit breaker: abort after too many consecutive failures
                     if consecutive_failures >= max_consecutive_failures:
-                        error_msg = (
+                        circuit_breaker_msg = (
                             f"Tool execution aborted: {consecutive_failures} consecutive failures. "
                             f"Last error: {e}"
                         )
-                        display_warning(f"CIRCUIT BREAKER: {error_msg}")
-                        return error_msg
+                        display_warning(f"CIRCUIT BREAKER: {circuit_breaker_msg}")
+
+                        # Build metrics even on circuit breaker
+                        response_completed_at = datetime.now()
+                        latency_ms = (response_completed_at - start_time).total_seconds() * 1000
+                        metrics = TurnMetrics(
+                            response_started_at=response_started_at,
+                            response_completed_at=response_completed_at,
+                            prompt_tokens=accumulated_prompt_tokens,
+                            completion_tokens=accumulated_completion_tokens,
+                            total_tokens=accumulated_total_tokens,
+                            latency_ms=latency_ms,
+                            model_name=self.llm.model,
+                            temperature=self.temperature,
+                            tool_calls=all_tool_calls,
+                            tool_results=all_tool_results,
+                        )
+                        return circuit_breaker_msg, metrics
+
+                # Track tool result for transcript
+                all_tool_results.append(MemoryToolResult(
+                    tool_call_id=tc.id,
+                    output=result,
+                    error=error_msg,
+                ))
+
+                # Track large tool outputs for lifecycle management (Phase 4)
+                if self.tool_content_manager and not error_msg:
+                    # Get current turn ID for tracking
+                    current_turn_id = str(len(self.turn_ids))
+                    self.tool_content_manager.track_output(
+                        tool_call_id=tc.id,
+                        tool_name=tool_name,
+                        content=result,
+                        turn_id=current_turn_id,
+                    )
 
                 # Add tool result to messages
                 working_messages.append(
@@ -3480,7 +4301,21 @@ Use /facts to view stored documents."""
 
         # Max iterations reached
         display_warning(f"Max tool iterations ({max_iterations}) reached")
-        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request."
+        response_completed_at = datetime.now()
+        latency_ms = (response_completed_at - start_time).total_seconds() * 1000
+        metrics = TurnMetrics(
+            response_started_at=response_started_at,
+            response_completed_at=response_completed_at,
+            prompt_tokens=accumulated_prompt_tokens,
+            completion_tokens=accumulated_completion_tokens,
+            total_tokens=accumulated_total_tokens,
+            latency_ms=latency_ms,
+            model_name=self.llm.model,
+            temperature=self.temperature,
+            tool_calls=all_tool_calls,
+            tool_results=all_tool_results,
+        )
+        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request.", metrics
 
 
 async def main() -> None:
@@ -4004,6 +4839,33 @@ async def main() -> None:
         session.assembler.set_active_tools(TOOL_SCHEMAS)
         logger.info(f"Auto-injected {len(TOOL_SCHEMAS)} tools into context")
         get_console().print(f"  [dim]- Tools: {len(TOOL_SCHEMAS)} auto-injected[/dim]")
+
+    # Initialize workflow system (Phase 4 - Project Hive)
+    workflows_dir = Path(__file__).parent.parent.parent.parent / "workflows"
+    if workflows_dir.exists():
+        session.workflow_loader = WorkflowLoader(workflows_dir)
+        # Workflow engine requires an orchestrator for task execution
+        # If no orchestrator, workflows can still be listed but not executed
+        if session.orchestrator:
+            session.workflow_engine = WorkflowEngine(session.orchestrator)
+            get_console().print(f"  [dim]- Workflows: enabled ({len(session.workflow_loader.list_workflows())} available)[/dim]")
+        else:
+            get_console().print("  [dim]- Workflows: loader only (no orchestrator for execution)[/dim]")
+    else:
+        get_console().print("  [dim]- Workflows: not configured (no workflows/ directory)[/dim]")
+
+    # Initialize tool content lifecycle (Phase 4 - Project Hive)
+    tool_lifecycle_config = ToolContentConfig(
+        enabled=True,
+        min_tokens_for_tracking=500,  # Track outputs >= 500 tokens
+        decay_threshold_turns=3,       # Summarize after 3 turns without reference
+    )
+    session.tool_content_manager = ToolContentManager(
+        config=tool_lifecycle_config,
+        llm_client=llm,  # For generating summaries when decaying
+    )
+    session.assembler.set_tool_content_manager(session.tool_content_manager)
+    get_console().print("  [dim]- Tool content lifecycle: enabled (decay after 3 turns)[/dim]")
 
     display_success(f"Session initialized: {session_id}")
     display_info(f"Persistence directory: {persist_dir}")

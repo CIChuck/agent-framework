@@ -10,16 +10,34 @@ Components:
 - CopilotAgent: Interactive Re-Act agent with tool calling
 - AutonomousAgent: Placeholder for autonomous task execution
 - DefaultToolRegistry: Tool registration and resolution
+- AgentLoader: YAML-based agent configuration loading
+- AgentRegistry: Central registry for agent profiles
+- AgentOrchestrator: Multi-agent coordination
+- Workflows: Task graph execution with approval gates
 - Built-in tools: scratchpad, recall_memory, store_fact
 
 Ref: Batch 3 Specification, Section 4
+Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
 """
 
 from friday_agent.autonomous import AutonomousAgent
 from friday_agent.base import AgentBase
 from friday_agent.copilot import CopilotAgent
+from friday_agent.loader import AgentConfigError, AgentLoader
+from friday_agent.orchestrator import AgentOrchestrator, OrchestratorError
 from friday_agent.profile import AgentProfile
+from friday_agent.registry import AgentRegistry, AgentRegistryError
 from friday_agent.tools import DefaultToolRegistry, tool
+from friday_agent.workflows import (
+    TaskNode,
+    TaskStatus,
+    WorkflowDefinition,
+    WorkflowExecution,
+    WorkflowEngine,
+    WorkflowError,
+    WorkflowLoader,
+    WorkflowLoadError,
+)
 
 __all__ = [
     # Agent classes
@@ -27,6 +45,24 @@ __all__ = [
     "AgentBase",
     "CopilotAgent",
     "AutonomousAgent",
+    # Configuration
+    "AgentLoader",
+    "AgentConfigError",
+    # Registry
+    "AgentRegistry",
+    "AgentRegistryError",
+    # Orchestration
+    "AgentOrchestrator",
+    "OrchestratorError",
+    # Workflows
+    "TaskNode",
+    "TaskStatus",
+    "WorkflowDefinition",
+    "WorkflowExecution",
+    "WorkflowEngine",
+    "WorkflowError",
+    "WorkflowLoader",
+    "WorkflowLoadError",
     # Tool infrastructure
     "DefaultToolRegistry",
     "tool",

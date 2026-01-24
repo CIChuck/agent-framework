@@ -41,6 +41,9 @@ class TranscriptEntry(BaseModel):
     - Timing information
     - Token usage metrics
     - Model/context information
+
+    In multi-agent scenarios, agent_id tracks which agent generated
+    the response for provenance and auditing.
     """
 
     # Identity
@@ -54,6 +57,12 @@ class TranscriptEntry(BaseModel):
     )
     assistant_message: str | None = Field(
         default=None, description="Assistant's response"
+    )
+
+    # Agent tracking (for multi-agent provenance)
+    agent_id: str | None = Field(
+        default=None,
+        description="Which agent generated this response (e.g., 'researcher', 'coder')"
     )
 
     # Tool execution

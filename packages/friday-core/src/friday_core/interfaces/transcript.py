@@ -144,6 +144,8 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             turn_number=turn_number,
             user_message=turn.user_message,
             assistant_message=turn.assistant_message,
+            # Agent tracking for provenance
+            agent_id=getattr(turn, "agent_id", None),
             tool_calls=[
                 ToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                 for tc in getattr(turn, "tool_calls", [])
@@ -158,6 +160,18 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             ],
             timestamp=turn.timestamp,
             metadata=getattr(turn, "metadata", {}),
+            # Timing metrics
+            response_started_at=getattr(turn, "response_started_at", None),
+            response_completed_at=getattr(turn, "response_completed_at", None),
+            # Token usage metrics
+            prompt_tokens=getattr(turn, "prompt_tokens", None),
+            completion_tokens=getattr(turn, "completion_tokens", None),
+            total_tokens=getattr(turn, "total_tokens", None),
+            latency_ms=getattr(turn, "latency_ms", None),
+            # Model configuration
+            model_name=getattr(turn, "model_name", None),
+            temperature=getattr(turn, "temperature", None),
+            context_tokens_used=getattr(turn, "context_tokens_used", None),
         )
 
         # Only increment turn count after successful write
@@ -193,6 +207,8 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                 timestamp=entry.timestamp,
                 user_message=entry.user_message,
                 assistant_message=entry.assistant_message,
+                # Agent tracking for provenance
+                agent_id=getattr(entry, "agent_id", None),
                 tool_calls=[
                     MemoryToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                     for tc in entry.tool_calls
@@ -240,6 +256,8 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                     timestamp=entry.timestamp,
                     user_message=entry.user_message,
                     assistant_message=entry.assistant_message,
+                    # Agent tracking for provenance
+                    agent_id=getattr(entry, "agent_id", None),
                     tool_calls=[
                         MemoryToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                         for tc in entry.tool_calls

@@ -1,0 +1,92 @@
+# Newsletter Generation Workflow
+# Researches a topic and generates a newsletter article
+#
+# Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+
+id: newsletter_generation
+name: "Newsletter Generation"
+description: "Research a topic and generate a newsletter article with human review"
+version: "1.0.0"
+author: "friday-team"
+tags: ["content", "research", "writing"]
+
+tasks:
+  - id: research
+    name: "Research Topic"
+    description: |
+      Research the given topic and gather key information.
+      Focus on:
+      - Recent developments
+      - Key statistics
+      - Expert opinions
+      - Relevant examples
+
+      Provide a comprehensive research summary.
+    agent: researcher
+    inputs:
+      topic: "$user_topic"
+    outputs:
+      - research_results
+    requires_approval: false
+
+  - id: review_research
+    name: "Review Research Results"
+    description: |
+      Review the research results for accuracy and completeness.
+
+      Research to review:
+      {{research}}
+
+      Provide feedback or approve to continue.
+    agent: researcher
+    inputs:
+      research: "$research_results"
+    outputs:
+      - approved_research
+    depends_on:
+      - research
+    requires_approval: true
+
+  - id: write_draft
+    name: "Write Newsletter Draft"
+    description: |
+      Write a newsletter article based on the approved research.
+
+      Guidelines:
+      - Engaging headline
+      - Clear introduction
+      - Key points with supporting details
+      - Call to action
+      - 500-800 words
+    agent: coder
+    inputs:
+      research: "$approved_research"
+    outputs:
+      - newsletter_draft
+    depends_on:
+      - review_research
+    requires_approval: false
+
+  - id: final_review
+    name: "Final Newsletter Review"
+    description: |
+      Review the final newsletter draft.
+
+      Check for:
+      - Accuracy
+      - Clarity
+      - Tone
+      - Grammar
+
+      Approve to publish or provide feedback.
+    agent: coder
+    inputs:
+      draft: "$newsletter_draft"
+    outputs:
+      - final_newsletter
+    depends_on:
+      - write_draft
+    requires_approval: true
+
+timeout_seconds: 7200
+max_retries: 2

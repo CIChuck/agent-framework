@@ -2,9 +2,10 @@
 Memory Lifecycle Management Module.
 
 Provides temporal decay, promotion scoring, lifecycle stage management,
-and migration utilities for the Friday memory system.
+migration utilities, and tool content lifecycle for the Friday memory system.
 
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md
+Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
 """
 
 from friday_memory.lifecycle.decay import (
@@ -26,6 +27,11 @@ from friday_memory.lifecycle.stages import (
     MemoryStage,
     PromotionState,
 )
+from friday_memory.lifecycle.tool_content import (
+    ToolContentConfig,
+    ToolContentManager,
+    TrackedToolOutput,
+)
 
 __all__ = [
     # Enums
@@ -36,12 +42,15 @@ __all__ = [
     "DecayConfig",
     "PromotionResult",
     "MigrationReport",
+    "TrackedToolOutput",
+    "ToolContentConfig",
     # Calculators/Scorers
     "DecayCalculator",
     "PromotionScorer",
     # Services
     "MemoryPromotionService",
     "MemoryMigrator",
+    "ToolContentManager",
     # Functions
     "migrate_to_multi_collection",
 ]

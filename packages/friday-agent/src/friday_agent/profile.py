@@ -9,7 +9,7 @@ Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 """
 
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
 
 
 # Tool autonomy modes
@@ -76,6 +76,26 @@ class AgentProfile:
     available_tools: list[str] = field(default_factory=list)
     required_tools: list[str] = field(default_factory=list)
 
+    # Registry integration fields (prefixed with _ to indicate internal use)
+    _capabilities: list[str] = field(default_factory=list)
+    _memory_config: dict[str, Any] = field(default_factory=dict)
+    _metadata: dict[str, Any] = field(default_factory=dict)
+
+    @property
+    def capabilities(self) -> list[str]:
+        """Capability tags for orchestrator routing."""
+        return self._capabilities
+
+    @property
+    def memory_config(self) -> dict[str, Any]:
+        """Agent-specific memory settings."""
+        return self._memory_config
+
+    @property
+    def metadata(self) -> dict[str, Any]:
+        """Additional custom metadata."""
+        return self._metadata
+
     def render_system_prompt(self, **kwargs) -> str:
         """
         Render system prompt with variable substitution.
@@ -115,6 +135,10 @@ class AgentProfile:
             "injected_tools": self.injected_tools,
             "available_tools": self.available_tools,
             "required_tools": self.required_tools,
+            # Registry integration
+            "capabilities": self._capabilities,
+            "memory_config": self._memory_config,
+            "metadata": self._metadata,
         }
 
     @classmethod
@@ -124,7 +148,7 @@ class AgentProfile:
             name=data["name"],
             role=data["role"],
             goal=data["goal"],
-            system_prompt_template=data["system_prompt_template"],
+            system_prompt_template=data.get("system_prompt_template", data.get("system_prompt", "")),
             tools=data.get("tools", []),
             context_strategy=data.get("context_strategy", "standard"),
             temperature=data.get("temperature", 0.7),
@@ -134,4 +158,8 @@ class AgentProfile:
             injected_tools=data.get("injected_tools", []),
             available_tools=data.get("available_tools", []),
             required_tools=data.get("required_tools", []),
+            # Registry integration
+            _capabilities=data.get("capabilities", []),
+            _memory_config=data.get("memory_config", {}),
+            _metadata=data.get("metadata", {}),
         )

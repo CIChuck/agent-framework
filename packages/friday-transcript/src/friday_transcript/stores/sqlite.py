@@ -133,6 +133,19 @@ class SQLiteTranscriptStore:
                 )
                 logger.info("Added 'archived' column to sessions table")
 
+            # Migration: Add agent_id column to entries if not exists
+            cursor = await db.execute("PRAGMA table_info(entries)")
+            entry_columns = {row[1] for row in await cursor.fetchall()}
+            if "agent_id" not in entry_columns:
+                await db.execute(
+                    "ALTER TABLE entries ADD COLUMN agent_id TEXT"
+                )
+                await db.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_entries_agent
+                    ON entries(session_id, agent_id)
+                """)
+                logger.info("Added 'agent_id' column to entries table")
+
             await db.commit()
             self._initialized = True
 
@@ -345,11 +358,11 @@ class SQLiteTranscriptStore:
                     """
                     INSERT INTO entries (
                         id, session_id, turn_number, user_message, assistant_message,
-                        tool_calls, tool_results, timestamp, response_started_at,
+                        agent_id, tool_calls, tool_results, timestamp, response_started_at,
                         response_completed_at, prompt_tokens, completion_tokens,
                         total_tokens, latency_ms, model_name, temperature,
                         context_tokens_used, metadata
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         entry.id,
@@ -357,6 +370,7 @@ class SQLiteTranscriptStore:
                         entry.turn_number,
                         entry.user_message,
                         entry.assistant_message,
+                        entry.agent_id,
                         json.dumps([tc.model_dump() for tc in entry.tool_calls]),
                         json.dumps([tr.model_dump() for tr in entry.tool_results]),
                         entry.timestamp.isoformat(),
@@ -526,12 +540,18 @@ class SQLiteTranscriptStore:
         tool_calls_data = json.loads(row["tool_calls"] or "[]")
         tool_results_data = json.loads(row["tool_results"] or "[]")
 
+        # Handle agent_id column (may not exist in older databases before migration)
+        agent_id = None
+        if "agent_id" in row.keys():
+            agent_id = row["agent_id"]
+
         return TranscriptEntry(
             id=row["id"],
             session_id=row["session_id"],
             turn_number=row["turn_number"],
             user_message=row["user_message"],
             assistant_message=row["assistant_message"],
+            agent_id=agent_id,
             tool_calls=[ToolCall(**tc) for tc in tool_calls_data],
             tool_results=[ToolResult(**tr) for tr in tool_results_data],
             timestamp=datetime.fromisoformat(row["timestamp"]),
@@ -555,6 +575,40 @@ class SQLiteTranscriptStore:
             metadata=json.loads(row["metadata"] or "{}"),
             consolidated=bool(row["consolidated"]) if "consolidated" in row.keys() else False,
         )
+
+    async def get_entries_by_agent(
+        self,
+        session_id: str,
+        agent_id: str,
+        limit: int = 100,
+    ) -> list[TranscriptEntry]:
+        """
+        Get entries from a specific agent.
+
+        Args:
+            session_id: Session ID to query
+            agent_id: Agent ID to filter by
+            limit: Maximum number of entries to return
+
+        Returns:
+            List of entries from the specified agent, ordered by turn number
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = aiosqlite.Row
+            cursor = await db.execute(
+                """
+                SELECT * FROM entries
+                WHERE session_id = ? AND agent_id = ?
+                ORDER BY turn_number ASC
+                LIMIT ?
+                """,
+                (session_id, agent_id, limit),
+            )
+            rows = await cursor.fetchall()
+            return [self._row_to_entry(row) for row in rows]
 
     # --- Analytics ---
 

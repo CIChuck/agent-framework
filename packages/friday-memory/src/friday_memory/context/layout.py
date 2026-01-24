@@ -123,11 +123,60 @@ class PromptArchitect:
             if turn.timestamp:
                 timestamp_str = f"[{turn.timestamp.strftime('%Y-%m-%d %H:%M')}] "
 
-            messages.append({
-                "role": "user",
-                "content": f"{timestamp_str}[{self.user_name}]: {turn.user_message}",
-            })
-            if turn.assistant_message:
+            # Append user message
+            if turn.user_message:
+                messages.append({
+                    "role": "user",
+                    "content": f"{timestamp_str}[{self.user_name}]: {turn.user_message}",
+                })
+
+            # Check if this turn has tool calls
+            # NOTE: Historical tool calls are rendered as plain text summaries, not native
+            # tool message format. Native format requires strict pairing (tool_result must
+            # immediately follow its tool_call), which breaks when restoring history.
+            # Current in-progress tool interactions use native format via _process_with_tools().
+            #
+            # Lifecycle support: If a tool result has is_decayed=True, we render the
+            # summary instead of the full output to save context tokens.
+            if turn.tool_calls:
+                # Build assistant message with tool call summaries
+                tool_summary_parts = []
+                if turn.assistant_message:
+                    tool_summary_parts.append(turn.assistant_message)
+
+                # Summarize each tool call and its result
+                tool_summary_parts.append("\n[Tool Calls:]")
+                for tc in turn.tool_calls:
+                    args_str = ", ".join(f"{k}={v!r}" for k, v in tc.arguments.items())
+                    tool_summary_parts.append(f"  → {tc.name}({args_str})")
+
+                    # Find matching result
+                    for tr in turn.tool_results:
+                        if tr.tool_call_id == tc.id:
+                            if tr.error:
+                                tool_summary_parts.append(f"    ✗ Error: {tr.error}")
+                            else:
+                                # Check if output has been decayed (summarized)
+                                is_decayed = getattr(tr, "is_decayed", False)
+                                summary = getattr(tr, "summary", None)
+
+                                if is_decayed and summary:
+                                    # Use the LLM-generated summary for decayed outputs
+                                    tool_summary_parts.append(f"    ✓ [Summary]: {summary}")
+                                else:
+                                    # Full output (truncate if too long)
+                                    output_str = str(tr.output) if tr.output else ""
+                                    if len(output_str) > 500:
+                                        output_str = output_str[:500] + "..."
+                                    tool_summary_parts.append(f"    ✓ {output_str}")
+                            break
+
+                messages.append({
+                    "role": "assistant",
+                    "content": f"{timestamp_str}[{self.assistant_name}]: " + "\n".join(tool_summary_parts),
+                })
+            elif turn.assistant_message:
+                # No tool calls - just append assistant message
                 messages.append({
                     "role": "assistant",
                     "content": f"{timestamp_str}[{self.assistant_name}]: {turn.assistant_message}",

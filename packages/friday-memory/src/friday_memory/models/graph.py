@@ -4,13 +4,14 @@ Defines GraphNode, GraphEdge, and ProvenanceMetadata with strong typing.
 
 Ref: Batch 1 Specification, Section 2.1
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md (lifecycle extensions)
+Ref: docs/build-plan/shared-memory-provenance-build-plan.md (provenance tracking)
 """
 
 from datetime import datetime
 from enum import Enum
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class MemoryStage(str, Enum):
@@ -34,15 +35,26 @@ class ProvenanceMetadata(BaseModel):
 
     Every GraphNode and GraphEdge MUST include provenance metadata
     to ensure explainability and auditability of the knowledge graph.
+
+    In multi-agent scenarios, author_id tracks which agent created the data,
+    enabling provenance queries and trust verification.
+
+    Attributes:
+        source_id: UUID of the originating Turn or Document
+        source_type: Origin type ('interaction', 'document', 'inference', 'agent', 'user')
+        confidence: Confidence score (0.0 = uncertain, 1.0 = certain)
+        created_at: Timestamp of creation
+        author_id: Creator identifier (agent name or user ID)
+        parent_ids: IDs of parent data this was derived from (for lineage chains)
     """
 
     source_id: str = Field(..., description="UUID of the originating Turn or Document")
     source_type: str = Field(
         ...,
-        description="Origin type: 'interaction', 'document', or 'inference'",
+        description="Origin type: 'interaction', 'document', 'inference', 'agent', 'user'",
     )
     confidence: float = Field(
-        ...,
+        default=1.0,
         ge=0.0,
         le=1.0,
         description="Confidence score from 0.0 to 1.0",
@@ -50,8 +62,75 @@ class ProvenanceMetadata(BaseModel):
     created_at: datetime = Field(default_factory=datetime.now)
     author_id: str | None = Field(
         default=None,
-        description="Creator identifier: 'user_123' or 'agent_friday'",
+        description="Creator identifier: 'researcher', 'coder', 'user_123'",
     )
+    parent_ids: list[str] = Field(
+        default_factory=list,
+        description="IDs of parent data this was derived from (for lineage chains)",
+    )
+
+    @field_validator("author_id")
+    @classmethod
+    def validate_author_id(cls, v: str | None) -> str | None:
+        """Normalize author_id if provided."""
+        if v is not None:
+            v = v.strip().lower()
+            if not v:
+                raise ValueError("author_id cannot be empty string")
+        return v
+
+    @field_validator("source_type")
+    @classmethod
+    def validate_source_type(cls, v: str) -> str:
+        """Normalize source_type."""
+        return v.strip().lower()
+
+    def with_parent(self, parent_id: str) -> "ProvenanceMetadata":
+        """
+        Create a new ProvenanceMetadata with an additional parent.
+
+        Useful for tracking data lineage when deriving new data.
+
+        Args:
+            parent_id: ID of the parent data
+
+        Returns:
+            New ProvenanceMetadata with parent added
+        """
+        return ProvenanceMetadata(
+            source_id=self.source_id,
+            source_type=self.source_type,
+            author_id=self.author_id,
+            confidence=self.confidence,
+            created_at=self.created_at,
+            parent_ids=[*self.parent_ids, parent_id],
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        """Serialize to dictionary."""
+        return {
+            "source_id": self.source_id,
+            "source_type": self.source_type,
+            "author_id": self.author_id,
+            "confidence": self.confidence,
+            "created_at": self.created_at.isoformat(),
+            "parent_ids": self.parent_ids,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "ProvenanceMetadata":
+        """Deserialize from dictionary."""
+        created_at = data.get("created_at")
+        if isinstance(created_at, str):
+            created_at = datetime.fromisoformat(created_at)
+        return cls(
+            source_id=data["source_id"],
+            source_type=data["source_type"],
+            author_id=data.get("author_id"),
+            confidence=data.get("confidence", 1.0),
+            created_at=created_at or datetime.now(),
+            parent_ids=data.get("parent_ids", []),
+        )
 
 
 class GraphNode(BaseModel):
@@ -217,3 +296,81 @@ class GraphEdge(BaseModel):
         # Convert relation to natural language (e.g., "works_for" -> "works for")
         relation_text = self.relation.replace("_", " ")
         return f"{relation_text}"
+
+
+# =============================================================================
+# Provenance Factory Functions
+# =============================================================================
+
+
+def create_agent_provenance(
+    author_id: str,
+    source_id: str = "manual",
+    confidence: float = 1.0,
+) -> ProvenanceMetadata:
+    """
+    Create provenance for agent-generated data.
+
+    Args:
+        author_id: Agent name (e.g., "researcher", "coder")
+        source_id: ID of the source (e.g., turn_id)
+        confidence: Confidence score (0.0-1.0)
+
+    Returns:
+        ProvenanceMetadata configured for agent authorship
+    """
+    return ProvenanceMetadata(
+        source_id=source_id,
+        source_type="agent",
+        author_id=author_id,
+        confidence=confidence,
+    )
+
+
+def create_user_provenance(
+    user_id: str,
+    source_id: str = "user_input",
+) -> ProvenanceMetadata:
+    """
+    Create provenance for user-provided data.
+
+    Args:
+        user_id: User identifier
+        source_id: ID of the source
+
+    Returns:
+        ProvenanceMetadata configured for user authorship
+    """
+    return ProvenanceMetadata(
+        source_id=source_id,
+        source_type="user",
+        author_id=user_id,
+        confidence=1.0,  # User input is always trusted
+    )
+
+
+def create_extraction_provenance(
+    author_id: str,
+    source_id: str,
+    parent_ids: list[str] | None = None,
+    confidence: float = 0.9,
+) -> ProvenanceMetadata:
+    """
+    Create provenance for extracted/derived data.
+
+    Args:
+        author_id: Agent that performed extraction
+        source_id: ID of the extraction source
+        parent_ids: IDs of source data this was derived from
+        confidence: Confidence score (typically lower for derived data)
+
+    Returns:
+        ProvenanceMetadata configured for extraction
+    """
+    return ProvenanceMetadata(
+        source_id=source_id,
+        source_type="extraction",
+        author_id=author_id,
+        confidence=confidence,
+        parent_ids=parent_ids or [],
+    )

@@ -119,6 +119,8 @@ class AgentBase(ABC):
         """
         Initialize or restore a session.
 
+        Sets the memory author to the agent's name for provenance tracking.
+
         Args:
             session_id: Optional session ID (generates new if not provided)
             user_id: User identifier
@@ -131,6 +133,10 @@ class AgentBase(ABC):
             self.session_id, user_id
         )
         self._conversation_history = []
+
+        # Set memory author for provenance tracking (multi-agent support)
+        self.memory.set_author(self.profile.name)
+
         return self.session_state
 
     # --- Tool Selection Management ---
@@ -379,12 +385,13 @@ class AgentBase(ABC):
             ToolResult as MemoryToolResult,
         )
 
-        # Create turn record
+        # Create turn record with agent_id for provenance tracking
         turn = InteractionTurn(
             id=str(uuid.uuid4()),
             session_id=self.session_id,
             user_message=user_message,
             assistant_message=assistant_message,
+            agent_id=self.profile.name,  # Provenance: track which agent generated this
             tool_calls=[
                 MemoryToolCall(**tc) for tc in (tool_calls or [])
             ],

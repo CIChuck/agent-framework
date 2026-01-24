@@ -9,8 +9,13 @@ Supports lifecycle-aware retrieval with:
 - Graph path filtering using pre-embedded edges
 - Async access tracking for latency optimization
 
+Provenance tracking:
+- Author tracking via set_author() for multi-agent attribution
+- Query by author via get_facts_by_author(), get_insights_by_author()
+
 Ref: Batch 2 Specification, Section 2
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 6
+Ref: docs/build-plan/shared-memory-provenance-build-plan.md
 """
 
 import asyncio
@@ -36,6 +41,8 @@ from friday_memory.models import (
     GraphNode,
     InteractionTurn,
     ProvenanceMetadata,
+    ToolCall,
+    ToolResult,
 )
 
 if TYPE_CHECKING:
@@ -113,6 +120,9 @@ class MemoryController:
     TOKENS_PER_RELATIONSHIP = 40
     TOKENS_PER_PRIOR_TURN = 150
 
+    # Default author for provenance tracking in multi-agent scenarios
+    DEFAULT_AUTHOR = "system"
+
     def __init__(
         self,
         vector_store: VectorStoreAdapter,
@@ -128,6 +138,8 @@ class MemoryController:
         recalc_interval: int = 5,
         # Cross-session history support
         transcript_store: "TranscriptStore | None" = None,
+        # Provenance tracking (Phase 3)
+        default_author_id: str | None = None,
     ) -> None:
         """
         Initialize the Memory Controller.
@@ -151,12 +163,16 @@ class MemoryController:
             graph_scorer: Optional GraphPathScorer for graph path filtering
             recalc_interval: Number of turns between background insight recalculation (0 = disabled)
             transcript_store: Optional TranscriptStore for cross-session history retrieval
+            default_author_id: Default author for memory operations (for multi-agent provenance)
         """
         self.vector = vector_store
         self.graph = graph_store
         self.episodic = episodic_store
         self._telemetry = telemetry
         self._transcript_store = transcript_store
+
+        # Provenance: Author tracking for multi-agent scenarios
+        self._default_author_id = default_author_id or self.DEFAULT_AUTHOR
 
         # Lifecycle components
         self._collection_manager = collection_manager
@@ -195,6 +211,115 @@ class MemoryController:
         """Emit telemetry event if recorder is configured."""
         if self._telemetry:
             self._telemetry.capture_event(event_name, data)
+
+    # =========================================================================
+    # Author Management (Provenance Tracking)
+    # =========================================================================
+
+    @property
+    def current_author(self) -> str:
+        """
+        Get the current default author for memory operations.
+
+        Returns:
+            Current author ID (agent name or user ID)
+        """
+        return self._default_author_id
+
+    def set_author(self, author_id: str) -> None:
+        """
+        Set the current author for memory operations.
+
+        Should be called when an agent starts processing to ensure
+        all memory operations are attributed correctly.
+
+        In multi-agent scenarios, each agent calls this when it becomes
+        active, ensuring proper provenance tracking.
+
+        Args:
+            author_id: Agent name or user ID
+
+        Raises:
+            ValueError: If author_id is empty
+        """
+        if not author_id or not author_id.strip():
+            raise ValueError("author_id cannot be empty")
+
+        self._default_author_id = author_id.strip().lower()
+        logger.debug(f"Memory author set to: {self._default_author_id}")
+        self._emit_event(
+            "memory_author_changed",
+            {"author_id": self._default_author_id},
+        )
+
+    def _get_effective_author(self, author_id: str | None = None) -> str:
+        """
+        Get the effective author for a memory operation.
+
+        Args:
+            author_id: Optional override author
+
+        Returns:
+            Effective author ID (override or default)
+        """
+        if author_id:
+            return author_id.strip().lower()
+        return self._default_author_id
+
+    async def get_facts_by_author(
+        self,
+        author_id: str,
+        limit: int = 100,
+    ) -> list[GraphNode]:
+        """
+        Get facts/entities created by a specific author.
+
+        Args:
+            author_id: Author to filter by
+            limit: Maximum results
+
+        Returns:
+            List of GraphNodes created by that author
+        """
+        # Fetch all nodes and filter by author
+        # Note: This is a simple implementation - can be optimized with
+        # graph store support for metadata queries
+        all_nodes = await self.graph.get_all_nodes()
+
+        results = [
+            node
+            for node in all_nodes
+            if node.provenance and node.provenance.author_id == author_id.lower()
+        ]
+
+        return results[:limit]
+
+    async def get_insights_by_author(
+        self,
+        author_id: str,
+        limit: int = 100,
+    ) -> list[dict[str, Any]]:
+        """
+        Get insights/summaries created by a specific author.
+
+        Args:
+            author_id: Author to filter by
+            limit: Maximum results
+
+        Returns:
+            List of insight dicts created by that author
+        """
+        # Query vector store with author filter
+        # ChromaDB uses 'where' for metadata filtering
+        try:
+            results = await self.vector.get_all(
+                limit=limit,
+                where={"provenance_author_id": author_id.lower()},
+            )
+            return results
+        except Exception as e:
+            logger.warning(f"get_insights_by_author failed: {e}")
+            return []
 
     def _calculate_retrieval_limits(
         self,
@@ -1014,6 +1139,8 @@ class MemoryController:
                 )
 
                 # Convert TranscriptEntry to InteractionTurn
+                # Must convert ToolCall/ToolResult from friday_transcript types
+                # to friday_memory types to satisfy Pydantic validation
                 for entry in entries:
                     turn = InteractionTurn(
                         id=entry.id,
@@ -1021,8 +1148,18 @@ class MemoryController:
                         user_message=entry.user_message,
                         assistant_message=entry.assistant_message,
                         timestamp=entry.timestamp,
-                        tool_calls=entry.tool_calls or [],
-                        tool_results=entry.tool_results or [],
+                        tool_calls=[
+                            ToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
+                            for tc in (entry.tool_calls or [])
+                        ],
+                        tool_results=[
+                            ToolResult(
+                                tool_call_id=tr.tool_call_id,
+                                output=tr.output,
+                                error=tr.error,
+                            )
+                            for tr in (entry.tool_results or [])
+                        ],
                         metadata={
                             "from_prior_session": True,
                             "original_session_id": entry.session_id,

@@ -1,0 +1,413 @@
+"""
+Agent Registry.
+
+Central registry for agent profiles with capability-based lookup
+and on-demand agent instantiation.
+
+Ref: docs/build-plan/to-do/agent-registry-build-plan.md
+"""
+
+from __future__ import annotations
+
+import logging
+from typing import TYPE_CHECKING, Callable, TypeVar
+
+from friday_agent.profile import AgentProfile
+from friday_agent.loader import AgentLoader
+
+
+if TYPE_CHECKING:
+    from friday_agent.base import AgentBase
+
+
+logger = logging.getLogger(__name__)
+
+T = TypeVar("T", bound="AgentBase")
+
+
+class AgentRegistryError(Exception):
+    """Raised when registry operations fail."""
+
+    pass
+
+
+class AgentRegistry:
+    """
+    Central registry for agent profiles with capability-based lookup.
+
+    The registry serves as the single source of truth for available agents.
+    It supports:
+    - Manual profile registration
+    - Automatic loading from YAML files
+    - Capability-based agent discovery
+    - On-demand agent instantiation
+
+    Usage:
+        # Initialize with loader
+        loader = AgentLoader(Path("agents/"))
+        registry = AgentRegistry(loader)
+
+        # Auto-load all agents
+        registry.load_all_from_directory()
+
+        # Find agents by capability
+        researchers = registry.find_by_capability("research")
+
+        # Configure factory (typically done by container)
+        registry.set_factory(lambda profile: create_agent(profile))
+
+        # Create agent instance
+        agent = registry.create_agent("researcher")
+
+    Note:
+        The registry does NOT manage agent lifecycles. Once created,
+        agents are owned by the caller (typically the orchestrator).
+    """
+
+    def __init__(self, loader: AgentLoader | None = None):
+        """
+        Initialize registry.
+
+        Args:
+            loader: Optional AgentLoader for file-based profiles.
+                   If not provided, only manual registration is available.
+        """
+        self._profiles: dict[str, AgentProfile] = {}
+        self._loader = loader
+        self._factory: Callable[[AgentProfile], "AgentBase"] | None = None
+
+        # Capability index for fast lookup
+        self._capability_index: dict[str, set[str]] = {}  # capability -> agent names
+
+        logger.debug("AgentRegistry initialized")
+
+    @property
+    def loader(self) -> AgentLoader | None:
+        """Get the configured loader."""
+        return self._loader
+
+    # =========================================================================
+    # Registration
+    # =========================================================================
+
+    def register(self, profile: AgentProfile) -> None:
+        """
+        Register an agent profile.
+
+        Args:
+            profile: AgentProfile to register
+
+        Raises:
+            AgentRegistryError: If agent with same name already registered
+        """
+        if profile.name in self._profiles:
+            raise AgentRegistryError(f"Agent '{profile.name}' already registered")
+
+        self._profiles[profile.name] = profile
+        self._index_capabilities(profile)
+        logger.info(f"Registered agent: {profile.name}")
+
+    def register_from_yaml(self, name: str) -> AgentProfile:
+        """
+        Load and register agent from YAML file.
+
+        Args:
+            name: Agent name (filename without .yaml)
+
+        Returns:
+            Loaded AgentProfile
+
+        Raises:
+            AgentRegistryError: If no loader configured
+            AgentConfigError: If file is invalid
+        """
+        if self._loader is None:
+            raise AgentRegistryError("No AgentLoader configured")
+
+        profile = self._loader.load(name)
+        self.register(profile)
+        return profile
+
+    def load_all_from_directory(self) -> int:
+        """
+        Load all agent configs from loader's directory.
+
+        Skips agents that are already registered (no error).
+
+        Returns:
+            Number of NEW agents loaded
+
+        Raises:
+            AgentRegistryError: If no loader configured
+        """
+        if self._loader is None:
+            raise AgentRegistryError("No AgentLoader configured")
+
+        profiles = self._loader.load_all()
+        loaded = 0
+
+        for profile in profiles.values():
+            if profile.name not in self._profiles:
+                self._profiles[profile.name] = profile
+                self._index_capabilities(profile)
+                loaded += 1
+                logger.debug(f"Loaded agent from directory: {profile.name}")
+
+        logger.info(f"Loaded {loaded} agents from directory")
+        return loaded
+
+    def unregister(self, name: str) -> bool:
+        """
+        Remove agent from registry.
+
+        Args:
+            name: Agent name to remove
+
+        Returns:
+            True if agent was removed, False if not found
+        """
+        if name not in self._profiles:
+            return False
+
+        profile = self._profiles[name]
+
+        # Remove from capability index
+        for capability in profile.capabilities:
+            if capability in self._capability_index:
+                self._capability_index[capability].discard(name)
+                if not self._capability_index[capability]:
+                    del self._capability_index[capability]
+
+        del self._profiles[name]
+        logger.info(f"Unregistered agent: {name}")
+        return True
+
+    def clear(self) -> None:
+        """Remove all registered agents."""
+        self._profiles.clear()
+        self._capability_index.clear()
+        logger.debug("Registry cleared")
+
+    # =========================================================================
+    # Lookup
+    # =========================================================================
+
+    def get(self, name: str) -> AgentProfile | None:
+        """
+        Get agent profile by name.
+
+        Args:
+            name: Agent name
+
+        Returns:
+            AgentProfile if found, None otherwise
+        """
+        return self._profiles.get(name)
+
+    def get_or_raise(self, name: str) -> AgentProfile:
+        """
+        Get agent profile or raise error.
+
+        Args:
+            name: Agent name
+
+        Returns:
+            AgentProfile
+
+        Raises:
+            KeyError: If agent not found
+        """
+        profile = self.get(name)
+        if profile is None:
+            available = ", ".join(sorted(self._profiles.keys()))
+            raise KeyError(f"Agent '{name}' not found. Available: {available}")
+        return profile
+
+    def exists(self, name: str) -> bool:
+        """Check if agent is registered."""
+        return name in self._profiles
+
+    def list_agents(self) -> list[str]:
+        """
+        List all registered agent names.
+
+        Returns:
+            Sorted list of agent names
+        """
+        return sorted(self._profiles.keys())
+
+    def list_profiles(self) -> list[AgentProfile]:
+        """
+        List all registered profiles.
+
+        Returns:
+            List of AgentProfile instances
+        """
+        return list(self._profiles.values())
+
+    def count(self) -> int:
+        """Return number of registered agents."""
+        return len(self._profiles)
+
+    # =========================================================================
+    # Capability-Based Lookup
+    # =========================================================================
+
+    def find_by_capability(self, capability: str) -> list[AgentProfile]:
+        """
+        Find agents with a specific capability.
+
+        Args:
+            capability: Capability tag to search for
+
+        Returns:
+            List of matching profiles (may be empty)
+        """
+        agent_names = self._capability_index.get(capability, set())
+        return [self._profiles[name] for name in agent_names]
+
+    def find_by_capabilities(
+        self,
+        capabilities: list[str],
+        match_all: bool = False,
+    ) -> list[AgentProfile]:
+        """
+        Find agents matching capability requirements.
+
+        Args:
+            capabilities: List of required capabilities
+            match_all: If True, agent must have ALL capabilities.
+                      If False (default), agent must have ANY capability.
+
+        Returns:
+            List of matching profiles (may be empty)
+        """
+        if not capabilities:
+            return []
+
+        results: list[AgentProfile] = []
+
+        for profile in self._profiles.values():
+            agent_caps = set(profile.capabilities)
+            required_caps = set(capabilities)
+
+            if match_all:
+                # Agent must have all required capabilities
+                if required_caps.issubset(agent_caps):
+                    results.append(profile)
+            else:
+                # Agent must have at least one required capability
+                if required_caps & agent_caps:
+                    results.append(profile)
+
+        return results
+
+    def list_capabilities(self) -> list[str]:
+        """
+        List all registered capabilities.
+
+        Returns:
+            Sorted list of capability tags
+        """
+        return sorted(self._capability_index.keys())
+
+    def get_capability_stats(self) -> dict[str, int]:
+        """
+        Get count of agents per capability.
+
+        Returns:
+            Dict mapping capability to count of agents
+        """
+        return {cap: len(agents) for cap, agents in self._capability_index.items()}
+
+    # =========================================================================
+    # Agent Instantiation
+    # =========================================================================
+
+    def set_factory(
+        self,
+        factory: Callable[[AgentProfile], "AgentBase"],
+    ) -> None:
+        """
+        Set the agent factory function.
+
+        The factory takes an AgentProfile and returns an AgentBase instance.
+        It should be configured by the container with all necessary dependencies.
+
+        Args:
+            factory: Function that creates AgentBase from AgentProfile
+
+        Example:
+            def create_agent(profile: AgentProfile) -> CopilotAgent:
+                return CopilotAgent(
+                    profile=profile,
+                    memory=container.memory,
+                    llm=container.llm,
+                )
+            registry.set_factory(create_agent)
+        """
+        self._factory = factory
+        logger.debug("Agent factory configured")
+
+    def has_factory(self) -> bool:
+        """Check if factory is configured."""
+        return self._factory is not None
+
+    def create_agent(self, name: str) -> "AgentBase":
+        """
+        Create an agent instance by name.
+
+        Uses the configured factory to instantiate the agent with
+        all necessary dependencies.
+
+        Args:
+            name: Registered agent name
+
+        Returns:
+            Instantiated agent
+
+        Raises:
+            AgentRegistryError: If no factory configured
+            KeyError: If agent not found
+        """
+        if self._factory is None:
+            raise AgentRegistryError(
+                "No agent factory configured. Call set_factory() first."
+            )
+
+        profile = self.get_or_raise(name)
+        agent = self._factory(profile)
+        logger.debug(f"Created agent instance: {name}")
+        return agent
+
+    # =========================================================================
+    # Internal
+    # =========================================================================
+
+    def _index_capabilities(self, profile: AgentProfile) -> None:
+        """Add profile's capabilities to the index."""
+        for capability in profile.capabilities:
+            if capability not in self._capability_index:
+                self._capability_index[capability] = set()
+            self._capability_index[capability].add(profile.name)
+
+    # =========================================================================
+    # Serialization
+    # =========================================================================
+
+    def to_dict(self) -> dict[str, dict]:
+        """
+        Serialize registry to dictionary.
+
+        Returns:
+            Dict mapping agent name to profile dict
+        """
+        return {name: profile.to_dict() for name, profile in self._profiles.items()}
+
+    def __repr__(self) -> str:
+        """Debug representation."""
+        return (
+            f"AgentRegistry(agents={len(self._profiles)}, "
+            f"capabilities={len(self._capability_index)}, "
+            f"has_factory={self.has_factory()})"
+        )

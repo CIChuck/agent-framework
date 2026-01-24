@@ -463,7 +463,7 @@ chat:
 
     Available tool categories:
     - Datetime tools: For current date/time queries
-    - Filesystem tools: For listing directories, reading files
+    - Filesystem tools: For listing directories, reading files, Writing files
     - Utility tools: For testing (echo)
 
     CRITICAL: Do NOT fabricate information that a tool can provide:

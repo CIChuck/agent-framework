@@ -30,6 +30,7 @@ from friday_memory.context.layout import PromptArchitect
 from friday_memory.context.tool_manager import ToolContextManager
 from friday_memory.controller import MemoryController
 from friday_memory.lifecycle.stages import MemoryStage
+from friday_memory.lifecycle.tool_content import ToolContentManager
 from friday_memory.models import (
     ConsolidationReport,
     ContextPayload,
@@ -99,6 +100,28 @@ class ContextAssembler(ContextEngineeringInterface):
         # Extraction/consolidation callbacks (set by extractor/consolidator)
         self._extractor = None
         self._consolidator = None
+
+        # Tool content lifecycle manager (optional)
+        self._tool_content_manager: ToolContentManager | None = None
+
+    def set_tool_content_manager(self, manager: ToolContentManager) -> None:
+        """
+        Set the tool content manager for lifecycle tracking.
+
+        The tool content manager tracks large tool outputs and manages
+        reference-based decay. When outputs aren't referenced for N turns,
+        they're summarized to save context tokens.
+
+        Args:
+            manager: The ToolContentManager instance
+        """
+        self._tool_content_manager = manager
+        logger.debug("Tool content manager configured for context assembler")
+
+    @property
+    def tool_content_manager(self) -> ToolContentManager | None:
+        """Get the tool content manager (if configured)."""
+        return self._tool_content_manager
 
     def set_extractor(self, extractor: Any) -> None:
         """Set the memory extractor for extraction cycles."""
