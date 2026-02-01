@@ -29,6 +29,12 @@ uv run ruff format .
 
 # Type checking
 uv run mypy packages/friday-core/
+
+# Run the main assistant application
+uv run friday-copilot
+
+# Run with custom config
+uv run friday-copilot --config path/to/config.yaml
 ```
 
 ## Monorepo Structure & Dependency Flow
@@ -42,13 +48,19 @@ friday-memory (storage adapters, context engineering)
     ↓
 friday-llm (LiteLLM wrapper for multi-provider LLM calls)
     ↓
+friday-transcript (persistent conversation storage)
+    ↓
 friday-agent (CopilotAgent, tool registry, Re-Act loop)
     ↓
-friday-tools (50+ tools: filesystem, shell, web, git, code execution)
+friday-tools (filesystem, shell, web, git, code execution)
     ↓
-friday-sandbox (Docker-based isolated code execution)
+friday-sandbox (isolated code execution)
     ↓
 friday-mcp (Model Context Protocol client/server)
+    ↓
+friday-cli (Rich terminal interface components)
+    ↓
+friday-copilot (full-featured AI assistant app)
 ```
 
 | Package | Location | Purpose |
@@ -56,10 +68,13 @@ friday-mcp (Model Context Protocol client/server)
 | friday-core | `packages/friday-core/` | Abstract protocols in `interfaces/`, config, logging, exceptions |
 | friday-memory | `packages/friday-memory/` | MemoryController, storage adapters (vector/graph/episodic), ContextAssembler |
 | friday-llm | `packages/friday-llm/` | LiteLLMService wrapping litellm for OpenAI/Anthropic/Ollama |
+| friday-transcript | `packages/friday-transcript/` | Immutable conversation transcript storage (SQLite via aiosqlite) |
 | friday-agent | `packages/friday-agent/` | CopilotAgent (Re-Act loop), AgentProfile, DefaultToolRegistry |
 | friday-tools | `packages/friday-tools/` | BaseTool, tool categories (filesystem, shell, web, git, data, text, code) |
 | friday-sandbox | `packages/friday-sandbox/` | SubprocessSandbox for isolated Python execution |
 | friday-mcp | `packages/friday-mcp/` | MCP protocol client, tool adapters, SSE transport |
+| friday-cli | `packages/friday-cli/` | Rich/Prompt Toolkit terminal interface, command registry, session management |
+| friday-copilot | `apps/friday-copilot/` | Main AI assistant application with memory, tools, and agent orchestration |
 
 ## Architecture Patterns
 
@@ -102,4 +117,5 @@ friday-mcp (Model Context Protocol client/server)
 Copy `.env.example` to `.env`:
 - `OPENAI_API_KEY` - For OpenAI models
 - `ANTHROPIC_API_KEY` - For Claude models
+- `OPENROUTER_API_KEY` - For OpenRouter (multi-provider gateway)
 - `OLLAMA_BASE_URL` - For local Ollama (default: http://localhost:11434)

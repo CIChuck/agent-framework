@@ -14,6 +14,7 @@ from typing import Any
 import aiosqlite
 
 from friday_transcript.models.transcript import (
+    ContextLogEntry,
     TranscriptEntry,
     TranscriptSession,
     ToolCall,
@@ -145,6 +146,35 @@ class SQLiteTranscriptStore:
                     ON entries(session_id, agent_id)
                 """)
                 logger.info("Added 'agent_id' column to entries table")
+
+            # context_log table for raw prompt/response storage
+            # Primary relationship: sessions -> context_log (one-to-many)
+            # Enables deep analysis of context engineering while keeping entries table clean
+            await db.execute("""
+                CREATE TABLE IF NOT EXISTS context_log (
+                    id TEXT PRIMARY KEY,
+                    session_id TEXT NOT NULL,
+                    turn_number INTEGER NOT NULL,
+                    entry_id TEXT,
+                    raw_prompt TEXT NOT NULL,
+                    raw_response TEXT,
+                    captured_at TEXT NOT NULL,
+                    FOREIGN KEY (session_id) REFERENCES sessions(session_id),
+                    FOREIGN KEY (entry_id) REFERENCES entries(id)
+                )
+            """)
+
+            # Primary index: session_id + turn_number for ordered session queries
+            await db.execute("""
+                CREATE INDEX IF NOT EXISTS idx_context_log_session
+                ON context_log(session_id, turn_number)
+            """)
+
+            # Secondary index: entry_id for optional entry joins
+            await db.execute("""
+                CREATE INDEX IF NOT EXISTS idx_context_log_entry
+                ON context_log(entry_id)
+            """)
 
             await db.commit()
             self._initialized = True
@@ -678,3 +708,184 @@ class SQLiteTranscriptStore:
                 "p50_latency_ms": latencies[n // 2],
                 "p95_latency_ms": latencies[int(n * 0.95)] if n > 1 else latencies[0],
             }
+
+    # --- Context Log Management ---
+
+    async def store_context_log(self, context_entry: ContextLogEntry) -> bool:
+        """
+        Store raw prompt/response for a turn.
+
+        Args:
+            context_entry: ContextLogEntry with raw prompt and response data
+
+        Returns:
+            True if stored successfully, False otherwise
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            try:
+                await db.execute(
+                    """
+                    INSERT INTO context_log (
+                        id, session_id, turn_number, entry_id,
+                        raw_prompt, raw_response, captured_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        context_entry.id,
+                        context_entry.session_id,
+                        context_entry.turn_number,
+                        context_entry.entry_id,
+                        context_entry.raw_prompt,
+                        context_entry.raw_response,
+                        context_entry.captured_at.isoformat(),
+                    ),
+                )
+                await db.commit()
+                logger.debug(
+                    f"Stored context log: {context_entry.id} "
+                    f"(session={context_entry.session_id}, turn={context_entry.turn_number})"
+                )
+                return True
+            except aiosqlite.IntegrityError as e:
+                logger.warning(f"Context log already exists or FK violation: {e}")
+                return False
+            except Exception as e:
+                logger.error(f"Failed to store context log {context_entry.id}: {e}")
+                return False
+
+    async def get_context_log_for_session(
+        self, session_id: str, limit: int = 100
+    ) -> list[ContextLogEntry]:
+        """
+        Get all context log entries for a session (primary query).
+
+        Args:
+            session_id: The session ID to query
+            limit: Maximum number of entries to return (default 100)
+
+        Returns:
+            List of ContextLogEntry objects ordered by turn_number
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = aiosqlite.Row
+            cursor = await db.execute(
+                """
+                SELECT * FROM context_log
+                WHERE session_id = ?
+                ORDER BY turn_number ASC
+                LIMIT ?
+                """,
+                (session_id, limit),
+            )
+            rows = await cursor.fetchall()
+            return [self._row_to_context_log(row) for row in rows]
+
+    async def get_context_log_by_entry(self, entry_id: str) -> ContextLogEntry | None:
+        """
+        Get context log data by entry ID (optional join).
+
+        Args:
+            entry_id: The transcript entry ID to look up
+
+        Returns:
+            ContextLogEntry if found, None otherwise
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = aiosqlite.Row
+            cursor = await db.execute(
+                "SELECT * FROM context_log WHERE entry_id = ?",
+                (entry_id,),
+            )
+            row = await cursor.fetchone()
+            if row is None:
+                return None
+            return self._row_to_context_log(row)
+
+    async def get_context_log_by_turn(
+        self, session_id: str, turn_number: int
+    ) -> ContextLogEntry | None:
+        """
+        Get context log for a specific turn in a session.
+
+        Args:
+            session_id: The session ID
+            turn_number: The turn number to look up
+
+        Returns:
+            ContextLogEntry if found, None otherwise
+        """
+        await self._ensure_initialized()
+
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = aiosqlite.Row
+            cursor = await db.execute(
+                """
+                SELECT * FROM context_log
+                WHERE session_id = ? AND turn_number = ?
+                """,
+                (session_id, turn_number),
+            )
+            row = await cursor.fetchone()
+            if row is None:
+                return None
+            return self._row_to_context_log(row)
+
+    async def export_context_log(
+        self, session_id: str, format: str = "json"
+    ) -> dict[str, Any]:
+        """
+        Export context log data for analysis.
+
+        Args:
+            session_id: The session ID to export
+            format: Export format ("json" supported, extensible for "csv")
+
+        Returns:
+            Dictionary containing export data with session info and turns
+        """
+        await self._ensure_initialized()
+
+        entries = await self.get_context_log_for_session(session_id)
+
+        # Parse JSON fields for clean export
+        turns = []
+        for entry in entries:
+            turn_data = {
+                "turn_number": entry.turn_number,
+                "entry_id": entry.entry_id,
+                "captured_at": entry.captured_at.isoformat(),
+                "raw_prompt": json.loads(entry.raw_prompt) if entry.raw_prompt else None,
+                "raw_response": (
+                    json.loads(entry.raw_response) if entry.raw_response else None
+                ),
+            }
+            turns.append(turn_data)
+
+        return {
+            "session_id": session_id,
+            "exported_at": datetime.now().isoformat(),
+            "turn_count": len(turns),
+            "turns": turns,
+        }
+
+    def _row_to_context_log(self, row: aiosqlite.Row) -> ContextLogEntry:
+        """Convert database row to ContextLogEntry."""
+        return ContextLogEntry(
+            id=row["id"],
+            session_id=row["session_id"],
+            turn_number=row["turn_number"],
+            entry_id=row["entry_id"],
+            raw_prompt=row["raw_prompt"],
+            raw_response=row["raw_response"],
+            captured_at=datetime.fromisoformat(row["captured_at"]),
+        )

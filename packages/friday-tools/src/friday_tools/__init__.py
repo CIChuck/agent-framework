@@ -24,6 +24,9 @@ from .sandbox import (
 # Utility tools
 from .utility import EchoTool, GetCurrentDateTimeTool
 
+# Smart file reading
+from .filesystem.smart_read import SmartFileReadTool
+
 __all__ = [
     # Protocols
     "ToolDefinition",
@@ -51,6 +54,8 @@ __all__ = [
     # Utility tools
     "GetCurrentDateTimeTool",
     "EchoTool",
+    # Smart file reading
+    "SmartFileReadTool",
 ]
 
 __version__ = "0.1.0"

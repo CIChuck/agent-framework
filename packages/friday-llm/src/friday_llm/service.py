@@ -156,6 +156,7 @@ class LiteLLMService:
         tools: list[dict[str, Any]] | None = None,
         response_model: type[BaseModel] | None = None,
         temperature: float = 0.7,
+        max_tokens: int | None = None,
         timeout: float | None = None,
         conversation_context: ConversationContext | None = None,
     ) -> ChatCompletionResponse:
@@ -167,6 +168,7 @@ class LiteLLMService:
             tools: Optional tool schemas for function calling
             response_model: Optional Pydantic model for structured output
             temperature: Sampling temperature
+            max_tokens: Maximum tokens for the response (limits output length)
             timeout: Override default timeout for this call
             conversation_context: Optional context for request/response pairing
 
@@ -191,6 +193,7 @@ class LiteLLMService:
                     messages=messages,
                     tools=tools,
                     temperature=temperature,
+                    max_tokens=max_tokens,
                     timeout=effective_timeout,
                     operation="chat_completion",
                 )
@@ -235,6 +238,7 @@ class LiteLLMService:
         messages: list[dict[str, Any]],
         tools: list[dict[str, Any]] | None = None,
         temperature: float = 0.7,
+        max_tokens: int | None = None,
         timeout: float | None = None,
         conversation_context: ConversationContext | None = None,
     ) -> AsyncIterator[str]:
@@ -248,6 +252,7 @@ class LiteLLMService:
             messages: Conversation history in OpenAI format
             tools: Optional tool schemas for function calling
             temperature: Sampling temperature
+            max_tokens: Maximum tokens for the response (limits output length)
             timeout: Override default stream timeout for this call
             conversation_context: Optional context for request/response pairing
 
@@ -278,6 +283,7 @@ class LiteLLMService:
                     messages=messages,
                     tools=tools,
                     temperature=temperature,
+                    max_tokens=max_tokens,
                     timeout=effective_timeout,
                 )
 
@@ -320,6 +326,7 @@ class LiteLLMService:
         temperature: float,
         timeout: float,
         operation: str,
+        max_tokens: int | None = None,
     ) -> Any:
         """Execute LiteLLM call with retry logic, timeout, and circuit breaker."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -344,6 +351,9 @@ class LiteLLMService:
                 "messages": messages,
                 "temperature": temperature,
             }
+
+            if max_tokens is not None:
+                kwargs["max_tokens"] = max_tokens
 
             if self.api_key:
                 kwargs["api_key"] = self.api_key
@@ -385,6 +395,7 @@ class LiteLLMService:
         tools: list[dict[str, Any]] | None,
         temperature: float,
         timeout: float,
+        max_tokens: int | None = None,
     ) -> Any:
         """Execute streaming call setup with retry on connection errors."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -410,6 +421,9 @@ class LiteLLMService:
                 "temperature": temperature,
                 "stream": True,
             }
+
+            if max_tokens is not None:
+                kwargs["max_tokens"] = max_tokens
 
             if self.api_key:
                 kwargs["api_key"] = self.api_key

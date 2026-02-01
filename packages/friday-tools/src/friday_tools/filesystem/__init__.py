@@ -36,6 +36,16 @@ from .write import (
     file_replace,
     file_write,
 )
+from .code_chunker import (
+    BaseLanguageChunker,
+    ChunkType,
+    CodeChunk,
+    CodeChunkerFactory,
+    GenericCodeChunker,
+    PythonCodeChunker,
+    SymbolTable,
+)
+from .smart_read import SmartFileReadTool
 
 __all__ = [
     # Read operations (classes)
@@ -78,4 +88,14 @@ __all__ = [
     "directory_tree",
     "directory_create",
     "file_search",
+    # Code chunking
+    "CodeChunk",
+    "ChunkType",
+    "SymbolTable",
+    "BaseLanguageChunker",
+    "PythonCodeChunker",
+    "GenericCodeChunker",
+    "CodeChunkerFactory",
+    # Smart file reading
+    "SmartFileReadTool",
 ]

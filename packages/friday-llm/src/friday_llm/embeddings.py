@@ -10,7 +10,9 @@ Ref: Batch 3 Specification, Section 3.2
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import logging
+from collections import OrderedDict
 from typing import Any
 
 import litellm
@@ -70,6 +72,7 @@ class LiteLLMEmbeddingService:
         telemetry: Any | None = None,
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
+        cache_size: int = 100,
     ) -> None:
         """
         Initialize the embedding service.
@@ -83,6 +86,7 @@ class LiteLLMEmbeddingService:
             telemetry: Optional TelemetryInterface for observability
             resilience: Configuration for retry, timeout, and circuit breaker
             pricing_config: Configuration for cost estimation
+            cache_size: Maximum number of query embeddings to cache (0 to disable)
         """
         self.model = model_name
         self.api_key = api_key
@@ -106,6 +110,55 @@ class LiteLLMEmbeddingService:
             cost_calculator=self._cost_calculator,
             provider_name=self._detect_provider(model_name),
         )
+
+        # Query embedding cache (LRU via OrderedDict)
+        # Caching at the EmbeddingModel layer benefits ALL vector stores
+        self._cache_size = cache_size
+        self._embedding_cache: OrderedDict[str, list[float]] = OrderedDict()
+        self._cache_hits = 0
+        self._cache_misses = 0
+
+    def _get_cache_key(self, text: str) -> str:
+        """Generate cache key from text using MD5 hash."""
+        return hashlib.md5(text.encode()).hexdigest()
+
+    def _cache_get(self, text: str) -> list[float] | None:
+        """Get embedding from cache if present, updating LRU order."""
+        if self._cache_size <= 0:
+            return None
+
+        cache_key = self._get_cache_key(text)
+        if cache_key in self._embedding_cache:
+            # Move to end (most recently used)
+            self._embedding_cache.move_to_end(cache_key)
+            self._cache_hits += 1
+            return self._embedding_cache[cache_key]
+
+        self._cache_misses += 1
+        return None
+
+    def _cache_put(self, text: str, embedding: list[float]) -> None:
+        """Store embedding in cache with LRU eviction."""
+        if self._cache_size <= 0:
+            return
+
+        cache_key = self._get_cache_key(text)
+
+        # Evict oldest if at capacity
+        while len(self._embedding_cache) >= self._cache_size:
+            self._embedding_cache.popitem(last=False)
+
+        self._embedding_cache[cache_key] = embedding
+
+    @property
+    def cache_stats(self) -> dict[str, int]:
+        """Get cache statistics."""
+        return {
+            "size": len(self._embedding_cache),
+            "max_size": self._cache_size,
+            "hits": self._cache_hits,
+            "misses": self._cache_misses,
+        }
 
     def _detect_provider(self, model: str) -> str:
         """Detect provider from model name."""
@@ -207,6 +260,10 @@ class LiteLLMEmbeddingService:
         """
         Embed a single query for search.
 
+        Uses LRU cache to avoid redundant embedding calls for repeated queries.
+        Cache is implemented at the EmbeddingModel layer so all vector stores
+        (Chroma, Pinecone, Qdrant) benefit automatically.
+
         Args:
             text: Query text to embed
             timeout: Override default timeout for this call
@@ -219,6 +276,12 @@ class LiteLLMEmbeddingService:
             LLMRetryExhaustedError: If max retries exceeded
             CircuitBreakerOpenError: If circuit breaker is open
         """
+        # Check cache first
+        cached = self._cache_get(text)
+        if cached is not None:
+            logger.debug(f"Embedding cache hit for query (cache stats: {self.cache_stats})")
+            return cached
+
         effective_timeout = timeout or self._resilience.timeout_seconds
 
         with self._telemetry_helper.track_embedding(
@@ -243,7 +306,11 @@ class LiteLLMEmbeddingService:
                     batch_count=1,
                 )
 
-                return embeddings[0]
+                # Cache the result
+                result = embeddings[0]
+                self._cache_put(text, result)
+
+                return result
 
             except LLMRetryExhaustedError as e:
                 tracker.set_retry_info(e.attempts, e.attempts)

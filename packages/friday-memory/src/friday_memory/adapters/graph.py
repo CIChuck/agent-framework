@@ -197,6 +197,10 @@ class ElementXGraphStore(GraphStoreAdapter):
         Duplicate detection is based on label (case-insensitive) and type.
         This prevents creating multiple nodes representing the same entity.
 
+        When a duplicate is detected and skipped, the existing node's hit_count
+        is incremented and last_accessed is updated (Hebbian learning - repeated
+        extraction strengthens the entity's importance).
+
         Args:
             node: The GraphNode to add (must include provenance)
             check_duplicate: If True, check for existing node with same label/type
@@ -212,9 +216,24 @@ class ElementXGraphStore(GraphStoreAdapter):
                 existing = self._find_by_label_unlocked(node.label, node.type)
                 if existing and existing.id != node.id:
                     if skip_if_duplicate:
+                        # Reinforce existing node (Hebbian learning)
+                        # Repeated extraction = this entity is important
+                        existing_data = self._graph.nodes[existing.id]
+                        existing_data["hit_count"] = existing_data.get("hit_count", 0) + 1
+                        existing_data["last_accessed"] = datetime.now().isoformat()
+                        self._save()
                         logger.debug(
-                            f"Skipping duplicate node: '{node.label}' (type={node.type}) "
-                            f"already exists with id={existing.id}"
+                            f"Reinforced duplicate node (hit_count={existing_data['hit_count']}): "
+                            f"'{node.label}' (type={node.type}) exists with id={existing.id}"
+                        )
+                        self._emit_event(
+                            "graph_node_reinforced",
+                            {
+                                "node_id": existing.id,
+                                "type": node.type,
+                                "label": node.label,
+                                "hit_count": existing_data["hit_count"],
+                            },
                         )
                         return False
                     else:
@@ -272,6 +291,10 @@ class ElementXGraphStore(GraphStoreAdapter):
         Duplicate detection is based on source_id, target_id, and relation
         (case-insensitive relation comparison).
 
+        When a duplicate is detected, the edge's hit_count is incremented and
+        last_accessed is updated (Hebbian learning - repeated extraction
+        strengthens the connection).
+
         Args:
             edge: The GraphEdge to add (must include provenance)
             skip_if_exists: If True, skip adding if duplicate exists (default: True)
@@ -290,16 +313,24 @@ class ElementXGraphStore(GraphStoreAdapter):
                 new_relation = edge.relation.lower()
 
                 if existing_relation == new_relation:
-                    # Duplicate edge detected
+                    # Duplicate edge detected - always record access (Hebbian learning)
+                    # Repeated extraction = reinforcement of this relationship
+                    existing_data["hit_count"] = existing_data.get("hit_count", 0) + 1
+                    existing_data["last_accessed"] = datetime.now().isoformat()
+
                     if update_if_exists:
-                        # Update existing edge with new data
+                        # Update existing edge with new data (preserving hit_count/last_accessed)
                         edge_data = edge.model_dump()
                         edge_data.pop("source_id")
                         edge_data.pop("target_id")
-                        self._graph.edges[edge.source_id, edge.target_id].update(edge_data)
+                        # Don't overwrite hit_count/last_accessed we just set
+                        edge_data.pop("hit_count", None)
+                        edge_data.pop("last_accessed", None)
+                        existing_data.update(edge_data)
                         self._save()
                         logger.debug(
-                            f"Updated existing edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                            f"Updated existing edge (hit_count={existing_data['hit_count']}): "
+                            f"{edge.source_id} --[{edge.relation}]--> {edge.target_id}"
                         )
                         self._emit_event(
                             "graph_edge_updated",
@@ -307,12 +338,25 @@ class ElementXGraphStore(GraphStoreAdapter):
                                 "source_id": edge.source_id,
                                 "target_id": edge.target_id,
                                 "relation": edge.relation,
+                                "hit_count": existing_data["hit_count"],
                             },
                         )
                         return True
                     elif skip_if_exists:
+                        # Skip adding but still save the hit_count/last_accessed update
+                        self._save()
                         logger.debug(
-                            f"Skipping duplicate edge: {edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                            f"Reinforced duplicate edge (hit_count={existing_data['hit_count']}): "
+                            f"{edge.source_id} --[{edge.relation}]--> {edge.target_id}"
+                        )
+                        self._emit_event(
+                            "graph_edge_reinforced",
+                            {
+                                "source_id": edge.source_id,
+                                "target_id": edge.target_id,
+                                "relation": edge.relation,
+                                "hit_count": existing_data["hit_count"],
+                            },
                         )
                         return False
                     # If neither flag is set, fall through and replace the edge
@@ -729,6 +773,37 @@ class ElementXGraphStore(GraphStoreAdapter):
         except Exception:
             return None
 
+    async def get_nodes_by_ids(self, node_ids: set[str]) -> dict[str, GraphNode]:
+        """
+        Get multiple nodes by ID (batch indexed retrieval).
+
+        More efficient than multiple get_node() calls when you need
+        several specific nodes.
+
+        Args:
+            node_ids: Set of node IDs to retrieve
+
+        Returns:
+            Dict mapping node_id -> GraphNode (missing IDs excluded)
+        """
+        if not node_ids:
+            return {}
+
+        async with self._acquire_lock():
+            node_data_list = [
+                (node_id, dict(self._graph.nodes[node_id]))
+                for node_id in node_ids
+                if node_id in self._graph.nodes
+            ]
+
+        result = {}
+        for node_id, node_data in node_data_list:
+            try:
+                result[node_id] = GraphNode(**node_data)
+            except Exception:
+                pass
+        return result
+
     async def get_all_nodes(self) -> list[GraphNode]:
         """Get all nodes in the graph. Uses snapshot pattern for thread safety."""
         # Snapshot under lock
@@ -753,7 +828,11 @@ class ElementXGraphStore(GraphStoreAdapter):
         sort_by: str = "hit_count",
     ) -> list[GraphNode]:
         """
-        Get top N nodes sorted by specified criteria.
+        Get top N nodes sorted by specified criteria with tiebreaker.
+
+        Sorting priority:
+        - hit_count: Primary sort by hit_count DESC, tiebreaker by last_accessed DESC
+        - last_accessed: Primary sort by last_accessed DESC, tiebreaker by hit_count DESC
 
         Args:
             n: Number of nodes to return
@@ -765,13 +844,17 @@ class ElementXGraphStore(GraphStoreAdapter):
         all_nodes = await self.get_all_nodes()
 
         if sort_by == "hit_count":
-            sorted_nodes = sorted(
-                all_nodes, key=lambda x: x.hit_count, reverse=True
-            )
-        elif sort_by == "last_accessed":
+            # Primary: hit_count DESC, Tiebreaker: last_accessed DESC
             sorted_nodes = sorted(
                 all_nodes,
-                key=lambda x: x.last_accessed or datetime.min,
+                key=lambda x: (x.hit_count, x.last_accessed or datetime.min),
+                reverse=True,
+            )
+        elif sort_by == "last_accessed":
+            # Primary: last_accessed DESC, Tiebreaker: hit_count DESC
+            sorted_nodes = sorted(
+                all_nodes,
+                key=lambda x: (x.last_accessed or datetime.min, x.hit_count),
                 reverse=True,
             )
         else:
@@ -814,6 +897,93 @@ class ElementXGraphStore(GraphStoreAdapter):
             except Exception:
                 pass
         return edges
+
+    async def get_edges_for_nodes(
+        self, node_ids: set[str], direction: str = "outgoing"
+    ) -> list[GraphEdge]:
+        """
+        Get edges connected to specific nodes (indexed retrieval).
+
+        More efficient than get_all_edges() + filter when you only need
+        edges for a subset of nodes.
+
+        Args:
+            node_ids: Set of node IDs to get edges for
+            direction: "outgoing" (source_id in node_ids),
+                      "incoming" (target_id in node_ids),
+                      or "both"
+
+        Returns:
+            List of GraphEdges connected to the specified nodes
+        """
+        if not node_ids:
+            return []
+
+        # Snapshot under lock - only edges connected to specified nodes
+        async with self._acquire_lock():
+            edge_data_list = []
+            for source, target, data in self._graph.edges(data=True):
+                include = False
+                if direction == "outgoing" and source in node_ids:
+                    include = True
+                elif direction == "incoming" and target in node_ids:
+                    include = True
+                elif direction == "both" and (source in node_ids or target in node_ids):
+                    include = True
+
+                if include:
+                    edge_data_list.append((source, target, dict(data)))
+
+        # Process outside lock
+        edges = []
+        for source, target, data in edge_data_list:
+            try:
+                edge_kwargs = {
+                    "source_id": source,
+                    "target_id": target,
+                    "relation": data.get("relation", "related_to"),
+                    "weight": data.get("weight", 1.0),
+                    "provenance": data.get("provenance"),
+                    "hit_count": data.get("hit_count", 0),
+                }
+                if data.get("embedding") is not None:
+                    edge_kwargs["embedding"] = data["embedding"]
+                if data.get("last_accessed") is not None:
+                    edge_kwargs["last_accessed"] = data["last_accessed"]
+                if data.get("created_at") is not None:
+                    edge_kwargs["created_at"] = data["created_at"]
+
+                edges.append(GraphEdge(**edge_kwargs))
+            except Exception:
+                pass
+        return edges
+
+    async def get_node_labels(self, node_ids: set[str] | None = None) -> dict[str, str]:
+        """
+        Get a mapping of node IDs to labels (indexed retrieval).
+
+        More efficient than get_all_nodes() when you only need labels
+        for lookups.
+
+        Args:
+            node_ids: Optional set of node IDs to get labels for.
+                     If None, returns labels for all nodes.
+
+        Returns:
+            Dict mapping node_id -> label
+        """
+        async with self._acquire_lock():
+            if node_ids is None:
+                return {
+                    node_id: self._graph.nodes[node_id].get("label", node_id)
+                    for node_id in self._graph.nodes
+                }
+            else:
+                return {
+                    node_id: self._graph.nodes[node_id].get("label", node_id)
+                    for node_id in node_ids
+                    if node_id in self._graph.nodes
+                }
 
     def _find_by_label_unlocked(
         self, label: str, node_type: str | None = None

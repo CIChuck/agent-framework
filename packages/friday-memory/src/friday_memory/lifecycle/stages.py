@@ -107,8 +107,13 @@ class MemoryLifecycleMetadata(BaseModel):
         default=PromotionState.NONE,
         description="State of any in-progress promotion (for crash recovery)",
     )
+    protected: bool = Field(
+        default=False,
+        description="If True, memory is exempt from decay and eligible for immediate promotion. "
+        "Used for explicitly ingested documents that represent intentional knowledge preservation.",
+    )
 
-    def to_metadata_dict(self) -> dict[str, str | float | int | None]:
+    def to_metadata_dict(self) -> dict[str, str | float | int | bool | None]:
         """
         Convert to a flat dictionary suitable for vector store metadata.
 
@@ -125,6 +130,7 @@ class MemoryLifecycleMetadata(BaseModel):
             "decayed_at": self.decayed_at.isoformat() if self.decayed_at else None,
             "access_count": self.access_count,
             "promotion_state": self.promotion_state.value,
+            "protected": self.protected,
         }
 
     @classmethod
@@ -166,6 +172,7 @@ class MemoryLifecycleMetadata(BaseModel):
             promotion_state=PromotionState(
                 data.get("promotion_state", PromotionState.NONE.value)
             ),
+            protected=bool(data.get("protected", False)),
         )
 
     def record_access(self) -> None:

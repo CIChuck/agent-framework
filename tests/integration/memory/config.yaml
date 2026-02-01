@@ -1,22 +1,26 @@
 # Friday-Memory Integration Test Configuration
 #
 # This config file controls LLM, embedding, and memory settings
-# for the memory-chat.py interactive CLI.
+# for the friday.py interactive CLI.
 
 # Logging Settings
 logging:
   # Global log level: DEBUG, INFO, WARNING, ERROR
-  level: ERROR
+  level: WARNING
 
   # Enable verbose extraction logging (shows full LLM extraction responses)
   # Set to true for debugging extraction issues
   extraction_debug: false
 
+  # Enable verbose tool loading/execution logging
+  # Set to true for debugging tool issues
+  tools_debug: true
+
 # LLM Provider Settings (for chat completions)
 
 llm:
-  # Model name - LiteLLhow do you keep creating a plan? I didn't ask for a plan! Are you using the plan to help you think better? Because honestly I'm impressed!Why do you keep creating a plan? A plan with tasks that follow it is very impressive.Hello?M requires provider prefix
-  #
+  # Model name
+
   # Local Models:
   #   LM Studio: "openai/your-model-name" (OpenAI-compatible API)
   #   Ollama: "ollama/llama3" or "ollama/mistral"
@@ -24,6 +28,8 @@ llm:
   # Cloud Providers (direct):
   #   OpenAI: "gpt-4o-mini" or "gpt-4o"
   #   Anthropic: "claude-3-5-sonnet-20241022"
+
+    
   #
   # OpenRouter (access multiple providers via single API):
   #   Anthropic: "openrouter/anthropic/claude-3.5-sonnet"
@@ -37,21 +43,34 @@ llm:
   #model: "openrouter/anthropic/claude-3.5-sonnet"
   #model: "openrouter/openai/gpt-4o"
   #model: "openrouter/google/gemma-3-27b-it"
+  #model: "openrouter/qwen/qwen3-235b-a22b-2507"
   #model: "openrouter/openai/gpt-oss-120b"
   #model: "openrouter/moonshotai/kimi-k2-0905"
-  # model: "openrouter/mistralai/devstral-2512:free"
+  #model: "openrouter/mistralai/devstral-2512:free"
+  #model: "openrouter/anthropic/claude-sonnet-4.5"
   
-  model: "openrouter/anthropic/claude-sonnet-4.5"
+  model: "openrouter/anthropic/claude-haiku-4.5"
+
+
+  #model: "claude-sonnet-4-20250514"
+  #model: "claude-haiku-4-5-20251001"
+
+  # Maximum tokens for LLM response (limits output length)
+  
+
   # API base URL
   # LM Studio: http://localhost:1234/v1
   # Ollama: http://localhost:11434
-  # OpenRouter: https://openrouter.ai/api/v1
+  
+  api_base: "https://openrouter.ai/api/v1"
+
   # OpenAI/Anthropic direct: Leave empty (uses default)
 
   #local
   #api_base: "http://localhost:1234/v1"
 
-  api_base: "https://openrouter.ai/api/v1"
+  #OpenRouter base
+  #api_base: "https://openrouter.ai/api/v1"
 
   # API key (required for cloud providers, optional for local)
   # LM Studio: Use "lm-studio" or any non-empty string
@@ -64,8 +83,12 @@ llm:
   #open router key
   api_key: "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"
 
-  # Temperature (0.0 = deterministic, 1.0 = creative)
+  #Anthropic key
+  #api_key: "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"
+  # Temperat ure (0.0 = deterministic, 1.0 = creative)
+  
   temperature: 0.4
+  max_tokens: 1500
 
   # Max retries for transient errors
   max_retries: 3
@@ -111,8 +134,19 @@ extraction:
   # Temperature (0.0 for deterministic extraction)
   temperature: 0.0
 
+  # Maximum tokens for extraction response (limits output length)
+  # Extraction outputs are structured JSON - needs enough room for many entities
+  # after processing large documents (800 was too small, caused truncated JSON)
+  max_tokens: 4000 
+
   # Timeout in seconds (can be higher since it runs in background)
-  timeout_seconds: 60.0
+  timeout_seconds: 90.0
+
+  # Extraction interval: how often to run background extraction
+  # 0 = every turn (default behavior)
+  # N = every N turns (e.g., 5 means extract on turns 5, 10, 15, ...)
+  # -1 = session exit only (minimal extraction)
+  interval: 3
 
   # Extraction prompt template
   # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name}, {user_message}, {assistant_response}
@@ -334,7 +368,8 @@ memory:
   #   - GPT-4: 8192 or 128000
   #   - Claude: 100000-200000
   #   - Local models: Check your LM Studio/Ollama config
-  context_window: 32000
+  
+  context_window: 40000
 
   # Tokens reserved for model output (response generation)
   # Rule of thumb: 1000-2000 for conversational, more for long-form
@@ -345,10 +380,15 @@ memory:
   # will include up to this many recent turns from the episodic store.
   # This controls how much conversation history the LLM sees.
   # Higher values = more context but higher token usage.
-  max_history_turns: 999
+  #
+  # BUDGET NOTE: History tokens come from (1 - budget_ratio) of dynamic budget.
+  # With budget_ratio=0.30, history gets ~70% of dynamic budget.
+  # Each turn is ~150-300 tokens. 15 turns × 200 = ~3,000 tokens.
+  # Plus prior_history turns (previous_sessions × previous_session_turns).
+  max_history_turns: 15
 
   # Consolidation settings
-  consolidate_after_turns: 50
+  consolidate_after_turns: 25
 
   # Context Priming Configuration
   # On session startup, prime the context with knowledge from prior sessions.
@@ -365,14 +405,134 @@ memory:
   # Options: plain, json, xml, markdown
   context_format: markdown
 
+  # =============================================================================
+  # SUPPORTING CONTEXT BUDGET CONFIGURATION
+  # =============================================================================
+  # Controls how the token budget is split between supporting context
+  # (insights, summaries, passages, etc.) and conversation history.
+  #
+  # The problem this solves:
+  #   Budget is enforced during memory retrieval (_apply_budget), but significant
+  #   content is added AFTER budget checks during prompt formatting
+  #   (_build_supporting_context). This can cause prompts to exceed the
+  #   configured context_window.
+  #
+  # How it works:
+  #   1. Dynamic budget = context_window - system_prompt - tools - output_buffer
+  #   2. Supporting context budget = dynamic_budget * budget_ratio
+  #   3. Sections are built in section_priority order
+  #   4. When budget is exhausted, remaining sections are truncated/omitted
+  #
+  # =============================================================================
+  supporting_context:
+    # Percentage of available budget allocated to supporting context (0.0-1.0)
+    # Remaining budget goes to conversation history.
+    # Higher ratio = more supporting context, less history
+    # Lower ratio = less supporting context, more history
+    budget_ratio: 0.30  # Default: 30%
+
+    # Priority order for sections when truncating (first = highest priority)
+    # Sections are built in this order; when budget runs out, remaining
+    # sections are skipped. If a section only partially fits, it's truncated.
+    #
+    # Available sections:
+    #   - recent_memories: Relationship summaries from graph store
+    #   - passages: Semantic search results from vector store
+    #   - key_facts: Extracted facts about entities
+    #   - insights: Rich contextual observations
+    #   - summaries: Conversation summaries (prior sessions)
+    #   - tools: Tool recommendations and usage hints
+    #   - state: Session state variables
+    section_priority:
+      - recent_memories
+      - passages
+      - key_facts
+      - tools
+      - insights
+      - summaries
+      - state
+
+    # Maximum items per section (hard limits before budget truncation)
+    # These are applied BEFORE budget-based truncation.
+    # Useful for preventing any single section from dominating.
+    max_items:
+      passages: 10
+      key_facts: 20
+      insights: 15
+      summaries: 10
+      tools: 5
+
+  # =============================================================================
+  # PROMPT CACHING CONFIGURATION
+  # =============================================================================
+  # Controls prompt caching optimization for LLM providers that support it.
+  # When enabled, the prompt layout is reordered to maximize cache hit rates.
+  #
+  # How LLM Caching Works:
+  #   - Providers cache a PREFIX of the prompt (from the start)
+  #   - Subsequent requests with the same prefix get cache hits
+  #   - Cache hits reduce latency and cost significantly
+  #
+  # Cache-Optimized Layout (when enabled):
+  #   1. System prompt (stable)
+  #   2. Tool definitions (stable)
+  #   3. Static context (insights, key facts - stable within session)
+  #   4. Conversation history (grows but prefix is stable)
+  #   ── CACHE BREAKPOINT ──
+  #   5. Query-specific context (vector search results - volatile)
+  #   6. Current user message
+  #
+  # Default Layout (when disabled):
+  #   Optimized for "Lost in the Middle" attention patterns instead.
+  #   Supporting context placed near query for recency effect.
+  #
+  # Provider Support:
+  #   - anthropic: Explicit cache_control markers (best support)
+  #   - openai: Automatic prefix caching (no markers needed)
+  #   - auto: Detect provider from model name
+  # =============================================================================
+  cache:
+    # Enable/disable cache-optimized prompt layout (default: false)
+    # When false, uses attention-optimized layout (recency effect)
+    enabled: false
+
+    # Provider for cache control markers
+    # Options: "auto", "anthropic", "openai", "none"
+    # "auto" detects from model name (recommended)
+    provider: "auto"
+
+    # Cache breakpoint strategy
+    # Options:
+    #   "after_history" - Cache system + tools + static context + history
+    #   "after_static"  - Cache system + tools + static context only
+    #   "system_only"   - Cache only system prompt
+    breakpoint: "after_history"
+
+    # Include static context (insights, key facts) in cacheable prefix
+    # When true, insights/facts are moved BEFORE history for better caching
+    # When false, they stay in the final message (attention-optimized)
+    static_context_in_prefix: true
+
+    # Minimum conversation turns before enabling cache optimization
+    # Short conversations may not benefit from caching overhead
+    min_turns_for_cache: 3
+
+    # TTL hint for Anthropic cache (seconds, 0 = provider default)
+    # Anthropic default is 5 minutes
+    ttl_seconds: 0
+
   priming:
     enabled: true              # Enable/disable automatic priming
-    top_entities: 50           # Number of top entities by hit_count to load
-    max_insights: 50          # Most recent insights to include
-    max_summaries: 50          # Most recent turn summaries to include
-    max_facts: 50             # Number of key facts to include from graph
+    top_entities: 50          # Increased (indexed retrieval now efficient)
+    max_insights: 15           # Reduced to fit within supporting_context budget
+    max_summaries: 10          # Reduced to fit within supporting_context budget
+    max_facts: 20              # Reduced to fit within supporting_context budget
     recency_days: 0            # Only include from last N days (0 = all time)
-    token_budget: 20000        # Max tokens for primed content
+    # IMPORTANT: This budget should be LESS than supporting_context budget
+    # supporting_context gets: (context_window - fixed_costs) * budget_ratio
+    # With 40K context, ~1K system, ~1K output: (40K - 2K) * 0.30 = ~11.4K
+    # Set priming lower to leave room for formatting overhead
+    token_budget: 8000         # ~20% of context window (leaves headroom)
 
     # -------------------------------------------------------------------------
     # CROSS-SESSION HISTORY
@@ -398,18 +558,25 @@ memory:
 
     # Number of prior sessions to include (0 = disabled)
     # Example: 2 means include turns from the 2 most recent sessions
-    previous_sessions: 2
+    previous_sessions: 1
 
     # Maximum turns to include per prior session
     # Example: 5 means up to 5 turns from each prior session
     # Total prior turns = previous_sessions * previous_session_turns
-    previous_session_turns: 20
+    # WARNING: Prior history BYPASSES supporting_context budget!
+    # Each turn is ~150-300 tokens. Keep this conservative.
+    previous_session_turns: 5
 
 # Transcript Settings
 transcript:
   # Directory for transcript exports (CSV, JSONL, etc.)
   # Can be absolute path or relative to the working directory
   export_directory: ./exports
+
+  # Enable/disable raw prompt and response storage for context engineering analysis
+  # When enabled, the full messages array and LLM response are stored in context_log table
+  # This enables deep analysis of context engineering but increases storage usage
+  capture_raw_prompts: true
 
 # Chat Settings
 chat:
@@ -463,7 +630,8 @@ chat:
 
     Available tool categories:
     - Datetime tools: For current date/time queries
-    - Filesystem tools: For listing directories, reading files, Writing files
+    - Filesystem tools: For listing directories, reading files, writing files
+    - Web tools: For searching the web (web_search), reading web pages (web_reader), and HTTP requests
     - Utility tools: For testing (echo)
 
     CRITICAL: Do NOT fabricate information that a tool can provide:
@@ -1046,13 +1214,190 @@ lifecycle:
     min_factor: 0.01
 
 # =============================================================================
+# SMART FILE PROCESSING CONFIGURATION
+# =============================================================================
+# Controls the SmartFileReadTool behavior for large file processing.
+# Follows the same pattern as maintenance.llm for flexible model selection.
+# =============================================================================
+smart_file:
+  # Size threshold for auto-chunking (chars)
+  # Files larger than this will be processed in chunks
+  auto_chunk_threshold: 50000
+
+  # Chunking settings
+  chunk_size: 2048     # Target tokens per chunk
+  chunk_overlap: 25    # Overlap tokens between chunks
+
+  # Default output modes
+  default_add_to_context: true
+  default_store_to_memory: false
+
+  # Code handling
+  code:
+    preserve_structure: true
+    extract_symbols: true
+    supported_languages: [python, rust, javascript, typescript, go]
+
+  # ---------------------------------------------------------------------------
+  # LLM CONFIGURATION FOR FILE PROCESSING
+  # ---------------------------------------------------------------------------
+  # Separate LLM configuration for each stage of processing.
+  # This allows using cheaper/faster models for summarization and
+  # more capable models for synthesis.
+  #
+  # If a section is omitted, falls back to the main chat LLM.
+  # ---------------------------------------------------------------------------
+  llm:
+    # LLM for chunk summarization (called once per chunk)
+    # Good choice: fast, cheap model (processes many chunks)
+    summarizer:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.1
+      max_tokens: 500
+      timeout_seconds: 30
+
+    # LLM for final synthesis (called once per file)
+    # Good choice: more capable model for coherent synthesis
+    synthesizer:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "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"
+      temperature: 0.3
+      max_tokens: 1000
+      timeout_seconds: 60
+
+  # ---------------------------------------------------------------------------
+  # PROMPTS FOR FILE PROCESSING
+  # ---------------------------------------------------------------------------
+  # Customizable prompts for each stage. Supports placeholders:
+  #
+  # Summarization placeholders:
+  #   {description} - User-provided context about the file
+  #   {running_summary} - Summary from previous chunks
+  #   {index} - Current chunk number
+  #   {total} - Total number of chunks
+  #   {chunk_text} - The chunk content
+  #   {file_path} - Path to the file being processed
+  #
+  # Code summarization additional placeholders:
+  #   {chunk_type} - "imports", "class", "function", "module_level"
+  #   {symbols_defined} - List of symbols defined in this chunk
+  #   {symbols_referenced} - External symbols referenced
+  #
+  # Synthesis placeholders:
+  #   {file_path} - Path to the file
+  #   {description} - User-provided context
+  #   {numbered_summaries} - All chunk summaries with numbers
+  #   {symbol_table} - For code: all symbols extracted
+  # ---------------------------------------------------------------------------
+  prompts:
+    # Summarization prompt for prose/text content
+    prose_summarization: |
+      Summarize this section of a larger document. Extract key points and entities.
+
+      File: {file_path}
+      Context: {description}
+      Previous context: {running_summary}
+
+      SECTION {index}/{total}:
+      {chunk_text}
+
+      Provide a concise summary (2-3 sentences) focusing on:
+      1. Main ideas and key facts
+      2. Important entities mentioned (people, places, concepts)
+      3. How this section relates to previous context
+
+      Respond with JSON:
+      {{
+          "summary": "The concise summary text",
+          "entities": ["entity1", "entity2"],
+          "key_points": ["point1", "point2"]
+      }}
+
+    # Summarization prompt for code content
+    code_summarization: |
+      Summarize the purpose and behavior of this code section.
+
+      File: {file_path}
+      Section type: {chunk_type}
+      Symbols defined: {symbols_defined}
+      External references: {symbols_referenced}
+
+      CODE:
+      {chunk_text}
+
+      Describe what this code does in 2-3 sentences.
+      Focus on INTENT (what it accomplishes) not syntax.
+
+      Respond with JSON:
+      {{
+          "summary": "What this code does",
+          "purpose": "Why this code exists",
+          "dependencies": ["external symbols or modules used"]
+      }}
+
+    # Synthesis prompt for prose content
+    prose_synthesis: |
+      Synthesize these section summaries into a comprehensive overview.
+
+      Document: {file_path}
+      Context: {description}
+
+      SECTION SUMMARIES:
+      {numbered_summaries}
+
+      Create a unified summary that:
+      1. Captures the overall purpose and main content
+      2. Highlights key themes or topics covered
+      3. Notes important entities or concepts
+      4. Preserves critical details that would be useful for future reference
+
+      Respond with JSON:
+      {{
+          "summary": "Comprehensive overview paragraph (3-5 sentences)",
+          "key_themes": ["theme1", "theme2"],
+          "entities": ["entity1", "entity2"],
+          "insights": ["insight1", "insight2"]
+      }}
+
+    # Synthesis prompt for code content
+    code_synthesis: |
+      Synthesize these code section summaries into an architectural overview.
+
+      File: {file_path}
+      Context: {description}
+
+      SYMBOL TABLE:
+      {symbol_table}
+
+      SECTION SUMMARIES:
+      {numbered_summaries}
+
+      Create a unified overview that:
+      1. Describes the overall purpose of this code file
+      2. Explains the main components and their relationships
+      3. Notes key dependencies and external interactions
+      4. Highlights important patterns or design decisions
+
+      Respond with JSON:
+      {{
+          "overview": "What this file does overall (2-3 sentences)",
+          "components": ["component1: description", "component2: description"],
+          "architecture_notes": "How components work together",
+          "dependencies": ["dep1", "dep2"],
+          "key_patterns": ["pattern1", "pattern2"]
+      }}
+
+# =============================================================================
 # TOOL CONFIGURATION
 # =============================================================================
-# Configuration for tool testing in memory-chat. This section enables testing
+# Configuration for tool testing in friday. This section enables testing
 # of tool execution and tool context management without requiring the full
 # friday-agent Re-Act loop.
 #
-# Tools in memory-chat are used for two purposes:
+# Tools in friday are used for two purposes:
 #   1. Testing executable tools via /run-tool command
 #   2. Testing tool context injection (future: schemas in context payload)
 #
@@ -1067,6 +1412,29 @@ tools:
   # Master switch for tool functionality. When false, no tools are loaded.
   # ---------------------------------------------------------------------------
   enabled: true
+
+  # ---------------------------------------------------------------------------
+  # TOOL LOOP SETTINGS
+  # ---------------------------------------------------------------------------
+  # Controls the Re-Act style tool calling loop behavior.
+  # These settings affect how the LLM interacts with tools during a turn.
+  # ---------------------------------------------------------------------------
+  loop:
+    # Maximum tool calling iterations per turn (default: 10)
+    # Increase for complex multi-step tasks, decrease to limit runaway loops
+    max_iterations: 15
+
+    # Abort after N consecutive tool failures (default: 3)
+    # Prevents infinite retry loops when tools are broken
+    max_consecutive_failures: 3
+
+    # Maximum messages in working context before pruning (default: 30)
+    # Tool calls and results accumulate; this prevents context overflow
+    max_tool_messages: 50
+
+    # Maximum characters per tool result sent to LLM (default: 50000)
+    # Large tool outputs are truncated to prevent context overflow
+    max_tool_result_chars: 50000
 
   # ---------------------------------------------------------------------------
   # TOOL REGISTRY
@@ -1157,9 +1525,10 @@ tools:
     #   - encoding: File encoding (default: "utf-8")
     #   - max_lines: Limit output to N lines (default: None/all)
     # -------------------------------------------------------------------------
-    - name: file_read
-      module: friday_tools.filesystem
-      class: FileReadTool
+    # REMOVED: Basic file_read replaced by smart_read (renamed to file_read) for large file support
+    # - name: file_read
+    #   module: friday_tools.filesystem
+    #   class: FileReadTool
 
     # -------------------------------------------------------------------------
     # file_write - Write content to a text file
@@ -1179,8 +1548,211 @@ tools:
       class: FileWriteTool
 
     # -------------------------------------------------------------------------
-    # Shell Tools (disabled by default for security)
+    # smart_read - Intelligently read files of any size
+    #
+    # Usage examples:
+    #   /run-tool smart_read {"path": "/path/to/file.py"}
+    #   /run-tool smart_read {"path": "large_doc.md", "store_to_memory": true}
+    #   /run-tool smart_read {"path": "code.py", "description": "API handlers"}
+    #   /run-tool smart_read {"path": "small.txt", "force_chunked": true}
+    #
+    # Parameters:
+    #   - path: File path to read (required)
+    #   - add_to_context: Return content to conversation (default: true)
+    #   - store_to_memory: Save to long-term memory (default: false)
+    #   - description: Context for summarization (optional)
+    #   - force_chunked: Force chunked processing (default: false)
+    #
+    # Behavior:
+    #   - Small files (< auto_chunk_threshold): Direct read, full content
+    #   - Large files: Chunk → Summarize → Synthesize
+    #   - Code files: Structure-aware chunking at function/class boundaries
+    #   - Prose files: Semantic chunking with overlap
+    #
+    # Configuration: Uses smart_file section for thresholds, LLM, and prompts
     # -------------------------------------------------------------------------
+    # Smart file reader with large file processing
+    # Renamed from smart_read to file_read for backward compatibility
+    - name: file_read
+      module: friday_tools.filesystem.smart_read
+      class: SmartFileReadTool
+
+    # -------------------------------------------------------------------------
+    # Web Tools
+    # -------------------------------------------------------------------------
+    # web_search - Search the web using DuckDuckGo
+    #
+    # Usage examples:
+    #   /run-tool web_search {"query": "Python asyncio tutorial"}
+    #   /run-tool web_search {"query": "React hooks 2024", "max_results": 5}
+    #   /run-tool web_search {"query": "nginx config", "region": "us-en"}
+    #
+    # Parameters:
+    #   - query: Search query (required)
+    #   - max_results: Number of results 1-25 (default: 10)
+    #   - region: Region code like "us-en", "uk-en" (default: "wt-wt" worldwide)
+    #
+    # Returns: Titles, URLs, and snippets for each result
+    # -------------------------------------------------------------------------
+    #- name: web_search
+    #  module: friday_tools.web
+    #  class: WebSearchTool
+
+    # -------------------------------------------------------------------------
+    # serper_search - Search Google using Serper.dev API
+    #
+    # Usage examples:
+    #   /run-tool serper_search {"query": "Python asyncio tutorial"}
+    #   /run-tool serper_search {"query": "React hooks", "max_results": 5}
+    #   /run-tool serper_search {"query": "AI news", "search_type": "news"}
+    #   /run-tool serper_search {"query": "cute cats", "search_type": "images"}
+    #
+    # Parameters:
+    #   - query: Search query (required)
+    #   - max_results: Number of results 1-100 (default: 10)
+    #   - search_type: "search" (default), "news", or "images"
+    #
+    # Returns: Titles, URLs, and snippets for each result
+    #
+    # Requires: serper_api_key configured in web: section
+    # Get API key from: https://serper.dev
+    # -------------------------------------------------------------------------
+    - name: serper_search
+      module: friday_tools.web
+      class: SerperSearchTool
+
+    # web_reader - Read and extract content from web pages
+    #
+    # Usage examples:
+    #   /run-tool web_reader {"url": "https://example.com"}
+    #   /run-tool web_reader {"url": "https://example.com", "output_format": "text"}
+    #   /run-tool web_reader {"url": "https://api.example.com/data", "output_format": "json"}
+    #
+    # Parameters:
+    #   - url: URL to read (required)
+    #   - output_format: "auto", "markdown", "text", "html", "json" (default: "auto")
+    #   - max_length: Maximum output length (default: 50000)
+    #   - include_metadata: Include page metadata (default: false)
+    #   - include_links: Include hyperlinks (default: true)
+    #   - include_images: Include image references (default: false)
+    #
+    # Security:
+    #   - SSRF protection: Blocks private IPs, localhost, link-local addresses
+    #   - Response size limiting
+    #   - Configurable via web: section
+    # -------------------------------------------------------------------------
+    - name: web_reader
+      module: friday_tools.web
+      class: WebReaderTool
+
+    # -------------------------------------------------------------------------
+    # http_get - Make HTTP GET requests
+    #
+    # Usage examples:
+    #   /run-tool http_get {"url": "https://api.example.com/users"}
+    #   /run-tool http_get {"url": "https://api.example.com/data", "headers": {"Authorization": "Bearer token"}}
+    #
+    # Parameters:
+    #   - url: URL to request (required)
+    #   - headers: Request headers (optional)
+    #   - params: Query parameters (optional)
+    #   - timeout: Request timeout in seconds (optional, overrides config)
+    # -------------------------------------------------------------------------
+    - name: http_get
+      module: friday_tools.web
+      class: HttpGetTool
+
+    # -------------------------------------------------------------------------
+    # http_post - Make HTTP POST requests
+    #
+    # Usage examples:
+    #   /run-tool http_post {"url": "https://api.example.com/users", "json_data": {"name": "test"}}
+    #   /run-tool http_post {"url": "https://example.com/form", "form_data": {"key": "value"}}
+    #
+    # Parameters:
+    #   - url: URL to request (required)
+    #   - json_data: JSON body (optional)
+    #   - form_data: Form data (optional, mutually exclusive with json_data)
+    #   - headers: Request headers (optional)
+    #   - timeout: Request timeout in seconds (optional)
+    # -------------------------------------------------------------------------
+    - name: http_post
+      module: friday_tools.web
+      class: HttpPostTool
+
+    # -------------------------------------------------------------------------
+    # http_put - Make HTTP PUT requests
+    # -------------------------------------------------------------------------
+    - name: http_put
+      module: friday_tools.web
+      class: HttpPutTool
+
+    # -------------------------------------------------------------------------
+    # http_delete - Make HTTP DELETE requests
+    # -------------------------------------------------------------------------
+    - name: http_delete
+      module: friday_tools.web
+      class: HttpDeleteTool
+
+    # -------------------------------------------------------------------------
+    # http_download - Download files from URLs
+    #
+    # Usage examples:
+    #   /run-tool http_download {"url": "https://example.com/file.pdf", "destination": "./downloads/file.pdf"}
+    #
+    # Parameters:
+    #   - url: URL to download from (required)
+    #   - destination: Local path to save file (required)
+    #   - timeout: Request timeout in seconds (optional)
+    # -------------------------------------------------------------------------
+    - name: http_download
+      module: friday_tools.web
+      class: HttpDownloadTool
+
+    # -------------------------------------------------------------------------
+    # http_upload - Upload files to URLs
+    #
+    # Usage examples:
+    #   /run-tool http_upload {"url": "https://example.com/upload", "file_path": "./document.pdf"}
+    #
+    # Parameters:
+    #   - url: URL to upload to (required)
+    #   - file_path: Local file to upload (required)
+    #   - field_name: Form field name (default: "file")
+    #   - headers: Request headers (optional)
+    #   - timeout: Request timeout in seconds (optional)
+    # -------------------------------------------------------------------------
+    - name: http_upload
+      module: friday_tools.web
+      class: HttpUploadTool
+
+    # -------------------------------------------------------------------------
+    # Shell Tools
+    # -------------------------------------------------------------------------
+    # command_execute - Execute OS commands with blocklist safety
+    #
+    # More permissive than shell_execute (allows pipes, chaining) but still
+    # blocks destructive commands (rm, sudo, chmod, etc.).
+    #
+    # Usage examples:
+    #   /run-tool command_execute {"command": "curl -s https://api.example.com"}
+    #   /run-tool command_execute {"command": "ls -la | grep .py"}
+    #   /run-tool command_execute {"command": "echo test > output.txt", "cwd": "/tmp"}
+    #
+    # Parameters:
+    #   - command: Command line to execute (required)
+    #   - cwd: Working directory (default: current)
+    #   - timeout: Timeout in seconds 1-300 (default: 30)
+    #   - env: Additional environment variables (optional)
+    #
+    # Allowed: curl, ls, grep, cat, echo, pipes, chaining, redirects (to cwd)
+    # Blocked: rm, sudo, chmod, chown, kill, mv, cp, pip, npm, etc.
+    # -------------------------------------------------------------------------
+    - name: command_execute
+      module: friday_tools.shell.command
+      class: CommandExecuteTool
+
+    # Legacy restrictive shell (disabled by default)
     # - name: shell_execute
     #   module: friday_tools.shell
     #   class: ShellExecuteTool
@@ -1209,6 +1781,65 @@ tools:
 
     # Include usage hints in supporting context (recency effect)
     include_hints: true
+
+# =============================================================================
+# WEB TOOLS CONFIGURATION
+# =============================================================================
+# Configuration for web tools (WebReaderTool, HTTP tools).
+# These settings control HTTP client behavior, security, and content extraction.
+# =============================================================================
+web:
+  # HTTP client settings (shared by all web tools)
+  client:
+    timeout: 30.0                  # Request timeout in seconds
+    max_retries: 3                 # Retry count for transient failures
+    follow_redirects: true         # Follow HTTP redirects
+    max_response_size: 20000000    # 20MB max response
+    user_agent: "Mozilla/5.0 (compatible; FridayBot/1.0)"
+
+  # SSL/TLS settings
+  ssl:
+    verify: true                   # Verify SSL certificates
+    ca_bundle: null                # Custom CA bundle path (null = system default)
+
+  # Proxy settings (for corporate networks or testing)
+  proxy:
+    http: null                     # HTTP proxy URL (e.g., "http://proxy:8080")
+    https: null                    # HTTPS proxy URL
+    no_proxy:                      # Hosts to bypass proxy
+      - "localhost"
+      - "127.0.0.1"
+
+  # Security settings (SSRF protection)
+  security:
+    # Block requests to private/internal IPs (10.x, 172.16.x, 192.168.x, etc.)
+    # Set to true only for testing with local services
+    allow_private_ips: false
+
+    # Additional hosts to block (case-insensitive)
+    blocked_hosts: []
+
+  # Content extraction settings (for WebReaderTool)
+  reader:
+    default_format: "auto"         # auto, markdown, text, html, json
+    max_content_length: 500000       # Max output characters (max allowed: 500000)
+    include_metadata: false        # Include title, description, etc.
+    remove_elements:               # HTML elements to strip
+      - "script"
+      - "style"
+      - "nav"
+      - "footer"
+      - "header"
+      - "aside"
+      - "iframe"
+      - "noscript"
+
+  # Serper.dev API key for Google SERP search
+  # Get your API key from https://serper.dev
+  # More reliable than scraping DuckDuckGo
+  # Replace with your API key, e.g., "your-serper-api-key"
+  
+  serper_api_key: 0c38a510278852e8ae8da199a3510ab0e25d77c8
 
 # =============================================================================
 # SESSION SETTINGS

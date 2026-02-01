@@ -154,6 +154,16 @@ class InteractionTurn(BaseModel):
         description="How much of the context window was filled",
     )
 
+    # Raw prompt/response for context engineering analysis
+    raw_prompt: str | None = Field(
+        default=None,
+        description="JSON-serialized messages array sent to LLM",
+    )
+    raw_response: str | None = Field(
+        default=None,
+        description="JSON-serialized raw LLM response with metadata",
+    )
+
 
 class SessionState(BaseModel):
     """

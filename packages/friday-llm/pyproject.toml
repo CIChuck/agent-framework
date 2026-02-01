@@ -5,6 +5,7 @@ description = "LLM inference layer for Friday Framework"
 requires-python = ">=3.10"
 dependencies = [
     "friday-core",
+    "friday-telemetry",
     "litellm>=1.40.0",
     "tenacity>=8.2.0",
 ]
@@ -29,3 +30,4 @@ asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
 friday-core = { workspace = true }
+friday-telemetry = { workspace = true }

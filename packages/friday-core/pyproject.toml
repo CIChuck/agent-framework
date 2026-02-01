@@ -7,6 +7,7 @@ dependencies = [
     "pydantic>=2.0",
     "pydantic-settings>=2.0",
     "structlog>=24.0.0",
+    "friday-telemetry",
 ]
 
 [project.optional-dependencies]
@@ -31,3 +32,6 @@ packages = ["src/friday_core"]
 testpaths = ["tests"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
+
+[tool.uv.sources]
+friday-telemetry = { workspace = true }

@@ -2,22 +2,48 @@
 HTTP client tools.
 
 Ref: docs/specs/tool_specification.md - Category 6: HTTP Client
+
+All tools use shared infrastructure:
+- URL validation with SSRF protection (validators.py)
+- Configured HTTP client (client.py)
+- Response formatting (client.py)
 """
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any
 
 import httpx
 
 from ..definition import BaseTool
 from ..sandbox import FilesystemSandbox
+from .client import create_http_client, format_http_response
+from .config import DEFAULT_WEB_CONFIG, WebConfig
+from .validators import URLValidationError, validate_url
 
 
 class HttpGetTool(BaseTool):
-    """Make HTTP GET request."""
+    """Make HTTP GET request with SSRF protection."""
+
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        """
+        Initialize HttpGetTool with configuration.
+
+        Args:
+            config: WebConfig instance, dict from YAML, or None for defaults
+            sandbox: Optional filesystem sandbox for path validation
+        """
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
+        self._sandbox = sandbox
 
     @property
     def name(self) -> str:
@@ -25,7 +51,15 @@ class HttpGetTool(BaseTool):
 
     @property
     def description(self) -> str:
-        return "Make an HTTP GET request to a URL."
+        return "Make an HTTP GET request to a URL with SSRF protection."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async", "read-only"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -48,8 +82,7 @@ class HttpGetTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 30,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url"],
@@ -59,51 +92,56 @@ class HttpGetTool(BaseTool):
         url = kwargs["url"]
         headers = kwargs.get("headers", {})
         params = kwargs.get("params", {})
-        timeout = kwargs.get("timeout", 30)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
+
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            # Create a modified config with the new timeout
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
 
         try:
-            async with httpx.AsyncClient(timeout=timeout) as client:
-                response = await client.get(url, headers=headers, params=params)
+            async with create_http_client(config) as client:
+                response = await client.get(
+                    validated_url, headers=headers, params=params
+                )
 
-            return self._format_response(response)
+            return format_http_response(response)
 
         except httpx.TimeoutException:
-            return f"Error: Request timed out after {timeout} seconds"
+            return f"Error: Request timed out after {config.client.timeout} seconds"
         except Exception as e:
-            return f"Error: {e}"
-
-    def _format_response(self, response: httpx.Response) -> str:
-        """Format HTTP response for output."""
-        lines = [
-            f"Status: {response.status_code} {response.reason_phrase}",
-            "",
-            "Headers:",
-        ]
-        for key, value in response.headers.items():
-            lines.append(f"  {key}: {value}")
-
-        lines.append("")
-        lines.append("Body:")
-
-        # Try to parse as JSON for pretty printing
-        content_type = response.headers.get("content-type", "")
-        if "application/json" in content_type:
-            try:
-                data = response.json()
-                lines.append(json.dumps(data, indent=2))
-            except Exception:
-                lines.append(response.text[:5000])
-        else:
-            lines.append(response.text[:5000])
-
-        if len(response.text) > 5000:
-            lines.append("\n...(truncated)")
-
-        return "\n".join(lines)
+            return f"Error: {type(e).__name__}: {e}"
 
 
 class HttpPostTool(BaseTool):
-    """Make HTTP POST request."""
+    """Make HTTP POST request with SSRF protection."""
+
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
+        self._sandbox = sandbox
 
     @property
     def name(self) -> str:
@@ -112,6 +150,14 @@ class HttpPostTool(BaseTool):
     @property
     def description(self) -> str:
         return "Make an HTTP POST request with JSON or form data."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -128,7 +174,9 @@ class HttpPostTool(BaseTool):
                 },
                 "form_data": {
                     "type": "object",
-                    "description": "Form data to send (mutually exclusive with json_data)",
+                    "description": (
+                        "Form data to send (mutually exclusive with json_data)"
+                    ),
                 },
                 "headers": {
                     "type": "object",
@@ -137,8 +185,7 @@ class HttpPostTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 30,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url"],
@@ -149,27 +196,62 @@ class HttpPostTool(BaseTool):
         json_data = kwargs.get("json_data")
         form_data = kwargs.get("form_data")
         headers = kwargs.get("headers", {})
-        timeout = kwargs.get("timeout", 30)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
+
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
 
         try:
-            async with httpx.AsyncClient(timeout=timeout) as client:
+            async with create_http_client(config) as client:
                 if json_data:
-                    response = await client.post(url, json=json_data, headers=headers)
+                    response = await client.post(
+                        validated_url, json=json_data, headers=headers
+                    )
                 elif form_data:
-                    response = await client.post(url, data=form_data, headers=headers)
+                    response = await client.post(
+                        validated_url, data=form_data, headers=headers
+                    )
                 else:
-                    response = await client.post(url, headers=headers)
+                    response = await client.post(validated_url, headers=headers)
 
-            return HttpGetTool()._format_response(response)
+            return format_http_response(response)
 
         except httpx.TimeoutException:
-            return f"Error: Request timed out after {timeout} seconds"
+            return f"Error: Request timed out after {config.client.timeout} seconds"
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error: {type(e).__name__}: {e}"
 
 
 class HttpPutTool(BaseTool):
-    """Make HTTP PUT request."""
+    """Make HTTP PUT request with SSRF protection."""
+
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
+        self._sandbox = sandbox
 
     @property
     def name(self) -> str:
@@ -178,6 +260,14 @@ class HttpPutTool(BaseTool):
     @property
     def description(self) -> str:
         return "Make an HTTP PUT request with JSON or form data."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -199,8 +289,7 @@ class HttpPutTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 30,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url"],
@@ -210,25 +299,58 @@ class HttpPutTool(BaseTool):
         url = kwargs["url"]
         json_data = kwargs.get("json_data")
         headers = kwargs.get("headers", {})
-        timeout = kwargs.get("timeout", 30)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
+
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
 
         try:
-            async with httpx.AsyncClient(timeout=timeout) as client:
+            async with create_http_client(config) as client:
                 if json_data:
-                    response = await client.put(url, json=json_data, headers=headers)
+                    response = await client.put(
+                        validated_url, json=json_data, headers=headers
+                    )
                 else:
-                    response = await client.put(url, headers=headers)
+                    response = await client.put(validated_url, headers=headers)
 
-            return HttpGetTool()._format_response(response)
+            return format_http_response(response)
 
         except httpx.TimeoutException:
-            return f"Error: Request timed out after {timeout} seconds"
+            return f"Error: Request timed out after {config.client.timeout} seconds"
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error: {type(e).__name__}: {e}"
 
 
 class HttpDeleteTool(BaseTool):
-    """Make HTTP DELETE request."""
+    """Make HTTP DELETE request with SSRF protection."""
+
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
+        self._sandbox = sandbox
 
     @property
     def name(self) -> str:
@@ -237,6 +359,14 @@ class HttpDeleteTool(BaseTool):
     @property
     def description(self) -> str:
         return "Make an HTTP DELETE request."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -254,8 +384,7 @@ class HttpDeleteTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 30,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url"],
@@ -264,24 +393,52 @@ class HttpDeleteTool(BaseTool):
     async def execute(self, **kwargs: Any) -> str:
         url = kwargs["url"]
         headers = kwargs.get("headers", {})
-        timeout = kwargs.get("timeout", 30)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
+
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
 
         try:
-            async with httpx.AsyncClient(timeout=timeout) as client:
-                response = await client.delete(url, headers=headers)
+            async with create_http_client(config) as client:
+                response = await client.delete(validated_url, headers=headers)
 
-            return HttpGetTool()._format_response(response)
+            return format_http_response(response)
 
         except httpx.TimeoutException:
-            return f"Error: Request timed out after {timeout} seconds"
+            return f"Error: Request timed out after {config.client.timeout} seconds"
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error: {type(e).__name__}: {e}"
 
 
 class HttpDownloadTool(BaseTool):
-    """Download a file from URL."""
+    """Download a file from URL with SSRF protection."""
 
-    def __init__(self, sandbox: FilesystemSandbox | None = None):
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
         self._sandbox = sandbox or FilesystemSandbox()
 
     @property
@@ -291,6 +448,14 @@ class HttpDownloadTool(BaseTool):
     @property
     def description(self) -> str:
         return "Download a file from a URL and save it locally."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async", "file-write"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -307,8 +472,7 @@ class HttpDownloadTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 60,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url", "destination"],
@@ -317,37 +481,79 @@ class HttpDownloadTool(BaseTool):
     async def execute(self, **kwargs: Any) -> str:
         url = kwargs["url"]
         destination = kwargs["destination"]
-        timeout = kwargs.get("timeout", 60)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
 
         dest_path = self._sandbox.validate_path(destination)
 
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
+
         try:
-            async with httpx.AsyncClient(timeout=timeout) as client:
-                async with client.stream("GET", url) as response:
-                    response.raise_for_status()
+            async with create_http_client(config) as client:
+                response = await client.get(validated_url)
+                response.raise_for_status()
 
-                    dest_path.parent.mkdir(parents=True, exist_ok=True)
+                # Check Content-Length if present
+                content_length = response.headers.get("content-length")
+                if content_length:
+                    size = int(content_length)
+                    if size > config.client.max_response_size:
+                        return (
+                            f"Error: File too large ({size} bytes, "
+                            f"max: {config.client.max_response_size})"
+                        )
 
-                    total_size = 0
-                    with dest_path.open("wb") as f:
-                        async for chunk in response.aiter_bytes(chunk_size=8192):
-                            f.write(chunk)
-                            total_size += len(chunk)
+                dest_path.parent.mkdir(parents=True, exist_ok=True)
+
+                content = response.content
+                total_size = len(content)
+                if total_size > config.client.max_response_size:
+                    return (
+                        f"Error: Download exceeded max size "
+                        f"({config.client.max_response_size} bytes)"
+                    )
+
+                dest_path.write_bytes(content)
 
             return f"Downloaded {total_size} bytes to {destination}"
 
         except httpx.TimeoutException:
-            return f"Error: Download timed out after {timeout} seconds"
+            return f"Error: Download timed out after {config.client.timeout} seconds"
         except httpx.HTTPStatusError as e:
             return f"Error: HTTP {e.response.status_code}"
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error: {type(e).__name__}: {e}"
 
 
 class HttpUploadTool(BaseTool):
-    """Upload a file to URL."""
+    """Upload a file to URL with SSRF protection."""
 
-    def __init__(self, sandbox: FilesystemSandbox | None = None):
+    def __init__(
+        self,
+        config: WebConfig | dict | None = None,
+        sandbox: FilesystemSandbox | None = None,
+    ):
+        if config is None:
+            self._config = DEFAULT_WEB_CONFIG
+        elif isinstance(config, dict):
+            self._config = WebConfig.from_dict(config)
+        else:
+            self._config = config
         self._sandbox = sandbox or FilesystemSandbox()
 
     @property
@@ -357,6 +563,14 @@ class HttpUploadTool(BaseTool):
     @property
     def description(self) -> str:
         return "Upload a file to a URL using multipart form data."
+
+    @property
+    def category(self) -> str:
+        return "web"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["http", "async", "file-read"]
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -383,8 +597,7 @@ class HttpUploadTool(BaseTool):
                 },
                 "timeout": {
                     "type": "integer",
-                    "description": "Request timeout in seconds",
-                    "default": 60,
+                    "description": "Request timeout in seconds (overrides config)",
                 },
             },
             "required": ["url", "file_path"],
@@ -395,29 +608,49 @@ class HttpUploadTool(BaseTool):
         file_path = kwargs["file_path"]
         field_name = kwargs.get("field_name", "file")
         headers = kwargs.get("headers", {})
-        timeout = kwargs.get("timeout", 60)
+        timeout = kwargs.get("timeout")
+
+        # Validate URL (SSRF protection)
+        try:
+            validated_url = validate_url(
+                url,
+                allow_private_ips=self._config.security.allow_private_ips,
+                blocked_hosts=set(self._config.security.blocked_hosts),
+            )
+        except URLValidationError as e:
+            return f"Error: URL validation failed - {e}"
 
         src_path = self._sandbox.validate_path(file_path)
 
         if not src_path.exists():
             return f"Error: File not found: {file_path}"
 
+        # Override timeout if provided
+        config = self._config
+        if timeout is not None:
+            from copy import deepcopy
+
+            config = deepcopy(self._config)
+            config.client.timeout = float(timeout)
+
         try:
             content = src_path.read_bytes()
 
-            async with httpx.AsyncClient(timeout=timeout) as client:
+            async with create_http_client(config) as client:
                 files = {field_name: (src_path.name, content)}
-                response = await client.post(url, files=files, headers=headers)
+                response = await client.post(
+                    validated_url, files=files, headers=headers
+                )
 
-            return HttpGetTool()._format_response(response)
+            return format_http_response(response)
 
         except httpx.TimeoutException:
-            return f"Error: Upload timed out after {timeout} seconds"
+            return f"Error: Upload timed out after {config.client.timeout} seconds"
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error: {type(e).__name__}: {e}"
 
 
-# Convenience instances
+# Convenience instances with default configuration
 http_get = HttpGetTool()
 http_post = HttpPostTool()
 http_put = HttpPutTool()

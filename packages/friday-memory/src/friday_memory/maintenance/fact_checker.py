@@ -93,6 +93,54 @@ class FactChecker:
         self._prompts = prompts or PromptsConfig()
         self._reorg_logger = reorg_logger
 
+    def _parse_json_response(self, content: str) -> dict[str, Any]:
+        """
+        Parse JSON from LLM response, handling various formats.
+
+        LLMs often wrap JSON in markdown code blocks or add extra text.
+        This method tries multiple strategies to extract valid JSON.
+
+        Args:
+            content: Raw LLM response content
+
+        Returns:
+            Parsed JSON as dict, or empty dict if parsing fails
+        """
+        import re
+
+        # Strategy 1: Try direct parse
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            pass
+
+        # Strategy 2: Extract from markdown code block
+        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', content)
+        if code_block_match:
+            try:
+                return json.loads(code_block_match.group(1))
+            except json.JSONDecodeError:
+                pass
+
+        # Strategy 3: Find JSON object in text (first { to last })
+        brace_match = re.search(r'\{[\s\S]*\}', content)
+        if brace_match:
+            try:
+                return json.loads(brace_match.group(0))
+            except json.JSONDecodeError:
+                pass
+
+        # Strategy 4: Try to fix common JSON issues
+        fixed = re.sub(r',\s*([}\]])', r'\1', content)
+        try:
+            return json.loads(fixed)
+        except json.JSONDecodeError:
+            pass
+
+        # Strategy 5: Return empty structure
+        logger.warning(f"Could not parse JSON from response: {content[:200]}...")
+        return {}
+
     def _get_chroma_client(self) -> chromadb.ClientAPI | None:
         """Get ChromaDB client."""
         # Try both possible locations for ChromaDB:
@@ -214,13 +262,7 @@ class FactChecker:
             temperature=0.1,
         )
 
-        content = response.content
-        if "```json" in content:
-            content = content.split("```json")[1].split("```")[0]
-        elif "```" in content:
-            content = content.split("```")[1].split("```")[0]
-
-        return json.loads(content.strip())
+        return self._parse_json_response(response.content or "")
 
     async def _research_claim(self, claim_text: str) -> dict[str, Any]:
         """
@@ -242,13 +284,7 @@ class FactChecker:
             temperature=0.3,
         )
 
-        content = response.content
-        if "```json" in content:
-            content = content.split("```json")[1].split("```")[0]
-        elif "```" in content:
-            content = content.split("```")[1].split("```")[0]
-
-        return json.loads(content.strip())
+        return self._parse_json_response(response.content or "")
 
     async def _judge_claim(
         self,
@@ -276,13 +312,7 @@ class FactChecker:
             temperature=0.1,
         )
 
-        content = response.content
-        if "```json" in content:
-            content = content.split("```json")[1].split("```")[0]
-        elif "```" in content:
-            content = content.split("```")[1].split("```")[0]
-
-        return json.loads(content.strip())
+        return self._parse_json_response(response.content or "")
 
     def _update_fact_metadata(
         self,

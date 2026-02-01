@@ -10,6 +10,7 @@ keywords = ["ai", "agents", "tools", "llm", "automation"]
 dependencies = [
     # Core protocols
     "friday-core",
+    "friday-moltbook",
     # Sandbox for code execution
     "friday-sandbox",
     # HTTP & Web
@@ -76,6 +77,7 @@ packages = ["src/friday_tools"]
 [tool.uv.sources]
 friday-core = { workspace = true }
 friday-sandbox = { workspace = true }
+friday-moltbook = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

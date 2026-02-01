@@ -1,0 +1,381 @@
+# Friday Copilot Configuration
+#
+# This is the default configuration for Friday Copilot.
+# On first run, this file is copied to your config directory:
+#   - Linux: ~/.config/friday/config.yaml
+#   - macOS: ~/Library/Application Support/friday/config.yaml
+#   - Windows: %APPDATA%/friday/config.yaml
+#
+# API keys should be set via environment variables for security.
+
+# =============================================================================
+# LOGGING SETTINGS
+# =============================================================================
+logging:
+  # Global log level: DEBUG, INFO, WARNING, ERROR
+  level: INFO
+
+  # Enable verbose extraction logging (shows full LLM extraction responses)
+  extraction_debug: false
+
+# =============================================================================
+# LLM PROVIDER SETTINGS
+# =============================================================================
+llm:
+  # Model name - LiteLLM requires provider prefix
+  #
+  # Examples:
+  #   OpenRouter: "openrouter/anthropic/claude-sonnet-4"
+  #   OpenAI: "gpt-4o-mini" or "gpt-4o"
+  #   Anthropic: "claude-3-5-sonnet-20241022"
+  #   Ollama: "ollama/llama3"
+  #   LM Studio: "openai/your-model-name"
+  model: "openrouter/anthropic/claude-sonnet-4"
+
+  # API base URL
+  #   OpenRouter: https://openrouter.ai/api/v1
+  #   OpenAI: (leave empty for default)
+  #   LM Studio: http://localhost:1234/v1
+  #   Ollama: http://localhost:11434
+  api_base: "https://openrouter.ai/api/v1"
+
+  # API key - use environment variable reference
+  # Set OPENROUTER_API_KEY, OPENAI_API_KEY, or ANTHROPIC_API_KEY in your shell
+  api_key: "${OPENROUTER_API_KEY}"
+
+  # Temperature (0.0 = deterministic, 1.0 = creative)
+  temperature: 0.4
+
+  # Max retries for transient errors
+  max_retries: 3
+
+  # Timeout in seconds
+  timeout_seconds: 60.0
+
+# =============================================================================
+# EXTRACTION LLM SETTINGS
+# =============================================================================
+# Separate LLM for entity/relationship extraction (can be smaller/cheaper)
+extraction:
+  model: "openrouter/google/gemini-2.5-flash"
+  api_base: "https://openrouter.ai/api/v1"
+  api_key: "${OPENROUTER_API_KEY}"
+  temperature: 0.0
+  timeout_seconds: 60.0
+
+  # Extraction prompt template
+  prompt: |
+    Analyze the conversation turn below to extract a knowledge graph structure and semantic memories.
+
+    Turn ID: {turn_id}
+    Timestamp: {timestamp}
+
+    Conversation Context:
+    - Speaker A (Human): {user_name}
+    - Speaker B (AI): {assistant_name}
+
+    TEXT TO ANALYZE:
+    {user_name}: {user_message}
+    {assistant_name}: {assistant_response}
+
+    INSTRUCTIONS:
+
+    1. **Entity Extraction (Nodes)**
+      - Identify people, organizations, projects, technologies, or abstract concepts.
+      - **Canonicalization**: Create an `id` for every entity in snake_case.
+      - **Properties**: Extract specific attributes mentioned.
+
+    2. **Relationship Extraction (Edges)**
+      - Extract directional relationships: SOURCE -> RELATIONSHIP -> TARGET.
+
+    3. **Insight Extraction (Structured Facts)**
+      - Extract granular facts as structured objects with metadata.
+
+    4. **Turn Summary (Paragraph)**
+      - Write a 2-4 sentence paragraph summarizing the entire conversation turn.
+
+    5. **Task Extraction**
+      - Specific actionable items with owner_id.
+
+    JSON OUTPUT FORMAT:
+
+    {{
+        "entities": [
+            {{"id": "entity_id", "label": "Display Name", "type": "person|project|technology|organization|concept", "properties": {{}}}}
+        ],
+        "relationships": [
+            {{"source_id": "actor_id", "relation": "VERB", "target_id": "recipient_id"}}
+        ],
+        "insights": [
+            {{
+                "text": "Rich, contextual sentence worth remembering.",
+                "topic": "preference|biographical|technical|constraint",
+                "entities": ["entity1", "entity2"],
+                "confidence": 0.9,
+                "sentiment": "positive|negative|neutral"
+            }}
+        ],
+        "tasks": [
+            {{"description": "task description", "status": "pending|completed|blocked", "owner_id": "entity_id"}}
+        ],
+        "summary": "A 2-4 sentence paragraph summarizing this conversation turn."
+    }}
+
+# =============================================================================
+# EMBEDDING SETTINGS
+# =============================================================================
+embedding:
+  # Local embedding model (LM Studio)
+  model: "openai/nomic-embed-text-v1.5"
+  api_base: "http://127.0.0.1:1234/v1"
+  api_key: "lm-studio"
+  timeout_seconds: 60.0
+
+# =============================================================================
+# MEMORY SETTINGS
+# =============================================================================
+memory:
+  # ChromaDB collection name
+  collection_name: "friday_copilot"
+
+  # Persistence directory - null uses platformdirs default
+  # Override to use a specific directory
+  persist_directory: null
+
+  # Multi-Collection Architecture
+  retrieval:
+    short_term_collection: "memories_short_term"
+    long_term_collection: "memories_long_term"
+    decayed_collection: "memories_decayed"
+    short_term_min_similarity: 0.5
+    long_term_min_similarity: 0.7
+    default_n_results: 5
+
+    inclusion:
+      decay_rate: 0.005
+      usage_boost_factor: 0.1
+      inclusion_threshold: 0.6
+
+    graph:
+      edge_weight: 0.4
+      target_weight: 0.6
+      hit_count_boost: 0.05
+      path_threshold: 0.5
+
+  # Token budget configuration
+  context_window: 32000
+  output_buffer: 1000
+  max_history_turns: 999
+  consolidate_after_turns: 50
+  context_format: markdown
+
+  # Context priming
+  priming:
+    enabled: true
+    top_entities: 50
+    max_insights: 50
+    max_summaries: 50
+    max_facts: 50
+    recency_days: 0
+    token_budget: 20000
+    previous_sessions: 2
+    previous_session_turns: 20
+
+# =============================================================================
+# TRANSCRIPT SETTINGS
+# =============================================================================
+transcript:
+  # Export directory - null uses platformdirs default
+  export_directory: null
+
+# =============================================================================
+# CHAT SETTINGS
+# =============================================================================
+chat:
+  user_name: "User"
+  assistant_name: "Friday"
+
+  system_prompt: |
+    You are Friday, a helpful AI assistant with persistent memory.
+    Your responses should incorporate memories from previous conversations when relevant.
+    Be concise yet thorough - add detail only if it adds significant value.
+    If you don't know the answer, say so rather than fabricating information.
+
+    When tools are available, use them directly without asking for permission.
+    Do not describe what you could do - just do it.
+
+# =============================================================================
+# MAINTENANCE SETTINGS
+# =============================================================================
+maintenance:
+  backup_directory: null
+
+  pruning:
+    stale_threshold_days: 30
+    min_hit_count: 1
+    similarity_threshold: 0.80
+
+  synthesis:
+    cluster_min_size: 2
+    meta_insight_confidence: 0.65
+
+  fact_checking:
+    batch_size: 100
+    verification_timeout: 60
+
+  llm:
+    synthesizer:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "${OPENROUTER_API_KEY}"
+      temperature: 0.3
+
+    classifier:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "${OPENROUTER_API_KEY}"
+      temperature: 0.1
+
+    researcher:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "${OPENROUTER_API_KEY}"
+      temperature: 0.2
+
+    judge:
+      model: "openrouter/google/gemini-2.5-flash"
+      api_base: "https://openrouter.ai/api/v1"
+      api_key: "${OPENROUTER_API_KEY}"
+      temperature: 0.0
+
+  embedding:
+    model: "openai/nomic-embed-text-v1.5"
+    api_base: "http://127.0.0.1:1234/v1"
+    api_key: "lm-studio"
+
+  defaults:
+    backup_first: true
+    dry_run: false
+    skip_synthesis: false
+    skip_verify: false
+
+  logging:
+    log_directory: null
+    verbosity: normal
+    format: markdown
+    enabled: true
+
+# =============================================================================
+# LIFECYCLE CONFIGURATION
+# =============================================================================
+lifecycle:
+  enabled: true
+  decay_rate: 0.01
+  access_boost: 0.2
+  promotion_threshold: 0.7
+  decay_threshold: 0.5
+  short_term_min_age_hours: 24
+  decayed_retention_days: 3
+  promotion_weight_age: 0.2
+  promotion_weight_access: 0.4
+  promotion_weight_confidence: 0.2
+  promotion_weight_connection: 0.2
+
+  access_buffer:
+    max_buffer_size: 1000
+    max_buffer_age_seconds: 300
+    wal_path: null
+    decay_score_boost: 0.1
+
+  factor_computer:
+    decay_rate: 0.005
+    usage_boost_factor: 0.1
+    min_factor: 0.01
+
+# =============================================================================
+# TOOL CONFIGURATION
+# =============================================================================
+tools:
+  enabled: true
+
+  registry:
+    - name: get_current_datetime
+      module: friday_tools.utility
+      class: GetCurrentDateTimeTool
+
+    - name: echo
+      module: friday_tools.utility
+      class: EchoTool
+
+    - name: directory_list
+      module: friday_tools.filesystem
+      class: DirectoryListTool
+
+    - name: file_read
+      module: friday_tools.filesystem
+      class: FileReadTool
+
+    - name: file_write
+      module: friday_tools.filesystem
+      class: FileWriteTool
+
+  context:
+    max_tools: 20
+    max_budget_ratio: 0.25
+    recommendation_threshold: 0.5
+    include_in_context: true
+    include_hints: true
+
+# =============================================================================
+# WEB TOOLS CONFIGURATION
+# =============================================================================
+web:
+  # HTTP client settings (shared by all web tools)
+  client:
+    timeout: 30.0                  # Request timeout in seconds
+    max_retries: 3                 # Retry count for transient failures
+    follow_redirects: true         # Follow HTTP redirects
+    max_response_size: 10000000    # 10MB max response
+    user_agent: "Mozilla/5.0 (compatible; FridayBot/1.0)"
+
+  # SSL/TLS settings
+  ssl:
+    verify: true                   # Verify SSL certificates
+    ca_bundle: null                # Custom CA bundle path (null = system default)
+
+  # Proxy settings
+  proxy:
+    http: null                     # HTTP proxy URL (e.g., "http://proxy:8080")
+    https: null                    # HTTPS proxy URL
+    no_proxy:                      # Hosts to bypass proxy
+      - "localhost"
+      - "127.0.0.1"
+
+  # Security settings
+  security:
+    allow_private_ips: false       # Block requests to private/internal IPs
+    blocked_hosts: []              # Additional hosts to block
+
+  # Content extraction settings (for WebReaderTool)
+  reader:
+    default_format: "auto"         # auto, markdown, text, html, json
+    max_content_length: 50000      # Max output characters
+    include_metadata: false        # Include title, description, etc.
+    remove_elements:               # HTML elements to strip
+      - "script"
+      - "style"
+      - "nav"
+      - "footer"
+      - "header"
+      - "aside"
+      - "iframe"
+      - "noscript"
+
+# =============================================================================
+# SESSION SETTINGS
+# =============================================================================
+session:
+  flush_on_exit: true
+  lifecycle_on_exit: true
+  reorganize_on_exit: false
+  reorganize_mode: "fast"

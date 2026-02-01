@@ -573,7 +573,8 @@ class ContextAssembler(ContextEngineeringInterface):
             f"Context pruning required: {current_tokens} > {budget_limit} tokens"
         )
 
-        # Make mutable copies
+        # Make mutable copies (including prior_history which was previously ignored!)
+        prior_history = list(filtered_payload.prior_history)
         history = list(filtered_payload.history)
         passages = list(filtered_payload.passages)
         entities = list(filtered_payload.entities)
@@ -584,6 +585,19 @@ class ContextAssembler(ContextEngineeringInterface):
         # Separate short-term and long-term passages for lifecycle-aware pruning
         short_term, long_term = self._separate_by_stage(passages)
 
+        # 0. Drop prior_history first (lowest priority - from previous sessions)
+        # This is cross-session history that should be dropped before current session
+        if prior_history:
+            prior_history = []  # Drop all prior history first
+            current_tokens = self._estimate_tokens_full(
+                prior_history + history, short_term + long_term, entities, facts, insights, summaries
+            )
+            if current_tokens <= budget_limit:
+                return self._create_pruned_payload_full(
+                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                    prior_history=prior_history
+                )
+
         # 1. Drop deep history (turns 10+)
         if len(history) > 10:
             history = history[-10:]
@@ -592,7 +606,8 @@ class ContextAssembler(ContextEngineeringInterface):
             )
             if current_tokens <= budget_limit:
                 return self._create_pruned_payload_full(
-                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                    prior_history=prior_history
                 )
 
         # 2. Drop low-relevancy long-term memories (inclusion_score < 0.3)
@@ -602,7 +617,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= budget_limit:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                prior_history=prior_history
             )
 
         # 3. Drop weak vector matches (relevancy_score < 0.5)
@@ -613,7 +629,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= budget_limit:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                prior_history=prior_history
             )
 
         # 4. Drop more history (keep last 5)
@@ -624,7 +641,8 @@ class ContextAssembler(ContextEngineeringInterface):
             )
             if current_tokens <= budget_limit:
                 return self._create_pruned_payload_full(
-                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                    prior_history=prior_history
                 )
 
         # 5. Reduce to top passages by relevancy (keep short-term first)
@@ -635,7 +653,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= budget_limit:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                prior_history=prior_history
             )
 
         # 6. Drop insights and summaries
@@ -646,7 +665,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= budget_limit:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                prior_history=prior_history
             )
 
         # 7. Drop entities and facts
@@ -657,7 +677,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= budget_limit:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries
+                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
+                prior_history=prior_history
             )
 
         # 8. Keep only last 2 turns (critical)
@@ -681,7 +702,8 @@ class ContextAssembler(ContextEngineeringInterface):
         )
 
         return self._create_pruned_payload_full(
-            filtered_payload, history, short_term, entities, facts, insights, summaries
+            filtered_payload, history, short_term, entities, facts, insights, summaries,
+            prior_history=prior_history
         )
 
     def _filter_decayed(self, payload: ContextPayload) -> ContextPayload:
@@ -1097,9 +1119,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
 
     def _estimate_payload_tokens(self, payload: ContextPayload) -> int:
-        """Estimate total tokens in a payload."""
-        return self._estimate_tokens(
-            payload.history, payload.passages, payload.entities, payload.facts
+        """Estimate total tokens in a payload (includes prior_history)."""
+        return self._estimate_tokens_full(
+            list(payload.prior_history) + list(payload.history),
+            payload.passages,
+            payload.entities,
+            payload.facts,
+            payload.insights or [],
+            payload.summaries or [],
         )
 
     def _estimate_tokens(
@@ -1171,6 +1198,7 @@ class ContextAssembler(ContextEngineeringInterface):
         payload: ContextPayload,
         context_format: str = "plain",
         user_query: str | None = None,
+        turn_count: int = 0,
     ) -> list[dict[str, Any]]:
         """
         Physically arranges messages for optimal model attention.
@@ -1184,6 +1212,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 Options: "plain" (default), "json", "xml", "markdown"
             user_query: The current user message. If None, extracts from
                 the last history item.
+            turn_count: Current conversation turn count (for cache eligibility)
 
         Returns:
             List of message dicts in OpenAI-compatible format
@@ -1208,4 +1237,5 @@ class ContextAssembler(ContextEngineeringInterface):
             payload=payload,
             state=state,
             context_format=context_format,
+            turn_count=turn_count,
         )

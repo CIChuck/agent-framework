@@ -242,17 +242,55 @@ class CollectionManager:
         self,
         texts: list[str],
         metadatas: list[dict[str, Any]],
-        ids: list[str],
+        ids: list[str] | None = None,
+        protected: bool = False,
     ) -> bool:
         """
         Add new memories to short-term collection.
 
-        This is the entry point for newly consolidated memories.
+        This is the entry point for newly consolidated memories and
+        explicit document ingestion (e.g., /ingest command).
+
+        Documents added here will participate in the memory lifecycle:
+        - Start with decay_score=1.0 (fresh)
+        - Can be promoted to long-term based on access patterns
+        - Eventually decay if not accessed
+
+        If protected=True, documents are:
+        - Exempt from decay (never demoted to DECAYED)
+        - Fast-tracked for promotion to long-term (no 24h wait)
+        - Suitable for explicitly ingested documents
+
+        Args:
+            texts: List of document texts
+            metadatas: List of metadata dicts
+            ids: Optional list of document IDs
+            protected: If True, marks documents as protected from decay
+
+        Returns:
+            True if documents were added successfully
         """
-        # Ensure stage is set correctly
+        if not texts:
+            return True
+
+        # Generate IDs if not provided
+        if ids is None:
+            ids = [f"mem_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}" for i in range(len(texts))]
+
+        # Ensure lifecycle metadata is set correctly
+        now = datetime.now().isoformat()
         for metadata in metadatas:
             metadata["stage"] = MemoryStage.SHORT_TERM.value
             metadata["promotion_state"] = PromotionState.NONE.value
+            # Add lifecycle tracking fields if not present
+            if "created_at" not in metadata:
+                metadata["created_at"] = now
+            if "decay_score" not in metadata:
+                metadata["decay_score"] = 1.0  # Fresh memory
+            if "hit_count" not in metadata:
+                metadata["hit_count"] = 0
+            # Set protected status
+            metadata["protected"] = protected
 
         return await self._short_term.add_documents(texts, metadatas, ids)
 

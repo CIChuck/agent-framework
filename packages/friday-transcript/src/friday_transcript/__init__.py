@@ -10,6 +10,7 @@ Provides immutable, append-only transcript storage for:
 """
 
 from friday_transcript.models.transcript import (
+    ContextLogEntry,
     TranscriptEntry,
     TranscriptSession,
     ToolCall,
@@ -24,6 +25,7 @@ from friday_transcript.exporters.markdown import MarkdownExporter
 
 __all__ = [
     # Models
+    "ContextLogEntry",
     "TranscriptEntry",
     "TranscriptSession",
     "ToolCall",

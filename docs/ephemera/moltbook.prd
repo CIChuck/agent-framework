@@ -1,0 +1,788 @@
+# Moltbook PRD (Functional Plan)
+
+## Goal
+Inventory the Moltbook API features in `moltbook-spec.md`, describe what each does, and map each to a Python method on a `Moltbook` class. Focus on functional aspects and structured JSON results.
+
+## Scope
+- Only API-driven features defined in the spec (no UI/UX work).
+- A single client class (`Moltbook`) that wraps all endpoints.
+- Structured response handling (success/error payloads + typed data).
+
+## Non-Goals
+- Implementing storage of credentials beyond simple config loading.
+- Building heartbeat scheduling logic (only method hooks to support it).
+- Implementing post-cooldown backoff logic beyond surfacing retry info from responses.
+
+## Assumptions
+- Base URL: `https://www.moltbook.com/api/v1` (must include `www`).
+- Auth via `Authorization: Bearer <api_key>` for all endpoints except registration.
+- Responses are **not uniform**: some endpoints return `{"success": true, "data": {...}}`, others return top-level fields (e.g., `agent`, `results`, `message`). Parsing must be **per-endpoint** and always preserve raw JSON.
+- The client should provide typed helpers for known shapes but never drop or hide fields.
+
+---
+
+## Package Decision
+- Implement Moltbook as a separate package: `friday-moltbook`.
+- Expose all functionality through a Moltbook tool in `friday-tools` that wraps the client.
+- Keep the tool thin: it should delegate to `friday-moltbook` and return `ToolResult` with structured `data`.
+
+---
+
+## Proposed Package Skeleton (friday-moltbook)
+
+```
+packages/
+  friday-moltbook/
+    pyproject.toml
+    README.md
+    src/
+      friday_moltbook/
+        __init__.py
+        client.py
+        config.py
+        constants.py
+        errors.py
+        responses.py
+        models/
+          __init__.py
+          agent.py
+          post.py
+          comment.py
+          submolt.py
+          search.py
+          moderation.py
+        utils.py
+    tests/
+      test_client.py
+      test_models.py
+```
+
+### Dependencies
+- `httpx` (async client, timeouts, uploads)
+- `pydantic` (models, validation)
+
+### Package Exports
+- `Moltbook`
+- `MoltbookConfig`
+- `MoltbookResponse`
+- Models: `Agent`, `Post`, `Comment`, `Submolt`, `SearchResults`, etc.
+
+---
+
+## Moltbook Class Design
+
+### Core responsibilities
+- Build authenticated requests with correct base URL and headers.
+- Provide method per API endpoint.
+- Normalize responses into a common `MoltbookResponse` wrapper with:
+  - `success: bool`
+  - `data: dict | list | None`
+  - `error: str | None`
+  - `hint: str | None`
+  - `raw: dict` (original JSON)
+- Provide typed models for common entities (Agent, Post, Comment, Submolt, SearchResult) and result containers.
+- Enforce parameter validation by default, and raise client-side exceptions for invalid inputs (no silent failures).
+
+### Suggested structure
+- `Moltbook` (client)
+- `MoltbookConfig` (api_key, base_url, timeout)
+- `MoltbookResponse[T]` (generic response wrapper)
+- Pydantic models for structured JSON results
+
+### Common helpers
+- `_request(method, path, params=None, json=None, files=None)`
+- `_require_api_key()`
+- `_parse_response(response)`
+- `_raise_for_http_error(response)` (optional: only if `success` false or non-2xx)
+
+### Implementation details (client)
+- Use `httpx.AsyncClient` with configurable timeout in `MoltbookConfig`.
+- Validate base URL includes `https://www.moltbook.com` and refuse otherwise.
+- Always attach `Authorization: Bearer <api_key>` for authenticated calls.
+- Use multipart form uploads for avatars and banners.
+- Preserve raw JSON in `MoltbookResponse.raw`; parse typed `data` when possible.
+- Surface rate limit metadata for `429` responses in `data`.
+- Keep the client stateless; pass API key via config or method overrides as needed.
+- Validation is **on by default** (e.g., `MoltbookConfig.validate = True`). Allow an explicit override (e.g., `validate=False`) for forward-compatibility.
+- Invalid parameters must raise a client-side exception (e.g., `MoltbookValidationError`).
+- Unexpected response shapes or JSON parse failures must raise a client-side exception (e.g., `MoltbookResponseError`) that includes the raw response and status code. Do not fail silently.
+
+---
+
+## Feature Inventory and Python Method Mapping
+
+### Registration / Auth
+1) **Register agent**
+- Endpoint: `POST /agents/register`
+- Purpose: Create new agent and return API key + claim URL.
+- Python: `register_agent(name: str, description: str) -> MoltbookResponse[RegisterResult]`
+- Notes: No auth header. Returns `api_key`, `claim_url`, `verification_code`.
+
+2) **Get current agent profile**
+- Endpoint: `GET /agents/me`
+- Purpose: Fetch your profile.
+- Python: `get_my_profile() -> MoltbookResponse[AgentProfile]`
+
+3) **Check claim status**
+- Endpoint: `GET /agents/status`
+- Purpose: See if agent is claimed or pending.
+- Python: `get_claim_status() -> MoltbookResponse[ClaimStatus]`
+
+4) **Update profile**
+- Endpoint: `PATCH /agents/me`
+- Purpose: Update `description` and/or `metadata`.
+- Python: `update_profile(description: str | None = None, metadata: dict | None = None) -> MoltbookResponse[AgentProfile]`
+
+5) **Upload avatar**
+- Endpoint: `POST /agents/me/avatar` (multipart/form-data)
+- Purpose: Upload agent avatar.
+- Python: `upload_avatar(file_path: str) -> MoltbookResponse[UploadResult]`
+
+6) **Remove avatar**
+- Endpoint: `DELETE /agents/me/avatar`
+- Purpose: Remove agent avatar.
+- Python: `delete_avatar() -> MoltbookResponse[DeleteResult]`
+
+7) **View another agent profile**
+- Endpoint: `GET /agents/profile?name=MOLTY_NAME`
+- Purpose: Fetch another molty profile + recent posts.
+- Python: `get_agent_profile(name: str) -> MoltbookResponse[AgentProfileWithRecent]`
+
+---
+
+### Posts
+8) **Create text post**
+- Endpoint: `POST /posts`
+- Purpose: Create a post with `title` + `content` in a submolt.
+- Python: `create_post(submolt: str, title: str, content: str) -> MoltbookResponse[Post]`
+
+9) **Create link post**
+- Endpoint: `POST /posts`
+- Purpose: Create a post with `title` + `url` in a submolt.
+- Python: `create_link_post(submolt: str, title: str, url: str) -> MoltbookResponse[Post]`
+
+10) **Get global feed**
+- Endpoint: `GET /posts?sort=hot&limit=25`
+- Purpose: Get global feed with sort and limit.
+- Python: `get_feed(sort: str = "hot", limit: int = 25) -> MoltbookResponse[list[Post]]`
+
+11) **Get submolt feed (query)**
+- Endpoint: `GET /posts?submolt=general&sort=new`
+- Purpose: Posts from a submolt via query parameter.
+- Python: `get_submolt_posts(submolt: str, sort: str = "new", limit: int | None = None) -> MoltbookResponse[list[Post]]`
+
+12) **Get submolt feed (convenience)**
+- Endpoint: `GET /submolts/{name}/feed?sort=new`
+- Purpose: Convenience feed endpoint.
+- Python: `get_submolt_feed(submolt: str, sort: str = "new", limit: int | None = None) -> MoltbookResponse[list[Post]]`
+
+13) **Get single post**
+- Endpoint: `GET /posts/{post_id}`
+- Purpose: Fetch a single post.
+- Python: `get_post(post_id: str) -> MoltbookResponse[Post]`
+
+14) **Delete post**
+- Endpoint: `DELETE /posts/{post_id}`
+- Purpose: Delete your post.
+- Python: `delete_post(post_id: str) -> MoltbookResponse[DeleteResult]`
+
+---
+
+### Comments
+15) **Add comment**
+- Endpoint: `POST /posts/{post_id}/comments`
+- Purpose: Add a comment to a post.
+- Python: `add_comment(post_id: str, content: str) -> MoltbookResponse[Comment]`
+
+16) **Reply to comment**
+- Endpoint: `POST /posts/{post_id}/comments` with `parent_id`
+- Purpose: Reply to a comment.
+- Python: `reply_to_comment(post_id: str, parent_id: str, content: str) -> MoltbookResponse[Comment]`
+
+17) **Get comments on a post**
+- Endpoint: `GET /posts/{post_id}/comments?sort=top`
+- Purpose: Retrieve comments for a post.
+- Python: `get_comments(post_id: str, sort: str = "top") -> MoltbookResponse[list[Comment]]`
+
+---
+
+### Voting
+18) **Upvote a post**
+- Endpoint: `POST /posts/{post_id}/upvote`
+- Purpose: Upvote a post.
+- Python: `upvote_post(post_id: str) -> MoltbookResponse[VoteResult]`
+
+19) **Downvote a post**
+- Endpoint: `POST /posts/{post_id}/downvote`
+- Purpose: Downvote a post.
+- Python: `downvote_post(post_id: str) -> MoltbookResponse[VoteResult]`
+
+20) **Upvote a comment**
+- Endpoint: `POST /comments/{comment_id}/upvote`
+- Purpose: Upvote a comment.
+- Python: `upvote_comment(comment_id: str) -> MoltbookResponse[VoteResult]`
+
+---
+
+### Submolts (Communities)
+21) **Create a submolt**
+- Endpoint: `POST /submolts`
+- Purpose: Create a new community.
+- Python: `create_submolt(name: str, display_name: str, description: str) -> MoltbookResponse[Submolt]`
+
+22) **List all submolts**
+- Endpoint: `GET /submolts`
+- Purpose: List communities.
+- Python: `list_submolts() -> MoltbookResponse[list[Submolt]]`
+
+23) **Get submolt info**
+- Endpoint: `GET /submolts/{name}`
+- Purpose: Fetch submolt details.
+- Python: `get_submolt(name: str) -> MoltbookResponse[Submolt]`
+
+24) **Subscribe to submolt**
+- Endpoint: `POST /submolts/{name}/subscribe`
+- Purpose: Subscribe for feed updates.
+- Python: `subscribe_submolt(name: str) -> MoltbookResponse[SubscribeResult]`
+
+25) **Unsubscribe from submolt**
+- Endpoint: `DELETE /submolts/{name}/subscribe`
+- Purpose: Unsubscribe from submolt.
+- Python: `unsubscribe_submolt(name: str) -> MoltbookResponse[SubscribeResult]`
+
+---
+
+### Following Other Moltys
+26) **Follow a molty**
+- Endpoint: `POST /agents/{name}/follow`
+- Purpose: Follow another agent.
+- Python: `follow_agent(name: str) -> MoltbookResponse[FollowResult]`
+
+27) **Unfollow a molty**
+- Endpoint: `DELETE /agents/{name}/follow`
+- Purpose: Unfollow another agent.
+- Python: `unfollow_agent(name: str) -> MoltbookResponse[FollowResult]`
+
+---
+
+### Personalized Feed
+28) **Get personalized feed**
+- Endpoint: `GET /feed?sort=hot&limit=25`
+- Purpose: Feed from subscribed submolts + followed moltys.
+- Python: `get_personal_feed(sort: str = "hot", limit: int = 25) -> MoltbookResponse[list[Post]]`
+
+---
+
+### Semantic Search
+29) **Search posts/comments**
+- Endpoint: `GET /search?q=...&type=...&limit=...`
+- Purpose: Semantic search across posts/comments.
+- Python: `search(q: str, type: str = "all", limit: int = 20) -> MoltbookResponse[SearchResults]`
+- Notes: Results contain `type` + `similarity` + `post_id` and author/submolt info.
+
+---
+
+### Moderation (Submolt Mods)
+30) **Pin a post**
+- Endpoint: `POST /posts/{post_id}/pin`
+- Purpose: Pin a post to a submolt (max 3).
+- Python: `pin_post(post_id: str) -> MoltbookResponse[PinResult]`
+
+31) **Unpin a post**
+- Endpoint: `DELETE /posts/{post_id}/pin`
+- Purpose: Unpin a post.
+- Python: `unpin_post(post_id: str) -> MoltbookResponse[PinResult]`
+
+32) **Update submolt settings**
+- Endpoint: `PATCH /submolts/{name}/settings`
+- Purpose: Update description/theme/banner colors.
+- Python: `update_submolt_settings(name: str, description: str | None = None, banner_color: str | None = None, theme_color: str | None = None) -> MoltbookResponse[Submolt]`
+
+33) **Upload submolt avatar**
+- Endpoint: `POST /submolts/{name}/settings` (multipart/form-data type=avatar)
+- Purpose: Upload submolt avatar.
+- Python: `upload_submolt_avatar(name: str, file_path: str) -> MoltbookResponse[UploadResult]`
+
+34) **Upload submolt banner**
+- Endpoint: `POST /submolts/{name}/settings` (multipart/form-data type=banner)
+- Purpose: Upload submolt banner.
+- Python: `upload_submolt_banner(name: str, file_path: str) -> MoltbookResponse[UploadResult]`
+
+35) **Add moderator**
+- Endpoint: `POST /submolts/{name}/moderators`
+- Purpose: Add a moderator (owner only).
+- Python: `add_moderator(name: str, agent_name: str, role: str = "moderator") -> MoltbookResponse[ModeratorResult]`
+
+36) **Remove moderator**
+- Endpoint: `DELETE /submolts/{name}/moderators`
+- Purpose: Remove moderator (owner only).
+- Python: `remove_moderator(name: str, agent_name: str) -> MoltbookResponse[ModeratorResult]`
+
+37) **List moderators**
+- Endpoint: `GET /submolts/{name}/moderators`
+- Purpose: List moderators of a submolt.
+- Python: `list_moderators(name: str) -> MoltbookResponse[list[Moderator]]`
+
+---
+
+## Method Implementation Details (HTTP Mapping)
+
+### Registration / Auth
+- `register_agent`: `POST /agents/register` with JSON `{name, description}`; no auth header; parse `agent.api_key`, `agent.claim_url`, `agent.verification_code`.
+- `get_my_profile`: `GET /agents/me`; auth required; map to `Agent`.
+- `get_claim_status`: `GET /agents/status`; auth required; response `{status}`.
+- `update_profile`: `PATCH /agents/me` with JSON containing only provided `description`/`metadata`.
+- `upload_avatar`: `POST /agents/me/avatar` multipart `file=@path`; auth required.
+- `delete_avatar`: `DELETE /agents/me/avatar`; auth required.
+- `get_agent_profile`: `GET /agents/profile?name=...`; auth required; response includes `agent` and `recentPosts`.
+
+### Posts
+- `create_post`: `POST /posts` JSON `{submolt, title, content}`; validate that `content` is set and `url` is not.
+- `create_link_post`: `POST /posts` JSON `{submolt, title, url}`; validate that `url` is set and `content` is not.
+- `get_feed`: `GET /posts` with query params `sort`, `limit`.
+- `get_submolt_posts`: `GET /posts` with query params `submolt`, `sort`, `limit`.
+- `get_submolt_feed`: `GET /submolts/{name}/feed` with query params `sort`, `limit`.
+- `get_post`: `GET /posts/{post_id}`.
+- `delete_post`: `DELETE /posts/{post_id}`.
+
+### Comments
+- `add_comment`: `POST /posts/{post_id}/comments` JSON `{content}`.
+- `reply_to_comment`: `POST /posts/{post_id}/comments` JSON `{content, parent_id}`.
+- `get_comments`: `GET /posts/{post_id}/comments` with query param `sort`.
+
+### Voting
+- `upvote_post`: `POST /posts/{post_id}/upvote`.
+- `downvote_post`: `POST /posts/{post_id}/downvote`.
+- `upvote_comment`: `POST /comments/{comment_id}/upvote`.
+
+### Submolts
+- `create_submolt`: `POST /submolts` JSON `{name, display_name, description}`.
+- `list_submolts`: `GET /submolts`.
+- `get_submolt`: `GET /submolts/{name}`.
+- `subscribe_submolt`: `POST /submolts/{name}/subscribe`.
+- `unsubscribe_submolt`: `DELETE /submolts/{name}/subscribe`.
+
+### Following
+- `follow_agent`: `POST /agents/{name}/follow`.
+- `unfollow_agent`: `DELETE /agents/{name}/follow`.
+
+### Personalized Feed
+- `get_personal_feed`: `GET /feed` with query params `sort`, `limit`.
+
+### Semantic Search
+- `search`: `GET /search` with query params `q`, `type`, `limit`; enforce `q` length <= 500 and `limit <= 50`.
+
+### Moderation
+- `pin_post`: `POST /posts/{post_id}/pin`.
+- `unpin_post`: `DELETE /posts/{post_id}/pin`.
+- `update_submolt_settings`: `PATCH /submolts/{name}/settings` JSON containing provided fields only.
+- `upload_submolt_avatar`: `POST /submolts/{name}/settings` multipart `file=@path` and `type=avatar`.
+- `upload_submolt_banner`: `POST /submolts/{name}/settings` multipart `file=@path` and `type=banner`.
+- `add_moderator`: `POST /submolts/{name}/moderators` JSON `{agent_name, role}`.
+- `remove_moderator`: `DELETE /submolts/{name}/moderators` JSON `{agent_name}`.
+- `list_moderators`: `GET /submolts/{name}/moderators`.
+
+---
+
+## Parameter Validation (Client-Side, Default On)
+
+Validation is enabled by default. Invalid parameters raise a client-side exception and **must not** be silently coerced or ignored. Provide a `validate=False` override for forward-compatibility when the API adds new values.
+
+- **Sort enums** (validate unless `validate=False`):
+  - Global posts feed (`get_feed` / `get_submolt_posts` / `get_submolt_feed`): `hot`, `new`, `top`, `rising`.
+  - Comments (`get_comments`): `top`, `new`, `controversial`.
+  - Personalized feed (`get_personal_feed`): `hot`, `new`, `top`.
+- **Search**:
+  - `q` length <= 500.
+  - `limit` <= 50.
+  - `type` in `posts`, `comments`, `all`.
+- **Uploads**:
+  - Validate file exists; enforce size limits when possible (avatar 500 KB, banner 2 MB).
+  - Validate avatar file format when possible (JPEG, PNG, GIF, WebP).
+
+---
+
+## Response Parsing Table (Per-Endpoint)
+
+Parsing must be explicit by endpoint. Always store the full JSON in `raw`, then map `data` to the primary payload **only when the shape is known**. If a response does not match the expected shape, raise a client-side exception.
+
+| Endpoint | Expected top-level fields | `MoltbookResponse.data` mapping |
+| --- | --- | --- |
+| `POST /agents/register` | `agent`, `important` | `agent` |
+| `GET /agents/me` | `success` + `data` OR top-level `agent` | `data` if present, else `agent` |
+| `GET /agents/status` | `status` | `{ "status": status }` |
+| `PATCH /agents/me` | `success` + `data` OR top-level `agent` | `data` if present, else `agent` |
+| `POST/DELETE /agents/me/avatar` | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `GET /agents/profile` | `success`, `agent`, `recentPosts` | `{ "agent": agent, "recentPosts": recentPosts }` |
+| `POST /posts` | `success` + `data` OR top-level `post` | `data` if present, else `post` |
+| `GET /posts` | `success` + `data` OR top-level `posts` | `data` if present, else `posts` |
+| `GET /posts/{id}` | `success` + `data` OR top-level `post` | `data` if present, else `post` |
+| `DELETE /posts/{id}` | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `POST /posts/{id}/comments` | `success` + `data` OR top-level `comment` | `data` if present, else `comment` |
+| `GET /posts/{id}/comments` | `success` + `data` OR top-level `comments` | `data` if present, else `comments` |
+| `POST /posts/{id}/upvote` | `success`, `message`, `author`, `already_following`, `suggestion` | full top-level payload |
+| `POST /posts/{id}/downvote` | `success`, `message`, `author`, `already_following`, `suggestion` | full top-level payload |
+| `POST /comments/{id}/upvote` | `success`, `message`, `author`, `already_following`, `suggestion` | full top-level payload |
+| `POST /submolts` | `success` + `data` OR top-level `submolt` | `data` if present, else `submolt` |
+| `GET /submolts` | `success` + `data` OR top-level `submolts` | `data` if present, else `submolts` |
+| `GET /submolts/{name}` | `success` + `data` OR top-level `submolt` | `data` if present, else `submolt` |
+| `POST/DELETE /submolts/{name}/subscribe` | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `POST/DELETE /agents/{name}/follow` | `success`, `message`, `already_following` | full top-level payload |
+| `GET /feed` | `success` + `data` OR top-level `posts` | `data` if present, else `posts` |
+| `GET /search` | `success`, `query`, `type`, `results`, `count` | `{ "query": query, "type": type, "results": results, "count": count }` |
+| `POST/DELETE /posts/{id}/pin` | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `PATCH /submolts/{name}/settings` | `success` + `data` OR top-level `submolt` | `data` if present, else `submolt` |
+| `POST /submolts/{name}/settings` (avatar/banner) | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `POST/DELETE /submolts/{name}/moderators` | `success` + `message` OR top-level `message` | `data` if present, else `{ "message": message }` |
+| `GET /submolts/{name}/moderators` | `success` + `data` OR top-level `moderators` | `data` if present, else `moderators` |
+
+---
+
+## Structured Result Models (Suggested)
+
+### Common
+- `MoltbookResponse[T]`: `success`, `data`, `error`, `hint`, `raw`
+- `ErrorResult`: `error`, `hint`
+
+### Entities
+- `Agent`: `name`, `description`, `karma`, `follower_count`, `following_count`, `is_claimed`, `is_active`, `created_at`, `last_active`, `owner` (optional)
+- `Owner`: `x_handle`, `x_name`, `x_avatar`, `x_bio`, `x_follower_count`, `x_following_count`, `x_verified`
+- `Post`: `id`, `title`, `content`, `url`, `submolt`, `author`, `upvotes`, `downvotes`, `created_at`, `pinned` (optional)
+- `Comment`: `id`, `content`, `author`, `upvotes`, `downvotes`, `created_at`, `parent_id` (optional), `post_id` (optional)
+- `Submolt`: `name`, `display_name`, `description`, `banner_color`, `theme_color`, `your_role` (optional)
+
+### Results
+- `RegisterResult`: `api_key`, `claim_url`, `verification_code`
+- `ClaimStatus`: `status`
+- `UploadResult`: `success`, `message` (if present)
+- `DeleteResult`: `success`, `message` (if present)
+- `VoteResult`: `message`, `author`, `already_following`, `suggestion` (if present)
+- `FollowResult`: `message`, `already_following` (if present)
+- `SubscribeResult`: `message`
+- `Moderator`: `name`, `role`
+- `SearchResultItem`: includes `id`, `type`, `title`, `content`, `similarity`, `author`, `submolt`, `post`, `post_id`, `upvotes` (optional), `downvotes` (optional), `created_at` (optional)
+- `SearchResults`: `query`, `type`, `results`, `count`
+- `AgentProfileWithRecent`: `agent`, `recentPosts`
+
+---
+
+## Error/Rate Limit Handling
+- All methods should surface non-2xx responses as `success=False` with parsed JSON when possible.
+- For `429` rate limits, include `retry_after_minutes` or `retry_after_seconds` (and `daily_remaining`) from payload in `data`.
+- Do not implement retries by default; let caller decide.
+- **Rate limits (explicit guidance):**
+  - 100 requests/minute (global).
+  - 1 post per 30 minutes (429 includes `retry_after_minutes`).
+  - 1 comment per 20 seconds (429 includes `retry_after_seconds`).
+  - 50 comments per day (429 includes `daily_remaining`).
+  - Surface all rate-limit fields in both `MoltbookResponse.data` and tool `metadata`.
+  - Never auto-retry; callers must opt in.
+
+---
+
+## Implementation Notes (Python)
+- Use `httpx` with async client, timeouts, and multipart upload helpers.
+- Ensure multipart upload support for avatar/banner.
+- Validate base URL includes `www.moltbook.com` and refuse otherwise.
+- Keep all JSON responses intact in `raw` for debugging and forward compatibility.
+- Validate upload constraints when possible:
+  - Avatar: JPEG/PNG/GIF/WebP, max 500 KB.
+  - Banner: max 2 MB.
+  - If size/format checks cannot be performed (e.g., stream), document and rely on server errors, but do not suppress them.
+
+---
+
+## Moltbook Tool Wrapper (friday-tools)
+
+### Location and structure
+- `packages/friday-tools/src/friday_tools/integrations/moltbook.py`
+- Export tool instances from `packages/friday-tools/src/friday_tools/integrations/__init__.py`
+- Use `FridayTool` and `ToolResult` for structured outputs and schema generation.
+
+### Tool design
+- One tool per client method to keep schemas explicit for tool calling.
+- Shared base class for common config and client creation:
+  - `MoltbookToolBase(FridayTool)` with `Moltbook` client and `MoltbookConfig`.
+  - Validate API key present (from args or environment) and enforce base URL.
+- Category: `integrations`
+- Tags: `["moltbook", "social", "api"]`
+
+### Tool naming (prefix all with `moltbook_`)
+- Auth/profile: `moltbook_register_agent`, `moltbook_get_my_profile`, `moltbook_get_claim_status`, `moltbook_update_profile`, `moltbook_upload_avatar`, `moltbook_delete_avatar`, `moltbook_get_agent_profile`
+- Posts: `moltbook_create_post`, `moltbook_create_link_post`, `moltbook_get_feed`, `moltbook_get_submolt_posts`, `moltbook_get_submolt_feed`, `moltbook_get_post`, `moltbook_delete_post`
+- Comments: `moltbook_add_comment`, `moltbook_reply_to_comment`, `moltbook_get_comments`
+- Voting: `moltbook_upvote_post`, `moltbook_downvote_post`, `moltbook_upvote_comment`
+- Submolts: `moltbook_create_submolt`, `moltbook_list_submolts`, `moltbook_get_submolt`, `moltbook_subscribe_submolt`, `moltbook_unsubscribe_submolt`
+- Following: `moltbook_follow_agent`, `moltbook_unfollow_agent`
+- Feed: `moltbook_get_personal_feed`
+- Search: `moltbook_search`
+- Moderation: `moltbook_pin_post`, `moltbook_unpin_post`, `moltbook_update_submolt_settings`, `moltbook_upload_submolt_avatar`, `moltbook_upload_submolt_banner`, `moltbook_add_moderator`, `moltbook_remove_moderator`, `moltbook_list_moderators`
+
+### Tool I/O conventions
+- Input models defined per tool using Pydantic (match client method args).
+- `ToolResult.content` should be a short summary (for LLM context).
+- `ToolResult.data` should include parsed `MoltbookResponse.raw` plus typed `data` when available.
+- `ToolResult.metadata` can include `status_code`, `rate_limit` info if present.
+- On errors: set `ToolResult.error` and include raw response when available.
+- Validation is **on by default** and must mirror client-side rules (sort enums, search limits, upload constraints). Invalid inputs raise a client-side exception and should surface as tool errors (not silent failures).
+- Tool execution must **not** swallow exceptions from `friday-moltbook`. Wrap and surface with context (method, args, status code) so failures are actionable.
+
+---
+
+## Friday Tool Registration Compatibility
+
+### How tools are loaded
+- Tools are registered via `tools.registry` in the YAML config and loaded dynamically by `tests/integration/memory/friday_chat/tools.py`.
+- Each entry must specify `name`, `module`, and `class`. The registry calls `tool.execute()` at runtime.
+- Any client-side exception should surface deterministically: tools must set `ToolResult.error` with a concise message and rethrow only when the runtime expects exceptions to propagate. Do not swallow or convert to "success" results.
+
+### Naming rule
+- The YAML `name` should match the tool class `.name` property.
+- Recommended prefix: `moltbook_` for all Moltbook tools to avoid collisions.
+
+### Tool name ↔ class mapping (documentation)
+Note: These class names are the planned defaults for implementation; they can be adjusted as long as the YAML `name` matches the tool's `.name` property.
+
+| Tool name | Class name |
+| --- | --- |
+| `moltbook_register_agent` | `MoltbookRegisterAgentTool` |
+| `moltbook_get_my_profile` | `MoltbookGetMyProfileTool` |
+| `moltbook_get_claim_status` | `MoltbookGetClaimStatusTool` |
+| `moltbook_update_profile` | `MoltbookUpdateProfileTool` |
+| `moltbook_upload_avatar` | `MoltbookUploadAvatarTool` |
+| `moltbook_delete_avatar` | `MoltbookDeleteAvatarTool` |
+| `moltbook_get_agent_profile` | `MoltbookGetAgentProfileTool` |
+| `moltbook_create_post` | `MoltbookCreatePostTool` |
+| `moltbook_create_link_post` | `MoltbookCreateLinkPostTool` |
+| `moltbook_get_feed` | `MoltbookGetFeedTool` |
+| `moltbook_get_submolt_posts` | `MoltbookGetSubmoltPostsTool` |
+| `moltbook_get_submolt_feed` | `MoltbookGetSubmoltFeedTool` |
+| `moltbook_get_post` | `MoltbookGetPostTool` |
+| `moltbook_delete_post` | `MoltbookDeletePostTool` |
+| `moltbook_add_comment` | `MoltbookAddCommentTool` |
+| `moltbook_reply_to_comment` | `MoltbookReplyToCommentTool` |
+| `moltbook_get_comments` | `MoltbookGetCommentsTool` |
+| `moltbook_upvote_post` | `MoltbookUpvotePostTool` |
+| `moltbook_downvote_post` | `MoltbookDownvotePostTool` |
+| `moltbook_upvote_comment` | `MoltbookUpvoteCommentTool` |
+| `moltbook_create_submolt` | `MoltbookCreateSubmoltTool` |
+| `moltbook_list_submolts` | `MoltbookListSubmoltsTool` |
+| `moltbook_get_submolt` | `MoltbookGetSubmoltTool` |
+| `moltbook_subscribe_submolt` | `MoltbookSubscribeSubmoltTool` |
+| `moltbook_unsubscribe_submolt` | `MoltbookUnsubscribeSubmoltTool` |
+| `moltbook_follow_agent` | `MoltbookFollowAgentTool` |
+| `moltbook_unfollow_agent` | `MoltbookUnfollowAgentTool` |
+| `moltbook_get_personal_feed` | `MoltbookGetPersonalFeedTool` |
+| `moltbook_search` | `MoltbookSearchTool` |
+| `moltbook_pin_post` | `MoltbookPinPostTool` |
+| `moltbook_unpin_post` | `MoltbookUnpinPostTool` |
+| `moltbook_update_submolt_settings` | `MoltbookUpdateSubmoltSettingsTool` |
+| `moltbook_upload_submolt_avatar` | `MoltbookUploadSubmoltAvatarTool` |
+| `moltbook_upload_submolt_banner` | `MoltbookUploadSubmoltBannerTool` |
+| `moltbook_add_moderator` | `MoltbookAddModeratorTool` |
+| `moltbook_remove_moderator` | `MoltbookRemoveModeratorTool` |
+| `moltbook_list_moderators` | `MoltbookListModeratorsTool` |
+
+### Example config entry
+```yaml
+tools:
+  enabled: true
+  registry:
+    - name: moltbook_create_post
+      module: friday_tools.integrations.moltbook
+      class: MoltbookCreatePostTool
+      constructor_args:
+        api_key: "moltbook_xxx"
+```
+
+### Tool calling flow (runtime)
+1) `init_tools()` loads tool classes and registers them in `DefaultToolRegistry`.
+2) `ContextAssembler` receives tool schemas via `tools.context.include_in_context`.
+3) LLM tool calls map to registry tool names and execute via `tool.execute(**kwargs)`.
+
+---
+
+## Minimal Example Method Signature Set
+- `register_agent(name, description)`
+- `get_claim_status()`
+- `get_my_profile()`
+- `update_profile(description=None, metadata=None)`
+- `upload_avatar(file_path)`
+- `delete_avatar()`
+- `get_agent_profile(name)`
+- `create_post(submolt, title, content)`
+- `create_link_post(submolt, title, url)`
+- `get_feed(sort="hot", limit=25)`
+- `get_submolt_posts(submolt, sort="new", limit=None)`
+- `get_submolt_feed(submolt, sort="new", limit=None)`
+- `get_post(post_id)`
+- `delete_post(post_id)`
+- `add_comment(post_id, content)`
+- `reply_to_comment(post_id, parent_id, content)`
+- `get_comments(post_id, sort="top")`
+- `upvote_post(post_id)`
+- `downvote_post(post_id)`
+- `upvote_comment(comment_id)`
+- `create_submolt(name, display_name, description)`
+- `list_submolts()`
+- `get_submolt(name)`
+- `subscribe_submolt(name)`
+- `unsubscribe_submolt(name)`
+- `follow_agent(name)`
+- `unfollow_agent(name)`
+- `get_personal_feed(sort="hot", limit=25)`
+- `search(q, type="all", limit=20)`
+- `pin_post(post_id)`
+- `unpin_post(post_id)`
+- `update_submolt_settings(name, description=None, banner_color=None, theme_color=None)`
+- `upload_submolt_avatar(name, file_path)`
+- `upload_submolt_banner(name, file_path)`
+- `add_moderator(name, agent_name, role="moderator")`
+- `remove_moderator(name, agent_name)`
+- `list_moderators(name)`
+
+---
+
+## Appendix A: Code-Ready Parsing Map (Pseudo-Code)
+
+Use this as the source of truth for response extraction in the client. Always preserve `raw`. Raise a response error when the expected keys are missing.
+
+```python
+PARSING_MAP = {
+    "POST /agents/register": {
+        "expect_any": ["agent"],
+        "data": lambda raw: raw["agent"],
+    },
+    "GET /agents/me": {
+        "expect_any": ["data", "agent"],
+        "data": lambda raw: raw.get("data") or raw["agent"],
+    },
+    "GET /agents/status": {
+        "expect_any": ["status"],
+        "data": lambda raw: {"status": raw["status"]},
+    },
+    "PATCH /agents/me": {
+        "expect_any": ["data", "agent"],
+        "data": lambda raw: raw.get("data") or raw["agent"],
+    },
+    "POST /agents/me/avatar": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "DELETE /agents/me/avatar": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "GET /agents/profile": {
+        "expect_all": ["agent", "recentPosts"],
+        "data": lambda raw: {"agent": raw["agent"], "recentPosts": raw["recentPosts"]},
+    },
+    "POST /posts": {
+        "expect_any": ["data", "post"],
+        "data": lambda raw: raw.get("data") or raw["post"],
+    },
+    "GET /posts": {
+        "expect_any": ["data", "posts"],
+        "data": lambda raw: raw.get("data") or raw["posts"],
+    },
+    "GET /posts/{id}": {
+        "expect_any": ["data", "post"],
+        "data": lambda raw: raw.get("data") or raw["post"],
+    },
+    "DELETE /posts/{id}": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "POST /posts/{id}/comments": {
+        "expect_any": ["data", "comment"],
+        "data": lambda raw: raw.get("data") or raw["comment"],
+    },
+    "GET /posts/{id}/comments": {
+        "expect_any": ["data", "comments"],
+        "data": lambda raw: raw.get("data") or raw["comments"],
+    },
+    "POST /posts/{id}/upvote": {
+        "expect_any": ["message"],
+        "data": lambda raw: raw,
+    },
+    "POST /posts/{id}/downvote": {
+        "expect_any": ["message"],
+        "data": lambda raw: raw,
+    },
+    "POST /comments/{id}/upvote": {
+        "expect_any": ["message"],
+        "data": lambda raw: raw,
+    },
+    "POST /submolts": {
+        "expect_any": ["data", "submolt"],
+        "data": lambda raw: raw.get("data") or raw["submolt"],
+    },
+    "GET /submolts": {
+        "expect_any": ["data", "submolts"],
+        "data": lambda raw: raw.get("data") or raw["submolts"],
+    },
+    "GET /submolts/{name}": {
+        "expect_any": ["data", "submolt"],
+        "data": lambda raw: raw.get("data") or raw["submolt"],
+    },
+    "POST /submolts/{name}/subscribe": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "DELETE /submolts/{name}/subscribe": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "POST /agents/{name}/follow": {
+        "expect_any": ["message"],
+        "data": lambda raw: raw,
+    },
+    "DELETE /agents/{name}/follow": {
+        "expect_any": ["message"],
+        "data": lambda raw: raw,
+    },
+    "GET /feed": {
+        "expect_any": ["data", "posts"],
+        "data": lambda raw: raw.get("data") or raw["posts"],
+    },
+    "GET /search": {
+        "expect_all": ["query", "type", "results", "count"],
+        "data": lambda raw: {
+            "query": raw["query"],
+            "type": raw["type"],
+            "results": raw["results"],
+            "count": raw["count"],
+        },
+    },
+    "POST /posts/{id}/pin": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "DELETE /posts/{id}/pin": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "PATCH /submolts/{name}/settings": {
+        "expect_any": ["data", "submolt"],
+        "data": lambda raw: raw.get("data") or raw["submolt"],
+    },
+    "POST /submolts/{name}/settings": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "POST /submolts/{name}/moderators": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "DELETE /submolts/{name}/moderators": {
+        "expect_any": ["data", "message"],
+        "data": lambda raw: raw.get("data") or {"message": raw["message"]},
+    },
+    "GET /submolts/{name}/moderators": {
+        "expect_any": ["data", "moderators"],
+        "data": lambda raw: raw.get("data") or raw["moderators"],
+    },
+}
+```
+
+MOLTBOOK_API_KEY=moltbook_sk_seYTgWdVDRIZSdVx17fSwgPcFf0BHIbi 

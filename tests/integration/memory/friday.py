@@ -18,15 +18,20 @@ Tests:
 Usage:
     python memory-chat.py [--config CONFIG_PATH]
 
+Shell Access:
+  !<command>       - Execute shell command (e.g., !ls -la, !pwd)
+
 Commands (prefix with /):
   /exit, /quit     - Exit the chat
   /clear           - Clear conversation history
   /history         - Show conversation history
   /memory          - Show memory statistics
-  /context [--debug] - Show context payload (--debug for token counts)
-  /prompt          - Show full formatted prompt sent to LLM (FULL, no truncation)
+  /context [--debug] [--file] - Show context payload (--debug for token counts, --file to export)
+  /prompt [--file] - Show full formatted prompt sent to LLM (--file to export)
   /prime           - Load and show primed context (works before first turn)
   /debug           - Show debug info from context assembly
+  /debug-budget    - Quick token budget diagnostic (context vs window)
+  /timing          - Show timing breakdown for last turn
   /entities        - List graph entities and relationships
   /facts           - List all documents from vector store (insights + summaries)
   /insights        - List only insights (type='insight') with structured metadata
@@ -37,6 +42,7 @@ Commands (prefix with /):
   /transcript <id> - Show transcript for a specific session
   /transcript export - Export entire database to CSV
   /export [format] - Export current session (jsonl, markdown, or training)
+  /export-prompts [session_id] - Export raw prompts/responses to JSON
   /reset           - Clear all memory stores AND archive all transcripts (clean slate)
   /reorganize [opts] - Run memory reorganization (analyze, prune, synthesize)
   /migrate [opts]  - Migrate existing memories to lifecycle metadata
@@ -73,7 +79,9 @@ import asyncio
 import importlib
 import json
 import logging
+import os
 import re
+import subprocess
 import sys
 import uuid
 from datetime import datetime
@@ -159,6 +167,7 @@ from friday_memory import (
     MemoryPromotionService,
     PromptArchitect,
     PromptCacheConfig,
+    SupportingContextConfig,
     PromotionResult,
     RetrievalFactorComputer,
     SessionState,
@@ -195,6 +204,7 @@ from friday_memory.maintenance.models import (
     SynthesisConfig,
 )
 from friday_transcript import (
+    ContextLogEntry,
     CSVExporter,
     JSONLExporter,
     MarkdownExporter,
@@ -256,6 +266,18 @@ from dataclasses import dataclass, field
 # Module-level tool registry (initialized in main() via init_tools())
 # These are imported from friday_chat.tools but need local references for compatibility
 from friday_chat.tools import TOOL_REGISTRY, TOOL_SCHEMAS
+import friday_chat.tools as _tools_module
+
+
+def _get_tool_registry():
+    """Get the current tool registry from the module (avoids stale import bindings)."""
+    return _tools_module.TOOL_REGISTRY
+
+
+def _get_tool_schemas():
+    """Get the current tool schemas from the registry."""
+    registry = _get_tool_registry()
+    return registry.get_schemas() if registry else []
 
 
 async def _execute_tool(tool_name: str, **kwargs) -> str:
@@ -292,6 +314,10 @@ class MemoryChatSession:
         factor_computer: "RetrievalFactorComputer | None" = None,
         orchestrator: "AgentOrchestrator | None" = None,
         tools_config: "dict[str, Any] | None" = None,
+        extraction_config: "dict[str, Any] | None" = None,
+        transcript_config: "dict[str, Any] | None" = None,
+        skip_token_counting: bool = True,  # Performance: skip diagnostic token counting
+        max_tokens: int = 1500,
     ):
         self.llm = llm
         self.controller = controller
@@ -317,6 +343,13 @@ class MemoryChatSession:
         self.factor_computer = factor_computer
         self.orchestrator = orchestrator
         self.tools_config = tools_config or {}
+        self.extraction_config = extraction_config or {}
+        self.transcript_config = transcript_config or {}
+        self.skip_token_counting = skip_token_counting
+        self.max_tokens = max_tokens
+
+        # Timing data for /timing command
+        self.last_timing: dict[str, float] = {}
 
         # Workflow system (Phase 4 - Project Hive)
         self.workflow_loader: WorkflowLoader | None = None
@@ -401,9 +434,13 @@ class MemoryChatSession:
 
         self.registry.register(
             "context",
-            lambda ctx, **kwargs: ctx.cmd_context(debug_mode="--debug" in str(kwargs)),
+            lambda ctx, **kwargs: ctx.cmd_context(
+                debug_mode="--debug" in str(kwargs),
+                to_file="--file" in str(kwargs)
+            ),
             arguments=[
                 arg("--debug", required=False, description="Show detailed token counts per section"),
+                arg("--file", required=False, description="Export to file in export directory"),
             ],
             description="Show assembled context payload that would be sent to LLM",
             category="memory",
@@ -411,7 +448,10 @@ class MemoryChatSession:
 
         self.registry.register(
             "prompt",
-            lambda ctx: ctx.cmd_prompt(),
+            lambda ctx, **kwargs: ctx.cmd_prompt(to_file="--file" in str(kwargs)),
+            arguments=[
+                arg("--file", required=False, description="Export to file in export directory"),
+            ],
             description="Show full formatted prompt (complete, no truncation)",
             category="memory",
         )
@@ -427,6 +467,20 @@ class MemoryChatSession:
             "debug",
             lambda ctx: ctx.cmd_debug(),
             description="Show debug info from context assembly",
+            category="memory",
+        )
+
+        self.registry.register(
+            "debug-budget",
+            lambda ctx: ctx.cmd_debug_budget(),
+            description="Quick token budget diagnostic (context vs window)",
+            category="memory",
+        )
+
+        self.registry.register(
+            "timing",
+            lambda ctx: ctx.cmd_timing(),
+            description="Show timing breakdown for last turn",
             category="memory",
         )
 
@@ -501,6 +555,18 @@ class MemoryChatSession:
             category="transcript",
         )
 
+        self.registry.register(
+            "export-prompts",
+            lambda ctx, session_id=None, **kwargs: asyncio.create_task(
+                ctx.cmd_export_prompts(session_id)
+            ),
+            arguments=[
+                arg("session_id", required=False, description="Session ID to export (default: current session)"),
+            ],
+            description="Export raw prompts/responses from context_log to JSON file",
+            category="transcript",
+        )
+
         # --- Maintenance commands ---
         self.registry.register(
             "reset",
@@ -511,7 +577,10 @@ class MemoryChatSession:
 
         self.registry.register(
             "reorganize",
-            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_reorganize(opts)),
+            # Join all kwargs keys that are flags (start with --) and have a value into opts string
+            lambda ctx, **kwargs: asyncio.create_task(
+                ctx.cmd_reorganize(" ".join(k for k, v in kwargs.items() if k.startswith("--") and v is not None))
+            ),
             arguments=[
                 arg("--execute", required=False, description="Run for real (default is dry-run)"),
                 arg("--no-backup", required=False, description="Skip backup before modifications"),
@@ -531,7 +600,9 @@ class MemoryChatSession:
 
         self.registry.register(
             "lifecycle",
-            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_lifecycle(opts)),
+            lambda ctx, **kwargs: asyncio.create_task(
+                ctx.cmd_lifecycle(" ".join(k for k, v in kwargs.items() if k.startswith("--") and v is not None))
+            ),
             arguments=[
                 arg("--execute", required=False, description="Run for real (default is dry-run)"),
                 arg("--stats", required=False, description="Show lifecycle statistics only"),
@@ -544,7 +615,9 @@ class MemoryChatSession:
 
         self.registry.register(
             "migrate",
-            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_migrate(opts)),
+            lambda ctx, **kwargs: asyncio.create_task(
+                ctx.cmd_migrate(" ".join(k for k, v in kwargs.items() if k.startswith("--") and v is not None))
+            ),
             arguments=[
                 arg("--execute", required=False, description="Run for real (default is dry-run)"),
                 arg("--stats", required=False, description="Show migration statistics only"),
@@ -792,6 +865,9 @@ class MemoryChatSession:
             case "export":
                 format_type = parts[1] if len(parts) > 1 else "markdown"
                 return await self.cmd_export(format_type)
+            case "export-prompts":
+                session_id = parts[1] if len(parts) > 1 else None
+                return await self.cmd_export_prompts(session_id)
             case "reset":
                 # Reset now always archives all transcripts for clean slate
                 return await self.cmd_reset()
@@ -1067,11 +1143,12 @@ class MemoryChatSession:
 
         return "\n".join(lines)
 
-    def cmd_context(self, debug_mode: bool = False) -> str:
+    def cmd_context(self, debug_mode: bool = False, to_file: bool = False) -> str:
         """
         Show detailed context assembly in configured format (FULL content).
 
         With --debug flag, shows additional token counts per section.
+        With --file flag, exports to file in export directory.
         """
         if not self.last_payload:
             return "No context assembled yet. Send a message first or use /prime."
@@ -1082,6 +1159,7 @@ class MemoryChatSession:
         lines.append(f"\nSummary:")
         lines.append(f"  Prior session turns: {len(self.last_payload.prior_history)}")
         lines.append(f"  Current session turns: {len(self.last_payload.history)}")
+        lines.append(f"  Total history: {len(self.last_payload.prior_history) + len(self.last_payload.history)} turns")
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
         lines.append(f"  Graph facts (edges): {len(self.last_payload.facts)}")
@@ -1101,7 +1179,14 @@ class MemoryChatSession:
                 def count_tokens(text: str) -> int:
                     return len(enc.encode(text)) if text else 0
 
-                # History tokens
+                # Prior history tokens (cross-session)
+                prior_history_text = "\n".join(
+                    f"{t.user_message} {t.assistant_message}"
+                    for t in self.last_payload.prior_history
+                )
+                prior_history_tokens = count_tokens(prior_history_text)
+
+                # Current session history tokens
                 history_text = "\n".join(
                     f"{t.user_message} {t.assistant_message}"
                     for t in self.last_payload.history
@@ -1144,7 +1229,9 @@ class MemoryChatSession:
                 )
                 formatted_tokens = count_tokens(formatted or "")
 
-                lines.append(f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)")
+                lines.append(f"  Prior History: ~{prior_history_tokens} tokens ({len(self.last_payload.prior_history)} turns) [cross-session]")
+                lines.append(f"  Current History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)")
+                lines.append(f"  Total History: ~{prior_history_tokens + history_tokens} tokens")
                 lines.append(f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)")
                 lines.append(f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)")
                 lines.append(f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
@@ -1152,6 +1239,7 @@ class MemoryChatSession:
                 lines.append(f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)")
                 lines.append(f"  ----------------------------------------")
                 lines.append(f"  Formatted Context: ~{formatted_tokens} tokens (total)")
+                lines.append(f"  Budget: {self.context_window} tokens (window) - {self.output_buffer} (output) = {self.context_window - self.output_buffer} available")
 
                 # Debug info from payload
                 if self.last_payload.debug_info:
@@ -1192,10 +1280,21 @@ class MemoryChatSession:
                 lines.append(f"    {text}")
 
         lines.append("\n" + "=" * 60)
-        return "\n".join(lines)
 
-    def cmd_prompt(self) -> str:
-        """Show the FULL formatted prompt sent to LLM (no truncation for debugging)."""
+        output = "\n".join(lines)
+
+        # Export to file if requested
+        if to_file:
+            return self._export_to_file(output, "context")
+
+        return output
+
+    def cmd_prompt(self, to_file: bool = False) -> str:
+        """
+        Show the FULL formatted prompt sent to LLM (no truncation for debugging).
+
+        With --file flag, exports to file in export directory.
+        """
         if not self.last_messages:
             return "No prompt formatted yet. Send a message first."
 
@@ -1250,7 +1349,43 @@ class MemoryChatSession:
             lines.append("")
             lines.append("(No tools active - streaming mode)")
 
-        return "\n".join(lines)
+        output = "\n".join(lines)
+
+        # Export to file if requested
+        if to_file:
+            return self._export_to_file(output, "prompt")
+
+        return output
+
+    def _export_to_file(self, content: str, prefix: str) -> str:
+        """
+        Export content to a timestamped file in the export directory.
+
+        Args:
+            content: The content to write
+            prefix: Filename prefix (e.g., 'context', 'prompt')
+
+        Returns:
+            Status message indicating success or failure
+        """
+        if not self.transcript_export_dir:
+            return f"Export directory not configured. Set 'transcript.export_directory' in config.yaml\n\nContent:\n{content}"
+
+        try:
+            export_dir = Path(self.transcript_export_dir)
+            export_dir.mkdir(parents=True, exist_ok=True)
+
+            # Create timestamped filename
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"{prefix}_{self.session_id}_{timestamp}.txt"
+            filepath = export_dir / filename
+
+            # Write content
+            filepath.write_text(content, encoding="utf-8")
+
+            return f"Exported to: {filepath}\n({len(content)} characters, {content.count(chr(10))} lines)"
+        except Exception as e:
+            return f"Export failed: {e}\n\nContent:\n{content}"
 
     def cmd_debug(self) -> str:
         """Show detailed debug info."""
@@ -1262,6 +1397,120 @@ class MemoryChatSession:
         for key, value in debug_info.items():
             lines.append(f"  {key}: {value}")
         return "\n".join(lines) if len(lines) > 1 else "No debug info recorded."
+
+    def cmd_timing(self) -> str:
+        """Show timing breakdown for the last turn."""
+        if not self.last_timing:
+            return "No timing data available. Send a message first."
+
+        lines = ["=" * 40, "LAST TURN TIMING", "=" * 40]
+
+        # Pre-LLM phases
+        lines.append(f"\nPre-LLM Processing:")
+        lines.append(f"  Init check:        {self.last_timing.get('init', 0):>8.0f}ms")
+        lines.append(f"  Budget calc:       {self.last_timing.get('budget_calc', 0):>8.0f}ms")
+        lines.append(f"  Context assembly:  {self.last_timing.get('context_assembly', 0):>8.0f}ms")
+        lines.append(f"  Prompt format:     {self.last_timing.get('prompt_format', 0):>8.0f}ms")
+        lines.append(f"  ─────────────────────────────")
+        lines.append(f"  Pre-LLM total:     {self.last_timing.get('pre_llm_total', 0):>8.0f}ms")
+
+        # LLM phase
+        if "llm_call" in self.last_timing:
+            lines.append(f"\nLLM Call:")
+            lines.append(f"  LLM response:      {self.last_timing.get('llm_call', 0):>8.0f}ms")
+            lines.append(f"\nTotal Turn Time:     {self.last_timing.get('total', 0):>8.0f}ms")
+        else:
+            lines.append(f"\n(LLM call not completed or timed out)")
+
+        lines.append("=" * 40)
+        return "\n".join(lines)
+
+    def cmd_debug_budget(self) -> str:
+        """
+        Quick token budget diagnostic.
+
+        Shows context size vs window budget with clear over/under indicator.
+        Useful for diagnosing timeout issues caused by oversized context.
+        """
+        lines = ["=" * 50, "TOKEN BUDGET DIAGNOSTIC", "=" * 50]
+
+        # Budget configuration
+        lines.append(f"\nConfiguration:")
+        lines.append(f"  Context window: {self.context_window:,} tokens")
+        lines.append(f"  Output buffer: {self.output_buffer:,} tokens")
+        lines.append(f"  Available budget: {self.context_window - self.output_buffer:,} tokens")
+
+        # Last turn metrics (actual from LLM)
+        if self.context_history:
+            last = self.context_history[-1]
+            lines.append(f"\nLast Turn (estimated):")
+            lines.append(f"  Estimated tokens: {last.estimated_total_tokens:,}")
+            lines.append(f"  Budget used: {last.budget_used_pct:.1f}%")
+
+        # Check payload if available
+        if self.last_payload:
+            lines.append(f"\nPayload Breakdown:")
+            try:
+                enc = tiktoken.get_encoding("cl100k_base")
+
+                def count(text: str) -> int:
+                    return len(enc.encode(text)) if text else 0
+
+                # Prior history
+                prior_text = "\n".join(
+                    f"{t.user_message} {t.assistant_message}"
+                    for t in self.last_payload.prior_history
+                )
+                prior_tokens = count(prior_text)
+
+                # Current history
+                history_text = "\n".join(
+                    f"{t.user_message} {t.assistant_message}"
+                    for t in self.last_payload.history
+                )
+                history_tokens = count(history_text)
+
+                # Passages
+                passages_text = "\n".join(p.get("text", "") for p in self.last_payload.passages)
+                passages_tokens = count(passages_text)
+
+                # Insights + summaries
+                extras_text = "\n".join(
+                    i.get("text", "") or i.get("document", "")
+                    for i in (self.last_payload.insights or []) + (self.last_payload.summaries or [])
+                )
+                extras_tokens = count(extras_text)
+
+                total_estimated = prior_tokens + history_tokens + passages_tokens + extras_tokens
+                budget = self.context_window - self.output_buffer
+
+                lines.append(f"  Prior history: {prior_tokens:,} tokens ({len(self.last_payload.prior_history)} turns)")
+                lines.append(f"  Current history: {history_tokens:,} tokens ({len(self.last_payload.history)} turns)")
+                lines.append(f"  Passages: {passages_tokens:,} tokens ({len(self.last_payload.passages)} items)")
+                lines.append(f"  Insights/Summaries: {extras_tokens:,} tokens")
+                lines.append(f"  ----------------------------------------")
+                lines.append(f"  TOTAL (estimated): {total_estimated:,} tokens")
+
+                # Status indicator
+                lines.append(f"\nStatus:")
+                if total_estimated > budget:
+                    overage = total_estimated - budget
+                    pct = (total_estimated / budget) * 100
+                    lines.append(f"  [OVER BUDGET] {overage:,} tokens over ({pct:.0f}% of budget)")
+                    lines.append(f"  ⚠ This may cause timeouts or truncation!")
+                else:
+                    remaining = budget - total_estimated
+                    pct = (total_estimated / budget) * 100
+                    lines.append(f"  [OK] {remaining:,} tokens remaining ({pct:.0f}% used)")
+
+            except Exception as e:
+                lines.append(f"  (Error counting tokens: {e})")
+
+        else:
+            lines.append("\n(No payload available - send a message first)")
+
+        lines.append("\n" + "=" * 50)
+        return "\n".join(lines)
 
     async def cmd_debug_retrieval(self, query: str = "") -> str:
         """
@@ -2001,6 +2250,77 @@ class MemoryChatSession:
 
         except Exception as e:
             return f"Error exporting transcript: {e}"
+
+    async def cmd_export_prompts(self, session_id: str | None = None) -> str:
+        """
+        Export raw prompts/responses from context_log to JSON file.
+
+        Exports the full messages array sent to the LLM and complete response
+        metadata for context engineering analysis.
+
+        Args:
+            session_id: Session ID to export (default: current session)
+
+        Usage:
+            /export-prompts              - Export current session
+            /export-prompts <session_id> - Export specific session
+        """
+        if not self.transcript_store:
+            return "Transcript storage not configured."
+
+        target_session = session_id if session_id else self.session_id
+
+        try:
+            # Export context log data
+            export_data = await self.transcript_store.export_context_log(target_session)
+
+            if export_data["turn_count"] == 0:
+                return (
+                    f"No context log entries found for session: {target_session}\n"
+                    "Make sure 'transcript.capture_raw_prompts: true' is set in config.yaml"
+                )
+
+            # Create exports directory if it doesn't exist
+            if self.transcript_export_dir:
+                export_dir = Path(self.transcript_export_dir)
+            else:
+                export_dir = Path("./exports")
+            export_dir.mkdir(parents=True, exist_ok=True)
+
+            # Write to timestamped JSON file
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            short_session = target_session[:8]
+            filename = f"prompts_{short_session}_{timestamp}.json"
+            output_path = export_dir / filename
+
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(export_data, f, indent=2, default=str)
+
+            # Calculate total size
+            total_prompt_chars = sum(
+                len(json.dumps(t["raw_prompt"])) if t["raw_prompt"] else 0
+                for t in export_data["turns"]
+            )
+            total_response_chars = sum(
+                len(json.dumps(t["raw_response"])) if t["raw_response"] else 0
+                for t in export_data["turns"]
+            )
+
+            lines = [
+                "=" * 60,
+                "CONTEXT LOG EXPORT COMPLETE",
+                "=" * 60,
+                f"\nFile: {output_path}",
+                f"Session: {target_session}",
+                f"Turns: {export_data['turn_count']}",
+                f"Total prompt data: {total_prompt_chars:,} chars",
+                f"Total response data: {total_response_chars:,} chars",
+                "\n" + "=" * 60,
+            ]
+            return "\n".join(lines)
+
+        except Exception as e:
+            return f"Error exporting context log: {e}"
 
     # -------------------------------------------------------------------------
     # Replay Mode
@@ -2756,12 +3076,14 @@ class MemoryChatSession:
         Returns:
             Formatted string listing available tools
         """
-        tools = TOOL_SCHEMAS
+        # Get schemas from the registry (using helper to avoid stale import bindings)
+        all_schemas = _get_tool_schemas()
+        tools = all_schemas
 
         if category:
             tools = [t for t in tools if t.get("category") == category]
             if not tools:
-                available_categories = sorted(set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS))
+                available_categories = sorted(set(t.get("category", "uncategorized") for t in all_schemas))
                 return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"
 
         lines = ["=" * 60, f"AVAILABLE TOOLS ({len(tools)} total)", "=" * 60]
@@ -2806,19 +3128,20 @@ class MemoryChatSession:
         Returns:
             Tool execution result as string
         """
+        registry = _get_tool_registry()
         if not args.strip():
-            available = ", ".join(TOOL_REGISTRY.list_names())
+            available = ", ".join(registry.list_names()) if registry else "(none)"
             return f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
 
         parts = args.split(maxsplit=1)
         tool_name = parts[0]
         params_str = parts[1] if len(parts) > 1 else ""
 
-        if TOOL_REGISTRY is None:
+        if registry is None:
             return "Error: Tool registry not initialized. Restart memory-chat."
 
-        if tool_name not in TOOL_REGISTRY:
-            available = ", ".join(TOOL_REGISTRY.list_names())
+        if tool_name not in registry:
+            available = ", ".join(registry.list_names())
             return f"Unknown tool: {tool_name}\nAvailable tools: {available}"
 
         # Parse parameters - try JSON first, then plain text for single-param tools
@@ -2832,7 +3155,7 @@ class MemoryChatSession:
                     return f"Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{\"param\": \"value\"}}"
             else:
                 # Plain text - use as 'message' parameter for tools that support it
-                tool = TOOL_REGISTRY.get(tool_name)
+                tool = registry.get(tool_name)
                 if tool is None:
                     return f"Tool '{tool_name}' not found in registry"
 
@@ -2867,7 +3190,7 @@ class MemoryChatSession:
                     return f"Tool {tool_name} has no parameter schema. Use JSON format."
 
         # Validate parameters against tool schema before execution
-        tool = TOOL_REGISTRY.get(tool_name)
+        tool = registry.get(tool_name)
         if tool and hasattr(tool, "parameters_schema"):
             schema = tool.parameters_schema
             validation_error = _validate_tool_params(params, schema, tool_name)
@@ -2901,10 +3224,11 @@ class MemoryChatSession:
             return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"
 
         names = tool_names.split()
-        schemas = [t for t in TOOL_SCHEMAS if t.get("name") in names]
+        all_schemas = _get_tool_schemas()
+        schemas = [t for t in all_schemas if t.get("name") in names]
 
         if not schemas:
-            available = ", ".join(t.get("name", "?") for t in TOOL_SCHEMAS)
+            available = ", ".join(t.get("name", "?") for t in all_schemas)
             return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"
 
         # Inject into assembler's tool manager
@@ -2949,9 +3273,10 @@ class MemoryChatSession:
             return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"
 
         # Generate recommendations using the assembler
+        all_schemas = _get_tool_schemas()
         recommendations = self.assembler.recommend_tools(
             query=query,
-            available_tools=TOOL_SCHEMAS,
+            available_tools=all_schemas,
             top_k=5,
         )
 
@@ -3816,6 +4141,52 @@ Use /facts to view stored documents."""
         display_help(commands, tips=tips)
         return ""  # Display already shown
 
+    def _should_extract(self, turn_count: int) -> bool:
+        """
+        Determine if extraction should run based on configured interval.
+
+        Args:
+            turn_count: Current turn number (1-indexed)
+
+        Returns:
+            True if extraction should run this turn
+
+        Interval settings:
+            0  = every turn (default behavior)
+            N  = every N turns (e.g., 5 means extract on turns 5, 10, 15, ...)
+            -1 = session exit only (minimal extraction)
+        """
+        interval = self.extraction_config.get("interval", 0)
+
+        if interval == 0:
+            # Every turn
+            return True
+        elif interval == -1:
+            # Never during session (only on exit)
+            return False
+        else:
+            # Every N turns
+            return turn_count % interval == 0
+
+    async def _background_save_turn(self, turn: InteractionTurn) -> None:
+        """Save turn to transcript in background without blocking response display."""
+        try:
+            success = await self.controller.add_turn(self.session_id, turn)
+            if not success:
+                logger.error(f"Failed to persist turn {turn.id} to transcript (background)")
+        except Exception as e:
+            logger.error(f"Background turn save failed: {e}")
+
+    async def _background_tool_decay(self, turn_number: int) -> None:
+        """Run tool content decay in background without blocking."""
+        try:
+            if self.tool_content_manager:
+                decayed = await self.tool_content_manager.check_and_decay(turn_number)
+                if decayed:
+                    logger.debug(f"Tool outputs decayed: {len(decayed)} summarized")
+        except Exception as e:
+            logger.warning(f"Background tool decay failed: {e}")
+
     async def _background_extract(self, turn: InteractionTurn) -> None:
         """Run extraction in background without blocking the user."""
         try:
@@ -3986,11 +4357,20 @@ Use /facts to view stored documents."""
         When tools are active, uses non-streaming mode to handle tool_calls.
         When no tools are active, uses streaming mode for better UX.
         """
+        import time as _time
+        _t0 = _time.perf_counter()
+
         if not self.state:
             await self.initialize()
 
+        _t1 = _time.perf_counter()
+        logger.debug(f"[TIMING] Init check: {(_t1-_t0)*1000:.0f}ms")
+
         # Calculate dynamic budget limit
         dynamic_limit = self.architect.calculate_dynamic_limit(self.system_prompt)
+
+        _t2 = _time.perf_counter()
+        logger.debug(f"[TIMING] Budget calc: {(_t2-_t1)*1000:.0f}ms")
 
         # 1. Assemble context (retrieves from all stores)
         self.last_payload = await self.assembler.assemble_context(
@@ -3998,6 +4378,9 @@ Use /facts to view stored documents."""
             state=self.state,
             budget_limit=dynamic_limit,
         )
+
+        _t3 = _time.perf_counter()
+        logger.debug(f"[TIMING] Context assembly: {(_t3-_t2)*1000:.0f}ms")
 
         # 2. Format prompt with assembled context AND current user input
         # Pass turn_count for cache-aware layout decisions
@@ -4009,6 +4392,18 @@ Use /facts to view stored documents."""
             user_query=user_input,  # Pass current input directly
             turn_count=current_turn_count,
         )
+
+        _t4 = _time.perf_counter()
+        logger.debug(f"[TIMING] Prompt format: {(_t4-_t3)*1000:.0f}ms")
+
+        # Store timing data for /timing command
+        self.last_timing = {
+            "init": (_t1 - _t0) * 1000,
+            "budget_calc": (_t2 - _t1) * 1000,
+            "context_assembly": (_t3 - _t2) * 1000,
+            "prompt_format": (_t4 - _t3) * 1000,
+            "pre_llm_total": (_t4 - _t0) * 1000,
+        }
 
         # Store for debugging
         self.last_messages = messages
@@ -4038,6 +4433,8 @@ Use /facts to view stored documents."""
 
         full_response = ""
         metrics: TurnMetrics | None = None
+        _t5 = _time.perf_counter()
+        logger.debug(f"[TIMING] Pre-LLM total: {(_t5-_t0)*1000:.0f}ms")
         try:
             if tool_schemas:
                 # Function calling mode (non-streaming with tool loop)
@@ -4055,8 +4452,38 @@ Use /facts to view stored documents."""
                 # Streaming mode (no tools)
                 full_response, metrics = await self._process_streaming(messages)
 
+            _t6 = _time.perf_counter()
+            self.last_timing["llm_call"] = (_t6 - _t5) * 1000
+            self.last_timing["total"] = (_t6 - _t0) * 1000
+            logger.debug(f"[TIMING] LLM call: {(_t6-_t5)*1000:.0f}ms")
+
             # End newline after response
             console.print()
+
+            # Capture raw prompt and response for context engineering analysis
+            capture_prompts = self.transcript_config.get("capture_raw_prompts", False)
+            raw_prompt_json: str | None = None
+            raw_response_json: str | None = None
+
+            if capture_prompts:
+                # Serialize raw prompt (messages array)
+                raw_prompt_json = json.dumps(
+                    [msg if isinstance(msg, dict) else msg for msg in messages],
+                    default=str,
+                )
+
+                # Serialize raw response with metadata
+                raw_response_data = {
+                    "content": full_response,
+                    "model": metrics.model_name if metrics else None,
+                    "finish_reason": getattr(metrics, "finish_reason", None) if metrics else None,
+                    "usage": {
+                        "prompt_tokens": metrics.prompt_tokens if metrics else None,
+                        "completion_tokens": metrics.completion_tokens if metrics else None,
+                        "total_tokens": metrics.total_tokens if metrics else None,
+                    } if metrics else None,
+                }
+                raw_response_json = json.dumps(raw_response_data, default=str)
 
             # 4. Create and save interaction turn with all captured metrics
             turn = InteractionTurn(
@@ -4079,35 +4506,50 @@ Use /facts to view stored documents."""
                 # Model configuration
                 model_name=metrics.model_name if metrics else None,
                 temperature=metrics.temperature if metrics else None,
+                # Raw prompt/response for context engineering analysis
+                raw_prompt=raw_prompt_json,
+                raw_response=raw_response_json,
             )
+            # Save turn to transcript (blocking to ensure state consistency)
             success = await self.controller.add_turn(self.session_id, turn)
             if success:
                 self.turn_ids.append(turn.id)
+                current_turn_number = len(self.turn_ids)
 
-                # Check for tool content decay (Phase 4 - Project Hive)
+                # Store context log entry for raw prompt/response analysis
+                if capture_prompts and self.transcript_store and raw_prompt_json:
+                    context_entry = ContextLogEntry(
+                        session_id=self.session_id,
+                        turn_number=current_turn_number,
+                        entry_id=turn.id,
+                        raw_prompt=raw_prompt_json,
+                        raw_response=raw_response_json,
+                    )
+                    await self.transcript_store.store_context_log(context_entry)
+
+                # Fire-and-forget: Tool content decay (non-blocking)
                 if self.tool_content_manager:
-                    current_turn_number = len(self.turn_ids)
-                    decayed = await self.tool_content_manager.check_and_decay(current_turn_number)
-                    if decayed:
-                        get_console().print(f"  [dim][Tool outputs decayed: {len(decayed)} summarized][/dim]")
+                    asyncio.create_task(self._background_tool_decay(current_turn_number))
 
-                # Run incremental graph maintenance if scheduled
-                if self.incremental_maintainer:
-                    turn_count = len(self.turn_ids)
-                    if self.incremental_maintainer.should_run(turn_count):
-                        # Fire-and-forget maintenance (non-blocking)
-                        asyncio.create_task(self._run_incremental_maintenance())
+                # Fire-and-forget: Incremental graph maintenance if scheduled
+                if self.incremental_maintainer and self.incremental_maintainer.should_run(current_turn_number):
+                    asyncio.create_task(self._run_incremental_maintenance())
+
+                # 5. Extract entities and facts from the turn (background)
+                # Run extraction asynchronously so user can continue chatting
+                # Respects extraction.interval config for reduced background LLM calls
+                if self.extractor and self._should_extract(current_turn_number):
+                    asyncio.create_task(self._background_extract(turn))
+                    get_console().print("  [dim][Extraction started in background][/dim]")
+                elif self.extractor:
+                    interval = self.extraction_config.get("interval", 0)
+                    next_extraction = ((current_turn_number // interval) + 1) * interval if interval > 0 else current_turn_number + 1
+                    get_console().print(f"  [dim][Extraction skipped (next at turn {next_extraction})][/dim]")
             else:
                 get_console().print(
                     "[bold red]Warning: Failed to save turn to transcript![/bold red]"
                 )
                 logger.error(f"Failed to persist turn {turn.id} to transcript")
-
-            # 5. Extract entities and facts from the turn (background)
-            # Run extraction asynchronously so user can continue chatting
-            if self.extractor:
-                asyncio.create_task(self._background_extract(turn))
-                get_console().print("  [dim][Extraction started in background][/dim]")
 
             # Update state turn count
             if self.state:
@@ -4157,8 +4599,22 @@ Use /facts to view stored documents."""
         start_time = datetime.now()
         response_started_at: datetime | None = None
 
-        # Pre-flight context estimation
-        context_metrics = self._estimate_context_size(messages)
+        # Pre-flight context estimation (optional - can be slow with tiktoken)
+        if self.skip_token_counting:
+            # Use placeholder metrics when skipping token counting for performance
+            context_metrics = ContextMetrics(
+                estimated_total_tokens=0,
+                estimated_system_tokens=0,
+                estimated_history_tokens=0,
+                estimated_user_message_tokens=0,
+                context_window=self.context_window,
+                output_buffer=self.output_buffer,
+                available_budget=self.context_window - self.output_buffer,
+                budget_used_pct=0.0,
+                timestamp=datetime.now(),
+            )
+        else:
+            context_metrics = self._estimate_context_size(messages)
 
         # Show cancel hint
         get_console().print("  [dim]Press [Esc] to cancel[/dim]")
@@ -4171,6 +4627,7 @@ Use /facts to view stored documents."""
             async for chunk in self.llm.chat_completion_stream(
                 messages=messages,
                 temperature=self.temperature,
+                max_tokens=self.max_tokens,
             ):
                 if first_chunk:
                     indicator.stop()  # Stop spinner on first chunk (idempotent)
@@ -4253,6 +4710,89 @@ Use /facts to view stored documents."""
             if delay > 0:
                 await asyncio.sleep(delay)
 
+    def _prune_messages_preserve_tool_pairs(
+        self,
+        messages: list[dict[str, Any]],
+        preserve_count: int,
+        max_messages: int,
+    ) -> list[dict[str, Any]]:
+        """
+        Prune message history while preserving tool_use/tool_result pairs.
+
+        Anthropic API requires that every tool_result has a corresponding tool_use
+        in the immediately preceding assistant message. Naive slicing can break
+        these pairs, causing API errors.
+
+        Strategy:
+        1. Always preserve the first N messages (system + initial context)
+        2. From the remaining messages, keep complete tool pairs from the end
+        3. Remove oldest complete pairs first when over limit
+
+        Args:
+            messages: Full message list to prune
+            preserve_count: Number of initial messages to always keep
+            max_messages: Maximum total messages allowed
+
+        Returns:
+            Pruned message list with tool pairs intact
+        """
+        if len(messages) <= max_messages:
+            return messages
+
+        # Split into preserved (initial) and pruneable (tool loop) sections
+        preserved = messages[:preserve_count]
+        pruneable = messages[preserve_count:]
+
+        if not pruneable:
+            return preserved[:max_messages]
+
+        # Build a list of "message groups" - each group is either:
+        # - A single non-tool message
+        # - An assistant message with tool_use + all its tool_result messages
+        groups: list[list[dict[str, Any]]] = []
+        i = 0
+        while i < len(pruneable):
+            msg = pruneable[i]
+
+            # Check if this is an assistant message with tool_calls
+            if msg.get("role") == "assistant" and msg.get("tool_calls"):
+                # Start a new group with this assistant message
+                group = [msg]
+                tool_ids = {tc.get("id") or tc.get("tool_call_id") for tc in msg.get("tool_calls", [])}
+
+                # Collect all following tool results that belong to this call
+                j = i + 1
+                while j < len(pruneable):
+                    next_msg = pruneable[j]
+                    if next_msg.get("role") == "tool" and next_msg.get("tool_call_id") in tool_ids:
+                        group.append(next_msg)
+                        j += 1
+                    else:
+                        break
+
+                groups.append(group)
+                i = j
+            else:
+                # Single message group
+                groups.append([msg])
+                i += 1
+
+        # Calculate how many messages we need to remove
+        current_total = len(preserved) + sum(len(g) for g in groups)
+        messages_to_remove = current_total - max_messages
+
+        # Remove oldest groups first until we're under the limit
+        while messages_to_remove > 0 and groups:
+            removed_group = groups.pop(0)
+            messages_to_remove -= len(removed_group)
+
+        # Reconstruct the message list
+        result = preserved.copy()
+        for group in groups:
+            result.extend(group)
+
+        return result
+
     async def _process_with_tools(
         self,
         messages: list[dict[str, Any]],
@@ -4297,7 +4837,21 @@ Use /facts to view stored documents."""
         all_tool_results: list[MemoryToolResult] = []
 
         # Pre-flight context estimation (captures initial context size)
-        context_metrics = self._estimate_context_size(working_messages)
+        # Skip when configured for performance (tiktoken can be slow)
+        if self.skip_token_counting:
+            context_metrics = ContextMetrics(
+                estimated_total_tokens=0,
+                estimated_system_tokens=0,
+                estimated_history_tokens=0,
+                estimated_user_message_tokens=0,
+                context_window=self.context_window,
+                output_buffer=self.output_buffer,
+                available_budget=self.context_window - self.output_buffer,
+                budget_used_pct=0.0,
+                timestamp=datetime.now(),
+            )
+        else:
+            context_metrics = self._estimate_context_size(working_messages)
 
         while iteration < max_iterations:
             iteration += 1
@@ -4320,6 +4874,7 @@ Use /facts to view stored documents."""
                         messages=working_messages,
                         tools=tool_schemas,
                         temperature=self.temperature,
+                        max_tokens=self.max_tokens,
                     ),
                     show_hint=False,  # We already showed the hint with indicator
                 )
@@ -4422,7 +4977,7 @@ Use /facts to view stored documents."""
             else:
                 tool_calls_to_process = parsed_tool_calls
 
-            display_info(f"Calling {len(tool_calls_to_process)} tool(s)...")
+            logger.info(f"Calling {len(tool_calls_to_process)} tool(s)...")
 
             # Add assistant message with tool_calls to history
             assistant_msg: dict[str, Any] = {"role": "assistant", "content": response.content or ""}
@@ -4442,7 +4997,9 @@ Use /facts to view stored documents."""
                 tool_args = tc["arguments"]
                 tool_id = tc["id"]
 
-                get_console().print(f"  [cyan]→[/cyan] {tool_name}({json.dumps(tool_args)})")
+                # Show tool call (respects log level)
+                if logger.isEnabledFor(logging.INFO):
+                    get_console().print(f"  [cyan]→[/cyan] {tool_name}({json.dumps(tool_args)})")
 
                 # Track tool call for transcript
                 all_tool_calls.append(MemoryToolCall(
@@ -4455,8 +5012,10 @@ Use /facts to view stored documents."""
                 error_msg: str | None = None
                 try:
                     result = await _execute_tool(tool_name, **tool_args)
-                    truncated = result[:100] + "..." if len(result) > 100 else result
-                    display_success(f"  {truncated}")
+                    # Show tool result (respects log level)
+                    if logger.isEnabledFor(logging.INFO):
+                        truncated = result[:100] + "..." if len(result) > 100 else result
+                        display_success(f"  {truncated}")
                     consecutive_failures = 0  # Reset on success
                 except Exception as e:
                     consecutive_failures += 1
@@ -4545,13 +5104,13 @@ Use /facts to view stored documents."""
                 )
 
             # Message history bounds: prune if exceeding limit
+            # IMPORTANT: Must keep tool_use/tool_result pairs together for Anthropic API
             if len(working_messages) > max_tool_messages:
-                # Keep original context + most recent tool messages
-                preserve_count = initial_message_count
-                recent_count = max_tool_messages - preserve_count
-                preserved = working_messages[:preserve_count]
-                recent = working_messages[-recent_count:]
-                working_messages = preserved + recent
+                working_messages = self._prune_messages_preserve_tool_pairs(
+                    working_messages,
+                    initial_message_count,
+                    max_tool_messages,
+                )
                 display_info(f"Pruned message history to {len(working_messages)} messages")
 
         # Max iterations reached
@@ -4571,6 +5130,62 @@ Use /facts to view stored documents."""
             tool_results=all_tool_results,
         )
         return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request.", metrics
+
+
+async def execute_shell_command(command: str, timeout: float = 60.0) -> None:
+    """
+    Execute a shell command and display output to console.
+
+    Args:
+        command: Shell command to execute
+        timeout: Timeout in seconds (default: 60)
+
+    Output is displayed directly to console:
+    - stdout: normal text
+    - stderr: red text
+    """
+    console = get_console()
+
+    try:
+        # Use user's shell or fall back to /bin/bash
+        shell = os.environ.get("SHELL", "/bin/bash")
+
+        # Run command asynchronously
+        process = await asyncio.create_subprocess_shell(
+            command,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            shell=True,
+            executable=shell,
+        )
+
+        try:
+            stdout, stderr = await asyncio.wait_for(
+                process.communicate(),
+                timeout=timeout
+            )
+        except asyncio.TimeoutError:
+            process.kill()
+            await process.wait()
+            console.print(f"[bold red]Command timed out after {timeout}s[/bold red]")
+            return
+
+        # Display stdout
+        if stdout:
+            stdout_text = stdout.decode("utf-8", errors="replace")
+            console.print(stdout_text, end="")
+
+        # Display stderr in red
+        if stderr:
+            stderr_text = stderr.decode("utf-8", errors="replace")
+            console.print(f"[red]{stderr_text}[/red]", end="")
+
+        # Show return code if non-zero
+        if process.returncode != 0:
+            console.print(f"[dim](exit code: {process.returncode})[/dim]")
+
+    except Exception as e:
+        console.print(f"[bold red]Shell error: {e}[/bold red]")
 
 
 async def main() -> None:
@@ -4622,6 +5237,7 @@ async def main() -> None:
 
     # Also load as raw dict for backwards compatibility with existing code
     config = load_config(config_path)
+
     llm_config = config.get("llm", {})
     extraction_config = config.get("extraction", {})
     embedding_config = config.get("embedding", {})
@@ -4633,10 +5249,52 @@ async def main() -> None:
     lifecycle_yaml = config.get("lifecycle", {})
     tools_config = config.get("tools", {})
     web_config = config.get("web", {})
+    smart_file_config = config.get("smart_file", {})
+
+    # Configure logging early so tool loading messages are visible
+    log_level_str = logging_config.get("level", "WARNING").upper()
+    log_level = getattr(logging, log_level_str, logging.WARNING)
+    logging.basicConfig(level=log_level, format='%(levelname)s - %(name)s: %(message)s', force=True)
+
+    # Configure tools debug logging from config
+    from friday_chat.tools import set_tools_debug
+    tools_debug = logging_config.get("tools_debug", False)
+    set_tools_debug(tools_debug)
+
+    # Create LLM for smart file processing (large file chunking/synthesis)
+    smart_file_llm = None
+    sf_llm_config = smart_file_config.get("llm", {}).get("summarizer")
+    if sf_llm_config:
+        from friday_llm.service import LiteLLMService
+        from friday_llm.config import ResilienceConfig
+        smart_file_llm = LiteLLMService(
+            model_name=sf_llm_config["model"],
+            api_key=sf_llm_config.get("api_key"),
+            api_base=sf_llm_config.get("api_base"),
+            resilience=ResilienceConfig(timeout_seconds=sf_llm_config.get("timeout_seconds", 30)),
+        )
+        logger.info(f"[SmartFile] Created summarizer LLM: {sf_llm_config['model']}")
 
     # Initialize tool registry from YAML configuration
     # Web config is automatically injected into web tools (friday_tools.web module)
-    TOOL_REGISTRY, TOOL_SCHEMAS = init_tools(tools_config, web_config=web_config)
+    # Smart file config + LLM injected into SmartFileReadTool for large file processing
+    TOOL_REGISTRY, TOOL_SCHEMAS = init_tools(
+        tools_config,
+        web_config=web_config,
+        smart_file_llm=smart_file_llm,
+        smart_file_config=smart_file_config,
+    )
+
+    # Log loaded tools at startup (visible at INFO level or with tools_debug)
+    registry = _get_tool_registry()
+    if registry:
+        tool_names = registry.list_names()
+        if tools_debug:
+            logger.warning(f"[Tools DEBUG] Loaded {len(tool_names)} tools: {', '.join(tool_names)}")
+        else:
+            logger.info(f"[Tools] Loaded {len(tool_names)} tools: {', '.join(tool_names)}")
+    else:
+        logger.warning("[Tools] Tool registry not initialized!")
 
     # Build MaintenanceConfig from YAML
     pruning_yaml = maintenance_yaml.get("pruning", {})
@@ -4744,12 +5402,8 @@ async def main() -> None:
     # Load maintenance LLM configurations
     maintenance_llm_yaml = maintenance_yaml.get("llm", {})
 
-    # Configure logging from config
-    log_level_str = logging_config.get("level", "INFO").upper()
-    log_level = getattr(logging, log_level_str, logging.INFO)
-    logging.basicConfig(level=log_level, format='%(name)s: %(message)s')
-
     # Optionally enable verbose extraction debugging
+    # (logging.basicConfig already called earlier in startup)
     if logging_config.get("extraction_debug", False):
         logging.getLogger('friday_memory.context.extractor').setLevel(logging.DEBUG)
 
@@ -5002,6 +5656,26 @@ async def main() -> None:
         # Prompt caching configured (logged only)
         logger.debug(f"Prompt caching: enabled={cache_config.enabled}")
 
+    # Parse supporting context config for budget-aware prompt formatting
+    supporting_context_dict = memory_config.get("supporting_context", {})
+    supporting_context_config = None
+    if supporting_context_dict:
+        supporting_context_config = SupportingContextConfig(
+            budget_ratio=supporting_context_dict.get("budget_ratio", 0.30),
+            section_priority=supporting_context_dict.get("section_priority", [
+                "recent_memories", "passages", "key_facts",
+                "insights", "summaries", "tools", "state"
+            ]),
+            max_items=supporting_context_dict.get("max_items", {
+                "passages": 10, "key_facts": 20, "insights": 15,
+                "summaries": 10, "tools": 5
+            }),
+        )
+        logger.debug(
+            f"Supporting context config: budget_ratio={supporting_context_config.budget_ratio}, "
+            f"priority={supporting_context_config.section_priority[:3]}..."
+        )
+
     architect = PromptArchitect(
         model_name=llm_config.get("model", "gpt-4"),
         max_tokens=context_window,
@@ -5009,6 +5683,7 @@ async def main() -> None:
         user_name=user_name,
         assistant_name=assistant_name,
         cache_config=cache_config,
+        supporting_context_config=supporting_context_config,
     )
 
     # 7. Create ContextAssembler with our cache-configured architect
@@ -5023,6 +5698,7 @@ async def main() -> None:
     # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names
     #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)
     extraction_prompt = extraction_config.get("prompt")  # None uses default
+    extraction_max_tokens = extraction_config.get("max_tokens")  # None uses LLM default
     extractor = MemoryExtractor(
         memory_controller=controller,
         llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)
@@ -5031,6 +5707,7 @@ async def main() -> None:
         user_name=user_name,
         assistant_name=assistant_name,
         embedding_model=embedding,  # Pre-compute edge embeddings for graph path scoring
+        max_tokens=extraction_max_tokens,  # Limit extraction response length
     )
     assembler.set_extractor(extractor)
 
@@ -5083,6 +5760,10 @@ async def main() -> None:
         access_buffer=access_buffer,
         factor_computer=factor_computer,
         tools_config=tools_config,
+        extraction_config=extraction_config,
+        transcript_config=transcript_config,
+        skip_token_counting=True,  # Performance optimization: skip diagnostic token counting
+        max_tokens=llm_config.get("max_tokens", 1500),
     )
 
     # Initialize session
@@ -5091,8 +5772,9 @@ async def main() -> None:
     # Auto-inject tools if configured
     tools_context_config = tools_config.get("context", {})
     if tools_context_config.get("include_in_context", False):
-        session.assembler.set_active_tools(TOOL_SCHEMAS)
-        logger.info(f"Auto-injected {len(TOOL_SCHEMAS)} tools into context")
+        all_schemas = _get_tool_schemas()
+        session.assembler.set_active_tools(all_schemas)
+        logger.info(f"Auto-injected {len(all_schemas)} tools into context")
 
     # Initialize workflow system (Phase 4 - Project Hive)
     workflows_dir = Path(__file__).parent.parent.parent.parent / "workflows"
@@ -5206,6 +5888,13 @@ async def main() -> None:
 
                 # Skip empty input
                 if not user_input:
+                    continue
+
+                # Handle shell commands (!<command>)
+                if user_input.startswith("!"):
+                    shell_command = user_input[1:].strip()
+                    if shell_command:
+                        await execute_shell_command(shell_command, timeout=60.0)
                     continue
 
                 # Handle commands

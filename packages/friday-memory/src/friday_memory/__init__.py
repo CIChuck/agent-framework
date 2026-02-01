@@ -41,10 +41,14 @@ from friday_memory.controller import MemoryController
 
 # Context Engineering
 from friday_memory.context import (
+    CacheBreakpoint,
+    CacheProvider,
     ContextAssembler,
     MemoryConsolidator,
     MemoryExtractor,
     PromptArchitect,
+    PromptCacheConfig,
+    SupportingContextConfig,
 )
 
 # Ingestion
@@ -105,6 +109,10 @@ __all__ = [
     "MemoryController",
     # Context Engineering
     "PromptArchitect",
+    "PromptCacheConfig",
+    "SupportingContextConfig",
+    "CacheProvider",
+    "CacheBreakpoint",
     "ContextAssembler",
     "MemoryExtractor",
     "MemoryConsolidator",

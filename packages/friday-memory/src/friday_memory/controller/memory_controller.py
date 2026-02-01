@@ -646,26 +646,28 @@ class MemoryController:
                 cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
                 where_filter = {"created_at": {"$gte": cutoff}}
 
-            # Step 3: Pre-fetch edges to build rich semantic queries
+            # Step 3: Pre-fetch edges to build rich semantic queries (indexed retrieval)
             # We combine entity labels with their relationships for better matching
-            all_edges = await self.graph.get_all_edges()
-            edges_by_source: dict[str, list[tuple[str, str]]] = {}
+            entity_ids = {e.id for e in top_nodes}
             entity_lookup = {e.id: e.label for e in top_nodes}
 
-            # Also include non-top entities in lookup for target label resolution
-            all_nodes = await self.graph.get_all_nodes()
-            for node in all_nodes:
-                if node.id not in entity_lookup:
-                    entity_lookup[node.id] = node.label
+            # Get only edges from top entities (indexed retrieval)
+            entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
 
-            for edge in all_edges:
-                if edge.source_id in {e.id for e in top_nodes}:
-                    target_label = entity_lookup.get(edge.target_id, edge.target_id[:8])
-                    if edge.source_id not in edges_by_source:
-                        edges_by_source[edge.source_id] = []
-                    edges_by_source[edge.source_id].append(
-                        (edge.relation, target_label)
-                    )
+            # Get labels for edge targets not already in lookup
+            target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+            if target_ids:
+                target_labels = await self.graph.get_node_labels(target_ids)
+                entity_lookup.update(target_labels)
+
+            edges_by_source: dict[str, list[tuple[str, str]]] = {}
+            for edge in entity_edges:
+                target_label = entity_lookup.get(edge.target_id, edge.target_id[:8])
+                if edge.source_id not in edges_by_source:
+                    edges_by_source[edge.source_id] = []
+                edges_by_source[edge.source_id].append(
+                    (edge.relation, target_label)
+                )
 
             # Step 4: Fetch most recent insights from vector store
             all_insights: list[dict[str, Any]] = []
@@ -801,22 +803,25 @@ class MemoryController:
         if not entities:
             return []
 
-        # Build entity ID to label lookup
+        # Build entity ID set for indexed retrieval
+        entity_ids = {e.id for e in entities}
+
+        # Get outgoing edges for these entities only (indexed retrieval)
+        entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
+
+        # Collect target IDs we need labels for
+        target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+
+        # Get labels for entities + targets (indexed retrieval)
         entity_lookup = {e.id: e.label for e in entities}
-
-        # Get all nodes for label resolution
-        all_nodes = await self.graph.get_all_nodes()
-        for node in all_nodes:
-            if node.id not in entity_lookup:
-                entity_lookup[node.id] = node.label
-
-        # Get all edges
-        all_edges = await self.graph.get_all_edges()
+        if target_ids:
+            target_labels = await self.graph.get_node_labels(target_ids)
+            entity_lookup.update(target_labels)
 
         # Group edges by source entity, filtering out behavioral edges
         edges_by_source: dict[str, list[tuple[str, str]]] = {}  # (relation, target_label)
 
-        for edge in all_edges:
+        for edge in entity_edges:
             # Filter out behavioral/conversational relations
             if edge.relation.upper() in BEHAVIORAL_RELATIONS:
                 continue
@@ -1141,7 +1146,20 @@ class MemoryController:
                 # Convert TranscriptEntry to InteractionTurn
                 # Must convert ToolCall/ToolResult from friday_transcript types
                 # to friday_memory types to satisfy Pydantic validation
+                #
+                # CRITICAL: Skip incomplete turns (no assistant_message).
+                # Interrupted sessions may have orphaned user messages that would
+                # appear as unanswered questions in the prompt, causing the LLM
+                # to respond to old questions on startup.
                 for entry in entries:
+                    # Skip turns without a complete response
+                    if not entry.assistant_message:
+                        logger.debug(
+                            f"Skipping incomplete turn {entry.id} from prior session "
+                            f"{entry.session_id} (no assistant_message)"
+                        )
+                        continue
+
                     turn = InteractionTurn(
                         id=entry.id,
                         session_id=entry.session_id,
@@ -1454,21 +1472,25 @@ class MemoryController:
         # Score and filter paths using GraphPathScorer
         scored_paths = []
         try:
-            # Build paths from entities and their edges
-            all_edges = await self.graph.get_all_edges()
+            # Build paths from entities and their edges (indexed retrieval)
             entity_ids = {e.id for e in entities}
+            entity_lookup = {e.id: e for e in entities}
 
-            # Create node lookup for path scoring
-            all_nodes = await self.graph.get_all_nodes()
-            node_lookup = {n.id: n for n in all_nodes}
+            # Get only edges from these entities
+            entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
+
+            # Get target nodes we need (that aren't already in entities)
+            target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+            if target_ids:
+                target_nodes = await self.graph.get_nodes_by_ids(target_ids)
+                entity_lookup.update(target_nodes)
 
             paths_to_score = []
-            for edge in all_edges:
-                if edge.source_id in entity_ids:
-                    source_node = node_lookup.get(edge.source_id)
-                    target_node = node_lookup.get(edge.target_id)
-                    if source_node and target_node:
-                        paths_to_score.append((source_node, edge, target_node))
+            for edge in entity_edges:
+                source_node = entity_lookup.get(edge.source_id)
+                target_node = entity_lookup.get(edge.target_id)
+                if source_node and target_node:
+                    paths_to_score.append((source_node, edge, target_node))
 
             # Score paths using pre-embedded edges
             if paths_to_score:
@@ -1738,6 +1760,145 @@ class MemoryController:
             },
         )
         return len(texts)
+
+    async def store_document(
+        self,
+        text: str,
+        metadata: dict[str, Any],
+        doc_id: str | None = None,
+        protected: bool = False,
+    ) -> str:
+        """
+        Store a document in vector memory with lifecycle-aware routing.
+
+        Automatically routes to lifecycle collections if available, otherwise
+        falls back to the main vector store. This is the recommended entry point
+        for explicit document ingestion (e.g., /ingest command).
+
+        Args:
+            text: The document text content
+            metadata: Document metadata (source, type, etc.)
+            doc_id: Optional document ID (generated if not provided)
+            protected: If True, marks document as protected from decay.
+                      Protected documents are fast-tracked for promotion
+                      and never decay. Use for explicitly ingested documents.
+
+        Returns:
+            The document ID (provided or generated)
+
+        Example:
+            doc_id = await controller.store_document(
+                text="File content here...",
+                metadata={"source": "/path/to/file.txt", "type": "ingested_file"},
+                protected=True,  # Explicitly ingested, don't decay
+            )
+        """
+        doc_id = doc_id or f"doc_{uuid.uuid4().hex[:8]}"
+
+        if self._collection_manager:
+            # Route through lifecycle collections (short-term first)
+            await self._collection_manager.add_to_short_term(
+                texts=[text],
+                metadatas=[metadata],
+                ids=[doc_id],
+                protected=protected,
+            )
+            self._emit_event(
+                "document_stored",
+                {
+                    "doc_id": doc_id,
+                    "text_length": len(text),
+                    "lifecycle": True,
+                    "collection": "short_term",
+                    "protected": protected,
+                },
+            )
+        else:
+            # Fallback to main collection (legacy mode)
+            # Note: protected flag is stored in metadata but has no effect without lifecycle
+            metadata["protected"] = protected
+            await self.vector.add_documents(
+                texts=[text],
+                metadatas=[metadata],
+                ids=[doc_id],
+            )
+            self._emit_event(
+                "document_stored",
+                {
+                    "doc_id": doc_id,
+                    "text_length": len(text),
+                    "lifecycle": False,
+                    "collection": "main",
+                    "protected": protected,
+                },
+            )
+
+        return doc_id
+
+    async def store_documents_batch(
+        self,
+        texts: list[str],
+        metadatas: list[dict[str, Any]],
+        ids: list[str] | None = None,
+        protected: bool = False,
+    ) -> list[str]:
+        """
+        Store multiple documents in vector memory with lifecycle-aware routing.
+
+        Batch version of store_document() for efficiency when ingesting
+        multiple chunks from a single file.
+
+        Args:
+            texts: List of document texts
+            metadatas: List of metadata dicts (must match texts length)
+            ids: Optional list of document IDs (generated if not provided)
+            protected: If True, marks documents as protected from decay.
+                      Protected documents are fast-tracked for promotion
+                      and never decay. Use for explicitly ingested documents.
+
+        Returns:
+            List of document IDs (provided or generated)
+        """
+        if not texts:
+            return []
+
+        if ids is None:
+            ids = [f"doc_{uuid.uuid4().hex[:8]}" for _ in texts]
+
+        if self._collection_manager:
+            await self._collection_manager.add_to_short_term(
+                texts=texts,
+                metadatas=metadatas,
+                ids=ids,
+                protected=protected,
+            )
+            self._emit_event(
+                "documents_batch_stored",
+                {
+                    "count": len(texts),
+                    "total_chars": sum(len(t) for t in texts),
+                    "lifecycle": True,
+                    "collection": "short_term",
+                    "protected": protected,
+                },
+            )
+        else:
+            await self.vector.add_documents(
+                texts=texts,
+                metadatas=metadatas,
+                ids=ids,
+            )
+            self._emit_event(
+                "documents_batch_stored",
+                {
+                    "count": len(texts),
+                    "total_chars": sum(len(t) for t in texts),
+                    "lifecycle": False,
+                    "collection": "main",
+                },
+            )
+
+        return ids
 
     # --- Core API: Maintenance (The "Consolidate" Loop) ---
 

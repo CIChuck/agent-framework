@@ -128,6 +128,7 @@ class MemoryExtractor:
         user_name: str = "User",
         assistant_name: str = "Assistant",
         embedding_model: "EmbeddingModel | None" = None,
+        max_tokens: int | None = None,
     ) -> None:
         """
         Initialize the Memory Extractor.
@@ -144,6 +145,7 @@ class MemoryExtractor:
             embedding_model: Optional EmbeddingModel for pre-computing edge embeddings.
                             If provided, edge embeddings are computed during extraction
                             for fast graph path scoring at retrieval time.
+            max_tokens: Optional maximum tokens for extraction response (limits output length)
         """
         self._memory = memory_controller
         self._llm = llm
@@ -152,6 +154,7 @@ class MemoryExtractor:
         self._user_name = user_name
         self._assistant_name = assistant_name
         self._embedding_model = embedding_model
+        self._max_tokens = max_tokens
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -190,7 +193,13 @@ class MemoryExtractor:
             except json.JSONDecodeError:
                 pass
 
-        # Strategy 4: Return empty extraction structure
+        # Strategy 4: Try to repair truncated JSON
+        # If JSON was cut off mid-way (token limit), try to salvage what we can
+        repaired = self._repair_truncated_json(content)
+        if repaired:
+            return repaired
+
+        # Strategy 5: Return empty extraction structure
         logger.warning(f"Could not parse JSON from response: {content[:200]}...")
         return {
             "entities": [],
@@ -199,6 +208,89 @@ class MemoryExtractor:
             "tasks": [],
             "relationships": [],
         }
+
+    def _repair_truncated_json(self, content: str) -> dict[str, Any] | None:
+        """
+        Attempt to repair truncated JSON by closing unclosed brackets.
+
+        When LLM response is cut off due to token limits, the JSON is often
+        truncated mid-structure. This tries to salvage complete top-level arrays.
+        """
+        import re
+
+        # Extract JSON portion (strip markdown)
+        json_text = content
+        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*)', content)
+        if code_block_match:
+            json_text = code_block_match.group(1).rstrip('`').strip()
+
+        # Find the opening brace
+        brace_start = json_text.find('{')
+        if brace_start == -1:
+            return None
+
+        json_text = json_text[brace_start:]
+
+        # Try progressively truncating at array boundaries
+        # Look for complete array entries we can salvage
+        result: dict[str, Any] = {
+            "entities": [],
+            "relationships": [],
+            "insights": [],
+            "tasks": [],
+        }
+
+        # Extract each top-level array that might be complete
+        for key in ["entities", "relationships", "insights", "tasks"]:
+            pattern = rf'"{key}"\s*:\s*\[([\s\S]*?)(?:\]|\Z)'
+            match = re.search(pattern, json_text)
+            if match:
+                array_content = match.group(1).strip()
+                if array_content:
+                    # Try to parse complete items from the array
+                    items = self._extract_complete_items(array_content, key)
+                    if items:
+                        result[key] = items
+                        logger.debug(f"Salvaged {len(items)} {key} from truncated JSON")
+
+        # Only return if we salvaged something
+        if any(result.values()):
+            logger.info(f"Repaired truncated JSON: salvaged {sum(len(v) for v in result.values())} items")
+            return result
+
+        return None
+
+    def _extract_complete_items(self, array_content: str, key: str) -> list:
+        """Extract complete JSON objects/strings from a potentially truncated array."""
+        import re
+
+        items = []
+
+        if key == "insights":
+            # Insights are strings, extract complete quoted strings
+            string_pattern = r'"([^"\\]*(?:\\.[^"\\]*)*)"'
+            for match in re.finditer(string_pattern, array_content):
+                items.append(match.group(1))
+        else:
+            # Other fields are objects, extract complete {...} blocks
+            depth = 0
+            start = None
+            for i, char in enumerate(array_content):
+                if char == '{':
+                    if depth == 0:
+                        start = i
+                    depth += 1
+                elif char == '}':
+                    depth -= 1
+                    if depth == 0 and start is not None:
+                        obj_str = array_content[start:i + 1]
+                        try:
+                            items.append(json.loads(obj_str))
+                        except json.JSONDecodeError:
+                            pass  # Skip malformed objects
+                        start = None
+
+        return items
 
     async def extract(self, turn: InteractionTurn) -> dict[str, Any]:
         """
@@ -250,6 +342,7 @@ class MemoryExtractor:
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0.0,  # Deterministic extraction
+                max_tokens=self._max_tokens,
             )
             elapsed = time.time() - start_time
             logger.info(f"Extraction LLM call took {elapsed:.2f}s")
@@ -527,6 +620,7 @@ class MemoryExtractor:
                     {"role": "user", "content": text},
                 ],
                 temperature=0.0,
+                max_tokens=self._max_tokens,
             )
             content = response.content or "{}"
             result = json.loads(content)

@@ -9,6 +9,7 @@ Defines the core data structures for conversation transcripts:
 
 from datetime import datetime
 from typing import Any
+from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
@@ -183,3 +184,46 @@ class TranscriptSession(BaseModel):
     def is_active(self) -> bool:
         """Check if session is still active."""
         return self.ended_at is None
+
+
+class ContextLogEntry(BaseModel):
+    """
+    Raw prompt and response data for context engineering analysis.
+
+    Stores the full messages array sent to the LLM and the complete response,
+    enabling deep analysis of context engineering while keeping the entries
+    table clean and lean.
+
+    Relationship:
+    - Primary: sessions -> context_log (one-to-many via session_id)
+    - Optional: entries -> context_log (via entry_id for joining)
+    """
+
+    id: str = Field(
+        default_factory=lambda: str(uuid4()),
+        description="Unique identifier for this context log entry",
+    )
+    session_id: str = Field(
+        ...,
+        description="FK to sessions.session_id (primary relationship)",
+    )
+    turn_number: int = Field(
+        ...,
+        description="Turn number for ordering within session",
+    )
+    entry_id: str | None = Field(
+        default=None,
+        description="Optional FK to entries.id for joining with transcript entries",
+    )
+    raw_prompt: str = Field(
+        ...,
+        description="JSON-serialized messages array sent to LLM",
+    )
+    raw_response: str | None = Field(
+        default=None,
+        description="JSON-serialized LLM response with metadata",
+    )
+    captured_at: datetime = Field(
+        default_factory=datetime.now,
+        description="Timestamp when this context was captured",
+    )

@@ -19,13 +19,16 @@ members = [
     "friday",
     "friday-agent",
     "friday-cli",
+    "friday-copilot",
     "friday-core",
     "friday-lab",
     "friday-llm",
     "friday-mcp",
     "friday-memory",
+    "friday-moltbook",
     "friday-optimization",
     "friday-sandbox",
+    "friday-telemetry",
     "friday-tools",
     "friday-transcript",
 ]
@@ -1075,8 +1078,7 @@ dependencies = [
     { name = "gepa" },
     { name = "joblib" },
     { name = "json-repair" },
-    { name = "litellm", version = "1.80.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "litellm", version = "1.80.11", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "litellm" },
     { name = "magicattr" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
@@ -1263,13 +1265,17 @@ source = { virtual = "." }
 dependencies = [
     { name = "friday-agent" },
     { name = "friday-cli" },
+    { name = "friday-copilot" },
     { name = "friday-core" },
     { name = "friday-llm" },
     { name = "friday-mcp" },
     { name = "friday-memory" },
+    { name = "friday-moltbook" },
     { name = "friday-sandbox" },
+    { name = "friday-telemetry" },
     { name = "friday-tools" },
     { name = "friday-transcript" },
+    { name = "pypdf" },
 ]
 
 [package.optional-dependencies]
@@ -1277,6 +1283,7 @@ dev = [
     { name = "mypy" },
     { name = "pytest" },
     { name = "pytest-asyncio" },
+    { name = "respx" },
     { name = "ruff" },
 ]
 
@@ -1284,22 +1291,28 @@ dev = [
 dev = [
     { name = "pytest" },
     { name = "pytest-asyncio" },
+    { name = "respx" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "friday-agent", editable = "packages/friday-agent" },
-    { name = "friday-cli", editable = "apps/friday-cli" },
+    { name = "friday-cli", editable = "packages/friday-cli" },
+    { name = "friday-copilot", editable = "apps/friday-copilot" },
     { name = "friday-core", editable = "packages/friday-core" },
     { name = "friday-llm", editable = "packages/friday-llm" },
     { name = "friday-mcp", editable = "packages/friday-mcp" },
     { name = "friday-memory", editable = "packages/friday-memory" },
+    { name = "friday-moltbook", editable = "packages/friday-moltbook" },
     { name = "friday-sandbox", editable = "packages/friday-sandbox" },
+    { name = "friday-telemetry", editable = "packages/friday-telemetry" },
     { name = "friday-tools", editable = "packages/friday-tools" },
     { name = "friday-transcript", editable = "packages/friday-transcript" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
+    { name = "pypdf", specifier = ">=4.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+    { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
 ]
 provides-extras = ["dev"]
@@ -1308,6 +1321,7 @@ provides-extras = ["dev"]
 dev = [
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-asyncio", specifier = ">=1.3.0" },
+    { name = "respx", specifier = ">=0.20.0" },
 ]
 
 [[package]]
@@ -1337,7 +1351,7 @@ provides-extras = ["dev"]
 [[package]]
 name = "friday-cli"
 version = "0.1.0"
-source = { editable = "apps/friday-cli" }
+source = { editable = "packages/friday-cli" }
 dependencies = [
     { name = "fastapi" },
     { name = "friday-agent" },
@@ -1377,10 +1391,47 @@ requires-dist = [
 provides-extras = ["dev"]
 
 [[package]]
+name = "friday-copilot"
+version = "0.1.0"
+source = { editable = "apps/friday-copilot" }
+dependencies = [
+    { name = "friday-agent" },
+    { name = "friday-cli" },
+    { name = "friday-core" },
+    { name = "friday-llm" },
+    { name = "friday-memory" },
+    { name = "friday-tools" },
+    { name = "friday-transcript" },
+    { name = "platformdirs" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "friday-agent", editable = "packages/friday-agent" },
+    { name = "friday-cli", editable = "packages/friday-cli" },
+    { name = "friday-core", editable = "packages/friday-core" },
+    { name = "friday-llm", editable = "packages/friday-llm" },
+    { name = "friday-memory", editable = "packages/friday-memory" },
+    { name = "friday-tools", editable = "packages/friday-tools" },
+    { name = "friday-transcript", editable = "packages/friday-transcript" },
+    { name = "platformdirs", specifier = ">=4.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+]
+provides-extras = ["dev"]
+
+[[package]]
 name = "friday-core"
 version = "0.1.0"
 source = { editable = "packages/friday-core" }
 dependencies = [
+    { name = "friday-telemetry" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "structlog" },
@@ -1399,6 +1450,7 @@ telemetry = [
 
 [package.metadata]
 requires-dist = [
+    { name = "friday-telemetry", editable = "packages/friday-telemetry" },
     { name = "opentelemetry-api", marker = "extra == 'telemetry'", specifier = ">=1.20.0" },
     { name = "opentelemetry-exporter-otlp", marker = "extra == 'telemetry'", specifier = ">=1.20.0" },
     { name = "opentelemetry-sdk", marker = "extra == 'telemetry'", specifier = ">=1.20.0" },
@@ -1431,7 +1483,7 @@ dependencies = [
 requires-dist = [
     { name = "arize-phoenix", specifier = ">=4.0.0" },
     { name = "friday-agent", editable = "packages/friday-agent" },
-    { name = "friday-cli", editable = "apps/friday-cli" },
+    { name = "friday-cli", editable = "packages/friday-cli" },
     { name = "friday-llm", editable = "packages/friday-llm" },
     { name = "friday-memory", editable = "packages/friday-memory" },
     { name = "pytest", specifier = ">=8.0.0" },
@@ -1447,8 +1499,8 @@ version = "0.1.0"
 source = { editable = "packages/friday-llm" }
 dependencies = [
     { name = "friday-core" },
-    { name = "litellm", version = "1.80.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "litellm", version = "1.80.11", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "friday-telemetry" },
+    { name = "litellm" },
     { name = "tenacity" },
 ]
 
@@ -1461,6 +1513,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "friday-core", editable = "packages/friday-core" },
+    { name = "friday-telemetry", editable = "packages/friday-telemetry" },
     { name = "litellm", specifier = ">=1.40.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
@@ -1546,6 +1599,32 @@ requires-dist = [
 provides-extras = ["dev"]
 
 [[package]]
+name = "friday-moltbook"
+version = "0.1.0"
+source = { editable = "packages/friday-moltbook" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "respx" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "httpx", specifier = ">=0.25.0" },
+    { name = "pydantic", specifier = ">=2.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+    { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0" },
+]
+provides-extras = ["dev"]
+
+[[package]]
 name = "friday-optimization"
 version = "0.1.0"
 source = { editable = "packages/friday-optimization" }
@@ -1596,6 +1675,36 @@ requires-dist = [
 provides-extras = ["dev"]
 
 [[package]]
+name = "friday-telemetry"
+version = "0.1.0"
+source = { editable = "packages/friday-telemetry" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+otel = [
+    { name = "opentelemetry-api" },
+    { name = "opentelemetry-exporter-otlp" },
+    { name = "opentelemetry-sdk" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "opentelemetry-api", marker = "extra == 'otel'", specifier = ">=1.20.0" },
+    { name = "opentelemetry-exporter-otlp", marker = "extra == 'otel'", specifier = ">=1.20.0" },
+    { name = "opentelemetry-sdk", marker = "extra == 'otel'", specifier = ">=1.20.0" },
+    { name = "pydantic", specifier = ">=2.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+]
+provides-extras = ["otel", "dev"]
+
+[[package]]
 name = "friday-tools"
 version = "0.1.0"
 source = { editable = "packages/friday-tools" }
@@ -1603,6 +1712,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "charset-normalizer" },
     { name = "friday-core" },
+    { name = "friday-moltbook" },
     { name = "friday-sandbox" },
     { name = "gitpython" },
     { name = "httpx" },
@@ -1655,6 +1765,7 @@ requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.12.0" },
     { name = "charset-normalizer", specifier = ">=3.3.0" },
     { name = "friday-core", editable = "packages/friday-core" },
+    { name = "friday-moltbook", editable = "packages/friday-moltbook" },
     { name = "friday-sandbox", editable = "packages/friday-sandbox" },
     { name = "friday-tools", extras = ["anthropic"], marker = "extra == 'all-adapters'", editable = "packages/friday-tools" },
     { name = "friday-tools", extras = ["documents"], marker = "extra == 'all-formats'", editable = "packages/friday-tools" },
@@ -2904,64 +3015,25 @@ wheels = [
 
 [[package]]
 name = "litellm"
-version = "1.80.5"
+version = "1.81.3"
 source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version < '3.11' and sys_platform == 'win32'",
-    "python_full_version < '3.11' and sys_platform != 'win32'",
-]
 dependencies = [
-    { name = "aiohttp", marker = "python_full_version < '3.11'" },
-    { name = "click", marker = "python_full_version < '3.11'" },
-    { name = "fastuuid", marker = "python_full_version < '3.11'" },
-    { name = "httpx", marker = "python_full_version < '3.11'" },
-    { name = "importlib-metadata", marker = "python_full_version < '3.11'" },
-    { name = "jinja2", marker = "python_full_version < '3.11'" },
-    { name = "jsonschema", marker = "python_full_version < '3.11'" },
-    { name = "openai", marker = "python_full_version < '3.11'" },
-    { name = "pydantic", marker = "python_full_version < '3.11'" },
-    { name = "python-dotenv", marker = "python_full_version < '3.11'" },
-    { name = "tiktoken", marker = "python_full_version < '3.11'" },
-    { name = "tokenizers", marker = "python_full_version < '3.11'" },
+    { name = "aiohttp" },
+    { name = "click" },
+    { name = "fastuuid" },
+    { name = "httpx" },
+    { name = "importlib-metadata" },
+    { name = "jinja2" },
+    { name = "jsonschema" },
+    { name = "openai" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "tiktoken" },
+    { name = "tokenizers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/85/b8/357544534bef87dd2858432f3cbd3a0e5cc267caebca5ea86b03618786c5/litellm-1.80.5.tar.gz", hash = "sha256:922791c264845d9ed59e540c8fa74a74d237c1b209568a05ffeacd8b51770deb", size = 11885764, upload-time = "2025-11-22T23:41:42.25Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/dd/d70835d5b231617761717cd5ba60342b677693093a71d5ce13ae9d254aee/litellm-1.81.3.tar.gz", hash = "sha256:a7688b429a88abfdd02f2a8c3158ebb5385689cfb7f9d4ac1473d018b2047e1b", size = 13612652, upload-time = "2026-01-25T02:45:58.888Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bd/af/1d4693746ff9fbbe27a6e7d6394b801acf234e00c83f45ad1cb5bf2eaa6c/litellm-1.80.5-py3-none-any.whl", hash = "sha256:2ac5f4e88cd57ae056e00da8f872e1c2956653750929fba2fd9b007b400fdb77", size = 10671970, upload-time = "2025-11-22T23:41:39.923Z" },
-]
-
-[[package]]
-name = "litellm"
-version = "1.80.11"
-source = { registry = "https://pypi.org/simple" }
-resolution-markers = [
-    "python_full_version >= '3.14' and sys_platform == 'win32'",
-    "python_full_version == '3.13.*' and sys_platform == 'win32'",
-    "python_full_version == '3.12.*' and sys_platform == 'win32'",
-    "python_full_version == '3.11.*' and sys_platform == 'win32'",
-    "python_full_version >= '3.14' and sys_platform != 'win32'",
-    "python_full_version == '3.13.*' and sys_platform != 'win32'",
-    "python_full_version == '3.12.*' and sys_platform != 'win32'",
-    "python_full_version == '3.11.*' and sys_platform != 'win32'",
-]
-dependencies = [
-    { name = "aiohttp", marker = "python_full_version >= '3.11'" },
-    { name = "click", marker = "python_full_version >= '3.11'" },
-    { name = "fastuuid", marker = "python_full_version >= '3.11'" },
-    { name = "grpcio", version = "1.67.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' and python_full_version < '3.14'" },
-    { name = "grpcio", version = "1.76.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
-    { name = "httpx", marker = "python_full_version >= '3.11'" },
-    { name = "importlib-metadata", marker = "python_full_version >= '3.11'" },
-    { name = "jinja2", marker = "python_full_version >= '3.11'" },
-    { name = "jsonschema", marker = "python_full_version >= '3.11'" },
-    { name = "openai", marker = "python_full_version >= '3.11'" },
-    { name = "pydantic", marker = "python_full_version >= '3.11'" },
-    { name = "python-dotenv", marker = "python_full_version >= '3.11'" },
-    { name = "tiktoken", marker = "python_full_version >= '3.11'" },
-    { name = "tokenizers", marker = "python_full_version >= '3.11'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/55/47/be6cd7b356418ca8bef3b843507940ce77b76ef2dfe515f2b4ba9b461ff0/litellm-1.80.11.tar.gz", hash = "sha256:c9fc63e7acb6360363238fe291bcff1488c59ff66020416d8376c0ee56414a19", size = 13189510, upload-time = "2025-12-22T12:47:29.181Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/97/0b/9e637344f24f3fe0e8039cd2337389fe05e0d31f518bc3e0a5cdbe45784a/litellm-1.80.11-py3-none-any.whl", hash = "sha256:406283d66ead77dc7ff0e0b2559c80e9e497d8e7c2257efb1cb9210a20d09d54", size = 11456346, upload-time = "2025-12-22T12:47:26.469Z" },
+    { url = "https://files.pythonhosted.org/packages/83/62/d3f53c665261fdd5bb2401246e005a4ea8194ad1c4d8c663318ae3d638bf/litellm-1.81.3-py3-none-any.whl", hash = "sha256:3f60fd8b727587952ad3dd18b68f5fed538d6f43d15bb0356f4c3a11bccb2b92", size = 11946995, upload-time = "2026-01-25T02:45:55.887Z" },
 ]
 
 [[package]]

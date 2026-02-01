@@ -16,6 +16,11 @@ Usage:
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
 from friday_memory.maintenance.backup import BackupManager
 from friday_memory.maintenance.fact_checker import FactChecker
+from friday_memory.maintenance.incremental import (
+    IncrementalGraphMaintainer,
+    IncrementalMaintenanceConfig,
+    MaintenanceResult,
+)
 from friday_memory.maintenance.logger import ReorganizationLogger
 from friday_memory.maintenance.models import (
     ActionLogEntry,
@@ -63,6 +68,10 @@ __all__ = [
     "FactChecker",
     "MemoryReorganizer",
     "ReorganizationLogger",
+    # Incremental maintenance
+    "IncrementalGraphMaintainer",
+    "IncrementalMaintenanceConfig",
+    "MaintenanceResult",
     # Config
     "MaintenanceConfig",
     "PromptsConfig",

@@ -345,6 +345,11 @@ class MemoryPromotionService:
             doc_id = doc.get("id")
             metadata = doc.get("metadata", {})
 
+            # Skip protected memories (e.g., explicitly ingested documents)
+            if metadata.get("protected", False):
+                logger.debug(f"Skipping decay for protected memory {doc_id}")
+                continue
+
             # Parse timestamps
             last_accessed_str = metadata.get("last_accessed_at")
             if last_accessed_str:
@@ -408,6 +413,19 @@ class MemoryPromotionService:
                     created_at = now
             else:
                 created_at = now
+
+            # Fast-track protected memories (e.g., explicitly ingested documents)
+            # These bypass the normal age/access requirements
+            is_protected = metadata.get("protected", False)
+            if is_protected:
+                result.promoted_to_long_term += 1
+                if not dry_run:
+                    try:
+                        await self._collection_manager.promote_memory(doc_id)
+                        logger.info(f"Fast-track promoted protected memory {doc_id} to LONG_TERM")
+                    except Exception as e:
+                        result.errors.append(f"Failed to promote protected {doc_id}: {e}")
+                continue
 
             # Check eligibility (must be old enough)
             if not self._promotion_scorer.is_eligible_for_promotion(

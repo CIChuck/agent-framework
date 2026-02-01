@@ -4,8 +4,9 @@ Physically structures the final prompt to optimize model attention.
 
 Ref: Batch 2a Specification, Section 5
 Ref: docs/build-plan/tool-calling-build-plan.md, Phase 4
+Ref: docs/build-plan/copilot-promotion-build-plan.md (Prompt Caching)
 
-Layout Strategy (Optimized for Attention):
+Layout Strategy (Optimized for Attention - Default):
 1. System Message: Base prompt (identity & guardrails)
 2. Episodic Memory: Conversation history (chronological)
 3. Final Message: Supporting context + User query
@@ -18,6 +19,19 @@ Layout Strategy (Optimized for Attention):
    - Session state
    - User query
 
+Layout Strategy (Optimized for Caching - Optional):
+When cache_config.enabled=True, layout is reordered for prefix caching:
+1. System Message: Base prompt (identity & guardrails) [CACHEABLE]
+2. Static Context: Insights, facts, summaries (stable across turns) [CACHEABLE]
+3. Episodic Memory: Conversation history [CACHEABLE up to breakpoint]
+4. [CACHE BREAKPOINT] - Anthropic: cache_control marker
+5. Dynamic Context: Tool recommendations, session state (changes per turn)
+6. User Query
+
+This allows LLM providers to cache the stable prefix:
+- Anthropic: Explicit cache_control markers with ephemeral type
+- OpenAI: Automatic prefix caching (no markers needed)
+
 Tool Context Integration (Hybrid Placement):
 - Full tool schemas are passed via API `tools` parameter (not in prompt)
 - Tool recommendations and hints appear in supporting context
@@ -28,14 +42,108 @@ This layout combats "Lost in the Middle" by placing supporting context
 immediately before the query (recency effect) rather than in the system block.
 """
 
+from __future__ import annotations
+
 import json
-from typing import Any
+import logging
+import re
+from typing import TYPE_CHECKING, Any
 from xml.dom import minidom
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 import tiktoken
+from pydantic import BaseModel, Field
 
 from friday_memory.models import ContextPayload, SessionState
+
+if TYPE_CHECKING:
+    from friday_memory.context.cache_config import CacheBreakpoint, PromptCacheConfig
+
+logger = logging.getLogger(__name__)
+
+
+# =============================================================================
+# FORMATTING OVERHEAD CONSTANTS
+# =============================================================================
+# These constants account for tokens added during prompt formatting that are
+# not counted during budget estimation in assembler._apply_budget().
+# =============================================================================
+
+# Per-turn overhead: timestamp prefix "[2026-01-30 14:23] " + role "[Chuck]: "
+TOKENS_PER_TURN_OVERHEAD = 30
+
+# Per-section header: "## Section Name\n"
+TOKENS_PER_SECTION_HEADER = 10
+
+# Per-passage metadata: source, type indicators, header formatting
+TOKENS_PER_PASSAGE_METADATA = 15
+
+# Per-list item: "- " prefix
+TOKENS_PER_LIST_ITEM = 3
+
+# Separator between supporting context and query
+TOKENS_SEPARATOR = 10
+
+
+# =============================================================================
+# SUPPORTING CONTEXT CONFIGURATION
+# =============================================================================
+# Controls budget allocation and priority ordering for supporting context
+# sections built by _build_supporting_context().
+# =============================================================================
+
+
+class SupportingContextConfig(BaseModel):
+    """
+    Configuration for supporting context budget and priority.
+
+    The supporting context includes: recent_memories, passages, key_facts,
+    insights, summaries, tools, and session state. This config controls
+    how much of the token budget goes to supporting context vs conversation
+    history, and in what order sections are added when truncating.
+    """
+
+    # Percentage of available budget allocated to supporting context (0.0-1.0)
+    # Remaining budget goes to conversation history
+    budget_ratio: float = Field(
+        default=0.30,
+        ge=0.0,
+        le=1.0,
+        description="Fraction of dynamic budget for supporting context",
+    )
+
+    # Priority order for sections when truncating (first = highest priority)
+    # Sections with higher priority are added first and kept when space is limited
+    section_priority: list[str] = Field(
+        default=[
+            "recent_memories",
+            "passages",
+            "key_facts",
+            "insights",
+            "summaries",
+            "tools",
+            "state",
+        ],
+        description="Order of section importance (first = highest priority)",
+    )
+
+    # Maximum items per section (hard limits before budget truncation)
+    max_items: dict[str, int] = Field(
+        default={
+            "passages": 10,
+            "key_facts": 20,
+            "insights": 15,
+            "summaries": 10,
+            "tools": 5,
+        },
+        description="Hard limit on items per section",
+    )
+
+# Pattern to match existing timestamp/role prefixes that may have been echoed back
+# Matches patterns like: [2026-01-27 10:42] [Assistant]:
+TIMESTAMP_ROLE_PATTERN = re.compile(
+    r"^(\[\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}\]\s*\[(User|Assistant|Chuck|Friday)\]:\s*)+"
+)
 
 
 class PromptArchitect:
@@ -45,6 +153,9 @@ class PromptArchitect:
     Structures the final prompt to combat "Lost in the Middle" and
     optimize for "System 2" reasoning. Places critical information
     at the start and end of the context for maximum attention.
+
+    Supports optional cache-optimized layout for LLM providers that
+    support prefix caching (Anthropic, OpenAI).
     """
 
     def __init__(
@@ -54,6 +165,8 @@ class PromptArchitect:
         output_buffer: int = 1024,
         user_name: str = "User",
         assistant_name: str = "Assistant",
+        cache_config: "PromptCacheConfig | None" = None,
+        supporting_context_config: SupportingContextConfig | dict | None = None,
     ) -> None:
         """
         Initialize the Prompt Architect.
@@ -64,12 +177,25 @@ class PromptArchitect:
             output_buffer: Reserved tokens for model output
             user_name: Display name for the user in conversation
             assistant_name: Display name for the assistant in conversation
+            cache_config: Optional prompt caching configuration
+            supporting_context_config: Optional config for supporting context
+                budget and priority. If dict, will be converted to
+                SupportingContextConfig. If None, uses defaults.
         """
         self.model_name = model_name
         self.max_tokens = max_tokens
         self.output_buffer = output_buffer
         self.user_name = user_name
         self.assistant_name = assistant_name
+        self._cache_config = cache_config
+
+        # Initialize supporting context config
+        if supporting_context_config is None:
+            self._supporting_context_config = SupportingContextConfig()
+        elif isinstance(supporting_context_config, dict):
+            self._supporting_context_config = SupportingContextConfig(**supporting_context_config)
+        else:
+            self._supporting_context_config = supporting_context_config
 
         # Initialize tokenizer
         try:
@@ -78,9 +204,35 @@ class PromptArchitect:
             # Fall back to cl100k_base for unknown models
             self._encoding = tiktoken.get_encoding("cl100k_base")
 
+    @property
+    def cache_config(self) -> "PromptCacheConfig | None":
+        """Access the cache configuration."""
+        return self._cache_config
+
+    def set_cache_config(self, config: "PromptCacheConfig | None") -> None:
+        """Update the cache configuration."""
+        self._cache_config = config
+
     def count_tokens(self, text: str) -> int:
         """Count tokens in a text string."""
         return len(self._encoding.encode(text))
+
+    def _strip_existing_prefixes(self, text: str) -> str:
+        """
+        Strip any existing timestamp/role prefixes from message content.
+
+        This prevents nested prefixes when LLM echoes back formatted context.
+        Patterns like "[2026-01-27 10:42] [Assistant]: ..." are stripped.
+
+        Args:
+            text: The message text to clean
+
+        Returns:
+            Text with existing prefixes removed
+        """
+        if not text:
+            return text
+        return TIMESTAMP_ROLE_PATTERN.sub("", text)
 
     def format_prompt(
         self,
@@ -90,11 +242,14 @@ class PromptArchitect:
         state: SessionState | None = None,
         tool_definitions: list[dict[str, Any]] | None = None,
         context_format: str = "plain",
+        turn_count: int = 0,
     ) -> list[dict[str, Any]]:
         """
         Arranges messages for optimal model attention.
 
         Implements the layout strategy defined in Batch 2a Section 5.
+        When cache_config is enabled and conditions are met, uses
+        cache-optimized layout instead.
 
         Args:
             system_prompt: The base system prompt (identity & guardrails)
@@ -104,11 +259,123 @@ class PromptArchitect:
             tool_definitions: Optional tool definitions for the model
             context_format: Output format for supporting context.
                 Options: "plain" (default), "json", "xml", "markdown"
+            turn_count: Current conversation turn count (for cache eligibility)
 
         Returns:
             List of message dicts in OpenAI-compatible format
         """
+        # Check if we should use cache-optimized layout
+        if self._cache_config and self._cache_config.should_cache(turn_count, self.model_name):
+            messages = self._format_prompt_cached(
+                system_prompt=system_prompt,
+                user_query=user_query,
+                payload=payload,
+                state=state,
+                tool_definitions=tool_definitions,
+                context_format=context_format,
+            )
+        else:
+            # Default attention-optimized layout
+            messages = self._format_prompt_attention(
+                system_prompt=system_prompt,
+                user_query=user_query,
+                payload=payload,
+                state=state,
+                tool_definitions=tool_definitions,
+                context_format=context_format,
+            )
+
+        # Post-format validation: warn if budget exceeded
+        self._validate_prompt_budget(messages, tool_definitions)
+
+        return messages
+
+    def _validate_prompt_budget(
+        self,
+        messages: list[dict[str, Any]],
+        tool_definitions: list[dict[str, Any]] | None = None,
+    ) -> None:
+        """
+        Validate that the formatted prompt doesn't exceed the token budget.
+
+        Logs a warning if the prompt exceeds max_tokens - output_buffer.
+        This is a safeguard to catch budget enforcement gaps.
+
+        Args:
+            messages: The formatted messages array
+            tool_definitions: Optional tool definitions
+        """
+        # Calculate total tokens in messages
+        message_tokens = sum(
+            self.count_tokens(m.get("content", ""))
+            for m in messages
+        )
+
+        # Add tool definition tokens if present
+        tool_tokens = 0
+        if tool_definitions:
+            tool_tokens = self.count_tokens(json.dumps(tool_definitions))
+
+        total_tokens = message_tokens + tool_tokens
+
+        # Available budget = max_tokens - output_buffer
+        available_budget = self.max_tokens - self.output_buffer
+
+        if total_tokens > available_budget:
+            overage = total_tokens - available_budget
+            overage_pct = (overage / available_budget) * 100
+            logger.warning(
+                f"Prompt exceeds budget: {total_tokens} > {available_budget} tokens "
+                f"(overage: {overage} tokens, {overage_pct:.1f}%). "
+                f"Consider reducing history or increasing context_window."
+            )
+        else:
+            utilization = (total_tokens / available_budget) * 100
+            logger.debug(
+                f"Prompt budget: {total_tokens}/{available_budget} tokens "
+                f"({utilization:.1f}% utilized)"
+            )
+
+    def _format_prompt_attention(
+        self,
+        system_prompt: str,
+        user_query: str,
+        payload: ContextPayload,
+        state: SessionState | None = None,
+        tool_definitions: list[dict[str, Any]] | None = None,
+        context_format: str = "plain",
+    ) -> list[dict[str, Any]]:
+        """
+        Default attention-optimized layout (combats "Lost in the Middle").
+
+        Layout:
+        1. System message
+        2. Conversation history
+        3. Supporting context + User query (recency effect)
+
+        Budget allocation:
+        - Fixed costs: system_prompt + tool_definitions + output_buffer
+        - Dynamic budget: max_tokens - fixed_costs
+        - Supporting context gets: dynamic_budget * budget_ratio
+        - History gets: remaining dynamic budget
+        """
         messages: list[dict[str, Any]] = []
+
+        # Calculate budget for supporting context
+        # Dynamic budget = max_tokens - system_prompt - tools - output_buffer
+        fixed_costs = self.calculate_fixed_costs(system_prompt, tool_definitions)
+        dynamic_budget = max(0, self.max_tokens - fixed_costs)
+
+        # Supporting context budget = dynamic_budget * budget_ratio
+        config = self._supporting_context_config
+        supporting_context_budget = int(dynamic_budget * config.budget_ratio)
+
+        logger.debug(
+            f"Budget allocation: max_tokens={self.max_tokens}, "
+            f"fixed={fixed_costs}, dynamic={dynamic_budget}, "
+            f"supporting_context={supporting_context_budget} "
+            f"(ratio={config.budget_ratio})"
+        )
 
         # 1. System message (base prompt only)
         system_content = self._build_system_content(system_prompt)
@@ -118,6 +385,12 @@ class PromptArchitect:
         # Merge prior_history + history (prior sessions first, then current session)
         all_history = list(payload.prior_history) + list(payload.history)
         for turn in all_history:
+            # Skip incomplete turns (no assistant response).
+            # This prevents orphaned user messages from appearing as pending questions.
+            # Can happen from interrupted sessions or failed LLM calls.
+            if turn.user_message and not turn.assistant_message and not turn.tool_calls:
+                continue
+
             # Format timestamp for temporal context: [YYYY-MM-DD HH:MM]
             timestamp_str = ""
             if turn.timestamp:
@@ -125,9 +398,11 @@ class PromptArchitect:
 
             # Append user message
             if turn.user_message:
+                # Strip any echoed timestamp/role prefixes to prevent nesting
+                clean_msg = self._strip_existing_prefixes(turn.user_message)
                 messages.append({
                     "role": "user",
-                    "content": f"{timestamp_str}[{self.user_name}]: {turn.user_message}",
+                    "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
                 })
 
             # Check if this turn has tool calls
@@ -142,7 +417,9 @@ class PromptArchitect:
                 # Build assistant message with tool call summaries
                 tool_summary_parts = []
                 if turn.assistant_message:
-                    tool_summary_parts.append(turn.assistant_message)
+                    # Strip any echoed timestamp/role prefixes from the message
+                    clean_msg = self._strip_existing_prefixes(turn.assistant_message)
+                    tool_summary_parts.append(clean_msg)
 
                 # Summarize each tool call and its result
                 tool_summary_parts.append("\n[Tool Calls:]")
@@ -177,14 +454,19 @@ class PromptArchitect:
                 })
             elif turn.assistant_message:
                 # No tool calls - just append assistant message
+                # Strip any echoed timestamp/role prefixes to prevent nesting
+                clean_msg = self._strip_existing_prefixes(turn.assistant_message)
                 messages.append({
                     "role": "assistant",
-                    "content": f"{timestamp_str}[{self.assistant_name}]: {turn.assistant_message}",
+                    "content": f"{timestamp_str}[{self.assistant_name}]: {clean_msg}",
                 })
 
         # 3. Final message: supporting context + query
         # Supporting context is placed immediately before the query for recency effect
-        supporting_context = self._build_supporting_context(payload, state, context_format)
+        # Pass the calculated budget to enable truncation
+        supporting_context = self._build_supporting_context(
+            payload, state, context_format, max_tokens=supporting_context_budget
+        )
         if supporting_context:
             final_content = f"{supporting_context}\n\n---\n\n[{self.user_name}]: {user_query}"
         else:
@@ -193,6 +475,277 @@ class PromptArchitect:
         messages.append({"role": "user", "content": final_content})
 
         return messages
+
+    def _format_prompt_cached(
+        self,
+        system_prompt: str,
+        user_query: str,
+        payload: ContextPayload,
+        state: SessionState | None = None,
+        tool_definitions: list[dict[str, Any]] | None = None,
+        context_format: str = "plain",
+    ) -> list[dict[str, Any]]:
+        """
+        Cache-optimized layout for LLM providers with prefix caching.
+
+        Layout (optimized for cache hits):
+        1. System message [CACHEABLE]
+        2. Static context (insights, facts, summaries) [CACHEABLE - if configured]
+        3. Conversation history [CACHEABLE up to breakpoint]
+        4. [CACHE BREAKPOINT - Anthropic cache_control marker]
+        5. Dynamic context (tool recommendations, state)
+        6. User query
+
+        For Anthropic: Adds cache_control markers to messages.
+        For OpenAI: Layout only (auto-prefix caching).
+        """
+        from friday_memory.context.cache_config import CacheBreakpoint, CacheProvider
+
+        messages: list[dict[str, Any]] = []
+        cache_marker = self._cache_config.get_cache_control_marker(self.model_name) if self._cache_config else None
+        provider = self._cache_config.detect_provider(self.model_name) if self._cache_config else CacheProvider.NONE
+        breakpoint = self._cache_config.breakpoint if self._cache_config else CacheBreakpoint.AFTER_HISTORY
+
+        # 1. System message [CACHEABLE]
+        system_content = self._build_system_content(system_prompt)
+        system_msg: dict[str, Any] = {"role": "system", "content": system_content}
+
+        # Add cache marker for system-only breakpoint
+        if breakpoint == CacheBreakpoint.SYSTEM_ONLY and cache_marker and provider == CacheProvider.ANTHROPIC:
+            system_msg["cache_control"] = cache_marker
+
+        messages.append(system_msg)
+
+        # 2. Static context (if configured to be in prefix) [CACHEABLE]
+        static_context = ""
+        if self._cache_config and self._cache_config.static_context_in_prefix:
+            static_context = self._build_static_context(payload, context_format)
+
+        if static_context:
+            static_msg: dict[str, Any] = {"role": "user", "content": f"[Context Reference]\n{static_context}"}
+
+            # Add cache marker for after-static breakpoint
+            if breakpoint == CacheBreakpoint.AFTER_STATIC and cache_marker and provider == CacheProvider.ANTHROPIC:
+                static_msg["cache_control"] = cache_marker
+
+            messages.append(static_msg)
+
+            # Add assistant acknowledgment for proper message alternation
+            messages.append({"role": "assistant", "content": "[Context loaded]"})
+
+        # 3. Conversation history [CACHEABLE up to breakpoint]
+        all_history = list(payload.prior_history) + list(payload.history)
+        for i, turn in enumerate(all_history):
+            # Skip incomplete turns (no assistant response).
+            # This prevents orphaned user messages from appearing as pending questions.
+            if turn.user_message and not turn.assistant_message and not turn.tool_calls:
+                continue
+
+            timestamp_str = ""
+            if turn.timestamp:
+                timestamp_str = f"[{turn.timestamp.strftime('%Y-%m-%d %H:%M')}] "
+
+            # User message
+            if turn.user_message:
+                clean_msg = self._strip_existing_prefixes(turn.user_message)
+                messages.append({
+                    "role": "user",
+                    "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
+                })
+
+            # Assistant message (with tool call handling)
+            if turn.tool_calls:
+                tool_summary_parts = []
+                if turn.assistant_message:
+                    clean_msg = self._strip_existing_prefixes(turn.assistant_message)
+                    tool_summary_parts.append(clean_msg)
+
+                tool_summary_parts.append("\n[Tool Calls:]")
+                for tc in turn.tool_calls:
+                    args_str = ", ".join(f"{k}={v!r}" for k, v in tc.arguments.items())
+                    tool_summary_parts.append(f"  → {tc.name}({args_str})")
+
+                    for tr in turn.tool_results:
+                        if tr.tool_call_id == tc.id:
+                            if tr.error:
+                                tool_summary_parts.append(f"    ✗ Error: {tr.error}")
+                            else:
+                                is_decayed = getattr(tr, "is_decayed", False)
+                                summary = getattr(tr, "summary", None)
+                                if is_decayed and summary:
+                                    tool_summary_parts.append(f"    ✓ [Summary]: {summary}")
+                                else:
+                                    output_str = str(tr.output) if tr.output else ""
+                                    if len(output_str) > 500:
+                                        output_str = output_str[:500] + "..."
+                                    tool_summary_parts.append(f"    ✓ {output_str}")
+                            break
+
+                assistant_msg: dict[str, Any] = {
+                    "role": "assistant",
+                    "content": f"{timestamp_str}[{self.assistant_name}]: " + "\n".join(tool_summary_parts),
+                }
+
+                # Add cache marker on last history message for after-history breakpoint
+                is_last = (i == len(all_history) - 1)
+                if is_last and breakpoint == CacheBreakpoint.AFTER_HISTORY and cache_marker and provider == CacheProvider.ANTHROPIC:
+                    assistant_msg["cache_control"] = cache_marker
+
+                messages.append(assistant_msg)
+
+            elif turn.assistant_message:
+                clean_msg = self._strip_existing_prefixes(turn.assistant_message)
+                assistant_msg = {
+                    "role": "assistant",
+                    "content": f"{timestamp_str}[{self.assistant_name}]: {clean_msg}",
+                }
+
+                # Add cache marker on last history message
+                is_last = (i == len(all_history) - 1)
+                if is_last and breakpoint == CacheBreakpoint.AFTER_HISTORY and cache_marker and provider == CacheProvider.ANTHROPIC:
+                    assistant_msg["cache_control"] = cache_marker
+
+                messages.append(assistant_msg)
+
+        # 4. Dynamic context + User query [NOT CACHED - changes each turn]
+        # Build dynamic context (tool recommendations, session state)
+        dynamic_context = self._build_dynamic_context(payload, state, context_format)
+
+        if dynamic_context:
+            final_content = f"{dynamic_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+        else:
+            final_content = f"[{self.user_name}]: {user_query}"
+
+        messages.append({"role": "user", "content": final_content})
+
+        return messages
+
+    def _build_static_context(
+        self,
+        payload: ContextPayload,
+        context_format: str = "plain",
+    ) -> str:
+        """
+        Build static context block (stable across turns, suitable for caching).
+
+        Includes: insights, key facts, summaries, passages.
+        Excludes: tool recommendations, session state (dynamic per turn).
+
+        Args:
+            payload: The context payload
+            context_format: Output format
+
+        Returns:
+            Formatted static context string
+        """
+        sections: list[str] = []
+
+        # Prior knowledge (relationship summaries)
+        if payload.recent_memories:
+            sections.append("## Prior Knowledge")
+            for memory in payload.recent_memories:
+                sections.append(memory)
+
+        # Semantic passages from vector search
+        if payload.passages:
+            sections.append("\n## Relevant Context")
+            for i, passage in enumerate(payload.passages[:10], 1):
+                text = passage.get("text", "")
+                metadata = passage.get("metadata", {})
+                source = metadata.get("filename") or metadata.get("source", "memory")
+                doc_type = metadata.get("type", "")
+
+                header = f"### [{source}]"
+                if doc_type == "ingested_file":
+                    header += " (ingested)"
+                elif doc_type == "tool_output":
+                    tool_name = metadata.get("tool_name", "")
+                    header += f" (from {tool_name})"
+                sections.append(header)
+                sections.append(text)
+                sections.append("")
+
+        # Key facts
+        if payload.key_facts:
+            sections.append("\n## Key Facts")
+            for fact in payload.key_facts:
+                text = fact.get("text", "")
+                created_at = fact.get("metadata", {}).get("created_at", "")
+                timestamp = created_at[:16] if created_at else ""
+                if timestamp:
+                    sections.append(f"- [{timestamp}] {text}")
+                else:
+                    sections.append(f"- {text}")
+
+        # Recent insights
+        if payload.insights:
+            sections.append("\n## Recent Insights")
+            for insight in payload.insights:
+                text = insight.get("text", "")
+                sections.append(f"- {text}")
+
+        # Conversation summaries
+        if payload.summaries:
+            sections.append("\n## Conversation Summaries")
+            for summary in payload.summaries:
+                text = summary.get("text", "")
+                sections.append(f"- {text}")
+
+        return "\n".join(sections) if sections else ""
+
+    def _build_dynamic_context(
+        self,
+        payload: ContextPayload,
+        state: SessionState | None,
+        context_format: str = "plain",
+    ) -> str:
+        """
+        Build dynamic context block (changes per turn, not cached).
+
+        Includes: tool recommendations, tool hints, session state.
+        Excludes: insights, facts, summaries (static, cached separately).
+
+        Args:
+            payload: The context payload
+            state: Optional session state
+            context_format: Output format
+
+        Returns:
+            Formatted dynamic context string
+        """
+        sections: list[str] = []
+
+        # Tool recommendations
+        if payload.recommended_tools:
+            sections.append("## Recommended Tools")
+            for rec in payload.recommended_tools:
+                if hasattr(rec, "tool_name"):
+                    tool_name = rec.tool_name
+                    reason = rec.reason
+                    suggested = getattr(rec, "suggested_parameters", None)
+                else:
+                    tool_name = rec.get("tool_name", "unknown")
+                    reason = rec.get("reason", "")
+                    suggested = rec.get("suggested_parameters")
+
+                line = f"- {tool_name}: {reason}"
+                if suggested:
+                    params = ", ".join(f"{k}={v}" for k, v in suggested.items())
+                    line += f" (suggested: {params})"
+                sections.append(line)
+
+        # Tool usage hints
+        if payload.tool_usage_hints:
+            sections.append("\n## Tool Usage Notes")
+            for hint in payload.tool_usage_hints:
+                sections.append(f"- {hint}")
+
+        # Session state
+        if state and state.scoped_vars:
+            state_block = self._format_state_block(state)
+            sections.append(f"\n{state_block}")
+
+        return "\n".join(sections) if sections else ""
 
     def _build_system_content(self, base_prompt: str) -> str:
         """
@@ -216,77 +769,224 @@ class PromptArchitect:
         payload: ContextPayload,
         state: SessionState | None,
         context_format: str = "plain",
+        max_tokens: int | None = None,
     ) -> str:
         """
         Build supporting context block for injection before query.
 
         Placed at the tail of the context to leverage recency effect.
-        Content is ordered: relationships, insights (recent first),
-        summaries (recent first), entities, state.
+        Content is ordered by section_priority in config, with budget-aware
+        truncation when max_tokens is specified.
 
         Args:
             payload: The context payload with insights, summaries, entities
             state: Optional session state for scoped variables
             context_format: Output format ("plain", "json", "xml", "markdown")
+            max_tokens: Optional token budget for supporting context.
+                If specified, sections are added in priority order until
+                budget is exhausted.
 
         Returns:
             Formatted supporting context string, or empty string if no content
         """
         match context_format:
             case "json":
-                return self._format_context_json(payload, state)
+                return self._format_context_json(payload, state, max_tokens)
             case "xml":
-                return self._format_context_xml(payload, state)
+                return self._format_context_xml(payload, state, max_tokens)
             case "markdown":
-                return self._format_context_markdown(payload, state)
+                return self._format_context_markdown(payload, state, max_tokens)
             case _:  # plain (default)
-                return self._format_context_plain(payload, state)
+                return self._format_context_plain(payload, state, max_tokens)
 
     def _format_context_plain(
         self,
         payload: ContextPayload,
         state: SessionState | None,
+        max_tokens: int | None = None,
     ) -> str:
-        """Format supporting context as plain text (default format)."""
+        """
+        Format supporting context as plain text with budget-aware truncation.
+
+        When max_tokens is specified, sections are built in priority order
+        and truncated when the budget is exhausted.
+
+        Args:
+            payload: The context payload
+            state: Optional session state
+            max_tokens: Optional token budget (None = no limit)
+
+        Returns:
+            Formatted supporting context string
+        """
+        config = self._supporting_context_config
         sections: list[str] = []
+        tokens_used = 0
 
-        # 1. Relationship summaries (prior knowledge about entities)
-        if payload.recent_memories:
-            sections.append("## Prior Knowledge")
-            for memory in payload.recent_memories:
-                sections.append(memory)
+        # Build section builders for each section type
+        section_builders: dict[str, callable] = {
+            "recent_memories": lambda: self._build_section_recent_memories(payload, config),
+            "passages": lambda: self._build_section_passages(payload, config),
+            "key_facts": lambda: self._build_section_key_facts(payload, config),
+            "insights": lambda: self._build_section_insights(payload, config),
+            "summaries": lambda: self._build_section_summaries(payload, config),
+            "tools": lambda: self._build_section_tools(payload, config),
+            "state": lambda: self._build_section_state(state),
+        }
 
-        # 2. Key facts (most recent first - already sorted by created_at desc)
-        if payload.key_facts:
-            sections.append("\n## Key Facts")
-            for fact in payload.key_facts:
-                text = fact.get("text", "")
-                created_at = fact.get("metadata", {}).get("created_at", "")
-                timestamp = created_at[:16] if created_at else ""
-                if timestamp:
-                    sections.append(f"- [{timestamp}] {text}")
+        # Build sections in priority order
+        for section_name in config.section_priority:
+            if max_tokens and tokens_used >= max_tokens:
+                logger.debug(
+                    f"Supporting context budget exhausted at section '{section_name}' "
+                    f"({tokens_used}/{max_tokens} tokens)"
+                )
+                break
+
+            builder = section_builders.get(section_name)
+            if not builder:
+                continue
+
+            section_content = builder()
+            if not section_content:
+                continue
+
+            section_tokens = self.count_tokens(section_content)
+
+            # Check if this section fits in remaining budget
+            if max_tokens:
+                remaining = max_tokens - tokens_used
+                if section_tokens > remaining:
+                    # Try to truncate the section to fit
+                    truncated = self._truncate_section_to_budget(
+                        section_content, remaining
+                    )
+                    if truncated:
+                        sections.append(truncated)
+                        tokens_used += self.count_tokens(truncated)
+                        logger.debug(
+                            f"Truncated section '{section_name}' to fit budget "
+                            f"({self.count_tokens(truncated)}/{section_tokens} tokens)"
+                        )
+                    break
                 else:
-                    sections.append(f"- {text}")
+                    sections.append(section_content)
+                    tokens_used += section_tokens
+            else:
+                sections.append(section_content)
+                tokens_used += section_tokens
 
-        # 3. Recent insights (most recent first - already sorted by created_at desc)
-        if payload.insights:
-            sections.append("\n## Recent Insights")
-            for insight in payload.insights:
-                text = insight.get("text", "")
-                sections.append(f"- {text}")
+        if max_tokens:
+            logger.debug(
+                f"Supporting context built: {tokens_used}/{max_tokens} tokens "
+                f"({len(sections)} sections)"
+            )
 
-        # 4. Recent summaries (most recent first - already sorted by created_at desc)
-        if payload.summaries:
-            sections.append("\n## Conversation Summaries")
-            for summary in payload.summaries:
-                text = summary.get("text", "")
-                sections.append(f"- {text}")
+        return "\n".join(sections) if sections else ""
 
-        # 5. Tool recommendations (for recency effect - close to query)
+    def _build_section_recent_memories(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the recent memories (prior knowledge) section."""
+        if not payload.recent_memories:
+            return ""
+
+        lines = ["## Prior Knowledge"]
+        for memory in payload.recent_memories:
+            lines.append(memory)
+        return "\n".join(lines)
+
+    def _build_section_passages(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the passages (relevant context) section."""
+        if not payload.passages:
+            return ""
+
+        max_passages = config.max_items.get("passages", 10)
+        lines = ["\n## Relevant Context"]
+
+        for i, passage in enumerate(payload.passages[:max_passages], 1):
+            text = passage.get("text", "")
+            metadata = passage.get("metadata", {})
+            source = metadata.get("filename") or metadata.get("source", "memory")
+            doc_type = metadata.get("type", "")
+
+            header = f"### [{source}]"
+            if doc_type == "ingested_file":
+                header += " (ingested)"
+            elif doc_type == "tool_output":
+                tool_name = metadata.get("tool_name", "")
+                header += f" (from {tool_name})"
+            lines.append(header)
+            lines.append(text)
+            lines.append("")
+
+        return "\n".join(lines)
+
+    def _build_section_key_facts(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the key facts section."""
+        if not payload.key_facts:
+            return ""
+
+        max_facts = config.max_items.get("key_facts", 20)
+        lines = ["\n## Key Facts"]
+
+        for fact in payload.key_facts[:max_facts]:
+            text = fact.get("text", "")
+            created_at = fact.get("metadata", {}).get("created_at", "")
+            timestamp = created_at[:16] if created_at else ""
+            if timestamp:
+                lines.append(f"- [{timestamp}] {text}")
+            else:
+                lines.append(f"- {text}")
+
+        return "\n".join(lines)
+
+    def _build_section_insights(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the insights section."""
+        if not payload.insights:
+            return ""
+
+        max_insights = config.max_items.get("insights", 15)
+        lines = ["\n## Recent Insights"]
+
+        for insight in payload.insights[:max_insights]:
+            text = insight.get("text", "")
+            lines.append(f"- {text}")
+
+        return "\n".join(lines)
+
+    def _build_section_summaries(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the summaries section."""
+        if not payload.summaries:
+            return ""
+
+        max_summaries = config.max_items.get("summaries", 10)
+        lines = ["\n## Conversation Summaries"]
+
+        for summary in payload.summaries[:max_summaries]:
+            text = summary.get("text", "")
+            lines.append(f"- {text}")
+
+        return "\n".join(lines)
+
+    def _build_section_tools(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build the tools section (recommendations + hints)."""
+        lines: list[str] = []
+        max_tools = config.max_items.get("tools", 5)
+
         if payload.recommended_tools:
-            sections.append("\n## Recommended Tools")
-            for rec in payload.recommended_tools:
-                # Handle both ToolRecommendation objects and dicts
+            lines.append("\n## Recommended Tools")
+            for rec in payload.recommended_tools[:max_tools]:
                 if hasattr(rec, "tool_name"):
                     tool_name = rec.tool_name
                     reason = rec.reason
@@ -300,31 +1000,93 @@ class PromptArchitect:
                 if suggested:
                     params = ", ".join(f"{k}={v}" for k, v in suggested.items())
                     line += f" (suggested: {params})"
-                sections.append(line)
+                lines.append(line)
 
-        # 6. Tool usage hints
         if payload.tool_usage_hints:
-            sections.append("\n## Tool Usage Notes")
+            lines.append("\n## Tool Usage Notes")
             for hint in payload.tool_usage_hints:
-                sections.append(f"- {hint}")
+                lines.append(f"- {hint}")
 
-        # 7. Scoped state variables
-        if state and state.scoped_vars:
-            state_block = self._format_state_block(state)
-            sections.append(f"\n{state_block}")
+        return "\n".join(lines) if lines else ""
 
-        return "\n".join(sections) if sections else ""
+    def _build_section_state(self, state: SessionState | None) -> str:
+        """Build the session state section."""
+        if not state or not state.scoped_vars:
+            return ""
+
+        return f"\n{self._format_state_block(state)}"
+
+    def _truncate_section_to_budget(
+        self, section_content: str, max_tokens: int
+    ) -> str:
+        """
+        Truncate a section to fit within the given token budget.
+
+        Tries to preserve complete items (lines) rather than cutting mid-line.
+
+        Args:
+            section_content: The section content to truncate
+            max_tokens: Maximum tokens allowed
+
+        Returns:
+            Truncated section content, or empty string if even header doesn't fit
+        """
+        if self.count_tokens(section_content) <= max_tokens:
+            return section_content
+
+        lines = section_content.split("\n")
+        if not lines:
+            return ""
+
+        # Always keep the header (first line or two)
+        result_lines: list[str] = []
+        tokens_used = 0
+
+        for i, line in enumerate(lines):
+            line_tokens = self.count_tokens(line + "\n")
+
+            # Check if this line fits
+            if tokens_used + line_tokens > max_tokens:
+                # Don't cut the header (first 2 lines typically)
+                if i < 2:
+                    continue
+                break
+
+            result_lines.append(line)
+            tokens_used += line_tokens
+
+        if len(result_lines) > 2:  # Has content beyond header
+            result_lines.append("  ... (truncated due to budget)")
+
+        return "\n".join(result_lines) if result_lines else ""
 
     def _format_context_json(
         self,
         payload: ContextPayload,
         state: SessionState | None,
+        max_tokens: int | None = None,
     ) -> str:
-        """Format supporting context as JSON."""
+        """Format supporting context as JSON.
+
+        Note: max_tokens is accepted for interface compatibility but JSON
+        format doesn't implement per-section truncation (entire output is
+        built then truncated if needed).
+        """
         context: dict[str, Any] = {}
 
         if payload.recent_memories:
             context["prior_knowledge"] = payload.recent_memories
+
+        if payload.passages:
+            context["relevant_context"] = [
+                {
+                    "text": p.get("text", ""),
+                    "source": p.get("metadata", {}).get("filename") or p.get("metadata", {}).get("source", "memory"),
+                    "type": p.get("metadata", {}).get("type", ""),
+                    "similarity": p.get("similarity", 0.0),
+                }
+                for p in payload.passages[:10]
+            ]
 
         if payload.key_facts:
             context["key_facts"] = [
@@ -386,8 +1148,13 @@ class PromptArchitect:
         self,
         payload: ContextPayload,
         state: SessionState | None,
+        max_tokens: int | None = None,
     ) -> str:
-        """Format supporting context as XML."""
+        """Format supporting context as XML.
+
+        Note: max_tokens is accepted for interface compatibility but XML
+        format doesn't implement per-section truncation.
+        """
         root = Element("supporting_context")
 
         if payload.recent_memories:
@@ -395,6 +1162,17 @@ class PromptArchitect:
             for mem in payload.recent_memories:
                 rel = SubElement(prior, "relationship")
                 rel.text = mem
+
+        if payload.passages:
+            passages_elem = SubElement(root, "relevant_context")
+            for p in payload.passages[:10]:
+                passage_elem = SubElement(passages_elem, "passage")
+                metadata = p.get("metadata", {})
+                source = metadata.get("filename") or metadata.get("source", "memory")
+                passage_elem.set("source", source)
+                passage_elem.set("type", metadata.get("type", ""))
+                passage_elem.set("similarity", str(p.get("similarity", 0.0)))
+                passage_elem.text = p.get("text", "")
 
         if payload.key_facts:
             facts_elem = SubElement(root, "key_facts")
@@ -482,8 +1260,13 @@ class PromptArchitect:
         self,
         payload: ContextPayload,
         state: SessionState | None,
+        max_tokens: int | None = None,
     ) -> str:
-        """Format supporting context as structured markdown with tables."""
+        """Format supporting context as structured markdown with tables.
+
+        Note: max_tokens is accepted for interface compatibility but markdown
+        format doesn't implement per-section truncation.
+        """
         sections: list[str] = []
 
         # 1. Prior knowledge as table
@@ -495,7 +1278,31 @@ class PromptArchitect:
             for mem in payload.recent_memories:
                 sections.append(f"| {mem} |")
 
-        # 2. Key facts with timestamps (bullets, most recent first)
+        # 2. Semantic passages from vector search
+        if payload.passages:
+            sections.append("")
+            sections.append("## Relevant Context")
+            sections.append("")
+            for p in payload.passages[:10]:
+                text = p.get("text", "")
+                metadata = p.get("metadata", {})
+                source = metadata.get("filename") or metadata.get("source", "memory")
+                doc_type = metadata.get("type", "")
+                similarity = p.get("similarity", 0.0)
+
+                header = f"### {source}"
+                if doc_type == "ingested_file":
+                    header += " *(ingested)*"
+                elif doc_type == "tool_output":
+                    tool_name = metadata.get("tool_name", "")
+                    header += f" *(from {tool_name})*"
+                sections.append(header)
+                sections.append(f"*Relevance: {similarity:.2f}*")
+                sections.append("")
+                sections.append(text)
+                sections.append("")
+
+        # 3. Key facts with timestamps (bullets, most recent first)
         if payload.key_facts:
             sections.append("")
             sections.append("## Key Facts")
@@ -506,7 +1313,7 @@ class PromptArchitect:
                 timestamp = created_at[:16] if created_at else "N/A"
                 sections.append(f"- **[{timestamp}]** {text}")
 
-        # 3. Recent insights with timestamps (bullets, not numbered)
+        # 4. Recent insights with timestamps (bullets, not numbered)
         if payload.insights:
             sections.append("")
             sections.append("## Recent Insights")
