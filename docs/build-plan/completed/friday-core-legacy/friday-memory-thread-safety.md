@@ -266,7 +266,7 @@ async def delete(self, ids: list[str]) -> int:
 
 ### Unit Tests
 
-**File:** `packages/friday-memory/tests/test_thread_safety.py`
+**File:** `packages/friday-memory/tests_memory/test_thread_safety.py`
 
 ```python
 import asyncio

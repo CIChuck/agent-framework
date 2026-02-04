@@ -36,6 +36,10 @@ class ToolResult(BaseModel):
     tool_call_id: str = Field(..., description="ID of the corresponding tool call")
     output: Any = Field(..., description="Result returned by the tool")
     error: str | None = Field(default=None, description="Error message if tool failed")
+    metadata: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Additional metadata for tool results (e.g., security flags)",
+    )
 
     # Lifecycle Metadata
     turn_id: str | None = Field(

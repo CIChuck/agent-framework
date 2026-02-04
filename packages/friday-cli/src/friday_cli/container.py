@@ -18,6 +18,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from friday_core import TelemetryInterface
+from friday_core.security import SanitizationConfig
 from friday_core.telemetry import DebugTelemetryRecorder, OpenTelemetryProvider
 
 from friday_memory import (
@@ -147,6 +148,7 @@ class FridayContainer:
         self,
         config: FridayConfig | None = None,
         memory_profile: MemoryProfile = MemoryProfile.FULL,
+        sanitization_config: SanitizationConfig | None = None,
     ) -> None:
         """
         Initialize container with configuration.
@@ -157,6 +159,7 @@ class FridayContainer:
         """
         self.config = config or FridayConfig.from_env()
         self._memory_profile = memory_profile
+        self._sanitization_config = sanitization_config
 
         # Lazy-initialized components
         self._telemetry: TelemetryInterface | None = None
@@ -366,6 +369,7 @@ class FridayContainer:
             llm=self.llm,
             tool_registry=self.tool_registry,
             telemetry=self.telemetry,
+            sanitization_config=self._sanitization_config,
         )
 
     def get_team_agent(self, name: str) -> CopilotAgent:

@@ -1043,7 +1043,7 @@ for event in telemetry.events:
 ## Further Resources
 
 - **Examples**: `packages/friday-memory/examples/`
-- **Tests**: `packages/friday-memory/tests/`
+- **Tests**: `packages/friday-memory/tests_memory/`
 - **Core Interfaces**: `packages/friday-core/src/friday_core/interfaces/`
 
 ---

@@ -104,7 +104,7 @@ class Moltbook:
         )
 
     async def upload_avatar(self, file_path: str) -> MoltbookResponse[UploadResult]:
-        if self.config.validate:
+        if self.config.enable_validation:
             validate_avatar_file(file_path)
         return await self._upload_file(
             "/agents/me/avatar",
@@ -437,7 +437,7 @@ class Moltbook:
         name: str,
         file_path: str,
     ) -> MoltbookResponse[UploadResult]:
-        if self.config.validate:
+        if self.config.enable_validation:
             validate_avatar_file(file_path)
         return await self._upload_file(
             f"/submolts/{name}/settings",
@@ -452,7 +452,7 @@ class Moltbook:
         name: str,
         file_path: str,
     ) -> MoltbookResponse[UploadResult]:
-        if self.config.validate:
+        if self.config.enable_validation:
             validate_banner_file(file_path)
         return await self._upload_file(
             f"/submolts/{name}/settings",
@@ -500,7 +500,7 @@ class Moltbook:
         )
 
     def _validate_post_inputs(self, *, content: str | None, url: str | None) -> None:
-        if not self.config.validate:
+        if not self.config.enable_validation:
             return
         if content and url:
             raise MoltbookValidationError("Provide either content or url, not both")
@@ -508,7 +508,7 @@ class Moltbook:
             raise MoltbookValidationError("Provide content or url")
 
     def _validate_sort(self, value: str, allowed: Iterable[str], label: str) -> None:
-        if not self.config.validate:
+        if not self.config.enable_validation:
             return
         if value not in allowed:
             allowed_list = ", ".join(sorted(allowed))
@@ -517,7 +517,7 @@ class Moltbook:
             )
 
     def _validate_search(self, *, q: str, type: str, limit: int) -> None:
-        if not self.config.validate:
+        if not self.config.enable_validation:
             return
         if len(q) > MAX_SEARCH_QUERY_LENGTH:
             raise MoltbookValidationError(

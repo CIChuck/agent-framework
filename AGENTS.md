@@ -11,7 +11,7 @@
 - `uv run python main.py`: quick repository sanity check.
 - `uv run pytest`: run the full test suite.
 - `uv run pytest tests/integration`: run integration tests only.
-- `uv run pytest packages/friday-memory/tests`: target a package’s tests.
+- `uv run pytest packages/friday-memory/tests_memory_memory`: target a package’s tests.
 - `uv run ruff check .`: lint with configured rules (E,F,I,UP,B,SIM).
 - `uv run mypy packages apps tests`: strict type checking.
 

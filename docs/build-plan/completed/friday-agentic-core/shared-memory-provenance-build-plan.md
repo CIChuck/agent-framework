@@ -86,7 +86,7 @@ Update ProvenanceMetadata with validation:
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
@@ -176,7 +176,7 @@ class ProvenanceMetadata(BaseModel):
             source_type=data["source_type"],
             author_id=data["author_id"],
             confidence=data.get("confidence", 1.0),
-            created_at=created_at or datetime.utcnow(),
+            created_at=created_at or datetime.now(timezone.utc),
             parent_ids=data.get("parent_ids", []),
         )
 
@@ -511,7 +511,7 @@ Add `agent_id` field to TranscriptEntry:
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from pydantic import BaseModel, Field
@@ -659,7 +659,7 @@ class SQLiteTranscriptStore:
                 entry_id,
                 session_id,
                 turn_number,
-                datetime.utcnow().isoformat(),
+                datetime.now(timezone.utc).isoformat(),
                 user_message,
                 assistant_message,
                 agent_id,  # NEW
@@ -826,7 +826,7 @@ class AgentBase(ABC):
 | `packages/friday-transcript/src/friday_transcript/models/transcript.py` | Modify | Add agent_id field |
 | `packages/friday-transcript/src/friday_transcript/stores/sqlite.py` | Modify | Add agent_id column, migration |
 | `packages/friday-agent/src/friday_agent/base.py` | Modify | Set author on init, pass agent_id to transcript |
-| `packages/friday-memory/tests/test_provenance.py` | Create | Unit tests for provenance |
+| `packages/friday-memory/tests_memory/test_provenance.py` | Create | Unit tests for provenance |
 | `packages/friday-transcript/tests/test_agent_tracking.py` | Create | Unit tests for agent tracking |
 
 ---
@@ -846,13 +846,13 @@ class AgentBase(ABC):
 
 ### 6.1 Unit Tests
 
-**Location:** `packages/friday-memory/tests/test_provenance.py`
+**Location:** `packages/friday-memory/tests_memory/test_provenance.py`
 
 ```python
 """Unit tests for provenance tracking."""
 
 import pytest
-from datetime import datetime
+from datetime import datetime, timezone
 
 from friday_memory.models.graph import (
     ProvenanceMetadata,

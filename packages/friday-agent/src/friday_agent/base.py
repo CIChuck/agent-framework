@@ -15,24 +15,25 @@ Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 """
 
 import asyncio
-import logging
 import uuid
 from abc import ABC, abstractmethod
 from typing import Any
 
-from friday_core import TelemetryInterface
+from friday_core import TelemetryInterface, get_logger
 from friday_core.interfaces import (
     ChatCompletionResponse,
     ContextEngineeringInterface,
     LLMClient,
     ToolRegistry,
 )
+from friday_core.security import SanitizationConfig
+from friday_agent.security import AgentOutputProcessor
 
 from friday_memory import InteractionTurn, MemoryController, SessionState
 
 from .profile import AgentProfile
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class AgentBase(ABC):
@@ -64,6 +65,7 @@ class AgentBase(ABC):
         llm: LLMClient,
         tool_registry: ToolRegistry,
         telemetry: TelemetryInterface | None = None,
+        sanitization_config: SanitizationConfig | None = None,
     ) -> None:
         """
         Initialize the agent base.
@@ -82,6 +84,11 @@ class AgentBase(ABC):
         self.llm = llm
         self.tool_registry = tool_registry
         self.telemetry = telemetry
+        self._output_processor = AgentOutputProcessor(
+            config=sanitization_config,
+            telemetry=telemetry,
+        )
+        self._last_tool_security_metadata: dict[str, Any] | None = None
 
         # Session state (initialized on first run or via initialize_session)
         self.session_id: str = str(uuid.uuid4())
@@ -160,7 +167,7 @@ class AgentBase(ABC):
                 schema = self.tool_registry.get_schema(name)
                 schemas.append(schema)
             except (KeyError, AttributeError):
-                logger.warning(f"Tool '{name}' not found in registry, skipping")
+                logger.warning("Tool not found in registry, skipping", tool=name)
 
         self._active_tools = schemas
         self._active_tool_names = {s.get("name", "") for s in schemas}
@@ -173,7 +180,11 @@ class AgentBase(ABC):
             "tools_set_for_task",
             {"tool_count": len(schemas), "tool_names": list(self._active_tool_names)},
         )
-        logger.debug(f"Set {len(schemas)} active tools for task: {list(self._active_tool_names)}")
+        logger.debug(
+            "Set active tools for task",
+            tool_count=len(schemas),
+            tool_names=list(self._active_tool_names),
+        )
 
     def expand_tools(self, additional_tool_names: list[str]) -> int:
         """
@@ -199,7 +210,7 @@ class AgentBase(ABC):
                 self._active_tool_names.add(name)
                 added += 1
             except (KeyError, AttributeError):
-                logger.warning(f"Tool '{name}' not found in registry, skipping")
+                logger.warning("Tool not found in registry, skipping", tool=name)
 
         if added > 0:
             # Update context engine
@@ -210,7 +221,11 @@ class AgentBase(ABC):
                 "tools_expanded",
                 {"tools_added": added, "total_tools": len(self._active_tools)},
             )
-            logger.debug(f"Expanded tools by {added}, total: {len(self._active_tools)}")
+            logger.debug(
+                "Expanded tools",
+                tools_added=added,
+                total_tools=len(self._active_tools),
+            )
 
         return added
 
@@ -289,7 +304,7 @@ class AgentBase(ABC):
                 schema = self.tool_registry.get_schema(tool_name)
                 schemas.append(schema)
             except KeyError:
-                logger.warning(f"Tool '{tool_name}' not found in registry")
+                logger.warning("Tool not found in registry", tool=tool_name)
         return schemas
 
     async def _execute_tool_call(
@@ -322,7 +337,21 @@ class AgentBase(ABC):
             )
 
         try:
-            func = self.tool_registry.get_tool(tool_name)
+            tool_def = self.tool_registry.get(tool_name)
+            if tool_def is None:
+                raise KeyError(f"Tool '{tool_name}' not found in registry")
+
+            tool_category = getattr(tool_def, "category", None)
+            if not tool_category or tool_category == "uncategorized":
+                raise ValueError(
+                    f"Tool '{tool_name}' must declare a non-default category."
+                )
+
+            func = (
+                self.tool_registry.get_callable(tool_name)
+                if hasattr(self.tool_registry, "get_callable")
+                else self.tool_registry.get_tool(tool_name)
+            )
 
             # Execute (supports both sync and async)
             if asyncio.iscoroutinefunction(func):
@@ -330,23 +359,36 @@ class AgentBase(ABC):
             else:
                 result = func(**arguments)
 
-            result_str = str(result)
+            sanitized_result, security_metadata = self._output_processor.process(
+                str(result),
+                tool_name,
+                tool_category,
+            )
+            self._last_tool_security_metadata = security_metadata
 
             if self.telemetry:
                 self.telemetry.capture_event(
                     "tool_call_completed",
                     {
                         "tool": tool_name,
-                        "result_length": len(result_str),
+                        "result_length": len(sanitized_result),
                         "success": True,
                     },
                 )
 
-            return result_str
+            return sanitized_result
+
+        except ValueError as e:
+            logger.error(
+                "Tool execution failed due to missing category",
+                tool=tool_name,
+                error=str(e),
+            )
+            raise
 
         except Exception as e:
             error_msg = f"Tool execution failed: {e}"
-            logger.error(f"Error executing tool '{tool_name}': {e}")
+            logger.error("Error executing tool", tool=tool_name, error=str(e))
 
             if self.telemetry:
                 self.telemetry.capture_event(
@@ -403,7 +445,7 @@ class AgentBase(ABC):
         # Store in episodic memory
         success = await self.memory.add_turn(self.session_id, turn)
         if not success:
-            logger.error(f"Failed to persist turn {turn.id} to memory")
+            logger.error("Failed to persist turn to memory", turn_id=turn.id)
 
         # Trigger async extraction (non-blocking)
         # This allows the agent to continue while extraction happens in background
@@ -431,7 +473,7 @@ class AgentBase(ABC):
         try:
             await self.context_engine.extract_context(turn, async_execution=True)
         except Exception as e:
-            logger.warning(f"Context extraction failed: {e}")
+            logger.warning("Context extraction failed", error=str(e))
 
     # --- Conversation Management ---
 

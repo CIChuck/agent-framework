@@ -10,7 +10,7 @@ import asyncio
 import logging
 import shutil
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
@@ -18,6 +18,18 @@ from .config import WorkspaceConfig
 from .models import Workspace, WorkspaceExpiredError, WorkspaceNotFoundError
 
 logger = logging.getLogger(__name__)
+
+
+def _utc_now() -> datetime:
+    """Return current UTC time with timezone awareness."""
+    return datetime.now(timezone.utc)
+
+
+def _ensure_utc(value: datetime) -> datetime:
+    """Coerce naive datetimes to UTC and normalize aware values to UTC."""
+    if value.tzinfo is None:
+        return value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
 
 
 class WorkspaceManager:
@@ -148,7 +160,7 @@ class WorkspaceManager:
 
         if check_expired:
             # Check soft limit (warning)
-            elapsed = (datetime.utcnow() - workspace.last_accessed_at).total_seconds()
+            elapsed = (_utc_now() - _ensure_utc(workspace.last_accessed_at)).total_seconds()
             if elapsed > self.config.ttl_soft_limit_seconds and not workspace.preserve:
                 logger.warning(
                     f"Workspace {workspace_id} approaching TTL limit "
@@ -267,7 +279,7 @@ class WorkspaceManager:
         Returns:
             Number of workspaces cleaned up.
         """
-        now = datetime.utcnow()
+        now = _utc_now()
         expired_ids = []
 
         async with self._lock:
@@ -275,7 +287,7 @@ class WorkspaceManager:
                 if workspace.preserve:
                     continue
 
-                elapsed = (now - workspace.last_accessed_at).total_seconds()
+                elapsed = (now - _ensure_utc(workspace.last_accessed_at)).total_seconds()
 
                 # Force cleanup if past hard limit
                 if elapsed > self.config.ttl_hard_limit_seconds:

@@ -24,7 +24,7 @@ build-backend = "hatchling.build"
 packages = ["src/friday_llm"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_llm"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

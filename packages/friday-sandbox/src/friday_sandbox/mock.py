@@ -11,7 +11,6 @@ that depend on sandbox execution.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
 
@@ -191,7 +190,6 @@ class MockSandbox:
 
     async def cleanup_expired_workspaces(self) -> int:
         """Clean up expired mock workspaces."""
-        now = datetime.utcnow()
         expired = [
             wid
             for wid, w in self._workspaces.items()

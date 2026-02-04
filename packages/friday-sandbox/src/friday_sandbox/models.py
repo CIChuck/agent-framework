@@ -6,7 +6,7 @@ Ref: docs/specs/sandbox_specifications.md - Section 3: Data Models
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -52,6 +52,18 @@ class ExecutionResult(BaseModel):
         return self.exit_code == 0 and not self.timed_out and self.error is None
 
 
+def _utc_now() -> datetime:
+    """Return current UTC time with timezone awareness."""
+    return datetime.now(timezone.utc)
+
+
+def _ensure_utc(value: datetime) -> datetime:
+    """Coerce naive datetimes to UTC and normalize aware values to UTC."""
+    if value.tzinfo is None:
+        return value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
+
+
 class Workspace(BaseModel):
     """
     Represents a persistent workspace for sandbox file operations.
@@ -66,10 +78,10 @@ class Workspace(BaseModel):
         default=None, description="Associated agent identifier"
     )
     created_at: datetime = Field(
-        default_factory=datetime.utcnow, description="Workspace creation timestamp"
+        default_factory=_utc_now, description="Workspace creation timestamp"
     )
     last_accessed_at: datetime = Field(
-        default_factory=datetime.utcnow, description="Last access timestamp"
+        default_factory=_utc_now, description="Last access timestamp"
     )
     ttl_seconds: int = Field(
         default=3600, description="Time-to-live in seconds (default 1 hour)"
@@ -89,12 +101,12 @@ class Workspace(BaseModel):
         """Check if workspace has exceeded its TTL."""
         if self.preserve:
             return False
-        elapsed = (datetime.utcnow() - self.last_accessed_at).total_seconds()
+        elapsed = (_utc_now() - _ensure_utc(self.last_accessed_at)).total_seconds()
         return elapsed > self.ttl_seconds
 
     def touch(self) -> None:
         """Update last_accessed_at to current time."""
-        self.last_accessed_at = datetime.utcnow()
+        self.last_accessed_at = _utc_now()
 
     def increment_execution(self) -> None:
         """Increment execution count and update access time."""

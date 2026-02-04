@@ -197,7 +197,22 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             # If friday-memory not available, return empty
             return []
 
-        entries = await self._store.get_entries(session_id, limit=limit, offset=offset)
+        # Prefer most recent turns when no offset is provided
+        effective_offset = offset
+        if offset == 0:
+            try:
+                total = await self._store.count_entries(session_id)
+                if total > limit:
+                    effective_offset = max(0, total - limit)
+            except Exception:
+                # Fall back to default offset behavior if count isn't available
+                effective_offset = offset
+
+        entries = await self._store.get_entries(
+            session_id,
+            limit=limit,
+            offset=effective_offset,
+        )
 
         turns = []
         for entry in entries:

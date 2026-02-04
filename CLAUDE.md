@@ -18,10 +18,10 @@ uv sync
 pytest
 
 # Run tests for a specific package
-pytest packages/friday-agent/tests/
+pytest packages/friday-agent/tests_agent/
 
 # Run a single test file
-pytest packages/friday-tools/tests/test_protocols.py -v
+pytest packages/friday-tools/tests_tools/test_protocols.py -v
 
 # Lint and format
 uv run ruff check .
@@ -119,3 +119,9 @@ Copy `.env.example` to `.env`:
 - `ANTHROPIC_API_KEY` - For Claude models
 - `OPENROUTER_API_KEY` - For OpenRouter (multi-provider gateway)
 - `OLLAMA_BASE_URL` - For local Ollama (default: http://localhost:11434)
+
+Source code is not allowed to fail silently. 
+
+All logging our debugging code is wrapped in the appropriate logging levels depicted in the friday-core package 
+
+Ensure that all code has detailed docstrings provided. Documentation is a critical task must be performed when writing code. 

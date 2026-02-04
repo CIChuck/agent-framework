@@ -9,14 +9,14 @@ Provides DefaultToolRegistry for managing tool collections and the
 
 from __future__ import annotations
 
-import logging
 from typing import Any, Callable
 
 from friday_core.interfaces.tools import SchemaFormat, ToolDefinition
+from friday_core.logging import get_logger
 
 from .definition import FunctionTool
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class DefaultToolRegistry:
@@ -58,9 +58,14 @@ class DefaultToolRegistry:
         """
         if tool.name in self._tools:
             raise ValueError(f"Tool '{tool.name}' is already registered")
+        if not getattr(tool, "category", None) or tool.category == "uncategorized":
+            logger.warning(
+                "Tool registered without explicit category",
+                tool=tool.name,
+            )
 
         self._tools[tool.name] = tool
-        logger.debug(f"Registered tool: {tool.name}")
+        logger.debug("Registered tool", tool=tool.name, category=tool.category)
 
     def unregister(self, name: str) -> bool:
         """
@@ -74,7 +79,7 @@ class DefaultToolRegistry:
         """
         if name in self._tools:
             del self._tools[name]
-            logger.debug(f"Unregistered tool: {name}")
+            logger.debug("Unregistered tool", tool=name)
             return True
         return False
 
@@ -230,7 +235,7 @@ class DefaultToolRegistry:
         self,
         name: str | None = None,
         description: str | None = None,
-        category: str = "uncategorized",
+        category: str | None = None,
         tags: list[str] | None = None,
     ) -> Callable[[Callable], FunctionTool]:
         """
@@ -246,9 +251,16 @@ class DefaultToolRegistry:
             ```
         """
         def decorator(func: Callable) -> FunctionTool:
+            if not category or category == "uncategorized":
+                raise ValueError(
+                    "Tool decorator requires an explicit, non-default category."
+                )
             tool = FunctionTool(
-                func, name=name, description=description,
-                category=category, tags=tags
+                func,
+                name=name,
+                description=description,
+                category=category,
+                tags=tags,
             )
             self.register(tool)
             return tool
@@ -280,7 +292,7 @@ def get_default_registry() -> DefaultToolRegistry:
 def tool(
     name: str | None = None,
     description: str | None = None,
-    category: str = "uncategorized",
+    category: str | None = None,
     tags: list[str] | None = None,
 ) -> Callable[[Callable], FunctionTool]:
     """

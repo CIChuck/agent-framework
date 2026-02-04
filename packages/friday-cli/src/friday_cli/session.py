@@ -52,6 +52,7 @@ class SessionConfig:
     lifecycle: dict[str, Any] = field(default_factory=dict)
     tools: dict[str, Any] = field(default_factory=dict)
     session: dict[str, Any] = field(default_factory=dict)
+    security: dict[str, Any] = field(default_factory=dict)
 
     # Computed/derived values
     config_path: Path | None = None
@@ -91,6 +92,7 @@ class SessionConfig:
             lifecycle=raw.get("lifecycle", {}),
             tools=raw.get("tools", {}),
             session=raw.get("session", {}),
+            security=raw.get("security", {}),
             config_path=config_path,
         )
 
@@ -118,6 +120,7 @@ class SessionConfig:
             lifecycle=data.get("lifecycle", {}),
             tools=data.get("tools", {}),
             session=data.get("session", {}),
+            security=data.get("security", {}),
         )
 
     def get(self, key: str, default: Any = None) -> Any:

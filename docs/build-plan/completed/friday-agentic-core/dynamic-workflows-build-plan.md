@@ -112,7 +112,7 @@ Without workflows:
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any
 
@@ -422,7 +422,7 @@ class WorkflowExecution(BaseModel):
 from __future__ import annotations
 
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any, Awaitable, Callable
 
 from friday_agent.workflows.models import (
@@ -522,9 +522,9 @@ class WorkflowEngine:
         # Create execution state
         execution = WorkflowExecution(
             workflow_id=workflow.id,
-            execution_id=f"{workflow.id}_{int(datetime.utcnow().timestamp())}",
+            execution_id=f"{workflow.id}_{int(datetime.now(timezone.utc).timestamp())}",
             variables=initial_inputs or {},
-            started_at=datetime.utcnow(),
+            started_at=datetime.now(timezone.utc),
         )
 
         logger.info(f"Starting workflow: {workflow.name} ({execution.execution_id})")
@@ -543,7 +543,7 @@ class WorkflowEngine:
                 logger.error(f"Workflow failed: {e}")
                 raise
         finally:
-            execution.completed_at = datetime.utcnow()
+            execution.completed_at = datetime.now(timezone.utc)
 
         return execution
 
@@ -605,7 +605,7 @@ class WorkflowEngine:
         execution.current_task_id = task.id
 
         task.status = TaskStatus.RUNNING
-        task.started_at = datetime.utcnow()
+        task.started_at = datetime.now(timezone.utc)
 
         try:
             # Check approval gate
@@ -613,7 +613,7 @@ class WorkflowEngine:
                 approved = await self._handle_approval(task)
                 if not approved:
                     task.status = TaskStatus.SKIPPED
-                    task.completed_at = datetime.utcnow()
+                    task.completed_at = datetime.now(timezone.utc)
                     execution.record_task(task)
                     logger.info(f"Task skipped (not approved): {task.id}")
                     return
@@ -657,7 +657,7 @@ class WorkflowEngine:
             raise WorkflowError(f"Task '{task.id}' failed: {e}", task_id=task.id)
 
         finally:
-            task.completed_at = datetime.utcnow()
+            task.completed_at = datetime.now(timezone.utc)
             execution.record_task(task)
             execution.current_task_id = None
 
@@ -799,7 +799,7 @@ class WorkflowEngine:
             raise WorkflowError(f"Task not found: {task_id}")
 
         task.status = TaskStatus.SKIPPED
-        task.completed_at = datetime.utcnow()
+        task.completed_at = datetime.now(timezone.utc)
         execution.pending_approval = None
         execution.record_task(task)
 
@@ -1104,7 +1104,7 @@ __all__ = [
 | `packages/friday-agent/src/friday_agent/workflows/engine.py` | Create | WorkflowEngine implementation |
 | `packages/friday-agent/src/friday_agent/workflows/loader.py` | Create | YAML workflow loader |
 | `workflows/newsletter.yaml` | Create | Example workflow |
-| `packages/friday-agent/tests/test_workflows.py` | Create | Unit tests |
+| `packages/friday-agent/tests_agent/test_workflows.py` | Create | Unit tests |
 
 ---
 
@@ -1122,7 +1122,7 @@ __all__ = [
 
 ### 6.1 Unit Tests
 
-**Location:** `packages/friday-agent/tests/test_workflows.py`
+**Location:** `packages/friday-agent/tests_agent/test_workflows.py`
 
 ```python
 """Unit tests for workflow system."""

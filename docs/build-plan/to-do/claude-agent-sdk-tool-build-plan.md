@@ -165,7 +165,7 @@ Sandbox executes → Returns: {"TypeError": 45, "ValueError": 23, ...}
 | `packages/friday-tools/src/friday_tools/external/claude_toolgen.py` | Create | ClaudeToolGeneratorTool (dynamic tool creation) |
 | `packages/friday-tools/src/friday_tools/generated/` | Create | Directory for dynamically generated tools |
 | `packages/friday-tools/pyproject.toml` | Modify | Add `claude-code-sdk` optional dependency |
-| `packages/friday-tools/tests/test_claude_agent.py` | Create | Unit tests for all 4 tools |
+| `packages/friday-tools/tests_tools/test_claude_agent.py` | Create | Unit tests for all 4 tools |
 
 **Existing infrastructure (no changes needed):**
 - `packages/friday-sandbox/` - DockerSandbox, SubprocessSandbox already implemented
@@ -267,7 +267,7 @@ result = await toolgen_tool.execute(
 ## 8. Verification Plan
 
 1. **Install SDK:** `pip install claude-code-sdk`
-2. **Run unit tests:** `pytest packages/friday-tools/tests/test_claude_agent.py -v`
+2. **Run unit tests:** `pytest packages/friday-tools/tests_tools/test_claude_agent.py -v`
 3. **Test ClaudeAgentTool:** Basic delegation task
 4. **Test ClaudeCodeGeneratorTool:** Generate + execute Fibonacci code
 5. **Test ClaudeYoloTool:** Direct execution with mock context

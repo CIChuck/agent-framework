@@ -21,6 +21,11 @@ from friday_memory.context.cache_config import (
 from friday_memory.context.consolidator import MemoryConsolidator
 from friday_memory.context.extractor import MemoryExtractor
 from friday_memory.context.layout import PromptArchitect, SupportingContextConfig
+from friday_memory.context.passage_router import (
+    PassageRouter,
+    PassageRouterConfig,
+    PassageRoutingDecision,
+)
 from friday_memory.context.tool_manager import ToolContextManager
 
 __all__ = [
@@ -30,6 +35,9 @@ __all__ = [
     "MemoryExtractor",
     "MemoryConsolidator",
     "ToolContextManager",
+    "PassageRouter",
+    "PassageRouterConfig",
+    "PassageRoutingDecision",
     "PromptCacheConfig",
     "CacheProvider",
     "CacheBreakpoint",

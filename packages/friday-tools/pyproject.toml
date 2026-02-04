@@ -80,7 +80,7 @@ friday-sandbox = { workspace = true }
 friday-moltbook = { workspace = true }
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_tools"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

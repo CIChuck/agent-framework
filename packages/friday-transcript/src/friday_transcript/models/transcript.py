@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Any
 from uuid import uuid4
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ToolCall(BaseModel):
@@ -121,10 +121,7 @@ class TranscriptEntry(BaseModel):
         description="Whether this entry has been extracted to long-term memory"
     )
 
-    class Config:
-        """Pydantic configuration."""
-
-        frozen = False  # Allow modification before storage, immutable after
+    model_config = ConfigDict(frozen=False)
 
     def compute_latency(self) -> float | None:
         """Compute latency from timestamps if not explicitly set."""

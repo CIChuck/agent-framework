@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from .constants import BASE_URL
 
@@ -18,8 +18,9 @@ class MoltbookConfig(BaseModel):
         le=600.0,
         description="HTTP timeout in seconds",
     )
-    validate: bool = Field(
+    enable_validation: bool = Field(
         default=True,
+        alias="validate",
         description="Enable client-side parameter validation",
     )
 
@@ -32,4 +33,7 @@ class MoltbookConfig(BaseModel):
             )
         return value.rstrip("/")
 
-    model_config = {"arbitrary_types_allowed": True}
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        populate_by_name=True,
+    )

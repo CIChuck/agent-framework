@@ -46,6 +46,9 @@ from friday_memory.context import (
     ContextAssembler,
     MemoryConsolidator,
     MemoryExtractor,
+    PassageRouter,
+    PassageRouterConfig,
+    PassageRoutingDecision,
     PromptArchitect,
     PromptCacheConfig,
     SupportingContextConfig,
@@ -116,6 +119,9 @@ __all__ = [
     "ContextAssembler",
     "MemoryExtractor",
     "MemoryConsolidator",
+    "PassageRouter",
+    "PassageRouterConfig",
+    "PassageRoutingDecision",
     # Ingestion
     "DocumentIngestionPipeline",
     # Retrieval (Phase 2, 3 & 5)

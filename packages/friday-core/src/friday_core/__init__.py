@@ -49,6 +49,9 @@ from friday_core.interfaces import (
     VectorStoreAdapter,
 )
 
+# Security
+from friday_core import security
+
 __all__ = [
     # Configuration
     "FridayBaseSettings",
@@ -79,6 +82,8 @@ __all__ = [
     # Transcript Integration
     "TranscriptBackedEpisodicStore",
     "TranscriptStoreProtocol",
+    # Security
+    "security",
 ]
 
 __version__ = "0.1.0"

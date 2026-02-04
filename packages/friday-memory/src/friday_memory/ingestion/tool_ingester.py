@@ -14,6 +14,7 @@ Ref: docs/build-plan/copilot-promotion-build-plan.md, Issue 2
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -195,6 +196,35 @@ class ToolOutputIngester:
 
         return True, "eligible"
 
+    def _flatten_security_metadata(
+        self, security_metadata: dict[str, Any] | None
+    ) -> dict[str, Any]:
+        """
+        Flatten security metadata to scalar values for vector-store metadata.
+
+        Vector metadata only accepts scalar values, so lists/dicts are
+        stringified. All keys are prefixed with "security_".
+        """
+        if not security_metadata:
+            return {}
+
+        flattened: dict[str, Any] = {}
+        for key, value in security_metadata.items():
+            if isinstance(value, (str, int, float, bool)) or value is None:
+                flattened[f"security_{key}"] = value
+                continue
+            if isinstance(value, list):
+                flattened[f"security_{key}"] = ", ".join(str(item) for item in value)
+                continue
+            try:
+                flattened[f"security_{key}"] = json.dumps(value, default=str)
+            except TypeError:
+                flattened[f"security_{key}"] = str(value)
+
+        # Preserve full metadata as JSON for auditing/debugging.
+        flattened["security_json"] = json.dumps(security_metadata, default=str)
+        return flattened
+
     async def ingest_async(
         self,
         tool_call_id: str,
@@ -203,6 +233,7 @@ class ToolOutputIngester:
         turn_id: str,
         source_path: str | None = None,
         had_error: bool = False,
+        security_metadata: dict[str, Any] | None = None,
     ) -> IngestionResult:
         """
         Ingest tool output into vector memory.
@@ -217,6 +248,7 @@ class ToolOutputIngester:
             turn_id: ID of the conversation turn
             source_path: Optional source path (for file tools)
             had_error: Whether the tool execution had an error
+            security_metadata: Optional security metadata (detections, risk)
 
         Returns:
             IngestionResult with status and chunk information
@@ -240,6 +272,8 @@ class ToolOutputIngester:
 
             now = datetime.now().isoformat()
 
+            security_flat = self._flatten_security_metadata(security_metadata)
+
             for chunk in chunks:
                 chunk_id = f"tool_{tool_call_id}_chunk_{chunk.index}"
                 chunk_ids.append(chunk_id)
@@ -254,6 +288,7 @@ class ToolOutputIngester:
                     "has_overlap": chunk.has_overlap,
                     "source_path": source_path or "",
                     "ingested_at": now,
+                    **security_flat,
                 })
 
             # Store in short-term collection
@@ -288,6 +323,7 @@ class ToolOutputIngester:
         turn_id: str,
         source_path: str | None = None,
         had_error: bool = False,
+        security_metadata: dict[str, Any] | None = None,
     ) -> asyncio.Task[IngestionResult]:
         """
         Fire-and-forget wrapper for ingest_async.
@@ -309,5 +345,6 @@ class ToolOutputIngester:
                 turn_id=turn_id,
                 source_path=source_path,
                 had_error=had_error,
+                security_metadata=security_metadata,
             )
         )

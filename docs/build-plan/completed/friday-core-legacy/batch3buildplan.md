@@ -189,9 +189,9 @@ Batch 3 (Execution)     🔴 Not Started - This build plan
 
 | Task | File | Description |
 |------|------|-------------|
-| 7.1 | `packages/friday-llm/tests/test_service.py` | LiteLLMService unit tests with mocked responses |
-| 7.2 | `packages/friday-agent/tests/test_copilot.py` | CopilotAgent tool loop tests |
-| 7.3 | `packages/friday-agent/tests/test_registry.py` | ToolRegistry schema generation tests |
+| 7.1 | `packages/friday-llm/tests_llm/test_service.py` | LiteLLMService unit tests with mocked responses |
+| 7.2 | `packages/friday-agent/tests_agent/test_copilot.py` | CopilotAgent tool loop tests |
+| 7.3 | `packages/friday-agent/tests_agent/test_registry.py` | ToolRegistry schema generation tests |
 | 7.4 | `tests/lab/experiments/exp_06_agent_loop.py` | End-to-end agent integration test |
 | 7.5 | `apps/friday-cli/tests/test_container.py` | DI wiring verification |
 
@@ -1113,7 +1113,7 @@ def sample_agent_profile():
 
 ### 6.2 LLMClient Unit Tests
 
-**File:** `packages/friday-llm/tests/test_service.py`
+**File:** `packages/friday-llm/tests_llm/test_service.py`
 
 ```python
 import pytest
@@ -1187,7 +1187,7 @@ class TestLiteLLMService:
 
 ### 6.3 CopilotAgent Tool Loop Tests
 
-**File:** `packages/friday-agent/tests/test_copilot.py`
+**File:** `packages/friday-agent/tests_agent/test_copilot.py`
 
 ```python
 import pytest
@@ -1303,7 +1303,7 @@ class TestCopilotAgent:
 
 ### 6.4 ToolRegistry Tests
 
-**File:** `packages/friday-agent/tests/test_registry.py`
+**File:** `packages/friday-agent/tests_agent/test_registry.py`
 
 ```python
 import pytest
@@ -1416,7 +1416,7 @@ if __name__ == "__main__":
 pytest
 
 # Specific package
-pytest packages/friday-agent/tests/
+pytest packages/friday-agent/tests_agent/
 
 # Only unit tests (fast)
 pytest -m "not integration"

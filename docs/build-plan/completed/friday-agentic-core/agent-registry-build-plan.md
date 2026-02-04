@@ -662,7 +662,7 @@ __all__ = [
 | `packages/friday-agent/src/friday_agent/registry.py` | Create | AgentRegistry implementation |
 | `packages/friday-agent/src/friday_agent/__init__.py` | Modify | Export AgentRegistry, AgentRegistryError |
 | `apps/friday-cli/src/friday_cli/container.py` | Modify | Add agent_registry, get_team_agent, _create_agent |
-| `packages/friday-agent/tests/test_registry.py` | Create | Unit tests for AgentRegistry |
+| `packages/friday-agent/tests_agent/test_registry.py` | Create | Unit tests for AgentRegistry |
 
 ---
 
@@ -681,7 +681,7 @@ __all__ = [
 
 ### 6.1 Unit Tests
 
-**Location:** `packages/friday-agent/tests/test_registry.py`
+**Location:** `packages/friday-agent/tests_agent/test_registry.py`
 
 ```python
 """Unit tests for AgentRegistry."""
@@ -865,7 +865,7 @@ print(f"Researchers: {[p.name for p in researchers]}")
 
 ```bash
 # Run unit tests
-pytest packages/friday-agent/tests/test_registry.py -v
+pytest packages/friday-agent/tests_agent/test_registry.py -v
 
 # Test with real agents directory
 python -c "

@@ -385,10 +385,10 @@ memory:
   # With budget_ratio=0.30, history gets ~70% of dynamic budget.
   # Each turn is ~150-300 tokens. 15 turns × 200 = ~3,000 tokens.
   # Plus prior_history turns (previous_sessions × previous_session_turns).
-  max_history_turns: 15
+  max_history_turns: 50
 
   # Consolidation settings
-  consolidate_after_turns: 25
+  consolidate_after_turns: 15
 
   # Context Priming Configuration
   # On session startup, prime the context with knowledge from prior sessions.
@@ -429,7 +429,7 @@ memory:
     # Remaining budget goes to conversation history.
     # Higher ratio = more supporting context, less history
     # Lower ratio = less supporting context, more history
-    budget_ratio: 0.30  # Default: 30%
+    budget_ratio: 0.20  # Default: 30%
 
     # Priority order for sections when truncating (first = highest priority)
     # Sections are built in this order; when budget runs out, remaining
@@ -445,22 +445,75 @@ memory:
     #   - state: Session state variables
     section_priority:
       - recent_memories
-      - passages
       - key_facts
-      - tools
       - insights
       - summaries
+      - tools
+      - passages
       - state
 
     # Maximum items per section (hard limits before budget truncation)
     # These are applied BEFORE budget-based truncation.
     # Useful for preventing any single section from dominating.
     max_items:
-      passages: 10
+      passages: 3
       key_facts: 20
       insights: 15
       summaries: 10
       tools: 5
+
+  # =============================================================================
+  # PASSAGE ROUTER (LLM-GATED PASSAGE INCLUSION)
+  # =============================================================================
+  # Uses a lightweight LLM to decide when to include vector passages in the prompt.
+  # When disabled, passages are always included (default behavior).
+  # Recommended: enable with a fast/cheap model and keep a heuristic fallback.
+  passage_router:
+    enabled: true
+    # Router model (fast/cheap recommended). Falls back to extraction or chat model if omitted.
+    model: "openrouter/google/gemini-2.5-flash"
+    api_base: "https://openrouter.ai/api/v1"
+    api_key: "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"
+    max_retries: 1
+    timeout_seconds: 10.0
+    temperature: 0.0
+    max_tokens: 80
+    min_confidence: 0.6
+    include_on_empty_query: false
+    fallback_mode: "heuristic"  # heuristic | include | exclude
+    # Optional override for the router system prompt
+    system_prompt: |
+      You decide if vector-retrieved passages should be included in the prompt.
+      Return JSON ONLY. Do not use code fences. Do not add extra text.
+      Required keys: include_passages (bool), confidence (0-1), reason (string).
+      Include passages when the user needs recall of prior content, sources, files, web info,
+      or earlier conversation details. Exclude for small talk, meta questions, or self-contained tasks.
+      Be conservative: include only when likely helpful.
+    min_similarity: 0.6
+    min_similarity_tool_output: 0.75
+    min_keep_on_empty: 1
+
+  # =============================================================================
+  # QUERY RELEVANCE FILTER (SUPPORTING CONTEXT)
+  # =============================================================================
+  # Filters insights/summaries/key_facts/passages by lightweight keyword overlap.
+  # Reduces off-topic artifacts while preserving a small fallback set.
+  query_relevance_filter:
+    enabled: true
+    apply_to:
+      - insights
+      - summaries
+      - key_facts
+      - passages
+    min_overlap_ratio: 0.15
+    min_overlap_count: 1
+    keep_recent:
+      insights: 3
+      summaries: 1
+      key_facts: 2
+      passages: 1
+    min_query_keywords: 0
+    skip_on_short_query: false
 
   # =============================================================================
   # PROMPT CACHING CONFIGURATION
@@ -527,12 +580,12 @@ memory:
     max_insights: 15           # Reduced to fit within supporting_context budget
     max_summaries: 10          # Reduced to fit within supporting_context budget
     max_facts: 20              # Reduced to fit within supporting_context budget
-    recency_days: 0            # Only include from last N days (0 = all time)
+    recency_days: 14           # Only include from last N days (0 = all time)
     # IMPORTANT: This budget should be LESS than supporting_context budget
     # supporting_context gets: (context_window - fixed_costs) * budget_ratio
     # With 40K context, ~1K system, ~1K output: (40K - 2K) * 0.30 = ~11.4K
     # Set priming lower to leave room for formatting overhead
-    token_budget: 8000         # ~20% of context window (leaves headroom)
+    token_budget: 4000         # ~10% of context window (leaves headroom)
 
     # -------------------------------------------------------------------------
     # CROSS-SESSION HISTORY
@@ -1840,6 +1893,60 @@ web:
   # Replace with your API key, e.g., "your-serper-api-key"
   
   serper_api_key: 0c38a510278852e8ae8da199a3510ab0e25d77c8
+
+# =============================================================================
+# SECURITY SETTINGS
+# =============================================================================
+# Prompt injection mitigation for tool outputs.
+# =============================================================================
+security:
+  sanitization:
+    enabled: true
+
+    detection:
+      enabled: true
+      sensitivity: medium  # low | medium | high | paranoid
+      max_scan_length: 100000
+      custom_patterns: []
+      allowlist_patterns: []
+
+    normalization:
+      enabled: true
+      max_normalize_length: 200000
+      strip_zero_width: true
+      decode_html_entities: true
+      strip_html_comments: true
+      collapse_whitespace: true
+
+    wrapping:
+      enabled: true
+      marker_style: xml  # xml | fence | prefix
+      include_metadata: true
+
+    quarantine:
+      action: warn  # warn | redact | block | log_only
+      redaction_text: "[CONTENT REDACTED: Potential injection detected]"
+      log_detections: true
+
+    storage_policy:
+      store_sanitized: true
+      store_raw_on_detection: true
+      raw_store_mode: quarantine
+      quarantine_path: ".friday/quarantine/tool_outputs.jsonl"
+
+    category_risks:
+      web: critical
+      shell: critical
+      filesystem: high
+      git: medium
+      code: medium
+      data: medium
+      text: low
+      utility: minimal
+
+    tool_overrides:
+      web_reader: critical
+      command_execute: critical
 
 # =============================================================================
 # SESSION SETTINGS

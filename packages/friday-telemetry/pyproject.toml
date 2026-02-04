@@ -26,6 +26,6 @@ build-backend = "hatchling.build"
 packages = ["src/friday_telemetry"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_telemetry"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"

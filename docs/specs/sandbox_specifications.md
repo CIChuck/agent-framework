@@ -106,7 +106,7 @@ class SandboxProtocol(Protocol):
 
 ```python
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -171,7 +171,7 @@ class Workspace:
         """Check if workspace has exceeded TTL."""
         if self.preserve:
             return False
-        return datetime.utcnow() > self.expires_at
+        return datetime.now(timezone.utc) > self.expires_at
 
     @property
     def metadata_path(self) -> Path:
@@ -506,7 +506,7 @@ def parse_return_value(
 
 ```python
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import uuid
 import shutil
 
@@ -544,7 +544,7 @@ class WorkspaceManager:
         # Enforce hard limit
         ttl = min(ttl, self.config.hard_ttl_seconds)
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         workspace = Workspace(
             id=workspace_id,
             path=workspace_path,

@@ -1136,7 +1136,7 @@ I've implemented JWT authentication with:
 """JWT-based authentication module."""
 
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict
 from functools import wraps
 from flask import request, jsonify
@@ -1172,8 +1172,8 @@ class JWTAuth:
 
         payload = {
             "user_id": user_id,
-            "exp": datetime.utcnow() + timedelta(hours=expires_in_hours),
-            "iat": datetime.utcnow()
+            "exp": datetime.now(timezone.utc) + timedelta(hours=expires_in_hours),
+            "iat": datetime.now(timezone.utc)
         }
 
         return jwt.encode(payload, self.secret_key, algorithm=self.algorithm)
@@ -1385,7 +1385,7 @@ Created test suite with 12 tests:
 
 import pytest
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from src.auth.jwt_auth import JWTAuth
 
 # Fixtures
@@ -1451,7 +1451,7 @@ class TestTokenGeneration:
 
         # Verify expiration is ~1 hour from now
         exp_time = datetime.fromtimestamp(payload["exp"])
-        expected_exp = datetime.utcnow() + timedelta(hours=1)
+        expected_exp = datetime.now(timezone.utc) + timedelta(hours=1)
         assert abs((exp_time - expected_exp).total_seconds()) < 60
 
 class TestTokenValidation:

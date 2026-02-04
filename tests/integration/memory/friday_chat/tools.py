@@ -186,6 +186,11 @@ def build_tool_registry(
             smart_file_config=smart_file_config,
         )
         if tool:
+            if not getattr(tool, "category", None) or tool.category == "uncategorized":
+                raise ValueError(
+                    f"Tool '{tool_config.get('name', tool.__class__.__name__)}' "
+                    "must declare a non-default category."
+                )
             registry.register(tool)
             loaded_count += 1
 

@@ -7,7 +7,7 @@ Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
 from __future__ import annotations
 
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any, Awaitable, Callable
 
 from friday_agent.workflows.models import (
@@ -22,6 +22,11 @@ if TYPE_CHECKING:
 
 
 logger = logging.getLogger(__name__)
+
+
+def _utc_now() -> datetime:
+    """Return current UTC time with timezone awareness."""
+    return datetime.now(timezone.utc)
 
 
 class WorkflowError(Exception):
@@ -107,9 +112,9 @@ class WorkflowEngine:
         # Create execution state
         execution = WorkflowExecution(
             workflow_id=workflow.id,
-            execution_id=f"{workflow.id}_{int(datetime.utcnow().timestamp())}",
+            execution_id=f"{workflow.id}_{int(_utc_now().timestamp())}",
             variables=initial_inputs or {},
-            started_at=datetime.utcnow(),
+            started_at=_utc_now(),
         )
 
         logger.info(f"Starting workflow: {workflow.name} ({execution.execution_id})")
@@ -129,7 +134,7 @@ class WorkflowEngine:
                 raise
         finally:
             if execution.status != TaskStatus.WAITING_APPROVAL:
-                execution.completed_at = datetime.utcnow()
+                execution.completed_at = _utc_now()
 
         return execution
 
@@ -195,7 +200,7 @@ class WorkflowEngine:
         execution.current_task_id = task.id
 
         task.status = TaskStatus.RUNNING
-        task.started_at = datetime.utcnow()
+        task.started_at = _utc_now()
 
         try:
             # Check approval gate
@@ -203,7 +208,7 @@ class WorkflowEngine:
                 approved = await self._handle_approval(task, execution)
                 if not approved:
                     task.status = TaskStatus.SKIPPED
-                    task.completed_at = datetime.utcnow()
+                    task.completed_at = _utc_now()
                     execution.record_task(task)
                     logger.info(f"Task skipped (not approved): {task.id}")
                     return
@@ -230,7 +235,7 @@ class WorkflowEngine:
                 logger.debug(f"Set variable ${output_name}")
 
             task.status = TaskStatus.COMPLETED
-            task.completed_at = datetime.utcnow()
+            task.completed_at = _utc_now()
             execution.record_task(task)
             logger.info(f"Task completed: {task.id}")
 
@@ -252,7 +257,7 @@ class WorkflowEngine:
                 return
 
             task.status = TaskStatus.FAILED
-            task.completed_at = datetime.utcnow()
+            task.completed_at = _utc_now()
             execution.record_task(task)
             raise WorkflowError(f"Task '{task.id}' failed: {e}", task_id=task.id)
 
@@ -382,7 +387,7 @@ class WorkflowEngine:
         try:
             await self._run_workflow(workflow, execution)
             execution.status = TaskStatus.COMPLETED
-            execution.completed_at = datetime.utcnow()
+            execution.completed_at = _utc_now()
         except WorkflowError as e:
             if execution.pending_approval:
                 execution.status = TaskStatus.WAITING_APPROVAL
@@ -413,7 +418,7 @@ class WorkflowEngine:
             raise WorkflowError(f"Task not found: {task_id}")
 
         task.status = TaskStatus.SKIPPED
-        task.completed_at = datetime.utcnow()
+        task.completed_at = _utc_now()
         execution.pending_approval = None
         execution.record_task(task)
 
@@ -423,7 +428,7 @@ class WorkflowEngine:
         try:
             await self._run_workflow(workflow, execution)
             execution.status = TaskStatus.COMPLETED
-            execution.completed_at = datetime.utcnow()
+            execution.completed_at = _utc_now()
         except WorkflowError as e:
             if execution.pending_approval:
                 execution.status = TaskStatus.WAITING_APPROVAL

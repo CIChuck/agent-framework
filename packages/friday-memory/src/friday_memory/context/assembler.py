@@ -19,6 +19,7 @@ Ref: docs/build-plan/tool-calling-build-plan.md, Phase 3
 """
 
 import logging
+from collections.abc import Callable
 from datetime import datetime
 from typing import Any
 
@@ -27,6 +28,7 @@ import tiktoken
 from friday_core import ContextEngineeringInterface, TelemetryInterface
 
 from friday_memory.context.layout import PromptArchitect
+from friday_memory.context.passage_router import PassageRouter
 from friday_memory.context.tool_manager import ToolContextManager
 from friday_memory.controller import MemoryController
 from friday_memory.lifecycle.stages import MemoryStage
@@ -63,6 +65,8 @@ class ContextAssembler(ContextEngineeringInterface):
         memory_controller: MemoryController,
         prompt_architect: PromptArchitect | None = None,
         tool_manager: ToolContextManager | None = None,
+        passage_router: PassageRouter | None = None,
+        query_relevance_config: dict[str, Any] | None = None,
         model_name: str = "gpt-4",
         max_tokens: int = 8192,
         telemetry: TelemetryInterface | None = None,
@@ -84,6 +88,10 @@ class ContextAssembler(ContextEngineeringInterface):
             max_tokens=max_tokens,
         )
         self._tool_manager = tool_manager or ToolContextManager()
+        self._passage_router = passage_router
+        self._query_relevance_config = self._merge_query_relevance_config(
+            query_relevance_config
+        )
         self._model_name = model_name
         self._max_tokens = max_tokens
         self._telemetry = telemetry
@@ -130,6 +138,14 @@ class ContextAssembler(ContextEngineeringInterface):
     def set_consolidator(self, consolidator: Any) -> None:
         """Set the memory consolidator for consolidation cycles."""
         self._consolidator = consolidator
+
+    def set_passage_router(self, router: PassageRouter | None) -> None:
+        """Set the passage router for conditional passage inclusion."""
+        self._passage_router = router
+
+    def set_query_relevance_config(self, config: dict[str, Any] | None) -> None:
+        """Set the query relevance filter configuration."""
+        self._query_relevance_config = self._merge_query_relevance_config(config)
 
     # --- Tool Management ---
 
@@ -465,6 +481,10 @@ class ContextAssembler(ContextEngineeringInterface):
                 include_history=True,
             )
 
+            # Optionally route/guard passage inclusion
+            if self._passage_router:
+                payload = await self._apply_passage_routing(payload, query)
+
             # Apply token budget with priority hierarchy
             budgeted_payload = self._apply_budget(payload, budget_limit, query=query)
 
@@ -531,6 +551,57 @@ class ContextAssembler(ContextEngineeringInterface):
             if span_id:
                 self._telemetry.end_span(span_id)
 
+    async def _apply_passage_routing(
+        self, payload: ContextPayload, query: str
+    ) -> ContextPayload:
+        """
+        Use the passage router to decide whether to include vector passages.
+
+        Applies similarity guardrails when passages are included.
+        Adds routing metadata to debug_info for observability.
+        """
+        if not payload.passages:
+            return payload
+
+        decision = await self._passage_router.decide(query)
+        original_count = len(payload.passages)
+
+        if decision.include_passages:
+            filtered_passages, excluded = self._passage_router.filter_passages(
+                payload.passages
+            )
+            included = len(filtered_passages)
+        else:
+            filtered_passages = []
+            excluded = original_count
+            included = 0
+
+        return ContextPayload(
+            history=payload.history,
+            prior_history=payload.prior_history,
+            passages=filtered_passages,
+            entities=payload.entities,
+            facts=payload.facts,
+            recent_memories=payload.recent_memories,
+            insights=payload.insights,
+            summaries=payload.summaries,
+            key_facts=payload.key_facts,
+            # Preserve tool fields (even if empty at this stage)
+            tool_schemas=payload.tool_schemas,
+            recommended_tools=payload.recommended_tools,
+            tool_usage_hints=payload.tool_usage_hints,
+            debug_info={
+                **payload.debug_info,
+                "passage_router_enabled": True,
+                "passage_router_include": decision.include_passages,
+                "passage_router_confidence": decision.confidence,
+                "passage_router_reason": decision.reason,
+                "passage_router_original": original_count,
+                "passage_router_included": included,
+                "passage_router_excluded": excluded,
+            },
+        )
+
     def _apply_budget(
         self, payload: ContextPayload, budget_limit: int, query: str = ""
     ) -> ContextPayload:
@@ -559,8 +630,8 @@ class ContextAssembler(ContextEngineeringInterface):
         # Summaries are redundant when we have full conversation history
         filtered_payload = self._apply_conditional_summaries(filtered_payload)
 
-        # Step 0.6: Filter insights by query relevance (keyword overlap)
-        # This reduces irrelevant insights without expensive embedding computation
+        # Step 0.6: Filter supporting context by query relevance (keyword overlap)
+        # This reduces irrelevant artifacts without expensive embedding computation
         if query:
             filtered_payload = self._filter_by_query_relevance(filtered_payload, query)
 
@@ -844,101 +915,191 @@ class ContextAssembler(ContextEngineeringInterface):
         self, payload: ContextPayload, query: str
     ) -> ContextPayload:
         """
-        Filter insights by relevance to the current query.
+        Filter supporting context by relevance to the current query.
 
         Uses lightweight keyword/entity overlap scoring to filter out
-        insights that are unlikely to be relevant to the query.
+        items that are unlikely to be relevant to the query.
         This avoids expensive embedding computation while still improving
         context quality.
-
-        Args:
-            payload: The context payload to filter
-            query: The current user query
-
-        Returns:
-            Filtered payload with relevant insights prioritized
         """
-        if not payload.insights:
+        config = self._query_relevance_config
+        if not config.get("enabled", False):
             return payload
 
         # Extract keywords from query (lowercased, removing common words)
         query_keywords = self._extract_keywords(query)
-
-        if not query_keywords:
-            # Can't filter without keywords, return as-is
+        min_query_keywords = int(config.get("min_query_keywords", 0))
+        if config.get("skip_on_short_query", False) and len(query_keywords) < min_query_keywords:
             return payload
 
-        # Score and filter insights by keyword overlap
-        scored_insights: list[tuple[dict, float]] = []
+        apply_to = set(config.get("apply_to", []))
+        min_overlap_ratio = float(config.get("min_overlap_ratio", 0.1))
+        min_overlap_count = int(config.get("min_overlap_count", 1))
+        keep_recent = config.get("keep_recent", {})
 
-        for insight in payload.insights:
-            text = insight.get("text", "") or insight.get("document", "")
-            insight_keywords = self._extract_keywords(text)
+        def score_item(text: str, extra_keywords: set[str] | None = None) -> tuple[float, int]:
+            item_keywords = self._extract_keywords(text)
+            if extra_keywords:
+                item_keywords |= extra_keywords
+            if not item_keywords:
+                return 0.0, 0
+            overlap = query_keywords & item_keywords
+            overlap_count = len(overlap)
+            score = overlap_count / max(len(query_keywords), 1)
+            return score, overlap_count
 
-            # Calculate overlap score
-            if insight_keywords:
-                overlap = query_keywords & insight_keywords
-                score = len(overlap) / max(len(query_keywords), 1)
-            else:
-                score = 0.0
+        def filter_items(
+            items: list[dict[str, Any]],
+            section: str,
+            get_text: Callable[[dict[str, Any]], str],
+            get_extra_keywords: Callable[[dict[str, Any]], set[str]] | None = None,
+        ) -> tuple[list[dict[str, Any]], int]:
+            if not items:
+                return items, 0
 
-            # Also check entities_mentioned metadata
-            metadata = insight.get("metadata", {})
-            entities_mentioned = metadata.get("entities_mentioned", "")
-            if entities_mentioned:
-                entity_keywords = {
-                    e.strip().lower() for e in entities_mentioned.split(";") if e.strip()
-                }
-                entity_overlap = query_keywords & entity_keywords
-                entity_score = len(entity_overlap) / max(len(query_keywords), 1)
-                score = max(score, entity_score)
+            scored: list[tuple[dict[str, Any], float, int]] = []
+            for item in items:
+                text = get_text(item)
+                extra = get_extra_keywords(item) if get_extra_keywords else None
+                score, overlap_count = score_item(text, extra)
+                scored.append((item, score, overlap_count))
 
-            scored_insights.append((insight, score))
+            relevant: list[dict[str, Any]] = []
+            relevant_ids: set[int] = set()
+            for item, score, overlap_count in scored:
+                if overlap_count >= min_overlap_count and score >= min_overlap_ratio:
+                    relevant.append(item)
+                    relevant_ids.add(id(item))
 
-        # Keep insights that have at least some relevance (score > 0)
-        # or always keep at least the top 5 most recent (in case query is novel)
-        relevant = [
-            (insight, score) for insight, score in scored_insights if score > 0
-        ]
-        # Sort by score descending
-        relevant.sort(key=lambda x: x[1], reverse=True)
+            keep_n = int(keep_recent.get(section, 0))
+            if len(relevant) < keep_n:
+                for item, _, _ in scored:
+                    if id(item) in relevant_ids:
+                        continue
+                    relevant.append(item)
+                    relevant_ids.add(id(item))
+                    if len(relevant) >= keep_n:
+                        break
 
-        # If very few relevant, also keep some recent ones for serendipity
-        if len(relevant) < 5:
-            # Add recent insights that aren't already included
-            relevant_ids = {id(i) for i, _ in relevant}
-            for insight, _ in scored_insights[:10]:
-                if id(insight) not in relevant_ids and len(relevant) < 10:
-                    relevant.append((insight, 0.0))
+            excluded = len(items) - len(relevant)
+            return relevant, excluded
 
-        filtered_insights = [insight for insight, _ in relevant]
-        excluded_count = len(payload.insights) - len(filtered_insights)
+        insights = payload.insights
+        summaries = payload.summaries
+        key_facts = payload.key_facts
+        passages = payload.passages
 
-        if excluded_count > 0:
+        excluded_insights = 0
+        excluded_summaries = 0
+        excluded_key_facts = 0
+        excluded_passages = 0
+
+        if "insights" in apply_to and insights:
+            def insight_extra_keywords(item: dict[str, Any]) -> set[str]:
+                entities_mentioned = item.get("metadata", {}).get("entities_mentioned", "")
+                if not entities_mentioned:
+                    return set()
+                return {e.strip().lower() for e in entities_mentioned.split(";") if e.strip()}
+
+            insights, excluded_insights = filter_items(
+                insights,
+                "insights",
+                lambda i: i.get("text", "") or i.get("document", ""),
+                insight_extra_keywords,
+            )
+
+        if "summaries" in apply_to and summaries:
+            summaries, excluded_summaries = filter_items(
+                summaries,
+                "summaries",
+                lambda s: s.get("text", "") or s.get("document", ""),
+            )
+
+        if "key_facts" in apply_to and key_facts:
+            key_facts, excluded_key_facts = filter_items(
+                key_facts,
+                "key_facts",
+                lambda f: f.get("text", "") or f.get("document", ""),
+            )
+
+        if "passages" in apply_to and passages:
+            def passage_extra_keywords(item: dict[str, Any]) -> set[str]:
+                metadata = item.get("metadata", {})
+                extra_parts = [
+                    metadata.get("filename", ""),
+                    metadata.get("source", ""),
+                    metadata.get("title", ""),
+                    metadata.get("tool_name", ""),
+                    metadata.get("source_path", ""),
+                    metadata.get("url", ""),
+                ]
+                extra_text = " ".join(p for p in extra_parts if p)
+                return self._extract_keywords(extra_text)
+
+            passages, excluded_passages = filter_items(
+                passages,
+                "passages",
+                lambda p: p.get("text", ""),
+                passage_extra_keywords,
+            )
+
+        if any([excluded_insights, excluded_summaries, excluded_key_facts, excluded_passages]):
             logger.debug(
-                f"Filtered {excluded_count} insights by query relevance "
-                f"(kept {len(filtered_insights)})"
+                "Query relevance filtering removed "
+                f"insights={excluded_insights}, summaries={excluded_summaries}, "
+                f"key_facts={excluded_key_facts}, passages={excluded_passages}"
             )
 
         return ContextPayload(
             history=payload.history,
             prior_history=payload.prior_history,
-            passages=payload.passages,
+            passages=passages,
             entities=payload.entities,
             facts=payload.facts,
             recent_memories=payload.recent_memories,
-            insights=filtered_insights,
-            summaries=payload.summaries,
-            key_facts=payload.key_facts,
+            insights=insights,
+            summaries=summaries,
+            key_facts=key_facts,
             # Preserve tool fields
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
             tool_usage_hints=payload.tool_usage_hints,
             debug_info={
                 **payload.debug_info,
-                "insights_filtered_by_relevance": excluded_count,
+                "query_relevance_enabled": True,
+                "query_relevance_sections": list(apply_to),
+                "insights_filtered_by_relevance": excluded_insights,
+                "summaries_filtered_by_relevance": excluded_summaries,
+                "key_facts_filtered_by_relevance": excluded_key_facts,
+                "passages_filtered_by_relevance": excluded_passages,
             },
         )
+
+    def _merge_query_relevance_config(
+        self, config: dict[str, Any] | None
+    ) -> dict[str, Any]:
+        defaults: dict[str, Any] = {
+            "enabled": False,
+            "apply_to": ["insights"],
+            "min_overlap_ratio": 0.1,
+            "min_overlap_count": 1,
+            "keep_recent": {
+                "insights": 5,
+                "summaries": 2,
+                "key_facts": 2,
+                "passages": 2,
+            },
+            "min_query_keywords": 0,
+            "skip_on_short_query": False,
+        }
+
+        if not config:
+            return defaults
+
+        merged = {**defaults, **config}
+        merged_keep = {**defaults["keep_recent"], **config.get("keep_recent", {})}
+        merged["keep_recent"] = merged_keep
+        return merged
 
     def _extract_keywords(self, text: str) -> set[str]:
         """

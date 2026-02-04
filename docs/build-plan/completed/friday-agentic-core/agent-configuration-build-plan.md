@@ -864,8 +864,8 @@ __all__ = [
 | `agents/researcher.yaml` | Create | Example researcher agent |
 | `agents/coder.yaml` | Create | Example coder agent |
 | `agents/reviewer.yaml` | Create | Example reviewer agent |
-| `packages/friday-agent/tests/test_loader.py` | Create | Unit tests for AgentLoader |
-| `packages/friday-agent/tests/fixtures/agents/` | Create | Test fixture agent configs |
+| `packages/friday-agent/tests_agent/test_loader.py` | Create | Unit tests for AgentLoader |
+| `packages/friday-agent/tests_agent/fixtures/agents/` | Create | Test fixture agent configs |
 
 ---
 
@@ -885,7 +885,7 @@ __all__ = [
 
 ```bash
 # Run loader tests
-pytest packages/friday-agent/tests/test_loader.py -v
+pytest packages/friday-agent/tests_agent/test_loader.py -v
 ```
 
 **Test Cases:**

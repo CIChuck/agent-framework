@@ -206,7 +206,7 @@ async def _archive_turn(self, user_message, assistant_message, tool_calls, tool_
 
 #### 1.7 Create Provenance Unit Tests
 
-**File:** `packages/friday-memory/tests/test_provenance.py` (NEW)
+**File:** `packages/friday-memory/tests_memory/test_provenance.py` (NEW)
 
 Test cases:
 - Valid provenance creation
@@ -310,7 +310,7 @@ Add orchestration commands:
 
 #### 2.5 Create Orchestrator Unit Tests
 
-**File:** `packages/friday-agent/tests/test_orchestrator.py` (NEW)
+**File:** `packages/friday-agent/tests_agent/test_orchestrator.py` (NEW)
 
 Test cases:
 - Explicit routing (`@agent_name message`)
@@ -374,12 +374,12 @@ Per Master Plan Section 6.4:
 | `packages/friday-transcript/src/friday_transcript/stores/sqlite.py` | Modify | 1.4 |
 | `packages/friday-memory/src/friday_memory/models/session.py` | Modify | 1.5 |
 | `packages/friday-agent/src/friday_agent/base.py` | Modify | 1.6 |
-| `packages/friday-memory/tests/test_provenance.py` | Create | 1.7 |
+| `packages/friday-memory/tests_memory/test_provenance.py` | Create | 1.7 |
 | `packages/friday-agent/src/friday_agent/orchestrator.py` | Create | 2.1 |
 | `packages/friday-agent/src/friday_agent/__init__.py` | Modify | 2.2 |
 | `apps/friday-cli/src/friday_cli/container.py` | Modify | 2.3 |
 | `tests/integration/memory/memory-chat-v2.py` | Modify | 2.4 |
-| `packages/friday-agent/tests/test_orchestrator.py` | Create | 2.5 |
+| `packages/friday-agent/tests_agent/test_orchestrator.py` | Create | 2.5 |
 
 ---
 

@@ -78,7 +78,7 @@ Since the code is already drafted, the focus is on verification and acceptance t
 ## 3. Execution Order
 
 1.  **Dependencies:** Ensure `friday-core` is installed and up-to-date in the environment.
-2.  **Unit Tests:** Run existing tests in `packages/friday-memory/tests/` to assess current pass rate.
+2.  **Unit Tests:** Run existing tests in `packages/friday-memory/tests_memory/` to assess current pass rate.
     ```bash
     uv run pytest packages/friday-memory
     ```

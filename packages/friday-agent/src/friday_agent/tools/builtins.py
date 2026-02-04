@@ -23,6 +23,7 @@ if TYPE_CHECKING:
 @tool(
     name="scratchpad_write",
     description="Write a value to the agent's scratchpad. Use this to save important information that should survive context pruning.",
+    category="utility",
 )
 async def scratchpad_write(
     state: "SessionState",
@@ -53,6 +54,7 @@ async def scratchpad_write(
 @tool(
     name="scratchpad_read",
     description="Read a value from the agent's scratchpad. Retrieves previously saved information.",
+    category="utility",
 )
 async def scratchpad_read(
     state: "SessionState",
@@ -82,6 +84,7 @@ async def scratchpad_read(
 @tool(
     name="recall_memory",
     description="Search the agent's long-term memory for relevant information. Use this when you need to remember something from past conversations or stored knowledge.",
+    category="data",
 )
 async def recall_memory(
     memory: "MemoryController",
@@ -137,6 +140,7 @@ async def recall_memory(
 @tool(
     name="store_fact",
     description="Explicitly store a fact in the knowledge graph. Use this when you learn something important that should be remembered long-term.",
+    category="data",
 )
 async def store_fact(
     memory: "MemoryController",
@@ -205,6 +209,7 @@ async def store_fact(
 @tool(
     name="scratchpad_list",
     description="List all keys currently stored in the scratchpad.",
+    category="utility",
 )
 async def scratchpad_list(
     state: "SessionState",
@@ -234,6 +239,7 @@ async def scratchpad_list(
 @tool(
     name="scratchpad_clear",
     description="Clear all values from the scratchpad.",
+    category="utility",
 )
 async def scratchpad_clear(
     state: "SessionState",

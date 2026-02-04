@@ -8,13 +8,13 @@ Ref: Batch 3 Specification, Section 5.1
 """
 
 import inspect
-import logging
 from functools import partial
 from typing import Any, Callable, get_type_hints
 
 from friday_core.interfaces.tools import SchemaFormat, ToolDefinition
+from friday_core.logging import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 # Global registry for decorator-based tool registration
 _GLOBAL_TOOL_REGISTRY: dict[str, dict[str, Any]] = {}
@@ -23,6 +23,7 @@ _GLOBAL_TOOL_REGISTRY: dict[str, dict[str, Any]] = {}
 def tool(
     name: str | None = None,
     description: str = "",
+    category: str | None = None,
 ) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """
     Decorator to register a function as a tool.
@@ -33,12 +34,13 @@ def tool(
     Args:
         name: Tool name (defaults to function name)
         description: Tool description (defaults to function docstring)
+        category: Tool category (required, non-default)
 
     Returns:
         Decorated function (unchanged behavior)
 
     Example:
-        @tool(name="search_web", description="Search the web for information")
+        @tool(name="search_web", description="Search the web for information", category="web")
         async def search_web(query: str, max_results: int = 10) -> str:
             '''
             Search the web.
@@ -53,6 +55,10 @@ def tool(
 
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         tool_name = name or func.__name__
+        if not category or category == "uncategorized":
+            raise ValueError(
+                f"Tool '{tool_name}' must declare a non-default category."
+            )
         tool_desc = description or (func.__doc__ or "").split("\n")[0].strip()
 
         # Extract parameters from signature
@@ -64,6 +70,7 @@ def tool(
             "func": func,
             "description": tool_desc,
             "parameters": parameters,
+            "category": category,
         }
 
         # Mark function as a registered tool
@@ -227,6 +234,8 @@ class DecoratedFunctionTool:
         name: str,
         description: str,
         parameters: dict[str, Any],
+        category: str,
+        tags: list[str] | None = None,
     ):
         """
         Create a tool from a decorated function.
@@ -241,6 +250,8 @@ class DecoratedFunctionTool:
         self._name = name
         self._description = description
         self._parameters = parameters
+        self._category = category
+        self._tags = tags or []
 
     @property
     def name(self) -> str:
@@ -256,6 +267,16 @@ class DecoratedFunctionTool:
     def parameters_schema(self) -> dict[str, Any]:
         """JSON Schema for tool parameters."""
         return self._parameters
+
+    @property
+    def category(self) -> str:
+        """Tool category for grouping and filtering."""
+        return self._category
+
+    @property
+    def tags(self) -> list[str]:
+        """Optional tags for fine-grained filtering."""
+        return self._tags
 
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool with given arguments."""
@@ -282,6 +303,8 @@ class DecoratedFunctionTool:
             "name": self._name,
             "description": self._description,
             "parameters": self._parameters,
+            "category": self._category,
+            "tags": self._tags,
         }
 
         if format == SchemaFormat.OPENAI or format == "openai":
@@ -307,7 +330,7 @@ class DefaultToolRegistry:
         registry = DefaultToolRegistry()
 
         # Register using decorator
-        @tool(name="greet", description="Greet someone")
+        @tool(name="greet", description="Greet someone", category="utility")
         def greet(name: str) -> str:
             return f"Hello, {name}!"
 
@@ -334,6 +357,8 @@ class DefaultToolRegistry:
         parameters: dict[str, Any] | None = None,
         *,
         name: str | None = None,
+        category: str | None = None,
+        tags: list[str] | None = None,
     ) -> None:
         """
         Register a tool with the registry.
@@ -366,11 +391,17 @@ class DefaultToolRegistry:
             # Legacy pattern: register(name, func, description, parameters)
             if func is None:
                 raise ValueError("func is required when registering by name")
+            if not category or category == "uncategorized":
+                raise ValueError(
+                    f"Tool '{tool_or_name}' must declare a non-default category."
+                )
             tool_obj = DecoratedFunctionTool(
                 func=func,
                 name=tool_or_name,
                 description=description or "",
                 parameters=parameters or {"type": "object", "properties": {}},
+                category=category,
+                tags=tags,
             )
         else:
             # New pattern: register(tool)
@@ -383,15 +414,21 @@ class DefaultToolRegistry:
         if isinstance(tool_obj, DecoratedFunctionTool):
             self._tools[tool_obj.name] = tool_obj
         else:
+            if not getattr(tool_obj, "category", None) or tool_obj.category == "uncategorized":
+                raise ValueError(
+                    f"Tool '{tool_obj.name}' must declare a non-default category."
+                )
             # Create a wrapper for external ToolDefinition implementations
             self._tools[tool_obj.name] = DecoratedFunctionTool(
                 func=tool_obj.execute,
                 name=tool_obj.name,
                 description=tool_obj.description,
                 parameters=tool_obj.parameters_schema,
+                category=tool_obj.category,
+                tags=getattr(tool_obj, "tags", []),
             )
 
-        logger.debug(f"Registered tool: {tool_obj.name}")
+        logger.debug("Registered tool", tool=tool_obj.name)
 
     def register_function(
         self,
@@ -399,6 +436,8 @@ class DefaultToolRegistry:
         func: Callable[..., Any],
         description: str,
         parameters: dict[str, Any],
+        category: str,
+        tags: list[str] | None = None,
     ) -> None:
         """
         Register a function as a tool manually.
@@ -411,14 +450,20 @@ class DefaultToolRegistry:
             description: Human-readable description
             parameters: JSON Schema for parameters
         """
+        if not category or category == "uncategorized":
+            raise ValueError(
+                f"Tool '{name}' must declare a non-default category."
+            )
         tool = DecoratedFunctionTool(
             func=func,
             name=name,
             description=description,
             parameters=parameters,
+            category=category,
+            tags=tags,
         )
         self._tools[name] = tool
-        logger.debug(f"Registered tool: {name}")
+        logger.debug("Registered tool", tool=name)
 
     def get(self, name: str) -> DecoratedFunctionTool | None:
         """
@@ -523,11 +568,18 @@ class DefaultToolRegistry:
         loaded = 0
         for name, info in _GLOBAL_TOOL_REGISTRY.items():
             if name not in self._tools:
+                category = info.get("category")
+                if not category or category == "uncategorized":
+                    raise ValueError(
+                        f"Tool '{name}' must declare a non-default category."
+                    )
                 tool = DecoratedFunctionTool(
                     func=info["func"],
                     name=name,
                     description=info["description"],
                     parameters=info["parameters"],
+                    category=category,
+                    tags=info.get("tags"),
                 )
                 self._tools[name] = tool
                 loaded += 1
@@ -550,7 +602,7 @@ class DefaultToolRegistry:
 
         Example:
             # Tool that needs memory controller
-            @tool(name="recall_memory")
+            @tool(name="recall_memory", category="data")
             async def recall_memory(
                 memory: MemoryController,  # Injected
                 query: str,  # Runtime arg
@@ -587,9 +639,15 @@ class DefaultToolRegistry:
             name=tool._name,
             description=tool._description,
             parameters=new_parameters,
+            category=tool._category,
+            tags=tool._tags,
         )
 
-        logger.debug(f"Bound dependencies to tool '{tool_name}': {list(kwargs.keys())}")
+        logger.debug(
+            "Bound dependencies to tool",
+            tool=tool_name,
+            bound=list(kwargs.keys()),
+        )
 
     def has_tool(self, name: str) -> bool:
         """Check if a tool is registered."""

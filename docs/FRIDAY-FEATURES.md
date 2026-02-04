@@ -672,7 +672,7 @@ memory:
 **Category:** Context Engineering
 **Files Modified:**
 - `packages/friday-memory/src/friday_memory/context/layout.py`
-- `packages/friday-memory/tests/test_context/test_layout.py`
+- `packages/friday-memory/tests_memory/test_context/test_layout.py`
 
 **Description:** Restructured the prompt layout to combat the "Lost in the Middle" phenomenon. Supporting context (insights, summaries, entities, session state) is now placed immediately before the user query in the final message, rather than in the system message.
 

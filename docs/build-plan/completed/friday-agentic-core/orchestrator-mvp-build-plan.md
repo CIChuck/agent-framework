@@ -667,7 +667,7 @@ __all__ = [
 | `packages/friday-agent/src/friday_agent/orchestrator.py` | Create | AgentOrchestrator implementation |
 | `packages/friday-agent/src/friday_agent/__init__.py` | Modify | Export AgentOrchestrator, OrchestratorError |
 | `tests/integration/memory/memory-chat-v2.py` | Modify | Add /switch, /agents, /delegate, /status commands |
-| `packages/friday-agent/tests/test_orchestrator.py` | Create | Unit tests |
+| `packages/friday-agent/tests_agent/test_orchestrator.py` | Create | Unit tests |
 
 ---
 
@@ -685,7 +685,7 @@ __all__ = [
 
 ### 6.1 Unit Tests
 
-**Location:** `packages/friday-agent/tests/test_orchestrator.py`
+**Location:** `packages/friday-agent/tests_agent/test_orchestrator.py`
 
 ```python
 """Unit tests for AgentOrchestrator."""

@@ -973,7 +973,7 @@ async def _handle_approval(self, task: TaskNode, execution: WorkflowExecution) -
     if not approved:
         # User denied approval - skip task
         task.status = TaskStatus.SKIPPED
-        task.completed_at = datetime.utcnow()
+        task.completed_at = datetime.now(timezone.utc)
         execution.record_task(task)
         logger.info(f"Task skipped (not approved): {task.id}")
         return False
@@ -1520,9 +1520,9 @@ async def execute(
     # 2. Create execution state
     execution = WorkflowExecution(
         workflow_id=workflow.id,
-        execution_id=f"{workflow.id}_{int(datetime.utcnow().timestamp())}",
+        execution_id=f"{workflow.id}_{int(datetime.now(timezone.utc).timestamp())}",
         variables=initial_inputs or {},
-        started_at=datetime.utcnow(),
+        started_at=datetime.now(timezone.utc),
     )
 
     # 3. Execute workflow
@@ -1537,7 +1537,7 @@ async def execute(
             raise
     finally:
         if execution.status != TaskStatus.WAITING_APPROVAL:
-            execution.completed_at = datetime.utcnow()
+            execution.completed_at = datetime.now(timezone.utc)
 
     return execution
 ```
@@ -1605,7 +1605,7 @@ async def _execute_task(
     """Execute a single task."""
     execution.current_task_id = task.id
     task.status = TaskStatus.RUNNING
-    task.started_at = datetime.utcnow()
+    task.started_at = datetime.now(timezone.utc)
 
     try:
         # 1. Check approval gate
@@ -1613,7 +1613,7 @@ async def _execute_task(
             approved = await self._handle_approval(task, execution)
             if not approved:
                 task.status = TaskStatus.SKIPPED
-                task.completed_at = datetime.utcnow()
+                task.completed_at = datetime.now(timezone.utc)
                 execution.record_task(task)
                 return
 
@@ -1653,7 +1653,7 @@ async def _execute_task(
         task.status = TaskStatus.FAILED
         raise WorkflowError(f"Task '{task.id}' failed: {e}", task_id=task.id)
     finally:
-        task.completed_at = datetime.utcnow()
+        task.completed_at = datetime.now(timezone.utc)
         execution.record_task(task)
         execution.current_task_id = None
 ```
@@ -1738,7 +1738,7 @@ async def approve_task(
     try:
         await self._run_workflow(workflow, execution)
         execution.status = TaskStatus.COMPLETED
-        execution.completed_at = datetime.utcnow()
+        execution.completed_at = datetime.now(timezone.utc)
     except WorkflowError as e:
         if execution.pending_approval:
             execution.status = TaskStatus.WAITING_APPROVAL

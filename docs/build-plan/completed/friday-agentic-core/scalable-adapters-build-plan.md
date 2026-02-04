@@ -623,8 +623,8 @@ def main():
 | `apps/friday-cli/src/friday_cli/profiles.py` | Create | MemoryProfile enum and factory functions |
 | `apps/friday-cli/src/friday_cli/container.py` | Modify | Add memory_profile parameter and property |
 | `apps/friday-cli/src/friday_cli/main.py` | Modify | Add --memory-profile CLI argument |
-| `packages/friday-memory/tests/test_simple_vector.py` | Create | Unit tests for SimpleVectorStore |
-| `packages/friday-memory/tests/test_null_graph.py` | Create | Unit tests for NullGraphStore |
+| `packages/friday-memory/tests_memory/test_simple_vector.py` | Create | Unit tests for SimpleVectorStore |
+| `packages/friday-memory/tests_memory/test_null_graph.py` | Create | Unit tests for NullGraphStore |
 
 ---
 
@@ -644,10 +644,10 @@ The lightweight adapters intentionally avoid adding new dependencies.
 
 ```bash
 # Test SimpleVectorStore
-pytest packages/friday-memory/tests/test_simple_vector.py -v
+pytest packages/friday-memory/tests_memory/test_simple_vector.py -v
 
 # Test NullGraphStore
-pytest packages/friday-memory/tests/test_null_graph.py -v
+pytest packages/friday-memory/tests_memory/test_null_graph.py -v
 ```
 
 ### 6.2 Integration Test

@@ -108,7 +108,7 @@ class SmartFileReadTool(FridayTool):
     Supports separate LLMs for summarization and synthesis.
     """
 
-    name = "file_read"
+    name = "smart_read"
     description = (
         "Read and process files of any size. Small files return full content. "
         "Large files are automatically chunked, summarized, and synthesized. "

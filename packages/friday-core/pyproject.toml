@@ -29,7 +29,7 @@ build-backend = "hatchling.build"
 packages = ["src/friday_core"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_core"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

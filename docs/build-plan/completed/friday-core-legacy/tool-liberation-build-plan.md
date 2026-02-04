@@ -97,7 +97,7 @@ For Sentinel Mode.
 ## 3. Verification Plan
 
 ### Step 3.1: Unit Testing (Mandatory)
-We will create specific test files in `packages/friday-tools/tests/` for each domain. These tests must mock the dependencies (`MemoryController`, `psutil`) to verify logic in isolation.
+We will create specific test files in `packages/friday-tools/tests_tools/` for each domain. These tests must mock the dependencies (`MemoryController`, `psutil`) to verify logic in isolation.
 
 *   `tests/test_base.py`: Verify Pydantic validation and error handling of the base `FridayTool`.
 *   `tests/test_memory_tools.py`: Verify `GraphInspectionTool`, `MemoryMaintenanceTool`, etc.

@@ -30,6 +30,6 @@ friday-core = { workspace = true }
 friday-llm = { workspace = true }
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests_memory"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"

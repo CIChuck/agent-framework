@@ -163,10 +163,10 @@ pytest
 pytest -v
 
 # Run tests for a specific package
-pytest packages/friday-memory/tests/ -v
+pytest packages/friday-memory/tests_memory/ -v
 
 # Run a single test file
-pytest packages/friday-tools/tests/test_protocols.py -v
+pytest packages/friday-tools/tests_tools/test_protocols.py -v
 
 # Run tests matching a pattern
 pytest -k "test_memory" -v
@@ -182,13 +182,13 @@ pytest --cov=packages --cov-report=html
 pytest tests/integration/llm/ -v --maxfail=1
 
 # Memory system tests
-pytest packages/friday-memory/tests/ -v
+pytest packages/friday-memory/tests_memory/ -v
 
 # Agent tests (requires API key or Ollama)
-pytest packages/friday-agent/tests/ -v
+pytest packages/friday-agent/tests_agent/ -v
 
 # Tool tests (filesystem, shell, web)
-pytest packages/friday-tools/tests/ -v
+pytest packages/friday-tools/tests_tools/ -v
 
 # Skip slow tests during development
 pytest -m "not slow" -v
@@ -223,7 +223,7 @@ ollama pull llama3
 ollama serve
 
 # Run tests with local model (no API costs)
-FRIDAY_LLM__MODEL=ollama/llama3 pytest packages/friday-agent/tests/
+FRIDAY_LLM__MODEL=ollama/llama3 pytest packages/friday-agent/tests_agent/
 ```
 
 ### 15.1.6 Code Style & Linting
@@ -419,7 +419,7 @@ uv run ruff format .
 uv run mypy packages/friday-memory/
 
 # 3. Run relevant tests
-pytest packages/friday-memory/tests/ -v
+pytest packages/friday-memory/tests_memory/ -v
 
 # 4. Stage changes
 git add .
@@ -462,7 +462,7 @@ gh pr create --title "feat: your feature" --body "Description..."
 |------|---------|
 | Install deps | `uv sync` |
 | Run tests | `pytest` |
-| Run specific test | `pytest packages/friday-memory/tests/test_controller.py -v` |
+| Run specific test | `pytest packages/friday-memory/tests_memory/test_controller.py -v` |
 | Lint code | `uv run ruff check . --fix` |
 | Format code | `uv run ruff format .` |
 | Type check | `uv run mypy packages/friday-core/` |
@@ -657,7 +657,7 @@ All contributions must include appropriate tests. Friday maintains high test cov
 
 **Unit Tests** - Test individual functions/classes in isolation
 ```python
-# packages/friday-memory/tests/test_controller.py
+# packages/friday-memory/tests_memory/test_controller.py
 def test_memory_controller_initialization():
     """Test MemoryController initializes with correct stores."""
     controller = MemoryController(
