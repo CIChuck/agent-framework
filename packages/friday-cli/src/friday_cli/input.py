@@ -11,7 +11,7 @@ from __future__ import annotations
 import asyncio
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
@@ -118,6 +118,7 @@ class InputHandler:
         style: Style | None = None,
         multiline: bool = False,
         enable_auto_suggest: bool = True,
+        extra_key_bindings: Callable[[KeyBindings], None] | None = None,
     ):
         """
         Initialize input handler.
@@ -133,6 +134,7 @@ class InputHandler:
         """
         self.prompt_name = prompt_name
         self.multiline = multiline
+        self._extra_key_bindings = extra_key_bindings
         # Use provided style, or build from CLI config, or fall back to default
         self.style = style or _build_prompt_style()
 
@@ -183,6 +185,9 @@ class InputHandler:
         def _double_escape_clear(event):
             """Double-Esc clears the input buffer."""
             event.current_buffer.reset()
+
+        if self._extra_key_bindings:
+            self._extra_key_bindings(bindings)
 
         return bindings
 
@@ -350,6 +355,7 @@ def create_friday_input_handler(
     user_name: str = "User",
     history_file: str | Path | None = None,
     multiline: bool = False,
+    extra_key_bindings: Callable[[KeyBindings], None] | None = None,
 ) -> InputHandler:
     """
     Create an InputHandler pre-configured for Friday CLI.
@@ -368,4 +374,5 @@ def create_friday_input_handler(
         command_descriptions=FRIDAY_COMMAND_DESCRIPTIONS,
         history_file=history_file,
         multiline=multiline,
+        extra_key_bindings=extra_key_bindings,
     )

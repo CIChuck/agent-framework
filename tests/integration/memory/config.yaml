@@ -51,6 +51,8 @@ llm:
   
   model: "openrouter/anthropic/claude-haiku-4.5"
 
+  #model: "openrouter/moonshotai/kimi-k2.5"
+
 
   #model: "claude-sonnet-4-20250514"
   #model: "claude-haiku-4-5-20251001"
@@ -375,6 +377,14 @@ memory:
   # Rule of thumb: 1000-2000 for conversational, more for long-form
   output_buffer: 1000
 
+  # Token Estimation Configuration
+  # Controls how token counts are approximated for budget calculations.
+  # "approx" is speed-first; "tiktoken" is more exact but slower.
+  token_estimator:
+    strategy: "approx"
+    approx_chars_per_token: 4.0
+    approx_overhead_pct: 0.15
+
   # Maximum conversation turns to include in assembled context
   # When assembling context for each LLM call, the ContextAssembler
   # will include up to this many recent turns from the episodic store.
@@ -468,20 +478,43 @@ memory:
   # Uses a lightweight LLM to decide when to include vector passages in the prompt.
   # When disabled, passages are always included (default behavior).
   # Recommended: enable with a fast/cheap model and keep a heuristic fallback.
+  # passage_router:
+  #   enabled: false
+  #   # Router model (fast/cheap recommended). Falls back to extraction or chat model if omitted.
+  #   model: "openrouter/google/gemini-2.5-flash"
+  #   api_base: "https://openrouter.ai/api/v1"
+  #   api_key: "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"
+  #   max_retries: 1
+  #   timeout_seconds: 10.0
+  #   temperature: 0.0
+  #   max_tokens: 80
+  #   min_confidence: 0.6
+  #   include_on_empty_query: false
+  #   fallback_mode: "heuristic"  # heuristic | include | exclude
+  #   # Optional override for the router system prompt
+  #   system_prompt: |
+  #     You decide if vector-retrieved passages should be included in the prompt.
+  #     Return JSON ONLY. Do not use code fences. Do not add extra text.
+  #     Required keys: include_passages (bool), confidence (0-1), reason (string).
+  #     Include passages when the user needs recall of prior content, sources, files, web info,
+  #     or earlier conversation details. Exclude for small talk, meta questions, or self-contained tasks.
+  #     Be conservative: include only when likely helpful.
+  #   min_similarity: 0.6
+  #   min_similarity_tool_output: 0.75
+  #   min_keep_on_empty: 1
+
   passage_router:
     enabled: true
-    # Router model (fast/cheap recommended). Falls back to extraction or chat model if omitted.
-    model: "openrouter/google/gemini-2.5-flash"
-    api_base: "https://openrouter.ai/api/v1"
-    api_key: "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"
+    model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
+    api_base: "http://localhost:1234/v1"
+    api_key: "lm-studio"
     max_retries: 1
-    timeout_seconds: 10.0
+    timeout_seconds: 1.5
     temperature: 0.0
     max_tokens: 80
     min_confidence: 0.6
     include_on_empty_query: false
-    fallback_mode: "heuristic"  # heuristic | include | exclude
-    # Optional override for the router system prompt
+    fallback_mode: "heuristic"
     system_prompt: |
       You decide if vector-retrieved passages should be included in the prompt.
       Return JSON ONLY. Do not use code fences. Do not add extra text.
@@ -1997,3 +2030,42 @@ session:
   #   - Requires LLM calls
   #   - Best for weekly/monthly maintenance
   reorganize_mode: "fast"
+
+# Speech Settings (friday-speech)
+speech:
+  enabled: false
+  tts:
+    provider: picovoice
+  wakeword:
+    enabled: false
+    provider: picovoice
+  elevenlabs:
+    api_key: "sk_5bc693e1609ee237ab5b1f8100c780448120d5522b8dfb4b"
+    voice_id: "pFZP5JQG7iQjIQuC4Bku"
+    model_id: "eleven_multilingual_v2"
+    output_format: "mp3_44100_128"
+  picovoice:
+    access_key: "kHnKvQtR+24G0dW6zZqaSFYTfTp39LwiI0a7Ygh99ZKs7AJBYa/zmw=="
+    orca:
+      model_path: "./speech/orca_params_en_female.pv"
+    porcupine:
+      enabled: false
+      keywords: ["friday"]
+      sensitivities: [0.6]
+  mode: "live"
+  streaming: true
+  playback:
+    enabled: true
+    blocking: false
+  selection:
+    strategy: "all"
+    max_words: 40
+    tags:
+      include_open: "<speech>"
+      include_close: "</speech>"
+      exclude_open: "<nospeech>"
+      exclude_close: "</nospeech>"
+  chunking:
+    enabled: true
+    max_chars: 1800
+    boundary: "sentence"

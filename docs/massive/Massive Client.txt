@@ -1,0 +1,47 @@
+import os
+import asyncio
+from massive import RESTClient
+from .governor import MassiveGovernor
+from .exceptions import MassiveAuthError, MassiveRateLimitError
+
+class MassiveAgentClient:
+    """
+    Main entry point for the Massive Agent Core.
+    Orchestrates modules and manages the Async Governor.
+    """
+    def __init__(self, api_key: str = None, tier: str = "free"):
+        self.api_key = api_key or os.getenv("MASSIVE_API_KEY")
+        if not self.api_key:
+            raise MassiveAuthError("API Key is missing. Provide it or set MASSIVE_API_KEY.")
+        
+        self.tier = tier
+        self.sdk = RESTClient(self.api_key)
+        self.governor = MassiveGovernor(tier=self.tier)
+        
+        # Initialize Modules (To be built in Phase I)
+        # self.equities = EquitiesModule(self)
+        # self.crypto = CryptoModule(self)
+        # self.indicators = IndicatorModule(self)
+
+    async def probe_tier(self):
+        """
+        Optional: Automatically detects tier based on API response headers
+        or specific feature availability.
+        """
+        # For now, we rely on the manual 'tier' parameter
+        pass
+
+    async def execute_query(self, func, *args, **kwargs):
+        """
+        Wrapper that applies the governor to any SDK call.
+        """
+        await self.governor.wait()
+        try:
+            # SDK calls are typically synchronous; we wrap them in a thread
+            # to prevent blocking the async event loop.
+            loop = asyncio.get_event_loop()
+            return await loop.run_in_executor(None, lambda: func(*args, **kwargs))
+        except Exception as e:
+            if "429" in str(e):
+                raise MassiveRateLimitError("Rate limit hit despite governor.")
+            raise e

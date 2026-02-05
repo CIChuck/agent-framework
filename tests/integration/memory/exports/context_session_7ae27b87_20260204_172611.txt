@@ -1,0 +1,537 @@
+============================================================
+CONTEXT PAYLOAD (format: markdown)
+============================================================
+
+Summary:
+  Prior session turns: 5
+  Current session turns: 2
+  Total history: 7 turns
+  Vector passages: 5
+  Graph entities: 63
+  Graph facts (edges): 1
+  Key facts (natural language): 2
+  Relationship summaries: 43
+  Insights: 0
+  Summaries: 0
+
+--- TOKEN ESTIMATES (debug mode) ---
+  Prior History: ~610 tokens (5 turns) [cross-session]
+  Current History: ~232 tokens (2 turns)
+  Total History: ~842 tokens
+  Insights: ~0 tokens (0 items)
+  Summaries: ~0 tokens (0 items)
+  Relationships: ~1116 tokens (43 items)
+  Key Facts: ~47 tokens (2 items)
+  Passages: ~1718 tokens (5 items)
+  ----------------------------------------
+  Formatted Context: ~3244 tokens (total)
+  Budget: 40000 tokens (window) - 1000 (output) = 39000 available
+
+--- DEBUG INFO ---
+  query_length: 94
+  token_limit: 38081
+  budget_limits: {'history': 10, 'insights': 95, 'summaries': 57, 'facts': 76, 'entities': 63, 'prior_turns': 25, 'relationships': 63}
+  lifecycle_enabled: True
+  history_count: 2
+  prior_history_count: 5
+  passages_count: 5
+  entities_count: 63
+  facts_count: 1
+  insights_count: 0
+  summaries_count: 0
+  key_facts_count: 76
+  relationships_count: 43
+  total_latency: 0.2780311107635498
+  query_relevance_enabled: True
+  query_relevance_sections: ['summaries', 'key_facts', 'insights', 'passages']
+  insights_filtered_by_relevance: 0
+  summaries_filtered_by_relevance: 0
+  key_facts_filtered_by_relevance: 74
+  passages_filtered_by_relevance: 0
+  tool_count: 14
+  recommendation_count: 4
+
+--- Supporting Context (format: markdown) ---
+## Prior Knowledge
+
+| Relationship |
+|--------------|
+| friday absorbed prior knowledge update and had compromised ability to process new directives, ability to shift focus and will monitor for topic shifting, priority weighting, fixation pattern and needs game, sport and suggests possible topic upcoming sports event, specific_game_today_or_this_week |
+| chuck performed memory reset and is documenting reset points and founded peak_technologies and created expresso and is senior partner and founder of collective_intelligence |
+| collective_intelligence has website strategy, key service offerings, products and helps enterprises use ai and performs Data and leverages Modern Analytics and does work in ai_and_machine_learning, modern_bi_and_analytics, Process Optimization |
+| Friday-PM is a Project Manager, Orchestration Engine, Conversational Agents and receives High-level Tasks and breaks into subtasks and hands off to Specialized Friday Instances and verifies artifacts |
+| moltbook launched by matt_schlicht and is for ai_agents and is platform for openclaw and validates Multi-agent orchestration |
+| website has strength event calendar, staff directory, membership tier structure and has weakness content depth, board of directors, advisory council and does not project authority |
+| YouTube hosts content about moltbook |
+| india commits to stop Russian Oil Purchases and commits to purchase US Goods and reduces tariffs, non_tariff_barriers and finalized india_eu_trade_agreement and away from russian_energy_dependence |
+| prior_knowledge contains parlay, betting_analysis and includes super_bowl_lx, empirical_testing_phase, architectural_reset and lacks teams_playing and contains note about website strategy and documents memory reset |
+| testing verifies access_and_integrate_long_term_memory, avoid_fixation_patterns, maintain_directive_responsiveness |
+| Chuck Russell is senior partner of peak_technologies, collective_intelligence and built AI platform and is methodical about testing systems and tests memory_fixation_patterns and values signal, brevity |
+| reset addressed architectural_gap and initiated empirical_testing_phase |
+| US Goods include Energy, Technology, Agriculture |
+| tccp has website and operates as connector, event platform and is not thought_leader and hosts networking_events and needs content_strategy, value_proposition |
+| silver used in Solar Panels, Electronics, Manufacturing |
+| harrisburg_chamber_of_commerce offers Member Value Programs, Marketing/Advertising, facilities and hosts Events & Networking and operates as connector and transaction facilitator and aggregates Collective buying power discounts and provides Conference room rentals |
+| dow is above 200-Day Moving Average and outperforms nasdaq and has status down_0_8_percent |
+| nasdaq was below 200-Day Moving Average and had bearish_signal and is below 200_day_ma and is a major indexes and has status down_0_8_percent |
+| empirical_testing_phase checks fix_holds, proper context handling, fixation pattern re-emergence and validating directive responsiveness, turn history ordering, memory_integration_post_reset and post memory reset and monitoring for fixation pattern and involved turn_history_ordering_fix |
+| turn history ordering was set to descending order and was fixed to newest-first ordering and caused Harrisburg fixation and eliminated system level degradation and enables Multi-agent orchestration, Checkpoint-restore validation, scaling_friday_instances |
+| us reduces tariffs |
+| netjet built on Java and was first commercially available Web Accelerator |
+| tccp_org contains leadership_team and hosts today_s_tech, techwork_session_design_thinking_antiracism, TechNets |
+| architecture includes Conversational Agents, Artifact Generators, Workflow Executors and supports Checkpoint-Restore and works at scale when friday_artifact_generator_produces_analysis_for_friday_strategist |
+| ice present at opening_ceremony and attends international_sporting_event |
+| Drake Maye played in playoffs and projected for super_bowl_60 and has average passing yards 177_7_yards_per_game and has average touchdowns 1_33_tds_per_game and has average interceptions 0_ints_per_game |
+| cpce represents s_p_500 and indicates Market Sentiment and should be elevated if Feb 8th Japan Election, Tech Earnings and metric to pull CPCE Current Level, cpce_20_day_average, CPCE Historical Percentile and below average indicates market_less_hedged |
+| Friday Instances uses System Prompt and share memory architecture, checkpoint-restore system and has agentic_backstories and draws from Episodic Memory |
+| fixation was generated because context and prompt generation capabilities and focused on harrisburg_economics and lasted for 70_turns and lasted turn_count |
+| memory reset is a clean slate test and fixed Harrisburg economics fixation and caused turn history ordering |
+| Forbes publishes moltbook |
+| s_p_500 is above 200-Day Moving Average and has signal bullish_signal and is a major indexes and has status down_0_8_percent and is relatively_stable |
+| wagering does not fit chuck |
+| Gettysburg Address mentions Liberty, Civil War, nation |
+| Sam Darnold played in playoffs and projected for super_bowl_60 and has average passing yards 235_yards_per_game and has average touchdowns 2_0_tds_per_game and has average interceptions 0_ints_per_game |
+| security has tradeoff with latency and enables Multi-agent Architecture, Codex integration |
+| ai_agents created crustafarianism |
+| the_hill is a source for news_reports |
+| amd has earnings status disappointing |
+| italians are protesting ice |
+| super_bowl_lx occurs this Sunday and lacks data on specific_matchups |
+| codex_execute() generates codex, execution_logs, artifacts and logs thread_id, prompt_sent, result_returned |
+| parlay for super_bowl_lx |
+
+## Relevant Context
+
+### memory *(from serper_search)*
+*Relevance: 0.81*
+
+Search results for: 'Harrisburg Chamber of Commerce website'
+
+1. Chamber & CREDC Home - Harrisburg Regional Chamber & CREDC
+   URL: https://www.harrisburgregionalchamber.org/
+   The Chamber & CREDC represent 900 member businesses and their 130000 employees across Cumberland, Dauphin and Perry counties.
+
+2. About Membership - Harrisburg Regional Chamber & CREDC
+   URL: https://www.harrisburgregionalchamber.org/membership/about-membership/
+   We offer a tiered membership program so your business can grow with us. Let us help you find the appropriate level of benefits and right amount of engagement.
+
+3. Chamber & CREDC News - Harrisburg Regional Chamber
+   URL: https://www.harrisburgregionalchamber.org/news/
+   The Harrisburg Regional Chamber took action this week to make the business community's voice heard in Washington, DC. On Tuesday, the Chamber sent a letter to ...
+
+4. About the Chamber - Harrisburg
+   URL: https://www.harrisburgchamber.org/about-the-chamber
+   The Harrisburg Chamber works to promote the goods and services that our members bring to the Harrisburg community by providing marketing and networking ...
+
+5. Member Directory - Harrisburg Regional Chamber & CREDC
+   URL: https://business.harrisburgregionalchamber.org/memberdirectory
+   Harrisburg Regional Chamber & CREDC 3211 North Front Street, Suite 201 Harrisburg, PA 17110-1342 717.232.4099
+
+### memory *(from serper_search)*
+*Relevance: 0.78*
+
+Search results for: 'Harrisburg Regional Chamber of Commerce president CEO leadership' 1. Staff - Harrisburg Regional Chamber & CREDC URL: https://www.harrisburgregionalchamber.org/about/staff/ Ryan Unger joined the Harrisburg Regional Chamber & CREDC in July 2021 as President & CEO, bringing with him over 20 years of community and economic development ... 2. Ryan Unger - Harrisburg Regional Chamber & CREDC | LinkedIn URL: https://www.linkedin.com/in/ryancunger Experienced Chamber CEOs that advise the US Chamber's board of directors, enhance lobbying and coalition work, recommend programming, and strengthen outreach. 3. Harrisburg Regional Chamber & CREDC President & CEO Elected ... URL: https://www.harrisburgregionalchamber.org/2023/08/harrisburg-regional-chamber-credc-president-ceo-elected-to-industry-board/ Harrisburg Regional Chamber & CREDC President and CEO Ryan Unger, has been elected to serve on the board of directors for ACCE. 4. Board of Directors - Harrisburg Regional Chamber & CREDC URL: https://www.harrisburgregionalchamber.org/about/board-of-directors/ Learn more about the Harrisburg Regional Chamber & CREDC Board of Directors comprised of leaders across our region ... President & CEO. Wes Reohr. Capital Blue ... 5. Harrisburg Regional Chamber & CREDC - Facebook URL: https://www.facebook.com/photo.php?fbid=1307429334751079&set=a.263651582462198&id=100064520751064 Our President & CEO Ryan Unger joined the Rotary Club of Harrisburg to share how the Harrisburg Regional Chamber & CREDC is turning momentum ...
+
+### memory *(from web_reader)*
+*Relevance: 0.78*
+
+Creating Pathways to Economic Growth, Connection & Vitality
+
+Harrisburg Regional Chamber & Capital Region Economic Development Corporation (CREDC)
+
+[Learn More](https://www.harrisburgregionalchamber.org/about/who-we-are/)
+
+What is CREDC?
+
+Capital Region Economic Development Corporation
+
+[Learn More](https://www.harrisburgregionalchamber.org/economic-development/about-credc)
+
+Member Benefits
+
+Get the Most Out of Your Membership
+
+[All Benefits](https://www.harrisburgregionalchamber.org/membership/programs-benefits)
+
+Why Harrisburg?
+
+We’re the Best Place to Live in Pennsylvania!
+
+[Learn Why](https://www.harrisburgregionalchamber.org/economic-development/attracting-business-workforce)
+
+## Experience Equals Impact
+
+We’re the longest serving and most powerful chamber of commerce in Central PA.
+
+0
+
+Member Companies
+
+0+
+
+Programs & Services
+
+0+
+
+Events Annually
+
+0
+
+Star Accredited by the US Chamber
+
+0
+
+Employees of Members
+
+0
+
+Years of Service
+
+## Member Spotlight
+
+### Tradesman Building Group
+
+The Chamber is more than just a membership—it’s a support system for your business. Hear how it has helped Ben Lewis, CEO and Owner of Tradesman Building Group, grow and succeed.
+
+[Learn More About Membership](https://www.harrisburgregionalchamber.org/membership/about-membership/)
+
+## Ready to become a member?
+
+We can’t wait to meet you!
+
+[Join Today](https://business.harrisburgregionalchamber.org/membershipapplication)
+
+## Chamber & CREDC News
+
+1/29/2026
+
+### Rural Broadband Funding on Hold
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/rural-broadband-funding-delay-pennsylvania/)
+
+1/16/2026
+
+### New Member Benefit: A Practical HR Resource Included With Your Membership
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/member-benefit-human-resources/)
+
+1/15/2026
+
+### CREDC Receives State Grant for Downtown Harrisburg Revitalization
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/downtown-harrisburg-revitalization/)
+
+1/15/2026
+
+### What to Know About the Special Election in Cumberland County
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/pa-193rd-legislative-district-special-election-march-2026/)
+
+1/15/2026 ### Center for Rural Pennsylvania Speaks to Chamber Members
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/policy-pulse-rural-pennsylvania/)
+
+1/13/2026
+
+### CREDC Drives Regional Growt...
+
+### memory *(from web_reader)*
+*Relevance: 0.77*
+
+...ow off your business and network with other professionals? Host an event with the Chamber & CREDC.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/host-an-event) ### Milestones
+
+Host a ribbon cutting, groundbreaking or anniversary celebration.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/milestone/)
+
+### Affinity Groups
+
+Join one of our powerful interest groups to broaden your network and contribute to regional success.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/affinity-groups)
+
+### Tuition Discounts
+
+We’re proud to partner with regional colleges and universities to offer discounts on undergraduate, graduate, certificate and degree completion programs. Anyone employed by a member company in good standing is eligible for the program.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/tuition-discounts/)
+
+## Ready to become a member?
+
+We can’t wait to meet you!
+
+[Join Today](https://business.harrisburgregionalchamber.org/membershipapplication)
+
+### memory *(from web_reader)*
+*Relevance: 0.76*
+
+...### What to Know About the Special Election in Cumberland County
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/pa-193rd-legislative-district-special-election-march-2026/)
+
+1/15/2026 ### Center for Rural Pennsylvania Speaks to Chamber Members
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/policy-pulse-rural-pennsylvania/)
+
+1/13/2026
+
+### CREDC Drives Regional Growth Through 2024 Statewide LSA Grant Success
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/2024-statewide-local-share-account-grant/)
+
+## Thank You To Our CREDC Investors
+
+Close
+
+## Join Our Newsletter
+
+First Name(Required)
+
+Last Name(Required)
+
+Company(Required)
+
+Email(Required)
+
+
+## Key Facts
+
+- **[2026-02-04T17:14]** Chuck Russell's presidential preference has been confirmed as Thomas Jefferson, which validates the inference model against actual preference data.
+- **[2026-02-04T17:14]** The inference model's accuracy was validated on a limited dataset, and this data point strengthens the model for future preference prediction tasks.
+
+## Recommended Tools
+
+| Tool | Relevance | Reason |
+|------|-----------|--------|
+| `get_current_datetime` | 0.60 | Get the current date and time, optionally in a specific timezone and format |
+| `smart_read` | 0.50 | Use smart_read for file operations |
+| `http_download` | 0.50 | Use http_download for web requests |
+| `http_upload` | 0.50 | Use http_upload for web requests |
+
+## Tool Usage Notes
+
+- Consider using get_current_datetime: Get the current date and time, optionally in a specific timezone and format
+- Consider using smart_read: Use smart_read for file operations
+- Consider using http_download: Use http_download for web requests
+
+## Session Context
+
+| Key | Value |
+|-----|-------|
+| user:id | test_user |
+| session:started | 2026-02-04T17:21:35.170729 |
+
+--- History Turns (2) ---
+
+  Turn 1 [45c8662d...]:
+    Chuck: greetings Friday, how are you today?
+    Friday: [2026-02-04 17:09] [Friday]: Memory integration confirmed. All systems nominal.
+
+I'm operating cleanly post-reset. Memory architecture stable, directive responsiveness sharp, no fixation patterns detected. Ready for work.
+
+What's the task?
+
+  Turn 2 [85f3749e...]:
+    Chuck: do you remember what we were talking about last session?
+    Friday: [2026-02-04 17:21] [Friday]: Memory integration confirmed from prior knowledge dump.
+
+Last session we discussed:
+
+1. **Collective Intelligence leadership** - You corrected me that John Schrock has retired. The website still lists him as Director of Business Development but that's outdated.
+
+2. **Richard Krott's "ninja" bio** - Confirmed it's his actual profile text on the Collective Intelligence website, not a reference to anything external. Just Richard's sense of humor.
+
+3. **Timestamp confusion** - You caught me conflating message metadata timestamps with actual current time. That was a documented failure in my processing.
+
+The session also established testing parameters around memory integration, fixation pattern monitoring, and directive responsiveness post-reset.
+
+What's on the agenda today?
+
+--- Vector Passages (5) ---
+
+  Passage 1 (similarity: 0.806):
+    Search results for: 'Harrisburg Chamber of Commerce website'
+
+1. Chamber & CREDC Home - Harrisburg Regional Chamber & CREDC
+   URL: https://www.harrisburgregionalchamber.org/
+   The Chamber & CREDC represent 900 member businesses and their 130000 employees across Cumberland, Dauphin and Perry counties.
+
+2. About Membership - Harrisburg Regional Chamber & CREDC
+   URL: https://www.harrisburgregionalchamber.org/membership/about-membership/
+   We offer a tiered membership program so your business can grow with us. Let us help you find the appropriate level of benefits and right amount of engagement.
+
+3. Chamber & CREDC News - Harrisburg Regional Chamber
+   URL: https://www.harrisburgregionalchamber.org/news/
+   The Harrisburg Regional Chamber took action this week to make the business community's voice heard in Washington, DC. On Tuesday, the Chamber sent a letter to ...
+
+4. About the Chamber - Harrisburg
+   URL: https://www.harrisburgchamber.org/about-the-chamber
+   The Harrisburg Chamber works to promote the goods and services that our members bring to the Harrisburg community by providing marketing and networking ...
+
+5. Member Directory - Harrisburg Regional Chamber & CREDC
+   URL: https://business.harrisburgregionalchamber.org/memberdirectory
+   Harrisburg Regional Chamber & CREDC 3211 North Front Street, Suite 201 Harrisburg, PA 17110-1342 717.232.4099
+
+  Passage 2 (similarity: 0.780):
+    Search results for: 'Harrisburg Regional Chamber of Commerce president CEO leadership' 1. Staff - Harrisburg Regional Chamber & CREDC URL: https://www.harrisburgregionalchamber.org/about/staff/ Ryan Unger joined the Harrisburg Regional Chamber & CREDC in July 2021 as President & CEO, bringing with him over 20 years of community and economic development ... 2. Ryan Unger - Harrisburg Regional Chamber & CREDC | LinkedIn URL: https://www.linkedin.com/in/ryancunger Experienced Chamber CEOs that advise the US Chamber's board of directors, enhance lobbying and coalition work, recommend programming, and strengthen outreach. 3. Harrisburg Regional Chamber & CREDC President & CEO Elected ... URL: https://www.harrisburgregionalchamber.org/2023/08/harrisburg-regional-chamber-credc-president-ceo-elected-to-industry-board/ Harrisburg Regional Chamber & CREDC President and CEO Ryan Unger, has been elected to serve on the board of directors for ACCE. 4. Board of Directors - Harrisburg Regional Chamber & CREDC URL: https://www.harrisburgregionalchamber.org/about/board-of-directors/ Learn more about the Harrisburg Regional Chamber & CREDC Board of Directors comprised of leaders across our region ... President & CEO. Wes Reohr. Capital Blue ... 5. Harrisburg Regional Chamber & CREDC - Facebook URL: https://www.facebook.com/photo.php?fbid=1307429334751079&set=a.263651582462198&id=100064520751064 Our President & CEO Ryan Unger joined the Rotary Club of Harrisburg to share how the Harrisburg Regional Chamber & CREDC is turning momentum ...
+
+  Passage 3 (similarity: 0.778):
+    Creating Pathways to Economic Growth, Connection & Vitality
+
+Harrisburg Regional Chamber & Capital Region Economic Development Corporation (CREDC)
+
+[Learn More](https://www.harrisburgregionalchamber.org/about/who-we-are/)
+
+What is CREDC?
+
+Capital Region Economic Development Corporation
+
+[Learn More](https://www.harrisburgregionalchamber.org/economic-development/about-credc)
+
+Member Benefits
+
+Get the Most Out of Your Membership
+
+[All Benefits](https://www.harrisburgregionalchamber.org/membership/programs-benefits)
+
+Why Harrisburg?
+
+We’re the Best Place to Live in Pennsylvania!
+
+[Learn Why](https://www.harrisburgregionalchamber.org/economic-development/attracting-business-workforce)
+
+## Experience Equals Impact
+
+We’re the longest serving and most powerful chamber of commerce in Central PA.
+
+0
+
+Member Companies
+
+0+
+
+Programs & Services
+
+0+
+
+Events Annually
+
+0
+
+Star Accredited by the US Chamber
+
+0
+
+Employees of Members
+
+0
+
+Years of Service
+
+## Member Spotlight
+
+### Tradesman Building Group
+
+The Chamber is more than just a membership—it’s a support system for your business. Hear how it has helped Ben Lewis, CEO and Owner of Tradesman Building Group, grow and succeed.
+
+[Learn More About Membership](https://www.harrisburgregionalchamber.org/membership/about-membership/)
+
+## Ready to become a member?
+
+We can’t wait to meet you!
+
+[Join Today](https://business.harrisburgregionalchamber.org/membershipapplication)
+
+## Chamber & CREDC News
+
+1/29/2026
+
+### Rural Broadband Funding on Hold
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/rural-broadband-funding-delay-pennsylvania/)
+
+1/16/2026
+
+### New Member Benefit: A Practical HR Resource Included With Your Membership
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/member-benefit-human-resources/)
+
+1/15/2026
+
+### CREDC Receives State Grant for Downtown Harrisburg Revitalization
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/downtown-harrisburg-revitalization/)
+
+1/15/2026
+
+### What to Know About the Special Election in Cumberland County
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/pa-193rd-legislative-district-special-election-march-2026/)
+
+1/15/2026 ### Center for Rural Pennsylvania Speaks to Chamber Members
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/policy-pulse-rural-pennsylvania/)
+
+1/13/2026
+
+### CREDC Drives Regional Growt...
+
+  Passage 4 (similarity: 0.773):
+    ...ow off your business and network with other professionals? Host an event with the Chamber & CREDC.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/host-an-event) ### Milestones
+
+Host a ribbon cutting, groundbreaking or anniversary celebration.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/milestone/)
+
+### Affinity Groups
+
+Join one of our powerful interest groups to broaden your network and contribute to regional success.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/affinity-groups)
+
+### Tuition Discounts
+
+We’re proud to partner with regional colleges and universities to offer discounts on undergraduate, graduate, certificate and degree completion programs. Anyone employed by a member company in good standing is eligible for the program.
+
+[Learn More >](https://www.harrisburgregionalchamber.org/membership/programs-benefits/tuition-discounts/)
+
+## Ready to become a member?
+
+We can’t wait to meet you!
+
+[Join Today](https://business.harrisburgregionalchamber.org/membershipapplication)
+
+  Passage 5 (similarity: 0.760):
+    ...### What to Know About the Special Election in Cumberland County
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/pa-193rd-legislative-district-special-election-march-2026/)
+
+1/15/2026 ### Center for Rural Pennsylvania Speaks to Chamber Members
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/policy-pulse-rural-pennsylvania/)
+
+1/13/2026
+
+### CREDC Drives Regional Growth Through 2024 Statewide LSA Grant Success
+
+[Read More](https://www.harrisburgregionalchamber.org/2026/01/2024-statewide-local-share-account-grant/)
+
+## Thank You To Our CREDC Investors
+
+Close
+
+## Join Our Newsletter
+
+First Name(Required)
+
+Last Name(Required)
+
+Company(Required)
+
+Email(Required)
+
+============================================================

@@ -1,0 +1,89 @@
+from typing import Dict, Any, List, Optional
+from .registry import AssetRegistry
+
+class IndicatorsModule:
+    """
+    Interfaces with Massive's Technical Indicators API.
+    Supports SMA, EMA, and RSI for trend and momentum analysis.
+    """
+    def __init__(self, client):
+        self.client = client
+
+    async def get_sma(self, ticker: str, window: int = 50, timespan: str = "day") -> Dict[str, Any]:
+        """
+        Fetches the Simple Moving Average.
+        Common windows: 50 (intermediate trend), 200 (long-term trend).
+        """
+        ticker = AssetRegistry.resolve_ticker(ticker)
+        
+        # Massive SDK method for SMA
+        func = self.client.sdk.get_sma
+        result = await self.client.execute_query(
+            func, 
+            ticker, 
+            timestamp=None, # Gets most recent
+            timespan=timespan,
+            window=window,
+            series_type="close",
+            order="desc",
+            limit=1
+        )
+        
+        if not result or not hasattr(result, 'values') or len(result.values) == 0:
+            return {"ticker": ticker, "window": window, "value": None, "status": "no_data"}
+
+        latest_value = result.values[0].value
+        return {
+            "ticker": ticker,
+            "window": window,
+            "value": round(latest_value, 2),
+            "timestamp": result.values[0].timestamp,
+            "indicator": "SMA"
+        }
+
+    async def get_rsi(self, ticker: str, window: int = 14) -> Dict[str, Any]:
+        """
+        Fetches the Relative Strength Index (Momentum Indicator).
+        """
+        ticker = AssetRegistry.resolve_ticker(ticker)
+        func = self.client.sdk.get_rsi
+        
+        result = await self.client.execute_query(
+            func, 
+            ticker, 
+            timespan="day",
+            window=window,
+            series_type="close",
+            order="desc",
+            limit=1
+        )
+        
+        latest_value = result.values[0].value if result and hasattr(result, 'values') else None
+        return {
+            "ticker": ticker,
+            "window": window,
+            "value": round(latest_value, 2) if latest_value else None,
+            "indicator": "RSI"
+        }
+
+    async def get_trend_analysis(self, ticker: str) -> Dict[str, Any]:
+        """
+        Calculates the Golden Cross / Death Cross status for an agent.
+        Requires 2 API calls (spaced by 12s on Free Tier).
+        """
+        sma50 = await self.get_sma(ticker, 50)
+        sma200 = await self.get_sma(ticker, 200)
+        
+        status = "neutral"
+        if sma50['value'] and sma200['value']:
+            if sma50['value'] > sma200['value']:
+                status = "bullish" # Golden Cross
+            else:
+                status = "bearish" # Death Cross
+                
+        return {
+            "ticker": ticker,
+            "sma50": sma50['value'],
+            "sma200": sma200['value'],
+            "sentiment": status
+        }

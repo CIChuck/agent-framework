@@ -22,6 +22,7 @@ dependencies = [
     "friday-memory",
     "friday-llm",
     "friday-agent",
+    "friday-speech",
     "friday-sandbox",
     "friday-tools",
     "friday-moltbook",
@@ -42,12 +43,18 @@ dev = [
     "ruff>=0.4.0",
     "mypy>=1.10.0",
 ]
+speech = [
+    "friday-speech[elevenlabs]",
+    "friday-speech[picovoice]",
+    "pvspeaker>=0.1.0",
+]
 
 [tool.uv.sources]
 friday-core = { workspace = true }
 friday-memory = { workspace = true }
 friday-llm = { workspace = true }
 friday-agent = { workspace = true }
+friday-speech = { workspace = true }
 friday-sandbox = { workspace = true }
 friday-tools = { workspace = true }
 friday-moltbook = { workspace = true }

@@ -74,9 +74,9 @@ def _is_real_terminal() -> bool:
         return False
 
 
-async def _check_for_escape_key(token: CancellationToken) -> None:
+async def _check_for_key(token: CancellationToken, key_char: str) -> None:
     """
-    Monitor for Escape key press and trigger cancellation.
+    Monitor for a key press and trigger cancellation.
 
     This uses platform-specific methods to check for keyboard input
     without blocking the event loop.
@@ -94,10 +94,11 @@ async def _check_for_escape_key(token: CancellationToken) -> None:
         # Windows: use msvcrt
         import msvcrt
 
+        key_bytes = key_char.encode()
         while not token.is_cancelled:
             if msvcrt.kbhit():
                 key = msvcrt.getch()
-                if key == b"\x1b":  # Escape key
+                if key == key_bytes:
                     token.cancel()
                     return
             await asyncio.sleep(0.05)
@@ -125,13 +126,18 @@ async def _check_for_escape_key(token: CancellationToken) -> None:
                 # Check if input is available (non-blocking)
                 if select.select([sys.stdin], [], [], 0.05)[0]:
                     key = sys.stdin.read(1)
-                    if key == "\x1b":  # Escape key
+                    if key == key_char:
                         token.cancel()
                         return
                 await asyncio.sleep(0.01)
         finally:
             # Restore terminal settings
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
+
+async def _check_for_escape_key(token: CancellationToken) -> None:
+    """Monitor for Escape key press and trigger cancellation."""
+    await _check_for_key(token, "\x1b")
 
 
 async def run_cancellable(

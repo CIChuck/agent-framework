@@ -1,0 +1,44 @@
+[project]
+name = "friday-speech"
+version = "0.1.0"
+description = "Speech services (TTS, wake word) for Friday"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Friday Team" }]
+keywords = ["speech", "tts", "wakeword", "audio", "assistant"]
+
+dependencies = [
+    "pydantic>=2.0.0",
+    "friday-core",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+elevenlabs = [
+    "elevenlabs>=1.0.0",
+]
+picovoice = [
+    "pvporcupine>=3.0.0",
+    "pvrecorder>=1.2.0",
+    "pvorca>=0.1.0",
+    "pvspeaker>=0.1.0",
+    "pvcobra>=2.0.0",
+    "pvleopard>=2.0.0",
+    "pvrhino>=2.0.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/friday_speech"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests_speech"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

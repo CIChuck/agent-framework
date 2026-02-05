@@ -13,11 +13,10 @@ Consolidation Logic:
 import logging
 from typing import TYPE_CHECKING, Any
 
-import tiktoken
-
 from friday_core import TelemetryInterface
 
 from friday_memory.controller import MemoryController
+from friday_memory.context.token_estimator import build_token_estimator
 from friday_memory.models import (
     ConflictResolutionResponse,
     ConsolidationReport,
@@ -97,6 +96,8 @@ class MemoryConsolidator:
         min_turns_to_consolidate: int = 5,
         max_turns_per_summary: int = 10,
         telemetry: TelemetryInterface | None = None,
+        token_estimator_config: dict[str, Any] | None = None,
+        model_name: str = "gpt-4",
     ) -> None:
         """
         Initialize the Memory Consolidator.
@@ -107,6 +108,8 @@ class MemoryConsolidator:
             min_turns_to_consolidate: Minimum turns before consolidation
             max_turns_per_summary: Maximum turns per summary block
             telemetry: Optional telemetry recorder
+            token_estimator_config: Optional token estimator configuration
+            model_name: Model name for token counting
         """
         self._memory = memory_controller
         self._llm_client = llm_client
@@ -114,8 +117,8 @@ class MemoryConsolidator:
         self._max_turns = max_turns_per_summary
         self._telemetry = telemetry
 
-        # Initialize tokenizer (use default encoding)
-        self._encoding = tiktoken.get_encoding("cl100k_base")
+        # Token counting now uses a configurable estimator (approx by default).
+        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -124,7 +127,8 @@ class MemoryConsolidator:
 
     def _count_tokens(self, text: str) -> int:
         """Count tokens in a text string."""
-        return len(self._encoding.encode(text))
+        # Swapped from tiktoken to estimator to reduce CPU latency.
+        return self._token_estimator.count(text)
 
     async def consolidate(self, session_id: str) -> ConsolidationReport:
         """

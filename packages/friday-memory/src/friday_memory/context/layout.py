@@ -51,10 +51,10 @@ from typing import TYPE_CHECKING, Any
 from xml.dom import minidom
 from xml.etree.ElementTree import Element, SubElement, tostring
 
-import tiktoken
 from pydantic import BaseModel, Field
 
 from friday_memory.models import ContextPayload, SessionState
+from friday_memory.context.token_estimator import build_token_estimator
 
 if TYPE_CHECKING:
     from friday_memory.context.cache_config import CacheBreakpoint, PromptCacheConfig
@@ -167,6 +167,7 @@ class PromptArchitect:
         assistant_name: str = "Assistant",
         cache_config: "PromptCacheConfig | None" = None,
         supporting_context_config: SupportingContextConfig | dict | None = None,
+        token_estimator_config: dict[str, Any] | None = None,
     ) -> None:
         """
         Initialize the Prompt Architect.
@@ -181,6 +182,7 @@ class PromptArchitect:
             supporting_context_config: Optional config for supporting context
                 budget and priority. If dict, will be converted to
                 SupportingContextConfig. If None, uses defaults.
+            token_estimator_config: Optional token estimator configuration
         """
         self.model_name = model_name
         self.max_tokens = max_tokens
@@ -197,12 +199,8 @@ class PromptArchitect:
         else:
             self._supporting_context_config = supporting_context_config
 
-        # Initialize tokenizer
-        try:
-            self._encoding = tiktoken.encoding_for_model(model_name)
-        except KeyError:
-            # Fall back to cl100k_base for unknown models
-            self._encoding = tiktoken.get_encoding("cl100k_base")
+        # Token counting now uses a configurable estimator (approx by default).
+        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
 
     @property
     def cache_config(self) -> "PromptCacheConfig | None":
@@ -215,7 +213,8 @@ class PromptArchitect:
 
     def count_tokens(self, text: str) -> int:
         """Count tokens in a text string."""
-        return len(self._encoding.encode(text))
+        # Swapped from tiktoken to estimator to reduce CPU latency.
+        return self._token_estimator.count(text)
 
     def _strip_existing_prefixes(self, text: str) -> str:
         """

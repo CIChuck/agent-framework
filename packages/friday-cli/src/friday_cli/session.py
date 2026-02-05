@@ -53,6 +53,7 @@ class SessionConfig:
     tools: dict[str, Any] = field(default_factory=dict)
     session: dict[str, Any] = field(default_factory=dict)
     security: dict[str, Any] = field(default_factory=dict)
+    speech: dict[str, Any] = field(default_factory=dict)
 
     # Computed/derived values
     config_path: Path | None = None
@@ -93,6 +94,7 @@ class SessionConfig:
             tools=raw.get("tools", {}),
             session=raw.get("session", {}),
             security=raw.get("security", {}),
+            speech=raw.get("speech", {}),
             config_path=config_path,
         )
 
@@ -121,6 +123,7 @@ class SessionConfig:
             tools=data.get("tools", {}),
             session=data.get("session", {}),
             security=data.get("security", {}),
+            speech=data.get("speech", {}),
         )
 
     def get(self, key: str, default: Any = None) -> Any:

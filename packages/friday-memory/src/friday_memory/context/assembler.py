@@ -23,12 +23,11 @@ from collections.abc import Callable
 from datetime import datetime
 from typing import Any
 
-import tiktoken
-
 from friday_core import ContextEngineeringInterface, TelemetryInterface
 
 from friday_memory.context.layout import PromptArchitect
 from friday_memory.context.passage_router import PassageRouter
+from friday_memory.context.token_estimator import build_token_estimator
 from friday_memory.context.tool_manager import ToolContextManager
 from friday_memory.controller import MemoryController
 from friday_memory.lifecycle.stages import MemoryStage
@@ -69,6 +68,7 @@ class ContextAssembler(ContextEngineeringInterface):
         query_relevance_config: dict[str, Any] | None = None,
         model_name: str = "gpt-4",
         max_tokens: int = 8192,
+        token_estimator_config: dict[str, Any] | None = None,
         telemetry: TelemetryInterface | None = None,
     ) -> None:
         """
@@ -80,6 +80,7 @@ class ContextAssembler(ContextEngineeringInterface):
             tool_manager: Optional tool context manager for tool selection
             model_name: Model name for token counting
             max_tokens: Maximum context window tokens
+            token_estimator_config: Optional token estimator configuration
             telemetry: Optional telemetry recorder
         """
         self._memory = memory_controller
@@ -95,15 +96,11 @@ class ContextAssembler(ContextEngineeringInterface):
         self._model_name = model_name
         self._max_tokens = max_tokens
         self._telemetry = telemetry
+        # Token counting now uses a configurable estimator (approx by default).
+        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
 
         # Session state storage (in production, this would be persistent)
         self._sessions: dict[str, SessionState] = {}
-
-        # Initialize tokenizer
-        try:
-            self._encoding = tiktoken.encoding_for_model(model_name)
-        except KeyError:
-            self._encoding = tiktoken.get_encoding("cl100k_base")
 
         # Extraction/consolidation callbacks (set by extractor/consolidator)
         self._extractor = None
@@ -290,7 +287,8 @@ class ContextAssembler(ContextEngineeringInterface):
 
     def _count_tokens(self, text: str) -> int:
         """Count tokens in a text string."""
-        return len(self._encoding.encode(text))
+        # Swapped from tiktoken to estimator to reduce CPU latency.
+        return self._token_estimator.count(text)
 
     # --- Session Management ---
 

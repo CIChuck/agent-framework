@@ -55,6 +55,8 @@ Commands (prefix with /):
   /clear-tools       - Clear all injected tools from context
   /recommend-tools <query> - Test tool recommendations for a query
   /tool-budget       - Show tool token budget information
+  /speech on|off|mode|voice|provider|config - Configure speech settings
+  /speech-test [once|loop] - Run speech harness for local validation
   /read <path>       - Read file (txt, csv, pdf, docx, xlsx) with smart detection
   /ingest <path>     - Ingest file content into vector memory
   /help            - Show available commands
@@ -76,6 +78,7 @@ Workflow Commands (Phase 4 - Project Hive):
 """
 
 import asyncio
+import copy
 import importlib
 import json
 import logging
@@ -86,7 +89,7 @@ import sys
 import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Coroutine
 
 import tiktoken
 import yaml
@@ -121,6 +124,7 @@ from friday_cli import (
     # Input handling
     create_friday_input_handler,
     # Command registry
+    CommandInfo,
     CommandRegistry,
     arg,
     # Session management
@@ -320,6 +324,7 @@ class MemoryChatSession:
         tools_config: "dict[str, Any] | None" = None,
         extraction_config: "dict[str, Any] | None" = None,
         transcript_config: "dict[str, Any] | None" = None,
+        speech_config: "dict[str, Any] | None" = None,
         sanitization_config: "SanitizationConfig | None" = None,
         skip_token_counting: bool = True,  # Performance: skip diagnostic token counting
         max_tokens: int = 1500,
@@ -329,6 +334,7 @@ class MemoryChatSession:
         self.assembler = assembler
         self.architect = architect
         self.system_prompt = system_prompt
+        self._base_system_prompt = system_prompt
         self.session_id = session_id
         self.user_id = user_id
         self.temperature = temperature
@@ -350,9 +356,18 @@ class MemoryChatSession:
         self.tools_config = tools_config or {}
         self.extraction_config = extraction_config or {}
         self.transcript_config = transcript_config or {}
+        self.speech_config = speech_config or {}
         self.sanitization_config = sanitization_config or SanitizationConfig()
         self.skip_token_counting = skip_token_counting
         self.max_tokens = max_tokens
+
+        # Speech service (optional)
+        self._speech_config_model = None
+        self._speech_service = None
+        self._speech_already_spoken = False
+        self._speech_task: asyncio.Task | None = None
+        self._refresh_speech_service()
+        self._update_system_prompt_for_speech()
 
         # Timing data for /timing command
         self.last_timing: dict[str, float] = {}
@@ -760,6 +775,28 @@ class MemoryChatSession:
             ],
             description="Inject a test payload into the next tool result",
             category="security",
+        )
+
+        # --- Speech commands ---
+        self.registry.register(
+            "speech",
+            lambda ctx, action="", value="", **kwargs: ctx.cmd_speech(action, value),
+            arguments=[
+                arg("action", required=False, description="on|off|mode|voice|provider|config"),
+                arg("value", required=False, description="Value for action"),
+            ],
+            description="Configure speech settings (on/off/mode/voice/config)",
+            category="speech",
+        )
+
+        self.registry.register(
+            "speech-test",
+            lambda ctx, mode="once", **kwargs: asyncio.create_task(ctx.cmd_speech_test(mode)),
+            arguments=[
+                arg("mode", required=False, default="once", description="once|loop"),
+            ],
+            description="Run the speech harness (once or loop)",
+            category="speech",
         )
 
         # --- Orchestration commands (Phase 3 - Project Hive) ---
@@ -3436,6 +3473,228 @@ Use /tools to list available tools."""
         embedding_config.wrapping.enabled = False
         self._embedding_sanitizer = ToolOutputSanitizer(embedding_config)
 
+    def _refresh_speech_service(self) -> None:
+        """Refresh speech configuration and service wiring."""
+        try:
+            from friday_speech import SpeechConfig, SpeechService
+        except Exception as exc:
+            logger.error("Speech package unavailable: %s", exc)
+            raise
+
+        try:
+            self._speech_config_model = SpeechConfig.from_dict(self.speech_config)
+        except Exception as exc:
+            logger.error("Invalid speech configuration: %s", exc)
+            raise
+
+        if self._speech_config_model.enabled:
+            self._speech_service = SpeechService(self._speech_config_model)
+        else:
+            self._speech_service = None
+
+    def _update_system_prompt_for_speech(self) -> None:
+        """Update system prompt with speech tag instructions when enabled."""
+        if self._speech_config_model and self._speech_config_model.enabled:
+            self.system_prompt = (
+                f"{self._base_system_prompt}\n\n{_speech_prompt_snippet(self.speech_config)}"
+            )
+        else:
+            self.system_prompt = self._base_system_prompt
+
+    def _strip_speech_tags(self, text: str) -> str:
+        """Remove configured speech tags from text."""
+        if not self._speech_config_model:
+            return text
+        tags = self._speech_config_model.selection.tags
+        for tag in (
+            tags.include_open,
+            tags.include_close,
+            tags.exclude_open,
+            tags.exclude_close,
+        ):
+            if tag:
+                text = text.replace(tag, "")
+        return text
+
+    def _clean_speech_text(self, text: str) -> str:
+        """Strip CLI/log-style prefixes from speech content."""
+        cleaned = text.strip()
+
+        # Remove leading ISO timestamps (e.g., 2026-02-04T15:32:22.123Z)
+        cleaned = re.sub(
+            r"^\s*\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?\s*",
+            "",
+            cleaned,
+        )
+
+        # Remove leading bracketed metadata like [info     ] or [2026-02-04...]
+        cleaned = re.sub(r"^\s*(\[[^\]]+\]\s*)+", "", cleaned)
+
+        # Remove assistant label prefix (e.g., "Friday:", "Assistant:")
+        assistant_names = {
+            (self.assistant_name or "").strip(),
+            "assistant",
+            "friday",
+        }
+        assistant_names = {name.lower() for name in assistant_names if name}
+        for name in assistant_names:
+            cleaned = re.sub(rf"^\s*{re.escape(name)}\s*:\s*", "", cleaned, flags=re.IGNORECASE)
+
+        return cleaned.strip()
+
+    def _extract_stream_snippet(self, text: str) -> str | None:
+        """Extract a speakable snippet from streaming text."""
+        if not self._speech_config_model:
+            return None
+
+        tags = self._speech_config_model.selection.tags
+        include_open = tags.include_open
+        include_close = tags.include_close
+        tag_only_text: str | None = None
+
+        if include_open and include_close:
+            start = text.find(include_open)
+            if start != -1:
+                start += len(include_open)
+                end = text.find(include_close, start)
+                if end != -1:
+                    snippet = text[start:end].strip()
+                    snippet = self._clean_speech_text(snippet)
+                    return snippet or None
+                tag_only_text = text[start:]
+
+        cleaned_source = tag_only_text if tag_only_text is not None else text
+        cleaned = self._strip_speech_tags(cleaned_source)
+        strategy = self._speech_config_model.selection.strategy.value
+        if strategy == "all":
+            return None
+        streaming_min_words = self._speech_config_model.selection.streaming_min_words
+        streaming_min_chars = self._speech_config_model.selection.streaming_min_chars
+        if streaming_min_words:
+            words = cleaned.split()
+            if len(words) >= streaming_min_words:
+                snippet = " ".join(words[:streaming_min_words]).strip()
+                snippet = self._clean_speech_text(snippet)
+                return snippet or None
+        if streaming_min_chars and len(cleaned) >= streaming_min_chars:
+            snippet = cleaned[:streaming_min_chars].rstrip()
+            if " " in snippet:
+                snippet = snippet.rsplit(" ", 1)[0]
+            snippet = self._clean_speech_text(snippet)
+            return snippet or None
+
+        if strategy == "first_sentence":
+            match = re.search(r"[.!?]", cleaned)
+            if match:
+                snippet = cleaned[: match.end()].strip()
+                snippet = self._clean_speech_text(snippet)
+                return snippet or None
+            return None
+
+        if strategy == "first_n_words":
+            max_words = self._speech_config_model.selection.max_words
+            words = cleaned.split()
+            if len(words) >= max_words:
+                snippet = " ".join(words[:max_words])
+                snippet = self._clean_speech_text(snippet)
+                return snippet or None
+            return None
+
+        return None
+
+    def _apply_speech_update(self, updater: Callable[[dict[str, Any]], None]) -> str | None:
+        """Apply a speech config update with rollback on failure."""
+        previous = copy.deepcopy(self.speech_config)
+        try:
+            updater(self.speech_config)
+            self._refresh_speech_service()
+            self._update_system_prompt_for_speech()
+        except Exception as exc:
+            self.speech_config = previous
+            self._refresh_speech_service()
+            self._update_system_prompt_for_speech()
+            return str(exc)
+        return None
+
+    def _cancel_speech_playback(self) -> None:
+        """Cancel any in-flight speech playback task."""
+        if self._speech_task and not self._speech_task.done():
+            self._speech_task.cancel()
+            logger.info("Speech playback cancelled by user")
+
+    def _start_speech_task(self, operation: Coroutine[Any, Any, Any]) -> asyncio.Task:
+        """Start a speech task, cancelling any previous one."""
+        if self._speech_task and not self._speech_task.done():
+            self._speech_task.cancel()
+        task = asyncio.create_task(operation)
+        self._speech_task = task
+        task.add_done_callback(self._log_speech_task_error)
+        return task
+
+    async def _maybe_speak(self, text: str) -> None:
+        """Speak assistant responses when speech is enabled."""
+        if not self._speech_service or not self._speech_config_model:
+            return
+        if not self._speech_config_model.enabled:
+            return
+        if self._speech_already_spoken:
+            self._speech_already_spoken = False
+            return
+
+        try:
+            text = self._clean_speech_text(text)
+            if not text:
+                return
+            if self._speech_config_model.playback.blocking:
+                from friday_cli.cancellation import CancellationToken, _check_for_key
+
+                get_console().print("  [dim]Press [Ctrl+Q] to cancel speech playback[/dim]")
+                try:
+                    cancel_token = CancellationToken()
+                    speech_task = asyncio.create_task(self._speech_service.speak(text))
+                    self._speech_task = speech_task
+                    key_task = asyncio.create_task(_check_for_key(cancel_token, "\x11"))
+
+                    done, pending = await asyncio.wait(
+                        [speech_task, key_task],
+                        return_when=asyncio.FIRST_COMPLETED,
+                    )
+
+                    if cancel_token.is_cancelled:
+                        speech_task.cancel()
+                        logger.info("Speech playback cancelled by user")
+                        return
+
+                    if speech_task in done:
+                        await speech_task
+                except asyncio.CancelledError:
+                    logger.info("Speech playback cancelled by user")
+                finally:
+                    if "pending" in locals():
+                        for task in pending:
+                            task.cancel()
+                            try:
+                                await task
+                            except asyncio.CancelledError:
+                                pass
+                    if self._speech_task is speech_task:
+                        self._speech_task = None
+            else:
+                self._start_speech_task(self._speech_service.speak(text))
+        except Exception as exc:
+            logger.error("Speech synthesis failed: %s", exc)
+
+    def _log_speech_task_error(self, task: asyncio.Task) -> None:
+        """Log errors from background speech tasks."""
+        if task is self._speech_task:
+            self._speech_task = None
+        try:
+            task.result()
+        except asyncio.CancelledError:
+            logger.info("Speech playback cancelled by user")
+        except Exception as exc:
+            logger.error("Speech playback failed: %s", exc)
+
     def cmd_security(self) -> str:
         """Show security configuration and detection statistics."""
         config = self.sanitization_config
@@ -3568,6 +3827,125 @@ Use /tools to list available tools."""
             "Payload queued for injection into next tool result.\n"
             "Use a tool (e.g., /run-tool echo) to trigger and test detection."
         )
+
+    async def cmd_speech_test(self, mode: str = "once") -> str:
+        """
+        Run the speech harness for quick verification.
+
+        Args:
+            mode: "once" or "loop"
+        """
+        mode_value = (mode or "once").strip().lower()
+        if mode_value not in {"once", "loop"}:
+            return "Usage: /speech-test [once|loop]"
+
+        try:
+            from friday_cli.cancellation import OperationCancelledError, run_cancellable
+            from friday_speech import AdapterRegistry, SpeechConfig, SpeechHarness
+        except Exception as exc:
+            return f"Speech harness unavailable: {exc}"
+
+        try:
+            speech_config = SpeechConfig.from_dict(self.speech_config)
+        except Exception as exc:
+            return f"Speech config error: {exc}"
+
+        if not speech_config.enabled:
+            return "Speech is disabled. Enable with /speech on."
+
+        harness = SpeechHarness(speech_config, adapters=AdapterRegistry())
+
+        try:
+            if mode_value == "loop":
+                await run_cancellable(
+                    harness.run(), cancel_message="Press [Esc] to cancel speech harness"
+                )
+            else:
+                await run_cancellable(
+                    harness.run_once(),
+                    cancel_message="Press [Esc] to cancel speech test",
+                )
+        except OperationCancelledError:
+            return "Speech harness cancelled."
+        return "Speech harness completed."
+
+    def cmd_speech(self, action: str = "", value: str = "") -> str:
+        """
+        Configure speech settings at runtime.
+
+        Usage:
+            /speech on
+            /speech off
+            /speech mode live|file
+            /speech voice <voice_id>
+            /speech provider elevenlabs|picovoice
+            /speech config
+        """
+        action_value = (action or "config").strip().lower()
+
+        if action_value in {"config", ""}:
+            return self.cmd_speech_config()
+
+        if action_value == "on":
+            error = self._apply_speech_update(lambda cfg: cfg.__setitem__("enabled", True))
+            if error:
+                return f"Speech config error: {error}"
+            return "Speech enabled."
+
+        if action_value == "off":
+            error = self._apply_speech_update(lambda cfg: cfg.__setitem__("enabled", False))
+            if error:
+                return f"Speech config error: {error}"
+            return "Speech disabled."
+
+        if action_value == "mode":
+            mode_value = (value or "").strip().lower()
+            if mode_value not in {"live", "file"}:
+                return "Usage: /speech mode live|file"
+            def _set_mode(cfg: dict[str, Any]) -> None:
+                cfg["mode"] = mode_value
+
+            error = self._apply_speech_update(_set_mode)
+            if error:
+                return f"Speech config error: {error}"
+            return f"Speech mode set to {mode_value}."
+
+        if action_value == "voice":
+            if not value:
+                return "Usage: /speech voice <voice_id>"
+            def _set_voice(cfg: dict[str, Any]) -> None:
+                elevenlabs_config = cfg.setdefault("elevenlabs", {})
+                elevenlabs_config["voice_id"] = value
+
+            error = self._apply_speech_update(_set_voice)
+            if error:
+                return f"Speech config error: {error}"
+            return f"Speech voice_id set to {value}."
+
+        if action_value == "provider":
+            provider_value = (value or "").strip().lower()
+            if provider_value not in {"elevenlabs", "picovoice"}:
+                return "Usage: /speech provider elevenlabs|picovoice"
+
+            def _set_provider(cfg: dict[str, Any]) -> None:
+                tts_config = cfg.setdefault("tts", {})
+                tts_config["provider"] = provider_value
+
+            error = self._apply_speech_update(_set_provider)
+            if error:
+                return f"Speech config error: {error}"
+            return f"Speech provider set to {provider_value}."
+
+        return "Usage: /speech on|off|mode|voice|provider|config"
+
+    def cmd_speech_config(self) -> str:
+        """Show current speech configuration snapshot."""
+        display_panel(
+            json.dumps(self.speech_config, indent=2),
+            title="Speech Configuration",
+            style="info",
+        )
+        return ""
 
     # =========================================================================
     # ORCHESTRATION COMMANDS (Phase 3 - Project Hive)
@@ -4353,20 +4731,87 @@ Use /facts to view stored documents."""
             )
             return ""  # Display already shown
 
-        # Summary help - show all commands from registry
-        commands = self.registry.get_help(categories=False)
+        # Verbose help - show all commands with usage and arguments
+        def format_command(info: CommandInfo) -> list[str]:
+            lines = []
+            name = f"/{info.name}"
+            if info.aliases:
+                aliases = ", ".join(f"/{alias}" for alias in info.aliases)
+                name = f"{name} (aliases: {aliases})"
+            lines.append(name)
+            lines.append(f"  Description: {info.description or 'No description provided.'}")
+            lines.append(f"  Usage: {info.usage}")
+            if info.arguments:
+                lines.append("  Arguments:")
+                for arg_info in info.arguments:
+                    required = "required" if arg_info.required else "optional"
+                    suffix_parts = []
+                    if arg_info.default is not None:
+                        suffix_parts.append(f"default={arg_info.default}")
+                    if arg_info.choices:
+                        suffix_parts.append(f"choices={', '.join(arg_info.choices)}")
+                    suffix = f" ({', '.join(suffix_parts)})" if suffix_parts else ""
+                    description = arg_info.description or ""
+                    lines.append(
+                        f"    - {arg_info.name} [{required}]{suffix}: {description}"
+                    )
+            else:
+                lines.append("  Arguments: none")
+            return lines
 
-        # Add help command itself (not in registry to avoid recursion)
-        commands["/help [command]"] = "Show help (detailed help with command name)"
-
-        tips = [
-            "/help <command>: Show detailed help for any command",
-            "/reset: Clean slate - clears stores AND archives all transcripts",
-            "/help reorganize: See all reorganization options",
-            "/lifecycle --stats: View current lifecycle stats",
+        command_infos = list(self.registry.commands.values())
+        frequent_names = {
+            "help",
+            "reset",
+            "clear",
+            "history",
+            "memory",
+            "context",
+            "prompt",
+            "tools",
+            "run-tool",
+            "read",
+            "ingest",
+            "speech",
+            "speech-test",
+            "workflow",
+            "switch",
+            "agents",
+        }
+        frequent_infos = [
+            info for info in command_infos if info.name in frequent_names
         ]
-        display_help(commands, tips=tips)
-        return ""  # Display already shown
+        frequent_infos.sort(key=lambda info: info.name)
+
+        categories: dict[str, list[CommandInfo]] = {}
+        for info in command_infos:
+            categories.setdefault(info.category, []).append(info)
+        for infos in categories.values():
+            infos.sort(key=lambda info: info.name)
+
+        lines: list[str] = []
+        lines.append("VERBOSE HELP")
+        lines.append("Use /help <command> for focused details.")
+
+        if frequent_infos:
+            lines.append("")
+            lines.append("FREQUENTLY USED")
+            lines.append("-")
+            for info in frequent_infos:
+                lines.extend(format_command(info))
+                lines.append("")
+
+        for category in sorted(categories):
+            lines.append(f"{category.upper()}")
+            lines.append("-")
+            for info in categories[category]:
+                if info in frequent_infos:
+                    continue
+                lines.extend(format_command(info))
+                lines.append("")
+
+        display_code("\n".join(lines).rstrip(), language="text", line_numbers=False)
+        return ""
 
     def _should_extract(self, turn_count: int) -> bool:
         """
@@ -4590,6 +5035,8 @@ Use /facts to view stored documents."""
         if not self.state:
             await self.initialize()
 
+        self._speech_already_spoken = False
+
         _t1 = _time.perf_counter()
         logger.debug(f"[TIMING] Init check: {(_t1-_t0)*1000:.0f}ms")
 
@@ -4686,6 +5133,9 @@ Use /facts to view stored documents."""
 
             # End newline after response
             console.print()
+
+            # Optional speech playback for assistant response
+            await self._maybe_speak(full_response)
 
             # Capture raw prompt and response for context engineering analysis
             capture_prompts = self.transcript_config.get("capture_raw_prompts", False)
@@ -4849,6 +5299,17 @@ Use /facts to view stored documents."""
         # Create cancellation token for escape key monitoring
         cancel_token = CancellationToken()
         escape_task = asyncio.create_task(_check_for_escape_key(cancel_token))
+        stream_speech_enabled = (
+            self._speech_service is not None
+            and self._speech_config_model is not None
+            and self._speech_config_model.enabled
+            and self._speech_config_model.mode.value == "live"
+            and self._speech_config_model.playback.enabled
+        )
+        stream_speech_triggered = False
+        stream_speech_buffer = ""
+        strip_tags_for_display = bool(self._speech_config_model and self._speech_config_model.enabled)
+        rendered_len = 0
 
         try:
             async for chunk in self.llm.chat_completion_stream(
@@ -4868,10 +5329,31 @@ Use /facts to view stored documents."""
                 if cancel_token.is_cancelled and first_chunk:
                     raise OperationCancelledError()
 
-                # Use sys.stdout for real-time streaming (Rich doesn't support streaming)
-                sys.stdout.write(chunk)
-                sys.stdout.flush()
                 full_response += chunk
+                if strip_tags_for_display:
+                    rendered = self._strip_speech_tags(full_response)
+                    delta = rendered[rendered_len:]
+                    if delta:
+                        sys.stdout.write(delta)
+                        sys.stdout.flush()
+                        rendered_len = len(rendered)
+                else:
+                    # Use sys.stdout for real-time streaming (Rich doesn't support streaming)
+                    sys.stdout.write(chunk)
+                    sys.stdout.flush()
+
+                if stream_speech_enabled and not stream_speech_triggered:
+                    stream_speech_buffer += chunk
+                    snippet = self._extract_stream_snippet(stream_speech_buffer)
+                    if snippet:
+                        stream_speech_triggered = True
+                        self._speech_already_spoken = True
+                        self._start_speech_task(
+                            self._speech_service.speak(
+                                snippet,
+                                apply_selection=False,
+                            )
+                        )
 
             # Ensure indicator is stopped even if no chunks arrived
             indicator.stop()
@@ -4929,6 +5411,9 @@ Use /facts to view stored documents."""
             chunk_size: Number of characters to output per chunk (default 3)
             delay: Seconds to wait between chunks (default 0.01)
         """
+        if self._speech_config_model and self._speech_config_model.enabled:
+            content = self._strip_speech_tags(content)
+
         # Output in small chunks for streaming effect
         for i in range(0, len(content), chunk_size):
             chunk = content[i:i + chunk_size]
@@ -5464,6 +5949,22 @@ async def execute_shell_command(command: str, timeout: float = 60.0) -> None:
         console.print(f"[bold red]Shell error: {e}[/bold red]")
 
 
+def _speech_prompt_snippet(speech_config: dict[str, Any]) -> str:
+    """Build a speech-tagging prompt snippet using configured tags."""
+    tags = speech_config.get("selection", {}).get("tags", {})
+    include_open = tags.get("include_open", "<speech>")
+    include_close = tags.get("include_close", "</speech>")
+    exclude_open = tags.get("exclude_open", "<nospeech>")
+    exclude_close = tags.get("exclude_close", "</nospeech>")
+
+    return (
+        "If speech output is enabled, you may wrap spoken text in "
+        f"{include_open}...{include_close} and text to exclude in "
+        f"{exclude_open}...{exclude_close}. Tags may appear anywhere. "
+        "Do not emit tags if not needed."
+    )
+
+
 async def main() -> None:
     """Main chat loop."""
     import argparse
@@ -5518,6 +6019,7 @@ async def main() -> None:
     extraction_config = config.get("extraction", {})
     embedding_config = config.get("embedding", {})
     memory_config = config.get("memory", {})
+    token_estimator_config = memory_config.get("token_estimator", {})
     chat_config = config.get("chat", {})
     logging_config = config.get("logging", {})
     transcript_config = config.get("transcript", {})
@@ -5527,6 +6029,7 @@ async def main() -> None:
     web_config = config.get("web", {})
     smart_file_config = config.get("smart_file", {})
     security_config = config.get("security", {})
+    speech_config = config.get("speech", {})
     query_relevance_config = memory_config.get("query_relevance_filter", {})
 
     # Build sanitization config (fail fast on invalid configuration)
@@ -6038,6 +6541,7 @@ async def main() -> None:
         assistant_name=assistant_name,
         cache_config=cache_config,
         supporting_context_config=supporting_context_config,
+        token_estimator_config=token_estimator_config,
     )
 
     # 7. Create ContextAssembler with our cache-configured architect
@@ -6048,6 +6552,7 @@ async def main() -> None:
         query_relevance_config=query_relevance_config,
         model_name=llm_config.get("model", "gpt-4"),
         max_tokens=context_window,
+        token_estimator_config=token_estimator_config,
         telemetry=telemetry,
     )
 
@@ -6118,6 +6623,7 @@ async def main() -> None:
         tools_config=tools_config,
         extraction_config=extraction_config,
         transcript_config=transcript_config,
+        speech_config=config.get("speech", {}),
         sanitization_config=sanitization_config,
         skip_token_counting=True,  # Performance optimization: skip diagnostic token counting
         max_tokens=llm_config.get("max_tokens", 1500),
@@ -6192,10 +6698,17 @@ async def main() -> None:
 
     # Create input handler with history and command completion
     history_file = persist_dir / ".friday_history" if persist_dir else None
+
+    def _bind_speech_cancel_key(bindings) -> None:
+        @bindings.add("c-q")
+        def _cancel_speech(event) -> None:
+            session._cancel_speech_playback()
+
     input_handler = create_friday_input_handler(
         user_name=user_name,
         history_file=history_file,
         multiline=False,  # Single-line mode by default
+        extra_key_bindings=_bind_speech_cancel_key,
     )
 
     # Handle replay mode if specified via CLI

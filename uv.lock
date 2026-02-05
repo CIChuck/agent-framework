@@ -28,6 +28,7 @@ members = [
     "friday-moltbook",
     "friday-optimization",
     "friday-sandbox",
+    "friday-speech",
     "friday-telemetry",
     "friday-tools",
     "friday-transcript",
@@ -1121,6 +1122,23 @@ wheels = [
 ]
 
 [[package]]
+name = "elevenlabs"
+version = "2.34.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "pydantic-core" },
+    { name = "requests" },
+    { name = "typing-extensions" },
+    { name = "websockets" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/d1/fedeeeadf95ce0692fb857926a9f821a4523c6063bb1edf737bb3d695fbf/elevenlabs-2.34.0.tar.gz", hash = "sha256:ddd35b25cb7b419ec13c40fab88e0de697db4f763779ae53ecd7794446d5f7ac", size = 458518, upload-time = "2026-02-02T11:21:01.856Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/54/01/5eeb515280726a8b9be42b8905e6a7b53773e630da9c3f05e8dedb098ebb/elevenlabs-2.34.0-py3-none-any.whl", hash = "sha256:3a46b40e69ac2841b2183a00d651a68bd11733d95d32a5ed8163d3aa6a0b13be", size = 1220339, upload-time = "2026-02-02T11:21:00.179Z" },
+]
+
+[[package]]
 name = "email-validator"
 version = "2.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1272,6 +1290,7 @@ dependencies = [
     { name = "friday-memory" },
     { name = "friday-moltbook" },
     { name = "friday-sandbox" },
+    { name = "friday-speech" },
     { name = "friday-telemetry" },
     { name = "friday-tools" },
     { name = "friday-transcript" },
@@ -1285,6 +1304,10 @@ dev = [
     { name = "pytest-asyncio" },
     { name = "respx" },
     { name = "ruff" },
+]
+speech = [
+    { name = "friday-speech", extra = ["elevenlabs", "picovoice"] },
+    { name = "pvspeaker" },
 ]
 
 [package.dev-dependencies]
@@ -1305,17 +1328,21 @@ requires-dist = [
     { name = "friday-memory", editable = "packages/friday-memory" },
     { name = "friday-moltbook", editable = "packages/friday-moltbook" },
     { name = "friday-sandbox", editable = "packages/friday-sandbox" },
+    { name = "friday-speech", editable = "packages/friday-speech" },
+    { name = "friday-speech", extras = ["elevenlabs"], marker = "extra == 'speech'", editable = "packages/friday-speech" },
+    { name = "friday-speech", extras = ["picovoice"], marker = "extra == 'speech'", editable = "packages/friday-speech" },
     { name = "friday-telemetry", editable = "packages/friday-telemetry" },
     { name = "friday-tools", editable = "packages/friday-tools" },
     { name = "friday-transcript", editable = "packages/friday-transcript" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
+    { name = "pvspeaker", marker = "extra == 'speech'", specifier = ">=0.1.0" },
     { name = "pypdf", specifier = ">=4.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
     { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
 ]
-provides-extras = ["dev"]
+provides-extras = ["dev", "speech"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -1673,6 +1700,52 @@ requires-dist = [
     { name = "pytest-mock", marker = "extra == 'dev'", specifier = ">=3.10.0" },
 ]
 provides-extras = ["dev"]
+
+[[package]]
+name = "friday-speech"
+version = "0.1.0"
+source = { editable = "packages/friday-speech" }
+dependencies = [
+    { name = "friday-core" },
+    { name = "pydantic" },
+    { name = "pyyaml" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+elevenlabs = [
+    { name = "elevenlabs" },
+]
+picovoice = [
+    { name = "pvcobra" },
+    { name = "pvleopard" },
+    { name = "pvorca" },
+    { name = "pvporcupine" },
+    { name = "pvrecorder" },
+    { name = "pvrhino" },
+    { name = "pvspeaker" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "elevenlabs", marker = "extra == 'elevenlabs'", specifier = ">=1.0.0" },
+    { name = "friday-core", editable = "packages/friday-core" },
+    { name = "pvcobra", marker = "extra == 'picovoice'", specifier = ">=2.0.0" },
+    { name = "pvleopard", marker = "extra == 'picovoice'", specifier = ">=2.0.0" },
+    { name = "pvorca", marker = "extra == 'picovoice'", specifier = ">=0.1.0" },
+    { name = "pvporcupine", marker = "extra == 'picovoice'", specifier = ">=3.0.0" },
+    { name = "pvrecorder", marker = "extra == 'picovoice'", specifier = ">=1.2.0" },
+    { name = "pvrhino", marker = "extra == 'picovoice'", specifier = ">=2.0.0" },
+    { name = "pvspeaker", marker = "extra == 'picovoice'", specifier = ">=0.1.0" },
+    { name = "pydantic", specifier = ">=2.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+    { name = "pyyaml", specifier = ">=6.0.0" },
+]
+provides-extras = ["elevenlabs", "picovoice", "dev"]
 
 [[package]]
 name = "friday-telemetry"
@@ -4706,6 +4779,69 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/cd/05/0a34433a064256a578f1783a10da6df098ceaa4a57bbeaa96a6c0352786b/pure_eval-0.2.3.tar.gz", hash = "sha256:5f4e983f40564c576c7c8635ae88db5956bb2229d7e9237d03b3c0b0190eaf42", size = 19752, upload-time = "2024-07-21T12:58:21.801Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/8e/37/efad0257dc6e593a18957422533ff0f87ede7c9c6ea010a2177d738fb82f/pure_eval-0.2.3-py3-none-any.whl", hash = "sha256:1db8e35b67b3d218d818ae653e27f06c3aa420901fa7b081ca98cbedc874e0d0", size = 11842, upload-time = "2024-07-21T12:58:20.04Z" },
+]
+
+[[package]]
+name = "pvcobra"
+version = "3.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7c/1e/7bdce49c5cb966748e03a2b44ec5a0c94456eacc71cab2c30545683a71c1/pvcobra-3.0.1.tar.gz", hash = "sha256:25fd49bf051a812531d77453fe571c82542fed537b242f2448cdf7e9ec280400", size = 2997302, upload-time = "2025-12-18T19:10:30.823Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/48/a0/58c77ef8e9927af97e97df9abcbe8dd4de47cc76b5ef6bae64315c2a807f/pvcobra-3.0.1-py3-none-any.whl", hash = "sha256:2606d6c66890b06551fd363b5f2af401a5ed7bc909b57028bbc767a99c9a3cab", size = 3003672, upload-time = "2025-12-18T19:10:28.89Z" },
+]
+
+[[package]]
+name = "pvleopard"
+version = "3.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/45/e2/590afb249298b9ed9d7c4df481c7b078e551d34e3978dd999e7e4a6ff8c9/pvleopard-3.0.0.tar.gz", hash = "sha256:2c6ee9d80bfb5317bd168489205d9a0d793af793aae90a64295422bf6105a1fd", size = 43373651, upload-time = "2025-12-17T21:41:45.645Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/35/e1/797a5f756ffc25d670c4aa855a3049caae24b4277e7f003a768abdee7c67/pvleopard-3.0.0-py3-none-any.whl", hash = "sha256:2863a28e6e812a4b3bf01802edb947a1dd488ac4ccb56c09df3cb7734eb16db4", size = 43395149, upload-time = "2025-12-17T21:41:39.403Z" },
+]
+
+[[package]]
+name = "pvorca"
+version = "2.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/2f/d1/31dfd7b3e23847c3044ce3c4875d5d1f649ca436beab2bbf0765d0c11cd7/pvorca-2.0.0.tar.gz", hash = "sha256:33c343de25545bde49b8bae637598665bd07df126d5e1df0bbd7d04992e1beef", size = 12598692, upload-time = "2025-12-17T19:33:06.021Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/99/b0/040f6dfa9d209c0635bd8377f5ad84f6b73822e89b0531a4995ea97733ef/pvorca-2.0.0-py3-none-any.whl", hash = "sha256:54a7fcd15fd52a9f3cbddacc4c088b48b5a2bd1a629996e45bea67ccc6dbf492", size = 12610869, upload-time = "2025-12-17T19:33:03.101Z" },
+]
+
+[[package]]
+name = "pvporcupine"
+version = "4.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8e/5f/870f6cab23ca8dec966f90fbfacf603ec3dc448c3a4040edede91bac5909/pvporcupine-4.0.1.tar.gz", hash = "sha256:987d6aa9590c09e2fc3cd8513eb85c96402d2d6731d5691e8e3bcd44196fd852", size = 3628063, upload-time = "2025-12-18T22:01:15.542Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6c/60/744e28f998ce36c4d3ea685375ca9c3442b89484731f909505495eefa1a0/pvporcupine-4.0.1-py3-none-any.whl", hash = "sha256:34cac4d015b0d47d71c74e6c60a1855d41e1bc773488ef91bceb2efac2b9da65", size = 3644809, upload-time = "2025-12-18T22:01:13.414Z" },
+]
+
+[[package]]
+name = "pvrecorder"
+version = "1.2.7"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/93/972f2500bca8e2b7807f2c6232504df4f1b82db546e42fdd2de109b98032/pvrecorder-1.2.7.tar.gz", hash = "sha256:f60b2174bff317c4349a916f59b5e71914a120f8313a9458f9ee25b89a800c75", size = 4128384, upload-time = "2025-03-28T20:53:21.841Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f6/4c/b1706065a9b52efa9a23e3822076b8916de2ff26036b6ff1474d90f95c95/pvrecorder-1.2.7-py3-none-any.whl", hash = "sha256:72c44be78069be92a602b0dfad42fbdc62b536f47c151e62076ee49ba877dfb0", size = 4131531, upload-time = "2025-03-28T20:53:19.662Z" },
+]
+
+[[package]]
+name = "pvrhino"
+version = "4.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/92/8c/039e6a2896f759a5886a2dd9b434e92d732c3a302124d6860c6aec2988d4/pvrhino-4.0.1.tar.gz", hash = "sha256:98cb8a28d9c0d43d94c004233bb8ccd78d8b7e59bec3dfb0a85930dfc1edf04d", size = 4288050, upload-time = "2025-12-18T21:33:59.582Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c5/de/1086b29e3d9879e225ed6944a9d6b3534c5239b642c6dfcacff0a15af9b3/pvrhino-4.0.1-py3-none-any.whl", hash = "sha256:af90e13db9c76ad1b4a6f292fe1b9338fcdefdb4ff30bdd92d1e3835eb270614", size = 4291731, upload-time = "2025-12-18T21:33:57.212Z" },
+]
+
+[[package]]
+name = "pvspeaker"
+version = "1.0.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/53/e0/9ee158ccb45f089daeabe63f3ba819eab0ea64fa70613746582837b102a8/pvspeaker-1.0.5.tar.gz", hash = "sha256:65b27e074967dd9833baa38dedb0967d756eefbad0a8cb263941cc97fb20b02f", size = 3784949, upload-time = "2025-02-12T22:11:38.352Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cf/ae/9984eb73075ec0cf10e191dae2fb49a979c15b0b8501dfbdd736f76c3e14/pvspeaker-1.0.5-py3-none-any.whl", hash = "sha256:27d53e119befe3875db8bffad1250cf700389bc5c155334fed112b8f5e4582ee", size = 3788286, upload-time = "2025-02-12T22:11:35.159Z" },
 ]
 
 [[package]]

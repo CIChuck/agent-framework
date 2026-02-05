@@ -1,0 +1,71 @@
+import asyncio
+import os
+from client import MassiveAgentClient
+from equities import EquitiesModule
+from crypto import CryptoModule
+from indicators import IndicatorsModule
+from registry import AssetRegistry
+from exceptions import MassiveRateLimitError, MassiveAuthError
+
+async def run_risk_analysis(client: MassiveAgentClient):
+    """
+    Simulates an agent workflow that evaluates market risk sentiment.
+    """
+    # Initialize modules
+    equities = EquitiesModule(client)
+    crypto = CryptoModule(client)
+    indicators = IndicatorsModule(client)
+
+    print("--- Starting Market Risk Analysis ---")
+    
+    try:
+        # 1. Check Risk-On Proxy (Bitcoin)
+        print("\n[Step 1] Fetching Bitcoin Snapshot...")
+        btc_data = await crypto.get_snapshot("BTC")
+        print(f"Bitcoin: ${btc_data['price']:,} ({btc_data['day_change_percent']:.2f}%)")
+
+        # 2. Check Risk-Off Proxy (U.S. Aggregate Bonds via Registry)
+        print("\n[Step 2] Fetching Bond Market Proxy (AGG)...")
+        bond_ticker = AssetRegistry.resolve_ticker("total_bond")
+        bond_data = await equities.get_eod_price(bond_ticker)
+        print(f"Bond Index (AGG): ${bond_data['close']} as of {bond_data['date']}")
+
+        # 3. Technical Analysis for S&P 500 (Trend Confirmation)
+        print("\n[Step 3] Fetching S&P 500 Moving Averages (Trend Analysis)...")
+        # On Free Tier, this triggers the 12s governor for each SMA call
+        spy_trend = await indicators.get_trend_analysis("SPY")
+        print(f"S&P 500 Trend: {spy_trend['sentiment'].upper()}")
+        print(f"SMA 50: {spy_trend['sma50']} | SMA 200: {spy_trend['sma200']}")
+
+        # 4. Synthesize Risk Sentiment
+        print("\n--- Final Risk Synthesis ---")
+        is_bullish = spy_trend['sentiment'] == "bullish"
+        btc_up = btc_data['day_change_percent'] > 0
+        
+        if is_bullish and btc_up:
+            print("SENTIMENT: RISK-ON. (Equities Trending Up, Crypto Positive)")
+        elif not is_bullish and not btc_up:
+            print("SENTIMENT: RISK-OFF. (Equities Trending Down, Crypto Weak)")
+        else:
+            print("SENTIMENT: NEUTRAL / DIVERGENT. (Mixed Signals detected)")
+
+    except MassiveRateLimitError as e:
+        print(f"RATE LIMIT ALERT: {e}. The agent should pause for 60 seconds.")
+    except MassiveAuthError as e:
+        print(f"AUTH ERROR: {e}. Check your API Key.")
+    except Exception as e:
+        print(f"UNEXPECTED ERROR: {e}")
+
+async def main():
+    # Set your API key here or via Environment Variable
+    API_KEY = os.getenv("MASSIVE_API_KEY", "YOUR_FREE_TIER_KEY")
+    
+    # Initialize the Client (Defaults to 'free' tier)
+    # If you upgrade, simply change to tier="starter" to remove wait times.
+    client = MassiveAgentClient(api_key=API_KEY, tier="free")
+
+    # Run the analysis
+    await run_risk_analysis(client)
+
+if __name__ == "__main__":
+    asyncio.run(main())

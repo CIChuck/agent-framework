@@ -1,0 +1,29 @@
+import asyncio
+import time
+
+class MassiveGovernor:
+    """
+    A tier-aware rate limiter using a modified Token Bucket algorithm.
+    """
+    def __init__(self, tier: str = "free"):
+        self.tier = tier.lower()
+        # Free: 5 per min (12s interval). Starter: Effectively unlimited.
+        self.interval = 12.05 if self.tier == "free" else 0.05 
+        self.last_call = 0.0
+        self.lock = asyncio.Lock()
+
+    async def wait(self):
+        """Ensures the next call respects the tier's time boundary."""
+        async with self.lock:
+            now = asyncio.get_event_loop().time()
+            elapsed = now - self.last_call
+            
+            if elapsed < self.interval:
+                sleep_time = self.interval - elapsed
+                await asyncio.sleep(sleep_time)
+            
+            self.last_call = asyncio.get_event_loop().time()
+
+    def update_tier(self, tier: str):
+        self.tier = tier.lower()
+        self.interval = 12.05 if self.tier == "free" else 0.05

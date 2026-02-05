@@ -1,0 +1,51 @@
+from typing import Dict, Any
+from datetime import datetime
+
+class CryptoModule:
+    """
+    Handles Cryptocurrency pairs (e.g., BTC/USD, ETH/USD).
+    Bypasses Market Day logic as Crypto markets are 24/7.
+    """
+    def __init__(self, client):
+        self.client = client
+
+    def _format_ticker(self, symbol: str) -> str:
+        """Ensures symbol follows the Massive 'X:' prefix format."""
+        symbol = symbol.upper().replace("/", "")
+        if not symbol.startswith("X:"):
+            # Standardize to X:BTCUSD format
+            if "USD" not in symbol:
+                symbol += "USD"
+            return f"X:{symbol}"
+        return symbol
+
+    async def get_snapshot(self, symbol: str) -> Dict[str, Any]:
+        """Gets real-time snapshot for Crypto (available on Free Tier)."""
+        ticker = self._format_ticker(symbol)
+        
+        # Massive SDK method for Crypto Snapshot
+        func = self.client.sdk.get_snapshot_crypto
+        result = await self.client.execute_query(func, "crypto", ticker)
+        
+        return {
+            "symbol": ticker,
+            "price": result.last_trade.price,
+            "day_change": result.todays_change,
+            "day_change_percent": result.todays_change_percentage,
+            "last_updated": datetime.fromtimestamp(result.last_trade.timestamp / 1000).isoformat()
+        }
+
+    async def get_risk_on_comparison(self) -> Dict[str, Any]:
+        """
+        Logic for Risk On/Off models: Bitcoin vs. Bonds.
+        """
+        btc = await self.get_snapshot("BTC")
+        # Accessing the equities module for the bond proxy
+        from .registry import AssetRegistry
+        bond_ticker = AssetRegistry.resolve_ticker("total_bond") # AGG
+        
+        # This will trigger the governor for the second call
+        return {
+            "risk_on_proxy": {"asset": "Bitcoin", "price": btc['price'], "change": btc['day_change_percent']},
+            "risk_off_proxy": {"asset": "AGG (Bonds)", "ticker": bond_ticker}
+        }
