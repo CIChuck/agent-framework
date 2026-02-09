@@ -350,7 +350,14 @@ class TestMemoryControllerAuthorTracking:
         with pytest.raises(ValueError):
             memory_controller.set_author("   ")
 
-    def test_custom_default_author(self, vector_store, graph_store, episodic_store, telemetry):
+    def test_custom_default_author(
+        self,
+        vector_store,
+        graph_store,
+        episodic_store,
+        telemetry,
+        collection_manager,
+    ):
         """Test creating controller with custom default author."""
         from friday_memory import MemoryController
 
@@ -359,6 +366,7 @@ class TestMemoryControllerAuthorTracking:
             graph_store=graph_store,
             episodic_store=episodic_store,
             telemetry=telemetry,
+            collection_manager=collection_manager,
             default_author_id="custom_agent",
         )
         assert controller.current_author == "custom_agent"

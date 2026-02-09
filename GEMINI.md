@@ -49,9 +49,7 @@ The project is a monorepo managed by `uv`.
     *   `friday-transcript`: Transcript management and export.
     *   `friday-optimization`: Algorithms for token budgeting (knapsack).
     *   `friday-cli`: CLI interface components.
-*   `apps/`
-    *   `friday-copilot`: The main CLI application implementing a full-featured AI assistant.
-*   `docs/`: Extensive architectural documentation and specifications.
+*   `apps/`: Application workspace (empty or reserved).
 
 ## Development & Usage
 
@@ -72,13 +70,7 @@ uv sync
 uv run pytest
 ```
 
-**3. Run The Copilot App:**
-```bash
-uv run friday-copilot
-```
-*   Config location: `~/.config/friday/config.yaml` (Linux), `~/Library/Application Support/friday/config.yaml` (macOS).
-
-**4. Key Commands:**
+**3. Key Commands:**
 *   **Linting:** `uv run ruff check .`
 *   **Formatting:** `uv run ruff format .`
 *   **Type Checking:** `uv run mypy .`

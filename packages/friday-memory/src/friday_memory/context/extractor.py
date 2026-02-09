@@ -16,10 +16,15 @@ import json
 import logging
 import time
 import uuid
-from typing import TYPE_CHECKING, Any, Awaitable, Callable
+from typing import TYPE_CHECKING, Any
 
 from friday_core import TelemetryInterface
 
+from friday_memory.context.extraction_filter import (
+    ExtractionFilter,
+    configure_rejection_logging,
+)
+from friday_memory.context.ontology import OntologyConfig
 from friday_memory.controller import MemoryController
 from friday_memory.models import (
     GraphEdge,
@@ -39,60 +44,76 @@ logger = logging.getLogger(__name__)
 # Storage strategy:
 # - entities, relationships → Graph Store (structured, Hebbian learning via hit_count)
 # - insights → Vector Store (rich semantic content for similarity search)
-# - tasks → Graph Store (as task nodes)
-DEFAULT_EXTRACTION_PROMPT = """Analyze the following conversation turn and extract structured information.
+DEFAULT_EXTRACTION_PROMPT = """Analyze the conversation turn below to extract a knowledge graph and semantic memories.
 
 Turn ID: {turn_id}
 Timestamp: {timestamp}
 
-Conversation participants:
-- Human user: {user_name}
-- AI assistant: {assistant_name}
+Conversation Context:
+- Speaker A (Human): {user_name}
+- Speaker B (AI): {assistant_name}
 
-{user_name} said:
-{user_message}
+TEXT TO ANALYZE:
+{user_name}: {user_message}
+{assistant_name}: {assistant_response}
 
-{assistant_name} replied:
-{assistant_response}
+{ontology_constraints}
 
-Extract the following:
+INSTRUCTIONS:
 
-1. **Entities**: Named people, organizations, projects, technologies, or concepts mentioned.
-   - Use "{user_name}" for the human, "{assistant_name}" for the AI
-   - Include type: person, project, technology, organization, concept
+1. **Entity Extraction (Nodes)**
+   - Extract ONLY concrete, named entities: specific people, organizations, technologies, locations, products, or documents.
+   - Do NOT extract abstract concepts, feelings, time references, adjectives, or generic terms.
+   - Do NOT extract "{user_name}" or "{assistant_name}" unless they are referred to by a proper name in the conversation.
+   - Each entity must have a `type` from the ALLOWED TYPES listed above.
+   - **Canonicalization**: Create an `id` in snake_case (e.g., "Python 3.1" → "python_3").
+   - **Resolution**: Resolve pronouns (he, she, it) to the specific noun if clear from context.
+   - **Be selective**: Only extract entities that carry meaningful, reusable knowledge. Skip throwaway mentions.
 
-2. **Relationships**: Directional connections between entities.
-   - SOURCE performs action on TARGET (active voice)
-   - Example: source="{user_name}", relation="creates", target="{assistant_name}"
-   - Do NOT create reverse/duplicate relationships
+2. **Relationship Extraction (Edges)**
+   - Extract directional relationships: SOURCE → RELATION → TARGET.
+   - The `relation` field MUST be one of the ALLOWED RELATIONS listed above. Do not invent new relation types.
+   - Source and target must reference entity `id` values from your entity list.
+   - Prefer the most specific applicable relation (e.g., AUTHORED over RELATES_TO).
+   - Do NOT create relationships for trivial or obvious connections.
 
-3. **Insights**: Rich, contextual observations worth remembering (1-2 sentences each).
-   - Write as complete, meaningful sentences
-   - Include context that would be useful for future semantic search
-   - Examples:
-     - "{user_name} is building an AI assistant named {assistant_name} with persistent memory capabilities."
-     - "{assistant_name} expressed enthusiasm about helping with coding tasks."
-   - NOT micro-facts like "Chuck creates Friday" (those go in relationships)
+3. **Insight Extraction (Structured Facts)**
+   - Extract 1-3 rich, contextual observations worth remembering long-term.
+   - **text**: A complete 1-2 sentence observation. Write as if explaining to someone with no prior context.
+   - **topic**: One of "preference", "biographical", "technical", or "constraint".
+   - **entities**: Entity names mentioned in this insight.
+   - **confidence**: 0.0-1.0 based on how explicitly the information was stated.
+   - **sentiment**: "positive", "negative", or "neutral".
+   - Do NOT extract trivial observations. Each insight should be independently useful for future recall.
 
-4. **Tasks**: Mentioned tasks or goals with their status.
+4. **Turn Summary**
+   - Write a 2-4 sentence paragraph summarizing the conversation turn.
+   - Include who was talking, the main topic, and any decisions or conclusions.
+
+JSON OUTPUT FORMAT:
 
 Respond ONLY with valid JSON:
+
 {{
     "entities": [
-        {{"label": "name", "type": "person|project|technology|organization|concept", "properties": {{}}}}
+        {{"id": "entity_id", "label": "Display Name", "type": "ALLOWED_TYPE", "properties": {{}}}}
     ],
     "relationships": [
-        {{"source": "actor", "relation": "verb", "target": "recipient"}}
+        {{"source_id": "actor_id", "relation": "ALLOWED_RELATION", "target_id": "recipient_id"}}
     ],
     "insights": [
-        "Rich, contextual sentence worth remembering for future reference."
+        {{
+            "text": "Rich, contextual sentence worth remembering.",
+            "topic": "preference|biographical|technical|constraint",
+            "entities": ["entity1"],
+            "confidence": 0.9,
+            "sentiment": "positive|negative|neutral"
+        }}
     ],
-    "tasks": [
-        {{"description": "task description", "status": "pending|completed|blocked"}}
-    ]
+    "summary": "A 2-4 sentence summary of this conversation turn."
 }}
 
-If nothing relevant is found, return empty arrays. Be selective - only extract meaningful information.
+If nothing meaningful is found, return empty arrays and empty string for summary. Quality over quantity — fewer accurate extractions are better than many noisy ones.
 """
 
 
@@ -129,6 +150,8 @@ class MemoryExtractor:
         assistant_name: str = "Assistant",
         embedding_model: "EmbeddingModel | None" = None,
         max_tokens: int | None = None,
+        ontology_config: OntologyConfig | None = None,
+        rejection_log_path: str | None = None,
     ) -> None:
         """
         Initialize the Memory Extractor.
@@ -139,13 +162,20 @@ class MemoryExtractor:
             telemetry: Optional telemetry recorder
             prompt_template: Custom extraction prompt template (uses default if None).
                              Must contain placeholders: {turn_id}, {timestamp},
-                             {user_name}, {assistant_name}, {user_message}, {assistant_response}
+                             {user_name}, {assistant_name}, {user_message},
+                             {assistant_response}, {ontology_constraints}
             user_name: Name of the human user (for entity extraction)
             assistant_name: Name of the AI assistant (for entity extraction)
             embedding_model: Optional EmbeddingModel for pre-computing edge embeddings.
                             If provided, edge embeddings are computed during extraction
                             for fast graph path scoring at retrieval time.
             max_tokens: Optional maximum tokens for extraction response (limits output length)
+            ontology_config: Ontology defining allowed node types and edge relations.
+                            If None, uses OntologyConfig.default().
+            rejection_log_path: File path for the extraction rejection log.
+                               If provided, all rejected entities and relationships
+                               are written to this file regardless of the global log
+                               level.  Useful for offline ontology tuning.
         """
         self._memory = memory_controller
         self._llm = llm
@@ -155,6 +185,12 @@ class MemoryExtractor:
         self._assistant_name = assistant_name
         self._embedding_model = embedding_model
         self._max_tokens = max_tokens
+        self._ontology = ontology_config or OntologyConfig.default()
+        self._filter = ExtractionFilter(self._ontology)
+
+        # Configure rejection file logging if a path was provided
+        if rejection_log_path:
+            configure_rejection_logging(rejection_log_path)
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -178,7 +214,7 @@ class MemoryExtractor:
 
         # Strategy 2: Extract from markdown code block
         # Match ```json ... ``` or ``` ... ```
-        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', content)
+        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
         if code_block_match:
             try:
                 return json.loads(code_block_match.group(1))
@@ -186,7 +222,7 @@ class MemoryExtractor:
                 pass
 
         # Strategy 3: Find JSON object in text (first { to last })
-        brace_match = re.search(r'\{[\s\S]*\}', content)
+        brace_match = re.search(r"\{[\s\S]*\}", content)
         if brace_match:
             try:
                 return json.loads(brace_match.group(0))
@@ -220,12 +256,12 @@ class MemoryExtractor:
 
         # Extract JSON portion (strip markdown)
         json_text = content
-        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*)', content)
+        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*)", content)
         if code_block_match:
-            json_text = code_block_match.group(1).rstrip('`').strip()
+            json_text = code_block_match.group(1).rstrip("`").strip()
 
         # Find the opening brace
-        brace_start = json_text.find('{')
+        brace_start = json_text.find("{")
         if brace_start == -1:
             return None
 
@@ -237,11 +273,10 @@ class MemoryExtractor:
             "entities": [],
             "relationships": [],
             "insights": [],
-            "tasks": [],
         }
 
         # Extract each top-level array that might be complete
-        for key in ["entities", "relationships", "insights", "tasks"]:
+        for key in ["entities", "relationships", "insights"]:
             pattern = rf'"{key}"\s*:\s*\[([\s\S]*?)(?:\]|\Z)'
             match = re.search(pattern, json_text)
             if match:
@@ -255,7 +290,9 @@ class MemoryExtractor:
 
         # Only return if we salvaged something
         if any(result.values()):
-            logger.info(f"Repaired truncated JSON: salvaged {sum(len(v) for v in result.values())} items")
+            logger.info(
+                f"Repaired truncated JSON: salvaged {sum(len(v) for v in result.values())} items"
+            )
             return result
 
         return None
@@ -276,14 +313,14 @@ class MemoryExtractor:
             depth = 0
             start = None
             for i, char in enumerate(array_content):
-                if char == '{':
+                if char == "{":
                     if depth == 0:
                         start = i
                     depth += 1
-                elif char == '}':
+                elif char == "}":
                     depth -= 1
                     if depth == 0 and start is not None:
-                        obj_str = array_content[start:i + 1]
+                        obj_str = array_content[start : i + 1]
                         try:
                             items.append(json.loads(obj_str))
                         except json.JSONDecodeError:
@@ -297,11 +334,9 @@ class MemoryExtractor:
         Extract memories from an interaction turn.
 
         Uses LLM to analyze the conversation and extract:
-        - Named entities
-        - Facts
-        - Preferences
-        - Tasks
-        - Relationships
+        - Named entities (filtered by ontology)
+        - Relationships (constrained to canonical types)
+        - Insights (rich contextual observations)
 
         Args:
             turn: The interaction turn to analyze
@@ -314,7 +349,7 @@ class MemoryExtractor:
             span_id = self._telemetry.start_span("memory_extraction")
 
         try:
-            # Build extraction prompt from template
+            # Build extraction prompt from template with ontology constraints
             prompt = self._prompt_template.format(
                 turn_id=turn.id,
                 timestamp=turn.timestamp.isoformat() if turn.timestamp else "unknown",
@@ -322,6 +357,7 @@ class MemoryExtractor:
                 assistant_name=self._assistant_name,
                 user_message=turn.user_message or "",
                 assistant_response=turn.assistant_message or "",
+                ontology_constraints=self._ontology.format_for_prompt(),
             )
 
             # Log what we're extracting (for debugging latency)
@@ -338,7 +374,10 @@ class MemoryExtractor:
             logger.debug("Calling LLM for extraction...")
             response = await self._llm.chat_completion(
                 messages=[
-                    {"role": "system", "content": "You are a precise information extraction system. Always respond with valid JSON."},
+                    {
+                        "role": "system",
+                        "content": "You are a precise information extraction system. Always respond with valid JSON.",
+                    },
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0.0,  # Deterministic extraction
@@ -352,7 +391,9 @@ class MemoryExtractor:
 
             # Parse response - handle various LLM output formats
             content = response.content or ""
-            logger.debug(f"Extraction LLM response: {content[:500] if content else '(empty)'}")
+            logger.debug(
+                f"Extraction LLM response: {content[:500] if content else '(empty)'}"
+            )
             extracted = self._parse_json_response(content)
 
             # Store extracted data
@@ -397,8 +438,10 @@ class MemoryExtractor:
         stats = {
             "nodes_created": 0,
             "nodes_skipped": 0,
+            "nodes_rejected": 0,
             "edges_created": 0,
             "edges_skipped": 0,
+            "edges_rejected": 0,
             "insights_stored": 0,
             "summaries_stored": 0,
         }
@@ -437,8 +480,15 @@ class MemoryExtractor:
             await self._memory.store_fact(node)
             return node, True
 
+        # Filter entities through ontology validation gate
+        raw_entities = extracted.get("entities", [])
+        entities, rejected_entities = self._filter.filter_entities(
+            raw_entities, turn_id=turn.id
+        )
+        stats["nodes_rejected"] = len(rejected_entities)
+
         # Store entities as graph nodes (with deduplication)
-        for entity in extracted.get("entities", []):
+        for entity in entities:
             try:
                 label = entity.get("label", "unknown")
                 node_type = entity.get("type", "entity")
@@ -453,8 +503,15 @@ class MemoryExtractor:
             except Exception as e:
                 logger.warning(f"Failed to store entity: {e}")
 
+        # Filter relationships through ontology validation gate
+        raw_relationships = extracted.get("relationships", [])
+        relationships, rejected_rels = self._filter.filter_relationships(
+            raw_relationships, turn_id=turn.id
+        )
+        stats["edges_rejected"] = len(rejected_rels)
+
         # Store relationships as graph edges (with node and edge deduplication)
-        for rel in extracted.get("relationships", []):
+        for rel in relationships:
             try:
                 # Support both "source"/"target" and "source_id"/"target_id" formats
                 source_label = rel.get("source") or rel.get("source_id", "unknown")
@@ -477,7 +534,9 @@ class MemoryExtractor:
                     try:
                         # Create natural language representation of the edge
                         edge_text = f"{source_node.label} {relation.replace('_', ' ')} {target_node.label}"
-                        embeddings = await self._embedding_model.embed_documents([edge_text])
+                        embeddings = await self._embedding_model.embed_documents(
+                            [edge_text]
+                        )
                         edge_embedding = embeddings[0] if embeddings else None
                         logger.debug(f"Computed embedding for edge: {edge_text}")
                     except Exception as e:
@@ -534,14 +593,18 @@ class MemoryExtractor:
                 fact_text = f"{fact.get('subject', '')} {fact.get('predicate', '')} {fact.get('object', '')}"
                 text = fact_text.strip()
                 if text and len(text) > 10:  # Skip very short facts
-                    insight_items.append((text, {"type": "insight", "topic": "technical"}))
+                    insight_items.append(
+                        (text, {"type": "insight", "topic": "technical"})
+                    )
 
         for pref in extracted.get("preferences", []):
             if isinstance(pref, dict):
                 pref_text = f"{self._user_name} {pref.get('sentiment', 'feels')} about {pref.get('topic', 'something')}: {pref.get('detail', '')}"
                 text = pref_text.strip()
                 if text:
-                    insight_items.append((text, {"type": "insight", "topic": "preference"}))
+                    insight_items.append(
+                        (text, {"type": "insight", "topic": "preference"})
+                    )
 
         # Store insights with metadata
         if insight_items:
@@ -575,26 +638,17 @@ class MemoryExtractor:
                     "type": "summary",
                     "turn_id": turn.id,
                 }
-                await self._memory.store_insight(summary.strip(), provenance, summary_metadata)
+                await self._memory.store_insight(
+                    summary.strip(), provenance, summary_metadata
+                )
                 stats["summaries_stored"] = 1
-                logger.info(f"Stored turn summary in vector store")
+                logger.info("Stored turn summary in vector store")
             except Exception as e:
                 logger.warning(f"Failed to store summary: {e}")
 
-        # Store tasks as graph nodes (with deduplication)
-        for task in extracted.get("tasks", []):
-            try:
-                label = task.get("description", "unknown task")
-                properties = {"status": task.get("status", "pending")}
-
-                _, was_created = await find_or_create_node(label, "task", properties)
-                if was_created:
-                    stats["nodes_created"] += 1
-                else:
-                    stats["nodes_skipped"] += 1
-                    logger.debug(f"Task '{label}' already exists, touched hit_count")
-            except Exception as e:
-                logger.warning(f"Failed to store task: {e}")
+        # Task storage removed — tasks created too much graph noise
+        # (0% engagement rate on task nodes). Tasks are better tracked
+        # outside the knowledge graph.
 
         return stats
 

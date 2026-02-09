@@ -189,7 +189,7 @@ class ChromaVectorStore(VectorStoreAdapter):
             results = self._collection.query(
                 query_embeddings=[query_embedding],
                 n_results=n_results,
-                where=where,
+                where=self._normalize_where(where),
                 include=["documents", "metadatas", "distances"],
             )
         finally:
@@ -264,7 +264,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         async with self._lock:
             # Get matching IDs first
             results = self._collection.get(
-                where=where,
+                where=self._normalize_where(where),
                 include=[],
             )
 
@@ -301,6 +301,34 @@ class ChromaVectorStore(VectorStoreAdapter):
             "metadata": results["metadatas"][0] if results["metadatas"] else {},
         }
 
+    @staticmethod
+    def _normalize_where(where: dict[str, Any] | None) -> dict[str, Any] | None:
+        """Normalize a where filter for ChromaDB compatibility.
+
+        ChromaDB requires compound filters (multiple keys) to be wrapped
+        in a ``$and`` operator. This method detects multi-key where dicts
+        and rewrites them automatically.
+
+        Args:
+            where: Raw where-clause dict, possibly with multiple top-level keys.
+
+        Returns:
+            A ChromaDB-compatible where dict, or None if input is None/empty.
+        """
+        if not where:
+            return where
+
+        # Already uses a logical operator — pass through
+        if any(k.startswith("$") for k in where):
+            return where
+
+        # Single key — ChromaDB handles this natively
+        if len(where) <= 1:
+            return where
+
+        # Multiple keys — wrap in $and
+        return {"$and": [{k: v} for k, v in where.items()]}
+
     async def get_all(
         self, limit: int = 100, where: dict[str, Any] | None = None
     ) -> list[dict[str, Any]]:
@@ -309,14 +337,16 @@ class ChromaVectorStore(VectorStoreAdapter):
 
         Args:
             limit: Maximum number of documents to return
-            where: Optional metadata filter dict (e.g., {"type": "insight"})
+            where: Optional metadata filter dict (e.g., {"type": "insight"}).
+                   Compound filters with multiple keys are automatically
+                   wrapped in ``$and`` for ChromaDB compatibility.
 
         Returns:
             List of documents with id, text, and metadata
         """
         results = self._collection.get(
             limit=limit,
-            where=where,
+            where=self._normalize_where(where),
             include=["documents", "metadatas"],
         )
 

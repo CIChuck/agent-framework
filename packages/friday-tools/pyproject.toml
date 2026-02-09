@@ -13,6 +13,8 @@ dependencies = [
     "friday-moltbook",
     # Sandbox for code execution
     "friday-sandbox",
+    # Finance data providers
+    "friday-finance",
     # HTTP & Web
     "httpx>=0.25.0",
     "beautifulsoup4>=4.12.0",
@@ -78,6 +80,7 @@ packages = ["src/friday_tools"]
 friday-core = { workspace = true }
 friday-sandbox = { workspace = true }
 friday-moltbook = { workspace = true }
+friday-finance = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests_tools"]

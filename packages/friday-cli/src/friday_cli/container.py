@@ -23,6 +23,8 @@ from friday_core.telemetry import DebugTelemetryRecorder, OpenTelemetryProvider
 
 from friday_memory import (
     ChromaVectorStore,
+    CollectionConfig,
+    CollectionManager,
     ContextAssembler,
     ElementXGraphStore,
     InMemoryEpisodicStore,
@@ -72,9 +74,7 @@ class FridayConfig:
     llm_model: str = field(
         default_factory=lambda: os.getenv("FRIDAY_LLM_MODEL", "gpt-4")
     )
-    llm_api_key: str | None = field(
-        default_factory=lambda: os.getenv("OPENAI_API_KEY")
-    )
+    llm_api_key: str | None = field(default_factory=lambda: os.getenv("OPENAI_API_KEY"))
     llm_api_base: str | None = field(
         default_factory=lambda: os.getenv("FRIDAY_LLM_API_BASE")
     )
@@ -284,7 +284,11 @@ class FridayContainer:
         if self._agent_loader is None:
             from pathlib import Path
 
-            agents_dir = Path(self.config.agents_dir) if self.config.agents_dir else Path("agents")
+            agents_dir = (
+                Path(self.config.agents_dir)
+                if self.config.agents_dir
+                else Path("agents")
+            )
             self._agent_loader = AgentLoader(agents_dir)
         return self._agent_loader
 
@@ -502,18 +506,34 @@ class FridayContainer:
         # Episodic store (always in-memory)
         self._episodic_store = InMemoryEpisodicStore()
 
-        logger.info(f"Storage adapters initialized (profile: {self._memory_profile.value})")
+        logger.info(
+            f"Storage adapters initialized (profile: {self._memory_profile.value})"
+        )
 
     def _create_memory_controller(self) -> None:
-        """Create memory controller."""
+        """Create memory controller with lifecycle-aware collections."""
+        base_name = self.config.chroma_collection
+        collection_config = CollectionConfig(
+            short_term_collection=f"{base_name}_short",
+            long_term_collection=f"{base_name}_long",
+            decayed_collection=f"{base_name}_decayed",
+        )
+        collection_manager = CollectionManager(
+            embedding_function=self._embeddings,
+            config=collection_config,
+            path=self.config.chroma_path,
+            telemetry=self._telemetry,
+        )
+
         self._memory_controller = MemoryController(
             vector_store=self._vector_store,
             graph_store=self._graph_store,
             episodic_store=self._episodic_store,
             telemetry=self._telemetry,
+            collection_manager=collection_manager,
         )
 
-        logger.info("Memory controller initialized")
+        logger.info("Memory controller initialized with lifecycle collections")
 
     def _create_context_engine(self) -> None:
         """Create context assembler and wire extractor."""
@@ -551,7 +571,9 @@ class FridayContainer:
             memory=self._memory_controller,
         )
 
-        logger.info(f"Tool registry initialized with {len(self._tool_registry.list_tools())} tools")
+        logger.info(
+            f"Tool registry initialized with {len(self._tool_registry.list_tools())} tools"
+        )
 
     def _default_profile(self) -> AgentProfile:
         """Create default agent profile."""
@@ -581,6 +603,7 @@ Be helpful, accurate, and concise in your responses.""",
 
 
 # --- Convenience Functions ---
+
 
 async def create_friday_container(
     config: FridayConfig | None = None,

@@ -1,0 +1,20 @@
+[project]
+name = "friday-finance"
+version = "0.1.0"
+description = "Financial data provider integration for Friday Agent Framework"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "massive",
+    "friday-core",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/friday_finance"]
+
+[project.scripts]
+friday-finance-demo = "friday_finance.demo:main"

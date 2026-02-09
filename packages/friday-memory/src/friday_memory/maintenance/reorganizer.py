@@ -15,8 +15,11 @@ Main entry point for coordinating all maintenance operations:
 import logging
 import time
 import uuid
+from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
+
+from friday_memory.lifecycle.stages import MemoryStage
 
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
 from friday_memory.maintenance.backup import BackupManager
@@ -376,8 +379,44 @@ class MemoryReorganizer:
                     memory_id = memory.get("id", "")
                     metadata = memory.get("metadata", {})
 
-                    # Check promotion eligibility
-                    score = self._promotion_scorer.score(metadata)
+                    # Parse created_at for age-based eligibility
+                    created_at_str = metadata.get("created_at")
+                    if created_at_str:
+                        try:
+                            created_at = datetime.fromisoformat(
+                                created_at_str
+                            )
+                        except (ValueError, TypeError):
+                            continue
+                    else:
+                        continue
+
+                    # Check eligibility (age gate)
+                    if not self._promotion_scorer.is_eligible_for_promotion(
+                        MemoryStage.SHORT_TERM, created_at
+                    ):
+                        continue
+
+                    # Extract scoring factors from metadata
+                    access_count = int(
+                        metadata.get("access_count", 0)
+                    )
+                    confidence = float(
+                        metadata.get("confidence", 0.5)
+                    )
+                    relationship_count = int(
+                        metadata.get("relationship_count", 0)
+                    )
+
+                    score = (
+                        self._promotion_scorer.calculate_promotion_score(
+                            created_at=created_at,
+                            access_count=access_count,
+                            confidence=confidence,
+                            relationship_count=relationship_count,
+                        )
+                    )
+
                     if score >= self._config.decay.promotion_threshold:
                         if not dry_run:
                             try:
@@ -388,7 +427,9 @@ class MemoryReorganizer:
                                 report.promoted_memory_ids.append(memory_id)
                             except Exception as e:
                                 report.promotion_failures += 1
-                                report.errors.append(f"Promotion failed for {memory_id}: {e}")
+                                report.errors.append(
+                                    f"Promotion failed for {memory_id}: {e}"
+                                )
                         else:
                             report.promotions_executed += 1
                             report.promoted_memory_ids.append(memory_id)
@@ -402,13 +443,33 @@ class MemoryReorganizer:
 
             # Evaluate each for decay
             if self._decay_calculator:
+                now = datetime.now()
                 decayed_ids = set()
                 for memory in long_term_results:
                     memory_id = memory.get("id", "")
                     metadata = memory.get("metadata", {})
 
-                    decay_score = self._decay_calculator.calculate(metadata)
-                    if decay_score < self._config.decay.decay_threshold:
+                    # Extract decay inputs from metadata
+                    current_score = float(
+                        metadata.get("decay_score", 1.0)
+                    )
+                    last_accessed_str = metadata.get(
+                        "last_accessed_at"
+                    )
+                    if last_accessed_str:
+                        try:
+                            last_accessed = datetime.fromisoformat(
+                                last_accessed_str
+                            )
+                        except (ValueError, TypeError):
+                            last_accessed = now
+                    else:
+                        last_accessed = now
+
+                    decay_score = self._decay_calculator.calculate_decay(
+                        current_score, last_accessed, now
+                    )
+                    if self._decay_calculator.should_decay(decay_score):
                         if not dry_run:
                             try:
                                 await self._collection_manager.demote_to_decayed(
@@ -518,8 +579,8 @@ class MemoryReorganizer:
                         short_term_collection=self._collection_manager.short_term,
                         long_term_collection=self._collection_manager.long_term,
                     )
-                    report.short_term_accesses_flushed = flush_result.short_term_updated
-                    report.long_term_accesses_flushed = flush_result.long_term_updated
+                    report.short_term_accesses_flushed = flush_result.short_term_flushed
+                    report.long_term_accesses_flushed = flush_result.long_term_flushed
                 else:
                     # Report what would be flushed
                     stats = self._access_buffer.get_stats()
@@ -541,13 +602,13 @@ class MemoryReorganizer:
                     st_result = await self._factor_computer.compute_factors(
                         collection=self._collection_manager.short_term,
                     )
-                    report.short_term_factors_updated = st_result.memories_updated
+                    report.short_term_factors_updated = st_result.updated
 
                     # Compute for long-term
                     lt_result = await self._factor_computer.compute_factors(
                         collection=self._collection_manager.long_term,
                     )
-                    report.long_term_factors_updated = lt_result.memories_updated
+                    report.long_term_factors_updated = lt_result.updated
                 else:
                     # Report what would be updated (all memories)
                     st_results = await self._collection_manager.short_term.get_all(

@@ -275,7 +275,10 @@ class CollectionManager:
 
         # Generate IDs if not provided
         if ids is None:
-            ids = [f"mem_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}" for i in range(len(texts))]
+            ids = [
+                f"mem_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{i}"
+                for i in range(len(texts))
+            ]
 
         # Ensure lifecycle metadata is set correctly
         now = datetime.now().isoformat()
@@ -293,6 +296,62 @@ class CollectionManager:
             metadata["protected"] = protected
 
         return await self._short_term.add_documents(texts, metadatas, ids)
+
+    async def get_all(
+        self,
+        limit: int = 100,
+        where: dict[str, Any] | None = None,
+        include_decayed: bool = False,
+    ) -> list[dict[str, Any]]:
+        """
+        Query across short-term and long-term collections with metadata filters.
+
+        Fetches documents from both active collections in parallel, merges
+        the results, and returns them sorted by created_at descending.
+
+        Args:
+            limit: Maximum number of results to return.
+            where: Optional ChromaDB where-clause for metadata filtering
+                   (e.g. {"type": "insight"}).
+            include_decayed: If True, also searches the decayed collection.
+
+        Returns:
+            Merged list of document dicts sorted by created_at descending,
+            trimmed to the requested limit.
+        """
+        tasks = [
+            self._short_term.get_all(limit=limit, where=where),
+            self._long_term.get_all(limit=limit, where=where),
+        ]
+        if include_decayed:
+            tasks.append(self._decayed.get_all(limit=limit, where=where))
+
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        merged: list[dict[str, Any]] = []
+        labels = ["short_term", "long_term", "decayed"]
+        for i, result in enumerate(results):
+            if isinstance(result, Exception):
+                logger.warning(
+                    "get_all query failed for %s: %s",
+                    labels[i],
+                    result,
+                )
+                continue
+            for doc in result:
+                # Tag with source collection if not already present
+                meta = doc.get("metadata", {})
+                if "stage" not in meta:
+                    meta["stage"] = labels[i]
+                merged.append(doc)
+
+        # Sort by created_at descending (most recent first)
+        merged.sort(
+            key=lambda x: x.get("metadata", {}).get("created_at", ""),
+            reverse=True,
+        )
+
+        return merged[:limit]
 
     async def promote_memory(self, memory_id: str) -> bool:
         """
@@ -577,16 +636,12 @@ class CollectionManager:
                         decayed_at_str.replace("Z", "+00:00")
                     )
                 else:
-                    decayed_at = datetime.strptime(
-                        decayed_at_str, "%Y-%m-%d %H:%M:%S"
-                    )
+                    decayed_at = datetime.strptime(decayed_at_str, "%Y-%m-%d %H:%M:%S")
 
                 # Check if memory has expired
                 # Note: comparing naive datetimes for simplicity
                 decayed_at_naive = (
-                    decayed_at.replace(tzinfo=None)
-                    if decayed_at.tzinfo
-                    else decayed_at
+                    decayed_at.replace(tzinfo=None) if decayed_at.tzinfo else decayed_at
                 )
                 if decayed_at_naive < cutoff_date:
                     expired_ids.append(memory_id)
@@ -670,9 +725,7 @@ class CollectionManager:
             if not dry_run and orphaned_node_ids:
                 for node_id in orphaned_node_ids:
                     await graph_store.remove_node(node_id)
-                logger.info(
-                    f"Removed {len(orphaned_node_ids)} orphaned graph nodes"
-                )
+                logger.info(f"Removed {len(orphaned_node_ids)} orphaned graph nodes")
 
         except Exception as e:
             logger.error(f"Error cleaning up orphaned graph nodes: {e}")

@@ -70,17 +70,8 @@ class TestLifecycleProperties:
             "episodic": InMemoryEpisodicStore(),
         }
 
-    def test_has_lifecycle_support_false(self, stores):
-        """Test has_lifecycle_support returns False when not configured."""
-        controller = MemoryController(
-            vector_store=stores["vector"],
-            graph_store=stores["graph"],
-            episodic_store=stores["episodic"],
-        )
-        assert not controller.has_lifecycle_support
-
-    def test_has_lifecycle_support_true(self, stores, mock_embedding):
-        """Test has_lifecycle_support returns True when CollectionManager is set."""
+    def test_has_lifecycle_support_always_true(self, stores, mock_embedding):
+        """Test has_lifecycle_support always returns True."""
         collection_manager = CollectionManager(
             embedding_function=mock_embedding,
             config=unique_config(),
@@ -137,13 +128,17 @@ class TestLifecycleAwareRetrieval:
     @pytest.fixture
     def access_buffer(self):
         """Create access buffer for testing."""
-        return AccessBuffer(AccessBufferConfig(
-            max_buffer_size=100,
-            max_buffer_age_seconds=60,
-        ))
+        return AccessBuffer(
+            AccessBufferConfig(
+                max_buffer_size=100,
+                max_buffer_age_seconds=60,
+            )
+        )
 
     @pytest.fixture
-    def controller_with_lifecycle(self, mock_embedding, collection_manager, access_buffer):
+    def controller_with_lifecycle(
+        self, mock_embedding, collection_manager, access_buffer
+    ):
         """Create controller with lifecycle components."""
         collection_name = f"test_{uuid.uuid4().hex[:8]}"
         return MemoryController(
@@ -167,10 +162,12 @@ class TestLifecycleAwareRetrieval:
         now = datetime.now()
         await collection_manager.add_to_short_term(
             texts=["Test short-term memory"],
-            metadatas=[{
-                "type": "insight",
-                "created_at": now.isoformat(),
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "created_at": now.isoformat(),
+                }
+            ],
             ids=["st_mem_1"],
         )
 
@@ -183,28 +180,6 @@ class TestLifecycleAwareRetrieval:
 
         # Verify lifecycle was used
         assert payload.debug_info.get("lifecycle_enabled") is True
-
-    @pytest.mark.asyncio
-    async def test_recall_falls_back_without_lifecycle(self, mock_embedding):
-        """Test that recall falls back to standard retrieval without lifecycle."""
-        collection_name = f"test_{uuid.uuid4().hex[:8]}"
-        controller = MemoryController(
-            vector_store=ChromaVectorStore(
-                collection_name=collection_name,
-                embedding_function=mock_embedding,
-            ),
-            graph_store=ElementXGraphStore(),
-            episodic_store=InMemoryEpisodicStore(),
-            telemetry=DebugTelemetryRecorder(),
-        )
-
-        payload = await controller.recall(
-            query="Test",
-            session_id="test_session",
-            include_history=False,
-        )
-
-        assert payload.debug_info.get("lifecycle_enabled") is False
 
 
 class TestFastScoring:
@@ -225,6 +200,10 @@ class TestFastScoring:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=unique_config(),
+            ),
         )
 
     def test_apply_fast_scoring_with_factor(self, controller):
@@ -336,6 +315,7 @@ class TestAccessBufferIntegration:
 
         # Allow async tasks to complete
         import asyncio
+
         await asyncio.sleep(0.1)
 
         # Buffer should have recorded accesses
@@ -355,10 +335,12 @@ class TestGraphPathScoringIntegration:
 
     @pytest.fixture
     def graph_scorer(self):
-        return GraphPathScorer(GraphPathScorerConfig(
-            path_threshold=0.3,
-            max_paths=10,
-        ))
+        return GraphPathScorer(
+            GraphPathScorerConfig(
+                path_threshold=0.3,
+                max_paths=10,
+            )
+        )
 
     @pytest.fixture
     def controller_with_scorer(self, mock_embedding, graph_scorer):
@@ -372,6 +354,10 @@ class TestGraphPathScoringIntegration:
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
             telemetry=DebugTelemetryRecorder(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=unique_config(),
+            ),
             graph_scorer=graph_scorer,
         )
 

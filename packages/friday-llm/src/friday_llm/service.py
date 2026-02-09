@@ -75,6 +75,7 @@ class LiteLLMService:
         telemetry: Any | None = None,
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
+        thinking_enabled: bool = False,
     ) -> None:
         """
         Initialize the LiteLLM service.
@@ -88,11 +89,17 @@ class LiteLLMService:
             telemetry: Optional TelemetryInterface for observability
             resilience: Configuration for retry, timeout, and circuit breaker
             pricing_config: Configuration for cost estimation
+            thinking_enabled: Enable model thinking/reasoning mode.
+                When *False* (default), ``thinking`` is explicitly
+                disabled in the API call, which avoids
+                ``reasoning_content`` validation errors on providers
+                like Moonshot Kimi K2.5.
         """
         self.model = model_name
         self.api_key = api_key
         self.api_base = api_base
         self.telemetry = telemetry
+        self.thinking_enabled = thinking_enabled
 
         # Handle backward compatibility with max_retries
         if max_retries is not None:
@@ -182,6 +189,10 @@ class LiteLLMService:
         """
         effective_timeout = timeout or self._resilience.timeout_seconds
 
+        langfuse_meta = self._build_langfuse_metadata(
+            conversation_context, "chat_completion"
+        )
+
         with self._telemetry_helper.track_completion(
             model=self.model,
             context=conversation_context,
@@ -196,6 +207,7 @@ class LiteLLMService:
                     max_tokens=max_tokens,
                     timeout=effective_timeout,
                     operation="chat_completion",
+                    metadata=langfuse_meta,
                 )
 
                 # Parse the response
@@ -270,6 +282,9 @@ class LiteLLMService:
         """
         effective_timeout = timeout or self._resilience.stream_timeout_seconds
         streaming_tracker = self._telemetry_helper.create_streaming_tracker()
+        langfuse_meta = self._build_langfuse_metadata(
+            conversation_context, "chat_completion_stream"
+        )
 
         with self._telemetry_helper.track_completion(
             model=self.model,
@@ -285,6 +300,7 @@ class LiteLLMService:
                     temperature=temperature,
                     max_tokens=max_tokens,
                     timeout=effective_timeout,
+                    metadata=langfuse_meta,
                 )
 
                 # Start TTFT tracking after connection established
@@ -319,6 +335,43 @@ class LiteLLMService:
             except LLMTimeoutError:
                 raise
 
+    def _build_langfuse_metadata(
+        self,
+        context: ConversationContext | None,
+        generation_name: str = "chat_completion",
+    ) -> dict[str, Any] | None:
+        """
+        Build LangFuse trace metadata from conversation context.
+
+        Returns a metadata dict for ``litellm.acompletion`` that
+        LangFuse's native callback uses to group and label traces.
+        Returns ``None`` when there is no context to attach.
+
+        Args:
+            context: The conversation context for this call.
+            generation_name: Label for this generation in LangFuse.
+
+        Returns:
+            Metadata dict or ``None``.
+        """
+        if context is None:
+            return None
+        meta: dict[str, Any] = {
+            "generation_name": generation_name,
+            "trace_user_id": context.session_id,
+            "session_id": context.session_id,
+        }
+        if context.conversation_id:
+            meta["trace_id"] = context.conversation_id
+            meta["trace_name"] = (
+                f"turn-{context.turn_id}"
+                if context.turn_id
+                else "agent-turn"
+            )
+        if context.turn_id:
+            meta["tags"] = [f"turn:{context.turn_id}"]
+        return meta
+
     async def _call_with_retry(
         self,
         messages: list[dict[str, Any]],
@@ -327,6 +380,7 @@ class LiteLLMService:
         timeout: float,
         operation: str,
         max_tokens: int | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> Any:
         """Execute LiteLLM call with retry logic, timeout, and circuit breaker."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -365,6 +419,12 @@ class LiteLLMService:
                 kwargs["tools"] = tools
                 kwargs["tool_choice"] = "auto"
 
+            if metadata:
+                kwargs["metadata"] = metadata
+
+            if not self.thinking_enabled:
+                kwargs["thinking"] = {"type": "disabled"}
+
             try:
                 async with asyncio.timeout(timeout):
                     return await litellm.acompletion(**kwargs)
@@ -396,6 +456,7 @@ class LiteLLMService:
         temperature: float,
         timeout: float,
         max_tokens: int | None = None,
+        metadata: dict[str, Any] | None = None,
     ) -> Any:
         """Execute streaming call setup with retry on connection errors."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -434,6 +495,12 @@ class LiteLLMService:
             if tools:
                 kwargs["tools"] = tools
                 kwargs["tool_choice"] = "auto"
+
+            if metadata:
+                kwargs["metadata"] = metadata
+
+            if not self.thinking_enabled:
+                kwargs["thinking"] = {"type": "disabled"}
 
             try:
                 async with asyncio.timeout(timeout):
@@ -488,9 +555,15 @@ class LiteLLMService:
                 "total_tokens": getattr(response.usage, "total_tokens", 0),
             }
 
+        # Preserve reasoning_content for thinking models (e.g. Moonshot
+        # Kimi K2.5).  Must be replayed in assistant tool-call messages
+        # or the provider will reject the next request.
+        reasoning_content = getattr(message, "reasoning_content", None)
+
         return ChatCompletionResponse(
             content=message.content,
             tool_calls=tool_calls,
             model=getattr(response, "model", self.model),
             usage=usage,
+            reasoning_content=reasoning_content,
         )

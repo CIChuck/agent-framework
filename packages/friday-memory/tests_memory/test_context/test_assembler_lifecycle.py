@@ -18,6 +18,8 @@ from friday_core import DebugTelemetryRecorder
 
 from friday_memory import (
     ChromaVectorStore,
+    CollectionConfig,
+    CollectionManager,
     ElementXGraphStore,
     InMemoryEpisodicStore,
     MemoryController,
@@ -25,6 +27,16 @@ from friday_memory import (
 from friday_memory.context import ContextAssembler
 from friday_memory.lifecycle.stages import MemoryStage
 from friday_memory.models import ContextPayload, SessionState
+
+
+def _unique_config():
+    """Create config with unique collection names for test isolation."""
+    suffix = uuid.uuid4().hex[:8]
+    return CollectionConfig(
+        short_term_collection=f"test_short_{suffix}",
+        long_term_collection=f"test_long_{suffix}",
+        decayed_collection=f"test_decayed_{suffix}",
+    )
 
 
 class TestDecayedFiltering:
@@ -47,6 +59,10 @@ class TestDecayedFiltering:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=_unique_config(),
+            ),
         )
         return ContextAssembler(
             memory_controller=controller,
@@ -58,7 +74,11 @@ class TestDecayedFiltering:
         payload = ContextPayload(
             history=[],
             passages=[
-                {"id": "1", "text": "Active memory", "metadata": {"stage": "long_term"}},
+                {
+                    "id": "1",
+                    "text": "Active memory",
+                    "metadata": {"stage": "long_term"},
+                },
                 {"id": "2", "text": "Decayed memory", "metadata": {"stage": "decayed"}},
                 {"id": "3", "text": "Short term", "metadata": {"stage": "short_term"}},
             ],
@@ -77,7 +97,11 @@ class TestDecayedFiltering:
         payload = ContextPayload(
             history=[],
             passages=[
-                {"id": "1", "text": "Active memory", "metadata": {"stage": "long_term"}},
+                {
+                    "id": "1",
+                    "text": "Active memory",
+                    "metadata": {"stage": "long_term"},
+                },
             ],
             entities=[],
             facts=[],
@@ -126,6 +150,10 @@ class TestStageSeparation:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=_unique_config(),
+            ),
         )
         return ContextAssembler(memory_controller=controller)
 
@@ -185,6 +213,10 @@ class TestRelevancyScoring:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=_unique_config(),
+            ),
         )
         return ContextAssembler(memory_controller=controller)
 
@@ -241,6 +273,10 @@ class TestLifecycleAwareBudgeting:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=_unique_config(),
+            ),
         )
         return ContextAssembler(
             memory_controller=controller,
@@ -252,8 +288,18 @@ class TestLifecycleAwareBudgeting:
         payload = ContextPayload(
             history=[],
             passages=[
-                {"id": "1", "text": "x" * 100, "metadata": {"stage": "long_term"}, "similarity": 0.8},
-                {"id": "2", "text": "x" * 100, "metadata": {"stage": "decayed"}, "similarity": 0.9},
+                {
+                    "id": "1",
+                    "text": "x" * 100,
+                    "metadata": {"stage": "long_term"},
+                    "similarity": 0.8,
+                },
+                {
+                    "id": "2",
+                    "text": "x" * 100,
+                    "metadata": {"stage": "decayed"},
+                    "similarity": 0.9,
+                },
             ],
             entities=[],
             facts=[],
@@ -272,9 +318,24 @@ class TestLifecycleAwareBudgeting:
         payload = ContextPayload(
             history=[],
             passages=[
-                {"id": "st1", "text": "x" * 500, "metadata": {"stage": "short_term"}, "inclusion_score": 0.6},
-                {"id": "lt_low", "text": "x" * 500, "metadata": {"stage": "long_term"}, "inclusion_score": 0.2},
-                {"id": "lt_high", "text": "x" * 500, "metadata": {"stage": "long_term"}, "inclusion_score": 0.8},
+                {
+                    "id": "st1",
+                    "text": "x" * 500,
+                    "metadata": {"stage": "short_term"},
+                    "inclusion_score": 0.6,
+                },
+                {
+                    "id": "lt_low",
+                    "text": "x" * 500,
+                    "metadata": {"stage": "long_term"},
+                    "inclusion_score": 0.2,
+                },
+                {
+                    "id": "lt_high",
+                    "text": "x" * 500,
+                    "metadata": {"stage": "long_term"},
+                    "inclusion_score": 0.8,
+                },
             ],
             entities=[],
             facts=[],
@@ -297,10 +358,30 @@ class TestLifecycleAwareBudgeting:
         payload = ContextPayload(
             history=[],
             passages=[
-                {"id": "st1", "text": "Short term memory", "metadata": {"stage": "short_term"}, "inclusion_score": 0.6},
-                {"id": "st2", "text": "Another short", "metadata": {"stage": "short_term"}, "inclusion_score": 0.5},
-                {"id": "lt1", "text": "Long term", "metadata": {"stage": "long_term"}, "inclusion_score": 0.7},
-                {"id": "lt2", "text": "Another long", "metadata": {"stage": "long_term"}, "inclusion_score": 0.6},
+                {
+                    "id": "st1",
+                    "text": "Short term memory",
+                    "metadata": {"stage": "short_term"},
+                    "inclusion_score": 0.6,
+                },
+                {
+                    "id": "st2",
+                    "text": "Another short",
+                    "metadata": {"stage": "short_term"},
+                    "inclusion_score": 0.5,
+                },
+                {
+                    "id": "lt1",
+                    "text": "Long term",
+                    "metadata": {"stage": "long_term"},
+                    "inclusion_score": 0.7,
+                },
+                {
+                    "id": "lt2",
+                    "text": "Another long",
+                    "metadata": {"stage": "long_term"},
+                    "inclusion_score": 0.6,
+                },
             ],
             entities=[],
             facts=[],
@@ -313,7 +394,11 @@ class TestLifecycleAwareBudgeting:
         # Short-term should be preserved
         ids = [p["id"] for p in result.passages]
         # At minimum, short-term should still be present
-        short_term_count = sum(1 for p in result.passages if p.get("metadata", {}).get("stage") == "short_term")
+        short_term_count = sum(
+            1
+            for p in result.passages
+            if p.get("metadata", {}).get("stage") == "short_term"
+        )
         assert short_term_count >= min(2, len(result.passages))
 
     def test_estimate_tokens_full_includes_insights(self, assembler):
@@ -359,6 +444,10 @@ class TestCreatePrunedPayloadFull:
             ),
             graph_store=ElementXGraphStore(),
             episodic_store=InMemoryEpisodicStore(),
+            collection_manager=CollectionManager(
+                embedding_function=mock_embedding,
+                config=_unique_config(),
+            ),
         )
         return ContextAssembler(memory_controller=controller)
 
@@ -368,8 +457,7 @@ class TestCreatePrunedPayloadFull:
         from friday_memory.models import InteractionTurn
 
         return [
-            InteractionTurn(id=f"turn_{i}", session_id="test_session")
-            for i in range(5)
+            InteractionTurn(id=f"turn_{i}", session_id="test_session") for i in range(5)
         ]
 
     @pytest.fixture

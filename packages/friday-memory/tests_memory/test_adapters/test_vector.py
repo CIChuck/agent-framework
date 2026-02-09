@@ -6,6 +6,7 @@ Tests cover:
 - Metadata filtering
 - Document deletion
 - Similarity scoring
+- Where-clause normalization for ChromaDB compatibility
 
 Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 """
@@ -15,6 +16,46 @@ import uuid
 import pytest
 
 from friday_memory import ChromaVectorStore
+
+
+class TestNormalizeWhere:
+    """Tests for ChromaVectorStore._normalize_where static method."""
+
+    def test_none_passthrough(self):
+        """Test that None is passed through."""
+        assert ChromaVectorStore._normalize_where(None) is None
+
+    def test_empty_dict_passthrough(self):
+        """Test that empty dict is passed through."""
+        assert ChromaVectorStore._normalize_where({}) == {}
+
+    def test_single_key_passthrough(self):
+        """Test that single-key where is passed through."""
+        where = {"type": "insight"}
+        result = ChromaVectorStore._normalize_where(where)
+        assert result == {"type": "insight"}
+
+    def test_compound_wrapped_in_and(self):
+        """Test that multi-key where is wrapped in $and."""
+        where = {"type": "insight", "created_at": {"$gte": "2026-01-01"}}
+        result = ChromaVectorStore._normalize_where(where)
+        assert "$and" in result
+        assert len(result["$and"]) == 2
+        assert {"type": "insight"} in result["$and"]
+        assert {"created_at": {"$gte": "2026-01-01"}} in result["$and"]
+
+    def test_existing_logical_operator_passthrough(self):
+        """Test that where already using $and/$or is passed through."""
+        where = {"$and": [{"type": "insight"}, {"stage": "short_term"}]}
+        result = ChromaVectorStore._normalize_where(where)
+        assert result is where  # Same object, no transformation
+
+    def test_three_keys_wrapped(self):
+        """Test that three top-level keys are wrapped correctly."""
+        where = {"type": "insight", "stage": "short_term", "author": "system"}
+        result = ChromaVectorStore._normalize_where(where)
+        assert "$and" in result
+        assert len(result["$and"]) == 3
 
 
 class TestChromaVectorStore:

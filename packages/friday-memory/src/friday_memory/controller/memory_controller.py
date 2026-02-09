@@ -128,10 +128,10 @@ class MemoryController:
         vector_store: VectorStoreAdapter,
         graph_store: GraphStoreAdapter,
         episodic_store: EpisodicStoreAdapter,
+        collection_manager: "CollectionManager",
         telemetry: TelemetryInterface | None = None,
         priming_config: dict[str, Any] | None = None,
         # Lifecycle components (Phase 6)
-        collection_manager: "CollectionManager | None" = None,
         access_buffer: "AccessBuffer | None" = None,
         graph_scorer: "GraphPathScorer | None" = None,
         # Background recalculation config
@@ -158,7 +158,7 @@ class MemoryController:
                 - min_turns: int (default 5) - turns before priming stops
                 - previous_sessions: int (default 0) - number of prior sessions to include
                 - previous_session_turns: int (default 5) - max turns per prior session
-            collection_manager: Optional CollectionManager for lifecycle-aware retrieval
+            collection_manager: CollectionManager for lifecycle-aware storage and retrieval
             access_buffer: Optional AccessBuffer for lazy access tracking
             graph_scorer: Optional GraphPathScorer for graph path filtering
             recalc_interval: Number of turns between background insight recalculation (0 = disabled)
@@ -181,7 +181,9 @@ class MemoryController:
 
         # Background recalculation settings
         self._recalc_interval = recalc_interval
-        self._recalc_callback: Callable[[str, list[InteractionTurn]], Awaitable[None]] | None = None
+        self._recalc_callback: (
+            Callable[[str, list[InteractionTurn]], Awaitable[None]] | None
+        ) = None
 
         # Priming configuration
         self._priming_config = priming_config or {
@@ -202,7 +204,10 @@ class MemoryController:
         # Priming state per session
         # _primed_content: session_id -> (entities, insights, summaries, relationship_summaries)
         self._primed_content: dict[
-            str, tuple[list[GraphNode], list[dict[str, Any]], list[dict[str, Any]], list[str]]
+            str,
+            tuple[
+                list[GraphNode], list[dict[str, Any]], list[dict[str, Any]], list[str]
+            ],
         ] = {}
         # _session_turn_counts: session_id -> turn count
         self._session_turn_counts: dict[str, int] = {}
@@ -309,10 +314,9 @@ class MemoryController:
         Returns:
             List of insight dicts created by that author
         """
-        # Query vector store with author filter
-        # ChromaDB uses 'where' for metadata filtering
+        # Query across lifecycle collections with author filter
         try:
-            results = await self.vector.get_all(
+            results = await self._collection_manager.get_all(
                 limit=limit,
                 where={"provenance_author_id": author_id.lower()},
             )
@@ -368,8 +372,7 @@ class MemoryController:
 
         # Convert to item counts
         max_history = min(
-            history_limit,
-            max(1, history_budget // self.TOKENS_PER_HISTORY_TURN)
+            history_limit, max(1, history_budget // self.TOKENS_PER_HISTORY_TURN)
         )
         max_insights = max(1, insights_budget // self.TOKENS_PER_INSIGHT)
         max_summaries = max(1, summaries_budget // self.TOKENS_PER_SUMMARY)
@@ -458,13 +461,9 @@ class MemoryController:
             else:
                 tasks.append(_empty_list())
 
-            # Vector retrieval - use lifecycle-aware when available
-            if self._collection_manager:
-                tasks.append(self._retrieve_vector_lifecycle(query, vector_results))
-                debug_info["lifecycle_enabled"] = True
-            else:
-                tasks.append(self._retrieve_vector(query, vector_results))
-                debug_info["lifecycle_enabled"] = False
+            # Vector retrieval via lifecycle collections
+            tasks.append(self._retrieve_vector_lifecycle(query, vector_results))
+            debug_info["lifecycle_enabled"] = True
 
             # Graph retrieval (entities from query)
             tasks.append(self._retrieve_graph(query, graph_depth))
@@ -496,7 +495,9 @@ class MemoryController:
 
             # Fetch prior session history for cross-session continuity
             prior_history: list[InteractionTurn] = []
-            previous_session_turns = self._priming_config.get("previous_session_turns", 5)
+            previous_session_turns = self._priming_config.get(
+                "previous_session_turns", 5
+            )
             if previous_sessions > 0 and session_id and limits["prior_turns"] > 0:
                 prior_history = await self._fetch_prior_session_history(
                     session_id,
@@ -519,7 +520,7 @@ class MemoryController:
 
             # Build relationship summaries for top entities (budget-limited)
             all_relationships = await self._build_relationship_summaries(top_entities)
-            relationship_summaries = all_relationships[:limits["relationships"]]
+            relationship_summaries = all_relationships[: limits["relationships"]]
 
             # Record debug info
             debug_info["history_count"] = len(history)
@@ -592,7 +593,12 @@ class MemoryController:
         async with self._state_lock:
             # Only store if not already primed by another task
             if session_id not in self._primed_content:
-                self._primed_content[session_id] = (entities, insights, summaries, relationships)
+                self._primed_content[session_id] = (
+                    entities,
+                    insights,
+                    summaries,
+                    relationships,
+                )
 
     async def prime_context(
         self,
@@ -640,11 +646,14 @@ class MemoryController:
             if not top_nodes:
                 return [], [], [], []
 
-            # Step 2: Build recency filter if configured
-            where_filter = None
+            # Step 2: Build recency cutoff for post-query filtering
+            # ChromaDB $gte only works on numeric fields, so we filter
+            # ISO timestamp strings in Python after retrieval.
+            recency_cutoff: str | None = None
             if recency_days > 0:
-                cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
-                where_filter = {"created_at": {"$gte": cutoff}}
+                recency_cutoff = (
+                    datetime.now() - timedelta(days=recency_days)
+                ).isoformat()
 
             # Step 3: Pre-fetch edges to build rich semantic queries (indexed retrieval)
             # We combine entity labels with their relationships for better matching
@@ -652,10 +661,16 @@ class MemoryController:
             entity_lookup = {e.id: e.label for e in top_nodes}
 
             # Get only edges from top entities (indexed retrieval)
-            entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
+            entity_edges = await self.graph.get_edges_for_nodes(
+                entity_ids, direction="outgoing"
+            )
 
             # Get labels for edge targets not already in lookup
-            target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+            target_ids = {
+                edge.target_id
+                for edge in entity_edges
+                if edge.target_id not in entity_ids
+            }
             if target_ids:
                 target_labels = await self.graph.get_node_labels(target_ids)
                 entity_lookup.update(target_labels)
@@ -665,24 +680,26 @@ class MemoryController:
                 target_label = entity_lookup.get(edge.target_id, edge.target_id[:8])
                 if edge.source_id not in edges_by_source:
                     edges_by_source[edge.source_id] = []
-                edges_by_source[edge.source_id].append(
-                    (edge.relation, target_label)
-                )
+                edges_by_source[edge.source_id].append((edge.relation, target_label))
 
             # Step 4: Fetch most recent insights from vector store
             all_insights: list[dict[str, Any]] = []
             try:
-                # Build insight filter
-                insight_filter: dict[str, Any] = {"type": "insight"}
-                if where_filter:
-                    insight_filter.update(where_filter)
-
                 # Fetch insights and sort by created_at descending
                 # Fetch more than needed to account for filtering, then take top N
-                raw_insights = await self.vector.get_all(
-                    limit=max_insights * 3,  # Fetch extra to ensure we get enough after sorting
-                    where=insight_filter,
+                raw_insights = await self._collection_manager.get_all(
+                    limit=max_insights * 3,
+                    where={"type": "insight"},
                 )
+
+                # Apply recency filter in Python (ChromaDB can't filter ISO strings)
+                if recency_cutoff:
+                    raw_insights = [
+                        doc
+                        for doc in raw_insights
+                        if doc.get("metadata", {}).get("created_at", "")
+                        >= recency_cutoff
+                    ]
 
                 # Sort by created_at descending (most recent first)
                 raw_insights.sort(
@@ -703,16 +720,20 @@ class MemoryController:
             # Step 5: Fetch most recent turn summaries from vector store
             turn_summaries: list[dict[str, Any]] = []
             try:
-                # Build summary filter
-                summary_filter: dict[str, Any] = {"type": "summary"}
-                if where_filter:
-                    summary_filter.update(where_filter)
-
                 # Fetch summaries and sort by created_at descending
-                raw_summaries = await self.vector.get_all(
-                    limit=max_summaries * 3,  # Fetch extra to ensure we get enough after sorting
-                    where=summary_filter,
+                raw_summaries = await self._collection_manager.get_all(
+                    limit=max_summaries * 3,
+                    where={"type": "summary"},
                 )
+
+                # Apply recency filter in Python
+                if recency_cutoff:
+                    raw_summaries = [
+                        doc
+                        for doc in raw_summaries
+                        if doc.get("metadata", {}).get("created_at", "")
+                        >= recency_cutoff
+                    ]
 
                 # Sort by created_at descending (most recent first)
                 raw_summaries.sort(
@@ -807,10 +828,14 @@ class MemoryController:
         entity_ids = {e.id for e in entities}
 
         # Get outgoing edges for these entities only (indexed retrieval)
-        entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
+        entity_edges = await self.graph.get_edges_for_nodes(
+            entity_ids, direction="outgoing"
+        )
 
         # Collect target IDs we need labels for
-        target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+        target_ids = {
+            edge.target_id for edge in entity_edges if edge.target_id not in entity_ids
+        }
 
         # Get labels for entities + targets (indexed retrieval)
         entity_lookup = {e.id: e.label for e in entities}
@@ -819,7 +844,9 @@ class MemoryController:
             entity_lookup.update(target_labels)
 
         # Group edges by source entity, filtering out behavioral edges
-        edges_by_source: dict[str, list[tuple[str, str]]] = {}  # (relation, target_label)
+        edges_by_source: dict[
+            str, list[tuple[str, str]]
+        ] = {}  # (relation, target_label)
 
         for edge in entity_edges:
             # Filter out behavioral/conversational relations
@@ -919,23 +946,30 @@ class MemoryController:
         Returns:
             List of insight dicts, most recent first
         """
-        where_filter: dict[str, Any] = {"type": "insight"}
-        if recency_days > 0:
-            cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
-            where_filter["created_at"] = {"$gte": cutoff}
-
         try:
-            raw = await self.vector.get_all(limit=max_count * 3, where=where_filter)
-            raw.sort(
-                key=lambda x: x.get("metadata", {}).get("created_at", ""),
-                reverse=True,
+            raw = await self._collection_manager.get_all(
+                limit=max_count * 3, where={"type": "insight"}
             )
+            # Apply recency filter in Python (ChromaDB can't filter ISO strings)
+            if recency_days > 0:
+                cutoff = (
+                    datetime.now() - timedelta(days=recency_days)
+                ).isoformat()
+                raw = [
+                    doc
+                    for doc in raw
+                    if doc.get("metadata", {}).get("created_at", "") >= cutoff
+                ]
+            # get_all() already sorts by created_at desc
             # Deduplicate by topic/entities before returning
             deduped = self._dedupe_by_topic(raw)
             return deduped[:max_count]
         except Exception as e:
             if self._telemetry:
-                self._emit_event("fetch_recent_insights_failed", {"error": str(e)})
+                self._emit_event(
+                    "fetch_recent_insights_failed",
+                    {"error": str(e)},
+                )
             return []
 
     def _dedupe_by_topic(self, insights: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1015,7 +1049,8 @@ class MemoryController:
                     clean_word
                     and clean_word[0].isupper()
                     and len(clean_word) > 2
-                    and clean_word.lower() not in {"the", "this", "that", "they", "their"}
+                    and clean_word.lower()
+                    not in {"the", "this", "that", "they", "their"}
                 ):
                     entities.add(clean_word.lower())
 
@@ -1036,21 +1071,28 @@ class MemoryController:
         Returns:
             List of summary dicts, most recent first
         """
-        where_filter: dict[str, Any] = {"type": "summary"}
-        if recency_days > 0:
-            cutoff = (datetime.now() - timedelta(days=recency_days)).isoformat()
-            where_filter["created_at"] = {"$gte": cutoff}
-
         try:
-            raw = await self.vector.get_all(limit=max_count * 3, where=where_filter)
-            raw.sort(
-                key=lambda x: x.get("metadata", {}).get("created_at", ""),
-                reverse=True,
+            raw = await self._collection_manager.get_all(
+                limit=max_count * 3, where={"type": "summary"}
             )
+            # Apply recency filter in Python (ChromaDB can't filter ISO strings)
+            if recency_days > 0:
+                cutoff = (
+                    datetime.now() - timedelta(days=recency_days)
+                ).isoformat()
+                raw = [
+                    doc
+                    for doc in raw
+                    if doc.get("metadata", {}).get("created_at", "") >= cutoff
+                ]
+            # get_all() already sorts by created_at desc
             return raw[:max_count]
         except Exception as e:
             if self._telemetry:
-                self._emit_event("fetch_recent_summaries_failed", {"error": str(e)})
+                self._emit_event(
+                    "fetch_recent_summaries_failed",
+                    {"error": str(e)},
+                )
             return []
 
     async def _fetch_key_facts(self, limit: int = 10) -> list[dict[str, Any]]:
@@ -1068,24 +1110,19 @@ class MemoryController:
             List of insight documents with 'text' and 'metadata' (most recent first)
         """
         try:
-            # Fetch extra insights to allow for sorting by recency
-            logger.debug(f"_fetch_key_facts: Fetching insights from vector store")
-            documents = await self.vector.get_all(
-                limit=limit * 3,  # Fetch extra to ensure we get enough after sorting
+            # Fetch insights from lifecycle collections
+            logger.debug("_fetch_key_facts: Fetching insights")
+            documents = await self._collection_manager.get_all(
+                limit=limit * 3,
                 where={"type": "insight"},
             )
-            logger.debug(f"_fetch_key_facts: Got {len(documents)} documents from vector store")
+            logger.debug("_fetch_key_facts: Got %d documents", len(documents))
 
-            # Sort by created_at descending (most recent first)
-            documents.sort(
-                key=lambda x: x.get("metadata", {}).get("created_at", ""),
-                reverse=True,
-            )
-
-            # Return the most recent insight documents (with metadata for timestamps)
+            # get_all() already sorts by created_at desc
+            # Return the most recent insight documents
             facts = [doc for doc in documents[:limit] if doc.get("text")]
 
-            logger.debug(f"_fetch_key_facts: Returning {len(facts)} facts (most recent first)")
+            logger.debug("_fetch_key_facts: Returning %d facts", len(facts))
             return facts
         except Exception as e:
             logger.error(f"_fetch_key_facts: Exception occurred: {e}")
@@ -1230,7 +1267,11 @@ class MemoryController:
     async def _retrieve_vector(
         self, query: str, n_results: int
     ) -> list[dict[str, Any]]:
-        """Retrieve semantically similar passages."""
+        """Retrieve semantically similar passages.
+
+        DEPRECATED: Use _retrieve_vector_lifecycle() instead.
+        All retrieval now goes through CollectionManager.
+        """
         start_time = time.time()
         results = await self.vector.query(query, n_results=n_results)
         if self._telemetry:
@@ -1314,11 +1355,14 @@ class MemoryController:
 
     @property
     def has_lifecycle_support(self) -> bool:
-        """Check if lifecycle components are configured."""
-        return self._collection_manager is not None
+        """Check if lifecycle components are configured.
+
+        DEPRECATED: CollectionManager is now required. Always returns True.
+        """
+        return True
 
     @property
-    def collection_manager(self) -> "CollectionManager | None":
+    def collection_manager(self) -> "CollectionManager":
         """Access to CollectionManager for lifecycle operations."""
         return self._collection_manager
 
@@ -1353,9 +1397,6 @@ class MemoryController:
         Returns:
             Combined and scored results from both collections
         """
-        if not self._collection_manager:
-            # Fallback to standard retrieval
-            return await self._retrieve_vector(query, n_results)
 
         start_time = time.time()
 
@@ -1433,10 +1474,12 @@ class MemoryController:
             retrieval_factor = metadata.get("retrieval_factor", 0.5)
             inclusion_score = similarity * retrieval_factor
 
-            scored.append({
-                **result,
-                "inclusion_score": inclusion_score,
-            })
+            scored.append(
+                {
+                    **result,
+                    "inclusion_score": inclusion_score,
+                }
+            )
 
         return scored
 
@@ -1477,10 +1520,16 @@ class MemoryController:
             entity_lookup = {e.id: e for e in entities}
 
             # Get only edges from these entities
-            entity_edges = await self.graph.get_edges_for_nodes(entity_ids, direction="outgoing")
+            entity_edges = await self.graph.get_edges_for_nodes(
+                entity_ids, direction="outgoing"
+            )
 
             # Get target nodes we need (that aren't already in entities)
-            target_ids = {edge.target_id for edge in entity_edges if edge.target_id not in entity_ids}
+            target_ids = {
+                edge.target_id
+                for edge in entity_edges
+                if edge.target_id not in entity_ids
+            }
             if target_ids:
                 target_nodes = await self.graph.get_nodes_by_ids(target_ids)
                 entity_lookup.update(target_nodes)
@@ -1612,8 +1661,8 @@ class MemoryController:
         if extra_metadata:
             meta_dict.update(extra_metadata)
 
-        # Store in vector store
-        await self.vector.add_documents(
+        # Store in short-term collection (lifecycle-aware)
+        await self._collection_manager.add_to_short_term(
             texts=[text],
             metadatas=[meta_dict],
             ids=[insight_id],
@@ -1673,8 +1722,8 @@ class MemoryController:
         }
         metadatas = [base_meta.copy() for _ in texts]
 
-        # Single batch store to vector store
-        await self.vector.add_documents(
+        # Store batch in short-term collection (lifecycle-aware)
+        await self._collection_manager.add_to_short_term(
             texts=texts,
             metadatas=metadatas,
             ids=ids,
@@ -1743,8 +1792,8 @@ class MemoryController:
                 meta.update(extra_meta)
             metadatas.append(meta)
 
-        # Single batch store to vector store
-        await self.vector.add_documents(
+        # Store batch in short-term collection (lifecycle-aware)
+        await self._collection_manager.add_to_short_term(
             texts=texts,
             metadatas=metadatas,
             ids=ids,
@@ -1795,43 +1844,21 @@ class MemoryController:
         """
         doc_id = doc_id or f"doc_{uuid.uuid4().hex[:8]}"
 
-        if self._collection_manager:
-            # Route through lifecycle collections (short-term first)
-            await self._collection_manager.add_to_short_term(
-                texts=[text],
-                metadatas=[metadata],
-                ids=[doc_id],
-                protected=protected,
-            )
-            self._emit_event(
-                "document_stored",
-                {
-                    "doc_id": doc_id,
-                    "text_length": len(text),
-                    "lifecycle": True,
-                    "collection": "short_term",
-                    "protected": protected,
-                },
-            )
-        else:
-            # Fallback to main collection (legacy mode)
-            # Note: protected flag is stored in metadata but has no effect without lifecycle
-            metadata["protected"] = protected
-            await self.vector.add_documents(
-                texts=[text],
-                metadatas=[metadata],
-                ids=[doc_id],
-            )
-            self._emit_event(
-                "document_stored",
-                {
-                    "doc_id": doc_id,
-                    "text_length": len(text),
-                    "lifecycle": False,
-                    "collection": "main",
-                    "protected": protected,
-                },
-            )
+        await self._collection_manager.add_to_short_term(
+            texts=[text],
+            metadatas=[metadata],
+            ids=[doc_id],
+            protected=protected,
+        )
+        self._emit_event(
+            "document_stored",
+            {
+                "doc_id": doc_id,
+                "text_length": len(text),
+                "collection": "short_term",
+                "protected": protected,
+            },
+        )
 
         return doc_id
 
@@ -1865,38 +1892,21 @@ class MemoryController:
         if ids is None:
             ids = [f"doc_{uuid.uuid4().hex[:8]}" for _ in texts]
 
-        if self._collection_manager:
-            await self._collection_manager.add_to_short_term(
-                texts=texts,
-                metadatas=metadatas,
-                ids=ids,
-                protected=protected,
-            )
-            self._emit_event(
-                "documents_batch_stored",
-                {
-                    "count": len(texts),
-                    "total_chars": sum(len(t) for t in texts),
-                    "lifecycle": True,
-                    "collection": "short_term",
-                    "protected": protected,
-                },
-            )
-        else:
-            await self.vector.add_documents(
-                texts=texts,
-                metadatas=metadatas,
-                ids=ids,
-            )
-            self._emit_event(
-                "documents_batch_stored",
-                {
-                    "count": len(texts),
-                    "total_chars": sum(len(t) for t in texts),
-                    "lifecycle": False,
-                    "collection": "main",
-                },
-            )
+        await self._collection_manager.add_to_short_term(
+            texts=texts,
+            metadatas=metadatas,
+            ids=ids,
+            protected=protected,
+        )
+        self._emit_event(
+            "documents_batch_stored",
+            {
+                "count": len(texts),
+                "total_chars": sum(len(t) for t in texts),
+                "collection": "short_term",
+                "protected": protected,
+            },
+        )
 
         return ids
 
@@ -1999,7 +2009,8 @@ class MemoryController:
                 if (
                     self._recalc_interval > 0
                     and self._recalc_callback
-                    and self._session_turn_counts[session_id] % self._recalc_interval == 0
+                    and self._session_turn_counts[session_id] % self._recalc_interval
+                    == 0
                 ):
                     should_recalc = True
 
@@ -2059,7 +2070,9 @@ class MemoryController:
             Dict with priming info (entities, insights, summaries, relationships, etc.)
         """
         if session_id in self._primed_content:
-            entities, insights, summaries, relationships = self._primed_content[session_id]
+            entities, insights, summaries, relationships = self._primed_content[
+                session_id
+            ]
             return {
                 "enabled": self._priming_config.get("enabled", True),
                 "primed": True,

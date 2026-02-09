@@ -27,6 +27,14 @@ from .utility import EchoTool, GetCurrentDateTimeTool
 # Smart file reading
 from .filesystem.smart_read import SmartFileReadTool
 
+# Finance tools
+from .finance import (
+    GetCryptoDataTool,
+    GetMarketDataTool,
+    GetTechnicalAnalysisTool,
+    MassiveBaseTool,
+)
+
 __all__ = [
     # Protocols
     "ToolDefinition",
@@ -56,6 +64,11 @@ __all__ = [
     "EchoTool",
     # Smart file reading
     "SmartFileReadTool",
+    # Finance tools
+    "MassiveBaseTool",
+    "GetMarketDataTool",
+    "GetCryptoDataTool",
+    "GetTechnicalAnalysisTool",
 ]
 
 __version__ = "0.1.0"

@@ -2,6 +2,10 @@
 Structured logging wrapper.
 Provides JSON logging for production and colored output for dev.
 
+Routes all structlog output through Python's stdlib logging so that
+the application-level log level (set via ``logging.basicConfig``) is
+honoured consistently across the entire framework.
+
 Ref: Batch 0 Specification, Section 4.1
 """
 
@@ -44,10 +48,17 @@ def _configure_structlog(environment: str) -> None:
     """
     Configure structlog processors based on environment.
 
+    Uses ``structlog.stdlib.LoggerFactory`` so that all output is
+    routed through Python's stdlib logging system.  This ensures the
+    application-wide log level (e.g. ``logging.WARNING``) is respected
+    by every logger created via ``get_logger()``.
+
     Args:
-        environment: "production" for JSON output, "development" for colored console
+        environment: ``"production"`` for JSON output,
+            ``"development"`` for colored console.
     """
     shared_processors: list[structlog.types.Processor] = [
+        structlog.stdlib.filter_by_level,
         structlog.stdlib.add_log_level,
         structlog.processors.TimeStamper(fmt="iso"),
         structlog.processors.StackInfoRenderer(),
@@ -56,12 +67,17 @@ def _configure_structlog(environment: str) -> None:
 
     if environment == "production":
         # JSON output for production (machine-parseable)
-        shared_processors.append(structlog.processors.JSONRenderer())
+        shared_processors.append(
+            structlog.processors.JSONRenderer()
+        )
     else:
         # Colored console output for development (human-readable)
         shared_processors.append(
             structlog.dev.ConsoleRenderer(
-                colors=True, exception_formatter=structlog.dev.plain_traceback
+                colors=True,
+                exception_formatter=(
+                    structlog.dev.plain_traceback
+                ),
             )
         )
 
@@ -69,7 +85,7 @@ def _configure_structlog(environment: str) -> None:
         processors=shared_processors,
         wrapper_class=structlog.stdlib.BoundLogger,
         context_class=dict,
-        logger_factory=structlog.PrintLoggerFactory(),
+        logger_factory=structlog.stdlib.LoggerFactory(),
         cache_logger_on_first_use=True,
     )
 
@@ -78,20 +94,28 @@ def _configure_structlog(environment: str) -> None:
 _configured_for: str | None = None
 
 
-def get_logger(name: str, environment: str = "development") -> LoggerProtocol:
+def get_logger(
+    name: str, environment: str = "development"
+) -> LoggerProtocol:
     """
     Factory function for structured loggers.
 
+    Returns a structlog logger that routes through Python's stdlib
+    logging, so the application-wide log level is respected.
+
     Args:
-        name: Logger name (typically __name__ of the calling module)
-        environment: "production" for JSON output, "development" for colored console
+        name: Logger name (typically ``__name__`` of the calling
+            module).
+        environment: ``"production"`` for JSON output,
+            ``"development"`` for colored console.
 
     Returns:
-        A logger instance conforming to LoggerProtocol
+        A logger instance conforming to ``LoggerProtocol``.
 
-    Example:
+    Example::
+
         logger = get_logger(__name__)
-        logger.info("Processing request", user_id="123", action="recall")
+        logger.info("Processing request", user_id="123")
     """
     global _configured_for
 

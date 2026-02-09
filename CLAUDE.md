@@ -30,11 +30,6 @@ uv run ruff format .
 # Type checking
 uv run mypy packages/friday-core/
 
-# Run the main assistant application
-uv run friday-copilot
-
-# Run with custom config
-uv run friday-copilot --config path/to/config.yaml
 ```
 
 ## Monorepo Structure & Dependency Flow
@@ -59,8 +54,6 @@ friday-sandbox (isolated code execution)
 friday-mcp (Model Context Protocol client/server)
     ↓
 friday-cli (Rich terminal interface components)
-    ↓
-friday-copilot (full-featured AI assistant app)
 ```
 
 | Package | Location | Purpose |
@@ -74,7 +67,6 @@ friday-copilot (full-featured AI assistant app)
 | friday-sandbox | `packages/friday-sandbox/` | SubprocessSandbox for isolated Python execution |
 | friday-mcp | `packages/friday-mcp/` | MCP protocol client, tool adapters, SSE transport |
 | friday-cli | `packages/friday-cli/` | Rich/Prompt Toolkit terminal interface, command registry, session management |
-| friday-copilot | `apps/friday-copilot/` | Main AI assistant application with memory, tools, and agent orchestration |
 
 ## Architecture Patterns
 

@@ -22,17 +22,19 @@ dependencies = [
     "friday-memory",
     "friday-llm",
     "friday-agent",
-    "friday-speech",
+    "friday-speech[picovoice,elevenlabs]",
     "friday-sandbox",
     "friday-tools",
     "friday-moltbook",
     "friday-mcp",
     "friday-transcript",
     "friday-cli",
-    "friday-copilot",
     "friday-telemetry",
+    "friday-finance",
     # Document format support
     "pypdf>=4.0",
+    # Observability
+    "langfuse>=2.59,<3.0",
 ]
 
 [project.optional-dependencies]
@@ -42,11 +44,6 @@ dev = [
     "respx>=0.20.0",
     "ruff>=0.4.0",
     "mypy>=1.10.0",
-]
-speech = [
-    "friday-speech[elevenlabs]",
-    "friday-speech[picovoice]",
-    "pvspeaker>=0.1.0",
 ]
 
 [tool.uv.sources]
@@ -61,11 +58,11 @@ friday-moltbook = { workspace = true }
 friday-mcp = { workspace = true }
 friday-transcript = { workspace = true }
 friday-cli = { workspace = true }
-friday-copilot = { workspace = true }
 friday-telemetry = { workspace = true }
+friday-finance = { workspace = true }
 
 [tool.uv.workspace]
-members = ["packages/*", "apps/*", "tests/lab"]
+members = ["packages/*"]
 
 [tool.ruff]
 line-length = 88
@@ -83,7 +80,7 @@ disallow_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "packages/*/tests_*"]
+testpaths = ["packages/*/tests_*"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 

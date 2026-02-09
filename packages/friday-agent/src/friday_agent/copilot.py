@@ -7,6 +7,7 @@ Implements the Think → Tool → Observe loop for human-in-the-loop workflows.
 Ref: Batch 3 Specification, Section 4.3
 """
 
+import json
 import logging
 from typing import Any
 
@@ -149,9 +150,12 @@ class CopilotAgent(AgentBase):
                     # Add tool interactions to conversation
                     self._add_tool_call_to_history(tool_call_dicts, tool_results)
 
-                    # Update messages for next iteration
-                    # Add assistant message with tool calls
-                    messages.append({
+                    # Update messages for next iteration.
+                    # Add assistant message with tool calls.
+                    # Preserve reasoning_content for thinking models
+                    # (e.g. Moonshot Kimi K2.5) — the provider rejects
+                    # the next request if it's missing.
+                    assistant_msg: dict[str, Any] = {
                         "role": "assistant",
                         "content": response.content,
                         "tool_calls": [
@@ -160,12 +164,23 @@ class CopilotAgent(AgentBase):
                                 "type": "function",
                                 "function": {
                                     "name": tc["name"],
-                                    "arguments": str(tc["arguments"]),
+                                    "arguments": (
+                                        json.dumps(tc["arguments"])
+                                        if isinstance(
+                                            tc["arguments"], dict
+                                        )
+                                        else tc["arguments"]
+                                    ),
                                 },
                             }
                             for tc in tool_call_dicts
                         ],
-                    })
+                    }
+                    if response.reasoning_content:
+                        assistant_msg["reasoning_content"] = (
+                            response.reasoning_content
+                        )
+                    messages.append(assistant_msg)
 
                     # Add tool results
                     for tc, result in zip(tool_call_dicts, tool_results):

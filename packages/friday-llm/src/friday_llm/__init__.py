@@ -19,6 +19,17 @@ import litellm
 # Users can re-enable if needed via litellm.suppress_debug_info = False
 litellm.suppress_debug_info = True
 
+# Allow LiteLLM to normalize parameters for provider-specific quirks.
+# Notably, Moonshot thinking models require reasoning_content in assistant
+# tool-call messages; when it's missing LiteLLM drops the thinking param
+# for that turn instead of letting the API reject the request.
+litellm.modify_params = True
+
+# Silently drop parameters that a provider doesn't support (e.g.
+# 'thinking' on providers that lack reasoning mode) instead of
+# raising UnsupportedParamsError.
+litellm.drop_params = True
+
 # Config classes
 # Advanced - circuit breaker for direct use
 from friday_llm.circuit_breaker import CircuitBreaker
@@ -52,6 +63,9 @@ from friday_llm.telemetry_models import (
     TokenUsage,
 )
 
+# LangFuse observability
+from friday_llm.langfuse_integration import configure_langfuse
+
 __all__ = [
     # Services
     "LiteLLMService",
@@ -77,4 +91,6 @@ __all__ = [
     "CostEstimate",
     # Advanced
     "CircuitBreaker",
+    # Observability
+    "configure_langfuse",
 ]

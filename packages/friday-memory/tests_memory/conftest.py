@@ -12,6 +12,7 @@ from friday_core import DebugTelemetryRecorder
 
 from friday_memory import (
     ChromaVectorStore,
+    CollectionManager,
     ElementXGraphStore,
     GraphEdge,
     GraphNode,
@@ -158,6 +159,26 @@ def telemetry() -> DebugTelemetryRecorder:
     return DebugTelemetryRecorder()
 
 
+# --- Lifecycle Fixtures ---
+
+
+@pytest.fixture
+def collection_manager(mock_embedding_model) -> CollectionManager:
+    """Create a CollectionManager with unique ephemeral collections."""
+    suffix = uuid.uuid4().hex[:8]
+    from friday_memory import CollectionConfig
+
+    config = CollectionConfig(
+        short_term_collection=f"test_short_{suffix}",
+        long_term_collection=f"test_long_{suffix}",
+        decayed_collection=f"test_decayed_{suffix}",
+    )
+    return CollectionManager(
+        embedding_function=mock_embedding_model,
+        config=config,
+    )
+
+
 # --- Controller Fixtures ---
 
 
@@ -167,6 +188,7 @@ def memory_controller(
     graph_store: ElementXGraphStore,
     episodic_store: InMemoryEpisodicStore,
     telemetry: DebugTelemetryRecorder,
+    collection_manager: CollectionManager,
 ) -> MemoryController:
     """Create a memory controller with all stores."""
     return MemoryController(
@@ -174,4 +196,5 @@ def memory_controller(
         graph_store=graph_store,
         episodic_store=episodic_store,
         telemetry=telemetry,
+        collection_manager=collection_manager,
     )

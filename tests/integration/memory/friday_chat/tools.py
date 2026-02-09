@@ -51,6 +51,7 @@ def _load_tool_from_config(
     web_config: dict[str, Any] | None = None,
     smart_file_llm: Any = None,
     smart_file_config: dict | None = None,
+    shared_instances: dict[str, Any] | None = None,
 ) -> Any | None:
     """
     Dynamically load a tool class from configuration.
@@ -63,6 +64,8 @@ def _load_tool_from_config(
             Automatically injected into tools from friday_tools.web module.
         smart_file_llm: LLM service for SmartFileReadTool summarization.
         smart_file_config: Configuration dict for SmartFileReadTool (from smart_file: section).
+        shared_instances: Shared objects (e.g. MassiveAgentClient) to inject
+            into tools that need them, avoiding duplicate expensive resources.
 
     Returns:
         Instantiated tool or None if disabled/failed to load.
@@ -113,6 +116,19 @@ def _load_tool_from_config(
                 )
                 _debug(f"Injected config into SmartFileReadTool")
 
+        # Auto-inject shared MassiveAgentClient for finance tools
+        # (friday_tools.finance module).  All finance tools share a
+        # single client so the Governor rate-limiter is applied
+        # consistently.
+        if (
+            module_name == "friday_tools.finance"
+            and shared_instances
+            and "massive_client" in shared_instances
+            and "client" not in constructor_args
+        ):
+            constructor_args["client"] = shared_instances["massive_client"]
+            _debug(f"Injected shared MassiveAgentClient into {tool_name}")
+
         tool = tool_class(**constructor_args)
 
         _debug(f"Successfully loaded tool: {tool_name}")
@@ -134,6 +150,7 @@ def build_tool_registry(
     web_config: dict[str, Any] | None = None,
     smart_file_llm: Any = None,
     smart_file_config: dict | None = None,
+    finance_config: dict[str, Any] | None = None,
 ) -> DefaultToolRegistry:
     """
     Build a tool registry from YAML configuration.
@@ -146,11 +163,32 @@ def build_tool_registry(
             Automatically injected into web tools (friday_tools.web module).
         smart_file_llm: LLM service for SmartFileReadTool summarization.
         smart_file_config: Configuration dict for SmartFileReadTool (from smart_file: section).
+        finance_config: The 'finance' section from config.yaml.
+            Used to create a shared MassiveAgentClient for finance tools.
 
     Returns:
         DefaultToolRegistry populated with configured tools.
     """
     registry = DefaultToolRegistry()
+
+    # Build shared instances for expensive objects that multiple tools share
+    shared_instances: dict[str, Any] = {}
+    massive_cfg = (finance_config or {}).get("massive", {})
+    massive_api_key = massive_cfg.get("api_key")
+    if massive_api_key:
+        try:
+            from friday_finance import MassiveAgentClient
+
+            shared_instances["massive_client"] = MassiveAgentClient(
+                api_key=str(massive_api_key),
+                tier=massive_cfg.get("tier", "free"),
+            )
+            _debug(
+                f"Created shared MassiveAgentClient "
+                f"(tier={massive_cfg.get('tier', 'free')})"
+            )
+        except Exception as e:
+            logger.warning(f"[Tools] Failed to create MassiveAgentClient: {e}")
 
     # Debug: log received config
     _debug(f"tools_config is None: {tools_config is None}")
@@ -184,6 +222,7 @@ def build_tool_registry(
             web_config=web_config,
             smart_file_llm=smart_file_llm,
             smart_file_config=smart_file_config,
+            shared_instances=shared_instances,
         )
         if tool:
             if not getattr(tool, "category", None) or tool.category == "uncategorized":
@@ -205,6 +244,7 @@ def init_tools(
     web_config: dict[str, Any] | None,
     smart_file_llm: Any = None,
     smart_file_config: dict | None = None,
+    finance_config: dict[str, Any] | None = None,
 ) -> tuple:
     """
     Initialize the global tool registry and schemas.
@@ -216,6 +256,7 @@ def init_tools(
         web_config: The 'web' section from config.yaml.
         smart_file_llm: LLM service for SmartFileReadTool summarization.
         smart_file_config: Configuration dict for SmartFileReadTool (from smart_file: section).
+        finance_config: The 'finance' section from config.yaml.
 
     Returns:
         Tuple of (TOOL_REGISTRY, TOOL_SCHEMAS) for convenience
@@ -226,6 +267,7 @@ def init_tools(
         web_config=web_config,
         smart_file_llm=smart_file_llm,
         smart_file_config=smart_file_config,
+        finance_config=finance_config,
     )
     TOOL_SCHEMAS = TOOL_REGISTRY.get_schemas()
     return TOOL_REGISTRY, TOOL_SCHEMAS

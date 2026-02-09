@@ -9,3 +9,4 @@ build/
 *.egg-info/
 chroma_db/
 *.gpickle
+keys.txt

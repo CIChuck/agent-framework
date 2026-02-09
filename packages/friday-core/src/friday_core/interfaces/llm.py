@@ -34,12 +34,24 @@ class ChatCompletionResponse:
 
     Provides a unified format regardless of the underlying LLM provider.
     Supports both text responses and tool calling.
+
+    Attributes:
+        content: The text content of the response, if any.
+        tool_calls: List of tool calls requested by the model.
+        model: The model identifier that generated this response.
+        usage: Token usage statistics (prompt, completion, total).
+        reasoning_content: Optional reasoning/thinking content from
+            models that support chain-of-thought (e.g. Moonshot Kimi
+            K2.5). Must be preserved and replayed in conversation
+            history for providers that require it in assistant
+            tool-call messages.
     """
 
     content: str | None = None
     tool_calls: list[ToolCall] = field(default_factory=list)
     model: str = ""
     usage: dict[str, int] = field(default_factory=dict)
+    reasoning_content: str | None = None
 
     @property
     def has_tool_calls(self) -> bool:

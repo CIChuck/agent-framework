@@ -151,6 +151,7 @@ from friday_llm import (
     LLMRetryExhaustedError,
     LLMTimeoutError,
     ResilienceConfig,
+    configure_langfuse,
 )
 from friday_memory import (
     AccessBuffer,
@@ -171,6 +172,7 @@ from friday_memory import (
     MemoryController,
     MemoryExtractor,
     MemoryPromotionService,
+    OntologyConfig,
     PromptArchitect,
     PromptCacheConfig,
     PassageRouter,
@@ -417,6 +419,10 @@ class MemoryChatSession:
             "patterns_seen": {},
         }
         self._test_injection_payload: str | None = None
+
+        # Extraction buffering: accumulate turns between extraction intervals
+        # so that *all* turns are extracted, not just the one that triggers.
+        self._pending_extraction_turns: list[InteractionTurn] = []
 
         # Command registry for extensible command handling
         # Commands can be registered using the @registry.command decorator
@@ -1031,6 +1037,7 @@ class MemoryChatSession:
     def cmd_clear(self) -> str:
         """Clear conversation history."""
         self.turn_ids.clear()
+        self._pending_extraction_turns.clear()
         self.last_payload = None
         if self.state:
             self.state.turn_count = 0
@@ -1884,10 +1891,14 @@ class MemoryChatSession:
             return f"Error retrieving entities: {e}"
 
     async def cmd_facts(self) -> str:
-        """List all facts/insights from the vector store."""
+        """List all facts/insights from the lifecycle collections."""
         try:
-            # Get all documents from vector store (no practical limit for debugging)
-            documents = await self.controller.vector.get_all(limit=10000)
+            # Get all documents from lifecycle collections (short-term + long-term)
+            cm = self.controller.collection_manager
+            if cm:
+                documents = await cm.get_all(limit=10000)
+            else:
+                documents = await self.controller.vector.get_all(limit=10000)
             if not documents:
                 return "No facts/insights in vector store."
 
@@ -1916,13 +1927,20 @@ class MemoryChatSession:
             return f"Error retrieving facts: {e}"
 
     async def cmd_insights(self) -> str:
-        """List only insights (type='insight') from the vector store."""
+        """List only insights (type='insight') from the lifecycle collections."""
         try:
-            # Query with type filter
-            documents = await self.controller.vector.get_all(
-                limit=10000,
-                where={"type": "insight"},
-            )
+            # Query lifecycle collections with type filter
+            cm = self.controller.collection_manager
+            if cm:
+                documents = await cm.get_all(
+                    limit=10000,
+                    where={"type": "insight"},
+                )
+            else:
+                documents = await self.controller.vector.get_all(
+                    limit=10000,
+                    where={"type": "insight"},
+                )
             if not documents:
                 return "No insights in vector store."
 
@@ -1959,13 +1977,20 @@ class MemoryChatSession:
             return f"Error retrieving insights: {e}"
 
     async def cmd_summaries(self) -> str:
-        """List only turn summaries (type='summary') from the vector store."""
+        """List only turn summaries (type='summary') from the lifecycle collections."""
         try:
-            # Query with type filter
-            documents = await self.controller.vector.get_all(
-                limit=10000,
-                where={"type": "summary"},
-            )
+            # Query lifecycle collections with type filter
+            cm = self.controller.collection_manager
+            if cm:
+                documents = await cm.get_all(
+                    limit=10000,
+                    where={"type": "summary"},
+                )
+            else:
+                documents = await self.controller.vector.get_all(
+                    limit=10000,
+                    where={"type": "summary"},
+                )
             if not documents:
                 return "No turn summaries in vector store."
 
@@ -1999,13 +2024,20 @@ class MemoryChatSession:
             return f"Error retrieving summaries: {e}"
 
     async def cmd_meta_insights(self) -> str:
-        """List only meta insights (type='meta_insight') from the vector store."""
+        """List only meta insights (type='meta_insight') from the lifecycle collections."""
         try:
-            # Query with type filter for meta_insight
-            documents = await self.controller.vector.get_all(
-                limit=10000,
-                where={"type": "meta_insight"},
-            )
+            # Query lifecycle collections with type filter for meta_insight
+            cm = self.controller.collection_manager
+            if cm:
+                documents = await cm.get_all(
+                    limit=10000,
+                    where={"type": "meta_insight"},
+                )
+            else:
+                documents = await self.controller.vector.get_all(
+                    limit=10000,
+                    where={"type": "meta_insight"},
+                )
             if not documents:
                 return "No meta insights in vector store. Run /reorganize with synthesis to generate them."
 
@@ -2564,10 +2596,28 @@ class MemoryChatSession:
             lines.append(f"  Graph store: ERROR - {e}")
 
         try:
-            # Clear vector store
-            logger.info("Clearing vector store...")
+            # Clear lifecycle collections (short-term, long-term, decayed)
+            cm = self.controller.collection_manager
+            if cm:
+                logger.info("Clearing lifecycle collections...")
+                clear_stats = await cm.clear_all()
+                st_del = clear_stats.get("short_term_deleted", 0)
+                lt_del = clear_stats.get("long_term_deleted", 0)
+                dec_del = clear_stats.get("decayed_deleted", 0)
+                lines.append(
+                    f"  Lifecycle collections: cleared "
+                    f"{st_del} short-term, {lt_del} long-term, "
+                    f"{dec_del} decayed"
+                )
+
+            # Also clear legacy vector store (may still have old data)
+            logger.info("Clearing legacy vector store...")
             vector_count = await self.controller.vector.clear()
-            lines.append(f"  Vector store: cleared {vector_count} documents")
+            if vector_count > 0:
+                lines.append(
+                    f"  Legacy vector store: cleared "
+                    f"{vector_count} documents"
+                )
         except Exception as e:
             logger.error(f"Vector clear failed: {e}", exc_info=True)
             lines.append(f"  Vector store: ERROR - {e}")
@@ -2609,6 +2659,7 @@ class MemoryChatSession:
 
         # Reset turn tracking
         self.turn_ids.clear()
+        self._pending_extraction_turns.clear()
         if self.state:
             self.state.turn_count = 0
 
@@ -4859,23 +4910,41 @@ Use /facts to view stored documents."""
         except Exception as e:
             logger.warning(f"Background tool decay failed: {e}")
 
-    async def _background_extract(self, turn: InteractionTurn) -> None:
-        """Run extraction in background without blocking the user."""
-        try:
-            result = await self.extractor.extract(turn)
-            if result.get("error"):
-                logger.debug(f"Background extraction error: {result['error']}")
-            else:
-                extracted = result.get("extracted", {})
-                entity_count = len(extracted.get("entities", []))
-                fact_count = len(extracted.get("facts", []))
-                rel_count = len(extracted.get("relationships", []))
+    async def _background_extract_batch(
+        self, turns: list[InteractionTurn]
+    ) -> None:
+        """Extract all buffered turns in background without blocking the user.
+
+        Args:
+            turns: List of InteractionTurn objects to extract.
+        """
+        total_entities = 0
+        total_facts = 0
+        total_rels = 0
+
+        for turn in turns:
+            try:
+                result = await self.extractor.extract(turn)
+                if result.get("error"):
+                    logger.debug(
+                        f"Background extraction error (turn {turn.id}): "
+                        f"{result['error']}"
+                    )
+                else:
+                    extracted = result.get("extracted", {})
+                    total_entities += len(extracted.get("entities", []))
+                    total_facts += len(extracted.get("facts", []))
+                    total_rels += len(extracted.get("relationships", []))
+            except Exception as e:
                 logger.debug(
-                    f"Background extraction complete: "
-                    f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"
+                    f"Background extraction failed (turn {turn.id}): {e}"
                 )
-        except Exception as e:
-            logger.debug(f"Background extraction failed: {e}")
+
+        logger.debug(
+            f"Batch extraction complete ({len(turns)} turns): "
+            f"{total_entities} entities, {total_facts} facts, "
+            f"{total_rels} relationships"
+        )
 
     async def run_exit_maintenance(
         self,
@@ -4888,6 +4957,7 @@ Use /facts to view stored documents."""
         Run maintenance operations before session exit.
 
         This method runs the configured maintenance operations in order:
+        0. Extract any buffered turns not yet processed
         1. Flush access buffer (if enabled)
         2. Run lifecycle cycle (if enabled)
         3. Run reorganization (if enabled)
@@ -4902,11 +4972,36 @@ Use /facts to view stored documents."""
             Dict with results from each operation
         """
         results: dict[str, Any] = {
+            "extraction": None,
             "flush": None,
             "lifecycle": None,
             "reorganize": None,
             "errors": [],
         }
+
+        # Step 0: Extract any buffered turns that haven't been processed yet
+        if self.extractor and self._pending_extraction_turns:
+            pending = list(self._pending_extraction_turns)
+            self._pending_extraction_turns.clear()
+            try:
+                display_info(
+                    f"Extracting {len(pending)} buffered turn(s)..."
+                )
+                await self._background_extract_batch(pending)
+                results["extraction"] = {
+                    "success": True,
+                    "turns_extracted": len(pending),
+                }
+                display_success(
+                    f"  Extracted {len(pending)} turn(s)"
+                )
+            except Exception as e:
+                results["extraction"] = {
+                    "success": False,
+                    "error": str(e),
+                }
+                results["errors"].append(f"Extraction flush failed: {e}")
+                display_warning(f"  Extraction flush failed: {e}")
 
         # Step 1: Flush access buffer
         if flush_on_exit and self.access_buffer and self.promotion_service:
@@ -5213,15 +5308,33 @@ Use /facts to view stored documents."""
                     asyncio.create_task(self._run_incremental_maintenance())
 
                 # 5. Extract entities and facts from the turn (background)
-                # Run extraction asynchronously so user can continue chatting
-                # Respects extraction.interval config for reduced background LLM calls
-                if self.extractor and self._should_extract(current_turn_number):
-                    asyncio.create_task(self._background_extract(turn))
-                    get_console().print("  [dim][Extraction started in background][/dim]")
-                elif self.extractor:
-                    interval = self.extraction_config.get("interval", 0)
-                    next_extraction = ((current_turn_number // interval) + 1) * interval if interval > 0 else current_turn_number + 1
-                    get_console().print(f"  [dim][Extraction skipped (next at turn {next_extraction})][/dim]")
+                # Buffer every turn; flush the entire batch when the
+                # interval triggers.  This ensures turns between
+                # extraction intervals are never lost.
+                if self.extractor:
+                    self._pending_extraction_turns.append(turn)
+
+                    if self._should_extract(current_turn_number):
+                        batch = list(self._pending_extraction_turns)
+                        self._pending_extraction_turns.clear()
+                        asyncio.create_task(
+                            self._background_extract_batch(batch)
+                        )
+                        get_console().print(
+                            f"  [dim][Extraction started for {len(batch)} "
+                            f"turn(s) in background][/dim]"
+                        )
+                    else:
+                        interval = self.extraction_config.get("interval", 0)
+                        next_extraction = (
+                            ((current_turn_number // interval) + 1) * interval
+                            if interval > 0
+                            else current_turn_number + 1
+                        )
+                        get_console().print(
+                            f"  [dim][Turn buffered for extraction "
+                            f"(next at turn {next_extraction})][/dim]"
+                        )
             else:
                 get_console().print(
                     "[bold red]Warning: Failed to save turn to transcript![/bold red]"
@@ -5691,7 +5804,10 @@ Use /facts to view stored documents."""
 
             logger.info(f"Calling {len(tool_calls_to_process)} tool(s)...")
 
-            # Add assistant message with tool_calls to history
+            # Add assistant message with tool_calls to history.
+            # Preserve reasoning_content for thinking models (e.g. Moonshot
+            # Kimi K2.5) — the provider rejects the next request if it is
+            # missing from assistant tool-call messages.
             assistant_msg: dict[str, Any] = {"role": "assistant", "content": response.content or ""}
             assistant_msg["tool_calls"] = [
                 {
@@ -5701,6 +5817,8 @@ Use /facts to view stored documents."""
                 }
                 for tc in tool_calls_to_process
             ]
+            if response.reasoning_content:
+                assistant_msg["reasoning_content"] = response.reasoning_content
             working_messages.append(assistant_msg)
 
             # Execute each tool call
@@ -6030,6 +6148,8 @@ async def main() -> None:
     smart_file_config = config.get("smart_file", {})
     security_config = config.get("security", {})
     speech_config = config.get("speech", {})
+    finance_config = config.get("finance", {})
+    langfuse_config = config.get("langfuse", {})
     query_relevance_config = memory_config.get("query_relevance_filter", {})
 
     # Build sanitization config (fail fast on invalid configuration)
@@ -6064,11 +6184,13 @@ async def main() -> None:
     # Initialize tool registry from YAML configuration
     # Web config is automatically injected into web tools (friday_tools.web module)
     # Smart file config + LLM injected into SmartFileReadTool for large file processing
+    # Finance config creates a shared MassiveAgentClient for all finance tools
     TOOL_REGISTRY, TOOL_SCHEMAS = init_tools(
         tools_config,
         web_config=web_config,
         smart_file_llm=smart_file_llm,
         smart_file_config=smart_file_config,
+        finance_config=finance_config,
     )
 
     # Log loaded tools at startup (visible at INFO level or with tools_debug)
@@ -6137,10 +6259,16 @@ async def main() -> None:
             timeout_seconds=embedding_config.get("timeout_seconds", 60.0),
         )
 
-    # Get collection name - prefer maintenance config, fall back to memory config
+    # Get collection name - prefer maintenance config, fall back to short-term
+    # collection (the active collection where insights live).
+    # NOTE: The legacy "collection_name" key in memory config is no longer used
+    # for synthesis/maintenance. All new memories enter the lifecycle via the
+    # short-term collection managed by CollectionManager.
     maintenance_collection_name = (
         maintenance_yaml.get("collection_name")
-        or memory_config.get("collection_name", "memory_chat_test")
+        or memory_config.get("retrieval", {}).get(
+            "short_term_collection", "memories_short_term"
+        )
     )
 
     # Build LifecycleDecayConfig from lifecycle YAML
@@ -6221,6 +6349,9 @@ async def main() -> None:
     # Display banner only (clean startup)
     print_banner()
 
+    # Configure LangFuse observability (must run before any LiteLLM call)
+    configure_langfuse(langfuse_config)
+
     # Build resilience config
     resilience = ResilienceConfig(
         max_retries=llm_config.get("max_retries", 3),
@@ -6234,6 +6365,7 @@ async def main() -> None:
             api_key=llm_config.get("api_key"),
             api_base=llm_config.get("api_base"),
             resilience=resilience,
+            thinking_enabled=llm_config.get("thinking", False),
         )
     except Exception as e:
         display_error(f"Error initializing Chat LLM: {e}")
@@ -6412,9 +6544,9 @@ async def main() -> None:
     lifecycle_config = memory_config.get("lifecycle", {})
     retrieval_config = memory_config.get("retrieval", {})
     collection_config = CollectionConfig(
-        short_term_collection=retrieval_config.get("short_term_collection", memory_config.get("collection_name", "memory_chat_test") + "_short"),
-        long_term_collection=retrieval_config.get("long_term_collection", memory_config.get("collection_name", "memory_chat_test") + "_long"),
-        decayed_collection=retrieval_config.get("decayed_collection", memory_config.get("collection_name", "memory_chat_test") + "_decayed"),
+        short_term_collection=retrieval_config.get("short_term_collection", "memories_short_term"),
+        long_term_collection=retrieval_config.get("long_term_collection", "memories_long_term"),
+        decayed_collection=retrieval_config.get("decayed_collection", "memories_decayed"),
         # Similarity thresholds (configurable via memory.retrieval in config.yaml)
         short_term_min_similarity=retrieval_config.get("short_term_min_similarity", 0.5),
         long_term_min_similarity=retrieval_config.get("long_term_min_similarity", 0.7),
@@ -6560,6 +6692,22 @@ async def main() -> None:
     #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)
     extraction_prompt = extraction_config.get("prompt")  # None uses default
     extraction_max_tokens = extraction_config.get("max_tokens")  # None uses LLM default
+
+    # Load ontology from config (constrains extraction to allowed node types
+    # and edge relations). Falls back to OntologyConfig.default() if absent.
+    ontology_data = extraction_config.get("ontology")
+    ontology_config = (
+        OntologyConfig.from_dict(ontology_data) if ontology_data else None
+    )
+
+    # Resolve rejection log path relative to the app directory
+    rejection_log_raw = extraction_config.get("rejection_log")
+    rejection_log_path = None
+    if rejection_log_raw:
+        rejection_log_path = str(
+            (Path(__file__).parent / rejection_log_raw).resolve()
+        )
+
     extractor = MemoryExtractor(
         memory_controller=controller,
         llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)
@@ -6569,6 +6717,8 @@ async def main() -> None:
         assistant_name=assistant_name,
         embedding_model=embedding,  # Pre-compute edge embeddings for graph path scoring
         max_tokens=extraction_max_tokens,  # Limit extraction response length
+        ontology_config=ontology_config,  # Custom ontology from config.yaml
+        rejection_log_path=rejection_log_path,  # File for ontology rejection logging
     )
     assembler.set_extractor(extractor)
 
@@ -6655,7 +6805,7 @@ async def main() -> None:
     )
     session.tool_content_manager = ToolContentManager(
         config=tool_lifecycle_config,
-        llm_client=llm,  # For generating summaries when decaying
+        llm_client=extraction_llm,  # Use extraction LLM (not chat LLM) for summaries
     )
     session.assembler.set_tool_content_manager(session.tool_content_manager)
 

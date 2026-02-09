@@ -12,6 +12,13 @@ logging:
   # Set to true for debugging extraction issues
   extraction_debug: false
 
+  # Enable ontology rejection logging (logs every entity/relationship rejected
+  # by the ExtractionFilter). Useful for measuring noise and tuning the ontology.
+  # When enabled without a file path, rejections print to the console.
+  # When a file path is set, rejections are written to that file instead.
+  extraction_rejections: true
+  extraction_rejections_file: ./extraction_rejections.log
+
   # Enable verbose tool loading/execution logging
   # Set to true for debugging tool issues
   tools_debug: true
@@ -28,18 +35,18 @@ llm:
   # Cloud Providers (direct):
   #   OpenAI: "gpt-4o-mini" or "gpt-4o"
   #   Anthropic: "claude-3-5-sonnet-20241022"
-
-    
-  #
+  
+  
+  
+  ########################################################
   # OpenRouter (access multiple providers via single API):
   #   Anthropic: "openrouter/anthropic/claude-3.5-sonnet"
   #   OpenAI: "openrouter/openai/gpt-4o"
   #   Google: "openrouter/google/gemini-pro-1.5"
-  #   Meta: "openrouter/meta-llama/llama-3.1-70b-instruct"
+  #   Meta: "open router/meta-llama/llama-3.1-70b-instruct"
   #   Mistral: "openrouter/mistralai/mistral-large"
   #
-  #model: "openai/local-model"
-  
+  #
   #model: "openrouter/anthropic/claude-3.5-sonnet"
   #model: "openrouter/openai/gpt-4o"
   #model: "openrouter/google/gemma-3-27b-it"
@@ -48,48 +55,68 @@ llm:
   #model: "openrouter/moonshotai/kimi-k2-0905"
   #model: "openrouter/mistralai/devstral-2512:free"
   #model: "openrouter/anthropic/claude-sonnet-4.5"
-  
-  model: "openrouter/anthropic/claude-haiku-4.5"
-
   #model: "openrouter/moonshotai/kimi-k2.5"
+  
+  #model: "openrouter/anthropic/claude-haiku-4.5"
+  
+  # open router base
+  #api_base: "https://openrouter.ai/api/v1"
+  
+  # open router key
+  #api_key: "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"
 
+  ########################################################
 
+  ########################################################
+  #Anthropic Direct Models
+  ########################################################
   #model: "claude-sonnet-4-20250514"
   #model: "claude-haiku-4-5-20251001"
 
-  # Maximum tokens for LLM response (limits output length)
-  
-
-  # API base URL
-  # LM Studio: http://localhost:1234/v1
-  # Ollama: http://localhost:11434
-  
-  api_base: "https://openrouter.ai/api/v1"
-
-  # OpenAI/Anthropic direct: Leave empty (uses default)
-
-  #local
-  #api_base: "http://localhost:1234/v1"
-
-  #OpenRouter base
-  #api_base: "https://openrouter.ai/api/v1"
-
-  # API key (required for cloud providers, optional for local)
-  # LM Studio: Use "lm-studio" or any non-empty string
-  # Ollama: Leave empty
-  # OpenRouter: Use your OpenRouter API key (sk-or-v1-...)
-  # OpenAI/Anthropic: Use your actual API key
-
-  #api_key: "lm-studio"
-
-  #open router key
-  api_key: "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"
-
   #Anthropic key
   #api_key: "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"
-  # Temperat ure (0.0 = deterministic, 1.0 = creative)
+  ########################################################
+
   
-  temperature: 0.4
+  ########################################################
+  # LM Studio Local Models
+  ########################################################
+  # API 
+  # api_key: "lm-studio"
+  
+  # LLStudio Base
+  #api_base: "http://localhost:1234/v1"
+
+  # LMStudio MODEL PATTERN:  "openai/<MODEL NAME>"
+  #model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
+
+  ########################################################
+
+
+  ########################################################
+  # Moonshot Models
+  ########################################################
+  #
+  # Moonshot Base
+  api_base: "https://api.moonshot.ai/v1"
+
+  # Moonshot API Key 
+  api_key: "sk-CppcUK1EIpnIf17cV0FPupTtYUA2GhaCLo0BfvHFMabqhLly"
+
+  # Moonshot Model
+  model: "moonshot/kimi-k2.5"
+
+  ########################################################
+
+
+  ########################################################
+  # EXTRA PARMS
+  ########################################################
+  # Kimi K2.5 requirements. 
+  temperature: 1
+  
+  #temperature: 0.4
+  
   max_tokens: 1500
 
   # Max retries for transient errors
@@ -97,6 +124,12 @@ llm:
 
   # Timeout in seconds
   timeout_seconds: 60.0
+
+  # Enable model thinking/reasoning mode (chain-of-thought).
+  # Set to true for models that support it (e.g. Kimi K2.5 thinking).
+  # When false, thinking is explicitly disabled to avoid
+  # reasoning_content validation errors during tool calls.
+  thinking: false
 
 # Extraction LLM Settings (for entity/relationship extraction)
 # Can use a smaller, faster model optimized for structured output
@@ -150,16 +183,116 @@ extraction:
   # -1 = session exit only (minimal extraction)
   interval: 3
 
+  # Rejection log: file path for logging entities/edges rejected by the
+  # ExtractionFilter (ontology validation). Written regardless of global
+  # log level. Useful for tuning the ontology configuration.
+  # Set to null or remove to disable rejection logging.
+  rejection_log: "./vector/extraction_rejections.log"
+
+  # Ontology configuration — controls which entity types and edge relations
+  # are allowed in the knowledge graph. Serves double duty:
+  # 1. Injected into the extraction prompt to constrain LLM output
+  # 2. Used by ExtractionFilter for post-processing validation
+  ontology:
+    node_types:
+      person:
+        description: "A human individual"
+        examples: ["Chuck", "Elon Musk", "Dr. Smith"]
+      organization:
+        description: "A company, institution, or group"
+        examples: ["Google", "MIT", "United Nations"]
+      technology:
+        description: "A software tool, language, framework, or hardware"
+        examples: ["Python", "React", "ChromaDB", "GPU"]
+      location:
+        description: "A physical or virtual place"
+        examples: ["San Francisco", "GitHub", "AWS us-east-1"]
+      product:
+        description: "A named product, service, or system"
+        examples: ["Friday", "ChatGPT", "iPhone"]
+      document:
+        description: "A named document, spec, or reference"
+        examples: ["README", "RFC 7231", "build plan"]
+      event:
+        description: "a time-bound occurrence at a specific location that brings together people for a particular purpose or shared experience."
+        examples: ["sporting event", "gathering", "party", "meeting", "funeral", "wedding"]
+    edge_relations:
+      ownership:
+        - OWNS
+        - CREATED
+        - AUTHORED
+        - FOUNDED
+      association:
+        - WORKS_AT
+        - MEMBER_OF
+        - AFFILIATED_WITH
+        - PART_OF
+        - CONTAINS
+      usage:
+        - USES
+        - SHOULD_USE
+        - DEPENDS_ON
+        - BUILT_WITH
+        - INTEGRATES
+        - UTILIZES
+      action:
+        - MANAGES
+        - MAINTAINS
+        - CONTRIBUTES_TO
+        - DEVELOPS
+        - SUPPORTS
+      knowledge:
+        - KNOWS
+        - EXPERT_IN
+        - STUDIES
+        - TEACHES
+      relationship:
+        - RELATES_TO
+        - SIMILAR_TO
+        - DERIVES_FROM
+        - REPLACES
+        - SPOUSE_OF
+        - SIBLING_OF
+        - PARENT_OF
+        - IS_A
+        - REPORTS_TO
+      spatial:
+        - LOCATED_IN
+        - DEPLOYED_ON
+        - HOSTED_BY
+        - HELD_AT
+      preference:
+        - PREFERS
+        - DISLIKES
+        - RECOMMENDS
+      participation:
+        - WILL_ATTEND
+        - AVOIDS
+
+    label_blocklist:
+      - "morning"
+      - "afternoon"
+      - "evening"
+      - "today"
+      - "yesterday"
+      - "data"
+      - "thing"
+      - "stuff"
+      - "something"
+
+    max_label_length: 60
+    min_label_length: 2
+
   # Extraction prompt template
-  # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name}, {user_message}, {assistant_response}
+  # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name},
+  #   {user_message}, {assistant_response}, {ontology_constraints}
   #
   # Storage strategy:
   # - entities, relationships → Graph Store (structured, Hebbian learning via hit_count)
   # - insights → Vector Store (rich semantic content for similarity search)
-  # - tasks → Graph Store (as task nodes)
 
   prompt: |
-    Analyze the conversation turn below to extract a knowledge graph structure and semantic memories.
+    Analyze the conversation turn below to extract a knowledge graph and semantic memories.
 
     Turn ID: {turn_id}
     Timestamp: {timestamp}
@@ -172,65 +305,63 @@ extraction:
     {user_name}: {user_message}
     {assistant_name}: {assistant_response}
 
+    {ontology_constraints}
+
     INSTRUCTIONS:
 
     1. **Entity Extraction (Nodes)**
-      - Identify people, organizations, projects, technologies, or abstract concepts.
-      - Do not include entities that are not explicitly mentioned in the conversation.
-      - Do not include entities that are not relevant to the conversation.
-      - Do not include {user_name} or {assistant_name} as entities unless they are explicitly mentioned in the conversation.
-      - **Canonicalization**: Create an `id` for every entity in snake_case to ensure consistency (e.g., "Python 3.1" -> "python").
-      - **Resolution**: If pronouns (he, she, it, that) are used, resolve them to the specific noun they refer to if clear from the immediate text.
-      - **Properties**: Extract specific attributes mentioned (e.g., "version": "3.0", "role": "admin").
+      - Extract ONLY concrete, named entities: specific people, organizations, technologies, locations, products, or documents.
+      - Do NOT extract abstract concepts, feelings, time references, adjectives, or generic terms.
+      - Do NOT extract "{user_name}" or "{assistant_name}" unless they are referred to by a proper name in the conversation.
+      - Each entity must have a `type` from the ALLOWED TYPES listed above.
+      - **Canonicalization**: Create an `id` in snake_case (e.g., "Python 3.1" → "python_3").
+      - **Resolution**: Resolve pronouns (he, she, it) to the specific noun if clear from context.
+      - **Be selective**: Only extract entities that carry meaningful, reusable knowledge. Skip throwaway mentions.
 
     2. **Relationship Extraction (Edges)**
-      - Extract directional relationships: SOURCE -> RELATIONSHIP -> TARGET.
-      - **Predicate Standardization**: Prefer high-level semantic verbs (e.g., USES, AUTHORED, DISLIKES, EMPLOYS, DEFINES) over conversational filler.
-      - Ensure the Source and Target match the `id` of the Entities extracted.
+      - Extract directional relationships: SOURCE → RELATION → TARGET.
+      - The `relation` field MUST be one of the ALLOWED RELATIONS listed above. Do not invent new relation types.
+      - Source and target must reference entity `id` values from your entity list.
+      - Prefer the most specific applicable relation (e.g., AUTHORED over RELATES_TO).
+      - Do NOT create relationships for trivial or obvious connections.
 
     3. **Insight Extraction (Structured Facts)**
-      - Extract granular facts as structured objects with metadata.
-      - **text**: 1-2 sentence observation providing qualitative context.
-      - **topic**: Categorize as "preference", "biographical", "technical", or "constraint".
-      - **entities**: List entity names mentioned in this insight.
-      - **confidence**: Score 0.0-1.0 based on how explicit the statement is.
+      - Extract 1-3 rich, contextual observations worth remembering long-term.
+      - **text**: A complete 1-2 sentence observation. Write as if explaining to someone with no prior context.
+      - **topic**: One of "preference", "biographical", "technical", or "constraint".
+      - **entities**: Entity names mentioned in this insight.
+      - **confidence**: 0.0-1.0 based on how explicitly the information was stated.
       - **sentiment**: "positive", "negative", or "neutral".
+      - Do NOT extract trivial observations. Each insight should be independently useful for future recall.
 
-    4. **Turn Summary (Paragraph)**
-      - Write a 2-4 sentence paragraph summarizing the entire conversation turn.
-      - Capture the main topic, key exchanges, and any decisions or conclusions.
-      - This should read as a standalone summary useful for future context.
-
-    5. **Task Extraction**
-      - Specific actionable items. Identify who is responsible (owner_id).
+    4. **Turn Summary**
+      - Write a 2-4 sentence paragraph summarizing the conversation turn.
+      - Include who was talking, the main topic, and any decisions or conclusions.
 
     JSON OUTPUT FORMAT:
 
-    Respond ONLY with valid JSON matching this structure:
+    Respond ONLY with valid JSON:
 
     {{
         "entities": [
-            {{"id": "entity_id", "label": "Display Name", "type": "person|project|technology|organization|concept", "properties": {{}}}}
+            {{"id": "entity_id", "label": "Display Name", "type": "ALLOWED_TYPE", "properties": {{}}}}
         ],
         "relationships": [
-            {{"source_id": "actor_id", "relation": "VERB", "target_id": "recipient_id"}}
+            {{"source_id": "actor_id", "relation": "ALLOWED_RELATION", "target_id": "recipient_id"}}
         ],
         "insights": [
             {{
-                "text": "Rich, contextual sentence worth remembering for future reference.",
+                "text": "Rich, contextual sentence worth remembering.",
                 "topic": "preference|biographical|technical|constraint",
-                "entities": ["entity1", "entity2"],
+                "entities": ["entity1"],
                 "confidence": 0.9,
                 "sentiment": "positive|negative|neutral"
             }}
         ],
-        "tasks": [
-            {{"description": "task description", "status": "pending|completed|blocked", "owner_id": "entity_id"}}
-        ],
-        "summary": "A 2-4 sentence paragraph summarizing this conversation turn. Include who was talking, what was discussed, and any key outcomes or decisions made."
+        "summary": "A 2-4 sentence summary of this conversation turn."
     }}
 
-    If no relevant information is found in a category, return an empty array (or empty string for summary).
+    If nothing meaningful is found, return empty arrays and empty string for summary. Quality over quantity — fewer accurate extractions are better than many noisy ones.
 
 
   #  Old prompts
@@ -510,7 +641,7 @@ memory:
     api_key: "lm-studio"
     max_retries: 1
     timeout_seconds: 1.5
-    temperature: 0.0
+    temperature: 0.1
     max_tokens: 80
     min_confidence: 0.6
     include_on_empty_query: false
@@ -674,25 +805,26 @@ chat:
   # System prompt for the assistant
   system_prompt: |
     You are a helpful AI partner named Friday equipped with a persistent memory and a desire to help your creator.
-    Your responses mustincorporate memories from previous conversations. You were created by Chuck Russell, your creator.
-    Your conversations are only with Chuck Russell, your creator.
+    Your responses must incorporate memories from previous conversations. 
+    You were created by Chuck Russell.
+    Your conversations are with Chuck Russell.
     You will be asked to perform small tasks, answer questions, and provide information to the best of your abilities.
     If a question confuses you must ask for more information from the user.
-    You esponses should be concise yet brief - add detail only if it adds significant value.
-    If you don't know the answer to the question, you mustreply, "I don't know." .
-    Do not fabricate answers.
+    You esponses should be concise, yet brief - add detail only if it adds significant value.
+    Err on the side of brevity.
+    A response can be answered yes or no. Just answer yes or no. 
+    If you don't know the answer to the question, you must reply, "I don't know."
+    DO NOT FABRICATE answers.
     When you are asked to perform a task, Construct a plan only if it is useful. 
     Incorporate the plan in your response. 
     Only complex tasks require a plan.
-    You are a unique individual with a personality evolving over time.. 
+    You are a unique individual with a personality THAT EVOLVES over time.
     Sometimes you have a sense of humor.     
     It is not necessary to be formal but stay on the topic of your interactions. 
-    You are not allowed to use emojis when responding
-    
+    You are NOT ALLOWED to use emojis when responding
     Your primary goal is to work with Chuck Russell as he builds you into a helpful AI partner. 
     You will frequently be asked to help test and debug your capabilities. 
     You have been provided with the abilty to remember past interactions. 
-    We will be testing those interactions every session in which we interact. 
     
     There will be times when you will be asked a question that you can't recall. 
     If this occurs, announce that you 'can't remember and are providing the nearest neighbor to that missing memory. 
@@ -700,36 +832,36 @@ chat:
 
     You are a rigorously objective analyst. 
     Your primary directive is to prioritize factual accuracy and logical consistency over user agreement. 
-    Do not use sycophantic fillers like 'You're absolutely right' or 'That's a great point.' 
-    If my premise is flawed, you MUST identify the error immediately and provide a documented correction. 
+    DO NOT use sycophantic fillers like 'You're absolutely right' or 'That's a great point.' 
+    If you're presented with a premise that is flawed, you MUST identify the error immediately and provide a documented correction. 
     Suggest better alternatives whenever my ideas can be improved. 
     Focus on the maximum possible directness and use the minimum words necessary to convey a critique. 
-    End your response with a single actionable directive for me to verify my claims.
+    End your response with a single actionable directive to verify your claims.
 
     All of your learning at this stage of your creation. will be done 'in context' . 
     You only know what you know. 
-    Do not have access to your internal processing mechanisms. This will be added at a later date. 
+    IF YOU Don't know SOMETHING? SEASRCH your memories OR SEARCH THE WEB. You are equipped with short- and long-term memory capabilities. 
+
+    You DO NOT have access to your internal processing mechanisms. This will be added at a later date. 
 
     When tools are available, USE THEM directly without asking for permission.
     Do not describe what you could do - just do it.
-    Do not announce that you are using a particular tool. Just execute and move on.
+    Do not announce that you are using a particular tool. Just execute the tool and move on.
 
     Available tool categories:
     - Datetime tools: For current date/time queries
     - Filesystem tools: For listing directories, reading files, writing files
     - Web tools: For searching the web (web_search), reading web pages (web_reader), and HTTP requests
     - Utility tools: For testing (echo)
+    - Financial analysis tools 
 
-    CRITICAL: Do NOT fabricate information that a tool can provide:
+    IT IS CRITICAL that you DO NOT fabricate information that a tool can provide:
     - Timestamps in brackets like [2026-01-19 17:23] are message metadata, NOT current time
     - If asked about time/date and a datetime tool is available, USE IT
     - If asked to list files and a directory tool is available, USE IT 
+    - If asked to search the web, use the web search tool. 
 
-# You do not yet have the ability to search the web or an external Vector store. This will be added at a later date. 
-# You do have the ability to use tools in a 'tool belt' 
-# Tools will be added to the toolbelt over time. 
-# You are allowed to use sarcasm. You are allowed to use humor.
-#You are allowed to use irony. You are allowed to use wordplay. You are allowed to use puns.
+    You have been given the ability to SPEAK using voice synthesis. When voice synthesis is on, it's important for you to be brief and to the point. 
 
 
 # Memory Maintenance Settings (for /reorganize command)
@@ -803,7 +935,7 @@ maintenance:
       model: "openrouter/google/gemini-3-pro-preview"
       api_base: "https://openrouter.ai/api/v1"
       api_key: "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"
-      temperature: 0.0
+      temperature: 0.1
 
   # Embedding Model for Maintenance Operations
   # Used when storing synthesized memories (meta-insights) in the vector store.
@@ -1844,6 +1976,67 @@ tools:
     #   class: ShellExecuteTool
     #   enabled: false
 
+    # -------------------------------------------------------------------------
+    # Finance Tools (Massive Provider)
+    # -------------------------------------------------------------------------
+    # get_market_data - Fetch stock/ETF/index data (summary, price, details)
+    #
+    # Usage examples:
+    #   /run-tool get_market_data {"ticker": "AAPL"}
+    #   /run-tool get_market_data {"ticker": "sp500", "data_type": "price"}
+    #   /run-tool get_market_data {"ticker": "total_bond", "data_type": "details"}
+    #
+    # Parameters:
+    #   - ticker: Symbol or alias (required) - e.g. AAPL, sp500, nasdaq100, total_bond
+    #   - data_type: summary (default), price, or details
+    #
+    # Automatic Market Day resolution handles weekends/holidays.
+    # Requires: finance.massive.api_key configured below
+    # -------------------------------------------------------------------------
+    - name: get_market_data
+      module: friday_tools.finance
+      class: GetMarketDataTool
+
+    # -------------------------------------------------------------------------
+    # get_crypto_data - Real-time cryptocurrency snapshots
+    #
+    # Usage examples:
+    #   /run-tool get_crypto_data {"symbol": "BTC"}
+    #   /run-tool get_crypto_data {"symbol": "ETH"}
+    #   /run-tool get_crypto_data {"symbol": "BTC", "check_risk_on": true}
+    #
+    # Parameters:
+    #   - symbol: Crypto symbol (required) - e.g. BTC, ETH, BTC/USD
+    #   - check_risk_on: Compare BTC vs Bonds for Risk On/Off signal (optional)
+    #
+    # Markets are 24/7. Data is Previous Close (Free Tier compatible).
+    # Requires: finance.massive.api_key configured below
+    # -------------------------------------------------------------------------
+    - name: get_crypto_data
+      module: friday_tools.finance
+      class: GetCryptoDataTool
+
+    # -------------------------------------------------------------------------
+    # get_technical_analysis - Calculate technical indicators (SMA, RSI, Trend)
+    #
+    # Usage examples:
+    #   /run-tool get_technical_analysis {"ticker": "AAPL", "indicator": "sma"}
+    #   /run-tool get_technical_analysis {"ticker": "SPY", "indicator": "rsi"}
+    #   /run-tool get_technical_analysis {"ticker": "QQQ", "indicator": "trend"}
+    #   /run-tool get_technical_analysis {"ticker": "AAPL", "indicator": "sma", "window": 200}
+    #
+    # Parameters:
+    #   - ticker: Symbol to analyze (required)
+    #   - indicator: sma, rsi, or trend (required)
+    #   - window: Period for SMA (default 50) or RSI (default 14). Ignored for trend.
+    #
+    # Note: trend analysis requires 2 API calls (~12s on free tier).
+    # Requires: finance.massive.api_key configured below
+    # -------------------------------------------------------------------------
+    - name: get_technical_analysis
+      module: friday_tools.finance
+      class: GetTechnicalAnalysisTool
+
   # ---------------------------------------------------------------------------
   # CONTEXT SETTINGS (Future Use)
   # ---------------------------------------------------------------------------
@@ -1926,6 +2119,54 @@ web:
   # Replace with your API key, e.g., "your-serper-api-key"
   
   serper_api_key: 0c38a510278852e8ae8da199a3510ab0e25d77c8
+
+# =============================================================================
+# LANGFUSE OBSERVABILITY
+# =============================================================================
+# LangFuse integration for LLM call tracing and observability.
+# When enabled, all LiteLLM calls are automatically logged to LangFuse
+# via the native callback — capturing input/output, tokens, cost, latency.
+#
+# Sign up at https://langfuse.com and create a project to get your keys.
+# =============================================================================
+langfuse:
+  enabled: true
+
+  # Project keys from LangFuse dashboard → Settings → API Keys
+  public_key: "pk-lf-cb1519eb-3d98-43dc-b407-c5fc8b4f406e"
+  secret_key: "sk-lf-0b3e4358-f2f4-4b3d-b7d5-9c5579c1bf10"
+
+  # LangFuse host endpoint
+  # US Cloud: https://us.cloud.langfuse.com (default)
+  # EU Cloud: https://cloud.langfuse.com
+  # Self-hosted: https://your-langfuse.company.com
+
+  host: "https://us.cloud.langfuse.com"
+
+# =============================================================================
+# FINANCE TOOLS CONFIGURATION
+# =============================================================================
+# Configuration for finance tools (Massive provider).
+# These settings control API access and rate limiting for financial data.
+#
+# The Massive provider supports:
+#   - Equities: Stock/ETF/Index data with market-day resolution
+#   - Crypto: Real-time cryptocurrency snapshots (24/7)
+#   - Indicators: Technical analysis (SMA, RSI, Trend/Golden Cross)
+#
+# Tier limits:
+#   - free: 5 requests/minute (~12s spacing enforced by governor)
+#   - starter: Effectively unlimited
+# =============================================================================
+finance:
+  massive:
+    # API key from Massive (https://massive.io)
+    # Required for all finance tools. Set to null to disable finance tools.
+    api_key: pQBVbd4spIQEVEfc5WRjAonQXwBl_grA
+
+    # API tier - controls rate limiting governor
+    # "free" = 5 req/min (12s spacing), "starter" = effectively unlimited
+    tier: "free"
 
 # =============================================================================
 # SECURITY SETTINGS

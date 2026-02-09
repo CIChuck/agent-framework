@@ -19,8 +19,13 @@ from friday_memory.context.cache_config import (
     PromptCacheConfig,
 )
 from friday_memory.context.consolidator import MemoryConsolidator
+from friday_memory.context.extraction_filter import (
+    ExtractionFilter,
+    configure_rejection_logging,
+)
 from friday_memory.context.extractor import MemoryExtractor
 from friday_memory.context.layout import PromptArchitect, SupportingContextConfig
+from friday_memory.context.ontology import NodeTypeConfig, OntologyConfig
 from friday_memory.context.passage_router import (
     PassageRouter,
     PassageRouterConfig,
@@ -41,4 +46,8 @@ __all__ = [
     "PromptCacheConfig",
     "CacheProvider",
     "CacheBreakpoint",
+    "OntologyConfig",
+    "NodeTypeConfig",
+    "ExtractionFilter",
+    "configure_rejection_logging",
 ]
