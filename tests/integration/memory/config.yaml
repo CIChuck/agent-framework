@@ -222,6 +222,7 @@ extraction:
         - CREATED
         - AUTHORED
         - FOUNDED
+        - HOSTS
       association:
         - WORKS_AT
         - MEMBER_OF
@@ -231,6 +232,7 @@ extraction:
       usage:
         - USES
         - SHOULD_USE
+        - LEVERAGES
         - DEPENDS_ON
         - BUILT_WITH
         - INTEGRATES
@@ -241,6 +243,7 @@ extraction:
         - CONTRIBUTES_TO
         - DEVELOPS
         - SUPPORTS
+        - PROMOTES
       knowledge:
         - KNOWS
         - EXPERT_IN
@@ -280,8 +283,8 @@ extraction:
       - "stuff"
       - "something"
 
-    max_label_length: 60
-    min_label_length: 2
+    max_label_length: 66
+    min_label_length: 3
 
   # Extraction prompt template
   # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name},
@@ -530,6 +533,53 @@ memory:
 
   # Consolidation settings
   consolidate_after_turns: 15
+
+  # =============================================================================
+  # IN-SESSION COMPACTION
+  # =============================================================================
+  # Proactively reduces context size when budget utilization is high.
+  # Runs as background tasks (fire-and-forget) without blocking chat.
+  #
+  # When utilization crosses compaction_threshold, the system:
+  #   1. Summarizes older conversation turns into compact summaries
+  #   2. Deduplicates overlapping insights in vector store
+  #   3. Promotes frequently-accessed short-term memories to long-term
+  #
+  # This complements the reactive _apply_budget() pruning with persistent
+  # data reduction that lowers utilization for all subsequent turns.
+  # =============================================================================
+  compaction:
+    enabled: true
+
+    # Utilization threshold to trigger compaction (0.0-1.0)
+    # 0.85 = compact when >85% of budget is used
+    compaction_threshold: 0.85
+
+    # Critical threshold for urgent compaction (higher time budget)
+    critical_threshold: 0.95
+
+    # Minimum turns between compaction runs (prevents thrashing)
+    cooldown_turns: 3
+
+    # Time budget per normal compaction run (milliseconds)
+    max_duration_ms: 2000
+
+    # Time budget for critical compaction (milliseconds)
+    critical_max_duration_ms: 5000
+
+    # Turn summarization: min turns before summarizing
+    min_turns_to_summarize: 5
+
+    # Turn summarization: max turns per summary batch
+    max_turns_per_summary: 8
+
+    # Insight deduplication: merge redundant insights
+    insight_dedup_enabled: true
+    insight_similarity_threshold: 0.90
+    max_insights_to_check: 50
+
+    # Number of recent turns for utilization trend tracking
+    trend_window: 10
 
   # Context Priming Configuration
   # On session startup, prime the context with knowledge from prior sessions.

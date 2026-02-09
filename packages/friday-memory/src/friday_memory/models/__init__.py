@@ -29,6 +29,12 @@ Tool Models (Tool Calling):
 - ToolSchema: Lightweight tool schema for context payload
 """
 
+from friday_memory.models.budget import (
+    BudgetSeverity,
+    BudgetStatus,
+    CompactionConfig,
+    CompactionResult,
+)
 from friday_memory.models.graph import (
     GraphEdge,
     GraphNode,
@@ -47,16 +53,16 @@ from friday_memory.models.session import (
     ToolCall,
     ToolResult,
 )
+from friday_memory.models.tools import (
+    ToolRecommendation,
+    ToolSchema,
+    ToolUsageRecord,
+)
 from friday_memory.models.vector_metadata import (
     InitialVectorMetadata,
     VectorDocumentMetadata,
     create_initial_metadata,
     create_longterm_metadata,
-)
-from friday_memory.models.tools import (
-    ToolRecommendation,
-    ToolSchema,
-    ToolUsageRecord,
 )
 
 __all__ = [
@@ -85,4 +91,9 @@ __all__ = [
     "ToolUsageRecord",
     "ToolRecommendation",
     "ToolSchema",
+    # Budget models
+    "BudgetSeverity",
+    "BudgetStatus",
+    "CompactionConfig",
+    "CompactionResult",
 ]

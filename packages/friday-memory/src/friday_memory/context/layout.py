@@ -53,11 +53,12 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 
 from pydantic import BaseModel, Field
 
-from friday_memory.models import ContextPayload, SessionState
 from friday_memory.context.token_estimator import build_token_estimator
+from friday_memory.models import ContextPayload, SessionState
 
 if TYPE_CHECKING:
-    from friday_memory.context.cache_config import CacheBreakpoint, PromptCacheConfig
+    from friday_memory.context.cache_config import PromptCacheConfig
+    from friday_memory.models.budget import BudgetStatus
 
 logger = logging.getLogger(__name__)
 
@@ -165,7 +166,7 @@ class PromptArchitect:
         output_buffer: int = 1024,
         user_name: str = "User",
         assistant_name: str = "Assistant",
-        cache_config: "PromptCacheConfig | None" = None,
+        cache_config: PromptCacheConfig | None = None,
         supporting_context_config: SupportingContextConfig | dict | None = None,
         token_estimator_config: dict[str, Any] | None = None,
     ) -> None:
@@ -202,12 +203,17 @@ class PromptArchitect:
         # Token counting now uses a configurable estimator (approx by default).
         self._token_estimator = build_token_estimator(token_estimator_config, model_name)
 
+        # Budget status from the most recent format_prompt() call.
+        # Populated by _validate_prompt_budget() for downstream consumers
+        # (e.g. ContextBudgetMonitor).
+        self.last_budget_status: BudgetStatus | None = None
+
     @property
-    def cache_config(self) -> "PromptCacheConfig | None":
+    def cache_config(self) -> PromptCacheConfig | None:
         """Access the cache configuration."""
         return self._cache_config
 
-    def set_cache_config(self, config: "PromptCacheConfig | None") -> None:
+    def set_cache_config(self, config: PromptCacheConfig | None) -> None:
         """Update the cache configuration."""
         self._cache_config = config
 
@@ -285,7 +291,9 @@ class PromptArchitect:
             )
 
         # Post-format validation: warn if budget exceeded
-        self._validate_prompt_budget(messages, tool_definitions)
+        self.last_budget_status = self._validate_prompt_budget(
+            messages, tool_definitions
+        )
 
         return messages
 
@@ -293,17 +301,27 @@ class PromptArchitect:
         self,
         messages: list[dict[str, Any]],
         tool_definitions: list[dict[str, Any]] | None = None,
-    ) -> None:
-        """
-        Validate that the formatted prompt doesn't exceed the token budget.
+    ) -> BudgetStatus:
+        """Validate that the formatted prompt fits the token budget.
 
-        Logs a warning if the prompt exceeds max_tokens - output_buffer.
-        This is a safeguard to catch budget enforcement gaps.
+        Computes utilization metrics, classifies severity, and logs
+        a warning when the prompt exceeds the budget. Returns a
+        ``BudgetStatus`` so that downstream consumers (e.g.
+        ``ContextBudgetMonitor``) can decide whether to trigger
+        background compaction.
 
         Args:
-            messages: The formatted messages array
-            tool_definitions: Optional tool definitions
+            messages: The formatted messages array.
+            tool_definitions: Optional tool definitions.
+
+        Returns:
+            BudgetStatus with utilization data and severity.
         """
+        from friday_memory.models.budget import (
+            BudgetSeverity,
+            BudgetStatus,
+        )
+
         # Calculate total tokens in messages
         message_tokens = sum(
             self.count_tokens(m.get("content", ""))
@@ -313,27 +331,56 @@ class PromptArchitect:
         # Add tool definition tokens if present
         tool_tokens = 0
         if tool_definitions:
-            tool_tokens = self.count_tokens(json.dumps(tool_definitions))
+            tool_tokens = self.count_tokens(
+                json.dumps(tool_definitions)
+            )
 
         total_tokens = message_tokens + tool_tokens
 
         # Available budget = max_tokens - output_buffer
         available_budget = self.max_tokens - self.output_buffer
 
+        utilization_pct = (
+            (total_tokens / available_budget) * 100
+            if available_budget > 0
+            else 100.0
+        )
+        overage = max(0, total_tokens - available_budget)
+        severity = BudgetSeverity.from_utilization(
+            utilization_pct
+        )
+
+        # Backward-compatible logging
         if total_tokens > available_budget:
-            overage = total_tokens - available_budget
             overage_pct = (overage / available_budget) * 100
             logger.warning(
-                f"Prompt exceeds budget: {total_tokens} > {available_budget} tokens "
-                f"(overage: {overage} tokens, {overage_pct:.1f}%). "
-                f"Consider reducing history or increasing context_window."
+                "Prompt exceeds budget: %d > %d tokens "
+                "(overage: %d tokens, %.1f%%). "
+                "Consider reducing history or increasing "
+                "context_window.",
+                total_tokens,
+                available_budget,
+                overage,
+                overage_pct,
             )
         else:
-            utilization = (total_tokens / available_budget) * 100
             logger.debug(
-                f"Prompt budget: {total_tokens}/{available_budget} tokens "
-                f"({utilization:.1f}% utilized)"
+                "Prompt budget: %d/%d tokens "
+                "(%.1f%% utilized)",
+                total_tokens,
+                available_budget,
+                utilization_pct,
             )
+
+        return BudgetStatus(
+            total_tokens=total_tokens,
+            available_budget=available_budget,
+            utilization_pct=utilization_pct,
+            overage_tokens=overage,
+            severity=severity,
+            message_tokens=message_tokens,
+            tool_tokens=tool_tokens,
+        )
 
     def _format_prompt_attention(
         self,

@@ -40,7 +40,6 @@ from friday_memory.models import (
     ToolRecommendation,
 )
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -135,6 +134,20 @@ class ContextAssembler(ContextEngineeringInterface):
     def set_consolidator(self, consolidator: Any) -> None:
         """Set the memory consolidator for consolidation cycles."""
         self._consolidator = consolidator
+
+    @property
+    def last_budget_status(self) -> Any:
+        """Budget status from the most recent format_prompt() call.
+
+        Returns the ``BudgetStatus`` computed by
+        ``PromptArchitect._validate_prompt_budget()`` during the last
+        ``format_prompt()`` invocation.  Returns ``None`` if
+        ``format_prompt()`` has not been called yet.
+
+        Returns:
+            BudgetStatus or None.
+        """
+        return self._architect.last_budget_status
 
     def set_passage_router(self, router: PassageRouter | None) -> None:
         """Set the passage router for conditional passage inclusion."""

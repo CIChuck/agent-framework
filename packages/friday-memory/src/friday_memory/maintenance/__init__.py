@@ -15,6 +15,7 @@ Usage:
 
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
 from friday_memory.maintenance.backup import BackupManager
+from friday_memory.maintenance.compactor import InSessionCompactor
 from friday_memory.maintenance.fact_checker import FactChecker
 from friday_memory.maintenance.incremental import (
     IncrementalGraphMaintainer,
@@ -26,8 +27,8 @@ from friday_memory.maintenance.models import (
     ActionLogEntry,
     ActionType,
     BackupManifest,
-    ClassifiedFact,
     ClaimType,
+    ClassifiedFact,
     ConsistencyIssue,
     ConsistencyReport,
     DuplicateGroup,
@@ -72,6 +73,8 @@ __all__ = [
     "IncrementalGraphMaintainer",
     "IncrementalMaintenanceConfig",
     "MaintenanceResult",
+    # In-session compaction
+    "InSessionCompactor",
     # Config
     "MaintenanceConfig",
     "PromptsConfig",

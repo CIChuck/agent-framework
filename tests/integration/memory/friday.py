@@ -33,6 +33,8 @@ Commands (prefix with /):
   /debug-budget    - Quick token budget diagnostic (context vs window)
   /timing          - Show timing breakdown for last turn
   /entities        - List graph entities and relationships
+  /entities nodes  - List nodes only with full attribute detail
+  /entities <name> - Look up a specific entity and its relationships
   /facts           - List all documents from vector store (insights + summaries)
   /insights        - List only insights (type='insight') with structured metadata
   /summaries       - List only turn summaries (type='summary')
@@ -186,6 +188,7 @@ from friday_memory.models import (
     ToolCall as MemoryToolCall,
     ToolResult as MemoryToolResult,
 )
+from friday_memory.models.graph import GraphNode
 from friday_memory.lifecycle import (
     ToolContentManager,
     ToolContentConfig,
@@ -196,11 +199,14 @@ from friday_memory.ingestion import (
     ToolOutputIngester,
     ToolOutputIngesterConfig,
 )
+from friday_memory.context.budget_monitor import ContextBudgetMonitor
 from friday_memory.maintenance import (
     IncrementalGraphMaintainer,
     IncrementalMaintenanceConfig,
+    InSessionCompactor,
     MemoryReorganizer,
 )
+from friday_memory.models.budget import CompactionConfig
 from friday_memory.maintenance.models import (
     EmbeddingConfig,
     FactCheckConfig,
@@ -389,6 +395,10 @@ class MemoryChatSession:
         # Incremental graph maintenance
         self.incremental_maintainer: IncrementalGraphMaintainer | None = None
 
+        # In-session budget monitoring and compaction
+        self.budget_monitor: ContextBudgetMonitor | None = None
+        self.compactor: InSessionCompactor | None = None
+
         # State tracking
         self.state: SessionState | None = None
         self.last_payload: ContextPayload | None = None
@@ -531,7 +541,27 @@ class MemoryChatSession:
 
         self.registry.register(
             "entities",
-            lambda ctx: asyncio.create_task(ctx.cmd_entities()),
+            lambda ctx, subcommand=None, extra_args=None, **_kw: (
+                asyncio.create_task(
+                    ctx.cmd_entities(
+                        " ".join(
+                            [subcommand] + (extra_args or [])
+                        )
+                        if subcommand
+                        else None
+                    )
+                )
+            ),
+            arguments=[
+                arg(
+                    "subcommand",
+                    required=False,
+                    description=(
+                        "'nodes' for node-only view with full detail, "
+                        "or <name> to look up a specific entity"
+                    ),
+                ),
+            ],
             description="List graph entities and their relationships",
             category="memory",
         )
@@ -951,8 +981,6 @@ class MemoryChatSession:
                 return await self.cmd_debug_retrieval(query)
             case "list-ingested":
                 return await self.cmd_list_ingested()
-            case "entities":
-                return await self.cmd_entities()
             case "facts":
                 return await self.cmd_facts()
             case "insights":
@@ -1172,6 +1200,51 @@ class MemoryChatSession:
         except Exception as e:
             # Log but don't fail - this is background work
             logger.warning(f"Incremental maintenance error: {e}")
+
+    async def _run_compaction(self) -> None:
+        """Run in-session compaction (fire-and-forget).
+
+        Triggered by the ContextBudgetMonitor when budget
+        utilization exceeds the compaction threshold.  Runs
+        as a background task without blocking the chat loop.
+        """
+        if not self.compactor or not self.budget_monitor:
+            return
+
+        try:
+            time_budget = (
+                self.budget_monitor.get_time_budget_ms()
+            )
+            get_console().print(
+                f"  [dim][Compaction started in background "
+                f"(budget: "
+                f"{self.budget_monitor.get_metrics()['current_utilization_pct']:.1f}%"
+                f")][/dim]"
+            )
+            result = await self.compactor.run_compaction(
+                session_id=self.session_id,
+                time_budget_ms=time_budget,
+                trigger_reason="budget_threshold_exceeded",
+            )
+            if (
+                result.turns_summarized > 0
+                or result.insights_deduplicated > 0
+                or result.memories_promoted > 0
+            ):
+                get_console().print(
+                    f"  [dim][Compaction complete: "
+                    f"summarized={result.turns_summarized}, "
+                    f"deduped="
+                    f"{result.insights_deduplicated}, "
+                    f"promoted={result.memories_promoted}, "
+                    f"tokens_saved="
+                    f"{result.tokens_saved_from_summarization}"
+                    f"][/dim]"
+                )
+        except Exception as e:
+            logger.warning(f"Compaction error: {e}")
+        finally:
+            self.budget_monitor.mark_compaction_complete()
 
     @property
     def avg_context_tokens(self) -> float:
@@ -1844,51 +1917,327 @@ class MemoryChatSession:
 
         return "\n".join(lines)
 
-    async def cmd_entities(self) -> str:
-        """List graph entities and their relationships."""
+    def _format_node_detail(self, node: GraphNode, indent: str = "    ") -> list[str]:
+        """Format a single GraphNode into a multi-line detail block.
+
+        Displays all meaningful attributes: label, type, lifecycle stage,
+        Hebbian learning stats, timestamps, provenance, and properties.
+
+        Args:
+            node: The GraphNode to format.
+            indent: Indentation prefix for each line.
+
+        Returns:
+            List of formatted lines for this node.
+        """
+        lines = []
+        lines.append(f"{indent}{node.label}")
+        lines.append(
+            f"{indent}  Type: {node.type} | Stage: {node.stage.value} "
+            f"| Hits: {node.hit_count} | Decay: {node.decay_score:.2f}"
+        )
+        created = node.created_at.strftime("%Y-%m-%d %H:%M")
+        accessed = node.last_accessed.strftime("%Y-%m-%d %H:%M")
+        lines.append(
+            f"{indent}  Created: {created} | Last accessed: {accessed}"
+        )
+        prov = node.provenance
+        author = prov.author_id or "unknown"
+        lines.append(
+            f"{indent}  Source: {prov.source_type} "
+            f"(confidence: {prov.confidence:.2f}, author: {author})"
+        )
+        if node.properties:
+            lines.append(f"{indent}  Properties: {node.properties}")
+        if node.promoted_at:
+            lines.append(
+                f"{indent}  Promoted: "
+                f"{node.promoted_at.strftime('%Y-%m-%d %H:%M')}"
+            )
+        if node.decayed_at:
+            lines.append(
+                f"{indent}  Decayed: "
+                f"{node.decayed_at.strftime('%Y-%m-%d %H:%M')}"
+            )
+        return lines
+
+    async def _format_node_relationships(
+        self, node: GraphNode
+    ) -> list[str]:
+        """Fetch and format all edge relationships for a given node.
+
+        Retrieves edges in both directions (incoming and outgoing),
+        resolves connected node labels, and formats the relationships.
+
+        Args:
+            node: The GraphNode to show relationships for.
+
+        Returns:
+            List of formatted relationship lines.
+        """
+        edges = await self.controller.graph.get_edges_for_nodes(
+            {node.id}, direction="both"
+        )
+        if not edges:
+            return ["    No relationships found for this entity."]
+
+        # Collect all referenced node IDs for label resolution
+        referenced_ids: set[str] = set()
+        for edge in edges:
+            referenced_ids.add(edge.source_id)
+            referenced_ids.add(edge.target_id)
+        referenced_ids.discard(node.id)
+
+        node_lookup = await self.controller.graph.get_nodes_by_ids(
+            referenced_ids
+        )
+
+        outgoing = []
+        incoming = []
+        for edge in edges:
+            if edge.source_id == node.id:
+                target = node_lookup.get(edge.target_id)
+                target_label = (
+                    target.label if target else edge.target_id[:8]
+                )
+                outgoing.append(
+                    f"    {node.label} --[{edge.relation}]--> "
+                    f"{target_label}"
+                )
+            else:
+                source = node_lookup.get(edge.source_id)
+                source_label = (
+                    source.label if source else edge.source_id[:8]
+                )
+                incoming.append(
+                    f"    {source_label} --[{edge.relation}]--> "
+                    f"{node.label}"
+                )
+
+        lines = []
+        if outgoing:
+            lines.append(f"\n  Outgoing ({len(outgoing)}):")
+            lines.extend(outgoing)
+        if incoming:
+            lines.append(f"\n  Incoming ({len(incoming)}):")
+            lines.extend(incoming)
+        return lines
+
+    async def cmd_entities(self, arg: str | None = None) -> str:
+        """List graph entities and their relationships.
+
+        Supports three modes:
+          /entities         — all nodes + all edges (default)
+          /entities nodes   — nodes only, with full attribute detail
+          /entities <name>  — lookup a specific node and its relationships
+
+        Args:
+            arg: Optional subcommand or node name.
+
+        Returns:
+            Formatted string of entity/relationship information.
+        """
         try:
-            # Get all nodes and edges from graph store
-            nodes = await self.controller.graph.get_all_nodes()
-            edges = await self.controller.graph.get_all_edges()
+            # --- /entities nodes ---
+            if arg and arg.lower() == "nodes":
+                return await self._cmd_entities_nodes()
 
-            if not nodes and not edges:
-                return "No entities in graph store."
+            # --- /entities <name> ---
+            if arg:
+                return await self._cmd_entities_lookup(arg)
 
-            lines = ["=" * 60, "GRAPH STORE (entities & relationships)", "=" * 60]
+            # --- /entities (default: all nodes + edges) ---
+            return await self._cmd_entities_all()
 
-            # Build a lookup for node labels by ID
-            node_lookup = {node.id: node for node in nodes}
-
-            # Show nodes grouped by type
-            if nodes:
-                lines.append(f"\nEntities ({len(nodes)} total):")
-                # Group by type
-                by_type: dict[str, list] = {}
-                for node in nodes:
-                    by_type.setdefault(node.type, []).append(node)
-
-                for node_type, type_nodes in sorted(by_type.items()):
-                    lines.append(f"\n  [{node_type}]")
-                    for node in type_nodes[:500]:  # Show up to 500 per type for debugging
-                        lines.append(f"    - {node.label} (hits: {node.hit_count})")
-                    if len(type_nodes) > 500:
-                        lines.append(f"    ... and {len(type_nodes) - 500} more")
-
-            # Show relationships
-            if edges:
-                lines.append(f"\nRelationships ({len(edges)} total):")
-                for edge in edges[:500]:  # Show up to 500 for debugging
-                    source = node_lookup.get(edge.source_id)
-                    target = node_lookup.get(edge.target_id)
-                    source_label = source.label if source else edge.source_id[:8]
-                    target_label = target.label if target else edge.target_id[:8]
-                    lines.append(f"    {source_label} --[{edge.relation}]--> {target_label}")
-                if len(edges) > 500:
-                    lines.append(f"    ... and {len(edges) - 500} more")
-
-            return "\n".join(lines)
         except Exception as e:
             return f"Error retrieving entities: {e}"
+
+    async def _cmd_entities_all(self) -> str:
+        """Show all nodes grouped by type and all edges.
+
+        This is the original /entities behavior preserved as the default.
+
+        Returns:
+            Formatted string with all entities and relationships.
+        """
+        nodes = await self.controller.graph.get_all_nodes()
+        edges = await self.controller.graph.get_all_edges()
+
+        if not nodes and not edges:
+            return "No entities in graph store."
+
+        lines = [
+            "=" * 60,
+            "GRAPH STORE (entities & relationships)",
+            "=" * 60,
+        ]
+
+        node_lookup = {node.id: node for node in nodes}
+
+        if nodes:
+            lines.append(f"\nEntities ({len(nodes)} total):")
+            by_type: dict[str, list] = {}
+            for node in nodes:
+                by_type.setdefault(node.type, []).append(node)
+
+            for node_type, type_nodes in sorted(by_type.items()):
+                lines.append(f"\n  [{node_type}]")
+                for node in type_nodes[:500]:
+                    lines.append(
+                        f"    - {node.label} "
+                        f"(hits: {node.hit_count})"
+                    )
+                if len(type_nodes) > 500:
+                    lines.append(
+                        f"    ... and {len(type_nodes) - 500} more"
+                    )
+
+        if edges:
+            lines.append(f"\nRelationships ({len(edges)} total):")
+            for edge in edges[:500]:
+                source = node_lookup.get(edge.source_id)
+                target = node_lookup.get(edge.target_id)
+                source_label = (
+                    source.label if source else edge.source_id[:8]
+                )
+                target_label = (
+                    target.label if target else edge.target_id[:8]
+                )
+                lines.append(
+                    f"    {source_label} --[{edge.relation}]--> "
+                    f"{target_label}"
+                )
+            if len(edges) > 500:
+                lines.append(
+                    f"    ... and {len(edges) - 500} more"
+                )
+
+        return "\n".join(lines)
+
+    async def _cmd_entities_nodes(self) -> str:
+        """Show all nodes with full attribute detail and their edges.
+
+        Displays every meaningful attribute on each node plus its
+        incoming and outgoing edge relationships. Fetches all nodes
+        and edges once upfront for efficiency.
+
+        Returns:
+            Formatted string listing all nodes grouped by type.
+        """
+        nodes = await self.controller.graph.get_all_nodes()
+        edges = await self.controller.graph.get_all_edges()
+
+        if not nodes:
+            return "No entities in graph store."
+
+        # Build lookup and per-node edge indexes
+        node_lookup = {node.id: node for node in nodes}
+        outgoing_by_node: dict[str, list] = {}
+        incoming_by_node: dict[str, list] = {}
+        for edge in edges:
+            outgoing_by_node.setdefault(
+                edge.source_id, []
+            ).append(edge)
+            incoming_by_node.setdefault(
+                edge.target_id, []
+            ).append(edge)
+
+        lines = [
+            "=" * 60,
+            "GRAPH STORE (nodes with relationships)",
+            "=" * 60,
+            f"\nEntities ({len(nodes)} total):",
+        ]
+
+        by_type: dict[str, list] = {}
+        for node in nodes:
+            by_type.setdefault(node.type, []).append(node)
+
+        for node_type, type_nodes in sorted(by_type.items()):
+            lines.append(f"\n  [{node_type}] ({len(type_nodes)})")
+            for node in type_nodes[:500]:
+                lines.extend(self._format_node_detail(node))
+
+                # Outgoing edges
+                node_outgoing = outgoing_by_node.get(node.id, [])
+                if node_outgoing:
+                    lines.append(f"      Outgoing ({len(node_outgoing)}):")
+                    for edge in node_outgoing:
+                        target = node_lookup.get(edge.target_id)
+                        target_label = (
+                            target.label
+                            if target
+                            else edge.target_id[:8]
+                        )
+                        lines.append(
+                            f"        --[{edge.relation}]--> "
+                            f"{target_label}"
+                        )
+
+                # Incoming edges
+                node_incoming = incoming_by_node.get(node.id, [])
+                if node_incoming:
+                    lines.append(f"      Incoming ({len(node_incoming)}):")
+                    for edge in node_incoming:
+                        source = node_lookup.get(edge.source_id)
+                        source_label = (
+                            source.label
+                            if source
+                            else edge.source_id[:8]
+                        )
+                        lines.append(
+                            f"        {source_label} --[{edge.relation}]-->"
+                        )
+
+                lines.append("")  # blank line between nodes
+            if len(type_nodes) > 500:
+                lines.append(
+                    f"    ... and {len(type_nodes) - 500} more"
+                )
+
+        return "\n".join(lines)
+
+    async def _cmd_entities_lookup(self, name: str) -> str:
+        """Look up a specific entity by name and show its relationships.
+
+        Tries exact case-insensitive match first, then falls back to
+        fuzzy search for suggestions.
+
+        Args:
+            name: The entity name to look up.
+
+        Returns:
+            Formatted string with node details and relationships,
+            or suggestions if no exact match is found.
+        """
+        # Exact match (case-insensitive)
+        node = await self.controller.graph.find_by_label(name)
+
+        if node:
+            lines = [
+                "=" * 60,
+                f"ENTITY: {node.label}",
+                "=" * 60,
+            ]
+            lines.extend(self._format_node_detail(node, indent="  "))
+            lines.append("\nRelationships:")
+            lines.extend(
+                await self._format_node_relationships(node)
+            )
+            return "\n".join(lines)
+
+        # Fuzzy fallback for suggestions
+        suggestions = await self.controller.graph.fuzzy_search(
+            name, threshold=0.6
+        )
+        if suggestions:
+            lines = [f"No exact match for '{name}'."]
+            lines.append("\nDid you mean:")
+            for s in suggestions[:10]:
+                lines.append(f"  - {s.label} ({s.type})")
+            return "\n".join(lines)
+
+        return f"No entity found matching '{name}'."
 
     async def cmd_facts(self) -> str:
         """List all facts/insights from the lifecycle collections."""
@@ -5165,6 +5514,9 @@ Use /facts to view stored documents."""
         _t4 = _time.perf_counter()
         logger.debug(f"[TIMING] Prompt format: {(_t4-_t3)*1000:.0f}ms")
 
+        # Capture budget status for monitoring (populated by format_prompt)
+        budget_status = self.assembler.last_budget_status
+
         # Store timing data for /timing command
         self.last_timing = {
             "init": (_t1 - _t0) * 1000,
@@ -5306,6 +5658,17 @@ Use /facts to view stored documents."""
                 # Fire-and-forget: Incremental graph maintenance if scheduled
                 if self.incremental_maintainer and self.incremental_maintainer.should_run(current_turn_number):
                     asyncio.create_task(self._run_incremental_maintenance())
+
+                # Fire-and-forget: Budget-aware compaction
+                if (
+                    self.budget_monitor
+                    and self.compactor
+                    and budget_status
+                ):
+                    self.budget_monitor.record_turn(budget_status)
+                    if self.budget_monitor.should_compact():
+                        self.budget_monitor.mark_compaction_started()
+                        asyncio.create_task(self._run_compaction())
 
                 # 5. Extract entities and facts from the turn (background)
                 # Buffer every turn; flush the entire batch when the
@@ -6834,6 +7197,40 @@ async def main() -> None:
         graph_store=session.controller.graph,
         config=incremental_config,
     )
+
+    # Initialize budget monitor and in-session compactor
+    compaction_config_data = memory_config.get("compaction", {})
+    if compaction_config_data.get("enabled", False):
+        try:
+            compaction_config = CompactionConfig(
+                **compaction_config_data
+            )
+            session.budget_monitor = ContextBudgetMonitor(
+                config=compaction_config,
+            )
+            if session.controller.collection_manager:
+                session.compactor = InSessionCompactor(
+                    memory_controller=session.controller,
+                    collection_manager=(
+                        session.controller.collection_manager
+                    ),
+                    llm_client=extraction_llm,
+                    config=compaction_config,
+                )
+                display_info(
+                    "In-session compaction enabled "
+                    f"(threshold: "
+                    f"{compaction_config.compaction_threshold:.0%})"
+                )
+            else:
+                display_warning(
+                    "Compaction requires CollectionManager "
+                    "(lifecycle collections). Disabled."
+                )
+        except Exception as e:
+            display_warning(
+                f"Failed to initialize compaction: {e}"
+            )
 
     # Trigger priming and populate session.last_payload for /context command
     if priming_config.get("enabled", True):

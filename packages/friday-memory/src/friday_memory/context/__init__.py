@@ -13,6 +13,7 @@ the "Brain" of the Friday Framework:
 """
 
 from friday_memory.context.assembler import ContextAssembler
+from friday_memory.context.budget_monitor import ContextBudgetMonitor
 from friday_memory.context.cache_config import (
     CacheBreakpoint,
     CacheProvider,
@@ -50,4 +51,5 @@ __all__ = [
     "NodeTypeConfig",
     "ExtractionFilter",
     "configure_rejection_logging",
+    "ContextBudgetMonitor",
 ]

@@ -465,22 +465,46 @@ class MemoryPromotionService:
                         result.errors.append(f"Failed to promote {doc_id}: {e}")
 
     async def _count_relationships(self, memory_id: str) -> int:
-        """Count graph relationships for a memory."""
+        """Count graph relationships for a memory.
+
+        Finds all graph nodes whose source_memory_ids include this
+        memory, collects their IDs, then fetches all connected edges
+        in a single batch call.
+
+        Args:
+            memory_id: The vector memory ID to count relationships for.
+
+        Returns:
+            Total number of edges connected to nodes sourced from
+            this memory. Returns 0 if graph store is unavailable or
+            on error.
+        """
         if self._graph_store is None:
             return 0
 
         try:
-            # Check if memory_id is linked to any graph nodes
             all_nodes = await self._graph_store.get_all_nodes()
-            count = 0
+            linked_node_ids: set[str] = set()
             for node in all_nodes:
-                if hasattr(node, "source_memory_ids"):
-                    if memory_id in node.source_memory_ids:
-                        # Count edges connected to this node
-                        edges = await self._graph_store.get_edges_for_node(node.id)
-                        count += len(edges) if edges else 0
-            return count
-        except Exception:
+                if (
+                    hasattr(node, "source_memory_ids")
+                    and memory_id in node.source_memory_ids
+                ):
+                    linked_node_ids.add(node.id)
+
+            if not linked_node_ids:
+                return 0
+
+            edges = await self._graph_store.get_edges_for_nodes(
+                linked_node_ids, direction="both"
+            )
+            return len(edges)
+        except Exception as e:
+            logger.warning(
+                "Failed to count relationships for %s: %s",
+                memory_id,
+                e,
+            )
             return 0
 
     async def _propagate_decay_to_graph(
