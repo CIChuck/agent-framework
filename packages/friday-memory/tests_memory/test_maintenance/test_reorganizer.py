@@ -275,12 +275,18 @@ class TestLifecycleIntegration:
 
     @pytest.mark.asyncio
     async def test_optimize_without_support(self, clean_memory_dir):
-        """Test optimize step returns error without components."""
+        """Test optimize step skips gracefully without components.
+
+        Without lifecycle support or collection_manager, steps 1-3 are
+        skipped and the timestamp backfill is also skipped.  No errors
+        are appended — only warnings are logged.
+        """
         reorganizer = MemoryReorganizer(clean_memory_dir)
         report = await reorganizer.optimize(dry_run=True)
 
-        assert len(report.errors) > 0
-        assert "not configured" in report.errors[0]
+        assert len(report.errors) == 0
+        assert not report.access_buffer_flushed
+        assert not report.timestamp_backfill_done
 
     @pytest.mark.asyncio
     async def test_optimize_dry_run(

@@ -131,7 +131,7 @@ class TestPromptFormatting:
 
         # Supporting context is now in the final user message (tail injection)
         final_message = messages[-1]["content"]
-        assert "Prior Knowledge" in final_message
+        assert "Known Facts" in final_message
         assert "dark mode" in final_message
 
     def test_format_prompt_with_insights(self, architect: PromptArchitect):

@@ -35,7 +35,6 @@ Commands (prefix with /):
   /entities        - List graph entities and relationships
   /entities nodes  - List nodes only with full attribute detail
   /entities <name> - Look up a specific entity and its relationships
-  /facts           - List all documents from vector store (insights + summaries)
   /insights        - List only insights (type='insight') with structured metadata
   /summaries       - List only turn summaries (type='summary')
   /meta            - List only meta insights (type='meta_insight') from synthesis
@@ -566,12 +565,6 @@ class MemoryChatSession:
             category="memory",
         )
 
-        self.registry.register(
-            "facts",
-            lambda ctx: asyncio.create_task(ctx.cmd_facts()),
-            description="List all documents from vector store (insights + summaries)",
-            category="memory",
-        )
 
         self.registry.register(
             "insights",
@@ -981,8 +974,6 @@ class MemoryChatSession:
                 return await self.cmd_debug_retrieval(query)
             case "list-ingested":
                 return await self.cmd_list_ingested()
-            case "facts":
-                return await self.cmd_facts()
             case "insights":
                 return await self.cmd_insights()
             case "summaries":
@@ -1344,8 +1335,7 @@ class MemoryChatSession:
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
         lines.append(f"  Graph facts (edges): {len(self.last_payload.facts)}")
-        lines.append(f"  Key facts (natural language): {len(self.last_payload.key_facts)}")
-        lines.append(f"  Relationship summaries: {len(self.last_payload.recent_memories)}")
+        lines.append(f"  Known Facts: {len(self.last_payload.recent_memories)}")
         lines.append(f"  Insights: {len(self.last_payload.insights)}")
         lines.append(f"  Summaries: {len(self.last_payload.summaries)}")
 
@@ -1388,15 +1378,9 @@ class MemoryChatSession:
                 )
                 summaries_tokens = count_tokens(summaries_text)
 
-                # Relationships tokens
-                relationships_text = "\n".join(self.last_payload.recent_memories)
-                relationships_tokens = count_tokens(relationships_text)
-
-                # Key facts tokens
-                key_facts_text = "\n".join(
-                    f.get("text", "") for f in self.last_payload.key_facts
-                )
-                key_facts_tokens = count_tokens(key_facts_text)
+                # Known Facts tokens
+                known_facts_text = "\n".join(self.last_payload.recent_memories)
+                known_facts_tokens = count_tokens(known_facts_text)
 
                 # Passages tokens
                 passages_text = "\n".join(
@@ -1415,8 +1399,7 @@ class MemoryChatSession:
                 lines.append(f"  Total History: ~{prior_history_tokens + history_tokens} tokens")
                 lines.append(f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)")
                 lines.append(f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)")
-                lines.append(f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
-                lines.append(f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)")
+                lines.append(f"  Known Facts: ~{known_facts_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
                 lines.append(f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)")
                 lines.append(f"  ----------------------------------------")
                 lines.append(f"  Formatted Context: ~{formatted_tokens} tokens (total)")
@@ -1829,7 +1812,7 @@ class MemoryChatSession:
         lines.append("  1. Lower the threshold in config.yaml (memory.retrieval.short_term_min_similarity)")
         lines.append("  2. Use more specific query terms that match the document content")
         lines.append("  3. Check if the embedding model is working correctly")
-        lines.append("  4. Verify the document was stored with /facts command")
+        lines.append("  4. Verify the document was stored with /insights or /list-ingested command")
 
         return "\n".join(lines)
 
@@ -1840,7 +1823,7 @@ class MemoryChatSession:
         Shows what's been ingested and their current lifecycle stage.
         """
         if not self.controller.collection_manager:
-            return "Lifecycle is DISABLED - using main collection only.\nUse /facts to see documents in main collection."
+            return "Lifecycle is DISABLED - using main collection only.\nUse /insights to see documents in main collection."
 
         cm = self.controller.collection_manager
         lines = [
@@ -2239,42 +2222,6 @@ class MemoryChatSession:
 
         return f"No entity found matching '{name}'."
 
-    async def cmd_facts(self) -> str:
-        """List all facts/insights from the lifecycle collections."""
-        try:
-            # Get all documents from lifecycle collections (short-term + long-term)
-            cm = self.controller.collection_manager
-            if cm:
-                documents = await cm.get_all(limit=10000)
-            else:
-                documents = await self.controller.vector.get_all(limit=10000)
-            if not documents:
-                return "No facts/insights in vector store."
-
-            lines = ["=" * 60, "FACTS & INSIGHTS (from vector store)", "=" * 60]
-            lines.append(f"\nTotal documents: {len(documents)}\n")
-
-            for i, doc in enumerate(documents, 1):
-                text = doc.get("text", "")
-                metadata = doc.get("metadata", {})
-
-                # Truncate long text
-                display_text = text[:200] + "..." if len(text) > 200 else text
-                display_text = display_text.replace("\n", " ")
-
-                lines.append(f"{i}. {display_text}")
-
-                # Show metadata if present
-                if metadata:
-                    source_type = metadata.get("source_type", "unknown")
-                    confidence = metadata.get("confidence", "N/A")
-                    lines.append(f"   [source: {source_type}, confidence: {confidence}]")
-                lines.append("")
-
-            return "\n".join(lines)
-        except Exception as e:
-            return f"Error retrieving facts: {e}"
-
     async def cmd_insights(self) -> str:
         """List only insights (type='insight') from the lifecycle collections."""
         try:
@@ -2446,10 +2393,9 @@ class MemoryChatSession:
             # Summary counts
             lines.append(f"\nContext loaded:")
             lines.append(f"  Entities: {len(payload.entities)}")
-            lines.append(f"  Key Facts: {len(payload.key_facts)}")
+            lines.append(f"  Known Facts: {len(payload.recent_memories)}")
             lines.append(f"  Insights: {len(payload.insights)}")
             lines.append(f"  Summaries: {len(payload.summaries)}")
-            lines.append(f"  Relationships: {len(payload.recent_memories)}")
             lines.append(f"  Prior session turns: {len(payload.prior_history)}")
             lines.append(f"  Current session turns: {len(payload.history)}")
 
@@ -2460,9 +2406,9 @@ class MemoryChatSession:
                     hit_count = getattr(entity, 'hit_count', 0)
                     lines.append(f"  - {entity.label} ({entity.type}, hits: {hit_count})")
 
-            # Show relationship summaries
+            # Show known facts (relationship summaries from graph)
             if payload.recent_memories:
-                lines.append("\n--- Relationship Summaries ---")
+                lines.append("\n--- Known Facts ---")
                 for summary in payload.recent_memories[:10]:
                     lines.append(f"  {summary}")
 
@@ -2481,15 +2427,6 @@ class MemoryChatSession:
                     text = summary.get("text", "")[:200]
                     created = summary.get("metadata", {}).get("created_at", "")[:19]
                     lines.append(f"  {i}. [{created}] {text}...")
-
-            # Show key facts
-            if payload.key_facts:
-                lines.append("\n--- Key Facts (from vector store insights) ---")
-                for i, fact in enumerate(payload.key_facts[:5], 1):
-                    text = fact.get("text", "")
-                    created = fact.get("metadata", {}).get("created_at", "")[:19]
-                    display_text = text[:150] + "..." if len(text) > 150 else text
-                    lines.append(f"  {i}. [{created}] {display_text}")
 
             # Show prior session history
             if payload.prior_history:
@@ -3025,6 +2962,7 @@ class MemoryChatSession:
           --skip-synthesis Skip LLM-based memory synthesis
           --skip-verify   Skip LLM-based fact verification
           --skip-lifecycle Skip lifecycle and optimization steps
+          --force-reembed Re-embed ALL graph edges (even existing ones)
           --analyze       Just run analysis (no prune/synthesis/verify)
           --prune         Just run pruning
           --synthesize    Just run synthesis (meta-insights, relationships)
@@ -3041,6 +2979,7 @@ class MemoryChatSession:
           /reorganize --skip-lifecycle   - Skip lifecycle/optimization steps
           /reorganize --dedupe           - Dry run insight deduplication
           /reorganize --execute --dedupe - Execute insight deduplication
+          /reorganize --execute --force-reembed - Re-embed all graph edges
         """
         if not self.persist_dir:
             return "Error: persist_dir not configured for this session."
@@ -3054,6 +2993,7 @@ class MemoryChatSession:
         skip_synthesis = "--skip-synthesis" in opt_list
         skip_verify = "--skip-verify" in opt_list
         skip_lifecycle = "--skip-lifecycle" in opt_list
+        force_reembed = "--force-reembed" in opt_list
         analyze_only = "--analyze" in opt_list
         prune_only = "--prune" in opt_list
         synthesize_only = "--synthesize" in opt_list
@@ -3275,6 +3215,8 @@ class MemoryChatSession:
             lines.append(f"  Skip synthesis: {skip_synthesis}")
             lines.append(f"  Skip verify: {skip_verify}")
             lines.append(f"  Skip lifecycle: {skip_lifecycle}")
+            if force_reembed:
+                lines.append(f"  Force re-embed: {force_reembed}")
             lines.append("")
 
             report = await reorganizer.reorganize(
@@ -3283,6 +3225,7 @@ class MemoryChatSession:
                 skip_synthesis=skip_synthesis,
                 skip_verify=skip_verify,
                 skip_lifecycle=skip_lifecycle,
+                force_reembed=force_reembed,
             )
 
             # Show summary
@@ -5100,7 +5043,7 @@ The file content will be stored in vector memory for semantic search."""
   Chunks: {len(chunks)}
   Type: {reader_name}
 
-Use /facts to view stored documents."""
+Use /insights or /list-ingested to view stored documents."""
 
         except Exception as e:
             return f"Error ingesting file: {e}"
@@ -7013,14 +6956,14 @@ async def main() -> None:
     supporting_context_config = None
     if supporting_context_dict:
         supporting_context_config = SupportingContextConfig(
-            budget_ratio=supporting_context_dict.get("budget_ratio", 0.30),
+            budget_ratio=supporting_context_dict.get("budget_ratio", 0.25),
             section_priority=supporting_context_dict.get("section_priority", [
-                "recent_memories", "passages", "key_facts",
-                "insights", "summaries", "tools", "state"
+                "known_facts", "insights", "summaries",
+                "tools", "passages", "state"
             ]),
             max_items=supporting_context_dict.get("max_items", {
-                "passages": 10, "key_facts": 20, "insights": 15,
-                "summaries": 10, "tools": 5
+                "passages": 3, "known_facts": 30, "insights": 20,
+                "summaries": 15, "tools": 5
             }),
         )
         logger.debug(

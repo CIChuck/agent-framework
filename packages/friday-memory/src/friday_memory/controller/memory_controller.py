@@ -115,7 +115,6 @@ class MemoryController:
     TOKENS_PER_HISTORY_TURN = 150  # user + assistant messages
     TOKENS_PER_INSIGHT = 80
     TOKENS_PER_SUMMARY = 100
-    TOKENS_PER_FACT = 50
     TOKENS_PER_ENTITY = 30
     TOKENS_PER_RELATIONSHIP = 40
     TOKENS_PER_PRIOR_TURN = 150
@@ -192,6 +191,7 @@ class MemoryController:
             "max_insights": 10,
             "max_summaries": 10,
             "max_facts": 10,
+            "max_known_facts": 50,  # Cap on graph relationship summaries
             "recency_days": 0,
             "min_turns": 5,
             "previous_sessions": 0,  # Cross-session history: number of prior sessions
@@ -335,12 +335,19 @@ class MemoryController:
         Calculate token-budget-aware retrieval limits.
 
         Allocates the token budget across different content types using
-        priority-based allocation:
-        1. History (40% of budget) - critical for continuity
-        2. Insights (20%) - extracted knowledge
-        3. Summaries (15%) - conversation context
-        4. Facts/Entities (15%) - graph knowledge
-        5. Prior sessions (10%) - cross-session context
+        priority-based allocation, then applies priming_config ceilings
+        so retrieval respects configured max_items.
+
+        Budget allocation:
+        1. History (35% of budget) - current session continuity
+        2. Insights (25%) - extracted cross-session knowledge
+        3. Summaries (20%) - conversation context summaries
+        4. Facts/Entities (5%) - graph knowledge
+        5. Prior sessions (15%) - cross-session turn history
+
+        The budget-derived limits are capped by priming_config values
+        (max_insights, max_summaries, max_known_facts) to prevent
+        over-fetching beyond what downstream formatting will display.
 
         Args:
             token_limit: Total available tokens for retrieval
@@ -354,19 +361,17 @@ class MemoryController:
                 'relationships': int
             }
         """
-        # Budget allocation percentages
-        HISTORY_PERCENT = 0.40
-        INSIGHTS_PERCENT = 0.20
-        SUMMARIES_PERCENT = 0.15
-        FACTS_PERCENT = 0.10
+        # Budget allocation percentages (must sum to 1.0)
+        HISTORY_PERCENT = 0.35
+        INSIGHTS_PERCENT = 0.25
+        SUMMARIES_PERCENT = 0.20
         ENTITIES_PERCENT = 0.05
-        PRIOR_PERCENT = 0.10 if include_prior_sessions else 0.0
+        PRIOR_PERCENT = 0.15 if include_prior_sessions else 0.0
 
         # Calculate item limits based on token budget
         history_budget = int(token_limit * HISTORY_PERCENT)
         insights_budget = int(token_limit * INSIGHTS_PERCENT)
         summaries_budget = int(token_limit * SUMMARIES_PERCENT)
-        facts_budget = int(token_limit * FACTS_PERCENT)
         entities_budget = int(token_limit * ENTITIES_PERCENT)
         prior_budget = int(token_limit * PRIOR_PERCENT)
 
@@ -376,16 +381,29 @@ class MemoryController:
         )
         max_insights = max(1, insights_budget // self.TOKENS_PER_INSIGHT)
         max_summaries = max(1, summaries_budget // self.TOKENS_PER_SUMMARY)
-        max_facts = max(1, facts_budget // self.TOKENS_PER_FACT)
         max_entities = max(1, entities_budget // self.TOKENS_PER_ENTITY)
         max_prior = max(0, prior_budget // self.TOKENS_PER_PRIOR_TURN)
         max_relationships = max(1, max_entities)  # Match entity count
+
+        # Apply priming_config ceilings — prevents over-fetching beyond
+        # what the downstream layout will actually display
+        max_insights = min(
+            max_insights,
+            self._priming_config.get("max_insights", 15),
+        )
+        max_summaries = min(
+            max_summaries,
+            self._priming_config.get("max_summaries", 10),
+        )
+        max_relationships = min(
+            max_relationships,
+            self._priming_config.get("max_known_facts", 50),
+        )
 
         return {
             "history": max_history,
             "insights": max_insights,
             "summaries": max_summaries,
-            "facts": max_facts,
             "entities": max_entities,
             "prior_turns": max_prior,
             "relationships": max_relationships,
@@ -449,6 +467,10 @@ class MemoryController:
             if session_id and self._priming_config.get("enabled", True):
                 await self._ensure_session_primed(session_id)
 
+            # Compute query embedding ONCE for reuse across vector + graph retrieval.
+            # This avoids redundant embedding API calls (was 2 per recall, now 1).
+            query_embedding = await self._collection_manager._embedding_function.embed_query(query)
+
             # Parallel retrieval from all stores (using budget-aware limits)
             tasks = []
 
@@ -461,12 +483,20 @@ class MemoryController:
             else:
                 tasks.append(_empty_list())
 
-            # Vector retrieval via lifecycle collections
-            tasks.append(self._retrieve_vector_lifecycle(query, vector_results))
+            # Vector retrieval via lifecycle collections (shared embedding)
+            tasks.append(
+                self._retrieve_vector_lifecycle(
+                    query, vector_results, query_embedding=query_embedding
+                )
+            )
             debug_info["lifecycle_enabled"] = True
 
-            # Graph retrieval (entities from query)
-            tasks.append(self._retrieve_graph(query, graph_depth))
+            # Graph retrieval with semantic path scoring (shared embedding)
+            tasks.append(
+                self._retrieve_graph_with_scoring(
+                    query, graph_depth, query_embedding=query_embedding
+                )
+            )
 
             results = await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -479,6 +509,11 @@ class MemoryController:
                 graph_data.get("entities", []) if isinstance(graph_data, dict) else []
             )
             facts = graph_data.get("facts", []) if isinstance(graph_data, dict) else []
+            scored_paths = (
+                graph_data.get("scored_paths", [])
+                if isinstance(graph_data, dict)
+                else []
+            )
 
             # Use budget-aware limits for insights and summaries
             recency_days = self._priming_config.get("recency_days", 0)
@@ -489,9 +524,6 @@ class MemoryController:
             recent_summaries = await self._fetch_recent_summaries(
                 limits["summaries"], recency_days
             )
-
-            # Fetch key facts from graph using budget-aware limit
-            key_facts = await self._fetch_key_facts(limit=limits["facts"])
 
             # Fetch prior session history for cross-session continuity
             prior_history: list[InteractionTurn] = []
@@ -518,11 +550,13 @@ class MemoryController:
                     entities.append(entity)
                     existing_ids.add(entity.id)
 
-            # Build relationship summaries for top entities (budget-limited)
-            all_relationships = await self._build_relationship_summaries(top_entities)
+            # Build relationship summaries for all entities (budget-limited)
+            # Uses merged list: query-matched + top entities by hit_count
+            all_relationships = await self._build_relationship_summaries(entities)
             relationship_summaries = all_relationships[: limits["relationships"]]
 
-            # Record debug info
+            # Record debug info — includes retrieval limits for observability
+            debug_info["retrieval_limits"] = limits
             debug_info["history_count"] = len(history)
             debug_info["prior_history_count"] = len(prior_history)
             debug_info["passages_count"] = len(passages)
@@ -530,8 +564,10 @@ class MemoryController:
             debug_info["facts_count"] = len(facts)
             debug_info["insights_count"] = len(recent_insights)
             debug_info["summaries_count"] = len(recent_summaries)
-            debug_info["key_facts_count"] = len(key_facts)
             debug_info["relationships_count"] = len(relationship_summaries)
+            debug_info["relationships_total"] = len(all_relationships)
+            debug_info["scored_graph_paths"] = len(scored_paths)
+            debug_info["query_embedding_shared"] = True
             debug_info["total_latency"] = time.time() - start_time
 
             self._emit_event("memory_recall_completed", debug_info)
@@ -545,7 +581,6 @@ class MemoryController:
                 recent_memories=relationship_summaries,
                 insights=recent_insights,
                 summaries=recent_summaries,
-                key_facts=key_facts,
                 debug_info=debug_info,
             )
 
@@ -646,14 +681,15 @@ class MemoryController:
             if not top_nodes:
                 return [], [], [], []
 
-            # Step 2: Build recency cutoff for post-query filtering
-            # ChromaDB $gte only works on numeric fields, so we filter
-            # ISO timestamp strings in Python after retrieval.
-            recency_cutoff: str | None = None
+            # Step 2: Build recency cutoff for filtering.
+            # Uses created_at_ts (numeric) when available, with fallback to
+            # created_at (ISO string) for un-backfilled documents.
+            recency_cutoff_ts: int | None = None
+            recency_cutoff_iso: str | None = None
             if recency_days > 0:
-                recency_cutoff = (
-                    datetime.now() - timedelta(days=recency_days)
-                ).isoformat()
+                cutoff_dt = datetime.now() - timedelta(days=recency_days)
+                recency_cutoff_ts = int(cutoff_dt.timestamp())
+                recency_cutoff_iso = cutoff_dt.isoformat()
 
             # Step 3: Pre-fetch edges to build rich semantic queries (indexed retrieval)
             # We combine entity labels with their relationships for better matching
@@ -685,25 +721,28 @@ class MemoryController:
             # Step 4: Fetch most recent insights from vector store
             all_insights: list[dict[str, Any]] = []
             try:
-                # Fetch insights and sort by created_at descending
-                # Fetch more than needed to account for filtering, then take top N
                 raw_insights = await self._collection_manager.get_all(
                     limit=max_insights * 3,
                     where={"type": "insight"},
                 )
 
-                # Apply recency filter in Python (ChromaDB can't filter ISO strings)
-                if recency_cutoff:
+                # Apply recency filter in Python — uses created_at_ts
+                # (numeric) with fallback to created_at (ISO string) for
+                # documents that haven't been backfilled yet.
+                if recency_cutoff_ts is not None:
                     raw_insights = [
                         doc
                         for doc in raw_insights
-                        if doc.get("metadata", {}).get("created_at", "")
-                        >= recency_cutoff
+                        if self._passes_recency_filter(
+                            doc, recency_cutoff_ts, recency_cutoff_iso
+                        )
                     ]
 
                 # Sort by created_at descending (most recent first)
                 raw_insights.sort(
-                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                    key=lambda x: x.get("metadata", {}).get(
+                        "created_at", ""
+                    ),
                     reverse=True,
                 )
 
@@ -720,24 +759,26 @@ class MemoryController:
             # Step 5: Fetch most recent turn summaries from vector store
             turn_summaries: list[dict[str, Any]] = []
             try:
-                # Fetch summaries and sort by created_at descending
                 raw_summaries = await self._collection_manager.get_all(
                     limit=max_summaries * 3,
                     where={"type": "summary"},
                 )
 
                 # Apply recency filter in Python
-                if recency_cutoff:
+                if recency_cutoff_ts is not None:
                     raw_summaries = [
                         doc
                         for doc in raw_summaries
-                        if doc.get("metadata", {}).get("created_at", "")
-                        >= recency_cutoff
+                        if self._passes_recency_filter(
+                            doc, recency_cutoff_ts, recency_cutoff_iso
+                        )
                     ]
 
                 # Sort by created_at descending (most recent first)
                 raw_summaries.sort(
-                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
+                    key=lambda x: x.get("metadata", {}).get(
+                        "created_at", ""
+                    ),
                     reverse=True,
                 )
 
@@ -950,19 +991,32 @@ class MemoryController:
             raw = await self._collection_manager.get_all(
                 limit=max_count * 3, where={"type": "insight"}
             )
-            # Apply recency filter in Python (ChromaDB can't filter ISO strings)
+            # Apply recency filter — uses created_at_ts when available,
+            # falls back to created_at string for un-backfilled documents.
             if recency_days > 0:
-                cutoff = (
+                cutoff_ts = int(
+                    (
+                        datetime.now() - timedelta(days=recency_days)
+                    ).timestamp()
+                )
+                cutoff_iso = (
                     datetime.now() - timedelta(days=recency_days)
                 ).isoformat()
                 raw = [
                     doc
                     for doc in raw
-                    if doc.get("metadata", {}).get("created_at", "") >= cutoff
+                    if self._passes_recency_filter(
+                        doc, cutoff_ts, cutoff_iso
+                    )
                 ]
             # get_all() already sorts by created_at desc
             # Deduplicate by topic/entities before returning
             deduped = self._dedupe_by_topic(raw)
+            logger.debug(
+                f"Insights: {len(raw)} raw → {len(deduped)} after dedup "
+                f"→ {min(len(deduped), max_count)} returned "
+                f"(max_count={max_count}, recency_days={recency_days})"
+            )
             return deduped[:max_count]
         except Exception as e:
             if self._telemetry:
@@ -971,6 +1025,36 @@ class MemoryController:
                     {"error": str(e)},
                 )
             return []
+
+    @staticmethod
+    def _passes_recency_filter(
+        doc: dict[str, Any],
+        cutoff_ts: int,
+        cutoff_iso: str | None,
+    ) -> bool:
+        """
+        Check if a document passes the recency filter.
+
+        Uses ``created_at_ts`` (numeric, fast) when present, with a
+        fallback to ``created_at`` (ISO string comparison) for documents
+        that haven't been backfilled with the numeric timestamp yet.
+
+        Args:
+            doc: Document dict with metadata.
+            cutoff_ts: Unix epoch seconds cutoff.
+            cutoff_iso: ISO string cutoff (fallback for un-backfilled docs).
+
+        Returns:
+            True if the document is within the recency window.
+        """
+        meta = doc.get("metadata", {})
+        ts = meta.get("created_at_ts")
+        if ts is not None:
+            return ts >= cutoff_ts
+        # Fallback: compare ISO strings (lexicographic, correct for ISO 8601)
+        if cutoff_iso is not None:
+            return meta.get("created_at", "") >= cutoff_iso
+        return True
 
     def _dedupe_by_topic(self, insights: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """
@@ -1075,15 +1159,23 @@ class MemoryController:
             raw = await self._collection_manager.get_all(
                 limit=max_count * 3, where={"type": "summary"}
             )
-            # Apply recency filter in Python (ChromaDB can't filter ISO strings)
+            # Apply recency filter — uses created_at_ts when available,
+            # falls back to created_at string for un-backfilled documents.
             if recency_days > 0:
-                cutoff = (
+                cutoff_ts = int(
+                    (
+                        datetime.now() - timedelta(days=recency_days)
+                    ).timestamp()
+                )
+                cutoff_iso = (
                     datetime.now() - timedelta(days=recency_days)
                 ).isoformat()
                 raw = [
                     doc
                     for doc in raw
-                    if doc.get("metadata", {}).get("created_at", "") >= cutoff
+                    if self._passes_recency_filter(
+                        doc, cutoff_ts, cutoff_iso
+                    )
                 ]
             # get_all() already sorts by created_at desc
             return raw[:max_count]
@@ -1093,41 +1185,6 @@ class MemoryController:
                     "fetch_recent_summaries_failed",
                     {"error": str(e)},
                 )
-            return []
-
-    async def _fetch_key_facts(self, limit: int = 10) -> list[dict[str, Any]]:
-        """
-        Fetch key facts from vector store insights.
-
-        Retrieves the most recent insights (type='insight') from the vector
-        store, which contain rich, sentence-format facts about entities.
-        Sorted by created_at descending so new insights appear immediately.
-
-        Args:
-            limit: Maximum number of facts to return
-
-        Returns:
-            List of insight documents with 'text' and 'metadata' (most recent first)
-        """
-        try:
-            # Fetch insights from lifecycle collections
-            logger.debug("_fetch_key_facts: Fetching insights")
-            documents = await self._collection_manager.get_all(
-                limit=limit * 3,
-                where={"type": "insight"},
-            )
-            logger.debug("_fetch_key_facts: Got %d documents", len(documents))
-
-            # get_all() already sorts by created_at desc
-            # Return the most recent insight documents
-            facts = [doc for doc in documents[:limit] if doc.get("text")]
-
-            logger.debug("_fetch_key_facts: Returning %d facts", len(facts))
-            return facts
-        except Exception as e:
-            logger.error(f"_fetch_key_facts: Exception occurred: {e}")
-            if self._telemetry:
-                self._emit_event("fetch_key_facts_failed", {"error": str(e)})
             return []
 
     async def _fetch_prior_session_history(
@@ -1400,11 +1457,12 @@ class MemoryController:
 
         start_time = time.time()
 
-        # Query both collections in parallel
+        # Query both collections in parallel (shared embedding avoids redundant calls)
         results = await self._collection_manager.query(
             query_text=query,
             n_results=n_results,
             include_decayed=False,  # Never include decayed in normal retrieval
+            query_embedding=query_embedding,
         )
 
         short_term_results = results.get("short_term", [])
@@ -1541,9 +1599,10 @@ class MemoryController:
                 if source_node and target_node:
                     paths_to_score.append((source_node, edge, target_node))
 
-            # Score paths using pre-embedded edges
-            if paths_to_score:
-                scored_paths = await self._graph_scorer.filter_paths_async(
+            # Score paths using pre-embedded edges (sync fast path —
+            # all embeddings are pre-computed, no API calls needed)
+            if paths_to_score and query_embedding:
+                scored_paths = self._graph_scorer.filter_paths_sync(
                     paths_to_score,
                     query_embedding,
                 )

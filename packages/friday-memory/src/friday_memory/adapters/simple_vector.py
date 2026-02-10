@@ -130,6 +130,7 @@ class SimpleVectorStore(VectorStoreAdapter):
         where: dict[str, Any] | None = None,
         rerank: bool = False,
         hybrid: bool = False,
+        query_embedding: list[float] | None = None,
     ) -> list[dict[str, Any]]:
         """
         Performs semantic retrieval on stored documents.
@@ -140,6 +141,8 @@ class SimpleVectorStore(VectorStoreAdapter):
             where: Optional metadata filter (e.g., {'source_type': 'document'})
             rerank: Ignored (no reranking in simple store)
             hybrid: Ignored (no hybrid search in simple store)
+            query_embedding: Optional pre-computed query embedding. When provided,
+                skips the internal embedding computation to avoid redundant calls.
 
         Returns:
             List of result dicts containing text, metadata, and similarity scores
@@ -147,8 +150,9 @@ class SimpleVectorStore(VectorStoreAdapter):
         if not self._documents:
             return []
 
-        # Generate query embedding
-        query_embedding = await self._embedding_function.embed_query(query_text)
+        # Use pre-computed embedding if provided, otherwise compute it
+        if query_embedding is None:
+            query_embedding = await self._embedding_function.embed_query(query_text)
         query_vec = np.array(query_embedding, dtype=np.float32)
 
         # Calculate similarities (snapshot under lock)
@@ -237,13 +241,14 @@ class SimpleVectorStore(VectorStoreAdapter):
         }
 
     async def get_all(
-        self, limit: int = 100, where: dict[str, Any] | None = None
+        self, limit: int | None = 100, where: dict[str, Any] | None = None
     ) -> list[dict[str, Any]]:
         """
         Get all documents from the store.
 
         Args:
-            limit: Maximum number of documents to return
+            limit: Maximum number of documents to return. Pass ``None``
+                   to return all matching documents.
             where: Optional metadata filter dict
 
         Returns:
@@ -259,7 +264,7 @@ class SimpleVectorStore(VectorStoreAdapter):
                     "text": doc.text,
                     "metadata": doc.metadata,
                 })
-                if len(documents) >= limit:
+                if limit is not None and len(documents) >= limit:
                     break
             return documents
 

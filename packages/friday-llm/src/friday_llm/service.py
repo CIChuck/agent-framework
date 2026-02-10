@@ -12,6 +12,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+import re
 import warnings
 from collections.abc import AsyncIterator
 from typing import Any
@@ -231,10 +232,25 @@ class LiteLLMService:
                 # Handle structured output if requested
                 if response_model and result.content:
                     try:
-                        parsed = response_model.model_validate_json(result.content)
+                        raw = result.content.strip()
+                        # Strip markdown code fences that LLMs
+                        # sometimes wrap around JSON responses
+                        raw = re.sub(
+                            r"^```(?:json)?\s*\n?",
+                            "",
+                            raw,
+                        )
+                        raw = re.sub(r"\n?```\s*$", "", raw)
+                        parsed = response_model.model_validate_json(
+                            raw
+                        )
                         result._parsed_model = parsed
                     except Exception as e:
-                        logger.warning(f"Failed to parse response into model: {e}")
+                        logger.warning(
+                            "Failed to parse response into "
+                            "model: %s",
+                            e,
+                        )
 
                 return result
 

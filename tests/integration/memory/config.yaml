@@ -150,7 +150,8 @@ extraction:
   #model: "openrouter/google/gemma-3-27b-it"
   #model: "openrouter/anthropic/claude-3-haiku"
 
-  model: "openrouter/google/gemini-2.5-flash"
+  model: "openrouter/google/gemini-2.5-flash-lite"
+  
 
   # API base URL (same as main LLM if using same provider)
   # OpenRouter: https://openrouter.ai/api/v1
@@ -239,11 +240,19 @@ extraction:
         - UTILIZES
       action:
         - MANAGES
+        - ESTABLISHES
         - MAINTAINS
         - CONTRIBUTES_TO
         - DEVELOPS
         - SUPPORTS
         - PROMOTES
+        - SELLS
+        - IMPROVES
+        - ENHANCES
+        - CAUSES
+        - PREVENTS
+        - WEAKENS
+        - DEFINES
       knowledge:
         - KNOWS
         - EXPERT_IN
@@ -251,6 +260,7 @@ extraction:
         - TEACHES
       relationship:
         - RELATES_TO
+        - RELATED_TO
         - SIMILAR_TO
         - DERIVES_FROM
         - REPLACES
@@ -259,6 +269,7 @@ extraction:
         - PARENT_OF
         - IS_A
         - REPORTS_TO
+        - MARRIED_TO
       spatial:
         - LOCATED_IN
         - DEPLOYED_ON
@@ -284,7 +295,7 @@ extraction:
       - "something"
 
     max_label_length: 66
-    min_label_length: 3
+    min_label_length: 2
 
   # Extraction prompt template
   # Available placeholders: {turn_id}, {timestamp}, {user_name}, {assistant_name},
@@ -620,23 +631,21 @@ memory:
     # Remaining budget goes to conversation history.
     # Higher ratio = more supporting context, less history
     # Lower ratio = less supporting context, more history
-    budget_ratio: 0.20  # Default: 30%
+    budget_ratio: 0.25  # Increased for cross-session continuity
 
     # Priority order for sections when truncating (first = highest priority)
     # Sections are built in this order; when budget runs out, remaining
     # sections are skipped. If a section only partially fits, it's truncated.
     #
     # Available sections:
-    #   - recent_memories: Relationship summaries from graph store
+    #   - known_facts: Relationship summaries from graph store (nodes/edges)
     #   - passages: Semantic search results from vector store
-    #   - key_facts: Extracted facts about entities
-    #   - insights: Rich contextual observations
+    #   - insights: Rich contextual observations with timestamps
     #   - summaries: Conversation summaries (prior sessions)
     #   - tools: Tool recommendations and usage hints
     #   - state: Session state variables
     section_priority:
-      - recent_memories
-      - key_facts
+      - known_facts
       - insights
       - summaries
       - tools
@@ -648,9 +657,9 @@ memory:
     # Useful for preventing any single section from dominating.
     max_items:
       passages: 3
-      key_facts: 20
-      insights: 15
-      summaries: 10
+      known_facts: 30
+      insights: 20
+      summaries: 15
       tools: 5
 
   # =============================================================================
@@ -710,21 +719,19 @@ memory:
   # =============================================================================
   # QUERY RELEVANCE FILTER (SUPPORTING CONTEXT)
   # =============================================================================
-  # Filters insights/summaries/key_facts/passages by lightweight keyword overlap.
+  # Filters insights/summaries/passages by lightweight keyword overlap.
   # Reduces off-topic artifacts while preserving a small fallback set.
   query_relevance_filter:
     enabled: true
     apply_to:
       - insights
       - summaries
-      - key_facts
       - passages
     min_overlap_ratio: 0.15
     min_overlap_count: 1
     keep_recent:
       insights: 3
       summaries: 1
-      key_facts: 2
       passages: 1
     min_query_keywords: 0
     skip_on_short_query: false
@@ -791,13 +798,14 @@ memory:
   priming:
     enabled: true              # Enable/disable automatic priming
     top_entities: 50          # Increased (indexed retrieval now efficient)
-    max_insights: 15           # Reduced to fit within supporting_context budget
-    max_summaries: 10          # Reduced to fit within supporting_context budget
-    max_facts: 20              # Reduced to fit within supporting_context budget
-    recency_days: 14           # Only include from last N days (0 = all time)
+    max_insights: 20           # Cross-session knowledge (was 15)
+    max_summaries: 15          # Conversation context (was 10)
+    max_known_facts: 50        # Graph relationship summaries cap
+    # max_facts removed — key_facts pipeline eliminated in favor of Known Facts (graph-based)
+    recency_days: 30           # Wider window for continuity (was 14)
     # IMPORTANT: This budget should be LESS than supporting_context budget
     # supporting_context gets: (context_window - fixed_costs) * budget_ratio
-    # With 40K context, ~1K system, ~1K output: (40K - 2K) * 0.30 = ~11.4K
+    # With 40K context, ~4K fixed costs: (40K - 4K) * 0.25 = ~9K
     # Set priming lower to leave room for formatting overhead
     token_budget: 4000         # ~10% of context window (leaves headroom)
 
@@ -825,14 +833,14 @@ memory:
 
     # Number of prior sessions to include (0 = disabled)
     # Example: 2 means include turns from the 2 most recent sessions
-    previous_sessions: 1
+    previous_sessions: 2
 
     # Maximum turns to include per prior session
     # Example: 5 means up to 5 turns from each prior session
     # Total prior turns = previous_sessions * previous_session_turns
     # WARNING: Prior history BYPASSES supporting_context budget!
     # Each turn is ~150-300 tokens. Keep this conservative.
-    previous_session_turns: 5
+    previous_session_turns: 8
 
 # Transcript Settings
 transcript:
@@ -958,7 +966,7 @@ maintenance:
     # Default LLM for synthesis operations (meta-insight generation)
     # Good choice: capable model for creative synthesis
     synthesizer:
-      model: "openrouter/google/gemini-3-flash-preview"
+      model: "openrouter/google/gemini-2.5-flash"
       api_base: "https://openrouter.ai/api/v1"
       api_key: "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"
       temperature: 0.3
@@ -966,7 +974,7 @@ maintenance:
     # LLM for classifying facts as falsifiable vs conversational
     # Good choice: fast, cheap model for classification
     classifier:
-      model: "openrouter/google/gemini-3-flash-preview"
+      model: "openrouter/google/gemini-2.5-flash"
       api_base: "https://openrouter.ai/api/v1"
       api_key: "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"
       temperature: 0.1
@@ -974,7 +982,7 @@ maintenance:
     # LLM for researching/verifying claims (may need web search tools)
     # Good choice: capable model with good reasoning
     researcher:
-      model: "openrouter/google/gemini-3-flash-preview"
+      model: "openrouter/google/gemini-2.5-flash"
       api_base: "https://openrouter.ai/api/v1"
       api_key: "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"
       temperature: 0.2

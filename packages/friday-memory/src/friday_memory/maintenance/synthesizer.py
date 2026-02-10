@@ -42,6 +42,14 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+_SYNTHESIS_SYSTEM_PROMPT = (
+    "You are a structured analysis engine. You MUST respond with ONLY "
+    "valid JSON — no markdown, no explanatory text, no preamble. "
+    "If the input data is insufficient, return the JSON schema with "
+    "empty or default values rather than refusing."
+)
+
+
 class MemorySynthesizer:
     """
     Synthesizes new memories from existing knowledge.
@@ -417,7 +425,10 @@ class MemorySynthesizer:
 
             try:
                 response = await self._llm.chat_completion(
-                    messages=[{"role": "user", "content": prompt}],
+                    messages=[
+                        {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
                     temperature=0.3,
                 )
 
@@ -526,7 +537,10 @@ class MemorySynthesizer:
                 )
 
                 response = await self._llm.chat_completion(
-                    messages=[{"role": "user", "content": prompt}],
+                    messages=[
+                        {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
                     temperature=0.3,
                 )
 
@@ -607,7 +621,10 @@ class MemorySynthesizer:
             )
 
             response = await self._llm.chat_completion(
-                messages=[{"role": "user", "content": prompt}],
+                messages=[
+                    {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
+                    {"role": "user", "content": prompt},
+                ],
                 temperature=0.3,
             )
 

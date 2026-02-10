@@ -530,8 +530,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 recent_memories=budgeted_payload.recent_memories,
                 insights=budgeted_payload.insights,
                 summaries=budgeted_payload.summaries,
-                key_facts=budgeted_payload.key_facts,
-                # Tool context fields
+                                # Tool context fields
                 tool_schemas=tool_schemas,
                 recommended_tools=recommendations,
                 tool_usage_hints=tool_hints,
@@ -596,8 +595,7 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=payload.recent_memories,
             insights=payload.insights,
             summaries=payload.summaries,
-            key_facts=payload.key_facts,
-            # Preserve tool fields (even if empty at this stage)
+                        # Preserve tool fields (even if empty at this stage)
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
             tool_usage_hints=payload.tool_usage_hints,
@@ -833,8 +831,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 recent_memories=payload.recent_memories,
                 insights=payload.insights,
                 summaries=payload.summaries,
-                key_facts=payload.key_facts,
-                # Preserve tool fields
+                                # Preserve tool fields
                 tool_schemas=payload.tool_schemas,
                 recommended_tools=payload.recommended_tools,
                 tool_usage_hints=payload.tool_usage_hints,
@@ -910,8 +907,7 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=payload.recent_memories,
             insights=payload.insights,
             summaries=[],  # Clear summaries
-            key_facts=payload.key_facts,
-            # Preserve tool fields
+                        # Preserve tool fields
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
             tool_usage_hints=payload.tool_usage_hints,
@@ -997,12 +993,10 @@ class ContextAssembler(ContextEngineeringInterface):
 
         insights = payload.insights
         summaries = payload.summaries
-        key_facts = payload.key_facts
         passages = payload.passages
 
         excluded_insights = 0
         excluded_summaries = 0
-        excluded_key_facts = 0
         excluded_passages = 0
 
         if "insights" in apply_to and insights:
@@ -1026,13 +1020,6 @@ class ContextAssembler(ContextEngineeringInterface):
                 lambda s: s.get("text", "") or s.get("document", ""),
             )
 
-        if "key_facts" in apply_to and key_facts:
-            key_facts, excluded_key_facts = filter_items(
-                key_facts,
-                "key_facts",
-                lambda f: f.get("text", "") or f.get("document", ""),
-            )
-
         if "passages" in apply_to and passages:
             def passage_extra_keywords(item: dict[str, Any]) -> set[str]:
                 metadata = item.get("metadata", {})
@@ -1054,11 +1041,11 @@ class ContextAssembler(ContextEngineeringInterface):
                 passage_extra_keywords,
             )
 
-        if any([excluded_insights, excluded_summaries, excluded_key_facts, excluded_passages]):
+        if any([excluded_insights, excluded_summaries, excluded_passages]):
             logger.debug(
                 "Query relevance filtering removed "
                 f"insights={excluded_insights}, summaries={excluded_summaries}, "
-                f"key_facts={excluded_key_facts}, passages={excluded_passages}"
+                f"passages={excluded_passages}"
             )
 
         return ContextPayload(
@@ -1070,7 +1057,6 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=payload.recent_memories,
             insights=insights,
             summaries=summaries,
-            key_facts=key_facts,
             # Preserve tool fields
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
@@ -1081,7 +1067,6 @@ class ContextAssembler(ContextEngineeringInterface):
                 "query_relevance_sections": list(apply_to),
                 "insights_filtered_by_relevance": excluded_insights,
                 "summaries_filtered_by_relevance": excluded_summaries,
-                "key_facts_filtered_by_relevance": excluded_key_facts,
                 "passages_filtered_by_relevance": excluded_passages,
             },
         )
@@ -1097,7 +1082,6 @@ class ContextAssembler(ContextEngineeringInterface):
             "keep_recent": {
                 "insights": 5,
                 "summaries": 2,
-                "key_facts": 2,
                 "passages": 2,
             },
             "min_query_keywords": 0,
@@ -1260,7 +1244,6 @@ class ContextAssembler(ContextEngineeringInterface):
         facts: list,
         insights: list,
         summaries: list,
-        key_facts: list[str] | None = None,
         prior_history: list | None = None,
     ) -> ContextPayload:
         """Create a new payload with pruned content including insights/summaries."""
@@ -1273,7 +1256,6 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=original.recent_memories,
             insights=insights,
             summaries=summaries,
-            key_facts=key_facts if key_facts is not None else original.key_facts,
             # Preserve tool fields
             tool_schemas=original.tool_schemas,
             recommended_tools=original.recommended_tools,
@@ -1286,7 +1268,6 @@ class ContextAssembler(ContextEngineeringInterface):
                 "original_passages": len(original.passages),
                 "original_insights": len(original.insights) if original.insights else 0,
                 "original_summaries": len(original.summaries) if original.summaries else 0,
-                "original_key_facts": len(original.key_facts) if original.key_facts else 0,
             },
         )
 
@@ -1348,7 +1329,6 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=original.recent_memories,
             insights=original.insights,
             summaries=original.summaries,
-            key_facts=original.key_facts,
             # Preserve tool fields
             tool_schemas=original.tool_schemas,
             recommended_tools=original.recommended_tools,

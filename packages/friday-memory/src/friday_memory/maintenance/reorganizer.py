@@ -20,7 +20,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from friday_memory.lifecycle.stages import MemoryStage
-
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
 from friday_memory.maintenance.backup import BackupManager
 from friday_memory.maintenance.fact_checker import FactChecker
@@ -44,12 +43,12 @@ from friday_memory.maintenance.synthesizer import MemorySynthesizer
 if TYPE_CHECKING:
     from friday_llm import LiteLLMService
 
+    from friday_memory.lifecycle import DecayCalculator, PromotionScorer
     from friday_memory.retrieval import (
         AccessBuffer,
         CollectionManager,
         RetrievalFactorComputer,
     )
-    from friday_memory.lifecycle import DecayCalculator, PromotionScorer
 
 logger = logging.getLogger(__name__)
 
@@ -546,6 +545,7 @@ class MemoryReorganizer:
     async def optimize(
         self,
         dry_run: bool = True,
+        force_reembed: bool = False,
     ) -> OptimizationReport:
         """
         Run latency optimization: flush access buffer, recompute retrieval factors.
@@ -554,118 +554,199 @@ class MemoryReorganizer:
         1. Flushes AccessBuffer to batch-update hit_count/decay_score
         2. Recomputes retrieval_factor for all memories
         3. Backfills missing edge embeddings (if embedding function available)
+        4. Backfills ``created_at_ts`` on legacy documents for date-range filtering
+
+        Note: Step 4 (timestamp backfill) only requires ``_collection_manager``
+        and runs independently of lifecycle components. Steps 1-3 require full
+        lifecycle support.
 
         Args:
             dry_run: If True, report what would change without modifying
+            force_reembed: If True, re-embed ALL edges even if they already
+                have embeddings. Used to regenerate after format changes.
 
         Returns:
             OptimizationReport with optimization statistics
         """
         report = OptimizationReport(dry_run=dry_run)
 
-        if not self.has_lifecycle_support:
-            logger.warning("Lifecycle support not configured, skipping optimization")
-            report.errors.append("Lifecycle components not configured")
-            return report
+        # Steps 1-3 require full lifecycle support
+        if self.has_lifecycle_support:
+            logger.info(f"Running latency optimization (dry_run={dry_run})...")
 
-        logger.info(f"Running latency optimization (dry_run={dry_run})...")
+            try:
+                # 1. Flush access buffer
+                if self._access_buffer:
+                    start = time.time()
+                    if not dry_run:
+                        flush_result = await self._access_buffer.flush_all(
+                            short_term_collection=(
+                                self._collection_manager.short_term
+                            ),
+                            long_term_collection=(
+                                self._collection_manager.long_term
+                            ),
+                        )
+                        report.short_term_accesses_flushed = (
+                            flush_result.short_term_flushed
+                        )
+                        report.long_term_accesses_flushed = (
+                            flush_result.long_term_flushed
+                        )
+                    else:
+                        # Report what would be flushed
+                        stats = self._access_buffer.get_stats()
+                        report.short_term_accesses_flushed = stats.get(
+                            "short_term_memories", 0
+                        )
+                        report.long_term_accesses_flushed = stats.get(
+                            "long_term_memories", 0
+                        )
 
-        try:
-            # 1. Flush access buffer
-            if self._access_buffer:
-                start = time.time()
-                if not dry_run:
-                    flush_result = await self._access_buffer.flush_all(
-                        short_term_collection=self._collection_manager.short_term,
-                        long_term_collection=self._collection_manager.long_term,
+                    report.access_buffer_flushed = True
+                    report.access_flush_duration_ms = (
+                        (time.time() - start) * 1000
                     )
-                    report.short_term_accesses_flushed = flush_result.short_term_flushed
-                    report.long_term_accesses_flushed = flush_result.long_term_flushed
-                else:
-                    # Report what would be flushed
-                    stats = self._access_buffer.get_stats()
-                    report.short_term_accesses_flushed = stats.get("short_term_memories", 0)
-                    report.long_term_accesses_flushed = stats.get("long_term_memories", 0)
+                    logger.info(
+                        f"Access buffer flushed: "
+                        f"{report.short_term_accesses_flushed} short-term, "
+                        f"{report.long_term_accesses_flushed} long-term"
+                    )
 
-                report.access_buffer_flushed = True
-                report.access_flush_duration_ms = (time.time() - start) * 1000
+                # 2. Recompute retrieval factors
+                if self._factor_computer:
+                    start = time.time()
+                    if not dry_run:
+                        st_result = (
+                            await self._factor_computer.compute_factors(
+                                collection=(
+                                    self._collection_manager.short_term
+                                ),
+                            )
+                        )
+                        report.short_term_factors_updated = st_result.updated
+
+                        lt_result = (
+                            await self._factor_computer.compute_factors(
+                                collection=(
+                                    self._collection_manager.long_term
+                                ),
+                            )
+                        )
+                        report.long_term_factors_updated = lt_result.updated
+                    else:
+                        st_results = (
+                            await self._collection_manager.short_term
+                            .get_all(limit=1000)
+                        )
+                        lt_results = (
+                            await self._collection_manager.long_term
+                            .get_all(limit=5000)
+                        )
+                        report.short_term_factors_updated = len(st_results)
+                        report.long_term_factors_updated = len(lt_results)
+
+                    report.retrieval_factors_computed = True
+                    report.factor_compute_duration_ms = (
+                        (time.time() - start) * 1000
+                    )
+                    logger.info(
+                        f"Retrieval factors computed: "
+                        f"{report.short_term_factors_updated} short-term, "
+                        f"{report.long_term_factors_updated} long-term"
+                    )
+
+                # 3. Backfill missing edge embeddings
                 logger.info(
-                    f"Access buffer flushed: {report.short_term_accesses_flushed} short-term, "
-                    f"{report.long_term_accesses_flushed} long-term"
-                )
-
-            # 2. Recompute retrieval factors
-            if self._factor_computer:
-                start = time.time()
-                if not dry_run:
-                    # Compute for short-term
-                    st_result = await self._factor_computer.compute_factors(
-                        collection=self._collection_manager.short_term,
-                    )
-                    report.short_term_factors_updated = st_result.updated
-
-                    # Compute for long-term
-                    lt_result = await self._factor_computer.compute_factors(
-                        collection=self._collection_manager.long_term,
-                    )
-                    report.long_term_factors_updated = lt_result.updated
-                else:
-                    # Report what would be updated (all memories)
-                    st_results = await self._collection_manager.short_term.get_all(
-                        limit=1000
-                    )
-                    lt_results = await self._collection_manager.long_term.get_all(
-                        limit=5000
-                    )
-                    report.short_term_factors_updated = len(st_results)
-                    report.long_term_factors_updated = len(lt_results)
-
-                report.retrieval_factors_computed = True
-                report.factor_compute_duration_ms = (time.time() - start) * 1000
-                logger.info(
-                    f"Retrieval factors computed: {report.short_term_factors_updated} short-term, "
-                    f"{report.long_term_factors_updated} long-term"
-                )
-
-            # 3. Backfill missing edge embeddings
-            logger.info(
-                f"Edge embedding check: graph_store={self._graph_store is not None}, "
-                f"embedding_function={self._embedding_function is not None}"
-            )
-            if self._graph_store and self._embedding_function:
-                start = time.time()
-                edges_embedded, edges_skipped = await self._backfill_edge_embeddings(
-                    dry_run
-                )
-                report.edges_embedded = edges_embedded
-                report.edges_skipped = edges_skipped
-                report.edge_embeddings_backfilled = True
-                report.edge_embed_duration_ms = (time.time() - start) * 1000
-                logger.info(
-                    f"Edge embeddings backfilled: {edges_embedded} embedded, "
-                    f"{edges_skipped} skipped"
-                )
-            else:
-                logger.warning(
-                    f"Skipping edge embedding backfill: "
+                    f"Edge embedding check: "
                     f"graph_store={self._graph_store is not None}, "
-                    f"embedding_function={self._embedding_function is not None}"
+                    f"embedding_function="
+                    f"{self._embedding_function is not None}"
                 )
+                if self._graph_store and self._embedding_function:
+                    start = time.time()
+                    edges_embedded, edges_skipped = (
+                        await self._backfill_edge_embeddings(
+                            dry_run, force_reembed=force_reembed
+                        )
+                    )
+                    report.edges_embedded = edges_embedded
+                    report.edges_skipped = edges_skipped
+                    report.edge_embeddings_backfilled = True
+                    report.edge_embed_duration_ms = (
+                        (time.time() - start) * 1000
+                    )
+                    logger.info(
+                        f"Edge embeddings backfilled: "
+                        f"{edges_embedded} embedded, "
+                        f"{edges_skipped} skipped"
+                    )
+                else:
+                    logger.warning(
+                        f"Skipping edge embedding backfill: "
+                        f"graph_store="
+                        f"{self._graph_store is not None}, "
+                        f"embedding_function="
+                        f"{self._embedding_function is not None}"
+                    )
 
-            logger.info("Optimization complete")
+                logger.info("Optimization steps 1-3 complete")
 
-        except Exception as e:
-            logger.error(f"Optimization failed: {e}")
-            report.errors.append(str(e))
+            except Exception as e:
+                logger.error(f"Optimization steps 1-3 failed: {e}")
+                report.errors.append(f"Optimization steps 1-3: {e}")
+        else:
+            logger.warning(
+                "Lifecycle support not configured, "
+                "skipping optimization steps 1-3"
+            )
+
+        # 4. Backfill created_at_ts for ChromaDB date-range filtering.
+        # This only requires _collection_manager (not full lifecycle) and
+        # runs in its own try/except so earlier failures cannot prevent it.
+        if self._collection_manager is not None:
+            try:
+                start = time.time()
+                ts_backfilled, ts_skipped, ts_errors = (
+                    await self._backfill_created_at_ts(dry_run)
+                )
+                report.timestamps_backfilled = ts_backfilled
+                report.timestamps_skipped = ts_skipped
+                report.timestamp_backfill_done = True
+                report.timestamp_backfill_duration_ms = (
+                    (time.time() - start) * 1000
+                )
+                logger.info(
+                    f"Timestamp backfill: {ts_backfilled} backfilled, "
+                    f"{ts_skipped} skipped, {ts_errors} errors"
+                )
+                if ts_errors > 0:
+                    report.errors.append(
+                        f"Timestamp backfill: {ts_errors} documents "
+                        f"failed to update"
+                    )
+            except Exception as e:
+                logger.error(f"Timestamp backfill failed: {e}")
+                report.errors.append(f"Timestamp backfill: {e}")
+        else:
+            logger.warning(
+                "Collection manager not configured, "
+                "skipping timestamp backfill"
+            )
 
         return report
 
-    async def _backfill_edge_embeddings(self, dry_run: bool) -> tuple[int, int]:
+    async def _backfill_edge_embeddings(
+        self, dry_run: bool, force_reembed: bool = False
+    ) -> tuple[int, int]:
         """
         Backfill missing edge embeddings.
 
         Args:
             dry_run: If True, don't actually modify edges
+            force_reembed: If True, re-embed ALL edges (not just those missing
+                embeddings). Use after changing the embedding text format to
+                regenerate all embeddings with the new richer representation.
 
         Returns:
             Tuple of (edges_embedded, edges_skipped)
@@ -677,19 +758,29 @@ class MemoryReorganizer:
         edges_skipped = 0
 
         try:
-            # Get all edges directly
+            # Get all edges and build a node label lookup for rich embedding text
             all_edges = await self._graph_store.get_all_edges()
             logger.info(f"Edge backfill: found {len(all_edges)} total edges")
+
+            # Build node ID → label lookup for rich relation text
+            # e.g., "Chuck married to Tara" instead of just "married to"
+            all_nodes = await self._graph_store.get_all_nodes()
+            node_labels: dict[str, str] = {
+                node.id: node.label for node in all_nodes
+            }
 
             # Collect edges that need embeddings
             edges_needing_embeddings: list[tuple[str, str, str]] = []  # (source, target, relation_text)
 
             for edge in all_edges:
-                if edge.embedding is not None:
+                if edge.embedding is not None and not force_reembed:
                     edges_skipped += 1
                     continue
 
-                relation_text = edge.get_relation_text()
+                relation_text = edge.get_relation_text(
+                    source_label=node_labels.get(edge.source_id),
+                    target_label=node_labels.get(edge.target_id),
+                )
                 edges_needing_embeddings.append((edge.source_id, edge.target_id, relation_text))
 
             logger.info(
@@ -717,7 +808,7 @@ class MemoryReorganizer:
                     embeddings = await self._embedding_function.embed_documents(batch_texts)
 
                     if embeddings:
-                        for (source_id, target_id, _), embedding in zip(batch_edges, embeddings):
+                        for (source_id, target_id, _), embedding in zip(batch_edges, embeddings, strict=True):
                             edges_with_embeddings.append((source_id, target_id, embedding))
 
                 # Batch update all edges
@@ -729,6 +820,94 @@ class MemoryReorganizer:
             logger.warning(f"Error backfilling edge embeddings: {e}")
 
         return edges_embedded, edges_skipped
+
+    async def _backfill_created_at_ts(
+        self, dry_run: bool
+    ) -> tuple[int, int, int]:
+        """
+        Backfill ``created_at_ts`` (Unix epoch seconds) on documents missing it.
+
+        ChromaDB's ``$gte`` filter requires a numeric field for efficient
+        date-range queries. This method derives ``created_at_ts`` from
+        the existing ``created_at`` ISO string on legacy documents that
+        pre-date the field's introduction.
+
+        Each document update is wrapped in its own try/except so a single
+        failure does not abort the entire backfill.
+
+        Args:
+            dry_run: If True, report counts without modifying documents.
+
+        Returns:
+            Tuple of (backfilled_count, skipped_count, error_count)
+        """
+        backfilled = 0
+        skipped = 0
+        errors = 0
+
+        stores = [
+            ("short_term", self._collection_manager.short_term),
+            ("long_term", self._collection_manager.long_term),
+        ]
+
+        for label, store in stores:
+            try:
+                results = await store.get_all(limit=None)
+            except Exception as e:
+                logger.warning(
+                    f"Timestamp backfill: failed to read {label}: {e}"
+                )
+                continue
+
+            logger.info(
+                f"Timestamp backfill ({label}): "
+                f"scanning {len(results)} documents"
+            )
+
+            for doc in results:
+                meta = doc.get("metadata", {})
+                if "created_at_ts" in meta:
+                    skipped += 1
+                    continue
+
+                created_at = meta.get("created_at", "")
+                if not created_at:
+                    skipped += 1
+                    continue
+
+                try:
+                    ts = int(
+                        datetime.fromisoformat(created_at).timestamp()
+                    )
+                except (ValueError, TypeError):
+                    logger.debug(
+                        f"Timestamp backfill: unparseable created_at "
+                        f"on {doc.get('id', '?')}: {created_at!r}"
+                    )
+                    skipped += 1
+                    continue
+
+                if not dry_run:
+                    try:
+                        await store.update_metadata(
+                            doc["id"], {"created_at_ts": ts}
+                        )
+                    except Exception as e:
+                        logger.warning(
+                            f"Timestamp backfill: failed to update "
+                            f"{doc.get('id', '?')} in {label}: {e}"
+                        )
+                        errors += 1
+                        continue
+                backfilled += 1
+
+            logger.info(
+                f"Timestamp backfill ({label}): "
+                f"{backfilled} backfilled so far, "
+                f"{skipped} skipped, {errors} errors"
+            )
+
+        return backfilled, skipped, errors
 
     async def cleanup(
         self,
@@ -973,6 +1152,7 @@ class MemoryReorganizer:
         skip_synthesis: bool = False,
         skip_verify: bool = False,
         skip_lifecycle: bool = False,
+        force_reembed: bool = False,
     ) -> ReorganizationReport:
         """
         Run full reorganization pipeline.
@@ -993,6 +1173,8 @@ class MemoryReorganizer:
             skip_synthesis: Skip the synthesis step
             skip_verify: Skip the verification step
             skip_lifecycle: Skip the lifecycle, optimization, and cleanup steps
+            force_reembed: If True, re-embed ALL graph edges even if they
+                already have embeddings. Useful after embedding format changes.
 
         Returns:
             ReorganizationReport with all sub-reports
@@ -1032,21 +1214,37 @@ class MemoryReorganizer:
             logger.info(f"Step 3/{total_steps}: Pruning redundancies...")
             report.prune_report = await self._pruner.prune(dry_run=dry_run)
 
-            # 4. Synthesize
+            # 4. Synthesize (LLM-dependent — isolated so failures don't
+            # prevent later steps like optimization/backfill)
             if not skip_synthesis:
-                logger.info(f"Step 4/{total_steps}: Synthesizing memories...")
-                report.synthesis_report = await self._synthesizer.synthesize(
-                    dry_run=dry_run
-                )
+                try:
+                    logger.info(
+                        f"Step 4/{total_steps}: Synthesizing memories..."
+                    )
+                    report.synthesis_report = (
+                        await self._synthesizer.synthesize(dry_run=dry_run)
+                    )
+                except Exception as e:
+                    logger.error(f"Step 4 synthesis failed: {e}")
+                    report.errors.append(f"Synthesis: {e}")
             else:
                 logger.info(f"Step 4/{total_steps}: Skipping synthesis")
 
-            # 5. Verify
+            # 5. Verify (LLM-dependent — isolated so failures don't
+            # prevent later steps like optimization/backfill)
             if not skip_verify:
-                logger.info(f"Step 5/{total_steps}: Verifying facts...")
-                report.verification_report = await self._fact_checker.run_full_check(
-                    dry_run=dry_run
-                )
+                try:
+                    logger.info(
+                        f"Step 5/{total_steps}: Verifying facts..."
+                    )
+                    report.verification_report = (
+                        await self._fact_checker.run_full_check(
+                            dry_run=dry_run
+                        )
+                    )
+                except Exception as e:
+                    logger.error(f"Step 5 verification failed: {e}")
+                    report.errors.append(f"Verification: {e}")
             else:
                 logger.info(f"Step 5/{total_steps}: Skipping verification")
 
@@ -1061,9 +1259,15 @@ class MemoryReorganizer:
                     logger.info(f"Step 6/{total_steps}: Skipping lifecycle (not configured)")
 
             # 7. Latency optimization (Phase 8)
-            if not skip_lifecycle and self.has_lifecycle_support:
+            # optimize() handles its own gating: steps 1-3 require full
+            # lifecycle support, step 4 (timestamp backfill) only needs
+            # _collection_manager.  We call it whenever the collection
+            # manager is available so the backfill always runs.
+            if not skip_lifecycle and self._collection_manager is not None:
                 logger.info(f"Step 7/{total_steps}: Running latency optimization...")
-                report.optimization_report = await self.optimize(dry_run=dry_run)
+                report.optimization_report = await self.optimize(
+                    dry_run=dry_run, force_reembed=force_reembed
+                )
             else:
                 if skip_lifecycle:
                     logger.info(f"Step 7/{total_steps}: Skipping optimization (--skip-lifecycle)")
@@ -1203,8 +1407,16 @@ class MemoryReorganizer:
                 f"{opr.long_term_factors_updated} LT updated",
                 f"  Edge embeddings: {opr.edges_embedded} embedded, "
                 f"{opr.edges_skipped} skipped",
-                "",
             ])
+            if opr.timestamp_backfill_done:
+                lines.append(
+                    f"  Timestamp backfill: {opr.timestamps_backfilled} "
+                    f"backfilled, {opr.timestamps_skipped} skipped "
+                    f"({opr.timestamp_backfill_duration_ms:.0f}ms)"
+                )
+            else:
+                lines.append("  Timestamp backfill: NOT RUN")
+            lines.append("")
 
         # Cleanup summary
         if report.cleanup_report:

@@ -10,12 +10,11 @@ Layout Strategy (Optimized for Attention - Default):
 1. System Message: Base prompt (identity & guardrails)
 2. Episodic Memory: Conversation history (chronological)
 3. Final Message: Supporting context + User query
-   - Prior knowledge (relationship summaries)
-   - Key facts (most recent first)
-   - Recent insights (most recent first)
+   - Known facts (graph relationship summaries)
+   - Recent insights (most recent first, with timestamps)
    - Recent summaries (most recent first)
-   - Tool recommendations (NEW - for recency effect)
-   - Tool usage hints (NEW)
+   - Tool recommendations (for recency effect)
+   - Tool usage hints
    - Session state
    - User query
 
@@ -98,9 +97,9 @@ class SupportingContextConfig(BaseModel):
     """
     Configuration for supporting context budget and priority.
 
-    The supporting context includes: recent_memories, passages, key_facts,
-    insights, summaries, tools, and session state. This config controls
-    how much of the token budget goes to supporting context vs conversation
+    The supporting context includes: known_facts, passages, insights,
+    summaries, tools, and session state. This config controls how much
+    of the token budget goes to supporting context vs conversation
     history, and in what order sections are added when truncating.
     """
 
@@ -117,9 +116,8 @@ class SupportingContextConfig(BaseModel):
     # Sections with higher priority are added first and kept when space is limited
     section_priority: list[str] = Field(
         default=[
-            "recent_memories",
+            "known_facts",
             "passages",
-            "key_facts",
             "insights",
             "summaries",
             "tools",
@@ -132,8 +130,8 @@ class SupportingContextConfig(BaseModel):
     max_items: dict[str, int] = Field(
         default={
             "passages": 10,
-            "key_facts": 20,
-            "insights": 15,
+            "known_facts": 25,
+            "insights": 25,
             "summaries": 10,
             "tools": 5,
         },
@@ -674,7 +672,7 @@ class PromptArchitect:
         """
         Build static context block (stable across turns, suitable for caching).
 
-        Includes: insights, key facts, summaries, passages.
+        Includes: known facts, insights, summaries, passages.
         Excludes: tool recommendations, session state (dynamic per turn).
 
         Args:
@@ -686,9 +684,9 @@ class PromptArchitect:
         """
         sections: list[str] = []
 
-        # Prior knowledge (relationship summaries)
+        # Known facts (graph relationship summaries)
         if payload.recent_memories:
-            sections.append("## Prior Knowledge")
+            sections.append("## Known Facts")
             for memory in payload.recent_memories:
                 sections.append(memory)
 
@@ -711,24 +709,17 @@ class PromptArchitect:
                 sections.append(text)
                 sections.append("")
 
-        # Key facts
-        if payload.key_facts:
-            sections.append("\n## Key Facts")
-            for fact in payload.key_facts:
-                text = fact.get("text", "")
-                created_at = fact.get("metadata", {}).get("created_at", "")
+        # Recent insights (with timestamps)
+        if payload.insights:
+            sections.append("\n## Recent Insights")
+            for insight in payload.insights:
+                text = insight.get("text", "")
+                created_at = insight.get("metadata", {}).get("created_at", "")
                 timestamp = created_at[:16] if created_at else ""
                 if timestamp:
                     sections.append(f"- [{timestamp}] {text}")
                 else:
                     sections.append(f"- {text}")
-
-        # Recent insights
-        if payload.insights:
-            sections.append("\n## Recent Insights")
-            for insight in payload.insights:
-                text = insight.get("text", "")
-                sections.append(f"- {text}")
 
         # Conversation summaries
         if payload.summaries:
@@ -871,9 +862,8 @@ class PromptArchitect:
 
         # Build section builders for each section type
         section_builders: dict[str, callable] = {
-            "recent_memories": lambda: self._build_section_recent_memories(payload, config),
+            "known_facts": lambda: self._build_section_known_facts(payload, config),
             "passages": lambda: self._build_section_passages(payload, config),
-            "key_facts": lambda: self._build_section_key_facts(payload, config),
             "insights": lambda: self._build_section_insights(payload, config),
             "summaries": lambda: self._build_section_summaries(payload, config),
             "tools": lambda: self._build_section_tools(payload, config),
@@ -930,15 +920,16 @@ class PromptArchitect:
 
         return "\n".join(sections) if sections else ""
 
-    def _build_section_recent_memories(
+    def _build_section_known_facts(
         self, payload: ContextPayload, config: SupportingContextConfig
     ) -> str:
-        """Build the recent memories (prior knowledge) section."""
+        """Build the known facts section from graph relationship summaries."""
         if not payload.recent_memories:
             return ""
 
-        lines = ["## Prior Knowledge"]
-        for memory in payload.recent_memories:
+        max_facts = config.max_items.get("known_facts", 25)
+        lines = ["## Known Facts"]
+        for memory in payload.recent_memories[:max_facts]:
             lines.append(memory)
         return "\n".join(lines)
 
@@ -970,19 +961,19 @@ class PromptArchitect:
 
         return "\n".join(lines)
 
-    def _build_section_key_facts(
+    def _build_section_insights(
         self, payload: ContextPayload, config: SupportingContextConfig
     ) -> str:
-        """Build the key facts section."""
-        if not payload.key_facts:
+        """Build the insights section with timestamps."""
+        if not payload.insights:
             return ""
 
-        max_facts = config.max_items.get("key_facts", 20)
-        lines = ["\n## Key Facts"]
+        max_insights = config.max_items.get("insights", 25)
+        lines = ["\n## Recent Insights"]
 
-        for fact in payload.key_facts[:max_facts]:
-            text = fact.get("text", "")
-            created_at = fact.get("metadata", {}).get("created_at", "")
+        for insight in payload.insights[:max_insights]:
+            text = insight.get("text", "")
+            created_at = insight.get("metadata", {}).get("created_at", "")
             timestamp = created_at[:16] if created_at else ""
             if timestamp:
                 lines.append(f"- [{timestamp}] {text}")
@@ -991,26 +982,10 @@ class PromptArchitect:
 
         return "\n".join(lines)
 
-    def _build_section_insights(
-        self, payload: ContextPayload, config: SupportingContextConfig
-    ) -> str:
-        """Build the insights section."""
-        if not payload.insights:
-            return ""
-
-        max_insights = config.max_items.get("insights", 15)
-        lines = ["\n## Recent Insights"]
-
-        for insight in payload.insights[:max_insights]:
-            text = insight.get("text", "")
-            lines.append(f"- {text}")
-
-        return "\n".join(lines)
-
     def _build_section_summaries(
         self, payload: ContextPayload, config: SupportingContextConfig
     ) -> str:
-        """Build the summaries section."""
+        """Build the summaries section with timestamps."""
         if not payload.summaries:
             return ""
 
@@ -1019,7 +994,12 @@ class PromptArchitect:
 
         for summary in payload.summaries[:max_summaries]:
             text = summary.get("text", "")
-            lines.append(f"- {text}")
+            created_at = summary.get("metadata", {}).get("created_at", "")
+            timestamp = created_at[:16] if created_at else ""
+            if timestamp:
+                lines.append(f"- **[{timestamp}]** {text}")
+            else:
+                lines.append(f"- {text}")
 
         return "\n".join(lines)
 
@@ -1121,7 +1101,7 @@ class PromptArchitect:
         context: dict[str, Any] = {}
 
         if payload.recent_memories:
-            context["prior_knowledge"] = payload.recent_memories
+            context["known_facts"] = payload.recent_memories
 
         if payload.passages:
             context["relevant_context"] = [
@@ -1132,15 +1112,6 @@ class PromptArchitect:
                     "similarity": p.get("similarity", 0.0),
                 }
                 for p in payload.passages[:10]
-            ]
-
-        if payload.key_facts:
-            context["key_facts"] = [
-                {
-                    "text": f.get("text", ""),
-                    "created_at": f.get("metadata", {}).get("created_at", ""),
-                }
-                for f in payload.key_facts
             ]
 
         if payload.insights:
@@ -1204,10 +1175,10 @@ class PromptArchitect:
         root = Element("supporting_context")
 
         if payload.recent_memories:
-            prior = SubElement(root, "prior_knowledge")
+            facts = SubElement(root, "known_facts")
             for mem in payload.recent_memories:
-                rel = SubElement(prior, "relationship")
-                rel.text = mem
+                fact = SubElement(facts, "fact")
+                fact.text = mem
 
         if payload.passages:
             passages_elem = SubElement(root, "relevant_context")
@@ -1219,15 +1190,6 @@ class PromptArchitect:
                 passage_elem.set("type", metadata.get("type", ""))
                 passage_elem.set("similarity", str(p.get("similarity", 0.0)))
                 passage_elem.text = p.get("text", "")
-
-        if payload.key_facts:
-            facts_elem = SubElement(root, "key_facts")
-            for f in payload.key_facts:
-                fact_elem = SubElement(facts_elem, "fact")
-                created_at = f.get("metadata", {}).get("created_at", "")
-                if created_at:
-                    fact_elem.set("created_at", created_at)
-                fact_elem.text = f.get("text", "")
 
         if payload.insights:
             insights_elem = SubElement(root, "recent_insights")
@@ -1310,85 +1272,201 @@ class PromptArchitect:
     ) -> str:
         """Format supporting context as structured markdown with tables.
 
-        Note: max_tokens is accepted for interface compatibility but markdown
-        format doesn't implement per-section truncation.
+        Uses the same budget-aware section-builder loop as the plain format,
+        but produces markdown tables for structured data (known facts, tools)
+        and timestamped bullets for insights/summaries.
+
+        Sections are built in priority order from SupportingContextConfig.
+        Each section respects max_items limits. When max_tokens is specified,
+        sections are truncated when the budget is exhausted.
+
+        Args:
+            payload: The context payload
+            state: Optional session state
+            max_tokens: Optional token budget (None = no limit)
+
+        Returns:
+            Formatted supporting context string in markdown
         """
+        config = self._supporting_context_config
         sections: list[str] = []
+        tokens_used = 0
 
-        # 1. Prior knowledge as table
-        if payload.recent_memories:
-            sections.append("## Prior Knowledge")
-            sections.append("")
-            sections.append("| Relationship |")
-            sections.append("|--------------|")
-            for mem in payload.recent_memories:
-                sections.append(f"| {mem} |")
+        # Build section builders for each section type (markdown variants)
+        section_builders: dict[str, callable] = {
+            "known_facts": lambda: self._build_section_known_facts_md(
+                payload, config
+            ),
+            "passages": lambda: self._build_section_passages_md(
+                payload, config
+            ),
+            "insights": lambda: self._build_section_insights_md(
+                payload, config
+            ),
+            "summaries": lambda: self._build_section_summaries_md(
+                payload, config
+            ),
+            "tools": lambda: self._build_section_tools_md(payload, config),
+            "state": lambda: self._build_section_state(state),
+        }
 
-        # 2. Semantic passages from vector search
-        if payload.passages:
-            sections.append("")
-            sections.append("## Relevant Context")
-            sections.append("")
-            for p in payload.passages[:10]:
-                text = p.get("text", "")
-                metadata = p.get("metadata", {})
-                source = metadata.get("filename") or metadata.get("source", "memory")
-                doc_type = metadata.get("type", "")
-                similarity = p.get("similarity", 0.0)
+        # Build sections in priority order (same loop as plain format)
+        for section_name in config.section_priority:
+            if max_tokens and tokens_used >= max_tokens:
+                logger.debug(
+                    f"Markdown context budget exhausted at '{section_name}' "
+                    f"({tokens_used}/{max_tokens} tokens)"
+                )
+                break
 
-                header = f"### {source}"
-                if doc_type == "ingested_file":
-                    header += " *(ingested)*"
-                elif doc_type == "tool_output":
-                    tool_name = metadata.get("tool_name", "")
-                    header += f" *(from {tool_name})*"
-                sections.append(header)
-                sections.append(f"*Relevance: {similarity:.2f}*")
-                sections.append("")
-                sections.append(text)
-                sections.append("")
+            builder = section_builders.get(section_name)
+            if not builder:
+                continue
 
-        # 3. Key facts with timestamps (bullets, most recent first)
-        if payload.key_facts:
-            sections.append("")
-            sections.append("## Key Facts")
-            sections.append("")
-            for fact in payload.key_facts:
-                text = fact.get("text", "")
-                created_at = fact.get("metadata", {}).get("created_at", "")
-                timestamp = created_at[:16] if created_at else "N/A"
-                sections.append(f"- **[{timestamp}]** {text}")
+            section_content = builder()
+            if not section_content:
+                continue
 
-        # 4. Recent insights with timestamps (bullets, not numbered)
-        if payload.insights:
-            sections.append("")
-            sections.append("## Recent Insights")
-            sections.append("")
-            for insight in payload.insights:
-                text = insight.get("text", "")
-                created_at = insight.get("metadata", {}).get("created_at", "")
-                timestamp = created_at[:16] if created_at else "N/A"
-                sections.append(f"- **[{timestamp}]** {text}")
+            section_tokens = self.count_tokens(section_content)
 
-        # 4. Summaries with timestamps (bullets, not numbered)
-        if payload.summaries:
-            sections.append("")
-            sections.append("## Conversation Summaries")
-            sections.append("")
-            for summary in payload.summaries:
-                text = summary.get("text", "")
-                created_at = summary.get("metadata", {}).get("created_at", "")
-                timestamp = created_at[:16] if created_at else "N/A"
-                sections.append(f"- **[{timestamp}]** {text}")
+            # Check if this section fits in remaining budget
+            if max_tokens:
+                remaining = max_tokens - tokens_used
+                if section_tokens > remaining:
+                    truncated = self._truncate_section_to_budget(
+                        section_content, remaining
+                    )
+                    if truncated:
+                        sections.append(truncated)
+                        tokens_used += self.count_tokens(truncated)
+                        logger.debug(
+                            f"Truncated markdown section '{section_name}' "
+                            f"({self.count_tokens(truncated)}/{section_tokens})"
+                        )
+                    break
+                else:
+                    sections.append(section_content)
+                    tokens_used += section_tokens
+            else:
+                sections.append(section_content)
+                tokens_used += section_tokens
 
-        # 5. Tool recommendations as table
+        if max_tokens:
+            logger.debug(
+                f"Markdown context built: {tokens_used}/{max_tokens} tokens "
+                f"({len(sections)} sections)"
+            )
+
+        return "\n".join(sections) if sections else ""
+
+    # --- Markdown Section Builders ---
+
+    def _build_section_known_facts_md(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build known facts as a markdown table with max_items enforcement."""
+        if not payload.recent_memories:
+            return ""
+
+        max_facts = config.max_items.get("known_facts", 25)
+        lines = ["## Known Facts", "", "| Fact |", "|------|"]
+        for mem in payload.recent_memories[:max_facts]:
+            lines.append(f"| {mem} |")
+        return "\n".join(lines)
+
+    def _build_section_passages_md(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build passages section in markdown with max_items enforcement."""
+        if not payload.passages:
+            return ""
+
+        max_passages = config.max_items.get("passages", 10)
+        lines = ["\n## Relevant Context", ""]
+
+        for passage in payload.passages[:max_passages]:
+            text = passage.get("text", "")
+            metadata = passage.get("metadata", {})
+            source = (
+                metadata.get("filename")
+                or metadata.get("source", "memory")
+            )
+            doc_type = metadata.get("type", "")
+            similarity = passage.get("similarity", 0.0)
+
+            header = f"### {source}"
+            if doc_type == "ingested_file":
+                header += " *(ingested)*"
+            elif doc_type == "tool_output":
+                tool_name = metadata.get("tool_name", "")
+                header += f" *(from {tool_name})*"
+            lines.append(header)
+            lines.append(f"*Relevance: {similarity:.2f}*")
+            lines.append("")
+            lines.append(text)
+            lines.append("")
+
+        return "\n".join(lines)
+
+    def _build_section_insights_md(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build insights section as timestamped markdown bullets."""
+        if not payload.insights:
+            return ""
+
+        max_insights = config.max_items.get("insights", 25)
+        lines = ["\n## Recent Insights", ""]
+
+        for insight in payload.insights[:max_insights]:
+            text = insight.get("text", "")
+            created_at = insight.get("metadata", {}).get("created_at", "")
+            timestamp = created_at[:16] if created_at else ""
+            if timestamp:
+                lines.append(f"- **[{timestamp}]** {text}")
+            else:
+                lines.append(f"- {text}")
+
+        return "\n".join(lines)
+
+    def _build_section_summaries_md(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build summaries section as timestamped markdown bullets."""
+        if not payload.summaries:
+            return ""
+
+        max_summaries = config.max_items.get("summaries", 10)
+        lines = ["\n## Conversation Summaries", ""]
+
+        for summary in payload.summaries[:max_summaries]:
+            text = summary.get("text", "")
+            created_at = summary.get("metadata", {}).get("created_at", "")
+            timestamp = created_at[:16] if created_at else ""
+            if timestamp:
+                lines.append(f"- **[{timestamp}]** {text}")
+            else:
+                lines.append(f"- {text}")
+
+        return "\n".join(lines)
+
+    def _build_section_tools_md(
+        self, payload: ContextPayload, config: SupportingContextConfig
+    ) -> str:
+        """Build tools section as markdown table + hints."""
+        lines: list[str] = []
+
+        max_tools = config.max_items.get("tools", 5)
+
+        # Tool recommendations table
         if payload.recommended_tools:
-            sections.append("")
-            sections.append("## Recommended Tools")
-            sections.append("")
-            sections.append("| Tool | Relevance | Reason |")
-            sections.append("|------|-----------|--------|")
-            for rec in payload.recommended_tools:
+            lines.extend([
+                "\n## Recommended Tools",
+                "",
+                "| Tool | Relevance | Reason |",
+                "|------|-----------|--------|",
+            ])
+            for rec in payload.recommended_tools[:max_tools]:
                 if hasattr(rec, "tool_name"):
                     tool_name = rec.tool_name
                     relevance = getattr(rec, "relevance_score", 0.0)
@@ -1397,27 +1475,17 @@ class PromptArchitect:
                     tool_name = rec.get("tool_name", "unknown")
                     relevance = rec.get("relevance_score", 0.0)
                     reason = rec.get("reason", "")
-                sections.append(f"| `{tool_name}` | {relevance:.2f} | {reason} |")
+                lines.append(
+                    f"| `{tool_name}` | {relevance:.2f} | {reason} |"
+                )
 
-        # 6. Tool usage hints
+        # Tool usage hints
         if payload.tool_usage_hints:
-            sections.append("")
-            sections.append("## Tool Usage Notes")
-            sections.append("")
+            lines.extend(["\n## Tool Usage Notes", ""])
             for hint in payload.tool_usage_hints:
-                sections.append(f"- {hint}")
+                lines.append(f"- {hint}")
 
-        # 7. Session state as table
-        if state and state.scoped_vars:
-            sections.append("")
-            sections.append("## Session Context")
-            sections.append("")
-            sections.append("| Key | Value |")
-            sections.append("|-----|-------|")
-            for key, value in state.scoped_vars.items():
-                sections.append(f"| {key} | {value} |")
-
-        return "\n".join(sections) if sections else ""
+        return "\n".join(lines) if lines else ""
 
     def _format_transparency_block(self, recent_memories: list[str]) -> str:
         """Format the transparency block showing recent auto-archived memories."""
@@ -1442,35 +1510,6 @@ class PromptArchitect:
             lines.append(f"Source: {source}")
             lines.append(text)
             lines.append("")
-
-        return "\n".join(lines)
-
-    def _format_associative_block(
-        self,
-        entities: list,
-        facts: list,
-    ) -> str:
-        """Format associative memory (entities and facts from graph)."""
-        lines = ["## Known Entities and Facts"]
-
-        if entities:
-            lines.append("")
-            lines.append("### Entities")
-            for entity in entities[:10]:  # Limit to 10 entities
-                entity_type = getattr(entity, "type", "entity")
-                label = getattr(entity, "label", "unknown")
-                properties = getattr(entity, "properties", {})
-                prop_str = ", ".join(f"{k}={v}" for k, v in list(properties.items())[:3])
-                lines.append(f"- {label} ({entity_type}): {prop_str}")
-
-        if facts:
-            lines.append("")
-            lines.append("### Relationships")
-            for fact in facts[:10]:  # Limit to 10 facts
-                source = getattr(fact, "source_id", "?")
-                target = getattr(fact, "target_id", "?")
-                relation = getattr(fact, "relation", "related_to")
-                lines.append(f"- {source} --[{relation}]--> {target}")
 
         return "\n".join(lines)
 

@@ -31,6 +31,7 @@ class VectorDocumentMetadata(TypedDict, total=False):
     stage: str  # MemoryStage value: 'episodic', 'short_term', 'long_term', 'decayed', 'deleted'
     decay_score: float  # 0.0 to 1.0
     created_at: str  # ISO datetime
+    created_at_ts: int  # Unix epoch seconds — used for ChromaDB date-range filtering
     last_accessed_at: str  # ISO datetime
     last_decay_at: str | None  # ISO datetime or None
     promoted_at: str | None  # ISO datetime or None
@@ -61,6 +62,10 @@ class InitialVectorMetadata(BaseModel):
     stage: str = Field(default="short_term")
     decay_score: float = Field(default=1.0, ge=0.0, le=1.0)
     created_at: datetime = Field(default_factory=datetime.now)
+    created_at_ts: int = Field(
+        default=0,
+        description="Unix epoch seconds for ChromaDB date-range filtering",
+    )
     last_accessed_at: datetime = Field(default_factory=datetime.now)
     last_decay_at: datetime | None = None
     promoted_at: datetime | None = None
@@ -87,6 +92,8 @@ class InitialVectorMetadata(BaseModel):
             "stage": self.stage,
             "decay_score": self.decay_score,
             "created_at": self.created_at.isoformat(),
+            "created_at_ts": self.created_at_ts
+            or int(self.created_at.timestamp()),
             "last_accessed_at": self.last_accessed_at.isoformat(),
             "access_count": self.access_count,
             "promotion_state": self.promotion_state,

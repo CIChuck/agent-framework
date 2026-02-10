@@ -161,6 +161,7 @@ class CollectionManager:
         query_text: str,
         n_results: int | None = None,
         include_decayed: bool = False,
+        query_embedding: list[float] | None = None,
     ) -> dict[str, list[dict[str, Any]]]:
         """
         Query short-term and long-term collections in parallel.
@@ -169,6 +170,9 @@ class CollectionManager:
             query_text: The search query
             n_results: Max results per collection (uses config default if None)
             include_decayed: If True, also query decayed collection
+            query_embedding: Optional pre-computed query embedding. When provided,
+                both collections reuse this embedding instead of computing their own,
+                saving redundant API/inference calls.
 
         Returns:
             Dict with keys 'short_term', 'long_term', and optionally 'decayed',
@@ -183,12 +187,14 @@ class CollectionManager:
                 query_text,
                 n,
                 self._config.short_term_min_similarity,
+                query_embedding=query_embedding,
             ),
             self._query_with_threshold(
                 self._long_term,
                 query_text,
                 n,
                 self._config.long_term_min_similarity,
+                query_embedding=query_embedding,
             ),
         ]
 
@@ -199,6 +205,7 @@ class CollectionManager:
                     query_text,
                     n,
                     0.0,  # No threshold for decayed
+                    query_embedding=query_embedding,
                 )
             )
 
@@ -231,9 +238,12 @@ class CollectionManager:
         query_text: str,
         n_results: int,
         min_similarity: float,
+        query_embedding: list[float] | None = None,
     ) -> list[dict[str, Any]]:
         """Query a collection and filter by minimum similarity threshold."""
-        results = await collection.query(query_text, n_results=n_results)
+        results = await collection.query(
+            query_text, n_results=n_results, query_embedding=query_embedding
+        )
 
         # Filter by similarity threshold
         return [r for r in results if r.get("similarity", 0) >= min_similarity]
@@ -281,13 +291,30 @@ class CollectionManager:
             ]
 
         # Ensure lifecycle metadata is set correctly
-        now = datetime.now().isoformat()
+        now_dt = datetime.now()
+        now = now_dt.isoformat()
+        now_ts = int(now_dt.timestamp())
         for metadata in metadatas:
             metadata["stage"] = MemoryStage.SHORT_TERM.value
             metadata["promotion_state"] = PromotionState.NONE.value
             # Add lifecycle tracking fields if not present
             if "created_at" not in metadata:
                 metadata["created_at"] = now
+            # Add numeric timestamp for ChromaDB date-range filtering.
+            # Derive from existing created_at if present (e.g., from
+            # provenance), otherwise use current time.
+            if "created_at_ts" not in metadata:
+                if "created_at" in metadata:
+                    try:
+                        metadata["created_at_ts"] = int(
+                            datetime.fromisoformat(
+                                metadata["created_at"]
+                            ).timestamp()
+                        )
+                    except (ValueError, TypeError):
+                        metadata["created_at_ts"] = now_ts
+                else:
+                    metadata["created_at_ts"] = now_ts
             if "decay_score" not in metadata:
                 metadata["decay_score"] = 1.0  # Fresh memory
             if "hit_count" not in metadata:
@@ -306,11 +333,20 @@ class CollectionManager:
         """
         Query across short-term and long-term collections with metadata filters.
 
-        Fetches documents from both active collections in parallel, merges
-        the results, and returns them sorted by created_at descending.
+        Fetches ALL matching documents from each sub-collection in parallel,
+        merges the results, sorts by ``created_at`` descending, and trims to
+        the requested ``limit``.
+
+        **Design note:** ChromaDB's ``.get(limit=N)`` returns documents in
+        arbitrary insertion order — *not* by recency. Passing the caller's
+        ``limit`` directly to each sub-collection would randomly exclude
+        recent documents when a collection contains more matches than
+        ``limit``. To guarantee correct recency ordering we fetch without
+        a per-collection limit and apply the cap only after the merge+sort.
 
         Args:
-            limit: Maximum number of results to return.
+            limit: Maximum number of results to return (applied after
+                   cross-collection merge and recency sort).
             where: Optional ChromaDB where-clause for metadata filtering
                    (e.g. {"type": "insight"}).
             include_decayed: If True, also searches the decayed collection.
@@ -319,12 +355,14 @@ class CollectionManager:
             Merged list of document dicts sorted by created_at descending,
             trimmed to the requested limit.
         """
+        # Fetch ALL matching documents from each collection (limit=None).
+        # The final limit is enforced after the cross-collection recency sort.
         tasks = [
-            self._short_term.get_all(limit=limit, where=where),
-            self._long_term.get_all(limit=limit, where=where),
+            self._short_term.get_all(limit=None, where=where),
+            self._long_term.get_all(limit=None, where=where),
         ]
         if include_decayed:
-            tasks.append(self._decayed.get_all(limit=limit, where=where))
+            tasks.append(self._decayed.get_all(limit=None, where=where))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
 

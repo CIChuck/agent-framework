@@ -150,6 +150,7 @@ class VectorStoreAdapter(ABC):
         where: dict[str, Any] | None = None,
         rerank: bool = False,
         hybrid: bool = False,
+        query_embedding: list[float] | None = None,
     ) -> list[dict[str, Any]]:
         """
         Performs semantic retrieval on stored documents.
@@ -160,6 +161,10 @@ class VectorStoreAdapter(ABC):
             where: Optional metadata filter (e.g., {'source_type': 'document'})
             rerank: If True, apply reranking to improve result quality
             hybrid: If True, combine semantic and keyword search
+            query_embedding: Optional pre-computed query embedding. When provided,
+                skips the internal embedding computation, saving an API/inference
+                call. Used by recall() to share a single embedding across vector
+                search and graph path scoring.
 
         Returns:
             List of result dicts containing text, metadata, and similarity scores

@@ -286,16 +286,30 @@ class GraphEdge(BaseModel):
         self.hit_count += 1
         self.last_accessed = datetime.now()
 
-    def get_relation_text(self) -> str:
+    def get_relation_text(
+        self,
+        source_label: str | None = None,
+        target_label: str | None = None,
+    ) -> str:
         """
         Get the text representation of the edge for embedding.
 
         Returns a natural language description of the relationship
-        suitable for embedding generation.
+        suitable for embedding generation. When source and target labels
+        are provided, produces a richer triple like "Chuck married to Tara"
+        instead of just "married to".
+
+        Args:
+            source_label: Optional label of the source node.
+            target_label: Optional label of the target node.
+
+        Returns:
+            Natural language relation text for embedding.
         """
-        # Convert relation to natural language (e.g., "works_for" -> "works for")
         relation_text = self.relation.replace("_", " ")
-        return f"{relation_text}"
+        if source_label and target_label:
+            return f"{source_label} {relation_text} {target_label}"
+        return relation_text
 
 
 # =============================================================================

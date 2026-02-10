@@ -163,6 +163,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         where: dict[str, Any] | None = None,
         rerank: bool = False,
         hybrid: bool = False,
+        query_embedding: list[float] | None = None,
     ) -> list[dict[str, Any]]:
         """
         Performs semantic retrieval.
@@ -173,6 +174,8 @@ class ChromaVectorStore(VectorStoreAdapter):
             where: Optional metadata filter
             rerank: If True, apply reranking (not yet implemented)
             hybrid: If True, combine semantic and keyword search (not yet implemented)
+            query_embedding: Optional pre-computed query embedding. When provided,
+                skips the internal embedding computation to avoid redundant API calls.
 
         Returns:
             List of result dicts with text, metadata, and similarity
@@ -182,8 +185,9 @@ class ChromaVectorStore(VectorStoreAdapter):
             span_id = self._telemetry.start_span("vector_query")
 
         try:
-            # Get query embedding
-            query_embedding = (await self._get_embeddings([query_text]))[0]
+            # Use pre-computed embedding if provided, otherwise compute it
+            if query_embedding is None:
+                query_embedding = (await self._get_embeddings([query_text]))[0]
 
             # Query ChromaDB
             results = self._collection.query(
@@ -330,13 +334,18 @@ class ChromaVectorStore(VectorStoreAdapter):
         return {"$and": [{k: v} for k, v in where.items()]}
 
     async def get_all(
-        self, limit: int = 100, where: dict[str, Any] | None = None
+        self, limit: int | None = 100, where: dict[str, Any] | None = None
     ) -> list[dict[str, Any]]:
         """
         Get all documents from the collection.
 
         Args:
-            limit: Maximum number of documents to return
+            limit: Maximum number of documents to return. Pass ``None`` to
+                   fetch all matching documents (ChromaDB default behavior).
+                   **Important:** ChromaDB's ``.get()`` returns documents in
+                   arbitrary insertion order, so callers that need
+                   recency-ordered results should fetch all and sort
+                   externally.
             where: Optional metadata filter dict (e.g., {"type": "insight"}).
                    Compound filters with multiple keys are automatically
                    wrapped in ``$and`` for ChromaDB compatibility.
@@ -344,11 +353,13 @@ class ChromaVectorStore(VectorStoreAdapter):
         Returns:
             List of documents with id, text, and metadata
         """
-        results = self._collection.get(
-            limit=limit,
-            where=self._normalize_where(where),
-            include=["documents", "metadatas"],
-        )
+        get_kwargs: dict[str, Any] = {
+            "where": self._normalize_where(where),
+            "include": ["documents", "metadatas"],
+        }
+        if limit is not None:
+            get_kwargs["limit"] = limit
+        results = self._collection.get(**get_kwargs)
 
         documents = []
         for i, doc_id in enumerate(results["ids"]):

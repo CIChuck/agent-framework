@@ -872,10 +872,16 @@ class OptimizationReport(BaseModel):
     edges_embedded: int = Field(default=0)
     edges_skipped: int = Field(default=0)
 
+    # Timestamp backfill stats (created_at_ts for date-range filtering)
+    timestamp_backfill_done: bool = Field(default=False)
+    timestamps_backfilled: int = Field(default=0)
+    timestamps_skipped: int = Field(default=0)
+
     # Timing
     access_flush_duration_ms: float = Field(default=0.0)
     factor_compute_duration_ms: float = Field(default=0.0)
     edge_embed_duration_ms: float = Field(default=0.0)
+    timestamp_backfill_duration_ms: float = Field(default=0.0)
 
     # Errors
     errors: list[str] = Field(default_factory=list)
