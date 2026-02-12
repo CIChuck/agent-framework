@@ -197,21 +197,16 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             # If friday-memory not available, return empty
             return []
 
-        # Prefer most recent turns when no offset is provided
-        effective_offset = offset
-        if offset == 0:
-            try:
-                total = await self._store.count_entries(session_id)
-                if total > limit:
-                    effective_offset = max(0, total - limit)
-            except Exception:
-                # Fall back to default offset behavior if count isn't available
-                effective_offset = offset
-
+        # Fetch a large window and filter compacted entries in Python.
+        # count_entries() includes compacted entries, so offset-based
+        # paging can yield fewer than `limit` active turns when compacted
+        # entries exist.  Session sizes are bounded (typically <200 turns)
+        # so fetching a generous window is not a performance concern.
+        fetch_limit = max(limit * 3, 500)
         entries = await self._store.get_entries(
             session_id,
-            limit=limit,
-            offset=effective_offset,
+            limit=fetch_limit,
+            offset=offset,
         )
 
         turns = []
@@ -239,10 +234,14 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                 metadata=entry.metadata,
                 # Use persisted consolidated state from the entry
                 consolidated=getattr(entry, "consolidated", False),
+                compacted=getattr(entry, "compacted", False),
             )
-            turns.append(turn)
+            # Exclude compacted turns from raw history retrieval
+            if not turn.compacted:
+                turns.append(turn)
 
-        return turns
+        # Return the most recent `limit` active turns
+        return turns[-limit:] if len(turns) > limit else turns
 
     async def get_unconsolidated_turns(
         self, session_id: str, limit: int = 100
@@ -314,6 +313,31 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         logging.getLogger(__name__).warning(
             "Store doesn't support persistent consolidation tracking; "
             "consolidation state will be lost on restart"
+        )
+        return False
+
+    async def mark_compacted(self, turn_ids: list[str]) -> bool:
+        """
+        Mark turns as compacted (summarized by InSessionCompactor).
+
+        Compacted turns are excluded from raw history retrieval via
+        ``get_turns()`` but remain in the transcript for audit purposes.
+        Delegates to the underlying store if it supports persistent
+        compaction tracking.
+        """
+        if not turn_ids:
+            return True
+
+        if hasattr(self._store, "mark_entries_compacted"):
+            count = await self._store.mark_entries_compacted(turn_ids)
+            return count > 0
+
+        # Fallback for stores without persistent compaction support
+        import logging
+
+        logging.getLogger(__name__).warning(
+            "Store doesn't support persistent compaction tracking; "
+            "compaction state will be lost on restart"
         )
         return False
 

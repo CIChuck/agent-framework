@@ -69,23 +69,37 @@ class InMemoryEpisodicStore(EpisodicStoreAdapter):
     async def get_turns(
         self, session_id: str, limit: int = 10, offset: int = 0
     ) -> list[InteractionTurn]:
-        """
-        Retrieves chronological history for context injection.
+        """Retrieve the most recent non-compacted turns.
+
+        Returns the newest ``limit`` turns for prompt assembly,
+        excluding turns that have been compacted by
+        ``InSessionCompactor`` (their content is available via
+        summary insights instead).
 
         Thread-safe: Returns copy to prevent mutation outside lock.
 
         Args:
-            session_id: Unique session identifier
-            limit: Maximum number of turns to retrieve
-            offset: Number of turns to skip (for pagination)
+            session_id: Unique session identifier.
+            limit: Maximum number of turns to retrieve.
+            offset: Number of most-recent turns to skip
+                (for backward pagination).
 
         Returns:
             List of interaction turns, ordered chronologically
+            (oldest first within the returned window).
         """
         async with self._lock:
-            turns = self._sessions.get(session_id, [])
-            # Return copy to prevent mutation outside lock
-            return list(turns[offset : offset + limit])
+            all_turns = self._sessions.get(session_id, [])
+            # Filter out compacted turns
+            active = [t for t in all_turns if not t.compacted]
+            # Return the most recent `limit` turns
+            if offset > 0:
+                end = len(active) - offset
+                if end <= 0:
+                    return []
+                start = max(0, end - limit)
+                return list(active[start:end])
+            return list(active[-limit:]) if active else []
 
     async def get_unconsolidated_turns(
         self, session_id: str
@@ -129,6 +143,37 @@ class InMemoryEpisodicStore(EpisodicStoreAdapter):
 
         self._emit_event(
             "episodic_turns_consolidated",
+            {"turn_ids": turn_ids, "marked_count": marked_count},
+        )
+        return True
+
+    async def mark_compacted(self, turn_ids: list[str]) -> bool:
+        """Mark turns as compacted so they are excluded from get_turns().
+
+        Compacted turns have been summarized by InSessionCompactor.
+        They remain in storage for audit/replay but are filtered
+        out of prompt assembly.
+
+        Thread-safe: Uses lock for modifications.
+
+        Args:
+            turn_ids: List of turn IDs to mark as compacted.
+
+        Returns:
+            True if successful.
+        """
+        turn_id_set = set(turn_ids)
+        marked_count = 0
+
+        async with self._lock:
+            for turns in self._sessions.values():
+                for turn in turns:
+                    if turn.id in turn_id_set and not turn.compacted:
+                        turn.compacted = True
+                        marked_count += 1
+
+        self._emit_event(
+            "episodic_turns_compacted",
             {"turn_ids": turn_ids, "marked_count": marked_count},
         )
         return True

@@ -169,31 +169,64 @@ class InSessionCompactor:
     async def run_compaction(
         self,
         session_id: str,
-        time_budget_ms: int = 2000,
+        time_budget_ms: int = 15000,
         trigger_reason: str = "threshold_exceeded",
+        current_tokens: int = 0,
+        available_budget: int = 0,
+        target_utilization: float = 0.70,
     ) -> CompactionResult:
-        """Run a time-bounded compaction cycle.
+        """Run a goal-driven compaction cycle.
+
+        Calculates how many tokens need to be freed to bring
+        utilization down to ``target_utilization``, then runs
+        compaction phases until the goal is met. Time budgets
+        serve as safety nets, not primary stopping conditions.
 
         Phases (in priority order):
 
-        1. Summarize old conversation turns.
+        1. Summarize old conversation turns (loops until goal
+           met or no more unconsolidated turns).
         2. Deduplicate insights in vector store.
         3. Promote frequently-accessed short-term memories.
-
-        Each phase checks the time budget before proceeding.
 
         Args:
             session_id: The session triggering compaction.
             time_budget_ms: Maximum time for this run (ms).
+                Acts as a safety net; primary stop is goal.
             trigger_reason: Why compaction was triggered.
+            current_tokens: Total tokens in the current prompt.
+            available_budget: Max tokens minus output buffer.
+            target_utilization: Desired post-compaction
+                utilization level (0.0-1.0).
 
         Returns:
-            CompactionResult with statistics.
+            CompactionResult with statistics and goal tracking.
         """
         result = CompactionResult(
             trigger_reason=trigger_reason,
         )
         self._start_budget(time_budget_ms)
+
+        # Calculate goal: how many tokens to free
+        target_tokens = int(
+            available_budget * target_utilization
+        )
+        tokens_to_free = max(
+            0, current_tokens - target_tokens
+        )
+        result.tokens_target = tokens_to_free
+
+        logger.info(
+            "Compaction goal for session %s: "
+            "current=%d, target=%d (%.0f%% of %d), "
+            "need_to_free=%d tokens",
+            session_id,
+            current_tokens,
+            target_tokens,
+            target_utilization * 100,
+            available_budget,
+            tokens_to_free,
+        )
 
         self._emit_event(
             "compaction_started",
@@ -201,6 +234,10 @@ class InSessionCompactor:
                 "session_id": session_id,
                 "time_budget_ms": time_budget_ms,
                 "trigger_reason": trigger_reason,
+                "current_tokens": current_tokens,
+                "target_tokens": target_tokens,
+                "tokens_to_free": tokens_to_free,
+                "target_utilization": target_utilization,
             },
         )
 
@@ -208,7 +245,7 @@ class InSessionCompactor:
             # Phase 1: Turn summarization (highest priority)
             if not self._time_budget_exhausted():
                 await self._summarize_old_turns(
-                    session_id, result
+                    session_id, result, tokens_to_free
                 )
 
             # Phase 2: Insight deduplication
@@ -233,6 +270,10 @@ class InSessionCompactor:
         result.time_budget_exhausted = (
             self._time_budget_exhausted()
         )
+        result.target_met = (
+            result.tokens_saved_from_summarization
+            >= tokens_to_free
+        )
         result.complete()
 
         self._emit_event(
@@ -244,6 +285,8 @@ class InSessionCompactor:
                 "tokens_saved": (
                     result.tokens_saved_from_summarization
                 ),
+                "tokens_target": tokens_to_free,
+                "target_met": result.target_met,
                 "insights_deduplicated": (
                     result.insights_deduplicated
                 ),
@@ -258,13 +301,15 @@ class InSessionCompactor:
         logger.info(
             "Compaction complete for session %s: "
             "summarized=%d turns, deduped=%d insights, "
-            "promoted=%d memories, saved=%d tokens "
-            "(%.0fms, budget_exhausted=%s)",
+            "promoted=%d memories, saved=%d/%d tokens "
+            "(target_met=%s, %.0fms, budget_exhausted=%s)",
             session_id,
             result.turns_summarized,
             result.insights_deduplicated,
             result.memories_promoted,
             result.tokens_saved_from_summarization,
+            tokens_to_free,
+            result.target_met,
             result.duration_ms,
             result.time_budget_exhausted,
         )
@@ -275,33 +320,69 @@ class InSessionCompactor:
         self,
         session_id: str,
         result: CompactionResult,
+        tokens_to_free: int = 0,
     ) -> None:
-        """Summarize older conversation turns to reduce history size.
+        """Summarize older conversation turns to reduce history.
 
-        Fetches unconsolidated turns and compresses them into
-        summaries via LLM.  Reuses the ``SUMMARIZATION_PROMPT``
-        from ``MemoryConsolidator`` for consistency.
+        Fetches ALL non-compacted turns and compresses older ones
+        into summaries via LLM, protecting the most recent turns
+        (``compaction_recency_window``) for conversational
+        continuity.  Reuses the ``SUMMARIZATION_PROMPT`` from
+        ``MemoryConsolidator`` for consistency.
+
+        Uses a **goal-driven loop**: continues summarizing
+        batches until token savings meet the target, or there
+        are no more compactable turns. The time budget acts
+        as a safety net, not the primary stopping condition.
+
+        After summarization, turns are marked ``compacted=True``
+        so ``get_turns()`` excludes them from prompt assembly.
 
         Args:
             session_id: Session to summarize turns for.
             result: CompactionResult to update.
+            tokens_to_free: Target number of tokens to free.
+                The loop continues until savings meet this
+                target, or materials are exhausted, or the
+                time budget expires.
         """
         try:
-            turns = (
-                await self._memory.fetch_unconsolidated_events(
-                    session_id
+            # Fetch ALL non-compacted turns (get_turns
+            # already filters out compacted turns)
+            all_turns = (
+                await self._memory.episodic.get_turns(
+                    session_id, limit=1000
                 )
             )
 
+            # Protect recent turns from compaction
+            recency = (
+                self._config.compaction_recency_window
+            )
+            if len(all_turns) <= recency:
+                logger.debug(
+                    "All %d turns within recency window "
+                    "(%d), skipping summarization",
+                    len(all_turns),
+                    recency,
+                )
+                return
+
+            # Turns eligible for compaction: everything
+            # EXCEPT the most recent N
+            compactable = all_turns[:-recency]
+
             if (
-                len(turns)
+                len(compactable)
                 < self._config.min_turns_to_summarize
             ):
                 logger.debug(
-                    "Not enough turns to summarize: "
-                    "%d < %d",
-                    len(turns),
+                    "Not enough compactable turns: "
+                    "%d < %d (total=%d, protected=%d)",
+                    len(compactable),
                     self._config.min_turns_to_summarize,
+                    len(all_turns),
+                    recency,
                 )
                 return
 
@@ -315,12 +396,36 @@ class InSessionCompactor:
             )
 
             max_per = self._config.max_turns_per_summary
-            for i in range(0, len(turns), max_per):
-                if self._time_budget_exhausted():
-                    result.time_budget_exhausted = True
+            for i in range(0, len(compactable), max_per):
+                # Primary goal: stop when target is met
+                if (
+                    tokens_to_free > 0
+                    and (
+                        result.tokens_saved_from_summarization
+                        >= tokens_to_free
+                    )
+                ):
+                    logger.info(
+                        "Token savings target met: "
+                        "saved=%d >= target=%d",
+                        result.tokens_saved_from_summarization,
+                        tokens_to_free,
+                    )
                     break
 
-                batch = turns[i : i + max_per]
+                # Safety net: stop if time budget exhausted
+                if self._time_budget_exhausted():
+                    result.time_budget_exhausted = True
+                    logger.warning(
+                        "Time budget exhausted during "
+                        "summarization: saved=%d / "
+                        "target=%d",
+                        result.tokens_saved_from_summarization,
+                        tokens_to_free,
+                    )
+                    break
+
+                batch = compactable[i : i + max_per]
                 if len(batch) < 2:
                     continue
 
@@ -378,22 +483,27 @@ class InSessionCompactor:
                     {"type": "summary"},
                 )
 
-                # Mark turns as consolidated so they are
-                # not re-retrieved as raw history
+                # Mark turns as COMPACTED so get_turns()
+                # excludes them from prompt assembly
                 turn_ids = [t.id for t in batch]
-                await self._memory.mark_events_consolidated(
+                await self._memory.mark_turns_compacted(
                     turn_ids
                 )
 
                 result.turns_summarized += len(batch)
-                result.tokens_saved_from_summarization += max(
-                    0, original_tokens - summary_tokens
+                result.tokens_saved_from_summarization += (
+                    max(0, original_tokens - summary_tokens)
                 )
 
-                logger.debug(
-                    "Summarized %d turns, saved %d tokens",
+                logger.info(
+                    "Compacted %d turns (batch %d), "
+                    "saved %d tokens "
+                    "(cumulative: %d / %d target)",
                     len(batch),
+                    i // max_per,
                     max(0, original_tokens - summary_tokens),
+                    result.tokens_saved_from_summarization,
+                    tokens_to_free,
                 )
 
         except Exception as e:

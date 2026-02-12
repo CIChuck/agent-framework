@@ -44,10 +44,11 @@ Commands (prefix with /):
   /transcript export - Export entire database to CSV
   /export [format] - Export current session (jsonl, markdown, or training)
   /export-prompts [session_id] - Export raw prompts/responses to JSON
-  /reset           - Clear all memory stores AND archive all transcripts (clean slate)
+  /reset [store]   - Reset memory (graph|vector|episodic, or omit for full clean slate)
   /reorganize [opts] - Run memory reorganization (analyze, prune, synthesize)
   /migrate [opts]  - Migrate existing memories to lifecycle metadata
   /lifecycle [opts] - Run memory lifecycle cycle (promotion, decay, reactivation)
+  /compact          - Manually trigger context compaction (summarize, dedup, promote)
   /vars            - Show scoped variables
   /set <key> <val> - Set a scoped variable
   /tools [category] - List available tools, optionally filter by category
@@ -397,6 +398,7 @@ class MemoryChatSession:
         # In-session budget monitoring and compaction
         self.budget_monitor: ContextBudgetMonitor | None = None
         self.compactor: InSessionCompactor | None = None
+        self._compaction_task: asyncio.Task | None = None
 
         # State tracking
         self.state: SessionState | None = None
@@ -638,8 +640,21 @@ class MemoryChatSession:
         # --- Maintenance commands ---
         self.registry.register(
             "reset",
-            lambda ctx, **kwargs: asyncio.create_task(ctx.cmd_reset()),
-            description="Clear all memory stores and archive ALL transcript sessions (clean slate)",
+            lambda ctx, **kwargs: asyncio.create_task(
+                ctx.cmd_reset(store=kwargs.get("store"))
+            ),
+            arguments=[
+                arg(
+                    "store",
+                    required=False,
+                    description=(
+                        "Optional store to reset: 'graph', 'vector', "
+                        "'episodic'. Omit to reset everything (clean slate)"
+                    ),
+                ),
+            ],
+            description="Clear memory stores and archive transcripts (clean slate). "
+                        "Pass a store name to reset only that store.",
             category="maintenance",
         )
 
@@ -691,6 +706,18 @@ class MemoryChatSession:
                 arg("--stats", required=False, description="Show migration statistics only"),
             ],
             description="Migrate existing memories to lifecycle metadata",
+            category="maintenance",
+        )
+
+        self.registry.register(
+            "compact",
+            lambda ctx, **kwargs: asyncio.create_task(
+                ctx.cmd_compact()
+            ),
+            description=(
+                "Manually trigger context compaction "
+                "(summarize turns, dedup insights)"
+            ),
             category="maintenance",
         )
 
@@ -995,8 +1022,8 @@ class MemoryChatSession:
                 session_id = parts[1] if len(parts) > 1 else None
                 return await self.cmd_export_prompts(session_id)
             case "reset":
-                # Reset now always archives all transcripts for clean slate
-                return await self.cmd_reset()
+                store = parts[1] if len(parts) > 1 else None
+                return await self.cmd_reset(store=store)
             case "reorganize":
                 # Parse options from remaining args
                 opts = parts[1] if len(parts) > 1 else ""
@@ -1192,30 +1219,111 @@ class MemoryChatSession:
             # Log but don't fail - this is background work
             logger.warning(f"Incremental maintenance error: {e}")
 
+    async def _flush_pending_extraction(self) -> bool:
+        """Flush any pending extraction turns before compaction.
+
+        Extraction must complete before compaction to prevent
+        knowledge loss.  Compaction consolidates turns into
+        lossy summaries; if extraction hasn't processed the
+        raw turn content first, entities, facts, and
+        relationships from those turns are lost permanently.
+
+        Returns:
+            True if flush succeeded (or nothing to flush),
+            False if extraction failed.
+        """
+        if (
+            not self.extractor
+            or not self._pending_extraction_turns
+        ):
+            return True
+
+        pending = list(self._pending_extraction_turns)
+        self._pending_extraction_turns.clear()
+
+        try:
+            get_console().print(
+                f"  [dim][Flushing {len(pending)} "
+                f"pending extraction turn(s) before "
+                f"compaction...][/dim]"
+            )
+            await self._background_extract_batch(pending)
+            get_console().print(
+                f"  [dim][Extraction flush complete: "
+                f"{len(pending)} turn(s)][/dim]"
+            )
+            return True
+        except Exception as e:
+            logger.error(
+                "Extraction flush failed, aborting "
+                "compaction to prevent knowledge loss: "
+                "%s",
+                e,
+            )
+            get_console().print(
+                f"  [dim][Extraction flush failed: {e}. "
+                f"Compaction aborted.][/dim]"
+            )
+            # Put turns back so they aren't lost
+            self._pending_extraction_turns.extend(pending)
+            return False
+
     async def _run_compaction(self) -> None:
-        """Run in-session compaction (fire-and-forget).
+        """Run goal-driven in-session compaction.
 
         Triggered by the ContextBudgetMonitor when budget
         utilization exceeds the compaction threshold.  Runs
-        as a background task without blocking the chat loop.
+        as a background task; the main loop gates input
+        submission until this completes.
+
+        Flushes any pending extraction turns first to ensure
+        no knowledge is lost when turns are consolidated.
+        Passes budget context (current tokens, available
+        budget, target utilization) so the compactor can
+        calculate how many tokens to free rather than
+        relying solely on time budgets.
         """
         if not self.compactor or not self.budget_monitor:
             return
 
         try:
+            # Flush extraction before compaction to prevent
+            # knowledge loss from consolidating unextracted
+            # turns.
+            if not await self._flush_pending_extraction():
+                return
             time_budget = (
                 self.budget_monitor.get_time_budget_ms()
             )
+            budget_ctx = (
+                self.budget_monitor.get_budget_context()
+            )
+            metrics = self.budget_monitor.get_metrics()
+            target_pct = (
+                budget_ctx["target_utilization"] * 100
+            )
             get_console().print(
-                f"  [dim][Compaction started in background "
+                f"  [dim][Compaction started "
                 f"(budget: "
-                f"{self.budget_monitor.get_metrics()['current_utilization_pct']:.1f}%"
+                f"{metrics['current_utilization_pct']:.1f}%"
+                f", target: {target_pct:.0f}%"
                 f")][/dim]"
             )
             result = await self.compactor.run_compaction(
                 session_id=self.session_id,
                 time_budget_ms=time_budget,
-                trigger_reason="budget_threshold_exceeded",
+                trigger_reason=(
+                    "budget_threshold_exceeded"
+                ),
+                current_tokens=(
+                    budget_ctx["current_tokens"]
+                ),
+                available_budget=(
+                    budget_ctx["available_budget"]
+                ),
+                target_utilization=(
+                    budget_ctx["target_utilization"]
+                ),
             )
             if (
                 result.turns_summarized > 0
@@ -1224,18 +1332,23 @@ class MemoryChatSession:
             ):
                 get_console().print(
                     f"  [dim][Compaction complete: "
-                    f"summarized={result.turns_summarized}, "
+                    f"summarized="
+                    f"{result.turns_summarized}, "
                     f"deduped="
                     f"{result.insights_deduplicated}, "
-                    f"promoted={result.memories_promoted}, "
-                    f"tokens_saved="
+                    f"promoted={result.memories_promoted}"
+                    f", tokens_saved="
                     f"{result.tokens_saved_from_summarization}"
+                    f"/{result.tokens_target}"
+                    f" (target_met="
+                    f"{result.target_met})"
                     f"][/dim]"
                 )
         except Exception as e:
             logger.warning(f"Compaction error: {e}")
         finally:
             self.budget_monitor.mark_compaction_complete()
+            self._compaction_task = None
 
     @property
     def avg_context_tokens(self) -> float:
@@ -2857,99 +2970,148 @@ class MemoryChatSession:
         # Execute replay
         return await self._replay_transcript(turns, delay_secs)
 
-    async def cmd_reset(self) -> str:
+    async def cmd_reset(self, store: str | None = None) -> str:
         """
-        Clear all memory stores and archive all transcript sessions.
+        Clear memory stores and optionally archive transcript sessions.
 
-        This provides a clean slate by:
-        1. Clearing graph store (entities, relationships)
-        2. Clearing vector store (insights, summaries)
-        3. Clearing episodic store (current session turns)
-        4. Archiving ALL transcript sessions (excluded from future context)
-        5. Clearing primed content cache
+        Args:
+            store: Optional store name to reset selectively.
+                   Supported values: 'graph', 'vector', 'episodic'.
+                   When None, resets everything (clean slate).
 
-        After reset, no prior conversation history will appear in context.
+        Full reset (no argument) clears:
+        1. Graph store (entities, relationships)
+        2. Vector store (insights, summaries)
+        3. Episodic store (current session turns)
+        4. Transcript sessions (archived, excluded from future context)
+        5. Primed content cache
+
+        Selective reset clears only the named store and its
+        related primed cache entries.
         """
-        lines = ["Resetting memory stores (clean slate)..."]
+        valid_stores = {"graph", "vector", "episodic"}
+        if store and store not in valid_stores:
+            return (
+                f"Unknown store '{store}'. "
+                f"Valid options: {', '.join(sorted(valid_stores))} "
+                f"(or omit for full reset)"
+            )
 
-        try:
-            # Clear graph store
-            logger.info("Clearing graph store...")
-            graph_result = await self.controller.graph.clear()
-            lines.append(f"  Graph store: cleared {graph_result.get('nodes_deleted', 0)} nodes, {graph_result.get('edges_deleted', 0)} edges")
-        except Exception as e:
-            logger.error(f"Graph clear failed: {e}", exc_info=True)
-            lines.append(f"  Graph store: ERROR - {e}")
+        reset_all = store is None
+        label = "all stores" if reset_all else f"{store} store"
+        lines = [f"Resetting {label}..."]
 
-        try:
-            # Clear lifecycle collections (short-term, long-term, decayed)
-            cm = self.controller.collection_manager
-            if cm:
-                logger.info("Clearing lifecycle collections...")
-                clear_stats = await cm.clear_all()
-                st_del = clear_stats.get("short_term_deleted", 0)
-                lt_del = clear_stats.get("long_term_deleted", 0)
-                dec_del = clear_stats.get("decayed_deleted", 0)
+        # --- Graph store ---
+        if reset_all or store == "graph":
+            try:
+                logger.info("Clearing graph store...")
+                graph_result = await self.controller.graph.clear()
+                nodes = graph_result.get("nodes_deleted", 0)
+                edges = graph_result.get("edges_deleted", 0)
                 lines.append(
-                    f"  Lifecycle collections: cleared "
-                    f"{st_del} short-term, {lt_del} long-term, "
-                    f"{dec_del} decayed"
+                    f"  Graph store: cleared {nodes} nodes, "
+                    f"{edges} edges"
                 )
+            except Exception as e:
+                logger.error(f"Graph clear failed: {e}", exc_info=True)
+                lines.append(f"  Graph store: ERROR - {e}")
 
-            # Also clear legacy vector store (may still have old data)
-            logger.info("Clearing legacy vector store...")
-            vector_count = await self.controller.vector.clear()
-            if vector_count > 0:
+        # --- Vector store ---
+        if reset_all or store == "vector":
+            try:
+                cm = self.controller.collection_manager
+                if cm:
+                    logger.info("Clearing lifecycle collections...")
+                    clear_stats = await cm.clear_all()
+                    st_del = clear_stats.get("short_term_deleted", 0)
+                    lt_del = clear_stats.get("long_term_deleted", 0)
+                    dec_del = clear_stats.get("decayed_deleted", 0)
+                    lines.append(
+                        f"  Lifecycle collections: cleared "
+                        f"{st_del} short-term, {lt_del} long-term, "
+                        f"{dec_del} decayed"
+                    )
+
+                logger.info("Clearing legacy vector store...")
+                vector_count = await self.controller.vector.clear()
+                if vector_count > 0:
+                    lines.append(
+                        f"  Legacy vector store: cleared "
+                        f"{vector_count} documents"
+                    )
+            except Exception as e:
+                logger.error(f"Vector clear failed: {e}", exc_info=True)
+                lines.append(f"  Vector store: ERROR - {e}")
+
+        # --- Episodic store ---
+        if reset_all or store == "episodic":
+            try:
+                logger.info("Clearing episodic store...")
+                await self.controller.episodic.clear_session(
+                    self.session_id
+                )
                 lines.append(
-                    f"  Legacy vector store: cleared "
-                    f"{vector_count} documents"
+                    f"  Episodic store: cleared session "
+                    f"{self.session_id}"
                 )
-        except Exception as e:
-            logger.error(f"Vector clear failed: {e}", exc_info=True)
-            lines.append(f"  Vector store: ERROR - {e}")
+            except Exception as e:
+                logger.error(
+                    f"Episodic clear failed: {e}", exc_info=True
+                )
+                lines.append(f"  Episodic store: ERROR - {e}")
 
-        try:
-            # Clear episodic store for this session
-            logger.info("Clearing episodic store...")
-            await self.controller.episodic.clear_session(self.session_id)
-            lines.append(f"  Episodic store: cleared session {self.session_id}")
-        except Exception as e:
-            logger.error(f"Episodic clear failed: {e}", exc_info=True)
-            lines.append(f"  Episodic store: ERROR - {e}")
-
-        # Archive ALL transcript sessions - ensures no prior history in context
-        if self.transcript_store:
+        # --- Transcript archival (full reset only) ---
+        if reset_all and self.transcript_store:
             try:
                 logger.info("Archiving all transcript sessions...")
-                archived_count = await self.transcript_store.archive_all_sessions()
+                archived_count = (
+                    await self.transcript_store.archive_all_sessions()
+                )
                 if archived_count > 0:
-                    lines.append(f"  Transcript: archived {archived_count} sessions")
+                    lines.append(
+                        f"  Transcript: archived {archived_count} "
+                        f"sessions"
+                    )
                 else:
                     lines.append("  Transcript: no sessions to archive")
             except Exception as e:
-                logger.error(f"Transcript archive failed: {e}", exc_info=True)
+                logger.error(
+                    f"Transcript archive failed: {e}", exc_info=True
+                )
                 lines.append(f"  Transcript: ERROR - {e}")
 
-        # Clear primed content cache - CRITICAL: ensures stale entities/insights
-        # from prior sessions don't persist in memory after reset
+        # --- Primed content cache ---
+        # Full reset clears all sessions; selective reset clears
+        # only the current session's cache
         try:
-            # Clear ALL primed content, not just current session
-            primed_cleared = self.controller.clear_primed_content(session_id=None)
+            clear_session = None if reset_all else self.session_id
+            primed_cleared = self.controller.clear_primed_content(
+                session_id=clear_session
+            )
             if primed_cleared > 0:
-                lines.append(f"  Primed cache: cleared {primed_cleared} sessions")
+                lines.append(
+                    f"  Primed cache: cleared {primed_cleared} "
+                    f"sessions"
+                )
             else:
-                lines.append("  Primed cache: no cached content to clear")
+                lines.append(
+                    "  Primed cache: no cached content to clear"
+                )
         except Exception as e:
-            logger.error(f"Primed cache clear failed: {e}", exc_info=True)
+            logger.error(
+                f"Primed cache clear failed: {e}", exc_info=True
+            )
             lines.append(f"  Primed cache: ERROR - {e}")
 
-        # Reset turn tracking
-        self.turn_ids.clear()
-        self._pending_extraction_turns.clear()
-        if self.state:
-            self.state.turn_count = 0
+        # Reset turn tracking only on full reset
+        if reset_all:
+            self.turn_ids.clear()
+            self._pending_extraction_turns.clear()
+            if self.state:
+                self.state.turn_count = 0
 
-        lines.append("\nMemory reset complete. Clean slate achieved.")
+        suffix = "Clean slate achieved." if reset_all else f"{store.capitalize()} store reset."
+        lines.append(f"\n{suffix}")
         return "\n".join(lines)
 
     async def cmd_reorganize(self, opts: str = "") -> str:
@@ -3493,6 +3655,136 @@ class MemoryChatSession:
                     "Check that LLM/embedding services are reachable."
                 )
             return f"Error during migration: {e}"
+
+    async def cmd_compact(self) -> str:
+        """Manually trigger in-session context compaction.
+
+        Runs the goal-driven compactor immediately, regardless
+        of the automatic budget threshold.  Useful when the user
+        knows context is growing and wants to proactively reclaim
+        headroom before the automatic trigger fires.
+
+        The compactor summarizes unconsolidated turns, deduplicates
+        insights, and promotes hot memories — same phases as the
+        automatic compaction, but triggered on demand.
+
+        Returns:
+            Status message with compaction results.
+        """
+        if not self.compactor:
+            return (
+                "Compaction not available — "
+                "compaction is disabled in config."
+            )
+        if not self.budget_monitor:
+            return (
+                "Compaction not available — "
+                "budget monitor not initialized."
+            )
+
+        # Check if compaction is already running
+        if (
+            self._compaction_task
+            and not self._compaction_task.done()
+        ):
+            return (
+                "Compaction already in progress. "
+                "Please wait for it to complete."
+            )
+
+        try:
+            # Flush extraction first to prevent knowledge loss
+            if not await self._flush_pending_extraction():
+                return (
+                    "Compaction aborted: extraction flush "
+                    "failed. Retry after resolving "
+                    "extraction errors."
+                )
+
+            budget_ctx = (
+                self.budget_monitor.get_budget_context()
+            )
+            metrics = self.budget_monitor.get_metrics()
+            current_pct = metrics.get(
+                "current_utilization_pct", 0.0
+            )
+            target_pct = (
+                budget_ctx["target_utilization"] * 100
+            )
+
+            lines = [
+                "=" * 50,
+                "MANUAL CONTEXT COMPACTION",
+                "=" * 50,
+                f"Current utilization: {current_pct:.1f}%",
+                f"Target utilization:  {target_pct:.0f}%",
+            ]
+
+            if current_pct <= target_pct:
+                lines.append(
+                    f"\nAlready at or below target "
+                    f"({current_pct:.1f}% <= "
+                    f"{target_pct:.0f}%). "
+                    f"Running compaction anyway."
+                )
+
+            get_console().print("\n".join(lines))
+            get_console().print(
+                "\n  [dim]Compacting...[/dim]"
+            )
+
+            # Run compaction synchronously (user requested it)
+            self.budget_monitor.mark_compaction_started()
+            time_budget = (
+                self.budget_monitor.get_time_budget_ms()
+            )
+            result = await self.compactor.run_compaction(
+                session_id=self.session_id,
+                time_budget_ms=time_budget,
+                trigger_reason="manual_command",
+                current_tokens=budget_ctx["current_tokens"],
+                available_budget=(
+                    budget_ctx["available_budget"]
+                ),
+                target_utilization=(
+                    budget_ctx["target_utilization"]
+                ),
+            )
+            self.budget_monitor.mark_compaction_complete()
+
+            # Report results
+            result_lines = [
+                "",
+                "Results:",
+                f"  Turns summarized:  "
+                f"{result.turns_summarized}",
+                f"  Tokens saved:      "
+                f"{result.tokens_saved_from_summarization}"
+                f" / {result.tokens_target} target",
+                f"  Target met:        "
+                f"{result.target_met}",
+                f"  Insights deduped:  "
+                f"{result.insights_deduplicated}",
+                f"  Memories promoted: "
+                f"{result.memories_promoted}",
+                f"  Duration:          "
+                f"{result.duration_ms:.0f}ms",
+                f"  Time budget used:  "
+                f"{result.time_budget_exhausted}",
+            ]
+
+            if result.errors:
+                result_lines.append(
+                    f"\nErrors ({len(result.errors)}):"
+                )
+                for err in result.errors[:5]:
+                    result_lines.append(f"  - {err}")
+
+            return "\n".join(result_lines)
+
+        except Exception as e:
+            logger.exception("Manual compaction failed")
+            return f"Error during compaction: {e}"
 
     def cmd_vars(self) -> str:
         """Show scoped variables."""
@@ -5427,8 +5719,19 @@ Use /insights or /list-ingested to view stored documents."""
         _t1 = _time.perf_counter()
         logger.debug(f"[TIMING] Init check: {(_t1-_t0)*1000:.0f}ms")
 
-        # Calculate dynamic budget limit
-        dynamic_limit = self.architect.calculate_dynamic_limit(self.system_prompt)
+        # Calculate dynamic budget limit (including tool definition costs)
+        active_tools = self.assembler.active_tools
+        tool_defs = [
+            {
+                "name": t["name"],
+                "description": t.get("description", ""),
+                "parameters": t.get("parameters", {}),
+            }
+            for t in active_tools
+        ] if active_tools else None
+        dynamic_limit = self.architect.calculate_dynamic_limit(
+            self.system_prompt, tool_definitions=tool_defs
+        )
 
         _t2 = _time.perf_counter()
         logger.debug(f"[TIMING] Budget calc: {(_t2-_t1)*1000:.0f}ms")
@@ -5611,7 +5914,9 @@ Use /insights or /list-ingested to view stored documents."""
                     self.budget_monitor.record_turn(budget_status)
                     if self.budget_monitor.should_compact():
                         self.budget_monitor.mark_compaction_started()
-                        asyncio.create_task(self._run_compaction())
+                        self._compaction_task = asyncio.create_task(
+                            self._run_compaction()
+                        )
 
                 # 5. Extract entities and facts from the turn (background)
                 # Buffer every turn; flush the entire batch when the
@@ -7265,6 +7570,17 @@ async def main() -> None:
                         break
                     get_console().print(cmd_result)
                     continue
+
+                # Gate: await any in-flight compaction before processing
+                if (
+                    session._compaction_task
+                    and not session._compaction_task.done()
+                ):
+                    get_console().print(
+                        "  [dim]Optimizing context "
+                        "memory...[/dim]"
+                    )
+                    await session._compaction_task
 
                 # Process as chat message
                 await session.process_turn(user_input)

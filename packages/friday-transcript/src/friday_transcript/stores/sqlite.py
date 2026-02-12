@@ -125,6 +125,17 @@ class SQLiteTranscriptStore:
                 """)
                 logger.info("Added 'consolidated' column to entries table")
 
+            # Migration: Add compacted column if not exists
+            if "compacted" not in columns:
+                await db.execute(
+                    "ALTER TABLE entries ADD COLUMN compacted INTEGER DEFAULT 0"
+                )
+                await db.execute("""
+                    CREATE INDEX IF NOT EXISTS idx_entries_compacted
+                    ON entries(session_id, compacted)
+                """)
+                logger.info("Added 'compacted' column to entries table")
+
             # Migration: Add archived column to sessions if not exists
             cursor = await db.execute("PRAGMA table_info(sessions)")
             session_columns = {row[1] for row in await cursor.fetchall()}
@@ -534,6 +545,40 @@ class SQLiteTranscriptStore:
                 logger.error(f"Failed to mark entries consolidated: {e}")
                 return 0
 
+    async def mark_entries_compacted(self, entry_ids: list[str]) -> int:
+        """Mark entries as compacted (summarized by InSessionCompactor).
+
+        Compacted entries are excluded from raw history retrieval but
+        remain in the transcript for audit purposes.
+
+        Args:
+            entry_ids: List of entry IDs to mark as compacted
+
+        Returns:
+            Number of entries updated
+        """
+        await self._ensure_initialized()
+
+        if not entry_ids:
+            return 0
+
+        placeholders = ",".join("?" * len(entry_ids))
+        async with aiosqlite.connect(self._db_path) as db:
+            await db.execute("PRAGMA foreign_keys = ON")
+            try:
+                cursor = await db.execute(
+                    f"UPDATE entries SET compacted = 1 WHERE id IN ({placeholders})",
+                    entry_ids,
+                )
+                await db.commit()
+                logger.debug(
+                    f"Marked {cursor.rowcount} entries as compacted"
+                )
+                return cursor.rowcount
+            except Exception as e:
+                logger.error(f"Failed to mark entries compacted: {e}")
+                return 0
+
     async def get_unconsolidated_entries(
         self,
         session_id: str,
@@ -604,6 +649,7 @@ class SQLiteTranscriptStore:
             context_tokens_used=row["context_tokens_used"],
             metadata=json.loads(row["metadata"] or "{}"),
             consolidated=bool(row["consolidated"]) if "consolidated" in row.keys() else False,
+            compacted=bool(row["compacted"]) if "compacted" in row.keys() else False,
         )
 
     async def get_entries_by_agent(

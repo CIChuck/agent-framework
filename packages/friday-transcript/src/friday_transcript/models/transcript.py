@@ -120,6 +120,14 @@ class TranscriptEntry(BaseModel):
         default=False,
         description="Whether this entry has been extracted to long-term memory"
     )
+    compacted: bool = Field(
+        default=False,
+        description=(
+            "Whether this entry has been summarized by "
+            "InSessionCompactor and excluded from raw history "
+            "retrieval."
+        ),
+    )
 
     model_config = ConfigDict(frozen=False)
 

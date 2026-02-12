@@ -115,6 +115,15 @@ class InteractionTurn(BaseModel):
         default=False,
         description="Whether this turn has been processed by MemoryConsolidator",
     )
+    compacted: bool = Field(
+        default=False,
+        description=(
+            "Whether this turn has been summarized by "
+            "InSessionCompactor and excluded from raw history "
+            "retrieval. Distinct from 'consolidated' which "
+            "tracks extraction status."
+        ),
+    )
 
     # Timing metrics
     response_started_at: datetime | None = Field(

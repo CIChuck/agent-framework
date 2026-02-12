@@ -225,6 +225,39 @@ class ContextBudgetMonitor:
 
         return self._config.max_duration_ms
 
+    def get_budget_context(self) -> dict[str, int | float]:
+        """Get current budget context for goal-driven compaction.
+
+        Provides the compactor with the data it needs to calculate
+        how many tokens to free: current total tokens, available
+        budget, and the target utilization from config.
+
+        Returns:
+            Dict with keys:
+
+            - ``current_tokens``: Total tokens in the last prompt.
+            - ``available_budget``: Max tokens minus output buffer.
+            - ``target_utilization``: Desired post-compaction
+              utilization level (0.0-1.0).
+        """
+        if not self._history:
+            return {
+                "current_tokens": 0,
+                "available_budget": 0,
+                "target_utilization": (
+                    self._config.target_utilization
+                ),
+            }
+
+        latest = self._history[-1]
+        return {
+            "current_tokens": latest.total_tokens,
+            "available_budget": latest.available_budget,
+            "target_utilization": (
+                self._config.target_utilization
+            ),
+        }
+
     def mark_compaction_started(self) -> None:
         """Mark that a compaction run is in progress.
 

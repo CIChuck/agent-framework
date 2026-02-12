@@ -635,6 +635,9 @@ class ContextAssembler(ContextEngineeringInterface):
         # Step 0: Filter out any DECAYED memories that slipped through
         filtered_payload = self._filter_decayed(payload)
 
+        # Step 0.1: Filter superseded insights (defense-in-depth)
+        filtered_payload = self._filter_superseded(filtered_payload)
+
         # Step 0.5: Conditionally exclude summaries if history is complete
         # Summaries are redundant when we have full conversation history
         filtered_payload = self._apply_conditional_summaries(filtered_payload)
@@ -644,13 +647,34 @@ class ContextAssembler(ContextEngineeringInterface):
         if query:
             filtered_payload = self._filter_by_query_relevance(filtered_payload, query)
 
+        # Reserve space for formatting overhead that the layout
+        # engine will add (timestamps, role prefixes, section
+        # headers, etc.).  Without this, _apply_budget() thinks
+        # content fits but _validate_prompt_budget() finds overage.
+        formatting_overhead = self._estimate_formatting_overhead(
+            filtered_payload
+        )
+        effective_budget = budget_limit - formatting_overhead
+
+        logger.debug(
+            "Budget adjustment: raw=%d, "
+            "formatting_overhead=%d, effective=%d",
+            budget_limit,
+            formatting_overhead,
+            effective_budget,
+        )
+
         current_tokens = self._estimate_payload_tokens(filtered_payload)
 
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return filtered_payload
 
         logger.info(
-            f"Context pruning required: {current_tokens} > {budget_limit} tokens"
+            "Context pruning required: %d > %d tokens "
+            "(effective budget after %d overhead reserved)",
+            current_tokens,
+            effective_budget,
+            formatting_overhead,
         )
 
         # Make mutable copies (including prior_history which was previously ignored!)
@@ -672,7 +696,7 @@ class ContextAssembler(ContextEngineeringInterface):
             current_tokens = self._estimate_tokens_full(
                 prior_history + history, short_term + long_term, entities, facts, insights, summaries
             )
-            if current_tokens <= budget_limit:
+            if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
                     filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                     prior_history=prior_history
@@ -684,7 +708,7 @@ class ContextAssembler(ContextEngineeringInterface):
             current_tokens = self._estimate_tokens_full(
                 history, short_term + long_term, entities, facts, insights, summaries
             )
-            if current_tokens <= budget_limit:
+            if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
                     filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                     prior_history=prior_history
@@ -695,7 +719,7 @@ class ContextAssembler(ContextEngineeringInterface):
         current_tokens = self._estimate_tokens_full(
             history, short_term + long_term, entities, facts, insights, summaries
         )
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
                 filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                 prior_history=prior_history
@@ -707,7 +731,7 @@ class ContextAssembler(ContextEngineeringInterface):
         current_tokens = self._estimate_tokens_full(
             history, short_term + long_term, entities, facts, insights, summaries
         )
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
                 filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                 prior_history=prior_history
@@ -719,7 +743,7 @@ class ContextAssembler(ContextEngineeringInterface):
             current_tokens = self._estimate_tokens_full(
                 history, short_term + long_term, entities, facts, insights, summaries
             )
-            if current_tokens <= budget_limit:
+            if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
                     filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                     prior_history=prior_history
@@ -731,7 +755,7 @@ class ContextAssembler(ContextEngineeringInterface):
         current_tokens = self._estimate_tokens_full(
             history, short_term + long_term, entities, facts, insights, summaries
         )
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
                 filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                 prior_history=prior_history
@@ -743,7 +767,7 @@ class ContextAssembler(ContextEngineeringInterface):
         current_tokens = self._estimate_tokens_full(
             history, short_term + long_term, entities, facts, insights, summaries
         )
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
                 filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                 prior_history=prior_history
@@ -755,7 +779,7 @@ class ContextAssembler(ContextEngineeringInterface):
         current_tokens = self._estimate_tokens_full(
             history, short_term + long_term, entities, facts, insights, summaries
         )
-        if current_tokens <= budget_limit:
+        if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
                 filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
                 prior_history=prior_history
@@ -838,6 +862,72 @@ class ContextAssembler(ContextEngineeringInterface):
                 debug_info={
                     **payload.debug_info,
                     "decayed_filtered": decayed_count,
+                },
+            )
+
+        return payload
+
+    def _filter_superseded(
+        self, payload: ContextPayload
+    ) -> ContextPayload:
+        """Filter out superseded insights and passages.
+
+        Defense-in-depth: the memory controller already filters
+        superseded insights during retrieval via
+        ``_dedupe_by_topic()``, but this catches any that slip
+        through alternative code paths or direct injection.
+
+        Checks both ``insights`` and ``passages`` for metadata
+        containing a ``superseded_by`` field.
+
+        Args:
+            payload: The context payload to filter.
+
+        Returns:
+            Filtered payload with no superseded items.
+        """
+        superseded_count = 0
+
+        filtered_insights = []
+        for insight in payload.insights or []:
+            metadata = insight.get("metadata", {})
+            if metadata.get("superseded_by"):
+                superseded_count += 1
+                continue
+            filtered_insights.append(insight)
+
+        filtered_passages = []
+        for passage in payload.passages:
+            metadata = passage.get("metadata", {})
+            if metadata.get("superseded_by"):
+                superseded_count += 1
+                continue
+            filtered_passages.append(passage)
+
+        if superseded_count > 0:
+            logger.info(
+                "Filtered %d superseded items from context",
+                superseded_count,
+            )
+            self._emit_event(
+                "superseded_items_filtered",
+                {"count": superseded_count},
+            )
+            return ContextPayload(
+                history=payload.history,
+                prior_history=payload.prior_history,
+                passages=filtered_passages,
+                entities=payload.entities,
+                facts=payload.facts,
+                recent_memories=payload.recent_memories,
+                insights=filtered_insights,
+                summaries=payload.summaries,
+                tool_schemas=payload.tool_schemas,
+                recommended_tools=payload.recommended_tools,
+                tool_usage_hints=payload.tool_usage_hints,
+                debug_info={
+                    **payload.debug_info,
+                    "superseded_filtered": superseded_count,
                 },
             )
 
@@ -1281,6 +1371,73 @@ class ContextAssembler(ContextEngineeringInterface):
             payload.insights or [],
             payload.summaries or [],
         )
+
+    def _estimate_formatting_overhead(
+        self,
+        payload: ContextPayload,
+    ) -> int:
+        """Estimate token overhead added by PromptArchitect formatting.
+
+        The layout engine adds tokens not present in the raw payload:
+        timestamps, role prefixes, section headers, passage metadata,
+        and separators.  This method estimates those costs so
+        ``_apply_budget()`` can reserve space for them, preventing
+        the gap between budget estimation and ``_validate_prompt_budget()``.
+
+        Constants mirror ``layout.py`` overhead definitions:
+        ``TOKENS_PER_TURN_OVERHEAD=30``,
+        ``TOKENS_PER_SECTION_HEADER=10``,
+        ``TOKENS_PER_PASSAGE_METADATA=15``,
+        ``TOKENS_PER_LIST_ITEM=3``, ``TOKENS_SEPARATOR=10``.
+
+        Args:
+            payload: The context payload to estimate overhead for.
+
+        Returns:
+            Estimated formatting overhead in tokens.
+        """
+        overhead = 0
+
+        # Per-turn overhead: timestamp + role prefix for
+        # user and assistant messages (~30 tokens each)
+        turn_count = (
+            len(payload.history)
+            + len(payload.prior_history)
+        )
+        overhead += turn_count * 2 * 30
+
+        # Section headers for supporting context
+        section_count = 0
+        if payload.recent_memories:
+            section_count += 1
+        if payload.passages:
+            section_count += 1
+        if payload.insights:
+            section_count += 1
+        if payload.summaries:
+            section_count += 1
+        if payload.entities:
+            section_count += 1
+        overhead += section_count * 10
+
+        # Per-passage metadata overhead
+        overhead += len(payload.passages) * 15
+
+        # Per-list-item overhead for insights and summaries
+        insight_count = (
+            len(payload.insights) if payload.insights else 0
+        )
+        summary_count = (
+            len(payload.summaries)
+            if payload.summaries
+            else 0
+        )
+        overhead += (insight_count + summary_count) * 3
+
+        # Separator between context and query
+        overhead += 10
+
+        return overhead
 
     def _estimate_tokens(
         self,

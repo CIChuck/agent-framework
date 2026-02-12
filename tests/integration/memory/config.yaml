@@ -143,29 +143,28 @@ extraction:
   #             "openrouter/meta-llama/llama-3.1-8b-instruct"
   #
   # Set to null or remove to use the main LLM for extraction
-  
-  #local
-  #model: "openai/local-model"
+  model: "openai/gpt-oss-20b"
+  api_base: "http://localhost:1234/v1"
+  api_key: "lm-studio"
+    
 
+  #local
+  #model: "openai/local-model
   #model: "openrouter/google/gemma-3-27b-it"
   #model: "openrouter/anthropic/claude-3-haiku"
-
-  model: "openrouter/google/gemini-2.5-flash-lite"
+  #model: "openrouter/google/gemini-2.5-flash-lite"
   
 
   # API base URL (same as main LLM if using same provider)
   # OpenRouter: https://openrouter.ai/api/v1
-  
   #local - Colossus
   #api_base: "http://192.168.0.83:1234/v1"
-  api_base: "https://openrouter.ai/api/v1"
+  #api_base: "https://openrouter.ai/api/v1"
 
   # localAPI key
   #api_key: "lm-studio"
-
   # open router key
-  api_key: "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"
-  #api_key: "sk-or-v1-your-openrouter-key-here"
+  #api_key: "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"
 
   # Temperature (0.0 for deterministic extraction)
   temperature: 0.0
@@ -569,20 +568,33 @@ memory:
     # Critical threshold for urgent compaction (higher time budget)
     critical_threshold: 0.95
 
+    # Target utilization after compaction (0.0-1.0)
+    # Compactor loops summarization batches until utilization
+    # reaches this level, ensuring adequate headroom for
+    # several more turns before compaction is needed again.
+    target_utilization: 0.70
+
     # Minimum turns between compaction runs (prevents thrashing)
     cooldown_turns: 3
 
     # Time budget per normal compaction run (milliseconds)
-    max_duration_ms: 2000
+    # Acts as a safety net — primary stop is goal achievement.
+    # Philosophy: thorough compaction once > repeated tiny runs.
+    max_duration_ms: 15000
 
     # Time budget for critical compaction (milliseconds)
-    critical_max_duration_ms: 5000
+    # Used when utilization exceeds critical_threshold.
+    critical_max_duration_ms: 45000
 
     # Turn summarization: min turns before summarizing
     min_turns_to_summarize: 5
 
     # Turn summarization: max turns per summary batch
     max_turns_per_summary: 8
+
+    # Recency window: protect the N most recent turns from compaction
+    # These turns stay as raw history for conversational continuity
+    compaction_recency_window: 4
 
     # Insight deduplication: merge redundant insights
     insight_dedup_enabled: true
@@ -1807,15 +1819,21 @@ tools:
     #   class: FileReadTool
 
     # -------------------------------------------------------------------------
-    # file_write - Write content to a text file
+    # file_write - Write content to a text file (supports chunked writes)
     #
     # Usage examples:
     #   /run-tool file_write {"path": "test.txt", "content": "Hello world"}
     #   /run-tool file_write {"path": "notes.md", "content": "# Notes\n"}
     #
+    # Chunked write (for large documents):
+    #   /run-tool file_write {"path": "doc.md", "content": "# Part 1...", "mode": "write"}
+    #   /run-tool file_write {"path": "doc.md", "content": "\n## Part 2...", "mode": "append"}
+    #
     # Parameters:
     #   - path: File to write (required)
     #   - content: Content to write (required)
+    #   - mode: "write" (default) or "append" for chunked writes
+    #   - overwrite: Set true to overwrite existing (only for mode=write)
     #   - encoding: File encoding (default: "utf-8")
     #   - create_dirs: Create parent dirs if needed (default: true)
     # -------------------------------------------------------------------------

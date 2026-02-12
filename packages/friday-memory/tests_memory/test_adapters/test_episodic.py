@@ -3,8 +3,10 @@ Tests for InMemoryEpisodicStore adapter.
 
 Tests cover:
 - Adding and retrieving turns
-- Pagination with limit/offset
+- Most-recent retrieval with limit
+- Compacted turn filtering
 - Consolidation tracking
+- Compaction tracking
 - History rewind (time-travel)
 """
 
@@ -55,25 +57,77 @@ class TestInMemoryEpisodicStore:
         assert turns[4].user_message == "Message 4"
 
     @pytest.mark.asyncio
-    async def test_get_turns_with_limit(self, episodic_store: InMemoryEpisodicStore):
-        """Test retrieving turns with limit."""
+    async def test_get_turns_with_limit_returns_most_recent(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test that get_turns with limit returns the most recent turns."""
         for i in range(10):
             turn = create_turn(f"Message {i}")
             await episodic_store.add_turn("session_1", turn)
 
         turns = await episodic_store.get_turns("session_1", limit=5)
         assert len(turns) == 5
+        # Should be the MOST RECENT 5 turns (Message 5-9)
+        assert turns[0].user_message == "Message 5"
+        assert turns[4].user_message == "Message 9"
 
     @pytest.mark.asyncio
-    async def test_get_turns_with_offset(self, episodic_store: InMemoryEpisodicStore):
-        """Test retrieving turns with offset for pagination."""
+    async def test_get_turns_with_offset(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test retrieving turns with offset skips most recent."""
         for i in range(10):
             turn = create_turn(f"Message {i}")
             await episodic_store.add_turn("session_1", turn)
 
-        turns = await episodic_store.get_turns("session_1", limit=3, offset=5)
+        # offset=5 skips the 5 most recent, limit=3 gets 3 before that
+        turns = await episodic_store.get_turns(
+            "session_1", limit=3, offset=5
+        )
         assert len(turns) == 3
+        # Turns 2, 3, 4 (skipping 5-9, taking 3 before that)
+        assert turns[0].user_message == "Message 2"
+        assert turns[2].user_message == "Message 4"
+
+    @pytest.mark.asyncio
+    async def test_get_turns_excludes_compacted(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test that get_turns filters out compacted turns."""
+        turn_ids = []
+        for i in range(10):
+            turn = create_turn(f"Message {i}")
+            await episodic_store.add_turn("session_1", turn)
+            turn_ids.append(turn.id)
+
+        # Compact the first 5 turns
+        await episodic_store.mark_compacted(turn_ids[:5])
+
+        # get_turns should only return the 5 non-compacted turns
+        turns = await episodic_store.get_turns("session_1", limit=10)
+        assert len(turns) == 5
         assert turns[0].user_message == "Message 5"
+        assert turns[4].user_message == "Message 9"
+
+    @pytest.mark.asyncio
+    async def test_get_turns_excludes_compacted_with_limit(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test limit applies after compacted filtering."""
+        turn_ids = []
+        for i in range(10):
+            turn = create_turn(f"Message {i}")
+            await episodic_store.add_turn("session_1", turn)
+            turn_ids.append(turn.id)
+
+        # Compact first 5
+        await episodic_store.mark_compacted(turn_ids[:5])
+
+        # Request limit=3 — should get last 3 of the 5 active
+        turns = await episodic_store.get_turns("session_1", limit=3)
+        assert len(turns) == 3
+        assert turns[0].user_message == "Message 7"
+        assert turns[2].user_message == "Message 9"
 
     @pytest.mark.asyncio
     async def test_get_unconsolidated_turns(self, episodic_store: InMemoryEpisodicStore):
@@ -105,6 +159,57 @@ class TestInMemoryEpisodicStore:
         # Should only have 2 unconsolidated
         unconsolidated = await episodic_store.get_unconsolidated_turns("session_1")
         assert len(unconsolidated) == 2
+
+    @pytest.mark.asyncio
+    async def test_mark_compacted(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test marking turns as compacted."""
+        turn_ids = []
+        for i in range(5):
+            turn = create_turn(f"Message {i}")
+            await episodic_store.add_turn("session_1", turn)
+            turn_ids.append(turn.id)
+
+        result = await episodic_store.mark_compacted(turn_ids[:3])
+        assert result is True
+
+        # Compacted turns should be excluded from get_turns
+        turns = await episodic_store.get_turns("session_1", limit=10)
+        assert len(turns) == 2
+        assert turns[0].user_message == "Message 3"
+        assert turns[1].user_message == "Message 4"
+
+    @pytest.mark.asyncio
+    async def test_compacted_independent_of_consolidated(
+        self, episodic_store: InMemoryEpisodicStore,
+    ):
+        """Test that compacted and consolidated are independent flags."""
+        turn_ids = []
+        for i in range(5):
+            turn = create_turn(f"Message {i}")
+            await episodic_store.add_turn("session_1", turn)
+            turn_ids.append(turn.id)
+
+        # Consolidate all, compact first 3
+        await episodic_store.mark_consolidated(turn_ids)
+        await episodic_store.mark_compacted(turn_ids[:3])
+
+        # get_turns should exclude compacted (returns 2)
+        turns = await episodic_store.get_turns("session_1", limit=10)
+        assert len(turns) == 2
+
+        # get_unconsolidated should return 0 (all consolidated)
+        unconsolidated = await episodic_store.get_unconsolidated_turns(
+            "session_1"
+        )
+        assert len(unconsolidated) == 0
+
+    @pytest.mark.asyncio
+    async def test_compacted_field_defaults_false(self):
+        """Test that InteractionTurn.compacted defaults to False."""
+        turn = create_turn()
+        assert turn.compacted is False
 
     @pytest.mark.asyncio
     async def test_rewind_history(self, episodic_store: InMemoryEpisodicStore):

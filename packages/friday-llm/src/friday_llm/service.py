@@ -548,12 +548,10 @@ class LiteLLMService:
         tool_calls: list[ToolCall] = []
         if message.tool_calls:
             for tc in message.tool_calls:
-                # Parse arguments from JSON string
-                try:
-                    arguments = json.loads(tc.function.arguments)
-                except json.JSONDecodeError:
-                    arguments = {"raw": tc.function.arguments}
-
+                arguments = self._parse_tool_arguments(
+                    tc.function.arguments,
+                    tc.function.name,
+                )
                 tool_calls.append(
                     ToolCall(
                         id=tc.id,
@@ -583,3 +581,152 @@ class LiteLLMService:
             usage=usage,
             reasoning_content=reasoning_content,
         )
+
+    def _parse_tool_arguments(
+        self,
+        raw_args: str,
+        tool_name: str,
+    ) -> dict[str, Any]:
+        """Parse tool call arguments with progressive JSON repair.
+
+        Some models (e.g. Kimi K2.5) produce malformed JSON for
+        tool calls with large string parameters.  Common failures
+        include truncation, unescaped control characters, and
+        missing closing delimiters.
+
+        This method tries progressively more aggressive repair
+        strategies before falling back to ``{"raw": ...}``.
+
+        Args:
+            raw_args: The raw JSON string from the model.
+            tool_name: Tool name for diagnostic logging.
+
+        Returns:
+            Parsed arguments dict, or ``{"raw": raw_args}`` if
+            all repair strategies fail.
+        """
+        # Strategy 1: Direct parse
+        try:
+            return json.loads(raw_args)
+        except (json.JSONDecodeError, TypeError):
+            pass
+
+        # Strategy 2: Fix unescaped control characters
+        # Models sometimes emit literal newlines/tabs inside
+        # JSON string values instead of \\n / \\t
+        try:
+            cleaned = self._escape_control_chars(raw_args)
+            return json.loads(cleaned)
+        except (json.JSONDecodeError, TypeError):
+            pass
+
+        # Strategy 3: Repair truncated JSON
+        # Model hit output token limit mid-argument
+        repaired = self._repair_truncated_json(raw_args)
+        if repaired is not None:
+            try:
+                return json.loads(repaired)
+            except (json.JSONDecodeError, TypeError):
+                pass
+
+        # All strategies failed — fall back to raw
+        logger.warning(
+            "Could not parse tool '%s' arguments "
+            "(len=%d). Falling back to raw wrapper. "
+            "First 200 chars: %s",
+            tool_name,
+            len(raw_args) if raw_args else 0,
+            (raw_args or "")[:200],
+        )
+        return {"raw": raw_args}
+
+    @staticmethod
+    def _escape_control_chars(s: str) -> str:
+        """Escape literal control characters inside JSON strings.
+
+        Replaces unescaped newlines, carriage returns, and tabs
+        that appear inside JSON string values with their escaped
+        equivalents (``\\n``, ``\\r``, ``\\t``).
+
+        Args:
+            s: Raw JSON string that may contain unescaped
+                control characters.
+
+        Returns:
+            JSON string with control characters properly escaped.
+        """
+        # Replace unescaped control chars that break json.loads
+        # but only inside string values (between quotes).
+        # We walk through the string tracking whether we're
+        # inside a JSON string value.
+        result = []
+        in_string = False
+        i = 0
+        while i < len(s):
+            ch = s[i]
+            if ch == '"' and (i == 0 or s[i - 1] != '\\'):
+                in_string = not in_string
+                result.append(ch)
+            elif in_string and ch == '\n':
+                result.append('\\n')
+            elif in_string and ch == '\r':
+                result.append('\\r')
+            elif in_string and ch == '\t':
+                result.append('\\t')
+            else:
+                result.append(ch)
+            i += 1
+        return "".join(result)
+
+    @staticmethod
+    def _repair_truncated_json(s: str) -> str | None:
+        """Attempt to close truncated JSON from LLM output.
+
+        When a model hits its output token limit mid-tool-call,
+        the JSON arguments string is truncated.  This method
+        tries to close any open string literals and brace
+        delimiters to produce parseable JSON.
+
+        Args:
+            s: Potentially truncated JSON string.
+
+        Returns:
+            Repaired JSON string, or ``None`` if the input
+            doesn't look like truncated JSON.
+        """
+        if not s or not s.lstrip().startswith("{"):
+            return None
+
+        stripped = s.rstrip()
+
+        # Count unmatched braces (ignoring those in strings)
+        depth = 0
+        in_str = False
+        last_was_escape = False
+        for ch in stripped:
+            if last_was_escape:
+                last_was_escape = False
+                continue
+            if ch == '\\' and in_str:
+                last_was_escape = True
+                continue
+            if ch == '"':
+                in_str = not in_str
+            elif not in_str:
+                if ch == '{':
+                    depth += 1
+                elif ch == '}':
+                    depth -= 1
+
+        if depth <= 0:
+            # Already balanced or over-closed — not truncated
+            return None
+
+        # If we're inside an open string, close it
+        if in_str:
+            stripped += '"'
+
+        # Close open braces
+        stripped += "}" * depth
+
+        return stripped

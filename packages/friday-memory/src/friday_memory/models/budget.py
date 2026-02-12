@@ -115,19 +115,29 @@ class BudgetStatus(BaseModel):
 
 
 class CompactionConfig(BaseModel):
-    """Configuration for in-session compaction.
+    """Configuration for goal-driven in-session compaction.
 
     Controls when and how background compaction is triggered
     to reduce context size. All thresholds and limits are
     configurable via config.yaml under ``memory.compaction``.
 
+    The compactor uses a **goal-driven** approach: it calculates
+    how many tokens need to be freed to bring utilization down
+    to ``target_utilization``, then loops through summarization
+    batches until the goal is met. Time budgets serve as safety
+    nets, not primary stopping conditions.
+
     Attributes:
         enabled: Enable in-session compaction.
         compaction_threshold: Utilization % that triggers compaction.
         critical_threshold: Utilization % classified as critical.
+        target_utilization: Target utilization after compaction.
+            Compactor loops until utilization reaches this level.
         cooldown_turns: Min turns between compaction runs.
         max_duration_ms: Time budget per normal compaction (ms).
+            Acts as a safety net; primary stop is goal achievement.
         critical_max_duration_ms: Time budget for critical runs (ms).
+            Acts as a safety net; primary stop is goal achievement.
         min_turns_to_summarize: Min unconsolidated turns before
             summarization.
         max_turns_per_summary: Max turns per summary batch.
@@ -158,6 +168,16 @@ class CompactionConfig(BaseModel):
             "Utilization fraction classified as critical"
         ),
     )
+    target_utilization: float = Field(
+        default=0.70,
+        ge=0.30,
+        le=0.95,
+        description=(
+            "Target utilization after compaction. "
+            "Compactor loops until utilization is at "
+            "or below this level."
+        ),
+    )
     cooldown_turns: int = Field(
         default=3,
         ge=1,
@@ -166,17 +186,23 @@ class CompactionConfig(BaseModel):
         ),
     )
     max_duration_ms: int = Field(
-        default=2000,
+        default=15000,
         ge=100,
-        le=30000,
-        description="Time budget per compaction run (ms)",
+        le=120000,
+        description=(
+            "Time budget per normal compaction run (ms). "
+            "Acts as a safety net; primary stop condition "
+            "is goal achievement."
+        ),
     )
     critical_max_duration_ms: int = Field(
-        default=5000,
+        default=45000,
         ge=500,
-        le=60000,
+        le=180000,
         description=(
-            "Time budget for critical compaction (ms)"
+            "Time budget for critical compaction (ms). "
+            "Acts as a safety net; primary stop condition "
+            "is goal achievement."
         ),
     )
     min_turns_to_summarize: int = Field(
@@ -190,6 +216,16 @@ class CompactionConfig(BaseModel):
         default=8,
         ge=2,
         description="Max turns per summary batch",
+    )
+    compaction_recency_window: int = Field(
+        default=4,
+        ge=2,
+        le=50,
+        description=(
+            "Number of most-recent turns to protect from "
+            "compaction. These turns are always kept as raw "
+            "history for conversational continuity."
+        ),
     )
     insight_dedup_enabled: bool = Field(
         default=True,
@@ -218,11 +254,11 @@ class CompactionConfig(BaseModel):
 
 @dataclass
 class CompactionResult:
-    """Result of an in-session compaction run.
+    """Result of a goal-driven in-session compaction run.
 
     Tracks statistics from all three compaction phases
     (turn summarization, insight dedup, memory promotion)
-    plus timing and error information.
+    plus timing, goal achievement, and error information.
 
     Attributes:
         started_at: When the compaction started.
@@ -231,6 +267,10 @@ class CompactionResult:
         turns_summarized: Number of turns summarized.
         tokens_saved_from_summarization: Tokens saved by
             compressing turns into summaries.
+        tokens_target: How many tokens the compactor aimed
+            to free to reach the target utilization.
+        target_met: Whether token savings met or exceeded
+            the target (savings >= tokens_target).
         insights_deduplicated: Number of duplicate insights
             marked as superseded.
         memories_promoted: Short-term memories promoted to
@@ -249,6 +289,10 @@ class CompactionResult:
     # Turn summarization
     turns_summarized: int = 0
     tokens_saved_from_summarization: int = 0
+
+    # Goal tracking
+    tokens_target: int = 0
+    target_met: bool = False
 
     # Insight deduplication
     insights_deduplicated: int = 0

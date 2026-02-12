@@ -1997,6 +1997,23 @@ class MemoryController:
         """
         return await self.episodic.mark_consolidated(event_ids)
 
+    async def mark_turns_compacted(
+        self, turn_ids: list[str]
+    ) -> bool:
+        """Proxy for EpisodicStoreAdapter.mark_compacted.
+
+        Called by InSessionCompactor after summarizing turns.
+        Marks them as compacted so ``get_turns()`` excludes
+        them from prompt assembly.
+
+        Args:
+            turn_ids: List of turn IDs to mark as compacted.
+
+        Returns:
+            True if successful.
+        """
+        return await self.episodic.mark_compacted(turn_ids)
+
     async def merge_identities(self, primary_id: str, secondary_id: str) -> bool:
         """
         Proxies GraphStoreAdapter.merge_nodes.

@@ -18,28 +18,75 @@ from ..sandbox import FilesystemSandbox
 
 
 class FileWriteTool(FridayTool):
-    """
-    Write content to a text file.
+    """Write content to a text file with support for chunked writes.
 
-    Creates a new file or overwrites an existing file with the provided content.
-    Can optionally create parent directories if they don't exist.
+    Creates a new file or overwrites an existing file with the provided
+    content. For large files that exceed tool-call size limits, use
+    ``mode="append"`` to write content in multiple sequential calls:
+    first call creates the file with ``mode="write"``, subsequent calls
+    append with ``mode="append"``.
+
+    Chunked write example::
+
+        # Call 1: Create file with first section
+        file_write(path="doc.md", content="# Title\\n\\nSection 1...",
+                   mode="write")
+        # Call 2: Append remaining sections
+        file_write(path="doc.md", content="\\n## Section 2...",
+                   mode="append")
+        # Call 3: Append final section
+        file_write(path="doc.md", content="\\n## Section 3...",
+                   mode="append")
     """
 
     name = "file_write"
-    description = "Write content to a file. Requires overwrite=true if file exists."
+    description = (
+        "Write content to a file. Requires overwrite=true if file "
+        "exists. For large documents, break content into smaller "
+        "chunks: first call with mode='write', then subsequent "
+        "calls with mode='append' to add remaining sections."
+    )
     category = "filesystem"
-    tags = ["file", "write", "create", "save"]
+    tags = ["file", "write", "create", "save", "append", "chunked"]
 
     class Input(BaseModel):
+        """Input parameters for file_write.
+
+        Attributes:
+            path: Path to the file to write.
+            content: Content to write to the file.
+            mode: Write mode — ``"write"`` (default) creates or
+                overwrites the file, ``"append"`` adds content to
+                the end of an existing file. Use append for chunked
+                writes of large documents.
+            overwrite: Set to true to overwrite an existing file
+                (only applies when mode is ``"write"``).
+            encoding: File encoding (e.g., utf-8, latin-1, ascii).
+            create_dirs: Create parent directories if they don't
+                exist.
+        """
+
         path: str = Field(
             description="Path to the file to write"
         )
         content: str = Field(
             description="Content to write to the file"
         )
+        mode: str = Field(
+            default="write",
+            description=(
+                "Write mode: 'write' to create/overwrite the file, "
+                "'append' to add content to the end of an existing "
+                "file. Use 'append' for chunked writes of large "
+                "documents."
+            ),
+        )
         overwrite: bool = Field(
             default=False,
-            description="Set to true to overwrite an existing file"
+            description=(
+                "Set to true to overwrite an existing file "
+                "(only applies when mode is 'write')"
+            ),
         )
         encoding: str = Field(
             default="utf-8",
@@ -54,13 +101,56 @@ class FileWriteTool(FridayTool):
         self._sandbox = sandbox or FilesystemSandbox()
 
     async def run(self, args: Input) -> ToolResult:
-        """Execute the file write tool."""
+        """Execute the file write tool.
+
+        Supports two modes:
+
+        - ``write`` (default): Creates or overwrites the file.
+          Requires ``overwrite=true`` if the file already exists.
+        - ``append``: Appends content to the end of an existing
+          file. The file must already exist. Use this for chunked
+          writes of large documents.
+
+        Args:
+            args: Validated Input parameters.
+
+        Returns:
+            ToolResult with write outcome details.
+        """
+        # Validate mode
+        if args.mode not in ("write", "append"):
+            return ToolResult(
+                content=(
+                    f"Error: Invalid mode '{args.mode}'. "
+                    "Use 'write' or 'append'."
+                ),
+                error=f"Invalid mode: {args.mode}",
+            )
+
         validated_path = self._sandbox.validate_path(args.path)
 
-        # Check if file exists (for metadata and overwrite protection)
+        # Route to the appropriate handler
+        if args.mode == "append":
+            return await self._run_append(validated_path, args)
+        return await self._run_write(validated_path, args)
+
+    async def _run_write(
+        self,
+        validated_path: Path,
+        args: Input,
+    ) -> ToolResult:
+        """Handle mode='write' — create or overwrite a file.
+
+        Args:
+            validated_path: Sandbox-validated file path.
+            args: Validated Input parameters.
+
+        Returns:
+            ToolResult with write outcome details.
+        """
         file_existed = validated_path.exists()
 
-        # Overwrite protection: require explicit confirmation for existing files
+        # Overwrite protection
         if file_existed and not args.overwrite:
             stat_info = validated_path.stat()
             return ToolResult(
@@ -79,24 +169,25 @@ class FileWriteTool(FridayTool):
             )
 
         try:
-            # Create parent directories if requested
             if args.create_dirs:
-                validated_path.parent.mkdir(parents=True, exist_ok=True)
+                validated_path.parent.mkdir(
+                    parents=True, exist_ok=True,
+                )
 
-            # Write content
-            validated_path.write_text(args.content, encoding=args.encoding)
+            validated_path.write_text(
+                args.content, encoding=args.encoding,
+            )
 
-            # Get file stats after write
             stat_info = validated_path.stat()
-
-            # Count lines
             line_count = args.content.count("\n")
             if args.content and not args.content.endswith("\n"):
                 line_count += 1
 
             action = "overwrote" if file_existed else "created"
-            content_msg = f"Successfully {action} {args.path}"
-            content_msg += f" ({len(args.content)} bytes, {line_count} lines)"
+            content_msg = (
+                f"Successfully {action} {args.path}"
+                f" ({len(args.content)} bytes, {line_count} lines)"
+            )
 
             return ToolResult(
                 content=content_msg,
@@ -109,24 +200,93 @@ class FileWriteTool(FridayTool):
                 },
                 metadata={
                     "path": args.path,
-                    "action": "create" if not file_existed else "overwrite",
-                }
+                    "action": (
+                        "create" if not file_existed else "overwrite"
+                    ),
+                },
             )
 
         except PermissionError:
             return ToolResult(
                 content=f"Error: Permission denied: {args.path}",
-                error="Permission denied"
+                error="Permission denied",
             )
         except OSError as e:
             return ToolResult(
                 content=f"Error: Failed to write file: {e}",
-                error=str(e)
+                error=str(e),
             )
-        except Exception as e:
+
+    async def _run_append(
+        self,
+        validated_path: Path,
+        args: Input,
+    ) -> ToolResult:
+        """Handle mode='append' — append content to an existing file.
+
+        Used for chunked writes of large documents. The file must
+        already exist (created by a prior ``mode='write'`` call).
+
+        Args:
+            validated_path: Sandbox-validated file path.
+            args: Validated Input parameters.
+
+        Returns:
+            ToolResult with append outcome details including
+            cumulative file size.
+        """
+        if not validated_path.exists():
             return ToolResult(
-                content=f"Error: Failed to write file: {e}",
-                error=str(e)
+                content=(
+                    f"Error: File not found: {args.path}\n"
+                    "Cannot append to a non-existent file. "
+                    "Use mode='write' first to create it."
+                ),
+                error="File not found for append",
+                data={
+                    "path": str(validated_path),
+                    "exists": False,
+                },
+            )
+
+        try:
+            with validated_path.open(
+                "a", encoding=args.encoding,
+            ) as f:
+                f.write(args.content)
+
+            stat_info = validated_path.stat()
+            content_msg = (
+                f"Successfully appended {len(args.content)} bytes "
+                f"to {args.path} "
+                f"(total size: {stat_info.st_size} bytes)"
+            )
+
+            return ToolResult(
+                content=content_msg,
+                data={
+                    "path": str(validated_path),
+                    "bytes_appended": len(args.content),
+                    "total_size": stat_info.st_size,
+                    "encoding": args.encoding,
+                },
+                metadata={
+                    "path": args.path,
+                    "action": "append",
+                },
+            )
+
+        except PermissionError:
+            return ToolResult(
+                content=f"Error: Permission denied: {args.path}",
+                error="Permission denied",
+            )
+        except OSError as e:
+            return ToolResult(
+                content=(
+                    f"Error: Failed to append to file: {e}"
+                ),
+                error=str(e),
             )
 
 

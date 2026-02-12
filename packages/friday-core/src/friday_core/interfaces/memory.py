@@ -98,6 +98,24 @@ class EpisodicStoreAdapter(ABC):
         pass
 
     @abstractmethod
+    async def mark_compacted(self, turn_ids: list[str]) -> bool:
+        """Mark turns as compacted by InSessionCompactor.
+
+        Compacted turns have been summarized into an insight and
+        should be excluded from raw history retrieval by
+        ``get_turns()``.  Unlike ``mark_consolidated()`` (which
+        tracks extraction), this tracks compaction for context
+        budget management.
+
+        Args:
+            turn_ids: List of turn IDs to mark as compacted.
+
+        Returns:
+            True if successful, False otherwise.
+        """
+        pass
+
+    @abstractmethod
     async def rewind_history(self, session_id: str, target_turn_id: str) -> bool:
         """
         Hard Reset: Deletes all interaction turns *after* the target_turn_id.
