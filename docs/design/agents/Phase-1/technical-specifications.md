@@ -98,7 +98,7 @@ class AgentInterface(ABC):
         - Hybrid: Agent starts with Manual, can request more.
         """
         pass
-        
+
     @abstractmethod
     def emit_telemetry(self, event_type: str, payload: dict) -> None:
         """
@@ -106,6 +106,11 @@ class AgentInterface(ABC):
         """
         pass
 ```
+
+> **Mapping to Existing Codebase:**
+> - `AgentBase.run()` currently accepts `Any` and returns `Any` (`CopilotAgent` returns `str`). The new interface narrowing to `str | FridayArtifact` is an extension — existing behavior is preserved.
+> - `AgentBase.initialize_session()` has a different signature: `(session_id: str | None = None, user_id: str = "default") -> SessionState`. The spec's `(session_id: str, user_id: str) -> None` must be reconciled — the existing return type (`SessionState`) and optional `session_id` (auto-generates UUID) are intentional design choices to preserve.
+> - `AgentBase` has tool management methods not shown in this interface: `set_tools_for_task()`, `expand_tools()`, `clear_tools()`, `get_active_tool_names()`. These are preserved as implementation details, not added to the interface contract.
 
 ### 1.3 The Registry (`RegistryInterface`)
 The contract for the "Talent Pool".
@@ -139,6 +144,8 @@ class RegistryInterface(ABC):
         pass
 ```
 
+> **Mapping to Existing Codebase:** `AgentRegistry` in `packages/friday-agent/src/friday_agent/registry.py` already implements all of these methods: `register_profile()`, `find_by_capability()` (maps to `find_agents()`), `set_factory()`/`create_agent()`. YAML loading is handled by the companion `AgentLoader` class (see Section 2.5) which the registry delegates to via `load_manifests()`.
+
 ### 1.4 The Orchestrator (`OrchestratorInterface`)
 The contract for the "Nervous System".
 
@@ -163,6 +170,8 @@ class OrchestratorInterface(ABC):
         """
         pass
 ```
+
+> **Mapping to Existing Codebase:** `AgentOrchestrator` in `packages/friday-agent/src/friday_agent/orchestrator.py` currently combines routing and execution in a single `process()` method. The `route()` method in this spec is a decomposition of that logic — extracting routing as a distinct step. `delegate()` already exists with matching semantics.
 
 ### 1.5 The Arbitrator (`ArbitrationInterface`)
 The contract for the "Conscience" (Truth Maintenance).
@@ -262,7 +271,7 @@ These models define the "Wire Format" for communication between components.
 ```python
 from pydantic import BaseModel, Field
 from typing import Literal, Dict
-from datetime import datetime
+from datetime import datetime, timezone
 from uuid import UUID
 
 class FridayArtifact(BaseModel):
@@ -272,14 +281,16 @@ class FridayArtifact(BaseModel):
     id: UUID
     type: str = Field(..., description="MIME type (e.g. application/x-python-code)")
     reference: str = Field(..., description="URI (e.g. workspace://session_123/file_abc)")
-    
+
     metadata: Dict[str, str] = Field(
-        default_factory=dict, 
+        default_factory=dict,
         description="Keys: creator_id, version, filename, language"
     )
-    
+
     lifecycle: Literal["ephemeral", "durable", "archived"] = "ephemeral"
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )  # Note: datetime.utcnow() is deprecated in Python 3.12+
 ```
 
 ### 2.2 Memory Proposal (Arbitration)
@@ -316,6 +327,100 @@ class RuntimeEvent(BaseModel):
     payload: dict
     timestamp: datetime
 ```
+
+### 2.4 Agent Profile Schema
+
+The `AgentProfile` is the data model representing an agent's identity, capabilities, and configuration. It is currently a `@dataclass` (not Pydantic), defined in `packages/friday-agent/src/friday_agent/profile.py`.
+
+```python
+from dataclasses import dataclass, field
+from typing import Any, Literal
+
+ToolAutonomy = Literal["manual", "auto", "hybrid"]
+
+@dataclass
+class AgentProfile:
+    """Data model for agent identity, capabilities, and configuration."""
+
+    # Required identity fields
+    name: str                                          # Human-readable agent name
+    role: str                                          # Agent's role description
+    goal: str                                          # Primary objective
+    system_prompt_template: str                        # Template with {{placeholders}}
+
+    # Tool configuration
+    tools: list[str] = field(default_factory=list)     # Tool names
+    tool_autonomy: ToolAutonomy = "manual"             # Tool selection strategy
+    injected_tools: list[str] = field(default_factory=list)   # Always included
+    available_tools: list[str] = field(default_factory=list)  # Pool for auto-select
+    required_tools: list[str] = field(default_factory=list)   # Always included
+
+    # LLM configuration
+    context_strategy: str = "standard"                 # Context assembly strategy
+    temperature: float = 0.7                           # LLM sampling temperature
+    max_tokens: int | None = None                      # Max response tokens
+
+    # Registry integration (internal use, prefixed with _)
+    _capabilities: list[str] = field(default_factory=list)
+    _memory_config: dict[str, Any] = field(default_factory=dict)
+    _metadata: dict[str, Any] = field(default_factory=dict)
+```
+
+Key methods: `render_system_prompt(**kwargs)`, `to_dict()`, `from_dict(cls, data)`.
+
+> **Note:** Phase 1 may migrate `AgentProfile` from `@dataclass` to a Pydantic `BaseModel` for consistency with other Friday schemas.
+
+### 2.5 Agent YAML Manifest Format
+
+Agent manifests are YAML files loaded by `AgentLoader` (in `packages/friday-agent/src/friday_agent/loader.py`). They live in the `agents/` directory.
+
+**Required fields:** `name`, `role`, `goal`, `system_prompt`
+
+**Optional fields:** `tools`, `tool_autonomy`, `temperature`, `max_tokens`, `context_strategy`, `capabilities`, `memory_config`, `metadata`
+
+Example (`agents/researcher.yaml`):
+
+```yaml
+name: researcher
+role: "Research Analyst"
+goal: "Find accurate information and synthesize knowledge"
+
+system_prompt: |
+  You are a research analyst specializing in {{domain}}.
+  Your task is to find accurate, relevant information.
+  Current research focus: {{focus}}
+
+tools:
+  - web_search
+  - read_file
+  - recall_memory
+  - store_fact
+
+tool_autonomy: auto
+
+capabilities:
+  - research
+  - information_gathering
+  - fact_checking
+
+temperature: 0.3
+max_tokens: 8192
+context_strategy: extended
+
+memory_config:
+  enable_graph: true
+  enable_vector: true
+  max_episodic_turns: 30
+
+metadata:
+  version: "1.0.0"
+  author: "friday-team"
+  tags:
+    - core
+    - research
+```
+
+> **Note:** `system_prompt` in YAML maps to `system_prompt_template` on `AgentProfile`. The `AgentLoader` handles this field name mapping during `_config_to_profile()`.
 
 ---
 

@@ -3480,54 +3480,6 @@
       "source_memory_ids": [],
       "embedding": null
     },
-    "042cff72-56bc-4d56-b417-9141761912c8": {
-      "id": "042cff72-56bc-4d56-b417-9141761912c8",
-      "type": "person",
-      "label": "Chuck",
-      "properties": {},
-      "provenance": {
-        "source_id": "06f0ed0b-f77f-49f6-bbc9-0798d0fda89d",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-02-12 15:33:16.335448",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 2,
-      "last_accessed": "2026-02-12 15:33:38.648095",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-02-12 15:33:16.336073",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "106bd669-2843-4d04-812f-7cc6c95f2e18": {
-      "id": "106bd669-2843-4d04-812f-7cc6c95f2e18",
-      "type": "product",
-      "label": "Friday",
-      "properties": {},
-      "provenance": {
-        "source_id": "06f0ed0b-f77f-49f6-bbc9-0798d0fda89d",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-02-12 15:33:16.335448",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 2,
-      "last_accessed": "2026-02-12 15:33:38.690165",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-02-12 15:33:16.367617",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
     "8c1009fd-620c-4e8b-9fc0-0698755e5d8b": {
       "id": "8c1009fd-620c-4e8b-9fc0-0698755e5d8b",
       "type": "technology",
@@ -3546,30 +3498,6 @@
       "stage": "short_term",
       "decay_score": 1.0,
       "created_at": "2026-02-12 15:33:38.719249",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "ef282208-b226-4c83-b1e5-270d839ab68b": {
-      "id": "ef282208-b226-4c83-b1e5-270d839ab68b",
-      "type": "entity",
-      "label": "humor_module",
-      "properties": {},
-      "provenance": {
-        "source_id": "6f8e69ff-da0d-4b6c-9217-eba0578e056d",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-02-12 15:33:38.647937",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-02-12 15:33:38.776898",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-02-12 15:33:38.776904",
       "last_decay_at": null,
       "promoted_at": null,
       "decayed_at": null,
@@ -22492,7 +22420,7 @@
     },
     {
       "source": "a4f729ee-7d3e-4a88-88ee-c8eb7e30bc4f",
-      "target": "ef282208-b226-4c83-b1e5-270d839ab68b",
+      "target": "8c1009fd-620c-4e8b-9fc0-0698755e5d8b",
       "relation": "KNOWS",
       "properties": {},
       "provenance": {

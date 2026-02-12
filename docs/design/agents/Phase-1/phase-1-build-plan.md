@@ -52,7 +52,7 @@ To ensure stability, we use a **Non-Destructive Extraction**. `FridayContainer` 
 | :--- | :--- | :--- | :--- |
 | **Core Kernel** | `friday_cli/container.py` | `friday_runtime/kernel.py` | Logic moves; Source becomes a Delegate. |
 | **Dependency Injection** | `friday_cli/container.py` | `friday_runtime/di.py` | Resource creation logic moves here. |
-| **Configuration** | `friday_cli/cli_config.py` | `friday_runtime/config.py` | Base config moves; CLI extends it. |
+| **Configuration** | `friday_cli/container.py` (`FridayConfig`) | `friday_runtime/config.py` | `FridayConfig` (LLM, embedding, chroma, telemetry, agents) moves to runtime. `CLIConfig` (themes, icons, spinner) stays in CLI. |
 | **Adapter Factories** | `friday_cli/profiles.py` | `friday_runtime/adapters.py` | Logic moves; Source imports from Destination. |
 | **Commands/Display** | `friday_cli/commands.py` | **STAYS IN CLI** | Presentation layer remains untouched. |
 
@@ -93,9 +93,9 @@ The `FridayContainer` Proxy must provide **Exception Transparency**. Exceptions 
     *   `spawn_agent()` uses `AgentRegistry` to create instances with injected dependencies.
 
 ### Step 4: Refactor Workflow Engine (`friday-agent`)
-*   **4.1 Immutable Definition:** Ensure `WorkflowDefinition` models are frozen/immutable.
-*   **4.2 Stateful Execution:** Create `WorkflowExecutionState` to hold runtime data.
-*   **4.3 Engine Update:** `WorkflowEngine.run(definition)` returns `WorkflowExecutionState`.
+*   **4.1 Immutable Definition:** `TaskNode` currently has mutable runtime fields: `status`, `result`, `error`, `retry_count`, `started_at`, `completed_at`. Move these to a new `TaskState` model. `WorkflowDefinition` should be frozen (`model_config = ConfigDict(frozen=True)`) after removing mutable fields. Remove `TaskNode.reset()`.
+*   **4.2 Stateful Execution:** Create `WorkflowExecutionState` with `task_states: dict[str, TaskState]` to hold per-task runtime data separately from the definition.
+*   **4.3 Engine Update:** `WorkflowEngine.run(definition)` creates a fresh `WorkflowExecutionState` and returns it. The same `WorkflowDefinition` can be executed concurrently without state collision.
 
 ### Step 5: Update `friday-cli` (The Proxy Refactor)
 **Critical Stability Step:** Preserve `FridayContainer` API.
@@ -117,7 +117,12 @@ The `FridayContainer` Proxy must provide **Exception Transparency**. Exceptions 
         async def initialize(self):
             await self._kernel.start()  # Proxy lifecycle
     ```
-*   **5.2 Verify:** Run existing CLI tests. They must pass without knowing `friday-runtime` exists.
+*   **5.2 Preserve Lazy Accessors:** The proxy must preserve all lazy property accessors that downstream code depends on: `.llm`, `.memory`, `.context_engine`, `.tool_registry`, `.orchestrator`, `.agent_registry`. Each must delegate to `self._kernel`.
+*   **5.3 Verify:** Run existing CLI tests. They must pass without knowing `friday-runtime` exists.
+
+### Step 5.5: friday.py Integration (Known Gap — Out of Scope)
+
+> **Important:** `tests/integration/memory/friday.py` (~7500 lines) is the main production integration app. It does **NOT** use `FridayContainer` — it performs its own manual dependency injection (creating LLM services, memory controllers, context engines, tool registries directly). Phase 1 does **NOT** need to migrate `friday.py` to use `RuntimeKernel`. That is a separate effort. The Lab harness (Step 6) uses `FridayContainer`/`RuntimeKernel`, which is the canonical DI path going forward.
 
 ### Step 6: Create Friday Lab (Harness)
 *   **Scope:** The "Lab" is internal test infrastructure located at `tests/lab/`. It is **NOT** a shippable package.
@@ -130,7 +135,7 @@ The `FridayContainer` Proxy must provide **Exception Transparency**. Exceptions 
 ## 5. Verification Strategy
 
 ### Exit Criteria Checks
-1.  **Legacy Compatibility:** `scripts/memory-chat-v2.py` runs successfully. `FridayContainer` behaves identical to before.
+1.  **Legacy Compatibility:** `FridayContainer` import and initialization behaves identically to before. The Lab's `test_legacy_compatibility.py` (Step 6.3) validates this. The existing integration app (`tests/integration/memory/friday.py`) is out of scope for Phase 1 migration.
 2.  **Headless Execution:** A script using *only* `friday_runtime` can boot the kernel and run a "Hello World" agent task.
 3.  **Workflow Reusability:** A test proves the same `WorkflowDefinition` object can be executed twice in parallel without state collision.
 4.  **Interface Adherence:** All methods marked **[Implemented]** in the Compliance Matrix exist and function.
@@ -139,8 +144,8 @@ The `FridayContainer` Proxy must provide **Exception Transparency**. Exceptions 
 
 ## 6. Execution Order
 
-1.  `friday-core`: Add Interfaces.
-2.  `friday-runtime`: Implement Kernel & DI.
-3.  `friday-agent`: Refactor Workflows.
-4.  `friday-lab`: Build Harness.
-5.  `friday-cli`: Refactor `FridayContainer` to Proxy.
+1.  `friday-core`: Add Interfaces (`SystemRuntime`, `AgentInterface`, `RegistryInterface`).
+2.  `friday-agent`: Refactor Workflows (immutable `TaskNode`, extract `TaskState`).
+3.  `friday-runtime`: Implement Kernel & DI (depends on `friday-agent` for workflow engine).
+4.  `friday-cli`: Refactor `FridayContainer` to Proxy (delegates to `RuntimeKernel`).
+5.  `friday-lab`: Build Harness (depends on `friday-runtime` for `HeadlessHarness`).

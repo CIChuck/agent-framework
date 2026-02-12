@@ -36,19 +36,25 @@ This document serves as the authoritative architectural blueprint, validating th
 ## 2. Architectural Pillars
 
 ### 2.1 The Agent Core (`AgentBase`)
-The `AgentBase` serves as the fundamental abstraction for all "Bodies" within the Hive. It is not merely a wrapper around an LLM client, but a stateful runtime entity that encapsulates a specific Persona (Role, Goal, Voice) and its capabilities. It manages the immediate execution loop—perceiving input, selecting tools via an autonomy strategy (`manual`, `auto`, or `hybrid`), executing those tools, and synthesizing a response. 
+The `AgentBase` serves as the fundamental abstraction for all "Bodies" within the Hive. It is not merely a wrapper around an LLM client, but a stateful runtime entity that encapsulates a specific Persona (Role, Goal, Voice) and its capabilities. It manages the immediate execution loop—perceiving input, selecting tools via an autonomy strategy (`manual`, `auto`, or `hybrid`), executing those tools, and synthesizing a response.
 
 Crucially, the Agent Core isolates the business logic of an agent from the underlying infrastructure. It handles the "dirty work" of session state management, sanitizing tool outputs, and emitting structured telemetry for every thought and action. This abstraction allows us to swap underlying LLM providers or update memory adapters without rewriting the agent's logic, ensuring that specialized agents like the "Researcher" or "Coder" remain stable even as the infrastructure evolves.
+
+> **Current State:** `AgentBase` and `CopilotAgent` already exist in `packages/friday-agent/src/friday_agent/`. `AgentBase` implements a Re-Act loop (max 10 iterations), tool autonomy modes (`manual`/`auto`/`hybrid`), session management via `initialize_session()`, and tool lifecycle methods (`set_tools_for_task()`, `expand_tools()`, `clear_tools()`). `CopilotAgent` extends this with context assembly and memory archival. This design evolves these existing classes, not creating them from scratch.
 
 ### 2.2 The Registry (`AgentRegistry`)
 The Registry acts as the system's "Talent Pool" and "Class Loader," responsible for the discovery, configuration, and instantiation of agents. It decouples the *definition* of an agent (typically a lightweight YAML manifest describing roles and required capabilities) from its *instantiation* (the creation of heavy Python objects with dependency injection). This allows the system to remain lightweight, loading only the agents required for the current task.
 
 Beyond simple lookup by name, the Registry provides a Capability Index (e.g., "Find all agents capable of `web-browsing`"). This enables dynamic team formation, where the Orchestrator can request resources based on the nature of the problem rather than hardcoded agent names. It utilizes a Factory Pattern to inject runtime dependencies (LLM, Memory, Tools) into the agent at the moment of creation, ensuring that every agent is born connected to the correct session context.
 
+> **Current State:** `AgentRegistry` already exists in `packages/friday-agent/src/friday_agent/registry.py` with capability lookup (`find_by_capability()`), factory pattern (`set_factory()`/`create_agent()`), profile registration (`register_profile()`), and YAML manifest loading via `AgentLoader` (`load_manifests()`). This design extends the existing registry with enhanced discovery and team formation capabilities.
+
 ### 2.3 The Orchestrator (`AgentOrchestrator`)
 The Orchestrator functions as the "Nervous System" of the framework, managing the flow of control and data between agents. It is responsible for Task Routing—determining whether a user's request should be handled by the current active agent, routed to a specialist (e.g., `@researcher`), or delegated to a sub-routine. It enforces the "Laws of Physics" for the session, guaranteeing that all agents in a delegation chain share the same `session_id`, `user_context`, and security boundaries.
 
 In advanced scenarios, the Orchestrator acts as the Workflow Engine, executing directed acyclic graphs (DAGs) of tasks. It manages the lifecycle of these workflows, handling state persistence, error recovery (retries), and human-in-the-loop suspension points. By centralizing control flow, the Orchestrator prevents "Agent Loops" (where two agents endlessly delegation to each other) and ensures that the system always converges toward a resolution.
+
+> **Current State:** `AgentOrchestrator` already exists in `packages/friday-agent/src/friday_agent/orchestrator.py` with `@name` routing via regex pattern (`ROUTING_PATTERN = re.compile(r"^@(\w+)\s+(.+)$")`), agent delegation (`delegate()`), and agent caching. The current `process()` method handles routing internally. Semantic routing (intent-based rather than explicit `@name` mentions) is a Phase 2+ enhancement.
 
 ### 2.4 The Arbitrator (`ArbitratorAgent`)
 The Arbitrator is the "Conscience" of the Hive, a specialized System Agent responsible for Truth Maintenance. In a multi-agent system, allowing every agent to write directly to the Global Shared Memory creates race conditions and "Truth Pollution" (where low-confidence hallucinations override high-confidence facts). The Arbitrator implements a **Gateway Pattern**: agents write to their own private namespaces (`researcher-uuid:/`), and only the Arbitrator has write access to the `shared:/` namespace.
@@ -72,26 +78,42 @@ The Lab grows with the framework: starting as a harness for Headless Kernel veri
 
 ---
 
-## 3. Detailed Component Specifications
+## 3. Current Codebase State
+
+The following inventory documents what already exists in the codebase. References in this design document build on these foundations — new components are extensions or extractions, not greenfield implementations.
+
+| Package / Location | Key Components | Notes |
+| :--- | :--- | :--- |
+| `packages/friday-agent/` | `AgentBase`, `CopilotAgent`, `AgentProfile`, `AgentRegistry`, `AgentOrchestrator`, `WorkflowEngine`, `DefaultToolRegistry`, `AgentLoader` | Core agent infrastructure. Re-Act loop, tool autonomy, YAML manifest loading, `@name` routing, DAG workflow execution all exist. |
+| `packages/friday-cli/` | `FridayContainer`, `FridayConfig`, `MemoryProfile`, `CommandRegistry`, display components | DI container with lazy property accessors (`.llm`, `.memory`, `.context_engine`, `.tool_registry`, `.orchestrator`). `MemoryProfile` enum (FULL, EPHEMERAL, VECTOR_ONLY, TESTING). |
+| `packages/friday-telemetry/` | Telemetry interfaces, providers, models | Unified tracing and observability layer. |
+| `packages/friday-core/interfaces/` | `LLMClient`, `ToolRegistry`, `ToolDefinition`, `EpisodicStoreAdapter`, `VectorStoreAdapter`, `GraphStoreAdapter`, `ContextEngineeringInterface` | Protocol-first contracts that all packages depend on. |
+| `tests/lab/` | `conftest.py`, `dashboard/`, `experiments/` | Existing lab scaffold — provides the foundation for the Friday Lab harness described in Section 2.7. |
+| `tests/integration/memory/friday.py` | Monolithic integration app (~7500 lines) | **Does NOT use `FridayContainer`.** Performs its own manual DI. Migrating this to `RuntimeKernel` is a separate effort outside Phase 1 scope. |
+
+---
+
+## 4. Detailed Component Specifications
 
 *(Refer to `technical-specifications.md` for Interface, Schema, and State Machine details.)*
 
 ---
 
-## 4. Gap Analysis
+## 5. Gap Analysis
 
 | Component | Priority | Status | Gap Description |
 | :--- | :--- | :--- | :--- |
-| **Friday Kernel** | **Critical** | Mixed | Coupled to CLI. Needs extraction to `friday-runtime`. |
+| **Friday Kernel** | **Critical** | Exists, Needs Extraction | DI logic exists in `friday-cli/container.py` (`FridayContainer`) with lazy property accessors. Needs extraction to `friday-runtime` as `RuntimeKernel` to decouple from CLI. |
 | **Arbitrator** | **Critical** | Missing | No enforcement of Shared Memory integrity. |
-| **Friday Lab** | **Critical** | Missing | No centralized harness to test multi-agent interactions in isolation. |
+| **Friday Lab** | **Critical** | Scaffold Exists | Lab scaffold exists in `tests/lab/` (`conftest.py`, `dashboard/`, `experiments/`). Needs build-out into a full multi-agent testing harness. |
 | **Workspace** | **High** | Missing | No standard way to handle files/code. |
-| **Workflow Engine** | **High** | Buggy | Mutates definition during execution. |
+| **Workflow Engine** | **High** | Exists, Needs Refactor | `WorkflowDefinition` contains `TaskNode` objects with mutable runtime fields (`status`, `result`, `error`, `retry_count`, `started_at`, `completed_at`). `WorkflowExecution` exists as separate state, but task-level runtime state leaks into the definition. `TaskNode.reset()` method enables mutation. Needs separation of definition from execution state. |
 | **Namespace Logic** | **High** | Missing | No enforcement of `agent-uuid:/` scopes. |
+| **friday.py Integration** | **Medium** | Known Gap | The main production app (`tests/integration/memory/friday.py`, ~7500 lines) performs its own manual DI, not via `FridayContainer`. Migrating it to use `RuntimeKernel` is a separate effort outside Phase 1 scope. |
 
 ---
 
-## 5. Implementation Roadmap
+## 6. Implementation Roadmap
 
 ### Phase 1: Stabilization & Extraction (The Foundation)
 *Goal: Decouple the Brain from the Body (CLI).*
