@@ -355,37 +355,44 @@ class LiteLLMService:
         self,
         context: ConversationContext | None,
         generation_name: str = "chat_completion",
-    ) -> dict[str, Any] | None:
+    ) -> dict[str, Any]:
         """
         Build LangFuse trace metadata from conversation context.
 
         Returns a metadata dict for ``litellm.acompletion`` that
         LangFuse's native callback uses to group and label traces.
-        Returns ``None`` when there is no context to attach.
+
+        Always returns a dict (never ``None``) so that the model
+        name is visible in Langfuse even when no conversation
+        context is available.
 
         Args:
             context: The conversation context for this call.
             generation_name: Label for this generation in LangFuse.
 
         Returns:
-            Metadata dict or ``None``.
+            Metadata dict with at least ``generation_name``.
         """
-        if context is None:
-            return None
+        # Include the model name in the generation label so traces
+        # are immediately identifiable in the Langfuse UI.
+        label = f"{self.model} - {generation_name}"
         meta: dict[str, Any] = {
-            "generation_name": generation_name,
-            "trace_user_id": context.session_id,
-            "session_id": context.session_id,
+            "generation_name": label,
         }
-        if context.conversation_id:
-            meta["trace_id"] = context.conversation_id
-            meta["trace_name"] = (
-                f"turn-{context.turn_id}"
-                if context.turn_id
-                else "agent-turn"
-            )
-        if context.turn_id:
-            meta["tags"] = [f"turn:{context.turn_id}"]
+
+        if context is not None:
+            meta["trace_user_id"] = context.session_id
+            meta["session_id"] = context.session_id
+            if context.conversation_id:
+                meta["trace_id"] = context.conversation_id
+                meta["trace_name"] = (
+                    f"turn-{context.turn_id}"
+                    if context.turn_id
+                    else "agent-turn"
+                )
+            if context.turn_id:
+                meta["tags"] = [f"turn:{context.turn_id}"]
+
         return meta
 
     async def _call_with_retry(
@@ -440,6 +447,14 @@ class LiteLLMService:
 
             if not self.thinking_enabled:
                 kwargs["thinking"] = {"type": "disabled"}
+
+            logger.debug(
+                "litellm.acompletion: model=%s "
+                "has_metadata=%s generation_name=%s",
+                kwargs.get("model"),
+                bool(kwargs.get("metadata")),
+                kwargs.get("metadata", {}).get("generation_name"),
+            )
 
             try:
                 async with asyncio.timeout(timeout):
@@ -517,6 +532,14 @@ class LiteLLMService:
 
             if not self.thinking_enabled:
                 kwargs["thinking"] = {"type": "disabled"}
+
+            logger.debug(
+                "litellm.acompletion (stream) kwargs: model=%s "
+                "has_metadata=%s generation_name=%s",
+                kwargs.get("model"),
+                bool(kwargs.get("metadata")),
+                kwargs.get("metadata", {}).get("generation_name"),
+            )
 
             try:
                 async with asyncio.timeout(timeout):

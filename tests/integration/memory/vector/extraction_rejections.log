@@ -3,3 +3,4 @@
 2026-02-12 11:05:23 | Rejected edge: relation='ASSOCIATED_WITH' source='chuck' target='alan_todd' reason='relation not in ontology' turn_id='08d1b69f-4d0c-45af-a3e6-07a17c583e3d'
 2026-02-12 11:31:02 | Rejected edge: relation='BUILT' source='chuck_russell' target='netjet' reason='relation not in ontology' turn_id='e2a10306-3a5d-4c6b-a642-63d60878da3b'
 2026-02-12 11:31:02 | Rejected edge: relation='BUILT' source='chuck_russell' target='netmaginet' reason='relation not in ontology' turn_id='e2a10306-3a5d-4c6b-a642-63d60878da3b'
+2026-02-12 12:59:07 | Rejected edge: relation='CREATED_BY' source='z3' target='microsoft_research' reason='relation not in ontology' turn_id='6ade06a2-901f-4c08-bc46-7f4bc37b2832'
