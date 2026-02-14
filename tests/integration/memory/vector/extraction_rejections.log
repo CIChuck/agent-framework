@@ -4,3 +4,4 @@
 2026-02-12 11:31:02 | Rejected edge: relation='BUILT' source='chuck_russell' target='netjet' reason='relation not in ontology' turn_id='e2a10306-3a5d-4c6b-a642-63d60878da3b'
 2026-02-12 11:31:02 | Rejected edge: relation='BUILT' source='chuck_russell' target='netmaginet' reason='relation not in ontology' turn_id='e2a10306-3a5d-4c6b-a642-63d60878da3b'
 2026-02-12 12:59:07 | Rejected edge: relation='CREATED_BY' source='z3' target='microsoft_research' reason='relation not in ontology' turn_id='6ade06a2-901f-4c08-bc46-7f4bc37b2832'
+2026-02-12 22:05:16 | Rejected node: type='document' label='Getting from Generative AI to Trustworthy AI: What LLMs Might Learn from Cyc' reason='label too long: 76 > 66' turn_id='8a5ec35e-8efe-4048-9ced-63d7726901b9'
