@@ -28,6 +28,8 @@ This document set is currently marked **Proposed for Approval**.
    - Canonical schema and validation specification for Agent Contract governance.
 10. `agent-contract-test-strategy.md`
    - Verification and CI gate strategy for contract compliance.
+11. `agent-integration-test-plan.md`
+   - End-to-end integration test planning for solitary-agent and multi-agent workflows, including environment construction.
 
 ## Source Inputs
 
