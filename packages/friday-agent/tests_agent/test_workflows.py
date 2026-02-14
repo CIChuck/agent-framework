@@ -2,26 +2,32 @@
 Unit tests for workflow system.
 
 Tests cover:
-- TaskNode creation and validation
+- TaskNode creation and validation (frozen/immutable)
+- TaskState mutable runtime state
 - WorkflowDefinition graph validation
 - Cycle detection
 - Topological sorting
-- WorkflowEngine execution
+- WorkflowEngine execution (state in WorkflowExecution, not TaskNode)
 - Variable passing
 - Approval gate pausing
 - Task retry logic
+- Workflow reusability (same definition, concurrent executions)
 
 Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: Phase 1 Build Plan, Step 3
 """
 
+import asyncio
 import tempfile
 from pathlib import Path
 
 import pytest
+from pydantic import ValidationError
 from unittest.mock import AsyncMock, MagicMock
 
 from friday_agent.workflows import (
     TaskNode,
+    TaskState,
     TaskStatus,
     WorkflowDefinition,
     WorkflowExecution,
@@ -33,7 +39,7 @@ from friday_agent.workflows import (
 
 
 class TestTaskNode:
-    """Test TaskNode model."""
+    """Test TaskNode model (immutable definition)."""
 
     def test_valid_task(self):
         """Test creating valid task."""
@@ -43,7 +49,6 @@ class TestTaskNode:
             description="Research the topic",
             agent="researcher",
         )
-        assert task.status == TaskStatus.PENDING
         assert task.id == "research"
 
     def test_task_id_normalized(self):
@@ -67,26 +72,33 @@ class TestTaskNode:
             inputs={"data": "$research_output"},
             outputs=["analysis_result"],
         )
-        assert task.depends_on == ["research"]
+        assert task.depends_on == ("research",)
         assert task.inputs == {"data": "$research_output"}
-        assert task.outputs == ["analysis_result"]
+        assert task.outputs == ("analysis_result",)
 
-    def test_reset(self):
-        """Test task reset."""
+    def test_frozen_task_node(self):
+        """Test that TaskNode is immutable (frozen)."""
         task = TaskNode(
             id="test",
             name="Test",
             description="Test",
             agent="test",
         )
-        task.status = TaskStatus.FAILED
-        task.error = "Some error"
-        task.result = "Some result"
-        task.reset()
+        with pytest.raises(ValidationError):
+            task.id = "modified"
 
-        assert task.status == TaskStatus.PENDING
-        assert task.error is None
-        assert task.result is None
+    def test_frozen_status_not_on_task(self):
+        """Test that status, result, error are NOT on TaskNode."""
+        task = TaskNode(
+            id="test",
+            name="Test",
+            description="Test",
+            agent="test",
+        )
+        assert not hasattr(task, "status")
+        assert not hasattr(task, "result")
+        assert not hasattr(task, "error")
+        assert not hasattr(task, "retry_count")
 
     def test_approval_required(self):
         """Test task with approval required."""
@@ -109,7 +121,54 @@ class TestTaskNode:
             max_retries=3,
         )
         assert task.max_retries == 3
-        assert task.retry_count == 0
+
+    def test_lists_coerced_to_tuples(self):
+        """Test that list inputs for outputs/depends_on become tuples."""
+        task = TaskNode(
+            id="test",
+            name="Test",
+            description="Test",
+            agent="test",
+            outputs=["a", "b"],
+            depends_on=["c"],
+        )
+        assert isinstance(task.outputs, tuple)
+        assert isinstance(task.depends_on, tuple)
+
+
+class TestTaskState:
+    """Test TaskState mutable runtime model."""
+
+    def test_default_state(self):
+        """Test default TaskState values."""
+        state = TaskState()
+        assert state.status == TaskStatus.PENDING
+        assert state.result is None
+        assert state.error is None
+        assert state.retry_count == 0
+        assert state.started_at is None
+        assert state.completed_at is None
+
+    def test_reset(self):
+        """Test TaskState reset."""
+        state = TaskState()
+        state.status = TaskStatus.FAILED
+        state.error = "Some error"
+        state.result = "Some result"
+        state.retry_count = 2
+        state.reset()
+
+        assert state.status == TaskStatus.PENDING
+        assert state.error is None
+        assert state.result is None
+        # retry_count is preserved
+        assert state.retry_count == 2
+
+    def test_mutable(self):
+        """Test that TaskState is mutable."""
+        state = TaskState()
+        state.status = TaskStatus.RUNNING
+        assert state.status == TaskStatus.RUNNING
 
 
 class TestWorkflowDefinition:
@@ -149,10 +208,30 @@ class TestWorkflowDefinition:
             name="Diamond Workflow",
             description="A -> B,C -> D",
             tasks=[
-                TaskNode(id="a", name="A", description="Start", agent="x"),
-                TaskNode(id="b", name="B", description="Branch 1", agent="x", depends_on=["a"]),
-                TaskNode(id="c", name="C", description="Branch 2", agent="x", depends_on=["a"]),
-                TaskNode(id="d", name="D", description="Join", agent="x", depends_on=["b", "c"]),
+                TaskNode(
+                    id="a", name="A", description="Start", agent="x"
+                ),
+                TaskNode(
+                    id="b",
+                    name="B",
+                    description="Branch 1",
+                    agent="x",
+                    depends_on=["a"],
+                ),
+                TaskNode(
+                    id="c",
+                    name="C",
+                    description="Branch 2",
+                    agent="x",
+                    depends_on=["a"],
+                ),
+                TaskNode(
+                    id="d",
+                    name="D",
+                    description="Join",
+                    agent="x",
+                    depends_on=["b", "c"],
+                ),
             ],
         )
 
@@ -166,20 +245,6 @@ class TestWorkflowDefinition:
         """Test getting non-existent task."""
         task = simple_workflow.get_task("unknown")
         assert task is None
-
-    def test_get_ready_tasks_initial(self, simple_workflow):
-        """Test getting ready tasks at start."""
-        ready = simple_workflow.get_ready_tasks()
-        assert len(ready) == 1
-        assert ready[0].id == "task_a"
-
-    def test_get_ready_tasks_after_completion(self, simple_workflow):
-        """Test getting ready tasks after task completion."""
-        # Complete first task
-        simple_workflow.tasks[0].status = TaskStatus.COMPLETED
-        ready = simple_workflow.get_ready_tasks()
-        assert len(ready) == 1
-        assert ready[0].id == "task_b"
 
     def test_get_task_order(self, simple_workflow):
         """Test topological sort."""
@@ -207,8 +272,12 @@ class TestWorkflowDefinition:
             name="Duplicate",
             description="Has duplicates",
             tasks=[
-                TaskNode(id="task", name="Task 1", description="A", agent="x"),
-                TaskNode(id="task", name="Task 2", description="B", agent="x"),
+                TaskNode(
+                    id="task", name="Task 1", description="A", agent="x"
+                ),
+                TaskNode(
+                    id="task", name="Task 2", description="B", agent="x"
+                ),
             ],
         )
         errors = workflow.validate_graph()
@@ -273,6 +342,56 @@ class TestWorkflowExecution:
         assert execution.status == TaskStatus.PENDING
         assert execution.variables["input"] == "value"
 
+    def test_get_task_state_creates_default(self):
+        """Test get_task_state creates default state if missing."""
+        execution = WorkflowExecution(
+            workflow_id="test",
+            execution_id="test_123",
+        )
+        state = execution.get_task_state("task_a")
+        assert state.status == TaskStatus.PENDING
+        assert "task_a" in execution.task_states
+
+    def test_get_ready_tasks(self):
+        """Test get_ready_tasks with task_states."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="a",
+                    name="A",
+                    description="A",
+                    agent="x",
+                    outputs=["out"],
+                ),
+                TaskNode(
+                    id="b",
+                    name="B",
+                    description="B",
+                    agent="x",
+                    depends_on=["a"],
+                ),
+            ],
+        )
+        execution = WorkflowExecution(
+            workflow_id="test",
+            execution_id="test_123",
+        )
+        execution.init_task_states(workflow)
+
+        # Initially only A is ready
+        ready = execution.get_ready_tasks(workflow)
+        assert len(ready) == 1
+        assert ready[0].id == "a"
+
+        # Complete A, then B is ready
+        execution.get_task_state("a").status = TaskStatus.COMPLETED
+        ready = execution.get_ready_tasks(workflow)
+        assert len(ready) == 1
+        assert ready[0].id == "b"
+
     def test_record_task(self):
         """Test recording task in history."""
         execution = WorkflowExecution(
@@ -285,13 +404,23 @@ class TestWorkflowExecution:
             description="Test",
             agent="x",
         )
-        task.status = TaskStatus.COMPLETED
+        state = execution.get_task_state("task")
+        state.status = TaskStatus.COMPLETED
 
         execution.record_task(task)
 
         assert len(execution.task_history) == 1
         assert execution.task_history[0]["task_id"] == "task"
         assert execution.task_history[0]["status"] == "completed"
+
+    def test_approval_overrides(self):
+        """Test approval_overrides tracking."""
+        execution = WorkflowExecution(
+            workflow_id="test",
+            execution_id="test_123",
+        )
+        execution.approval_overrides.add("task_a")
+        assert "task_a" in execution.approval_overrides
 
 
 class TestWorkflowEngine:
@@ -444,7 +573,9 @@ class TestWorkflowEngine:
             ],
         )
 
-        engine = WorkflowEngine(mock_orchestrator, approval_callback=auto_approve)
+        engine = WorkflowEngine(
+            mock_orchestrator, approval_callback=auto_approve
+        )
         execution = await engine.execute(workflow)
 
         assert execution.status == TaskStatus.COMPLETED
@@ -471,9 +602,39 @@ class TestWorkflowEngine:
         execution = await engine.execute(workflow)
 
         # Approve the task
-        execution = await engine.approve_task(workflow, execution, "approval_task")
+        execution = await engine.approve_task(
+            workflow, execution, "approval_task"
+        )
 
         assert execution.status == TaskStatus.COMPLETED
+
+    @pytest.mark.asyncio
+    async def test_approve_task_uses_overrides(self, mock_orchestrator):
+        """Test that approve_task records in approval_overrides."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+
+        engine = WorkflowEngine(mock_orchestrator, approval_callback=None)
+        execution = await engine.execute(workflow)
+
+        execution = await engine.approve_task(
+            workflow, execution, "approval_task"
+        )
+
+        # Approval override should be recorded
+        assert "approval_task" in execution.approval_overrides
 
     @pytest.mark.asyncio
     async def test_skip_task(self, mock_orchestrator):
@@ -497,10 +658,13 @@ class TestWorkflowEngine:
         execution = await engine.execute(workflow)
 
         # Skip the task
-        execution = await engine.skip_task(workflow, execution, "approval_task")
+        execution = await engine.skip_task(
+            workflow, execution, "approval_task"
+        )
 
         assert execution.status == TaskStatus.COMPLETED
-        assert workflow.get_task("approval_task").status == TaskStatus.SKIPPED
+        state = execution.get_task_state("approval_task")
+        assert state.status == TaskStatus.SKIPPED
 
     @pytest.mark.asyncio
     async def test_missing_variable_error(self, engine):
@@ -533,8 +697,20 @@ class TestWorkflowEngine:
             name="Cyclic",
             description="Has cycle",
             tasks=[
-                TaskNode(id="a", name="A", description="A", agent="x", depends_on=["b"]),
-                TaskNode(id="b", name="B", description="B", agent="x", depends_on=["a"]),
+                TaskNode(
+                    id="a",
+                    name="A",
+                    description="A",
+                    agent="x",
+                    depends_on=["b"],
+                ),
+                TaskNode(
+                    id="b",
+                    name="B",
+                    description="B",
+                    agent="x",
+                    depends_on=["a"],
+                ),
             ],
         )
 
@@ -542,6 +718,77 @@ class TestWorkflowEngine:
             await engine.execute(workflow)
 
         assert "invalid workflow" in str(exc_info.value).lower()
+
+    @pytest.mark.asyncio
+    async def test_workflow_reusability(self, mock_orchestrator):
+        """
+        Test that the same WorkflowDefinition can be executed
+        concurrently without state collision.
+
+        Exit Criterion #5: Workflow Reusability.
+        """
+        call_count = 0
+
+        async def slow_delegate(agent_name, prompt, return_to_current=True):
+            nonlocal call_count
+            call_count += 1
+            count = call_count
+            await asyncio.sleep(0.01)
+            return f"Result {count}"
+
+        mock_orchestrator.delegate = AsyncMock(side_effect=slow_delegate)
+
+        # Same definition, two engines (or same engine, doesn't matter)
+        workflow = WorkflowDefinition(
+            id="reuse",
+            name="Reusable",
+            description="Test reusability",
+            tasks=[
+                TaskNode(
+                    id="task_a",
+                    name="Task A",
+                    description="Do A",
+                    agent="agent",
+                    outputs=["out"],
+                ),
+            ],
+        )
+
+        engine = WorkflowEngine(mock_orchestrator)
+
+        # Execute the same definition concurrently
+        exec1, exec2 = await asyncio.gather(
+            engine.execute(workflow),
+            engine.execute(workflow),
+        )
+
+        # Both should complete independently
+        assert exec1.status == TaskStatus.COMPLETED
+        assert exec2.status == TaskStatus.COMPLETED
+
+        # They should have different execution IDs
+        assert exec1.execution_id != exec2.execution_id
+
+        # Each has its own task state
+        assert exec1.get_task_state("task_a").status == TaskStatus.COMPLETED
+        assert exec2.get_task_state("task_a").status == TaskStatus.COMPLETED
+
+    def test_task_node_immutability(self):
+        """
+        Test that TaskNode cannot be mutated.
+
+        Exit Criterion #6: Workflow Immutability.
+        """
+        task = TaskNode(
+            id="test",
+            name="Test",
+            description="Test",
+            agent="test",
+        )
+        with pytest.raises(ValidationError):
+            task.name = "Modified"
+        with pytest.raises(ValidationError):
+            task.requires_approval = True
 
 
 class TestWorkflowLoader:
@@ -591,7 +838,9 @@ tasks:
         assert workflow.name == "Sample Workflow"
         assert len(workflow.tasks) == 2
 
-    def test_load_workflow_yml_extension(self, temp_workflows_dir, sample_workflow_yaml):
+    def test_load_workflow_yml_extension(
+        self, temp_workflows_dir, sample_workflow_yaml
+    ):
         """Test loading workflow with .yml extension."""
         workflow_path = temp_workflows_dir / "sample.yml"
         workflow_path.write_text(sample_workflow_yaml)
@@ -634,7 +883,9 @@ tasks:
 
         assert "missing" in str(exc_info.value).lower()
 
-    def test_load_all_workflows(self, temp_workflows_dir, sample_workflow_yaml):
+    def test_load_all_workflows(
+        self, temp_workflows_dir, sample_workflow_yaml
+    ):
         """Test loading all workflows."""
         # Write multiple workflows
         (temp_workflows_dir / "workflow1.yaml").write_text(
@@ -651,7 +902,9 @@ tasks:
         assert "workflow1" in workflows
         assert "workflow2" in workflows
 
-    def test_list_workflows(self, temp_workflows_dir, sample_workflow_yaml):
+    def test_list_workflows(
+        self, temp_workflows_dir, sample_workflow_yaml
+    ):
         """Test listing available workflows."""
         (temp_workflows_dir / "alpha.yaml").write_text(
             sample_workflow_yaml.replace("sample", "alpha")
@@ -665,7 +918,9 @@ tasks:
 
         assert names == ["alpha", "beta"]
 
-    def test_workflow_caching(self, temp_workflows_dir, sample_workflow_yaml):
+    def test_workflow_caching(
+        self, temp_workflows_dir, sample_workflow_yaml
+    ):
         """Test workflow caching."""
         workflow_path = temp_workflows_dir / "sample.yaml"
         workflow_path.write_text(sample_workflow_yaml)
@@ -679,7 +934,9 @@ tasks:
         # Should be same object (cached)
         assert workflow1 is workflow2
 
-    def test_reload_bypasses_cache(self, temp_workflows_dir, sample_workflow_yaml):
+    def test_reload_bypasses_cache(
+        self, temp_workflows_dir, sample_workflow_yaml
+    ):
         """Test reload bypasses cache."""
         workflow_path = temp_workflows_dir / "sample.yaml"
         workflow_path.write_text(sample_workflow_yaml)
@@ -689,7 +946,11 @@ tasks:
         workflow1 = loader.load("sample")
 
         # Modify file
-        workflow_path.write_text(sample_workflow_yaml.replace("Sample Workflow", "Updated Workflow"))
+        workflow_path.write_text(
+            sample_workflow_yaml.replace(
+                "Sample Workflow", "Updated Workflow"
+            )
+        )
 
         workflow2 = loader.reload("sample")
 
