@@ -4,16 +4,22 @@ version = "0.1.0"
 description = "The MRI Suite: Observability and Experiments"
 requires-python = ">=3.10"
 dependencies = [
+    "friday-core",
     "friday-memory",
     "friday-cli",
     "friday-llm",
     "friday-agent",
+    "friday-runtime",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[project.optional-dependencies]
+observability = [
     "ragas>=0.1.0",
     "arize-phoenix>=4.0.0",
     "streamlit>=1.30.0",
     "pyvis>=0.3.0",
-    "pytest>=8.0.0",
-    "pytest-asyncio>=0.23.0",
 ]
 
 [build-system]
@@ -24,12 +30,14 @@ build-backend = "hatchling.build"
 packages = ["experiments", "dashboard"]
 
 [tool.uv.sources]
+friday-core = { workspace = true }
 friday-memory = { workspace = true }
 friday-cli = { workspace = true }
 friday-llm = { workspace = true }
 friday-agent = { workspace = true }
+friday-runtime = { workspace = true }
 
 [tool.pytest.ini_options]
-testpaths = ["experiments"]
+testpaths = ["."]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"

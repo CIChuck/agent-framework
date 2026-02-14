@@ -26,6 +26,7 @@ members = [
     "friday-memory",
     "friday-moltbook",
     "friday-optimization",
+    "friday-runtime",
     "friday-sandbox",
     "friday-speech",
     "friday-telemetry",
@@ -936,6 +937,7 @@ dependencies = [
     { name = "friday-core" },
     { name = "friday-llm" },
     { name = "friday-memory" },
+    { name = "friday-runtime" },
     { name = "prompt-toolkit" },
     { name = "pyyaml" },
     { name = "rich" },
@@ -957,6 +959,7 @@ requires-dist = [
     { name = "friday-core", editable = "packages/friday-core" },
     { name = "friday-llm", editable = "packages/friday-llm" },
     { name = "friday-memory", editable = "packages/friday-memory" },
+    { name = "friday-runtime", editable = "packages/friday-runtime" },
     { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.25.0" },
     { name = "prompt-toolkit", specifier = ">=3.0.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
@@ -1173,6 +1176,38 @@ dev = [
 requires-dist = [
     { name = "dspy-ai", specifier = ">=2.0.0" },
     { name = "friday-memory", editable = "packages/friday-memory" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
+]
+provides-extras = ["dev"]
+
+[[package]]
+name = "friday-runtime"
+version = "0.1.0"
+source = { editable = "packages/friday-runtime" }
+dependencies = [
+    { name = "friday-agent" },
+    { name = "friday-core" },
+    { name = "friday-llm" },
+    { name = "friday-memory" },
+    { name = "friday-telemetry" },
+    { name = "friday-transcript" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "friday-agent", editable = "packages/friday-agent" },
+    { name = "friday-core", editable = "packages/friday-core" },
+    { name = "friday-llm", editable = "packages/friday-llm" },
+    { name = "friday-memory", editable = "packages/friday-memory" },
+    { name = "friday-telemetry", editable = "packages/friday-telemetry" },
+    { name = "friday-transcript", editable = "packages/friday-transcript" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
 ]

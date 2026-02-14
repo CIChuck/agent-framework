@@ -5,6 +5,7 @@ description = "The Friday Assistant Runtime"
 requires-python = ">=3.10"
 dependencies = [
     "friday-core",
+    "friday-runtime",
     "friday-memory",
     "friday-llm",
     "friday-agent",
@@ -35,6 +36,7 @@ packages = ["src/friday_cli"]
 
 [tool.uv.sources]
 friday-core = { workspace = true }
+friday-runtime = { workspace = true }
 friday-memory = { workspace = true }
 friday-llm = { workspace = true }
 friday-agent = { workspace = true }
