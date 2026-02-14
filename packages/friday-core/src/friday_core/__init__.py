@@ -37,16 +37,31 @@ from friday_core.telemetry import (
 
 # Interfaces
 from friday_core.interfaces import (
+    AgentInterface,
+    ChatCompletionResponse,
     ContextEngineeringInterface,
+    EmbeddingModel,
     EpisodicStoreAdapter,
     GraphStoreAdapter,
+    LabHarnessInterface,
+    LLMClient,
+    RegistryInterface,
     SchemaFormat,
+    SystemRuntime,
     ToolAdapter,
+    ToolCall,
     ToolDefinition,
     ToolRegistry,
     TranscriptBackedEpisodicStore,
     TranscriptStoreProtocol,
     VectorStoreAdapter,
+)
+
+# Memory Profiles
+from friday_core.profiles import (
+    MemoryProfile,
+    create_graph_store,
+    create_vector_store,
 )
 
 # Security
@@ -74,11 +89,25 @@ __all__ = [
     "GraphStoreAdapter",
     # Context Engineering
     "ContextEngineeringInterface",
+    # LLM Interfaces
+    "LLMClient",
+    "EmbeddingModel",
+    "ChatCompletionResponse",
+    "ToolCall",
     # Tool Management
     "SchemaFormat",
     "ToolDefinition",
     "ToolAdapter",
     "ToolRegistry",
+    # Runtime Interfaces
+    "SystemRuntime",
+    "AgentInterface",
+    "RegistryInterface",
+    "LabHarnessInterface",
+    # Memory Profiles
+    "MemoryProfile",
+    "create_vector_store",
+    "create_graph_store",
     # Transcript Integration
     "TranscriptBackedEpisodicStore",
     "TranscriptStoreProtocol",

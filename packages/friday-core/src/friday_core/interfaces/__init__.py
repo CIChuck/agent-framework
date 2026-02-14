@@ -21,11 +21,19 @@ LLM Interfaces (Batch 3):
 Tool Management (Batch 3):
 - ToolRegistry: Tool registration and resolution
 
+Runtime Interfaces (Phase 1):
+- SystemRuntime: Headless runtime kernel contract
+- AgentInterface: Agent execution contract
+- RegistryInterface: Agent registry contract
+- LabHarnessInterface: Integration test harness contract
+
 Transcript Integration:
 - TranscriptBackedEpisodicStore: Bridge adapter for persistent transcripts
 """
 
+from friday_core.interfaces.agent import AgentInterface
 from friday_core.interfaces.context import ContextEngineeringInterface
+from friday_core.interfaces.lab import LabHarnessInterface
 from friday_core.interfaces.llm import (
     ChatCompletionResponse,
     EmbeddingModel,
@@ -37,6 +45,8 @@ from friday_core.interfaces.memory import (
     GraphStoreAdapter,
     VectorStoreAdapter,
 )
+from friday_core.interfaces.registry import RegistryInterface
+from friday_core.interfaces.runtime import SystemRuntime
 from friday_core.interfaces.tools import (
     SchemaFormat,
     ToolAdapter,
@@ -65,6 +75,11 @@ __all__ = [
     "ToolDefinition",
     "ToolAdapter",
     "ToolRegistry",
+    # Runtime Interfaces
+    "SystemRuntime",
+    "AgentInterface",
+    "RegistryInterface",
+    "LabHarnessInterface",
     # Transcript Integration
     "TranscriptBackedEpisodicStore",
     "TranscriptStoreProtocol",

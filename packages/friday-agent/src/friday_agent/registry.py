@@ -75,6 +75,9 @@ class AgentRegistry:
         self._profiles: dict[str, AgentProfile] = {}
         self._loader = loader
         self._factory: Callable[[AgentProfile], "AgentBase"] | None = None
+        self._per_agent_factories: dict[
+            str, Callable[[AgentProfile], "AgentBase"]
+        ] = {}
 
         # Capability index for fast lookup
         self._capability_index: dict[str, set[str]] = {}  # capability -> agent names
@@ -327,27 +330,33 @@ class AgentRegistry:
     def set_factory(
         self,
         factory: Callable[[AgentProfile], "AgentBase"],
+        agent_name: str | None = None,
     ) -> None:
         """
-        Set the agent factory function.
+        Set an agent factory function.
 
         The factory takes an AgentProfile and returns an AgentBase instance.
         It should be configured by the container with all necessary dependencies.
 
         Args:
-            factory: Function that creates AgentBase from AgentProfile
+            factory: Function that creates AgentBase from AgentProfile.
+            agent_name: If provided, this factory is used ONLY for this
+                agent name. The global factory remains the fallback for
+                all other agents.
 
         Example:
-            def create_agent(profile: AgentProfile) -> CopilotAgent:
-                return CopilotAgent(
-                    profile=profile,
-                    memory=container.memory,
-                    llm=container.llm,
-                )
+            # Global factory
             registry.set_factory(create_agent)
+
+            # Per-agent override (e.g., for testing)
+            registry.set_factory(mock_factory, agent_name="researcher")
         """
-        self._factory = factory
-        logger.debug("Agent factory configured")
+        if agent_name:
+            self._per_agent_factories[agent_name] = factory
+            logger.debug(f"Per-agent factory configured for '{agent_name}'")
+        else:
+            self._factory = factory
+            logger.debug("Agent factory configured")
 
     def has_factory(self) -> bool:
         """Check if factory is configured."""
@@ -357,8 +366,8 @@ class AgentRegistry:
         """
         Create an agent instance by name.
 
-        Uses the configured factory to instantiate the agent with
-        all necessary dependencies.
+        Checks per-agent factory overrides first, then falls back
+        to the global factory.
 
         Args:
             name: Registered agent name
@@ -370,13 +379,16 @@ class AgentRegistry:
             AgentRegistryError: If no factory configured
             KeyError: If agent not found
         """
-        if self._factory is None:
+        # Per-agent factory takes priority over global factory
+        factory = self._per_agent_factories.get(name, self._factory)
+
+        if factory is None:
             raise AgentRegistryError(
                 "No agent factory configured. Call set_factory() first."
             )
 
         profile = self.get_or_raise(name)
-        agent = self._factory(profile)
+        agent = factory(profile)
         logger.debug(f"Created agent instance: {name}")
         return agent
 

@@ -13,6 +13,7 @@ Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
 
 from friday_agent.workflows.models import (
     TaskNode,
+    TaskState,
     TaskStatus,
     WorkflowDefinition,
     WorkflowExecution,
@@ -23,6 +24,7 @@ from friday_agent.workflows.loader import WorkflowLoader, WorkflowLoadError
 __all__ = [
     # Models
     "TaskNode",
+    "TaskState",
     "TaskStatus",
     "WorkflowDefinition",
     "WorkflowExecution",

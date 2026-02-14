@@ -1,17 +1,24 @@
 """
 Workflow execution engine.
 
+All mutable runtime state is tracked in WorkflowExecution.task_states.
+TaskNode objects are never mutated — the same WorkflowDefinition can
+be executed concurrently without state collision.
+
 Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: Phase 1 Build Plan, Step 3
 """
 
 from __future__ import annotations
 
 import logging
+import uuid
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Any, Awaitable, Callable
 
 from friday_agent.workflows.models import (
     TaskNode,
+    TaskState,
     TaskStatus,
     WorkflowDefinition,
     WorkflowExecution,
@@ -47,6 +54,9 @@ class WorkflowEngine:
     3. Passing outputs to inputs via variables
     4. Pausing at approval gates for human review
     5. Handling failures and retries
+
+    All mutable state is stored in WorkflowExecution — TaskNode objects
+    are never modified.
 
     Usage:
         engine = WorkflowEngine(
@@ -92,6 +102,10 @@ class WorkflowEngine:
         """
         Execute a workflow.
 
+        Creates a fresh WorkflowExecution with empty task_states,
+        then runs until completion or pause. The workflow definition
+        is never mutated.
+
         Args:
             workflow: Workflow definition to execute
             initial_inputs: Initial variable values
@@ -109,13 +123,14 @@ class WorkflowEngine:
         if errors:
             raise WorkflowError(f"Invalid workflow: {errors}")
 
-        # Create execution state
+        # Create execution state with fresh task states
         execution = WorkflowExecution(
             workflow_id=workflow.id,
-            execution_id=f"{workflow.id}_{int(_utc_now().timestamp())}",
+            execution_id=f"{workflow.id}_{uuid.uuid4().hex[:8]}",
             variables=initial_inputs or {},
             started_at=_utc_now(),
         )
+        execution.init_task_states(workflow)
 
         logger.info(f"Starting workflow: {workflow.name} ({execution.execution_id})")
 
@@ -147,14 +162,14 @@ class WorkflowEngine:
         execution.status = TaskStatus.RUNNING
 
         while True:
-            ready_tasks = workflow.get_ready_tasks()
+            ready_tasks = execution.get_ready_tasks(workflow)
 
             if not ready_tasks:
                 # Check if all tasks complete
                 all_done = all(
-                    t.status
+                    state.status
                     in (TaskStatus.COMPLETED, TaskStatus.SKIPPED, TaskStatus.FAILED)
-                    for t in workflow.tasks
+                    for state in execution.task_states.values()
                 )
                 if all_done:
                     break
@@ -162,24 +177,28 @@ class WorkflowEngine:
                 # Check for waiting approval
                 waiting = next(
                     (
-                        t
-                        for t in workflow.tasks
-                        if t.status == TaskStatus.WAITING_APPROVAL
+                        task_id
+                        for task_id, state in execution.task_states.items()
+                        if state.status == TaskStatus.WAITING_APPROVAL
                     ),
                     None,
                 )
                 if waiting:
-                    execution.pending_approval = waiting.id
+                    execution.pending_approval = waiting
                     raise WorkflowError(
-                        f"Task '{waiting.id}' waiting for approval",
-                        task_id=waiting.id,
+                        f"Task '{waiting}' waiting for approval",
+                        task_id=waiting,
                     )
 
                 # Check for failed tasks blocking progress
-                failed = [t for t in workflow.tasks if t.status == TaskStatus.FAILED]
+                failed = [
+                    task_id
+                    for task_id, state in execution.task_states.items()
+                    if state.status == TaskStatus.FAILED
+                ]
                 if failed:
                     raise WorkflowError(
-                        f"Workflow blocked by failed tasks: {[t.id for t in failed]}"
+                        f"Workflow blocked by failed tasks: {failed}"
                     )
 
                 # Unexpected state
@@ -195,20 +214,23 @@ class WorkflowEngine:
         workflow: WorkflowDefinition,
         execution: WorkflowExecution,
     ) -> None:
-        """Execute a single task."""
+        """Execute a single task, updating state in execution.task_states."""
         logger.info(f"Executing task: {task.name} ({task.id})")
         execution.current_task_id = task.id
+        state = execution.get_task_state(task.id)
 
-        task.status = TaskStatus.RUNNING
-        task.started_at = _utc_now()
+        state.status = TaskStatus.RUNNING
+        state.started_at = _utc_now()
 
         try:
             # Check approval gate
             if task.requires_approval:
-                approved = await self._handle_approval(task, execution)
+                approved = await self._handle_approval(
+                    task, state, execution
+                )
                 if not approved:
-                    task.status = TaskStatus.SKIPPED
-                    task.completed_at = _utc_now()
+                    state.status = TaskStatus.SKIPPED
+                    state.completed_at = _utc_now()
                     execution.record_task(task)
                     logger.info(f"Task skipped (not approved): {task.id}")
                     return
@@ -226,60 +248,73 @@ class WorkflowEngine:
                 return_to_current=True,
             )
 
-            # Store result in task
-            task.result = result
+            # Store result in state
+            state.result = result
 
             # Store outputs in variables
             for output_name in task.outputs:
                 execution.variables[output_name] = result
                 logger.debug(f"Set variable ${output_name}")
 
-            task.status = TaskStatus.COMPLETED
-            task.completed_at = _utc_now()
+            state.status = TaskStatus.COMPLETED
+            state.completed_at = _utc_now()
             execution.record_task(task)
             logger.info(f"Task completed: {task.id}")
 
         except WorkflowError:
             # Re-raise workflow errors (approval pausing)
-            # Note: pending_approval was set in _handle_approval
             raise
         except Exception as e:
             logger.error(f"Task {task.id} failed: {e}")
-            task.error = str(e)
+            state.error = str(e)
 
             # Retry if allowed
-            if task.retry_count < task.max_retries:
-                task.retry_count += 1
-                task.reset()
+            if state.retry_count < task.max_retries:
+                state.retry_count += 1
+                state.reset()
                 logger.info(
-                    f"Retrying task {task.id} ({task.retry_count}/{task.max_retries})"
+                    f"Retrying task {task.id} "
+                    f"({state.retry_count}/{task.max_retries})"
                 )
                 return
 
-            task.status = TaskStatus.FAILED
-            task.completed_at = _utc_now()
+            state.status = TaskStatus.FAILED
+            state.completed_at = _utc_now()
             execution.record_task(task)
-            raise WorkflowError(f"Task '{task.id}' failed: {e}", task_id=task.id)
+            raise WorkflowError(
+                f"Task '{task.id}' failed: {e}", task_id=task.id
+            )
 
         finally:
             execution.current_task_id = None
 
     async def _handle_approval(
-        self, task: TaskNode, execution: WorkflowExecution
+        self,
+        task: TaskNode,
+        state: TaskState,
+        execution: WorkflowExecution,
     ) -> bool:
         """
         Handle approval gate.
 
+        Checks approval_overrides first (for previously approved tasks),
+        then falls back to the approval callback or pauses.
+
         Args:
             task: Task requiring approval
+            state: Mutable runtime state for this task
             execution: Current execution state
 
         Returns:
             True if approved, False if denied
         """
+        # Check if already approved via approve_task()
+        if task.id in execution.approval_overrides:
+            return True
+
         if self._approval_callback is None:
             # No callback - pause execution
-            task.status = TaskStatus.WAITING_APPROVAL
+            state.status = TaskStatus.WAITING_APPROVAL
             execution.pending_approval = task.id
             raise WorkflowError(
                 f"Task '{task.id}' requires approval",
@@ -315,7 +350,8 @@ class WorkflowEngine:
                 var_name = source[1:]
                 if var_name not in variables:
                     raise WorkflowError(
-                        f"Missing variable: ${var_name} (required by task '{task.id}')",
+                        f"Missing variable: ${var_name} "
+                        f"(required by task '{task.id}')",
                         task_id=task.id,
                     )
                 resolved[input_name] = variables[var_name]
@@ -361,6 +397,10 @@ class WorkflowEngine:
         """
         Approve a waiting task and continue execution.
 
+        Records the approval in execution.approval_overrides so the
+        task won't trigger the approval gate again. The original
+        WorkflowDefinition is never mutated.
+
         Args:
             workflow: Workflow definition
             execution: Current execution state
@@ -373,12 +413,15 @@ class WorkflowEngine:
         if task is None:
             raise WorkflowError(f"Task not found: {task_id}")
 
-        if task.status != TaskStatus.WAITING_APPROVAL:
-            raise WorkflowError(f"Task '{task_id}' not waiting for approval")
+        state = execution.get_task_state(task_id)
+        if state.status != TaskStatus.WAITING_APPROVAL:
+            raise WorkflowError(
+                f"Task '{task_id}' not waiting for approval"
+            )
 
-        # Mark as approved - clear approval requirement so it doesn't trigger again
-        task.status = TaskStatus.PENDING
-        task.requires_approval = False  # Already approved, don't ask again
+        # Record approval and reset task to PENDING for re-execution
+        execution.approval_overrides.add(task_id)
+        state.status = TaskStatus.PENDING
         execution.pending_approval = None
 
         logger.info(f"Task approved: {task_id}")
@@ -388,7 +431,7 @@ class WorkflowEngine:
             await self._run_workflow(workflow, execution)
             execution.status = TaskStatus.COMPLETED
             execution.completed_at = _utc_now()
-        except WorkflowError as e:
+        except WorkflowError:
             if execution.pending_approval:
                 execution.status = TaskStatus.WAITING_APPROVAL
             else:
@@ -417,8 +460,9 @@ class WorkflowEngine:
         if task is None:
             raise WorkflowError(f"Task not found: {task_id}")
 
-        task.status = TaskStatus.SKIPPED
-        task.completed_at = _utc_now()
+        state = execution.get_task_state(task_id)
+        state.status = TaskStatus.SKIPPED
+        state.completed_at = _utc_now()
         execution.pending_approval = None
         execution.record_task(task)
 
@@ -429,7 +473,7 @@ class WorkflowEngine:
             await self._run_workflow(workflow, execution)
             execution.status = TaskStatus.COMPLETED
             execution.completed_at = _utc_now()
-        except WorkflowError as e:
+        except WorkflowError:
             if execution.pending_approval:
                 execution.status = TaskStatus.WAITING_APPROVAL
             else:
@@ -452,12 +496,13 @@ class WorkflowEngine:
         """
         task_statuses = {}
         for task in workflow.tasks:
+            state = execution.get_task_state(task.id)
             task_statuses[task.id] = {
                 "name": task.name,
-                "status": task.status.value,
+                "status": state.status.value,
                 "agent": task.agent,
-                "duration_ms": task.duration_ms,
-                "error": task.error,
+                "duration_ms": state.duration_ms,
+                "error": state.error,
             }
 
         return {
