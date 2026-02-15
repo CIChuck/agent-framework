@@ -17,7 +17,7 @@
 
 ## 1. Executive Summary
 
-This alternate design introduces a **dual-memory model** instead of retrofitting global namespace controls into all existing `friday-memory` code paths.
+This alternate design introduces a **dual durable-memory model** plus a private **scratch pad memory** surface instead of retrofitting global namespace controls into all existing `friday-memory` code paths.
 
 ### Core Decision
 
@@ -70,6 +70,9 @@ This design directly addresses major risks identified in `codex-phase-2-build-pl
 4. **Defense in depth:** Shared write restrictions must be enforced below facade-level methods.
 5. **Recoverable consistency:** Promotion is implemented as effectively atomic via journaled state transitions and idempotent operations.
 6. **Controlled rollout:** Multi-agent memory is feature-flagged and can be enabled per runtime/profile.
+7. **Capability modularity:** reusable skills are optional but contract-governed when declared.
+8. **Operational memory separation:** execution scratch state remains separate from durable semantic memory.
+9. **Deployment portability:** runtime state placement is install/runtime/workspace-root based and must not assume git-repository layouts.
 
 ---
 
@@ -105,6 +108,13 @@ Any Phase 2 design that requires immediate universal namespace plumbing across a
 - Enforces private/shared namespace boundaries.
 - Introduces arbitrated promotion workflow for shared truth.
 - Used by orchestrated multi-agent sessions.
+
+### C. Scratch Pad Memory (New, Private Working Memory)
+
+- Private per `(session_id, agent_id)`.
+- Stores plan/checklist/notes/artifact references for execution management.
+- TTL-governed and operational by design.
+- Does not participate in semantic recall unless explicitly promoted.
 
 ---
 
@@ -181,6 +191,48 @@ The system does not rely on a cross-store ACID transaction. It enforces effectiv
 
 ---
 
+## 5.6 Skill Capability Layer
+
+1. Skills define reusable intent-to-execution patterns over policy-gated tool orchestration.
+2. Skills are optional at contract level, preserving backward compatibility for existing agents.
+3. Agent contracts reference skills by pinned identifiers (`skill_id@version`), not inline capability definitions.
+4. Resolved skills must satisfy tool/sandbox/guardrail/HITL and observability contracts.
+5. Skill scope boundaries and handoff behavior align with Phase 3 delegation/handoff architecture.
+
+### Skill Plane Architecture (Phase 2 Baseline)
+
+1. **Local filesystem-backed manifest repository:** `skills/manifests/<skill_id>/<version>.yaml`.
+2. **Registry index:** `skills/registry/index.yaml` provides authoritative discovery metadata.
+3. **Lifecycle governance:** `proposed -> approved -> deprecated -> retired`.
+4. **Execution gate:** production-like execution permits only `approved` skill versions.
+5. **Policy boundary:** shared skill catalog with per-agent contract allowlists.
+
+---
+
+## 5.7 Scratch Pad Memory Layer
+
+1. Scratch pad memory is a third memory surface for operational state, distinct from durable single-agent and multi-agent memory.
+2. Primary use cases: orchestrator planning, task checklist progression, temporary notes, artifact references, and HITL checkpoint breadcrumbs.
+3. Scratch pad retention is TTL-based and policy-governed.
+4. Scratch pad access is private by default and denied cross-agent.
+5. Promotion into durable memory is explicit and policy-gated.
+6. Persistent scratch storage lives in runtime state roots, not task workspaces.
+
+---
+
+## 5.8 Runtime Filesystem Topology Layer
+
+1. The framework defines three required roots:
+   - `install_root` (code/package location),
+   - `runtime_data_root` (internal writable state),
+   - `workspace_root` (agent artifact/intermediary outputs).
+2. Optional `cache_root` supports rebuildable caches.
+3. Scratch pad persistence and runtime journals are part of internal state and belong under `runtime_data_root`.
+4. Workspace remains artifact-centric and MUST NOT be used as a generic runtime-state store.
+5. This model is explicitly git-agnostic and supports local installs, containers, and cloud service deployments.
+
+---
+
 ## 6. Interface Strategy
 
 ## 6.1 Preserve Existing ABC Contracts
@@ -232,6 +284,10 @@ This section maps key commentary findings to alternate design responses.
 2. Keep existing single-agent path stable and default.
 3. Add lab tests for namespace isolation, shared write blocking, conflict resolution, and promotion recovery.
 4. Add contract schema validation, tool/sandbox governance, and observability event contracts.
+5. Add local filesystem-backed skill manifest repository + registry index with pinned reference validation.
+6. Add optional skill schema and baseline skill-lifecycle event governance.
+7. Add scratch pad memory contracts (scope/TTL/promotion), typed task-board semantics, and observability events.
+8. Add runtime filesystem topology contracts and path-validation gates for scratch placement.
 
 ### Phase 3 (Direction)
 
@@ -239,6 +295,10 @@ This section maps key commentary findings to alternate design responses.
 2. Complete route decomposition and workflow-level arbitration pause/resume integration.
 3. Expand observability, replay, and operational tooling on top of stable multi-agent memory foundation.
 4. Implement full HITL protocol execution model, approver authority policy, and artifact governance lifecycle.
+5. Implement dynamic skill routing/delegation and replay-grade skill auditability.
+6. Extend Phase 2 local skill registry to optional remote/federated registry operations.
+7. Expand scratch pad integration with workflow replay/analytics and orchestration diagnostics.
+8. Harden deployment profiles (local/container/cloud) against path-misconfiguration and workspace contamination.
 
 ---
 
@@ -254,6 +314,12 @@ This section maps key commentary findings to alternate design responses.
    - Mitigation: clear config defaults (`single_agent`) and explicit opt-in (`multi_agent`).
 5. Risk: contract drift between design/spec/build docs.
    - Mitigation: keep compliance matrix as binding review artifact and add contract-linked exit gates.
+6. Risk: skill sprawl and inconsistent capability definitions.
+   - Mitigation: registry-governed manifest lifecycle, pinned references, and mandatory policy compatibility checks.
+7. Risk: scratch pad grows into ungoverned long-term store.
+   - Mitigation: TTL enforcement, explicit promotion-only durability, and quota controls.
+8. Risk: runtime state and workspace paths are mixed, causing clutter and governance drift.
+   - Mitigation: three-root topology, startup path validation, and workspace contamination tests.
 
 ---
 
@@ -266,12 +332,18 @@ The original high-risk omissions identified by the compliance matrix are now rep
 3. Tool and sandbox governance workstreams are explicit in Phase 2 planning.
 4. Metadata migration/backfill strategy is included for multi-agent rollout.
 5. Contract KPI/checklist gates are included in Phase 2/3 verification strategy.
+6. Skill contract schema, local filesystem-backed manifest repository, and baseline lifecycle governance are represented in Phase 2 planning.
+7. Scratch pad scope/retention/promotion governance is represented in Phase 2 planning.
+8. Runtime filesystem topology and scratch-path placement governance are represented in specs and phase plans.
 
 Remaining precision work is now narrower:
 
 1. Calibrate and ratify KPI/SLO thresholds by workload class for release gating.
 2. Standardize authority-policy templates for organization-level approver models.
 3. Keep checklist-to-CI evidence mapping explicit at every release checkpoint.
+4. Complete Phase 3 depth for dynamic skill routing/delegation governance and remote-registry federation strategy.
+5. Calibrate scratch pad TTL/quota defaults by workload class after pilot runs.
+6. Finalize deployment-profile defaults for filesystem roots and scratch backend selection by environment class.
 
 ---
 

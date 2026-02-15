@@ -24,6 +24,9 @@
 5. Preserve `friday.py` operation with no mandatory namespace migration.
 6. Deliver a clean Phase 3 foundation for orchestration, workflow pause/resume, and replay tooling.
 7. Establish Agent Contract compliance foundations required for execution-grade governance.
+8. Establish Agent Skill contract foundations with optional declaration, local manifest registry, and strict validation when present.
+9. Establish Scratch Pad Memory foundations for private plan/checklist/note/artifact-reference workflows.
+10. Establish runtime filesystem topology configuration (`install_root`, `runtime_data_root`, `workspace_root`) and scratch-path placement rules.
 
 ---
 
@@ -34,7 +37,7 @@
 3. **Policy enforcement depth** must include lower-level write paths, not only facade methods.
 4. **Shared write blocked unless arbitrator path** in multi-agent mode.
 5. **Promotion journal required** for effective atomicity and recovery.
-6. **Repository-accurate paths only** in implementation tasks.
+6. **Deployment-accurate paths only** in implementation tasks (no source-repository assumptions).
 7. **Contract compliance gate required** before Phase 2 exit.
 
 ---
@@ -66,6 +69,8 @@ This plan directly addresses previously identified Phase 2 issues.
 7. Contract schema, runtime validation, and compliance test scaffolding.
 8. Tool/sandbox policy enforcement for high-impact execution paths.
 9. Metadata migration/backfill strategy for multi-agent rollout.
+10. Filesystem-backed skill manifest repository/registry baseline, schema, and lifecycle/event governance.
+11. Scratch pad memory policy/schema baseline, runtime enforcement, and observability contracts.
 
 ## 4.2 Out of Scope (Moved to Phase 3)
 
@@ -84,14 +89,24 @@ This plan directly addresses previously identified Phase 2 issues.
 - Add memory mode config (`single_agent`/`multi_agent`) in runtime config model.
 - Default to `single_agent`.
 
-### 1.2 Add namespace/policy/arbitration interface contracts
+### 1.2 Define runtime filesystem topology contracts
+
+- Add required runtime roots:
+  - `install_root`,
+  - `runtime_data_root`,
+  - `workspace_root`.
+- Add optional `cache_root`.
+- Define startup validation rules for invalid root overlap and non-writable runtime roots.
+- Define scratch-path placement rule: persistent scratch storage MUST live under `runtime_data_root`, not `workspace_root` (except test fixture mode).
+
+### 1.3 Add namespace/policy/arbitration interface contracts
 
 - Add additive interfaces in `friday-core` for:
   - namespace policy,
   - multi-agent memory,
   - arbitration contracts.
 
-### 1.3 Preserve existing core ABCs
+### 1.4 Preserve existing core ABCs
 
 - No required signature change to:
   - `AgentInterface.initialize_session(...)`
@@ -103,6 +118,7 @@ Deliverables:
 1. Updated interface package exports.
 2. Updated runtime config docs.
 3. Compatibility tests proving old call patterns still work.
+4. Filesystem-topology schema and startup validation tests.
 
 ---
 
@@ -342,7 +358,7 @@ Deliverables:
 
 ### 9.1 Schema formalization
 
-- Add `AgentContract` and sub-policy schemas (`ModelPolicy`, `ToolPolicy`, `SandboxPolicy`, `GuardrailPolicy`, `EscalationPolicy`, `HITLPolicy`, `ArtifactPolicy`, `LoggingPolicy`, `FailurePolicy`).
+- Add `AgentContract` and sub-policy schemas (`ModelPolicy`, `ToolPolicy`, `SandboxPolicy`, `GuardrailPolicy`, `EscalationPolicy`, `HITLPolicy`, `ArtifactPolicy`, `LoggingPolicy`, `FailurePolicy`, `SkillRef`, `SkillManifest`, `SkillRegistryEntry`).
 
 ### 9.2 Validation enforcement
 
@@ -359,12 +375,47 @@ Deliverables:
 - Enforce startup/runtime validation that required contract domains are present (`workspace`, `tool`, `sandbox`, `guardrail`, `failure`, and HITL when required).
 - Fail fast when mandatory policy domains are absent for the selected agent mode.
 
+### 9.5 Skill baseline validation
+
+- Treat `skills` as optional contract field; if declared, require pinned references (`skill_id@version`) and registry resolution.
+- Enforce that resolved skill manifests are semver-valid and policy-compatible with agent tool/sandbox/HITL constraints.
+- Validate that skill lifecycle events are emitted for skill-enabled agents.
+
+### 9.6 Local filesystem-backed skill manifest repository baseline
+
+- Define canonical local storage paths:
+  - `skills/manifests/<skill_id>/<version>.yaml`
+  - `skills/registry/index.yaml`
+- Define registry lifecycle states and transitions: `proposed -> approved -> deprecated -> retired`.
+- Enforce production-like execution gate: only `approved` skills are executable.
+- Define fail-fast behavior for unknown refs, missing versions, and status-policy conflicts.
+
+### 9.7 Scratch pad policy and schema baseline
+
+- Define `ScratchPadPolicy` schema and optional `scratch_pad_policy` contract field.
+- Define typed scratch entries (`plan`, `plan_item`, `note`, `artifact_ref`, `event_log`).
+- Enforce scratch scope identity `(session_id, agent_id)` and private access semantics.
+- Enforce TTL/retention and quota policy checks (`max_entries`, `max_note_bytes`).
+- Enforce explicit promotion gate for scratch-to-durable memory operations.
+- Define backend semantics and policy:
+  - `in_memory` for ephemeral/dev,
+  - `sqlite` for production-like restart continuity.
+- Define runtime scratch config knobs:
+  - `backend`,
+  - `path`,
+  - `purge_interval_seconds`,
+  - `fallback_mode`.
+
 Deliverables:
 
 1. Contract schemas and validator interfaces.
 2. Runtime contract validation on agent load.
 3. Compliance tests for invalid/partial contract definitions.
 4. Unified bounded-execution startup gate and regression tests.
+5. Skill schema and policy-compatibility validation for skill-enabled agents.
+6. Local filesystem-backed skill manifest repository + registry index contract and validation checks.
+7. Scratch pad policy/schema contract and validation checks.
+8. Scratch backend/path validation checks with runtime-root placement enforcement.
 
 ---
 
@@ -393,6 +444,9 @@ Deliverables:
 ### 11.1 Required event schema
 
 - Define mandatory events for tool calls, sandbox execution, policy checks, HITL transitions, and failure outcomes.
+- Define mandatory events for skill lifecycle transitions where `skills` are enabled, including resolved `skill_ref` and manifest version metadata.
+- Define mandatory events for scratch pad lifecycle/mutations (`scratchpad_created`, `scratchpad_plan_updated`, `scratchpad_item_status_changed`, `scratchpad_note_added`, `scratchpad_artifact_ref_added`, `scratchpad_expired`, `scratchpad_promoted`).
+- Define mandatory events for filesystem/scratch configuration validation failures.
 
 ### 11.2 Completeness gates
 
@@ -424,6 +478,9 @@ Deliverables:
 13. Workspace boundary enforcement is validated for out-of-scope operations.
 14. Execution-result integrity checks pass for sandboxed runs.
 15. Contract checklist-to-CI evidence artifact mapping is published for release candidates.
+16. Skill-enabled agents pass pinned-reference validation, manifest resolution checks, and lifecycle event completeness checks.
+17. Scratch pad-enabled agents pass scope/TTL/quota/promotion validation and event completeness checks.
+18. Runtime filesystem topology and scratch path placement validation pass in startup/runtime checks.
 
 ## 6.2 Test Matrix
 
@@ -444,6 +501,13 @@ Deliverables:
 | Execution-result integrity | Optional | Required |
 | Code execution lifecycle stage enforcement | Optional | Required |
 | Checklist-to-CI evidence artifact set | Optional | Required |
+| Skill reference and manifest resolution (`skill_id@version`) | Optional | Required (when skills declared) |
+| Skill schema and tool-chain compatibility | Optional | Required (when skills declared) |
+| Skill lifecycle event completeness | Optional | Required (when skills declared) |
+| Scratch pad scope/retention/quota enforcement | Optional | Required (when scratch pad enabled) |
+| Scratch pad lifecycle event completeness | Optional | Required (when scratch pad enabled) |
+| Filesystem-root topology validation | Optional | Required |
+| Scratch persisted-path placement validation | Optional | Required (when scratch backend is persistent) |
 
 ---
 
@@ -459,9 +523,12 @@ Deliverables:
 | 6 | `tests/integration/memory/friday.py` validation | Confirm no-change compatibility path | 4 |
 | 7 | `friday-tools`, `friday-runtime` | Add tool/sandbox governance contracts and enforcement | 4 |
 | 8 | `friday-core`, `friday-agent`, `friday-runtime` | Add agent-contract schema and runtime validation | 7 |
-| 9 | `friday-memory`, runtime ops | Add metadata migration/backfill strategy and checks | 8 |
-| 10 | `friday-telemetry` | Add observability event contract and completeness checks | 8, 9 |
-| 11 | Docs/handoff | Finalize Phase 3 transition contracts and compliance gates | 5, 6, 10 |
+| 9 | `friday-agent`, `friday-runtime` | Add skill schema validation, manifest registry baseline, and lifecycle enforcement | 8 |
+| 10 | `friday-memory`, `friday-agent`, `friday-runtime` | Add scratch pad contracts, scope/TTL enforcement, and promotion gating | 8 |
+| 11 | `friday-runtime`, `friday-memory` | Add filesystem-topology config and scratch-path placement validation | 8, 10 |
+| 12 | `friday-memory`, runtime ops | Add metadata migration/backfill strategy and checks | 8 |
+| 13 | `friday-telemetry` | Add observability event contract and completeness checks | 8, 9, 10, 11, 12 |
+| 14 | Docs/handoff | Finalize Phase 3 transition contracts and compliance gates | 5, 6, 13 |
 
 ---
 
@@ -479,6 +546,12 @@ Deliverables:
    - Mitigation: contract-linked exit gates and compliance-matrix reviews at each phase checkpoint.
 6. Risk: legacy data incompatibility during multi-agent rollout.
    - Mitigation: reversible migration/backfill strategy with rollback validation.
+7. Risk: skill sprawl without governance.
+   - Mitigation: local manifest registry baseline with lifecycle-state governance and pinned-reference enforcement.
+8. Risk: scratch pad misuse as de facto durable memory.
+   - Mitigation: TTL/quotas, explicit promotion-only durability, and policy-denial telemetry.
+9. Risk: workspace clutter from runtime-state storage.
+   - Mitigation: enforce runtime-data/workspace root separation and startup path validation.
 
 ---
 
@@ -499,3 +572,10 @@ Deliverables:
 13. Execution-result integrity validation is implemented for sandboxed operations.
 14. Code execution lifecycle semantics are implemented and verified.
 15. Checklist-to-CI evidence artifact set is produced and reviewed at release checkpoint.
+16. Optional `skills` contract behavior is implemented with strict pinned-reference and registry validation when present.
+17. Skill lifecycle event contract is implemented for skill-enabled agents.
+18. Local filesystem-backed skill manifest repository and lifecycle-state governance are documented and validated.
+19. Scratch pad scope/TTL/quota/promotion policy controls are implemented and validated.
+20. Scratch pad lifecycle/mutation observability contract is implemented and tested.
+21. Runtime filesystem topology (`install_root`, `runtime_data_root`, `workspace_root`) is implemented and validated.
+22. Scratch persistent path placement rules are implemented and validated (workspace disallowed except test fixture mode).

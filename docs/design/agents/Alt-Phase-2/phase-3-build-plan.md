@@ -25,6 +25,10 @@ Implement Phase 3 orchestration and workflow capabilities on top of Alt Phase 2 
 3. Integrate arbitration escalation with existing task-state semantics.
 4. Maintain `friday.py` default-path stability.
 5. Enforce Agent Contract governance requirements for HITL, artifact lifecycle, and policy observability.
+6. Complete skill orchestration semantics for routing, delegation, and auditability.
+7. Preserve pinned skill-reference semantics (`skill_id@version`) while extending registry capabilities.
+8. Integrate scratch pad memory into orchestration/workflow execution without changing durable memory semantics.
+9. Preserve runtime filesystem-root separation in all orchestration/delegation flows.
 
 ---
 
@@ -117,6 +121,53 @@ Deliverables:
 3. Checklist evidence bundle and release review template.
 4. Authority-policy template set and validation rules.
 
+## Workstream H: Skill Orchestration and Delegation
+
+1. Implement dynamic skill selection/routing against declared `skills`.
+2. Integrate skill transitions with HITL pause/resume behavior for privileged steps.
+3. Enforce skill scope-boundary delegation and handoff behavior in workflow execution.
+4. Add skill-level replay and audit traceability requirements.
+5. Extend local skill registry model to optional remote/federated registry synchronization without changing contract reference format.
+6. Define deprecation and retirement rollout policies for shared skill catalogs across teams.
+
+Deliverables:
+
+1. Skill routing and execution-state implementation.
+2. Skill delegation/handoff conformance tests.
+3. Skill replay and audit evidence outputs.
+4. Registry federation strategy and compatibility specification.
+5. Deprecation/retirement operational runbook for skill versions.
+
+## Workstream I: Scratch Pad Orchestration and Workflow Integration
+
+1. Integrate scratch pad updates into orchestrator flow for plan creation and checklist progression.
+2. Integrate workflow task-state transitions (`pending`, `running`, `completed`, `failed`, `skipped`, `waiting_approval`) with scratch `plan_item` status mappings.
+3. Record HITL pause/resume checkpoints to scratch `event_log`.
+4. Enforce scratch scope isolation and TTL behavior under orchestration load.
+5. Add replay correlation between workflow history and scratch pad event stream.
+6. Validate persistent scratch backend behavior under restart and recovery workflows.
+
+Deliverables:
+
+1. Scratch-aware orchestration integration tests.
+2. Workflow-to-scratch state-mapping compatibility tests.
+3. Scratch lifecycle replay/audit evidence outputs.
+4. Scratch backend recovery and fallback-mode conformance tests.
+
+## Workstream J: Deployment Filesystem Topology and Runtime Path Governance
+
+1. Validate three-root runtime topology (`install_root`, `runtime_data_root`, `workspace_root`) across orchestrated runs.
+2. Ensure agent workflow execution writes artifacts only to `workspace_root`.
+3. Ensure runtime internals (journals, scratch persistence, state indexes) remain under `runtime_data_root`.
+4. Add explicit container/cloud profile guidance where `install_root` is read-only.
+5. Add path-overlap rejection and remediation behavior to operations runbooks.
+
+Deliverables:
+
+1. Filesystem-topology conformance tests in orchestration suites.
+2. Deployment profile templates (local/container/cloud) with path defaults.
+3. Path-governance runbook updates for production operations.
+
 ---
 
 ## 4. `friday.py` Policy in Phase 3
@@ -149,6 +200,10 @@ Phase 3 must include a formal decision checkpoint:
 9. KPI/SLO thresholds are met in acceptance test runs.
 10. Delegation/handoff payload schema compatibility tests pass.
 11. Release artifacts include checklist-to-CI evidence bundle.
+12. Skill routing/delegation and skill lifecycle observability tests pass.
+13. Pinned skill-reference compatibility is preserved under registry federation scenarios.
+14. Scratch pad orchestration/workflow integration tests pass with scope and TTL guarantees.
+15. Filesystem-topology and workspace-contamination tests pass for orchestration workflows.
 
 ---
 
@@ -163,7 +218,10 @@ Phase 3 must include a formal decision checkpoint:
 | 5 | `friday-agent/workflows`, `friday-runtime` | HITL protocol + authority model | 2, 4 |
 | 6 | artifact/workspace layer | Artifact governance and publication controls | 5 |
 | 7 | `tests/lab`, telemetry | Contract KPI/checklist and CI compliance gates | 5, 6 |
-| 8 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 7 |
+| 8 | `friday-agent`, `friday-runtime` | Skill orchestration, delegation, and registry-federation enforcement | 5, 7 |
+| 9 | `friday-memory`, `friday-agent/workflows` | Scratch pad orchestration/workflow integration and replay correlation | 2, 5, 7 |
+| 10 | `friday-runtime`, ops docs | Filesystem-topology governance and deployment profile conformance | 4, 7, 9 |
+| 11 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 8, 9, 10 |
 
 ---
 
@@ -181,3 +239,7 @@ Phase 3 must include a formal decision checkpoint:
 10. Contract KPI/SLO thresholds are defined, measured, and enforced in release gating.
 11. Delegation/handoff payload contract is implemented and verified across workflow boundaries.
 12. Checklist-to-CI evidence bundle is mandatory and reviewed at release decision points.
+13. Skill routing, scope-boundary delegation, and lifecycle observability are implemented and validated.
+14. Registry federation/remote-extension behavior preserves `skill_id@version` compatibility and governance controls.
+15. Scratch pad workflow mapping, HITL checkpoint logging, and replay correlation are implemented and validated.
+16. Runtime filesystem topology remains policy-compliant across local, container, and cloud deployment profiles.

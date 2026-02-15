@@ -49,6 +49,34 @@ class MemoryMode(str, Enum):
    - Arbitrator-controlled shared-memory promotion.
    - Proposal journal and recovery semantics enabled.
 
+## 2.2 Runtime Filesystem Topology
+
+All deployments (local install, container, cloud VM/service) MUST be configured using a git-agnostic filesystem model.
+
+Required roots:
+
+1. `install_root`:
+   - Code/package installation location.
+   - May be read-only in production-like runtimes.
+2. `runtime_data_root`:
+   - Writable runtime state root.
+   - Hosts memory-state internals, journals, scratch-pad storage, and runtime indexes.
+3. `workspace_root`:
+   - Writable task workspace for agent-created artifacts/intermediates.
+   - MUST NOT host internal runtime-state stores.
+
+Optional root:
+
+1. `cache_root`:
+   - Rebuildable cache data only.
+   - Loss of cache MUST NOT violate correctness.
+
+Placement rules:
+
+1. Scratch-pad persisted storage MUST be under `runtime_data_root`.
+2. Scratch-pad persisted storage MUST NOT be under `workspace_root` except explicit test-mode fixtures.
+3. Runtime startup MUST fail fast on invalid root/path overlap that violates these constraints.
+
 ---
 
 ## 3. Interface Contracts (Additive)
@@ -175,6 +203,124 @@ class AgentContractValidationInterface(ABC):
 1. Agent registration/loading MUST fail fast when mandatory contract fields are missing.
 2. Mode-specific checks MUST enforce additional policy requirements where applicable.
 3. Validation errors MUST be structured and actionable for operator remediation.
+4. If `skills` are declared, validation MUST enforce pinned `SkillRef` format and manifest resolution rules.
+
+---
+
+## 3.5 Skill Manifest Repository Interfaces
+
+```python
+class SkillManifestRepositoryInterface(ABC):
+    @abstractmethod
+    def load_manifest(self, skill_id: str, version: str) -> "SkillManifest":
+        ...
+
+    @abstractmethod
+    def list_versions(self, skill_id: str) -> list[str]:
+        ...
+
+
+class SkillRegistryInterface(ABC):
+    @abstractmethod
+    def resolve(self, skill_ref: str) -> "SkillRegistryEntry":
+        ...
+
+    @abstractmethod
+    def status(self, skill_ref: str) -> Literal["proposed", "approved", "deprecated", "retired"]:
+        ...
+
+
+class SkillResolverInterface(ABC):
+    @abstractmethod
+    def resolve_for_agent(self, contract: "AgentContract", skill_ref: str) -> "SkillManifest":
+        ...
+```
+
+### Required Semantics
+
+1. Skill manifests are loaded from local filesystem-backed manifest storage in Alt Phase 2.
+2. `skill_ref` format MUST be `skill_id@major.minor.patch`.
+3. Production-like execution MUST reject skills not in `approved` state.
+4. Resolution MUST fail fast for unknown skill IDs, unknown versions, or policy-incompatible tool chains.
+
+---
+
+## 3.6 ScratchPadMemoryInterface
+
+```python
+class ScratchPadMemoryInterface(ABC):
+    @abstractmethod
+    async def create_or_get_pad(self, session_id: str, agent_id: str) -> "ScratchPadHandle":
+        ...
+
+    @abstractmethod
+    async def upsert_plan(self, session_id: str, agent_id: str, plan_id: str, title: str, objective: str) -> bool:
+        ...
+
+    @abstractmethod
+    async def add_plan_item(
+        self,
+        session_id: str,
+        agent_id: str,
+        plan_id: str,
+        item_id: str,
+        text: str,
+        status: Literal["pending", "running", "completed", "blocked"] = "pending",
+    ) -> bool:
+        ...
+
+    @abstractmethod
+    async def update_plan_item_status(
+        self,
+        session_id: str,
+        agent_id: str,
+        item_id: str,
+        status: Literal["pending", "running", "completed", "blocked"],
+    ) -> bool:
+        ...
+
+    @abstractmethod
+    async def add_note(self, session_id: str, agent_id: str, text: str) -> str:
+        ...
+
+    @abstractmethod
+    async def add_artifact_ref(
+        self,
+        session_id: str,
+        agent_id: str,
+        artifact_path: str,
+        artifact_id: str | None = None,
+    ) -> bool:
+        ...
+
+    @abstractmethod
+    async def list_entries(self, session_id: str, agent_id: str, limit: int = 200) -> list["ScratchPadEntry"]:
+        ...
+
+    @abstractmethod
+    async def purge_expired(self) -> int:
+        ...
+
+    @abstractmethod
+    async def promote_entries(
+        self,
+        session_id: str,
+        agent_id: str,
+        entry_ids: list[str],
+        target: Literal["insight", "fact", "summary"],
+    ) -> bool:
+        ...
+```
+
+### Required Semantics
+
+1. Scratch pad scope key MUST be `(session_id, agent_id)`.
+2. Scratch pad access is private to owner identity by default.
+3. Scratch pad data is operational memory and MUST NOT be included in semantic recall by default.
+4. Scratch-to-durable promotion MUST be explicit and policy-gated.
+5. Scratch backend MUST be runtime-configurable (`in_memory` or `sqlite`).
+6. When backend is persistent (`sqlite`), storage path MUST resolve under `runtime_data_root`.
+7. Scratch storage path MUST NOT resolve under `workspace_root` except explicit test-mode fixtures.
 
 ---
 
@@ -362,6 +508,51 @@ class EscalationPolicy(BaseModel):
     ] = "approval_gate"
 
 
+class SkillManifest(BaseModel):
+    skill_id: str
+    version: str
+    status: Literal["proposed", "approved", "deprecated", "retired"]
+    owner: str
+    description: str
+    triggers: list[str]
+    goal_state: list[str]
+    tool_chain: list[str]
+    context_requirements: list[str] = Field(default_factory=list)
+    invariants: list[str] = Field(default_factory=list)
+    outputs: list[str] = Field(default_factory=list)
+    scope_boundary: dict[str, list[str]] = Field(default_factory=dict)
+    handoff_policy: dict[str, str] = Field(default_factory=dict)
+    sandbox_requirements: dict[str, Any] = Field(default_factory=dict)
+    hitl_requirements: dict[str, Any] = Field(default_factory=dict)
+    provenance_requirements: dict[str, Any] = Field(default_factory=dict)
+    kpi_targets: dict[str, float] = Field(default_factory=dict)
+
+
+class SkillRegistryEntry(BaseModel):
+    skill_ref: str  # "<skill_id>@<version>"
+    manifest_path: str
+    status: Literal["proposed", "approved", "deprecated", "retired"]
+    owner: str
+    review_metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class ScratchPadPolicy(BaseModel):
+    enabled: bool = False
+    retention_ttl_seconds: int = 86400
+    max_entries: int = 500
+    max_note_bytes: int = 8192
+    allow_promotion: bool = True
+
+
+class ScratchPadEntry(BaseModel):
+    entry_id: str
+    entry_type: Literal["plan", "plan_item", "note", "artifact_ref", "event_log"]
+    session_id: str
+    agent_id: str
+    created_at: datetime
+    payload: dict[str, Any]
+
+
 class ArtifactPolicy(BaseModel):
     lifecycle_states: list[Literal["draft", "validated", "final", "archived"]]
     publication_requires_approval: bool = False
@@ -406,6 +597,8 @@ class AgentContract(BaseModel):
     artifact_policy: ArtifactPolicy
     logging_policy: LoggingPolicy
     failure_policy: FailurePolicy
+    skills: list[str] = Field(default_factory=list)  # list of SkillRef values: "<skill_id>@<semver>"
+    scratch_pad_policy: ScratchPadPolicy | None = None
 ```
 
 ### Contract Validation Invariants
@@ -417,6 +610,93 @@ class AgentContract(BaseModel):
 5. `artifact_policy.lifecycle_states` MUST include `draft` and `final`.
 6. `guardrail_policy` MUST define at least one rule in each category when the agent executes tools.
 7. `escalation_policy.trigger_classes` MUST include low-confidence, policy-ambiguity, and high-impact side-effect triggers.
+8. If `skills` are declared, each entry MUST match `skill_id@major.minor.patch`.
+9. If `skills` are declared, each entry MUST resolve to an existing `SkillManifest` in the registry.
+10. Only `approved` skill versions may execute in production-like environments.
+11. Every resolved `SkillManifest.tool_chain` entry MUST be included in `tool_policy.allowed_tools`.
+12. Skills that produce artifacts MUST satisfy workspace and artifact policy constraints.
+13. Privileged skill steps MUST honor HITL approval requirements when configured.
+14. If `scratch_pad_policy.enabled` is true, `retention_ttl_seconds`, `max_entries`, and `max_note_bytes` MUST be positive.
+15. Scratch pad entries MUST preserve owner scope (`session_id`, `agent_id`) for every write.
+16. Scratch pad promotion MUST be blocked when `scratch_pad_policy.allow_promotion` is false.
+
+---
+
+## 4.7 Skill Manifest Repository and Registry
+
+Alt Phase 2 canonical local layout:
+
+1. Skill manifests: `skills/manifests/<skill_id>/<version>.yaml`
+2. Registry index: `skills/registry/index.yaml`
+
+Registry index minimum fields:
+
+1. `skill_ref` (`<skill_id>@<version>`)
+2. `manifest_path`
+3. `status` (`proposed`, `approved`, `deprecated`, `retired`)
+4. `owner`
+5. `review_metadata`
+
+Resolution flow:
+
+1. Parse `SkillRef` from `AgentContract.skills`.
+2. Resolve `SkillRegistryEntry` from index.
+3. Load `SkillManifest` from referenced path.
+4. Enforce lifecycle-state policy for current environment.
+5. Enforce tool/policy compatibility against agent contract.
+6. Execute with trace events that include resolved `skill_ref`.
+
+Mandatory failure modes:
+
+1. `SKILL_REF_INVALID`: reference format invalid.
+2. `SKILL_NOT_FOUND`: skill or version missing from registry.
+3. `SKILL_STATUS_DISALLOWED`: lifecycle state blocked for execution.
+4. `SKILL_POLICY_CONFLICT`: manifest tool chain conflicts with agent/tool/sandbox/HITL policy.
+
+---
+
+## 4.8 Scratch Pad Storage and Lifecycle
+
+Canonical identity:
+
+1. `session_id`
+2. `agent_id`
+
+Storage backends:
+
+1. `in_memory`:
+   - Ephemeral, process-lifetime store.
+   - Recommended for fast local/dev or short-lived sessions.
+2. `sqlite`:
+   - Local lightweight persistent store.
+   - Recommended for production-like/HITL-heavy sessions requiring restart continuity.
+   - Scratch DB path MUST be under `runtime_data_root`.
+
+Typed entry expectations:
+
+1. `plan`: high-level objective and status.
+2. `plan_item`: checklist/task item with mutable status.
+3. `note`: operational rationale or short-lived observations.
+4. `artifact_ref`: workspace artifact pointer and optional hash/id metadata.
+5. `event_log`: append-only mutation/audit event.
+
+Lifecycle and retention:
+
+1. Scratch pads are lazily created on first write.
+2. Scratch pads are TTL-governed operational state.
+3. Expired pads MUST be purged and emit `scratchpad_expired` events.
+4. Scratch entries are promotable only through explicit policy-allowed operations.
+5. Purge cadence MUST be runtime-configurable (`purge_interval_seconds`) for persistent backends.
+6. Runtime fallback behavior on scratch backend failure MUST be explicit (`fail_fast` or `disable_scratch`).
+
+Mandatory failure modes:
+
+1. `SCRATCHPAD_SCOPE_VIOLATION`: caller attempts access outside `(session_id, agent_id)` scope.
+2. `SCRATCHPAD_TTL_EXPIRED`: operation targets an expired scratch pad.
+3. `SCRATCHPAD_QUOTA_EXCEEDED`: entry or note exceeds configured limits.
+4. `SCRATCHPAD_PROMOTION_BLOCKED`: promotion attempted when policy disallows promotion.
+5. `SCRATCHPAD_INVALID_PATH`: configured scratch path violates root-placement rules.
+6. `SCRATCHPAD_BACKEND_UNAVAILABLE`: configured backend initialization or I/O failure.
 
 ---
 
@@ -547,6 +827,57 @@ Handoff invariants:
 
 ---
 
+## 5.7 Skill Execution Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> skill_requested
+    skill_requested --> skill_selected: trigger matched
+    skill_selected --> skill_running: policy gates pass
+    skill_selected --> skill_blocked: policy gate denied
+    skill_running --> skill_completed: goal state satisfied
+    skill_running --> skill_failed: failure policy terminal
+    skill_running --> skill_delegated: scope boundary exceeded
+    skill_blocked --> skill_failed
+    skill_completed --> [*]
+    skill_failed --> [*]
+    skill_delegated --> [*]
+```
+
+### Required Runtime Semantics
+
+1. Skill execution MUST resolve `SkillRef` through registry and manifest loader before routing.
+2. Skill execution MUST be routed through existing tool/sandbox/guardrail/HITL policy gates.
+3. Skill invariants MUST be checked before and during execution for policy-critical steps.
+4. Out-of-scope skill requests MUST trigger deterministic handoff or escalation behavior.
+5. Skill lifecycle transitions MUST emit structured events with correlation IDs and resolved manifest version.
+
+---
+
+## 5.8 Scratch Pad Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> pad_active: first write
+    pad_active --> pad_active: plan/note/item/artifact updates
+    pad_active --> awaiting_human: workflow or HITL pause
+    awaiting_human --> pad_active: approved/resumed
+    awaiting_human --> pad_active: rejected/alternate path
+    pad_active --> pad_promoted: explicit promotion accepted
+    pad_active --> pad_expired: ttl reached
+    pad_promoted --> pad_active
+    pad_expired --> [*]
+```
+
+### Required Runtime Semantics
+
+1. Scratch updates MUST emit structured scratchpad events with correlation IDs.
+2. HITL pause/resume transitions SHOULD record plan-item status updates when linked to workflow tasks.
+3. Scratch entries MUST remain private to owning `(session_id, agent_id)` unless explicit export is defined by later policy.
+4. Scratch pad state MUST not alter durable memory unless explicit promotion succeeds.
+
+---
+
 ## 6. Namespace Policy Specification
 
 ## 6.1 Format
@@ -606,6 +937,13 @@ Each trigger class MUST map to:
 3. `ArbitrationServiceUnavailableError`
 4. `PromotionCommitError`
 5. `PromotionRecoveryError`
+6. `ScratchPadScopeViolationError`
+7. `ScratchPadTTLExpiredError`
+8. `ScratchPadQuotaExceededError`
+9. `ScratchPadPromotionBlockedError`
+10. `ScratchPadInvalidPathError`
+11. `ScratchPadBackendUnavailableError`
+12. `FilesystemTopologyValidationError`
 
 ## 7.2 Mandatory Fallback Behaviors
 
@@ -689,6 +1027,12 @@ Validate no shared-write bypass through:
 6. Artifact lifecycle/provenance policy tests.
 7. Generalized failure-policy behavior tests across tool/sandbox/HITL domains.
 8. Execution-result integrity tests (claim-to-output traceability and metadata completeness).
+9. Skill schema and policy-compatibility tests (tool-chain coverage, scope boundary, handoff behavior).
+10. Skill lifecycle observability tests (required events and transition correctness).
+11. Scratch pad scope/TTL/quota/promotion policy tests.
+12. Scratch pad task-board behavior tests (plan creation, item status transitions, note/artifact reference writes).
+13. Filesystem-root topology tests (`install_root`, `runtime_data_root`, `workspace_root`) and invalid-overlap rejection tests.
+14. Scratch path placement tests (workspace disallowed except explicit test-mode fixture profile).
 
 ---
 
@@ -704,6 +1048,10 @@ Every contract checklist item MUST map to a CI evidence artifact:
 6. Failure/recovery coverage -> `failure-policy-report.json`
 7. Workspace/artifact boundaries -> `artifact-workspace-compliance-report.json`
 8. Memory mode/provenance behavior -> `memory-compatibility-migration-report.json`
+9. Skill contract/lifecycle compliance -> `skill-execution-compliance-report.json`
+10. Skill registry/manifest resolution compliance -> `skill-registry-validation-report.json`
+11. Scratch pad scope/retention/promotion compliance -> `scratchpad-compliance-report.json`
+12. Filesystem topology and scratch-placement compliance -> `filesystem-layout-compliance-report.json`
 
 Release candidates MUST publish this artifact set as part of verification gates.
 
@@ -714,16 +1062,43 @@ Release candidates MUST publish this artifact set as part of verification gates.
 ## 9.1 Required Additive Config
 
 ```yaml
+filesystem:
+  install_root: "/opt/friday"                  # code/package location; may be read-only
+  runtime_data_root: "/var/lib/friday"         # writable runtime state root
+  workspace_root: "/var/lib/friday/workspaces" # writable artifact workspace root
+  cache_root: "/var/cache/friday"              # optional rebuildable caches
+
 memory:
   mode: single_agent  # single_agent | multi_agent
+  scratch_pad:
+    enabled: false
+    backend: "sqlite"  # sqlite | in_memory
+    path: "/var/lib/friday/state/scratchpad/scratchpad.sqlite3"
+    retention_ttl_seconds: 86400
+    purge_interval_seconds: 300
+    max_entries: 500
+    max_note_bytes: 8192
+    allow_promotion: true
+    fallback_mode: "fail_fast"  # fail_fast | disable_scratch
+    encryption:
+      enabled: false
+  skills:
+    registry_index_path: "skills/registry/index.yaml"
+    manifests_root: "skills/manifests"
+    require_pinned_references: true
+    allowed_execution_states:
+      - "approved"
+    allow_deprecated_with_explicit_override: false
   contracts:
     validate_on_agent_load: true
     fail_on_missing_required_fields: true
+    validate_skills_on_agent_load: true
   execution:
     sandbox_required_default: true
     privileged_exec_requires_hitl: true
   telemetry:
     enforce_required_events: true
+    enforce_skill_events: true
     required_event_schema_version: "1.0"
     kpi_targets:
       hitl_median_response_latency_seconds: 300
@@ -747,6 +1122,7 @@ memory:
 
 1. Default remains `single_agent`.
 2. `friday.py` behavior unchanged until explicit enablement.
+3. Deployments MUST NOT assume source checkout or git-repository availability.
 
 ---
 
@@ -760,6 +1136,10 @@ Alt Phase 2 must leave the following clean handoff points for Phase 3:
 4. Observability hooks for proposal lifecycle and promotion recovery metrics.
 5. HITL protocol payload/state/authority semantics formalized and integrated.
 6. Tool/sandbox governance policies enforced in runtime execution flows.
+7. Skill schema validation and skill lifecycle event contracts are enforced in runtime execution flows.
+8. Skill manifest repository and registry semantics are stable enough for Phase 3 federation/remote-registry extension.
+9. Scratch pad runtime contracts and event semantics are stable for orchestrator/workflow adoption in Phase 3.
+10. Runtime filesystem topology and scratch-path placement rules are stable across local, container, and cloud deployments.
 
 ---
 

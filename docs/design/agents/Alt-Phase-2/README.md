@@ -1,6 +1,6 @@
 # Alt Phase 2 Documentation Set
 
-This folder contains an alternate planning track for Phase 2 that introduces **Multi-Agent Memory as an additive mode** while preserving default single-agent behavior.
+This folder contains an alternate planning track for Phase 2 that introduces **Multi-Agent Memory as an additive mode**, **Scratch Pad Memory** as private operational memory, and a **deployment-agnostic runtime filesystem topology** while preserving default single-agent behavior.
 
 ## Approval State
 
@@ -13,7 +13,7 @@ This document set is currently marked **Proposed for Approval**.
 2. `comprehensive-agent-framework-design.md`
    - Architectural rationale and component model.
 3. `technical-specifications.md`
-   - Additive interfaces, schemas, state machines, and policy rules.
+   - Additive interfaces, schemas, state machines, policy rules, and runtime path/topology requirements.
 4. `phase-2-build-plan.md`
    - Detailed implementation plan for Alt Phase 2.
 5. `phase-3-transition-plan.md`
@@ -21,7 +21,7 @@ This document set is currently marked **Proposed for Approval**.
 6. `phase-3-build-plan.md`
    - Updated Phase 3 build direction aligned to dual-memory architecture.
 7. `agent-contract.md`
-   - Standard contract for agent goals, guardrails, tool usage, sandboxed code execution, logging, and escalation.
+   - Standard contract for agent goals, guardrails, scratch-pad and skill governance, tool usage, sandboxed code execution, logging, and escalation.
 8. `agent-contract-compliance-matrix.md`
    - Clause-by-clause compliance analysis and upgrade plan for the Alt document set.
 9. `agent-contract-schema-spec.md`
@@ -45,3 +45,7 @@ Per `agent-contract-compliance-matrix.md`, this document set is now broadly cont
 1. Agent-class KPI/SLO calibration.
 2. Authority-policy template standardization.
 3. Package-level failure/rollback runbook depth.
+4. Phase 3 depth for dynamic skill routing/delegation governance.
+5. Phase 3 extension strategy for optional federated/remote skill registry operations.
+6. Scratch pad TTL/quota defaults and workflow integration depth calibration.
+7. Deployment-profile defaults for runtime filesystem roots and scratch backend selection.

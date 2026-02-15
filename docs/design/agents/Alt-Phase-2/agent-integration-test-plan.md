@@ -25,6 +25,9 @@ This plan defines:
 4. Readiness gates for when each class of end-to-end test can be considered:
    - development-ready,
    - release-gate-ready.
+5. Skill-contract validation, manifest-registry resolution, and skill-lifecycle observability expectations for skill-enabled agents.
+6. Scratch pad scope/retention/promotion expectations for scratch-pad-enabled workflows.
+7. Runtime filesystem-topology and scratch-path placement expectations for non-git deployment scenarios.
 
 ---
 
@@ -34,11 +37,16 @@ This plan defines:
 
 1. **Development-ready point:** Alt Phase 2 completion through runtime wiring and `friday.py` compatibility validation.
 2. **Release-gate-ready point:** Alt Phase 2 acceptance and exit criteria complete (policy enforcement, contract validation, observability completeness, integrity checks).
+3. **Skill baseline-ready point:** Alt Phase 2 skill reference validation, local manifest-registry resolution, and skill lifecycle event completeness checks are operational.
+4. **Scratch baseline-ready point:** Alt Phase 2 scratch scope/TTL/quota and scratch-event completeness checks are operational.
+5. **Filesystem baseline-ready point:** Alt Phase 2 runtime root topology and scratch persisted-path placement checks are operational.
 
 ## 2.2 Multi-Agent Workflow End-to-End Readiness
 
 1. **Development-ready point:** Alt Phase 3 Workstream A+B complete (route/context + workflow/arbitration coupling).
 2. **Release-gate-ready point:** Alt Phase 3 verification gates and exit criteria complete for HITL authority, artifact governance, KPI/checklist evidence, and handoff contract validation.
+3. **Skill orchestration-ready point:** Alt Phase 3 skill-routing/delegation workstreams and verification gates are complete.
+4. **Deployment topology-ready point:** Alt Phase 3 deployment-profile filesystem conformance gates are complete.
 
 ---
 
@@ -58,6 +66,8 @@ Primary assertions:
 2. Workspace boundaries are enforced.
 3. Execution-result integrity and required telemetry events are recorded.
 4. `friday.py` behavior remains stable with no namespace requirements.
+5. Skill-enabled variant resolves pinned `skill_id@version` against local registry.
+6. Scratch-pad-enabled variant supports plan/checklist progression with private `(session_id, agent_id)` scope.
 
 ### Use Case SA-2: Single-Agent Memory Recall/Store Loop
 
@@ -70,6 +80,8 @@ Primary assertions:
 1. Existing `MemoryController` semantics remain compatible.
 2. Recall quality and persistence behavior are unchanged in default mode.
 3. Contract validation does not introduce regressions in single-agent startup/load.
+4. Skill-enabled recall workflows preserve policy gating and provenance requirements.
+5. Scratch notes and artifact refs are retained/retrieved within TTL window and excluded from semantic recall by default.
 
 ### Use Case SA-3: Semi-Autonomous Solitary Agent with HITL Approval Gate
 
@@ -82,6 +94,7 @@ Primary assertions:
 1. `awaiting_human` pause behavior is deterministic.
 2. Timeout/default action behavior is deterministic and auditable.
 3. Unauthorized approval attempts are rejected when authority policy is enforced.
+4. Scratch plan-item and event-log entries reflect HITL pause/resume checkpoints.
 
 ---
 
@@ -112,6 +125,7 @@ Primary assertions:
 2. HITL request payload and response payload are schema-valid.
 3. Approve/reject/timeout paths are replayable and auditable.
 4. Workflow resumes or terminates deterministically by decision outcome.
+5. Skill references remain pinned and registry-resolved across escalation/resume boundaries.
 
 ### Use Case MA-3: Delegation/Handoff with Artifact Finalization
 
@@ -125,6 +139,8 @@ Primary assertions:
 2. Artifact lifecycle transitions (`draft` to `validated` to `final`) follow policy.
 3. Publication approval controls are enforced when configured.
 4. Checklist-to-CI evidence bundle includes handoff and artifact compliance reports.
+5. Delegated skills resolve against the same shared registry with per-agent allowlist enforcement.
+6. Agents cannot read each other’s scratch pads during delegation without explicit future policy extension.
 
 ---
 
@@ -147,6 +163,11 @@ Define four reusable integration environments:
    - durable proposal journal and recovery worker enabled.
 4. `IE-MA-HITL`:
    - `IE-MA-CORE` plus workflow approval/HITL adapter, handoff validation hooks, and artifact policy enforcement.
+5. `IE-DEPLOY-PROFILES`:
+   - profile matrix for non-git installations:
+     - local filesystem install,
+     - containerized install with read-only `install_root`,
+     - cloud-like runtime with writable mounted `runtime_data_root`.
 
 ## 4.2 Shared Environment Components
 
@@ -157,6 +178,10 @@ All environments should include:
 3. Sandboxed execution harness with explicit policy profiles.
 4. Structured event capture and correlation IDs across runtime, tools, sandbox, HITL, and memory events.
 5. Failure injection hooks for crash/restart, timeout, and policy-denial scenarios.
+6. Skill fixture registry for declared `skills`, trigger simulation, and tool-chain compatibility assertions.
+7. Local filesystem-backed manifest repository and registry index fixtures with status variants (`approved`, `deprecated`, `retired`).
+8. Scratch pad fixture store with TTL simulation, quota limits, and promotion allow/deny cases.
+9. Root-layout fixture generator for `install_root`/`runtime_data_root`/`workspace_root` with valid and invalid overlap patterns.
 
 ## 4.3 Isolation and Repeatability Rules
 
@@ -164,6 +189,7 @@ All environments should include:
 2. Test data is seeded at run start and cleaned at run end.
 3. Journal replay/recovery tests must run against persisted state snapshots, not in-memory-only mocks.
 4. Flaky-test risk is reduced via deterministic clocks/timeouts in HITL and promotion workflows.
+5. All runs MUST assert runtime-state files remain outside `workspace_root` unless explicitly test-fixture-exempt.
 
 ---
 
@@ -177,6 +203,7 @@ All environments should include:
 | MA-1 | `IE-MA-CORE` | `IE-MA-HITL` | Phase 3 Workstream A+B |
 | MA-2 | `IE-MA-HITL` | `IE-MA-CORE` | Phase 3 Workstream E |
 | MA-3 | `IE-MA-HITL` | `IE-MA-CORE` | Phase 3 Workstream B+F |
+| Deployment topology conformance | `IE-DEPLOY-PROFILES` | `IE-SA-BASE` | Phase 2 Step 1/9 |
 
 ---
 
@@ -188,6 +215,7 @@ All environments should include:
 2. Add SA-1 and SA-2 scenario fixtures with pass/fail contracts.
 3. Add evidence artifact outputs required by contract checklist mapping.
 4. Publish baseline reliability and runtime-performance metrics.
+5. Add filesystem-root conformance checks and scratch-placement assertions.
 
 Exit condition:
 
@@ -209,6 +237,7 @@ Exit condition:
 2. Add SA-3 and MA-2/MA-3 scenarios.
 3. Add handoff payload contract validation and artifact lifecycle enforcement checks.
 4. Add release-grade KPI/checklist evidence bundling and CI gating.
+5. Add deployment-profile conformance checks for root separation and persistent scratch behavior.
 
 Exit condition:
 
@@ -228,6 +257,10 @@ Each integration run must emit contract-aligned artifacts:
 6. `hitl-protocol-report.json` (when HITL scenarios are executed)
 7. `artifact-workspace-compliance-report.json` (when artifact lifecycle scenarios are executed)
 8. `failure-policy-report.json`
+9. `skill-execution-compliance-report.json` (when skill-enabled scenarios are executed)
+10. `skill-registry-validation-report.json` (when skill-enabled scenarios are executed)
+11. `scratchpad-compliance-report.json` (when scratch-pad-enabled scenarios are executed)
+12. `filesystem-layout-compliance-report.json` (for deployment-topology scenarios)
 
 Release candidates must include checklist sign-off linked to these artifacts.
 
@@ -243,6 +276,8 @@ Release candidates must include checklist sign-off linked to these artifacts.
    - Mitigation: event-schema contract checks in every integration run.
 4. Risk: divergence between solitary and multi-agent harnesses.
    - Mitigation: shared fixture framework and shared assertion library where possible.
+5. Risk: hidden workspace contamination by runtime-state writes.
+   - Mitigation: mandatory root-topology assertions and workspace contamination checks in all profiles.
 
 ---
 

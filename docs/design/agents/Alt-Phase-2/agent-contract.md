@@ -41,7 +41,7 @@ Agents operate in one of three modes:
 
 ## 3. Required Contract Fields
 
-Every agent definition MUST include:
+Every agent definition MUST include the required fields below. Optional fields are explicitly marked.
 
 1. `agent_id`: stable unique identifier.
 2. `name`: human-readable identifier.
@@ -62,6 +62,12 @@ Every agent definition MUST include:
 17. `artifact_policy`: artifact naming, provenance, versioning, lifecycle.
 18. `logging_policy`: required structured events and traceability.
 19. `failure_policy`: retries, fallback, rollback, and recovery.
+20. `skills` (optional): list of pinned skill references (`skill_id@version`) resolved through the skill manifest registry.
+21. `scratch_pad_policy` (optional): private working-memory policy for planning/checklists/notes/artifact references.
+
+Runtime prerequisite:
+
+1. Agent execution environments MUST provide runtime filesystem topology configuration (`install_root`, `runtime_data_root`, `workspace_root`, optional `cache_root`).
 
 ---
 
@@ -95,6 +101,128 @@ For each tool call, agent MUST log:
 4. execution result,
 5. side effects,
 6. follow-up decision.
+
+### 5.3 Agent Skill Contract
+
+An Agent Skill is a bounded capability module that maps intent to execution through orchestrated tool use.
+
+Skill reference model:
+
+1. Agent contracts MUST reference skills as pinned identifiers: `skill_id@version`.
+2. `version` MUST use semantic versioning (`major.minor.patch`).
+3. Unpinned references (`skill_id` without version or `latest`) are not allowed.
+4. Skills are reusable across agents but remain policy-scoped per agent contract.
+
+Skill structure (manifest-defined):
+
+| Element | Description |
+| :--- | :--- |
+| Trigger | Activation condition (natural language intent, API call, or event) |
+| Goal State | Success criteria for completed execution |
+| Tool Chain | Ordered/parallel sequence of tools/resources orchestrated by the skill |
+| Context Window | Required inputs from memory, environment, or user |
+| Invariant | Constraints that must hold during execution (safety, schema, policy) |
+| Output | Deliverable returned to caller (answer, artifact, or state change) |
+| Lifecycle State | Governance state: `proposed`, `approved`, `deprecated`, `retired` |
+
+Skill characteristics:
+
+1. Repetitive utility: skills represent recurring patterns, not one-off tasks.
+2. Tool orchestration: skills may invoke multiple tools sequentially or in parallel.
+3. Bounded scope: skills define in-scope boundaries and explicit handoff behavior.
+4. State awareness: skills can reuse persisted context across invocations.
+
+Skill enforcement:
+
+1. Skills MUST be resolved from the skill manifest registry before execution.
+2. Only `approved` skill versions may execute in production-like operation.
+3. `deprecated` skill versions may execute only when explicitly allowed by policy and must emit deprecation warnings.
+4. `retired` skill versions MUST be blocked from execution.
+5. Skill tool-chain steps MUST pass existing `tool_policy`, `sandbox_policy`, `guardrail_policy`, and HITL checks where applicable.
+6. Skill execution MUST emit auditable lifecycle events with correlation IDs and resolved manifest version.
+7. Out-of-scope requests MUST follow explicit skill handoff or escalation behavior.
+
+### 5.4 Skill Manifest and Registry Contract
+
+Phase 2 establishes a local filesystem-backed skill registry.
+
+Repository model:
+
+1. Canonical skill manifests MUST be stored as YAML files under a versioned local path:
+   - `skills/manifests/<skill_id>/<version>.yaml`
+2. A registry index MUST map each `skill_id@version` to its manifest path, status, owner, and review metadata.
+3. The registry index MUST be treated as the authoritative discovery source at runtime.
+
+Manifest minimum fields:
+
+1. `skill_id`
+2. `version`
+3. `status` (`proposed`, `approved`, `deprecated`, `retired`)
+4. `owner`
+5. `description`
+6. `triggers`
+7. `goal_state`
+8. `tool_chain`
+9. `context_requirements`
+10. `invariants`
+11. `outputs`
+12. `scope_boundary`
+13. `handoff_policy`
+14. `sandbox_requirements`
+15. `hitl_requirements`
+16. `provenance_requirements`
+
+Registry and approval rules:
+
+1. Lifecycle transitions MUST follow: `proposed -> approved -> deprecated -> retired`.
+2. Direct transitions that skip governance review are not allowed.
+3. Runtime resolution MUST fail fast if:
+   - reference is unknown,
+   - version is missing,
+   - lifecycle state is disallowed for execution,
+   - required tools conflict with agent policy.
+4. Multi-agent workflows MAY share the same registry, but each agent MUST use explicit contract allowlists.
+
+Example manifest and index entries:
+
+```yaml
+# skills/manifests/calendar_qna/1.2.0.yaml
+skill_id: "calendar_qna"
+version: "1.2.0"
+status: "approved"
+owner: "calendar-platform"
+description: "Answer calendar questions with bounded read-only integrations."
+triggers: ["intent:calendar_question"]
+goal_state: ["Accurate schedule answer with provenance"]
+tool_chain: ["search_calendar", "resolve_attendees", "draft_response"]
+context_requirements: ["active_session_id", "user_timezone"]
+invariants: ["No writes outside workspace roots"]
+outputs: ["answer_text", "citation_refs"]
+scope_boundary:
+  in_scope: ["calendar lookup", "attendee resolution"]
+  out_of_scope: ["sending notifications"]
+handoff_policy:
+  out_of_scope_action: "escalate"
+  escalation_reason_code: "skill_scope_exceeded"
+sandbox_requirements:
+  required: true
+hitl_requirements:
+  approval_required_for: ["external_side_effect"]
+provenance_requirements:
+  required_fields: ["skill_ref", "correlation_id", "request_id"]
+```
+
+```yaml
+# skills/registry/index.yaml
+skills:
+  - skill_ref: "calendar_qna@1.2.0"
+    manifest_path: "skills/manifests/calendar_qna/1.2.0.yaml"
+    status: "approved"
+    owner: "calendar-platform"
+    review_metadata:
+      approved_by: "governance-board"
+      approved_at: "2026-02-14T12:00:00Z"
+```
 
 ---
 
@@ -159,6 +287,20 @@ Guardrails MUST be enforceable at runtime, not only prompt-level guidance.
 3. Artifact lifecycle states SHOULD be explicit: `draft`, `validated`, `final`, `archived`.
 4. Intermediary artifacts are permitted and encouraged when they improve reliability and traceability.
 
+### 8.1 Runtime Filesystem Boundary Contract
+
+Runtime environments MUST separate installation, runtime state, and workspace data:
+
+1. `install_root`: code/package location; may be read-only.
+2. `runtime_data_root`: writable internal runtime state (journals, indexes, scratch-pad persistence).
+3. `workspace_root`: writable user-facing artifact/intermediary workspace.
+
+Boundary rules:
+
+1. Internal runtime memory/state stores MUST NOT be placed in `workspace_root`.
+2. `workspace_root` MUST contain only agent-created artifacts/intermediates and related metadata.
+3. Path layout MUST be deployment-agnostic and MUST NOT assume git-repository presence.
+
 ---
 
 ## 9. Memory and Context Contract
@@ -167,6 +309,42 @@ Guardrails MUST be enforceable at runtime, not only prompt-level guidance.
 2. In multi-agent memory mode, namespace and arbitrator policy MUST be enforced.
 3. Provenance metadata MUST be attached to memory writes.
 4. Retention and deletion behavior MUST be policy-defined.
+
+### 9.1 Scratch Pad Memory Contract
+
+Scratch pad memory is a private, short-horizon operational memory surface for agent execution management.
+
+Required scope and access rules:
+
+1. Scratch pad identity MUST be scoped by `(session_id, agent_id)`.
+2. Scratch pad reads/writes are private to the owning agent.
+3. Cross-agent scratch pad reads/writes are denied by default.
+4. Collaboration across agents MUST use explicit handoff payloads, not scratch pad sharing.
+
+Required behavior:
+
+1. Scratch pad SHOULD support typed planning entries:
+   - `plan`,
+   - `plan_item`,
+   - `note`,
+   - `artifact_ref`,
+   - `event_log`.
+2. Scratch pad retention MUST be TTL-based when enabled.
+3. Scratch pad data is operational state and MUST NOT be treated as durable semantic truth by default.
+4. Promotion from scratch pad to durable memory MUST be explicit and policy-gated.
+5. Scratch pad persisted storage MUST live under `runtime_data_root`.
+6. Scratch pad persisted storage MUST NOT live under `workspace_root` except explicit test-only fixtures.
+
+Required policy knobs (when `scratch_pad_policy` is declared):
+
+1. `enabled`
+2. `retention_ttl_seconds`
+3. `max_entries`
+4. `max_note_bytes`
+5. `allow_promotion`
+6. `backend` (`in_memory` | `sqlite`) via runtime config
+7. `path` (required for persistent backends) via runtime config
+8. `fallback_mode` (`fail_fast` | `disable_scratch`) via runtime config
 
 ---
 
@@ -288,8 +466,10 @@ Minimum event set:
 5. guardrail checks and policy denials,
 6. escalation requests, reminders, and resolutions,
 7. HITL state transitions (`awaiting_human`, `approved`, `rejected`, `timed_out`, `cancelled`, `resumed`),
-8. artifact created/updated/finalized,
-9. error and recovery events.
+8. skill resolution and lifecycle transitions (`skill_requested`, `skill_selected`, `skill_blocked`, `skill_completed`, `skill_failed`, `skill_delegated`),
+9. scratch pad lifecycle and mutation events (`scratchpad_created`, `scratchpad_plan_updated`, `scratchpad_item_status_changed`, `scratchpad_note_added`, `scratchpad_artifact_ref_added`, `scratchpad_expired`, `scratchpad_promoted`),
+10. artifact created/updated/finalized,
+11. error and recovery events.
 
 Logs MUST support post-hoc audit and deterministic replay where applicable.
 
@@ -367,6 +547,13 @@ agent_contract:
 
   memory_mode: "single_agent"
 
+  scratch_pad_policy:
+    enabled: true
+    retention_ttl_seconds: 86400
+    max_entries: 500
+    max_note_bytes: 8192
+    allow_promotion: true
+
   guardrail_policy:
     scope_rules: ["No out-of-scope file writes"]
     safety_rules: ["No destructive operations without approval"]
@@ -384,6 +571,10 @@ agent_contract:
       - "external_side_effect"
       - "destructive_action"
     default_escalation_method: "approval_gate"
+
+  skills:
+    - "calendar_qna@1.2.0"
+    - "research_summarization@2.0.1"
 
   hitl_policy:
     enabled: true
@@ -434,3 +625,14 @@ Before approving an agent for production-like operation:
 7. Failure and escalation paths validated.
 8. Artifact and workspace boundaries verified.
 9. Memory mode and provenance behavior verified.
+10. Skill references are pinned (`skill_id@version`) and resolve through the registry index.
+11. Skill manifests are in allowed lifecycle state (`approved` for production execution).
+12. Skill-to-policy compatibility validated (tool/sandbox/guardrail/HITL).
+13. Skill lifecycle observability and handoff behavior verified.
+14. Skill manifest governance evidence (owner/review/state history) verified.
+15. Scratch pad scope isolation (`session_id + agent_id`) is enforced.
+16. Scratch pad TTL/retention and quota controls are validated.
+17. Scratch pad event completeness is verified when scratch pad is enabled.
+18. Scratch-to-durable promotion policy is validated (allow/deny paths).
+19. Runtime filesystem roots are configured and validated (`install_root`, `runtime_data_root`, `workspace_root`).
+20. Scratch persisted path placement under `runtime_data_root` is validated (not `workspace_root`, except test fixtures).

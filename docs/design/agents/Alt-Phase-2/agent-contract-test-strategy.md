@@ -16,6 +16,9 @@
 2. Prove policy-bound execution behavior for tools/sandbox/HITL.
 3. Prove observability and audit requirements are satisfied.
 4. Prove backward compatibility (`single_agent`, `friday.py` default path).
+5. Prove skill manifest resolution and execution behavior are policy-compatible and auditable.
+6. Prove scratch pad scope/retention/promotion behavior is policy-compatible and auditable.
+7. Prove runtime filesystem topology and scratch-path placement policies are enforced across deployment profiles.
 
 ---
 
@@ -61,6 +64,34 @@
 2. `friday.py` unchanged default behavior.
 3. Metadata migration/backfill correctness and rollback readiness.
 
+## 2.7 Skill Contract and Lifecycle Tests
+
+1. Skill reference format validation (`skill_id@version`) when `skills` are declared.
+2. Skill manifest resolution from local registry index.
+3. Skill lifecycle-state gating (`approved` allowed; `retired` blocked; `deprecated` policy-controlled).
+4. Skill-to-tool policy compatibility (`tool_chain` subset of `allowed_tools`).
+5. Skill invariant enforcement and failure-path handling.
+6. Out-of-scope skill handoff/escalation behavior.
+7. Skill lifecycle event completeness and transition correctness.
+
+## 2.8 Scratch Pad Policy and Lifecycle Tests
+
+1. Scratch pad scope isolation (`session_id + agent_id`) and cross-agent access denial.
+2. Typed task-board behavior (`plan`, `plan_item`, `note`, `artifact_ref`, `event_log`).
+3. Plan-item state transition correctness (`pending`, `running`, `completed`, `blocked`).
+4. TTL expiration behavior and purge semantics.
+5. Quota enforcement (`max_entries`, `max_note_bytes`).
+6. Scratch-to-durable promotion allow/deny behavior.
+7. Scratch lifecycle event completeness and schema correctness.
+
+## 2.9 Filesystem Topology and Path Governance Tests
+
+1. Root topology validation (`install_root`, `runtime_data_root`, `workspace_root`) with overlap rejection.
+2. Scratch persisted-path placement validation (under `runtime_data_root`, not `workspace_root` except test fixtures).
+3. Startup behavior validation for non-writable runtime roots.
+4. Deployment profile validation (local install, container read-only install root, cloud runtime volume).
+5. Fallback behavior verification (`fail_fast` vs `disable_scratch`) on backend/path failures.
+
 ---
 
 ## 3. CI Gate Model
@@ -73,6 +104,9 @@
 4. Observability event completeness suite passes.
 5. Backward compatibility suite passes.
 6. Code execution lifecycle stage-enforcement suite passes.
+7. Skill contract validation, manifest resolution, and lifecycle compliance suite passes (when skills are enabled).
+8. Scratch pad policy/lifecycle suite passes (when scratch pad is enabled).
+9. Filesystem topology and scratch-path placement suite passes.
 
 ## 3.2 Mandatory Gates (Phase 3)
 
@@ -80,6 +114,9 @@
 2. Artifact governance suite passes.
 3. Contract KPI/checklist gate passes.
 4. Replay/audit consistency suite passes.
+5. Advanced skill orchestration/delegation suite passes.
+6. Scratch orchestration/workflow integration suite passes.
+7. Deployment-profile filesystem conformance suite passes.
 
 ---
 
@@ -106,6 +143,11 @@ Each release candidate MUST produce:
 4. Observability completeness report.
 5. Compatibility and migration report.
 6. Contract checklist sign-off artifact.
+7. Skill contract validation report.
+8. Skill execution compliance report.
+9. Skill registry and manifest validation report.
+10. Scratch pad compliance report.
+11. Filesystem topology compliance report.
 
 Checklist-to-evidence mapping:
 
@@ -120,6 +162,10 @@ Checklist-to-evidence mapping:
 | Failure and escalation paths validated | `failure-policy-report.json` |
 | Artifact and workspace boundaries verified | `artifact-workspace-compliance-report.json` |
 | Memory mode/provenance behavior verified | `memory-compatibility-migration-report.json` |
+| Skill schema and lifecycle behavior verified | `skill-execution-compliance-report.json` |
+| Skill registry/manifest resolution and state gating verified | `skill-registry-validation-report.json` |
+| Scratch pad scope/retention/promotion behavior verified | `scratchpad-compliance-report.json` |
+| Filesystem topology and scratch-placement behavior verified | `filesystem-layout-compliance-report.json` |
 
 ---
 
@@ -131,6 +177,9 @@ Checklist-to-evidence mapping:
 | Tool/sandbox/workspace enforcement | `friday-tools` | `friday-runtime` |
 | HITL protocol/authority | `friday-agent/workflows` | `friday-runtime` |
 | Artifact governance | workspace/artifact layer | `friday-agent` |
+| Skill contract/lifecycle/registry | `friday-agent` | `friday-runtime` |
+| Scratch pad policy/lifecycle | `friday-memory` | `friday-runtime` |
+| Filesystem topology/path governance | `friday-runtime` | runtime ops |
 | Observability/integrity | `friday-telemetry` | `tests/lab` |
 | Compatibility/migration | `friday-memory` | integration test owners |
 

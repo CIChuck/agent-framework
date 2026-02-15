@@ -30,6 +30,9 @@ Phase 3 should focus on orchestration and workflow evolution on top of these mod
 3. Add operational tooling (replay/observability) for multi-agent sessions.
 4. Resolve deferred architectural decisions from Phase 1 and Alt Phase 2.
 5. Standardize delegation/handoff contracts and contract-evidence governance for release decisions.
+6. Complete advanced skill orchestration and delegation governance.
+7. Integrate scratch pad operational memory into orchestration and workflow governance.
+8. Ensure deployment-grade filesystem topology governance across local, container, and cloud runtimes.
 
 ---
 
@@ -47,6 +50,10 @@ Before starting Phase 3, these must be complete:
 8. Metadata migration/backfill readiness for multi-agent fields.
 9. Code execution lifecycle contract and integrity checks implemented.
 10. Checklist-to-CI evidence mapping artifacts available for Phase 3 release gates.
+11. Skill schema validation and baseline skill lifecycle event contract implemented in Phase 2.
+12. Local filesystem-backed skill manifest repository and registry index baseline established with pinned `skill_id@version` references.
+13. Scratch pad contract baseline (scope, TTL, quotas, promotion policy, required events) implemented in Phase 2.
+14. Runtime filesystem topology baseline (`install_root`, `runtime_data_root`, `workspace_root`) and scratch-path placement rules implemented in Phase 2.
 
 ---
 
@@ -64,6 +71,7 @@ Before starting Phase 3, these must be complete:
 2. Implement resume/reject paths with clear audit trails.
 3. Avoid introducing conflicting workflow state models unless full migration is planned.
 4. Define a stable delegation/handoff payload schema with ownership, acceptance criteria, and deadline semantics.
+5. Integrate skill scope-boundary delegation behavior with workflow handoff semantics.
 
 ## 4.3 Replay and Transcript-Backed Analysis
 
@@ -88,6 +96,10 @@ Before starting Phase 3, these must be complete:
 3. Implement artifact governance lifecycle and publication approval controls.
 4. Add contract KPI and checklist gates to release validation.
 5. Publish authority-policy templates and checklist evidence bundle requirements for release governance.
+6. Complete skill-routing and skill-lifecycle governance for production release readiness.
+7. Define Phase 3 extension path for optional remote/federated skill registry while preserving pinned reference semantics.
+8. Integrate workflow and HITL transitions with scratch pad plan/item/event updates for replay-grade traceability.
+9. Validate path-governance controls so runtime state remains in `runtime_data_root` and artifacts remain in `workspace_root`.
 
 ---
 
@@ -134,6 +146,10 @@ Phase 3 must explicitly resolve the `FridayContainer` lifecycle:
 10. Contract KPI/SLO thresholds are defined and enforced in release decisions.
 11. Delegation/handoff payload compatibility is validated across workflow boundaries.
 12. Checklist evidence bundle is required at transition readiness review.
+13. Skill routing/delegation behavior is validated with replay/audit evidence.
+14. Registry-extension strategy (local to federated/remote) is documented with backward-compatible `skill_id@version` resolution.
+15. Scratch pad orchestration/workflow integration is validated with scope isolation and TTL compliance evidence.
+16. Filesystem-topology conformance is validated for non-git deployments and container/cloud profiles.
 
 ---
 
@@ -145,5 +161,8 @@ Phase 3 must explicitly resolve the `FridayContainer` lifecycle:
 | 2 | Workflow integration | arbitration escalation mapped to approval lifecycle |
 | 3 | Replay/transcript integration | deterministic event replay and forensic traceability |
 | 4 | Observability hardening | operational metrics/alerts for production confidence |
-| 5 | Contract governance completion | HITL protocol, authority policy, artifact lifecycle, KPI gates, and checklist evidence governance |
-| 6 | Deprecation decisions | `FridayContainer` and long-term mode defaults clarified |
+| 5 | Contract governance completion | HITL protocol, authority policy, artifact lifecycle, skill governance, KPI gates, and checklist evidence governance |
+| 6 | Skill orchestration completion | routing, delegation, replay, policy-bound lifecycle controls, and registry-extension compatibility |
+| 7 | Scratch pad integration completion | orchestrator/workflow/HITL state mapping and replay correlation for private scratch pads |
+| 8 | Filesystem topology hardening | deployment-profile path governance and workspace contamination prevention |
+| 9 | Deprecation decisions | `FridayContainer` and long-term mode defaults clarified |
