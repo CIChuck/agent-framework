@@ -19,6 +19,9 @@
 5. Prove skill manifest resolution and execution behavior are policy-compatible and auditable.
 6. Prove scratch pad scope/retention/promotion behavior is policy-compatible and auditable.
 7. Prove runtime filesystem topology and scratch-path placement policies are enforced across deployment profiles.
+8. Prove arbitrator shared-write anti-spoof controls (identity + capability) are enforced and auditable.
+9. Prove migration governance (`preflight`, `apply`, `rollback`) is enforced before rollout.
+10. Prove skill approval-authority transitions to `approved` enforce required metadata and auditability.
 
 ---
 
@@ -92,6 +95,42 @@
 4. Deployment profile validation (local install, container read-only install root, cloud runtime volume).
 5. Fallback behavior verification (`fail_fast` vs `disable_scratch`) on backend/path failures.
 
+## 2.10 Shared-Write Identity and Capability Tests
+
+1. Arbitrator shared write succeeds only with valid runtime-issued capability.
+2. Identity-only shared write attempt is rejected.
+3. Missing capability token is rejected.
+4. Invalid/replayed capability token is rejected.
+5. Security events are emitted for spoof/replay attempts.
+
+## 2.11 Migration Governance Tests
+
+1. Apply stage blocked when preflight status is not `ready`.
+2. Preflight report requires rollback checkpoint reference.
+3. Apply stage emits migration apply report and integrity outcomes.
+4. Integrity failure path triggers rollback workflow and rollback report artifact.
+
+## 2.12 Skill Approval-Authority Tests
+
+1. `proposed -> approved` transition rejected without `approval_id`, `approved_by`, `approved_at`, `change_reason`.
+2. Unauthorized approver transition attempts are rejected.
+3. Approved transition history is auditable and immutable in review metadata trail.
+
+## 2.13 Canonical Skill (`SKILL.md`) Conformance Tests
+
+1. `skills-ref validate` succeeds for each declared canonical `SKILL.md`.
+2. Canonical skill directory/name/layout checks pass for all registered skill versions.
+3. `SKILL.md` frontmatter maps deterministically to internal `SkillManifest` and `SkillRegistryEntry` fields.
+4. Invalid schema/layout/mapping cases fail with deterministic error classification.
+
+## 2.14 Skill Runtime-Profile Composition and Approval Tests
+
+1. Skill profile/task/artifact overlays compose deterministically with contract baseline.
+2. Overlay attempts to expand tool/sandbox/HITL/workspace authority are rejected.
+3. Policy-diff classifier deterministically assigns `content_only`, `behavioral`, or `governance_touching`.
+4. Approval path enforcement matches impact class requirements.
+5. Governance-touching skills require dual-approval metadata and behavior-evidence artifacts.
+
 ---
 
 ## 3. CI Gate Model
@@ -107,6 +146,11 @@
 7. Skill contract validation, manifest resolution, and lifecycle compliance suite passes (when skills are enabled).
 8. Scratch pad policy/lifecycle suite passes (when scratch pad is enabled).
 9. Filesystem topology and scratch-path placement suite passes.
+10. Shared-write identity+capability anti-spoof suite passes.
+11. Migration governance suite passes (`preflight`, `apply`, `rollback`).
+12. Skill approval-authority metadata suite passes when lifecycle transitions are exercised.
+13. Canonical `SKILL.md` conformance suite (`skills-ref`, schema/layout/mapping) passes when skills are enabled.
+14. Skill runtime-profile composition and impact-class approval suite passes when skills are enabled.
 
 ## 3.2 Mandatory Gates (Phase 3)
 
@@ -117,6 +161,8 @@
 5. Advanced skill orchestration/delegation suite passes.
 6. Scratch orchestration/workflow integration suite passes.
 7. Deployment-profile filesystem conformance suite passes.
+8. Shared-write anti-spoof enforcement remains green in orchestrated multi-agent suites.
+9. Delegated skill-approval authority suite passes (when enabled by policy).
 
 ---
 
@@ -148,6 +194,13 @@ Each release candidate MUST produce:
 9. Skill registry and manifest validation report.
 10. Scratch pad compliance report.
 11. Filesystem topology compliance report.
+12. Identity enforcement report.
+13. Migration preflight report.
+14. Migration apply report.
+15. Migration rollback report.
+16. Skill registry authority report.
+17. Canonical skill conformance report.
+18. Skill runtime-profile composition report.
 
 Checklist-to-evidence mapping:
 
@@ -166,6 +219,13 @@ Checklist-to-evidence mapping:
 | Skill registry/manifest resolution and state gating verified | `skill-registry-validation-report.json` |
 | Scratch pad scope/retention/promotion behavior verified | `scratchpad-compliance-report.json` |
 | Filesystem topology and scratch-placement behavior verified | `filesystem-layout-compliance-report.json` |
+| Shared-write anti-spoof behavior verified | `identity-enforcement-report.json` |
+| Migration preflight governance verified | `migration-preflight-report.json` |
+| Migration apply integrity verified | `migration-apply-report.json` |
+| Migration rollback readiness/completion verified | `migration-rollback-report.json` |
+| Skill approval-authority transitions verified | `skill-registry-authority-report.json` |
+| Canonical `SKILL.md` schema/layout/mapping conformance verified | `skill-canonical-conformance-report.json` |
+| Skill runtime-profile composition and no-expansion enforcement verified | `skill-profile-composition-report.json` |
 
 ---
 
@@ -180,6 +240,9 @@ Checklist-to-evidence mapping:
 | Skill contract/lifecycle/registry | `friday-agent` | `friday-runtime` |
 | Scratch pad policy/lifecycle | `friday-memory` | `friday-runtime` |
 | Filesystem topology/path governance | `friday-runtime` | runtime ops |
+| Shared-write identity/capability enforcement | `friday-runtime` + `friday-memory` | `friday-agent` |
+| Migration governance (`preflight/apply/rollback`) | `friday-memory` + runtime ops | `friday-runtime` |
+| Skill approval-authority governance | `friday-agent` + governance owner | `friday-runtime` |
 | Observability/integrity | `friday-telemetry` | `tests/lab` |
 | Compatibility/migration | `friday-memory` | integration test owners |
 

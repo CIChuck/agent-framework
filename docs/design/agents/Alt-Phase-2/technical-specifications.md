@@ -324,6 +324,47 @@ class ScratchPadMemoryInterface(ABC):
 
 ---
 
+## 3.7 Internal Identity and Capability Interfaces
+
+```python
+class InternalIdentityProviderInterface(ABC):
+    @abstractmethod
+    def current_identity(self) -> "InternalIdentityContext":
+        ...
+
+
+class ArbitratorCapabilityServiceInterface(ABC):
+    @abstractmethod
+    def issue_shared_write_capability(
+        self,
+        session_id: str,
+        run_id: str,
+        ttl_seconds: int = 300,
+    ) -> str:
+        ...
+
+    @abstractmethod
+    def validate_shared_write_capability(
+        self,
+        capability_token: str,
+        session_id: str,
+        run_id: str,
+    ) -> bool:
+        ...
+```
+
+### Required Semantics
+
+1. Shared writes to `shared:/` MUST require both:
+   - identity class `arbitrator`,
+   - valid runtime-issued shared-write capability.
+2. Arbitrator identity string without capability MUST be rejected.
+3. Capability tokens MUST be scope-bound (`session_id`, `run_id`) and time-bound.
+4. Capability replay outside declared scope MUST be rejected and logged.
+5. Capability validation MUST be enforced at facade and storage-boundary shared-write entrypoints.
+
+---
+
 ## 4. Data Schemas
 
 ## 4.1 Namespace Schema
@@ -626,8 +667,24 @@ class AgentContract(BaseModel):
 
 Alt Phase 2 canonical local layout:
 
-1. Skill manifests: `skills/manifests/<skill_id>/<version>.yaml`
-2. Registry index: `skills/registry/index.yaml`
+1. Portable canonical skill artifact: `skills/<skill_id>/<version>/SKILL.md`
+2. Governance manifest overlay: `skills/manifests/<skill_id>/<version>.yaml`
+3. Registry index: `skills/registry/index.yaml`
+
+`SKILL.md` requirements:
+
+1. MUST include valid YAML frontmatter for machine-readable metadata.
+2. MUST map deterministically to `SkillManifest` and `SkillRegistryEntry` fields.
+3. MUST be validated with the AgentSkills reference validator (`skills-ref validate`) before approval and before production-like execution.
+4. MUST include sections sufficient to derive:
+   - profile layer (backstory/runtime-instruction behavior),
+   - task layer (tooling/task flow behavior),
+   - artifact expectations (output/artifact intent and provenance expectations).
+
+Reference source for compatibility baseline:
+
+1. AgentSkills reference repository: `https://github.com/agentskills/agentskills/tree/main`.
+2. Additional ecosystem reference: `https://github.com/anthropics/skills`.
 
 Registry index minimum fields:
 
@@ -637,14 +694,55 @@ Registry index minimum fields:
 4. `owner`
 5. `review_metadata`
 
+Approval metadata requirement:
+
+1. For `status == approved`, `review_metadata` MUST include:
+   - `approval_id`,
+   - `approved_by`,
+   - `approved_at`,
+   - `change_reason`.
+
 Resolution flow:
 
 1. Parse `SkillRef` from `AgentContract.skills`.
 2. Resolve `SkillRegistryEntry` from index.
-3. Load `SkillManifest` from referenced path.
-4. Enforce lifecycle-state policy for current environment.
-5. Enforce tool/policy compatibility against agent contract.
-6. Execute with trace events that include resolved `skill_ref`.
+3. Load canonical `SKILL.md` and validate frontmatter/schema via `skills-ref validate`.
+4. Load `SkillManifest` governance overlay and validate `SKILL.md -> manifest` field mapping.
+5. Enforce lifecycle-state policy for current environment.
+6. Enforce tool/policy compatibility against agent contract.
+7. Compute contract-to-skill policy diff and classify impact (`content_only`, `behavioral`, `governance_touching`).
+8. Enforce approval policy for impact class.
+9. Execute with trace events that include resolved `skill_ref`.
+
+Runtime composition semantics:
+
+1. Baseline runtime envelope is loaded from `AgentContract`.
+2. Skill profile/task/artifact sections are applied as runtime overlays.
+3. Governance policies use restrictive merge:
+   - effective policy = intersection/most restrictive result.
+4. Any attempted expansion beyond contract hard limits MUST fail activation.
+5. Skill overlay replacement is allowed for soft fields (for example, `backstory`) when approval gates for the impact class are satisfied.
+
+Approval gating requirements for canonical `SKILL.md`:
+
+1. `content_only`: standard approval workflow.
+2. `behavioral`: requires policy-diff evidence and governance approval.
+3. `governance_touching`: requires dual approval (`governance` + `security/safety`) and mandatory behavior-test evidence.
+
+Mandatory CI checks for skill-enabled agents:
+
+1. Frontmatter/schema validity for every `SKILL.md`.
+2. Directory/layout and naming-convention validity for canonical skill paths.
+3. Deterministic mapping validity from `SKILL.md` metadata to internal registry/manifest fields.
+4. Policy-diff and impact-class classifier determinism for every skill change.
+5. No-expansion assertion checks (tool/sandbox/HITL/workspace envelope cannot widen).
+
+Governance evidence requirements:
+
+1. `skills-ref validate` output MUST be retained in release evidence artifacts.
+2. CI conformance reports for schema/layout/mapping checks MUST be retained in release evidence artifacts.
+3. Policy-diff and impact-classification reports MUST be retained in release evidence artifacts.
+4. Governance-touching skill approvals MUST include dual-approval metadata and behavior-test reports.
 
 Mandatory failure modes:
 
@@ -652,6 +750,13 @@ Mandatory failure modes:
 2. `SKILL_NOT_FOUND`: skill or version missing from registry.
 3. `SKILL_STATUS_DISALLOWED`: lifecycle state blocked for execution.
 4. `SKILL_POLICY_CONFLICT`: manifest tool chain conflicts with agent/tool/sandbox/HITL policy.
+5. `SKILL_APPROVAL_METADATA_MISSING`: transition/execution attempted without required approval metadata for approved state.
+6. `SKILL_SCHEMA_INVALID`: canonical `SKILL.md` failed reference-schema validation.
+7. `SKILL_LAYOUT_INVALID`: canonical skill directory/name/layout violates repository conventions.
+8. `SKILL_MAPPING_INVALID`: canonical `SKILL.md` metadata does not map consistently to governance overlay fields.
+9. `SKILL_POLICY_EXPANSION_DENIED`: skill overlay attempts to widen contract governance envelope.
+10. `SKILL_APPROVAL_CLASS_MISMATCH`: skill impact class requires a stronger approval path than provided.
+11. `SKILL_BEHAVIOR_EVIDENCE_MISSING`: required behavior-test evidence missing for impact class.
 
 ---
 
@@ -697,6 +802,71 @@ Mandatory failure modes:
 4. `SCRATCHPAD_PROMOTION_BLOCKED`: promotion attempted when policy disallows promotion.
 5. `SCRATCHPAD_INVALID_PATH`: configured scratch path violates root-placement rules.
 6. `SCRATCHPAD_BACKEND_UNAVAILABLE`: configured backend initialization or I/O failure.
+
+---
+
+## 4.9 Internal Identity and Capability Schemas
+
+```python
+class InternalIdentityContext(BaseModel):
+    caller_id: str
+    identity_class: Literal["agent", "arbitrator", "system"]
+    session_id: str | None = None
+    run_id: str | None = None
+
+
+class SharedWriteCapability(BaseModel):
+    capability_id: str
+    issued_to: str
+    session_id: str
+    run_id: str
+    issued_at: datetime
+    expires_at: datetime
+    status: Literal["active", "expired", "revoked"]
+```
+
+Validation invariants:
+
+1. `identity_class == "arbitrator"` is required but not sufficient for shared writes.
+2. Shared write capability MUST be active and unexpired at validation time.
+3. Capability scope (`session_id`, `run_id`) MUST match caller scope.
+
+---
+
+## 4.10 Migration and Backfill Governance Schemas
+
+```python
+class MigrationPreflightReport(BaseModel):
+    migration_id: str
+    generated_at: datetime
+    legacy_record_counts: dict[str, int]
+    target_namespace_policy: str
+    rollback_checkpoint_id: str
+    status: Literal["ready", "blocked"]
+    blocking_reasons: list[str] = Field(default_factory=list)
+
+
+class MigrationApplyReport(BaseModel):
+    migration_id: str
+    applied_at: datetime
+    updated_record_counts: dict[str, int]
+    integrity_checks_passed: bool
+    journal_id: str
+
+
+class MigrationRollbackReport(BaseModel):
+    migration_id: str
+    rollback_at: datetime
+    rollback_checkpoint_id: str
+    restored_record_counts: dict[str, int]
+    status: Literal["completed", "failed"]
+```
+
+Validation invariants:
+
+1. Apply MUST NOT start unless preflight status is `ready`.
+2. Preflight MUST include a rollback checkpoint reference.
+3. Integrity-check failure in apply MUST trigger rollback/remediation workflow.
 
 ---
 
@@ -878,6 +1048,31 @@ stateDiagram-v2
 
 ---
 
+## 5.9 Migration Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> preflight
+    preflight --> blocked: failed checks
+    preflight --> ready: checks pass
+    ready --> apply: approval to execute
+    apply --> validate: apply complete
+    validate --> committed: integrity checks pass
+    validate --> rollback: integrity checks fail
+    rollback --> remediated: restore succeeded
+    blocked --> [*]
+    committed --> [*]
+    remediated --> [*]
+```
+
+### Required Runtime Semantics
+
+1. `apply` stage MUST require preflight `ready` status and rollback checkpoint.
+2. `validate` stage MUST include mixed-dataset compatibility and query-correctness checks.
+3. Failed validation MUST move to rollback/remediation before rollout can proceed.
+
+---
+
 ## 6. Namespace Policy Specification
 
 ## 6.1 Format
@@ -890,7 +1085,7 @@ stateDiagram-v2
 
 1. Private write: allowed only for owner identity.
 2. Private read: allowed for owner identity (future allow-list optional).
-3. Shared write: allowed only for arbitrator identity.
+3. Shared write: allowed only for arbitrator identity with valid runtime-issued shared-write capability.
 4. Shared read: allowed to all authenticated agent identities in multi-agent session.
 5. Union read default scope: `[active_private_namespace, "shared:/"]`.
 
@@ -944,6 +1139,11 @@ Each trigger class MUST map to:
 10. `ScratchPadInvalidPathError`
 11. `ScratchPadBackendUnavailableError`
 12. `FilesystemTopologyValidationError`
+13. `ArbitratorCapabilityMissingError`
+14. `ArbitratorCapabilityInvalidError`
+15. `ArbitratorIdentitySpoofBlockedError`
+16. `MigrationPreflightBlockedError`
+17. `MigrationApplyIntegrityFailureError`
 
 ## 7.2 Mandatory Fallback Behaviors
 
@@ -955,6 +1155,13 @@ Each trigger class MUST map to:
    - record journal state with error,
    - retries proceed via recovery worker,
    - shared visibility remains withheld until committed.
+3. If shared-write capability validation fails:
+   - reject write,
+   - emit security/audit event,
+   - retain system operation without shared mutation.
+4. If migration preflight is blocked:
+   - block apply execution,
+   - emit migration governance event with blocking reasons.
 
 ---
 
@@ -1033,6 +1240,9 @@ Validate no shared-write bypass through:
 12. Scratch pad task-board behavior tests (plan creation, item status transitions, note/artifact reference writes).
 13. Filesystem-root topology tests (`install_root`, `runtime_data_root`, `workspace_root`) and invalid-overlap rejection tests.
 14. Scratch path placement tests (workspace disallowed except explicit test-mode fixture profile).
+15. Arbitrator capability enforcement tests (missing/invalid/replay capability rejection).
+16. Migration preflight/apply/rollback governance tests.
+17. Skill registry approval-authority metadata validation tests.
 
 ---
 
@@ -1052,6 +1262,11 @@ Every contract checklist item MUST map to a CI evidence artifact:
 10. Skill registry/manifest resolution compliance -> `skill-registry-validation-report.json`
 11. Scratch pad scope/retention/promotion compliance -> `scratchpad-compliance-report.json`
 12. Filesystem topology and scratch-placement compliance -> `filesystem-layout-compliance-report.json`
+13. Identity and capability enforcement compliance -> `identity-enforcement-report.json`
+14. Migration preflight governance compliance -> `migration-preflight-report.json`
+15. Migration apply integrity compliance -> `migration-apply-report.json`
+16. Migration rollback readiness/completion -> `migration-rollback-report.json`
+17. Skill registry authority and approval metadata compliance -> `skill-registry-authority-report.json`
 
 Release candidates MUST publish this artifact set as part of verification gates.
 
@@ -1070,6 +1285,10 @@ filesystem:
 
 memory:
   mode: single_agent  # single_agent | multi_agent
+  identity:
+    enforce_shared_write_capability: true
+    shared_write_capability_ttl_seconds: 300
+    reject_identity_spoofing: true
   scratch_pad:
     enabled: false
     backend: "sqlite"  # sqlite | in_memory
@@ -1093,6 +1312,11 @@ memory:
     validate_on_agent_load: true
     fail_on_missing_required_fields: true
     validate_skills_on_agent_load: true
+  migration:
+    require_preflight: true
+    default_legacy_namespace: "legacy:/"
+    rollback_checkpoint_required: true
+    block_apply_on_preflight_failure: true
   execution:
     sandbox_required_default: true
     privileged_exec_requires_hitl: true
@@ -1140,12 +1364,23 @@ Alt Phase 2 must leave the following clean handoff points for Phase 3:
 8. Skill manifest repository and registry semantics are stable enough for Phase 3 federation/remote-registry extension.
 9. Scratch pad runtime contracts and event semantics are stable for orchestrator/workflow adoption in Phase 3.
 10. Runtime filesystem topology and scratch-path placement rules are stable across local, container, and cloud deployments.
+11. Arbitrator identity+capability enforcement contracts are stable for shared-write security hardening.
+12. Migration governance contracts (`preflight`, `apply`, `rollback`) are stable for operational rollout safety.
 
 ---
 
 ## 11. Metadata Migration and Backfill Strategy
 
 1. Multi-agent metadata rollout MUST include migration strategy for legacy records missing `namespace` and promotion fields.
-2. Migration MUST support reversible rollout and explicit rollback criteria.
-3. Validation metrics MUST track query correctness across mixed migrated/unmigrated datasets.
-4. Backfill operations MUST emit structured migration events for auditability.
+2. Migration MUST run in two stages:
+   - `preflight` (inventory, mapping validation, rollback checkpoint validation),
+   - `apply` (staged writes with migration journal).
+3. Apply MUST be blocked unless preflight status is `ready`.
+4. Migration MUST support reversible rollout and explicit rollback criteria/checkpoints.
+5. Validation metrics MUST track query correctness across mixed migrated/unmigrated datasets.
+6. Backfill operations MUST emit structured migration events for auditability.
+7. Recommended preflight outputs:
+   - legacy record counts by store/domain,
+   - namespace stamping policy summary,
+   - rollback checkpoint reference,
+   - blocking reasons (if any).

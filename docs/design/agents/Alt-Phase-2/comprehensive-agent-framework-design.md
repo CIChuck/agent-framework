@@ -198,14 +198,31 @@ The system does not rely on a cross-store ACID transaction. It enforces effectiv
 3. Agent contracts reference skills by pinned identifiers (`skill_id@version`), not inline capability definitions.
 4. Resolved skills must satisfy tool/sandbox/guardrail/HITL and observability contracts.
 5. Skill scope boundaries and handoff behavior align with Phase 3 delegation/handoff architecture.
+6. Canonical skill artifact is `SKILL.md` (with YAML frontmatter); manifest/registry metadata is governance overlay.
 
 ### Skill Plane Architecture (Phase 2 Baseline)
 
-1. **Local filesystem-backed manifest repository:** `skills/manifests/<skill_id>/<version>.yaml`.
-2. **Registry index:** `skills/registry/index.yaml` provides authoritative discovery metadata.
-3. **Lifecycle governance:** `proposed -> approved -> deprecated -> retired`.
-4. **Execution gate:** production-like execution permits only `approved` skill versions.
-5. **Policy boundary:** shared skill catalog with per-agent contract allowlists.
+1. **Canonical portable skill artifact:** `skills/<skill_id>/<version>/SKILL.md`.
+2. **Governance manifest overlay:** `skills/manifests/<skill_id>/<version>.yaml`.
+3. **Registry index:** `skills/registry/index.yaml` provides authoritative discovery and lifecycle metadata.
+4. **Lifecycle governance:** `proposed -> approved -> deprecated -> retired`.
+5. **Execution gate:** production-like execution permits only `approved` skill versions.
+6. **Policy boundary:** shared skill catalog with per-agent contract allowlists.
+
+### AgentSkills Compatibility Architecture
+
+This alt design adopts AgentSkills compatibility as a portability baseline while preserving Friday governance controls.
+
+1. Source compatibility reference:
+   - `https://github.com/agentskills/agentskills/tree/main`
+   - `https://github.com/anthropics/skills`
+2. Validation compatibility path:
+   - Canonical artifact validation via `skills-ref validate`.
+3. Resolver flow:
+   - discover `skill_id@version` -> load `SKILL.md` -> validate schema/frontmatter -> apply registry lifecycle/approval policy -> activate skill with policy-gated tool execution -> emit auditable lifecycle events.
+4. Compatibility profiles:
+   - `strict` mandatory for non-development enforcement (`staging`, `preprod`, `production`),
+   - `advisory` for controlled development-time flexibility.
 
 ---
 

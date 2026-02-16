@@ -89,6 +89,13 @@ Canonical field definitions follow `technical-specifications.md` section `4.6` a
 7. `memory.scratch_pad.fallback_mode`
 8. `memory.scratch_pad.purge_interval_seconds`
 
+### 2.5 Skill Registry Approval Metadata (When Lifecycle Changes to `approved`)
+
+1. `SkillRegistryEntry.review_metadata.approval_id`
+2. `SkillRegistryEntry.review_metadata.approved_by`
+3. `SkillRegistryEntry.review_metadata.approved_at`
+4. `SkillRegistryEntry.review_metadata.change_reason`
+
 ---
 
 ## 3. Validation Invariants
@@ -117,6 +124,13 @@ Canonical field definitions follow `technical-specifications.md` section `4.6` a
 22. Scratch persisted path MUST resolve under `filesystem.runtime_data_root` when backend is persistent.
 23. Scratch persisted path MUST NOT resolve under `filesystem.workspace_root` except explicit test-mode fixture configuration.
 24. Runtime config MUST be deployment-git-agnostic (no requirement for source-repository presence).
+25. Shared writes to `shared:/` MUST require both arbitrator identity class and valid runtime-issued internal write capability.
+26. Capability spoof/replay attempts MUST be rejected and auditable.
+27. Transition `SkillManifest.status` to `approved` MUST include required approval metadata in registry review metadata.
+28. Migration execution in multi-agent rollout MUST require successful preflight result and defined rollback checkpoint.
+29. Each canonical skill `SKILL.md` MUST pass AgentSkills reference validation (`skills-ref validate`) before approval.
+30. Canonical skill directory and naming layout MUST satisfy repository conformance rules.
+31. `SKILL.md` frontmatter metadata MUST map deterministically to internal `SkillManifest` and `SkillRegistryEntry` fields.
 
 ---
 
@@ -167,3 +181,7 @@ Canonical field definitions follow `technical-specifications.md` section `4.6` a
 5. Skill manifest resolution, lifecycle-state gating, and tool-chain compatibility behavior are documented and tested when `skills` are declared.
 6. Scratch pad scope/retention/promotion policy behavior is documented and tested when scratch pad is enabled.
 7. Filesystem-root topology and scratch-path placement behavior are documented and tested in runtime validation suites.
+8. Arbitrator capability-based shared-write enforcement is documented and tested.
+9. Migration preflight/apply/rollback governance behavior is documented and tested.
+10. Skill approval-authority metadata requirements are documented and tested.
+11. Canonical `SKILL.md` conformance (`skills-ref`, layout, mapping) requirements are documented and tested.

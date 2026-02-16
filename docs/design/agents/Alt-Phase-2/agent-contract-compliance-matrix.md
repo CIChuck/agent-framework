@@ -45,7 +45,7 @@ Overall readiness classification:
 This pass used both:
 
 1. section-by-section document comparison, and
-2. targeted keyword scans across companion docs for contract-critical terms (`sandbox`, `tool policy`, `allowlist`, `model_policy`, `skills`, `skill_id@`, `manifest`, `registry`, `scratch`, `scratch_pad_policy`, `ttl`, `filesystem`, `runtime_data_root`, `workspace_root`, `install_root`, `mandatory_approval`, `awaiting_human`, `request_id`, `default_action`).
+2. targeted keyword scans across companion docs for contract-critical terms (`sandbox`, `tool policy`, `allowlist`, `model_policy`, `skills`, `skill_id@`, `manifest`, `registry`, `approval_id`, `approved_by`, `scratch`, `scratch_pad_policy`, `ttl`, `filesystem`, `runtime_data_root`, `workspace_root`, `install_root`, `capability`, `preflight`, `rollback_checkpoint`, `mandatory_approval`, `awaiting_human`, `request_id`, `default_action`).
 
 If a requirement had no explicit section anchor and no relevant keyword hits, it remained `Missing`.
 
@@ -63,6 +63,7 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | Tool policy | sec 3 item 11, sec 5 | Full | Policy schemas are specified and Phase 2 includes tool/sandbox governance workstream | Threshold defaults and policy tuning guidance remain implementation-specific | Keep policy contract in technical specs and validate in Phase 2 tests | Phase 2 | `friday-tools` + `friday-agent` |
 | Model policy | sec 3 item 12 | Full | `ModelPolicy` schema and contract validation are included in technical specs and Phase 2 schema workstream | Runtime selection heuristics may need future optimization guidance | Keep fallback/cost/latency policy validation in Phase 2 gates | Phase 2 | `friday-llm` + `friday-core` |
 | Memory policy | sec 3 item 13, sec 9 | Full | Dual memory mode architecture and runtime config are explicit | None material | Keep as baseline and link to contract schema | Phase 2 | `friday-memory` + `friday-runtime` |
+| Arbitrator shared-write anti-spoof enforcement | sec 9.2 | Partial | Arbitrator-only write policy exists, but identity+capability anti-spoof detail is newly added and requires full test hardening | Capability issuance/validation flow needs full gate evidence | Add capability enforcement tests and evidence artifacts as required gate | Phase 2+3 | `friday-runtime` + `friday-memory` |
 | Scratch pad policy and scope isolation | sec 3 item 21, sec 9.1 | Full | Scratch pad policy and `(session_id, agent_id)` scope isolation are defined in contract/spec/phase plans | Cross-agent sharing policy extensions are future scope | Keep scope-isolation and access-denial tests mandatory | Phase 2 | `friday-memory` + `friday-runtime` |
 | Scratch pad retention and quotas | sec 9.1 | Full | TTL/quota semantics are represented in schema/spec/build docs | Workload-specific default tuning may evolve | Keep TTL/quota validation in Phase 2 gates | Phase 2 | `friday-memory` |
 | Scratch-to-durable promotion governance | sec 9.1 | Full | Explicit promotion-only policy and allow/deny behavior are documented | Policy tuning by agent class may evolve | Keep promotion allow/deny tests mandatory | Phase 2+3 | `friday-memory` + `friday-agent` |
@@ -72,8 +73,11 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | Escalation policy | sec 3 item 15, sec 10 | Full | Escalation policy schema and trigger taxonomy are specified and mapped to implementation/test workstreams | Organization-specific escalation profiles may need tuning | Keep escalation-trigger and default-action tests in Phase 3 suites | Phase 3 | `friday-agent/workflows` |
 | Skill definition and schema | sec 3 item 20, sec 5.3 | Full | `skills` field plus `SkillRef`/manifest schema are specified in contract/schema/spec docs | Skill catalog governance will evolve per team | Keep skill-schema validation mandatory when skills are declared | Phase 2 | `friday-core` + `friday-agent` |
 | Skill manifest repository definition | sec 5.4 | Full | Local filesystem-backed repository layout and registry index are specified in contract/spec/build-plan docs | Remote/federated extension remains Phase 3 scope | Keep local manifest/registry validation as Phase 2 required gate | Phase 2 | `friday-agent` + `friday-runtime` |
+| Canonical `SKILL.md` conformance and validator gating | sec 5.3, sec 5.4 | Partial | Skill governance and lifecycle are defined; explicit AgentSkills reference validation and schema/layout/mapping CI evidence need hard-gating language | Canonical format conformance can drift without mandatory validator/CI artifacts | Add mandatory `skills-ref validate` pre-approval/release gate, canonical schema/layout/mapping CI checks, and evidence artifacts | Phase 2+3 | `friday-agent` + `friday-runtime` + governance owner |
+| Skill runtime-profile composition governance | sec 5.3, sec 5.5 | Partial | Skills are documented as runtime profile overlays; composition precedence and no-expansion intent are represented | Composition behavior and approval-impact class enforcement need explicit CI/evidence hard gates | Add deterministic composition tests, policy-diff classifier gates, no-expansion assertions, and impact-class approval enforcement artifacts | Phase 2+3 | `friday-agent` + `friday-runtime` + governance owner |
 | Skill reference pinning (`skill_id@version`) | sec 5.3, sec 5.4 | Full | Pinned-reference rule is now explicit in contract/schema/spec/build docs | None material | Keep unpinned-reference rejection tests mandatory | Phase 2 | `friday-core` + `friday-agent` |
 | Skill lifecycle-state execution gate | sec 5.3, sec 5.4 | Full | `approved`-state execution gate and deprecation/retirement handling are documented | Organization-specific override policy may vary | Keep lifecycle-state gating tests mandatory in Phase 2/3 | Phase 2+3 | `friday-agent` + `friday-runtime` |
+| Skill approval-authority metadata enforcement | sec 5.4 | Partial | Registry lifecycle states and review metadata exist; explicit mandatory fields for `proposed -> approved` need dedicated gate coverage | Approval authority transitions need stricter conformance artifacts | Add approval-authority metadata validation suite and release artifact requirements | Phase 2+3 | `friday-agent` + governance owner |
 | Skill tool-chain policy compatibility | sec 5.3 | Full | Skill invariants and tool-chain subset checks are defined in technical specs and tests | Tool taxonomy may expand over time | Keep tool-chain policy compatibility checks in Phase 2 gates | Phase 2 | `friday-agent` + `friday-runtime` |
 | Skill lifecycle observability | sec 5.3, sec 11 | Full | Skill lifecycle states and required telemetry events are specified and mapped to evidence artifacts | Event field evolution may require versioned schema updates | Keep skill lifecycle event completeness checks in CI | Phase 2+3 | `friday-telemetry` + `friday-agent` |
 | Skill delegation/handoff behavior | sec 5.3, sec 13 | Partial | Handoff semantics are specified and linked to Phase 3 workflow/delegation workstreams | Execution depth for dynamic skill routing is Phase 3 scoped | Complete advanced skill routing/delegation suites in Phase 3 | Phase 3 | `friday-agent/workflows` |
@@ -89,6 +93,7 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | Execution result integrity | sec 6.3 | Full | Technical specs now define execution-result integrity requirements and Phase 2 includes integrity acceptance gates/tests | Hashing depth and artifact retention policy may need future refinement | Keep claim-to-output traceability tests as required gate | Phase 2 | `friday-agent` + `friday-telemetry` |
 | Memory namespace + arbitration | sec 9 | Full | Detailed in design/spec/build plan | None material | Maintain and test against bypass matrix | Phase 2 | `friday-memory` |
 | Metadata migration/backfill strategy | sec 9, sec 12 | Full | Technical specs and Phase 2 now define migration/backfill strategy and validation goals | Operational sizing/playbook detail can be expanded | Keep migration correctness and rollback readiness as Phase 2 exit gate | Phase 2 | `friday-memory` + runtime ops |
+| Migration governance (`preflight`, `apply`, `rollback`) | sec 9.3, sec 12 | Partial | Migration/backfill exists, but preflight gating and checkpoint strictness need explicit evidence enforcement | Preflight-ready gate and rollback checkpoint artifacts need hard gating | Add migration governance suite and artifacts for preflight/apply/rollback | Phase 2+3 | `friday-memory` + runtime ops |
 | HITL request/response payload contract | sec 10.6 | Full | HITL payload requirements are now specified and mapped to Phase 3 implementation | Payload versioning strategy may need extension | Validate payload compatibility via workflow/HITL tests | Phase 3 | `friday-agent/workflows` |
 | HITL timeout/default behavior | sec 10.7 | Full | Technical specs define timeout/default semantics and Phase 3 includes implementation gates | Environment-specific timeout profiles may need additional tuning | Keep deterministic timeout tests as required gate | Phase 3 | `friday-runtime` + `friday-agent` |
 | HITL metrics | sec 10.8 | Full | HITL KPI set and SLO defaults are included in plans/specs and test strategy | Threshold tuning may continue after pilot runs | Keep KPI thresholds as release gates | Phase 3 | `friday-telemetry` |
@@ -111,6 +116,8 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 2. Authority-policy templates and remote-registry governance ownership models need final standardization for broader adoption.
 3. Scratch pad default TTL/quota values need workload-specific calibration.
 4. Deployment-profile defaults for filesystem roots and scratch backend selection need environment-class calibration.
+5. Migration governance artifacts (`preflight`, `apply`, `rollback`) need strict release gating.
+6. Skill approval-authority transition controls need final governance-owner assignment and policy ratification.
 
 ## 4.3 Other Deficiencies
 
@@ -143,7 +150,7 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 3. Completed: `phase-3-build-plan.md` now includes HITL protocol/authority, artifact governance, and contract compliance gate workstreams.
 4. Completed: `phase-3-transition-plan.md` now includes contract-governance prerequisites and additional phase-exit requirements.
 5. Completed: `README.md` now clarifies `phase-1-build-plan.md` as historical baseline and indexes the compliance matrix.
-6. Remaining precision work: per-agent KPI calibration, authority-policy/registry template standardization, scratch default tuning, filesystem-profile default tuning, and package-level failure runbook depth.
+6. Remaining precision work: per-agent KPI calibration, authority-policy/registry template standardization, scratch default tuning, filesystem-profile default tuning, migration-governance gate hardening, and package-level failure runbook depth.
 
 ## 5.3 Concrete New Workstreams
 
@@ -188,6 +195,10 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 2. Add skill lifecycle observability requirements and CI evidence artifacts.
 3. Complete advanced skill routing/delegation behavior and replay-grade validation in Phase 3.
 4. Define local-to-federated registry extension governance without changing contract reference format.
+5. Add mandatory canonical `SKILL.md` conformance gates using AgentSkills reference validator (`skills-ref validate`) at pre-approval and release checkpoints.
+6. Add CI checks for canonical skill schema/frontmatter validity, directory/layout conformance, and deterministic `SKILL.md -> manifest/registry` mapping.
+7. Require validator/CI outputs in release evidence bundles.
+8. Add skill runtime-profile composition gates with no-expansion assertions and impact-class approval enforcement.
 
 ### Workstream H (Phase 2+3): Scratch Pad Governance and Orchestration
 
@@ -202,6 +213,24 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 3. Add deployment-profile templates (local/container/cloud) and conformance tests.
 4. Add release evidence artifact for filesystem layout compliance.
 
+### Workstream J (Phase 2+3): Arbitrator Identity and Capability Hardening
+
+1. Implement shared-write anti-spoof model requiring identity + runtime-issued capability.
+2. Enforce capability scope/TTL validation at all shared-write boundaries.
+3. Add capability replay/spoof rejection tests and mandatory evidence artifacts.
+
+### Workstream K (Phase 2+3): Migration Governance Hardening
+
+1. Implement mandatory migration preflight gating before apply.
+2. Enforce rollback checkpoint requirement and integrity-validation gates.
+3. Add mandatory preflight/apply/rollback artifacts to release evidence requirements.
+
+### Workstream L (Phase 2+3): Skill Approval-Authority Governance
+
+1. Enforce required authority metadata for `proposed -> approved` transitions.
+2. Add approver-authority validation and immutable review-history checks.
+3. Add dedicated skill-approval authority evidence artifact to release gates.
+
 ---
 
 ## 6. Exit Gates (Contract-Aligned)
@@ -215,6 +244,11 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 5. Filesystem-backed skill manifest repository and pinned-reference validation gates are green when skills are declared.
 6. Scratch pad policy/scope/retention/promotion validation gates are green when scratch pad is enabled.
 7. Filesystem-topology and scratch-placement validation gates are green.
+8. Shared-write anti-spoof (identity+capability) gates are green.
+9. Migration preflight/apply/rollback governance gates are green.
+10. Skill approval-authority metadata gates are green.
+11. Canonical `SKILL.md` validator and schema/layout/mapping CI gates are green when skills are declared.
+12. Skill runtime-profile composition and no-expansion gates are green when skills are declared.
 
 ## 6.2 Phase 3 Exit Gate Additions
 
@@ -226,6 +260,11 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 6. Skill routing/delegation and registry-extension compatibility evidence are included in release gates.
 7. Scratch orchestration/workflow integration and replay correlation evidence are included in release gates.
 8. Filesystem-topology conformance evidence is included for local/container/cloud deployment profiles.
+9. Shared-write anti-spoof enforcement remains green in orchestrated multi-agent suites.
+10. Migration governance artifacts (`preflight`, `apply`, `rollback`) are required in release evidence.
+11. Skill approval-authority transition evidence is required in release evidence.
+12. Canonical skill conformance evidence (`skills-ref` + schema/layout/mapping reports) is required in release evidence.
+13. Skill runtime-profile composition evidence (`policy-diff`, impact class, no-expansion assertions) is required in release evidence.
 
 ---
 
@@ -242,7 +281,10 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | 7 | Skill contract/manifest/registry governance | `friday-agent` + `friday-runtime` | 1, 2, 3 |
 | 8 | Scratch pad governance and observability | `friday-memory` + `friday-telemetry` | 1, 3 |
 | 9 | Filesystem topology and path governance | `friday-runtime` + ops owner | 1, 2, 3 |
-| 10 | Contract compliance CI gate | `tests/lab` + docs owner | 1-9 |
+| 10 | Arbitrator identity/capability hardening | `friday-runtime` + `friday-memory` | 1, 2, 3 |
+| 11 | Migration governance hardening | `friday-memory` + runtime ops | 1, 2, 3 |
+| 12 | Skill approval-authority governance | `friday-agent` + governance owner | 1, 2, 3 |
+| 13 | Contract compliance CI gate | `tests/lab` + docs owner | 1-12 |
 
 ---
 
@@ -252,3 +294,4 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 2. Finalize concrete KPI/SLO numeric thresholds for HITL latency, timeout rate, and event completeness.
 3. Add CI artifact mapping for contract checklist evidence at release checkpoints.
 4. Standardize authority-policy templates and governance-owner assignments for approver scopes.
+5. Ratify governance owners for skill approval-authority transitions and migration preflight sign-off.

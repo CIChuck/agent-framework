@@ -30,6 +30,10 @@ This document set is currently marked **Proposed for Approval**.
    - Verification and CI gate strategy for contract compliance.
 11. `agent-integration-test-plan.md`
    - End-to-end integration test planning for solitary-agent and multi-agent workflows, including environment construction.
+12. `gap-closure-addendum.md`
+   - Focused closure plan and status for identity/capability hardening, migration governance, and skill approval authority.
+13. `skills-compatibility-profile.md`
+   - Canonical compatibility profile for skill validation/enforcement modes across environments.
 
 ## Source Inputs
 
@@ -37,6 +41,9 @@ This alt track incorporates findings from:
 
 - `docs/design/agents/Phase-2/codex-phase-2-build-plan-commentary.md`
 - Existing Phase 2 docs under `docs/design/agents/Phase-2/`
+- Skill reference ecosystems:
+  - `https://github.com/agentskills/agentskills/tree/main`
+  - `https://github.com/anthropics/skills`
 
 ## Compliance Posture
 
@@ -49,3 +56,16 @@ Per `agent-contract-compliance-matrix.md`, this document set is now broadly cont
 5. Phase 3 extension strategy for optional federated/remote skill registry operations.
 6. Scratch pad TTL/quota defaults and workflow integration depth calibration.
 7. Deployment-profile defaults for runtime filesystem roots and scratch backend selection.
+
+## Canonical Terminology
+
+This glossary is the single source of truth for skill terms used across Alt-Phase-2 documents.
+
+1. `SkillRef`: pinned contract reference in `skill_id@version` format.
+2. `SKILL.md`: canonical portable skill artifact at `skills/<skill_id>/<version>/SKILL.md` with YAML frontmatter.
+3. `SkillManifest`: governance overlay artifact, typically `skills/manifests/<skill_id>/<version>.yaml`.
+4. `SkillRegistryEntry`: discovery and governance metadata row, typically in `skills/registry/index.yaml`.
+5. `Strict compatibility`: block execution on schema/layout/mapping/policy conflicts.
+6. `Advisory compatibility`: allow controlled non-critical compatibility drift with warning telemetry and governance review.
+7. `Skill activation`: runtime operation that loads and enables a resolved skill for execution.
+8. `Skill discovery`: runtime operation that enumerates policy-eligible skills for a contract/session context.

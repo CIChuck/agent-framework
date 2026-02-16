@@ -9,6 +9,8 @@
 - `docs/design/agents/Alt-Phase-2/agent-contract-compliance-matrix.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-schema-spec.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-test-strategy.md`
+- AgentSkills reference repository: `https://github.com/agentskills/agentskills/tree/main`
+- Additional skill ecosystem reference: `https://github.com/anthropics/skills`
 
 ---
 
@@ -29,6 +31,7 @@ Implement Phase 3 orchestration and workflow capabilities on top of Alt Phase 2 
 7. Preserve pinned skill-reference semantics (`skill_id@version`) while extending registry capabilities.
 8. Integrate scratch pad memory into orchestration/workflow execution without changing durable memory semantics.
 9. Preserve runtime filesystem-root separation in all orchestration/delegation flows.
+10. Extend Phase 2 identity-capability and skill-approval authority controls into delegated workflows.
 
 ---
 
@@ -129,6 +132,9 @@ Deliverables:
 4. Add skill-level replay and audit traceability requirements.
 5. Extend local skill registry model to optional remote/federated registry synchronization without changing contract reference format.
 6. Define deprecation and retirement rollout policies for shared skill catalogs across teams.
+7. Add delegated approval-policy model for skill lifecycle transitions in production governance workflows.
+8. Preserve canonical AgentSkills conformance gates (`skills-ref validate`, schema/layout/mapping CI checks) during federation and delegation flows.
+9. Preserve Phase 2 runtime profile-composition and no-expansion governance semantics in delegated/federated execution paths.
 
 Deliverables:
 
@@ -137,6 +143,9 @@ Deliverables:
 3. Skill replay and audit evidence outputs.
 4. Registry federation strategy and compatibility specification.
 5. Deprecation/retirement operational runbook for skill versions.
+6. Delegated skill-approval authority model and validation suite.
+7. Canonical skill conformance evidence bundle requirements for federated catalogs.
+8. Composed-profile determinism and no-expansion enforcement for delegated skill activation.
 
 ## Workstream I: Scratch Pad Orchestration and Workflow Integration
 
@@ -204,6 +213,39 @@ Phase 3 must include a formal decision checkpoint:
 13. Pinned skill-reference compatibility is preserved under registry federation scenarios.
 14. Scratch pad orchestration/workflow integration tests pass with scope and TTL guarantees.
 15. Filesystem-topology and workspace-contamination tests pass for orchestration workflows.
+16. Delegated skill-approval authority tests pass with audit evidence.
+17. Shared-write identity+capability enforcement remains green under orchestrated multi-agent load.
+18. Migration governance artifacts (`preflight`, `apply`, `rollback`) are present for release readiness where migration paths are exercised.
+19. Canonical `SKILL.md` conformance gates (`skills-ref`, schema/layout/mapping) remain green under orchestration and federation scenarios.
+20. Delegated/federated skill activation preserves profile/task/artifact composition semantics and rejects governance expansion.
+
+## 6.1 AI-Agent Implementation Readiness for Compatibility Codebase
+
+Phase 3 compatibility work is decision-complete when implemented with the defaults and outputs below.
+
+Required implementation inputs:
+
+1. Phase 2 canonical skill and validation contracts.
+2. Delegation/handoff policy contracts and HITL authority constraints.
+3. Federation and approval-governance invariants from contract/spec/compliance docs.
+4. AgentSkills schema reference implementation (`https://github.com/agentskills/agentskills/tree/main`).
+5. Skill profile composition and impact-class approval rules from Phase 2 compatibility docs.
+
+Required implementation outputs:
+
+1. Delegated workflow execution that preserves canonical skill validation and governance gates.
+2. Federation paths that do not bypass `skills-ref` validation and local policy checks.
+3. Evidence bundle generation for orchestration/federation compatibility runs.
+4. Deterministic rejection/audit behavior for conformance failures in delegated and federated flows.
+5. Deterministic composed-profile outputs and no-expansion proofs across delegation boundaries.
+
+No-open-decision defaults for implementation agents:
+
+1. Canonical artifact remains `SKILL.md`; federation sync cannot replace this contract.
+2. `skill_id@version` remains the only supported runtime reference format.
+3. Production-like execution remains `strict` compatibility mode.
+4. Non-development environments (`staging`, `preprod`, `production`) enforce mandatory `strict` compatibility mode.
+5. Delegated approval workflows cannot grant execution to non-`approved` skills.
 
 ---
 
@@ -221,7 +263,8 @@ Phase 3 must include a formal decision checkpoint:
 | 8 | `friday-agent`, `friday-runtime` | Skill orchestration, delegation, and registry-federation enforcement | 5, 7 |
 | 9 | `friday-memory`, `friday-agent/workflows` | Scratch pad orchestration/workflow integration and replay correlation | 2, 5, 7 |
 | 10 | `friday-runtime`, ops docs | Filesystem-topology governance and deployment profile conformance | 4, 7, 9 |
-| 11 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 8, 9, 10 |
+| 11 | `friday-agent`, governance ops | Delegated skill-approval authority workflows and audit controls | 8, 10 |
+| 12 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 8, 9, 10, 11 |
 
 ---
 
@@ -243,3 +286,6 @@ Phase 3 must include a formal decision checkpoint:
 14. Registry federation/remote-extension behavior preserves `skill_id@version` compatibility and governance controls.
 15. Scratch pad workflow mapping, HITL checkpoint logging, and replay correlation are implemented and validated.
 16. Runtime filesystem topology remains policy-compliant across local, container, and cloud deployment profiles.
+17. Delegated skill-approval authority model is implemented with auditable transition controls.
+18. Identity+capability shared-write enforcement remains valid under Phase 3 orchestration/delegation paths.
+19. Migration governance controls remain enforceable in Phase 3 rollout and upgrade workflows.

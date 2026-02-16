@@ -65,6 +65,12 @@ Every agent definition MUST include the required fields below. Optional fields a
 20. `skills` (optional): list of pinned skill references (`skill_id@version`) resolved through the skill manifest registry.
 21. `scratch_pad_policy` (optional): private working-memory policy for planning/checklists/notes/artifact references.
 
+Composition note:
+
+1. Agent Contract defines the baseline governance envelope.
+2. Active `SKILL.md` definitions may augment or replace profile/task/artifact sections at runtime.
+3. Runtime composition MUST preserve contract hard limits (skills may narrow policy but MUST NOT widen policy).
+
 Runtime prerequisite:
 
 1. Agent execution environments MUST provide runtime filesystem topology configuration (`install_root`, `runtime_data_root`, `workspace_root`, optional `cache_root`).
@@ -104,7 +110,11 @@ For each tool call, agent MUST log:
 
 ### 5.3 Agent Skill Contract
 
-An Agent Skill is a bounded capability module that maps intent to execution through orchestrated tool use.
+An Agent Skill is the runtime profile artifact for an agent invocation. It defines:
+
+1. profile skill behavior (backstory, role framing, operating style),
+2. task skill behavior (tool orchestration and task execution),
+3. expected artifact behavior (outputs and artifact expectations).
 
 Skill reference model:
 
@@ -112,8 +122,17 @@ Skill reference model:
 2. `version` MUST use semantic versioning (`major.minor.patch`).
 3. Unpinned references (`skill_id` without version or `latest`) are not allowed.
 4. Skills are reusable across agents but remain policy-scoped per agent contract.
+5. Each active runtime profile is resolved from one or more pinned skills plus contract baseline composition.
 
-Skill structure (manifest-defined):
+Canonical skill artifact model:
+
+1. Canonical portable artifact: `skills/<skill_id>/<version>/SKILL.md`.
+2. `SKILL.md` MUST include YAML frontmatter for machine-readable metadata.
+3. Governance overlay artifacts MAY exist for runtime control and enterprise governance:
+   - `skills/manifests/<skill_id>/<version>.yaml`
+   - `skills/registry/index.yaml`
+
+Skill structure (canonical skill + governance mapping):
 
 | Element | Description |
 | :--- | :--- |
@@ -123,6 +142,8 @@ Skill structure (manifest-defined):
 | Context Window | Required inputs from memory, environment, or user |
 | Invariant | Constraints that must hold during execution (safety, schema, policy) |
 | Output | Deliverable returned to caller (answer, artifact, or state change) |
+| Profile Layer | Backstory/instruction layer applied to runtime prompt composition |
+| Artifact Expectations | Required/expected artifact types, lifecycle hints, and provenance requirements |
 | Lifecycle State | Governance state: `proposed`, `approved`, `deprecated`, `retired` |
 
 Skill characteristics:
@@ -131,6 +152,7 @@ Skill characteristics:
 2. Tool orchestration: skills may invoke multiple tools sequentially or in parallel.
 3. Bounded scope: skills define in-scope boundaries and explicit handoff behavior.
 4. State awareness: skills can reuse persisted context across invocations.
+5. Profile overlap: skills may overlap with contract fields by design; overlap is governed by precedence and non-expansion rules.
 
 Skill enforcement:
 
@@ -141,17 +163,78 @@ Skill enforcement:
 5. Skill tool-chain steps MUST pass existing `tool_policy`, `sandbox_policy`, `guardrail_policy`, and HITL checks where applicable.
 6. Skill execution MUST emit auditable lifecycle events with correlation IDs and resolved manifest version.
 7. Out-of-scope requests MUST follow explicit skill handoff or escalation behavior.
+8. Canonical skill artifacts MUST pass AgentSkills-compatible schema validation before approval and production-like execution.
+9. If a skill replaces backstory, tool intent, or artifact behavior, runtime MUST apply composition validation before activation.
+10. Skill composition MUST NOT expand:
+   - tool permissions beyond contract allowlists,
+   - sandbox/network/write authority beyond contract policy,
+   - HITL bypass behavior for approval-required actions.
+
+Skill compatibility profiles:
+
+| Profile | Required Behavior | Optional Behavior |
+| :--- | :--- | :--- |
+| `strict` | Block activation/execution on schema, layout, lifecycle, or policy/tool mismatch. | None. |
+| `advisory` | Enforce security/lifecycle hard-blocks (`retired`, missing approval metadata, unsafe policy conflicts). | Permit non-critical compatibility drift with warnings, telemetry, and governance review task creation. |
+
+Default profile guidance:
+
+1. Non-development environments (`staging`, `preprod`, `production`): `strict` is mandatory.
+2. Development and exploratory environments: `advisory` allowed when explicitly configured.
+
+### 5.5 Runtime Composition and Precedence Contract
+
+Runtime composition order:
+
+1. Agent Contract baseline.
+2. Active skill profile layer(s) from canonical `SKILL.md`.
+3. Task execution directives resolved from skill task sections.
+
+Precedence rules:
+
+1. Skill profile/task/artifact sections MAY augment or replace corresponding contract soft fields (for example, backstory text and task-specific artifact expectations).
+2. Contract hard governance fields remain authoritative:
+   - `tool_policy`,
+   - `sandbox_policy`,
+   - `guardrail_policy`,
+   - `hitl_policy`,
+   - `failure_policy`,
+   - workspace boundaries.
+3. On conflict, runtime MUST take the most restrictive effective policy.
+
+Approval-impact classes for skills:
+
+1. `content_only`: instructional/content changes without policy/tool/artifact control changes.
+2. `behavioral`: modifies backstory, execution behavior, or artifact expectations.
+3. `governance_touching`: attempts to influence tool/sandbox/HITL/escalation or workspace behavior.
+
+Required approval gates by class:
+
+1. `content_only`: standard lifecycle approval.
+2. `behavioral`: enhanced review with policy-diff evidence.
+3. `governance_touching`: security/governance dual approval and mandatory test evidence; reject on policy expansion.
 
 ### 5.4 Skill Manifest and Registry Contract
 
-Phase 2 establishes a local filesystem-backed skill registry.
+Phase 2 establishes a local filesystem-backed skill registry with canonical `SKILL.md` compatibility.
 
 Repository model:
 
-1. Canonical skill manifests MUST be stored as YAML files under a versioned local path:
+1. Canonical skill definition MUST exist at:
+   - `skills/<skill_id>/<version>/SKILL.md`
+2. Governance manifest overlay SHOULD exist at:
    - `skills/manifests/<skill_id>/<version>.yaml`
-2. A registry index MUST map each `skill_id@version` to its manifest path, status, owner, and review metadata.
-3. The registry index MUST be treated as the authoritative discovery source at runtime.
+3. A registry index MUST map each `skill_id@version` to canonical skill path, manifest path (if present), status, owner, and review metadata.
+4. Runtime discovery MUST resolve canonical skill artifacts through registry metadata and enforce policy/lifecycle gates before activation.
+
+Schema validation reference point:
+
+1. AgentSkills reference repository and schema tooling:
+   - `https://github.com/agentskills/agentskills/tree/main`
+2. Additional open skill ecosystem reference:
+   - `https://github.com/anthropics/skills`
+3. Canonical validation command:
+   - `skills-ref validate <skill-path>`
 
 Manifest minimum fields:
 
@@ -182,6 +265,17 @@ Registry and approval rules:
    - lifecycle state is disallowed for execution,
    - required tools conflict with agent policy.
 4. Multi-agent workflows MAY share the same registry, but each agent MUST use explicit contract allowlists.
+
+Skill registry approval authority:
+
+1. Transition `proposed -> approved` MUST be human-authorized in Phase 2.
+2. Approval records MUST include:
+   - `approval_id`,
+   - `approved_by`,
+   - `approved_at`,
+   - `change_reason`.
+3. Registry updates that change lifecycle state MUST be auditable and append immutable review history metadata.
+4. Runtime execution MUST reject `approved` transitions missing required approval metadata.
 
 Example manifest and index entries:
 
@@ -345,6 +439,44 @@ Required policy knobs (when `scratch_pad_policy` is declared):
 6. `backend` (`in_memory` | `sqlite`) via runtime config
 7. `path` (required for persistent backends) via runtime config
 8. `fallback_mode` (`fail_fast` | `disable_scratch`) via runtime config
+
+### 9.2 Arbitrator Identity and Shared-Write Capability Contract
+
+Arbitrator-only shared writes MUST be enforced with identity plus capability validation.
+
+Required enforcement:
+
+1. Declaring caller identity as `arbitrator` is not sufficient by itself.
+2. Shared writes to `shared:/` MUST require a valid runtime-issued internal capability bound to session/run scope.
+3. Capability issuance and validation MUST be performed by trusted runtime components only.
+4. Capability replay outside allowed scope MUST be rejected.
+5. Capability verification MUST be enforced at all shared-write entrypoints (facade and storage-boundary paths).
+
+Required failure behaviors:
+
+1. Missing capability -> reject write.
+2. Invalid capability -> reject write.
+3. Identity spoof attempt -> reject write and emit security/audit event.
+
+### 9.3 Migration and Backfill Governance Contract
+
+Migration/backfill from legacy records to multi-agent metadata MUST follow a two-stage operational flow.
+
+Required stages:
+
+1. `preflight`:
+   - inventory legacy records missing required fields,
+   - produce projected change counts by store/domain,
+   - validate namespace stamping policy and rollback checkpoint readiness.
+2. `apply`:
+   - execute staged metadata updates with migration journal entries,
+   - run post-apply integrity checks and publish results.
+
+Required controls:
+
+1. Dry-run mode MUST be supported before apply.
+2. Explicit rollback criteria MUST be defined before apply.
+3. Failed critical validations MUST block cutover and require rollback/remediation workflow.
 
 ---
 
@@ -636,3 +768,6 @@ Before approving an agent for production-like operation:
 18. Scratch-to-durable promotion policy is validated (allow/deny paths).
 19. Runtime filesystem roots are configured and validated (`install_root`, `runtime_data_root`, `workspace_root`).
 20. Scratch persisted path placement under `runtime_data_root` is validated (not `workspace_root`, except test fixtures).
+21. Arbitrator shared-write enforcement validates both identity class and runtime-issued capability.
+22. Migration preflight/apply/rollback governance outputs are reviewed before multi-agent cutover.
+23. Skill registry approval transitions (`proposed -> approved`) include required authority metadata and audit history.
