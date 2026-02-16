@@ -177,6 +177,24 @@ Deliverables:
 2. Deployment profile templates (local/container/cloud) with path defaults.
 3. Path-governance runbook updates for production operations.
 
+## Workstream K: Pipeline and Task Model Completion
+
+1. Define and implement `WorkflowDefinition` schemas with one-or-more pipeline references.
+2. Define and implement workflow-contained pipeline schemas and task-assignment schemas.
+3. Implement orchestrator dispatch semantics for dependency-ready tasks.
+4. Implement assignment claim/lease/recovery semantics for async execution.
+5. Implement pipeline composition semantics for reusable pipelines in higher-order workflows.
+6. Enforce typed task input/output contract validation across pipeline boundaries.
+7. Enforce hierarchy integrity checks (`workflow -> pipeline -> task`) at dispatch time.
+
+Deliverables:
+
+1. Pipeline/task schema contracts and compatibility tests.
+2. Dispatch/assignment deterministic behavior suite.
+3. Cross-pipeline contract-validation and lineage evidence outputs.
+4. Composition semantics and rollback/compensation policy runbook.
+5. Workflow-to-pipeline reference integrity validation suite.
+
 ---
 
 ## 4. `friday.py` Policy in Phase 3
@@ -218,6 +236,10 @@ Phase 3 must include a formal decision checkpoint:
 18. Migration governance artifacts (`preflight`, `apply`, `rollback`) are present for release readiness where migration paths are exercised.
 19. Canonical `SKILL.md` conformance gates (`skills-ref`, schema/layout/mapping) remain green under orchestration and federation scenarios.
 20. Delegated/federated skill activation preserves profile/task/artifact composition semantics and rejects governance expansion.
+21. Pipeline/task schema conformance gates pass for workflow-contained execution.
+22. Dispatch/claim/lease/recovery semantics are deterministic and auditable.
+23. Cross-pipeline typed handoff validation and lineage checks are green.
+24. Workflow schema cardinality and pipeline-reference integrity gates are green.
 
 ## 6.1 AI-Agent Implementation Readiness for Compatibility Codebase
 
@@ -238,6 +260,7 @@ Required implementation outputs:
 3. Evidence bundle generation for orchestration/federation compatibility runs.
 4. Deterministic rejection/audit behavior for conformance failures in delegated and federated flows.
 5. Deterministic composed-profile outputs and no-expansion proofs across delegation boundaries.
+6. Deterministic workflow->pipeline->task dispatch traces with hierarchy integrity proofs.
 
 No-open-decision defaults for implementation agents:
 
@@ -264,7 +287,8 @@ No-open-decision defaults for implementation agents:
 | 9 | `friday-memory`, `friday-agent/workflows` | Scratch pad orchestration/workflow integration and replay correlation | 2, 5, 7 |
 | 10 | `friday-runtime`, ops docs | Filesystem-topology governance and deployment profile conformance | 4, 7, 9 |
 | 11 | `friday-agent`, governance ops | Delegated skill-approval authority workflows and audit controls | 8, 10 |
-| 12 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 8, 9, 10, 11 |
+| 12 | `friday-agent/workflows`, `friday-runtime` | Pipeline/task schemas, dispatch semantics, and composition validation | 2, 5, 8 |
+| 13 | CLI/runtime policy | `FridayContainer` and `friday.py` decisions | 8, 9, 10, 11, 12 |
 
 ---
 
@@ -289,3 +313,5 @@ No-open-decision defaults for implementation agents:
 17. Delegated skill-approval authority model is implemented with auditable transition controls.
 18. Identity+capability shared-write enforcement remains valid under Phase 3 orchestration/delegation paths.
 19. Migration governance controls remain enforceable in Phase 3 rollout and upgrade workflows.
+20. Pipeline/task contracts are implemented and verified for workflow-contained orchestration.
+21. Reusable pipeline composition is implemented with typed handoff validation and lineage evidence.

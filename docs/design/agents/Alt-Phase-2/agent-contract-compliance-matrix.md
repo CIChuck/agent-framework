@@ -98,6 +98,8 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | HITL timeout/default behavior | sec 10.7 | Full | Technical specs define timeout/default semantics and Phase 3 includes implementation gates | Environment-specific timeout profiles may need additional tuning | Keep deterministic timeout tests as required gate | Phase 3 | `friday-runtime` + `friday-agent` |
 | HITL metrics | sec 10.8 | Full | HITL KPI set and SLO defaults are included in plans/specs and test strategy | Threshold tuning may continue after pilot runs | Keep KPI thresholds as release gates | Phase 3 | `friday-telemetry` |
 | Multi-agent coordination handoff | sec 13 | Full | Delegation/handoff payload contract and compatibility validation are now specified | None material | Keep handoff-schema verification in workflow gates | Phase 3 | `friday-agent` |
+| Workflow/pipeline/task schema completeness | sec 13 | Full | Canonical workflow/pipeline/task schemas and dispatch semantics are now specified in technical specifications and Phase 3 workstreams | Implementation quality depends on deterministic enforcement and test rigor | Keep workflow cardinality and reference-integrity gates mandatory | Phase 3 | `friday-agent/workflows` + `friday-runtime` |
+| Pipeline composition and typed handoff governance | sec 13, sec 14 | Full | Reusable pipeline composition and typed cross-pipeline contract expectations are now specified with lineage evidence requirements | Operational tuning still required for large-scale compositions | Keep typed handoff and lineage evidence mandatory in release gates | Phase 3 | `friday-agent/workflows` + `friday-telemetry` |
 | Quality/evaluation KPIs | sec 14 | Partial | KPI gate framework and baseline targets are present | Agent-class specific thresholds still require calibration | Finalize per-agent-class numeric thresholds in operational baseline | Phase 3 | `tests/lab` + telemetry |
 | Approval checklist enforcement | sec 16 | Full | Checklist-to-CI evidence mapping is explicit in specs/test strategy and phase plans | None material | Keep checklist artifact bundle mandatory at release checkpoint | Phase 2+3 | Program-level documentation owner |
 
@@ -231,6 +233,12 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 2. Add approver-authority validation and immutable review-history checks.
 3. Add dedicated skill-approval authority evidence artifact to release gates.
 
+### Workstream M (Phase 3): Workflow, Pipeline, and Task Contract Hardening
+
+1. Add canonical pipeline/task schema contracts and DAG validation rules.
+2. Add deterministic dispatch/assignment/lease-recovery behavior requirements.
+3. Add typed cross-pipeline handoff contract validation and lineage evidence requirements.
+
 ---
 
 ## 6. Exit Gates (Contract-Aligned)
@@ -264,7 +272,9 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 10. Migration governance artifacts (`preflight`, `apply`, `rollback`) are required in release evidence.
 11. Skill approval-authority transition evidence is required in release evidence.
 12. Canonical skill conformance evidence (`skills-ref` + schema/layout/mapping reports) is required in release evidence.
-13. Skill runtime-profile composition evidence (`policy-diff`, impact class, no-expansion assertions) is required in release evidence.
+13. Workflow/pipeline/task schema and dispatch evidence is required in release evidence.
+14. Cross-pipeline typed handoff and lineage evidence is required in release evidence.
+15. Skill runtime-profile composition evidence (`policy-diff`, impact class, no-expansion assertions) is required in release evidence.
 
 ---
 
@@ -284,7 +294,8 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 | 10 | Arbitrator identity/capability hardening | `friday-runtime` + `friday-memory` | 1, 2, 3 |
 | 11 | Migration governance hardening | `friday-memory` + runtime ops | 1, 2, 3 |
 | 12 | Skill approval-authority governance | `friday-agent` + governance owner | 1, 2, 3 |
-| 13 | Contract compliance CI gate | `tests/lab` + docs owner | 1-12 |
+| 13 | Workflow/pipeline/task contract hardening | `friday-agent/workflows` + `friday-runtime` | 1, 3, 4 |
+| 14 | Contract compliance CI gate | `tests/lab` + docs owner | 1-13 |
 
 ---
 

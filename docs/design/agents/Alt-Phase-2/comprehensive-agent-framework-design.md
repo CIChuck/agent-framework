@@ -250,6 +250,90 @@ This alt design adopts AgentSkills compatibility as a portability baseline while
 
 ---
 
+## 5.9 Agentic Architecture Overview
+
+This section provides a control-plane-first view intended for system architects and implementation teams.
+
+### Workflow, Pipeline, and Task Definitions
+
+1. **Workflow:** end-to-end execution lifecycle and governance context (policy, HITL, escalation, audit, recovery).
+2. **Pipeline:** executable graph of dependent work units inside a workflow.
+3. **Task:** atomic executable unit assigned to an agent (or role) within a pipeline.
+
+Design rule:
+
+1. A workflow contains one or more pipelines.
+2. A pipeline contains one or more tasks.
+3. Pipelines may be reused and composed into higher-order workflows.
+4. Task outputs MUST be typed and policy-validated before crossing pipeline boundaries.
+
+### Schema Decomposition Overview
+
+```mermaid
+flowchart TD
+    WCFG[WorkflowDefinition] -->|1..* pipeline_refs| PCFG[PipelineDefinition]
+    PCFG -->|1..* tasks| TCFG[TaskDefinition]
+    OCP[Orchestrator Control Plane] --> WCFG
+    OCP --> PD[PipelineDispatch]
+    PD --> PES[PipelineExecutionState]
+    OCP --> TA[TaskAssignment]
+```
+
+### Control Plane Overview
+
+```mermaid
+flowchart TD
+    U[User/Developer] --> W[Workflow Definition]
+    W --> P[Pipeline Definition DAG]
+    P --> O[Orchestrator Control Plane]
+    O --> A1[Agent A]
+    O --> A2[Agent B]
+    O --> A3[Agent N]
+    O --> H[HITL Gateway]
+    O --> T[Telemetry/Audit]
+    A1 --> S[Skill Resolver SKILL.md]
+    A2 --> S
+    A3 --> S
+    A1 --> M1[Single Agent Memory]
+    A2 --> M2[Multi Agent Memory]
+    A3 --> M2
+    M2 --> R[Arbitrator Service]
+    O --> AR[Artifact Store Workspace Root]
+```
+
+### Execution Lifecycle Overview
+
+```mermaid
+stateDiagram-v2
+    [*] --> WorkflowCreated
+    WorkflowCreated --> PipelineDispatched
+    PipelineDispatched --> TaskQueued
+    TaskQueued --> TaskClaimed
+    TaskClaimed --> TaskRunning
+    TaskRunning --> AwaitingHuman: approval required
+    AwaitingHuman --> TaskRunning: approved/resume
+    TaskRunning --> TaskCompleted
+    TaskRunning --> TaskFailed
+    TaskFailed --> TaskQueued: retry allowed
+    TaskCompleted --> PipelineGateCheck
+    PipelineGateCheck --> TaskQueued: next runnable tasks
+    PipelineGateCheck --> PipelineCompleted
+    PipelineCompleted --> WorkflowCompleted
+    WorkflowCompleted --> [*]
+```
+
+### Component Responsibility Matrix
+
+| Component | Primary Responsibilities | Explicit Non-Responsibilities |
+| :--- | :--- | :--- |
+| Orchestrator | Workflow/pipeline dispatch, task scheduling, dependency gating, retries, HITL pause/resume, completion transitions | Memory truth arbitration decisions |
+| Arbitrator | Shared-memory promotion decisions, conflict resolution for shared truth, promotion governance | Pipeline/task scheduling |
+| Agent Runtime | Execute assigned tasks with contract + skill profile, produce artifacts and telemetry | Global workflow scheduling |
+| Skill Resolver | Resolve/validate `SKILL.md`, compose runtime profile overlays, enforce no-expansion policy | Override contract hard-governance envelope |
+| Telemetry/Audit | Event correlation, replay evidence, KPI/SLO measurements | Runtime policy decisions |
+
+---
+
 ## 6. Interface Strategy
 
 ## 6.1 Preserve Existing ABC Contracts
@@ -371,3 +455,15 @@ Remaining precision work is now narrower:
 3. Arbitration and promotion semantics are specified with recoverable effective atomicity.
 4. Phase 3 transition is explicitly documented and dependent on this additive foundation.
 5. Agent Contract and compliance matrix are integrated as normative governance references.
+
+---
+
+## 12. Documentation Navigation
+
+Use this sequence for onboarding and implementation:
+
+1. `comprehensive-agent-framework-design.md`: architecture intent and control-plane gestalt.
+2. `technical-specifications.md`: normative schemas, state machines, failure semantics.
+3. `phase-2-build-plan.md`: additive foundations and compatibility gates.
+4. `phase-3-build-plan.md`: orchestration/workflow completion, pipeline/task execution depth.
+5. `agent-contract-test-strategy.md` and `agent-contract-compliance-matrix.md`: verification and release evidence posture.

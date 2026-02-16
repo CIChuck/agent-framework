@@ -870,6 +870,121 @@ Validation invariants:
 
 ---
 
+## 4.11 Workflow, Pipeline, and Task Schemas
+
+```python
+class WorkflowDefinition(BaseModel):
+    workflow_id: str
+    version: str
+    name: str
+    goal: str
+    pipeline_refs: list[str] = Field(default_factory=list)  # one or more pipeline IDs
+    entry_pipeline_id: str | None = None
+    completion_criteria: list[str] = Field(default_factory=list)
+    timeout_seconds: int | None = None
+
+
+class TaskDefinition(BaseModel):
+    task_id: str
+    name: str
+    description: str
+    owner_agent_id: str | None = None
+    owner_role: str | None = None
+    required_skills: list[str] = Field(default_factory=list)  # SkillRef values
+    input_contract: dict[str, str] = Field(default_factory=dict)
+    output_contract: dict[str, str] = Field(default_factory=dict)
+    dependencies: list[str] = Field(default_factory=list)  # upstream task_ids
+    retry_policy: dict[str, str] = Field(default_factory=dict)
+    hitl_policy_ref: str | None = None
+    completion_criteria: list[str] = Field(default_factory=list)
+
+
+class TaskAssignment(BaseModel):
+    assignment_id: str
+    workflow_id: str
+    pipeline_id: str
+    task_id: str
+    assigned_agent_id: str
+    assigned_at: datetime
+    lease_expires_at: datetime | None = None
+    status: Literal["assigned", "claimed", "running", "awaiting_human", "completed", "failed", "cancelled"]
+
+
+class PipelineDefinition(BaseModel):
+    pipeline_id: str
+    version: str
+    workflow_id: str
+    goal: str
+    tasks: list[TaskDefinition]
+    entrypoints: list[str] = Field(default_factory=list)
+    exit_conditions: list[str] = Field(default_factory=list)
+    timeout_seconds: int | None = None
+
+
+class PipelineDispatch(BaseModel):
+    dispatch_id: str
+    workflow_id: str
+    pipeline_id: str
+    session_id: str
+    run_id: str
+    dispatch_mode: Literal["sync", "async"] = "async"
+    priority: int = 100
+    requested_by: str
+    started_at: datetime
+
+
+class PipelineExecutionState(BaseModel):
+    workflow_id: str
+    pipeline_id: str
+    dispatch_id: str
+    status: Literal["created", "running", "awaiting_human", "blocked", "failed", "completed", "cancelled"]
+    runnable_tasks: list[str] = Field(default_factory=list)
+    blocked_tasks: list[str] = Field(default_factory=list)
+    completed_tasks: list[str] = Field(default_factory=list)
+    failed_tasks: list[str] = Field(default_factory=list)
+    last_transition_at: datetime
+
+
+class PipelineResult(BaseModel):
+    workflow_id: str
+    pipeline_id: str
+    dispatch_id: str
+    status: Literal["completed", "failed", "cancelled"]
+    output_artifacts: list[str] = Field(default_factory=list)
+    failure_summary: str | None = None
+    trace_ids: list[str] = Field(default_factory=list)
+```
+
+Schema decomposition:
+
+```mermaid
+flowchart TD
+    W[WorkflowDefinition] -->|contains 1..*| P[PipelineDefinition]
+    P -->|contains 1..*| T[TaskDefinition]
+    P --> D[PipelineDispatch]
+    P --> E[PipelineExecutionState]
+    P --> R[PipelineResult]
+    T --> A[TaskAssignment]
+```
+
+Validation invariants:
+
+1. `WorkflowDefinition.pipeline_refs` MUST contain one or more references.
+2. Every `pipeline_ref` MUST resolve to a valid `PipelineDefinition`.
+3. `PipelineDefinition.tasks` MUST contain one or more tasks.
+4. `TaskDefinition` MUST specify exactly one owner selector at definition time:
+   - `owner_agent_id`, or
+   - `owner_role`.
+5. Task dependencies MUST reference task IDs in the same pipeline.
+6. Pipeline task graph MUST be acyclic.
+7. A task cannot transition to `running` unless all dependencies are in terminal-success state.
+8. Task outputs crossing pipeline boundaries MUST satisfy downstream typed input contracts.
+9. Task-assignment leases MUST be time-bounded when dispatch mode is async.
+10. Pipeline composition MUST preserve contract governance envelope across composed pipelines.
+11. Workflow-level dispatch MUST preserve workflow->pipeline->task hierarchy integrity.
+
+---
+
 ## 5. State Machines
 
 ## 5.1 Arbitration Lifecycle
@@ -1073,6 +1188,46 @@ stateDiagram-v2
 
 ---
 
+## 5.10 Pipeline and Task Execution Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> pipeline_created
+    pipeline_created --> pipeline_running: dispatch
+    pipeline_running --> task_assigned: runnable task discovered
+    task_assigned --> task_claimed: agent claim accepted
+    task_claimed --> task_running
+    task_running --> task_awaiting_human: HITL gate
+    task_awaiting_human --> task_running: approved/resume
+    task_running --> task_completed
+    task_running --> task_failed
+    task_failed --> task_assigned: retry allowed
+    task_completed --> pipeline_running: dependency release
+    pipeline_running --> pipeline_blocked: no runnable tasks + pending dependencies
+    pipeline_blocked --> pipeline_running: dependency resolved
+    pipeline_running --> pipeline_completed: all tasks terminal success
+    pipeline_running --> pipeline_failed: unrecoverable task failure
+    pipeline_completed --> [*]
+    pipeline_failed --> [*]
+```
+
+Dispatch and assignment semantics:
+
+1. Orchestrator dispatches pipelines by dependency-ready task release.
+2. Assignment is explicit and auditable; task claim must reference assignment record.
+3. Async dispatch requires lease/heartbeat or equivalent stale-claim recovery.
+4. Completion gates evaluate task completion criteria and downstream dependency requirements.
+5. Cancellation, timeout, and compensation policies MUST be deterministic and auditable.
+
+Control-plane hierarchy guarantees:
+
+1. Workflow dispatch operates on one-or-more pipeline references.
+2. Pipeline dispatch operates on one-or-more task definitions.
+3. Orchestrator MUST NOT dispatch a pipeline that is not referenced by an active workflow definition.
+4. Orchestrator MUST NOT dispatch tasks outside the active pipeline definition.
+
+---
+
 ## 6. Namespace Policy Specification
 
 ## 6.1 Format
@@ -1243,6 +1398,9 @@ Validate no shared-write bypass through:
 15. Arbitrator capability enforcement tests (missing/invalid/replay capability rejection).
 16. Migration preflight/apply/rollback governance tests.
 17. Skill registry approval-authority metadata validation tests.
+18. Workflow/pipeline/task schema validation tests (DAG acyclicity and dependency integrity).
+19. Dispatch/assignment claim/lease/recovery determinism tests.
+20. Cross-pipeline typed handoff contract validation and lineage tests.
 
 ---
 
@@ -1267,6 +1425,7 @@ Every contract checklist item MUST map to a CI evidence artifact:
 15. Migration apply integrity compliance -> `migration-apply-report.json`
 16. Migration rollback readiness/completion -> `migration-rollback-report.json`
 17. Skill registry authority and approval metadata compliance -> `skill-registry-authority-report.json`
+18. Workflow/pipeline/task orchestration and dispatch compliance -> `pipeline-orchestration-report.json`
 
 Release candidates MUST publish this artifact set as part of verification gates.
 

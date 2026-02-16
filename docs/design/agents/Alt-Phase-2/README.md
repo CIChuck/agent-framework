@@ -11,9 +11,9 @@ This document set is currently marked **Proposed for Approval**.
 1. `phase-1-build-plan.md`
    - Historical baseline copied from `docs/design/agents/Phase-2/phase-1-build-plan.md` for transition context.
 2. `comprehensive-agent-framework-design.md`
-   - Architectural rationale and component model.
+   - Architectural rationale, control-plane overview diagrams, workflow/pipeline/task framing, and component responsibilities.
 3. `technical-specifications.md`
-   - Additive interfaces, schemas, state machines, policy rules, and runtime path/topology requirements.
+   - Additive interfaces, schemas (including workflow/pipeline/task contracts), state machines, policy rules, and runtime path/topology requirements.
 4. `phase-2-build-plan.md`
    - Detailed implementation plan for Alt Phase 2.
 5. `phase-3-transition-plan.md`
@@ -69,3 +69,9 @@ This glossary is the single source of truth for skill terms used across Alt-Phas
 6. `Advisory compatibility`: allow controlled non-critical compatibility drift with warning telemetry and governance review.
 7. `Skill activation`: runtime operation that loads and enables a resolved skill for execution.
 8. `Skill discovery`: runtime operation that enumerates policy-eligible skills for a contract/session context.
+
+## Reader Path
+
+1. Start with `comprehensive-agent-framework-design.md` for the architecture overview and control-plane gestalt.
+2. Continue to `technical-specifications.md` for canonical workflow/pipeline/task schemas and execution semantics.
+3. Use `phase-2-build-plan.md` and `phase-3-build-plan.md` for execution sequencing and release gates.

@@ -323,11 +323,15 @@ Deliverables:
 
 - Align arbitration escalation handling with existing `TaskStatus.WAITING_APPROVAL` model.
 - Avoid introducing incompatible workflow state enums in Phase 2.
+- Define explicit Phase 3 handshake requirement for canonical workflow schema:
+  - `WorkflowDefinition` MUST reference one-or-more pipelines,
+  - each pipeline MUST define one-or-more tasks.
 
 Deliverables:
 
 1. Phase 3 handoff section completed.
 2. No unresolved architectural ambiguity from Phase 1 deferred items.
+3. Workflow schema handshake requirements are documented for Phase 3 implementation.
 
 ---
 

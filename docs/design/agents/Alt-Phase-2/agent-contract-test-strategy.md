@@ -131,6 +131,19 @@
 4. Approval path enforcement matches impact class requirements.
 5. Governance-touching skills require dual-approval metadata and behavior-evidence artifacts.
 
+## 2.15 Workflow, Pipeline, and Task Orchestration Tests
+
+1. `WorkflowDefinition` schema validation passes when one-or-more valid `pipeline_refs` are present.
+2. Workflow with zero pipelines is rejected.
+3. Unresolved `pipeline_ref` is rejected.
+4. `PipelineDefinition` with zero tasks is rejected.
+5. `PipelineDefinition` and `TaskDefinition` schema validation passes for valid DAG inputs.
+6. Cyclic dependency detection rejects invalid pipeline graphs.
+7. Task dispatch releases only dependency-ready tasks.
+8. Async assignment claim/lease/expiry/recovery behavior is deterministic.
+9. Cross-pipeline task handoff validates typed input/output contracts.
+10. Pipeline composition preserves contract governance envelope and trace lineage.
+
 ---
 
 ## 3. CI Gate Model
@@ -163,6 +176,7 @@
 7. Deployment-profile filesystem conformance suite passes.
 8. Shared-write anti-spoof enforcement remains green in orchestrated multi-agent suites.
 9. Delegated skill-approval authority suite passes (when enabled by policy).
+10. Workflow/pipeline/task orchestration suite passes with deterministic dispatch semantics.
 
 ---
 
@@ -201,6 +215,7 @@ Each release candidate MUST produce:
 16. Skill registry authority report.
 17. Canonical skill conformance report.
 18. Skill runtime-profile composition report.
+19. Pipeline orchestration compliance report.
 
 Checklist-to-evidence mapping:
 
@@ -226,6 +241,7 @@ Checklist-to-evidence mapping:
 | Skill approval-authority transitions verified | `skill-registry-authority-report.json` |
 | Canonical `SKILL.md` schema/layout/mapping conformance verified | `skill-canonical-conformance-report.json` |
 | Skill runtime-profile composition and no-expansion enforcement verified | `skill-profile-composition-report.json` |
+| Workflow/pipeline/task orchestration and dispatch semantics verified | `pipeline-orchestration-report.json` |
 
 ---
 
