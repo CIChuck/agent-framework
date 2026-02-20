@@ -224,7 +224,7 @@ Phase 3 must include a formal decision checkpoint:
 6. HITL authority and timeout/default semantics pass deterministic tests.
 7. Artifact lifecycle/provenance policy tests pass.
 8. Contract KPI/checklist gates pass.
-9. KPI/SLO thresholds are met in acceptance test runs.
+9. KPI/SLO thresholds are measured and reported in acceptance runs, warning-only for the first Phase 3 release cycle.
 10. Delegation/handoff payload schema compatibility tests pass.
 11. Release artifacts include checklist-to-CI evidence bundle.
 12. Skill routing/delegation and skill lifecycle observability tests pass.
@@ -303,11 +303,12 @@ No-open-decision defaults for implementation agents:
 7. HITL protocol payload/state/authority semantics are implemented and validated.
 8. Artifact lifecycle/provenance and publication controls are implemented.
 9. Contract KPI/checklist gates are operational in verification pipeline.
-10. Contract KPI/SLO thresholds are defined, measured, and enforced in release gating.
+10. Contract KPI/SLO thresholds are defined and measured in release gating, warning-only for the first Phase 3 release cycle and hard-gated beginning in the subsequent release cycle.
 11. Delegation/handoff payload contract is implemented and verified across workflow boundaries.
 12. Checklist-to-CI evidence bundle is mandatory and reviewed at release decision points.
 13. Skill routing, scope-boundary delegation, and lifecycle observability are implemented and validated.
 14. Registry federation/remote-extension behavior preserves `skill_id@version` compatibility and governance controls.
+15. Federated skill catalogs are enabled in the first Phase 3 release candidate with strict compatibility and no-expansion governance controls.
 15. Scratch pad workflow mapping, HITL checkpoint logging, and replay correlation are implemented and validated.
 16. Runtime filesystem topology remains policy-compliant across local, container, and cloud deployment profiles.
 17. Delegated skill-approval authority model is implemented with auditable transition controls.

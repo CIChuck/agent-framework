@@ -149,16 +149,17 @@ Phase 3 must explicitly resolve the `FridayContainer` lifecycle:
 7. HITL authority and timeout/default semantics are validated end-to-end.
 8. Artifact governance lifecycle and approval controls are operational.
 9. Contract KPI/checklist gates are included in phase verification.
-10. Contract KPI/SLO thresholds are defined and enforced in release decisions.
+10. Contract KPI/SLO thresholds are defined and measured in release decisions, warning-only for the first Phase 3 release cycle and enforced beginning in the subsequent cycle.
 11. Delegation/handoff payload compatibility is validated across workflow boundaries.
 12. Checklist evidence bundle is required at transition readiness review.
 13. Skill routing/delegation behavior is validated with replay/audit evidence.
 14. Registry-extension strategy (local to federated/remote) is documented with backward-compatible `skill_id@version` resolution.
-15. Scratch pad orchestration/workflow integration is validated with scope isolation and TTL compliance evidence.
-16. Filesystem-topology conformance is validated for non-git deployments and container/cloud profiles.
-17. Shared-write anti-spoof controls remain effective under Phase 3 orchestration/delegation workflows.
-18. Migration governance artifacts (`preflight`, `apply`, `rollback`) are required in transition readiness review.
-19. Skill approval-authority transitions are auditable with required metadata and policy-conformant delegation behavior.
+15. Federated skill catalogs are enabled in the first Phase 3 release candidate with strict compatibility and no-expansion governance controls.
+16. Scratch pad orchestration/workflow integration is validated with scope isolation and TTL compliance evidence.
+17. Filesystem-topology conformance is validated for non-git deployments and container/cloud profiles.
+18. Shared-write anti-spoof controls remain effective under Phase 3 orchestration/delegation workflows.
+19. Migration governance artifacts (`preflight`, `apply`, `rollback`) are required in transition readiness review.
+20. Skill approval-authority transitions are auditable with required metadata and policy-conformant delegation behavior.
 
 ---
 

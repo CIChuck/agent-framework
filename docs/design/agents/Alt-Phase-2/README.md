@@ -18,24 +18,36 @@ This document set is currently marked **Proposed for Approval**.
    - Detailed implementation plan for Alt Phase 2.
 5. `phase-2-execution-plan.md`
    - AI-executable decomposition of Phase 2 into bounded subphases with handoff artifacts and exit criteria.
-6. `phase-3-transition-plan.md`
+6. `phase-2-file-impact-manifest.md`
+   - Pre-implementation file scope lock (by subphase) for AI-agent execution control.
+7. `phase-3-transition-plan.md`
    - Transition contract from Alt Phase 2 to Phase 3.
-7. `phase-3-build-plan.md`
+8. `phase-3-build-plan.md`
    - Updated Phase 3 build direction aligned to dual-memory architecture.
-8. `agent-contract.md`
+9. `agent-contract.md`
    - Standard contract for agent goals, guardrails, scratch-pad and skill governance, tool usage, sandboxed code execution, logging, and escalation.
-9. `agent-contract-compliance-matrix.md`
+10. `agent-contract-compliance-matrix.md`
    - Clause-by-clause compliance analysis and upgrade plan for the Alt document set.
-10. `agent-contract-schema-spec.md`
+11. `agent-contract-schema-spec.md`
    - Canonical schema and validation specification for Agent Contract governance.
-11. `agent-contract-test-strategy.md`
+12. `agent-contract-test-strategy.md`
    - Verification and CI gate strategy for contract compliance.
-12. `agent-integration-test-plan.md`
+13. `agent-integration-test-plan.md`
    - End-to-end integration test planning for solitary-agent and multi-agent workflows, including environment construction.
-13. `gap-closure-addendum.md`
+14. `gap-closure-addendum.md`
    - Focused closure plan and status for identity/capability hardening, migration governance, and skill approval authority.
-14. `skills-compatibility-profile.md`
+15. `skills-compatibility-profile.md`
    - Canonical compatibility profile for skill validation/enforcement modes across environments.
+16. `phase-3-execution-plan.md`
+   - AI-executable decomposition of Phase 3 into bounded subphases with gate-driven evidence handoffs.
+17. `phase-3-file-impact-manifest.md`
+   - Pre-implementation file scope lock (by subphase) for Phase 3 execution control.
+18. `phase-4-build-plan.md`
+   - Runtime coherence plan for YAML-first runtime config, multi-LLM pool, canonical workflow/pipeline/task execution, and compatibility migration.
+19. `phase-4-build-plan-examples.md`
+   - Developer-focused examples for single-agent and multi-agent workflow construction, including runtime and agent binding patterns.
+20. `phase-4-ai-agent-implementation-guide.md`
+   - AI synthetic developer execution guide for implementing the Phase 4 runtime/workflow model with deterministic gates and evidence requirements.
 
 ## Source Inputs
 
@@ -76,4 +88,6 @@ This glossary is the single source of truth for skill terms used across Alt-Phas
 
 1. Start with `comprehensive-agent-framework-design.md` for the architecture overview and control-plane gestalt.
 2. Continue to `technical-specifications.md` for canonical workflow/pipeline/task schemas and execution semantics.
-3. Use `phase-2-build-plan.md` and `phase-3-build-plan.md` for execution sequencing and release gates.
+3. Use `phase-2-build-plan.md` and `phase-3-build-plan.md` for macro sequencing and release gates.
+4. Use `phase-3-execution-plan.md` and `phase-3-file-impact-manifest.md` for bounded AI-executable implementation planning.
+5. Use `phase-4-build-plan.md` for coherence contracts and acceptance gates, then `phase-4-build-plan-examples.md` and `phase-4-ai-agent-implementation-guide.md` for developer and AI-implementer execution guidance.
