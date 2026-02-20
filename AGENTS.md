@@ -1,19 +1,19 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `packages/` contains core libraries: `friday-core` (interfaces/config/logging), `friday-memory` (memory + Chroma), `friday-llm` (LiteLLM clients), `friday-agent` (agent orchestration + tools), plus supporting modules like `friday-sandbox`, `friday-tools`, `friday-mcp`, `friday-transcript`, and `friday-optimization`.
-- `apps/friday-cli/src` hosts runtime wiring (`container.py`, REPL/server hooks) and the Typer/FastAPI surface.
-- `tests/` holds integration suites and `tests/lab` experiments; each package also has its own `tests/` directory.
+- `packages/` contains workspace libraries. Core modules include `friday-core` (interfaces/config/logging), `friday-memory` (memory + Chroma), `friday-llm` (LiteLLM clients), and `friday-agent` (orchestration + tools). Supporting/runtime modules include `friday-cli`, `friday-sandbox`, `friday-tools`, `friday-mcp`, `friday-transcript`, `friday-optimization`, `friday-runtime`, `friday-speech`, `friday-telemetry`, `friday-finance`, and `friday-moltbook`.
+- `packages/friday-cli/src` hosts runtime wiring (`container.py`, REPL/server hooks) and the Typer/FastAPI surface.
+- `tests/` holds integration/lab/unit suites; each package has its own `tests_*` directory (for example `tests_memory`, `tests_cli`).
 - `docs/` contains specs and plans; `main.py` is a thin entry point for quick smoke runs.
 
 ## Build, Test, and Development Commands
 - `uv sync --all-extras`: install all dependencies (including dev extras) for the workspace.
 - `uv run python main.py`: quick repository sanity check.
-- `uv run pytest`: run the full test suite.
+- `uv run pytest`: run package test suites configured by default (`packages/*/tests_*`).
 - `uv run pytest tests/integration`: run integration tests only.
-- `uv run pytest packages/friday-memory/tests_memory_memory`: target a package’s tests.
+- `uv run pytest packages/friday-memory/tests_memory`: target a package’s tests.
 - `uv run ruff check .`: lint with configured rules (E,F,I,UP,B,SIM).
-- `uv run mypy packages apps tests`: strict type checking.
+- `uv run mypy packages tests main.py`: strict type checking.
 
 ## Coding Style & Naming Conventions
 - Python 3.10+, 4-space indentation, snake_case for modules/functions, PascalCase for classes/dataclasses.
@@ -24,7 +24,7 @@
 ## Testing Guidelines
 - Framework: `pytest` with `pytest-asyncio`.
 - Async tests must use `@pytest.mark.asyncio`.
-- Name tests `test_*.py` and `test_*` functions; place tests under `packages/<pkg>/tests` or `tests/integration`.
+- Name tests `test_*.py` and `test_*` functions; place tests under `packages/<pkg>/tests_<pkg>` or top-level suites like `tests/integration`, `tests/lab`, and `tests/unit`.
 - Add regression coverage for new behaviors and edge cases (e.g., missing API keys, telemetry toggles, persistence paths).
 
 ## Commit & Pull Request Guidelines

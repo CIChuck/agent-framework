@@ -47,7 +47,7 @@ Preserved commitments:
 8. Global embedding policy.
 9. Current YAML secret allowance plus future key-store direction.
 10. Runtime validation semantics.
-11. Workstreams A-F (retained and expanded).
+11. Workstreams A-I (retained and expanded).
 12. Test/gate posture and compatibility guarantees.
 
 Net-new depth added in this revision:
@@ -72,6 +72,10 @@ Net-new depth added in this revision:
 7. Resilience policy is configured per LLM service.
 8. Embedding configuration remains global in Phase 4.
 9. Environment override is global on/off only.
+10. Workflow routing mode is explicit via `config_policy.workflow_mode` with `canonical` default.
+11. Unknown keys hard-fail in runtime/agent/workflow/pipeline/task YAML (`unknown_key_policy=fail`).
+12. `owner_role` resolution is allowed only through explicit `agents.role_bindings`.
+13. Artifact policy and task-output artifact bindings are YAML-defined and validated before dispatch.
 
 Coherence defaults ratified in this plan:
 
@@ -158,16 +162,25 @@ Top-level nested sections:
 3. `embedding`
 4. `memory`
 5. `telemetry`
-6. `agents`
+6. `agents` (including `role_bindings`)
 7. `runtime_paths`
 8. `scratch`
-9. `config_policy`
+9. `artifacts`
+10. `config_policy`
 
 `config_policy` fields:
 
 1. `allow_env_override: false` (default)
 2. `strict_agent_llm_binding: true|false`
-3. Unknown-key handling policy (strict failure behavior defined in specs)
+3. `workflow_mode: canonical|legacy|auto` (default `canonical`)
+4. `unknown_key_policy: fail` (locked in Phase 4)
+
+`artifacts` fields:
+
+1. `enabled: true|false` (default `true`)
+2. `root_dir: <path>` (relative paths resolve from `runtime_paths.runtime_data_root`)
+3. `lineage_required: true|false` (default `true`)
+4. `publish_on_task_success: true|false` (default `true`)
 
 Deterministic source precedence:
 
@@ -175,6 +188,19 @@ Deterministic source precedence:
 2. YAML
 3. Env (only when `allow_env_override=true`)
 4. Explicit constructor args
+
+Workflow execution mode semantics:
+
+1. `workflow_mode=canonical`: use canonical `workflow -> pipeline -> task` path only.
+2. `workflow_mode=legacy`: route workflow execution through legacy adapter path.
+3. `workflow_mode=auto`: attempt canonical first; if legacy schema is detected, route through adapter and emit migration warning metadata.
+
+Unknown-key semantics (locked decisions for Phase 4):
+
+1. Unknown keys in runtime YAML config fail startup.
+2. Unknown keys in agent profile YAML fail profile load/startup.
+3. Unknown keys in workflow/pipeline/task YAML fail load/dispatch.
+4. No warn-only unknown-key mode is allowed in this phase.
 
 Compatibility entry points:
 
@@ -219,6 +245,13 @@ Canonical hierarchy:
    - `owner_agent_id`
    - `owner_role`
 
+Owner resolution policy:
+
+1. `owner_agent_id` resolves directly to concrete agent ID.
+2. `owner_role` resolves through `agents.role_bindings.<owner_role> -> <agent_id>`.
+3. Missing role binding, mapped unknown agent, or ambiguous binding fails dispatch.
+4. Concrete owner must be resolved before assignment claim/start.
+
 Dispatch lifecycle:
 
 1. Assignment creation
@@ -234,12 +267,66 @@ Typed handoff policy:
 2. Contract mismatch causes deterministic dispatch failure.
 3. Lineage records must be emitted for successful handoffs.
 
-## 6.5 Legacy Compatibility Adapter Contract
+Artifact declaration policy:
+
+1. Workflow may declare `required_artifacts`.
+2. Pipeline may declare `artifact_contract.produced` and `artifact_contract.consumed`.
+3. Task may declare `output_artifacts`.
+4. Each `output_artifacts[].from_output` must reference a key in task `output_contract`.
+5. Each consumed artifact must match produced artifact `artifact_id` and `type`.
+6. Missing required artifact at completion fails pipeline/workflow deterministically.
+
+## 6.5 Artifact Output Binding Contract
+
+Required shape:
+
+1. `workflow.required_artifacts[]`:
+   - `artifact_id`
+   - `type`
+   - `produced_by_pipeline`
+2. `pipeline.artifact_contract.produced[]`:
+   - `artifact_id`
+   - `type`
+   - `producer_task_id`
+3. `pipeline.artifact_contract.consumed[]`:
+   - `artifact_id`
+   - `type`
+   - `from_pipeline`
+4. `task.output_artifacts[]`:
+   - `artifact_id`
+   - `from_output`
+   - `type`
+   - `required`
+
+Semantics:
+
+1. Artifact declarations are configuration, not inferred behavior.
+2. Artifact `type` must match task `output_contract` and pipeline/workflow artifact contracts.
+3. Artifact identifiers are unique within a workflow execution scope.
+4. Artifact emission and lineage are enforced by runtime `artifacts` policy.
+
+## 6.6 Task Field Type Contract (Normative)
+
+| Task Field | YAML Type | Validation / Notes |
+| --- | --- | --- |
+| `task_id` | string | Non-empty identifier; lowercase-normalized; alnum plus `_` / `-`. |
+| `owner_agent_id` / `owner_role` | string | Exactly one selector must be present. |
+| `required_skills` | list[string] | Optional; non-empty unique skill refs when present. |
+| `input_contract` | map[string,string] | Output/input type names must be non-empty strings. |
+| `output_contract` | map[string,string] | Output/input type names must be non-empty strings. |
+| `dependencies` | list[string] | Optional; entries must reference valid task IDs. |
+| `retry_policy.max_attempts` | integer | Required to be integer `>=1` in canonical YAML; parsers may coerce numeric strings only for compatibility. |
+| `output_artifacts` | list[object] | Each object requires `artifact_id`, `from_output`, `type`, and `required` (boolean). |
+
+## 6.7 Legacy Compatibility Adapter Contract
 
 1. Legacy `WorkflowDefinition` remains executable through an adapter.
 2. Adapter output targets canonical pipeline runtime model.
 3. Adapter path emits compatibility warning and migration metadata.
-4. Adapter is transitional and subject to phased deprecation policy.
+4. Adapter must publish a versioned translation matrix (supported legacy schema versions and field mappings).
+5. Unsupported legacy constructs fail with deterministic adapter errors.
+6. Adapter is transitional and subject to phased deprecation policy.
+7. Adapter routing obeys `config_policy.workflow_mode`.
 
 ---
 
@@ -330,6 +417,8 @@ Requirements:
 2. Pipeline reference integrity checks run before dispatch.
 3. Task assignment lifecycle is explicit and deterministic.
 4. Retry, lease recovery, timeout, and cancellation semantics are enforced.
+5. Task output artifact bindings are validated before task start.
+6. Workflow/pipeline artifact contracts are enforced at handoff and completion.
 
 Definition of done:
 
@@ -384,6 +473,7 @@ Requirements:
 2. Typed handoff lineage records are persisted for cross-pipeline movement.
 3. Compatibility mode usage (legacy adapter path) is traceable.
 4. Compliance artifacts map to gate criteria.
+5. Artifact publication records include artifact ID, type, producer task, and pipeline.
 
 Definition of done:
 
@@ -402,7 +492,10 @@ Post-merge runtime validation includes:
 5. LLM pool schema integrity.
 6. Agent-to-service binding integrity.
 7. Unknown-key handling per policy.
+   - policy is locked to `unknown_key_policy=fail` in Phase 4.
 8. Field-level source provenance capture.
+9. Artifact policy schema integrity and artifact path-root validity.
+10. Workflow/pipeline/task artifact declaration consistency.
 
 Hard-fail cases:
 
@@ -413,6 +506,9 @@ Hard-fail cases:
 5. Pipeline references invalid task dependency.
 6. Owner resolution fails or is ambiguous.
 7. Typed handoff contract mismatch across pipeline boundary.
+8. Unknown key detected in runtime/agent/workflow/pipeline/task YAML contracts.
+9. `output_artifacts.from_output` references missing task output key.
+10. Required artifact declared but not published by pipeline/workflow completion.
 
 ---
 
@@ -431,6 +527,7 @@ Tasks:
 2. Implement `allow_env_override` gate behavior.
 3. Implement deterministic precedence and provenance tracking.
 4. Preserve env-only path compatibility.
+5. Add runtime `artifacts` policy parsing and validation.
 
 Deliverables:
 
@@ -501,6 +598,7 @@ Tasks:
 1. Route runtime workflow execution through canonical pipeline dispatch path.
 2. Preserve existing single-agent path compatibility.
 3. Produce deterministic dispatch state transitions and traces.
+4. Enforce task `output_artifacts` mapping to emitted task outputs.
 
 Deliverables:
 
@@ -517,13 +615,17 @@ Target files:
 
 1. `packages/friday-agent/src/friday_agent/workflows/loader.py`
 2. `packages/friday-agent/src/friday_agent/workflows/engine.py`
-3. Compatibility docs under `docs/design/agents/Alt-Phase-2`
+3. `packages/friday-runtime/src/friday_runtime/kernel.py`
+4. `packages/friday-agent/tests_agent/test_workflows.py`
+5. Compatibility docs under `docs/design/agents/Alt-Phase-2`
 
 Tasks:
 
 1. Define adapter from legacy workflow schema to canonical pipeline runtime model.
 2. Emit compatibility warnings and migration metadata.
-3. Define release-phase deprecation policy.
+3. Define and document translation matrix (legacy fields -> canonical fields, including unsupported constructs).
+4. Route adapter usage through `config_policy.workflow_mode`.
+5. Define release-phase deprecation policy.
 
 Deliverables:
 
@@ -538,8 +640,9 @@ Definition of done:
 
 Target files:
 
-1. Workflow dispatch/assignment modules in `friday-agent`.
-2. Tests for role-owner and direct-owner resolution.
+1. `packages/friday-agent/src/friday_agent/workflows/engine.py`
+2. `packages/friday-agent/src/friday_agent/workflows/models.py`
+3. `packages/friday-agent/tests_agent/test_pipeline_dispatch.py`
 
 Tasks:
 
@@ -547,6 +650,7 @@ Tasks:
 2. Enforce one-resolved-owner requirement before claim.
 3. Enforce mismatch rejection in claim path.
 4. Record assignment evidence for audit.
+5. Resolve `owner_role` only through `agents.role_bindings`.
 
 Deliverables:
 
@@ -561,14 +665,18 @@ Definition of done:
 
 Target files:
 
-1. Runtime/agent telemetry and transcript surfaces.
-2. Compliance artifact emitters.
+1. `packages/friday-agent/src/friday_agent/workflows/engine.py`
+2. `packages/friday-runtime/src/friday_runtime/kernel.py`
+3. `packages/friday-telemetry/src/friday_telemetry/models/llm.py`
+4. `packages/friday-transcript/src/friday_transcript/models/transcript.py`
 
 Tasks:
 
 1. Emit `llm_service`, model, provider metadata.
 2. Emit workflow/pipeline/task/assignment identity fields.
 3. Emit typed handoff lineage entries.
+4. Emit compatibility mode flag and migration metadata when adapter path is used.
+5. Emit artifact publication metadata and output-to-artifact mapping evidence.
 
 Deliverables:
 
@@ -588,6 +696,8 @@ Target docs:
 3. `docs/design/agents/Alt-Phase-2/phase-3-transition-plan.md`
 4. `docs/design/agents/Alt-Phase-2/README.md`
 5. `docs/design/agents/Phase-4/phase-4-build-plan.md`
+6. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
+7. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
 
 Tasks:
 
@@ -602,6 +712,35 @@ Deliverables:
 Definition of done:
 
 1. An implementation agent can execute from docs without unresolved design decisions.
+
+## Workstream I: Artifact Configuration and Output Binding
+
+Target files:
+
+1. `packages/friday-runtime/src/friday_runtime/config.py`
+2. `packages/friday-agent/src/friday_agent/workflows/models.py`
+3. `packages/friday-agent/src/friday_agent/workflows/loader.py`
+4. `packages/friday-agent/src/friday_agent/workflows/engine.py`
+5. `packages/friday-runtime/tests_runtime/test_config.py`
+6. `packages/friday-agent/tests_agent/test_workflows.py`
+7. `packages/friday-agent/tests_agent/test_pipeline_dispatch.py`
+
+Tasks:
+
+1. Add schema support for runtime `artifacts` policy and validate defaults.
+2. Add workflow/pipeline/task artifact configuration schema and loader validation.
+3. Enforce artifact type compatibility across task, pipeline, and workflow contracts.
+4. Bind successful task outputs to configured artifacts and emit lineage metadata.
+5. Fail dispatch/completion deterministically when required artifacts are missing.
+
+Deliverables:
+
+1. YAML-first artifact configuration contract across runtime/workflow/pipeline/task.
+2. Deterministic artifact output binding behavior with test coverage.
+
+Definition of done:
+
+1. Artifact declarations are validated at load time and enforced at runtime completion.
 
 ---
 
@@ -637,7 +776,7 @@ Carried acceptance requirements:
 2. Env-only legacy load path.
 3. Mixed-source with `allow_env_override=false`.
 4. Mixed-source with `allow_env_override=true`.
-5. Unknown-key strict behavior.
+5. Unknown-key strict behavior (hard-fail).
 6. Relative-path resolution from YAML location.
 7. YAML-secret acceptance with warning/note policy.
 
@@ -662,15 +801,19 @@ Carried acceptance requirements:
 ## 11.4 Owner Resolution and Assignment Tests
 
 1. Direct `owner_agent_id` resolution.
-2. Deterministic `owner_role` resolution.
+2. Deterministic `owner_role` resolution via `agents.role_bindings`.
 3. Ambiguous role mapping failure behavior.
 4. Claim rejection when claimant is not assigned owner.
+5. Missing role binding failure behavior.
+6. Role binding points to unknown agent failure behavior.
 
 ## 11.5 Cross-Pipeline Handoff and Lineage Tests
 
 1. Typed handoff success and lineage creation.
 2. Typed contract mismatch failure.
 3. Pipeline result generation with failure summaries.
+4. Artifact contract validation for produced/consumed declarations.
+5. Deterministic failure when required workflow artifact is missing.
 
 ## 11.6 Legacy Adapter Compatibility Tests
 
@@ -690,6 +833,21 @@ Carried acceptance requirements:
 2. Full repository gate set runs per execution governance policy.
 3. Required evidence artifacts are generated and reviewable.
 
+## 11.9 Canonical Gate Commands
+
+1. `uv run pytest`
+2. `uv run pytest tests/integration`
+3. `uv run ruff check .`
+4. `uv run mypy packages tests main.py`
+
+## 11.10 Artifact Configuration and Publication Tests
+
+1. Runtime `artifacts` policy load and defaulting behavior.
+2. `task.output_artifacts.from_output` must map to task `output_contract`.
+3. Pipeline `artifact_contract.consumed` must match upstream produced contract.
+4. Workflow `required_artifacts` must be satisfied before final success.
+5. Artifact publication metadata includes workflow/pipeline/task and artifact IDs.
+
 ---
 
 ## 12. Rollout, Migration, and Rollback
@@ -697,16 +855,17 @@ Carried acceptance requirements:
 Rollout model:
 
 1. Release N:
-   - Canonical pipeline-first runtime path introduced.
+   - Canonical pipeline-first runtime path introduced and defaulted via `config_policy.workflow_mode=canonical`.
+   - `workflow_mode=legacy|auto` remains available for compatibility and migration.
    - Legacy adapter enabled with warning-only migration signals.
 2. Release N+1:
-   - Migration signals elevated to CI warning gates for new workflows.
+   - Migration signals elevated to CI warning gates for workflows using `workflow_mode=legacy`.
 3. Release N+2:
    - Legacy path retirement decision evaluated using migration evidence.
 
 Rollback model:
 
-1. Feature flag or compatibility toggle to route runtime workflow execution back to legacy path when needed.
+1. Runtime rollback is executed by setting `config_policy.workflow_mode=legacy`.
 2. Preserve adapter and legacy loader until migration gates are formally cleared.
 3. Keep single-agent default path stable throughout rollout.
 
@@ -741,6 +900,11 @@ Rollback model:
 10. Typed cross-pipeline handoff and lineage validations are enforced.
 11. Existing env-only startup and single-agent defaults remain functional.
 12. Documentation explicitly captures current YAML secret policy and future secret isolation direction.
+13. `owner_role` resolution is enforced through `agents.role_bindings` with deterministic failures for missing/invalid mappings.
+14. Unknown keys in runtime/agent/workflow/pipeline/task YAML contracts fail hard.
+15. `config_policy.workflow_mode` behavior (`canonical|legacy|auto`) is deterministic and fully tested.
+16. This plan includes canonical YAML examples for runtime config, agent profile, workflow definition, and pipeline/task definitions.
+17. Artifacts are first-class and configurable via YAML across runtime/workflow/pipeline/task contracts, with deterministic validation and output binding.
 
 ---
 
@@ -759,14 +923,221 @@ Companion scope requirements:
 4. Show how runtime configuration binds execution environment (`llm_pool`, memory mode, paths, scratch, policy).
 5. Show dispatch lifecycle behavior (assign, claim, run, awaiting human, complete/fail, lease recovery).
 6. Show typed handoff and lineage expectations across pipelines.
-7. Show compatibility adapter behavior and migration posture for legacy workflows.
-8. Map examples and implementation tasks back to this plan's acceptance criteria.
+7. Show artifact policy and output artifact binding behavior in runtime/workflow/pipeline/task YAML.
+8. Show compatibility adapter behavior and migration posture for legacy workflows.
+9. Map examples and implementation tasks back to this plan's acceptance criteria.
+
+## 15.1 Canonical YAML File Examples (Normative)
+
+The following examples are canonical reference shapes for Phase 4 configuration and execution contracts.
+These examples are intentionally explicit so implementation teams can build and validate without schema ambiguity.
+
+### 15.1.1 Runtime Config Example (`runtime.yaml`)
+
+```yaml
+config_policy:
+  allow_env_override: false
+  strict_agent_llm_binding: true
+  workflow_mode: canonical
+  unknown_key_policy: fail
+
+runtime_paths:
+  install_root: /opt/friday
+  runtime_data_root: /var/lib/friday/runtime
+  workspace_root: /workspace
+
+memory:
+  mode: multi_agent
+
+scratch:
+  backend: sqlite
+  path: scratch/scratch.db
+
+artifacts:
+  enabled: true
+  root_dir: artifacts
+  lineage_required: true
+  publish_on_task_success: true
+
+llm_pool:
+  default_service: fast_openai
+  services:
+    fast_openai:
+      provider: openai
+      model: gpt-4o-mini
+      api_key: ${OPENAI_API_KEY}
+      resilience:
+        timeout_seconds: 30
+        max_retries: 3
+    reasoning_openai:
+      provider: openai
+      model: o3
+      api_key: ${OPENAI_API_KEY}
+      resilience:
+        timeout_seconds: 90
+        max_retries: 2
+
+embedding:
+  model: text-embedding-3-small
+
+agents:
+  dir: agents
+  role_bindings:
+    synthesis: synthesizer
+    research: researcher
+```
+
+### 15.1.2 Agent Profile Example (`agents/researcher.yaml`)
+
+```yaml
+name: researcher
+role: Research Specialist
+goal: Build evidence set from trusted sources
+system_prompt: |
+  You gather evidence and cite sources.
+llm_service: fast_openai
+tool_autonomy: hybrid
+injected_tools:
+  - recall_memory
+required_tools:
+  - store_fact
+available_tools:
+  - scratchpad_write
+  - scratchpad_read
+tools:
+  - recall_memory
+  - store_fact
+skills:
+  - research_foundation@1.2.0
+```
+
+### 15.1.3 Workflow Definition Example (`workflows/wf_research_synthesis/workflow.yaml`)
+
+```yaml
+workflow_id: wf_research_synthesis
+version: 1.0.0
+name: Research To Synthesis
+goal: Produce final recommendation package
+pipeline_refs:
+  - pl_research
+  - pl_synthesis
+entry_pipeline_id: pl_research
+completion_criteria:
+  - recommendation report delivered
+required_artifacts:
+  - artifact_id: recommendation_report
+    type: markdown
+    produced_by_pipeline: pl_synthesis
+timeout_seconds: 7200
+```
+
+### 15.1.4 Pipeline Definition Example (`workflows/wf_research_synthesis/pipelines/pl_research.yaml`)
+
+```yaml
+pipeline_id: pl_research
+version: 1.0.0
+workflow_id: wf_research_synthesis
+goal: Gather evidence
+upstream_pipeline_ids: []
+input_contract: {}
+output_contract:
+  evidence_bundle: json
+artifact_contract:
+  produced:
+    - artifact_id: evidence_bundle
+      type: json
+      producer_task_id: collect_sources
+  consumed: []
+tasks:
+  - task_id: collect_sources
+    name: Collect Sources
+    description: Collect and rank source material.
+    owner_agent_id: researcher
+    required_skills:
+      - research_foundation@1.2.0
+    input_contract: {}
+    output_contract:
+      evidence_bundle: json
+    output_artifacts:
+      - artifact_id: evidence_bundle
+        from_output: evidence_bundle
+        type: json
+        required: true
+    dependencies: []
+    retry_policy:
+      max_attempts: 2
+```
+
+### 15.1.5 Pipeline Definition Example (`workflows/wf_research_synthesis/pipelines/pl_synthesis.yaml`)
+
+```yaml
+pipeline_id: pl_synthesis
+version: 1.0.0
+workflow_id: wf_research_synthesis
+goal: Build final recommendations
+upstream_pipeline_ids:
+  - pl_research
+input_contract:
+  evidence_bundle: json
+output_contract:
+  recommendation_report: markdown
+artifact_contract:
+  produced:
+    - artifact_id: recommendation_report
+      type: markdown
+      producer_task_id: produce_recommendations
+  consumed:
+    - artifact_id: evidence_bundle
+      type: json
+      from_pipeline: pl_research
+tasks:
+  - task_id: produce_recommendations
+    name: Produce Recommendations
+    description: Produce final recommendations from evidence bundle.
+    owner_role: synthesis
+    input_contract:
+      evidence_bundle: json
+    output_contract:
+      recommendation_report: markdown
+    output_artifacts:
+      - artifact_id: recommendation_report
+        from_output: recommendation_report
+        type: markdown
+        required: true
+    dependencies: []
+    retry_policy:
+      max_attempts: 1
+```
+
+## 15.2 Acceptance Criteria Traceability Matrix
+
+The matrix below maps each acceptance criterion to exact sections in the three Phase 4 documents.
+
+| AC | Build Plan (`phase-4-build-plan.md`) | Examples (`phase-4-build-plan-examples.md`) | AI Guide (`phase-4-ai-agent-implementation-guide.md`) |
+| --- | --- | --- | --- |
+| 1 | 6.1, 11.1, 15.1.1 | 3 | 2, 5 |
+| 2 | 3, 6.1, 10, 11.1 | 3 | 2, 5 |
+| 3 | 6.2, 11.2, 15.1.1 | 3, 5.1 | 2, 5 |
+| 4 | 6.3, 11.2, 15.1.2 | 4.1, 5.2 | 2, 5 |
+| 5 | 3, 6.3, 8, 11.2 | 8 | 6 |
+| 6 | 3, 4.2, 11.1 | 3 | 2, 8 |
+| 7 | 6.4, 7 Feature 5, 11.3 | 2, 4, 5 | 2, 7 |
+| 8 | 6.7, 7 Feature 6, 11.6, 12 | 6 | 2, 4, 8 |
+| 9 | 6.4, 7 Feature 7, 11.4 | 5.6, 7, 8 | 2, 5, 6 |
+| 10 | 6.4, 6.5, 11.5 | 5.6, 7, 8 | 2, 6, 7 |
+| 11 | 4.1, 10, 12 | 3, 4.4 | 8 |
+| 12 | 3, 10, 13 | 3 | 8 |
+| 13 | 3, 6.4, 11.4 | 5.1, 5.6, 7, 8 | 2, 5, 6 |
+| 14 | 3, 6.1, 8, 14 | 3, 7, 8 | 2, 5, 6 |
+| 15 | 3, 6.1, 11.6, 12, 14 | 6, 7 | 2, 4 |
+| 16 | 15.1 | 3, 4, 5 | 3 |
+| 17 | 3, 6.1, 6.5, 7 Feature 5, 11.10, 14, 15.1 | 3, 4, 5, 7, 8 | 2, 5, 6, 7, 10 |
 
 Reviewer guidance:
 
-1. Validate that every acceptance criterion has at least one corresponding implementation or verification path in the companion docs.
+1. Validate that every acceptance criterion has at least one corresponding implementation or verification path in this appendix and companion docs.
 2. Validate that no workflow model ambiguity remains between canonical pipeline-first execution and legacy compatibility flow.
-3. Validate that runtime, agent, and workflow bindings are explicit and testable before code implementation begins.
+3. Validate that runtime, agent, workflow, and artifact bindings are explicit and testable before code implementation begins.
 
 ---
 

@@ -1,6 +1,6 @@
 # Phase 4 AI Synthetic Developer Implementation Guide
 
-**Status:** Proposed for Approval  
+**Status:** Advisory (Proposed for Approval)  
 **Date:** 2026-02-20  
 **Companion To:** `docs/design/agents/Phase-4/phase-4-build-plan.md`
 
@@ -9,6 +9,7 @@
 ## 1. Purpose
 
 This guide is for AI software development agents (for example Codex or Claude Code) implementing the Friday framework in Phase 4.
+At this stage, this document is advisory and is subordinate to the accepted build plan contract.
 
 Goals:
 
@@ -22,14 +23,23 @@ Goals:
 
 1. Runtime config is YAML-first.
 2. Env override is disabled unless explicitly enabled by policy.
-3. Runtime supports named `llm_pool` services.
-4. Agent profiles bind to runtime services with `llm_service`.
-5. Strict mode requires each agent to define `llm_service`.
-6. Embeddings remain globally configured.
-7. Canonical execution hierarchy is `workflow -> pipeline -> task`.
-8. Legacy `WorkflowDefinition` is compatibility-only and must be adapter-backed.
-9. Ownership must resolve to one concrete agent before task claim/start.
-10. Typed handoff mismatch is terminal for that dispatch path.
+3. Unknown-key policy is locked to fail (`unknown_key_policy=fail`) for runtime/agent/workflow/pipeline/task YAML contracts.
+4. Runtime supports named `llm_pool` services.
+5. Agent profiles bind to runtime services with `llm_service`.
+6. Strict mode requires each agent to define `llm_service`.
+7. Embeddings remain globally configured.
+8. Canonical execution hierarchy is `workflow -> pipeline -> task`.
+9. Runtime workflow routing is controlled by `config_policy.workflow_mode` (`canonical|legacy|auto`).
+10. Legacy `WorkflowDefinition` is compatibility-only and must be adapter-backed.
+11. Ownership must resolve to one concrete agent before task claim/start.
+12. `owner_role` resolution must use `agents.role_bindings`.
+13. Runtime artifact policy is configured under `artifacts`.
+14. Workflow artifact obligations are configured in `required_artifacts`.
+15. Pipeline artifact production/consumption is configured in `artifact_contract`.
+16. Task artifact publication is configured in `output_artifacts`.
+17. `output_artifacts[].from_output` must map to a declared task `output_contract` key.
+18. Canonical YAML uses integer `retry_policy.max_attempts` values (`>=1`).
+19. Typed handoff mismatch is terminal for that dispatch path.
 
 ---
 
@@ -52,10 +62,11 @@ Implement in this order to reduce rework and contract drift:
 3. Agent profile `llm_service` schema and strict validation behavior.
 4. Runtime factory/orchestrator binding to resolved agent LLM service.
 5. Canonical workflow/pipeline/task execution path unification.
-6. Legacy adapter implementation and migration warning behavior.
-7. Owner resolution policy implementation for `owner_role`.
-8. Observability and gate artifact completion.
-9. Documentation and cross-reference coherence updates.
+6. Artifact configuration schema and task output artifact binding enforcement.
+7. Legacy adapter implementation and migration warning behavior.
+8. Owner resolution policy implementation for `owner_role`.
+9. Observability and gate artifact completion.
+10. Documentation and cross-reference coherence updates.
 
 Do not reorder unless a blocking dependency is discovered and documented.
 
@@ -68,14 +79,22 @@ Before implementing workflow execution, confirm all binding contracts are presen
 1. Runtime binding:
    - `llm_pool.services` is loaded.
    - `llm_pool.default_service` is validated.
+   - `config_policy.workflow_mode` is present and valid.
+   - `unknown_key_policy=fail` is enforced.
+   - runtime `artifacts` policy is present and valid.
+   - `agents.role_bindings` is present when `owner_role` selectors are used.
 2. Agent binding:
    - each agent has resolved `llm_service` (strict mode semantics applied).
 3. Workflow binding:
    - workflow references valid pipelines.
+   - workflow `required_artifacts` are internally consistent.
 4. Pipeline binding:
    - pipeline references valid tasks and dependencies.
+   - `artifact_contract.produced/consumed` contracts are internally consistent.
 5. Task binding:
    - each task resolves ownership by `owner_agent_id` or `owner_role`.
+   - each `output_artifacts[].from_output` key exists in `output_contract`.
+   - `retry_policy.max_attempts` is typed as integer `>=1` in canonical YAML.
 
 If any binding cannot be validated, fail fast and stop implementation progression.
 
@@ -89,8 +108,11 @@ Treat these as non-recoverable for the current run unless explicitly routed thro
 2. Missing referenced service in `llm_pool`.
 3. Unknown workflow pipeline reference.
 4. Invalid pipeline task dependency graph.
-5. Ambiguous or unresolved `owner_role`.
+5. Ambiguous or unresolved `owner_role` (including missing/invalid `agents.role_bindings` mapping).
 6. Typed handoff contract mismatch.
+7. `output_artifacts.from_output` references undeclared task output.
+8. Required workflow artifact is not published by completion.
+9. Unknown keys in runtime/agent/workflow/pipeline/task YAML contracts.
 
 Implementation requirement:
 
@@ -114,6 +136,8 @@ AI implementers must ensure all of the following are observable and testable:
 4. Lease heartbeat and expiration recovery semantics are deterministic.
 5. Cross-pipeline handoff validation enforces typed contracts.
 6. Lineage records are captured for successful typed handoffs.
+7. Task output-to-artifact mapping is validated and observable.
+8. Workflow `required_artifacts` are enforced before final success status.
 
 ---
 
@@ -124,6 +148,9 @@ AI implementers must ensure all of the following are observable and testable:
 3. Keep secret handling in YAML (with documented warning posture) for this phase.
 4. Keep legacy adapter transitional; do not silently remove compatibility path.
 5. Preserve single-agent defaults and env-only backward-compatible startup path.
+6. Do not relax `unknown_key_policy=fail`.
+7. Do not introduce alternate owner-resolution policy outside `agents.role_bindings`.
+8. Do not bypass artifact contracts or downgrade artifact validation to warn-only.
 
 If scope expansion is required:
 
@@ -141,7 +168,15 @@ Each subphase must include:
 2. Integration tests for runtime-agent-workflow bindings.
 3. Regression tests for single-agent default compatibility.
 4. Failure-path tests for deterministic rejection conditions.
-5. Gate command results (`pytest`, `ruff`, `mypy`) per execution policy.
+5. Artifact configuration and publication tests for workflow/pipeline/task contracts.
+6. Gate command results (`pytest`, `ruff`, `mypy`) per execution policy.
+
+Canonical gate commands:
+
+1. `uv run pytest`
+2. `uv run pytest tests/integration`
+3. `uv run ruff check .`
+4. `uv run mypy packages tests main.py`
 
 ---
 
@@ -153,7 +188,8 @@ For each subphase, produce artifacts proving:
 2. Dispatch/assignment state transition traces.
 3. Typed handoff lineage behavior.
 4. Runtime-to-agent service binding evidence (`llm_service`, model, provider).
-5. Compatibility adapter warning behavior (where exercised).
+5. Artifact publication evidence (`artifact_id`, `type`, producer task, pipeline, workflow).
+6. Compatibility adapter warning behavior (where exercised).
 
 Evidence must map clearly to the Phase 4 acceptance criteria.
 
