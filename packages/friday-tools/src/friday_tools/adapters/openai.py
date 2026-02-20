@@ -9,7 +9,8 @@ Converts OpenAI function calling format to Friday's ToolDefinition.
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from ..definition import BaseTool
 from ..protocols import ToolDefinition
@@ -32,11 +33,8 @@ class OpenAIToolWrapper(BaseTool):
             tool_def: OpenAI function/tool definition dict.
             handler: Optional function to execute the tool.
         """
-        # Handle both formats: {"type": "function", "function": {...}} and direct function def
-        if "function" in tool_def:
-            self._func_def = tool_def["function"]
-        else:
-            self._func_def = tool_def
+        # Handle both formats: {"type": "function", "function": {...}} and direct function def  # noqa: E501
+        self._func_def = tool_def.get("function", tool_def)
         self._handler = handler
 
     @property
@@ -50,10 +48,13 @@ class OpenAIToolWrapper(BaseTool):
     @property
     def parameters_schema(self) -> dict[str, Any]:
         """Get parameters from OpenAI format."""
-        return self._func_def.get("parameters", {
-            "type": "object",
-            "properties": {},
-        })
+        return self._func_def.get(
+            "parameters",
+            {
+                "type": "object",
+                "properties": {},
+            },
+        )
 
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool using the provided handler."""
@@ -70,9 +71,7 @@ class OpenAIToolWrapper(BaseTool):
             result = await self._handler(**kwargs)
         else:
             loop = asyncio.get_event_loop()
-            result = await loop.run_in_executor(
-                None, lambda: self._handler(**kwargs)
-            )
+            result = await loop.run_in_executor(None, lambda: self._handler(**kwargs))
 
         return str(result) if result is not None else ""
 
@@ -175,19 +174,14 @@ class OpenAIToolAdapter:
         result = []
         for tool in tools:
             # Extract name for handler lookup
-            if "function" in tool:
-                name = tool["function"]["name"]
-            else:
-                name = tool["name"]
+            name = tool["function"]["name"] if "function" in tool else tool["name"]
             result.append(self.adapt(tool, handler=handlers.get(name)))
         return result
 
     def _validate_openai_tool(self, tool: dict[str, Any]) -> None:
         """Validate that the dict is a valid OpenAI tool definition."""
         if not isinstance(tool, dict):
-            raise TypeError(
-                f"Expected dict for OpenAI tool, got {type(tool).__name__}"
-            )
+            raise TypeError(f"Expected dict for OpenAI tool, got {type(tool).__name__}")
 
         # Check for tool format
         if "function" in tool:

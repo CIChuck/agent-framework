@@ -2,7 +2,7 @@
 
 **Status:** Proposed for Approval  
 **Date:** 2026-02-20  
-**Companion To:** `docs/design/agents/Alt-Phase-2/phase-4-build-plan.md`
+**Companion To:** `docs/design/agents/Phase-4/phase-4-build-plan.md`
 
 ---
 
@@ -35,10 +35,10 @@ Goals:
 
 ## 3. Required Read Order
 
-1. `docs/design/agents/Alt-Phase-2/phase-4-build-plan.md`
+1. `docs/design/agents/Phase-4/phase-4-build-plan.md`
 2. `docs/design/agents/Alt-Phase-2/technical-specifications.md`
 3. `docs/design/agents/Alt-Phase-2/comprehensive-agent-framework-design.md`
-4. `docs/design/agents/Alt-Phase-2/phase-4-build-plan-examples.md`
+4. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
 5. `docs/design/agents/Alt-Phase-2/runtime-config-dual-source-patch-plan.md`
 
 ---

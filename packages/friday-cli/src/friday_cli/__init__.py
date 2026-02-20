@@ -7,75 +7,75 @@ including status messages, tables, syntax highlighting, and progress indicators.
 Ref: docs/build-plan/memory-chat-v2-prd.md
 """
 
+from .cancellation import (
+    CancellableContext,
+    CancellationToken,
+    OperationCancelledError,
+    run_cancellable,
+)
 from .cli_config import (
     CLIConfig,
-    ThemeConfig,
     IconsConfig,
     PromptConfig,
     SpinnerConfig,
+    ThemeConfig,
     get_cli_config,
-    set_cli_config,
     load_cli_config,
+    set_cli_config,
+)
+from .commands import (
+    ArgumentSpec,
+    CommandInfo,
+    CommandRegistry,
+    arg,
 )
 from .display import (
-    # Console management
-    get_console,
-    set_console,
-    reset_console,
+    # Banners & panels
+    display_banner,
+    display_code,
+    display_command_help,
+    display_context_payload,
+    display_entities,
     # Status messages
     display_error,
-    display_warning,
-    display_success,
+    # Domain-specific
+    display_help,
+    display_history,
     display_info,
     # Structured data
     display_json,
-    display_code,
-    display_table,
-    # Banners & panels
-    display_banner,
+    display_memory_stats,
     display_panel,
     display_separator,
-    # Domain-specific
-    display_help,
-    display_command_help,
+    display_success,
+    display_table,
     display_tool_budget,
-    display_memory_stats,
-    display_entities,
-    display_history,
-    display_context_payload,
-)
-from .progress import (
-    spinner,
-    progress_bar,
-    ProgressTracker,
-    ThinkingIndicator,
+    display_warning,
+    # Console management
+    get_console,
+    reset_console,
+    set_console,
 )
 from .input import (
-    InputHandler,
-    CommandCompleter,
-    create_friday_input_handler,
-    FRIDAY_COMMANDS,
     FRIDAY_COMMAND_DESCRIPTIONS,
+    FRIDAY_COMMANDS,
+    CommandCompleter,
+    InputHandler,
+    create_friday_input_handler,
 )
-from .commands import (
-    CommandRegistry,
-    CommandInfo,
-    ArgumentSpec,
-    arg,
+from .progress import (
+    ProgressTracker,
+    ThinkingIndicator,
+    progress_bar,
+    spinner,
 )
 from .session import (
     SessionConfig,
     SessionContext,
     SessionManager,
-    managed_session,
     load_config,
+    managed_session,
     validate_config,
-)
-from .cancellation import (
-    OperationCancelledError,
-    CancellationToken,
-    CancellableContext,
-    run_cancellable,
 )
 
 __version__ = "0.1.0"

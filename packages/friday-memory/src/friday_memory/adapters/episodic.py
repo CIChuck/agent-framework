@@ -101,9 +101,7 @@ class InMemoryEpisodicStore(EpisodicStoreAdapter):
                 return list(active[start:end])
             return list(active[-limit:]) if active else []
 
-    async def get_unconsolidated_turns(
-        self, session_id: str
-    ) -> list[InteractionTurn]:
+    async def get_unconsolidated_turns(self, session_id: str) -> list[InteractionTurn]:
         """
         Retrieves turns that have NOT yet been processed by MemoryConsolidator.
 

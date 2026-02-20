@@ -215,9 +215,7 @@ class ResilienceConfig(BaseModel):
             stream_timeout_seconds=float(
                 os.getenv("FRIDAY_LLM_STREAM_TIMEOUT_SECONDS", "60.0")
             ),
-            backoff_multiplier=float(
-                os.getenv("FRIDAY_LLM_BACKOFF_MULTIPLIER", "1.0")
-            ),
+            backoff_multiplier=float(os.getenv("FRIDAY_LLM_BACKOFF_MULTIPLIER", "1.0")),
             backoff_max=float(os.getenv("FRIDAY_LLM_BACKOFF_MAX", "10.0")),
             circuit_breaker=CircuitBreakerConfig(
                 enabled=os.getenv("FRIDAY_LLM_CIRCUIT_BREAKER_ENABLED", "false").lower()

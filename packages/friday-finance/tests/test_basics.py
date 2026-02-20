@@ -10,6 +10,7 @@ from friday_finance.providers.massive.registry import AssetRegistry
 # Registry tests
 # ---------------------------------------------------------------------------
 
+
 def test_registry_resolution():
     """Verify alias-to-ticker translation and passthrough."""
     assert AssetRegistry.resolve_ticker("sp500") == "SPY"
@@ -34,6 +35,7 @@ def test_registry_metadata_unknown():
 # Governor tests
 # ---------------------------------------------------------------------------
 
+
 @pytest.mark.asyncio
 async def test_governor_free_tier():
     """Free tier governor should enforce >= 12 s spacing between calls."""
@@ -41,8 +43,8 @@ async def test_governor_free_tier():
     assert gov.interval > 12
 
     start = time.time()
-    await gov.wait()   # First call is instant
-    await gov.wait()   # Second call should wait
+    await gov.wait()  # First call is instant
+    await gov.wait()  # Second call should wait
     end = time.time()
 
     assert (end - start) >= 12
@@ -76,6 +78,7 @@ async def test_governor_update_tier():
 # ---------------------------------------------------------------------------
 # Client tests
 # ---------------------------------------------------------------------------
+
 
 def test_client_raises_on_missing_api_key(monkeypatch):
     """Client must raise MassiveAuthError when no API key is available."""

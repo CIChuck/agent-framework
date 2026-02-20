@@ -13,11 +13,11 @@ from enum import Enum
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from friday_core.interfaces import EmbeddingModel
     from friday_core.interfaces.memory import (
         GraphStoreAdapter,
         VectorStoreAdapter,
     )
-    from friday_core.interfaces import EmbeddingModel
 
 
 class MemoryProfile(str, Enum):

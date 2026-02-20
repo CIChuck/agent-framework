@@ -70,7 +70,7 @@ class MarkdownExporter:
         # Open file if path provided
         should_close = False
         if isinstance(output, Path):
-            f = open(output, "w")
+            f = open(output, "w")  # noqa: SIM115
             should_close = True
         else:
             f = output
@@ -108,7 +108,9 @@ class MarkdownExporter:
         if session:
             lines.append(f"# Session: {session.session_id}\n")
             lines.append("")
-            lines.append(f"**Started:** {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+            lines.append(
+                f"**Started:** {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}"
+            )
             if session.ended_at:
                 lines.append(
                     f"**Ended:** {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}"

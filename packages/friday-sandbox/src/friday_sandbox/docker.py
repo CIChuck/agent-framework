@@ -16,10 +16,9 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from pathlib import Path
 from typing import Any
 
-from .config import DockerConfig, SandboxConfig, WorkspaceConfig
+from .config import SandboxConfig, WorkspaceConfig
 from .models import ExecutionResult, SandboxTimeoutError, Workspace
 from .serialization import (
     extract_return_value,
@@ -65,11 +64,11 @@ class DockerSandbox:
 
                 self._docker_client = docker.from_env()
             except ImportError:
-                raise RuntimeError(
+                raise RuntimeError(  # noqa: B904
                     "Docker SDK not installed. Install with: pip install docker"
                 )
             except Exception as e:
-                raise RuntimeError(f"Failed to connect to Docker: {e}")
+                raise RuntimeError(f"Failed to connect to Docker: {e}")  # noqa: B904
         return self._docker_client
 
     async def execute(
@@ -101,7 +100,9 @@ class DockerSandbox:
             ValueError: If language is not supported.
         """
         if language != "python":
-            raise ValueError(f"Unsupported language: {language}. Only 'python' is supported.")
+            raise ValueError(
+                f"Unsupported language: {language}. Only 'python' is supported."
+            )
 
         # Resolve timeout
         timeout = timeout_seconds or self.config.docker.default_timeout_seconds
@@ -126,7 +127,7 @@ class DockerSandbox:
                 environment=environment,
             )
         except asyncio.TimeoutError:
-            raise SandboxTimeoutError(timeout)
+            raise SandboxTimeoutError(timeout)  # noqa: B904
 
         execution_time_ms = (time.time() - start_time) * 1000
 

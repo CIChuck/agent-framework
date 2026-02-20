@@ -156,17 +156,13 @@ class CompactionConfig(BaseModel):
         default=0.85,
         ge=0.5,
         le=1.0,
-        description=(
-            "Utilization fraction that triggers compaction"
-        ),
+        description=("Utilization fraction that triggers compaction"),
     )
     critical_threshold: float = Field(
         default=0.95,
         ge=0.5,
         le=1.0,
-        description=(
-            "Utilization fraction classified as critical"
-        ),
+        description=("Utilization fraction classified as critical"),
     )
     target_utilization: float = Field(
         default=0.70,
@@ -181,9 +177,7 @@ class CompactionConfig(BaseModel):
     cooldown_turns: int = Field(
         default=3,
         ge=1,
-        description=(
-            "Minimum turns between compaction runs"
-        ),
+        description=("Minimum turns between compaction runs"),
     )
     max_duration_ms: int = Field(
         default=15000,
@@ -208,9 +202,7 @@ class CompactionConfig(BaseModel):
     min_turns_to_summarize: int = Field(
         default=5,
         ge=2,
-        description=(
-            "Min unconsolidated turns before summarization"
-        ),
+        description=("Min unconsolidated turns before summarization"),
     )
     max_turns_per_summary: int = Field(
         default=8,
@@ -246,9 +238,7 @@ class CompactionConfig(BaseModel):
         default=10,
         ge=3,
         le=50,
-        description=(
-            "Recent turns for utilization trend tracking"
-        ),
+        description=("Recent turns for utilization trend tracking"),
     )
 
 
@@ -310,8 +300,4 @@ class CompactionResult:
     def complete(self) -> None:
         """Mark compaction as complete and record duration."""
         self.completed_at = datetime.now()
-        self.duration_ms = (
-            (self.completed_at - self.started_at)
-            .total_seconds()
-            * 1000
-        )
+        self.duration_ms = (self.completed_at - self.started_at).total_seconds() * 1000

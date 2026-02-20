@@ -10,12 +10,10 @@ Ref: docs/build-plan/memory-chat-v2-prd.md
 from __future__ import annotations
 
 import asyncio
-import inspect
 import re
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Any, Generic, Protocol, TypeVar, runtime_checkable
-
 
 # Type for command handler functions
 T = TypeVar("T")  # Context type (e.g., MemoryChatSession)
@@ -311,7 +309,10 @@ class CommandRegistry(Generic[T]):
 
         info = self.get(cmd_name)
         if info is None:
-            return True, f"Unknown command: /{cmd_name}. Type /help for available commands."
+            return (
+                True,
+                f"Unknown command: /{cmd_name}. Type /help for available commands.",
+            )
 
         # Build kwargs from arguments
         kwargs = self._build_kwargs(info, args)
@@ -324,10 +325,8 @@ class CommandRegistry(Generic[T]):
                 result = info.handler(context, **kwargs)
 
             # Handle cases where a non-async lambda returns a coroutine or Task
-            # This supports patterns like: lambda ctx: asyncio.create_task(ctx.async_method())
-            if asyncio.iscoroutine(result):
-                result = await result
-            elif isinstance(result, asyncio.Task):
+            # This supports patterns like: lambda ctx: asyncio.create_task(ctx.async_method())  # noqa: E501
+            if asyncio.iscoroutine(result) or isinstance(result, asyncio.Task):
                 result = await result
 
             return True, result
@@ -337,9 +336,7 @@ class CommandRegistry(Generic[T]):
         except Exception as e:
             return True, f"Command error: {type(e).__name__}: {e}"
 
-    def _build_kwargs(
-        self, info: CommandInfo, args: list[str]
-    ) -> dict[str, Any]:
+    def _build_kwargs(self, info: CommandInfo, args: list[str]) -> dict[str, Any]:
         """
         Build keyword arguments from positional args based on spec.
 
@@ -395,8 +392,7 @@ class CommandRegistry(Generic[T]):
         """
         if not categories:
             return {
-                f"/{info.name}": info.description
-                for info in self._commands.values()
+                f"/{info.name}": info.description for info in self._commands.values()
             }
 
         # Group by category

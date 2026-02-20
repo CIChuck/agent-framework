@@ -35,6 +35,7 @@ dependencies = [
     "pypdf>=4.0",
     # Observability
     "langfuse>=2.59,<3.0",
+    "mypy>=1.19.1",
 ]
 
 [project.optional-dependencies]

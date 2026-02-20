@@ -1,15 +1,14 @@
 """Tests for telemetry helpers."""
 
 import pytest
-
 from friday_telemetry import (
     DebugTelemetryRecorder,
+    ErrorCategory,
     LLMTelemetryHelper,
     MemoryTelemetryHelper,
     StreamingTracker,
     TokenUsage,
     classify_error,
-    ErrorCategory,
 )
 
 
@@ -22,7 +21,9 @@ class TestClassifyError:
         class TimeoutError(Exception):
             pass
 
-        assert classify_error(TimeoutError("request timed out")) == ErrorCategory.TIMEOUT
+        assert (
+            classify_error(TimeoutError("request timed out")) == ErrorCategory.TIMEOUT
+        )
 
     def test_rate_limit_error(self):
         """Test classifying rate limit errors."""
@@ -111,9 +112,8 @@ class TestLLMTelemetryHelper:
         recorder = DebugTelemetryRecorder()
         helper = LLMTelemetryHelper(telemetry=recorder)
 
-        with pytest.raises(ValueError):
-            with helper.track_completion(model="gpt-4") as tracker:
-                raise ValueError("Test error")
+        with pytest.raises(ValueError), helper.track_completion(model="gpt-4"):
+            raise ValueError("Test error")
 
         # Check error event was captured
         assert len(recorder.events) == 1
@@ -149,7 +149,7 @@ class TestLLMTelemetryHelper:
         recorder = DebugTelemetryRecorder()
         helper = LLMTelemetryHelper(telemetry=recorder)
 
-        with helper.track_completion(model="gpt-4") as tracker:
+        with helper.track_completion(model="gpt-4"):
             pass
 
         # Check span was created
@@ -224,7 +224,9 @@ class TestMemoryTelemetryHelper:
             tracker.set_query_info(query_tokens=5)
             tracker.set_stores_queried(["vector", "graph"])
             tracker.set_timing(vector_search_ms=30.0, graph_traversal_ms=20.0)
-            tracker.set_results(results_count=10, results_by_store={"vector": 7, "graph": 3})
+            tracker.set_results(
+                results_count=10, results_by_store={"vector": 7, "graph": 3}
+            )
 
         # Check event was captured
         assert len(recorder.events) == 1
@@ -286,8 +288,8 @@ class TestMemoryTelemetryHelper:
         recorder = DebugTelemetryRecorder()
         helper = MemoryTelemetryHelper(telemetry=recorder)
 
-        with pytest.raises(RuntimeError):
-            with helper.track_maintenance(operation="synthesize") as tracker:
+        with pytest.raises(RuntimeError):  # noqa: SIM117
+            with helper.track_maintenance(operation="synthesize"):
                 raise RuntimeError("Synthesis failed")
 
         event = recorder.events[0]

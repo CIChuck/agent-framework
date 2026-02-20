@@ -1,10 +1,8 @@
 """Tests for MemoryReorganizer orchestrator."""
 
-import uuid
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-
 from friday_memory.maintenance.models import LifecycleReport, OptimizationReport
 from friday_memory.maintenance.reorganizer import MemoryReorganizer
 
@@ -132,42 +130,46 @@ class TestLifecycleIntegration:
         # Returns list of dictionaries with "id" and "metadata" keys
         # Include created_at old enough to pass eligibility (>24h ago)
         short_term = MagicMock()
-        short_term.get_all = AsyncMock(return_value=[
-            {
-                "id": "st_1",
-                "text": "Short term memory",
-                "metadata": {
-                    "hit_count": 5,
-                    "access_count": 5,
-                    "confidence": 0.9,
-                    "created_at": "2026-01-01T00:00:00",
+        short_term.get_all = AsyncMock(
+            return_value=[
+                {
+                    "id": "st_1",
+                    "text": "Short term memory",
+                    "metadata": {
+                        "hit_count": 5,
+                        "access_count": 5,
+                        "confidence": 0.9,
+                        "created_at": "2026-01-01T00:00:00",
+                    },
                 },
-            },
-            {
-                "id": "st_2",
-                "text": "Another short term",
-                "metadata": {
-                    "hit_count": 10,
-                    "access_count": 10,
-                    "confidence": 0.85,
-                    "created_at": "2026-01-01T00:00:00",
+                {
+                    "id": "st_2",
+                    "text": "Another short term",
+                    "metadata": {
+                        "hit_count": 10,
+                        "access_count": 10,
+                        "confidence": 0.85,
+                        "created_at": "2026-01-01T00:00:00",
+                    },
                 },
-            },
-        ])
+            ]
+        )
         manager.short_term = short_term
 
         # Create mock long_term collection with async get_all method
         long_term = MagicMock()
-        long_term.get_all = AsyncMock(return_value=[
-            {
-                "id": "lt_1",
-                "text": "Long term memory",
-                "metadata": {
-                    "decay_score": 0.1,
-                    "last_accessed_at": "2025-01-01T00:00:00",
+        long_term.get_all = AsyncMock(
+            return_value=[
+                {
+                    "id": "lt_1",
+                    "text": "Long term memory",
+                    "metadata": {
+                        "decay_score": 0.1,
+                        "last_accessed_at": "2025-01-01T00:00:00",
+                    },
                 },
-            },
-        ])
+            ]
+        )
         manager.long_term = long_term
 
         manager.promote_to_long_term = AsyncMock()
@@ -180,23 +182,29 @@ class TestLifecycleIntegration:
     def mock_access_buffer(self):
         """Create a mock access buffer."""
         buffer = MagicMock()
-        buffer.get_stats = MagicMock(return_value={
-            "short_term_memories": 5,
-            "long_term_memories": 10,
-        })
-        buffer.flush_all = AsyncMock(return_value=MagicMock(
-            short_term_flushed=5,
-            long_term_flushed=10,
-        ))
+        buffer.get_stats = MagicMock(
+            return_value={
+                "short_term_memories": 5,
+                "long_term_memories": 10,
+            }
+        )
+        buffer.flush_all = AsyncMock(
+            return_value=MagicMock(
+                short_term_flushed=5,
+                long_term_flushed=10,
+            )
+        )
         return buffer
 
     @pytest.fixture
     def mock_factor_computer(self):
         """Create a mock factor computer."""
         computer = MagicMock()
-        computer.compute_factors = AsyncMock(return_value=MagicMock(
-            updated=15,
-        ))
+        computer.compute_factors = AsyncMock(
+            return_value=MagicMock(
+                updated=15,
+            )
+        )
         return computer
 
     @pytest.fixture
@@ -213,12 +221,8 @@ class TestLifecycleIntegration:
     def mock_decay_calculator(self):
         """Create a mock decay calculator."""
         calculator = MagicMock()
-        calculator.calculate_decay = MagicMock(
-            return_value=0.1
-        )  # Low score
-        calculator.should_decay = MagicMock(
-            return_value=True
-        )  # Below threshold
+        calculator.calculate_decay = MagicMock(return_value=0.1)  # Low score
+        calculator.should_decay = MagicMock(return_value=True)  # Below threshold
         return calculator
 
     def test_has_lifecycle_support_false(self, clean_memory_dir):

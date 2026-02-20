@@ -35,17 +35,30 @@ Example:
 """
 
 # Interface
-from friday_telemetry.interface import TelemetryInterface
-
-# Records
-from friday_telemetry.records import EventRecord, SpanRecord
-
-# Providers
-from friday_telemetry.providers import (
-    CompositeProvider,
-    DebugTelemetryRecorder,
-    OpenTelemetryProvider,
+# Attributes
+from friday_telemetry.attributes import (
+    FridayAgentAttributes,
+    FridayMemoryAttributes,
+    FridayToolAttributes,
+    OTelAttributes,
 )
+
+# Config
+from friday_telemetry.config import TelemetryConfig
+
+# Helpers
+from friday_telemetry.helpers import (
+    CompletionTracker,
+    EmbeddingTracker,
+    LLMTelemetryHelper,
+    MaintenanceTracker,
+    MemoryRecallTracker,
+    MemoryTelemetryHelper,
+    MemoryWriteTracker,
+    StreamingTracker,
+    classify_error,
+)
+from friday_telemetry.interface import TelemetryInterface
 
 # Models - Common
 from friday_telemetry.models.common import RequestContext
@@ -64,34 +77,21 @@ from friday_telemetry.models.llm import (
 
 # Models - Memory
 from friday_telemetry.models.memory import (
+    ArbitrationOpsMetrics,
     MaintenanceMetrics,
     MemoryRecallMetrics,
     MemoryWriteMetrics,
 )
 
-# Attributes
-from friday_telemetry.attributes import (
-    FridayAgentAttributes,
-    FridayMemoryAttributes,
-    FridayToolAttributes,
-    OTelAttributes,
+# Providers
+from friday_telemetry.providers import (
+    CompositeProvider,
+    DebugTelemetryRecorder,
+    OpenTelemetryProvider,
 )
 
-# Helpers
-from friday_telemetry.helpers import (
-    CompletionTracker,
-    EmbeddingTracker,
-    LLMTelemetryHelper,
-    MaintenanceTracker,
-    MemoryRecallTracker,
-    MemoryTelemetryHelper,
-    MemoryWriteTracker,
-    StreamingTracker,
-    classify_error,
-)
-
-# Config
-from friday_telemetry.config import TelemetryConfig
+# Records
+from friday_telemetry.records import EventRecord, SpanRecord
 
 __all__ = [
     # Interface
@@ -118,6 +118,7 @@ __all__ = [
     "MemoryWriteMetrics",
     "MemoryRecallMetrics",
     "MaintenanceMetrics",
+    "ArbitrationOpsMetrics",
     # Attributes
     "OTelAttributes",
     "FridayMemoryAttributes",

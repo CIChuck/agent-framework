@@ -16,6 +16,7 @@ from friday_telemetry.models.llm import (
     TokenUsage,
 )
 from friday_telemetry.models.memory import (
+    ArbitrationOpsMetrics,
     MaintenanceMetrics,
     MemoryRecallMetrics,
     MemoryWriteMetrics,
@@ -37,4 +38,5 @@ __all__ = [
     "MemoryWriteMetrics",
     "MemoryRecallMetrics",
     "MaintenanceMetrics",
+    "ArbitrationOpsMetrics",
 ]

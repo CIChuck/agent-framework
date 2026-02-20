@@ -1,13 +1,11 @@
 """Tests for MCP protocols."""
 
-import pytest
 from typing import Any
 
 from friday_mcp.protocols import (
     MCPClient,
     MCPServer,
     MCPTransport,
-    ToolAdapter,
     ToolDefinition,
 )
 
@@ -116,7 +114,7 @@ class TestProtocols:
 
     def test_mcp_server_protocol(self):
         """Test MCPServer protocol structure."""
-        from typing import Callable
+        from collections.abc import Callable
 
         class MockServer:
             async def start(self) -> None:

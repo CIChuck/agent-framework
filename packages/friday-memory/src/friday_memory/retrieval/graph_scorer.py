@@ -12,12 +12,13 @@ Query: "How do I configure logging?"
 The solution: Score each path and only include paths above the relevancy threshold.
 
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Graph Path Relevancy Scoring"
-"""
+"""  # noqa: E501
 
 from __future__ import annotations
 
 import math
-from typing import TYPE_CHECKING, Any, Awaitable, Callable
+from collections.abc import Awaitable, Callable
+from typing import TYPE_CHECKING, Any
 
 from pydantic import BaseModel, Field
 
@@ -34,7 +35,7 @@ def cosine_similarity(vec1: list[float], vec2: list[float]) -> float:
     if not vec1 or not vec2 or len(vec1) != len(vec2):
         return 0.0
 
-    dot_product = sum(a * b for a, b in zip(vec1, vec2))
+    dot_product = sum(a * b for a, b in zip(vec1, vec2, strict=False))
     norm1 = math.sqrt(sum(a * a for a in vec1))
     norm2 = math.sqrt(sum(b * b for b in vec2))
 
@@ -78,9 +79,9 @@ class ScoredPath:
 
     def __init__(
         self,
-        source_node: "GraphNode",
-        edge: "GraphEdge",
-        target_node: "GraphNode",
+        source_node: GraphNode,
+        edge: GraphEdge,
+        target_node: GraphNode,
         score: float,
         edge_similarity: float,
         target_similarity: float,
@@ -170,9 +171,9 @@ class GraphPathScorer:
 
     def _get_edge_text(
         self,
-        source_node: "GraphNode",
-        edge: "GraphEdge",
-        target_node: "GraphNode",
+        source_node: GraphNode,
+        edge: GraphEdge,
+        target_node: GraphNode,
     ) -> str:
         """
         Generate text representation of an edge for embedding.
@@ -183,7 +184,7 @@ class GraphPathScorer:
         relation_text = edge.relation.replace("_", " ")
         return f"{source_node.label} {relation_text} {target_node.label}"
 
-    def _get_target_text(self, target_node: "GraphNode") -> str:
+    def _get_target_text(self, target_node: GraphNode) -> str:
         """
         Generate text representation of target node for embedding.
 
@@ -218,9 +219,9 @@ class GraphPathScorer:
 
     async def score_path(
         self,
-        source_node: "GraphNode",
-        edge: "GraphEdge",
-        target_node: "GraphNode",
+        source_node: GraphNode,
+        edge: GraphEdge,
+        target_node: GraphNode,
         query_embedding: list[float],
         embedding_fn: Callable[[str], Awaitable[list[float]]] | None = None,
     ) -> ScoredPath:
@@ -285,7 +286,7 @@ class GraphPathScorer:
 
     async def filter_paths(
         self,
-        paths: list[tuple["GraphNode", "GraphEdge", "GraphNode"]],
+        paths: list[tuple[GraphNode, GraphEdge, GraphNode]],
         query_embedding: list[float],
         embedding_fn: Callable[[str], Awaitable[list[float]]] | None = None,
         max_paths: int | None = None,
@@ -327,9 +328,9 @@ class GraphPathScorer:
 
     def score_path_sync(
         self,
-        source_node: "GraphNode",
-        edge: "GraphEdge",
-        target_node: "GraphNode",
+        source_node: GraphNode,
+        edge: GraphEdge,
+        target_node: GraphNode,
         query_embedding: list[float],
     ) -> ScoredPath:
         """
@@ -379,7 +380,7 @@ class GraphPathScorer:
 
     def filter_paths_sync(
         self,
-        paths: list[tuple["GraphNode", "GraphEdge", "GraphNode"]],
+        paths: list[tuple[GraphNode, GraphEdge, GraphNode]],
         query_embedding: list[float],
         max_paths: int | None = None,
     ) -> list[ScoredPath]:

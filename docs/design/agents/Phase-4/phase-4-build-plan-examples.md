@@ -2,7 +2,7 @@
 
 **Status:** Proposed for Approval  
 **Date:** 2026-02-20  
-**Companion To:** `docs/design/agents/Alt-Phase-2/phase-4-build-plan.md`
+**Companion To:** `docs/design/agents/Phase-4/phase-4-build-plan.md`
 
 ---
 

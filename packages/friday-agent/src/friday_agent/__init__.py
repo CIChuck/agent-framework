@@ -27,14 +27,15 @@ from friday_agent.loader import AgentConfigError, AgentLoader
 from friday_agent.orchestrator import AgentOrchestrator, OrchestratorError
 from friday_agent.profile import AgentProfile
 from friday_agent.registry import AgentRegistry, AgentRegistryError
+from friday_agent.skills import SkillCatalog, SkillCatalogEntry, validate_skill_ref
 from friday_agent.tools import DefaultToolRegistry, tool
 from friday_agent.workflows import (
     TaskNode,
     TaskStatus,
     WorkflowDefinition,
-    WorkflowExecution,
     WorkflowEngine,
     WorkflowError,
+    WorkflowExecution,
     WorkflowLoader,
     WorkflowLoadError,
 )
@@ -51,6 +52,9 @@ __all__ = [
     # Registry
     "AgentRegistry",
     "AgentRegistryError",
+    "SkillCatalog",
+    "SkillCatalogEntry",
+    "validate_skill_ref",
     # Orchestration
     "AgentOrchestrator",
     "OrchestratorError",

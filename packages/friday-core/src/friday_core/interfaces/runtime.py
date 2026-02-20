@@ -48,9 +48,7 @@ class SystemRuntime(ABC):
         ...
 
     @abstractmethod
-    async def create_session(
-        self, user_id: str = "default"
-    ) -> str:
+    async def create_session(self, user_id: str = "default") -> str:
         """
         Create a new session identifier.
 

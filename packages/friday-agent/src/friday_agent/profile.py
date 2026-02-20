@@ -11,7 +11,6 @@ Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
-
 # Tool autonomy modes
 ToolAutonomy = Literal["manual", "auto", "hybrid"]
 
@@ -78,6 +77,7 @@ class AgentProfile:
 
     # Registry integration fields (prefixed with _ to indicate internal use)
     _capabilities: list[str] = field(default_factory=list)
+    _skills: list[str] = field(default_factory=list)
     _memory_config: dict[str, Any] = field(default_factory=dict)
     _metadata: dict[str, Any] = field(default_factory=dict)
 
@@ -85,6 +85,11 @@ class AgentProfile:
     def capabilities(self) -> list[str]:
         """Capability tags for orchestrator routing."""
         return self._capabilities
+
+    @property
+    def skills(self) -> list[str]:
+        """Declared canonical skill references (`skill_id@version`)."""
+        return self._skills
 
     @property
     def memory_config(self) -> dict[str, Any]:
@@ -96,7 +101,7 @@ class AgentProfile:
         """Additional custom metadata."""
         return self._metadata
 
-    def render_system_prompt(self, **kwargs) -> str:
+    def render_system_prompt(self, **kwargs: Any) -> str:
         """
         Render system prompt with variable substitution.
 
@@ -137,6 +142,7 @@ class AgentProfile:
             "required_tools": self.required_tools,
             # Registry integration
             "capabilities": self._capabilities,
+            "skills": self._skills,
             "memory_config": self._memory_config,
             "metadata": self._metadata,
         }
@@ -148,7 +154,9 @@ class AgentProfile:
             name=data["name"],
             role=data["role"],
             goal=data["goal"],
-            system_prompt_template=data.get("system_prompt_template", data.get("system_prompt", "")),
+            system_prompt_template=data.get(
+                "system_prompt_template", data.get("system_prompt", "")
+            ),
             tools=data.get("tools", []),
             context_strategy=data.get("context_strategy", "standard"),
             temperature=data.get("temperature", 0.7),
@@ -160,6 +168,7 @@ class AgentProfile:
             required_tools=data.get("required_tools", []),
             # Registry integration
             _capabilities=data.get("capabilities", []),
+            _skills=data.get("skills", []),
             _memory_config=data.get("memory_config", {}),
             _metadata=data.get("metadata", {}),
         )

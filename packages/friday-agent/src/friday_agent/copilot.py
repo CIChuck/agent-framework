@@ -141,11 +141,13 @@ class CopilotAgent(AgentBase):
 
                         # Track for archiving
                         accumulated_tool_calls.append(tc_dict)
-                        accumulated_tool_results.append({
-                            "tool_call_id": tool_call.id,
-                            "output": result,
-                            "error": None,
-                        })
+                        accumulated_tool_results.append(
+                            {
+                                "tool_call_id": tool_call.id,
+                                "output": result,
+                                "error": None,
+                            }
+                        )
 
                     # Add tool interactions to conversation
                     self._add_tool_call_to_history(tool_call_dicts, tool_results)
@@ -166,9 +168,7 @@ class CopilotAgent(AgentBase):
                                     "name": tc["name"],
                                     "arguments": (
                                         json.dumps(tc["arguments"])
-                                        if isinstance(
-                                            tc["arguments"], dict
-                                        )
+                                        if isinstance(tc["arguments"], dict)
                                         else tc["arguments"]
                                     ),
                                 },
@@ -177,18 +177,18 @@ class CopilotAgent(AgentBase):
                         ],
                     }
                     if response.reasoning_content:
-                        assistant_msg["reasoning_content"] = (
-                            response.reasoning_content
-                        )
+                        assistant_msg["reasoning_content"] = response.reasoning_content
                     messages.append(assistant_msg)
 
                     # Add tool results
-                    for tc, result in zip(tool_call_dicts, tool_results):
-                        messages.append({
-                            "role": "tool",
-                            "tool_call_id": tc["id"],
-                            "content": result,
-                        })
+                    for tc, result in zip(tool_call_dicts, tool_results, strict=False):
+                        messages.append(
+                            {
+                                "role": "tool",
+                                "tool_call_id": tc["id"],
+                                "content": result,
+                            }
+                        )
 
                     # Continue loop to get LLM's response to tool results
                     continue
@@ -204,8 +204,12 @@ class CopilotAgent(AgentBase):
                     await self._archive_turn(
                         user_message=input_signal,
                         assistant_message=final_response,
-                        tool_calls=accumulated_tool_calls if accumulated_tool_calls else None,
-                        tool_results=accumulated_tool_results if accumulated_tool_results else None,
+                        tool_calls=accumulated_tool_calls
+                        if accumulated_tool_calls
+                        else None,
+                        tool_results=accumulated_tool_results
+                        if accumulated_tool_results
+                        else None,
                     )
 
                     self._emit_event(
@@ -231,7 +235,9 @@ class CopilotAgent(AgentBase):
                 user_message=input_signal,
                 assistant_message=error_msg,
                 tool_calls=accumulated_tool_calls if accumulated_tool_calls else None,
-                tool_results=accumulated_tool_results if accumulated_tool_results else None,
+                tool_results=accumulated_tool_results
+                if accumulated_tool_results
+                else None,
             )
 
             raise RuntimeError(error_msg)

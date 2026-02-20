@@ -1,11 +1,9 @@
-
-
 class AssetRegistry:
     """
     Manages the translation of human-readable concepts into Massive-compatible tickers.
     Specifically designed to provide ETF proxies for Indices and Bonds.
     """
-    
+
     # Mapping of categories to their most liquid ETF proxy
     PROXIES = {
         # Indices
@@ -13,7 +11,6 @@ class AssetRegistry:
         "nasdaq100": {"ticker": "QQQ", "name": "Nasdaq-100 (via QQQ)"},
         "dowjones": {"ticker": "DIA", "name": "Dow Jones Industrial Average (via DIA)"},
         "russell2000": {"ticker": "IWM", "name": "Russell 2000 (via IWM)"},
-        
         # Bonds / Fixed Income
         "total_bond": {"ticker": "AGG", "name": "U.S. Aggregate Bond Index"},
         "treasury_long": {"ticker": "TLT", "name": "20+ Year Treasury Bond"},
@@ -26,13 +23,13 @@ class AssetRegistry:
     @classmethod
     def resolve_ticker(cls, query: str) -> str:
         """
-        Translates a common name or alias into a ticker. 
+        Translates a common name or alias into a ticker.
         If it's already a ticker (4 characters or fewer), it returns it as-is.
         """
         query_clean = query.lower().replace(" ", "_")
         if query_clean in cls.PROXIES:
             return cls.PROXIES[query_clean]["ticker"]
-        
+
         # Fallback: Assume it's already a ticker
         return query.upper()
 

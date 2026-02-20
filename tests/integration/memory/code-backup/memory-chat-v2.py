@@ -83,54 +83,62 @@ from typing import Any
 import tiktoken
 import yaml
 
-# File format readers
-from friday_tools.filesystem.readers import ReaderFactory, ReaderResult
-
 # Friday CLI display functions
 from friday_cli import (
-    display_error,
-    display_warning,
-    display_success,
-    display_info,
-    display_json,
-    display_code,
-    display_table,
-    display_banner,
-    display_panel,
-    display_separator,
-    display_help,
-    display_command_help,
-    display_tool_budget,
-    display_memory_stats,
-    display_entities,
-    display_history,
-    display_context_payload,
-    spinner,
-    progress_bar,
-    ThinkingIndicator,
-    get_console,
-    reset_console,
-    # Input handling
-    create_friday_input_handler,
     # Command registry
     CommandRegistry,
-    arg,
-    # Session management
-    SessionConfig,
-    validate_config,
-    # CLI configuration
-    load_cli_config,
     # Cancellation support
     OperationCancelledError,
+    # Session management
+    SessionConfig,
+    ThinkingIndicator,
+    arg,
+    # Input handling
+    create_friday_input_handler,
+    display_command_help,
+    display_error,
+    display_help,
+    display_info,
+    display_success,
+    display_warning,
+    get_console,
+    # CLI configuration
+    load_cli_config,
+    reset_console,
     run_cancellable,
+    validate_config,
 )
+
+# File format readers
+from friday_tools.filesystem.readers import ReaderFactory
 
 # Logging will be configured after config is loaded (see main())
 logger = logging.getLogger(__name__)
 
-from friday_core import DebugTelemetryRecorder, TranscriptBackedEpisodicStore
-from friday_core.interfaces.llm import ChatCompletionResponse, ToolCall
-from friday_llm import (
+# =============================================================================
+# TURN METRICS TRACKING
+# =============================================================================
+# Dataclass to hold metrics captured during LLM interactions for transcript storage
+import contextlib  # noqa: E402
+from dataclasses import dataclass, field  # noqa: E402
+
+# Agent orchestration (Phase 3 - Project Hive)
+# Workflow system (Phase 4 - Project Hive)
+from friday_agent import (  # noqa: E402
+    AgentOrchestrator,
+    OrchestratorError,
+    WorkflowDefinition,
+    WorkflowEngine,
+    WorkflowError,
+    WorkflowExecution,
+    WorkflowLoader,
+)
+from friday_core import (  # noqa: E402
+    DebugTelemetryRecorder,
+    TranscriptBackedEpisodicStore,
+)
+from friday_core.interfaces.llm import ChatCompletionResponse  # noqa: E402
+from friday_llm import (  # noqa: E402
     CircuitBreakerOpenError,
     LiteLLMEmbeddingService,
     LiteLLMService,
@@ -138,13 +146,13 @@ from friday_llm import (
     LLMTimeoutError,
     ResilienceConfig,
 )
-from friday_memory import (
+from friday_memory import (  # noqa: E402
     AccessBuffer,
     AccessBufferConfig,
-    ChromaVectorStore,
-    CollectionConfig,
     CacheBreakpoint,
     CacheProvider,
+    ChromaVectorStore,
+    CollectionConfig,
     CollectionManager,
     ContextAssembler,
     ContextPayload,
@@ -159,30 +167,25 @@ from friday_memory import (
     MemoryPromotionService,
     PromptArchitect,
     PromptCacheConfig,
-    PromotionResult,
     RetrievalFactorComputer,
     SessionState,
 )
-from friday_memory.models import (
-    ToolCall as MemoryToolCall,
-    ToolResult as MemoryToolResult,
-)
-from friday_memory.lifecycle import (
-    ToolContentManager,
-    ToolContentConfig,
-)
-from friday_memory.ingestion import (
+from friday_memory.ingestion import (  # noqa: E402
     SemanticChunker,
     SemanticChunkerConfig,
     ToolOutputIngester,
     ToolOutputIngesterConfig,
 )
-from friday_memory.maintenance import (
+from friday_memory.lifecycle import (  # noqa: E402
+    ToolContentConfig,
+    ToolContentManager,
+)
+from friday_memory.maintenance import (  # noqa: E402
     IncrementalGraphMaintainer,
     IncrementalMaintenanceConfig,
     MemoryReorganizer,
 )
-from friday_memory.maintenance.models import (
+from friday_memory.maintenance.models import (  # noqa: E402
     EmbeddingConfig,
     FactCheckConfig,
     LifecycleDecayConfig,
@@ -194,38 +197,23 @@ from friday_memory.maintenance.models import (
     PruneConfig,
     SynthesisConfig,
 )
-from friday_transcript import (
+from friday_memory.models import (  # noqa: E402
+    ToolCall as MemoryToolCall,
+)
+from friday_memory.models import (  # noqa: E402
+    ToolResult as MemoryToolResult,
+)
+from friday_tools import (  # noqa: E402
+    DefaultToolRegistry,
+    GetCurrentDateTimeTool,
+)
+from friday_transcript import (  # noqa: E402
     CSVExporter,
     JSONLExporter,
     MarkdownExporter,
     SQLiteTranscriptStore,
     TranscriptSession,
 )
-from friday_tools import (
-    DefaultToolRegistry,
-    GetCurrentDateTimeTool,
-)
-
-# Agent orchestration (Phase 3 - Project Hive)
-from friday_agent import AgentOrchestrator, OrchestratorError
-
-# Workflow system (Phase 4 - Project Hive)
-from friday_agent import (
-    WorkflowEngine,
-    WorkflowLoader,
-    WorkflowError,
-    WorkflowDefinition,
-    WorkflowExecution,
-)
-
-
-# =============================================================================
-# TURN METRICS TRACKING
-# =============================================================================
-# Dataclass to hold metrics captured during LLM interactions for transcript storage
-
-
-from dataclasses import dataclass, field
 
 
 @dataclass
@@ -372,7 +360,9 @@ def _load_tool_from_config(
         class_name = tool_config.get("class")
 
         if not module_name or not class_name:
-            logger.warning(f"Tool '{tool_name}' missing required 'module' or 'class' field")
+            logger.warning(
+                f"Tool '{tool_name}' missing required 'module' or 'class' field"
+            )
             return None
 
         # Dynamic import
@@ -383,7 +373,7 @@ def _load_tool_from_config(
         constructor_args = tool_config.get("constructor_args", {})
 
         # Auto-inject web config for web tools (friday_tools.web module)
-        if module_name == "friday_tools.web" and web_config:
+        if module_name == "friday_tools.web" and web_config:  # noqa: SIM102
             # Only inject if not already specified in constructor_args
             if "config" not in constructor_args:
                 constructor_args["config"] = web_config
@@ -395,10 +385,14 @@ def _load_tool_from_config(
         return tool
 
     except ImportError as e:
-        logger.warning(f"Failed to import tool module '{tool_config.get('module')}': {e}")
+        logger.warning(
+            f"Failed to import tool module '{tool_config.get('module')}': {e}"
+        )
         return None
     except AttributeError as e:
-        logger.warning(f"Tool class '{tool_config.get('class')}' not found in module: {e}")
+        logger.warning(
+            f"Tool class '{tool_config.get('class')}' not found in module: {e}"
+        )
         return None
     except Exception as e:
         logger.warning(f"Failed to instantiate tool '{tool_name}': {e}")
@@ -446,7 +440,9 @@ def _build_tool_registry(
             registry.register(tool)
             loaded_count += 1
 
-    logger.info(f"Loaded {loaded_count}/{len(tool_definitions)} tools from configuration")
+    logger.info(
+        f"Loaded {loaded_count}/{len(tool_definitions)} tools from configuration"
+    )
     return registry
 
 
@@ -473,7 +469,9 @@ async def _execute_tool(tool_name: str, **kwargs) -> str:
     return await tool.execute(**kwargs)
 
 
-def _validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple[Path, str | None]:
+def _validate_export_path(
+    path: Path, allowed_base: Path | None = None
+) -> tuple[Path, str | None]:
     """
     Validate and resolve an export path to prevent path traversal.
 
@@ -483,7 +481,7 @@ def _validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple
 
     Returns:
         Tuple of (resolved_path, error_message). Error is None if path is valid.
-    """
+    """  # noqa: E501
     if allowed_base is None:
         allowed_base = Path.cwd()
 
@@ -532,7 +530,7 @@ def _validate_tool_params(
     unknown = [p for p in params if p not in properties]
     if unknown:
         valid_params = ", ".join(properties.keys()) if properties else "(none)"
-        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"
+        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"  # noqa: E501
 
     # Type validation for provided parameters
     type_errors = []
@@ -557,7 +555,7 @@ def _validate_tool_params(
         expected_python_type = type_map.get(expected_type)
         if expected_python_type and not isinstance(param_value, expected_python_type):
             type_errors.append(
-                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"
+                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"  # noqa: E501
             )
 
     if type_errors:
@@ -589,7 +587,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
     errors: list[str] = []
 
     if not isinstance(config, dict):
-        display_error(f"{config_path} must contain a YAML dictionary, got {type(config).__name__}")
+        display_error(
+            f"{config_path} must contain a YAML dictionary, got {type(config).__name__}"
+        )
         sys.exit(1)
 
     # Required sections
@@ -625,7 +625,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
 
     for section, expected_type in optional_sections.items():
         if section in config and not isinstance(config[section], expected_type):
-            errors.append(f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}")
+            errors.append(
+                f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}"  # noqa: E501
+            )
 
     # Validate tools section if present
     if "tools" in config and isinstance(config["tools"], dict):
@@ -638,11 +640,17 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
                     if not isinstance(tool_def, dict):
                         errors.append(f"tools.registry[{i}] must be a dictionary")
                     elif not tool_def.get("name"):
-                        errors.append(f"tools.registry[{i}] missing required field 'name'")
+                        errors.append(
+                            f"tools.registry[{i}] missing required field 'name'"
+                        )
                     elif not tool_def.get("module"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'"  # noqa: E501
+                        )
                     elif not tool_def.get("class"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'"  # noqa: E501
+                        )
 
     if errors:
         display_error(f"Configuration errors in {config_path}:")
@@ -661,20 +669,6 @@ def print_banner() -> None:
     # Larger ASCII art for "FRIDAY" with italic slant (shifted left as rows go down)
     # Main logo and shadow combined - shadow uses ░ character offset to bottom-right
     # Format: (main_line, shadow_line) where shadow is offset 1 char right
-    logo_with_shadow = [
-        ("          ███████╗██████╗ ██╗██████╗  █████╗ ██╗   ██╗",
-         "           ░░░░░░░ ░░░░░░  ░░ ░░░░░░  ░░░░░  ░░   ░░ "),
-        ("         ██╔════╝██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝",
-         "          ░░ ════ ░░ ══░░ ░░ ░░ ══░░ ░░ ══░░  ░░  ░░  "),
-        ("        █████╗  ██████╔╝██║██║  ██║███████║ ╚████╔╝ ",
-         "         ░░░░░   ░░░░░░░  ░░ ░░  ░░ ░░░░░░░   ░░░░   "),
-        ("       ██╔══╝  ██╔══██╗██║██║  ██║██╔══██║  ╚██╔╝  ",
-         "        ░░ ══   ░░ ══░░ ░░ ░░  ░░ ░░ ══░░    ░░     "),
-        ("      ██║     ██║  ██║██║██████╔╝██║  ██║   ██║   ",
-         "       ░░      ░░  ░░ ░░ ░░░░░░░  ░░  ░░    ░░    "),
-        ("     ╚═╝     ╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   ",
-         "       ░       ░    ░  ░  ░═════   ░    ░     ░     "),
-    ]
 
     # Just main lines for cleaner approach
     logo_lines = [
@@ -833,12 +827,14 @@ class MemoryChatSession:
         self.token_counter = TokenCounter()
         # Budget info extracted from architect
         self.context_window = architect.max_tokens if architect else 8192
-        self.output_buffer = architect.output_buffer if hasattr(architect, "output_buffer") else 1000
+        self.output_buffer = (
+            architect.output_buffer if hasattr(architect, "output_buffer") else 1000
+        )
 
         # Command registry for extensible command handling
         # Commands can be registered using the @registry.command decorator
         # or programmatically with registry.register()
-        self.registry: CommandRegistry["MemoryChatSession"] = CommandRegistry()
+        self.registry: CommandRegistry[MemoryChatSession] = CommandRegistry()
         self._register_commands()
 
     def _register_commands(self) -> None:
@@ -892,7 +888,11 @@ class MemoryChatSession:
             "context",
             lambda ctx, **kwargs: ctx.cmd_context(debug_mode="--debug" in str(kwargs)),
             arguments=[
-                arg("--debug", required=False, description="Show detailed token counts per section"),
+                arg(
+                    "--debug",
+                    required=False,
+                    description="Show detailed token counts per section",
+                ),
             ],
             description="Show assembled context payload that would be sent to LLM",
             category="memory",
@@ -971,20 +971,33 @@ class MemoryChatSession:
 
         self.registry.register(
             "transcript",
-            lambda ctx, session_id=None, **kwargs: asyncio.create_task(ctx.cmd_transcript(session_id)),
+            lambda ctx, session_id=None, **kwargs: asyncio.create_task(
+                ctx.cmd_transcript(session_id)
+            ),
             arguments=[
-                arg("session_id", required=False, description="Session ID to view (default: current session)"),
+                arg(
+                    "session_id",
+                    required=False,
+                    description="Session ID to view (default: current session)",
+                ),
             ],
-            description="Show transcript for current or specified session. Use 'export' to export DB.",
+            description="Show transcript for current or specified session. Use 'export' to export DB.",  # noqa: E501
             category="transcript",
         )
 
         self.registry.register(
             "export",
-            lambda ctx, format="markdown", **kwargs: asyncio.create_task(ctx.cmd_export(format)),
+            lambda ctx, format="markdown", **kwargs: asyncio.create_task(
+                ctx.cmd_export(format)
+            ),
             arguments=[
-                arg("format", required=False, default="markdown",
-                    description="Export format", choices=["csv", "jsonl", "markdown", "training"]),
+                arg(
+                    "format",
+                    required=False,
+                    default="markdown",
+                    description="Export format",
+                    choices=["csv", "jsonl", "markdown", "training"],
+                ),
             ],
             description="Export current session transcript to ./exports directory",
             category="transcript",
@@ -994,27 +1007,63 @@ class MemoryChatSession:
         self.registry.register(
             "reset",
             lambda ctx, **kwargs: asyncio.create_task(ctx.cmd_reset()),
-            description="Clear all memory stores and archive ALL transcript sessions (clean slate)",
+            description="Clear all memory stores and archive ALL transcript sessions (clean slate)",  # noqa: E501
             category="maintenance",
         )
 
         self.registry.register(
             "reorganize",
-            lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_reorganize(opts)),
+            lambda ctx, opts="", **kwargs: asyncio.create_task(
+                ctx.cmd_reorganize(opts)
+            ),
             arguments=[
-                arg("--execute", required=False, description="Run for real (default is dry-run)"),
-                arg("--no-backup", required=False, description="Skip backup before modifications"),
-                arg("--skip-synthesis", required=False, description="Skip LLM-based memory synthesis"),
-                arg("--skip-verify", required=False, description="Skip LLM-based fact verification"),
-                arg("--skip-lifecycle", required=False, description="Skip lifecycle and optimization steps"),
-                arg("--analyze", required=False, description="Just run analysis (read-only)"),
+                arg(
+                    "--execute",
+                    required=False,
+                    description="Run for real (default is dry-run)",
+                ),
+                arg(
+                    "--no-backup",
+                    required=False,
+                    description="Skip backup before modifications",
+                ),
+                arg(
+                    "--skip-synthesis",
+                    required=False,
+                    description="Skip LLM-based memory synthesis",
+                ),
+                arg(
+                    "--skip-verify",
+                    required=False,
+                    description="Skip LLM-based fact verification",
+                ),
+                arg(
+                    "--skip-lifecycle",
+                    required=False,
+                    description="Skip lifecycle and optimization steps",
+                ),
+                arg(
+                    "--analyze",
+                    required=False,
+                    description="Just run analysis (read-only)",
+                ),
                 arg("--prune", required=False, description="Just run pruning"),
-                arg("--synthesize", required=False, description="Just run synthesis (meta-insights, relationships)"),
-                arg("--verify", required=False, description="Just run fact verification"),
+                arg(
+                    "--synthesize",
+                    required=False,
+                    description="Just run synthesis (meta-insights, relationships)",
+                ),
+                arg(
+                    "--verify", required=False, description="Just run fact verification"
+                ),
                 arg("--backup", required=False, description="Just create a backup"),
-                arg("--dedupe", required=False, description="Just run insight deduplication"),
+                arg(
+                    "--dedupe",
+                    required=False,
+                    description="Just run insight deduplication",
+                ),
             ],
-            description="Run memory reorganization (analyze, prune, synthesize, verify)",
+            description="Run memory reorganization (analyze, prune, synthesize, verify)",  # noqa: E501
             category="maintenance",
         )
 
@@ -1022,9 +1071,21 @@ class MemoryChatSession:
             "lifecycle",
             lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_lifecycle(opts)),
             arguments=[
-                arg("--execute", required=False, description="Run for real (default is dry-run)"),
-                arg("--stats", required=False, description="Show lifecycle statistics only"),
-                arg("--optimize", required=False, description="Flush access buffer and recompute retrieval factors"),
+                arg(
+                    "--execute",
+                    required=False,
+                    description="Run for real (default is dry-run)",
+                ),
+                arg(
+                    "--stats",
+                    required=False,
+                    description="Show lifecycle statistics only",
+                ),
+                arg(
+                    "--optimize",
+                    required=False,
+                    description="Flush access buffer and recompute retrieval factors",
+                ),
                 arg("--flush", required=False, description="Flush access buffer only"),
             ],
             description="Run memory lifecycle cycle (promotion, decay, reactivation)",
@@ -1035,8 +1096,16 @@ class MemoryChatSession:
             "migrate",
             lambda ctx, opts="", **kwargs: asyncio.create_task(ctx.cmd_migrate(opts)),
             arguments=[
-                arg("--execute", required=False, description="Run for real (default is dry-run)"),
-                arg("--stats", required=False, description="Show migration statistics only"),
+                arg(
+                    "--execute",
+                    required=False,
+                    description="Run for real (default is dry-run)",
+                ),
+                arg(
+                    "--stats",
+                    required=False,
+                    description="Show migration statistics only",
+                ),
             ],
             description="Migrate existing memories to lifecycle metadata",
             category="maintenance",
@@ -1049,8 +1118,17 @@ class MemoryChatSession:
                 ctx.cmd_replay(csv_path, delay)
             ),
             arguments=[
-                arg("csv_path", required=True, description="Path to exported CSV transcript file"),
-                arg("delay", required=False, default="0", description="Seconds to wait between turns"),
+                arg(
+                    "csv_path",
+                    required=True,
+                    description="Path to exported CSV transcript file",
+                ),
+                arg(
+                    "delay",
+                    required=False,
+                    default="0",
+                    description="Seconds to wait between turns",
+                ),
             ],
             description="Replay a transcript CSV through Friday (resets memory first)",
             category="testing",
@@ -1061,7 +1139,11 @@ class MemoryChatSession:
             "tools",
             lambda ctx, category=None, **kwargs: ctx.cmd_tools(category),
             arguments=[
-                arg("category", required=False, description="Filter by tool category (e.g., utility, filesystem)"),
+                arg(
+                    "category",
+                    required=False,
+                    description="Filter by tool category (e.g., utility, filesystem)",
+                ),
             ],
             description="List available tools, optionally filtered by category",
             category="tools",
@@ -1084,7 +1166,11 @@ class MemoryChatSession:
             "inject-tools",
             lambda ctx, names="", **kwargs: ctx.cmd_inject_tools(names),
             arguments=[
-                arg("names", required=True, description="Comma-separated list of tool names to inject"),
+                arg(
+                    "names",
+                    required=True,
+                    description="Comma-separated list of tool names to inject",
+                ),
             ],
             description="Inject tools into context for testing",
             category="tools",
@@ -1101,7 +1187,11 @@ class MemoryChatSession:
             "recommend-tools",
             lambda ctx, query="", **kwargs: ctx.cmd_recommend_tools(query),
             arguments=[
-                arg("query", required=True, description="Query to get tool recommendations for"),
+                arg(
+                    "query",
+                    required=True,
+                    description="Query to get tool recommendations for",
+                ),
             ],
             description="Test tool recommendations for a query",
             category="tools",
@@ -1119,7 +1209,11 @@ class MemoryChatSession:
             "switch",
             lambda ctx, agent="", **kwargs: asyncio.create_task(ctx.cmd_switch(agent)),
             arguments=[
-                arg("agent", required=False, description="Agent name to switch to (omit to show status)"),
+                arg(
+                    "agent",
+                    required=False,
+                    description="Agent name to switch to (omit to show status)",
+                ),
             ],
             description="Switch to a different agent or show current agent status",
             category="orchestration",
@@ -1136,7 +1230,11 @@ class MemoryChatSession:
             "agent",
             lambda ctx, name="", **kwargs: ctx.cmd_agent_info(name),
             arguments=[
-                arg("name", required=False, description="Agent name to get info for (omit for active agent)"),
+                arg(
+                    "name",
+                    required=False,
+                    description="Agent name to get info for (omit for active agent)",
+                ),
             ],
             description="Show detailed information about an agent",
             category="orchestration",
@@ -1144,7 +1242,9 @@ class MemoryChatSession:
 
         self.registry.register(
             "delegate",
-            lambda ctx, agent="", task="", **kwargs: asyncio.create_task(ctx.cmd_delegate(agent, task)),
+            lambda ctx, agent="", task="", **kwargs: asyncio.create_task(
+                ctx.cmd_delegate(agent, task)
+            ),
             arguments=[
                 arg("agent", required=True, description="Agent name to delegate to"),
                 arg("task", required=True, description="Task description to delegate"),
@@ -1167,8 +1267,16 @@ class MemoryChatSession:
                 ctx.cmd_workflow(subcommand, args)
             ),
             arguments=[
-                arg("subcommand", required=False, description="list|run|status|approve|skip"),
-                arg("args", required=False, description="Additional arguments for subcommand"),
+                arg(
+                    "subcommand",
+                    required=False,
+                    description="list|run|status|approve|skip",
+                ),
+                arg(
+                    "args",
+                    required=False,
+                    description="Additional arguments for subcommand",
+                ),
             ],
             description="Manage workflows (list, run, status, approve, skip)",
             category="workflows",
@@ -1179,7 +1287,11 @@ class MemoryChatSession:
             "read",
             lambda ctx, path="", **kwargs: asyncio.create_task(ctx.cmd_read_file(path)),
             arguments=[
-                arg("path", required=True, description="Path to file (supports txt, csv, pdf, docx, xlsx)"),
+                arg(
+                    "path",
+                    required=True,
+                    description="Path to file (supports txt, csv, pdf, docx, xlsx)",
+                ),
             ],
             description="Read file with smart format detection",
             category="files",
@@ -1187,9 +1299,15 @@ class MemoryChatSession:
 
         self.registry.register(
             "ingest",
-            lambda ctx, path="", **kwargs: asyncio.create_task(ctx.cmd_ingest_file(path)),
+            lambda ctx, path="", **kwargs: asyncio.create_task(
+                ctx.cmd_ingest_file(path)
+            ),
             arguments=[
-                arg("path", required=True, description="Path to file to ingest into vector memory"),
+                arg(
+                    "path",
+                    required=True,
+                    description="Path to file to ingest into vector memory",
+                ),
             ],
             description="Ingest file content into vector memory",
             category="files",
@@ -1199,7 +1317,11 @@ class MemoryChatSession:
             "set",
             lambda ctx, key="", value="", **kwargs: ctx.cmd_set(key, value),
             arguments=[
-                arg("key", required=True, description="Variable key (e.g., user:name, session:project)"),
+                arg(
+                    "key",
+                    required=True,
+                    description="Variable key (e.g., user:name, session:project)",
+                ),
                 arg("value", required=True, description="Value to set"),
             ],
             description="Set a scoped variable",
@@ -1216,7 +1338,7 @@ class MemoryChatSession:
         self.state.set_var("session:started", datetime.now().isoformat())
 
     async def handle_command(self, user_input: str) -> str | None:
-        """Handle /commands and @routing. Returns response string or None if not a command."""
+        """Handle /commands and @routing. Returns response string or None if not a command."""  # noqa: E501
         # Check for @agent_name routing (orchestration)
         if user_input.strip().startswith("@") and self.orchestrator:
             return await self.handle_at_routing(user_input)
@@ -1324,7 +1446,9 @@ class MemoryChatSession:
                 max_lines = None
                 if len(parts) > 2 and parts[2].startswith("--lines"):
                     try:
-                        max_lines = int(parts[2].split("=")[1]) if "=" in parts[2] else 100
+                        max_lines = (
+                            int(parts[2].split("=")[1]) if "=" in parts[2] else 100
+                        )
                     except (ValueError, IndexError):
                         max_lines = 100
                 return await self.cmd_read_file(file_path, max_lines)
@@ -1356,13 +1480,15 @@ class MemoryChatSession:
     async def cmd_history(self) -> str:
         """Show conversation history including prior sessions with timestamps."""
         try:
-            # Get merged history from last_payload if available (includes prior sessions)
+            # Get merged history from last_payload if available (includes prior sessions)  # noqa: E501
             prior_history = []
             if self.last_payload and self.last_payload.prior_history:
                 prior_history = self.last_payload.prior_history
 
             # Fetch current session history from episodic store
-            current_turns = await self.controller.episodic.get_turns(self.session_id, limit=100)
+            current_turns = await self.controller.episodic.get_turns(
+                self.session_id, limit=100
+            )
 
             # Combine: prior sessions first, then current session
             all_turns = list(prior_history) + list(current_turns)
@@ -1379,19 +1505,35 @@ class MemoryChatSession:
                 f"CONVERSATION HISTORY ({len(all_turns)} total turns)",
                 f"  Prior sessions: {prior_count} turns",
                 f"  Current session: {current_count} turns",
-                "=" * 60
+                "=" * 60,
             ]
 
             for i, turn in enumerate(all_turns, 1):
                 # Format timestamp
-                timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+                timestamp = (
+                    turn.timestamp.strftime("%Y-%m-%d %H:%M")
+                    if turn.timestamp
+                    else "N/A"
+                )
 
                 # Check if this is from a prior session
-                is_prior = turn.metadata.get("from_prior_session", False) if turn.metadata else False
+                is_prior = (
+                    turn.metadata.get("from_prior_session", False)
+                    if turn.metadata
+                    else False
+                )
                 session_marker = " [prior]" if is_prior else ""
 
-                user_msg = turn.user_message[:100] + "..." if len(turn.user_message or "") > 100 else (turn.user_message or "")
-                asst_msg = turn.assistant_message[:100] + "..." if len(turn.assistant_message or "") > 100 else (turn.assistant_message or "")
+                user_msg = (
+                    turn.user_message[:100] + "..."
+                    if len(turn.user_message or "") > 100
+                    else (turn.user_message or "")
+                )
+                asst_msg = (
+                    turn.assistant_message[:100] + "..."
+                    if len(turn.assistant_message or "") > 100
+                    else (turn.assistant_message or "")
+                )
                 user_msg = user_msg.replace("\n", " ")
                 asst_msg = asst_msg.replace("\n", " ")
 
@@ -1455,9 +1597,12 @@ class MemoryChatSession:
         )
 
     def _record_context_metrics(
-        self, metrics: ContextMetrics, actual_prompt_tokens: int = 0, actual_completion_tokens: int = 0
+        self,
+        metrics: ContextMetrics,
+        actual_prompt_tokens: int = 0,
+        actual_completion_tokens: int = 0,
     ) -> None:
-        """Record context metrics and update with actual token counts from LLM response."""
+        """Record context metrics and update with actual token counts from LLM response."""  # noqa: E501
         metrics.actual_prompt_tokens = actual_prompt_tokens
         metrics.actual_completion_tokens = actual_completion_tokens
         self.context_history.append(metrics)
@@ -1471,7 +1616,7 @@ class MemoryChatSession:
             result = await self.incremental_maintainer.run_maintenance(self.session_id)
             if result.entities_merged > 0 or result.orphans_removed > 0:
                 get_console().print(
-                    f"  [dim][Incremental maintenance: merged={result.entities_merged}, "
+                    f"  [dim][Incremental maintenance: merged={result.entities_merged}, "  # noqa: E501
                     f"orphans={result.orphans_removed}][/dim]"
                 )
         except Exception as e:
@@ -1483,7 +1628,9 @@ class MemoryChatSession:
         """Average context tokens across all turns in session."""
         if not self.context_history:
             return 0.0
-        return sum(m.estimated_total_tokens for m in self.context_history) / len(self.context_history)
+        return sum(m.estimated_total_tokens for m in self.context_history) / len(
+            self.context_history
+        )
 
     @property
     def max_context_tokens(self) -> int:
@@ -1528,7 +1675,11 @@ class MemoryChatSession:
             # Show actual vs estimated if available
             if last.actual_prompt_tokens > 0:
                 diff = last.actual_prompt_tokens - last.estimated_total_tokens
-                diff_pct = (diff / last.estimated_total_tokens * 100) if last.estimated_total_tokens > 0 else 0
+                diff_pct = (
+                    (diff / last.estimated_total_tokens * 100)
+                    if last.estimated_total_tokens > 0
+                    else 0
+                )
                 lines.append("")
                 lines.append("Last Turn (actual from LLM):")
                 lines.append(f"  Prompt tokens: {last.actual_prompt_tokens:,}")
@@ -1540,7 +1691,9 @@ class MemoryChatSession:
             lines.append("Token Budget:")
             lines.append(f"  Context window: {self.context_window:,} tokens")
             lines.append(f"  Output buffer: {self.output_buffer:,} tokens")
-            lines.append(f"  Available: {self.context_window - self.output_buffer:,} tokens")
+            lines.append(
+                f"  Available: {self.context_window - self.output_buffer:,} tokens"
+            )
 
             # Warning if approaching limit
             if last.budget_used_pct > 90:
@@ -1568,22 +1721,27 @@ class MemoryChatSession:
         lines = ["=" * 60, f"CONTEXT PAYLOAD (format: {self.context_format})", "=" * 60]
 
         # Summary counts
-        lines.append(f"\nSummary:")
+        lines.append("\nSummary:")
         lines.append(f"  Prior session turns: {len(self.last_payload.prior_history)}")
         lines.append(f"  Current session turns: {len(self.last_payload.history)}")
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
         lines.append(f"  Graph facts (edges): {len(self.last_payload.facts)}")
-        lines.append(f"  Key facts (natural language): {len(self.last_payload.key_facts)}")
-        lines.append(f"  Relationship summaries: {len(self.last_payload.recent_memories)}")
+        lines.append(
+            f"  Key facts (natural language): {len(self.last_payload.key_facts)}"
+        )
+        lines.append(
+            f"  Relationship summaries: {len(self.last_payload.recent_memories)}"
+        )
         lines.append(f"  Insights: {len(self.last_payload.insights)}")
         lines.append(f"  Summaries: {len(self.last_payload.summaries)}")
 
         # Debug mode: show token counts and additional info
         if debug_mode:
-            lines.append(f"\n--- TOKEN ESTIMATES (debug mode) ---")
+            lines.append("\n--- TOKEN ESTIMATES (debug mode) ---")
             try:
                 import tiktoken
+
                 enc = tiktoken.get_encoding("cl100k_base")
 
                 # Count tokens per section
@@ -1633,18 +1791,30 @@ class MemoryChatSession:
                 )
                 formatted_tokens = count_tokens(formatted or "")
 
-                lines.append(f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)")
-                lines.append(f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)")
-                lines.append(f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)")
-                lines.append(f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
-                lines.append(f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)")
-                lines.append(f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)")
-                lines.append(f"  ----------------------------------------")
+                lines.append(
+                    f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)"  # noqa: E501
+                )
+                lines.append("  ----------------------------------------")
                 lines.append(f"  Formatted Context: ~{formatted_tokens} tokens (total)")
 
                 # Debug info from payload
                 if self.last_payload.debug_info:
-                    lines.append(f"\n--- DEBUG INFO ---")
+                    lines.append("\n--- DEBUG INFO ---")
                     for key, value in self.last_payload.debug_info.items():
                         lines.append(f"  {key}: {value}")
 
@@ -1663,7 +1833,7 @@ class MemoryChatSession:
         else:
             lines.append("  (no supporting context)")
 
-        # History details - FULL content (shown separately since not in supporting context)
+        # History details - FULL content (shown separately since not in supporting context)  # noqa: E501
         if self.last_payload.history:
             lines.append(f"\n--- History Turns ({len(self.last_payload.history)}) ---")
             for i, turn in enumerate(self.last_payload.history, 1):
@@ -1673,7 +1843,9 @@ class MemoryChatSession:
 
         # Vector passages (shown separately for reference)
         if self.last_payload.passages:
-            lines.append(f"\n--- Vector Passages ({len(self.last_payload.passages)}) ---")
+            lines.append(
+                f"\n--- Vector Passages ({len(self.last_payload.passages)}) ---"
+            )
             for i, passage in enumerate(self.last_payload.passages, 1):
                 text = passage.get("text", "")
                 similarity = passage.get("similarity", 0.0)
@@ -1688,7 +1860,11 @@ class MemoryChatSession:
         if not self.last_messages:
             return "No prompt formatted yet. Send a message first."
 
-        lines = ["=" * 60, f"FORMATTED PROMPT (format: {self.context_format})", "=" * 60]
+        lines = [
+            "=" * 60,
+            f"FORMATTED PROMPT (format: {self.context_format})",
+            "=" * 60,
+        ]
 
         # Map API roles to configured names
         role_names = {
@@ -1705,8 +1881,12 @@ class MemoryChatSession:
             display_name = role_names.get(role, role.upper())
 
             # Mark the last user message as the current query + supporting context
-            is_current_query = (i == len(self.last_messages) - 1 and role == "user")
-            label = f"{display_name} (supporting context + query)" if is_current_query else display_name
+            is_current_query = i == len(self.last_messages) - 1 and role == "user"
+            label = (
+                f"{display_name} (supporting context + query)"
+                if is_current_query
+                else display_name
+            )
             lines.append(f"\n--- Message {i + 1}: {label} ---")
 
             # Show FULL content (no truncation for debugging)
@@ -1722,13 +1902,17 @@ class MemoryChatSession:
             lines.append("=" * 60)
             lines.append("ACTIVE TOOLS (passed to LLM API as 'tools' parameter)")
             lines.append("=" * 60)
-            lines.append(f"Function calling enabled with {len(active_tools)} tool(s):\n")
+            lines.append(
+                f"Function calling enabled with {len(active_tools)} tool(s):\n"
+            )
             for tool in active_tools:
                 name = tool.get("name", "unknown")
                 desc = tool.get("description", "")[:80]
                 category = tool.get("category", "uncategorized")
                 lines.append(f"  • {name} [{category}]")
-                lines.append(f"    {desc}{'...' if len(tool.get('description', '')) > 80 else ''}")
+                lines.append(
+                    f"    {desc}{'...' if len(tool.get('description', '')) > 80 else ''}"  # noqa: E501
+                )
                 # Show parameters briefly
                 params = tool.get("parameters", {}).get("properties", {})
                 if params:
@@ -1765,25 +1949,31 @@ class MemoryChatSession:
             /debug-retrieval what was in the report?
         """
         if not query:
-            return "Usage: /debug-retrieval <your query>\n\nProvide the query you want to test."
+            return "Usage: /debug-retrieval <your query>\n\nProvide the query you want to test."  # noqa: E501
 
         lines = [
             "=" * 60,
             "RETRIEVAL DIAGNOSTICS",
             "=" * 60,
-            f"\nQuery: \"{query}\"",
+            f'\nQuery: "{query}"',
         ]
 
         # Check if lifecycle is enabled
         if not self.controller.collection_manager:
-            lines.append("\n[WARNING] Lifecycle is DISABLED - using main collection only")
+            lines.append(
+                "\n[WARNING] Lifecycle is DISABLED - using main collection only"
+            )
             # Query main collection directly
             try:
                 raw_results = await self.controller.vector.query(query, n_results=10)
                 lines.append(f"\n--- Main Collection ({len(raw_results)} results) ---")
                 for i, r in enumerate(raw_results, 1):
                     similarity = r.get("similarity", 0.0)
-                    text = r.get("text", "")[:100] + "..." if len(r.get("text", "")) > 100 else r.get("text", "")
+                    text = (
+                        r.get("text", "")[:100] + "..."
+                        if len(r.get("text", "")) > 100
+                        else r.get("text", "")
+                    )
                     doc_id = r.get("id", "unknown")[:20]
                     metadata = r.get("metadata", {})
                     doc_type = metadata.get("type", "unknown")
@@ -1798,12 +1988,12 @@ class MemoryChatSession:
         cm = self.controller.collection_manager
         config = cm._config
 
-        lines.append(f"\n[Lifecycle ENABLED]")
+        lines.append("\n[Lifecycle ENABLED]")
         lines.append(f"  Short-term threshold: {config.short_term_min_similarity}")
         lines.append(f"  Long-term threshold: {config.long_term_min_similarity}")
 
         # Query short-term collection directly (no filtering)
-        lines.append(f"\n--- SHORT-TERM COLLECTION ---")
+        lines.append("\n--- SHORT-TERM COLLECTION ---")
         try:
             st_results = await cm._short_term.query(query, n_results=10)
             lines.append(f"Raw results: {len(st_results)}")
@@ -1811,7 +2001,11 @@ class MemoryChatSession:
             would_filter = 0
             for i, r in enumerate(st_results, 1):
                 similarity = r.get("similarity", 0.0)
-                text = r.get("text", "")[:80] + "..." if len(r.get("text", "")) > 80 else r.get("text", "")
+                text = (
+                    r.get("text", "")[:80] + "..."
+                    if len(r.get("text", "")) > 80
+                    else r.get("text", "")
+                )
                 doc_id = r.get("id", "unknown")[:16]
                 metadata = r.get("metadata", {})
                 doc_type = metadata.get("type", "unknown")
@@ -1825,18 +2019,22 @@ class MemoryChatSession:
                 else:
                     would_filter += 1
 
-                lines.append(f"\n  {i}. [{status}] sim={similarity:.3f} (threshold={config.short_term_min_similarity})")
+                lines.append(
+                    f"\n  {i}. [{status}] sim={similarity:.3f} (threshold={config.short_term_min_similarity})"  # noqa: E501
+                )
                 lines.append(f"     id={doc_id} | type={doc_type}")
                 if source:
                     lines.append(f"     source={source}")
                 lines.append(f"     text: {text}")
 
-            lines.append(f"\n  Summary: {would_pass} would pass, {would_filter} would be filtered")
+            lines.append(
+                f"\n  Summary: {would_pass} would pass, {would_filter} would be filtered"  # noqa: E501
+            )
         except Exception as e:
             lines.append(f"  [ERROR] Query failed: {e}")
 
         # Query long-term collection directly (no filtering)
-        lines.append(f"\n--- LONG-TERM COLLECTION ---")
+        lines.append("\n--- LONG-TERM COLLECTION ---")
         try:
             lt_results = await cm._long_term.query(query, n_results=10)
             lines.append(f"Raw results: {len(lt_results)}")
@@ -1844,7 +2042,11 @@ class MemoryChatSession:
             would_filter = 0
             for i, r in enumerate(lt_results, 1):
                 similarity = r.get("similarity", 0.0)
-                text = r.get("text", "")[:80] + "..." if len(r.get("text", "")) > 80 else r.get("text", "")
+                text = (
+                    r.get("text", "")[:80] + "..."
+                    if len(r.get("text", "")) > 80
+                    else r.get("text", "")
+                )
                 doc_id = r.get("id", "unknown")[:16]
                 metadata = r.get("metadata", {})
                 doc_type = metadata.get("type", "unknown")
@@ -1859,7 +2061,9 @@ class MemoryChatSession:
                 else:
                     would_filter += 1
 
-                lines.append(f"\n  {i}. [{status}] sim={similarity:.3f} (threshold={config.long_term_min_similarity})")
+                lines.append(
+                    f"\n  {i}. [{status}] sim={similarity:.3f} (threshold={config.long_term_min_similarity})"  # noqa: E501
+                )
                 if inclusion_score:
                     lines.append(f"     inclusion_score={inclusion_score:.3f}")
                 lines.append(f"     id={doc_id} | type={doc_type}")
@@ -1867,17 +2071,23 @@ class MemoryChatSession:
                     lines.append(f"     source={source}")
                 lines.append(f"     text: {text}")
 
-            lines.append(f"\n  Summary: {would_pass} would pass, {would_filter} would be filtered")
+            lines.append(
+                f"\n  Summary: {would_pass} would pass, {would_filter} would be filtered"  # noqa: E501
+            )
         except Exception as e:
             lines.append(f"  [ERROR] Query failed: {e}")
 
         # Also show what's in the last payload (if any)
         if self.last_payload and self.last_payload.passages:
-            lines.append(f"\n--- LAST ASSEMBLED PAYLOAD ---")
+            lines.append("\n--- LAST ASSEMBLED PAYLOAD ---")
             lines.append(f"Passages included: {len(self.last_payload.passages)}")
             for i, p in enumerate(self.last_payload.passages[:5], 1):
                 similarity = p.get("similarity", 0.0)
-                text = p.get("text", "")[:60] + "..." if len(p.get("text", "")) > 60 else p.get("text", "")
+                text = (
+                    p.get("text", "")[:60] + "..."
+                    if len(p.get("text", "")) > 60
+                    else p.get("text", "")
+                )
                 lines.append(f"  {i}. sim={similarity:.3f}: {text}")
             if len(self.last_payload.passages) > 5:
                 lines.append(f"  ... and {len(self.last_payload.passages) - 5} more")
@@ -1885,8 +2095,12 @@ class MemoryChatSession:
         lines.append("\n" + "=" * 60)
         lines.append("\nDIAGNOSIS:")
         lines.append("  If similarity scores are low (< threshold), try:")
-        lines.append("  1. Lower the threshold in config.yaml (memory.retrieval.short_term_min_similarity)")
-        lines.append("  2. Use more specific query terms that match the document content")
+        lines.append(
+            "  1. Lower the threshold in config.yaml (memory.retrieval.short_term_min_similarity)"  # noqa: E501
+        )
+        lines.append(
+            "  2. Use more specific query terms that match the document content"
+        )
         lines.append("  3. Check if the embedding model is working correctly")
         lines.append("  4. Verify the document was stored with /facts command")
 
@@ -1899,7 +2113,7 @@ class MemoryChatSession:
         Shows what's been ingested and their current lifecycle stage.
         """
         if not self.controller.collection_manager:
-            return "Lifecycle is DISABLED - using main collection only.\nUse /facts to see documents in main collection."
+            return "Lifecycle is DISABLED - using main collection only.\nUse /facts to see documents in main collection."  # noqa: E501
 
         cm = self.controller.collection_manager
         lines = [
@@ -1909,17 +2123,25 @@ class MemoryChatSession:
         ]
 
         # Short-term collection
-        lines.append(f"\n--- SHORT-TERM (newly ingested, < 24h) ---")
+        lines.append("\n--- SHORT-TERM (newly ingested, < 24h) ---")
         try:
             st_docs = await cm._short_term.get_all(limit=100)
             lines.append(f"Total documents: {len(st_docs)}")
             for i, doc in enumerate(st_docs[:20], 1):
                 doc_id = doc.get("id", "unknown")[:20]
-                text = doc.get("text", "")[:60] + "..." if len(doc.get("text", "")) > 60 else doc.get("text", "")
+                text = (
+                    doc.get("text", "")[:60] + "..."
+                    if len(doc.get("text", "")) > 60
+                    else doc.get("text", "")
+                )
                 metadata = doc.get("metadata", {})
                 doc_type = metadata.get("type", "unknown")
                 source = metadata.get("filename") or metadata.get("source", "")
-                created = metadata.get("created_at", "")[:16] if metadata.get("created_at") else ""
+                created = (
+                    metadata.get("created_at", "")[:16]
+                    if metadata.get("created_at")
+                    else ""
+                )
 
                 lines.append(f"\n  {i}. [{doc_type}] id={doc_id}")
                 if source:
@@ -1933,13 +2155,17 @@ class MemoryChatSession:
             lines.append(f"  [ERROR] {e}")
 
         # Long-term collection
-        lines.append(f"\n--- LONG-TERM (promoted, frequently accessed) ---")
+        lines.append("\n--- LONG-TERM (promoted, frequently accessed) ---")
         try:
             lt_docs = await cm._long_term.get_all(limit=100)
             lines.append(f"Total documents: {len(lt_docs)}")
             for i, doc in enumerate(lt_docs[:20], 1):
                 doc_id = doc.get("id", "unknown")[:20]
-                text = doc.get("text", "")[:60] + "..." if len(doc.get("text", "")) > 60 else doc.get("text", "")
+                text = (
+                    doc.get("text", "")[:60] + "..."
+                    if len(doc.get("text", "")) > 60
+                    else doc.get("text", "")
+                )
                 metadata = doc.get("metadata", {})
                 doc_type = metadata.get("type", "unknown")
                 source = metadata.get("filename") or metadata.get("source", "")
@@ -1957,14 +2183,18 @@ class MemoryChatSession:
             lines.append(f"  [ERROR] {e}")
 
         # Decayed collection
-        lines.append(f"\n--- DECAYED (stale, pending deletion) ---")
+        lines.append("\n--- DECAYED (stale, pending deletion) ---")
         try:
             d_docs = await cm._decayed.get_all(limit=50)
             lines.append(f"Total documents: {len(d_docs)}")
             if d_docs:
                 for i, doc in enumerate(d_docs[:10], 1):
                     doc_id = doc.get("id", "unknown")[:20]
-                    text = doc.get("text", "")[:40] + "..." if len(doc.get("text", "")) > 40 else doc.get("text", "")
+                    text = (
+                        doc.get("text", "")[:40] + "..."
+                        if len(doc.get("text", "")) > 40
+                        else doc.get("text", "")
+                    )
                     lines.append(f"  {i}. id={doc_id}: {text}")
                 if len(d_docs) > 10:
                     lines.append(f"  ... and {len(d_docs) - 10} more")
@@ -1972,7 +2202,9 @@ class MemoryChatSession:
             lines.append(f"  [ERROR] {e}")
 
         lines.append("\n" + "=" * 60)
-        lines.append("Use /debug-retrieval <query> to test if a specific query finds these documents.")
+        lines.append(
+            "Use /debug-retrieval <query> to test if a specific query finds these documents."  # noqa: E501
+        )
 
         return "\n".join(lines)
 
@@ -2001,7 +2233,9 @@ class MemoryChatSession:
 
                 for node_type, type_nodes in sorted(by_type.items()):
                     lines.append(f"\n  [{node_type}]")
-                    for node in type_nodes[:500]:  # Show up to 500 per type for debugging
+                    for node in type_nodes[
+                        :500
+                    ]:  # Show up to 500 per type for debugging
                         lines.append(f"    - {node.label} (hits: {node.hit_count})")
                     if len(type_nodes) > 500:
                         lines.append(f"    ... and {len(type_nodes) - 500} more")
@@ -2014,7 +2248,9 @@ class MemoryChatSession:
                     target = node_lookup.get(edge.target_id)
                     source_label = source.label if source else edge.source_id[:8]
                     target_label = target.label if target else edge.target_id[:8]
-                    lines.append(f"    {source_label} --[{edge.relation}]--> {target_label}")
+                    lines.append(
+                        f"    {source_label} --[{edge.relation}]--> {target_label}"
+                    )
                 if len(edges) > 500:
                     lines.append(f"    ... and {len(edges) - 500} more")
 
@@ -2047,7 +2283,9 @@ class MemoryChatSession:
                 if metadata:
                     source_type = metadata.get("source_type", "unknown")
                     confidence = metadata.get("confidence", "N/A")
-                    lines.append(f"   [source: {source_type}, confidence: {confidence}]")
+                    lines.append(
+                        f"   [source: {source_type}, confidence: {confidence}]"
+                    )
                 lines.append("")
 
             return "\n".join(lines)
@@ -2108,7 +2346,11 @@ class MemoryChatSession:
             if not documents:
                 return "No turn summaries in vector store."
 
-            lines = ["=" * 60, "TURN SUMMARIES (type='summary' from vector store)", "=" * 60]
+            lines = [
+                "=" * 60,
+                "TURN SUMMARIES (type='summary' from vector store)",
+                "=" * 60,
+            ]
             lines.append(f"\nTotal summaries: {len(documents)}\n")
 
             for i, doc in enumerate(documents, 1):
@@ -2146,9 +2388,13 @@ class MemoryChatSession:
                 where={"type": "meta_insight"},
             )
             if not documents:
-                return "No meta insights in vector store. Run /reorganize with synthesis to generate them."
+                return "No meta insights in vector store. Run /reorganize with synthesis to generate them."  # noqa: E501
 
-            lines = ["=" * 60, "META INSIGHTS (type='meta_insight' from vector store)", "=" * 60]
+            lines = [
+                "=" * 60,
+                "META INSIGHTS (type='meta_insight' from vector store)",
+                "=" * 60,
+            ]
             lines.append(f"\nTotal meta insights: {len(documents)}\n")
 
             for i, doc in enumerate(documents, 1):
@@ -2202,7 +2448,7 @@ class MemoryChatSession:
             lines = ["=" * 60, "PRIMED CONTEXT", "=" * 60]
 
             # Summary counts
-            lines.append(f"\nContext loaded:")
+            lines.append("\nContext loaded:")
             lines.append(f"  Entities: {len(payload.entities)}")
             lines.append(f"  Key Facts: {len(payload.key_facts)}")
             lines.append(f"  Insights: {len(payload.insights)}")
@@ -2215,8 +2461,10 @@ class MemoryChatSession:
             if payload.entities:
                 lines.append("\n--- Top Entities (by hit_count) ---")
                 for entity in payload.entities[:15]:
-                    hit_count = getattr(entity, 'hit_count', 0)
-                    lines.append(f"  - {entity.label} ({entity.type}, hits: {hit_count})")
+                    hit_count = getattr(entity, "hit_count", 0)
+                    lines.append(
+                        f"  - {entity.label} ({entity.type}, hits: {hit_count})"
+                    )
 
             # Show relationship summaries
             if payload.recent_memories:
@@ -2255,16 +2503,24 @@ class MemoryChatSession:
                 # Group by session
                 sessions_seen: set[str] = set()
                 for turn in payload.prior_history[:10]:
-                    session_id = turn.metadata.get("original_session_id", turn.session_id)
+                    session_id = turn.metadata.get(
+                        "original_session_id", turn.session_id
+                    )
                     if session_id not in sessions_seen:
                         sessions_seen.add(session_id)
                         lines.append(f"  Session: {session_id[:12]}...")
-                    timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+                    timestamp = (
+                        turn.timestamp.strftime("%Y-%m-%d %H:%M")
+                        if turn.timestamp
+                        else "N/A"
+                    )
                     user_preview = (turn.user_message or "")[:50]
                     lines.append(f"    [{timestamp}] {user_preview}...")
 
             lines.append("\n" + "=" * 60)
-            lines.append("Use /context for full details, /prompt to see formatted prompt.")
+            lines.append(
+                "Use /context for full details, /prompt to see formatted prompt."
+            )
             return "\n".join(lines)
 
         except Exception as e:
@@ -2281,22 +2537,24 @@ class MemoryChatSession:
                 return "No transcript sessions found."
 
             # Get priming config to determine which sessions are "in context"
-            priming_config = getattr(self.controller, '_priming_config', {})
-            previous_sessions_count = priming_config.get('previous_sessions', 0)
+            priming_config = getattr(self.controller, "_priming_config", {})
+            previous_sessions_count = priming_config.get("previous_sessions", 0)
 
             # Determine which sessions are in context (current + N most recent)
             in_context_ids: set[str] = {self.session_id}
             if previous_sessions_count > 0:
                 # Sessions are already ordered newest first
-                prior_sessions = [s for s in sessions if s.session_id != self.session_id]
+                prior_sessions = [
+                    s for s in sessions if s.session_id != self.session_id
+                ]
                 for session in prior_sessions[:previous_sessions_count]:
                     in_context_ids.add(session.session_id)
 
             lines = [
                 "=" * 60,
                 f"TRANSCRIPT SESSIONS ({len(sessions)} total)",
-                f"  In context: {len(in_context_ids)} (current + {previous_sessions_count} prior)",
-                "=" * 60
+                f"  In context: {len(in_context_ids)} (current + {previous_sessions_count} prior)",  # noqa: E501
+                "=" * 60,
             ]
 
             for session in sessions:
@@ -2309,12 +2567,18 @@ class MemoryChatSession:
 
                 marker_str = f" [{', '.join(markers)}]" if markers else ""
                 lines.append(f"\n  {session.session_id}{marker_str}")
-                lines.append(f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                lines.append(
+                    f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                )
                 if session.ended_at:
-                    lines.append(f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                    lines.append(
+                        f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                    )
                 lines.append(f"    User: {session.user_id}")
                 lines.append(f"    Model: {session.model_name}")
-                lines.append(f"    Turns: {session.total_turns}, Tokens: {session.total_tokens}")
+                lines.append(
+                    f"    Turns: {session.total_turns}, Tokens: {session.total_tokens}"
+                )
 
             lines.append("\n" + "=" * 60)
             lines.append("Use /transcript <session_id> to view a specific session.")
@@ -2345,18 +2609,26 @@ class MemoryChatSession:
             )
             if not entries:
                 if arg:
-                    return f"No transcript entries found for session: {target_session_id}"
+                    return (
+                        f"No transcript entries found for session: {target_session_id}"
+                    )
                 return "No transcript entries for this session."
 
             is_current = target_session_id == self.session_id
             current_marker = " [CURRENT]" if is_current else ""
-            lines = ["=" * 60, f"TRANSCRIPT ({len(entries)} entries){current_marker}", "=" * 60]
+            lines = [
+                "=" * 60,
+                f"TRANSCRIPT ({len(entries)} entries){current_marker}",
+                "=" * 60,
+            ]
 
             # Get session info
             session = await self.transcript_store.get_session(target_session_id)
             if session:
                 lines.append(f"\nSession: {session.session_id}")
-                lines.append(f"Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                lines.append(
+                    f"Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                )
                 lines.append(f"Model: {session.model_name}")
                 lines.append(f"Total tokens: {session.total_tokens}")
                 lines.append(f"Total latency: {session.total_latency_ms:.0f}ms")
@@ -2423,7 +2695,7 @@ class MemoryChatSession:
                 "TRANSCRIPT EXPORT COMPLETE",
                 "=" * 60,
                 f"\nExport directory: {output_dir}",
-                f"\nFiles created:",
+                "\nFiles created:",
                 f"  - sessions.csv ({counts['sessions']} sessions)",
                 f"  - entries.csv ({counts['entries']} entries)",
                 "\n" + "=" * 60,
@@ -2457,9 +2729,11 @@ class MemoryChatSession:
 
             if format_type == "csv":
                 output_path = export_dir / f"{base_name}.csv"
-                exporter = CSVExporter(self.transcript_store)  # Comma-delimited, all quoted
+                exporter = CSVExporter(
+                    self.transcript_store
+                )  # Comma-delimited, all quoted
                 count = await exporter.export_session(self.session_id, output_path)
-                return f"Exported {count} entries to: {output_path}\n(All fields quoted, newlines/tabs removed)"
+                return f"Exported {count} entries to: {output_path}\n(All fields quoted, newlines/tabs removed)"  # noqa: E501
 
             elif format_type == "jsonl":
                 output_path = export_dir / f"{base_name}.jsonl"
@@ -2486,7 +2760,7 @@ class MemoryChatSession:
                 return f"Exported {count} entries to: {output_path}"
 
             else:
-                return f"Unknown format: {format_type}. Use: csv, jsonl, markdown, or training"
+                return f"Unknown format: {format_type}. Use: csv, jsonl, markdown, or training"  # noqa: E501
 
         except Exception as e:
             return f"Error exporting transcript: {e}"
@@ -2511,16 +2785,18 @@ class MemoryChatSession:
             raise FileNotFoundError(f"Transcript file not found: {csv_path}")
 
         turns = []
-        with open(csv_path, "r", newline="", encoding="utf-8") as f:
+        with open(csv_path, newline="", encoding="utf-8") as f:
             reader = csv_module.DictReader(f)
             for row in reader:
                 user_msg = row.get("user_message", "").strip()
                 if user_msg:  # Skip empty user messages
-                    turns.append({
-                        "turn_number": int(row.get("turn_number", 0)),
-                        "user_message": user_msg,
-                        "assistant_message": row.get("assistant_message", ""),
-                    })
+                    turns.append(
+                        {
+                            "turn_number": int(row.get("turn_number", 0)),
+                            "user_message": user_msg,
+                            "assistant_message": row.get("assistant_message", ""),
+                        }
+                    )
 
         # Sort by turn number to ensure correct order
         turns.sort(key=lambda x: x["turn_number"])
@@ -2551,7 +2827,7 @@ class MemoryChatSession:
 
             # Display with replay marker
             console.print(
-                f"[dim][REPLAY {i}/{total}][/dim] [green]{self.user_name}:[/green] {user_msg}"
+                f"[dim][REPLAY {i}/{total}][/dim] [green]{self.user_name}:[/green] {user_msg}"  # noqa: E501
             )
 
             # Process the turn (normal Friday pipeline)
@@ -2579,7 +2855,7 @@ class MemoryChatSession:
             /replay exports/transcript.csv 2.0
         """
         if not csv_path:
-            return "Usage: /replay <csv_file> [delay_seconds]\nExample: /replay exports/transcript.csv 1.0"
+            return "Usage: /replay <csv_file> [delay_seconds]\nExample: /replay exports/transcript.csv 1.0"  # noqa: E501
 
         try:
             path = Path(csv_path)
@@ -2626,7 +2902,9 @@ class MemoryChatSession:
             # Clear graph store
             logger.info("Clearing graph store...")
             graph_result = await self.controller.graph.clear()
-            lines.append(f"  Graph store: cleared {graph_result.get('nodes_deleted', 0)} nodes, {graph_result.get('edges_deleted', 0)} edges")
+            lines.append(
+                f"  Graph store: cleared {graph_result.get('nodes_deleted', 0)} nodes, {graph_result.get('edges_deleted', 0)} edges"  # noqa: E501
+            )
         except Exception as e:
             logger.error(f"Graph clear failed: {e}", exc_info=True)
             lines.append(f"  Graph store: ERROR - {e}")
@@ -2755,6 +3033,7 @@ class MemoryChatSession:
         if config.embedding and not skip_synthesis:
             try:
                 from friday_llm import LiteLLMEmbeddingService, ResilienceConfig
+
                 maintenance_embedding = LiteLLMEmbeddingService(
                     model_name=config.embedding.model,
                     api_key=config.embedding.api_key,
@@ -2767,7 +3046,7 @@ class MemoryChatSession:
                 display_warning(f"Failed to create maintenance embedding service: {e}")
                 display_info("Falling back to session embedding function.")
 
-        # Create reorganizer with the persist_dir, config, LLMs, embedding, collection name,
+        # Create reorganizer with the persist_dir, config, LLMs, embedding, collection name,  # noqa: E501
         # and lifecycle components (Phase 8)
         # Lifecycle components are accessed through promotion_service
         has_lifecycle = self.promotion_service is not None and not skip_lifecycle
@@ -2781,11 +3060,17 @@ class MemoryChatSession:
             embedding_function=maintenance_embedding,
             collection_name=config.collection_name,
             # Lifecycle components (Phase 8) - accessed via promotion_service
-            collection_manager=self.promotion_service.collection_manager if has_lifecycle else None,
+            collection_manager=self.promotion_service.collection_manager
+            if has_lifecycle
+            else None,
             access_buffer=self.access_buffer if has_lifecycle else None,
             factor_computer=self.factor_computer if has_lifecycle else None,
-            promotion_scorer=self.promotion_service.promotion_scorer if has_lifecycle else None,
-            decay_calculator=self.promotion_service.decay_calculator if has_lifecycle else None,
+            promotion_scorer=self.promotion_service.promotion_scorer
+            if has_lifecycle
+            else None,
+            decay_calculator=self.promotion_service.decay_calculator
+            if has_lifecycle
+            else None,
             graph_store=self.controller.graph if has_lifecycle else None,
         )
 
@@ -2794,8 +3079,12 @@ class MemoryChatSession:
 
             # Warn about fallback LLMs being used
             if fallback_roles:
-                lines.append(f"\nNote: Using main chat LLM for: {', '.join(fallback_roles)}")
-                lines.append("(Configure maintenance.llm in config.yaml for dedicated models)")
+                lines.append(
+                    f"\nNote: Using main chat LLM for: {', '.join(fallback_roles)}"
+                )
+                lines.append(
+                    "(Configure maintenance.llm in config.yaml for dedicated models)"
+                )
 
             if backup_only:
                 # Just create a backup
@@ -2816,20 +3105,22 @@ class MemoryChatSession:
                     await reorganizer.backup()
 
                 report = await reorganizer.dedupe_insights(dry_run=dry_run)
-                lines.append(f"\nDeduplication Results:")
+                lines.append("\nDeduplication Results:")
                 lines.append(f"  Insights scanned: {report.insights_scanned}")
                 lines.append(f"  Clusters found: {report.clusters_found}")
                 lines.append(f"  Insights superseded: {report.insights_superseded}")
 
                 if report.clusters:
-                    lines.append(f"\nClusters (showing up to 10):")
+                    lines.append("\nClusters (showing up to 10):")
                     for cluster in report.clusters[:10]:
                         lines.append(
-                            f"  - {cluster.entity_key}: kept {cluster.primary_insight_id[:8]}..., "
+                            f"  - {cluster.entity_key}: kept {cluster.primary_insight_id[:8]}..., "  # noqa: E501
                             f"superseded {len(cluster.superseded_ids)}"
                         )
                     if len(report.clusters) > 10:
-                        lines.append(f"  ... and {len(report.clusters) - 10} more clusters")
+                        lines.append(
+                            f"  ... and {len(report.clusters) - 10} more clusters"
+                        )
 
                 if report.errors:
                     lines.append(f"\nErrors: {len(report.errors)}")
@@ -2837,21 +3128,27 @@ class MemoryChatSession:
                         lines.append(f"  - {error}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
-                    lines.append("\nDeduplication complete. Superseded insights will be filtered at retrieval.")
+                    lines.append(
+                        "\nDeduplication complete. Superseded insights will be filtered at retrieval."  # noqa: E501
+                    )
                 return "\n".join(lines)
 
             if analyze_only:
                 # Just analyze
                 lines.append("\nAnalyzing memory consistency...")
                 report = await reorganizer.analyze()
-                lines.append(f"\nGraph Store:")
+                lines.append("\nGraph Store:")
                 lines.append(f"  Nodes: {report.graph_stats.get('node_count', 0)}")
                 lines.append(f"  Edges: {report.graph_stats.get('edge_count', 0)}")
-                lines.append(f"\nVector Store:")
-                lines.append(f"  Documents: {report.vector_stats.get('document_count', 0)}")
-                lines.append(f"\nEpisodic Store:")
+                lines.append("\nVector Store:")
+                lines.append(
+                    f"  Documents: {report.vector_stats.get('document_count', 0)}"
+                )
+                lines.append("\nEpisodic Store:")
                 lines.append(f"  Turns: {report.episodic_stats.get('turn_count', 0)}")
                 lines.append(f"\nIssues Found: {len(report.issues)}")
                 lines.append(f"  Critical: {report.severity_counts['critical']}")
@@ -2859,12 +3156,16 @@ class MemoryChatSession:
                 lines.append(f"  Info: {report.severity_counts['info']}")
 
                 if report.duplicate_groups:
-                    lines.append(f"\nDuplicate Entity Groups: {len(report.duplicate_groups)}")
+                    lines.append(
+                        f"\nDuplicate Entity Groups: {len(report.duplicate_groups)}"
+                    )
                     for group in report.duplicate_groups[:5]:
                         all_ids = [group.primary_id] + group.duplicate_ids[:2]
                         lines.append(f"  - {group.match_type}: {', '.join(all_ids)}")
                     if len(report.duplicate_groups) > 5:
-                        lines.append(f"  ... and {len(report.duplicate_groups) - 5} more groups")
+                        lines.append(
+                            f"  ... and {len(report.duplicate_groups) - 5} more groups"
+                        )
 
                 lines.append("\nAnalysis complete.")
                 return "\n".join(lines)
@@ -2876,15 +3177,19 @@ class MemoryChatSession:
                 if backup_first and not dry_run:
                     lines.append("Creating backup first...")
 
-                report = await reorganizer.prune(dry_run=dry_run, backup_first=backup_first)
-                lines.append(f"\nPrune Results:")
+                report = await reorganizer.prune(
+                    dry_run=dry_run, backup_first=backup_first
+                )
+                lines.append("\nPrune Results:")
                 lines.append(f"  Entities merged: {report.entities_merged}")
                 lines.append(f"  Entities removed: {report.entities_removed}")
                 lines.append(f"  Insights removed: {report.insights_removed}")
                 lines.append(f"  Edges removed: {report.edges_removed}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nPruning complete.")
                 return "\n".join(lines)
@@ -2898,22 +3203,34 @@ class MemoryChatSession:
                     await reorganizer.backup()
 
                 report = await reorganizer.synthesize(dry_run=dry_run)
-                lines.append(f"\nSynthesis Results:")
+                lines.append("\nSynthesis Results:")
                 lines.append(f"  Topic clusters found: {len(report.topic_clusters)}")
                 lines.append(f"  Meta-insights created: {report.meta_insights_created}")
-                lines.append(f"  Relationships inferred: {report.relationships_inferred}")
-                lines.append(f"  Knowledge gaps identified: {len(report.knowledge_gaps)}")
+                lines.append(
+                    f"  Relationships inferred: {report.relationships_inferred}"
+                )
+                lines.append(
+                    f"  Knowledge gaps identified: {len(report.knowledge_gaps)}"
+                )
 
                 if report.synthesized_memories:
-                    lines.append(f"\nSynthesized Memories:")
+                    lines.append("\nSynthesized Memories:")
                     for mem in report.synthesized_memories[:5]:
-                        content_preview = mem.content[:80] + "..." if len(mem.content) > 80 else mem.content
+                        content_preview = (
+                            mem.content[:80] + "..."
+                            if len(mem.content) > 80
+                            else mem.content
+                        )
                         lines.append(f"  - [{mem.type}] {content_preview}")
                     if len(report.synthesized_memories) > 5:
-                        lines.append(f"  ... and {len(report.synthesized_memories) - 5} more")
+                        lines.append(
+                            f"  ... and {len(report.synthesized_memories) - 5} more"
+                        )
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nSynthesis complete.")
                 return "\n".join(lines)
@@ -2924,14 +3241,16 @@ class MemoryChatSession:
                 lines.append(f"\nVerifying facts ({mode})...")
 
                 report = await reorganizer.verify(dry_run=dry_run)
-                lines.append(f"\nVerification Results:")
+                lines.append("\nVerification Results:")
                 lines.append(f"  Facts classified: {report.facts_classified}")
                 lines.append(f"  Claims verified: {report.claims_verified}")
                 lines.append(f"  Claims disputed: {report.claims_disputed}")
                 lines.append(f"  Claims unverifiable: {report.claims_unverifiable}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nVerification complete.")
                 return "\n".join(lines)
@@ -2969,7 +3288,7 @@ class MemoryChatSession:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during reorganization (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -3000,7 +3319,7 @@ class MemoryChatSession:
           /lifecycle --optimize   - Flush buffer and recompute factors
         """
         if not self.promotion_service:
-            return "Error: Lifecycle service not configured. CollectionManager not initialized."
+            return "Error: Lifecycle service not configured. CollectionManager not initialized."  # noqa: E501
 
         # Parse options
         opt_list = opts.lower().split() if opts else []
@@ -3024,9 +3343,15 @@ class MemoryChatSession:
                 if self.access_buffer:
                     buf_stats = self.access_buffer.get_stats()
                     lines.append("\nAccess Buffer:")
-                    lines.append(f"  Short-term accesses: {buf_stats['short_term_accesses']}")
-                    lines.append(f"  Long-term accesses: {buf_stats['long_term_accesses']}")
-                    lines.append(f"  Seconds since flush: {buf_stats['seconds_since_flush']}")
+                    lines.append(
+                        f"  Short-term accesses: {buf_stats['short_term_accesses']}"
+                    )
+                    lines.append(
+                        f"  Long-term accesses: {buf_stats['long_term_accesses']}"
+                    )
+                    lines.append(
+                        f"  Seconds since flush: {buf_stats['seconds_since_flush']}"
+                    )
 
                 return "\n".join(lines)
 
@@ -3078,7 +3403,7 @@ class MemoryChatSession:
 
             result = await self.promotion_service.run_promotion_cycle(dry_run=dry_run)
 
-            lines.append(f"\nLifecycle Results:")
+            lines.append("\nLifecycle Results:")
             lines.append(f"  Promoted to long-term: {result.promoted_to_long_term}")
             lines.append(f"  Decayed from long-term: {result.decayed_from_long_term}")
             lines.append(f"  Reactivated: {result.reactivated}")
@@ -3110,7 +3435,7 @@ class MemoryChatSession:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during lifecycle cycle (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -3151,7 +3476,9 @@ class MemoryChatSession:
         migrator = MemoryMigrator(
             vector_store=self.controller.vector if self.controller else None,
             graph_store=self.controller.graph if self.controller else None,
-            collection_manager=self.promotion_service.collection_manager if self.promotion_service else None,
+            collection_manager=self.promotion_service.collection_manager
+            if self.promotion_service
+            else None,
         )
 
         try:
@@ -3161,23 +3488,25 @@ class MemoryChatSession:
             # Check if migration is needed
             needs_migration = await migrator.check_migration_needed()
             if not needs_migration and dry_run:
-                lines.append("\nNo migration needed - all memories have lifecycle metadata.")
+                lines.append(
+                    "\nNo migration needed - all memories have lifecycle metadata."
+                )
                 return "\n".join(lines)
 
             # Run migration
             report = await migrator.migrate(dry_run=dry_run)
 
-            lines.append(f"\nVector Store:")
+            lines.append("\nVector Store:")
             lines.append(f"  Documents scanned: {report.vectors_scanned}")
             lines.append(f"  Documents migrated: {report.vectors_migrated}")
             lines.append(f"  Already migrated: {report.vectors_skipped}")
 
-            lines.append(f"\nGraph Store:")
+            lines.append("\nGraph Store:")
             lines.append(f"  Nodes scanned: {report.nodes_scanned}")
             lines.append(f"  Nodes migrated: {report.nodes_migrated}")
             lines.append(f"  Already migrated: {report.nodes_skipped}")
 
-            lines.append(f"\nEdges (staleness tracking):")
+            lines.append("\nEdges (staleness tracking):")
             lines.append(f"  Edges scanned: {report.edges_scanned}")
             lines.append(f"  Edges migrated: {report.edges_migrated}")
             lines.append(f"  Already have staleness fields: {report.edges_skipped}")
@@ -3191,7 +3520,9 @@ class MemoryChatSession:
 
             if dry_run:
                 if report.needs_migration:
-                    lines.append("\n[DRY RUN - Run '/migrate --force' to apply these changes.]")
+                    lines.append(
+                        "\n[DRY RUN - Run '/migrate --force' to apply these changes.]"
+                    )
                 else:
                     lines.append("\nNo migration needed.")
             else:
@@ -3205,7 +3536,7 @@ class MemoryChatSession:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during migration (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -3250,8 +3581,10 @@ class MemoryChatSession:
         if category:
             tools = [t for t in tools if t.get("category") == category]
             if not tools:
-                available_categories = sorted(set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS))
-                return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"
+                available_categories = sorted(
+                    set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS)
+                )
+                return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"  # noqa: E501
 
         lines = ["=" * 60, f"AVAILABLE TOOLS ({len(tools)} total)", "=" * 60]
 
@@ -3297,7 +3630,9 @@ class MemoryChatSession:
         """
         if not args.strip():
             available = ", ".join(TOOL_REGISTRY.list_names())
-            return f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
+            return (
+                f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
+            )
 
         parts = args.split(maxsplit=1)
         tool_name = parts[0]
@@ -3318,7 +3653,7 @@ class MemoryChatSession:
                 try:
                     params = json.loads(params_str)
                 except json.JSONDecodeError as e:
-                    return f"Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{\"param\": \"value\"}}"
+                    return f'Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{"param": "value"}}'  # noqa: E501
             else:
                 # Plain text - use as 'message' parameter for tools that support it
                 tool = TOOL_REGISTRY.get(tool_name)
@@ -3341,17 +3676,14 @@ class MemoryChatSession:
                     elif len(required) == 1:
                         param_name = required[0]
                     # Priority 3: If tool has exactly one param, use it
-                    elif len(props) == 1:
-                        param_name = list(props.keys())[0]
-                    # Priority 4: If multiple params but none required, use first
-                    elif len(props) > 0 and len(required) == 0:
+                    elif len(props) == 1 or len(props) > 0 and len(required) == 0:
                         param_name = list(props.keys())[0]
 
                     if param_name:
                         params = {param_name: params_str}
                         logger.debug(f"Plain text mapped to {param_name} param")
                     else:
-                        return f"Plain text not supported for {tool_name} (multiple required params).\nUse JSON: /run-tool {tool_name} {{\"param\": \"value\"}}"
+                        return f'Plain text not supported for {tool_name} (multiple required params).\nUse JSON: /run-tool {tool_name} {{"param": "value"}}'  # noqa: E501
                 else:
                     return f"Tool {tool_name} has no parameter schema. Use JSON format."
 
@@ -3387,14 +3719,14 @@ class MemoryChatSession:
             Status message about injected tools
         """
         if not tool_names.strip():
-            return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"
+            return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"  # noqa: E501
 
         names = tool_names.split()
         schemas = [t for t in TOOL_SCHEMAS if t.get("name") in names]
 
         if not schemas:
             available = ", ".join(t.get("name", "?") for t in TOOL_SCHEMAS)
-            return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"
+            return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"  # noqa: E501
 
         # Inject into assembler's tool manager
         self.assembler.set_active_tools(schemas)
@@ -3409,7 +3741,9 @@ class MemoryChatSession:
         if not_found:
             lines.append(f"\nNot found: {', '.join(not_found)}")
 
-        lines.append("\nUse /context to see tools in payload, /recommend-tools to test recommendations")
+        lines.append(
+            "\nUse /context to see tools in payload, /recommend-tools to test recommendations"  # noqa: E501
+        )
         return "\n".join(lines)
 
     def cmd_clear_tools(self) -> str:
@@ -3435,7 +3769,7 @@ class MemoryChatSession:
             Formatted list of tool recommendations with scores
         """
         if not query.strip():
-            return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"
+            return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"  # noqa: E501
 
         # Generate recommendations using the assembler
         recommendations = self.assembler.recommend_tools(
@@ -3445,7 +3779,7 @@ class MemoryChatSession:
         )
 
         if not recommendations:
-            return f"No tool recommendations for: '{query}'\nNote: Tools need keyword matches with the query."
+            return f"No tool recommendations for: '{query}'\nNote: Tools need keyword matches with the query."  # noqa: E501
 
         lines = [
             "=" * 60,
@@ -3455,11 +3789,15 @@ class MemoryChatSession:
         ]
 
         for i, rec in enumerate(recommendations, 1):
-            lines.append(f"{i}. {rec.tool_name} (score: {rec.relevance_score:.2f}, confidence: {rec.confidence:.2f})")
+            lines.append(
+                f"{i}. {rec.tool_name} (score: {rec.relevance_score:.2f}, confidence: {rec.confidence:.2f})"  # noqa: E501
+            )
             lines.append(f"   Category: {rec.category}")
             lines.append(f"   Reason: {rec.reason}")
             if rec.suggested_parameters:
-                params = ", ".join(f"{k}={v}" for k, v in rec.suggested_parameters.items())
+                params = ", ".join(
+                    f"{k}={v}" for k, v in rec.suggested_parameters.items()
+                )
                 lines.append(f"   Suggested params: {params}")
             lines.append("")
 
@@ -3530,7 +3868,7 @@ Use /tools to list available tools."""
         if not agent_name:
             # Show current status
             active = self.orchestrator.active_agent_name or "(none)"
-            return f"Active agent: {active}\nUse /switch <agent_name> to switch agents.\nUse /agents to list available agents."
+            return f"Active agent: {active}\nUse /switch <agent_name> to switch agents.\nUse /agents to list available agents."  # noqa: E501
 
         try:
             await self.orchestrator.switch_agent(agent_name)
@@ -3574,7 +3912,7 @@ Use /tools to list available tools."""
 
                 lines.append(f"  @{name}{status}")
                 lines.append(f"    Role: {info.get('role', 'N/A')}")
-                caps = info.get('capabilities', [])
+                caps = info.get("capabilities", [])
                 if caps:
                     lines.append(f"    Capabilities: {', '.join(caps)}")
                 lines.append("")
@@ -3618,12 +3956,12 @@ Use /tools to list available tools."""
             "",
             "Capabilities:",
         ]
-        for cap in info.get('capabilities', []):
+        for cap in info.get("capabilities", []):
             lines.append(f"  - {cap}")
 
         lines.append("")
         lines.append("Tools:")
-        for tool in info.get('tools', []):
+        for tool in info.get("tools", []):
             lines.append(f"  - {tool}")
 
         lines.append("")
@@ -3650,14 +3988,16 @@ Use /tools to list available tools."""
             return "Orchestration not enabled. No agents registered."
 
         if not agent_name:
-            return "Usage: /delegate <agent> <task>\nExample: /delegate coder Review this code"
+            return "Usage: /delegate <agent> <task>\nExample: /delegate coder Review this code"  # noqa: E501
 
         if not task:
             return "Please provide a task description.\nUsage: /delegate <agent> <task>"
 
         try:
             previous = self.orchestrator.active_agent_name
-            response = await self.orchestrator.delegate(agent_name, task, return_to_current=True)
+            response = await self.orchestrator.delegate(
+                agent_name, task, return_to_current=True
+            )
 
             lines = [
                 f"--- Delegated to @{agent_name} ---",
@@ -3695,12 +4035,12 @@ Use /tools to list available tools."""
             "",
             f"Cached agents ({len(status['cached_agents'])}):",
         ]
-        for name in status['cached_agents']:
+        for name in status["cached_agents"]:
             lines.append(f"  - {name}")
 
         lines.append("")
         lines.append(f"Registered agents ({len(status['registered_agents'])}):")
-        for name in status['registered_agents']:
+        for name in status["registered_agents"]:
             lines.append(f"  - {name}")
 
         return "\n".join(lines)
@@ -3816,7 +4156,7 @@ Examples:
             return "Workflow engine not initialized. Check orchestrator configuration."
 
         if not args_str:
-            return "Usage: /workflow run <name> [key=value ...]\nExample: /workflow run newsletter user_topic=\"AI trends\""
+            return 'Usage: /workflow run <name> [key=value ...]\nExample: /workflow run newsletter user_topic="AI trends"'  # noqa: E501
 
         # Parse workflow name and inputs
         parts = args_str.split(maxsplit=1)
@@ -3828,6 +4168,7 @@ Examples:
         if inputs_str:
             # Simple key=value parsing (supports key="value with spaces")
             import shlex
+
             try:
                 tokens = shlex.split(inputs_str)
                 for token in tokens:
@@ -3835,7 +4176,7 @@ Examples:
                         key, value = token.split("=", 1)
                         inputs[key] = value
             except ValueError as e:
-                return f"Error parsing inputs: {e}\nFormat: key=value key2=\"value with spaces\""
+                return f'Error parsing inputs: {e}\nFormat: key=value key2="value with spaces"'  # noqa: E501
 
         # Load workflow
         try:
@@ -3872,7 +4213,9 @@ Examples:
                 lines.append(f"Agent: {task.agent}")
                 lines.append(f"Description:\n{task.description[:500]}")
                 lines.append("")
-                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+                lines.append(
+                    "Use /workflow approve to continue or /workflow skip to skip."
+                )
             else:
                 lines.append("=" * 40)
                 lines.append("✅ WORKFLOW COMPLETED")
@@ -3886,7 +4229,9 @@ Examples:
                     lines.append("")
                     lines.append("Final Variables:")
                     for k, v in execution.variables.items():
-                        value_str = str(v)[:200] + "..." if len(str(v)) > 200 else str(v)
+                        value_str = (
+                            str(v)[:200] + "..." if len(str(v)) > 200 else str(v)
+                        )
                         lines.append(f"  {k}: {value_str}")
 
             return "\n".join(lines)
@@ -3921,13 +4266,13 @@ Examples:
             f"Duration: {status['duration_ms'] or 0}ms",
         ]
 
-        if status['pending_approval']:
+        if status["pending_approval"]:
             lines.append(f"⏸️  Pending Approval: {status['pending_approval']}")
 
         lines.append("")
         lines.append("Tasks:")
 
-        for task_id, task_info in status['tasks'].items():
+        for task_id, task_info in status["tasks"].items():
             status_icon = {
                 "pending": "⏳",
                 "running": "🔄",
@@ -3935,14 +4280,14 @@ Examples:
                 "completed": "✅",
                 "failed": "❌",
                 "skipped": "⏭️",
-            }.get(task_info['status'], "❓")
+            }.get(task_info["status"], "❓")
 
             lines.append(f"  {status_icon} {task_info['name']} ({task_id})")
             lines.append(f"      Status: {task_info['status']}")
             lines.append(f"      Agent: {task_info['agent']}")
-            if task_info['error']:
+            if task_info["error"]:
                 lines.append(f"      Error: {task_info['error']}")
-            if task_info['duration_ms']:
+            if task_info["duration_ms"]:
                 lines.append(f"      Duration: {task_info['duration_ms']}ms")
 
         return "\n".join(lines)
@@ -3979,7 +4324,9 @@ Examples:
                 lines.append(f"Task: {next_task.name} ({next_task.id})")
                 lines.append(f"Agent: {next_task.agent}")
                 lines.append("")
-                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+                lines.append(
+                    "Use /workflow approve to continue or /workflow skip to skip."
+                )
             else:
                 lines.append("✅ WORKFLOW COMPLETED")
                 lines.append("")
@@ -4022,7 +4369,9 @@ Examples:
                 lines.append(f"Task: {next_task.name} ({next_task.id})")
                 lines.append(f"Agent: {next_task.agent}")
                 lines.append("")
-                lines.append("Use /workflow approve to continue or /workflow skip to skip.")
+                lines.append(
+                    "Use /workflow approve to continue or /workflow skip to skip."
+                )
             else:
                 lines.append("✅ WORKFLOW COMPLETED")
                 lines.append("")
@@ -4141,7 +4490,9 @@ Supported formats: txt, md, yaml, json, py, csv, tsv, pdf, docx, xlsx"""
         except Exception as e:
             return f"Error reading file: {e}"
 
-    async def cmd_ingest_file(self, file_path: str, description: str | None = None) -> str:
+    async def cmd_ingest_file(
+        self, file_path: str, description: str | None = None
+    ) -> str:
         """
         Read a file and ingest its content into vector memory.
 
@@ -4194,10 +4545,12 @@ The file content will be stored in vector memory for semantic search."""
             content_chars = len(content)
 
             # Use semantic chunking for large files
-            chunker = SemanticChunker(SemanticChunkerConfig(
-                chunk_size=512,  # ~512 tokens per chunk
-                chunk_overlap=50,  # ~50 tokens overlap
-            ))
+            chunker = SemanticChunker(
+                SemanticChunkerConfig(
+                    chunk_size=512,  # ~512 tokens per chunk
+                    chunk_overlap=50,  # ~50 tokens overlap
+                )
+            )
             chunks = chunker.chunk(content)
 
             # Build base metadata
@@ -4228,12 +4581,14 @@ The file content will be stored in vector memory for semantic search."""
                 chunk_id = f"{doc_id_base}_chunk_{chunk.index}"
                 ids.append(chunk_id)
                 texts.append(chunk.text)
-                metadatas.append({
-                    **base_metadata,
-                    "chunk_index": chunk.index,
-                    "total_chunks": chunk.total,
-                    "has_overlap": chunk.has_overlap,
-                })
+                metadatas.append(
+                    {
+                        **base_metadata,
+                        "chunk_index": chunk.index,
+                        "total_chunks": chunk.total,
+                        "has_overlap": chunk.has_overlap,
+                    }
+                )
 
             display_info("Storing in vector memory...")
 
@@ -4249,8 +4604,14 @@ The file content will be stored in vector memory for semantic search."""
             )
 
             # Show which collection was used
-            lifecycle_msg = "(lifecycle enabled, protected)" if self.controller.collection_manager else "(lifecycle disabled)"
-            display_success(f"Ingested {path.name}: {len(chunks)} chunks {lifecycle_msg}")
+            lifecycle_msg = (
+                "(lifecycle enabled, protected)"
+                if self.controller.collection_manager
+                else "(lifecycle disabled)"
+            )
+            display_success(
+                f"Ingested {path.name}: {len(chunks)} chunks {lifecycle_msg}"
+            )
 
             return f"""File ingested successfully:
   Path: {path}
@@ -4274,12 +4635,14 @@ Use /facts to view stored documents."""
 
         Args:
             cmd_name: Optional command name for detailed help (e.g., "reset", "reorganize")
-        """
+        """  # noqa: E501
         if cmd_name:
             # Detailed help for specific command
             details = self.registry.get_detailed_help(cmd_name)
             if not details:
-                return f"Unknown command: /{cmd_name}. Type /help for available commands."
+                return (
+                    f"Unknown command: /{cmd_name}. Type /help for available commands."
+                )
 
             display_command_help(
                 name=details["name"],
@@ -4318,7 +4681,7 @@ Use /facts to view stored documents."""
                 rel_count = len(extracted.get("relationships", []))
                 logger.debug(
                     f"Background extraction complete: "
-                    f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"
+                    f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"  # noqa: E501
                 )
         except Exception as e:
             logger.debug(f"Background extraction failed: {e}")
@@ -4423,15 +4786,21 @@ Use /facts to view stored documents."""
                         else None
                     ),
                     collection_manager=(
-                        self.promotion_service.collection_manager if has_lifecycle else None
+                        self.promotion_service.collection_manager
+                        if has_lifecycle
+                        else None
                     ),
                     access_buffer=self.access_buffer if has_lifecycle else None,
                     factor_computer=self.factor_computer if has_lifecycle else None,
                     promotion_scorer=(
-                        self.promotion_service.promotion_scorer if has_lifecycle else None
+                        self.promotion_service.promotion_scorer
+                        if has_lifecycle
+                        else None
                     ),
                     decay_calculator=(
-                        self.promotion_service.decay_calculator if has_lifecycle else None
+                        self.promotion_service.decay_calculator
+                        if has_lifecycle
+                        else None
                     ),
                     graph_store=self.controller.graph if has_lifecycle else None,
                 )
@@ -4454,11 +4823,15 @@ Use /facts to view stored documents."""
                 }
                 # Show condensed output
                 if report.prune_report:
-                    display_success(f"  Entities merged: {report.prune_report.entities_merged}")
-                    display_success(f"  Insights removed: {report.prune_report.insights_removed}")
+                    display_success(
+                        f"  Entities merged: {report.prune_report.entities_merged}"
+                    )
+                    display_success(
+                        f"  Insights removed: {report.prune_report.insights_removed}"
+                    )
                 if not skip_synthesis and report.synthesis_report:
                     display_success(
-                        f"  Meta-insights created: {report.synthesis_report.meta_insights_created}"
+                        f"  Meta-insights created: {report.synthesis_report.meta_insights_created}"  # noqa: E501
                     )
 
             except Exception as e:
@@ -4513,7 +4886,9 @@ Use /facts to view stored documents."""
                     "function": {
                         "name": t["name"],
                         "description": t.get("description", ""),
-                        "parameters": t.get("parameters", {"type": "object", "properties": {}}),
+                        "parameters": t.get(
+                            "parameters", {"type": "object", "properties": {}}
+                        ),
                     },
                 }
                 for t in active_tools
@@ -4536,9 +4911,13 @@ Use /facts to view stored documents."""
                     messages,
                     tool_schemas,
                     max_iterations=loop_config.get("max_iterations", 10),
-                    max_consecutive_failures=loop_config.get("max_consecutive_failures", 3),
+                    max_consecutive_failures=loop_config.get(
+                        "max_consecutive_failures", 3
+                    ),
                     max_tool_messages=loop_config.get("max_tool_messages", 30),
-                    max_tool_result_chars=loop_config.get("max_tool_result_chars", 50000),
+                    max_tool_result_chars=loop_config.get(
+                        "max_tool_result_chars", 50000
+                    ),
                 )
             else:
                 # Streaming mode (no tools)
@@ -4559,7 +4938,9 @@ Use /facts to view stored documents."""
                 tool_results=metrics.tool_results if metrics else [],
                 # Timing metrics
                 response_started_at=metrics.response_started_at if metrics else None,
-                response_completed_at=metrics.response_completed_at if metrics else None,
+                response_completed_at=metrics.response_completed_at
+                if metrics
+                else None,
                 # Token usage metrics
                 prompt_tokens=metrics.prompt_tokens if metrics else None,
                 completion_tokens=metrics.completion_tokens if metrics else None,
@@ -4576,9 +4957,13 @@ Use /facts to view stored documents."""
                 # Check for tool content decay (Phase 4 - Project Hive)
                 if self.tool_content_manager:
                     current_turn_number = len(self.turn_ids)
-                    decayed = await self.tool_content_manager.check_and_decay(current_turn_number)
+                    decayed = await self.tool_content_manager.check_and_decay(
+                        current_turn_number
+                    )
                     if decayed:
-                        get_console().print(f"  [dim][Tool outputs decayed: {len(decayed)} summarized][/dim]")
+                        get_console().print(
+                            f"  [dim][Tool outputs decayed: {len(decayed)} summarized][/dim]"  # noqa: E501
+                        )
 
                 # Run incremental graph maintenance if scheduled
                 if self.incremental_maintainer:
@@ -4606,17 +4991,23 @@ Use /facts to view stored documents."""
 
         except LLMTimeoutError as e:
             display_error(f"Request timed out after {e.timeout_seconds}s")
-            display_info("The LLM is taking too long. Try a shorter message or check the server.")
+            display_info(
+                "The LLM is taking too long. Try a shorter message or check the server."
+            )
             return None
 
         except LLMRetryExhaustedError as e:
             display_error(f"Failed after {e.attempts} attempts", exception=e.last_error)
-            display_info("The LLM service is unavailable. Check if the server is running.")
+            display_info(
+                "The LLM service is unavailable. Check if the server is running."
+            )
             return None
 
         except CircuitBreakerOpenError as e:
             display_warning("Service temporarily unavailable")
-            display_info(f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds.")
+            display_info(
+                f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds."
+            )
             return None
 
         except OperationCancelledError:
@@ -4673,7 +5064,7 @@ Use /facts to view stored documents."""
                 if cancel_token.is_cancelled and first_chunk:
                     raise OperationCancelledError()
 
-                # Use sys.stdout for real-time streaming (Rich doesn't support streaming)
+                # Use sys.stdout for real-time streaming (Rich doesn't support streaming)  # noqa: E501
                 sys.stdout.write(chunk)
                 sys.stdout.flush()
                 full_response += chunk
@@ -4703,7 +5094,7 @@ Use /facts to view stored documents."""
 
         except asyncio.CancelledError:
             if cancel_token.is_cancelled:
-                raise OperationCancelledError()
+                raise OperationCancelledError()  # noqa: B904
             raise
         finally:
             # ALWAYS stop the indicator, even on error/timeout
@@ -4712,10 +5103,8 @@ Use /facts to view stored documents."""
             # Clean up escape monitoring task
             if not escape_task.done():
                 escape_task.cancel()
-                try:
+                with contextlib.suppress(asyncio.CancelledError):
                     await escape_task
-                except asyncio.CancelledError:
-                    pass
 
     async def _display_streaming_response(
         self,
@@ -4736,7 +5125,7 @@ Use /facts to view stored documents."""
         """
         # Output in small chunks for streaming effect
         for i in range(0, len(content), chunk_size):
-            chunk = content[i:i + chunk_size]
+            chunk = content[i : i + chunk_size]
             sys.stdout.write(chunk)
             sys.stdout.flush()
             if delay > 0:
@@ -4768,7 +5157,7 @@ Use /facts to view stored documents."""
 
         Returns:
             Tuple of (final_response_text, turn_metrics)
-        """
+        """  # noqa: E501
         working_messages = list(messages)  # Copy to avoid mutation
         initial_message_count = len(working_messages)  # For pruning bounds
         iteration = 0
@@ -4827,51 +5216,63 @@ Use /facts to view stored documents."""
             # Accumulate token usage from this call
             if response.usage:
                 accumulated_prompt_tokens += response.usage.get("prompt_tokens", 0)
-                accumulated_completion_tokens += response.usage.get("completion_tokens", 0)
+                accumulated_completion_tokens += response.usage.get(
+                    "completion_tokens", 0
+                )
                 accumulated_total_tokens += response.usage.get("total_tokens", 0)
 
             # Check if response has tool calls
 
-            # FALLBACK: Parse text-based tool calls for models that don't use function calling API
+            # FALLBACK: Parse text-based tool calls for models that don't use function calling API  # noqa: E501
             # Some models (like Qwen) output tool calls as text instead of using the API
             parsed_tool_calls = []
             if not response.has_tool_calls and response.content and tool_schemas:
                 # Match patterns like: → tool_name(arg1='value1', arg2='value2')
                 # or: tool_name(arg1='value1')
-                tool_pattern = r'→?\s*(\w+)\(([^)]*)\)'
+                tool_pattern = r"→?\s*(\w+)\(([^)]*)\)"
                 matches = re.findall(tool_pattern, response.content)
                 tool_names = {t["function"]["name"] for t in tool_schemas}
 
                 for tool_name, args_str in matches:
                     if tool_name in tool_names:
-                        # Parse arguments from string like: path='/some/path', max_lines=100
+                        # Parse arguments from string like: path='/some/path', max_lines=100  # noqa: E501
                         args = {}
                         if args_str.strip():
                             # Match key=value or key='value' or key="value"
-                            arg_pattern = r"(\w+)\s*=\s*(?:'([^']*)'|\"([^\"]*)\"|(\S+))"
+                            arg_pattern = (
+                                r"(\w+)\s*=\s*(?:'([^']*)'|\"([^\"]*)\"|(\S+))"
+                            )
                             for match in re.finditer(arg_pattern, args_str):
                                 key = match.group(1)
-                                # Value is in group 2 (single quote), 3 (double quote), or 4 (unquoted)
-                                value = match.group(2) or match.group(3) or match.group(4)
+                                # Value is in group 2 (single quote), 3 (double quote), or 4 (unquoted)  # noqa: E501
+                                value = (
+                                    match.group(2) or match.group(3) or match.group(4)
+                                )
                                 args[key] = value
 
-                        parsed_tool_calls.append({
-                            "id": f"text_parsed_{tool_name}_{len(parsed_tool_calls)}",
-                            "name": tool_name,
-                            "arguments": args,
-                        })
+                        parsed_tool_calls.append(
+                            {
+                                "id": f"text_parsed_{tool_name}_{len(parsed_tool_calls)}",  # noqa: E501
+                                "name": tool_name,
+                                "arguments": args,
+                            }
+                        )
 
                 if parsed_tool_calls:
-                    logger.info(f"Parsed {len(parsed_tool_calls)} text-based tool call(s) from model response")
+                    logger.info(
+                        f"Parsed {len(parsed_tool_calls)} text-based tool call(s) from model response"  # noqa: E501
+                    )
 
             if not response.has_tool_calls and not parsed_tool_calls:
                 # No tool calls - this is the final response
-                # Stream it for better UX (simulated streaming for non-streaming API response)
+                # Stream it for better UX (simulated streaming for non-streaming API response)  # noqa: E501
                 if response.content:
                     await self._display_streaming_response(response.content)
                 elif iteration > 1:
                     # LLM returned empty content after tool execution - warn user
-                    display_warning("LLM returned empty response after tool execution. Tool output may be too large.")
+                    display_warning(
+                        "LLM returned empty response after tool execution. Tool output may be too large."  # noqa: E501
+                    )
 
                 # Build final metrics
                 response_completed_at = datetime.now()
@@ -4914,12 +5315,18 @@ Use /facts to view stored documents."""
             display_info(f"Calling {len(tool_calls_to_process)} tool(s)...")
 
             # Add assistant message with tool_calls to history
-            assistant_msg: dict[str, Any] = {"role": "assistant", "content": response.content or ""}
+            assistant_msg: dict[str, Any] = {
+                "role": "assistant",
+                "content": response.content or "",
+            }
             assistant_msg["tool_calls"] = [
                 {
                     "id": tc["id"],
                     "type": "function",
-                    "function": {"name": tc["name"], "arguments": json.dumps(tc["arguments"])},
+                    "function": {
+                        "name": tc["name"],
+                        "arguments": json.dumps(tc["arguments"]),
+                    },
                 }
                 for tc in tool_calls_to_process
             ]
@@ -4931,14 +5338,18 @@ Use /facts to view stored documents."""
                 tool_args = tc["arguments"]
                 tool_id = tc["id"]
 
-                get_console().print(f"  [cyan]→[/cyan] {tool_name}({json.dumps(tool_args)})")
+                get_console().print(
+                    f"  [cyan]→[/cyan] {tool_name}({json.dumps(tool_args)})"
+                )
 
                 # Track tool call for transcript
-                all_tool_calls.append(MemoryToolCall(
-                    id=tool_id,
-                    name=tool_name,
-                    arguments=tool_args,
-                ))
+                all_tool_calls.append(
+                    MemoryToolCall(
+                        id=tool_id,
+                        name=tool_name,
+                        arguments=tool_args,
+                    )
+                )
 
                 # Execute the tool
                 error_msg: str | None = None
@@ -4956,14 +5367,16 @@ Use /facts to view stored documents."""
                     # Circuit breaker: abort after too many consecutive failures
                     if consecutive_failures >= max_consecutive_failures:
                         circuit_breaker_msg = (
-                            f"Tool execution aborted: {consecutive_failures} consecutive failures. "
+                            f"Tool execution aborted: {consecutive_failures} consecutive failures. "  # noqa: E501
                             f"Last error: {e}"
                         )
                         display_warning(f"CIRCUIT BREAKER: {circuit_breaker_msg}")
 
                         # Build metrics even on circuit breaker
                         response_completed_at = datetime.now()
-                        latency_ms = (response_completed_at - start_time).total_seconds() * 1000
+                        latency_ms = (
+                            response_completed_at - start_time
+                        ).total_seconds() * 1000
                         metrics = TurnMetrics(
                             response_started_at=response_started_at,
                             response_completed_at=response_completed_at,
@@ -4987,11 +5400,13 @@ Use /facts to view stored documents."""
                         return circuit_breaker_msg, metrics
 
                 # Track tool result for transcript
-                all_tool_results.append(MemoryToolResult(
-                    tool_call_id=tool_id,
-                    output=result,
-                    error=error_msg,
-                ))
+                all_tool_results.append(
+                    MemoryToolResult(
+                        tool_call_id=tool_id,
+                        output=result,
+                        error=error_msg,
+                    )
+                )
 
                 # Track large tool outputs for lifecycle management (Phase 4)
                 if self.tool_content_manager and not error_msg:
@@ -5022,8 +5437,13 @@ Use /facts to view stored documents."""
                 # Add tool result to messages (truncate if too large)
                 result_for_llm = result
                 if len(result) > max_tool_result_chars:
-                    result_for_llm = result[:max_tool_result_chars] + f"\n\n... [TRUNCATED: {len(result):,} chars total, showing first {max_tool_result_chars:,}]"
-                    display_warning(f"Tool output truncated from {len(result):,} to {max_tool_result_chars:,} chars")
+                    result_for_llm = (
+                        result[:max_tool_result_chars]
+                        + f"\n\n... [TRUNCATED: {len(result):,} chars total, showing first {max_tool_result_chars:,}]"  # noqa: E501
+                    )
+                    display_warning(
+                        f"Tool output truncated from {len(result):,} to {max_tool_result_chars:,} chars"  # noqa: E501
+                    )
 
                 working_messages.append(
                     {
@@ -5041,7 +5461,9 @@ Use /facts to view stored documents."""
                 preserved = working_messages[:preserve_count]
                 recent = working_messages[-recent_count:]
                 working_messages = preserved + recent
-                display_info(f"Pruned message history to {len(working_messages)} messages")
+                display_info(
+                    f"Pruned message history to {len(working_messages)} messages"
+                )
 
         # Max iterations reached
         display_warning(f"Max tool iterations ({max_iterations}) reached")
@@ -5059,7 +5481,10 @@ Use /facts to view stored documents."""
             tool_calls=all_tool_calls,
             tool_results=all_tool_results,
         )
-        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request.", metrics
+        return (
+            "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request.",  # noqa: E501
+            metrics,
+        )
 
 
 async def main() -> None:
@@ -5150,7 +5575,9 @@ async def main() -> None:
     if prompts_yaml.get("knowledge_gap"):
         prompts_kwargs["knowledge_gap"] = prompts_yaml["knowledge_gap"]
     if prompts_yaml.get("relationship_inference"):
-        prompts_kwargs["relationship_inference"] = prompts_yaml["relationship_inference"]
+        prompts_kwargs["relationship_inference"] = prompts_yaml[
+            "relationship_inference"
+        ]
 
     # Build LogConfig - parse verbosity and format strings to enums
     log_verbosity_str = logging_yaml.get("verbosity", "normal").lower()
@@ -5170,7 +5597,9 @@ async def main() -> None:
     if maintenance_embedding_yaml:
         # Use maintenance-specific embedding config
         maintenance_embedding_config = EmbeddingConfig(
-            model=maintenance_embedding_yaml.get("model", "openai/nomic-embed-text-v1.5"),
+            model=maintenance_embedding_yaml.get(
+                "model", "openai/nomic-embed-text-v1.5"
+            ),
             api_base=maintenance_embedding_yaml.get("api_base"),
             api_key=maintenance_embedding_yaml.get("api_key"),
             timeout_seconds=maintenance_embedding_yaml.get("timeout_seconds", 60.0),
@@ -5185,10 +5614,9 @@ async def main() -> None:
         )
 
     # Get collection name - prefer maintenance config, fall back to memory config
-    maintenance_collection_name = (
-        maintenance_yaml.get("collection_name")
-        or memory_config.get("collection_name", "memory_chat_test")
-    )
+    maintenance_collection_name = maintenance_yaml.get(
+        "collection_name"
+    ) or memory_config.get("collection_name", "memory_chat_test")
 
     # Build LifecycleDecayConfig from lifecycle YAML
     lifecycle_decay_config = LifecycleDecayConfig(
@@ -5201,8 +5629,12 @@ async def main() -> None:
         decayed_retention_days=lifecycle_yaml.get("decayed_retention_days", 30),
         promotion_weight_age=lifecycle_yaml.get("promotion_weight_age", 0.2),
         promotion_weight_access=lifecycle_yaml.get("promotion_weight_access", 0.4),
-        promotion_weight_confidence=lifecycle_yaml.get("promotion_weight_confidence", 0.2),
-        promotion_weight_connection=lifecycle_yaml.get("promotion_weight_connection", 0.2),
+        promotion_weight_confidence=lifecycle_yaml.get(
+            "promotion_weight_confidence", 0.2
+        ),
+        promotion_weight_connection=lifecycle_yaml.get(
+            "promotion_weight_connection", 0.2
+        ),
     )
 
     maintenance_config = MaintenanceConfig(
@@ -5238,36 +5670,40 @@ async def main() -> None:
     # Configure logging from config
     log_level_str = logging_config.get("level", "INFO").upper()
     log_level = getattr(logging, log_level_str, logging.INFO)
-    logging.basicConfig(level=log_level, format='%(name)s: %(message)s')
+    logging.basicConfig(level=log_level, format="%(name)s: %(message)s")
 
     # Optionally enable verbose extraction debugging
     if logging_config.get("extraction_debug", False):
-        logging.getLogger('friday_memory.context.extractor').setLevel(logging.DEBUG)
+        logging.getLogger("friday_memory.context.extractor").setLevel(logging.DEBUG)
 
     # Chat participant names
     # Use SessionConfig for clean typed access to common values
     user_name = session_config.user_name
     assistant_name = session_config.assistant_name
 
-    # Token budget settings - use context_window (new) or fall back to max_context_tokens (deprecated)
-    context_window = memory_config.get("context_window", memory_config.get("max_context_tokens", 8192))
+    # Token budget settings - use context_window (new) or fall back to max_context_tokens (deprecated)  # noqa: E501
+    context_window = memory_config.get(
+        "context_window", memory_config.get("max_context_tokens", 8192)
+    )
     output_buffer = memory_config.get("output_buffer", 2000)
 
     # Priming configuration (entity-driven semantic search with recency)
-    priming_config = memory_config.get("priming", {
-        "enabled": True,
-        "top_entities": 10,
-        "insights_per_entity": 3,
-        "max_facts": 10,
-        "recency_days": 0,
-        "token_budget": 500,
-    })
+    priming_config = memory_config.get(
+        "priming",
+        {
+            "enabled": True,
+            "top_entities": 10,
+            "insights_per_entity": 3,
+            "max_facts": 10,
+            "recency_days": 0,
+            "token_budget": 500,
+        },
+    )
 
     # Determine if using separate extraction model
-    use_separate_extraction = (
-        extraction_config.get("model")
-        and extraction_config.get("model") != llm_config.get("model")
-    )
+    use_separate_extraction = extraction_config.get("model") and extraction_config.get(
+        "model"
+    ) != llm_config.get("model")
 
     # Display banner only (clean startup)
     print_banner()
@@ -5361,7 +5797,9 @@ async def main() -> None:
 
     # 3. Create memory stores
     # Persistence directory for vector, graph, and transcript stores
-    persist_dir = Path(__file__).parent / memory_config.get("persist_directory", "./vector")
+    persist_dir = Path(__file__).parent / memory_config.get(
+        "persist_directory", "./vector"
+    )
     persist_dir.mkdir(parents=True, exist_ok=True)
 
     # SQLite transcript store for persistent conversation logging
@@ -5392,11 +5830,22 @@ async def main() -> None:
     lifecycle_config = memory_config.get("lifecycle", {})
     retrieval_config = memory_config.get("retrieval", {})
     collection_config = CollectionConfig(
-        short_term_collection=retrieval_config.get("short_term_collection", memory_config.get("collection_name", "memory_chat_test") + "_short"),
-        long_term_collection=retrieval_config.get("long_term_collection", memory_config.get("collection_name", "memory_chat_test") + "_long"),
-        decayed_collection=retrieval_config.get("decayed_collection", memory_config.get("collection_name", "memory_chat_test") + "_decayed"),
+        short_term_collection=retrieval_config.get(
+            "short_term_collection",
+            memory_config.get("collection_name", "memory_chat_test") + "_short",
+        ),
+        long_term_collection=retrieval_config.get(
+            "long_term_collection",
+            memory_config.get("collection_name", "memory_chat_test") + "_long",
+        ),
+        decayed_collection=retrieval_config.get(
+            "decayed_collection",
+            memory_config.get("collection_name", "memory_chat_test") + "_decayed",
+        ),
         # Similarity thresholds (configurable via memory.retrieval in config.yaml)
-        short_term_min_similarity=retrieval_config.get("short_term_min_similarity", 0.5),
+        short_term_min_similarity=retrieval_config.get(
+            "short_term_min_similarity", 0.5
+        ),
         long_term_min_similarity=retrieval_config.get("long_term_min_similarity", 0.7),
         default_n_results=retrieval_config.get("default_n_results", 5),
     )
@@ -5484,8 +5933,12 @@ async def main() -> None:
         cache_config = PromptCacheConfig(
             enabled=cache_config_dict.get("enabled", False),
             provider=provider_map.get(provider_str, CacheProvider.AUTO),
-            breakpoint=breakpoint_map.get(breakpoint_str, CacheBreakpoint.AFTER_HISTORY),
-            static_context_in_prefix=cache_config_dict.get("static_context_in_prefix", True),
+            breakpoint=breakpoint_map.get(
+                breakpoint_str, CacheBreakpoint.AFTER_HISTORY
+            ),
+            static_context_in_prefix=cache_config_dict.get(
+                "static_context_in_prefix", True
+            ),
             min_turns_for_cache=cache_config_dict.get("min_turns_for_cache", 3),
             ttl_seconds=cache_config_dict.get("ttl_seconds", 0),
         )
@@ -5511,12 +5964,12 @@ async def main() -> None:
         telemetry=telemetry,
     )
 
-    # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names
-    #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)
+    # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names  # noqa: E501
+    #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)  # noqa: E501
     extraction_prompt = extraction_config.get("prompt")  # None uses default
     extractor = MemoryExtractor(
         memory_controller=controller,
-        llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)
+        llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)  # noqa: E501
         telemetry=telemetry,
         prompt_template=extraction_prompt,
         user_name=user_name,
@@ -5597,7 +6050,7 @@ async def main() -> None:
     tool_lifecycle_config = ToolContentConfig(
         enabled=True,
         min_tokens_for_tracking=500,  # Track outputs >= 500 tokens
-        decay_threshold_turns=3,       # Summarize after 3 turns without reference
+        decay_threshold_turns=3,  # Summarize after 3 turns without reference
     )
     session.tool_content_manager = ToolContentManager(
         config=tool_lifecycle_config,

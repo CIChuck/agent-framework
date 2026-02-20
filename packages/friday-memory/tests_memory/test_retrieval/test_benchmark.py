@@ -18,7 +18,6 @@ import uuid
 from datetime import datetime, timedelta
 
 import pytest
-
 from friday_memory.retrieval.access_buffer import AccessBuffer, AccessBufferConfig
 from friday_memory.retrieval.collection_manager import (
     CollectionConfig,
@@ -53,11 +52,13 @@ def unique_config():
 
 def measure_time_ms(func):
     """Decorator to measure function execution time in milliseconds."""
+
     async def wrapper(*args, **kwargs):
         start = time.perf_counter()
         result = await func(*args, **kwargs)
         elapsed_ms = (time.perf_counter() - start) * 1000
         return result, elapsed_ms
+
     return wrapper
 
 
@@ -80,7 +81,9 @@ class TestFastInclusionScoreBenchmark:
 
         # Should complete 10K calculations in < 10ms
         avg_us = (elapsed_ms / iterations) * 1000  # Convert to microseconds
-        assert elapsed_ms < 10, f"10K calculations took {elapsed_ms:.2f}ms (avg {avg_us:.2f}μs each)"
+        assert elapsed_ms < 10, (
+            f"10K calculations took {elapsed_ms:.2f}ms (avg {avg_us:.2f}μs each)"
+        )
 
     def test_fast_vs_full_scorer_speed(self):
         """Compare fast calculation vs full scorer."""
@@ -111,7 +114,7 @@ class TestFastInclusionScoreBenchmark:
         full_ms = (time.perf_counter() - start_full) * 1000
 
         # Fast should be significantly faster (at least 5x)
-        speedup = full_ms / fast_ms if fast_ms > 0 else float('inf')
+        speedup = full_ms / fast_ms if fast_ms > 0 else float("inf")
         assert speedup > 5, f"Fast only {speedup:.1f}x faster than full scorer"
 
 
@@ -145,6 +148,7 @@ class TestAccessBufferBenchmark:
     @pytest.mark.asyncio
     async def test_concurrent_access_recording(self, buffer):
         """Test concurrent access recording performance."""
+
         async def record_many(prefix: str, count: int):
             for i in range(count):
                 await buffer.record_access(f"{prefix}_{i}", "long_term")
@@ -179,9 +183,7 @@ class TestVectorSearchBenchmark:
         )
 
     @pytest.mark.asyncio
-    async def test_empty_collection_search_latency(
-        self, collection_manager
-    ):
+    async def test_empty_collection_search_latency(self, collection_manager):
         """Search on empty collection should be very fast."""
         timings = []
         for _ in range(100):
@@ -198,9 +200,7 @@ class TestVectorSearchBenchmark:
         assert avg_ms < 50, f"Empty collection search avg: {avg_ms:.2f}ms"
 
     @pytest.mark.asyncio
-    async def test_populated_collection_search_latency(
-        self, collection_manager
-    ):
+    async def test_populated_collection_search_latency(self, collection_manager):
         """Search on populated collection should meet target latency."""
         # Add 100 documents
         now = datetime.now()
@@ -209,19 +209,21 @@ class TestVectorSearchBenchmark:
                 ids=[f"doc_{i}"],
                 documents=[f"Test document number {i} with some content"],
                 embeddings=[[float(i % 10) / 10] * 768],
-                metadatas=[{
-                    "type": "insight",
-                    "stage": "long_term",
-                    "created_at": (now - timedelta(hours=i)).isoformat(),
-                    "hit_count": i % 20,
-                    "retrieval_factor": 1.0 + (i % 10) / 10,
-                }],
+                metadatas=[
+                    {
+                        "type": "insight",
+                        "stage": "long_term",
+                        "created_at": (now - timedelta(hours=i)).isoformat(),
+                        "hit_count": i % 20,
+                        "retrieval_factor": 1.0 + (i % 10) / 10,
+                    }
+                ],
             )
 
         timings = []
         for _ in range(50):
             start = time.perf_counter()
-            results = await collection_manager.long_term.query(
+            await collection_manager.long_term.query(
                 query_text="test document",
                 n_results=10,
             )
@@ -229,7 +231,11 @@ class TestVectorSearchBenchmark:
             timings.append(elapsed_ms)
 
         avg_ms = statistics.mean(timings)
-        p99_ms = statistics.quantiles(timings, n=100)[98] if len(timings) >= 100 else max(timings)
+        p99_ms = (
+            statistics.quantiles(timings, n=100)[98]
+            if len(timings) >= 100
+            else max(timings)
+        )
 
         # Target: <165ms (includes embedding time)
         assert avg_ms < 100, f"100-doc search avg: {avg_ms:.2f}ms"
@@ -259,9 +265,7 @@ class TestFactorComputerBenchmark:
         return RetrievalFactorComputer()
 
     @pytest.mark.asyncio
-    async def test_compute_factors_latency(
-        self, factor_computer, collection_manager
-    ):
+    async def test_compute_factors_latency(self, factor_computer, collection_manager):
         """Factor computation should be efficient."""
         now = datetime.now()
 
@@ -271,12 +275,14 @@ class TestFactorComputerBenchmark:
                 ids=[f"factor_doc_{i}"],
                 documents=[f"Document for factor computation {i}"],
                 embeddings=[[0.5] * 768],
-                metadatas=[{
-                    "type": "insight",
-                    "stage": "long_term",
-                    "created_at": (now - timedelta(hours=i * 2)).isoformat(),
-                    "hit_count": i % 10,
-                }],
+                metadatas=[
+                    {
+                        "type": "insight",
+                        "stage": "long_term",
+                        "created_at": (now - timedelta(hours=i * 2)).isoformat(),
+                        "hit_count": i % 10,
+                    }
+                ],
             )
 
         timings = []
@@ -331,14 +337,16 @@ class TestEndToEndRetrievalBenchmark:
                 ids=[f"pipeline_doc_{i}"],
                 documents=[f"Pipeline test document {i} about Python"],
                 embeddings=[[float(i % 10) / 10] * 768],
-                metadatas=[{
-                    "type": "insight",
-                    "stage": "long_term",
-                    "created_at": (now - timedelta(hours=i)).isoformat(),
-                    "hit_count": i % 15,
-                    "retrieval_factor": 1.0 + (i % 10) / 20,
-                    "decay_score": 1.0 - (i % 50) / 100,
-                }],
+                metadatas=[
+                    {
+                        "type": "insight",
+                        "stage": "long_term",
+                        "created_at": (now - timedelta(hours=i)).isoformat(),
+                        "hit_count": i % 15,
+                        "retrieval_factor": 1.0 + (i % 10) / 20,
+                        "decay_score": 1.0 - (i % 50) / 100,
+                    }
+                ],
             )
 
         # Measure full pipeline
@@ -375,9 +383,7 @@ class TestEndToEndRetrievalBenchmark:
         assert p99_ms < 250, f"Full pipeline max: {p99_ms:.2f}ms"
 
     @pytest.mark.asyncio
-    async def test_optimized_vs_unoptimized_retrieval(
-        self, collection_manager
-    ):
+    async def test_optimized_vs_unoptimized_retrieval(self, collection_manager):
         """Compare optimized (pre-computed factors) vs unoptimized retrieval."""
         now = datetime.now()
 
@@ -387,13 +393,15 @@ class TestEndToEndRetrievalBenchmark:
                 ids=[f"opt_doc_{i}"],
                 documents=[f"Optimization test document {i}"],
                 embeddings=[[float(i % 10) / 10] * 768],
-                metadatas=[{
-                    "type": "insight",
-                    "stage": "long_term",
-                    "created_at": (now - timedelta(hours=i)).isoformat(),
-                    "hit_count": i % 10,
-                    "retrieval_factor": 1.0 + (i % 10) / 20,  # Pre-computed
-                }],
+                metadatas=[
+                    {
+                        "type": "insight",
+                        "stage": "long_term",
+                        "created_at": (now - timedelta(hours=i)).isoformat(),
+                        "hit_count": i % 10,
+                        "retrieval_factor": 1.0 + (i % 10) / 20,  # Pre-computed
+                    }
+                ],
             )
 
         # Optimized: Use pre-computed retrieval_factor
@@ -431,4 +439,6 @@ class TestEndToEndRetrievalBenchmark:
         unopt_avg = statistics.mean(unoptimized_timings)
 
         # Optimized should be faster (or at least comparable)
-        assert opt_avg <= unopt_avg * 1.5, f"Optimized: {opt_avg:.2f}ms, Unoptimized: {unopt_avg:.2f}ms"
+        assert opt_avg <= unopt_avg * 1.5, (
+            f"Optimized: {opt_avg:.2f}ms, Unoptimized: {unopt_avg:.2f}ms"
+        )

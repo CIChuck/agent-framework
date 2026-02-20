@@ -2,7 +2,7 @@
 
 **Status:** Proposed for Approval
 **Date:** 2026-02-14
-**Depends On:** `docs/design/agents/Alt-Phase-2/phase-2-build-plan.md`
+**Depends On:** Phase 2 build baseline (archived)
 **Companion:** `docs/design/agents/Alt-Phase-2/phase-3-transition-plan.md`
 **References:**
 - `docs/design/agents/Alt-Phase-2/agent-contract.md`

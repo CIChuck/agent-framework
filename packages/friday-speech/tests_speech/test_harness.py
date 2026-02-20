@@ -1,8 +1,13 @@
 """Tests for the speech harness pipeline."""
 
 import pytest
-
-from friday_speech import AdapterRegistry, AudioFormat, AudioStream, SpeechConfig, SpeechHarness
+from friday_speech import (
+    AdapterRegistry,
+    AudioFormat,
+    AudioStream,
+    SpeechConfig,
+    SpeechHarness,
+)
 
 
 class FakeTTSAdapter:
@@ -15,7 +20,9 @@ class FakeTTSAdapter:
     def __init__(self) -> None:
         self.calls: list[str] = []
 
-    async def stream(self, text: str, voice_id: str | None, settings: object) -> AudioStream:
+    async def stream(
+        self, text: str, voice_id: str | None, settings: object
+    ) -> AudioStream:
         self.calls.append(text)
 
         async def _generator():

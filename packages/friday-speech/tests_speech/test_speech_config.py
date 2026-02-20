@@ -1,7 +1,6 @@
 """Tests for speech configuration validation."""
 
 import pytest
-
 from friday_speech import SpeechConfig
 
 

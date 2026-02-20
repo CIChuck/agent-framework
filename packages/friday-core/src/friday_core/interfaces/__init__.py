@@ -41,8 +41,14 @@ from friday_core.interfaces.llm import (
     ToolCall,
 )
 from friday_core.interfaces.memory import (
+    ArbitrationDecision,
+    ArbitrationInterface,
     EpisodicStoreAdapter,
     GraphStoreAdapter,
+    MemoryPromotionProposal,
+    MultiAgentMemoryInterface,
+    NamespacePolicyInterface,
+    SharedWriteCapability,
     VectorStoreAdapter,
 )
 from friday_core.interfaces.registry import RegistryInterface
@@ -63,6 +69,12 @@ __all__ = [
     "EpisodicStoreAdapter",
     "VectorStoreAdapter",
     "GraphStoreAdapter",
+    "NamespacePolicyInterface",
+    "MultiAgentMemoryInterface",
+    "ArbitrationInterface",
+    "ArbitrationDecision",
+    "SharedWriteCapability",
+    "MemoryPromotionProposal",
     # Context Engineering
     "ContextEngineeringInterface",
     # LLM Interfaces

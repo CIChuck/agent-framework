@@ -11,9 +11,11 @@ This package provides the foundational "glue" for the Friday Framework:
 - Context engineering protocol (ContextEngineeringInterface)
 
 Ref: Batch 0 Specification
-"""
+"""  # noqa: E501
 
 # Configuration
+# Security
+from friday_core import security
 from friday_core.config import FridayBaseSettings
 
 # Exceptions
@@ -24,20 +26,11 @@ from friday_core.exceptions import (
     ProviderAPIError,
 )
 
-# Logging
-from friday_core.logging import LoggerProtocol, get_logger
-
-# Telemetry
-from friday_core.telemetry import (
-    DebugTelemetryRecorder,
-    EventRecord,
-    SpanRecord,
-    TelemetryInterface,
-)
-
 # Interfaces
 from friday_core.interfaces import (
     AgentInterface,
+    ArbitrationDecision,
+    ArbitrationInterface,
     ChatCompletionResponse,
     ContextEngineeringInterface,
     EmbeddingModel,
@@ -45,8 +38,12 @@ from friday_core.interfaces import (
     GraphStoreAdapter,
     LabHarnessInterface,
     LLMClient,
+    MemoryPromotionProposal,
+    MultiAgentMemoryInterface,
+    NamespacePolicyInterface,
     RegistryInterface,
     SchemaFormat,
+    SharedWriteCapability,
     SystemRuntime,
     ToolAdapter,
     ToolCall,
@@ -57,6 +54,9 @@ from friday_core.interfaces import (
     VectorStoreAdapter,
 )
 
+# Logging
+from friday_core.logging import LoggerProtocol, get_logger
+
 # Memory Profiles
 from friday_core.profiles import (
     MemoryProfile,
@@ -64,8 +64,13 @@ from friday_core.profiles import (
     create_vector_store,
 )
 
-# Security
-from friday_core import security
+# Telemetry
+from friday_core.telemetry import (
+    DebugTelemetryRecorder,
+    EventRecord,
+    SpanRecord,
+    TelemetryInterface,
+)
 
 __all__ = [
     # Configuration
@@ -87,6 +92,12 @@ __all__ = [
     "EpisodicStoreAdapter",
     "VectorStoreAdapter",
     "GraphStoreAdapter",
+    "NamespacePolicyInterface",
+    "MultiAgentMemoryInterface",
+    "ArbitrationInterface",
+    "ArbitrationDecision",
+    "SharedWriteCapability",
+    "MemoryPromotionProposal",
     # Context Engineering
     "ContextEngineeringInterface",
     # LLM Interfaces

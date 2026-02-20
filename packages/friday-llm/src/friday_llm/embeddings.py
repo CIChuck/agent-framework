@@ -238,7 +238,9 @@ class LiteLLMEmbeddingService:
                 # Record response details for telemetry
                 tracker.set_response(
                     response_model=self.model,
-                    usage=TokenUsage(input_tokens=total_tokens, total_tokens=total_tokens),
+                    usage=TokenUsage(
+                        input_tokens=total_tokens, total_tokens=total_tokens
+                    ),
                     embedding_dimensions=embedding_dims,
                     batch_count=batch_count,
                 )
@@ -279,7 +281,9 @@ class LiteLLMEmbeddingService:
         # Check cache first
         cached = self._cache_get(text)
         if cached is not None:
-            logger.debug(f"Embedding cache hit for query (cache stats: {self.cache_stats})")
+            logger.debug(
+                f"Embedding cache hit for query (cache stats: {self.cache_stats})"
+            )
             return cached
 
         effective_timeout = timeout or self._resilience.timeout_seconds

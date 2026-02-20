@@ -1,6 +1,9 @@
 """Python code execution tool using friday-sandbox."""
+
 from __future__ import annotations
+
 from typing import Any
+
 from ..definition import BaseTool
 
 
@@ -24,7 +27,11 @@ class PythonExecuteTool(BaseTool):
             "type": "object",
             "properties": {
                 "code": {"type": "string", "description": "Python code to execute"},
-                "timeout": {"type": "integer", "description": "Timeout in seconds", "default": 30},
+                "timeout": {
+                    "type": "integer",
+                    "description": "Timeout in seconds",
+                    "default": 30,
+                },
             },
             "required": ["code"],
         }
@@ -37,6 +44,7 @@ class PythonExecuteTool(BaseTool):
             # Try to import and use subprocess sandbox as fallback
             try:
                 from friday_sandbox.subprocess import SubprocessSandbox
+
                 self._sandbox = SubprocessSandbox()
             except ImportError:
                 return "Error: friday-sandbox not installed or Docker not available"

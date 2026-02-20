@@ -13,31 +13,14 @@ This package provides:
 """
 
 # Models
-from friday_memory.models import (
-    ConflictResolutionResponse,
-    ConsolidationReport,
-    ContextPayload,
-    GraphEdge,
-    GraphNode,
-    InteractionTurn,
-    ProvenanceMetadata,
-    SessionState,
-    SummarizationResponse,
-    ToolCall,
-    ToolResult,
-)
-
 # Adapters
 from friday_memory.adapters import (
     ChromaVectorStore,
     ElementXGraphStore,
     InMemoryEpisodicStore,
-    SimpleVectorStore,
     NullGraphStore,
+    SimpleVectorStore,
 )
-
-# Controller
-from friday_memory.controller import MemoryController
 
 # Context Engineering
 from friday_memory.context import (
@@ -55,26 +38,11 @@ from friday_memory.context import (
     SupportingContextConfig,
 )
 
+# Controller
+from friday_memory.controller import MemoryController
+
 # Ingestion
 from friday_memory.ingestion import DocumentIngestionPipeline
-
-# Retrieval (Phase 2, 3 & 5)
-from friday_memory.retrieval import (
-    AccessBuffer,
-    AccessBufferConfig,
-    CollectionConfig,
-    CollectionManager,
-    FactorComputeResult,
-    FactorComputerConfig,
-    FlushResult,
-    GraphPathScorer,
-    GraphPathScorerConfig,
-    InclusionScorerConfig,
-    LongTermInclusionScorer,
-    RetrievalFactorComputer,
-    ScoredPath,
-    calculate_inclusion_score_fast,
-)
 
 # Lifecycle (Phase 1 & 4)
 from friday_memory.lifecycle import (
@@ -88,6 +56,56 @@ from friday_memory.lifecycle import (
     PromotionResult,
     PromotionScorer,
     PromotionState,
+)
+from friday_memory.models import (
+    ConflictResolutionResponse,
+    ConsolidationReport,
+    ContextPayload,
+    GraphEdge,
+    GraphNode,
+    InteractionTurn,
+    ProvenanceMetadata,
+    SessionState,
+    SummarizationResponse,
+    ToolCall,
+    ToolResult,
+)
+from friday_memory.multi_agent import (
+    PRIVATE_VISIBILITY,
+    SHARED_NAMESPACE,
+    SHARED_VISIBILITY,
+    MultiAgentMemoryController,
+    NamespacePolicyEngine,
+    PromotionCoordinator,
+    PromotionJournal,
+    PromotionJournalEntry,
+    PromotionJournalEvent,
+    PromotionJournalState,
+    ScratchEvent,
+    ScratchPad,
+    ScratchPadStore,
+    ScratchPlanItem,
+    ScratchPlanItemStatus,
+    SharedPromotionProposal,
+    build_promotion_ops_snapshot,
+)
+
+# Retrieval (Phase 2, 3 & 5)
+from friday_memory.retrieval import (
+    AccessBuffer,
+    AccessBufferConfig,
+    CollectionConfig,
+    CollectionManager,
+    FactorComputerConfig,
+    FactorComputeResult,
+    FlushResult,
+    GraphPathScorer,
+    GraphPathScorerConfig,
+    InclusionScorerConfig,
+    LongTermInclusionScorer,
+    RetrievalFactorComputer,
+    ScoredPath,
+    calculate_inclusion_score_fast,
 )
 
 __all__ = [
@@ -154,4 +172,22 @@ __all__ = [
     # Migration (Phase 9)
     "MemoryMigrator",
     "MigrationReport",
+    # Multi-Agent Memory (Alt Phase 2)
+    "MultiAgentMemoryController",
+    "NamespacePolicyEngine",
+    "PromotionCoordinator",
+    "PromotionJournal",
+    "PromotionJournalEvent",
+    "PromotionJournalEntry",
+    "PromotionJournalState",
+    "ScratchPadStore",
+    "ScratchPad",
+    "ScratchPlanItem",
+    "ScratchPlanItemStatus",
+    "ScratchEvent",
+    "SharedPromotionProposal",
+    "build_promotion_ops_snapshot",
+    "PRIVATE_VISIBILITY",
+    "SHARED_VISIBILITY",
+    "SHARED_NAMESPACE",
 ]

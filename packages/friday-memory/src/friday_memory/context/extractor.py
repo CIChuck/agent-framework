@@ -114,7 +114,7 @@ Respond ONLY with valid JSON:
 }}
 
 If nothing meaningful is found, return empty arrays and empty string for summary. Quality over quantity — fewer accurate extractions are better than many noisy ones.
-"""
+"""  # noqa: E501
 
 
 class MemoryExtractor:
@@ -176,7 +176,7 @@ class MemoryExtractor:
                                If provided, all rejected entities and relationships
                                are written to this file regardless of the global log
                                level.  Useful for offline ontology tuning.
-        """
+        """  # noqa: E501
         self._memory = memory_controller
         self._llm = llm
         self._telemetry = telemetry
@@ -291,7 +291,7 @@ class MemoryExtractor:
         # Only return if we salvaged something
         if any(result.values()):
             logger.info(
-                f"Repaired truncated JSON: salvaged {sum(len(v) for v in result.values())} items"
+                f"Repaired truncated JSON: salvaged {sum(len(v) for v in result.values())} items"  # noqa: E501
             )
             return result
 
@@ -321,7 +321,7 @@ class MemoryExtractor:
                     depth -= 1
                     if depth == 0 and start is not None:
                         obj_str = array_content[start : i + 1]
-                        try:
+                        try:  # noqa: SIM105
                             items.append(json.loads(obj_str))
                         except json.JSONDecodeError:
                             pass  # Skip malformed objects
@@ -376,7 +376,7 @@ class MemoryExtractor:
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a precise information extraction system. Always respond with valid JSON.",
+                        "content": "You are a precise information extraction system. Always respond with valid JSON.",  # noqa: E501
                     },
                     {"role": "user", "content": prompt},
                 ],
@@ -533,7 +533,7 @@ class MemoryExtractor:
                 if self._embedding_model is not None:
                     try:
                         # Create natural language representation of the edge
-                        edge_text = f"{source_node.label} {relation.replace('_', ' ')} {target_node.label}"
+                        edge_text = f"{source_node.label} {relation.replace('_', ' ')} {target_node.label}"  # noqa: E501
                         embeddings = await self._embedding_model.embed_documents(
                             [edge_text]
                         )
@@ -556,14 +556,14 @@ class MemoryExtractor:
                 else:
                     stats["edges_skipped"] += 1
                     logger.debug(
-                        f"Skipped duplicate edge: {source_label} --[{relation}]--> {target_label}"
+                        f"Skipped duplicate edge: {source_label} --[{relation}]--> {target_label}"  # noqa: E501
                     )
             except Exception as e:
                 logger.warning(f"Failed to store relationship: {e}")
 
         # Store rich insights in vector store (for semantic search)
         # These should be full, contextual sentences - NOT micro-facts
-        # Now supports structured insights with metadata (topic, sentiment, entities, confidence)
+        # Now supports structured insights with metadata (topic, sentiment, entities, confidence)  # noqa: E501
         insight_items: list[tuple[str, dict[str, Any]]] = []  # (text, metadata) pairs
 
         # Collect insights (supports both string and dict formats)
@@ -572,7 +572,7 @@ class MemoryExtractor:
                 # Simple string format: "insight text" (legacy)
                 insight_items.append((insight.strip(), {"type": "insight"}))
             elif isinstance(insight, dict) and insight.get("text"):
-                # Structured format: {"text": "...", "topic": "...", "confidence": 0.95, ...}
+                # Structured format: {"text": "...", "topic": "...", "confidence": 0.95, ...}  # noqa: E501
                 text = insight["text"].strip()
                 metadata: dict[str, Any] = {"type": "insight"}
                 if insight.get("topic"):
@@ -582,7 +582,7 @@ class MemoryExtractor:
                 if insight.get("confidence") is not None:
                     metadata["confidence"] = float(insight["confidence"])
                 if insight.get("entities"):
-                    # Store entities as semicolon-separated string for ChromaDB compatibility
+                    # Store entities as semicolon-separated string for ChromaDB compatibility  # noqa: E501
                     metadata["entities_mentioned"] = ";".join(insight["entities"])
                 insight_items.append((text, metadata))
 
@@ -590,7 +590,7 @@ class MemoryExtractor:
         # (for backwards compatibility with existing prompts)
         for fact in extracted.get("facts", []):
             if isinstance(fact, dict):
-                fact_text = f"{fact.get('subject', '')} {fact.get('predicate', '')} {fact.get('object', '')}"
+                fact_text = f"{fact.get('subject', '')} {fact.get('predicate', '')} {fact.get('object', '')}"  # noqa: E501
                 text = fact_text.strip()
                 if text and len(text) > 10:  # Skip very short facts
                     insight_items.append(
@@ -599,7 +599,7 @@ class MemoryExtractor:
 
         for pref in extracted.get("preferences", []):
             if isinstance(pref, dict):
-                pref_text = f"{self._user_name} {pref.get('sentiment', 'feels')} about {pref.get('topic', 'something')}: {pref.get('detail', '')}"
+                pref_text = f"{self._user_name} {pref.get('sentiment', 'feels')} about {pref.get('topic', 'something')}: {pref.get('detail', '')}"  # noqa: E501
                 text = pref_text.strip()
                 if text:
                     insight_items.append(
@@ -669,7 +669,7 @@ class MemoryExtractor:
                 messages=[
                     {
                         "role": "system",
-                        "content": "Extract named entities from the text. Return a JSON object with an 'entities' key containing an array of strings.",
+                        "content": "Extract named entities from the text. Return a JSON object with an 'entities' key containing an array of strings.",  # noqa: E501
                     },
                     {"role": "user", "content": text},
                 ],

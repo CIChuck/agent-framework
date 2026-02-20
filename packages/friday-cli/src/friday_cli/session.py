@@ -19,8 +19,7 @@ from typing import Any, Generic, TypeVar
 
 import yaml
 
-from .display import display_error, display_info, display_success, display_warning
-
+from .display import display_info, display_success
 
 logger = logging.getLogger(__name__)
 
@@ -471,8 +470,7 @@ def validate_config(
             errors.append(f"Missing required configuration section: {section}")
 
     # Validate LLM config if present
-    if config.llm:
-        if not config.llm.get("model"):
-            errors.append("llm.model is required")
+    if config.llm and not config.llm.get("model"):
+        errors.append("llm.model is required")
 
     return errors

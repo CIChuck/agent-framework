@@ -10,7 +10,6 @@ Text content is sanitized to remove newlines and tabs for single-line records.
 
 import csv
 import json
-from datetime import datetime
 from pathlib import Path
 from typing import Any, TextIO
 
@@ -139,7 +138,7 @@ class CSVExporter:
 
         should_close = False
         if isinstance(output, Path):
-            f = open(output, "w", newline="", encoding="utf-8")
+            f = open(output, "w", newline="", encoding="utf-8")  # noqa: SIM115
             should_close = True
         else:
             f = output
@@ -270,7 +269,9 @@ class CSVExporter:
             "total_turns": session.total_turns,
             "total_tokens": session.total_tokens,
             "total_latency_ms": session.total_latency_ms,
-            "config_snapshot": json.dumps(session.config_snapshot) if session.config_snapshot else "",
+            "config_snapshot": json.dumps(session.config_snapshot)
+            if session.config_snapshot
+            else "",
             "metadata": json.dumps(session.metadata) if session.metadata else "",
         }
 
@@ -283,16 +284,32 @@ class CSVExporter:
             "timestamp": entry.timestamp.isoformat(),
             "user_message": self._sanitize_text(entry.user_message),
             "assistant_message": self._sanitize_text(entry.assistant_message),
-            "tool_calls": json.dumps([tc.model_dump() for tc in entry.tool_calls]) if entry.tool_calls else "",
-            "tool_results": json.dumps([tr.model_dump() for tr in entry.tool_results]) if entry.tool_results else "",
-            "prompt_tokens": entry.prompt_tokens if entry.prompt_tokens is not None else "",
-            "completion_tokens": entry.completion_tokens if entry.completion_tokens is not None else "",
-            "total_tokens": entry.total_tokens if entry.total_tokens is not None else "",
+            "tool_calls": json.dumps([tc.model_dump() for tc in entry.tool_calls])
+            if entry.tool_calls
+            else "",
+            "tool_results": json.dumps([tr.model_dump() for tr in entry.tool_results])
+            if entry.tool_results
+            else "",
+            "prompt_tokens": entry.prompt_tokens
+            if entry.prompt_tokens is not None
+            else "",
+            "completion_tokens": entry.completion_tokens
+            if entry.completion_tokens is not None
+            else "",
+            "total_tokens": entry.total_tokens
+            if entry.total_tokens is not None
+            else "",
             "latency_ms": entry.latency_ms if entry.latency_ms is not None else "",
             "model_name": entry.model_name or "",
             "temperature": entry.temperature if entry.temperature is not None else "",
-            "context_tokens_used": entry.context_tokens_used if entry.context_tokens_used is not None else "",
-            "response_started_at": entry.response_started_at.isoformat() if entry.response_started_at else "",
-            "response_completed_at": entry.response_completed_at.isoformat() if entry.response_completed_at else "",
+            "context_tokens_used": entry.context_tokens_used
+            if entry.context_tokens_used is not None
+            else "",
+            "response_started_at": entry.response_started_at.isoformat()
+            if entry.response_started_at
+            else "",
+            "response_completed_at": entry.response_completed_at.isoformat()
+            if entry.response_completed_at
+            else "",
             "metadata": json.dumps(entry.metadata) if entry.metadata else "",
         }

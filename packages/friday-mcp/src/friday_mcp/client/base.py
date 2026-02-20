@@ -8,6 +8,7 @@ Transport-agnostic implementation.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import logging
 import uuid
 from abc import ABC, abstractmethod
@@ -94,10 +95,8 @@ class MCPClientBase(ABC):
 
         if self._receive_task:
             self._receive_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._receive_task
-            except asyncio.CancelledError:
-                pass
 
         if self._transport:
             await self._transport.disconnect()
@@ -144,7 +143,9 @@ class MCPClientBase(ABC):
             "params": params,
         }
 
-        future: asyncio.Future[dict[str, Any]] = asyncio.get_event_loop().create_future()
+        future: asyncio.Future[dict[str, Any]] = (
+            asyncio.get_event_loop().create_future()
+        )
         self._pending_requests[request_id] = future
 
         try:
@@ -318,7 +319,7 @@ class MCPClientBase(ABC):
         """Check if client is connected."""
         return self._connected
 
-    async def __aenter__(self) -> "MCPClientBase":
+    async def __aenter__(self) -> MCPClientBase:
         """Async context manager entry."""
         await self.connect()
         return self

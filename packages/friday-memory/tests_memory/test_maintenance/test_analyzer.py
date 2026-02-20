@@ -1,9 +1,8 @@
 """Tests for ConsistencyAnalyzer."""
 
 import pytest
-
 from friday_memory.maintenance.analyzer import ConsistencyAnalyzer
-from friday_memory.maintenance.models import IssueType, IssueSeverity, PruneConfig
+from friday_memory.maintenance.models import IssueSeverity, IssueType, PruneConfig
 
 
 class TestConsistencyAnalyzer:
@@ -16,8 +15,7 @@ class TestConsistencyAnalyzer:
         report = await analyzer.analyze()
 
         orphaned_issues = [
-            i for i in report.issues
-            if i.issue_type == IssueType.ORPHANED_EDGE
+            i for i in report.issues if i.issue_type == IssueType.ORPHANED_EDGE
         ]
 
         # Should find 2 orphaned edges
@@ -34,10 +32,7 @@ class TestConsistencyAnalyzer:
         assert len(report.duplicate_groups) >= 1
 
         # Check for exact duplicates (Chuck/chuck)
-        exact_dups = [
-            g for g in report.duplicate_groups
-            if g.match_type == "exact"
-        ]
+        exact_dups = [g for g in report.duplicate_groups if g.match_type == "exact"]
         assert len(exact_dups) >= 1
 
     @pytest.mark.asyncio
@@ -48,8 +43,7 @@ class TestConsistencyAnalyzer:
         report = await analyzer.analyze()
 
         stale_issues = [
-            i for i in report.issues
-            if i.issue_type == IssueType.STALE_ENTITY
+            i for i in report.issues if i.issue_type == IssueType.STALE_ENTITY
         ]
 
         # Should find 3 stale entities
@@ -117,8 +111,7 @@ class TestConsistencyAnalyzer:
         report = await analyzer.analyze()
 
         stale_issues = [
-            i for i in report.issues
-            if i.issue_type == IssueType.STALE_ENTITY
+            i for i in report.issues if i.issue_type == IssueType.STALE_ENTITY
         ]
 
         # 120 days old entities shouldn't be stale with 365 day threshold

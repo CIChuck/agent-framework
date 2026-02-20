@@ -1,7 +1,6 @@
 """Tests for AgentOutputProcessor."""
 
 import pytest
-
 from friday_agent.security import AgentOutputProcessor
 from friday_core.security import SanitizationConfig
 

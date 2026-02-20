@@ -2,16 +2,16 @@
 
 **Status:** Proposed for Approval (Alternative Architecture)
 **Date:** 2026-02-14
-**Supersedes:** `docs/design/agents/Phase-2/comprehensive-agent-framework-design.md` for alternative planning path only
+**Supersedes:** Legacy Phase 2 comprehensive design baseline for alternative planning path only
 **Companion Docs:**
 - `docs/design/agents/Alt-Phase-2/agent-contract.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-compliance-matrix.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-schema-spec.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-test-strategy.md`
 - `docs/design/agents/Alt-Phase-2/technical-specifications.md`
-- `docs/design/agents/Alt-Phase-2/phase-2-build-plan.md`
+- Phase 2 build baseline (archived)
 - `docs/design/agents/Alt-Phase-2/phase-3-transition-plan.md`
-- `docs/design/agents/Phase-2/codex-phase-2-build-plan-commentary.md`
+- Legacy Phase 2 commentary review notes (archived)
 
 ---
 
@@ -30,7 +30,7 @@ This alternate design introduces a **dual durable-memory model** plus a private 
 
 ### Why This Direction
 
-This design directly addresses major risks identified in `codex-phase-2-build-plan-commentary.md`:
+This design directly addresses major risks identified in the legacy Phase 2 commentary review:
 
 1. Avoids breaking current interfaces (`AgentInterface`, `SystemRuntime`) for Phase 2.
 2. Prevents forcing namespace migration into `friday.py`.
@@ -43,7 +43,7 @@ This design directly addresses major risks identified in `codex-phase-2-build-pl
 
 ### 2.1 Historical Evolution
 
-1. Baseline path (`docs/design/agents/Phase-2/*`) assumed broad retrofit of namespace/arbitration behavior.
+1. Baseline path in the legacy Phase 2 planning set assumed broad retrofit of namespace/arbitration behavior.
 2. Commentary review identified backward-compatibility, enforcement-surface, and migration risk.
 3. Alt Phase 2 pivots to additive multi-agent memory mode with single-agent default stability.
 4. Agent Contract is now the normative governance model for future planning refinement.
@@ -464,6 +464,6 @@ Use this sequence for onboarding and implementation:
 
 1. `comprehensive-agent-framework-design.md`: architecture intent and control-plane gestalt.
 2. `technical-specifications.md`: normative schemas, state machines, failure semantics.
-3. `phase-2-build-plan.md`: additive foundations and compatibility gates.
+3. Phase 2 build baseline (archived): additive foundations and compatibility gates.
 4. `phase-3-build-plan.md`: orchestration/workflow completion, pipeline/task execution depth.
 5. `agent-contract-test-strategy.md` and `agent-contract-compliance-matrix.md`: verification and release evidence posture.

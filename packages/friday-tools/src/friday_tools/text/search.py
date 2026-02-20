@@ -44,8 +44,10 @@ class TextSearchTool(BaseTool):
             matches = list(re.finditer(pattern, text, flags))
             if not matches:
                 return "No matches found"
-            results = [f"Match {i+1}: '{m.group()}' at position {m.start()}"
-                       for i, m in enumerate(matches)]
+            results = [
+                f"Match {i + 1}: '{m.group()}' at position {m.start()}"
+                for i, m in enumerate(matches)
+            ]
             return "\n".join(results)
         except re.error as e:
             return f"Error: Invalid regex: {e}"
@@ -68,7 +70,10 @@ class TextExtractTool(BaseTool):
             "type": "object",
             "properties": {
                 "text": {"type": "string", "description": "Text to extract from"},
-                "pattern": {"type": "string", "description": "Regex with capture groups"},
+                "pattern": {
+                    "type": "string",
+                    "description": "Regex with capture groups",
+                },
             },
             "required": ["text", "pattern"],
         }

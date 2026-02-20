@@ -13,10 +13,8 @@ Tests cover:
 
 import uuid
 from datetime import datetime, timedelta
-from unittest.mock import MagicMock
 
 import pytest
-
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
 from friday_memory.lifecycle.promotion import (
     MemoryPromotionService,
@@ -100,12 +98,14 @@ class TestLifecycleEndToEnd:
         # Step 1: Add memory to short-term (simulating consolidation)
         await collection_manager.add_to_short_term(
             texts=["Python is a programming language"],
-            metadatas=[{
-                "type": "insight",
-                "created_at": old_time,
-                "access_count": 10,  # High access count
-                "confidence": 0.9,  # High confidence
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "created_at": old_time,
+                    "access_count": 10,  # High access count
+                    "confidence": 0.9,  # High confidence
+                }
+            ],
             ids=["mem_lifecycle_1"],
         )
 
@@ -138,12 +138,14 @@ class TestLifecycleEndToEnd:
             ids=["mem_lifecycle_2"],
             documents=["Old memory that will decay"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "decay_score": 0.1,  # Below decay threshold (0.2)
-                "last_accessed_at": very_old_access,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "decay_score": 0.1,  # Below decay threshold (0.2)
+                    "last_accessed_at": very_old_access,
+                }
+            ],
         )
 
         # Verify in long-term
@@ -172,12 +174,14 @@ class TestLifecycleEndToEnd:
             ids=["mem_lifecycle_3"],
             documents=["Decayed memory to reactivate"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "decayed",
-                "decay_score": 0.05,
-                "decayed_at": datetime.now().isoformat(),
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "decayed",
+                    "decay_score": 0.05,
+                    "decayed_at": datetime.now().isoformat(),
+                }
+            ],
         )
 
         # Verify in decayed
@@ -262,12 +266,14 @@ class TestPromotionWithAccessBuffer:
             ids=["mem_access_2"],
             documents=["Test memory for flush"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "decay_score": 0.5,
-                "access_count": 1,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "decay_score": 0.5,
+                    "access_count": 1,
+                }
+            ],
         )
 
         # Record accesses
@@ -326,12 +332,14 @@ class TestFactorComputerIntegration:
             ids=["mem_factor_1"],
             documents=["Test memory for factor computation"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": old_time,
-                "hit_count": 10,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": old_time,
+                    "hit_count": 10,
+                }
+            ],
         )
 
         # Compute factors
@@ -363,13 +371,15 @@ class TestFactorComputerIntegration:
             ids=["mem_recent"],
             documents=["Recent Python programming insights"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": recent_time,
-                "hit_count": 20,
-                "retrieval_factor": 1.3,  # High factor
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": recent_time,
+                    "hit_count": 20,
+                    "retrieval_factor": 1.3,  # High factor
+                }
+            ],
         )
 
         # Add old memory with low factor
@@ -377,13 +387,15 @@ class TestFactorComputerIntegration:
             ids=["mem_old"],
             documents=["Old Python programming insights"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": old_time,
-                "hit_count": 1,
-                "retrieval_factor": 0.3,  # Low factor
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": old_time,
+                    "hit_count": 1,
+                    "retrieval_factor": 0.3,  # Low factor
+                }
+            ],
         )
 
         # Search should return both

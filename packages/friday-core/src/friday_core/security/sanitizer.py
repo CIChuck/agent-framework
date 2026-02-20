@@ -158,7 +158,8 @@ class ToolOutputSanitizer:
 
                 # Filter allowlisted matches
                 filtered = [
-                    m for m in matches
+                    m
+                    for m in matches
                     if not any(a.search(m.group()) for a in self._allowlist)
                 ]
 

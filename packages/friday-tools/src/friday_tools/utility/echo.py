@@ -27,9 +27,7 @@ class EchoTool(FridayTool):
     tags = ["echo", "test", "utility", "debug"]
 
     class Input(BaseModel):
-        message: str = Field(
-            description="The message to echo back"
-        )
+        message: str = Field(description="The message to echo back")
 
     async def run(self, args: Input) -> ToolResult:
         """Execute the echo tool."""

@@ -15,7 +15,6 @@ Ref: Batch 0 Acceptance Criteria #6
 import time
 
 import pytest
-
 from friday_core import (
     DebugTelemetryRecorder,
     EventRecord,

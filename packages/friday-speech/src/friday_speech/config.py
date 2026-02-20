@@ -257,7 +257,7 @@ class PicovoiceSpeakerConfig(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     @model_validator(mode="after")
-    def _coerce_buffered_frames(self) -> "PicovoiceSpeakerConfig":
+    def _coerce_buffered_frames(self) -> PicovoiceSpeakerConfig:
         if self.buffered_frames is not None and self.buffer_size_secs == 20:
             self.buffer_size_secs = self.buffered_frames
         return self
@@ -290,7 +290,9 @@ class PicovoiceConfig(BaseModel):
 
     access_key: str | None = None
     orca: PicovoiceOrcaConfig = Field(default_factory=PicovoiceOrcaConfig)
-    porcupine: PicovoicePorcupineConfig = Field(default_factory=PicovoicePorcupineConfig)
+    porcupine: PicovoicePorcupineConfig = Field(
+        default_factory=PicovoicePorcupineConfig
+    )
     recorder: PicovoiceRecorderConfig = Field(default_factory=PicovoiceRecorderConfig)
     speaker: PicovoiceSpeakerConfig = Field(default_factory=PicovoiceSpeakerConfig)
     cobra: PicovoiceCobraConfig = Field(default_factory=PicovoiceCobraConfig)
@@ -319,31 +321,43 @@ class SpeechConfig(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     @model_validator(mode="after")
-    def _validate_requirements(self) -> "SpeechConfig":
+    def _validate_requirements(self) -> SpeechConfig:
         if self.enabled:
-            if self.tts.provider == TTSProvider.ELEVENLABS and not self.elevenlabs.api_key:
+            if (
+                self.tts.provider == TTSProvider.ELEVENLABS
+                and not self.elevenlabs.api_key
+            ):
                 raise ValueError(
-                    "speech.elevenlabs.api_key is required when speech.tts.provider=elevenlabs"
+                    "speech.elevenlabs.api_key is required when speech.tts.provider=elevenlabs"  # noqa: E501
                 )
-            if self.tts.provider == TTSProvider.PICOVOICE and not self.picovoice.access_key:
+            if (
+                self.tts.provider == TTSProvider.PICOVOICE
+                and not self.picovoice.access_key
+            ):
                 raise ValueError(
-                    "speech.picovoice.access_key is required when speech.tts.provider=picovoice"
+                    "speech.picovoice.access_key is required when speech.tts.provider=picovoice"  # noqa: E501
                 )
-            if self.wakeword.enabled:
-                if self.wakeword.provider == WakeWordProvider.PICOVOICE and not self.picovoice.access_key:
+            if self.wakeword.enabled:  # noqa: SIM102
+                if (
+                    self.wakeword.provider == WakeWordProvider.PICOVOICE
+                    and not self.picovoice.access_key
+                ):
                     raise ValueError(
-                        "speech.picovoice.access_key is required when speech.wakeword.enabled=true"
+                        "speech.picovoice.access_key is required when speech.wakeword.enabled=true"  # noqa: E501
                     )
-            if self.stt.enabled:
-                if self.stt.provider == STTProvider.PICOVOICE and not self.picovoice.access_key:
+            if self.stt.enabled:  # noqa: SIM102
+                if (
+                    self.stt.provider == STTProvider.PICOVOICE
+                    and not self.picovoice.access_key
+                ):
                     raise ValueError(
-                        "speech.picovoice.access_key is required when speech.stt.enabled=true"
+                        "speech.picovoice.access_key is required when speech.stt.enabled=true"  # noqa: E501
                     )
         if self.mode == SpeechMode.FILE and not str(self.output_dir):
             raise ValueError("speech.output_dir is required when speech.mode=file")
         return self
 
     @classmethod
-    def from_dict(cls, data: dict | None) -> "SpeechConfig":
+    def from_dict(cls, data: dict | None) -> SpeechConfig:
         """Build SpeechConfig from a raw dict (typically config.yaml speech block)."""
         return cls(**(data or {}))

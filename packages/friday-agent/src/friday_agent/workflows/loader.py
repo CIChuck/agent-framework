@@ -13,7 +13,6 @@ import yaml
 
 from friday_agent.workflows.models import TaskNode, WorkflowDefinition
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -140,10 +139,10 @@ class WorkflowLoader:
     def _parse_yaml(self, path: Path) -> WorkflowDefinition:
         """Parse YAML file into WorkflowDefinition."""
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 data = yaml.safe_load(f)
         except yaml.YAMLError as e:
-            raise WorkflowLoadError(f"Invalid YAML in {path}: {e}")
+            raise WorkflowLoadError(f"Invalid YAML in {path}: {e}")  # noqa: B904
 
         if not isinstance(data, dict):
             raise WorkflowLoadError(f"Workflow must be a YAML object: {path}")

@@ -9,7 +9,8 @@ Converts Anthropic tool definitions (dict format) to Friday's ToolDefinition.
 from __future__ import annotations
 
 import logging
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from ..definition import BaseTool
 from ..protocols import ToolDefinition
@@ -46,10 +47,13 @@ class AnthropicToolWrapper(BaseTool):
     @property
     def parameters_schema(self) -> dict[str, Any]:
         """Get input schema from Anthropic format."""
-        return self._tool_def.get("input_schema", {
-            "type": "object",
-            "properties": {},
-        })
+        return self._tool_def.get(
+            "input_schema",
+            {
+                "type": "object",
+                "properties": {},
+            },
+        )
 
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool using the provided handler."""
@@ -66,9 +70,7 @@ class AnthropicToolWrapper(BaseTool):
             result = await self._handler(**kwargs)
         else:
             loop = asyncio.get_event_loop()
-            result = await loop.run_in_executor(
-                None, lambda: self._handler(**kwargs)
-            )
+            result = await loop.run_in_executor(None, lambda: self._handler(**kwargs))
 
         return str(result) if result is not None else ""
 
@@ -149,10 +151,7 @@ class AnthropicToolAdapter:
             List of Friday ToolDefinition instances.
         """
         handlers = handlers or {}
-        return [
-            self.adapt(tool, handler=handlers.get(tool["name"]))
-            for tool in tools
-        ]
+        return [self.adapt(tool, handler=handlers.get(tool["name"])) for tool in tools]
 
     def _validate_anthropic_tool(self, tool: dict[str, Any]) -> None:
         """Validate that the dict is a valid Anthropic tool definition."""

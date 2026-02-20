@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import BinaryIO
 
-from charset_normalizer import from_bytes, from_path
+from charset_normalizer import from_bytes
 
 logger = logging.getLogger(__name__)
 
@@ -244,9 +244,7 @@ def read_with_smart_encoding(
                 method="explicit",
             )
         except (UnicodeDecodeError, LookupError):
-            logger.debug(
-                f"Explicit encoding {explicit_encoding} failed, detecting..."
-            )
+            logger.debug(f"Explicit encoding {explicit_encoding} failed, detecting...")
 
     # Detect encoding
     encoding_result = detector.detect_file(path)
@@ -260,8 +258,7 @@ def read_with_smart_encoding(
         return content, encoding_result
     except UnicodeDecodeError:
         logger.debug(
-            f"Detected encoding {encoding_result.encoding} failed, "
-            "trying fallbacks..."
+            f"Detected encoding {encoding_result.encoding} failed, trying fallbacks..."
         )
 
     # Try fallbacks

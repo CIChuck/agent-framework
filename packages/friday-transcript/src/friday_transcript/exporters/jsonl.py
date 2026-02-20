@@ -6,7 +6,6 @@ streaming processing, and data analysis.
 """
 
 import json
-from datetime import datetime
 from pathlib import Path
 from typing import Any, TextIO
 
@@ -61,7 +60,7 @@ class JSONLExporter:
         # Open file if path provided
         should_close = False
         if isinstance(output, Path):
-            f = open(output, "w")
+            f = open(output, "w")  # noqa: SIM115
             should_close = True
         else:
             f = output
@@ -104,14 +103,14 @@ class JSONLExporter:
 
         Returns:
             Number of examples exported
-        """
+        """  # noqa: E501
         session = await self._store.get_session(session_id)
         entries = await self._store.get_entries(session_id, limit=100000)
 
         # Open file if path provided
         should_close = False
         if isinstance(output, Path):
-            f = open(output, "w")
+            f = open(output, "w")  # noqa: SIM115
             should_close = True
         else:
             f = output
@@ -123,13 +122,17 @@ class JSONLExporter:
                 # OpenAI chat format
                 messages = []
                 if session and session.system_prompt:
-                    messages.append({"role": "system", "content": session.system_prompt})
+                    messages.append(
+                        {"role": "system", "content": session.system_prompt}
+                    )
 
                 for entry in entries:
                     if entry.user_message:
                         messages.append({"role": "user", "content": entry.user_message})
                     if entry.assistant_message:
-                        messages.append({"role": "assistant", "content": entry.assistant_message})
+                        messages.append(
+                            {"role": "assistant", "content": entry.assistant_message}
+                        )
 
                 f.write(json.dumps({"messages": messages}) + "\n")
                 count = 1

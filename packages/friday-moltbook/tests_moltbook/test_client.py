@@ -2,10 +2,9 @@
 
 import pytest
 import respx
-from httpx import Response
-
 from friday_moltbook import Moltbook, MoltbookConfig
 from friday_moltbook.errors import MoltbookResponseError, MoltbookValidationError
+from httpx import Response
 
 
 class TestValidation:

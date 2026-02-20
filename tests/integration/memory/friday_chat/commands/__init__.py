@@ -12,14 +12,14 @@ Commands are organized by category:
 - file_cmds: read, ingest
 """
 
-from .session_cmds import register_session_commands
-from .memory_cmds import register_memory_commands
-from .transcript_cmds import register_transcript_commands
-from .maintenance_cmds import register_maintenance_commands
-from .tools_cmds import register_tools_commands
-from .orchestration_cmds import register_orchestration_commands
-from .workflow_cmds import register_workflow_commands
 from .file_cmds import register_file_commands
+from .maintenance_cmds import register_maintenance_commands
+from .memory_cmds import register_memory_commands
+from .orchestration_cmds import register_orchestration_commands
+from .session_cmds import register_session_commands
+from .tools_cmds import register_tools_commands
+from .transcript_cmds import register_transcript_commands
+from .workflow_cmds import register_workflow_commands
 
 
 def register_all_commands(registry, session) -> None:

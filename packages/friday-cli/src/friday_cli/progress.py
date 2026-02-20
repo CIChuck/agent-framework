@@ -22,8 +22,8 @@ from rich.progress import (
 )
 from rich.status import Status
 
-from .display import get_console
 from .cli_config import get_cli_config
+from .display import get_console
 
 
 @contextmanager
@@ -241,7 +241,7 @@ class ThinkingIndicator:
         self._running = False
 
     @classmethod
-    def random_thinking(cls) -> "ThinkingIndicator":
+    def random_thinking(cls) -> ThinkingIndicator:
         """
         Create a ThinkingIndicator with a random thinking message.
 
@@ -262,7 +262,7 @@ class ThinkingIndicator:
         return cls(message=message, spinner_type=config.spinner.spinner_type)
 
     @classmethod
-    def random_tool_processing(cls) -> "ThinkingIndicator":
+    def random_tool_processing(cls) -> ThinkingIndicator:
         """
         Create a ThinkingIndicator with a random tool processing message.
 
@@ -335,7 +335,7 @@ class ThinkingIndicator:
             styled_message = f"[{text_style}]{message}[/{text_style}]"
             self._status.update(styled_message)
 
-    def __enter__(self) -> "ThinkingIndicator":
+    def __enter__(self) -> ThinkingIndicator:
         """Start indicator when entering context."""
         self.start()
         return self
@@ -344,7 +344,7 @@ class ThinkingIndicator:
         """Stop indicator when exiting context."""
         self.stop()
 
-    async def __aenter__(self) -> "ThinkingIndicator":
+    async def __aenter__(self) -> ThinkingIndicator:
         """Async context manager support."""
         self.start()
         return self

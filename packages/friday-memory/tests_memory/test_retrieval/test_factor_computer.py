@@ -1,18 +1,16 @@
 """Tests for RetrievalFactorComputer."""
 
-import math
 import uuid
 from datetime import datetime, timedelta
 
 import pytest
-
 from friday_memory.retrieval.collection_manager import (
     CollectionConfig,
     CollectionManager,
 )
 from friday_memory.retrieval.factor_computer import (
-    FactorComputeResult,
     FactorComputerConfig,
+    FactorComputeResult,
     RetrievalFactorComputer,
     calculate_inclusion_score_fast,
 )
@@ -226,9 +224,7 @@ class TestRetrievalFactorComputerWithCollection:
         assert not result.has_errors()
 
     @pytest.mark.asyncio
-    async def test_compute_factors_updates_metadata(
-        self, computer, collection_manager
-    ):
+    async def test_compute_factors_updates_metadata(self, computer, collection_manager):
         """Test that compute_factors updates retrieval_factor in metadata."""
         now = datetime.now()
         old_time = (now - timedelta(hours=24)).isoformat()
@@ -238,12 +234,14 @@ class TestRetrievalFactorComputerWithCollection:
             ids=["mem1"],
             documents=["Test memory"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": old_time,
-                "hit_count": 5,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": old_time,
+                    "hit_count": 5,
+                }
+            ],
         )
 
         # Compute factors
@@ -276,14 +274,16 @@ class TestRetrievalFactorComputerWithCollection:
             ids=["mem1"],
             documents=["Test memory"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": now.isoformat(),
-                "hit_count": 0,
-                "retrieval_factor": 1.0,
-                "factor_computed_at": now.isoformat(),  # Just computed
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": now.isoformat(),
+                    "hit_count": 0,
+                    "retrieval_factor": 1.0,
+                    "factor_computed_at": now.isoformat(),  # Just computed
+                }
+            ],
         )
 
         # Compute factors without force
@@ -306,14 +306,16 @@ class TestRetrievalFactorComputerWithCollection:
             ids=["mem1"],
             documents=["Test memory"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "created_at": now.isoformat(),
-                "hit_count": 10,
-                "retrieval_factor": 0.5,  # Old value
-                "factor_computed_at": now.isoformat(),
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "created_at": now.isoformat(),
+                    "hit_count": 10,
+                    "retrieval_factor": 0.5,  # Old value
+                    "factor_computed_at": now.isoformat(),
+                }
+            ],
         )
 
         # Compute factors with force

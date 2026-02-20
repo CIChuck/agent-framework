@@ -13,7 +13,7 @@ import json
 import logging
 from typing import Any, TypeVar
 
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ T = TypeVar("T", bound=BaseModel)
 
 
 # Code template for capturing structured returns
-RETURN_CAPTURE_TEMPLATE = '''
+RETURN_CAPTURE_TEMPLATE = """
 import json
 import sys
 
@@ -58,7 +58,7 @@ elif __friday_result__ is not None:
         print("__FRIDAY_RETURN_START__")
         print(json.dumps({{"error": {{"type": "SerializationError", "message": str(__e__)}}}}))
         print("__FRIDAY_RETURN_END__")
-'''
+"""  # noqa: E501
 
 RETURN_MARKER_START = "__FRIDAY_RETURN_START__"
 RETURN_MARKER_END = "__FRIDAY_RETURN_END__"

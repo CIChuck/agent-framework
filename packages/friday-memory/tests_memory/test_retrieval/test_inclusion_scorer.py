@@ -3,7 +3,6 @@
 from datetime import datetime, timedelta
 
 import pytest
-
 from friday_memory.retrieval.inclusion_scorer import (
     InclusionScorerConfig,
     LongTermInclusionScorer,

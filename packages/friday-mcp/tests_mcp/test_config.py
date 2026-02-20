@@ -1,7 +1,8 @@
 """Tests for MCP configuration models."""
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from friday_mcp.config import (
     MCPConfig,

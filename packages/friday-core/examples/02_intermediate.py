@@ -14,7 +14,10 @@ Run with: uv run python packages/friday-core/examples/02_intermediate.py
 
 import time
 
-from friday_core import DebugTelemetryRecorder, EventRecord, SpanRecord, TelemetryInterface
+from friday_core import (
+    DebugTelemetryRecorder,
+    TelemetryInterface,
+)
 
 
 def main():
@@ -88,7 +91,7 @@ def main():
     parent_span = recorder.get_span(parent_id)
     print(f"Parent: {parent_span.name} ({parent_span.duration_ms:.2f}ms)")
 
-    for span_id, span in recorder.spans.items():
+    for span_id, span in recorder.spans.items():  # noqa: B007
         if span.parent_id == parent_id:
             print(f"  Child: {span.name} ({span.duration_ms:.2f}ms)")
 
@@ -134,7 +137,7 @@ def main():
         return results
 
     # Execute the function
-    results = memory_search("API design patterns", recorder)
+    memory_search("API design patterns", recorder)
 
     # Now assert on the telemetry data
     assert recorder.get_event("search_started")["query"] == "API design patterns"

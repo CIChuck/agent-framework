@@ -14,7 +14,7 @@ from friday_memory.models.graph import GraphEdge, GraphNode
 from friday_memory.models.session import InteractionTurn
 
 if TYPE_CHECKING:
-    from friday_memory.models.tools import ToolRecommendation
+    pass
 
 
 class ContextPayload(BaseModel):
@@ -84,7 +84,7 @@ class ContextPayload(BaseModel):
     # --- Meta-Cognition ---
     debug_info: dict[str, Any] = Field(
         default_factory=dict,
-        description="Debug telemetry: {'vector_latency': 0.1, 'graph_nodes_touched': 15}",
+        description="Debug telemetry: {'vector_latency': 0.1, 'graph_nodes_touched': 15}",  # noqa: E501
     )
 
     # --- Tool Context ---

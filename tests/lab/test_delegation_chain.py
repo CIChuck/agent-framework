@@ -63,9 +63,7 @@ async def test_two_agent_delegation_chain(
         assert "@coder" in response_1
 
         # Step 2: Route to coder via @mention
-        response_2 = await orchestrator.process(
-            "@coder Please implement the parser"
-        )
+        response_2 = await orchestrator.process("@coder Please implement the parser")
         assert "parser module" in response_2
 
     finally:
@@ -114,9 +112,7 @@ async def test_delegation_preserves_session(
 
 
 @pytest.mark.asyncio
-async def test_session_isolation_between_chains(
-    testing_config, researcher_profile
-):
+async def test_session_isolation_between_chains(testing_config, researcher_profile):
     """
     Different session IDs produce isolated execution contexts.
 

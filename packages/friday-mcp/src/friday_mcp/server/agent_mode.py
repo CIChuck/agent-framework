@@ -83,7 +83,7 @@ def configure_agent_mode(
         """Execute a task using the Friday agent."""
         logger.info(f"Agent executing task: {task[:50]}...")
         result = await agent.run(task)
-        logger.info(f"Agent completed task")
+        logger.info("Agent completed task")
         return result
 
     server.register_tool(
@@ -125,7 +125,7 @@ def _register_prompts(
             prompt_text = profile.render_system_prompt(**kwargs)
         except Exception:
             # Fallback if render_system_prompt fails
-            prompt_text = f"You are {profile.name}, a {profile.role}. Your goal is: {profile.goal}"
+            prompt_text = f"You are {profile.name}, a {profile.role}. Your goal is: {profile.goal}"  # noqa: E501
 
         return {
             "messages": [
@@ -160,7 +160,7 @@ def _register_prompts(
                     "role": "assistant",
                     "content": {
                         "type": "text",
-                        "text": f"Agent: {profile.name}\nRole: {profile.role}\nGoal: {profile.goal}",
+                        "text": f"Agent: {profile.name}\nRole: {profile.role}\nGoal: {profile.goal}",  # noqa: E501
                     },
                 },
             ],

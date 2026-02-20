@@ -49,7 +49,18 @@ class DocumentIngestionPipeline:
     """
 
     # Supported file extensions
-    SUPPORTED_EXTENSIONS = {".txt", ".md", ".py", ".json", ".yaml", ".yml", ".html", ".css", ".js", ".ts"}
+    SUPPORTED_EXTENSIONS = {
+        ".txt",
+        ".md",
+        ".py",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".html",
+        ".css",
+        ".js",
+        ".ts",
+    }
 
     def __init__(
         self,

@@ -6,16 +6,15 @@ Manages multiple MCP client connections and provides unified tool access.
 
 from __future__ import annotations
 
-import asyncio
 import logging
 from typing import Any
 
-from friday_mcp.config import MCPConfig, MCPServerConfig, TransportType
-from friday_mcp.protocols import ToolDefinition
 from friday_mcp.client.adapter import MCPToolAdapter
 from friday_mcp.client.base import MCPClientBase
 from friday_mcp.client.sse import SSEMCPClient
 from friday_mcp.client.stdio import StdioMCPClient
+from friday_mcp.config import MCPConfig, MCPServerConfig, TransportType
+from friday_mcp.protocols import ToolDefinition
 
 logger = logging.getLogger(__name__)
 
@@ -267,7 +266,7 @@ class MCPClientManager:
         """Check if any servers are connected."""
         return len(self._clients) > 0
 
-    async def __aenter__(self) -> "MCPClientManager":
+    async def __aenter__(self) -> MCPClientManager:
         """Async context manager entry."""
         if self.config.auto_connect:
             await self.connect_all()

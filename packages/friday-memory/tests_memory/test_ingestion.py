@@ -9,12 +9,9 @@ Tests cover:
 """
 
 import tempfile
-from pathlib import Path
 
 import pytest
-
 from friday_memory.ingestion import (
-    DocumentChunk,
     DocumentIngestionPipeline,
     IngestedDocument,
 )
@@ -71,7 +68,9 @@ class TestTextChunking:
         for chunk in chunks[:-1]:  # Last chunk may be smaller
             assert len(chunk) <= small_chunk_pipeline.chunk_size + 50
 
-    def test_chunk_preserves_paragraph_breaks(self, small_chunk_pipeline: DocumentIngestionPipeline):
+    def test_chunk_preserves_paragraph_breaks(
+        self, small_chunk_pipeline: DocumentIngestionPipeline
+    ):
         """Test that chunking prefers paragraph breaks."""
         text = "Paragraph one. " * 10 + "\n\n" + "Paragraph two. " * 10
         chunks = small_chunk_pipeline._chunk_text(text)
@@ -122,7 +121,9 @@ class TestTextIngestion:
         assert chunk.provenance.confidence == 1.0
         assert chunk.provenance.author_id == "test_pipeline"
 
-    def test_ingest_text_chunk_ids(self, small_chunk_pipeline: DocumentIngestionPipeline):
+    def test_ingest_text_chunk_ids(
+        self, small_chunk_pipeline: DocumentIngestionPipeline
+    ):
         """Test that chunks have sequential IDs."""
         text = "This is content. " * 50
         result = small_chunk_pipeline.ingest_text(text, source_name="test")
@@ -215,7 +216,9 @@ class TestVectorStorePreparation:
         assert "provenance_source_type" in meta
         assert "provenance_confidence" in meta
 
-    def test_prepare_preserves_chunk_order(self, small_chunk_pipeline: DocumentIngestionPipeline):
+    def test_prepare_preserves_chunk_order(
+        self, small_chunk_pipeline: DocumentIngestionPipeline
+    ):
         """Test that preparation preserves chunk order."""
         text = "First chunk content. " * 10 + "Second chunk content. " * 10
         document = small_chunk_pipeline.ingest_text(text, source_name="order_test")

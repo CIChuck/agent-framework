@@ -28,7 +28,7 @@ class VectorDocumentMetadata(TypedDict, total=False):
     type: str  # 'insight', 'summary', 'meta_insight'
 
     # Lifecycle management fields (NEW)
-    stage: str  # MemoryStage value: 'episodic', 'short_term', 'long_term', 'decayed', 'deleted'
+    stage: str  # MemoryStage value: 'episodic', 'short_term', 'long_term', 'decayed', 'deleted'  # noqa: E501
     decay_score: float  # 0.0 to 1.0
     created_at: str  # ISO datetime
     created_at_ts: int  # Unix epoch seconds — used for ChromaDB date-range filtering
@@ -92,8 +92,7 @@ class InitialVectorMetadata(BaseModel):
             "stage": self.stage,
             "decay_score": self.decay_score,
             "created_at": self.created_at.isoformat(),
-            "created_at_ts": self.created_at_ts
-            or int(self.created_at.timestamp()),
+            "created_at_ts": self.created_at_ts or int(self.created_at.timestamp()),
             "last_accessed_at": self.last_accessed_at.isoformat(),
             "access_count": self.access_count,
             "promotion_state": self.promotion_state,
@@ -154,10 +153,12 @@ def create_longterm_metadata(
     """
     now = promoted_at or datetime.now()
     updated = existing_metadata.copy()
-    updated.update({
-        "stage": "long_term",
-        "promoted_at": now.isoformat(),
-        "promotion_state": "complete",
-        "hit_count": 0,  # Reset for long-term tracking
-    })
+    updated.update(
+        {
+            "stage": "long_term",
+            "promoted_at": now.isoformat(),
+            "promotion_state": "complete",
+            "hit_count": 0,  # Reset for long-term tracking
+        }
+    )
     return updated

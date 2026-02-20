@@ -20,11 +20,16 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
-from friday_memory.ingestion.chunker import Chunk, SemanticChunker, SemanticChunkerConfig
+from friday_memory.ingestion.chunker import (
+    Chunk,
+    SemanticChunker,
+    SemanticChunkerConfig,
+)
 from friday_memory.models import ProvenanceMetadata
 
 if TYPE_CHECKING:
     from friday_llm.service import LiteLLMService
+
     from friday_memory.controller.memory_controller import MemoryController
 
 logger = logging.getLogger(__name__)
@@ -53,7 +58,7 @@ Respond with JSON:
     "summary": "The concise summary text",
     "entities": ["entity1", "entity2"],
     "key_points": ["point1", "point2"]
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_CODE_SUMMARIZATION = """Summarize the purpose and behavior of this code section.
 
@@ -95,7 +100,7 @@ Respond with JSON:
     "key_themes": ["theme1", "theme2"],
     "entities": ["entity1", "entity2"],
     "insights": ["insight1", "insight2"]
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_CODE_SYNTHESIS = """Synthesize these code section summaries into an architectural overview.
 
@@ -121,7 +126,7 @@ Respond with JSON:
     "architecture_notes": "How components work together",
     "dependencies": ["dep1", "dep2"],
     "key_patterns": ["pattern1", "pattern2"]
-}}"""
+}}"""  # noqa: E501
 
 
 # =============================================================================
@@ -173,7 +178,17 @@ class LargeFileProcessorConfig:
     preserve_code_structure: bool = True
     extract_symbols: bool = True
     supported_code_extensions: list[str] = field(
-        default_factory=lambda: [".py", ".rs", ".js", ".ts", ".go", ".java", ".c", ".cpp", ".h"]
+        default_factory=lambda: [
+            ".py",
+            ".rs",
+            ".js",
+            ".ts",
+            ".go",
+            ".java",
+            ".c",
+            ".cpp",
+            ".h",
+        ]
     )
 
 
@@ -267,9 +282,9 @@ class LargeFileProcessor:
 
     def __init__(
         self,
-        fallback_llm: "LiteLLMService",
+        fallback_llm: LiteLLMService,
         config: LargeFileProcessorConfig | None = None,
-        memory_controller: "MemoryController | None" = None,
+        memory_controller: MemoryController | None = None,
     ) -> None:
         """
         Initialize the processor.
@@ -287,10 +302,14 @@ class LargeFileProcessor:
         self._prompts = self._config.prompts or SmartFilePromptsConfig()
 
         # Create specialized LLM services if configured
-        self._summarizer_llm = self._create_llm(self._config.summarizer_llm) or fallback_llm
-        self._synthesizer_llm = self._create_llm(self._config.synthesizer_llm) or fallback_llm
+        self._summarizer_llm = (
+            self._create_llm(self._config.summarizer_llm) or fallback_llm
+        )
+        self._synthesizer_llm = (
+            self._create_llm(self._config.synthesizer_llm) or fallback_llm
+        )
 
-    def _create_llm(self, config: SmartFileLLMConfig | None) -> "LiteLLMService | None":
+    def _create_llm(self, config: SmartFileLLMConfig | None) -> LiteLLMService | None:
         """Create an LLM service from config, or None if not configured."""
         if not config:
             return None
@@ -376,7 +395,9 @@ class LargeFileProcessor:
 
         if not chunks:
             return ProcessingResult(
-                content_for_context=content[:5000] + "..." if len(content) > 5000 else content,
+                content_for_context=content[:5000] + "..."
+                if len(content) > 5000
+                else content,
                 chunk_summaries=[],
                 raw_chunks=[],
                 synthesis={"summary": "Empty document"},
@@ -456,7 +477,6 @@ class LargeFileProcessor:
         # Import code chunker
         from friday_tools.filesystem.code_chunker import (
             CodeChunkerFactory,
-            SymbolTable,
         )
 
         # Get extension from file path
@@ -468,7 +488,9 @@ class LargeFileProcessor:
 
         if not code_chunks:
             return ProcessingResult(
-                content_for_context=content[:5000] + "..." if len(content) > 5000 else content,
+                content_for_context=content[:5000] + "..."
+                if len(content) > 5000
+                else content,
                 chunk_summaries=[],
                 raw_chunks=[],
                 synthesis={"overview": "Empty file"},
@@ -484,7 +506,9 @@ class LargeFileProcessor:
             RawChunk(
                 text=chunk.text,
                 index=chunk.index,
-                chunk_type=chunk.chunk_type.value if hasattr(chunk.chunk_type, "value") else str(chunk.chunk_type),
+                chunk_type=chunk.chunk_type.value
+                if hasattr(chunk.chunk_type, "value")
+                else str(chunk.chunk_type),
                 start_line=chunk.start_line,
                 end_line=chunk.end_line,
             )
@@ -561,8 +585,12 @@ class LargeFileProcessor:
             try:
                 response = await self._summarizer_llm.chat_completion(
                     messages=[{"role": "user", "content": prompt}],
-                    temperature=self._config.summarizer_llm.temperature if self._config.summarizer_llm else 0.3,
-                    max_tokens=self._config.summarizer_llm.max_tokens if self._config.summarizer_llm else 500,
+                    temperature=self._config.summarizer_llm.temperature
+                    if self._config.summarizer_llm
+                    else 0.3,
+                    max_tokens=self._config.summarizer_llm.max_tokens
+                    if self._config.summarizer_llm
+                    else 500,
                 )
 
                 parsed = self._parse_json_response(response.content)
@@ -603,17 +631,27 @@ class LargeFileProcessor:
             prompt = self._render_prompt(
                 self._prompts.code_summarization,
                 file_path=file_path,
-                chunk_type=chunk.chunk_type.value if hasattr(chunk.chunk_type, "value") else str(chunk.chunk_type),
-                symbols_defined=", ".join(chunk.symbols_defined) if chunk.symbols_defined else "none",
-                symbols_referenced=", ".join(chunk.symbols_referenced[:10]) if chunk.symbols_referenced else "none",
+                chunk_type=chunk.chunk_type.value
+                if hasattr(chunk.chunk_type, "value")
+                else str(chunk.chunk_type),
+                symbols_defined=", ".join(chunk.symbols_defined)
+                if chunk.symbols_defined
+                else "none",
+                symbols_referenced=", ".join(chunk.symbols_referenced[:10])
+                if chunk.symbols_referenced
+                else "none",
                 chunk_text=chunk.text[:4000],
             )
 
             try:
                 response = await self._summarizer_llm.chat_completion(
                     messages=[{"role": "user", "content": prompt}],
-                    temperature=self._config.summarizer_llm.temperature if self._config.summarizer_llm else 0.3,
-                    max_tokens=self._config.summarizer_llm.max_tokens if self._config.summarizer_llm else 500,
+                    temperature=self._config.summarizer_llm.temperature
+                    if self._config.summarizer_llm
+                    else 0.3,
+                    max_tokens=self._config.summarizer_llm.max_tokens
+                    if self._config.summarizer_llm
+                    else 500,
                 )
 
                 parsed = self._parse_json_response(response.content)
@@ -621,8 +659,12 @@ class LargeFileProcessor:
                 summary = ChunkSummary(
                     chunk_index=chunk.index,
                     summary=parsed.get("summary", ""),
-                    key_points=[parsed.get("purpose", "")] if parsed.get("purpose") else [],
-                    chunk_type=chunk.chunk_type.value if hasattr(chunk.chunk_type, "value") else str(chunk.chunk_type),
+                    key_points=[parsed.get("purpose", "")]
+                    if parsed.get("purpose")
+                    else [],
+                    chunk_type=chunk.chunk_type.value
+                    if hasattr(chunk.chunk_type, "value")
+                    else str(chunk.chunk_type),
                     symbols_defined=chunk.symbols_defined,
                 )
                 summaries.append(summary)
@@ -632,8 +674,10 @@ class LargeFileProcessor:
                 summaries.append(
                     ChunkSummary(
                         chunk_index=chunk.index,
-                        summary=f"[{chunk.chunk_type}: {', '.join(chunk.symbols_defined[:3])}]",
-                        chunk_type=chunk.chunk_type.value if hasattr(chunk.chunk_type, "value") else str(chunk.chunk_type),
+                        summary=f"[{chunk.chunk_type}: {', '.join(chunk.symbols_defined[:3])}]",  # noqa: E501
+                        chunk_type=chunk.chunk_type.value
+                        if hasattr(chunk.chunk_type, "value")
+                        else str(chunk.chunk_type),
                         symbols_defined=chunk.symbols_defined,
                     )
                 )
@@ -648,9 +692,7 @@ class LargeFileProcessor:
     ) -> dict[str, Any]:
         """Synthesize all chunk summaries into a unified overview."""
         # Build numbered summaries
-        numbered = "\n".join(
-            f"{i + 1}. {s.summary}" for i, s in enumerate(summaries)
-        )
+        numbered = "\n".join(f"{i + 1}. {s.summary}" for i, s in enumerate(summaries))
 
         prompt = self._render_prompt(
             self._prompts.prose_synthesis,
@@ -662,8 +704,12 @@ class LargeFileProcessor:
         try:
             response = await self._synthesizer_llm.chat_completion(
                 messages=[{"role": "user", "content": prompt}],
-                temperature=self._config.synthesizer_llm.temperature if self._config.synthesizer_llm else 0.3,
-                max_tokens=self._config.synthesizer_llm.max_tokens if self._config.synthesizer_llm else 1000,
+                temperature=self._config.synthesizer_llm.temperature
+                if self._config.synthesizer_llm
+                else 0.3,
+                max_tokens=self._config.synthesizer_llm.max_tokens
+                if self._config.synthesizer_llm
+                else 1000,
             )
 
             return self._parse_json_response(response.content)
@@ -708,8 +754,12 @@ class LargeFileProcessor:
         try:
             response = await self._synthesizer_llm.chat_completion(
                 messages=[{"role": "user", "content": prompt}],
-                temperature=self._config.synthesizer_llm.temperature if self._config.synthesizer_llm else 0.3,
-                max_tokens=self._config.synthesizer_llm.max_tokens if self._config.synthesizer_llm else 1000,
+                temperature=self._config.synthesizer_llm.temperature
+                if self._config.synthesizer_llm
+                else 0.3,
+                max_tokens=self._config.synthesizer_llm.max_tokens
+                if self._config.synthesizer_llm
+                else 1000,
             )
 
             return self._parse_json_response(response.content)
@@ -717,7 +767,7 @@ class LargeFileProcessor:
         except Exception as e:
             logger.error(f"Code synthesis failed: {e}")
             return {
-                "overview": f"Code file with {len(symbol_table.classes)} classes and {len(symbol_table.functions)} functions.",
+                "overview": f"Code file with {len(symbol_table.classes)} classes and {len(symbol_table.functions)} functions.",  # noqa: E501
                 "components": [],
                 "dependencies": symbol_table.imports[:5],
             }
@@ -737,7 +787,9 @@ class LargeFileProcessor:
 
         try:
             # Query vector store for existing file synthesis
-            if hasattr(self._memory, "vector") and hasattr(self._memory.vector, "get_all"):
+            if hasattr(self._memory, "vector") and hasattr(
+                self._memory.vector, "get_all"
+            ):
                 results = await self._memory.vector.get_all(
                     where={"source": file_path, "type": "file_synthesis"},
                     limit=1,
@@ -795,15 +847,17 @@ class LargeFileProcessor:
             raw_metadatas = []
             for chunk in result.raw_chunks:
                 raw_texts.append(chunk.text)
-                raw_metadatas.append({
-                    "type": "raw_chunk",
-                    "source": file_path,
-                    "file_type": result.file_type,
-                    "chunk_index": chunk.index,
-                    "chunk_type": chunk.chunk_type or "unknown",
-                    "start_line": chunk.start_line,
-                    "end_line": chunk.end_line,
-                })
+                raw_metadatas.append(
+                    {
+                        "type": "raw_chunk",
+                        "source": file_path,
+                        "file_type": result.file_type,
+                        "chunk_index": chunk.index,
+                        "chunk_type": chunk.chunk_type or "unknown",
+                        "start_line": chunk.start_line,
+                        "end_line": chunk.end_line,
+                    }
+                )
 
             # Use store_documents_batch if available, otherwise store individually
             if hasattr(self._memory, "store_documents_batch"):
@@ -815,7 +869,7 @@ class LargeFileProcessor:
                 stored_ids.extend(raw_ids)
             else:
                 # Fallback to individual storage
-                for text, metadata in zip(raw_texts, raw_metadatas):
+                for text, metadata in zip(raw_texts, raw_metadatas, strict=False):
                     doc_id = await self._memory.store_document(
                         text=text,
                         metadata=metadata,
@@ -826,7 +880,9 @@ class LargeFileProcessor:
             logger.info(f"Stored {len(result.raw_chunks)} raw chunks for {file_path}")
 
         # 2. Store synthesis as main document
-        synthesis_text = result.synthesis.get("summary") or result.synthesis.get("overview", "")
+        synthesis_text = result.synthesis.get("summary") or result.synthesis.get(
+            "overview", ""
+        )
         if synthesis_text:
             doc_id = await self._memory.store_document(
                 text=synthesis_text,
@@ -852,7 +908,9 @@ class LargeFileProcessor:
                             "source": file_path,
                             "chunk_index": summary.chunk_index,
                             "chunk_type": summary.chunk_type or "unknown",
-                            "entities_mentioned": ";".join(summary.entities) if summary.entities else "",
+                            "entities_mentioned": ";".join(summary.entities)
+                            if summary.entities
+                            else "",
                         },
                     )
                 )
@@ -898,7 +956,9 @@ class LargeFileProcessor:
                 if symbol_table.classes:
                     lines.append(f"- Classes: {', '.join(symbol_table.classes[:5])}")
                 if symbol_table.functions:
-                    lines.append(f"- Functions: {', '.join(symbol_table.functions[:10])}")
+                    lines.append(
+                        f"- Functions: {', '.join(symbol_table.functions[:10])}"
+                    )
                 lines.append("")
 
         else:
@@ -937,7 +997,7 @@ class LargeFileProcessor:
             return template
 
     def _parse_json_response(self, content: str | None) -> dict[str, Any]:
-        """Parse JSON from LLM response, handling markdown code blocks and plain text."""
+        """Parse JSON from LLM response, handling markdown code blocks and plain text."""  # noqa: E501
         if not content:
             return {}
 
@@ -970,7 +1030,9 @@ class LargeFileProcessor:
             # Use the text as the summary - this is common with some models
             plain_text = content.strip()
             if plain_text and len(plain_text) > 10:
-                logger.debug(f"LLM returned plain text summary instead of JSON, using as-is")
+                logger.debug(
+                    "LLM returned plain text summary instead of JSON, using as-is"
+                )
                 return {"summary": plain_text, "entities": [], "key_points": []}
 
             logger.warning(f"Failed to parse JSON from response: {text[:200]}")

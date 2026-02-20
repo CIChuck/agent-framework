@@ -852,6 +852,7 @@ dependencies = [
     { name = "friday-tools" },
     { name = "friday-transcript" },
     { name = "langfuse" },
+    { name = "mypy" },
     { name = "pypdf" },
 ]
 
@@ -887,6 +888,7 @@ requires-dist = [
     { name = "friday-tools", editable = "packages/friday-tools" },
     { name = "friday-transcript", editable = "packages/friday-transcript" },
     { name = "langfuse", specifier = ">=2.59,<3.0" },
+    { name = "mypy", specifier = ">=1.19.1" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10.0" },
     { name = "pypdf", specifier = ">=4.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },

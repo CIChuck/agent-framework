@@ -3,7 +3,6 @@
 import json
 
 import pytest
-
 from friday_memory.maintenance.models import PruneConfig
 from friday_memory.maintenance.pruner import RedundancyPruner
 
@@ -46,7 +45,11 @@ class TestRedundancyPruner:
 
         # But report should show what would be removed
         assert report.dry_run is True
-        assert report.entities_removed > 0 or report.entities_merged > 0 or len(report.items) > 0
+        assert (
+            report.entities_removed > 0
+            or report.entities_merged > 0
+            or len(report.items) > 0
+        )
 
     @pytest.mark.asyncio
     async def test_prune_actually_removes(self, memory_with_issues):
@@ -89,7 +92,7 @@ class TestRedundancyPruner:
         labels = [n.get("label", "").lower() for n in data["nodes"].values()]
 
         # Should not have multiple "chuck" entries
-        chuck_count = sum(1 for l in labels if l == "chuck")
+        chuck_count = sum(1 for l in labels if l == "chuck")  # noqa: E741
         assert chuck_count == 1
 
     @pytest.mark.asyncio
@@ -112,7 +115,7 @@ class TestRedundancyPruner:
 
         # Find the remaining chuck entry
         chuck_node = None
-        for node_id, node_data in current_data["nodes"].items():
+        for _node_id, node_data in current_data["nodes"].items():
             if node_data.get("label", "").lower() == "chuck":
                 chuck_node = node_data
                 break
@@ -155,10 +158,10 @@ class TestRedundancyPruner:
         # Get original edge count
         graph_path = memory_with_issues / "graph.json"
         original_data = json.loads(graph_path.read_text())
-        original_edge_count = len(original_data["edges"])
+        len(original_data["edges"])
 
         # Prune stale entities
-        report = await pruner.prune(dry_run=False)
+        await pruner.prune(dry_run=False)
 
         # Check edges were cleaned up
         current_data = json.loads(graph_path.read_text())
@@ -169,7 +172,9 @@ class TestRedundancyPruner:
             # At minimum, valid edges should have existing targets
             # (source might still be orphaned from fixture)
             if edge["source"] in node_ids:
-                assert edge["target"] in node_ids or edge["target"] == "nonexistent_node_1"
+                assert (
+                    edge["target"] in node_ids or edge["target"] == "nonexistent_node_1"
+                )
 
     @pytest.mark.asyncio
     async def test_prune_clean_memory(self, clean_memory_dir):

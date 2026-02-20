@@ -12,10 +12,10 @@ from pathlib import Path
 from typing import Any
 
 from friday_transcript.models.transcript import (
-    TranscriptEntry,
-    TranscriptSession,
     ToolCall,
     ToolResult,
+    TranscriptEntry,
+    TranscriptSession,
 )
 
 logger = logging.getLogger(__name__)
@@ -159,7 +159,9 @@ class JSONLTranscriptStore:
             user_id=data.get("user_id"),
             started_at=datetime.fromisoformat(data["started_at"]),
             ended_at=(
-                datetime.fromisoformat(data["ended_at"]) if data.get("ended_at") else None
+                datetime.fromisoformat(data["ended_at"])
+                if data.get("ended_at")
+                else None
             ),
             model_name=data["model_name"],
             system_prompt=data.get("system_prompt"),
@@ -271,10 +273,14 @@ class JSONLTranscriptStore:
             "tool_results": [tr.model_dump() for tr in entry.tool_results],
             "timestamp": entry.timestamp.isoformat(),
             "response_started_at": (
-                entry.response_started_at.isoformat() if entry.response_started_at else None
+                entry.response_started_at.isoformat()
+                if entry.response_started_at
+                else None
             ),
             "response_completed_at": (
-                entry.response_completed_at.isoformat() if entry.response_completed_at else None
+                entry.response_completed_at.isoformat()
+                if entry.response_completed_at
+                else None
             ),
             "prompt_tokens": entry.prompt_tokens,
             "completion_tokens": entry.completion_tokens,

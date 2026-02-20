@@ -69,7 +69,7 @@ def _load_tool_from_config(
 
     Returns:
         Instantiated tool or None if disabled/failed to load.
-    """
+    """  # noqa: E501
     tool_name = tool_config.get("name", "unknown")
     _debug(f"Loading tool: {tool_name}")
 
@@ -83,7 +83,9 @@ def _load_tool_from_config(
         class_name = tool_config.get("class")
 
         if not module_name or not class_name:
-            logger.warning(f"[Tools] Tool '{tool_name}' missing required 'module' or 'class' field")
+            logger.warning(
+                f"[Tools] Tool '{tool_name}' missing required 'module' or 'class' field"
+            )
             return None
 
         _debug(f"Importing {module_name}.{class_name}")
@@ -96,7 +98,7 @@ def _load_tool_from_config(
         constructor_args = tool_config.get("constructor_args", {})
 
         # Auto-inject web config for web tools (friday_tools.web module)
-        if module_name == "friday_tools.web" and web_config:
+        if module_name == "friday_tools.web" and web_config:  # noqa: SIM102
             # Only inject if not already specified in constructor_args
             if "config" not in constructor_args:
                 constructor_args["config"] = web_config
@@ -106,15 +108,20 @@ def _load_tool_from_config(
         if class_name == "SmartFileReadTool" and smart_file_llm:
             if "fallback_llm" not in constructor_args:
                 constructor_args["fallback_llm"] = smart_file_llm
-                _debug(f"Injected fallback_llm into SmartFileReadTool")
+                _debug("Injected fallback_llm into SmartFileReadTool")
             if smart_file_config and "config" not in constructor_args:
-                from friday_memory.ingestion.large_file_processor import LargeFileProcessorConfig
+                from friday_memory.ingestion.large_file_processor import (
+                    LargeFileProcessorConfig,
+                )
+
                 constructor_args["config"] = LargeFileProcessorConfig(
-                    auto_chunk_threshold_chars=smart_file_config.get("auto_chunk_threshold", 50000),
+                    auto_chunk_threshold_chars=smart_file_config.get(
+                        "auto_chunk_threshold", 50000
+                    ),
                     chunk_size=smart_file_config.get("chunk_size", 512),
                     chunk_overlap=smart_file_config.get("chunk_overlap", 50),
                 )
-                _debug(f"Injected config into SmartFileReadTool")
+                _debug("Injected config into SmartFileReadTool")
 
         # Auto-inject shared MassiveAgentClient for finance tools
         # (friday_tools.finance module).  All finance tools share a
@@ -135,10 +142,14 @@ def _load_tool_from_config(
         return tool
 
     except ImportError as e:
-        logger.warning(f"[Tools] Failed to import tool module '{tool_config.get('module')}': {e}")
+        logger.warning(
+            f"[Tools] Failed to import tool module '{tool_config.get('module')}': {e}"
+        )
         return None
     except AttributeError as e:
-        logger.warning(f"[Tools] Tool class '{tool_config.get('class')}' not found in module: {e}")
+        logger.warning(
+            f"[Tools] Tool class '{tool_config.get('class')}' not found in module: {e}"
+        )
         return None
     except Exception as e:
         logger.warning(f"[Tools] Failed to instantiate tool '{tool_name}': {e}")
@@ -168,7 +179,7 @@ def build_tool_registry(
 
     Returns:
         DefaultToolRegistry populated with configured tools.
-    """
+    """  # noqa: E501
     registry = DefaultToolRegistry()
 
     # Build shared instances for expensive objects that multiple tools share
@@ -194,7 +205,9 @@ def build_tool_registry(
     _debug(f"tools_config is None: {tools_config is None}")
     if tools_config:
         _debug(f"tools_config.enabled: {tools_config.get('enabled', 'NOT SET')}")
-        _debug(f"tools_config.registry has {len(tools_config.get('registry', []))} entries")
+        _debug(
+            f"tools_config.registry has {len(tools_config.get('registry', []))} entries"
+        )
 
     # Check if tools are enabled
     if tools_config is None or not tools_config.get("enabled", True):
@@ -233,9 +246,13 @@ def build_tool_registry(
             registry.register(tool)
             loaded_count += 1
 
-    logger.info(f"[Tools] Loaded {loaded_count}/{len(tool_definitions)} tools from configuration")
+    logger.info(
+        f"[Tools] Loaded {loaded_count}/{len(tool_definitions)} tools from configuration"  # noqa: E501
+    )
     if loaded_count < len(tool_definitions):
-        logger.warning(f"[Tools] Only loaded {loaded_count}/{len(tool_definitions)} tools - check for errors above")
+        logger.warning(
+            f"[Tools] Only loaded {loaded_count}/{len(tool_definitions)} tools - check for errors above"  # noqa: E501
+        )
     return registry
 
 
@@ -260,7 +277,7 @@ def init_tools(
 
     Returns:
         Tuple of (TOOL_REGISTRY, TOOL_SCHEMAS) for convenience
-    """
+    """  # noqa: E501
     global TOOL_REGISTRY, TOOL_SCHEMAS
     TOOL_REGISTRY = build_tool_registry(
         tools_config,
@@ -292,7 +309,9 @@ async def execute_tool(tool_name: str, **kwargs) -> str:
     return await tool.execute(**kwargs)
 
 
-def validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple[Path, str | None]:
+def validate_export_path(
+    path: Path, allowed_base: Path | None = None
+) -> tuple[Path, str | None]:
     """
     Validate and resolve an export path to prevent path traversal.
 
@@ -302,7 +321,7 @@ def validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple[
 
     Returns:
         Tuple of (resolved_path, error_message). Error is None if path is valid.
-    """
+    """  # noqa: E501
     if allowed_base is None:
         allowed_base = Path.cwd()
 
@@ -351,7 +370,7 @@ def validate_tool_params(
     unknown = [p for p in params if p not in properties]
     if unknown:
         valid_params = ", ".join(properties.keys()) if properties else "(none)"
-        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"
+        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"  # noqa: E501
 
     # Type validation for provided parameters
     type_errors = []
@@ -376,7 +395,7 @@ def validate_tool_params(
         expected_python_type = type_map.get(expected_type)
         if expected_python_type and not isinstance(param_value, expected_python_type):
             type_errors.append(
-                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"
+                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"  # noqa: E501
             )
 
     if type_errors:

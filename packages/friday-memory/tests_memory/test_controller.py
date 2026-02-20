@@ -14,22 +14,18 @@ import uuid
 from datetime import datetime
 
 import pytest
-
-from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
-    ChromaVectorStore,
-    ElementXGraphStore,
     GraphEdge,
     GraphNode,
-    InMemoryEpisodicStore,
     InteractionTurn,
     MemoryController,
     ProvenanceMetadata,
 )
 
 
-def create_turn(user_msg: str = "Hello", session_id: str = "test_session") -> InteractionTurn:
+def create_turn(
+    user_msg: str = "Hello", session_id: str = "test_session"
+) -> InteractionTurn:
     """Helper to create test turns."""
     return InteractionTurn(
         id=str(uuid.uuid4()),
@@ -130,9 +126,7 @@ class TestConsolidationBridge:
         assert len(turns) == 5
 
     @pytest.mark.asyncio
-    async def test_mark_events_consolidated(
-        self, memory_controller: MemoryController
-    ):
+    async def test_mark_events_consolidated(self, memory_controller: MemoryController):
         """Test marking turns as consolidated."""
         session_id = "test_session"
         turn_ids = []
@@ -150,9 +144,7 @@ class TestConsolidationBridge:
         assert len(unconsolidated) == 2
 
     @pytest.mark.asyncio
-    async def test_consolidation_round_trip(
-        self, memory_controller: MemoryController
-    ):
+    async def test_consolidation_round_trip(self, memory_controller: MemoryController):
         """Test full consolidation workflow."""
         session_id = "consolidation_test"
 
@@ -197,9 +189,7 @@ class TestUnifiedRecall:
         assert hasattr(payload, "debug_info")
 
     @pytest.mark.asyncio
-    async def test_recall_includes_history(
-        self, memory_controller: MemoryController
-    ):
+    async def test_recall_includes_history(self, memory_controller: MemoryController):
         """Test that recall includes episodic history."""
         session_id = "history_test"
 
@@ -218,9 +208,7 @@ class TestUnifiedRecall:
         assert len(payload.history) == 3
 
     @pytest.mark.asyncio
-    async def test_recall_without_history(
-        self, memory_controller: MemoryController
-    ):
+    async def test_recall_without_history(self, memory_controller: MemoryController):
         """Test recall without history."""
         session_id = "no_history_test"
 
@@ -238,9 +226,7 @@ class TestUnifiedRecall:
         assert len(payload.history) == 0
 
     @pytest.mark.asyncio
-    async def test_recall_debug_info(
-        self, memory_controller: MemoryController
-    ):
+    async def test_recall_debug_info(self, memory_controller: MemoryController):
         """Test that recall populates debug info."""
         payload = await memory_controller.recall(
             query="test query for debugging",
@@ -342,9 +328,7 @@ class TestTelemetryIntegration:
         assert event["node_id"] == "telemetry_test"
 
     @pytest.mark.asyncio
-    async def test_recall_emits_event(
-        self, memory_controller: MemoryController
-    ):
+    async def test_recall_emits_event(self, memory_controller: MemoryController):
         """Test that recall emits telemetry."""
         await memory_controller.recall(
             query="telemetry test",

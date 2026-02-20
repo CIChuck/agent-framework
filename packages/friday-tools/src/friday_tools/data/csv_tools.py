@@ -142,7 +142,9 @@ class CsvWriteTool(BaseTool):
             with validated_path.open("w", newline="", encoding="utf-8") as f:
                 if isinstance(data[0], dict):
                     fieldnames = list(data[0].keys())
-                    writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter=delimiter)
+                    writer = csv.DictWriter(
+                        f, fieldnames=fieldnames, delimiter=delimiter
+                    )
                     writer.writeheader()
                     writer.writerows(data)
                 else:

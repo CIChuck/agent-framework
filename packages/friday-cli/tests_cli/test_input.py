@@ -4,18 +4,15 @@ Tests for friday-cli input handling.
 
 import tempfile
 from pathlib import Path
-from unittest.mock import MagicMock, patch
-
-import pytest
-from prompt_toolkit.document import Document
 
 from friday_cli import (
+    FRIDAY_COMMAND_DESCRIPTIONS,
+    FRIDAY_COMMANDS,
     CommandCompleter,
     InputHandler,
     create_friday_input_handler,
-    FRIDAY_COMMANDS,
-    FRIDAY_COMMAND_DESCRIPTIONS,
 )
+from prompt_toolkit.document import Document
 
 
 class TestCommandCompleter:
@@ -61,7 +58,7 @@ class TestCommandCompleter:
         assert len(completions) == 1
         # display_meta may be FormattedText or plain string
         meta = completions[0].display_meta
-        meta_str = str(meta) if hasattr(meta, '__str__') else meta
+        meta_str = str(meta) if hasattr(meta, "__str__") else meta
         assert "Show help" in meta_str
 
     def test_case_insensitive_matching(self):
@@ -95,7 +92,7 @@ class TestInputHandler:
     def test_initialization_with_history_file(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             history_path = Path(tmpdir) / "subdir" / "history"
-            handler = InputHandler(history_file=history_path)
+            InputHandler(history_file=history_path)
 
             # Directory should be created
             assert history_path.parent.exists()
@@ -170,7 +167,9 @@ class TestInputHandlerPromptFormatting:
 
     def test_continuation_prompt(self):
         handler = InputHandler(multiline=True)
-        continuation = handler._format_continuation(width=80, line_number=2, is_soft_wrap=False)
+        continuation = handler._format_continuation(
+            width=80, line_number=2, is_soft_wrap=False
+        )
 
         assert continuation == "... "
 

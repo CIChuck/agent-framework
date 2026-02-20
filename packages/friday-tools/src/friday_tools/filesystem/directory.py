@@ -40,20 +40,15 @@ class DirectoryListTool(FridayTool):
     tags = ["directory", "list", "files", "ls"]
 
     class Input(BaseModel):
-        path: str = Field(
-            description="Path to the directory to list"
-        )
+        path: str = Field(description="Path to the directory to list")
         pattern: str = Field(
-            default="*",
-            description="Filter pattern (glob-style, e.g., '*.py')"
+            default="*", description="Filter pattern (glob-style, e.g., '*.py')"
         )
         show_hidden: bool = Field(
-            default=False,
-            description="Include hidden files (starting with .)"
+            default=False, description="Include hidden files (starting with .)"
         )
         sort_by: Literal["name", "size", "modified"] = Field(
-            default="name",
-            description="Sort by: name, size, or modified"
+            default="name", description="Sort by: name, size, or modified"
         )
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
@@ -66,13 +61,13 @@ class DirectoryListTool(FridayTool):
         if not validated_path.exists():
             return ToolResult(
                 content=f"Error: Directory not found: {args.path}",
-                error=f"Directory not found: {args.path}"
+                error=f"Directory not found: {args.path}",
             )
 
         if not validated_path.is_dir():
             return ToolResult(
                 content=f"Error: Not a directory: {args.path}",
-                error=f"Not a directory: {args.path}"
+                error=f"Not a directory: {args.path}",
             )
 
         try:
@@ -119,18 +114,17 @@ class DirectoryListTool(FridayTool):
             return ToolResult(
                 content=content,
                 data={"entries": entries, "count": len(entries)},
-                metadata={"path": args.path, "pattern": args.pattern}
+                metadata={"path": args.path, "pattern": args.pattern},
             )
 
         except PermissionError:
             return ToolResult(
                 content=f"Error: Permission denied: {args.path}",
-                error="Permission denied"
+                error="Permission denied",
             )
         except Exception as e:
             return ToolResult(
-                content=f"Error: Failed to list directory: {e}",
-                error=str(e)
+                content=f"Error: Failed to list directory: {e}", error=str(e)
             )
 
 
@@ -332,8 +326,13 @@ class DirectoryTreeTool(BaseTool):
             if entry.is_dir():
                 lines.append(f"{prefix}{connector}{entry.name}/")
                 self._build_tree(
-                    entry, lines, new_prefix, max_depth, current_depth + 1,
-                    show_hidden, dirs_only
+                    entry,
+                    lines,
+                    new_prefix,
+                    max_depth,
+                    current_depth + 1,
+                    show_hidden,
+                    dirs_only,
                 )
             else:
                 lines.append(f"{prefix}{connector}{entry.name}")

@@ -12,7 +12,14 @@ from .errors import (
     WakeWordError,
 )
 from .harness import SpeechHarness
-from .interfaces import AdapterRegistry, AudioFormat, AudioStream, STTAdapter, TTSAdapter, WakeWordAdapter
+from .interfaces import (
+    AdapterRegistry,
+    AudioFormat,
+    AudioStream,
+    STTAdapter,
+    TTSAdapter,
+    WakeWordAdapter,
+)
 from .service import SpeechService
 
 __all__ = [

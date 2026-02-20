@@ -2,7 +2,7 @@
 
 import pytest
 
-from friday_sandbox import ExecutionResult, SandboxTimeoutError
+from friday_sandbox import SandboxTimeoutError
 from friday_sandbox.subprocess import SubprocessSandbox
 
 

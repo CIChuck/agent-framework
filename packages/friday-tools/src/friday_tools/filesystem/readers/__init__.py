@@ -22,12 +22,12 @@ Usage:
 """
 
 from .base import FileReader, ReaderResult
-from .encoding import EncodingDetector, detect_encoding, read_with_smart_encoding
 from .csv_reader import CsvReader, csv_reader
 from .docx_reader import DocxReader, docx_reader
+from .encoding import EncodingDetector, detect_encoding, read_with_smart_encoding
+from .factory import ReaderFactory, get_reader_for_path
 from .pdf_reader import PdfReader, pdf_reader
 from .xlsx_reader import XlsxReader, xlsx_reader
-from .factory import ReaderFactory, get_reader_for_path
 
 __all__ = [
     # Base classes

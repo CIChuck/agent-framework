@@ -18,7 +18,6 @@ Commands:
 
 import argparse
 import asyncio
-import json
 import logging
 import sys
 from pathlib import Path
@@ -48,19 +47,22 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Backup command ---
     backup_parser = subparsers.add_parser("backup", help="Create a backup")
     backup_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory to backup",
     )
     backup_parser.add_argument(
-        "--output", "-o",
+        "--output",
+        "-o",
         help="Backup output directory (default: <dir>/backups/<timestamp>)",
     )
 
     # --- Restore command ---
     restore_parser = subparsers.add_parser("restore", help="Restore from backup")
     restore_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory to restore to",
     )
@@ -76,7 +78,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- List command ---
     list_parser = subparsers.add_parser("list", help="List available backups")
     list_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory",
     )
@@ -84,12 +87,14 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Analyze command ---
     analyze_parser = subparsers.add_parser("analyze", help="Analyze consistency")
     analyze_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory to analyze",
     )
     analyze_parser.add_argument(
-        "--report", "-r",
+        "--report",
+        "-r",
         help="Output report to JSON file",
     )
     analyze_parser.add_argument(
@@ -102,7 +107,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Prune command ---
     prune_parser = subparsers.add_parser("prune", help="Prune redundancies")
     prune_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory to prune",
     )
@@ -144,7 +150,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Synthesize command ---
     synth_parser = subparsers.add_parser("synthesize", help="Synthesize memories")
     synth_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory",
     )
@@ -180,7 +187,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Classify command ---
     classify_parser = subparsers.add_parser("classify", help="Classify facts")
     classify_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory",
     )
@@ -206,7 +214,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Verify command ---
     verify_parser = subparsers.add_parser("verify", help="Verify claims")
     verify_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory",
     )
@@ -243,7 +252,8 @@ def create_parser() -> argparse.ArgumentParser:
     # --- Reorganize command ---
     reorg_parser = subparsers.add_parser("reorganize", help="Full reorganization")
     reorg_parser.add_argument(
-        "--dir", "-d",
+        "--dir",
+        "-d",
         required=True,
         help="Memory directory",
     )
@@ -320,7 +330,7 @@ async def cmd_backup(args) -> int:
     manager = BackupManager(args.dir)
     manifest = manager.create_backup(args.output)
 
-    print(f"Backup created successfully!")
+    print("Backup created successfully!")
     print(f"  ID: {manifest.backup_id}")
     print(f"  Location: {manifest.backup_dir}")
     print(f"  Files: {len(manifest.files)}")
@@ -342,6 +352,7 @@ async def cmd_restore(args) -> int:
             return 1
 
         from friday_memory.maintenance.models import BackupManifest
+
         manifest = BackupManifest.model_validate_json(manifest_path.read_text())
     else:
         # Find backup by ID or use latest
@@ -352,8 +363,7 @@ async def cmd_restore(args) -> int:
 
         if args.backup_id:
             manifest = next(
-                (b for b in backups if b.backup_id.startswith(args.backup_id)),
-                None
+                (b for b in backups if b.backup_id.startswith(args.backup_id)), None
             )
             if not manifest:
                 print(f"Backup not found: {args.backup_id}")
@@ -381,8 +391,10 @@ async def cmd_list(args) -> int:
 
     print(f"Found {len(backups)} backups:\n")
     for backup in backups:
-        print(f"  {backup.backup_id[:8]}  {backup.created_at.strftime('%Y-%m-%d %H:%M')}  "
-              f"{len(backup.files)} files")
+        print(
+            f"  {backup.backup_id[:8]}  {backup.created_at.strftime('%Y-%m-%d %H:%M')}  "  # noqa: E501
+            f"{len(backup.files)} files"
+        )
 
     return 0
 
@@ -410,9 +422,9 @@ async def cmd_analyze(args) -> int:
 
 async def cmd_prune(args) -> int:
     """Handle prune command."""
+    from friday_memory.maintenance.backup import BackupManager
     from friday_memory.maintenance.models import PruneConfig
     from friday_memory.maintenance.pruner import RedundancyPruner
-    from friday_memory.maintenance.backup import BackupManager
 
     dry_run = not args.no_dry_run
 
@@ -437,8 +449,8 @@ async def cmd_prune(args) -> int:
 
 async def cmd_synthesize(args) -> int:
     """Handle synthesize command."""
-    from friday_memory.maintenance.synthesizer import MemorySynthesizer
     from friday_memory.maintenance.backup import BackupManager
+    from friday_memory.maintenance.synthesizer import MemorySynthesizer
 
     dry_run = not args.no_dry_run
     llm = get_llm_service(args)
@@ -481,7 +493,11 @@ async def cmd_classify(args) -> int:
 
     for fact in classified[:10]:
         status = "FALSIFIABLE" if fact.falsifiable else "CONVERSATIONAL"
-        preview = fact.original_text[:50] + "..." if len(fact.original_text) > 50 else fact.original_text
+        preview = (
+            fact.original_text[:50] + "..."
+            if len(fact.original_text) > 50
+            else fact.original_text
+        )
         print(f"\n  [{status}] {preview}")
         print(f"    Type: {fact.claim_type.value}")
         print(f"    Reason: {fact.reasoning}")

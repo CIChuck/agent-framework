@@ -29,7 +29,9 @@ class ToolResult(BaseModel):
 
     tool_call_id: str = Field(description="ID of the corresponding ToolCall")
     output: Any = Field(default=None, description="Result data from the tool")
-    error: str | None = Field(default=None, description="Error message if execution failed")
+    error: str | None = Field(
+        default=None, description="Error message if execution failed"
+    )
 
 
 class TranscriptEntry(BaseModel):
@@ -63,7 +65,7 @@ class TranscriptEntry(BaseModel):
     # Agent tracking (for multi-agent provenance)
     agent_id: str | None = Field(
         default=None,
-        description="Which agent generated this response (e.g., 'researcher', 'coder')"
+        description="Which agent generated this response (e.g., 'researcher', 'coder')",
     )
 
     # Tool execution
@@ -86,23 +88,17 @@ class TranscriptEntry(BaseModel):
     )
 
     # Metrics
-    prompt_tokens: int | None = Field(
-        default=None, description="Tokens in the prompt"
-    )
+    prompt_tokens: int | None = Field(default=None, description="Tokens in the prompt")
     completion_tokens: int | None = Field(
         default=None, description="Tokens in the completion"
     )
-    total_tokens: int | None = Field(
-        default=None, description="Total tokens used"
-    )
+    total_tokens: int | None = Field(default=None, description="Total tokens used")
     latency_ms: float | None = Field(
         default=None, description="Total response time in milliseconds"
     )
 
     # Context
-    model_name: str | None = Field(
-        default=None, description="Which LLM model was used"
-    )
+    model_name: str | None = Field(default=None, description="Which LLM model was used")
     temperature: float | None = Field(
         default=None, description="Temperature setting used"
     )
@@ -118,7 +114,7 @@ class TranscriptEntry(BaseModel):
     # Processing state
     consolidated: bool = Field(
         default=False,
-        description="Whether this entry has been extracted to long-term memory"
+        description="Whether this entry has been extracted to long-term memory",
     )
     compacted: bool = Field(
         default=False,
@@ -149,9 +145,7 @@ class TranscriptSession(BaseModel):
     """
 
     session_id: str = Field(description="Unique session identifier")
-    user_id: str | None = Field(
-        default=None, description="User identifier (if known)"
-    )
+    user_id: str | None = Field(default=None, description="User identifier (if known)")
     started_at: datetime = Field(
         default_factory=datetime.now, description="Session start time"
     )
@@ -161,9 +155,7 @@ class TranscriptSession(BaseModel):
 
     # Configuration snapshot
     model_name: str = Field(description="Primary model used for this session")
-    system_prompt: str | None = Field(
-        default=None, description="System prompt used"
-    )
+    system_prompt: str | None = Field(default=None, description="System prompt used")
     config_snapshot: dict[str, Any] = Field(
         default_factory=dict, description="Configuration at session start"
     )
@@ -183,7 +175,7 @@ class TranscriptSession(BaseModel):
     # Archive state
     archived: bool = Field(
         default=False,
-        description="Whether this session is archived (excluded from context assembly)"
+        description="Whether this session is archived (excluded from context assembly)",
     )
 
     def is_active(self) -> bool:

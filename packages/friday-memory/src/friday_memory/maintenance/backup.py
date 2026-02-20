@@ -109,8 +109,14 @@ class BackupManager:
                     "file_size": chroma_db.stat().st_size,
                 }
                 # Count ChromaDB files in this dir
-                chroma_files = ["chroma.sqlite3", "data_level0.bin", "header.bin",
-                               "index_metadata.json", "length.bin", "link_lists.bin"]
+                chroma_files = [
+                    "chroma.sqlite3",
+                    "data_level0.bin",
+                    "header.bin",
+                    "index_metadata.json",
+                    "length.bin",
+                    "link_lists.bin",
+                ]
                 file_count = sum(1 for f in chroma_files if (vector_dir / f).exists())
                 stats["vector"]["file_count"] = file_count
                 break
@@ -297,7 +303,7 @@ class BackupManager:
 
         # Restore files
         restored_count = 0
-        for relative_path in manifest.checksums.keys():
+        for relative_path in manifest.checksums:
             source_file = backup_path / relative_path
             dest_file = self._memory_dir / relative_path
 

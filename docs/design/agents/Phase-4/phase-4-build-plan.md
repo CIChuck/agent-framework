@@ -587,7 +587,7 @@ Target docs:
 2. `docs/design/agents/Alt-Phase-2/comprehensive-agent-framework-design.md`
 3. `docs/design/agents/Alt-Phase-2/phase-3-transition-plan.md`
 4. `docs/design/agents/Alt-Phase-2/README.md`
-5. `docs/design/agents/Alt-Phase-2/phase-4-build-plan.md`
+5. `docs/design/agents/Phase-4/phase-4-build-plan.md`
 
 Tasks:
 
@@ -748,8 +748,8 @@ Rollback model:
 
 Phase 4 implementation includes two companion guides:
 
-1. `docs/design/agents/Alt-Phase-2/phase-4-build-plan-examples.md`
-2. `docs/design/agents/Alt-Phase-2/phase-4-ai-agent-implementation-guide.md`
+1. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
+2. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
 
 Companion scope requirements:
 

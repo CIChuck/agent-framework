@@ -11,11 +11,12 @@ that depend on sandbox execution.
 from __future__ import annotations
 
 import uuid
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from .config import SandboxConfig, WorkspaceConfig
-from .models import ExecutionResult, Workspace, WorkspaceNotFoundError
+from .models import ExecutionResult, Workspace
 
 
 class MockSandbox:
@@ -132,14 +133,16 @@ class MockSandbox:
             Configured ExecutionResult.
         """
         # Record the call
-        self._execution_history.append({
-            "code": code,
-            "language": language,
-            "timeout_seconds": timeout_seconds,
-            "workspace_id": workspace_id,
-            "environment": environment,
-            "return_type": return_type,
-        })
+        self._execution_history.append(
+            {
+                "code": code,
+                "language": language,
+                "timeout_seconds": timeout_seconds,
+                "workspace_id": workspace_id,
+                "environment": environment,
+                "return_type": return_type,
+            }
+        )
 
         # Return response based on priority:
         # 1. Response callback
@@ -190,11 +193,7 @@ class MockSandbox:
 
     async def cleanup_expired_workspaces(self) -> int:
         """Clean up expired mock workspaces."""
-        expired = [
-            wid
-            for wid, w in self._workspaces.items()
-            if w.is_expired
-        ]
+        expired = [wid for wid, w in self._workspaces.items() if w.is_expired]
         for wid in expired:
             del self._workspaces[wid]
         return len(expired)

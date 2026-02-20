@@ -72,7 +72,7 @@ class OntologyConfig:
 
         Returns:
             Formatted string listing allowed entity types and relations with examples.
-        """
+        """  # noqa: E501
         lines: list[str] = []
 
         # Node types section
@@ -110,7 +110,7 @@ class OntologyConfig:
 
         Returns:
             Configured OntologyConfig instance.
-        """
+        """  # noqa: E501
         node_types: dict[str, NodeTypeConfig] = {}
         for type_name, type_data in data.get("node_types", {}).items():
             if isinstance(type_data, dict):

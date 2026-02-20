@@ -8,8 +8,6 @@ from __future__ import annotations
 
 import os
 import shutil
-import stat
-from pathlib import Path
 from typing import Any
 
 from ..definition import BaseTool
@@ -195,7 +193,7 @@ class FileDeleteTool(BaseTool):
                 else:
                     # Check if directory is empty
                     if any(validated_path.iterdir()):
-                        return f"Error: Directory not empty. Use recursive=true to delete: {path}"
+                        return f"Error: Directory not empty. Use recursive=true to delete: {path}"  # noqa: E501
                     validated_path.rmdir()
                     return f"Successfully deleted empty directory {path}"
             else:
@@ -265,7 +263,7 @@ class FileChmodTool(BaseTool):
                     os.chmod(item, mode)
                     count += 1
                 os.chmod(validated_path, mode)
-                return f"Successfully changed permissions to {mode_str} for {count + 1} items"
+                return f"Successfully changed permissions to {mode_str} for {count + 1} items"  # noqa: E501
             else:
                 os.chmod(validated_path, mode)
                 return f"Successfully changed permissions of {path} to {mode_str}"

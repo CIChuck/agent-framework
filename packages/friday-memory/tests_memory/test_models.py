@@ -10,11 +10,9 @@ Tests cover:
 - ContextPayload structure
 """
 
-import uuid
 from datetime import datetime
 
 import pytest
-
 from friday_memory import (
     ConsolidationReport,
     ContextPayload,

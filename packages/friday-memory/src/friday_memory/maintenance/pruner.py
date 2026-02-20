@@ -115,7 +115,9 @@ class RedundancyPruner:
                     logger.warning(f"Failed to open ChromaDB at {vector_dir}: {e}")
                     continue
 
-        logger.warning(f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}")
+        logger.warning(
+            f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}"
+        )
         return None
 
     async def identify_redundant_insights(self) -> list[DuplicateGroup]:
@@ -144,9 +146,7 @@ class RedundancyPruner:
 
             # Get all documents with their embeddings
             # This is efficient - no API calls, just reads from disk
-            all_data = collection.get(
-                include=["embeddings", "metadatas", "documents"]
-            )
+            all_data = collection.get(include=["embeddings", "metadatas", "documents"])
 
             ids = all_data["ids"]
             embeddings = all_data["embeddings"]
@@ -154,7 +154,7 @@ class RedundancyPruner:
             # Check for empty results (embeddings may be numpy array)
             if not ids or embeddings is None or len(embeddings) == 0:
                 return duplicates
-            metadatas = all_data["metadatas"] or [{}] * len(ids)
+            all_data["metadatas"] or [{}] * len(ids)
 
             logger.info(f"Checking {len(ids)} documents for semantic duplicates")
 
@@ -183,8 +183,8 @@ class RedundancyPruner:
                 dup_ids: list[str] = []
                 dup_scores: dict[str, float] = {}
 
-                for j, (sim_id, distance) in enumerate(
-                    zip(similar["ids"][0], similar["distances"][0])
+                for _j, (sim_id, distance) in enumerate(
+                    zip(similar["ids"][0], similar["distances"][0], strict=False)
                 ):
                     if sim_id == doc_id:
                         continue
@@ -195,12 +195,14 @@ class RedundancyPruner:
                         dup_scores[sim_id] = 1 - distance  # Convert to similarity
 
                 if dup_ids:
-                    duplicates.append(DuplicateGroup(
-                        primary_id=doc_id,
-                        duplicate_ids=dup_ids,
-                        similarity_scores=dup_scores,
-                        match_type="semantic",
-                    ))
+                    duplicates.append(
+                        DuplicateGroup(
+                            primary_id=doc_id,
+                            duplicate_ids=dup_ids,
+                            similarity_scores=dup_scores,
+                            match_type="semantic",
+                        )
+                    )
                     marked_duplicates.update(dup_ids)
 
             logger.info(f"Found {len(duplicates)} redundant insight groups")
@@ -247,16 +249,18 @@ class RedundancyPruner:
 
                 if last_accessed < threshold_date:
                     label = node_data.get("label", node_id)
-                    stale_items.append(PrunedItem(
-                        item_id=node_id,
-                        item_type="entity",
-                        store="graph",
-                        reason=(
-                            f"Stale: hit_count={hit_count}, "
-                            f"last_accessed={last_accessed.date()}"
-                        ),
-                        content_preview=f"{label} ({node_data.get('type', 'unknown')})",
-                    ))
+                    stale_items.append(
+                        PrunedItem(
+                            item_id=node_id,
+                            item_type="entity",
+                            store="graph",
+                            reason=(
+                                f"Stale: hit_count={hit_count}, "
+                                f"last_accessed={last_accessed.date()}"
+                            ),
+                            content_preview=f"{label} ({node_data.get('type', 'unknown')})",  # noqa: E501
+                        )
+                    )
             except (ValueError, TypeError):
                 pass
 
@@ -279,7 +283,7 @@ class RedundancyPruner:
             days=self._config.stale_threshold_days
         )
 
-        for i, edge in enumerate(graph_data.get("edges", [])):
+        for _i, edge in enumerate(graph_data.get("edges", [])):
             hit_count = edge.get("hit_count", 0)
 
             if hit_count >= self._config.min_hit_count:
@@ -306,16 +310,18 @@ class RedundancyPruner:
                     relation = edge.get("relation", "unknown")
                     edge_id = f"{source_id}->{target_id}"
 
-                    stale_items.append(PrunedItem(
-                        item_id=edge_id,
-                        item_type="edge",
-                        store="graph",
-                        reason=(
-                            f"Stale edge: hit_count={hit_count}, "
-                            f"last_accessed={last_accessed.date()}"
-                        ),
-                        content_preview=f"{source_id} --[{relation}]--> {target_id}",
-                    ))
+                    stale_items.append(
+                        PrunedItem(
+                            item_id=edge_id,
+                            item_type="edge",
+                            store="graph",
+                            reason=(
+                                f"Stale edge: hit_count={hit_count}, "
+                                f"last_accessed={last_accessed.date()}"
+                            ),
+                            content_preview=f"{source_id} --[{relation}]--> {target_id}",  # noqa: E501
+                        )
+                    )
             except (ValueError, TypeError):
                 pass
 
@@ -387,7 +393,7 @@ class RedundancyPruner:
                 self._reorg_logger.log_entity_merged(
                     primary_id=primary_id,
                     merged_ids=[dup_id],
-                    reason=f"Duplicate entity '{dup_label}' merged into '{primary_label}'",
+                    reason=f"Duplicate entity '{dup_label}' merged into '{primary_label}'",  # noqa: E501
                     content_preview=f"{dup_label} -> {primary_label}",
                     metadata={
                         "dup_hit_count": dup_node.get("hit_count", 0),
@@ -443,7 +449,9 @@ class RedundancyPruner:
                 entity_id=node_id,
                 reason=reason,
                 content_preview=f"{label} ({node.get('type', 'unknown')})",
-                content_full=str(node) if self._reorg_logger.verbosity.value == "verbose" else None,
+                content_full=str(node)
+                if self._reorg_logger.verbosity.value == "verbose"
+                else None,
                 metadata={
                     "hit_count": node.get("hit_count", 0),
                     "type": node.get("type", "unknown"),
@@ -458,7 +466,8 @@ class RedundancyPruner:
             # Remove associated edges
             edges = graph_data.get("edges", [])
             graph_data["edges"] = [
-                e for e in edges
+                e
+                for e in edges
                 if e.get("source") != node_id and e.get("target") != node_id
             ]
 
@@ -638,9 +647,7 @@ class RedundancyPruner:
         Returns:
             PruneReport with results
         """
-        logger.info(
-            f"Starting pruning (dry_run={dry_run}) of {self._memory_dir}"
-        )
+        logger.info(f"Starting pruning (dry_run={dry_run}) of {self._memory_dir}")
 
         report = PruneReport(dry_run=dry_run)
 
@@ -656,19 +663,19 @@ class RedundancyPruner:
                 for dup_id in group.duplicate_ids:
                     reason = f"Semantic duplicate of {group.primary_id}"
                     insight_reasons[dup_id] = reason
-                    report.items.append(PrunedItem(
-                        item_id=dup_id,
-                        item_type="insight",
-                        store="vector",
-                        reason=reason,
-                        content_preview=None,
-                    ))
+                    report.items.append(
+                        PrunedItem(
+                            item_id=dup_id,
+                            item_type="insight",
+                            store="vector",
+                            reason=reason,
+                            content_preview=None,
+                        )
+                    )
 
             # Remove redundant insights
             all_dup_insight_ids = [
-                dup_id
-                for group in redundant_insights
-                for dup_id in group.duplicate_ids
+                dup_id for group in redundant_insights for dup_id in group.duplicate_ids
             ]
             report.insights_removed = self._remove_insights(
                 all_dup_insight_ids, dry_run, reasons=insight_reasons

@@ -11,7 +11,6 @@ Tests cover:
 import logging
 
 import pytest
-
 from friday_memory.context.extraction_filter import ExtractionFilter
 from friday_memory.context.ontology import NodeTypeConfig, OntologyConfig
 
@@ -321,9 +320,7 @@ class TestRejectionLogging:
     @pytest.fixture(autouse=True)
     def _enable_propagation(self):
         """Temporarily enable propagation for test capture."""
-        rej_logger = logging.getLogger(
-            "friday_memory.extraction.rejections"
-        )
+        rej_logger = logging.getLogger("friday_memory.extraction.rejections")
         original = rej_logger.propagate
         rej_logger.propagate = True
         yield

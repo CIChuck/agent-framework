@@ -49,7 +49,11 @@ def register_memory_commands(registry, session: "MemoryChatSession") -> None:
         "context",
         lambda ctx, **kwargs: ctx.cmd_context(debug_mode="--debug" in str(kwargs)),
         arguments=[
-            arg("--debug", required=False, description="Show detailed token counts per section"),
+            arg(
+                "--debug",
+                required=False,
+                description="Show detailed token counts per section",
+            ),
         ],
         description="Show assembled context payload that would be sent to LLM",
         category="memory",
@@ -122,7 +126,11 @@ def register_memory_commands(registry, session: "MemoryChatSession") -> None:
         "set",
         lambda ctx, key="", value="", **kwargs: ctx.cmd_set(key, value),
         arguments=[
-            arg("key", required=True, description="Variable key (e.g., user:name, session:project)"),
+            arg(
+                "key",
+                required=True,
+                description="Variable key (e.g., user:name, session:project)",
+            ),
             arg("value", required=True, description="Value to set"),
         ],
         description="Set a scoped variable",

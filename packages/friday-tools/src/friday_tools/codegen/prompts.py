@@ -29,7 +29,7 @@ Return ONLY the Python code wrapped in a code block:
 ```
 
 Do not include any explanation before or after the code block.
-"""
+"""  # noqa: E501
 
 
 def build_user_prompt(task: str, context: str, tool_manifest: str) -> str:
@@ -99,4 +99,4 @@ Read the contents of /tmp/input.txt and write them to /tmp/output.txt
 ---
 
 Generate Python code to accomplish this task. Use the available tools and set `__result__` to return the final value.
-"""
+"""  # noqa: E501

@@ -208,12 +208,8 @@ class InSessionCompactor:
         self._start_budget(time_budget_ms)
 
         # Calculate goal: how many tokens to free
-        target_tokens = int(
-            available_budget * target_utilization
-        )
-        tokens_to_free = max(
-            0, current_tokens - target_tokens
-        )
+        target_tokens = int(available_budget * target_utilization)
+        tokens_to_free = max(0, current_tokens - target_tokens)
         result.tokens_target = tokens_to_free
 
         logger.info(
@@ -244,15 +240,10 @@ class InSessionCompactor:
         try:
             # Phase 1: Turn summarization (highest priority)
             if not self._time_budget_exhausted():
-                await self._summarize_old_turns(
-                    session_id, result, tokens_to_free
-                )
+                await self._summarize_old_turns(session_id, result, tokens_to_free)
 
             # Phase 2: Insight deduplication
-            if (
-                self._config.insight_dedup_enabled
-                and not self._time_budget_exhausted()
-            ):
+            if self._config.insight_dedup_enabled and not self._time_budget_exhausted():
                 await self._deduplicate_insights(result)
 
             # Phase 3: Memory promotion
@@ -267,13 +258,8 @@ class InSessionCompactor:
                 e,
             )
 
-        result.time_budget_exhausted = (
-            self._time_budget_exhausted()
-        )
-        result.target_met = (
-            result.tokens_saved_from_summarization
-            >= tokens_to_free
-        )
+        result.time_budget_exhausted = self._time_budget_exhausted()
+        result.target_met = result.tokens_saved_from_summarization >= tokens_to_free
         result.complete()
 
         self._emit_event(
@@ -282,18 +268,12 @@ class InSessionCompactor:
                 "session_id": session_id,
                 "duration_ms": result.duration_ms,
                 "turns_summarized": result.turns_summarized,
-                "tokens_saved": (
-                    result.tokens_saved_from_summarization
-                ),
+                "tokens_saved": (result.tokens_saved_from_summarization),
                 "tokens_target": tokens_to_free,
                 "target_met": result.target_met,
-                "insights_deduplicated": (
-                    result.insights_deduplicated
-                ),
+                "insights_deduplicated": (result.insights_deduplicated),
                 "memories_promoted": result.memories_promoted,
-                "time_budget_exhausted": (
-                    result.time_budget_exhausted
-                ),
+                "time_budget_exhausted": (result.time_budget_exhausted),
                 "errors": len(result.errors),
             },
         )
@@ -349,20 +329,13 @@ class InSessionCompactor:
         try:
             # Fetch ALL non-compacted turns (get_turns
             # already filters out compacted turns)
-            all_turns = (
-                await self._memory.episodic.get_turns(
-                    session_id, limit=1000
-                )
-            )
+            all_turns = await self._memory.episodic.get_turns(session_id, limit=1000)
 
             # Protect recent turns from compaction
-            recency = (
-                self._config.compaction_recency_window
-            )
+            recency = self._config.compaction_recency_window
             if len(all_turns) <= recency:
                 logger.debug(
-                    "All %d turns within recency window "
-                    "(%d), skipping summarization",
+                    "All %d turns within recency window (%d), skipping summarization",
                     len(all_turns),
                     recency,
                 )
@@ -372,13 +345,9 @@ class InSessionCompactor:
             # EXCEPT the most recent N
             compactable = all_turns[:-recency]
 
-            if (
-                len(compactable)
-                < self._config.min_turns_to_summarize
-            ):
+            if len(compactable) < self._config.min_turns_to_summarize:
                 logger.debug(
-                    "Not enough compactable turns: "
-                    "%d < %d (total=%d, protected=%d)",
+                    "Not enough compactable turns: %d < %d (total=%d, protected=%d)",
                     len(compactable),
                     self._config.min_turns_to_summarize,
                     len(all_turns),
@@ -398,16 +367,11 @@ class InSessionCompactor:
             max_per = self._config.max_turns_per_summary
             for i in range(0, len(compactable), max_per):
                 # Primary goal: stop when target is met
-                if (
-                    tokens_to_free > 0
-                    and (
-                        result.tokens_saved_from_summarization
-                        >= tokens_to_free
-                    )
+                if tokens_to_free > 0 and (
+                    result.tokens_saved_from_summarization >= tokens_to_free
                 ):
                     logger.info(
-                        "Token savings target met: "
-                        "saved=%d >= target=%d",
+                        "Token savings target met: saved=%d >= target=%d",
                         result.tokens_saved_from_summarization,
                         tokens_to_free,
                     )
@@ -430,45 +394,32 @@ class InSessionCompactor:
                     continue
 
                 turns_text = self._format_turns(batch)
-                original_tokens = self._count_tokens(
-                    turns_text
-                )
+                original_tokens = self._count_tokens(turns_text)
 
-                response = (
-                    await self._llm_client.chat_completion(
-                        messages=[
-                            {
-                                "role": "system",
-                                "content": (
-                                    "You are a precise "
-                                    "conversation summarizer."
-                                ),
-                            },
-                            {
-                                "role": "user",
-                                "content": (
-                                    SUMMARIZATION_PROMPT
-                                    .format(turns=turns_text)
-                                ),
-                            },
-                        ],
-                        response_model=SummarizationResponse,
-                        temperature=0.0,
-                    )
+                response = await self._llm_client.chat_completion(
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": ("You are a precise conversation summarizer."),
+                        },
+                        {
+                            "role": "user",
+                            "content": (SUMMARIZATION_PROMPT.format(turns=turns_text)),
+                        },
+                    ],
+                    response_model=SummarizationResponse,
+                    temperature=0.0,
                 )
 
                 parsed = response._parsed_model
                 if parsed is None:
                     logger.warning(
-                        "Failed to parse summarization "
-                        "response for batch %d",
+                        "Failed to parse summarization response for batch %d",
                         i,
                     )
                     continue
 
-                summary_tokens = self._count_tokens(
-                    parsed.summary
-                )
+                summary_tokens = self._count_tokens(parsed.summary)
 
                 provenance = ProvenanceMetadata(
                     source_id=session_id,
@@ -486,13 +437,11 @@ class InSessionCompactor:
                 # Mark turns as COMPACTED so get_turns()
                 # excludes them from prompt assembly
                 turn_ids = [t.id for t in batch]
-                await self._memory.mark_turns_compacted(
-                    turn_ids
-                )
+                await self._memory.mark_turns_compacted(turn_ids)
 
                 result.turns_summarized += len(batch)
-                result.tokens_saved_from_summarization += (
-                    max(0, original_tokens - summary_tokens)
+                result.tokens_saved_from_summarization += max(
+                    0, original_tokens - summary_tokens
                 )
 
                 logger.info(
@@ -507,12 +456,8 @@ class InSessionCompactor:
                 )
 
         except Exception as e:
-            result.errors.append(
-                f"Turn summarization failed: {e}"
-            )
-            logger.error(
-                "Turn summarization failed: %s", e
-            )
+            result.errors.append(f"Turn summarization failed: {e}")
+            logger.error("Turn summarization failed: %s", e)
 
     def _format_turns(self, turns: list) -> str:
         """Format turns for the summarization prompt.
@@ -525,9 +470,7 @@ class InSessionCompactor:
         """
         formatted = []
         for i, turn in enumerate(turns, 1):
-            user_msg = (
-                getattr(turn, "user_message", "") or ""
-            )
+            user_msg = getattr(turn, "user_message", "") or ""
             assistant_msg = (
                 getattr(turn, "assistant_response", "")
                 or getattr(turn, "assistant_message", "")
@@ -538,13 +481,9 @@ class InSessionCompactor:
 
             formatted.append(f"Turn {i} ({ts_str}):")
             if user_msg:
-                formatted.append(
-                    f"  User: {user_msg[:500]}"
-                )
+                formatted.append(f"  User: {user_msg[:500]}")
             if assistant_msg:
-                formatted.append(
-                    f"  Assistant: {assistant_msg[:500]}"
-                )
+                formatted.append(f"  Assistant: {assistant_msg[:500]}")
             formatted.append("")
 
         return "\n".join(formatted)
@@ -573,9 +512,9 @@ class InSessionCompactor:
                 return
 
             # Group by entity mentions for dedup candidates
-            entity_groups: dict[
-                frozenset[str], list[dict[str, Any]]
-            ] = defaultdict(list)
+            entity_groups: dict[frozenset[str], list[dict[str, Any]]] = defaultdict(
+                list
+            )
 
             for insight in insights:
                 if self._time_budget_exhausted():
@@ -583,19 +522,13 @@ class InSessionCompactor:
                     return
 
                 meta = insight.get("metadata", {})
-                entities_str = meta.get(
-                    "entities_mentioned", ""
-                )
+                entities_str = meta.get("entities_mentioned", "")
                 if entities_str:
                     entities = frozenset(
-                        e.strip().lower()
-                        for e in entities_str.split(";")
-                        if e.strip()
+                        e.strip().lower() for e in entities_str.split(";") if e.strip()
                     )
                     if entities:
-                        entity_groups[entities].append(
-                            insight
-                        )
+                        entity_groups[entities].append(insight)
 
             # For each group with duplicates, keep most recent
             for _entities, group in entity_groups.items():
@@ -608,9 +541,7 @@ class InSessionCompactor:
 
                 # Sort by created_at desc (most recent first)
                 group.sort(
-                    key=lambda x: x.get(
-                        "metadata", {}
-                    ).get("created_at", ""),
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
                     reverse=True,
                 )
 
@@ -633,8 +564,7 @@ class InSessionCompactor:
                                 await store.update_metadata(
                                     dup_id,
                                     {
-                                        "superseded_by":
-                                            keeper_id,
+                                        "superseded_by": keeper_id,
                                     },
                                 )
                                 updated = True
@@ -646,22 +576,14 @@ class InSessionCompactor:
                             result.insights_deduplicated += 1
                         else:
                             result.errors.append(
-                                f"Could not update "
-                                f"metadata for {dup_id}"
+                                f"Could not update metadata for {dup_id}"
                             )
                     except Exception as e:
-                        result.errors.append(
-                            f"Dedup failed for "
-                            f"{dup_id}: {e}"
-                        )
+                        result.errors.append(f"Dedup failed for {dup_id}: {e}")
 
         except Exception as e:
-            result.errors.append(
-                f"Insight dedup failed: {e}"
-            )
-            logger.error(
-                "Insight deduplication failed: %s", e
-            )
+            result.errors.append(f"Insight dedup failed: {e}")
+            logger.error("Insight deduplication failed: %s", e)
 
     async def _promote_hot_memories(
         self,
@@ -678,9 +600,8 @@ class InSessionCompactor:
             result: CompactionResult to update.
         """
         try:
-            short_term_docs = (
-                await self._collection_manager._short_term
-                .get_all(limit=20)
+            short_term_docs = await self._collection_manager._short_term.get_all(
+                limit=20
             )
 
             for doc in short_term_docs:
@@ -696,28 +617,19 @@ class InSessionCompactor:
                     doc_id = doc.get("id")
                     if doc_id:
                         try:
-                            promoted = (
-                                await self._collection_manager
-                                .promote_memory(doc_id)
+                            promoted = await self._collection_manager.promote_memory(
+                                doc_id
                             )
                             if promoted:
                                 result.memories_promoted += 1
                                 logger.debug(
-                                    "Promoted memory %s "
-                                    "(hit_count=%d)",
+                                    "Promoted memory %s (hit_count=%d)",
                                     doc_id,
                                     hit_count,
                                 )
                         except Exception as e:
-                            result.errors.append(
-                                f"Promotion failed for "
-                                f"{doc_id}: {e}"
-                            )
+                            result.errors.append(f"Promotion failed for {doc_id}: {e}")
 
         except Exception as e:
-            result.errors.append(
-                f"Memory promotion failed: {e}"
-            )
-            logger.error(
-                "Memory promotion failed: %s", e
-            )
+            result.errors.append(f"Memory promotion failed: {e}")
+            logger.error("Memory promotion failed: %s", e)

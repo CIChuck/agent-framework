@@ -64,9 +64,12 @@ import yaml
 # Logging will be configured after config is loaded (see main())
 logger = logging.getLogger(__name__)
 
-from friday_core import DebugTelemetryRecorder, TranscriptBackedEpisodicStore
-from friday_core.interfaces.llm import ChatCompletionResponse, ToolCall
-from friday_llm import (
+from friday_core import (  # noqa: E402
+    DebugTelemetryRecorder,
+    TranscriptBackedEpisodicStore,
+)
+from friday_core.interfaces.llm import ChatCompletionResponse  # noqa: E402
+from friday_llm import (  # noqa: E402
     CircuitBreakerOpenError,
     LiteLLMEmbeddingService,
     LiteLLMService,
@@ -74,7 +77,7 @@ from friday_llm import (
     LLMTimeoutError,
     ResilienceConfig,
 )
-from friday_memory import (
+from friday_memory import (  # noqa: E402
     AccessBuffer,
     AccessBufferConfig,
     ChromaVectorStore,
@@ -92,12 +95,11 @@ from friday_memory import (
     MemoryExtractor,
     MemoryPromotionService,
     PromptArchitect,
-    PromotionResult,
     RetrievalFactorComputer,
     SessionState,
 )
-from friday_memory.maintenance import MemoryReorganizer
-from friday_memory.maintenance.models import (
+from friday_memory.maintenance import MemoryReorganizer  # noqa: E402
+from friday_memory.maintenance.models import (  # noqa: E402
     EmbeddingConfig,
     FactCheckConfig,
     LifecycleDecayConfig,
@@ -109,18 +111,17 @@ from friday_memory.maintenance.models import (
     PruneConfig,
     SynthesisConfig,
 )
-from friday_transcript import (
+from friday_tools import (  # noqa: E402
+    DefaultToolRegistry,
+    GetCurrentDateTimeTool,
+)
+from friday_transcript import (  # noqa: E402
     CSVExporter,
     JSONLExporter,
     MarkdownExporter,
     SQLiteTranscriptStore,
     TranscriptSession,
 )
-from friday_tools import (
-    DefaultToolRegistry,
-    GetCurrentDateTimeTool,
-)
-
 
 # =============================================================================
 # FRIDAY-TOOLS INTEGRATION
@@ -158,7 +159,9 @@ def _load_tool_from_config(tool_config: dict[str, Any]) -> Any | None:
         class_name = tool_config.get("class")
 
         if not module_name or not class_name:
-            logger.warning(f"Tool '{tool_name}' missing required 'module' or 'class' field")
+            logger.warning(
+                f"Tool '{tool_name}' missing required 'module' or 'class' field"
+            )
             return None
 
         # Dynamic import
@@ -173,17 +176,23 @@ def _load_tool_from_config(tool_config: dict[str, Any]) -> Any | None:
         return tool
 
     except ImportError as e:
-        logger.warning(f"Failed to import tool module '{tool_config.get('module')}': {e}")
+        logger.warning(
+            f"Failed to import tool module '{tool_config.get('module')}': {e}"
+        )
         return None
     except AttributeError as e:
-        logger.warning(f"Tool class '{tool_config.get('class')}' not found in module: {e}")
+        logger.warning(
+            f"Tool class '{tool_config.get('class')}' not found in module: {e}"
+        )
         return None
     except Exception as e:
         logger.warning(f"Failed to instantiate tool '{tool_name}': {e}")
         return None
 
 
-def _build_tool_registry(tools_config: dict[str, Any] | None = None) -> DefaultToolRegistry:
+def _build_tool_registry(
+    tools_config: dict[str, Any] | None = None,
+) -> DefaultToolRegistry:
     """
     Build a tool registry from YAML configuration.
 
@@ -219,7 +228,9 @@ def _build_tool_registry(tools_config: dict[str, Any] | None = None) -> DefaultT
             registry.register(tool)
             loaded_count += 1
 
-    logger.info(f"Loaded {loaded_count}/{len(tool_definitions)} tools from configuration")
+    logger.info(
+        f"Loaded {loaded_count}/{len(tool_definitions)} tools from configuration"
+    )
     return registry
 
 
@@ -246,7 +257,9 @@ async def _execute_tool(tool_name: str, **kwargs) -> str:
     return await tool.execute(**kwargs)
 
 
-def _validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple[Path, str | None]:
+def _validate_export_path(
+    path: Path, allowed_base: Path | None = None
+) -> tuple[Path, str | None]:
     """
     Validate and resolve an export path to prevent path traversal.
 
@@ -256,7 +269,7 @@ def _validate_export_path(path: Path, allowed_base: Path | None = None) -> tuple
 
     Returns:
         Tuple of (resolved_path, error_message). Error is None if path is valid.
-    """
+    """  # noqa: E501
     if allowed_base is None:
         allowed_base = Path.cwd()
 
@@ -305,7 +318,7 @@ def _validate_tool_params(
     unknown = [p for p in params if p not in properties]
     if unknown:
         valid_params = ", ".join(properties.keys()) if properties else "(none)"
-        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"
+        return f"Unknown parameter(s) for {tool_name}: {', '.join(unknown)}\nValid parameters: {valid_params}"  # noqa: E501
 
     # Type validation for provided parameters
     type_errors = []
@@ -330,7 +343,7 @@ def _validate_tool_params(
         expected_python_type = type_map.get(expected_type)
         if expected_python_type and not isinstance(param_value, expected_python_type):
             type_errors.append(
-                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"
+                f"  - {param_name}: expected {expected_type}, got {type(param_value).__name__}"  # noqa: E501
             )
 
     if type_errors:
@@ -362,7 +375,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
     errors: list[str] = []
 
     if not isinstance(config, dict):
-        print(f"Error: {config_path} must contain a YAML dictionary, got {type(config).__name__}")
+        print(
+            f"Error: {config_path} must contain a YAML dictionary, got {type(config).__name__}"  # noqa: E501
+        )
         sys.exit(1)
 
     # Required sections
@@ -398,7 +413,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
 
     for section, expected_type in optional_sections.items():
         if section in config and not isinstance(config[section], expected_type):
-            errors.append(f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}")
+            errors.append(
+                f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}"  # noqa: E501
+            )
 
     # Validate tools section if present
     if "tools" in config and isinstance(config["tools"], dict):
@@ -411,11 +428,17 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
                     if not isinstance(tool_def, dict):
                         errors.append(f"tools.registry[{i}] must be a dictionary")
                     elif not tool_def.get("name"):
-                        errors.append(f"tools.registry[{i}] missing required field 'name'")
+                        errors.append(
+                            f"tools.registry[{i}] missing required field 'name'"
+                        )
                     elif not tool_def.get("module"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'"  # noqa: E501
+                        )
                     elif not tool_def.get("class"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'"  # noqa: E501
+                        )
 
     if errors:
         print(f"\nConfiguration errors in {config_path}:")
@@ -602,13 +625,15 @@ class MemoryChatSession:
     async def cmd_history(self) -> str:
         """Show conversation history including prior sessions with timestamps."""
         try:
-            # Get merged history from last_payload if available (includes prior sessions)
+            # Get merged history from last_payload if available (includes prior sessions)  # noqa: E501
             prior_history = []
             if self.last_payload and self.last_payload.prior_history:
                 prior_history = self.last_payload.prior_history
 
             # Fetch current session history from episodic store
-            current_turns = await self.controller.episodic.get_turns(self.session_id, limit=100)
+            current_turns = await self.controller.episodic.get_turns(
+                self.session_id, limit=100
+            )
 
             # Combine: prior sessions first, then current session
             all_turns = list(prior_history) + list(current_turns)
@@ -625,19 +650,35 @@ class MemoryChatSession:
                 f"CONVERSATION HISTORY ({len(all_turns)} total turns)",
                 f"  Prior sessions: {prior_count} turns",
                 f"  Current session: {current_count} turns",
-                "=" * 60
+                "=" * 60,
             ]
 
             for i, turn in enumerate(all_turns, 1):
                 # Format timestamp
-                timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+                timestamp = (
+                    turn.timestamp.strftime("%Y-%m-%d %H:%M")
+                    if turn.timestamp
+                    else "N/A"
+                )
 
                 # Check if this is from a prior session
-                is_prior = turn.metadata.get("from_prior_session", False) if turn.metadata else False
+                is_prior = (
+                    turn.metadata.get("from_prior_session", False)
+                    if turn.metadata
+                    else False
+                )
                 session_marker = " [prior]" if is_prior else ""
 
-                user_msg = turn.user_message[:100] + "..." if len(turn.user_message or "") > 100 else (turn.user_message or "")
-                asst_msg = turn.assistant_message[:100] + "..." if len(turn.assistant_message or "") > 100 else (turn.assistant_message or "")
+                user_msg = (
+                    turn.user_message[:100] + "..."
+                    if len(turn.user_message or "") > 100
+                    else (turn.user_message or "")
+                )
+                asst_msg = (
+                    turn.assistant_message[:100] + "..."
+                    if len(turn.assistant_message or "") > 100
+                    else (turn.assistant_message or "")
+                )
                 user_msg = user_msg.replace("\n", " ")
                 asst_msg = asst_msg.replace("\n", " ")
 
@@ -673,22 +714,27 @@ Memory Statistics:
         lines = ["=" * 60, f"CONTEXT PAYLOAD (format: {self.context_format})", "=" * 60]
 
         # Summary counts
-        lines.append(f"\nSummary:")
+        lines.append("\nSummary:")
         lines.append(f"  Prior session turns: {len(self.last_payload.prior_history)}")
         lines.append(f"  Current session turns: {len(self.last_payload.history)}")
         lines.append(f"  Vector passages: {len(self.last_payload.passages)}")
         lines.append(f"  Graph entities: {len(self.last_payload.entities)}")
         lines.append(f"  Graph facts (edges): {len(self.last_payload.facts)}")
-        lines.append(f"  Key facts (natural language): {len(self.last_payload.key_facts)}")
-        lines.append(f"  Relationship summaries: {len(self.last_payload.recent_memories)}")
+        lines.append(
+            f"  Key facts (natural language): {len(self.last_payload.key_facts)}"
+        )
+        lines.append(
+            f"  Relationship summaries: {len(self.last_payload.recent_memories)}"
+        )
         lines.append(f"  Insights: {len(self.last_payload.insights)}")
         lines.append(f"  Summaries: {len(self.last_payload.summaries)}")
 
         # Debug mode: show token counts and additional info
         if debug_mode:
-            lines.append(f"\n--- TOKEN ESTIMATES (debug mode) ---")
+            lines.append("\n--- TOKEN ESTIMATES (debug mode) ---")
             try:
                 import tiktoken
+
                 enc = tiktoken.get_encoding("cl100k_base")
 
                 # Count tokens per section
@@ -738,18 +784,30 @@ Memory Statistics:
                 )
                 formatted_tokens = count_tokens(formatted or "")
 
-                lines.append(f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)")
-                lines.append(f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)")
-                lines.append(f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)")
-                lines.append(f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)")
-                lines.append(f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)")
-                lines.append(f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)")
-                lines.append(f"  ----------------------------------------")
+                lines.append(
+                    f"  History: ~{history_tokens} tokens ({len(self.last_payload.history)} turns)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Insights: ~{insights_tokens} tokens ({len(self.last_payload.insights)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Summaries: ~{summaries_tokens} tokens ({len(self.last_payload.summaries)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Relationships: ~{relationships_tokens} tokens ({len(self.last_payload.recent_memories)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Key Facts: ~{key_facts_tokens} tokens ({len(self.last_payload.key_facts)} items)"  # noqa: E501
+                )
+                lines.append(
+                    f"  Passages: ~{passages_tokens} tokens ({len(self.last_payload.passages)} items)"  # noqa: E501
+                )
+                lines.append("  ----------------------------------------")
                 lines.append(f"  Formatted Context: ~{formatted_tokens} tokens (total)")
 
                 # Debug info from payload
                 if self.last_payload.debug_info:
-                    lines.append(f"\n--- DEBUG INFO ---")
+                    lines.append("\n--- DEBUG INFO ---")
                     for key, value in self.last_payload.debug_info.items():
                         lines.append(f"  {key}: {value}")
 
@@ -768,7 +826,7 @@ Memory Statistics:
         else:
             lines.append("  (no supporting context)")
 
-        # History details - FULL content (shown separately since not in supporting context)
+        # History details - FULL content (shown separately since not in supporting context)  # noqa: E501
         if self.last_payload.history:
             lines.append(f"\n--- History Turns ({len(self.last_payload.history)}) ---")
             for i, turn in enumerate(self.last_payload.history, 1):
@@ -778,7 +836,9 @@ Memory Statistics:
 
         # Vector passages (shown separately for reference)
         if self.last_payload.passages:
-            lines.append(f"\n--- Vector Passages ({len(self.last_payload.passages)}) ---")
+            lines.append(
+                f"\n--- Vector Passages ({len(self.last_payload.passages)}) ---"
+            )
             for i, passage in enumerate(self.last_payload.passages, 1):
                 text = passage.get("text", "")
                 similarity = passage.get("similarity", 0.0)
@@ -793,7 +853,11 @@ Memory Statistics:
         if not self.last_messages:
             return "No prompt formatted yet. Send a message first."
 
-        lines = ["=" * 60, f"FORMATTED PROMPT (format: {self.context_format})", "=" * 60]
+        lines = [
+            "=" * 60,
+            f"FORMATTED PROMPT (format: {self.context_format})",
+            "=" * 60,
+        ]
 
         # Map API roles to configured names
         role_names = {
@@ -810,8 +874,12 @@ Memory Statistics:
             display_name = role_names.get(role, role.upper())
 
             # Mark the last user message as the current query + supporting context
-            is_current_query = (i == len(self.last_messages) - 1 and role == "user")
-            label = f"{display_name} (supporting context + query)" if is_current_query else display_name
+            is_current_query = i == len(self.last_messages) - 1 and role == "user"
+            label = (
+                f"{display_name} (supporting context + query)"
+                if is_current_query
+                else display_name
+            )
             lines.append(f"\n--- Message {i + 1}: {label} ---")
 
             # Show FULL content (no truncation for debugging)
@@ -827,13 +895,17 @@ Memory Statistics:
             lines.append("=" * 60)
             lines.append("ACTIVE TOOLS (passed to LLM API as 'tools' parameter)")
             lines.append("=" * 60)
-            lines.append(f"Function calling enabled with {len(active_tools)} tool(s):\n")
+            lines.append(
+                f"Function calling enabled with {len(active_tools)} tool(s):\n"
+            )
             for tool in active_tools:
                 name = tool.get("name", "unknown")
                 desc = tool.get("description", "")[:80]
                 category = tool.get("category", "uncategorized")
                 lines.append(f"  • {name} [{category}]")
-                lines.append(f"    {desc}{'...' if len(tool.get('description', '')) > 80 else ''}")
+                lines.append(
+                    f"    {desc}{'...' if len(tool.get('description', '')) > 80 else ''}"  # noqa: E501
+                )
                 # Show parameters briefly
                 params = tool.get("parameters", {}).get("properties", {})
                 if params:
@@ -882,7 +954,9 @@ Memory Statistics:
 
                 for node_type, type_nodes in sorted(by_type.items()):
                     lines.append(f"\n  [{node_type}]")
-                    for node in type_nodes[:500]:  # Show up to 500 per type for debugging
+                    for node in type_nodes[
+                        :500
+                    ]:  # Show up to 500 per type for debugging
                         lines.append(f"    - {node.label} (hits: {node.hit_count})")
                     if len(type_nodes) > 500:
                         lines.append(f"    ... and {len(type_nodes) - 500} more")
@@ -895,7 +969,9 @@ Memory Statistics:
                     target = node_lookup.get(edge.target_id)
                     source_label = source.label if source else edge.source_id[:8]
                     target_label = target.label if target else edge.target_id[:8]
-                    lines.append(f"    {source_label} --[{edge.relation}]--> {target_label}")
+                    lines.append(
+                        f"    {source_label} --[{edge.relation}]--> {target_label}"
+                    )
                 if len(edges) > 500:
                     lines.append(f"    ... and {len(edges) - 500} more")
 
@@ -928,7 +1004,9 @@ Memory Statistics:
                 if metadata:
                     source_type = metadata.get("source_type", "unknown")
                     confidence = metadata.get("confidence", "N/A")
-                    lines.append(f"   [source: {source_type}, confidence: {confidence}]")
+                    lines.append(
+                        f"   [source: {source_type}, confidence: {confidence}]"
+                    )
                 lines.append("")
 
             return "\n".join(lines)
@@ -989,7 +1067,11 @@ Memory Statistics:
             if not documents:
                 return "No turn summaries in vector store."
 
-            lines = ["=" * 60, "TURN SUMMARIES (type='summary' from vector store)", "=" * 60]
+            lines = [
+                "=" * 60,
+                "TURN SUMMARIES (type='summary' from vector store)",
+                "=" * 60,
+            ]
             lines.append(f"\nTotal summaries: {len(documents)}\n")
 
             for i, doc in enumerate(documents, 1):
@@ -1027,9 +1109,13 @@ Memory Statistics:
                 where={"type": "meta_insight"},
             )
             if not documents:
-                return "No meta insights in vector store. Run /reorganize with synthesis to generate them."
+                return "No meta insights in vector store. Run /reorganize with synthesis to generate them."  # noqa: E501
 
-            lines = ["=" * 60, "META INSIGHTS (type='meta_insight' from vector store)", "=" * 60]
+            lines = [
+                "=" * 60,
+                "META INSIGHTS (type='meta_insight' from vector store)",
+                "=" * 60,
+            ]
             lines.append(f"\nTotal meta insights: {len(documents)}\n")
 
             for i, doc in enumerate(documents, 1):
@@ -1083,7 +1169,7 @@ Memory Statistics:
             lines = ["=" * 60, "PRIMED CONTEXT", "=" * 60]
 
             # Summary counts
-            lines.append(f"\nContext loaded:")
+            lines.append("\nContext loaded:")
             lines.append(f"  Entities: {len(payload.entities)}")
             lines.append(f"  Key Facts: {len(payload.key_facts)}")
             lines.append(f"  Insights: {len(payload.insights)}")
@@ -1096,8 +1182,10 @@ Memory Statistics:
             if payload.entities:
                 lines.append("\n--- Top Entities (by hit_count) ---")
                 for entity in payload.entities[:15]:
-                    hit_count = getattr(entity, 'hit_count', 0)
-                    lines.append(f"  - {entity.label} ({entity.type}, hits: {hit_count})")
+                    hit_count = getattr(entity, "hit_count", 0)
+                    lines.append(
+                        f"  - {entity.label} ({entity.type}, hits: {hit_count})"
+                    )
 
             # Show relationship summaries
             if payload.recent_memories:
@@ -1136,16 +1224,24 @@ Memory Statistics:
                 # Group by session
                 sessions_seen: set[str] = set()
                 for turn in payload.prior_history[:10]:
-                    session_id = turn.metadata.get("original_session_id", turn.session_id)
+                    session_id = turn.metadata.get(
+                        "original_session_id", turn.session_id
+                    )
                     if session_id not in sessions_seen:
                         sessions_seen.add(session_id)
                         lines.append(f"  Session: {session_id[:12]}...")
-                    timestamp = turn.timestamp.strftime("%Y-%m-%d %H:%M") if turn.timestamp else "N/A"
+                    timestamp = (
+                        turn.timestamp.strftime("%Y-%m-%d %H:%M")
+                        if turn.timestamp
+                        else "N/A"
+                    )
                     user_preview = (turn.user_message or "")[:50]
                     lines.append(f"    [{timestamp}] {user_preview}...")
 
             lines.append("\n" + "=" * 60)
-            lines.append("Use /context for full details, /prompt to see formatted prompt.")
+            lines.append(
+                "Use /context for full details, /prompt to see formatted prompt."
+            )
             return "\n".join(lines)
 
         except Exception as e:
@@ -1162,22 +1258,24 @@ Memory Statistics:
                 return "No transcript sessions found."
 
             # Get priming config to determine which sessions are "in context"
-            priming_config = getattr(self.controller, '_priming_config', {})
-            previous_sessions_count = priming_config.get('previous_sessions', 0)
+            priming_config = getattr(self.controller, "_priming_config", {})
+            previous_sessions_count = priming_config.get("previous_sessions", 0)
 
             # Determine which sessions are in context (current + N most recent)
             in_context_ids: set[str] = {self.session_id}
             if previous_sessions_count > 0:
                 # Sessions are already ordered newest first
-                prior_sessions = [s for s in sessions if s.session_id != self.session_id]
+                prior_sessions = [
+                    s for s in sessions if s.session_id != self.session_id
+                ]
                 for session in prior_sessions[:previous_sessions_count]:
                     in_context_ids.add(session.session_id)
 
             lines = [
                 "=" * 60,
                 f"TRANSCRIPT SESSIONS ({len(sessions)} total)",
-                f"  In context: {len(in_context_ids)} (current + {previous_sessions_count} prior)",
-                "=" * 60
+                f"  In context: {len(in_context_ids)} (current + {previous_sessions_count} prior)",  # noqa: E501
+                "=" * 60,
             ]
 
             for session in sessions:
@@ -1190,12 +1288,18 @@ Memory Statistics:
 
                 marker_str = f" [{', '.join(markers)}]" if markers else ""
                 lines.append(f"\n  {session.session_id}{marker_str}")
-                lines.append(f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                lines.append(
+                    f"    Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                )
                 if session.ended_at:
-                    lines.append(f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                    lines.append(
+                        f"    Ended: {session.ended_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                    )
                 lines.append(f"    User: {session.user_id}")
                 lines.append(f"    Model: {session.model_name}")
-                lines.append(f"    Turns: {session.total_turns}, Tokens: {session.total_tokens}")
+                lines.append(
+                    f"    Turns: {session.total_turns}, Tokens: {session.total_tokens}"
+                )
 
             lines.append("\n" + "=" * 60)
             lines.append("Use /transcript <session_id> to view a specific session.")
@@ -1226,18 +1330,26 @@ Memory Statistics:
             )
             if not entries:
                 if arg:
-                    return f"No transcript entries found for session: {target_session_id}"
+                    return (
+                        f"No transcript entries found for session: {target_session_id}"
+                    )
                 return "No transcript entries for this session."
 
             is_current = target_session_id == self.session_id
             current_marker = " [CURRENT]" if is_current else ""
-            lines = ["=" * 60, f"TRANSCRIPT ({len(entries)} entries){current_marker}", "=" * 60]
+            lines = [
+                "=" * 60,
+                f"TRANSCRIPT ({len(entries)} entries){current_marker}",
+                "=" * 60,
+            ]
 
             # Get session info
             session = await self.transcript_store.get_session(target_session_id)
             if session:
                 lines.append(f"\nSession: {session.session_id}")
-                lines.append(f"Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}")
+                lines.append(
+                    f"Started: {session.started_at.strftime('%Y-%m-%d %H:%M:%S')}"
+                )
                 lines.append(f"Model: {session.model_name}")
                 lines.append(f"Total tokens: {session.total_tokens}")
                 lines.append(f"Total latency: {session.total_latency_ms:.0f}ms")
@@ -1304,7 +1416,7 @@ Memory Statistics:
                 "TRANSCRIPT EXPORT COMPLETE",
                 "=" * 60,
                 f"\nExport directory: {output_dir}",
-                f"\nFiles created:",
+                "\nFiles created:",
                 f"  - sessions.csv ({counts['sessions']} sessions)",
                 f"  - entries.csv ({counts['entries']} entries)",
                 "\n" + "=" * 60,
@@ -1349,7 +1461,9 @@ Memory Statistics:
                 return f"Exported {count} entries to: {output_path}"
 
             else:
-                return f"Unknown format: {format_type}. Use: jsonl, markdown, or training"
+                return (
+                    f"Unknown format: {format_type}. Use: jsonl, markdown, or training"
+                )
 
         except Exception as e:
             return f"Error exporting transcript: {e}"
@@ -1361,7 +1475,9 @@ Memory Statistics:
 
             # Clear graph store
             graph_result = await self.controller.graph.clear()
-            lines.append(f"  Graph store: cleared {graph_result['nodes_deleted']} nodes, {graph_result['edges_deleted']} edges")
+            lines.append(
+                f"  Graph store: cleared {graph_result['nodes_deleted']} nodes, {graph_result['edges_deleted']} edges"  # noqa: E501
+            )
 
             # Clear vector store
             vector_count = await self.controller.vector.clear()
@@ -1453,6 +1569,7 @@ Memory Statistics:
         if config.embedding and not skip_synthesis:
             try:
                 from friday_llm import LiteLLMEmbeddingService, ResilienceConfig
+
                 maintenance_embedding = LiteLLMEmbeddingService(
                     model_name=config.embedding.model,
                     api_key=config.embedding.api_key,
@@ -1462,11 +1579,13 @@ Memory Statistics:
                     ),
                 )
             except Exception as e:
-                lines = [f"Warning: Failed to create maintenance embedding service: {e}"]
+                lines = [
+                    f"Warning: Failed to create maintenance embedding service: {e}"
+                ]
                 lines.append("Falling back to session embedding function.")
                 print("\n".join(lines))
 
-        # Create reorganizer with the persist_dir, config, LLMs, embedding, collection name,
+        # Create reorganizer with the persist_dir, config, LLMs, embedding, collection name,  # noqa: E501
         # and lifecycle components (Phase 8)
         # Lifecycle components are accessed through promotion_service
         has_lifecycle = self.promotion_service is not None and not skip_lifecycle
@@ -1480,11 +1599,17 @@ Memory Statistics:
             embedding_function=maintenance_embedding,
             collection_name=config.collection_name,
             # Lifecycle components (Phase 8) - accessed via promotion_service
-            collection_manager=self.promotion_service.collection_manager if has_lifecycle else None,
+            collection_manager=self.promotion_service.collection_manager
+            if has_lifecycle
+            else None,
             access_buffer=self.access_buffer if has_lifecycle else None,
             factor_computer=self.factor_computer if has_lifecycle else None,
-            promotion_scorer=self.promotion_service.promotion_scorer if has_lifecycle else None,
-            decay_calculator=self.promotion_service.decay_calculator if has_lifecycle else None,
+            promotion_scorer=self.promotion_service.promotion_scorer
+            if has_lifecycle
+            else None,
+            decay_calculator=self.promotion_service.decay_calculator
+            if has_lifecycle
+            else None,
             graph_store=self.controller.graph if has_lifecycle else None,
         )
 
@@ -1493,8 +1618,12 @@ Memory Statistics:
 
             # Warn about fallback LLMs being used
             if fallback_roles:
-                lines.append(f"\nNote: Using main chat LLM for: {', '.join(fallback_roles)}")
-                lines.append("(Configure maintenance.llm in config.yaml for dedicated models)")
+                lines.append(
+                    f"\nNote: Using main chat LLM for: {', '.join(fallback_roles)}"
+                )
+                lines.append(
+                    "(Configure maintenance.llm in config.yaml for dedicated models)"
+                )
 
             if backup_only:
                 # Just create a backup
@@ -1515,20 +1644,22 @@ Memory Statistics:
                     await reorganizer.backup()
 
                 report = await reorganizer.dedupe_insights(dry_run=dry_run)
-                lines.append(f"\nDeduplication Results:")
+                lines.append("\nDeduplication Results:")
                 lines.append(f"  Insights scanned: {report.insights_scanned}")
                 lines.append(f"  Clusters found: {report.clusters_found}")
                 lines.append(f"  Insights superseded: {report.insights_superseded}")
 
                 if report.clusters:
-                    lines.append(f"\nClusters (showing up to 10):")
+                    lines.append("\nClusters (showing up to 10):")
                     for cluster in report.clusters[:10]:
                         lines.append(
-                            f"  - {cluster.entity_key}: kept {cluster.primary_insight_id[:8]}..., "
+                            f"  - {cluster.entity_key}: kept {cluster.primary_insight_id[:8]}..., "  # noqa: E501
                             f"superseded {len(cluster.superseded_ids)}"
                         )
                     if len(report.clusters) > 10:
-                        lines.append(f"  ... and {len(report.clusters) - 10} more clusters")
+                        lines.append(
+                            f"  ... and {len(report.clusters) - 10} more clusters"
+                        )
 
                 if report.errors:
                     lines.append(f"\nErrors: {len(report.errors)}")
@@ -1536,21 +1667,27 @@ Memory Statistics:
                         lines.append(f"  - {error}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
-                    lines.append("\nDeduplication complete. Superseded insights will be filtered at retrieval.")
+                    lines.append(
+                        "\nDeduplication complete. Superseded insights will be filtered at retrieval."  # noqa: E501
+                    )
                 return "\n".join(lines)
 
             if analyze_only:
                 # Just analyze
                 lines.append("\nAnalyzing memory consistency...")
                 report = await reorganizer.analyze()
-                lines.append(f"\nGraph Store:")
+                lines.append("\nGraph Store:")
                 lines.append(f"  Nodes: {report.graph_stats.get('node_count', 0)}")
                 lines.append(f"  Edges: {report.graph_stats.get('edge_count', 0)}")
-                lines.append(f"\nVector Store:")
-                lines.append(f"  Documents: {report.vector_stats.get('document_count', 0)}")
-                lines.append(f"\nEpisodic Store:")
+                lines.append("\nVector Store:")
+                lines.append(
+                    f"  Documents: {report.vector_stats.get('document_count', 0)}"
+                )
+                lines.append("\nEpisodic Store:")
                 lines.append(f"  Turns: {report.episodic_stats.get('turn_count', 0)}")
                 lines.append(f"\nIssues Found: {len(report.issues)}")
                 lines.append(f"  Critical: {report.severity_counts['critical']}")
@@ -1558,12 +1695,16 @@ Memory Statistics:
                 lines.append(f"  Info: {report.severity_counts['info']}")
 
                 if report.duplicate_groups:
-                    lines.append(f"\nDuplicate Entity Groups: {len(report.duplicate_groups)}")
+                    lines.append(
+                        f"\nDuplicate Entity Groups: {len(report.duplicate_groups)}"
+                    )
                     for group in report.duplicate_groups[:5]:
                         all_ids = [group.primary_id] + group.duplicate_ids[:2]
                         lines.append(f"  - {group.match_type}: {', '.join(all_ids)}")
                     if len(report.duplicate_groups) > 5:
-                        lines.append(f"  ... and {len(report.duplicate_groups) - 5} more groups")
+                        lines.append(
+                            f"  ... and {len(report.duplicate_groups) - 5} more groups"
+                        )
 
                 lines.append("\nAnalysis complete.")
                 return "\n".join(lines)
@@ -1575,15 +1716,19 @@ Memory Statistics:
                 if backup_first and not dry_run:
                     lines.append("Creating backup first...")
 
-                report = await reorganizer.prune(dry_run=dry_run, backup_first=backup_first)
-                lines.append(f"\nPrune Results:")
+                report = await reorganizer.prune(
+                    dry_run=dry_run, backup_first=backup_first
+                )
+                lines.append("\nPrune Results:")
                 lines.append(f"  Entities merged: {report.entities_merged}")
                 lines.append(f"  Entities removed: {report.entities_removed}")
                 lines.append(f"  Insights removed: {report.insights_removed}")
                 lines.append(f"  Edges removed: {report.edges_removed}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nPruning complete.")
                 return "\n".join(lines)
@@ -1597,22 +1742,34 @@ Memory Statistics:
                     await reorganizer.backup()
 
                 report = await reorganizer.synthesize(dry_run=dry_run)
-                lines.append(f"\nSynthesis Results:")
+                lines.append("\nSynthesis Results:")
                 lines.append(f"  Topic clusters found: {len(report.topic_clusters)}")
                 lines.append(f"  Meta-insights created: {report.meta_insights_created}")
-                lines.append(f"  Relationships inferred: {report.relationships_inferred}")
-                lines.append(f"  Knowledge gaps identified: {len(report.knowledge_gaps)}")
+                lines.append(
+                    f"  Relationships inferred: {report.relationships_inferred}"
+                )
+                lines.append(
+                    f"  Knowledge gaps identified: {len(report.knowledge_gaps)}"
+                )
 
                 if report.synthesized_memories:
-                    lines.append(f"\nSynthesized Memories:")
+                    lines.append("\nSynthesized Memories:")
                     for mem in report.synthesized_memories[:5]:
-                        content_preview = mem.content[:80] + "..." if len(mem.content) > 80 else mem.content
+                        content_preview = (
+                            mem.content[:80] + "..."
+                            if len(mem.content) > 80
+                            else mem.content
+                        )
                         lines.append(f"  - [{mem.type}] {content_preview}")
                     if len(report.synthesized_memories) > 5:
-                        lines.append(f"  ... and {len(report.synthesized_memories) - 5} more")
+                        lines.append(
+                            f"  ... and {len(report.synthesized_memories) - 5} more"
+                        )
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nSynthesis complete.")
                 return "\n".join(lines)
@@ -1623,14 +1780,16 @@ Memory Statistics:
                 lines.append(f"\nVerifying facts ({mode})...")
 
                 report = await reorganizer.verify(dry_run=dry_run)
-                lines.append(f"\nVerification Results:")
+                lines.append("\nVerification Results:")
                 lines.append(f"  Facts classified: {report.facts_classified}")
                 lines.append(f"  Claims verified: {report.claims_verified}")
                 lines.append(f"  Claims disputed: {report.claims_disputed}")
                 lines.append(f"  Claims unverifiable: {report.claims_unverifiable}")
 
                 if dry_run:
-                    lines.append("\n[DRY RUN - No changes made. Use --execute to apply.]")
+                    lines.append(
+                        "\n[DRY RUN - No changes made. Use --execute to apply.]"
+                    )
                 else:
                     lines.append("\nVerification complete.")
                 return "\n".join(lines)
@@ -1668,7 +1827,7 @@ Memory Statistics:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during reorganization (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -1699,7 +1858,7 @@ Memory Statistics:
           /lifecycle --optimize   - Flush buffer and recompute factors
         """
         if not self.promotion_service:
-            return "Error: Lifecycle service not configured. CollectionManager not initialized."
+            return "Error: Lifecycle service not configured. CollectionManager not initialized."  # noqa: E501
 
         # Parse options
         opt_list = opts.lower().split() if opts else []
@@ -1723,9 +1882,15 @@ Memory Statistics:
                 if self.access_buffer:
                     buf_stats = self.access_buffer.get_stats()
                     lines.append("\nAccess Buffer:")
-                    lines.append(f"  Short-term accesses: {buf_stats['short_term_accesses']}")
-                    lines.append(f"  Long-term accesses: {buf_stats['long_term_accesses']}")
-                    lines.append(f"  Seconds since flush: {buf_stats['seconds_since_flush']}")
+                    lines.append(
+                        f"  Short-term accesses: {buf_stats['short_term_accesses']}"
+                    )
+                    lines.append(
+                        f"  Long-term accesses: {buf_stats['long_term_accesses']}"
+                    )
+                    lines.append(
+                        f"  Seconds since flush: {buf_stats['seconds_since_flush']}"
+                    )
 
                 return "\n".join(lines)
 
@@ -1777,7 +1942,7 @@ Memory Statistics:
 
             result = await self.promotion_service.run_promotion_cycle(dry_run=dry_run)
 
-            lines.append(f"\nLifecycle Results:")
+            lines.append("\nLifecycle Results:")
             lines.append(f"  Promoted to long-term: {result.promoted_to_long_term}")
             lines.append(f"  Decayed from long-term: {result.decayed_from_long_term}")
             lines.append(f"  Reactivated: {result.reactivated}")
@@ -1809,7 +1974,7 @@ Memory Statistics:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during lifecycle cycle (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -1850,7 +2015,9 @@ Memory Statistics:
         migrator = MemoryMigrator(
             vector_store=self.controller.vector if self.controller else None,
             graph_store=self.controller.graph if self.controller else None,
-            collection_manager=self.promotion_service.collection_manager if self.promotion_service else None,
+            collection_manager=self.promotion_service.collection_manager
+            if self.promotion_service
+            else None,
         )
 
         try:
@@ -1860,23 +2027,25 @@ Memory Statistics:
             # Check if migration is needed
             needs_migration = await migrator.check_migration_needed()
             if not needs_migration and dry_run:
-                lines.append("\nNo migration needed - all memories have lifecycle metadata.")
+                lines.append(
+                    "\nNo migration needed - all memories have lifecycle metadata."
+                )
                 return "\n".join(lines)
 
             # Run migration
             report = await migrator.migrate(dry_run=dry_run)
 
-            lines.append(f"\nVector Store:")
+            lines.append("\nVector Store:")
             lines.append(f"  Documents scanned: {report.vectors_scanned}")
             lines.append(f"  Documents migrated: {report.vectors_migrated}")
             lines.append(f"  Already migrated: {report.vectors_skipped}")
 
-            lines.append(f"\nGraph Store:")
+            lines.append("\nGraph Store:")
             lines.append(f"  Nodes scanned: {report.nodes_scanned}")
             lines.append(f"  Nodes migrated: {report.nodes_migrated}")
             lines.append(f"  Already migrated: {report.nodes_skipped}")
 
-            lines.append(f"\nEdges (staleness tracking):")
+            lines.append("\nEdges (staleness tracking):")
             lines.append(f"  Edges scanned: {report.edges_scanned}")
             lines.append(f"  Edges migrated: {report.edges_migrated}")
             lines.append(f"  Already have staleness fields: {report.edges_skipped}")
@@ -1890,7 +2059,9 @@ Memory Statistics:
 
             if dry_run:
                 if report.needs_migration:
-                    lines.append("\n[DRY RUN - Run '/migrate --force' to apply these changes.]")
+                    lines.append(
+                        "\n[DRY RUN - Run '/migrate --force' to apply these changes.]"
+                    )
                 else:
                     lines.append("\nNo migration needed.")
             else:
@@ -1904,7 +2075,7 @@ Memory Statistics:
             if "embed" in error_msg or "vector" in error_msg:
                 return (
                     f"Error during migration (embedding service): {e}\n"
-                    "Check that your embedding service is running and configured correctly."
+                    "Check that your embedding service is running and configured correctly."  # noqa: E501
                 )
             elif "timeout" in error_msg:
                 return (
@@ -1949,8 +2120,10 @@ Memory Statistics:
         if category:
             tools = [t for t in tools if t.get("category") == category]
             if not tools:
-                available_categories = sorted(set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS))
-                return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"
+                available_categories = sorted(
+                    set(t.get("category", "uncategorized") for t in TOOL_SCHEMAS)
+                )
+                return f"No tools found in category '{category}'.\nAvailable categories: {', '.join(available_categories)}"  # noqa: E501
 
         lines = ["=" * 60, f"AVAILABLE TOOLS ({len(tools)} total)", "=" * 60]
 
@@ -1996,7 +2169,9 @@ Memory Statistics:
         """
         if not args.strip():
             available = ", ".join(TOOL_REGISTRY.list_names())
-            return f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
+            return (
+                f"Usage: /run-tool <tool_name> [params]\nAvailable tools: {available}"
+            )
 
         parts = args.split(maxsplit=1)
         tool_name = parts[0]
@@ -2017,7 +2192,7 @@ Memory Statistics:
                 try:
                     params = json.loads(params_str)
                 except json.JSONDecodeError as e:
-                    return f"Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{\"param\": \"value\"}}"
+                    return f'Invalid JSON parameters: {e}\nExample: /run-tool {tool_name} {{"param": "value"}}'  # noqa: E501
             else:
                 # Plain text - use as 'message' parameter for tools that support it
                 tool = TOOL_REGISTRY.get(tool_name)
@@ -2040,17 +2215,14 @@ Memory Statistics:
                     elif len(required) == 1:
                         param_name = required[0]
                     # Priority 3: If tool has exactly one param, use it
-                    elif len(props) == 1:
-                        param_name = list(props.keys())[0]
-                    # Priority 4: If multiple params but none required, use first
-                    elif len(props) > 0 and len(required) == 0:
+                    elif len(props) == 1 or len(props) > 0 and len(required) == 0:
                         param_name = list(props.keys())[0]
 
                     if param_name:
                         params = {param_name: params_str}
                         logger.debug(f"Plain text mapped to {param_name} param")
                     else:
-                        return f"Plain text not supported for {tool_name} (multiple required params).\nUse JSON: /run-tool {tool_name} {{\"param\": \"value\"}}"
+                        return f'Plain text not supported for {tool_name} (multiple required params).\nUse JSON: /run-tool {tool_name} {{"param": "value"}}'  # noqa: E501
                 else:
                     return f"Tool {tool_name} has no parameter schema. Use JSON format."
 
@@ -2086,14 +2258,14 @@ Memory Statistics:
             Status message about injected tools
         """
         if not tool_names.strip():
-            return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"
+            return "Usage: /inject-tools <tool_name1> [tool_name2] ...\nExample: /inject-tools get_current_datetime"  # noqa: E501
 
         names = tool_names.split()
         schemas = [t for t in TOOL_SCHEMAS if t.get("name") in names]
 
         if not schemas:
             available = ", ".join(t.get("name", "?") for t in TOOL_SCHEMAS)
-            return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"
+            return f"No matching tools found for: {', '.join(names)}\nAvailable: {available}"  # noqa: E501
 
         # Inject into assembler's tool manager
         self.assembler.set_active_tools(schemas)
@@ -2108,7 +2280,9 @@ Memory Statistics:
         if not_found:
             lines.append(f"\nNot found: {', '.join(not_found)}")
 
-        lines.append("\nUse /context to see tools in payload, /recommend-tools to test recommendations")
+        lines.append(
+            "\nUse /context to see tools in payload, /recommend-tools to test recommendations"  # noqa: E501
+        )
         return "\n".join(lines)
 
     def cmd_clear_tools(self) -> str:
@@ -2134,7 +2308,7 @@ Memory Statistics:
             Formatted list of tool recommendations with scores
         """
         if not query.strip():
-            return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"
+            return "Usage: /recommend-tools <query>\nExample: /recommend-tools read the config file and parse JSON"  # noqa: E501
 
         # Generate recommendations using the assembler
         recommendations = self.assembler.recommend_tools(
@@ -2144,7 +2318,7 @@ Memory Statistics:
         )
 
         if not recommendations:
-            return f"No tool recommendations for: '{query}'\nNote: Tools need keyword matches with the query."
+            return f"No tool recommendations for: '{query}'\nNote: Tools need keyword matches with the query."  # noqa: E501
 
         lines = [
             "=" * 60,
@@ -2154,11 +2328,15 @@ Memory Statistics:
         ]
 
         for i, rec in enumerate(recommendations, 1):
-            lines.append(f"{i}. {rec.tool_name} (score: {rec.relevance_score:.2f}, confidence: {rec.confidence:.2f})")
+            lines.append(
+                f"{i}. {rec.tool_name} (score: {rec.relevance_score:.2f}, confidence: {rec.confidence:.2f})"  # noqa: E501
+            )
             lines.append(f"   Category: {rec.category}")
             lines.append(f"   Reason: {rec.reason}")
             if rec.suggested_parameters:
-                params = ", ".join(f"{k}={v}" for k, v in rec.suggested_parameters.items())
+                params = ", ".join(
+                    f"{k}={v}" for k, v in rec.suggested_parameters.items()
+                )
                 lines.append(f"   Suggested params: {params}")
             lines.append("")
 
@@ -2290,7 +2468,7 @@ Lifecycle Options:
                 rel_count = len(extracted.get("relationships", []))
                 logger.debug(
                     f"Background extraction complete: "
-                    f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"
+                    f"{entity_count} entities, {fact_count} facts, {rel_count} relationships"  # noqa: E501
                 )
         except Exception as e:
             logger.debug(f"Background extraction failed: {e}")
@@ -2337,7 +2515,9 @@ Lifecycle Options:
                     "function": {
                         "name": t["name"],
                         "description": t.get("description", ""),
-                        "parameters": t.get("parameters", {"type": "object", "properties": {}}),
+                        "parameters": t.get(
+                            "parameters", {"type": "object", "properties": {}}
+                        ),
                     },
                 }
                 for t in active_tools
@@ -2384,7 +2564,9 @@ Lifecycle Options:
 
         except LLMTimeoutError as e:
             print(f"\n\nRequest timed out after {e.timeout_seconds}s")
-            print("The LLM is taking too long. Try a shorter message or check the server.")
+            print(
+                "The LLM is taking too long. Try a shorter message or check the server."
+            )
             return None
 
         except LLMRetryExhaustedError as e:
@@ -2394,7 +2576,7 @@ Lifecycle Options:
             return None
 
         except CircuitBreakerOpenError as e:
-            print(f"\n\nService temporarily unavailable")
+            print("\n\nService temporarily unavailable")
             print(f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds.")
             return None
 
@@ -2434,7 +2616,7 @@ Lifecycle Options:
 
         Returns:
             Final assistant response text
-        """
+        """  # noqa: E501
         working_messages = list(messages)  # Copy to avoid mutation
         initial_message_count = len(working_messages)  # For pruning bounds
         iteration = 0
@@ -2461,12 +2643,18 @@ Lifecycle Options:
             print(f"  [Calling {len(response.tool_calls)} tool(s)...]")
 
             # Add assistant message with tool_calls to history
-            assistant_msg: dict[str, Any] = {"role": "assistant", "content": response.content or ""}
+            assistant_msg: dict[str, Any] = {
+                "role": "assistant",
+                "content": response.content or "",
+            }
             assistant_msg["tool_calls"] = [
                 {
                     "id": tc.id,
                     "type": "function",
-                    "function": {"name": tc.name, "arguments": json.dumps(tc.arguments)},
+                    "function": {
+                        "name": tc.name,
+                        "arguments": json.dumps(tc.arguments),
+                    },
                 }
                 for tc in response.tool_calls
             ]
@@ -2492,7 +2680,7 @@ Lifecycle Options:
                     # Circuit breaker: abort after too many consecutive failures
                     if consecutive_failures >= max_consecutive_failures:
                         error_msg = (
-                            f"Tool execution aborted: {consecutive_failures} consecutive failures. "
+                            f"Tool execution aborted: {consecutive_failures} consecutive failures. "  # noqa: E501
                             f"Last error: {e}"
                         )
                         print(f"  [CIRCUIT BREAKER: {error_msg}]")
@@ -2519,7 +2707,7 @@ Lifecycle Options:
 
         # Max iterations reached
         print(f"  [Warning: Max tool iterations ({max_iterations}) reached]")
-        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request."
+        return "I apologize, but I've reached the maximum number of tool calls. Please try a simpler request."  # noqa: E501
 
 
 async def main() -> None:
@@ -2570,7 +2758,9 @@ async def main() -> None:
     if prompts_yaml.get("knowledge_gap"):
         prompts_kwargs["knowledge_gap"] = prompts_yaml["knowledge_gap"]
     if prompts_yaml.get("relationship_inference"):
-        prompts_kwargs["relationship_inference"] = prompts_yaml["relationship_inference"]
+        prompts_kwargs["relationship_inference"] = prompts_yaml[
+            "relationship_inference"
+        ]
 
     # Build LogConfig - parse verbosity and format strings to enums
     log_verbosity_str = logging_yaml.get("verbosity", "normal").lower()
@@ -2590,7 +2780,9 @@ async def main() -> None:
     if maintenance_embedding_yaml:
         # Use maintenance-specific embedding config
         maintenance_embedding_config = EmbeddingConfig(
-            model=maintenance_embedding_yaml.get("model", "openai/nomic-embed-text-v1.5"),
+            model=maintenance_embedding_yaml.get(
+                "model", "openai/nomic-embed-text-v1.5"
+            ),
             api_base=maintenance_embedding_yaml.get("api_base"),
             api_key=maintenance_embedding_yaml.get("api_key"),
             timeout_seconds=maintenance_embedding_yaml.get("timeout_seconds", 60.0),
@@ -2605,10 +2797,9 @@ async def main() -> None:
         )
 
     # Get collection name - prefer maintenance config, fall back to memory config
-    maintenance_collection_name = (
-        maintenance_yaml.get("collection_name")
-        or memory_config.get("collection_name", "memory_chat_test")
-    )
+    maintenance_collection_name = maintenance_yaml.get(
+        "collection_name"
+    ) or memory_config.get("collection_name", "memory_chat_test")
 
     # Build LifecycleDecayConfig from lifecycle YAML
     lifecycle_decay_config = LifecycleDecayConfig(
@@ -2621,8 +2812,12 @@ async def main() -> None:
         decayed_retention_days=lifecycle_yaml.get("decayed_retention_days", 30),
         promotion_weight_age=lifecycle_yaml.get("promotion_weight_age", 0.2),
         promotion_weight_access=lifecycle_yaml.get("promotion_weight_access", 0.4),
-        promotion_weight_confidence=lifecycle_yaml.get("promotion_weight_confidence", 0.2),
-        promotion_weight_connection=lifecycle_yaml.get("promotion_weight_connection", 0.2),
+        promotion_weight_confidence=lifecycle_yaml.get(
+            "promotion_weight_confidence", 0.2
+        ),
+        promotion_weight_connection=lifecycle_yaml.get(
+            "promotion_weight_connection", 0.2
+        ),
     )
 
     maintenance_config = MaintenanceConfig(
@@ -2658,35 +2853,39 @@ async def main() -> None:
     # Configure logging from config
     log_level_str = logging_config.get("level", "INFO").upper()
     log_level = getattr(logging, log_level_str, logging.INFO)
-    logging.basicConfig(level=log_level, format='%(name)s: %(message)s')
+    logging.basicConfig(level=log_level, format="%(name)s: %(message)s")
 
     # Optionally enable verbose extraction debugging
     if logging_config.get("extraction_debug", False):
-        logging.getLogger('friday_memory.context.extractor').setLevel(logging.DEBUG)
+        logging.getLogger("friday_memory.context.extractor").setLevel(logging.DEBUG)
 
     # Chat participant names
     user_name = chat_config.get("user_name", "You")
     assistant_name = chat_config.get("assistant_name", "Assistant")
 
-    # Token budget settings - use context_window (new) or fall back to max_context_tokens (deprecated)
-    context_window = memory_config.get("context_window", memory_config.get("max_context_tokens", 8192))
+    # Token budget settings - use context_window (new) or fall back to max_context_tokens (deprecated)  # noqa: E501
+    context_window = memory_config.get(
+        "context_window", memory_config.get("max_context_tokens", 8192)
+    )
     output_buffer = memory_config.get("output_buffer", 2000)
 
     # Priming configuration (entity-driven semantic search with recency)
-    priming_config = memory_config.get("priming", {
-        "enabled": True,
-        "top_entities": 10,
-        "insights_per_entity": 3,
-        "max_facts": 10,
-        "recency_days": 0,
-        "token_budget": 500,
-    })
+    priming_config = memory_config.get(
+        "priming",
+        {
+            "enabled": True,
+            "top_entities": 10,
+            "insights_per_entity": 3,
+            "max_facts": 10,
+            "recency_days": 0,
+            "token_budget": 500,
+        },
+    )
 
     # Determine if using separate extraction model
-    use_separate_extraction = (
-        extraction_config.get("model")
-        and extraction_config.get("model") != llm_config.get("model")
-    )
+    use_separate_extraction = extraction_config.get("model") and extraction_config.get(
+        "model"
+    ) != llm_config.get("model")
 
     # Display configuration
     print_banner()
@@ -2718,7 +2917,9 @@ async def main() -> None:
         insights_per = priming_config.get("insights_per_entity", 3)
         recency = priming_config.get("recency_days", 0)
         recency_str = f", last {recency} days" if recency > 0 else ", all time"
-        print(f"Context Priming: {top_ent} entities × {insights_per} insights each{recency_str}")
+        print(
+            f"Context Priming: {top_ent} entities × {insights_per} insights each{recency_str}"  # noqa: E501
+        )
         print(f"  Token budget: {priming_config.get('token_budget', 500)}")
     else:
         print("Context Priming: disabled")
@@ -2796,7 +2997,7 @@ async def main() -> None:
     if maintenance_llms:
         print(f"Maintenance LLMs: {', '.join(maintenance_llms.keys())}")
     if maintenance_llm_failures:
-        print(f"Warning: Some maintenance LLMs failed to initialize:")
+        print("Warning: Some maintenance LLMs failed to initialize:")
         for failure in maintenance_llm_failures:
             print(f"  - {failure}")
         print("  /reorganize will use main chat LLM as fallback")
@@ -2818,7 +3019,9 @@ async def main() -> None:
 
     # 3. Create memory stores
     # Persistence directory for vector, graph, and transcript stores
-    persist_dir = Path(__file__).parent / memory_config.get("persist_directory", "./vector")
+    persist_dir = Path(__file__).parent / memory_config.get(
+        "persist_directory", "./vector"
+    )
     persist_dir.mkdir(parents=True, exist_ok=True)
 
     # SQLite transcript store for persistent conversation logging
@@ -2848,9 +3051,12 @@ async def main() -> None:
     # 3b. Create CollectionManager for lifecycle management
     lifecycle_config = memory_config.get("lifecycle", {})
     collection_config = CollectionConfig(
-        short_term_collection=memory_config.get("collection_name", "memory_chat_test") + "_short",
-        long_term_collection=memory_config.get("collection_name", "memory_chat_test") + "_long",
-        decayed_collection=memory_config.get("collection_name", "memory_chat_test") + "_decayed",
+        short_term_collection=memory_config.get("collection_name", "memory_chat_test")
+        + "_short",
+        long_term_collection=memory_config.get("collection_name", "memory_chat_test")
+        + "_long",
+        decayed_collection=memory_config.get("collection_name", "memory_chat_test")
+        + "_decayed",
     )
     collection_manager = CollectionManager(
         embedding_function=embedding,
@@ -2930,12 +3136,12 @@ async def main() -> None:
         telemetry=telemetry,
     )
 
-    # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names
-    #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)
+    # 8. Create MemoryExtractor with extraction LLM, custom prompt, and participant names  # noqa: E501
+    #    Pass embedding model for pre-computing edge embeddings (enables fast graph path scoring)  # noqa: E501
     extraction_prompt = extraction_config.get("prompt")  # None uses default
     extractor = MemoryExtractor(
         memory_controller=controller,
-        llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)
+        llm=extraction_llm,  # Uses dedicated extraction LLM (or shared if not configured)  # noqa: E501
         telemetry=telemetry,
         prompt_template=extraction_prompt,
         user_name=user_name,
@@ -3028,11 +3234,13 @@ async def main() -> None:
 
         priming_info = controller.get_priming_info(session_id)
         if priming_info["primed"] and priming_info["entity_count"] > 0:
-            entity_count = priming_info['entity_count']
-            insight_count = priming_info.get('insight_count', 0)
-            summary_count = priming_info.get('summary_count', 0)
-            rel_count = priming_info['relationship_count']
-            print(f"Context primed: {entity_count} entities, {insight_count} insights, {summary_count} summaries, {rel_count} relationships")
+            entity_count = priming_info["entity_count"]
+            insight_count = priming_info.get("insight_count", 0)
+            summary_count = priming_info.get("summary_count", 0)
+            rel_count = priming_info["relationship_count"]
+            print(
+                f"Context primed: {entity_count} entities, {insight_count} insights, {summary_count} summaries, {rel_count} relationships"  # noqa: E501
+            )
             if priming_info["relationship_summaries"]:
                 print("  Prior knowledge:")
                 for summary in priming_info["relationship_summaries"][:3]:

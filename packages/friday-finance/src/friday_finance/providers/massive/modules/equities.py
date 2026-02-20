@@ -66,8 +66,6 @@ class EquitiesModule:
         func = self.client.sdk.get_ticker_details
         result = await self.client.execute_query(func, ticker)
 
-        
-
         return {
             "ticker": result.ticker,
             "name": result.name,
@@ -129,7 +127,7 @@ class EquitiesModule:
         price = await self.get_eod_price(ticker)
 
         return {
-            "summary": f"{details['name']} is trading at ${price['close']} as of {price['date']}.",
+            "summary": f"{details['name']} is trading at ${price['close']} as of {price['date']}.",  # noqa: E501
             "details": details,
             "price_data": price,
         }

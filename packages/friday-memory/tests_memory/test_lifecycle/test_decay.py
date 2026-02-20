@@ -14,7 +14,6 @@ Tests cover:
 from datetime import datetime, timedelta
 
 import pytest
-
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
 
 
@@ -271,7 +270,9 @@ class TestDecayCalculator:
 
         assert calculator.is_eligible_for_promotion_check(created_at, now)
 
-    def test_is_eligible_for_promotion_check_exactly_at_threshold(self, calculator, now):
+    def test_is_eligible_for_promotion_check_exactly_at_threshold(
+        self, calculator, now
+    ):
         """Memory exactly at min_age should be eligible."""
         created_at = now - timedelta(hours=24)  # Exactly 24 hours
 

@@ -10,7 +10,7 @@
 - `docs/design/agents/Alt-Phase-2/comprehensive-agent-framework-design.md`
 - `docs/design/agents/Alt-Phase-2/technical-specifications.md`
 - `docs/design/agents/Alt-Phase-2/phase-1-build-plan.md`
-- `docs/design/agents/Alt-Phase-2/phase-2-build-plan.md`
+- Phase 2 build baseline (archived)
 - `docs/design/agents/Alt-Phase-2/phase-3-transition-plan.md`
 - `docs/design/agents/Alt-Phase-2/phase-3-build-plan.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-schema-spec.md`
@@ -148,7 +148,7 @@ If a requirement had no explicit section anchor and no relevant keyword hits, it
 ## 5.2 Update Status Across Existing Alt Docs
 
 1. Completed: `technical-specifications.md` now includes Agent Contract schemas, HITL lifecycle semantics, HITL authority rules, sandbox/tool policy models, contract-compliance tests, and migration/backfill strategy.
-2. Completed: `phase-2-build-plan.md` now includes tooling/sandbox governance, contract schema validation, metadata migration/backfill, observability event contract, and expanded contract-linked exit gates.
+2. Completed: Phase 2 build baseline (archived) now includes tooling/sandbox governance, contract schema validation, metadata migration/backfill, observability event contract, and expanded contract-linked exit gates.
 3. Completed: `phase-3-build-plan.md` now includes HITL protocol/authority, artifact governance, and contract compliance gate workstreams.
 4. Completed: `phase-3-transition-plan.md` now includes contract-governance prerequisites and additional phase-exit requirements.
 5. Completed: `README.md` now clarifies `phase-1-build-plan.md` as historical baseline and indexes the compliance matrix.

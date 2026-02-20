@@ -13,7 +13,7 @@ import csv
 import io
 import logging
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
 from .base import ReaderResult
 from .encoding import detect_encoding
@@ -25,7 +25,9 @@ CSV_EXTENSIONS = [".csv", ".tsv"]
 CSV_MIMETYPES = ["text/csv", "text/tab-separated-values", "application/csv"]
 
 
-def _format_as_markdown_table(rows: list[list[str]], headers: list[str] | None = None) -> str:
+def _format_as_markdown_table(
+    rows: list[list[str]], headers: list[str] | None = None
+) -> str:
     """Format rows as a markdown table.
 
     Args:
@@ -65,9 +67,13 @@ def _format_as_markdown_table(rows: list[list[str]], headers: list[str] | None =
     # Header row
     if headers:
         header_row = normalized_rows[0]
-        header_line = "| " + " | ".join(
-            str(cell).ljust(col_widths[i]) for i, cell in enumerate(header_row)
-        ) + " |"
+        header_line = (
+            "| "
+            + " | ".join(
+                str(cell).ljust(col_widths[i]) for i, cell in enumerate(header_row)
+            )
+            + " |"
+        )
         lines.append(header_line)
 
         # Separator
@@ -80,9 +86,11 @@ def _format_as_markdown_table(rows: list[list[str]], headers: list[str] | None =
 
     # Data rows
     for row in data_rows:
-        row_line = "| " + " | ".join(
-            str(cell).ljust(col_widths[i]) for i, cell in enumerate(row)
-        ) + " |"
+        row_line = (
+            "| "
+            + " | ".join(str(cell).ljust(col_widths[i]) for i, cell in enumerate(row))
+            + " |"
+        )
         lines.append(row_line)
 
     return "\n".join(lines)
@@ -167,7 +175,7 @@ class CsvReader:
                 enc_result = None
 
             # Read file content
-            with open(path, "r", encoding=encoding, errors="replace") as f:
+            with open(path, encoding=encoding, errors="replace") as f:
                 content = f.read()
 
             # Detect dialect if delimiter not specified
@@ -209,7 +217,11 @@ class CsvReader:
 
             # Apply column filter
             if columns is not None:
-                headers = [headers[i] for i in columns if i < len(headers)] if headers else None
+                headers = (
+                    [headers[i] for i in columns if i < len(headers)]
+                    if headers
+                    else None
+                )
                 data_rows = [
                     [row[i] if i < len(row) else "" for i in columns]
                     for row in data_rows

@@ -13,7 +13,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from friday_memory.models.tools import ToolRecommendation, ToolSchema
+from friday_memory.models.tools import ToolRecommendation
 
 logger = logging.getLogger(__name__)
 
@@ -86,7 +86,7 @@ class ToolContextManager:
         Args:
             tools: List of tool schemas to activate.
         """
-        self._active_tools = tools[:self._max_tools]  # Enforce max limit
+        self._active_tools = tools[: self._max_tools]  # Enforce max limit
         logger.debug(f"Set {len(self._active_tools)} active tools")
 
     def expand_tools(self, additional_tools: list[dict[str, Any]]) -> int:
@@ -107,7 +107,9 @@ class ToolContextManager:
         new_tools = [t for t in tools_to_add if t.get("name") not in existing_names]
 
         self._active_tools.extend(new_tools)
-        logger.debug(f"Expanded tools by {len(new_tools)}, total: {len(self._active_tools)}")
+        logger.debug(
+            f"Expanded tools by {len(new_tools)}, total: {len(self._active_tools)}"
+        )
         return len(new_tools)
 
     def clear_tools(self) -> None:
@@ -252,7 +254,7 @@ class ToolContextManager:
                 "text": ["text", "string", "search", "replace", "regex"],
             }
 
-            if category in category_keywords:
+            if category in category_keywords:  # noqa: SIM102
                 if any(kw in query_lower for kw in category_keywords[category]):
                     score += 0.2
 
@@ -338,7 +340,9 @@ class ToolContextManager:
 
         return selected_schemas, recommendations
 
-    def get_budget_info(self, tools: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    def get_budget_info(
+        self, tools: list[dict[str, Any]] | None = None
+    ) -> dict[str, Any]:
         """
         Get information about tool token budget usage.
 
@@ -358,5 +362,7 @@ class ToolContextManager:
             "estimated_tokens": estimated_tokens,
             "max_tools": self._max_tools,
             "budget_limit": max_tokens,
-            "usage_percent": (estimated_tokens / max_tokens * 100) if max_tokens > 0 else 0,
+            "usage_percent": (estimated_tokens / max_tokens * 100)
+            if max_tokens > 0
+            else 0,
         }

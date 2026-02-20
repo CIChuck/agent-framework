@@ -12,9 +12,8 @@ import json
 import logging
 from typing import Any, Literal, cast
 
-from pydantic import BaseModel, Field
-
 from friday_core.interfaces.llm import LLMClient
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
@@ -80,12 +79,14 @@ class PassageRouter:
         "You decide if vector-retrieved passages should be included in the prompt.\n"
         "Return JSON ONLY. Do not use code fences. Do not add extra text.\n"
         "Required keys: include_passages (bool), confidence (0-1), reason (string).\n"
-        "Include passages when the user needs recall of prior content, sources, files, web info, "
-        "or earlier conversation details. Exclude for small talk, meta questions, or self-contained tasks.\n"
+        "Include passages when the user needs recall of prior content, sources, files, web info, "  # noqa: E501
+        "or earlier conversation details. Exclude for small talk, meta questions, or self-contained tasks.\n"  # noqa: E501
         "Be conservative: include only when likely helpful."
     )
 
-    def __init__(self, llm: LLMClient, config: PassageRouterConfig | None = None) -> None:
+    def __init__(
+        self, llm: LLMClient, config: PassageRouterConfig | None = None
+    ) -> None:
         self._llm = llm
         self._config = config or PassageRouterConfig()
 
@@ -230,7 +231,7 @@ class PassageRouter:
             start = raw.find("{")
             end = raw.rfind("}")
             if start >= 0 and end > start:
-                raw = raw[start:end + 1]
+                raw = raw[start : end + 1]
         try:
             data = json.loads(raw)
             return PassageRoutingDecision.model_validate(data)

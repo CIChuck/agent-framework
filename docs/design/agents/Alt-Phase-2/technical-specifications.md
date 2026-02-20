@@ -3,7 +3,7 @@
 **Status:** Proposed for Approval (Alternative Architecture)
 **Date:** 2026-02-14
 **Scope:** Additive Multi-Agent Memory design while preserving existing single-agent contracts
-**Supersedes For Alt Path:** `docs/design/agents/Phase-2/technical-specifications.md`
+**Supersedes For Alt Path:** Legacy Phase 2 technical specifications baseline (archived)
 **Governed By:**
 - `docs/design/agents/Alt-Phase-2/agent-contract.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-compliance-matrix.md`

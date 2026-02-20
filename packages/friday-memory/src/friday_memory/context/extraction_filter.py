@@ -67,6 +67,7 @@ def configure_rejection_logging(log_path: str | Path) -> None:
 
     logger.info("Rejection log configured: %s", log_path)
 
+
 # Pattern matching timestamps like "1:30 PM", "14:00", "2024-01-15"
 TIMESTAMP_PATTERN = re.compile(
     r"^\d{1,2}:\d{2}(\s*(AM|PM|am|pm))?$"  # time patterns

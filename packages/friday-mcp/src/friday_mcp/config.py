@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from enum import Enum
 from pathlib import Path
-from typing import Any
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -64,7 +63,7 @@ class MCPServerConfig(BaseModel):
     retry_attempts: int = Field(default=3, description="Retry attempts on failure")
 
     @model_validator(mode="after")
-    def validate_transport_requirements(self) -> "MCPServerConfig":
+    def validate_transport_requirements(self) -> MCPServerConfig:
         """Validate that required fields are present for transport type."""
         if self.transport == TransportType.STDIO and not self.command:
             raise ValueError("stdio transport requires 'command'")

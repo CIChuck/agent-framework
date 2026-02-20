@@ -13,7 +13,6 @@ Ref: Phase 1 Build Plan, Step 7.6
 from __future__ import annotations
 
 import pytest
-
 from friday_core.profiles import MemoryProfile
 
 from tests.lab.harness import HeadlessHarness
@@ -41,9 +40,7 @@ async def test_harness_boots_ephemeral_kernel(testing_config):
 
 
 @pytest.mark.asyncio
-async def test_mock_agent_returns_fixed_responses(
-    testing_config, researcher_profile
-):
+async def test_mock_agent_returns_fixed_responses(testing_config, researcher_profile):
     """
     mock_agent() registers a deterministic agent that returns
     fixed responses through the registry's per-agent factory override.
@@ -74,9 +71,7 @@ async def test_mock_agent_returns_fixed_responses(
 
 
 @pytest.mark.asyncio
-async def test_mock_agent_cycles_responses(
-    testing_config, researcher_profile
-):
+async def test_mock_agent_cycles_responses(testing_config, researcher_profile):
     """
     When fixed_responses are exhausted, the mock agent cycles back
     to the beginning.
@@ -102,9 +97,7 @@ async def test_mock_agent_cycles_responses(
 
 
 @pytest.mark.asyncio
-async def test_multiple_mock_agents(
-    testing_config, researcher_profile, coder_profile
-):
+async def test_multiple_mock_agents(testing_config, researcher_profile, coder_profile):
     """
     Multiple mock agents can coexist with independent response sequences.
     """

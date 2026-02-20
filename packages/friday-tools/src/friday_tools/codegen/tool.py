@@ -10,7 +10,7 @@ Ref: Code Generation Tool specification
 from __future__ import annotations
 
 import re
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from ..definition import BaseTool
 from ..manifest import ToolManifest
@@ -46,7 +46,7 @@ class CodeGenerationTool(BaseTool):
 
     def __init__(
         self,
-        llm: "LLMClient",
+        llm: LLMClient,
         manifest: ToolManifest,
         temperature: float = 0.2,
     ):
@@ -57,7 +57,7 @@ class CodeGenerationTool(BaseTool):
             llm: LLM client for generating code (injected from agent)
             manifest: Tool manifest describing available tools
             temperature: LLM temperature for code generation (lower = more deterministic)
-        """
+        """  # noqa: E501
         self._llm = llm
         self._manifest = manifest
         self._temperature = temperature
@@ -91,8 +91,8 @@ class CodeGenerationTool(BaseTool):
                 "context": {
                     "type": "string",
                     "description": (
-                        "Additional context, constraints, or hints for code generation. "
-                        "For example: file paths, expected data formats, error handling preferences."
+                        "Additional context, constraints, or hints for code generation. "  # noqa: E501
+                        "For example: file paths, expected data formats, error handling preferences."  # noqa: E501
                     ),
                     "default": "",
                 },
@@ -133,7 +133,9 @@ class CodeGenerationTool(BaseTool):
         # 3. Extract code from response
         code = self._extract_code(response.content)
         if not code:
-            return f"Error: Could not extract code from LLM response:\n{response.content}"
+            return (
+                f"Error: Could not extract code from LLM response:\n{response.content}"
+            )
 
         # 4. Execute the code unsandboxed (needs access to friday_tools)
         from ..execution import python_execute_unsandboxed

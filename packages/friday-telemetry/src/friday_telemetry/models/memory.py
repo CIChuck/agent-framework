@@ -44,7 +44,9 @@ class MemoryWriteMetrics(BaseModel):
 
     # Result
     success: bool = Field(default=True)
-    stored_ids: list[str] = Field(default_factory=list, description="IDs of stored items")
+    stored_ids: list[str] = Field(
+        default_factory=list, description="IDs of stored items"
+    )
     error_type: str | None = Field(default=None)
     error_message: str | None = Field(default=None)
 
@@ -124,18 +126,12 @@ class MaintenanceMetrics(BaseModel):
     duration_ms: float = Field(default=0.0, ge=0.0)
 
     # Volume
-    items_processed: int = Field(
-        default=0, ge=0, description="Total items examined"
-    )
-    items_affected: int = Field(
-        default=0, ge=0, description="Items that were modified"
-    )
+    items_processed: int = Field(default=0, ge=0, description="Total items examined")
+    items_affected: int = Field(default=0, ge=0, description="Items that were modified")
 
     # Specifics by operation type
     items_pruned: int = Field(default=0, ge=0, description="Items removed (prune)")
-    items_promoted: int = Field(
-        default=0, ge=0, description="Items promoted (promote)"
-    )
+    items_promoted: int = Field(default=0, ge=0, description="Items promoted (promote)")
     items_synthesized: int = Field(
         default=0, ge=0, description="New items created (synthesize)"
     )
@@ -149,3 +145,19 @@ class MaintenanceMetrics(BaseModel):
     dry_run: bool = Field(default=False, description="Whether this was a dry run")
     error_type: str | None = Field(default=None)
     error_message: str | None = Field(default=None)
+
+
+class ArbitrationOpsMetrics(BaseModel):
+    """Operational metrics for shared-promotion arbitration and recovery."""
+
+    request_id: str = Field(description="Unique request identifier")
+    session_id: str | None = Field(default=None)
+    correlation_id: str | None = Field(default=None)
+    proposal_volume: int = Field(default=0, ge=0)
+    promotion_backlog: int = Field(default=0, ge=0)
+    recovery_backlog: int = Field(default=0, ge=0)
+    promotion_latency_ms: float | None = Field(default=None, ge=0.0)
+    conflict_rate: float = Field(default=0.0, ge=0.0, le=1.0)
+    recovery_retries: int = Field(default=0, ge=0)
+    compensation_events: int = Field(default=0, ge=0)
+    degraded_mode: bool = Field(default=False)

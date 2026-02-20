@@ -35,7 +35,7 @@ from friday_llm.exceptions import (
     LLMTimeoutError,
 )
 from friday_llm.pricing import CostCalculator, PricingConfig
-from friday_llm.telemetry_helper import LLMTelemetryHelper, StreamingTracker
+from friday_llm.telemetry_helper import LLMTelemetryHelper
 from friday_llm.telemetry_models import ConversationContext, TokenUsage
 
 logger = logging.getLogger(__name__)
@@ -241,14 +241,11 @@ class LiteLLMService:
                             raw,
                         )
                         raw = re.sub(r"\n?```\s*$", "", raw)
-                        parsed = response_model.model_validate_json(
-                            raw
-                        )
+                        parsed = response_model.model_validate_json(raw)
                         result._parsed_model = parsed
                     except Exception as e:
                         logger.warning(
-                            "Failed to parse response into "
-                            "model: %s",
+                            "Failed to parse response into model: %s",
                             e,
                         )
 
@@ -386,9 +383,7 @@ class LiteLLMService:
             if context.conversation_id:
                 meta["trace_id"] = context.conversation_id
                 meta["trace_name"] = (
-                    f"turn-{context.turn_id}"
-                    if context.turn_id
-                    else "agent-turn"
+                    f"turn-{context.turn_id}" if context.turn_id else "agent-turn"
                 )
             if context.turn_id:
                 meta["tags"] = [f"turn:{context.turn_id}"]
@@ -449,8 +444,7 @@ class LiteLLMService:
                 kwargs["thinking"] = {"type": "disabled"}
 
             logger.debug(
-                "litellm.acompletion: model=%s "
-                "has_metadata=%s generation_name=%s",
+                "litellm.acompletion: model=%s has_metadata=%s generation_name=%s",
                 kwargs.get("model"),
                 bool(kwargs.get("metadata")),
                 kwargs.get("metadata", {}).get("generation_name"),
@@ -687,15 +681,15 @@ class LiteLLMService:
         i = 0
         while i < len(s):
             ch = s[i]
-            if ch == '"' and (i == 0 or s[i - 1] != '\\'):
+            if ch == '"' and (i == 0 or s[i - 1] != "\\"):
                 in_string = not in_string
                 result.append(ch)
-            elif in_string and ch == '\n':
-                result.append('\\n')
-            elif in_string and ch == '\r':
-                result.append('\\r')
-            elif in_string and ch == '\t':
-                result.append('\\t')
+            elif in_string and ch == "\n":
+                result.append("\\n")
+            elif in_string and ch == "\r":
+                result.append("\\r")
+            elif in_string and ch == "\t":
+                result.append("\\t")
             else:
                 result.append(ch)
             i += 1
@@ -730,15 +724,15 @@ class LiteLLMService:
             if last_was_escape:
                 last_was_escape = False
                 continue
-            if ch == '\\' and in_str:
+            if ch == "\\" and in_str:
                 last_was_escape = True
                 continue
             if ch == '"':
                 in_str = not in_str
             elif not in_str:
-                if ch == '{':
+                if ch == "{":
                     depth += 1
-                elif ch == '}':
+                elif ch == "}":
                     depth -= 1
 
         if depth <= 0:

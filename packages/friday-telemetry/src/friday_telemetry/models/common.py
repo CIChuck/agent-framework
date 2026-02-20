@@ -15,15 +15,11 @@ class RequestContext(BaseModel):
     """
 
     request_id: str = Field(description="Unique request identifier")
-    session_id: str | None = Field(
-        default=None, description="User session identifier"
-    )
+    session_id: str | None = Field(default=None, description="User session identifier")
     conversation_id: str | None = Field(
         default=None, description="Conversation thread ID"
     )
-    turn_id: str | None = Field(
-        default=None, description="Current turn identifier"
-    )
+    turn_id: str | None = Field(default=None, description="Current turn identifier")
     parent_span_id: str | None = Field(
         default=None, description="Parent trace span for nested tracing"
     )

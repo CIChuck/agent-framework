@@ -118,7 +118,7 @@ class MemoryReorganizer:
             promotion_scorer: PromotionScorer for evaluating promotion eligibility.
             decay_calculator: DecayCalculator for calculating decay scores.
             graph_store: GraphStoreAdapter for graph-vector decay linkage.
-        """
+        """  # noqa: E501
         self._memory_dir = Path(memory_dir)
         self._config = config or MaintenanceConfig()
 
@@ -382,9 +382,7 @@ class MemoryReorganizer:
                     created_at_str = metadata.get("created_at")
                     if created_at_str:
                         try:
-                            created_at = datetime.fromisoformat(
-                                created_at_str
-                            )
+                            created_at = datetime.fromisoformat(created_at_str)
                         except (ValueError, TypeError):
                             continue
                     else:
@@ -397,23 +395,15 @@ class MemoryReorganizer:
                         continue
 
                     # Extract scoring factors from metadata
-                    access_count = int(
-                        metadata.get("access_count", 0)
-                    )
-                    confidence = float(
-                        metadata.get("confidence", 0.5)
-                    )
-                    relationship_count = int(
-                        metadata.get("relationship_count", 0)
-                    )
+                    access_count = int(metadata.get("access_count", 0))
+                    confidence = float(metadata.get("confidence", 0.5))
+                    relationship_count = int(metadata.get("relationship_count", 0))
 
-                    score = (
-                        self._promotion_scorer.calculate_promotion_score(
-                            created_at=created_at,
-                            access_count=access_count,
-                            confidence=confidence,
-                            relationship_count=relationship_count,
-                        )
+                    score = self._promotion_scorer.calculate_promotion_score(
+                        created_at=created_at,
+                        access_count=access_count,
+                        confidence=confidence,
+                        relationship_count=relationship_count,
                     )
 
                     if score >= self._config.decay.promotion_threshold:
@@ -449,17 +439,11 @@ class MemoryReorganizer:
                     metadata = memory.get("metadata", {})
 
                     # Extract decay inputs from metadata
-                    current_score = float(
-                        metadata.get("decay_score", 1.0)
-                    )
-                    last_accessed_str = metadata.get(
-                        "last_accessed_at"
-                    )
+                    current_score = float(metadata.get("decay_score", 1.0))
+                    last_accessed_str = metadata.get("last_accessed_at")
                     if last_accessed_str:
                         try:
-                            last_accessed = datetime.fromisoformat(
-                                last_accessed_str
-                            )
+                            last_accessed = datetime.fromisoformat(last_accessed_str)
                         except (ValueError, TypeError):
                             last_accessed = now
                     else:
@@ -479,7 +463,9 @@ class MemoryReorganizer:
                                 decayed_ids.add(memory_id)
                             except Exception as e:
                                 report.decay_failures += 1
-                                report.errors.append(f"Decay failed for {memory_id}: {e}")
+                                report.errors.append(
+                                    f"Decay failed for {memory_id}: {e}"
+                                )
                         else:
                             report.decays_executed += 1
                             report.decayed_memory_ids.append(memory_id)
@@ -580,12 +566,8 @@ class MemoryReorganizer:
                     start = time.time()
                     if not dry_run:
                         flush_result = await self._access_buffer.flush_all(
-                            short_term_collection=(
-                                self._collection_manager.short_term
-                            ),
-                            long_term_collection=(
-                                self._collection_manager.long_term
-                            ),
+                            short_term_collection=(self._collection_manager.short_term),
+                            long_term_collection=(self._collection_manager.long_term),
                         )
                         report.short_term_accesses_flushed = (
                             flush_result.short_term_flushed
@@ -604,9 +586,7 @@ class MemoryReorganizer:
                         )
 
                     report.access_buffer_flushed = True
-                    report.access_flush_duration_ms = (
-                        (time.time() - start) * 1000
-                    )
+                    report.access_flush_duration_ms = (time.time() - start) * 1000
                     logger.info(
                         f"Access buffer flushed: "
                         f"{report.short_term_accesses_flushed} short-term, "
@@ -617,39 +597,27 @@ class MemoryReorganizer:
                 if self._factor_computer:
                     start = time.time()
                     if not dry_run:
-                        st_result = (
-                            await self._factor_computer.compute_factors(
-                                collection=(
-                                    self._collection_manager.short_term
-                                ),
-                            )
+                        st_result = await self._factor_computer.compute_factors(
+                            collection=(self._collection_manager.short_term),
                         )
                         report.short_term_factors_updated = st_result.updated
 
-                        lt_result = (
-                            await self._factor_computer.compute_factors(
-                                collection=(
-                                    self._collection_manager.long_term
-                                ),
-                            )
+                        lt_result = await self._factor_computer.compute_factors(
+                            collection=(self._collection_manager.long_term),
                         )
                         report.long_term_factors_updated = lt_result.updated
                     else:
-                        st_results = (
-                            await self._collection_manager.short_term
-                            .get_all(limit=1000)
+                        st_results = await self._collection_manager.short_term.get_all(
+                            limit=1000
                         )
-                        lt_results = (
-                            await self._collection_manager.long_term
-                            .get_all(limit=5000)
+                        lt_results = await self._collection_manager.long_term.get_all(
+                            limit=5000
                         )
                         report.short_term_factors_updated = len(st_results)
                         report.long_term_factors_updated = len(lt_results)
 
                     report.retrieval_factors_computed = True
-                    report.factor_compute_duration_ms = (
-                        (time.time() - start) * 1000
-                    )
+                    report.factor_compute_duration_ms = (time.time() - start) * 1000
                     logger.info(
                         f"Retrieval factors computed: "
                         f"{report.short_term_factors_updated} short-term, "
@@ -665,17 +633,16 @@ class MemoryReorganizer:
                 )
                 if self._graph_store and self._embedding_function:
                     start = time.time()
-                    edges_embedded, edges_skipped = (
-                        await self._backfill_edge_embeddings(
-                            dry_run, force_reembed=force_reembed
-                        )
+                    (
+                        edges_embedded,
+                        edges_skipped,
+                    ) = await self._backfill_edge_embeddings(
+                        dry_run, force_reembed=force_reembed
                     )
                     report.edges_embedded = edges_embedded
                     report.edges_skipped = edges_skipped
                     report.edge_embeddings_backfilled = True
-                    report.edge_embed_duration_ms = (
-                        (time.time() - start) * 1000
-                    )
+                    report.edge_embed_duration_ms = (time.time() - start) * 1000
                     logger.info(
                         f"Edge embeddings backfilled: "
                         f"{edges_embedded} embedded, "
@@ -697,8 +664,7 @@ class MemoryReorganizer:
                 report.errors.append(f"Optimization steps 1-3: {e}")
         else:
             logger.warning(
-                "Lifecycle support not configured, "
-                "skipping optimization steps 1-3"
+                "Lifecycle support not configured, skipping optimization steps 1-3"
             )
 
         # 4. Backfill created_at_ts for ChromaDB date-range filtering.
@@ -707,31 +673,29 @@ class MemoryReorganizer:
         if self._collection_manager is not None:
             try:
                 start = time.time()
-                ts_backfilled, ts_skipped, ts_errors = (
-                    await self._backfill_created_at_ts(dry_run)
-                )
+                (
+                    ts_backfilled,
+                    ts_skipped,
+                    ts_errors,
+                ) = await self._backfill_created_at_ts(dry_run)
                 report.timestamps_backfilled = ts_backfilled
                 report.timestamps_skipped = ts_skipped
                 report.timestamp_backfill_done = True
-                report.timestamp_backfill_duration_ms = (
-                    (time.time() - start) * 1000
-                )
+                report.timestamp_backfill_duration_ms = (time.time() - start) * 1000
                 logger.info(
                     f"Timestamp backfill: {ts_backfilled} backfilled, "
                     f"{ts_skipped} skipped, {ts_errors} errors"
                 )
                 if ts_errors > 0:
                     report.errors.append(
-                        f"Timestamp backfill: {ts_errors} documents "
-                        f"failed to update"
+                        f"Timestamp backfill: {ts_errors} documents failed to update"
                     )
             except Exception as e:
                 logger.error(f"Timestamp backfill failed: {e}")
                 report.errors.append(f"Timestamp backfill: {e}")
         else:
             logger.warning(
-                "Collection manager not configured, "
-                "skipping timestamp backfill"
+                "Collection manager not configured, skipping timestamp backfill"
             )
 
         return report
@@ -765,12 +729,12 @@ class MemoryReorganizer:
             # Build node ID → label lookup for rich relation text
             # e.g., "Chuck married to Tara" instead of just "married to"
             all_nodes = await self._graph_store.get_all_nodes()
-            node_labels: dict[str, str] = {
-                node.id: node.label for node in all_nodes
-            }
+            node_labels: dict[str, str] = {node.id: node.label for node in all_nodes}
 
             # Collect edges that need embeddings
-            edges_needing_embeddings: list[tuple[str, str, str]] = []  # (source, target, relation_text)
+            edges_needing_embeddings: list[
+                tuple[str, str, str]
+            ] = []  # (source, target, relation_text)
 
             for edge in all_edges:
                 if edge.embedding is not None and not force_reembed:
@@ -781,7 +745,9 @@ class MemoryReorganizer:
                     source_label=node_labels.get(edge.source_id),
                     target_label=node_labels.get(edge.target_id),
                 )
-                edges_needing_embeddings.append((edge.source_id, edge.target_id, relation_text))
+                edges_needing_embeddings.append(
+                    (edge.source_id, edge.target_id, relation_text)
+                )
 
             logger.info(
                 f"Edge backfill: {len(edges_needing_embeddings)} need embeddings, "
@@ -805,15 +771,23 @@ class MemoryReorganizer:
                     batch_texts = relation_texts[i : i + batch_size]
                     batch_edges = edges_needing_embeddings[i : i + batch_size]
 
-                    embeddings = await self._embedding_function.embed_documents(batch_texts)
+                    embeddings = await self._embedding_function.embed_documents(
+                        batch_texts
+                    )
 
                     if embeddings:
-                        for (source_id, target_id, _), embedding in zip(batch_edges, embeddings, strict=True):
-                            edges_with_embeddings.append((source_id, target_id, embedding))
+                        for (source_id, target_id, _), embedding in zip(
+                            batch_edges, embeddings, strict=True
+                        ):
+                            edges_with_embeddings.append(
+                                (source_id, target_id, embedding)
+                            )
 
                 # Batch update all edges
                 if edges_with_embeddings:
-                    updated = await self._graph_store.update_edges_embeddings(edges_with_embeddings)
+                    updated = await self._graph_store.update_edges_embeddings(
+                        edges_with_embeddings
+                    )
                     logger.info(f"Updated {updated} edge embeddings")
 
         except Exception as e:
@@ -821,9 +795,7 @@ class MemoryReorganizer:
 
         return edges_embedded, edges_skipped
 
-    async def _backfill_created_at_ts(
-        self, dry_run: bool
-    ) -> tuple[int, int, int]:
+    async def _backfill_created_at_ts(self, dry_run: bool) -> tuple[int, int, int]:
         """
         Backfill ``created_at_ts`` (Unix epoch seconds) on documents missing it.
 
@@ -854,14 +826,11 @@ class MemoryReorganizer:
             try:
                 results = await store.get_all(limit=None)
             except Exception as e:
-                logger.warning(
-                    f"Timestamp backfill: failed to read {label}: {e}"
-                )
+                logger.warning(f"Timestamp backfill: failed to read {label}: {e}")
                 continue
 
             logger.info(
-                f"Timestamp backfill ({label}): "
-                f"scanning {len(results)} documents"
+                f"Timestamp backfill ({label}): scanning {len(results)} documents"
             )
 
             for doc in results:
@@ -876,9 +845,7 @@ class MemoryReorganizer:
                     continue
 
                 try:
-                    ts = int(
-                        datetime.fromisoformat(created_at).timestamp()
-                    )
+                    ts = int(datetime.fromisoformat(created_at).timestamp())
                 except (ValueError, TypeError):
                     logger.debug(
                         f"Timestamp backfill: unparseable created_at "
@@ -889,9 +856,7 @@ class MemoryReorganizer:
 
                 if not dry_run:
                     try:
-                        await store.update_metadata(
-                            doc["id"], {"created_at_ts": ts}
-                        )
+                        await store.update_metadata(doc["id"], {"created_at_ts": ts})
                     except Exception as e:
                         logger.warning(
                             f"Timestamp backfill: failed to update "
@@ -967,10 +932,12 @@ class MemoryReorganizer:
                 and self._graph_store
                 and not delete_result.get("error")
             ):
-                cleanup_result = await self._collection_manager.cleanup_orphaned_graph_nodes(
-                    deleted_memory_ids=set(report.deleted_memory_ids),
-                    graph_store=self._graph_store,
-                    dry_run=dry_run,
+                cleanup_result = (
+                    await self._collection_manager.cleanup_orphaned_graph_nodes(
+                        deleted_memory_ids=set(report.deleted_memory_ids),
+                        graph_store=self._graph_store,
+                        dry_run=dry_run,
+                    )
                 )
 
                 report.graph_nodes_deleted = cleanup_result.get("deleted_count", 0)
@@ -1076,9 +1043,7 @@ class MemoryReorganizer:
                         try:
                             metadata = secondary.get("metadata", {})
                             metadata["superseded_by"] = primary_id
-                            await vector_store.update(
-                                secondary_id, metadata=metadata
-                            )
+                            await vector_store.update(secondary_id, metadata=metadata)
                         except Exception as e:
                             report.errors.append(
                                 f"Failed to mark {secondary_id} as superseded: {e}"
@@ -1204,7 +1169,9 @@ class MemoryReorganizer:
                     metadata={"store_stats": report.backup_manifest.store_stats},
                 )
             else:
-                logger.info(f"Step 1/{total_steps}: Skipping backup (dry_run or not requested)")
+                logger.info(
+                    f"Step 1/{total_steps}: Skipping backup (dry_run or not requested)"
+                )
 
             # 2. Analyze
             logger.info(f"Step 2/{total_steps}: Analyzing consistency...")
@@ -1218,11 +1185,9 @@ class MemoryReorganizer:
             # prevent later steps like optimization/backfill)
             if not skip_synthesis:
                 try:
-                    logger.info(
-                        f"Step 4/{total_steps}: Synthesizing memories..."
-                    )
-                    report.synthesis_report = (
-                        await self._synthesizer.synthesize(dry_run=dry_run)
+                    logger.info(f"Step 4/{total_steps}: Synthesizing memories...")
+                    report.synthesis_report = await self._synthesizer.synthesize(
+                        dry_run=dry_run
                     )
                 except Exception as e:
                     logger.error(f"Step 4 synthesis failed: {e}")
@@ -1234,13 +1199,9 @@ class MemoryReorganizer:
             # prevent later steps like optimization/backfill)
             if not skip_verify:
                 try:
-                    logger.info(
-                        f"Step 5/{total_steps}: Verifying facts..."
-                    )
+                    logger.info(f"Step 5/{total_steps}: Verifying facts...")
                     report.verification_report = (
-                        await self._fact_checker.run_full_check(
-                            dry_run=dry_run
-                        )
+                        await self._fact_checker.run_full_check(dry_run=dry_run)
                     )
                 except Exception as e:
                     logger.error(f"Step 5 verification failed: {e}")
@@ -1254,9 +1215,13 @@ class MemoryReorganizer:
                 report.lifecycle_report = await self.lifecycle(dry_run=dry_run)
             else:
                 if skip_lifecycle:
-                    logger.info(f"Step 6/{total_steps}: Skipping lifecycle (--skip-lifecycle)")
+                    logger.info(
+                        f"Step 6/{total_steps}: Skipping lifecycle (--skip-lifecycle)"
+                    )
                 else:
-                    logger.info(f"Step 6/{total_steps}: Skipping lifecycle (not configured)")
+                    logger.info(
+                        f"Step 6/{total_steps}: Skipping lifecycle (not configured)"
+                    )
 
             # 7. Latency optimization (Phase 8)
             # optimize() handles its own gating: steps 1-3 require full
@@ -1270,19 +1235,29 @@ class MemoryReorganizer:
                 )
             else:
                 if skip_lifecycle:
-                    logger.info(f"Step 7/{total_steps}: Skipping optimization (--skip-lifecycle)")
+                    logger.info(
+                        f"Step 7/{total_steps}: Skipping optimization (--skip-lifecycle)"  # noqa: E501
+                    )
                 else:
-                    logger.info(f"Step 7/{total_steps}: Skipping optimization (not configured)")
+                    logger.info(
+                        f"Step 7/{total_steps}: Skipping optimization (not configured)"
+                    )
 
             # 8. Cleanup: hard delete expired decayed memories
             if not skip_lifecycle and self.has_lifecycle_support:
-                logger.info(f"Step 8/{total_steps}: Running cleanup (hard delete expired)...")
+                logger.info(
+                    f"Step 8/{total_steps}: Running cleanup (hard delete expired)..."
+                )
                 report.cleanup_report = await self.cleanup(dry_run=dry_run)
             else:
                 if skip_lifecycle:
-                    logger.info(f"Step 8/{total_steps}: Skipping cleanup (--skip-lifecycle)")
+                    logger.info(
+                        f"Step 8/{total_steps}: Skipping cleanup (--skip-lifecycle)"
+                    )
                 else:
-                    logger.info(f"Step 8/{total_steps}: Skipping cleanup (not configured)")
+                    logger.info(
+                        f"Step 8/{total_steps}: Skipping cleanup (not configured)"
+                    )
 
             report.complete(success=True)
             logger.info("Reorganization complete!")
@@ -1316,98 +1291,112 @@ class MemoryReorganizer:
             "=" * 70,
             f"Memory Directory: {report.memory_dir}",
             f"Started: {report.started_at.isoformat()}",
-            f"Completed: {report.completed_at.isoformat() if report.completed_at else 'N/A'}",
+            f"Completed: {report.completed_at.isoformat() if report.completed_at else 'N/A'}",  # noqa: E501
             f"Success: {report.success}",
             "",
         ]
 
         # Backup info
         if report.backup_manifest:
-            lines.extend([
-                "BACKUP:",
-                f"  ID: {report.backup_manifest.backup_id[:8]}...",
-                f"  Location: {report.backup_manifest.backup_dir}",
-                f"  Files: {len(report.backup_manifest.files)}",
-                "",
-            ])
+            lines.extend(
+                [
+                    "BACKUP:",
+                    f"  ID: {report.backup_manifest.backup_id[:8]}...",
+                    f"  Location: {report.backup_manifest.backup_dir}",
+                    f"  Files: {len(report.backup_manifest.files)}",
+                    "",
+                ]
+            )
 
         # Consistency summary
         if report.consistency_report:
             cr = report.consistency_report
-            lines.extend([
-                "CONSISTENCY ANALYSIS:",
-                f"  Graph: {cr.graph_stats.get('node_count', 0)} nodes, "
-                f"{cr.graph_stats.get('edge_count', 0)} edges",
-                f"  Issues: {len(cr.issues)} "
-                f"(critical={cr.severity_counts['critical']}, "
-                f"warning={cr.severity_counts['warning']})",
-                "",
-            ])
+            lines.extend(
+                [
+                    "CONSISTENCY ANALYSIS:",
+                    f"  Graph: {cr.graph_stats.get('node_count', 0)} nodes, "
+                    f"{cr.graph_stats.get('edge_count', 0)} edges",
+                    f"  Issues: {len(cr.issues)} "
+                    f"(critical={cr.severity_counts['critical']}, "
+                    f"warning={cr.severity_counts['warning']})",
+                    "",
+                ]
+            )
 
         # Prune summary
         if report.prune_report:
             pr = report.prune_report
             status = "DRY RUN" if pr.dry_run else "EXECUTED"
-            lines.extend([
-                f"PRUNING ({status}):",
-                f"  Insights removed: {pr.insights_removed}",
-                f"  Entities merged: {pr.entities_merged}",
-                f"  Entities removed: {pr.entities_removed}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"PRUNING ({status}):",
+                    f"  Insights removed: {pr.insights_removed}",
+                    f"  Entities merged: {pr.entities_merged}",
+                    f"  Entities removed: {pr.entities_removed}",
+                    "",
+                ]
+            )
 
         # Synthesis summary
         if report.synthesis_report:
             sr = report.synthesis_report
             status = "DRY RUN" if sr.dry_run else "EXECUTED"
-            lines.extend([
-                f"SYNTHESIS ({status}):",
-                f"  Clusters found: {sr.clusters_found}",
-                f"  Meta-insights: {sr.meta_insights_created}",
-                f"  Relationships inferred: {sr.relationships_inferred}",
-                f"  Knowledge gaps: {sr.gaps_identified}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"SYNTHESIS ({status}):",
+                    f"  Clusters found: {sr.clusters_found}",
+                    f"  Meta-insights: {sr.meta_insights_created}",
+                    f"  Relationships inferred: {sr.relationships_inferred}",
+                    f"  Knowledge gaps: {sr.gaps_identified}",
+                    "",
+                ]
+            )
 
         # Verification summary
         if report.verification_report:
             vr = report.verification_report
             status = "DRY RUN" if vr.dry_run else "EXECUTED"
-            lines.extend([
-                f"FACT VERIFICATION ({status}):",
-                f"  Total claims: {vr.total_claims}",
-                f"  Verified true: {vr.verified_true}",
-                f"  Disputed: {vr.verified_false}",
-                f"  Unverifiable: {vr.unverifiable}",
-                f"  Conversational (skipped): {vr.skipped_conversational}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"FACT VERIFICATION ({status}):",
+                    f"  Total claims: {vr.total_claims}",
+                    f"  Verified true: {vr.verified_true}",
+                    f"  Disputed: {vr.verified_false}",
+                    f"  Unverifiable: {vr.unverifiable}",
+                    f"  Conversational (skipped): {vr.skipped_conversational}",
+                    "",
+                ]
+            )
 
         # Lifecycle summary
         if report.lifecycle_report:
             lr = report.lifecycle_report
             status = "DRY RUN" if lr.dry_run else "EXECUTED"
-            lines.extend([
-                f"LIFECYCLE MAINTENANCE ({status}):",
-                f"  Promotions: {lr.promotions_executed}/{lr.promotions_checked} checked",
-                f"  Decays: {lr.decays_executed}/{lr.decays_checked} checked",
-                f"  Graph nodes decayed: {lr.graph_nodes_decayed}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"LIFECYCLE MAINTENANCE ({status}):",
+                    f"  Promotions: {lr.promotions_executed}/{lr.promotions_checked} checked",  # noqa: E501
+                    f"  Decays: {lr.decays_executed}/{lr.decays_checked} checked",
+                    f"  Graph nodes decayed: {lr.graph_nodes_decayed}",
+                    "",
+                ]
+            )
 
         # Optimization summary
         if report.optimization_report:
             opr = report.optimization_report
             status = "DRY RUN" if opr.dry_run else "EXECUTED"
-            lines.extend([
-                f"LATENCY OPTIMIZATION ({status}):",
-                f"  Access buffer: {opr.short_term_accesses_flushed} ST, "
-                f"{opr.long_term_accesses_flushed} LT flushed",
-                f"  Retrieval factors: {opr.short_term_factors_updated} ST, "
-                f"{opr.long_term_factors_updated} LT updated",
-                f"  Edge embeddings: {opr.edges_embedded} embedded, "
-                f"{opr.edges_skipped} skipped",
-            ])
+            lines.extend(
+                [
+                    f"LATENCY OPTIMIZATION ({status}):",
+                    f"  Access buffer: {opr.short_term_accesses_flushed} ST, "
+                    f"{opr.long_term_accesses_flushed} LT flushed",
+                    f"  Retrieval factors: {opr.short_term_factors_updated} ST, "
+                    f"{opr.long_term_factors_updated} LT updated",
+                    f"  Edge embeddings: {opr.edges_embedded} embedded, "
+                    f"{opr.edges_skipped} skipped",
+                ]
+            )
             if opr.timestamp_backfill_done:
                 lines.append(
                     f"  Timestamp backfill: {opr.timestamps_backfilled} "
@@ -1422,21 +1411,25 @@ class MemoryReorganizer:
         if report.cleanup_report:
             cr = report.cleanup_report
             status = "DRY RUN" if cr.dry_run else "EXECUTED"
-            lines.extend([
-                f"CLEANUP ({status}):",
-                f"  Retention days: {cr.retention_days}",
-                f"  Memories hard deleted: {cr.memories_deleted}",
-                f"  Graph nodes cleaned up: {cr.graph_nodes_deleted}",
-                "",
-            ])
+            lines.extend(
+                [
+                    f"CLEANUP ({status}):",
+                    f"  Retention days: {cr.retention_days}",
+                    f"  Memories hard deleted: {cr.memories_deleted}",
+                    f"  Graph nodes cleaned up: {cr.graph_nodes_deleted}",
+                    "",
+                ]
+            )
 
         # Errors
         if report.errors:
-            lines.extend([
-                "ERRORS:",
-                *[f"  - {error}" for error in report.errors],
-                "",
-            ])
+            lines.extend(
+                [
+                    "ERRORS:",
+                    *[f"  - {error}" for error in report.errors],
+                    "",
+                ]
+            )
 
         lines.append("=" * 70)
 

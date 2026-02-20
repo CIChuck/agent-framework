@@ -13,7 +13,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from .base import FileReader, ReaderResult
+from .base import ReaderResult
 
 logger = logging.getLogger(__name__)
 
@@ -112,9 +112,7 @@ class DocxReader:
                 for table in doc.tables:
                     table_rows = []
                     for row in table.rows:
-                        row_text = " | ".join(
-                            cell.text.strip() for cell in row.cells
-                        )
+                        row_text = " | ".join(cell.text.strip() for cell in row.cells)
                         if row_text.strip():
                             table_rows.append(row_text)
                     if table_rows:
@@ -152,14 +150,10 @@ class DocxReader:
                 "subject": core_props.subject,
                 "keywords": core_props.keywords,
                 "created": (
-                    core_props.created.isoformat()
-                    if core_props.created
-                    else None
+                    core_props.created.isoformat() if core_props.created else None
                 ),
                 "modified": (
-                    core_props.modified.isoformat()
-                    if core_props.modified
-                    else None
+                    core_props.modified.isoformat() if core_props.modified else None
                 ),
                 "paragraph_count": total_blocks,
                 "table_count": len(doc.tables),

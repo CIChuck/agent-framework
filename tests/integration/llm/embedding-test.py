@@ -13,7 +13,6 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-
 from friday_llm import LiteLLMEmbeddingService, ResilienceConfig
 from friday_llm.exceptions import (
     CircuitBreakerOpenError,
@@ -36,14 +35,14 @@ def print_embedding_stats(embedding: list[float], text: str) -> None:
     dimensions = len(embedding)
     norm = math.sqrt(sum(x * x for x in embedding))
 
-    print(f"\n{'='*50}")
-    print(f"Input text: \"{text[:50]}{'...' if len(text) > 50 else ''}\"")
+    print(f"\n{'=' * 50}")
+    print(f'Input text: "{text[:50]}{"..." if len(text) > 50 else ""}"')
     print(f"Dimensions: {dimensions}")
     print(f"L2 Norm: {norm:.6f}")
     print(f"First 5 values: {embedding[:5]}")
     print(f"Last 5 values: {embedding[-5:]}")
     print(f"Min: {min(embedding):.6f}, Max: {max(embedding):.6f}")
-    print(f"{'='*50}\n")
+    print(f"{'=' * 50}\n")
 
 
 async def main() -> None:

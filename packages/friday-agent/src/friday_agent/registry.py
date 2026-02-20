@@ -10,11 +10,11 @@ Ref: docs/build-plan/to-do/agent-registry-build-plan.md
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Callable, TypeVar
+from collections.abc import Callable
+from typing import TYPE_CHECKING, TypeVar
 
-from friday_agent.profile import AgentProfile
 from friday_agent.loader import AgentLoader
-
+from friday_agent.profile import AgentProfile
 
 if TYPE_CHECKING:
     from friday_agent.base import AgentBase
@@ -74,13 +74,12 @@ class AgentRegistry:
         """
         self._profiles: dict[str, AgentProfile] = {}
         self._loader = loader
-        self._factory: Callable[[AgentProfile], "AgentBase"] | None = None
-        self._per_agent_factories: dict[
-            str, Callable[[AgentProfile], "AgentBase"]
-        ] = {}
+        self._factory: Callable[[AgentProfile], AgentBase] | None = None
+        self._per_agent_factories: dict[str, Callable[[AgentProfile], AgentBase]] = {}
 
         # Capability index for fast lookup
         self._capability_index: dict[str, set[str]] = {}  # capability -> agent names
+        self._skill_index: dict[str, set[str]] = {}  # skill_ref -> agent names
 
         logger.debug("AgentRegistry initialized")
 
@@ -108,6 +107,7 @@ class AgentRegistry:
 
         self._profiles[profile.name] = profile
         self._index_capabilities(profile)
+        self._index_skills(profile)
         logger.info(f"Registered agent: {profile.name}")
 
     def register_from_yaml(self, name: str) -> AgentProfile:
@@ -153,6 +153,7 @@ class AgentRegistry:
             if profile.name not in self._profiles:
                 self._profiles[profile.name] = profile
                 self._index_capabilities(profile)
+                self._index_skills(profile)
                 loaded += 1
                 logger.debug(f"Loaded agent from directory: {profile.name}")
 
@@ -180,6 +181,11 @@ class AgentRegistry:
                 self._capability_index[capability].discard(name)
                 if not self._capability_index[capability]:
                     del self._capability_index[capability]
+        for skill_ref in profile.skills:
+            if skill_ref in self._skill_index:
+                self._skill_index[skill_ref].discard(name)
+                if not self._skill_index[skill_ref]:
+                    del self._skill_index[skill_ref]
 
         del self._profiles[name]
         logger.info(f"Unregistered agent: {name}")
@@ -189,6 +195,7 @@ class AgentRegistry:
         """Remove all registered agents."""
         self._profiles.clear()
         self._capability_index.clear()
+        self._skill_index.clear()
         logger.debug("Registry cleared")
 
     # =========================================================================
@@ -324,12 +331,47 @@ class AgentRegistry:
         return {cap: len(agents) for cap, agents in self._capability_index.items()}
 
     # =========================================================================
+    # Skill-Based Lookup
+    # =========================================================================
+
+    def find_by_skill(self, skill_ref: str) -> list[AgentProfile]:
+        """Find agents that declare a canonical skill reference."""
+        agent_names = self._skill_index.get(skill_ref, set())
+        return [self._profiles[name] for name in sorted(agent_names)]
+
+    def list_skills(self) -> list[str]:
+        """List all declared skill references."""
+        return sorted(self._skill_index.keys())
+
+    def get_skill_stats(self) -> dict[str, int]:
+        """Get count of agents per skill reference."""
+        return {skill: len(agents) for skill, agents in self._skill_index.items()}
+
+    def resolve_agent_for_skill(
+        self, skill_ref: str, preferred_agent: str | None = None
+    ) -> str:
+        """
+        Resolve deterministic target agent for a required skill.
+
+        Preferred agent is selected when it advertises the skill.
+        Otherwise the first sorted matching agent is returned.
+        """
+        agent_names = sorted(self._skill_index.get(skill_ref, set()))
+        if preferred_agent and preferred_agent in agent_names:
+            return preferred_agent
+        if not agent_names:
+            raise AgentRegistryError(
+                f"No registered agent declares required skill '{skill_ref}'"
+            )
+        return agent_names[0]
+
+    # =========================================================================
     # Agent Instantiation
     # =========================================================================
 
     def set_factory(
         self,
-        factory: Callable[[AgentProfile], "AgentBase"],
+        factory: Callable[[AgentProfile], AgentBase],
         agent_name: str | None = None,
     ) -> None:
         """
@@ -362,7 +404,7 @@ class AgentRegistry:
         """Check if factory is configured."""
         return self._factory is not None
 
-    def create_agent(self, name: str) -> "AgentBase":
+    def create_agent(self, name: str) -> AgentBase:
         """
         Create an agent instance by name.
 
@@ -403,6 +445,13 @@ class AgentRegistry:
                 self._capability_index[capability] = set()
             self._capability_index[capability].add(profile.name)
 
+    def _index_skills(self, profile: AgentProfile) -> None:
+        """Add profile's canonical skill references to the index."""
+        for skill_ref in profile.skills:
+            if skill_ref not in self._skill_index:
+                self._skill_index[skill_ref] = set()
+            self._skill_index[skill_ref].add(profile.name)
+
     # =========================================================================
     # Serialization
     # =========================================================================
@@ -421,5 +470,6 @@ class AgentRegistry:
         return (
             f"AgentRegistry(agents={len(self._profiles)}, "
             f"capabilities={len(self._capability_index)}, "
+            f"skills={len(self._skill_index)}, "
             f"has_factory={self.has_factory()})"
         )

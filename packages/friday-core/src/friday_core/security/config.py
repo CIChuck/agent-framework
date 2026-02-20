@@ -17,10 +17,10 @@ class RiskLevel(str, Enum):
     """Risk level classification for tools and content."""
 
     CRITICAL = "critical"  # External untrusted: web, shell output
-    HIGH = "high"          # External: filesystem reads
-    MEDIUM = "medium"      # Mixed: git, database queries
-    LOW = "low"            # Internal: text manipulation
-    MINIMAL = "minimal"    # Pure internal: datetime, echo
+    HIGH = "high"  # External: filesystem reads
+    MEDIUM = "medium"  # Mixed: git, database queries
+    LOW = "low"  # Internal: text manipulation
+    MINIMAL = "minimal"  # Pure internal: datetime, echo
 
 
 class CategoryRiskMapping(BaseModel):
@@ -114,7 +114,7 @@ class SanitizationConfig(BaseModel):
     tool_overrides: dict[str, RiskLevel] = Field(default_factory=dict)
 
     @model_validator(mode="after")
-    def _validate_storage_policy(self) -> "SanitizationConfig":
+    def _validate_storage_policy(self) -> SanitizationConfig:
         """Validate storage policy requirements for quarantine."""
         policy = self.storage_policy
         if (
@@ -129,7 +129,7 @@ class SanitizationConfig(BaseModel):
         return self
 
     @classmethod
-    def from_dict(cls, data: dict | None) -> "SanitizationConfig":
+    def from_dict(cls, data: dict | None) -> SanitizationConfig:
         """Load from dictionary (e.g., YAML section)."""
         if not data:
             return cls()

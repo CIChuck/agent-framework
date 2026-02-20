@@ -75,7 +75,7 @@ class ProcessListTool(BaseTool):
                 return "No processes found"
 
             # Parse header and data
-            header = lines[0]
+            lines[0]
             processes = []
 
             for line in lines[1:]:
@@ -114,7 +114,11 @@ class ProcessListTool(BaseTool):
             output_lines = ["PID      CPU%   MEM%   COMMAND"]
             output_lines.append("-" * 60)
             for p in processes:
-                cmd = p["command"][:40] + "..." if len(p["command"]) > 40 else p["command"]
+                cmd = (
+                    p["command"][:40] + "..."
+                    if len(p["command"]) > 40
+                    else p["command"]
+                )
                 output_lines.append(
                     f"{p['pid']:<8} {p['cpu']:>5.1f}  {p['memory']:>5.1f}  {cmd}"
                 )
@@ -265,7 +269,7 @@ class SystemInfoTool(BaseTool):
 
             # Try to get memory info (Unix)
             try:
-                with open("/proc/meminfo", "r") as f:
+                with open("/proc/meminfo") as f:
                     meminfo = f.read()
                     for line in meminfo.split("\n"):
                         if line.startswith("MemTotal:"):

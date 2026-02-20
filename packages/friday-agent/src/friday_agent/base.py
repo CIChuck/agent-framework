@@ -21,15 +21,14 @@ from typing import Any
 
 from friday_core import TelemetryInterface, get_logger
 from friday_core.interfaces import (
-    ChatCompletionResponse,
     ContextEngineeringInterface,
     LLMClient,
     ToolRegistry,
 )
 from friday_core.security import SanitizationConfig
-from friday_agent.security import AgentOutputProcessor
-
 from friday_memory import InteractionTurn, MemoryController, SessionState
+
+from friday_agent.security import AgentOutputProcessor
 
 from .profile import AgentProfile
 
@@ -328,9 +327,7 @@ class AgentBase(ABC):
         """
         span_id = None
         if self.telemetry:
-            span_id = self.telemetry.start_span(
-                "tool_execution", parent_id=None
-            )
+            span_id = self.telemetry.start_span("tool_execution", parent_id=None)
             self.telemetry.capture_event(
                 "tool_call_started",
                 {"tool": tool_name, "arguments": str(arguments)[:200]},
@@ -424,6 +421,8 @@ class AgentBase(ABC):
         """
         from friday_memory.models import (
             ToolCall as MemoryToolCall,
+        )
+        from friday_memory.models import (
             ToolResult as MemoryToolResult,
         )
 
@@ -434,12 +433,8 @@ class AgentBase(ABC):
             user_message=user_message,
             assistant_message=assistant_message,
             agent_id=self.profile.name,  # Provenance: track which agent generated this
-            tool_calls=[
-                MemoryToolCall(**tc) for tc in (tool_calls or [])
-            ],
-            tool_results=[
-                MemoryToolResult(**tr) for tr in (tool_results or [])
-            ],
+            tool_calls=[MemoryToolCall(**tc) for tc in (tool_calls or [])],
+            tool_results=[MemoryToolResult(**tr) for tr in (tool_results or [])],
         )
 
         # Store in episodic memory
@@ -449,9 +444,7 @@ class AgentBase(ABC):
 
         # Trigger async extraction (non-blocking)
         # This allows the agent to continue while extraction happens in background
-        asyncio.create_task(
-            self._safe_extract_context(turn)
-        )
+        asyncio.create_task(self._safe_extract_context(turn))
 
         if self.telemetry:
             self.telemetry.capture_event(
@@ -492,29 +485,33 @@ class AgentBase(ABC):
         Formats tool interactions for LLM context.
         """
         # Add assistant message with tool calls
-        self._conversation_history.append({
-            "role": "assistant",
-            "content": None,
-            "tool_calls": [
-                {
-                    "id": tc["id"],
-                    "type": "function",
-                    "function": {
-                        "name": tc["name"],
-                        "arguments": str(tc["arguments"]),
-                    },
-                }
-                for tc in tool_calls
-            ],
-        })
+        self._conversation_history.append(
+            {
+                "role": "assistant",
+                "content": None,
+                "tool_calls": [
+                    {
+                        "id": tc["id"],
+                        "type": "function",
+                        "function": {
+                            "name": tc["name"],
+                            "arguments": str(tc["arguments"]),
+                        },
+                    }
+                    for tc in tool_calls
+                ],
+            }
+        )
 
         # Add tool results
-        for tc, result in zip(tool_calls, tool_results):
-            self._conversation_history.append({
-                "role": "tool",
-                "tool_call_id": tc["id"],
-                "content": result,
-            })
+        for tc, result in zip(tool_calls, tool_results, strict=False):
+            self._conversation_history.append(
+                {
+                    "role": "tool",
+                    "tool_call_id": tc["id"],
+                    "content": result,
+                }
+            )
 
     def clear_history(self) -> None:
         """Clear the conversation history."""

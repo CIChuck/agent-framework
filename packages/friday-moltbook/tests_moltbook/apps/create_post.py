@@ -41,7 +41,10 @@ async def _run() -> int:
 
     api_key = args.api_key or os.getenv("MOLTBOOK_API_KEY")
     if not api_key:
-        print("Missing API key. Provide --api-key or set MOLTBOOK_API_KEY.", file=sys.stderr)
+        print(
+            "Missing API key. Provide --api-key or set MOLTBOOK_API_KEY.",
+            file=sys.stderr,
+        )
         return 1
 
     config_kwargs = {"api_key": api_key}

@@ -23,17 +23,11 @@ class TelemetryConfig(BaseModel):
     enabled: bool = Field(
         default=True, description="Whether telemetry collection is enabled"
     )
-    service_name: str = Field(
-        default="friday", description="Service name for traces"
-    )
+    service_name: str = Field(default="friday", description="Service name for traces")
 
     # OpenTelemetry settings
-    otel_enabled: bool = Field(
-        default=False, description="Enable OpenTelemetry export"
-    )
-    otel_endpoint: str | None = Field(
-        default=None, description="OTLP endpoint URL"
-    )
+    otel_enabled: bool = Field(default=False, description="Enable OpenTelemetry export")
+    otel_endpoint: str | None = Field(default=None, description="OTLP endpoint URL")
     otel_headers: dict[str, str] = Field(
         default_factory=dict, description="OTLP request headers"
     )

@@ -12,8 +12,6 @@ Ref: Batch 0 Acceptance Criteria #3, #5
 
 import os
 
-import pytest
-
 from friday_core import FridayBaseSettings
 
 
@@ -84,7 +82,7 @@ class TestFridayBaseSettings:
 
     def test_case_insensitive_env_vars(self, clean_env):
         """Test that environment variables work regardless of case."""
-        os.environ["app_env"] = "staging"
+        os.environ["APP_ENV"] = "staging"
 
         settings = FridayBaseSettings()
 

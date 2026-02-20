@@ -12,7 +12,6 @@ Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 """
 
 import pytest
-
 from friday_memory.adapters.simple_vector import SimpleVectorStore
 
 
@@ -79,7 +78,9 @@ class TestSimpleVectorStore:
         assert results == []
 
     @pytest.mark.asyncio
-    async def test_query_with_metadata_filter(self, simple_vector_store: SimpleVectorStore):
+    async def test_query_with_metadata_filter(
+        self, simple_vector_store: SimpleVectorStore
+    ):
         """Test querying with simple metadata filter."""
         await simple_vector_store.add_documents(
             texts=["Python code", "Java code", "Python tutorial"],
@@ -104,7 +105,9 @@ class TestSimpleVectorStore:
             assert result["metadata"]["language"] == "python"
 
     @pytest.mark.asyncio
-    async def test_query_with_operator_filter(self, simple_vector_store: SimpleVectorStore):
+    async def test_query_with_operator_filter(
+        self, simple_vector_store: SimpleVectorStore
+    ):
         """Test querying with operator-based metadata filter."""
         await simple_vector_store.add_documents(
             texts=["Doc 1", "Doc 2", "Doc 3"],
@@ -293,9 +296,13 @@ class TestSimpleVectorStore:
         assert doc["metadata"]["updated"] is True
 
     @pytest.mark.asyncio
-    async def test_update_metadata_not_found(self, simple_vector_store: SimpleVectorStore):
+    async def test_update_metadata_not_found(
+        self, simple_vector_store: SimpleVectorStore
+    ):
         """Test updating metadata for non-existent document."""
-        result = await simple_vector_store.update_metadata("nonexistent", {"key": "value"})
+        result = await simple_vector_store.update_metadata(
+            "nonexistent", {"key": "value"}
+        )
         assert result is False
 
     @pytest.mark.asyncio
@@ -320,7 +327,9 @@ class TestSimpleVectorStore:
         assert "last_accessed_at" in doc["metadata"]
 
     @pytest.mark.asyncio
-    async def test_increment_hit_count_not_found(self, simple_vector_store: SimpleVectorStore):
+    async def test_increment_hit_count_not_found(
+        self, simple_vector_store: SimpleVectorStore
+    ):
         """Test incrementing hit count for non-existent document."""
         result = await simple_vector_store.increment_hit_count("nonexistent")
         assert result == -1

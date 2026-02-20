@@ -10,6 +10,7 @@ This module provides:
 """
 
 from .config import (
+    DEFAULT_SANITIZATION_CONFIG,
     CategoryRiskMapping,
     DetectionConfig,
     NormalizationConfig,
@@ -18,7 +19,6 @@ from .config import (
     SanitizationConfig,
     StoragePolicyConfig,
     WrappingConfig,
-    DEFAULT_SANITIZATION_CONFIG,
 )
 from .markers import ContentMetadata, UntrustedContentMarker
 from .patterns import InjectionPattern, InjectionPatternLibrary

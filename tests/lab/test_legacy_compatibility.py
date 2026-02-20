@@ -11,8 +11,7 @@ Ref: Phase 1 Build Plan, Step 5
 """
 
 import pytest
-
-from friday_cli.container import FridayContainer, FridayConfig
+from friday_cli.container import FridayConfig, FridayContainer
 from friday_core.profiles import MemoryProfile
 
 

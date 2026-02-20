@@ -9,6 +9,7 @@ from typing import Protocol
 
 from .config import VoiceSettingsConfig
 
+
 class AudioFormat(str, Enum):
     """Supported audio encodings for playback."""
 
@@ -33,7 +34,9 @@ class TTSAdapter(Protocol):
     sample_rate: int | None
     channels: int | None
 
-    async def stream(self, text: str, voice_id: str | None, settings: VoiceSettingsConfig) -> AudioStream:
+    async def stream(
+        self, text: str, voice_id: str | None, settings: VoiceSettingsConfig
+    ) -> AudioStream:
         """Return an async stream of audio chunks for the given text."""
         ...
 

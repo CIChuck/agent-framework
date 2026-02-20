@@ -10,19 +10,15 @@ Tests cover:
 
 from __future__ import annotations
 
-import asyncio
 import tempfile
 from pathlib import Path
 
 import pytest
 
 from friday_tools.shell.command import (
-    DEFAULT_BLOCKED_COMMANDS,
-    DEFAULT_BLOCKED_PATTERNS,
     CommandExecuteTool,
     CommandSafetyValidator,
 )
-
 
 # =============================================================================
 # VALIDATOR TESTS
@@ -63,19 +59,25 @@ class TestCommandSafetyValidator:
 
     def test_allows_pipes(self):
         """Pipes should be allowed (unlike ShellSandbox)."""
-        is_safe, error = self.validator.validate("cat file.txt | grep pattern", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "cat file.txt | grep pattern", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
     def test_allows_command_chaining_and(self):
         """&& chaining should be allowed."""
-        is_safe, error = self.validator.validate("echo hello && echo world", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo hello && echo world", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
     def test_allows_command_chaining_or(self):
         """|| chaining should be allowed."""
-        is_safe, error = self.validator.validate("cat missing || echo not found", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "cat missing || echo not found", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
@@ -99,7 +101,9 @@ class TestCommandSafetyValidator:
 
     def test_allows_redirect_to_relative_path(self):
         """Redirect to relative path in cwd should be allowed."""
-        is_safe, error = self.validator.validate("echo test > output.txt", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test > output.txt", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
@@ -107,7 +111,9 @@ class TestCommandSafetyValidator:
         """Redirect to subdirectory should be allowed."""
         subdir = self.temp_dir / "subdir"
         subdir.mkdir()
-        is_safe, error = self.validator.validate("echo test > subdir/file.txt", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test > subdir/file.txt", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
@@ -119,7 +125,9 @@ class TestCommandSafetyValidator:
 
     def test_allows_dev_null_redirect(self):
         """Redirect to /dev/null should be allowed."""
-        is_safe, error = self.validator.validate("curl -s url 2>/dev/null", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "curl -s url 2>/dev/null", self.temp_dir
+        )
         assert is_safe is True
         assert error is None
 
@@ -165,7 +173,9 @@ class TestCommandSafetyValidator:
 
     def test_blocks_dd(self):
         """dd should be blocked."""
-        is_safe, error = self.validator.validate("dd if=/dev/zero of=file", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "dd if=/dev/zero of=file", self.temp_dir
+        )
         assert is_safe is False
         assert "dd" in error.lower()
 
@@ -213,7 +223,9 @@ class TestCommandSafetyValidator:
 
     def test_blocks_command_in_chain(self):
         """Blocked command in && chain should be blocked."""
-        is_safe, error = self.validator.validate("echo test && sudo whoami", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test && sudo whoami", self.temp_dir
+        )
         assert is_safe is False
         assert "sudo" in error.lower()
 
@@ -235,19 +247,25 @@ class TestCommandSafetyValidator:
 
     def test_blocks_redirect_to_absolute_path(self):
         """Redirect to absolute path should be blocked."""
-        is_safe, error = self.validator.validate("echo test > /etc/passwd", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test > /etc/passwd", self.temp_dir
+        )
         assert is_safe is False
         assert "absolute" in error.lower()
 
     def test_blocks_redirect_with_path_traversal(self):
         """Redirect with .. should be blocked."""
-        is_safe, error = self.validator.validate("echo test > ../outside.txt", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test > ../outside.txt", self.temp_dir
+        )
         assert is_safe is False
         assert "traversal" in error.lower()
 
     def test_blocks_redirect_to_home(self):
         """Redirect to ~ should be blocked."""
-        is_safe, error = self.validator.validate("echo test > ~/file.txt", self.temp_dir)
+        is_safe, error = self.validator.validate(
+            "echo test > ~/file.txt", self.temp_dir
+        )
         assert is_safe is False
         assert "home" in error.lower()
 
@@ -308,9 +326,13 @@ class TestCommandSafetyValidator:
 
     def test_custom_blocked_patterns(self):
         """Custom blocked patterns should work."""
-        custom_validator = CommandSafetyValidator(blocked_patterns=[r"dangerous_pattern"])
+        custom_validator = CommandSafetyValidator(
+            blocked_patterns=[r"dangerous_pattern"]
+        )
 
-        is_safe, error = custom_validator.validate("dangerous_pattern here", self.temp_dir)
+        is_safe, error = custom_validator.validate(
+            "dangerous_pattern here", self.temp_dir
+        )
         assert is_safe is False
         assert "pattern" in error.lower()
 
@@ -380,7 +402,9 @@ class TestCommandExecuteTool:
     async def test_execute_with_pipe(self):
         """Command with pipe should work."""
         result = await self.tool.run(
-            self.tool.Input(command="echo 'hello world' | grep hello", cwd=str(self.temp_dir))
+            self.tool.Input(
+                command="echo 'hello world' | grep hello", cwd=str(self.temp_dir)
+            )
         )
         assert result.error is None
         assert "hello" in result.content
@@ -522,8 +546,7 @@ class TestCommandExecuteIntegration:
         # but we can validate the command is allowed
         validator = CommandSafetyValidator()
         is_safe, error = validator.validate(
-            "curl -s https://api.example.com | jq '.data'",
-            self.temp_dir
+            "curl -s https://api.example.com | jq '.data'", self.temp_dir
         )
         assert is_safe is True
 

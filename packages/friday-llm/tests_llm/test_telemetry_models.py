@@ -5,17 +5,15 @@ Tests Pydantic model validation and data conversion.
 """
 
 import pytest
-from datetime import datetime
-
 from friday_llm.telemetry_models import (
-    TokenUsage,
-    CostEstimate,
-    StreamingMetrics,
     ConversationContext,
-    LLMCallMetrics,
+    CostEstimate,
     EmbeddingMetrics,
-    GenAIOperationType,
     ErrorCategory,
+    GenAIOperationType,
+    LLMCallMetrics,
+    StreamingMetrics,
+    TokenUsage,
 )
 
 

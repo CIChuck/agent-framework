@@ -17,10 +17,6 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from friday_core.interfaces.runtime import SystemRuntime
-from friday_core.profiles import MemoryProfile
-from friday_core.security import SanitizationConfig
-
 from friday_agent import (
     AgentLoader,
     AgentOrchestrator,
@@ -29,6 +25,9 @@ from friday_agent import (
     CopilotAgent,
     DefaultToolRegistry,
 )
+from friday_core.interfaces.runtime import SystemRuntime
+from friday_core.profiles import MemoryProfile
+from friday_core.security import SanitizationConfig
 
 from friday_runtime.config import RuntimeConfig
 from friday_runtime.di import DIContainer
@@ -112,9 +111,7 @@ class RuntimeKernel(SystemRuntime):
         self._initialized = False
         logger.info("RuntimeKernel stopped")
 
-    async def create_session(
-        self, user_id: str = "default"
-    ) -> str:
+    async def create_session(self, user_id: str = "default") -> str:
         """
         Create a new session identifier.
 
@@ -128,9 +125,7 @@ class RuntimeKernel(SystemRuntime):
             A unique session ID string.
         """
         session_id = str(uuid.uuid4())
-        logger.debug(
-            f"Created session {session_id} for user {user_id}"
-        )
+        logger.debug(f"Created session {session_id} for user {user_id}")
         return session_id
 
     def spawn_agent(self, name: str) -> Any:
@@ -167,13 +162,16 @@ class RuntimeKernel(SystemRuntime):
         """
         self._ensure_initialized()
         from friday_agent.workflows import WorkflowEngine, WorkflowLoader
+        from friday_memory import ScratchPadStore
 
-        loader = WorkflowLoader(
-            Path(self._config.agents_dir or "agents") / "workflows"
-        )
+        loader = WorkflowLoader(Path(self._config.agents_dir or "agents") / "workflows")
         workflow = loader.load(workflow_name)
 
-        engine = WorkflowEngine(orchestrator=self.orchestrator)
+        scratchpad = ScratchPadStore()
+        engine = WorkflowEngine(
+            orchestrator=self.orchestrator,
+            scratchpad=scratchpad,
+        )
         return await engine.execute(workflow, initial_inputs)
 
     # --- Eager Service Accessors ---
@@ -218,9 +216,16 @@ class RuntimeKernel(SystemRuntime):
         return self._di.context_engine
 
     @property
+    def multi_agent_memory(self) -> Any:
+        """Get multi-agent memory facade when multi-agent mode is enabled."""
+        self._ensure_initialized()
+        return self._di.multi_agent_memory
+
+    @property
     def tool_registry(self) -> DefaultToolRegistry:
         """Get tool registry."""
         self._ensure_initialized()
+        assert self._di.tool_registry is not None
         return self._di.tool_registry
 
     # --- Lazy Agent Subsystem ---
@@ -258,9 +263,7 @@ class RuntimeKernel(SystemRuntime):
             try:
                 self._agent_registry.load_all_from_directory()
             except Exception as e:
-                logger.warning(
-                    f"Could not load agents from directory: {e}"
-                )
+                logger.warning(f"Could not load agents from directory: {e}")
 
         return self._agent_registry
 
@@ -277,10 +280,7 @@ class RuntimeKernel(SystemRuntime):
             available_agents = self.agent_registry.list_agents()
             if available_agents:
                 default_agent = available_agents[0]
-                logger.debug(
-                    f"Using '{default_agent}' as default "
-                    f"orchestrator agent"
-                )
+                logger.debug(f"Using '{default_agent}' as default orchestrator agent")
 
             self._orchestrator = AgentOrchestrator(
                 registry=self.agent_registry,
@@ -320,7 +320,7 @@ class RuntimeKernel(SystemRuntime):
             sanitization_config=self._sanitization_config,
         )
 
-    def get_team_agent(self, name: str) -> CopilotAgent:
+    def get_team_agent(self, name: str) -> Any:
         """
         Get or create a named agent from the registry.
 
@@ -328,7 +328,7 @@ class RuntimeKernel(SystemRuntime):
             name: Agent name from registry.
 
         Returns:
-            Configured CopilotAgent instance.
+            Configured agent instance.
         """
         self._ensure_initialized()
         return self.agent_registry.create_agent(name)
@@ -370,9 +370,7 @@ class RuntimeKernel(SystemRuntime):
     def _ensure_initialized(self) -> None:
         """Raise if kernel not started."""
         if not self._initialized:
-            raise RuntimeError(
-                "RuntimeKernel not started. Call start() first."
-            )
+            raise RuntimeError("RuntimeKernel not started. Call start() first.")
 
     def _create_agent(self, profile: AgentProfile) -> CopilotAgent:
         """
@@ -401,8 +399,7 @@ class RuntimeKernel(SystemRuntime):
         return AgentProfile(
             name="Friday",
             role="Personal Assistant",
-            goal="Help users accomplish their tasks efficiently "
-            "and accurately",
+            goal="Help users accomplish their tasks efficiently and accurately",
             system_prompt_template=(
                 "You are {name}, a {role}.\n\n"
                 "Your goal: {goal}\n\n"

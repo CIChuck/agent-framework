@@ -10,8 +10,10 @@ Ref: docs/build-plan/memory-chat-v2-prd.md
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import sys
-from typing import TypeVar, Coroutine, Any
+from collections.abc import Coroutine
+from typing import Any, TypeVar
 
 from .display import get_console
 
@@ -104,9 +106,9 @@ async def _check_for_key(token: CancellationToken, key_char: str) -> None:
             await asyncio.sleep(0.05)
     else:
         # Unix/Mac: use termios for raw input
+        import select
         import termios
         import tty
-        import select
 
         try:
             # Save terminal settings
@@ -190,10 +192,8 @@ async def run_cancellable(
         # Cancel pending tasks
         for task in pending:
             task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await task
-            except asyncio.CancelledError:
-                pass
 
         # Check if operation completed or was cancelled
         if token.is_cancelled:
@@ -223,13 +223,15 @@ class CancellableContext:
                 print("Operation was cancelled")
     """
 
-    def __init__(self, show_hint: bool = True, cancel_message: str = "Press [Esc] to cancel"):
+    def __init__(
+        self, show_hint: bool = True, cancel_message: str = "Press [Esc] to cancel"
+    ):
         self.show_hint = show_hint
         self.cancel_message = cancel_message
         self.was_cancelled = False
         self._hint_shown = False
 
-    async def __aenter__(self) -> "CancellableContext":
+    async def __aenter__(self) -> CancellableContext:
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb) -> bool:

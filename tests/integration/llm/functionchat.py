@@ -18,7 +18,6 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-
 from friday_llm import (
     CircuitBreakerOpenError,
     LiteLLMService,
@@ -56,6 +55,7 @@ def print_banner() -> None:
 # Tool Definitions
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def get_current_datetime() -> dict[str, str]:
     """Get the current date, time, and day of the week."""
     now = datetime.now()
@@ -76,7 +76,7 @@ TOOLS = [
             "name": "get_current_datetime",
             "description": (
                 "Get the current date, time, and day of the week on the local machine. "
-                "Use this when the user asks about the current time, date, what day it is, "
+                "Use this when the user asks about the current time, date, what day it is, "  # noqa: E501
                 "or any time-related questions."
             ),
             "parameters": {
@@ -102,6 +102,7 @@ def execute_tool(tool_name: str, arguments: dict[str, Any]) -> str:
 # Chat Session
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class FunctionChatSession:
     """Manages a chat session with function calling support."""
 
@@ -119,10 +120,12 @@ class FunctionChatSession:
 
         # Add system message
         if system_prompt:
-            self.messages.append({
-                "role": "system",
-                "content": system_prompt,
-            })
+            self.messages.append(
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                }
+            )
 
     async def send_message(self, user_input: str) -> str | None:
         """Send a message, handle tool calls, and return final response.
@@ -131,10 +134,12 @@ class FunctionChatSession:
             The final response text, or None if an error occurred.
         """
         # Add user message
-        self.messages.append({
-            "role": "user",
-            "content": user_input,
-        })
+        self.messages.append(
+            {
+                "role": "user",
+                "content": user_input,
+            }
+        )
 
         # Trim history if needed
         self._trim_history()
@@ -161,29 +166,33 @@ class FunctionChatSession:
                     print(f"📋 Result: {result}")
 
                     # Add assistant message with tool call
-                    self.messages.append({
-                        "role": "assistant",
-                        "content": None,
-                        "tool_calls": [
-                            {
-                                "id": tool_call.id,
-                                "type": "function",
-                                "function": {
-                                    "name": func_name,
-                                    "arguments": json.dumps(tool_call.arguments),
-                                },
-                            }
-                        ],
-                    })
+                    self.messages.append(
+                        {
+                            "role": "assistant",
+                            "content": None,
+                            "tool_calls": [
+                                {
+                                    "id": tool_call.id,
+                                    "type": "function",
+                                    "function": {
+                                        "name": func_name,
+                                        "arguments": json.dumps(tool_call.arguments),
+                                    },
+                                }
+                            ],
+                        }
+                    )
 
                     # Add tool result
-                    self.messages.append({
-                        "role": "tool",
-                        "tool_call_id": tool_call.id,
-                        "content": result,
-                    })
+                    self.messages.append(
+                        {
+                            "role": "tool",
+                            "tool_call_id": tool_call.id,
+                            "content": result,
+                        }
+                    )
 
-                # Get final response with streaming (no tools to avoid another tool call)
+                # Get final response with streaming (no tools to avoid another tool call)  # noqa: E501
                 print("\n" + "─" * 60)
                 full_response = ""
 
@@ -197,10 +206,12 @@ class FunctionChatSession:
                 print("\n" + "─" * 60 + "\n")
 
                 # Add final assistant message
-                self.messages.append({
-                    "role": "assistant",
-                    "content": full_response,
-                })
+                self.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": full_response,
+                    }
+                )
 
                 return full_response
 
@@ -209,10 +220,12 @@ class FunctionChatSession:
                 content = response.content or ""
 
                 # Add to history
-                self.messages.append({
-                    "role": "assistant",
-                    "content": content,
-                })
+                self.messages.append(
+                    {
+                        "role": "assistant",
+                        "content": content,
+                    }
+                )
 
                 print("\n" + "─" * 60)
                 print(content)
@@ -222,7 +235,9 @@ class FunctionChatSession:
 
         except LLMTimeoutError as e:
             print(f"\n⏱️  Request timed out after {e.timeout_seconds}s")
-            print("The LLM is taking too long. Try a shorter message or check the server.")
+            print(
+                "The LLM is taking too long. Try a shorter message or check the server."
+            )
             # Remove the user message since we didn't get a response
             self.messages.pop()
             return None
@@ -236,7 +251,7 @@ class FunctionChatSession:
             return None
 
         except CircuitBreakerOpenError as e:
-            print(f"\n🔌 Service temporarily unavailable")
+            print("\n🔌 Service temporarily unavailable")
             print(f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds.")
             # Remove the user message since we didn't get a response
             self.messages.pop()
@@ -266,6 +281,7 @@ class FunctionChatSession:
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 async def main() -> None:
     """Main chat loop."""
     # Determine config path
@@ -289,7 +305,7 @@ When the user asks about:
 
 You should call the get_current_datetime function to get accurate information, then respond naturally using that data.
 
-For other questions, respond normally without calling any functions."""
+For other questions, respond normally without calling any functions."""  # noqa: E501
 
     # Display configuration
     print_banner()

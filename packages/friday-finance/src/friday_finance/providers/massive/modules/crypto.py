@@ -113,12 +113,16 @@ class CryptoModule:
             "ticker": bond_ticker,
         }
         if "error" not in bond_result:
-            bond_proxy.update({
-                "price": bond_result["close"],
-                "date": bond_result["date"],
-            })
+            bond_proxy.update(
+                {
+                    "price": bond_result["close"],
+                    "date": bond_result["date"],
+                }
+            )
         else:
-            logger.warning("Bond data unavailable for risk comparison", error=bond_result["error"])
+            logger.warning(
+                "Bond data unavailable for risk comparison", error=bond_result["error"]
+            )
             bond_proxy["error"] = bond_result["error"]
 
         return {

@@ -28,9 +28,7 @@ class MoltbookConfig(BaseModel):
     @classmethod
     def _validate_base_url(cls, value: str) -> str:
         if not value.startswith("https://www.moltbook.com/api/v1"):
-            raise ValueError(
-                "Base URL must start with https://www.moltbook.com/api/v1"
-            )
+            raise ValueError("Base URL must start with https://www.moltbook.com/api/v1")
         return value.rstrip("/")
 
     model_config = ConfigDict(

@@ -38,9 +38,7 @@ class LabHarnessInterface(ABC):
         ...
 
     @abstractmethod
-    async def inject_conflict(
-        self, fact_a: Any, fact_b: Any
-    ) -> None:
+    async def inject_conflict(self, fact_a: Any, fact_b: Any) -> None:
         """
         Simulate a race condition or semantic conflict.
 

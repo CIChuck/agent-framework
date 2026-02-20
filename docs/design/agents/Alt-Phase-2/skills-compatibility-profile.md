@@ -6,7 +6,7 @@
 **References:**
 - `docs/design/agents/Alt-Phase-2/agent-contract.md`
 - `docs/design/agents/Alt-Phase-2/technical-specifications.md`
-- `docs/design/agents/Alt-Phase-2/phase-2-build-plan.md`
+- Phase 2 build baseline (archived)
 - `docs/design/agents/Alt-Phase-2/phase-3-build-plan.md`
 - `https://github.com/agentskills/agentskills/tree/main`
 - `https://github.com/anthropics/skills`

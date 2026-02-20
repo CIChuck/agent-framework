@@ -13,9 +13,9 @@ Tests cover:
 - Status and listing
 """
 
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from friday_agent import (
     AgentOrchestrator,
     AgentProfile,
@@ -66,8 +66,19 @@ def mock_registry(sample_profile, second_profile, mock_agent):
     registry.has_factory.return_value = True
     registry.list_agents.return_value = ["researcher", "coder"]
     registry.exists.side_effect = lambda name: name in ["researcher", "coder"]
-    registry.get.side_effect = lambda name: {"researcher": sample_profile, "coder": second_profile}.get(name)
-    registry.get_or_raise.side_effect = lambda name: {"researcher": sample_profile, "coder": second_profile}[name]
+    registry.get.side_effect = lambda name: {
+        "researcher": sample_profile,
+        "coder": second_profile,
+    }.get(name)
+    registry.get_or_raise.side_effect = lambda name: {
+        "researcher": sample_profile,
+        "coder": second_profile,
+    }[name]
+    registry.resolve_agent_for_skill.side_effect = (
+        lambda skill_ref, preferred_agent=None: (
+            preferred_agent if preferred_agent in ["researcher", "coder"] else "coder"
+        )
+    )
 
     # Mock create_agent to raise KeyError for unknown agents
     def create_agent_mock(name):
@@ -124,7 +135,9 @@ class TestExplicitRouting:
     @pytest.mark.asyncio
     async def test_explicit_routing(self, orchestrator, mock_agent):
         """Test routing with @agent_name prefix."""
-        response = await orchestrator.process("@researcher Find information about memory")
+        response = await orchestrator.process(
+            "@researcher Find information about memory"
+        )
 
         # Should create agent and process message
         assert response == "Agent response"
@@ -187,7 +200,9 @@ class TestAgentSwitching:
             await orchestrator.switch_agent("unknown")
 
     @pytest.mark.asyncio
-    async def test_switch_preserves_previous_in_cache(self, orchestrator, mock_registry, mock_agent):
+    async def test_switch_preserves_previous_in_cache(
+        self, orchestrator, mock_registry, mock_agent
+    ):
         """Test that switching preserves previous agent in cache."""
         # First use researcher
         await orchestrator.process("Hello")
@@ -279,6 +294,59 @@ class TestDelegation:
         """Test delegation to unknown agent raises error."""
         with pytest.raises(OrchestratorError, match="not found"):
             await orchestrator.delegate("unknown", "Task")
+
+    @pytest.mark.asyncio
+    async def test_delegate_validates_handoff_payload(self, orchestrator):
+        """Test invalid handoff payload is rejected before execution."""
+        await orchestrator.switch_agent("researcher")
+
+        with pytest.raises(OrchestratorError, match="missing required fields"):
+            await orchestrator.delegate(
+                "coder",
+                "Task",
+                handoff_payload={"handoff_id": "h1"},
+            )
+
+    @pytest.mark.asyncio
+    async def test_delegate_records_handoff_payload(self, orchestrator):
+        """Test valid handoff payload is normalized and recorded."""
+        await orchestrator.switch_agent("researcher")
+
+        await orchestrator.delegate(
+            "coder",
+            "Task",
+            handoff_payload={
+                "handoff_id": "handoff_1",
+                "ownership": "coder",
+                "acceptance_criteria": ["return summary", "include sources"],
+                "memory_scope": "private_plus_shared",
+            },
+        )
+
+        history = orchestrator.get_delegation_history()
+        assert len(history) == 1
+        assert history[0]["handoff"]["handoff_id"] == "handoff_1"
+        assert history[0]["handoff"]["target_agent"] == "coder"
+
+    @pytest.mark.asyncio
+    async def test_delegate_resolves_agent_from_skill_reference(
+        self, orchestrator, mock_registry
+    ):
+        """Test skill-ref delegation resolution uses registry skill routing."""
+        await orchestrator.switch_agent("researcher")
+
+        await orchestrator.delegate(
+            "researcher",
+            "Skill-routed task",
+            skill_ref="planner.basic@1.0.0",
+        )
+
+        mock_registry.resolve_agent_for_skill.assert_called_once_with(
+            "planner.basic@1.0.0",
+            preferred_agent="researcher",
+        )
+        history = orchestrator.get_delegation_history()
+        assert history[0]["skill_ref"] == "planner.basic@1.0.0"
 
 
 class TestStatusAndListing:
@@ -380,6 +448,33 @@ class TestRoutingParser:
 
         assert agent is None
         assert message == "Email user@example.com"
+
+
+class TestRouteStage:
+    """Tests for route-stage decomposition."""
+
+    def test_route_explicit_target(self, orchestrator):
+        """Test explicit route returns correct decision."""
+        decision = orchestrator.route("@researcher Find info")
+        assert decision.target_agent == "researcher"
+        assert decision.message == "Find info"
+        assert decision.source == "explicit"
+
+    @pytest.mark.asyncio
+    async def test_route_active_target(self, orchestrator):
+        """Test active agent route path."""
+        await orchestrator.switch_agent("coder")
+        decision = orchestrator.route("Continue work")
+        assert decision.target_agent == "coder"
+        assert decision.message == "Continue work"
+        assert decision.source == "active"
+
+    def test_route_default_target(self, orchestrator):
+        """Test default route path when no active agent."""
+        decision = orchestrator.route("Do the thing")
+        assert decision.target_agent == "researcher"
+        assert decision.message == "Do the thing"
+        assert decision.source == "default"
 
 
 class TestMessageTracking:

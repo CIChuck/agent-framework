@@ -4,30 +4,29 @@ Tests for LLM Telemetry Helper.
 Tests telemetry context managers, streaming tracker, and error classification.
 """
 
-import pytest
 import time
 from unittest.mock import MagicMock
 
+import litellm
+import pytest
+from friday_llm.exceptions import (
+    CircuitBreakerOpenError,
+    LLMTimeoutError,
+)
+from friday_llm.pricing import CostCalculator
 from friday_llm.telemetry_helper import (
-    LLMTelemetryHelper,
-    StreamingTracker,
     CompletionTracker,
     EmbeddingTracker,
+    LLMTelemetryHelper,
     OTelAttributes,
+    StreamingTracker,
     classify_error,
 )
-from friday_llm.pricing import CostCalculator, PricingConfig
 from friday_llm.telemetry_models import (
     ConversationContext,
-    TokenUsage,
     ErrorCategory,
+    TokenUsage,
 )
-from friday_llm.exceptions import (
-    LLMTimeoutError,
-    LLMRetryExhaustedError,
-    CircuitBreakerOpenError,
-)
-import litellm
 
 
 class TestOTelAttributes:
@@ -373,14 +372,16 @@ class TestLLMTelemetryHelper:
         """Test track_completion handles errors correctly."""
         helper = LLMTelemetryHelper(telemetry=None, cost_calculator=None)
 
-        with pytest.raises(ValueError):
-            with helper.track_completion(
+        with (
+            pytest.raises(ValueError),
+            helper.track_completion(
                 model="gpt-4",
                 context=None,
                 temperature=0.7,
                 tool_count=0,
-            ) as tracker:
-                raise ValueError("Test error")
+            ) as tracker,
+        ):
+            raise ValueError("Test error")
 
         # Error should be recorded
         assert tracker.success is False
@@ -427,7 +428,7 @@ class TestLLMTelemetryHelper:
             context=None,
             temperature=0.7,
             tool_count=0,
-        ) as tracker:
+        ):
             pass
 
         # Telemetry methods should have been called
@@ -452,7 +453,9 @@ class TestLLMTelemetryHelper:
         ) as tracker:
             tracker.set_response(
                 response_model="gpt-4",
-                usage=TokenUsage(input_tokens=1000, output_tokens=500, total_tokens=1500),
+                usage=TokenUsage(
+                    input_tokens=1000, output_tokens=500, total_tokens=1500
+                ),
             )
 
         metrics = tracker.to_metrics()

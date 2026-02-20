@@ -100,18 +100,14 @@ class HeadlessHarness(LabHarnessInterface):
             agent_name=name,
         )
 
-    async def inject_conflict(
-        self, fact_a: Any, fact_b: Any
-    ) -> None:
+    async def inject_conflict(self, fact_a: Any, fact_b: Any) -> None:
         """
         Simulate a race condition or semantic conflict.
 
         Raises:
             NotImplementedError: Requires Arbitrator (Phase 2).
         """
-        raise NotImplementedError(
-            "Conflict injection requires Arbitrator — Phase 2"
-        )
+        raise NotImplementedError("Conflict injection requires Arbitrator — Phase 2")
 
     async def replay_session(self, session_log_path: str) -> None:
         """

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 @tool(
     name="scratchpad_write",
-    description="Write a value to the agent's scratchpad. Use this to save important information that should survive context pruning.",
+    description="Write a value to the agent's scratchpad. Use this to save important information that should survive context pruning.",  # noqa: E501
     category="utility",
 )
 async def scratchpad_write(
@@ -53,7 +53,7 @@ async def scratchpad_write(
 
 @tool(
     name="scratchpad_read",
-    description="Read a value from the agent's scratchpad. Retrieves previously saved information.",
+    description="Read a value from the agent's scratchpad. Retrieves previously saved information.",  # noqa: E501
     category="utility",
 )
 async def scratchpad_read(
@@ -83,7 +83,7 @@ async def scratchpad_read(
 
 @tool(
     name="recall_memory",
-    description="Search the agent's long-term memory for relevant information. Use this when you need to remember something from past conversations or stored knowledge.",
+    description="Search the agent's long-term memory for relevant information. Use this when you need to remember something from past conversations or stored knowledge.",  # noqa: E501
     category="data",
 )
 async def recall_memory(
@@ -139,7 +139,7 @@ async def recall_memory(
 
 @tool(
     name="store_fact",
-    description="Explicitly store a fact in the knowledge graph. Use this when you learn something important that should be remembered long-term.",
+    description="Explicitly store a fact in the knowledge graph. Use this when you learn something important that should be remembered long-term.",  # noqa: E501
     category="data",
 )
 async def store_fact(
@@ -224,11 +224,7 @@ async def scratchpad_list(
         Comma-separated list of keys, or message if empty
     """
     prefix = "session:scratchpad:"
-    keys = [
-        k[len(prefix):]
-        for k in state.scoped_vars.keys()
-        if k.startswith(prefix)
-    ]
+    keys = [k[len(prefix) :] for k in state.scoped_vars if k.startswith(prefix)]
 
     if keys:
         return f"Scratchpad keys: {', '.join(keys)}"
@@ -254,10 +250,7 @@ async def scratchpad_clear(
         Confirmation message with count of cleared items
     """
     prefix = "session:scratchpad:"
-    keys_to_delete = [
-        k for k in state.scoped_vars.keys()
-        if k.startswith(prefix)
-    ]
+    keys_to_delete = [k for k in state.scoped_vars if k.startswith(prefix)]
 
     for key in keys_to_delete:
         state.delete_var(key)

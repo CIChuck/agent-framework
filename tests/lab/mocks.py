@@ -10,16 +10,14 @@ Ref: Phase 1 Build Plan, Step 7.4
 from __future__ import annotations
 
 from itertools import cycle
-from unittest.mock import AsyncMock, MagicMock
 from typing import TYPE_CHECKING
+from unittest.mock import AsyncMock, MagicMock
 
 if TYPE_CHECKING:
     from friday_agent.profile import AgentProfile
 
 
-def create_mock_agent_factory(
-    name: str, fixed_responses: list[str]
-):
+def create_mock_agent_factory(name: str, fixed_responses: list[str]):
     """
     Create a factory function compatible with AgentRegistry.set_factory().
 
@@ -35,13 +33,11 @@ def create_mock_agent_factory(
     """
     response_cycle = cycle(fixed_responses)
 
-    def factory(profile: "AgentProfile"):
+    def factory(profile: AgentProfile):
         """Create a deterministic mock agent."""
         agent = AsyncMock()
         agent.name = name
-        agent.run = AsyncMock(
-            side_effect=lambda _: next(response_cycle)
-        )
+        agent.run = AsyncMock(side_effect=lambda _: next(response_cycle))
         agent.initialize_session = AsyncMock()
         agent.set_autonomy_policy = MagicMock()
         agent.emit_telemetry = MagicMock()

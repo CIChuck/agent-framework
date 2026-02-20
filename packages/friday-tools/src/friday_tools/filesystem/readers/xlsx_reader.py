@@ -25,7 +25,9 @@ XLSX_MIMETYPES = [
 ]
 
 
-def _format_as_markdown_table(rows: list[list[Any]], headers: list[str] | None = None) -> str:
+def _format_as_markdown_table(
+    rows: list[list[Any]], headers: list[str] | None = None
+) -> str:
     """Format rows as a markdown table.
 
     Args:
@@ -68,9 +70,13 @@ def _format_as_markdown_table(rows: list[list[Any]], headers: list[str] | None =
     # Header row
     if headers:
         header_row = normalized_rows[0]
-        header_line = "| " + " | ".join(
-            str(cell).ljust(col_widths[i]) for i, cell in enumerate(header_row)
-        ) + " |"
+        header_line = (
+            "| "
+            + " | ".join(
+                str(cell).ljust(col_widths[i]) for i, cell in enumerate(header_row)
+            )
+            + " |"
+        )
         lines.append(header_line)
 
         # Separator
@@ -83,9 +89,11 @@ def _format_as_markdown_table(rows: list[list[Any]], headers: list[str] | None =
 
     # Data rows
     for row in data_rows:
-        row_line = "| " + " | ".join(
-            str(cell).ljust(col_widths[i]) for i, cell in enumerate(row)
-        ) + " |"
+        row_line = (
+            "| "
+            + " | ".join(str(cell).ljust(col_widths[i]) for i, cell in enumerate(row))
+            + " |"
+        )
         lines.append(row_line)
 
     return "\n".join(lines)
@@ -191,7 +199,7 @@ class XlsxReader:
                     wb.close()
                     return ReaderResult(
                         content="",
-                        error=f"Sheet index {sheet} out of range (0-{len(sheet_names)-1})",
+                        error=f"Sheet index {sheet} out of range (0-{len(sheet_names) - 1})",  # noqa: E501
                         metadata={"path": str(path), "sheet_names": sheet_names},
                     )
                 selected_sheet = sheet_names[sheet]
@@ -243,7 +251,9 @@ class XlsxReader:
 
             # Separate headers and data
             if include_headers:
-                headers = [str(cell) if cell is not None else "" for cell in all_rows[0]]
+                headers = [
+                    str(cell) if cell is not None else "" for cell in all_rows[0]
+                ]
                 data_rows = all_rows[1:]
             else:
                 headers = None
@@ -270,7 +280,9 @@ class XlsxReader:
                 if headers:
                     lines.append("\t".join(headers))
                 for row in data_rows:
-                    lines.append("\t".join(str(cell) if cell is not None else "" for cell in row))
+                    lines.append(
+                        "\t".join(str(cell) if cell is not None else "" for cell in row)
+                    )
                 output = "\n".join(lines)
 
             # Build metadata

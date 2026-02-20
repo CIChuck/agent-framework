@@ -67,17 +67,13 @@ def _configure_structlog(environment: str) -> None:
 
     if environment == "production":
         # JSON output for production (machine-parseable)
-        shared_processors.append(
-            structlog.processors.JSONRenderer()
-        )
+        shared_processors.append(structlog.processors.JSONRenderer())
     else:
         # Colored console output for development (human-readable)
         shared_processors.append(
             structlog.dev.ConsoleRenderer(
                 colors=True,
-                exception_formatter=(
-                    structlog.dev.plain_traceback
-                ),
+                exception_formatter=(structlog.dev.plain_traceback),
             )
         )
 
@@ -94,9 +90,7 @@ def _configure_structlog(environment: str) -> None:
 _configured_for: str | None = None
 
 
-def get_logger(
-    name: str, environment: str = "development"
-) -> LoggerProtocol:
+def get_logger(name: str, environment: str = "development") -> LoggerProtocol:
     """
     Factory function for structured loggers.
 

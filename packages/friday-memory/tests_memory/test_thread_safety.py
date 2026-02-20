@@ -10,10 +10,14 @@ Tests verify:
 import asyncio
 
 import pytest
-
 from friday_memory.adapters.episodic import InMemoryEpisodicStore
 from friday_memory.adapters.graph import ElementXGraphStore, LockMetrics
-from friday_memory.models import GraphEdge, GraphNode, InteractionTurn, ProvenanceMetadata
+from friday_memory.models import (
+    GraphEdge,
+    GraphNode,
+    InteractionTurn,
+    ProvenanceMetadata,
+)
 
 
 class TestGraphStoreThreadSafety:
@@ -188,14 +192,18 @@ class TestGraphStoreThreadSafety:
 
         # Verify hit_count unchanged
         node_after = await graph_store.get_node("n1")
-        assert node_after.hit_count == initial_hit_count, "get_neighbors should not increment hit_count"
+        assert node_after.hit_count == initial_hit_count, (
+            "get_neighbors should not increment hit_count"
+        )
 
         # Now explicitly record access
         await graph_store.record_node_access("n1")
 
         # Verify hit_count incremented
         node_accessed = await graph_store.get_node("n1")
-        assert node_accessed.hit_count == initial_hit_count + 1, "record_node_access should increment hit_count"
+        assert node_accessed.hit_count == initial_hit_count + 1, (
+            "record_node_access should increment hit_count"
+        )
 
 
 class TestEpisodicStoreThreadSafety:
@@ -312,7 +320,9 @@ class TestConcurrencyStress:
     @pytest.fixture
     def provenance(self):
         """Create test provenance."""
-        return ProvenanceMetadata(source_type="test", source_id="stress-test", confidence=0.9)
+        return ProvenanceMetadata(
+            source_type="test", source_id="stress-test", confidence=0.9
+        )
 
     @pytest.mark.asyncio
     async def test_high_concurrency_graph_operations(self, graph_store, provenance):

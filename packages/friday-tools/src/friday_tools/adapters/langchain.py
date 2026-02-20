@@ -138,7 +138,7 @@ class LangChainToolAdapter:
                     f"Expected LangChain BaseTool, got {type(tool).__name__}"
                 )
         except ImportError:
-            raise ImportError(
+            raise ImportError(  # noqa: B904
                 "langchain-core is required for LangChainToolAdapter. "
                 "Install with: pip install langchain-core"
             )

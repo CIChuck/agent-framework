@@ -52,7 +52,7 @@ def validate_url(
     try:
         parsed = urlparse(url)
     except Exception as e:
-        raise URLValidationError(f"Invalid URL format: {e}")
+        raise URLValidationError(f"Invalid URL format: {e}")  # noqa: B904
 
     # Check scheme
     if not parsed.scheme:
@@ -93,7 +93,7 @@ def validate_url(
             ip_addresses = socket.getaddrinfo(
                 hostname, None, socket.AF_UNSPEC, socket.SOCK_STREAM
             )
-            for family, _, _, _, sockaddr in ip_addresses:
+            for _family, _, _, _, sockaddr in ip_addresses:
                 ip_str = sockaddr[0]
                 if _is_private_ip(ip_str):
                     raise URLValidationError(
@@ -101,7 +101,7 @@ def validate_url(
                     )
         except socket.gaierror:
             # DNS resolution failed - let httpx handle this error
-            # We don't block here because the hostname might be valid but temporarily unreachable
+            # We don't block here because the hostname might be valid but temporarily unreachable  # noqa: E501
             pass
         except URLValidationError:
             # Re-raise our own exceptions

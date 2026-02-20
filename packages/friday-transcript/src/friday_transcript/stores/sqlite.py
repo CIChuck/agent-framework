@@ -15,10 +15,10 @@ import aiosqlite
 
 from friday_transcript.models.transcript import (
     ContextLogEntry,
-    TranscriptEntry,
-    TranscriptSession,
     ToolCall,
     ToolResult,
+    TranscriptEntry,
+    TranscriptSession,
 )
 
 logger = logging.getLogger(__name__)
@@ -149,9 +149,7 @@ class SQLiteTranscriptStore:
             cursor = await db.execute("PRAGMA table_info(entries)")
             entry_columns = {row[1] for row in await cursor.fetchall()}
             if "agent_id" not in entry_columns:
-                await db.execute(
-                    "ALTER TABLE entries ADD COLUMN agent_id TEXT"
-                )
+                await db.execute("ALTER TABLE entries ADD COLUMN agent_id TEXT")
                 await db.execute("""
                     CREATE INDEX IF NOT EXISTS idx_entries_agent
                     ON entries(session_id, agent_id)
@@ -160,7 +158,7 @@ class SQLiteTranscriptStore:
 
             # context_log table for raw prompt/response storage
             # Primary relationship: sessions -> context_log (one-to-many)
-            # Enables deep analysis of context engineering while keeping entries table clean
+            # Enables deep analysis of context engineering while keeping entries table clean  # noqa: E501
             await db.execute("""
                 CREATE TABLE IF NOT EXISTS context_log (
                     id TEXT PRIMARY KEY,
@@ -228,10 +226,14 @@ class SQLiteTranscriptStore:
                 logger.warning(f"Session already exists: {session.session_id}")
                 return False
             except aiosqlite.OperationalError as e:
-                logger.error(f"Database operational error creating session {session.session_id}: {e}")
+                logger.error(
+                    f"Database operational error creating session {session.session_id}: {e}"  # noqa: E501
+                )
                 return False
             except Exception as e:
-                logger.error(f"Unexpected error creating session {session.session_id}: {e}")
+                logger.error(
+                    f"Unexpected error creating session {session.session_id}: {e}"
+                )
                 return False
 
     async def end_session(self, session_id: str) -> bool:
@@ -292,7 +294,7 @@ class SQLiteTranscriptStore:
         async with aiosqlite.connect(self._db_path) as db:
             await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
-                "UPDATE sessions SET archived = 1 WHERE archived = 0 OR archived IS NULL"
+                "UPDATE sessions SET archived = 1 WHERE archived = 0 OR archived IS NULL"  # noqa: E501
             )
             await db.commit()
             count = cursor.rowcount
@@ -365,16 +367,18 @@ class SQLiteTranscriptStore:
 
     def _row_to_session(self, row: aiosqlite.Row) -> TranscriptSession:
         """Convert database row to TranscriptSession."""
-        # Handle archived column (may not exist in older databases before migration runs)
+        # Handle archived column (may not exist in older databases before migration runs)  # noqa: E501
         archived = False
-        if "archived" in row.keys():
+        if "archived" in row:
             archived = bool(row["archived"])
 
         return TranscriptSession(
             session_id=row["session_id"],
             user_id=row["user_id"],
             started_at=datetime.fromisoformat(row["started_at"]),
-            ended_at=datetime.fromisoformat(row["ended_at"]) if row["ended_at"] else None,
+            ended_at=datetime.fromisoformat(row["ended_at"])
+            if row["ended_at"]
+            else None,
             model_name=row["model_name"],
             system_prompt=row["system_prompt"],
             config_snapshot=json.loads(row["config_snapshot"] or "{}"),
@@ -404,7 +408,7 @@ class SQLiteTranscriptStore:
                         total_tokens, latency_ms, model_name, temperature,
                         context_tokens_used, metadata
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
+                    """,  # noqa: E501
                     (
                         entry.id,
                         entry.session_id,
@@ -415,8 +419,12 @@ class SQLiteTranscriptStore:
                         json.dumps([tc.model_dump() for tc in entry.tool_calls]),
                         json.dumps([tr.model_dump() for tr in entry.tool_results]),
                         entry.timestamp.isoformat(),
-                        entry.response_started_at.isoformat() if entry.response_started_at else None,
-                        entry.response_completed_at.isoformat() if entry.response_completed_at else None,
+                        entry.response_started_at.isoformat()
+                        if entry.response_started_at
+                        else None,
+                        entry.response_completed_at.isoformat()
+                        if entry.response_completed_at
+                        else None,
                         entry.prompt_tokens,
                         entry.completion_tokens,
                         entry.total_tokens,
@@ -571,9 +579,7 @@ class SQLiteTranscriptStore:
                     entry_ids,
                 )
                 await db.commit()
-                logger.debug(
-                    f"Marked {cursor.rowcount} entries as compacted"
-                )
+                logger.debug(f"Marked {cursor.rowcount} entries as compacted")
                 return cursor.rowcount
             except Exception as e:
                 logger.error(f"Failed to mark entries compacted: {e}")
@@ -617,7 +623,7 @@ class SQLiteTranscriptStore:
 
         # Handle agent_id column (may not exist in older databases before migration)
         agent_id = None
-        if "agent_id" in row.keys():
+        if "agent_id" in row:
             agent_id = row["agent_id"]
 
         return TranscriptEntry(
@@ -648,8 +654,10 @@ class SQLiteTranscriptStore:
             temperature=row["temperature"],
             context_tokens_used=row["context_tokens_used"],
             metadata=json.loads(row["metadata"] or "{}"),
-            consolidated=bool(row["consolidated"]) if "consolidated" in row.keys() else False,
-            compacted=bool(row["compacted"]) if "compacted" in row.keys() else False,
+            consolidated=bool(row["consolidated"])
+            if "consolidated" in row
+            else False,
+            compacted=bool(row["compacted"]) if "compacted" in row else False,
         )
 
     async def get_entries_by_agent(
@@ -792,7 +800,7 @@ class SQLiteTranscriptStore:
                 await db.commit()
                 logger.debug(
                     f"Stored context log: {context_entry.id} "
-                    f"(session={context_entry.session_id}, turn={context_entry.turn_number})"
+                    f"(session={context_entry.session_id}, turn={context_entry.turn_number})"  # noqa: E501
                 )
                 return True
             except aiosqlite.IntegrityError as e:
@@ -910,7 +918,9 @@ class SQLiteTranscriptStore:
                 "turn_number": entry.turn_number,
                 "entry_id": entry.entry_id,
                 "captured_at": entry.captured_at.isoformat(),
-                "raw_prompt": json.loads(entry.raw_prompt) if entry.raw_prompt else None,
+                "raw_prompt": json.loads(entry.raw_prompt)
+                if entry.raw_prompt
+                else None,
                 "raw_response": (
                     json.loads(entry.raw_response) if entry.raw_response else None
                 ),

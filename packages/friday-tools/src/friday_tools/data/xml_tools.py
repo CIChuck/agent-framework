@@ -58,9 +58,7 @@ class XmlReadTool(BaseTool):
         try:
             tree = etree.parse(str(validated_path))
             if pretty:
-                return etree.tostring(
-                    tree, pretty_print=True, encoding="unicode"
-                )
+                return etree.tostring(tree, pretty_print=True, encoding="unicode")
             return etree.tostring(tree, encoding="unicode")
 
         except etree.XMLSyntaxError as e:

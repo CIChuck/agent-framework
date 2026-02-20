@@ -78,7 +78,7 @@ class WebReaderTool(FridayTool):
 
     name = "web_reader"
     description = (
-        "Read and extract content from web pages, converting to markdown or plain text. "
+        "Read and extract content from web pages, converting to markdown or plain text. "  # noqa: E501
         "Supports HTML, JSON, and plain text content types."
     )
     category = "web"
@@ -182,13 +182,13 @@ class WebReaderTool(FridayTool):
             metadata=result_metadata,
         )
 
-    def _detect_format(self, content_type: str) -> Literal["markdown", "text", "html", "json"]:
+    def _detect_format(
+        self, content_type: str
+    ) -> Literal["markdown", "text", "html", "json"]:
         """Detect output format from Content-Type header."""
         if "application/json" in content_type:
             return "json"
-        elif "text/html" in content_type:
-            return "markdown"
-        elif "text/markdown" in content_type:
+        elif "text/html" in content_type or "text/markdown" in content_type:
             return "markdown"
         elif "text/plain" in content_type:
             return "text"

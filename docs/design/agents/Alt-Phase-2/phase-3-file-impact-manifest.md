@@ -34,7 +34,7 @@ Use it to:
 
 Create:
 
-1. `docs/design/agents/Alt-Phase-2/subphase-artifacts/subphase-0/`
+1. `docs/design/agents/Alt-Phase-2/subphase-artifacts/phase-3/subphase-0/`
 
 Modify:
 

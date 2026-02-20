@@ -12,9 +12,8 @@ NullGraphStore is a no-op implementation for vector-only and testing scenarios.
 import uuid
 
 import pytest
-
 from friday_memory.adapters.null_graph import NullGraphStore
-from friday_memory.models.graph import GraphNode, GraphEdge, ProvenanceMetadata
+from friday_memory.models.graph import GraphEdge, GraphNode, ProvenanceMetadata
 
 
 class TestNullGraphStore:
@@ -159,7 +158,9 @@ class TestNullGraphStore:
     @pytest.mark.asyncio
     async def test_find_edge_returns_none(self, null_graph_store: NullGraphStore):
         """Test that find_edge always returns None."""
-        result = await null_graph_store.find_edge("source", "target", relation="works_with")
+        result = await null_graph_store.find_edge(
+            "source", "target", relation="works_with"
+        )
         assert result is None
 
     @pytest.mark.asyncio
@@ -171,19 +172,25 @@ class TestNullGraphStore:
     # --- Access Tracking Operations ---
 
     @pytest.mark.asyncio
-    async def test_record_node_access_returns_false(self, null_graph_store: NullGraphStore):
+    async def test_record_node_access_returns_false(
+        self, null_graph_store: NullGraphStore
+    ):
         """Test that record_node_access returns False (no node found)."""
         result = await null_graph_store.record_node_access("any_id")
         assert result is False
 
     @pytest.mark.asyncio
-    async def test_record_edge_access_returns_false(self, null_graph_store: NullGraphStore):
+    async def test_record_edge_access_returns_false(
+        self, null_graph_store: NullGraphStore
+    ):
         """Test that record_edge_access returns False (no edge found)."""
         result = await null_graph_store.record_edge_access("source", "target")
         assert result is False
 
     @pytest.mark.asyncio
-    async def test_record_edges_access_returns_zero(self, null_graph_store: NullGraphStore):
+    async def test_record_edges_access_returns_zero(
+        self, null_graph_store: NullGraphStore
+    ):
         """Test that record_edges_access returns 0."""
         result = await null_graph_store.record_edges_access([("a", "b"), ("c", "d")])
         assert result == 0
@@ -191,7 +198,9 @@ class TestNullGraphStore:
     # --- Embedding Operations ---
 
     @pytest.mark.asyncio
-    async def test_update_edge_embedding_returns_false(self, null_graph_store: NullGraphStore):
+    async def test_update_edge_embedding_returns_false(
+        self, null_graph_store: NullGraphStore
+    ):
         """Test that update_edge_embedding returns False."""
         result = await null_graph_store.update_edge_embedding(
             "source", "target", [0.1, 0.2, 0.3]
@@ -199,12 +208,16 @@ class TestNullGraphStore:
         assert result is False
 
     @pytest.mark.asyncio
-    async def test_update_edges_embeddings_returns_zero(self, null_graph_store: NullGraphStore):
+    async def test_update_edges_embeddings_returns_zero(
+        self, null_graph_store: NullGraphStore
+    ):
         """Test that update_edges_embeddings returns 0."""
-        result = await null_graph_store.update_edges_embeddings([
-            ("a", "b", [0.1, 0.2]),
-            ("c", "d", [0.3, 0.4]),
-        ])
+        result = await null_graph_store.update_edges_embeddings(
+            [
+                ("a", "b", [0.1, 0.2]),
+                ("c", "d", [0.3, 0.4]),
+            ]
+        )
         assert result == 0
 
     # --- Count Operations ---
@@ -301,7 +314,9 @@ class TestNullGraphStoreUseCases:
         assert await null_graph_store.edge_count() == 0
 
     @pytest.mark.asyncio
-    async def test_vector_only_deployment_scenario(self, null_graph_store: NullGraphStore):
+    async def test_vector_only_deployment_scenario(
+        self, null_graph_store: NullGraphStore
+    ):
         """
         Test scenario: Vector-only deployment with graph disabled.
 
@@ -316,7 +331,6 @@ class TestNullGraphStoreUseCases:
         assert existing is None
 
         # "Add" entity (succeeds silently)
-        from datetime import datetime
 
         node = GraphNode(
             id="entity_1",

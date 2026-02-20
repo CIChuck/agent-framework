@@ -9,7 +9,10 @@ except ImportError:
     # Placeholder for development if the SDK is not installed
     class RESTClient:
         """Stub RESTClient for development without the Massive SDK installed."""
-        def __init__(self, api_key): pass
+
+        def __init__(self, api_key):
+            pass
+
 
 from .exceptions import MassiveAuthError, MassiveRateLimitError
 from .governor import MassiveGovernor
@@ -45,7 +48,7 @@ class MassiveAgentClient:
         self.api_key = api_key or os.getenv("MASSIVE_API_KEY")
         if not self.api_key:
             raise MassiveAuthError(
-                "API key is missing. Provide it or set the MASSIVE_API_KEY environment variable."
+                "API key is missing. Provide it or set the MASSIVE_API_KEY environment variable."  # noqa: E501
             )
 
         self.tier = tier

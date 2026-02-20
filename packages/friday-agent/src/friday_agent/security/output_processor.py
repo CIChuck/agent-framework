@@ -69,9 +69,7 @@ class AgentOutputProcessor:
             ValueError: If tool_category is missing or uncategorized.
         """
         if not tool_category or tool_category == "uncategorized":
-            raise ValueError(
-                f"Tool '{tool_name}' must declare a non-default category."
-            )
+            raise ValueError(f"Tool '{tool_name}' must declare a non-default category.")
 
         result: SanitizationResult = self.sanitizer.sanitize(
             content, tool_name, tool_category

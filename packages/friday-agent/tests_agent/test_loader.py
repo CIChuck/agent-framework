@@ -4,12 +4,12 @@ Unit tests for AgentLoader.
 Tests YAML configuration loading, validation, and caching.
 """
 
-import pytest
-from pathlib import Path
-import tempfile
 import shutil
+import tempfile
+from pathlib import Path
 
-from friday_agent import AgentLoader, AgentConfigError, AgentProfile
+import pytest
+from friday_agent import AgentConfigError, AgentLoader
 
 
 class TestAgentLoader:
@@ -35,6 +35,8 @@ tools:
 capabilities:
   - testing
   - validation
+skills:
+  - planner.basic@1.0.0
 temperature: 0.5
 tool_autonomy: auto
 """
@@ -72,6 +74,7 @@ capabilities:
         assert profile.goal == "Test the loader functionality"
         assert "test_tool" in profile.tools
         assert "testing" in profile.capabilities
+        assert "planner.basic@1.0.0" in profile.skills
         assert profile.temperature == 0.5
         assert profile.tool_autonomy == "auto"
 
@@ -235,6 +238,22 @@ tools: "should be a list"
         loader = AgentLoader(temp_agents_dir)
         with pytest.raises(AgentConfigError, match="must be a list"):
             loader.load("bad_type")
+
+    def test_invalid_skill_reference(self, temp_agents_dir):
+        """Test that invalid skill reference format raises error."""
+        config = """
+name: bad_skill
+role: "Test Agent"
+goal: "Test invalid skill format"
+system_prompt: "You are a test."
+skills:
+  - invalid skill
+"""
+        (temp_agents_dir / "bad_skill.yaml").write_text(config)
+
+        loader = AgentLoader(temp_agents_dir)
+        with pytest.raises(AgentConfigError, match="canonical format"):
+            loader.load("bad_skill")
 
 
 class TestAgentLoaderDefaults:

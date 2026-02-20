@@ -100,11 +100,13 @@ class ConsistencyAnalyzer:
             if transcript_path.exists():
                 try:
                     conn = sqlite3.connect(transcript_path)
-                    # Try 'entries' table (friday-transcript) first, fall back to 'turns'
+                    # Try 'entries' table (friday-transcript) first, fall back to 'turns'  # noqa: E501
                     for table_name in ["entries", "turns"]:
                         try:
                             cursor = conn.execute(f"SELECT id FROM {table_name}")
-                            self._transcript_turn_ids = {row[0] for row in cursor.fetchall()}
+                            self._transcript_turn_ids = {
+                                row[0] for row in cursor.fetchall()
+                            }
                             break
                         except sqlite3.Error:
                             continue
@@ -112,7 +114,9 @@ class ConsistencyAnalyzer:
                     if self._transcript_turn_ids:
                         break
                 except sqlite3.Error as e:
-                    logger.warning(f"Failed to read transcript from {transcript_path}: {e}")
+                    logger.warning(
+                        f"Failed to read transcript from {transcript_path}: {e}"
+                    )
 
         return self._transcript_turn_ids
 
@@ -152,11 +156,13 @@ class ConsistencyAnalyzer:
                 for row in cursor.fetchall():
                     doc_id, text, metadata_str = row
                     metadata = json.loads(metadata_str) if metadata_str else {}
-                    documents.append({
-                        "id": doc_id,
-                        "text": text,
-                        "metadata": metadata,
-                    })
+                    documents.append(
+                        {
+                            "id": doc_id,
+                            "text": text,
+                            "metadata": metadata,
+                        }
+                    )
                     doc_type = metadata.get("type", "unknown")
                     if doc_type == "insight":
                         stats["insight_count"] += 1
@@ -198,7 +204,7 @@ class ConsistencyAnalyzer:
                 try:
                     conn = sqlite3.connect(transcript_path)
 
-                    # Try 'entries' table (friday-transcript) first, fall back to 'turns'
+                    # Try 'entries' table (friday-transcript) first, fall back to 'turns'  # noqa: E501
                     table_name = None
                     for tbl in ["entries", "turns"]:
                         try:
@@ -213,7 +219,7 @@ class ConsistencyAnalyzer:
                         # Count consolidated (if column exists)
                         try:
                             cursor = conn.execute(
-                                f"SELECT COUNT(*) FROM {table_name} WHERE consolidated = 1"
+                                f"SELECT COUNT(*) FROM {table_name} WHERE consolidated = 1"  # noqa: E501
                             )
                             stats["consolidated_count"] = cursor.fetchone()[0]
                         except sqlite3.Error:
@@ -251,14 +257,16 @@ class ConsistencyAnalyzer:
                 orphaned.append(f"target '{target}'")
 
             if orphaned:
-                issues.append(ConsistencyIssue(
-                    issue_type=IssueType.ORPHANED_EDGE,
-                    severity=IssueSeverity.CRITICAL,
-                    description=f"Edge has orphaned {', '.join(orphaned)}",
-                    affected_ids=[source or "", target or ""],
-                    store="graph",
-                    suggested_action="Delete the orphaned edge",
-                ))
+                issues.append(
+                    ConsistencyIssue(
+                        issue_type=IssueType.ORPHANED_EDGE,
+                        severity=IssueSeverity.CRITICAL,
+                        description=f"Edge has orphaned {', '.join(orphaned)}",
+                        affected_ids=[source or "", target or ""],
+                        store="graph",
+                        suggested_action="Delete the orphaned edge",
+                    )
+                )
 
         return issues
 
@@ -278,14 +286,16 @@ class ConsistencyAnalyzer:
 
             # Only check interaction-based provenance
             if source_type == "interaction" and source_id and source_id not in turn_ids:
-                issues.append(ConsistencyIssue(
-                    issue_type=IssueType.ORPHANED_PROVENANCE,
-                    severity=IssueSeverity.WARNING,
-                    description=f"Node '{node_id}' references non-existent turn '{source_id}'",
-                    affected_ids=[node_id, source_id],
-                    store="graph",
-                    suggested_action="Update provenance or mark as orphaned",
-                ))
+                issues.append(
+                    ConsistencyIssue(
+                        issue_type=IssueType.ORPHANED_PROVENANCE,
+                        severity=IssueSeverity.WARNING,
+                        description=f"Node '{node_id}' references non-existent turn '{source_id}'",  # noqa: E501
+                        affected_ids=[node_id, source_id],
+                        store="graph",
+                        suggested_action="Update provenance or mark as orphaned",
+                    )
+                )
 
         return issues
 
@@ -304,26 +314,27 @@ class ConsistencyAnalyzer:
                 label_groups[label].append(node_id)
 
         # Find exact duplicates
-        for label, node_ids in label_groups.items():
+        for label, node_ids in label_groups.items():  # noqa: B007
             if len(node_ids) > 1:
                 # Determine primary by hit_count
-                primary = max(
-                    node_ids,
-                    key=lambda nid: nodes[nid].get("hit_count", 0)
+                primary = max(node_ids, key=lambda nid: nodes[nid].get("hit_count", 0))
+                duplicates.append(
+                    DuplicateGroup(
+                        primary_id=primary,
+                        duplicate_ids=[nid for nid in node_ids if nid != primary],
+                        similarity_scores={
+                            nid: 1.0 for nid in node_ids if nid != primary
+                        },
+                        match_type="exact",
+                    )
                 )
-                duplicates.append(DuplicateGroup(
-                    primary_id=primary,
-                    duplicate_ids=[nid for nid in node_ids if nid != primary],
-                    similarity_scores={nid: 1.0 for nid in node_ids if nid != primary},
-                    match_type="exact",
-                ))
 
         # Find fuzzy duplicates (>0.85 similarity)
         checked_pairs: set[tuple[str, str]] = set()
         all_labels = list(label_groups.keys())
 
         for i, label1 in enumerate(all_labels):
-            for label2 in all_labels[i + 1:]:
+            for label2 in all_labels[i + 1 :]:
                 if (label1, label2) in checked_pairs:
                     continue
                 checked_pairs.add((label1, label2))
@@ -339,12 +350,14 @@ class ConsistencyAnalyzer:
                     dup_ids = ids1[1:] + ids2
 
                     if dup_ids:
-                        duplicates.append(DuplicateGroup(
-                            primary_id=primary,
-                            duplicate_ids=dup_ids,
-                            similarity_scores={nid: similarity for nid in dup_ids},
-                            match_type="fuzzy",
-                        ))
+                        duplicates.append(
+                            DuplicateGroup(
+                                primary_id=primary,
+                                duplicate_ids=dup_ids,
+                                similarity_scores={nid: similarity for nid in dup_ids},
+                                match_type="fuzzy",
+                            )
+                        )
 
         return duplicates
 
@@ -377,18 +390,20 @@ class ConsistencyAnalyzer:
 
                     if last_accessed < threshold_date:
                         label = node_data.get("label", node_id)
-                        issues.append(ConsistencyIssue(
-                            issue_type=IssueType.STALE_ENTITY,
-                            severity=IssueSeverity.INFO,
-                            description=(
-                                f"Entity '{label}' is stale: "
-                                f"hit_count={hit_count}, "
-                                f"last_accessed={last_accessed.date()}"
-                            ),
-                            affected_ids=[node_id],
-                            store="graph",
-                            suggested_action="Consider pruning this entity",
-                        ))
+                        issues.append(
+                            ConsistencyIssue(
+                                issue_type=IssueType.STALE_ENTITY,
+                                severity=IssueSeverity.INFO,
+                                description=(
+                                    f"Entity '{label}' is stale: "
+                                    f"hit_count={hit_count}, "
+                                    f"last_accessed={last_accessed.date()}"
+                                ),
+                                affected_ids=[node_id],
+                                store="graph",
+                                suggested_action="Consider pruning this entity",
+                            )
+                        )
                 except (ValueError, TypeError):
                     pass
 
@@ -430,18 +445,20 @@ class ConsistencyAnalyzer:
                     source = edge.get("source", "")
                     target = edge.get("target", "")
                     relation = edge.get("relation", "related_to")
-                    issues.append(ConsistencyIssue(
-                        issue_type=IssueType.STALE_EDGE,
-                        severity=IssueSeverity.INFO,
-                        description=(
-                            f"Edge '{source}' --[{relation}]--> '{target}' is stale: "
-                            f"hit_count={hit_count}, "
-                            f"last_accessed={last_accessed.date()}"
-                        ),
-                        affected_ids=[source, target],
-                        store="graph",
-                        suggested_action="Consider pruning this edge",
-                    ))
+                    issues.append(
+                        ConsistencyIssue(
+                            issue_type=IssueType.STALE_EDGE,
+                            severity=IssueSeverity.INFO,
+                            description=(
+                                f"Edge '{source}' --[{relation}]--> '{target}' is stale: "  # noqa: E501
+                                f"hit_count={hit_count}, "
+                                f"last_accessed={last_accessed.date()}"
+                            ),
+                            affected_ids=[source, target],
+                            store="graph",
+                            suggested_action="Consider pruning this edge",
+                        )
+                    )
             except (ValueError, TypeError):
                 pass
 
@@ -469,17 +486,19 @@ class ConsistencyAnalyzer:
             for entity in entities:
                 entity_lower = entity.lower() if isinstance(entity, str) else ""
                 if entity_lower and entity_lower not in graph_labels:
-                    issues.append(ConsistencyIssue(
-                        issue_type=IssueType.CROSS_STORE_MISMATCH,
-                        severity=IssueSeverity.WARNING,
-                        description=(
-                            f"Insight references entity '{entity}' "
-                            f"not found in graph"
-                        ),
-                        affected_ids=[doc.get("id", ""), entity],
-                        store="vector",
-                        suggested_action="Add entity to graph or update insight",
-                    ))
+                    issues.append(
+                        ConsistencyIssue(
+                            issue_type=IssueType.CROSS_STORE_MISMATCH,
+                            severity=IssueSeverity.WARNING,
+                            description=(
+                                f"Insight references entity '{entity}' "
+                                f"not found in graph"
+                            ),
+                            affected_ids=[doc.get("id", ""), entity],
+                            store="vector",
+                            suggested_action="Add entity to graph or update insight",
+                        )
+                    )
 
         return issues
 
@@ -521,17 +540,19 @@ class ConsistencyAnalyzer:
         logger.debug("Finding duplicate entities...")
         report.duplicate_groups = self._find_duplicate_entities(graph_data)
         for group in report.duplicate_groups:
-            report.add_issue(ConsistencyIssue(
-                issue_type=IssueType.DUPLICATE_ENTITY,
-                severity=IssueSeverity.WARNING,
-                description=(
-                    f"Duplicate entities found ({group.match_type}): "
-                    f"{group.primary_id} and {len(group.duplicate_ids)} others"
-                ),
-                affected_ids=[group.primary_id] + group.duplicate_ids,
-                store="graph",
-                suggested_action="Merge duplicate entities",
-            ))
+            report.add_issue(
+                ConsistencyIssue(
+                    issue_type=IssueType.DUPLICATE_ENTITY,
+                    severity=IssueSeverity.WARNING,
+                    description=(
+                        f"Duplicate entities found ({group.match_type}): "
+                        f"{group.primary_id} and {len(group.duplicate_ids)} others"
+                    ),
+                    affected_ids=[group.primary_id] + group.duplicate_ids,
+                    store="graph",
+                    suggested_action="Merge duplicate entities",
+                )
+            )
 
         logger.debug("Finding stale entities...")
         for issue in self._find_stale_entities(graph_data):
@@ -547,8 +568,10 @@ class ConsistencyAnalyzer:
 
         # Update orphan count in graph stats
         report.graph_stats["orphan_count"] = sum(
-            1 for issue in report.issues
-            if issue.issue_type in (IssueType.ORPHANED_EDGE, IssueType.ORPHANED_PROVENANCE)
+            1
+            for issue in report.issues
+            if issue.issue_type
+            in (IssueType.ORPHANED_EDGE, IssueType.ORPHANED_PROVENANCE)
         )
 
         logger.info(

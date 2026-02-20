@@ -1,7 +1,8 @@
 """Pytest configuration and fixtures for friday-mcp tests."""
 
-import pytest
 from unittest.mock import AsyncMock, MagicMock
+
+import pytest
 
 from friday_mcp.config import (
     MCPConfig,

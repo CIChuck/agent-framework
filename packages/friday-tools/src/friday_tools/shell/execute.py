@@ -161,7 +161,21 @@ class ShellScriptTool(BaseTool):
             try:
                 # Skip validation for comments and empty lines
                 # This is a simple heuristic; real validation would be more complex
-                if not any(line.startswith(kw) for kw in ["if", "then", "else", "fi", "for", "do", "done", "while", "case", "esac"]):
+                if not any(
+                    line.startswith(kw)
+                    for kw in [
+                        "if",
+                        "then",
+                        "else",
+                        "fi",
+                        "for",
+                        "do",
+                        "done",
+                        "while",
+                        "case",
+                        "esac",
+                    ]
+                ):
                     self._sandbox.validate_command(line)
             except Exception as e:
                 return f"Security Error in script: {e}"

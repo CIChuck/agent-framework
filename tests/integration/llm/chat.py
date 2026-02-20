@@ -67,10 +67,12 @@ class ChatSession:
 
         # Add system message
         if system_prompt:
-            self.messages.append({
-                "role": "system",
-                "content": system_prompt,
-            })
+            self.messages.append(
+                {
+                    "role": "system",
+                    "content": system_prompt,
+                }
+            )
 
     async def send_message_streaming(self, user_input: str) -> str | None:
         """Send a message and stream the response to stdout.
@@ -79,10 +81,12 @@ class ChatSession:
             The full response text, or None if an error occurred.
         """
         # Add user message
-        self.messages.append({
-            "role": "user",
-            "content": user_input,
-        })
+        self.messages.append(
+            {
+                "role": "user",
+                "content": user_input,
+            }
+        )
 
         # Trim history if needed (keep system message + recent turns)
         if self.max_history > 0:
@@ -90,7 +94,7 @@ class ChatSession:
             other_msgs = [m for m in self.messages if m["role"] != "system"]
 
             if len(other_msgs) > self.max_history * 2:  # 2 messages per turn
-                other_msgs = other_msgs[-(self.max_history * 2):]
+                other_msgs = other_msgs[-(self.max_history * 2) :]
                 self.messages = system_msgs + other_msgs
 
         # Print separator and start streaming
@@ -109,16 +113,20 @@ class ChatSession:
             print("\n" + "─" * 60 + "\n")
 
             # Add assistant message to history
-            self.messages.append({
-                "role": "assistant",
-                "content": full_response,
-            })
+            self.messages.append(
+                {
+                    "role": "assistant",
+                    "content": full_response,
+                }
+            )
 
             return full_response
 
         except LLMTimeoutError as e:
             print(f"\n\n⏱️  Request timed out after {e.timeout_seconds}s")
-            print("The LLM is taking too long. Try a shorter message or check the server.")
+            print(
+                "The LLM is taking too long. Try a shorter message or check the server."
+            )
             # Remove the user message since we didn't get a response
             self.messages.pop()
             return None
@@ -132,7 +140,7 @@ class ChatSession:
             return None
 
         except CircuitBreakerOpenError as e:
-            print(f"\n\n🔌 Service temporarily unavailable")
+            print("\n\n🔌 Service temporarily unavailable")
             print(f"Circuit breaker is open. Retry in {e.retry_after:.0f} seconds.")
             # Remove the user message since we didn't get a response
             self.messages.pop()

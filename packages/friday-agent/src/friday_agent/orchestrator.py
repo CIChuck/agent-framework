@@ -15,7 +15,8 @@ from __future__ import annotations
 
 import logging
 import re
-from typing import TYPE_CHECKING
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from friday_agent.base import AgentBase
@@ -29,6 +30,15 @@ class OrchestratorError(Exception):
     """Raised when orchestration operations fail."""
 
     pass
+
+
+@dataclass(frozen=True)
+class RoutingDecision:
+    """Resolved route target for a user input."""
+
+    target_agent: str
+    message: str
+    source: str  # explicit | active | default
 
 
 class AgentOrchestrator:
@@ -69,14 +79,14 @@ class AgentOrchestrator:
     Note:
         The orchestrator owns agent instances once created. Use clear_cache()
         to release agents when done with a session.
-    """
+    """  # noqa: E501
 
     # Routing pattern: @agent_name followed by message
     ROUTING_PATTERN = re.compile(r"^@(\w+)\s+(.+)$", re.DOTALL)
 
     def __init__(
         self,
-        registry: "AgentRegistry",
+        registry: AgentRegistry,
         default_agent: str | None = None,
         auto_initialize: bool = True,
     ):
@@ -99,16 +109,17 @@ class AgentOrchestrator:
         self._auto_initialize = auto_initialize
 
         # Active agent state
-        self._active_agent: "AgentBase | None" = None
+        self._active_agent: AgentBase | None = None
         self._active_agent_name: str | None = None
 
         # Agent cache (name -> instance)
-        self._agent_cache: dict[str, "AgentBase"] = {}
+        self._agent_cache: dict[str, AgentBase] = {}
 
         # Session tracking
         self._session_id: str | None = None
         self._user_id: str = "default"
         self._message_count = 0
+        self._delegation_history: list[dict[str, Any]] = []
 
         logger.debug(
             f"AgentOrchestrator initialized with default_agent={default_agent}, "
@@ -120,12 +131,12 @@ class AgentOrchestrator:
     # =========================================================================
 
     @property
-    def registry(self) -> "AgentRegistry":
+    def registry(self) -> AgentRegistry:
         """Get the agent registry."""
         return self._registry
 
     @property
-    def active_agent(self) -> "AgentBase | None":
+    def active_agent(self) -> AgentBase | None:
         """Get the currently active agent instance."""
         return self._active_agent
 
@@ -172,36 +183,70 @@ class AgentOrchestrator:
         Raises:
             OrchestratorError: If no agent available to handle message
         """
-        # Parse routing from input
-        target_agent, message = self._parse_routing(user_input)
+        decision = self.route(user_input)
 
-        # Determine target agent
-        if target_agent:
-            # Explicit routing - switch to target agent
-            await self._ensure_agent(target_agent)
-            logger.debug(f"Explicit routing to @{target_agent}")
-        elif self._active_agent_name:
-            # Use current active agent
-            target_agent = self._active_agent_name
-            message = user_input  # Full message, no routing prefix
-            logger.debug(f"Using active agent: {target_agent}")
-        elif self._default_agent_name and self._auto_initialize:
-            # Fall back to default agent
-            target_agent = self._default_agent_name
-            message = user_input
-            await self._ensure_agent(target_agent)
-            logger.debug(f"Falling back to default agent: {target_agent}")
-        else:
-            raise OrchestratorError(
-                "No agent available to handle message. "
-                "Either specify @agent_name, call switch_agent(), or configure default_agent."
+        if decision.source in ("explicit", "default"):
+            await self._ensure_agent(decision.target_agent)
+            logger.debug(
+                f"Routing source={decision.source} to @{decision.target_agent}"
+            )
+        elif self._active_agent is None:
+            await self._ensure_agent(decision.target_agent)
+            logger.debug(
+                f"Routing source=active required cache restore for @{decision.target_agent}"  # noqa: E501
             )
 
         # Process with active agent
-        self._message_count += 1
-        response = await self._active_agent.run(message)
+        if self._active_agent is None:
+            raise OrchestratorError("No active agent available after routing decision")
 
-        return response
+        self._message_count += 1
+        response = await self._active_agent.run(decision.message)
+
+        return str(response)
+
+    def route(self, user_input: str) -> RoutingDecision:
+        """
+        Resolve routing without mutating orchestrator state.
+
+        This is an additive route stage used by process().
+        """
+        target_agent, message = self._parse_routing(user_input)
+
+        if target_agent:
+            if not self._registry.exists(target_agent):
+                available = ", ".join(self._registry.list_agents())
+                raise OrchestratorError(
+                    f"Agent '{target_agent}' not found in registry. Available: {available}"  # noqa: E501
+                )
+            return RoutingDecision(
+                target_agent=target_agent, message=message, source="explicit"
+            )
+
+        if self._active_agent_name:
+            return RoutingDecision(
+                target_agent=self._active_agent_name,
+                message=user_input,
+                source="active",
+            )
+
+        if self._default_agent_name and self._auto_initialize:
+            if not self._registry.exists(self._default_agent_name):
+                available = ", ".join(self._registry.list_agents())
+                raise OrchestratorError(
+                    f"Default agent '{self._default_agent_name}' not found in registry. "  # noqa: E501
+                    f"Available: {available}"
+                )
+            return RoutingDecision(
+                target_agent=self._default_agent_name,
+                message=user_input,
+                source="default",
+            )
+
+        raise OrchestratorError(
+            "No agent available to handle message. "
+            "Either specify @agent_name, call switch_agent(), or configure default_agent."  # noqa: E501
+        )
 
     async def switch_agent(self, name: str) -> None:
         """
@@ -230,6 +275,8 @@ class AgentOrchestrator:
         agent_name: str,
         task: str,
         return_to_current: bool = True,
+        handoff_payload: dict[str, Any] | None = None,
+        skill_ref: str | None = None,
     ) -> str:
         """
         Delegate a task to another agent.
@@ -248,29 +295,73 @@ class AgentOrchestrator:
         Raises:
             OrchestratorError: If target agent not found
         """
-        if not self._registry.exists(agent_name):
+        resolved_agent_name = agent_name
+        if skill_ref:
+            resolved_agent_name = self.resolve_agent_for_skill(
+                skill_ref=skill_ref,
+                preferred_agent=agent_name,
+            )
+
+        if not self._registry.exists(resolved_agent_name):
             available = ", ".join(self._registry.list_agents())
             raise OrchestratorError(
-                f"Agent '{agent_name}' not found for delegation. Available: {available}"
+                f"Agent '{resolved_agent_name}' not found for delegation. "
+                f"Available: {available}"
             )
 
         # Remember current agent
         previous_agent = self._active_agent_name
+        normalized_handoff = self._normalize_handoff_payload(
+            agent_name=resolved_agent_name,
+            payload=handoff_payload,
+            source_agent=previous_agent,
+        )
 
         # Switch to delegate
-        await self._ensure_agent(agent_name)
-        logger.info(f"Delegating to {agent_name}: {task[:50]}...")
+        await self._ensure_agent(resolved_agent_name)
+        if normalized_handoff is None:
+            logger.info(f"Delegating to {resolved_agent_name}: {task[:50]}...")
+        else:
+            logger.info(
+                f"Delegating to {resolved_agent_name} with handoff_id="
+                f"{normalized_handoff['handoff_id']}: {task[:50]}..."
+            )
 
         # Execute task
+        if self._active_agent is None:
+            raise OrchestratorError("No active agent available for delegation")
+
         self._message_count += 1
         response = await self._active_agent.run(task)
+        self._delegation_history.append(
+            {
+                "source_agent": previous_agent,
+                "target_agent": resolved_agent_name,
+                "skill_ref": skill_ref,
+                "task_preview": task[:120],
+                "handoff": normalized_handoff,
+                "message_count": self._message_count,
+            }
+        )
 
         # Return to previous agent if requested
         if return_to_current and previous_agent:
             await self._ensure_agent(previous_agent)
             logger.debug(f"Returned to previous agent: {previous_agent}")
 
-        return response
+        return str(response)
+
+    def resolve_agent_for_skill(
+        self, skill_ref: str, preferred_agent: str | None = None
+    ) -> str:
+        """Resolve deterministic target agent for a required skill."""
+        try:
+            return self._registry.resolve_agent_for_skill(
+                skill_ref,
+                preferred_agent=preferred_agent,
+            )
+        except Exception as e:
+            raise OrchestratorError(str(e)) from e
 
     # =========================================================================
     # Agent Management
@@ -333,7 +424,12 @@ class AgentOrchestrator:
             "session_id": self._session_id,
             "user_id": self._user_id,
             "message_count": self._message_count,
+            "delegation_count": len(self._delegation_history),
         }
+
+    def get_delegation_history(self) -> list[dict[str, Any]]:
+        """Return recorded delegation metadata for this orchestrator session."""
+        return list(self._delegation_history)
 
     # =========================================================================
     # Session Management
@@ -381,6 +477,7 @@ class AgentOrchestrator:
         self.clear_cache()
         self._message_count = 0
         self._session_id = None
+        self._delegation_history.clear()
         logger.info("Orchestrator shutdown complete")
 
     # =========================================================================
@@ -404,7 +501,7 @@ class AgentOrchestrator:
             return agent_name, message
         return None, user_input
 
-    async def _ensure_agent(self, name: str) -> "AgentBase":
+    async def _ensure_agent(self, name: str) -> AgentBase:
         """
         Ensure agent is cached and set as active.
 
@@ -439,6 +536,67 @@ class AgentOrchestrator:
         self._active_agent_name = name
 
         return agent
+
+    def _normalize_handoff_payload(
+        self,
+        agent_name: str,
+        payload: dict[str, Any] | None,
+        source_agent: str | None = None,
+    ) -> dict[str, Any] | None:
+        """Validate and normalize handoff payload metadata."""
+        if payload is None:
+            return None
+
+        required = ("handoff_id", "ownership", "acceptance_criteria", "memory_scope")
+        missing = [key for key in required if key not in payload]
+        if missing:
+            raise OrchestratorError(
+                f"Handoff payload missing required fields: {', '.join(missing)}"
+            )
+
+        handoff_id = payload["handoff_id"]
+        if not isinstance(handoff_id, str) or not handoff_id.strip():
+            raise OrchestratorError(
+                "Handoff payload field 'handoff_id' must be non-empty"
+            )
+
+        ownership = payload["ownership"]
+        if ownership != agent_name:
+            raise OrchestratorError(
+                "Handoff payload 'ownership' must match delegated agent name"
+            )
+
+        criteria = payload["acceptance_criteria"]
+        if not isinstance(criteria, (list, tuple)) or not criteria:
+            raise OrchestratorError(
+                "Handoff payload 'acceptance_criteria' must be a non-empty list"
+            )
+        if not all(isinstance(item, str) and item.strip() for item in criteria):
+            raise OrchestratorError(
+                "Handoff payload 'acceptance_criteria' entries must be non-empty strings"  # noqa: E501
+            )
+
+        memory_scope = payload["memory_scope"]
+        if not isinstance(memory_scope, str) or not memory_scope.strip():
+            raise OrchestratorError(
+                "Handoff payload field 'memory_scope' must be non-empty"
+            )
+
+        session_id = payload.get("session_id", self._session_id)
+        if self._session_id and session_id and session_id != self._session_id:
+            raise OrchestratorError(
+                "Handoff payload session_id does not match orchestrator session"
+            )
+
+        normalized = dict(payload)
+        normalized["handoff_id"] = handoff_id.strip()
+        normalized["acceptance_criteria"] = [item.strip() for item in criteria]
+        normalized["memory_scope"] = memory_scope.strip()
+        normalized["session_id"] = session_id
+        normalized["user_id"] = payload.get("user_id", self._user_id)
+        normalized["source_agent"] = payload.get("source_agent", source_agent)
+        normalized["target_agent"] = payload.get("target_agent", agent_name)
+        return normalized
 
     def __repr__(self) -> str:
         """Debug representation."""

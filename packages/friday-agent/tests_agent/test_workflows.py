@@ -20,22 +20,28 @@ Ref: Phase 1 Build Plan, Step 3
 import asyncio
 import tempfile
 from pathlib import Path
-
-import pytest
-from pydantic import ValidationError
 from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from friday_agent.workflows import (
+    ArtifactPolicy,
+    DelegationHandoff,
+    HITLAuthorityPolicy,
+    HITLDecision,
+    HITLDecisionAction,
+    HITLPolicy,
     TaskNode,
     TaskState,
     TaskStatus,
     WorkflowDefinition,
-    WorkflowExecution,
     WorkflowEngine,
     WorkflowError,
+    WorkflowExecution,
     WorkflowLoader,
     WorkflowLoadError,
 )
+from friday_memory.multi_agent import ScratchPadStore, ScratchPlanItemStatus
+from pydantic import ValidationError
 
 
 class TestTaskNode:
@@ -135,6 +141,46 @@ class TestTaskNode:
         assert isinstance(task.outputs, tuple)
         assert isinstance(task.depends_on, tuple)
 
+    def test_task_with_handoff_contract(self):
+        """Test task with validated handoff contract."""
+        task = TaskNode(
+            id="handoff_task",
+            name="Handoff Task",
+            description="Delegated work",
+            agent="reviewer",
+            handoff=DelegationHandoff(
+                handoff_id="handoff_123",
+                ownership="reviewer",
+                acceptance_criteria=["return checklist", "include verdict"],
+                memory_scope="private_plus_shared",
+            ),
+        )
+        assert task.handoff is not None
+        assert task.handoff.handoff_id == "handoff_123"
+        assert task.handoff.ownership == "reviewer"
+
+    def test_task_with_skill_reference(self):
+        """Test task supports canonical skill reference."""
+        task = TaskNode(
+            id="skill_task",
+            name="Skill Task",
+            description="Execute via skill",
+            agent="reviewer",
+            skill_ref="planner.basic@1.0.0",
+        )
+        assert task.skill_ref == "planner.basic@1.0.0"
+
+    def test_task_rejects_invalid_skill_reference(self):
+        """Test invalid skill reference raises validation error."""
+        with pytest.raises(ValidationError, match="skill_ref"):
+            TaskNode(
+                id="skill_task",
+                name="Skill Task",
+                description="Execute via skill",
+                agent="reviewer",
+                skill_ref="invalid ref",
+            )
+
 
 class TestTaskState:
     """Test TaskState mutable runtime model."""
@@ -208,9 +254,7 @@ class TestWorkflowDefinition:
             name="Diamond Workflow",
             description="A -> B,C -> D",
             tasks=[
-                TaskNode(
-                    id="a", name="A", description="Start", agent="x"
-                ),
+                TaskNode(id="a", name="A", description="Start", agent="x"),
                 TaskNode(
                     id="b",
                     name="B",
@@ -272,12 +316,8 @@ class TestWorkflowDefinition:
             name="Duplicate",
             description="Has duplicates",
             tasks=[
-                TaskNode(
-                    id="task", name="Task 1", description="A", agent="x"
-                ),
-                TaskNode(
-                    id="task", name="Task 2", description="B", agent="x"
-                ),
+                TaskNode(id="task", name="Task 1", description="A", agent="x"),
+                TaskNode(id="task", name="Task 2", description="B", agent="x"),
             ],
         )
         errors = workflow.validate_graph()
@@ -573,9 +613,7 @@ class TestWorkflowEngine:
             ],
         )
 
-        engine = WorkflowEngine(
-            mock_orchestrator, approval_callback=auto_approve
-        )
+        engine = WorkflowEngine(mock_orchestrator, approval_callback=auto_approve)
         execution = await engine.execute(workflow)
 
         assert execution.status == TaskStatus.COMPLETED
@@ -602,9 +640,7 @@ class TestWorkflowEngine:
         execution = await engine.execute(workflow)
 
         # Approve the task
-        execution = await engine.approve_task(
-            workflow, execution, "approval_task"
-        )
+        execution = await engine.approve_task(workflow, execution, "approval_task")
 
         assert execution.status == TaskStatus.COMPLETED
 
@@ -629,9 +665,7 @@ class TestWorkflowEngine:
         engine = WorkflowEngine(mock_orchestrator, approval_callback=None)
         execution = await engine.execute(workflow)
 
-        execution = await engine.approve_task(
-            workflow, execution, "approval_task"
-        )
+        execution = await engine.approve_task(workflow, execution, "approval_task")
 
         # Approval override should be recorded
         assert "approval_task" in execution.approval_overrides
@@ -658,13 +692,396 @@ class TestWorkflowEngine:
         execution = await engine.execute(workflow)
 
         # Skip the task
-        execution = await engine.skip_task(
-            workflow, execution, "approval_task"
+        execution = await engine.skip_task(workflow, execution, "approval_task")
+
+        assert execution.status == TaskStatus.COMPLETED
+        state = execution.get_task_state("approval_task")
+        assert state.status == TaskStatus.SKIPPED
+
+    @pytest.mark.asyncio
+    async def test_resolve_task_reject(self, mock_orchestrator):
+        """Test resolving a waiting task with reject decision."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+
+        engine = WorkflowEngine(mock_orchestrator, approval_callback=None)
+        execution = await engine.execute(workflow)
+        execution = await engine.resolve_task(
+            workflow, execution, "approval_task", decision="reject"
         )
 
         assert execution.status == TaskStatus.COMPLETED
         state = execution.get_task_state("approval_task")
         assert state.status == TaskStatus.SKIPPED
+        assert state.error == "Rejected during approval"
+
+    @pytest.mark.asyncio
+    async def test_hitl_request_payload_created_on_pause(self, mock_orchestrator):
+        """Test paused workflow includes structured HITL request payload."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+        hitl_policy = HITLPolicy(
+            enabled=True,
+            methods=["approval_gate"],
+            timeout_seconds=60,
+            default_action_on_timeout="safe_abort",
+            authority_policy=HITLAuthorityPolicy(allowed_roles=["owner"]),
+        )
+
+        engine = WorkflowEngine(
+            mock_orchestrator, approval_callback=None, hitl_policy=hitl_policy
+        )
+        execution = await engine.execute(workflow)
+
+        assert execution.status == TaskStatus.WAITING_APPROVAL
+        assert execution.pending_hitl_request is not None
+        assert execution.pending_hitl_request.task_id == "approval_task"
+        assert execution.pending_hitl_request.default_action_on_timeout == "safe_abort"
+        assert execution.pending_hitl_request.request_id.startswith("hitl_")
+
+    @pytest.mark.asyncio
+    async def test_hitl_authority_rejects_unauthorized_approver(
+        self, mock_orchestrator
+    ):
+        """Test authority policy blocks unauthorized HITL decisions."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+        hitl_policy = HITLPolicy(
+            enabled=True,
+            methods=["approval_gate"],
+            timeout_seconds=60,
+            default_action_on_timeout="safe_abort",
+            authority_policy=HITLAuthorityPolicy(
+                allowed_roles=["owner"],
+                decision_scope={"approval_gate": ["owner"]},
+            ),
+        )
+
+        engine = WorkflowEngine(
+            mock_orchestrator, approval_callback=None, hitl_policy=hitl_policy
+        )
+        execution = await engine.execute(workflow)
+        assert execution.pending_hitl_request is not None
+
+        with pytest.raises(WorkflowError, match="not authorized"):
+            await engine.decide_task(
+                workflow=workflow,
+                execution=execution,
+                decision=HITLDecision(
+                    request_id=execution.pending_hitl_request.request_id,
+                    task_id="approval_task",
+                    decision=HITLDecisionAction.APPROVED,
+                    approver_id="user_1",
+                    approver_role="viewer",
+                    reason="attempted",
+                    responded_at=execution.pending_hitl_request.created_at,
+                ),
+            )
+
+    @pytest.mark.asyncio
+    async def test_hitl_timeout_default_constrained_continue(self, mock_orchestrator):
+        """Test timeout default action can deterministically continue execution."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+        hitl_policy = HITLPolicy(
+            enabled=True,
+            methods=["approval_gate"],
+            timeout_seconds=0,
+            default_action_on_timeout="constrained_continue",
+            authority_policy=HITLAuthorityPolicy(allowed_roles=["owner"]),
+        )
+        engine = WorkflowEngine(
+            mock_orchestrator, approval_callback=None, hitl_policy=hitl_policy
+        )
+        execution = await engine.execute(workflow)
+        assert execution.status == TaskStatus.WAITING_APPROVAL
+
+        execution = await engine.apply_pending_timeouts(workflow, execution)
+
+        assert execution.status == TaskStatus.COMPLETED
+        assert execution.pending_approval is None
+        assert execution.pending_hitl_request is None
+
+    @pytest.mark.asyncio
+    async def test_hitl_timeout_default_safe_abort(self, mock_orchestrator):
+        """Test timeout default safe_abort transitions workflow to failed."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="approval_task",
+                    name="Needs Approval",
+                    description="Approve me",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+        hitl_policy = HITLPolicy(
+            enabled=True,
+            methods=["approval_gate"],
+            timeout_seconds=0,
+            default_action_on_timeout="safe_abort",
+            authority_policy=HITLAuthorityPolicy(allowed_roles=["owner"]),
+        )
+        engine = WorkflowEngine(
+            mock_orchestrator, approval_callback=None, hitl_policy=hitl_policy
+        )
+        execution = await engine.execute(workflow)
+        assert execution.status == TaskStatus.WAITING_APPROVAL
+
+        execution = await engine.apply_pending_timeouts(workflow, execution)
+        assert execution.status == TaskStatus.FAILED
+        assert execution.get_task_state("approval_task").status == TaskStatus.FAILED
+
+    def test_artifact_lifecycle_and_publication_controls(self, mock_orchestrator):
+        """Test artifact lifecycle validity, provenance checks, and publication approval."""  # noqa: E501
+        hitl_policy = HITLPolicy(
+            enabled=True,
+            methods=["approval_gate"],
+            timeout_seconds=60,
+            default_action_on_timeout="safe_abort",
+            authority_policy=HITLAuthorityPolicy(allowed_roles=["publisher"]),
+        )
+        artifact_policy = ArtifactPolicy(
+            lifecycle_states=["draft", "validated", "final", "archived"],
+            publication_requires_approval=True,
+            required_provenance_fields=["correlation_id", "created_by"],
+        )
+        engine = WorkflowEngine(
+            mock_orchestrator,
+            hitl_policy=hitl_policy,
+            artifact_policy=artifact_policy,
+        )
+        execution = WorkflowExecution(workflow_id="w", execution_id="e")
+
+        with pytest.raises(WorkflowError, match="provenance missing"):
+            engine.register_artifact(
+                execution=execution,
+                artifact_id="artifact_1",
+                created_by="agent_1",
+                provenance={"correlation_id": "corr_1"},
+            )
+
+        engine.register_artifact(
+            execution=execution,
+            artifact_id="artifact_1",
+            created_by="agent_1",
+            provenance={"correlation_id": "corr_1", "created_by": "agent_1"},
+        )
+        engine.transition_artifact(execution, "artifact_1", "validated")
+
+        with pytest.raises(WorkflowError, match="requires approver identity"):
+            engine.transition_artifact(execution, "artifact_1", "final")
+
+        with pytest.raises(WorkflowError, match="not authorized for publication"):
+            engine.transition_artifact(
+                execution,
+                "artifact_1",
+                "final",
+                approver_id="user_1",
+                approver_role="viewer",
+            )
+
+        engine.transition_artifact(
+            execution,
+            "artifact_1",
+            "final",
+            approver_id="user_2",
+            approver_role="publisher",
+        )
+        assert execution.artifacts["artifact_1"].lifecycle_state.value == "final"
+        assert execution.artifacts["artifact_1"].published_at is not None
+
+    @pytest.mark.asyncio
+    async def test_task_handoff_payload_passed_to_delegate(self, mock_orchestrator):
+        """Test handoff contract is passed as delegation payload."""
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="handoff_task",
+                    name="Handoff",
+                    description="Delegated task",
+                    agent="agent",
+                    handoff=DelegationHandoff(
+                        handoff_id="handoff_001",
+                        ownership="agent",
+                        acceptance_criteria=["emit summary"],
+                        memory_scope="private_only",
+                    ),
+                ),
+            ],
+        )
+
+        engine = WorkflowEngine(mock_orchestrator)
+        execution = await engine.execute(workflow)
+
+        assert execution.status == TaskStatus.COMPLETED
+        _, kwargs = mock_orchestrator.delegate.call_args
+        assert kwargs["handoff_payload"]["handoff_id"] == "handoff_001"
+        assert kwargs["handoff_payload"]["ownership"] == "agent"
+
+    @pytest.mark.asyncio
+    async def test_task_skill_ref_routes_delegate_agent(self, mock_orchestrator):
+        """Test task skill_ref resolves target agent dynamically."""
+        mock_orchestrator.resolve_agent_for_skill = MagicMock(
+            return_value="skill_agent"
+        )
+        workflow = WorkflowDefinition(
+            id="test",
+            name="Test",
+            description="Test",
+            tasks=[
+                TaskNode(
+                    id="skill_task",
+                    name="Skill Task",
+                    description="Delegated via skill",
+                    agent="fallback_agent",
+                    skill_ref="planner.basic@1.0.0",
+                ),
+            ],
+        )
+
+        engine = WorkflowEngine(mock_orchestrator)
+        execution = await engine.execute(workflow)
+
+        assert execution.status == TaskStatus.COMPLETED
+        mock_orchestrator.resolve_agent_for_skill.assert_called_once_with(
+            "planner.basic@1.0.0",
+            preferred_agent="fallback_agent",
+        )
+        args, kwargs = mock_orchestrator.delegate.call_args
+        assert args[0] == "skill_agent"
+        assert kwargs["skill_ref"] == "planner.basic@1.0.0"
+
+    @pytest.mark.asyncio
+    async def test_scratchpad_tracks_task_statuses(self, mock_orchestrator):
+        """Test workflow task statuses map to scratch pad plan item lifecycle."""
+        scratchpad = ScratchPadStore(ttl_seconds=300, max_entries=100)
+        workflow = WorkflowDefinition(
+            id="scratch",
+            name="Scratch Workflow",
+            description="scratch mapping",
+            tasks=[
+                TaskNode(
+                    id="task_a",
+                    name="Task A",
+                    description="Do A",
+                    agent="agent",
+                ),
+            ],
+        )
+        engine = WorkflowEngine(mock_orchestrator, scratchpad=scratchpad)
+        execution = await engine.execute(workflow)
+        scope = f"{execution.workflow_id}:{execution.execution_id}"
+        pad = scratchpad.get_pad(scope)
+
+        assert execution.status == TaskStatus.COMPLETED
+        assert pad is not None
+        assert pad.plan_items["task_a"].status == ScratchPlanItemStatus.COMPLETED
+        event_types = [event.event_type for event in pad.events]
+        assert "workflow_started" in event_types
+        assert "task_started" in event_types
+        assert "task_completed" in event_types
+        assert "workflow_completed" in event_types
+
+    @pytest.mark.asyncio
+    async def test_scratchpad_records_hitl_pause_resume(self, mock_orchestrator):
+        """Test HITL pause/resume checkpoints are written to scratch event log."""
+        scratchpad = ScratchPadStore(ttl_seconds=300, max_entries=100)
+        workflow = WorkflowDefinition(
+            id="hitl_scratch",
+            name="HITL Scratch",
+            description="hitl + scratch",
+            tasks=[
+                TaskNode(
+                    id="review",
+                    name="Review",
+                    description="Needs approval",
+                    agent="agent",
+                    requires_approval=True,
+                ),
+            ],
+        )
+        engine = WorkflowEngine(mock_orchestrator, scratchpad=scratchpad)
+        paused = await engine.execute(workflow)
+
+        assert paused.status == TaskStatus.WAITING_APPROVAL
+        assert paused.pending_hitl_request is not None
+
+        decision = HITLDecision(
+            request_id=paused.pending_hitl_request.request_id,
+            task_id="review",
+            decision=HITLDecisionAction.APPROVED,
+            approver_id="user_1",
+            approver_role="reviewer",
+            reason="approved",
+            responded_at=paused.pending_hitl_request.created_at,
+        )
+        resumed = await engine.decide_task(workflow, paused, decision)
+        scope = f"{resumed.workflow_id}:{resumed.execution_id}"
+        pad = scratchpad.get_pad(scope)
+
+        assert resumed.status == TaskStatus.COMPLETED
+        assert pad is not None
+        assert pad.plan_items["review"].status == ScratchPlanItemStatus.COMPLETED
+        event_types = [event.event_type for event in pad.events]
+        assert "hitl_waiting" in event_types
+        assert "hitl_decision" in event_types
+        assert "workflow_resumed" in event_types
 
     @pytest.mark.asyncio
     async def test_missing_variable_error(self, engine):
@@ -883,9 +1300,7 @@ tasks:
 
         assert "missing" in str(exc_info.value).lower()
 
-    def test_load_all_workflows(
-        self, temp_workflows_dir, sample_workflow_yaml
-    ):
+    def test_load_all_workflows(self, temp_workflows_dir, sample_workflow_yaml):
         """Test loading all workflows."""
         # Write multiple workflows
         (temp_workflows_dir / "workflow1.yaml").write_text(
@@ -902,9 +1317,7 @@ tasks:
         assert "workflow1" in workflows
         assert "workflow2" in workflows
 
-    def test_list_workflows(
-        self, temp_workflows_dir, sample_workflow_yaml
-    ):
+    def test_list_workflows(self, temp_workflows_dir, sample_workflow_yaml):
         """Test listing available workflows."""
         (temp_workflows_dir / "alpha.yaml").write_text(
             sample_workflow_yaml.replace("sample", "alpha")
@@ -918,9 +1331,7 @@ tasks:
 
         assert names == ["alpha", "beta"]
 
-    def test_workflow_caching(
-        self, temp_workflows_dir, sample_workflow_yaml
-    ):
+    def test_workflow_caching(self, temp_workflows_dir, sample_workflow_yaml):
         """Test workflow caching."""
         workflow_path = temp_workflows_dir / "sample.yaml"
         workflow_path.write_text(sample_workflow_yaml)
@@ -934,9 +1345,7 @@ tasks:
         # Should be same object (cached)
         assert workflow1 is workflow2
 
-    def test_reload_bypasses_cache(
-        self, temp_workflows_dir, sample_workflow_yaml
-    ):
+    def test_reload_bypasses_cache(self, temp_workflows_dir, sample_workflow_yaml):
         """Test reload bypasses cache."""
         workflow_path = temp_workflows_dir / "sample.yaml"
         workflow_path.write_text(sample_workflow_yaml)
@@ -947,9 +1356,7 @@ tasks:
 
         # Modify file
         workflow_path.write_text(
-            sample_workflow_yaml.replace(
-                "Sample Workflow", "Updated Workflow"
-            )
+            sample_workflow_yaml.replace("Sample Workflow", "Updated Workflow")
         )
 
         workflow2 = loader.reload("sample")

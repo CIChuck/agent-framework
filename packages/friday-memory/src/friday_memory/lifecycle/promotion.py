@@ -5,13 +5,14 @@ Implements the promotion logic for SHORT_TERM → LONG_TERM transitions
 and the full lifecycle management service.
 
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "PromotionScorer" and "MemoryPromotionService"
-"""
+"""  # noqa: E501
 
 from __future__ import annotations
 
+import contextlib
 import logging
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
@@ -247,7 +248,7 @@ class MemoryPromotionService:
     def __init__(
         self,
         config: DecayConfig,
-        collection_manager: "CollectionManager",
+        collection_manager: CollectionManager,
         graph_store: Any | None = None,
     ) -> None:
         """
@@ -270,7 +271,7 @@ class MemoryPromotionService:
         return self._config
 
     @property
-    def collection_manager(self) -> "CollectionManager":
+    def collection_manager(self) -> CollectionManager:
         """Get the collection manager."""
         return self._collection_manager
 
@@ -374,7 +375,9 @@ class MemoryPromotionService:
                 if not dry_run:
                     try:
                         await self._collection_manager.demote_to_decayed(doc_id)
-                        logger.info(f"Demoted memory {doc_id} to DECAYED (score={new_score:.3f})")
+                        logger.info(
+                            f"Demoted memory {doc_id} to DECAYED (score={new_score:.3f})"  # noqa: E501
+                        )
                     except Exception as e:
                         result.errors.append(f"Failed to demote {doc_id}: {e}")
             elif not dry_run and new_score != current_score:
@@ -422,9 +425,13 @@ class MemoryPromotionService:
                 if not dry_run:
                     try:
                         await self._collection_manager.promote_memory(doc_id)
-                        logger.info(f"Fast-track promoted protected memory {doc_id} to LONG_TERM")
+                        logger.info(
+                            f"Fast-track promoted protected memory {doc_id} to LONG_TERM"  # noqa: E501
+                        )
                     except Exception as e:
-                        result.errors.append(f"Failed to promote protected {doc_id}: {e}")
+                        result.errors.append(
+                            f"Failed to promote protected {doc_id}: {e}"
+                        )
                 continue
 
             # Check eligibility (must be old enough)
@@ -440,10 +447,8 @@ class MemoryPromotionService:
             # Count relationships (if graph store available)
             relationship_count = 0
             if self._graph_store is not None:
-                try:
+                with contextlib.suppress(Exception):
                     relationship_count = await self._count_relationships(doc_id)
-                except Exception:
-                    pass
 
             # Calculate promotion score
             score = self._promotion_scorer.calculate_promotion_score(
@@ -460,7 +465,9 @@ class MemoryPromotionService:
                 if not dry_run:
                     try:
                         await self._collection_manager.promote_memory(doc_id)
-                        logger.info(f"Promoted memory {doc_id} to LONG_TERM (score={score:.3f})")
+                        logger.info(
+                            f"Promoted memory {doc_id} to LONG_TERM (score={score:.3f})"
+                        )
                     except Exception as e:
                         result.errors.append(f"Failed to promote {doc_id}: {e}")
 
@@ -531,14 +538,16 @@ class MemoryPromotionService:
                 continue
 
             # Check if all source memories are decayed
-            if all(mid in decayed_ids for mid in node.source_memory_ids):
+            if all(mid in decayed_ids for mid in node.source_memory_ids):  # noqa: SIM102
                 if node.stage != MemoryStage.DECAYED:
                     result.graph_nodes_decayed += 1
                     if not dry_run:
                         try:
                             node.mark_decayed()
                             await self._graph_store.update_node(node)
-                            logger.info(f"Decayed graph node {node.id} (all sources decayed)")
+                            logger.info(
+                                f"Decayed graph node {node.id} (all sources decayed)"
+                            )
                         except Exception as e:
                             result.errors.append(f"Failed to decay node {node.id}: {e}")
 

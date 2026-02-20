@@ -15,7 +15,6 @@ import re
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
 
 
 class ChunkType(str, Enum):
@@ -233,8 +232,12 @@ class PythonCodeChunker(BaseLanguageChunker):
                     total=0,
                     chunk_type=ChunkType.MODULE_LEVEL,
                     symbols_defined=symbols_defined,
-                    start_line=other_nodes[0].lineno if hasattr(other_nodes[0], "lineno") else None,
-                    end_line=other_nodes[-1].end_lineno if hasattr(other_nodes[-1], "end_lineno") else None,
+                    start_line=other_nodes[0].lineno
+                    if hasattr(other_nodes[0], "lineno")
+                    else None,
+                    end_line=other_nodes[-1].end_lineno
+                    if hasattr(other_nodes[-1], "end_lineno")
+                    else None,
                 )
             )
 
@@ -264,17 +267,11 @@ class PythonCodeChunker(BaseLanguageChunker):
             return table
 
         for node in ast.walk(tree):
-            if isinstance(node, ast.FunctionDef):
-                table.functions.append(node.name)
-            elif isinstance(node, ast.AsyncFunctionDef):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                 table.functions.append(node.name)
             elif isinstance(node, ast.ClassDef):
                 table.classes.append(node.name)
-            elif isinstance(node, ast.Import):
-                for alias in node.names:
-                    name = alias.asname if alias.asname else alias.name
-                    table.imports.append(name)
-            elif isinstance(node, ast.ImportFrom):
+            elif isinstance(node, (ast.Import, ast.ImportFrom)):
                 for alias in node.names:
                     name = alias.asname if alias.asname else alias.name
                     table.imports.append(name)
@@ -310,11 +307,7 @@ class PythonCodeChunker(BaseLanguageChunker):
         """Extract imported symbol names."""
         symbols = []
         for node in import_nodes:
-            if isinstance(node, ast.Import):
-                for alias in node.names:
-                    name = alias.asname if alias.asname else alias.name
-                    symbols.append(name)
-            elif isinstance(node, ast.ImportFrom):
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
                 for alias in node.names:
                     name = alias.asname if alias.asname else alias.name
                     symbols.append(name)
@@ -326,7 +319,7 @@ class PythonCodeChunker(BaseLanguageChunker):
         for child in ast.walk(node):
             if isinstance(child, ast.Name) and isinstance(child.ctx, ast.Load):
                 references.add(child.id)
-            elif isinstance(child, ast.Attribute):
+            elif isinstance(child, ast.Attribute):  # noqa: SIM102
                 # Get base name (e.g., "os" from "os.path")
                 if isinstance(child.value, ast.Name):
                     references.add(child.value.id)
@@ -373,8 +366,12 @@ class GenericCodeChunker(BaseLanguageChunker):
             max_chunk_lines: Maximum lines per chunk
         """
         self._max_chunk_lines = max_chunk_lines
-        self._function_patterns = [re.compile(p, re.MULTILINE) for p in self.FUNCTION_PATTERNS]
-        self._class_patterns = [re.compile(p, re.MULTILINE) for p in self.CLASS_PATTERNS]
+        self._function_patterns = [
+            re.compile(p, re.MULTILINE) for p in self.FUNCTION_PATTERNS
+        ]
+        self._class_patterns = [
+            re.compile(p, re.MULTILINE) for p in self.CLASS_PATTERNS
+        ]
 
     def chunk(self, content: str) -> list[CodeChunk]:
         """
@@ -423,10 +420,7 @@ class GenericCodeChunker(BaseLanguageChunker):
         # Extract chunks based on boundaries
         for i, (line_idx, name, chunk_type) in enumerate(boundaries):
             start = line_idx
-            if i + 1 < len(boundaries):
-                end = boundaries[i + 1][0]
-            else:
-                end = len(lines)
+            end = boundaries[i + 1][0] if i + 1 < len(boundaries) else len(lines)
 
             chunk_text = "".join(lines[start:end])
             chunks.append(

@@ -6,7 +6,6 @@ to the EpisodicStoreAdapter protocol, enabling persistent transcript storage
 to be used as an episodic memory backend.
 """
 
-import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 
@@ -125,7 +124,7 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
 
         # Import here to avoid circular import at module level
         try:
-            from friday_transcript import TranscriptEntry, ToolCall, ToolResult
+            from friday_transcript import ToolCall, ToolResult, TranscriptEntry
         except ImportError as e:
             raise ImportError(
                 "friday-transcript is required for TranscriptBackedEpisodicStore. "
@@ -310,6 +309,7 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         # Fallback for stores without persistent consolidation support
         # Log warning since consolidation state won't persist across restarts
         import logging
+
         logging.getLogger(__name__).warning(
             "Store doesn't support persistent consolidation tracking; "
             "consolidation state will be lost on restart"

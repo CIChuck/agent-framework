@@ -4,16 +4,15 @@ Tests for friday-cli session management.
 
 import tempfile
 from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
-
 from friday_cli import (
     SessionConfig,
     SessionContext,
     SessionManager,
-    managed_session,
     load_config,
+    managed_session,
     validate_config,
 )
 
@@ -114,7 +113,9 @@ chat:
             assert config.persist_dir == Path(tmpdir) / "data"
 
         # Without config path
-        config2 = SessionConfig.from_dict({"memory": {"persist_directory": "/absolute/path"}})
+        config2 = SessionConfig.from_dict(
+            {"memory": {"persist_directory": "/absolute/path"}}
+        )
         assert config2.persist_dir == Path("/absolute/path")
 
         # No persist_directory
@@ -237,7 +238,7 @@ class TestSessionManager:
 
         manager = SessionManager(config=config, on_shutdown=on_shutdown)
 
-        async with manager as ctx:
+        async with manager:
             pass
 
         assert len(shutdown_called) == 1
@@ -314,7 +315,9 @@ class TestValidateConfig:
         assert "llm" in errors[0]
 
     def test_validate_missing_model(self):
-        config = SessionConfig.from_dict({"llm": {"api_key": "test"}})  # llm present but no model
+        config = SessionConfig.from_dict(
+            {"llm": {"api_key": "test"}}
+        )  # llm present but no model
 
         errors = validate_config(config)
 

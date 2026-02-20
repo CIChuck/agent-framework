@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 import os
-
-from pydantic import BaseModel, Field
-
-from friday_tools.base import FridayTool, ToolResult
+from typing import Any
 
 from friday_moltbook import Moltbook, MoltbookConfig
 from friday_moltbook.errors import MoltbookError
+from pydantic import BaseModel, Field
+
+from friday_tools.base import FridayTool, ToolResult
 
 
 class MoltbookToolBase(FridayTool):
@@ -95,7 +93,7 @@ class MoltbookToolBase(FridayTool):
             if isinstance(response.data, dict) and "message" in response.data:
                 message = response.data["message"]
             elif hasattr(response.data, "message"):
-                message = getattr(response.data, "message")
+                message = response.data.message
             if message:
                 return str(message)
             return f"{self.name} succeeded"

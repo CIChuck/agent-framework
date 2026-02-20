@@ -13,10 +13,10 @@ import logging
 from pathlib import Path
 from typing import Any
 
-import yaml
+import yaml  # type: ignore[import-untyped]
 
 from friday_agent.profile import AgentProfile
-
+from friday_agent.skills import is_valid_skill_ref
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +51,7 @@ class AgentLoader:
     # Default values for optional fields
     DEFAULTS: dict[str, Any] = {
         "tools": [],
+        "skills": [],
         "tool_autonomy": "manual",
         "capabilities": [],
         "temperature": 0.7,
@@ -216,12 +217,12 @@ class AgentLoader:
             AgentConfigError: If file is invalid
         """
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, encoding="utf-8") as f:
                 config = yaml.safe_load(f)
         except yaml.YAMLError as e:
-            raise AgentConfigError(f"Invalid YAML: {e}", path)
-        except IOError as e:
-            raise AgentConfigError(f"Cannot read file: {e}", path)
+            raise AgentConfigError(f"Invalid YAML: {e}", path) from e
+        except OSError as e:
+            raise AgentConfigError(f"Cannot read file: {e}", path) from e
 
         if not isinstance(config, dict):
             raise AgentConfigError("Config must be a YAML object", path)
@@ -245,12 +246,13 @@ class AgentLoader:
 
     def _validate_types(self, config: dict[str, Any], path: Path) -> None:
         """Validate field types match expected schema."""
-        validators = {
+        validators: dict[str, tuple[type[Any] | tuple[type[Any], ...], str]] = {
             "name": (str, "must be a string"),
             "role": (str, "must be a string"),
             "goal": (str, "must be a string"),
             "system_prompt": (str, "must be a string"),
             "tools": (list, "must be a list"),
+            "skills": (list, "must be a list"),
             "capabilities": (list, "must be a list"),
             "temperature": ((int, float), "must be a number"),
             "max_tokens": (int, "must be an integer"),
@@ -288,6 +290,15 @@ class AgentLoader:
         if temp is not None and not (0 <= temp <= 2):
             raise AgentConfigError("temperature must be between 0 and 2", path)
 
+        # Validate canonical skill references
+        skills = config.get("skills", [])
+        for skill_ref in skills:
+            if not isinstance(skill_ref, str) or not is_valid_skill_ref(skill_ref):
+                raise AgentConfigError(
+                    "skills entries must use canonical format skill_id@version",
+                    path,
+                )
+
     def _config_to_profile(self, config: dict[str, Any]) -> AgentProfile:
         """
         Convert parsed config to AgentProfile.
@@ -313,6 +324,7 @@ class AgentLoader:
             required_tools=full_config["required_tools"],
             # Registry integration fields
             _capabilities=full_config["capabilities"],
+            _skills=full_config["skills"],
             _memory_config=full_config["memory_config"],
             _metadata=full_config["metadata"],
         )

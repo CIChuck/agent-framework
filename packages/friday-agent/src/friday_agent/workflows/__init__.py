@@ -11,24 +11,69 @@ complex multi-agent tasks with:
 Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
 """
 
+from friday_agent.workflows.engine import (
+    PipelineDispatchEngine,
+    PipelineDispatchError,
+    WorkflowEngine,
+    WorkflowError,
+)
+from friday_agent.workflows.loader import WorkflowLoader, WorkflowLoadError
 from friday_agent.workflows.models import (
+    ArtifactLifecycleState,
+    ArtifactPolicy,
+    ArtifactRecord,
+    DelegationHandoff,
+    HITLAuthorityPolicy,
+    HITLDecision,
+    HITLDecisionAction,
+    HITLPolicy,
+    HITLRequest,
+    PipelineDefinition,
+    PipelineDispatch,
+    PipelineExecutionState,
+    PipelineExecutionStatus,
+    PipelineLineageRecord,
+    PipelineResult,
+    TaskAssignment,
+    TaskAssignmentStatus,
+    TaskDefinition,
     TaskNode,
     TaskState,
     TaskStatus,
     WorkflowDefinition,
     WorkflowExecution,
+    WorkflowPipelineDefinition,
 )
-from friday_agent.workflows.engine import WorkflowEngine, WorkflowError
-from friday_agent.workflows.loader import WorkflowLoader, WorkflowLoadError
 
 __all__ = [
     # Models
+    "ArtifactLifecycleState",
+    "ArtifactPolicy",
+    "ArtifactRecord",
+    "DelegationHandoff",
+    "HITLAuthorityPolicy",
+    "HITLDecision",
+    "HITLDecisionAction",
+    "HITLPolicy",
+    "HITLRequest",
+    "PipelineDefinition",
+    "PipelineDispatch",
+    "PipelineExecutionState",
+    "PipelineExecutionStatus",
+    "PipelineLineageRecord",
+    "PipelineResult",
+    "TaskAssignment",
+    "TaskAssignmentStatus",
+    "TaskDefinition",
     "TaskNode",
     "TaskState",
     "TaskStatus",
     "WorkflowDefinition",
     "WorkflowExecution",
+    "WorkflowPipelineDefinition",
     # Engine
+    "PipelineDispatchEngine",
+    "PipelineDispatchError",
     "WorkflowEngine",
     "WorkflowError",
     # Loader

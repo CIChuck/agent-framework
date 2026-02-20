@@ -14,8 +14,8 @@ class MassiveGovernor:
     """
 
     TIER_INTERVALS = {
-        "free": 12.05,   # 5 per minute ≈ 12 s spacing
-        "starter": 0.05, # Effectively unlimited
+        "free": 12.05,  # 5 per minute ≈ 12 s spacing
+        "starter": 0.05,  # Effectively unlimited
     }
 
     def __init__(self, tier: str = "free"):

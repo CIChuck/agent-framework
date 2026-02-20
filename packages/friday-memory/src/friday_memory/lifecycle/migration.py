@@ -106,7 +106,7 @@ class MemoryMigrator:
         self,
         vector_store: Any = None,
         graph_store: Any = None,
-        collection_manager: "CollectionManager | None" = None,
+        collection_manager: CollectionManager | None = None,
     ) -> None:
         """
         Initialize the migrator.
@@ -149,7 +149,7 @@ class MemoryMigrator:
 
             logger.info(
                 f"Migration complete: {report.total_migrated} items migrated, "
-                f"{report.vectors_skipped + report.nodes_skipped + report.edges_skipped} already migrated"
+                f"{report.vectors_skipped + report.nodes_skipped + report.edges_skipped} already migrated"  # noqa: E501
             )
 
         except Exception as e:
@@ -158,9 +158,7 @@ class MemoryMigrator:
 
         return report
 
-    async def _migrate_vectors(
-        self, report: MigrationReport, dry_run: bool
-    ) -> None:
+    async def _migrate_vectors(self, report: MigrationReport, dry_run: bool) -> None:
         """Migrate vector store documents to include lifecycle metadata."""
         if not self._vector_store:
             logger.info("No vector store provided, skipping vector migration")
@@ -246,7 +244,7 @@ class MemoryMigrator:
 
         # Check if this is a real graph store with internal graph access
         # (required for staleness field migration which needs direct _graph access)
-        # We check for _graph being a networkx graph which is specific to ElementXGraphStore
+        # We check for _graph being a networkx graph which is specific to ElementXGraphStore  # noqa: E501
         try:
             import networkx as nx
 
@@ -255,7 +253,7 @@ class MemoryMigrator:
                 and isinstance(self._graph_store._graph, nx.Graph)
             ):
                 logger.info(
-                    "Graph store does not support direct graph access, skipping edge migration"
+                    "Graph store does not support direct graph access, skipping edge migration"  # noqa: E501
                 )
                 return
         except ImportError:
@@ -332,7 +330,9 @@ class MemoryMigrator:
         This is required for hard_delete_expired() to work correctly.
         """
         if not self._collection_manager:
-            logger.info("No collection manager provided, skipping decayed timestamp migration")
+            logger.info(
+                "No collection manager provided, skipping decayed timestamp migration"
+            )
             return
 
         try:
@@ -357,9 +357,7 @@ class MemoryMigrator:
                     # Add decayed_at timestamp
                     # Use migrated_at or created_at as fallback, otherwise use now
                     decayed_at = (
-                        metadata.get("migrated_at")
-                        or metadata.get("created_at")
-                        or now
+                        metadata.get("migrated_at") or metadata.get("created_at") or now
                     )
                     await decayed_store.update_metadata(
                         doc["id"], {"decayed_at": decayed_at}
@@ -432,9 +430,7 @@ class MemoryMigrator:
             logger.error(f"Error getting vector documents: {e}")
             return []
 
-    async def _update_vector_metadata(
-        self, doc_id: str, metadata: dict
-    ) -> None:
+    async def _update_vector_metadata(self, doc_id: str, metadata: dict) -> None:
         """Update metadata for a vector document."""
         if not self._vector_store:
             return
@@ -448,9 +444,7 @@ class MemoryMigrator:
                 metadatas=[metadata],
             )
         else:
-            raise NotImplementedError(
-                "Vector store does not support metadata updates"
-            )
+            raise NotImplementedError("Vector store does not support metadata updates")
 
     async def check_migration_needed(self) -> bool:
         """
@@ -491,9 +485,8 @@ class MemoryMigrator:
             try:
                 import networkx as nx
 
-                if (
-                    hasattr(self._graph_store, "_graph")
-                    and isinstance(self._graph_store._graph, nx.Graph)
+                if hasattr(self._graph_store, "_graph") and isinstance(
+                    self._graph_store._graph, nx.Graph
                 ):
                     edges = await self._graph_store.get_all_edges()
                     for edge in edges[:10]:  # Sample first 10
@@ -533,7 +526,7 @@ class MemoryMigrator:
 
 async def migrate_to_multi_collection(
     source_collection: Any,
-    collection_manager: "CollectionManager",
+    collection_manager: CollectionManager,
     embedding_function: Any = None,
 ) -> MigrationReport:
     """
@@ -557,7 +550,9 @@ async def migrate_to_multi_collection(
     try:
         # Get all documents from source
         if hasattr(source_collection, "get"):
-            result = source_collection.get(include=["metadatas", "documents", "embeddings"])
+            result = source_collection.get(
+                include=["metadatas", "documents", "embeddings"]
+            )
             ids = result.get("ids", [])
             documents = result.get("documents", [])
             metadatas = result.get("metadatas", [])

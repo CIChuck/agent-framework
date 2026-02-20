@@ -135,7 +135,7 @@ class JsonQueryTool(BaseTool):
                 },
                 "query": {
                     "type": "string",
-                    "description": "JSONPath expression (e.g., '$.store.book[*].title')",
+                    "description": "JSONPath expression (e.g., '$.store.book[*].title')",  # noqa: E501
                 },
             },
             "required": ["path", "query"],

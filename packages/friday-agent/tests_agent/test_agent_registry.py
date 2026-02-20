@@ -4,14 +4,14 @@ Unit tests for AgentRegistry.
 Tests agent registration, capability-based lookup, and instantiation.
 """
 
-import pytest
-from pathlib import Path
-import tempfile
 import shutil
+import tempfile
+from pathlib import Path
 
+import pytest
 from friday_agent import (
-    AgentProfile,
     AgentLoader,
+    AgentProfile,
     AgentRegistry,
     AgentRegistryError,
 )
@@ -30,6 +30,7 @@ class TestAgentRegistry:
             system_prompt_template="You are a test agent.",
             tools=["tool_a", "tool_b"],
             _capabilities=["testing", "validation"],
+            _skills=["planner.basic@1.0.0"],
         )
 
     @pytest.fixture
@@ -42,6 +43,7 @@ class TestAgentRegistry:
             system_prompt_template="You are another test agent.",
             tools=["tool_c"],
             _capabilities=["validation", "analysis"],
+            _skills=["writer.advanced@2.1.0", "planner.basic@1.0.0"],
         )
 
     @pytest.fixture
@@ -128,31 +130,40 @@ class TestCapabilityLookup:
         registry = AgentRegistry()
 
         # Agent with testing and validation capabilities
-        registry.register(AgentProfile(
-            name="tester",
-            role="Tester",
-            goal="Test things",
-            system_prompt_template="You are a tester.",
-            _capabilities=["testing", "validation"],
-        ))
+        registry.register(
+            AgentProfile(
+                name="tester",
+                role="Tester",
+                goal="Test things",
+                system_prompt_template="You are a tester.",
+                _capabilities=["testing", "validation"],
+                _skills=["planner.basic@1.0.0"],
+            )
+        )
 
         # Agent with coding and debugging capabilities
-        registry.register(AgentProfile(
-            name="coder",
-            role="Coder",
-            goal="Write code",
-            system_prompt_template="You are a coder.",
-            _capabilities=["coding", "debugging"],
-        ))
+        registry.register(
+            AgentProfile(
+                name="coder",
+                role="Coder",
+                goal="Write code",
+                system_prompt_template="You are a coder.",
+                _capabilities=["coding", "debugging"],
+                _skills=["coder.repair@1.2.0"],
+            )
+        )
 
         # Agent with validation and analysis capabilities
-        registry.register(AgentProfile(
-            name="analyst",
-            role="Analyst",
-            goal="Analyze things",
-            system_prompt_template="You are an analyst.",
-            _capabilities=["validation", "analysis"],
-        ))
+        registry.register(
+            AgentProfile(
+                name="analyst",
+                role="Analyst",
+                goal="Analyze things",
+                system_prompt_template="You are an analyst.",
+                _capabilities=["validation", "analysis"],
+                _skills=["planner.basic@1.0.0", "analyst.review@1.0.0"],
+            )
+        )
 
         return registry
 
@@ -217,6 +228,34 @@ class TestCapabilityLookup:
         assert stats["validation"] == 2  # tester and analyst
         assert stats["testing"] == 1
         assert stats["coding"] == 1
+
+    def test_find_by_skill(self, registry_with_agents):
+        """Test finding agents by canonical skill reference."""
+        results = registry_with_agents.find_by_skill("planner.basic@1.0.0")
+        assert len(results) == 2
+        names = [profile.name for profile in results]
+        assert "tester" in names
+        assert "analyst" in names
+
+    def test_resolve_agent_for_skill_prefers_requested_agent(
+        self, registry_with_agents
+    ):
+        """Test deterministic skill resolution with preferred agent override."""
+        resolved = registry_with_agents.resolve_agent_for_skill(
+            "planner.basic@1.0.0",
+            preferred_agent="analyst",
+        )
+        assert resolved == "analyst"
+
+    def test_resolve_agent_for_skill_falls_back_sorted(self, registry_with_agents):
+        """Test deterministic fallback skill resolution order."""
+        resolved = registry_with_agents.resolve_agent_for_skill("planner.basic@1.0.0")
+        assert resolved == "analyst"
+
+    def test_resolve_agent_for_missing_skill_raises(self, registry_with_agents):
+        """Test missing skill resolution raises registry error."""
+        with pytest.raises(AgentRegistryError, match="declares required skill"):
+            registry_with_agents.resolve_agent_for_skill("missing.skill@1.0.0")
 
 
 class TestAgentInstantiation:
@@ -337,12 +376,14 @@ capabilities:
         registry = AgentRegistry(loader)
 
         # Pre-register one agent
-        registry.register(AgentProfile(
-            name="test_agent",
-            role="Pre-registered",
-            goal="Test",
-            system_prompt_template="Test",
-        ))
+        registry.register(
+            AgentProfile(
+                name="test_agent",
+                role="Pre-registered",
+                goal="Test",
+                system_prompt_template="Test",
+            )
+        )
 
         count = registry.load_all_from_directory()
 
@@ -360,20 +401,24 @@ class TestSerialization:
     def registry(self):
         """Create a registry with agents."""
         registry = AgentRegistry()
-        registry.register(AgentProfile(
-            name="agent1",
-            role="Role 1",
-            goal="Goal 1",
-            system_prompt_template="Prompt 1",
-            _capabilities=["cap1"],
-        ))
-        registry.register(AgentProfile(
-            name="agent2",
-            role="Role 2",
-            goal="Goal 2",
-            system_prompt_template="Prompt 2",
-            _capabilities=["cap2"],
-        ))
+        registry.register(
+            AgentProfile(
+                name="agent1",
+                role="Role 1",
+                goal="Goal 1",
+                system_prompt_template="Prompt 1",
+                _capabilities=["cap1"],
+            )
+        )
+        registry.register(
+            AgentProfile(
+                name="agent2",
+                role="Role 2",
+                goal="Goal 2",
+                system_prompt_template="Prompt 2",
+                _capabilities=["cap2"],
+            )
+        )
         return registry
 
     def test_to_dict(self, registry):

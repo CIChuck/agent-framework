@@ -30,7 +30,7 @@ from friday_memory.maintenance.models import (
 )
 
 if TYPE_CHECKING:
-    from typing import Callable
+    from collections.abc import Callable
 
     from friday_llm import LiteLLMService
 
@@ -157,7 +157,7 @@ class MemorySynthesizer:
             pass
 
         # Strategy 2: Extract from markdown code block
-        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', content)
+        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
         if code_block_match:
             try:
                 return json.loads(code_block_match.group(1))
@@ -165,7 +165,7 @@ class MemorySynthesizer:
                 pass
 
         # Strategy 3: Find JSON object in text (first { to last })
-        brace_match = re.search(r'\{[\s\S]*\}', content)
+        brace_match = re.search(r"\{[\s\S]*\}", content)
         if brace_match:
             try:
                 return json.loads(brace_match.group(0))
@@ -174,7 +174,7 @@ class MemorySynthesizer:
 
         # Strategy 4: Try to fix common JSON issues
         # Remove trailing commas before ] or }
-        fixed = re.sub(r',\s*([}\]])', r'\1', content)
+        fixed = re.sub(r",\s*([}\]])", r"\1", content)
         try:
             return json.loads(fixed)
         except json.JSONDecodeError:
@@ -198,7 +198,9 @@ class MemorySynthesizer:
                     logger.warning(f"Failed to open ChromaDB at {vector_dir}: {e}")
                     continue
 
-        logger.warning(f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}")
+        logger.warning(
+            f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}"
+        )
         return None
 
     def _get_collection(self, client: chromadb.ClientAPI) -> chromadb.Collection | None:
@@ -223,7 +225,7 @@ class MemorySynthesizer:
                 collections = client.list_collections()
                 if collections:
                     logger.warning(
-                        f"No collection_name specified, using first collection: {collections[0].name}. "
+                        f"No collection_name specified, using first collection: {collections[0].name}. "  # noqa: E501
                         "This may not be the intended collection."
                     )
                     return collections[0]
@@ -257,15 +259,19 @@ class MemorySynthesizer:
 
             insights = []
             for i, doc_id in enumerate(data["ids"]):
-                insights.append({
-                    "id": doc_id,
-                    "text": data["documents"][i] if data["documents"] else "",
-                    "metadata": data["metadatas"][i] if data["metadatas"] else {},
-                })
+                insights.append(
+                    {
+                        "id": doc_id,
+                        "text": data["documents"][i] if data["documents"] else "",
+                        "metadata": data["metadatas"][i] if data["metadatas"] else {},
+                    }
+                )
 
             # Handle embeddings (may be numpy array, can't use truthiness check)
             raw_embeddings = data["embeddings"]
-            if raw_embeddings is None or (hasattr(raw_embeddings, '__len__') and len(raw_embeddings) == 0):
+            if raw_embeddings is None or (
+                hasattr(raw_embeddings, "__len__") and len(raw_embeddings) == 0
+            ):
                 embeddings = None
             else:
                 embeddings = raw_embeddings
@@ -355,13 +361,17 @@ class MemorySynthesizer:
                     else:
                         coherence = 1.0
 
-                    clusters.append(TopicCluster(
-                        cluster_id=f"cluster_{cluster_id}",
-                        theme=theme,
-                        insight_ids=[insights[idx]["id"] for idx in cluster_members],
-                        entity_ids=list(entity_ids),
-                        coherence_score=coherence,
-                    ))
+                    clusters.append(
+                        TopicCluster(
+                            cluster_id=f"cluster_{cluster_id}",
+                            theme=theme,
+                            insight_ids=[
+                                insights[idx]["id"] for idx in cluster_members
+                            ],
+                            entity_ids=list(entity_ids),
+                            coherence_score=coherence,
+                        )
+                    )
                     cluster_id += 1
 
         except Exception as e:
@@ -384,7 +394,9 @@ class MemorySynthesizer:
             List of synthesized memories
         """
         if self._llm is None:
-            logger.warning("No LLM service configured, skipping meta-insight generation")
+            logger.warning(
+                "No LLM service configured, skipping meta-insight generation"
+            )
             return []
 
         if clusters is None:
@@ -438,16 +450,20 @@ class MemorySynthesizer:
 
                 insight_id = f"meta_{uuid.uuid4().hex[:8]}"
                 insight_content = result.get("meta_insight", "")
-                confidence = result.get("confidence", self._config.meta_insight_confidence)
+                confidence = result.get(
+                    "confidence", self._config.meta_insight_confidence
+                )
 
-                meta_insights.append(SynthesizedMemory(
-                    id=insight_id,
-                    type="meta_insight",
-                    content=insight_content,
-                    source_memories=cluster.insight_ids,
-                    confidence=confidence,
-                    reasoning=result.get("reasoning", ""),
-                ))
+                meta_insights.append(
+                    SynthesizedMemory(
+                        id=insight_id,
+                        type="meta_insight",
+                        content=insight_content,
+                        source_memories=cluster.insight_ids,
+                        confidence=confidence,
+                        reasoning=result.get("reasoning", ""),
+                    )
+                )
 
                 # Log the meta-insight creation
                 if self._reorg_logger:
@@ -456,7 +472,7 @@ class MemorySynthesizer:
                         content=insight_content,
                         source_ids=cluster.insight_ids,
                         confidence=confidence,
-                        reason=f"Synthesized from {len(cluster.insight_ids)} insights in cluster {cluster.cluster_id}",
+                        reason=f"Synthesized from {len(cluster.insight_ids)} insights in cluster {cluster.cluster_id}",  # noqa: E501
                         prompt_sent=prompt,
                         llm_response_raw=raw_content,
                         llm_response_parsed=result,
@@ -467,7 +483,9 @@ class MemorySynthesizer:
                     )
 
             except Exception as e:
-                logger.error(f"Error generating meta-insight for {cluster.cluster_id}: {e}")
+                logger.error(
+                    f"Error generating meta-insight for {cluster.cluster_id}: {e}"
+                )
 
         logger.info(f"Generated {len(meta_insights)} meta-insights")
         return meta_insights
@@ -497,16 +515,18 @@ class MemorySynthesizer:
             count = edge_counts.get(node_id, 0)
             if count <= 1 and node_data.get("hit_count", 0) > 0:
                 # Entity has been accessed but has few relationships
-                gaps.append(KnowledgeGap(
-                    gap_id=f"gap_{uuid.uuid4().hex[:8]}",
-                    description=f"Entity '{node_data.get('label', node_id)}' "
-                               f"has only {count} relationships despite being accessed "
-                               f"{node_data.get('hit_count', 0)} times",
-                    related_entities=[node_id],
-                    evidence="High access count with low relationship count suggests "
-                            "incomplete knowledge capture",
-                    priority="medium" if count == 0 else "low",
-                ))
+                gaps.append(
+                    KnowledgeGap(
+                        gap_id=f"gap_{uuid.uuid4().hex[:8]}",
+                        description=f"Entity '{node_data.get('label', node_id)}' "
+                        f"has only {count} relationships despite being accessed "
+                        f"{node_data.get('hit_count', 0)} times",
+                        related_entities=[node_id],
+                        evidence="High access count with low relationship count suggests "  # noqa: E501
+                        "incomplete knowledge capture",
+                        priority="medium" if count == 0 else "low",
+                    )
+                )
 
         # Use LLM for deeper analysis if available
         if self._llm and nodes:
@@ -532,8 +552,10 @@ class MemorySynthesizer:
 
                 prompt = self._prompts.knowledge_gap.format(
                     entities="\n".join(entity_summaries),
-                    relationships="\n".join(relationship_summaries) or "No relationships",
-                    insights="\n".join(f"- {ins}" for ins in insight_texts) or "No insights",
+                    relationships="\n".join(relationship_summaries)
+                    or "No relationships",
+                    insights="\n".join(f"- {ins}" for ins in insight_texts)
+                    or "No insights",
                 )
 
                 response = await self._llm.chat_completion(
@@ -552,13 +574,15 @@ class MemorySynthesizer:
                     related_entities = gap_data.get("related_entities", [])
                     priority = gap_data.get("priority", "medium")
 
-                    gaps.append(KnowledgeGap(
-                        gap_id=gap_id,
-                        description=description,
-                        related_entities=related_entities,
-                        evidence=gap_data.get("evidence", ""),
-                        priority=priority,
-                    ))
+                    gaps.append(
+                        KnowledgeGap(
+                            gap_id=gap_id,
+                            description=description,
+                            related_entities=related_entities,
+                            evidence=gap_data.get("evidence", ""),
+                            priority=priority,
+                        )
+                    )
 
                     # Log the knowledge gap
                     if self._reorg_logger:
@@ -640,14 +664,16 @@ class MemorySynthesizer:
                     target_entity = rel.get("target", "")
                     reasoning = rel.get("reasoning", "")
 
-                    inferred.append(SynthesizedMemory(
-                        id=rel_id,
-                        type="inferred_relationship",
-                        content=f"{source_entity} --[{relation}]--> {target_entity}",
-                        source_memories=[],  # Inferred from graph structure
-                        confidence=confidence,
-                        reasoning=reasoning,
-                    ))
+                    inferred.append(
+                        SynthesizedMemory(
+                            id=rel_id,
+                            type="inferred_relationship",
+                            content=f"{source_entity} --[{relation}]--> {target_entity}",  # noqa: E501
+                            source_memories=[],  # Inferred from graph structure
+                            confidence=confidence,
+                            reasoning=reasoning,
+                        )
+                    )
 
                     # Log the relationship inference
                     if self._reorg_logger:
@@ -707,7 +733,7 @@ class MemorySynthesizer:
                 logger.warning(
                     f"Embedding function doesn't have expected interface. "
                     f"Type: {type(self._embedding_function).__name__}, "
-                    f"Has embed_query: {hasattr(self._embedding_function, 'embed_query')}, "
+                    f"Has embed_query: {hasattr(self._embedding_function, 'embed_query')}, "  # noqa: E501
                     f"Has embed: {hasattr(self._embedding_function, 'embed')}, "
                     f"Callable: {callable(self._embedding_function)}"
                 )
@@ -745,14 +771,16 @@ class MemorySynthesizer:
             add_kwargs: dict[str, Any] = {
                 "ids": [memory.id],
                 "documents": [memory.content],
-                "metadatas": [{
-                    "type": memory.type,
-                    "confidence": memory.confidence,
-                    "source_memories": json.dumps(memory.source_memories),
-                    "reasoning": memory.reasoning,
-                    "created_at": datetime.now().isoformat(),
-                    "provenance_source_type": "synthesis",
-                }],
+                "metadatas": [
+                    {
+                        "type": memory.type,
+                        "confidence": memory.confidence,
+                        "source_memories": json.dumps(memory.source_memories),
+                        "reasoning": memory.reasoning,
+                        "created_at": datetime.now().isoformat(),
+                        "provenance_source_type": "synthesis",
+                    }
+                ],
             }
 
             # Include embedding if we generated one
@@ -806,18 +834,20 @@ class MemorySynthesizer:
                 return False
 
             # Add edge
-            graph_data["edges"].append({
-                "source": source,
-                "target": target,
-                "relation": relation,
-                "provenance": {
-                    "source_id": memory.id,
-                    "source_type": "inference",
-                    "confidence": memory.confidence,
-                    "created_at": datetime.now().isoformat(),
-                },
-                "weight": memory.confidence,
-            })
+            graph_data["edges"].append(
+                {
+                    "source": source,
+                    "target": target,
+                    "relation": relation,
+                    "provenance": {
+                        "source_id": memory.id,
+                        "source_type": "inference",
+                        "confidence": memory.confidence,
+                        "created_at": datetime.now().isoformat(),
+                    },
+                    "weight": memory.confidence,
+                }
+            )
 
             self._graph_modified = True
             self._save_graph()
@@ -940,7 +970,9 @@ class MemorySynthesizer:
         if report.synthesized_memories:
             lines.append("SYNTHESIZED MEMORIES:")
             for mem in report.synthesized_memories[:5]:
-                preview = mem.content[:60] + "..." if len(mem.content) > 60 else mem.content
+                preview = (
+                    mem.content[:60] + "..." if len(mem.content) > 60 else mem.content
+                )
                 lines.append(f"  [{mem.type}] {preview}")
             if len(report.synthesized_memories) > 5:
                 lines.append(f"  ... and {len(report.synthesized_memories) - 5} more")

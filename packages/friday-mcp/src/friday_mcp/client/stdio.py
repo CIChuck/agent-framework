@@ -7,14 +7,15 @@ Connects to MCP servers via subprocess stdio transport.
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 import logging
 import os
 from pathlib import Path
 from typing import Any
 
-from friday_mcp.config import MCPServerConfig
 from friday_mcp.client.base import MCPClientBase
+from friday_mcp.config import MCPServerConfig
 
 logger = logging.getLogger(__name__)
 
@@ -72,10 +73,8 @@ class StdioTransport:
         """Terminate the subprocess."""
         if self._stderr_task:
             self._stderr_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._stderr_task
-            except asyncio.CancelledError:
-                pass
 
         if self._process:
             self._process.terminate()
@@ -175,7 +174,7 @@ class StdioMCPClient(MCPClientBase):
         self.cwd = cwd
 
     @classmethod
-    def from_config(cls, config: MCPServerConfig) -> "StdioMCPClient":
+    def from_config(cls, config: MCPServerConfig) -> StdioMCPClient:
         """
         Create client from configuration.
 

@@ -208,9 +208,7 @@ class SerperSearchTool(BaseTool):
                         )
 
                     if response.status_code == 429:
-                        logger.warning(
-                            f"Serper rate limited (attempt {attempt + 1})"
-                        )
+                        logger.warning(f"Serper rate limited (attempt {attempt + 1})")
                         if attempt < max_retries:
                             await asyncio.sleep(2**attempt)  # Exponential backoff
                             continue
@@ -220,9 +218,7 @@ class SerperSearchTool(BaseTool):
                         )
 
                     if response.status_code >= 500:
-                        logger.warning(
-                            f"Serper server error: {response.status_code}"
-                        )
+                        logger.warning(f"Serper server error: {response.status_code}")
                         if attempt < max_retries:
                             await asyncio.sleep(1)
                             continue
@@ -292,9 +288,7 @@ class SerperSearchTool(BaseTool):
             "Please try again later."
         )
 
-    def _format_web_results(
-        self, query: str, data: dict, max_results: int
-    ) -> str:
+    def _format_web_results(self, query: str, data: dict, max_results: int) -> str:
         """Format regular web search results."""
         organic = data.get("organic", [])
 
@@ -311,11 +305,13 @@ class SerperSearchTool(BaseTool):
             link = item.get("link", "")
             snippet = item.get("snippet", "")
 
-            results.append({
-                "title": title,
-                "url": link,
-                "snippet": snippet,
-            })
+            results.append(
+                {
+                    "title": title,
+                    "url": link,
+                    "snippet": snippet,
+                }
+            )
 
         logger.info(f"Serper search: {len(results)} results for '{query}'")
 
@@ -331,9 +327,7 @@ class SerperSearchTool(BaseTool):
 
         return "\n".join(output_lines)
 
-    def _format_news_results(
-        self, query: str, data: dict, max_results: int
-    ) -> str:
+    def _format_news_results(self, query: str, data: dict, max_results: int) -> str:
         """Format news search results."""
         news = data.get("news", [])
 
@@ -352,13 +346,15 @@ class SerperSearchTool(BaseTool):
             source = item.get("source", "")
             date = item.get("date", "")
 
-            results.append({
-                "title": title,
-                "url": link,
-                "snippet": snippet,
-                "source": source,
-                "date": date,
-            })
+            results.append(
+                {
+                    "title": title,
+                    "url": link,
+                    "snippet": snippet,
+                    "source": source,
+                    "date": date,
+                }
+            )
 
         logger.info(f"Serper news: {len(results)} results for '{query}'")
 
@@ -376,9 +372,7 @@ class SerperSearchTool(BaseTool):
 
         return "\n".join(output_lines)
 
-    def _format_image_results(
-        self, query: str, data: dict, max_results: int
-    ) -> str:
+    def _format_image_results(self, query: str, data: dict, max_results: int) -> str:
         """Format image search results."""
         images = data.get("images", [])
 
@@ -396,12 +390,14 @@ class SerperSearchTool(BaseTool):
             image_url = item.get("imageUrl", "")
             source = item.get("source", "")
 
-            results.append({
-                "title": title,
-                "url": link,
-                "image_url": image_url,
-                "source": source,
-            })
+            results.append(
+                {
+                    "title": title,
+                    "url": link,
+                    "image_url": image_url,
+                    "source": source,
+                }
+            )
 
         logger.info(f"Serper images: {len(results)} results for '{query}'")
 

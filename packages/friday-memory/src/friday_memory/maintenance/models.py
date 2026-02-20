@@ -11,7 +11,6 @@ from typing import Any
 
 from pydantic import BaseModel, Field
 
-
 # =============================================================================
 # Enums
 # =============================================================================
@@ -63,7 +62,7 @@ class LogVerbosity(str, Enum):
     """Verbosity levels for reorganization logging."""
 
     MINIMAL = "minimal"  # Action summaries only
-    NORMAL = "normal"    # Summaries + IDs and brief content previews
+    NORMAL = "normal"  # Summaries + IDs and brief content previews
     VERBOSE = "verbose"  # Everything including full prompts/responses
 
 
@@ -71,8 +70,8 @@ class LogFormat(str, Enum):
     """Output formats for reorganization logs."""
 
     MARKDOWN = "markdown"  # Human-readable .md
-    JSON = "json"          # Structured .json for analysis
-    CSV = "csv"            # Tabular .csv for spreadsheets
+    JSON = "json"  # Structured .json for analysis
+    CSV = "csv"  # Tabular .csv for spreadsheets
 
 
 class ActionType(str, Enum):
@@ -176,7 +175,7 @@ Respond with JSON:
     "reasoning": "brief explanation",
     "claim_type": "statistical|historical|scientific|opinion|preference|belief",
     "suggested_verification": "how to verify if falsifiable, null otherwise"
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_RESEARCH_PROMPT = """You are a fact-checking researcher. Your task is to gather evidence about the following claim.
 
@@ -196,7 +195,7 @@ Respond with JSON:
     "supports_claim": true or false or null (if inconclusive),
     "confidence": 0.0-1.0,
     "notes": "Any caveats or context"
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_JUDGE_PROMPT = """You are an impartial judge evaluating a fact-checking case. Review the evidence and render a verdict.
 
@@ -217,7 +216,7 @@ Respond with JSON:
     "confidence": 0.0-1.0,
     "reasoning": "Detailed explanation of your decision",
     "correction": "If DISPUTED, provide the correct information. Otherwise null."
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_META_INSIGHT_PROMPT = """Analyze the following collection of insights and generate a higher-order meta-insight that captures a cross-cutting theme or pattern.
 
@@ -238,7 +237,7 @@ Respond with JSON:
     "reasoning": "Brief explanation of why this pattern is significant",
     "confidence": 0.0-1.0,
     "source_insight_indices": [list of indices of insights that support this]
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_KNOWLEDGE_GAP_PROMPT = """Analyze the following entities and their relationships to identify knowledge gaps.
 
@@ -266,7 +265,7 @@ Respond with JSON:
             "priority": "low|medium|high"
         }}
     ]
-}}"""
+}}"""  # noqa: E501
 
 DEFAULT_RELATIONSHIP_INFERENCE_PROMPT = """Based on the following graph structure, infer potential new relationships.
 
@@ -294,7 +293,7 @@ Respond with JSON:
             "confidence": 0.0-1.0
         }}
     ]
-}}"""
+}}"""  # noqa: E501
 
 
 class PromptsConfig(BaseModel):
@@ -500,13 +499,13 @@ class ContextAssemblyConfig(BaseModel):
     # Entity display
     entity_format: str = Field(
         default="natural",
-        description="Entity format: 'natural' (with relationships), 'table' (legacy), 'none'",
+        description="Entity format: 'natural' (with relationships), 'table' (legacy), 'none'",  # noqa: E501
     )
 
     # Summaries
     summaries_mode: str = Field(
         default="conditional",
-        description="Summaries mode: 'always', 'conditional' (skip when history complete), 'never'",
+        description="Summaries mode: 'always', 'conditional' (skip when history complete), 'never'",  # noqa: E501
     )
     history_threshold_for_summaries: int = Field(
         default=10,
@@ -583,7 +582,9 @@ class ConsistencyIssue(BaseModel):
         default_factory=list,
         description="IDs of affected entities/documents",
     )
-    store: str = Field(..., description="Which store is affected: graph, vector, episodic")
+    store: str = Field(
+        ..., description="Which store is affected: graph, vector, episodic"
+    )
     suggested_action: str | None = Field(
         default=None,
         description="Suggested remediation action",
@@ -996,7 +997,9 @@ class ActionLogEntry(BaseModel):
 
     # What was affected
     item_id: str = Field(..., description="ID of the affected item")
-    item_type: str = Field(default="", description="Type of item (entity, insight, edge, etc.)")
+    item_type: str = Field(
+        default="", description="Type of item (entity, insight, edge, etc.)"
+    )
     store: str = Field(default="", description="Which store (graph, vector, episodic)")
 
     # Content details (verbosity: normal+)

@@ -10,6 +10,9 @@ the protocols to be defined without circular imports.
 """
 
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from datetime import datetime
+from enum import Enum
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
@@ -361,3 +364,98 @@ class GraphStoreAdapter(ABC):
             List of dicts with node_id and rank score, sorted by rank
         """
         pass
+
+
+class ArbitrationDecision(str, Enum):
+    """Decision returned by an arbitration provider."""
+
+    APPROVED = "approved"
+    REJECTED = "rejected"
+    NEEDS_REVIEW = "needs_review"
+
+
+@dataclass(frozen=True)
+class SharedWriteCapability:
+    """
+    Runtime-issued capability token for shared-write operations.
+
+    Used as an additive contract in multi-agent mode.
+    """
+
+    token_id: str
+    session_id: str
+    run_id: str
+    issued_at: datetime
+    expires_at: datetime
+
+
+@dataclass(frozen=True)
+class MemoryPromotionProposal:
+    """Proposal payload for promoting private memory into shared memory."""
+
+    proposal_id: str
+    session_id: str
+    namespace: str
+    author_id: str
+    fact: str
+    metadata: dict[str, Any]
+
+
+class NamespacePolicyInterface(ABC):
+    """Policy contract for namespace read/write authorization."""
+
+    @abstractmethod
+    async def can_read(
+        self,
+        actor_id: str,
+        namespace: str,
+        session_id: str,
+    ) -> bool: ...
+
+    @abstractmethod
+    async def can_write_private(
+        self,
+        actor_id: str,
+        namespace: str,
+        session_id: str,
+    ) -> bool: ...
+
+    @abstractmethod
+    async def can_write_shared(
+        self,
+        actor_id: str,
+        session_id: str,
+        capability: SharedWriteCapability | None,
+    ) -> bool: ...
+
+
+class ArbitrationInterface(ABC):
+    """Arbitration contract for shared-memory promotion decisions."""
+
+    @abstractmethod
+    async def submit_proposal(self, proposal: MemoryPromotionProposal) -> str: ...
+
+    @abstractmethod
+    async def get_decision(self, proposal_id: str) -> ArbitrationDecision | None: ...
+
+
+class MultiAgentMemoryInterface(ABC):
+    """Additive memory facade for namespace-aware multi-agent operation."""
+
+    @abstractmethod
+    async def set_namespace(self, namespace: str) -> None: ...
+
+    @abstractmethod
+    async def recall(
+        self, query: str, *, include_shared: bool = True, limit: int = 10
+    ) -> dict[str, Any]: ...
+
+    @abstractmethod
+    async def write_private_fact(
+        self, fact: str, metadata: dict[str, Any] | None = None
+    ) -> str: ...
+
+    @abstractmethod
+    async def submit_shared_promotion(
+        self, fact: str, metadata: dict[str, Any] | None = None
+    ) -> str: ...

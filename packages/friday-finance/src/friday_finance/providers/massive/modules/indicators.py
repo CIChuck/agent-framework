@@ -24,7 +24,9 @@ class IndicatorsModule:
         """
         self.client = client
 
-    async def get_sma(self, ticker: str, window: int = 50, timespan: str = "day") -> dict[str, Any]:
+    async def get_sma(
+        self, ticker: str, window: int = 50, timespan: str = "day"
+    ) -> dict[str, Any]:
         """
         Fetch the Simple Moving Average for a ticker.
 
@@ -56,7 +58,12 @@ class IndicatorsModule:
 
         if not result or not hasattr(result, "values") or len(result.values) == 0:
             logger.warning("No SMA data returned", ticker=ticker, window=window)
-            return {"ticker": ticker, "window": window, "value": None, "status": "no_data"}
+            return {
+                "ticker": ticker,
+                "window": window,
+                "value": None,
+                "status": "no_data",
+            }
 
         latest_value = result.values[0].value
         return {
@@ -95,7 +102,9 @@ class IndicatorsModule:
             limit=1,
         )
 
-        latest_value = result.values[0].value if result and hasattr(result, "values") else None
+        latest_value = (
+            result.values[0].value if result and hasattr(result, "values") else None
+        )
         return {
             "ticker": ticker,
             "window": window,

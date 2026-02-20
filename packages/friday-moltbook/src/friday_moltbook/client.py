@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, Type
+from collections.abc import Iterable
+from typing import Any
 
 import httpx
 from pydantic import BaseModel, ValidationError
@@ -28,10 +29,10 @@ from .models import (
     Comment,
     DeleteResult,
     FollowResult,
-    ModeratorResult,
     Moderator,
-    Post,
+    ModeratorResult,
     PinResult,
+    Post,
     RegisterResult,
     SearchResults,
     Submolt,
@@ -39,7 +40,7 @@ from .models import (
     UploadResult,
     VoteResult,
 )
-from .responses import MoltbookResponse, PARSING_MAP, ParserSpec
+from .responses import PARSING_MAP, MoltbookResponse, ParserSpec
 from .utils import validate_avatar_file, validate_banner_file
 
 
@@ -543,7 +544,7 @@ class Moltbook:
         file_path: str,
         *,
         endpoint_key: str,
-        model: Type[BaseModel] | None = None,
+        model: type[BaseModel] | None = None,
         data: dict[str, Any] | None = None,
     ) -> MoltbookResponse[Any]:
         self._require_api_key()
@@ -569,7 +570,7 @@ class Moltbook:
         data: dict[str, Any] | None = None,
         files: dict[str, Any] | None = None,
         endpoint_key: str,
-        model: Type[BaseModel] | None = None,
+        model: type[BaseModel] | None = None,
         requires_auth: bool = True,
     ) -> MoltbookResponse[Any]:
         if requires_auth:
@@ -672,7 +673,7 @@ class Moltbook:
                     endpoint=endpoint_key,
                     raw=raw,
                 )
-        if parser.expect_any:
+        if parser.expect_any:  # noqa: SIM102
             if not any(key in raw for key in parser.expect_any):
                 raise MoltbookResponseError(
                     "Response missing expected keys",
@@ -682,7 +683,7 @@ class Moltbook:
                 )
 
     def _coerce_response_data(
-        self, response: MoltbookResponse[Any], model: Type[BaseModel] | None
+        self, response: MoltbookResponse[Any], model: type[BaseModel] | None
     ) -> MoltbookResponse[Any]:
         if not response.success or response.data is None or model is None:
             return response

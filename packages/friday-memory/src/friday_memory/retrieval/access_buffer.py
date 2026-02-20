@@ -77,7 +77,7 @@ class AccessBuffer:
 
         # At startup (optional crash recovery):
         recovered = await buffer.recover_from_wal()
-    """
+    """  # noqa: E501
 
     def __init__(self, config: AccessBufferConfig | None = None):
         self._config = config or AccessBufferConfig()
@@ -108,7 +108,9 @@ class AccessBuffer:
     @property
     def total_accesses(self) -> int:
         """Total access events buffered."""
-        return sum(self._short_term_buffer.values()) + sum(self._long_term_buffer.values())
+        return sum(self._short_term_buffer.values()) + sum(
+            self._long_term_buffer.values()
+        )
 
     def get_stats(self) -> dict[str, int]:
         """Get buffer statistics."""
@@ -150,13 +152,16 @@ class AccessBuffer:
             # Auto-flush if buffer gets too large
             if len(buffer) > self._config.max_buffer_size:
                 logger.info(
-                    f"Auto-flushing {collection_type} buffer (size exceeded {self._config.max_buffer_size})"
+                    f"Auto-flushing {collection_type} buffer (size exceeded {self._config.max_buffer_size})"  # noqa: E501
                 )
                 # Note: We can't flush here without collection references
                 # This is a signal that flush_all should be called soon
 
             # Time-based flush check (log warning, actual flush needs collections)
-            if time.time() - self._last_flush_time > self._config.max_buffer_age_seconds:
+            if (
+                time.time() - self._last_flush_time
+                > self._config.max_buffer_age_seconds
+            ):
                 logger.debug(
                     f"Buffer age exceeded {self._config.max_buffer_age_seconds}s, "
                     "consider calling flush_all()"
@@ -193,7 +198,7 @@ class AccessBuffer:
 
             def read_wal():
                 entries = []
-                with open(self._config.wal_path, "r") as f:
+                with open(self._config.wal_path) as f:
                     for line in f:
                         try:
                             parts = line.strip().split(",")
@@ -260,7 +265,8 @@ class AccessBuffer:
                         metadata = doc.get("metadata", {})
                         current_score = metadata.get("decay_score", 0.5)
                         new_score = min(
-                            1.0, current_score + (self._config.decay_score_boost * count)
+                            1.0,
+                            current_score + (self._config.decay_score_boost * count),
                         )
                         await short_term_collection.update_metadata(
                             memory_id,
@@ -272,7 +278,9 @@ class AccessBuffer:
                         )
                         result.short_term_flushed += 1
                 except Exception as e:
-                    result.errors.append(f"Failed to update short-term {memory_id}: {e}")
+                    result.errors.append(
+                        f"Failed to update short-term {memory_id}: {e}"
+                    )
 
         # Batch update long-term (increment hit_count)
         if long_term_collection and long_term_copy:

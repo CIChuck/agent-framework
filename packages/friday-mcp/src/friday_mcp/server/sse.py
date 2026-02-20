@@ -10,7 +10,8 @@ import asyncio
 import json
 import logging
 import uuid
-from typing import Any, AsyncGenerator
+from collections.abc import AsyncGenerator
+from typing import Any
 
 from friday_mcp.server.base import MCPServerBase
 

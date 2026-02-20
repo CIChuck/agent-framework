@@ -7,9 +7,7 @@ from datetime import datetime
 from unittest.mock import AsyncMock
 
 import pytest
-
 from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
     ChromaVectorStore,
     CollectionManager,
@@ -22,7 +20,6 @@ from friday_memory import (
     ProvenanceMetadata,
     SessionState,
 )
-
 
 # --- Provenance Fixtures ---
 

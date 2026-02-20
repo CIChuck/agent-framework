@@ -9,8 +9,8 @@ import asyncio
 import json
 import logging
 import pickle
-from contextlib import asynccontextmanager
-from dataclasses import dataclass, field
+from contextlib import asynccontextmanager, suppress
+from dataclasses import dataclass
 from datetime import datetime
 from difflib import SequenceMatcher
 from pathlib import Path
@@ -38,9 +38,10 @@ class LockMetrics:
         self.total_wait_ms = 0
         self.max_wait_ms = 0
 
-from friday_core import GraphStoreAdapter, TelemetryInterface
 
-from friday_memory.models import GraphEdge, GraphNode
+from friday_core import GraphStoreAdapter, TelemetryInterface  # noqa: E402
+
+from friday_memory.models import GraphEdge, GraphNode  # noqa: E402
 
 
 class ElementXGraphStore(GraphStoreAdapter):
@@ -209,7 +210,7 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         Returns:
             True if node was added, False if skipped as duplicate
-        """
+        """  # noqa: E501
         async with self._acquire_lock():
             # Check for duplicate by label (case-insensitive) and type
             if check_duplicate:
@@ -219,12 +220,14 @@ class ElementXGraphStore(GraphStoreAdapter):
                         # Reinforce existing node (Hebbian learning)
                         # Repeated extraction = this entity is important
                         existing_data = self._graph.nodes[existing.id]
-                        existing_data["hit_count"] = existing_data.get("hit_count", 0) + 1
+                        existing_data["hit_count"] = (
+                            existing_data.get("hit_count", 0) + 1
+                        )
                         existing_data["last_accessed"] = datetime.now().isoformat()
                         self._save()
                         logger.debug(
-                            f"Reinforced duplicate node (hit_count={existing_data['hit_count']}): "
-                            f"'{node.label}' (type={node.type}) exists with id={existing.id}"
+                            f"Reinforced duplicate node (hit_count={existing_data['hit_count']}): "  # noqa: E501
+                            f"'{node.label}' (type={node.type}) exists with id={existing.id}"  # noqa: E501
                         )
                         self._emit_event(
                             "graph_node_reinforced",
@@ -240,7 +243,7 @@ class ElementXGraphStore(GraphStoreAdapter):
                         logger.warning(
                             f"Adding duplicate node: '{node.label}' (type={node.type}) "
                             f"already exists with id={existing.id}, new id={node.id}. "
-                            f"Consider using find_by_label() first or merge_nodes() after."
+                            f"Consider using find_by_label() first or merge_nodes() after."  # noqa: E501
                         )
 
             # Store node data as dict for NetworkX
@@ -303,7 +306,7 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         Returns:
             True if edge was added/updated, False if skipped as duplicate
-        """
+        """  # noqa: E501
         async with self._acquire_lock():
             # Check for existing edge with same source, target, and relation
             existing_edge = self._graph.has_edge(edge.source_id, edge.target_id)
@@ -319,7 +322,7 @@ class ElementXGraphStore(GraphStoreAdapter):
                     existing_data["last_accessed"] = datetime.now().isoformat()
 
                     if update_if_exists:
-                        # Update existing edge with new data (preserving hit_count/last_accessed)
+                        # Update existing edge with new data (preserving hit_count/last_accessed)  # noqa: E501
                         edge_data = edge.model_dump()
                         edge_data.pop("source_id")
                         edge_data.pop("target_id")
@@ -329,7 +332,7 @@ class ElementXGraphStore(GraphStoreAdapter):
                         existing_data.update(edge_data)
                         self._save()
                         logger.debug(
-                            f"Updated existing edge (hit_count={existing_data['hit_count']}): "
+                            f"Updated existing edge (hit_count={existing_data['hit_count']}): "  # noqa: E501
                             f"{edge.source_id} --[{edge.relation}]--> {edge.target_id}"
                         )
                         self._emit_event(
@@ -346,7 +349,7 @@ class ElementXGraphStore(GraphStoreAdapter):
                         # Skip adding but still save the hit_count/last_accessed update
                         self._save()
                         logger.debug(
-                            f"Reinforced duplicate edge (hit_count={existing_data['hit_count']}): "
+                            f"Reinforced duplicate edge (hit_count={existing_data['hit_count']}): "  # noqa: E501
                             f"{edge.source_id} --[{edge.relation}]--> {edge.target_id}"
                         )
                         self._emit_event(
@@ -401,9 +404,7 @@ class ElementXGraphStore(GraphStoreAdapter):
 
     # --- Traversal Operations ---
 
-    async def get_neighbors(
-        self, node_id: str, depth: int = 1
-    ) -> list[dict[str, Any]]:
+    async def get_neighbors(self, node_id: str, depth: int = 1) -> list[dict[str, Any]]:
         """
         Gets connected nodes within the specified depth.
 
@@ -620,9 +621,7 @@ class ElementXGraphStore(GraphStoreAdapter):
         try:
             # Use undirected view for path finding
             undirected = self._graph.to_undirected()
-            path = nx.shortest_path(
-                undirected, start_id, end_id, weight=None
-            )
+            path = nx.shortest_path(undirected, start_id, end_id, weight=None)
             if len(path) - 1 > max_depth:
                 return []
             return path
@@ -684,9 +683,7 @@ class ElementXGraphStore(GraphStoreAdapter):
         )
         return True
 
-    async def fuzzy_search(
-        self, query: str, threshold: float = 0.8
-    ) -> list[GraphNode]:
+    async def fuzzy_search(self, query: str, threshold: float = 0.8) -> list[GraphNode]:
         """
         Finds nodes with similar names/labels.
 
@@ -711,13 +708,11 @@ class ElementXGraphStore(GraphStoreAdapter):
         matches = []
         query_lower = query.lower()
 
-        for node_id, node_data in node_data_list:
+        for _node_id, node_data in node_data_list:
             label = node_data.get("label", "")
 
             # Calculate similarity
-            similarity = SequenceMatcher(
-                None, query_lower, label.lower()
-            ).ratio()
+            similarity = SequenceMatcher(None, query_lower, label.lower()).ratio()
 
             if similarity >= threshold:
                 try:
@@ -731,9 +726,7 @@ class ElementXGraphStore(GraphStoreAdapter):
         matches.sort(key=lambda x: x[0], reverse=True)
         return [node for _, node in matches]
 
-    async def rank_nodes(
-        self, algorithm: str = "pagerank"
-    ) -> list[dict[str, Any]]:
+    async def rank_nodes(self, algorithm: str = "pagerank") -> list[dict[str, Any]]:
         """
         Ranks nodes by importance using graph algorithms.
 
@@ -756,8 +749,7 @@ class ElementXGraphStore(GraphStoreAdapter):
             scores = nx.pagerank(self._graph)
 
         ranked = [
-            {"node_id": node_id, "rank": score}
-            for node_id, score in scores.items()
+            {"node_id": node_id, "rank": score} for node_id, score in scores.items()
         ]
         ranked.sort(key=lambda x: x["rank"], reverse=True)
         return ranked
@@ -798,10 +790,8 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         result = {}
         for node_id, node_data in node_data_list:
-            try:
+            with suppress(Exception):
                 result[node_id] = GraphNode(**node_data)
-            except Exception:
-                pass
         return result
 
     async def get_all_nodes(self) -> list[GraphNode]:
@@ -809,17 +799,14 @@ class ElementXGraphStore(GraphStoreAdapter):
         # Snapshot under lock
         async with self._acquire_lock():
             node_data_list = [
-                dict(self._graph.nodes[node_id])
-                for node_id in self._graph.nodes
+                dict(self._graph.nodes[node_id]) for node_id in self._graph.nodes
             ]
 
         # Process outside lock
         nodes = []
         for node_data in node_data_list:
-            try:
+            with suppress(Exception):
                 nodes.append(GraphNode(**node_data))
-            except Exception:
-                pass
         return nodes
 
     async def get_top_nodes(
@@ -840,7 +827,7 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         Returns:
             List of top GraphNodes sorted by the specified criteria
-        """
+        """  # noqa: E501
         all_nodes = await self.get_all_nodes()
 
         if sort_by == "hit_count":
@@ -887,7 +874,7 @@ class ElementXGraphStore(GraphStoreAdapter):
                 # Only include embedding if present (None would be default anyway)
                 if data.get("embedding") is not None:
                     edge_kwargs["embedding"] = data["embedding"]
-                # Only include datetime fields if present (avoid overriding defaults with None)
+                # Only include datetime fields if present (avoid overriding defaults with None)  # noqa: E501
                 if data.get("last_accessed") is not None:
                     edge_kwargs["last_accessed"] = data["last_accessed"]
                 if data.get("created_at") is not None:
@@ -924,11 +911,14 @@ class ElementXGraphStore(GraphStoreAdapter):
             edge_data_list = []
             for source, target, data in self._graph.edges(data=True):
                 include = False
-                if direction == "outgoing" and source in node_ids:
-                    include = True
-                elif direction == "incoming" and target in node_ids:
-                    include = True
-                elif direction == "both" and (source in node_ids or target in node_ids):
+                if (
+                    direction == "outgoing"
+                    and source in node_ids
+                    or direction == "incoming"
+                    and target in node_ids
+                    or direction == "both"
+                    and (source in node_ids or target in node_ids)
+                ):
                     include = True
 
                 if include:
@@ -1003,7 +993,7 @@ class ElementXGraphStore(GraphStoreAdapter):
         label_lower = label.lower()
         for node_id in self._graph.nodes:
             node_data = self._graph.nodes[node_id]
-            if node_data.get("label", "").lower() == label_lower:
+            if node_data.get("label", "").lower() == label_lower:  # noqa: SIM102
                 if node_type is None or node_data.get("type") == node_type:
                     try:
                         return GraphNode(**node_data)

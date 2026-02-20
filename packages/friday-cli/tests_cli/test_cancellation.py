@@ -5,10 +5,9 @@ Tests for cancellation support.
 import asyncio
 
 import pytest
-
 from friday_cli.cancellation import (
-    CancellationToken,
     CancellableContext,
+    CancellationToken,
     OperationCancelledError,
     run_cancellable,
 )

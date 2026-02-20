@@ -47,7 +47,9 @@ async def main():
         confidence=0.95,
         author_id="user_alice",
     )
-    print(f"Created provenance: source={provenance.source_id}, type={provenance.source_type}")
+    print(
+        f"Created provenance: source={provenance.source_id}, type={provenance.source_type}"  # noqa: E501
+    )
     print(f"  Confidence: {provenance.confidence}")
     print(f"  Created at: {provenance.created_at}")
 
@@ -115,7 +117,7 @@ async def main():
         session_id=session_id,
         timestamp=datetime.now(),
         user_message="Can you search for nearby coffee shops?",
-        assistant_message="I found 3 coffee shops near you. Blue Bottle is the closest.",
+        assistant_message="I found 3 coffee shops near you. Blue Bottle is the closest.",  # noqa: E501
         tool_calls=[
             ToolCall(
                 id="call_001",

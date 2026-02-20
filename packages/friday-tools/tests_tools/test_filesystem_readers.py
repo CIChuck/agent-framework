@@ -5,18 +5,12 @@ Tests encoding detection, CSV reading, and the reader factory.
 PDF, DOCX, and XLSX tests are skipped if optional dependencies are not installed.
 """
 
-import csv
-import io
-import tempfile
-from pathlib import Path
-
 import pytest
 
 from friday_tools.filesystem.readers import (
     CsvReader,
     EncodingDetector,
     ReaderFactory,
-    ReaderResult,
     detect_encoding,
     get_reader_for_path,
     read_with_smart_encoding,
@@ -33,7 +27,7 @@ class TestEncodingDetector:
 
     def test_detect_utf8(self):
         """Test detection of UTF-8 encoded content."""
-        content = "Hello, World! 你好世界".encode("utf-8")
+        content = "Hello, World! 你好世界".encode()
         result = detect_encoding(content)
         normalized = _normalize_encoding(result.encoding)
         assert normalized in ["utf-8", "ascii"]
@@ -93,8 +87,7 @@ class TestReadWithSmartEncoding:
         test_file.write_text(content, encoding="utf-8")
 
         result, enc_info = read_with_smart_encoding(
-            test_file,
-            explicit_encoding="utf-8"
+            test_file, explicit_encoding="utf-8"
         )
         assert result == content
         assert enc_info.method == "explicit"
@@ -128,7 +121,7 @@ class TestCsvReader:
         """Test reading CSV with row limit."""
         test_file = tmp_path / "data.csv"
         # Create CSV with many rows
-        lines = ["id,value"] + [f"{i},{i*10}" for i in range(100)]
+        lines = ["id,value"] + [f"{i},{i * 10}" for i in range(100)]
         test_file.write_text("\n".join(lines))
 
         reader = CsvReader()
@@ -247,7 +240,8 @@ class TestPdfReader:
     def pdf_available(self):
         """Check if pypdf is available."""
         try:
-            import pypdf
+            import pypdf  # noqa: F401
+
             return True
         except ImportError:
             return False
@@ -288,7 +282,9 @@ class TestDocxReader:
 
         # Should either work or report missing dependency
         if not result.success:
-            assert "python-docx" in result.error or "dependencies" in result.error.lower()
+            assert (
+                "python-docx" in result.error or "dependencies" in result.error.lower()
+            )
 
 
 class TestXlsxReader:
@@ -321,9 +317,7 @@ class TestFileReadToolIntegration:
         test_file = tmp_path / "test.txt"
         test_file.write_text("Hello, World!\n日本語テスト\n", encoding="utf-8")
 
-        result = await tool.run(
-            tool.Input(path=str(test_file), encoding="auto")
-        )
+        result = await tool.run(tool.Input(path=str(test_file), encoding="auto"))
 
         assert not result.error
         assert "Hello" in result.content
@@ -344,11 +338,7 @@ class TestFileReadToolIntegration:
 
         # Read lines 5-10
         result = await tool.run(
-            tool.Input(
-                path=str(test_file),
-                start_line=5,
-                max_lines=6
-            )
+            tool.Input(path=str(test_file), start_line=5, max_lines=6)
         )
 
         assert not result.error

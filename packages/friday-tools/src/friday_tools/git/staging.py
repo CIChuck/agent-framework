@@ -34,8 +34,16 @@ class GitAddTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "files": {"type": "array", "items": {"type": "string"}, "description": "Files to add"},
-                "all": {"type": "boolean", "description": "Add all changes", "default": False},
+                "files": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Files to add",
+                },
+                "all": {
+                    "type": "boolean",
+                    "description": "Add all changes",
+                    "default": False,
+                },
             },
             "required": [],
         }
@@ -124,7 +132,11 @@ class GitStashTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "action": {"type": "string", "enum": ["push", "pop", "list"], "default": "push"},
+                "action": {
+                    "type": "string",
+                    "enum": ["push", "pop", "list"],
+                    "default": "push",
+                },
                 "message": {"type": "string", "description": "Stash message"},
             },
             "required": [],

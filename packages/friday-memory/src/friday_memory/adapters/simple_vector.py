@@ -6,11 +6,9 @@ Ref: Phase 1 - Scalable Adapters Build Plan
 """
 
 import asyncio
-import uuid
 from typing import Any, Protocol
 
 import numpy as np
-
 from friday_core.interfaces.memory import VectorStoreAdapter
 
 
@@ -112,7 +110,7 @@ class SimpleVectorStore(VectorStoreAdapter):
         # Store documents under lock
         async with self._lock:
             for text, embedding, metadata, doc_id in zip(
-                texts, embeddings, metadatas, ids
+                texts, embeddings, metadatas, ids, strict=False
             ):
                 self._documents[doc_id] = VectorDocument(
                     id=doc_id,
@@ -168,13 +166,15 @@ class SimpleVectorStore(VectorStoreAdapter):
             # Cosine similarity
             similarity = self._cosine_similarity(query_vec, doc.embedding)
 
-            results.append({
-                "id": doc.id,
-                "text": doc.text,
-                "metadata": doc.metadata,
-                "similarity": float(similarity),
-                "distance": float(1 - similarity),
-            })
+            results.append(
+                {
+                    "id": doc.id,
+                    "text": doc.text,
+                    "metadata": doc.metadata,
+                    "similarity": float(similarity),
+                    "distance": float(1 - similarity),
+                }
+            )
 
         # Sort by similarity (descending) and limit
         results.sort(key=lambda r: r["similarity"], reverse=True)
@@ -259,11 +259,13 @@ class SimpleVectorStore(VectorStoreAdapter):
             for doc in self._documents.values():
                 if where and not self._matches_filter(doc.metadata, where):
                     continue
-                documents.append({
-                    "id": doc.id,
-                    "text": doc.text,
-                    "metadata": doc.metadata,
-                })
+                documents.append(
+                    {
+                        "id": doc.id,
+                        "text": doc.text,
+                        "metadata": doc.metadata,
+                    }
+                )
                 if limit is not None and len(documents) >= limit:
                     break
             return documents
@@ -360,21 +362,24 @@ class SimpleVectorStore(VectorStoreAdapter):
             if isinstance(value, dict):
                 metadata_val = metadata[key]
                 for op, op_val in value.items():
-                    if op == "$eq" and metadata_val != op_val:
-                        return False
-                    elif op == "$ne" and metadata_val == op_val:
-                        return False
-                    elif op == "$gt" and not (metadata_val > op_val):
-                        return False
-                    elif op == "$gte" and not (metadata_val >= op_val):
-                        return False
-                    elif op == "$lt" and not (metadata_val < op_val):
-                        return False
-                    elif op == "$lte" and not (metadata_val <= op_val):
-                        return False
-                    elif op == "$in" and metadata_val not in op_val:
-                        return False
-                    elif op == "$nin" and metadata_val in op_val:
+                    if (
+                        op == "$eq"
+                        and metadata_val != op_val
+                        or op == "$ne"
+                        and metadata_val == op_val
+                        or op == "$gt"
+                        and not (metadata_val > op_val)
+                        or op == "$gte"
+                        and not (metadata_val >= op_val)
+                        or op == "$lt"
+                        and not (metadata_val < op_val)
+                        or op == "$lte"
+                        and not (metadata_val <= op_val)
+                        or op == "$in"
+                        and metadata_val not in op_val
+                        or op == "$nin"
+                        and metadata_val in op_val
+                    ):
                         return False
             else:
                 # Simple equality

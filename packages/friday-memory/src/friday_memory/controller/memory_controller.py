@@ -28,14 +28,14 @@ from typing import TYPE_CHECKING, Any
 
 logger = logging.getLogger(__name__)
 
-from friday_core import (
+from friday_core import (  # noqa: E402
     EpisodicStoreAdapter,
     GraphStoreAdapter,
     TelemetryInterface,
     VectorStoreAdapter,
 )
 
-from friday_memory.models import (
+from friday_memory.models import (  # noqa: E402
     ContextPayload,
     GraphEdge,
     GraphNode,
@@ -46,12 +46,13 @@ from friday_memory.models import (
 )
 
 if TYPE_CHECKING:
+    from friday_transcript import TranscriptStore
+
     from friday_memory.retrieval import (
         AccessBuffer,
         CollectionManager,
         GraphPathScorer,
     )
-    from friday_transcript import TranscriptStore
 
 
 # Behavioral/conversational relation types to exclude from display
@@ -163,7 +164,7 @@ class MemoryController:
             recalc_interval: Number of turns between background insight recalculation (0 = disabled)
             transcript_store: Optional TranscriptStore for cross-session history retrieval
             default_author_id: Default author for memory operations (for multi-agent provenance)
-        """
+        """  # noqa: E501
         self.vector = vector_store
         self.graph = graph_store
         self.episodic = episodic_store
@@ -202,7 +203,7 @@ class MemoryController:
         self._state_lock = asyncio.Lock()
 
         # Priming state per session
-        # _primed_content: session_id -> (entities, insights, summaries, relationship_summaries)
+        # _primed_content: session_id -> (entities, insights, summaries, relationship_summaries)  # noqa: E501
         self._primed_content: dict[
             str,
             tuple[
@@ -442,7 +443,7 @@ class MemoryController:
 
         Returns:
             ContextPayload with aggregated retrieval results
-        """
+        """  # noqa: E501
         start_time = time.time()
         span_id = None
         if self._telemetry:
@@ -469,7 +470,9 @@ class MemoryController:
 
             # Compute query embedding ONCE for reuse across vector + graph retrieval.
             # This avoids redundant embedding API calls (was 2 per recall, now 1).
-            query_embedding = await self._collection_manager._embedding_function.embed_query(query)
+            query_embedding = (
+                await self._collection_manager._embedding_function.embed_query(query)
+            )
 
             # Parallel retrieval from all stores (using budget-aware limits)
             tasks = []
@@ -740,9 +743,7 @@ class MemoryController:
 
                 # Sort by created_at descending (most recent first)
                 raw_insights.sort(
-                    key=lambda x: x.get("metadata", {}).get(
-                        "created_at", ""
-                    ),
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
                     reverse=True,
                 )
 
@@ -776,9 +777,7 @@ class MemoryController:
 
                 # Sort by created_at descending (most recent first)
                 raw_summaries.sort(
-                    key=lambda x: x.get("metadata", {}).get(
-                        "created_at", ""
-                    ),
+                    key=lambda x: x.get("metadata", {}).get("created_at", ""),
                     reverse=True,
                 )
 
@@ -995,19 +994,13 @@ class MemoryController:
             # falls back to created_at string for un-backfilled documents.
             if recency_days > 0:
                 cutoff_ts = int(
-                    (
-                        datetime.now() - timedelta(days=recency_days)
-                    ).timestamp()
+                    (datetime.now() - timedelta(days=recency_days)).timestamp()
                 )
-                cutoff_iso = (
-                    datetime.now() - timedelta(days=recency_days)
-                ).isoformat()
+                cutoff_iso = (datetime.now() - timedelta(days=recency_days)).isoformat()
                 raw = [
                     doc
                     for doc in raw
-                    if self._passes_recency_filter(
-                        doc, cutoff_ts, cutoff_iso
-                    )
+                    if self._passes_recency_filter(doc, cutoff_ts, cutoff_iso)
                 ]
             # get_all() already sorts by created_at desc
             # Deduplicate by topic/entities before returning
@@ -1163,19 +1156,13 @@ class MemoryController:
             # falls back to created_at string for un-backfilled documents.
             if recency_days > 0:
                 cutoff_ts = int(
-                    (
-                        datetime.now() - timedelta(days=recency_days)
-                    ).timestamp()
+                    (datetime.now() - timedelta(days=recency_days)).timestamp()
                 )
-                cutoff_iso = (
-                    datetime.now() - timedelta(days=recency_days)
-                ).isoformat()
+                cutoff_iso = (datetime.now() - timedelta(days=recency_days)).isoformat()
                 raw = [
                     doc
                     for doc in raw
-                    if self._passes_recency_filter(
-                        doc, cutoff_ts, cutoff_iso
-                    )
+                    if self._passes_recency_filter(doc, cutoff_ts, cutoff_iso)
                 ]
             # get_all() already sorts by created_at desc
             return raw[:max_count]
@@ -1997,9 +1984,7 @@ class MemoryController:
         """
         return await self.episodic.mark_consolidated(event_ids)
 
-    async def mark_turns_compacted(
-        self, turn_ids: list[str]
-    ) -> bool:
+    async def mark_turns_compacted(self, turn_ids: list[str]) -> bool:
         """Proxy for EpisodicStoreAdapter.mark_compacted.
 
         Called by InSessionCompactor after summarizing turns.

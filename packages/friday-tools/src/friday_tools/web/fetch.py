@@ -68,9 +68,7 @@ class WebFetchTool(BaseTool):
             ) as client:
                 response = await client.get(
                     url,
-                    headers={
-                        "User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"
-                    },
+                    headers={"User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"},
                 )
                 response.raise_for_status()
 
@@ -150,8 +148,10 @@ class WebScreenshotTool(BaseTool):
 
     async def execute(self, **kwargs: Any) -> str:
         # This is a stub - would require playwright or selenium
-        return "Error: web_screenshot is not yet implemented. " \
-               "This feature requires a headless browser (e.g., Playwright)."
+        return (
+            "Error: web_screenshot is not yet implemented. "
+            "This feature requires a headless browser (e.g., Playwright)."
+        )
 
 
 class WebExtractLinksTool(BaseTool):
@@ -206,9 +206,7 @@ class WebExtractLinksTool(BaseTool):
             ) as client:
                 response = await client.get(
                     url,
-                    headers={
-                        "User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"
-                    },
+                    headers={"User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"},
                 )
                 response.raise_for_status()
 
@@ -235,11 +233,13 @@ class WebExtractLinksTool(BaseTool):
                 if not is_internal and not include_external:
                     continue
 
-                links.append({
-                    "url": full_url,
-                    "text": text or "(no text)",
-                    "type": "internal" if is_internal else "external",
-                })
+                links.append(
+                    {
+                        "url": full_url,
+                        "text": text or "(no text)",
+                        "type": "internal" if is_internal else "external",
+                    }
+                )
 
                 if len(links) >= max_links:
                     break
@@ -270,7 +270,9 @@ class WebExtractTextTool(BaseTool):
 
     @property
     def description(self) -> str:
-        return "Extract the main text content from a webpage, removing navigation and ads."
+        return (
+            "Extract the main text content from a webpage, removing navigation and ads."
+        )
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -301,20 +303,30 @@ class WebExtractTextTool(BaseTool):
             ) as client:
                 response = await client.get(
                     url,
-                    headers={
-                        "User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"
-                    },
+                    headers={"User-Agent": "Mozilla/5.0 (compatible; FridayBot/1.0)"},
                 )
                 response.raise_for_status()
 
             soup = BeautifulSoup(response.text, "html.parser")
 
             # Remove unwanted elements
-            for element in soup([
-                "script", "style", "nav", "footer", "header",
-                "aside", "form", "button", "input", "select",
-                "noscript", "iframe", "svg",
-            ]):
+            for element in soup(
+                [
+                    "script",
+                    "style",
+                    "nav",
+                    "footer",
+                    "header",
+                    "aside",
+                    "form",
+                    "button",
+                    "input",
+                    "select",
+                    "noscript",
+                    "iframe",
+                    "svg",
+                ]
+            ):
                 element.decompose()
 
             # Try to find main content

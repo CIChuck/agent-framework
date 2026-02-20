@@ -49,18 +49,20 @@ class GetCurrentDateTimeTool(FridayTool):
     """
 
     name = "get_current_datetime"
-    description = "Get the current date and time, optionally in a specific timezone and format."
+    description = (
+        "Get the current date and time, optionally in a specific timezone and format."
+    )
     category = "utility"
     tags = ["datetime", "time", "timezone", "utility"]
 
     class Input(BaseModel):
         timezone_name: str = Field(
             default="local",
-            description="IANA timezone name (e.g., 'America/New_York', 'UTC', 'Europe/London', 'Asia/Tokyo'). Use 'local' for system timezone.",
+            description="IANA timezone name (e.g., 'America/New_York', 'UTC', 'Europe/London', 'Asia/Tokyo'). Use 'local' for system timezone.",  # noqa: E501
         )
         format: Literal["iso", "human", "unix"] = Field(
             default="iso",
-            description="Output format: 'iso' for ISO 8601, 'human' for human-readable, 'unix' for Unix timestamp",
+            description="Output format: 'iso' for ISO 8601, 'human' for human-readable, 'unix' for Unix timestamp",  # noqa: E501
         )
 
     async def run(self, args: Input) -> ToolResult:

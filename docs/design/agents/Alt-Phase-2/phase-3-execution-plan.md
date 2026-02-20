@@ -371,7 +371,7 @@ This execution plan was validated for consistency against the current Alt-Phase-
 | `agent-contract-test-strategy.md` | Verification layering and gate evidence model | Context-preservation protocol + per-subphase gates |
 | `agent-contract-compliance-matrix.md` | Identified precision gaps addressed in execution | Subphase 4/5/6/8 explicitly carry remaining gaps |
 | `skills-compatibility-profile.md` | Strict compatibility + canonical skill validation | Subphase 4 enforces `skills-ref` and no-expansion policy |
-| `phase-2-build-plan.md` + `phase-2-execution-plan.md` | Phase 2 decisions/invariants remain intact | Non-negotiable constraints section + gated carryover |
+| Phase 2 build baseline (archived) + Phase 2 execution baseline (archived) | Phase 2 decisions/invariants remain intact | Non-negotiable constraints section + gated carryover |
 
 Validation conclusion:
 

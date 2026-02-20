@@ -7,14 +7,15 @@ Connects to MCP servers via Server-Sent Events (HTTP streaming).
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 import logging
 from typing import Any
 
 import httpx
 
-from friday_mcp.config import MCPServerConfig
 from friday_mcp.client.base import MCPClientBase
+from friday_mcp.config import MCPServerConfig
 
 logger = logging.getLogger(__name__)
 
@@ -86,10 +87,8 @@ class SSETransport:
         """Close the SSE connection."""
         if self._receive_task:
             self._receive_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._receive_task
-            except asyncio.CancelledError:
-                pass
 
         if self._sse_response:
             await self._sse_response.aclose()
@@ -129,7 +128,9 @@ class SSETransport:
                         # Check for endpoint message
                         if "endpoint" in message:
                             self._session_url = message["endpoint"]
-                            logger.debug(f"Received session endpoint: {self._session_url}")
+                            logger.debug(
+                                f"Received session endpoint: {self._session_url}"
+                            )
                         else:
                             await self._message_queue.put(message)
                     except json.JSONDecodeError:
@@ -186,7 +187,7 @@ class SSEMCPClient(MCPClientBase):
         self.timeout = timeout
 
     @classmethod
-    def from_config(cls, config: MCPServerConfig) -> "SSEMCPClient":
+    def from_config(cls, config: MCPServerConfig) -> SSEMCPClient:
         """
         Create client from configuration.
 

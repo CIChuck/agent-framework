@@ -73,10 +73,7 @@ class TextSplitTool(BaseTool):
         use_regex = kwargs.get("regex", False)
 
         try:
-            if use_regex:
-                parts = re.split(delimiter, text)
-            else:
-                parts = text.split(delimiter)
+            parts = re.split(delimiter, text) if use_regex else text.split(delimiter)
             return str(parts)
         except re.error as e:
             return f"Error: Invalid regex: {e}"

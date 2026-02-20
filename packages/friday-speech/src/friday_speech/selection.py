@@ -11,7 +11,12 @@ from .errors import SelectionError
 class TagParseResult:
     """Result of parsing speech tags."""
 
-    def __init__(self, include_segments: list[str], exclude_spans: list[tuple[int, int]], malformed: bool):
+    def __init__(
+        self,
+        include_segments: list[str],
+        exclude_spans: list[tuple[int, int]],
+        malformed: bool,
+    ):
         self.include_segments = include_segments
         self.exclude_spans = exclude_spans
         self.malformed = malformed
@@ -111,7 +116,11 @@ def select_speech_text(text: str, config: SelectionConfig) -> str:
         return _apply_strategy(cleaned, config)
 
     if tag_result.include_segments:
-        return " ".join(segment.strip() for segment in tag_result.include_segments if segment.strip())
+        return " ".join(
+            segment.strip()
+            for segment in tag_result.include_segments
+            if segment.strip()
+        )
 
     if config.strategy == SelectionStrategy.TAGGED_ONLY:
         return ""

@@ -13,7 +13,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
-from .base import FileReader, ReaderResult
+from .base import ReaderResult
 
 logger = logging.getLogger(__name__)
 
@@ -111,7 +111,7 @@ class PdfReader:
                 else:
                     return ReaderResult(
                         content="",
-                        error="PDF is encrypted. Provide password parameter to decrypt.",
+                        error="PDF is encrypted. Provide password parameter to decrypt.",  # noqa: E501
                         metadata={"encrypted": True, "path": str(path)},
                     )
 
@@ -142,8 +142,12 @@ class PdfReader:
                     if page_text.strip():
                         text_parts.append(f"--- Page {page_num + 1} ---\n{page_text}")
                 except Exception as e:
-                    logger.warning(f"Failed to extract text from page {page_num + 1}: {e}")
-                    text_parts.append(f"--- Page {page_num + 1} ---\n[Error extracting text: {e}]")
+                    logger.warning(
+                        f"Failed to extract text from page {page_num + 1}: {e}"
+                    )
+                    text_parts.append(
+                        f"--- Page {page_num + 1} ---\n[Error extracting text: {e}]"
+                    )
 
             content = "\n\n".join(text_parts)
 

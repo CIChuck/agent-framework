@@ -21,8 +21,8 @@ from friday_memory.retrieval.collection_manager import (
     CollectionManager,
 )
 from friday_memory.retrieval.factor_computer import (
-    FactorComputeResult,
     FactorComputerConfig,
+    FactorComputeResult,
     RetrievalFactorComputer,
     calculate_inclusion_score_fast,
 )

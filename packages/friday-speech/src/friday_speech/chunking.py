@@ -23,7 +23,7 @@ def _chunk_by_sentence(text: str, max_chars: int) -> list[str]:
     if not sentences:
         return _chunk_by_word(text, max_chars)
 
-    remainder = text[sum(len(s) for s in sentences):]
+    remainder = text[sum(len(s) for s in sentences) :]
     if remainder:
         sentences.append(remainder)
 

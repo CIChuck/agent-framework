@@ -9,7 +9,7 @@ Ref: Code Generation Tool specification
 
 from __future__ import annotations
 
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from .protocols import ToolDefinition, ToolRegistry
@@ -74,7 +74,7 @@ def get_import_path(tool_name: str) -> str:
     return "friday_tools"
 
 
-def generate_usage_example(tool: "ToolDefinition") -> str:
+def generate_usage_example(tool: ToolDefinition) -> str:
     """
     Generate a usage example for a tool.
 
@@ -118,7 +118,7 @@ def generate_usage_example(tool: "ToolDefinition") -> str:
             example_args.append(f"{param_name}={example_val}")
 
     args_str = ", ".join(example_args)
-    return f'result = await {tool.name}.execute({args_str})'
+    return f"result = await {tool.name}.execute({args_str})"
 
 
 class ToolManifest:
@@ -142,7 +142,7 @@ class ToolManifest:
         context = manifest.to_prompt_context()
     """
 
-    def __init__(self, registry: "ToolRegistry"):
+    def __init__(self, registry: ToolRegistry):
         """
         Initialize manifest with a tool registry.
 
@@ -164,7 +164,7 @@ class ToolManifest:
                 "name": tool.name,
                 "description": tool.description,
                 "import_module": get_import_path(tool.name),
-                "import_statement": f"from {get_import_path(tool.name)} import {tool.name}",
+                "import_statement": f"from {get_import_path(tool.name)} import {tool.name}",  # noqa: E501
                 "parameters": tool.parameters_schema,
                 "usage_example": generate_usage_example(tool),
             }
@@ -232,7 +232,9 @@ class ToolManifest:
                     req_marker = " (required)" if param_name in required else ""
                     param_type = param_schema.get("type", "any")
                     param_desc = param_schema.get("description", "")
-                    lines.append(f"  - `{param_name}`: {param_type}{req_marker} - {param_desc}")
+                    lines.append(
+                        f"  - `{param_name}`: {param_type}{req_marker} - {param_desc}"
+                    )
 
             lines.append(f"**Example:** `{tool['usage_example']}`")
             lines.append("")

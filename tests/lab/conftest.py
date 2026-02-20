@@ -10,7 +10,6 @@ Ref: Phase 1 Build Plan, Step 7.5
 from __future__ import annotations
 
 import pytest
-
 from friday_agent import AgentProfile
 from friday_core.profiles import MemoryProfile
 from friday_runtime import RuntimeConfig, RuntimeKernel

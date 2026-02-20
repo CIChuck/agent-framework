@@ -15,8 +15,8 @@ from typing import TYPE_CHECKING, Any
 
 from friday_core import TelemetryInterface
 
-from friday_memory.controller import MemoryController
 from friday_memory.context.token_estimator import build_token_estimator
+from friday_memory.controller import MemoryController
 from friday_memory.models import (
     ConflictResolutionResponse,
     ConsolidationReport,
@@ -53,7 +53,7 @@ Respond in JSON format:
     "tokens_original": estimated_original_token_count,
     "tokens_compressed": estimated_compressed_token_count
 }}
-"""
+"""  # noqa: E501
 
 # Conflict resolution prompt template
 CONFLICT_RESOLUTION_PROMPT = """Analyze the following potentially conflicting facts and determine the current truth.
@@ -73,7 +73,7 @@ Respond in JSON format:
     "current_value": "the current/latest valid value",
     "historical_note": "note about value changes if applicable"
 }}
-"""
+"""  # noqa: E501
 
 
 class MemoryConsolidator:
@@ -118,7 +118,9 @@ class MemoryConsolidator:
         self._telemetry = telemetry
 
         # Token counting now uses a configurable estimator (approx by default).
-        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
+        self._token_estimator = build_token_estimator(
+            token_estimator_config, model_name
+        )
 
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -253,7 +255,7 @@ class MemoryConsolidator:
             label_map[label_lower].append(node)
 
         # Find exact duplicates first
-        for label, nodes in label_map.items():
+        for _label, nodes in label_map.items():
             if len(nodes) > 1:
                 stats["candidates_found"] += len(nodes) - 1
                 # Keep the oldest (first) node, merge others into it
@@ -263,12 +265,14 @@ class MemoryConsolidator:
                         await self._memory.merge_identities(primary.id, secondary.id)
                         stats["merged"] += 1
                     except Exception as e:
-                        logger.warning(f"Failed to merge {secondary.id} into {primary.id}: {e}")
+                        logger.warning(
+                            f"Failed to merge {secondary.id} into {primary.id}: {e}"
+                        )
 
         # Fuzzy matching for near-duplicates
         labels = list(label_map.keys())
         for i, label1 in enumerate(labels):
-            for label2 in labels[i + 1:]:
+            for label2 in labels[i + 1 :]:
                 # Simple similarity check
                 if self._is_similar(label1, label2):
                     nodes1 = label_map[label1]
@@ -276,7 +280,9 @@ class MemoryConsolidator:
                     if nodes1 and nodes2:
                         stats["candidates_found"] += 1
                         try:
-                            await self._memory.merge_identities(nodes1[0].id, nodes2[0].id)
+                            await self._memory.merge_identities(
+                                nodes1[0].id, nodes2[0].id
+                            )
                             stats["merged"] += 1
                         except Exception as e:
                             logger.warning(f"Failed fuzzy merge: {e}")
@@ -286,11 +292,10 @@ class MemoryConsolidator:
     def _is_similar(self, s1: str, s2: str, threshold: float = 0.85) -> bool:
         """Check if two strings are similar enough to be duplicates."""
         from difflib import SequenceMatcher
+
         return SequenceMatcher(None, s1, s2).ratio() >= threshold
 
-    async def _summarize_turns(
-        self, session_id: str, turns: list
-    ) -> dict[str, int]:
+    async def _summarize_turns(self, session_id: str, turns: list) -> dict[str, int]:
         """
         Summarize conversation turns into episodic memory blocks.
 
@@ -305,7 +310,7 @@ class MemoryConsolidator:
 
         # Process in batches
         for i in range(0, len(turns), self._max_turns):
-            batch = turns[i:i + self._max_turns]
+            batch = turns[i : i + self._max_turns]
 
             if len(batch) < 2:
                 continue
@@ -382,9 +387,7 @@ class MemoryConsolidator:
 
         return "\n".join(formatted)
 
-    async def resolve_conflict(
-        self, facts: list[dict[str, Any]]
-    ) -> dict[str, Any]:
+    async def resolve_conflict(self, facts: list[dict[str, Any]]) -> dict[str, Any]:
         """
         Resolve conflicting facts using LLM reasoning.
 
@@ -438,9 +441,7 @@ class MemoryConsolidator:
                 "current_value": facts[-1].get("text", "") if facts else "",
             }
 
-    async def get_recent_memories(
-        self, session_id: str, limit: int = 5
-    ) -> list[str]:
+    async def get_recent_memories(self, session_id: str, limit: int = 5) -> list[str]:
         """
         Get recent memories for the transparency block.
 

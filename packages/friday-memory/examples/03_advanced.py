@@ -35,11 +35,9 @@ from pathlib import Path
 from unittest.mock import AsyncMock
 
 from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
     ChromaVectorStore,
     ContextAssembler,
-    ContextPayload,
     DocumentIngestionPipeline,
     ElementXGraphStore,
     GraphEdge,
@@ -49,7 +47,6 @@ from friday_memory import (
     MemoryController,
     PromptArchitect,
     ProvenanceMetadata,
-    SessionState,
 )
 
 
@@ -65,10 +62,12 @@ def create_mock_embedding_model():
 
     async def embed_documents(texts):
         import random
+
         return [[random.random() for _ in range(1536)] for _ in texts]
 
     async def embed_query(text):
         import random
+
         return [random.random() for _ in range(1536)]
 
     mock.embed_documents = embed_documents
@@ -132,9 +131,7 @@ scalability, and developer experience.
 """
 
     # Write to a temp file
-    with tempfile.NamedTemporaryFile(
-        mode="w", suffix=".md", delete=False
-    ) as f:
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".md", delete=False) as f:
         f.write(sample_doc)
         doc_path = Path(f.name)
 
@@ -156,7 +153,7 @@ scalability, and developer experience.
     print("\nChunk preview (first 2 chunks):")
     for i, chunk in enumerate(result.chunks[:2]):
         preview = chunk.text[:100].replace("\n", " ")
-        print(f"  Chunk {i + 1}: \"{preview}...\"")
+        print(f'  Chunk {i + 1}: "{preview}..."')
         print(f"    Provenance: {chunk.provenance.source_type}")
 
     # =========================================================================
@@ -351,9 +348,18 @@ scalability, and developer experience.
 
     # Simulate a multi-turn conversation
     conversations = [
-        ("Who leads the Platform team?", "Alice Johnson leads the Platform team as Engineering Manager."),
-        ("What projects are they working on?", "The Platform team is working on Database Migration, API Gateway, and Observability improvements."),
-        ("Tell me about Bob's expertise.", "Bob Smith is a Senior Engineer who specializes in distributed systems and mentors junior engineers on database optimization."),
+        (
+            "Who leads the Platform team?",
+            "Alice Johnson leads the Platform team as Engineering Manager.",
+        ),
+        (
+            "What projects are they working on?",
+            "The Platform team is working on Database Migration, API Gateway, and Observability improvements.",  # noqa: E501
+        ),
+        (
+            "Tell me about Bob's expertise.",
+            "Bob Smith is a Senior Engineer who specializes in distributed systems and mentors junior engineers on database optimization.",  # noqa: E501
+        ),
     ]
 
     turn_ids = []
@@ -411,7 +417,7 @@ Always be concise and cite your sources when possible."""
         budget_limit=dynamic_limit,
     )
 
-    print(f"Context assembled for query: \"{query}\"")
+    print(f'Context assembled for query: "{query}"')
     print("\nPayload contents:")
     print(f"  History turns: {len(payload.history)}")
     print(f"  Vector passages: {len(payload.passages)}")
@@ -434,7 +440,7 @@ Always be concise and cite your sources when possible."""
     for i, msg in enumerate(messages):
         role = msg["role"]
         content_preview = msg["content"][:80].replace("\n", " ")
-        print(f"  [{i + 1}] {role}: \"{content_preview}...\"")
+        print(f'  [{i + 1}] {role}: "{content_preview}..."')
 
     # Show full system prompt structure
     print("\nSystem prompt structure:")

@@ -111,9 +111,7 @@ class ToolRecommendation(BaseModel):
         """
         hint = f"- {self.tool_name}: {self.reason}"
         if self.suggested_parameters:
-            params = ", ".join(
-                f"{k}={v}" for k, v in self.suggested_parameters.items()
-            )
+            params = ", ".join(f"{k}={v}" for k, v in self.suggested_parameters.items())
             hint += f" (suggested: {params})"
         return hint
 

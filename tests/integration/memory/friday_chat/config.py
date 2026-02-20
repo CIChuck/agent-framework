@@ -45,7 +45,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
     errors: list[str] = []
 
     if not isinstance(config, dict):
-        display_error(f"{config_path} must contain a YAML dictionary, got {type(config).__name__}")
+        display_error(
+            f"{config_path} must contain a YAML dictionary, got {type(config).__name__}"
+        )
         sys.exit(1)
 
     # Required sections
@@ -81,7 +83,9 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
 
     for section, expected_type in optional_sections.items():
         if section in config and not isinstance(config[section], expected_type):
-            errors.append(f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}")
+            errors.append(
+                f"Section '{section}' must be a {expected_type.__name__}, got {type(config[section]).__name__}"  # noqa: E501
+            )
 
     # Validate tools section if present
     if "tools" in config and isinstance(config["tools"], dict):
@@ -94,11 +98,17 @@ def _validate_config(config: dict[str, Any], config_path: Path) -> None:
                     if not isinstance(tool_def, dict):
                         errors.append(f"tools.registry[{i}] must be a dictionary")
                     elif not tool_def.get("name"):
-                        errors.append(f"tools.registry[{i}] missing required field 'name'")
+                        errors.append(
+                            f"tools.registry[{i}] missing required field 'name'"
+                        )
                     elif not tool_def.get("module"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'module'"  # noqa: E501
+                        )
                     elif not tool_def.get("class"):
-                        errors.append(f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'")
+                        errors.append(
+                            f"tools.registry[{i}] ('{tool_def.get('name')}') missing required field 'class'"  # noqa: E501
+                        )
 
     if errors:
         display_error(f"Configuration errors in {config_path}:")

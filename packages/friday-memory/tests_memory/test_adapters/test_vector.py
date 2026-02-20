@@ -14,7 +14,6 @@ Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 import uuid
 
 import pytest
-
 from friday_memory import ChromaVectorStore
 
 

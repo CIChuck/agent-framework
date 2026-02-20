@@ -1,24 +1,20 @@
 """Tests for telemetry models."""
 
-import pytest
-from datetime import datetime
-
 from friday_telemetry import (
     # LLM models
+    ArbitrationOpsMetrics,
     ConversationContext,
-    CostEstimate,
-    EmbeddingMetrics,
     ErrorCategory,
     GenAIOperationType,
     LLMCallMetrics,
-    StreamingMetrics,
-    TokenUsage,
     # Memory models
     MaintenanceMetrics,
     MemoryRecallMetrics,
     MemoryWriteMetrics,
     # Common models
     RequestContext,
+    StreamingMetrics,
+    TokenUsage,
 )
 
 
@@ -247,6 +243,34 @@ class TestMaintenanceMetrics:
         )
         assert metrics.items_synthesized == 5
         assert metrics.relationships_inferred == 10
+
+
+class TestArbitrationOpsMetrics:
+    """Tests for arbitration/recovery ops metrics."""
+
+    def test_minimal_creation(self):
+        metrics = ArbitrationOpsMetrics(request_id="req-123")
+        assert metrics.request_id == "req-123"
+        assert metrics.proposal_volume == 0
+        assert metrics.degraded_mode is False
+
+    def test_full_creation(self):
+        metrics = ArbitrationOpsMetrics(
+            request_id="req-123",
+            session_id="session-1",
+            correlation_id="corr-1",
+            proposal_volume=42,
+            promotion_backlog=4,
+            recovery_backlog=2,
+            promotion_latency_ms=125.5,
+            conflict_rate=0.15,
+            recovery_retries=3,
+            compensation_events=1,
+            degraded_mode=True,
+        )
+        assert metrics.proposal_volume == 42
+        assert metrics.conflict_rate == 0.15
+        assert metrics.degraded_mode is True
 
 
 class TestErrorCategory:

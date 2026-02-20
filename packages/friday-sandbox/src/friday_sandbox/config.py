@@ -72,9 +72,7 @@ class WorkspaceConfig(BaseModel):
     def from_environment(cls) -> WorkspaceConfig:
         """Create config from environment variables."""
         return cls(
-            ttl_seconds=int(
-                os.getenv("FRIDAY_SANDBOX_WORKSPACE_TTL", "3600")
-            ),
+            ttl_seconds=int(os.getenv("FRIDAY_SANDBOX_WORKSPACE_TTL", "3600")),
             ttl_soft_limit_seconds=int(
                 os.getenv("FRIDAY_SANDBOX_WORKSPACE_TTL_SOFT", "3600")
             ),
@@ -86,13 +84,12 @@ class WorkspaceConfig(BaseModel):
             ),
             preserve_on_error=os.getenv(
                 "FRIDAY_SANDBOX_PRESERVE_ON_ERROR", "true"
-            ).lower() == "true",
+            ).lower()
+            == "true",
             max_workspace_size_mb=int(
                 os.getenv("FRIDAY_SANDBOX_MAX_WORKSPACE_SIZE_MB", "100")
             ),
-            max_files_per_workspace=int(
-                os.getenv("FRIDAY_SANDBOX_MAX_FILES", "1000")
-            ),
+            max_files_per_workspace=int(os.getenv("FRIDAY_SANDBOX_MAX_FILES", "1000")),
         )
 
 
@@ -171,30 +168,22 @@ class DockerConfig(BaseModel):
     def from_environment(cls) -> DockerConfig:
         """Create config from environment variables."""
         return cls(
-            image=os.getenv(
-                "FRIDAY_SANDBOX_IMAGE", "friday-sandbox-python:latest"
-            ),
-            pull_policy=os.getenv(
-                "FRIDAY_SANDBOX_PULL_POLICY", "if-not-present"
-            ),
+            image=os.getenv("FRIDAY_SANDBOX_IMAGE", "friday-sandbox-python:latest"),
+            pull_policy=os.getenv("FRIDAY_SANDBOX_PULL_POLICY", "if-not-present"),
             memory_limit=os.getenv("FRIDAY_SANDBOX_MEMORY_LIMIT", "512m"),
             cpu_limit=float(os.getenv("FRIDAY_SANDBOX_CPU_LIMIT", "1.0")),
             default_timeout_seconds=int(
                 os.getenv("FRIDAY_SANDBOX_DEFAULT_TIMEOUT", "30")
             ),
-            max_timeout_seconds=int(
-                os.getenv("FRIDAY_SANDBOX_MAX_TIMEOUT", "300")
-            ),
-            network_enabled=os.getenv(
-                "FRIDAY_SANDBOX_NETWORK_ENABLED", "false"
-            ).lower() == "true",
+            max_timeout_seconds=int(os.getenv("FRIDAY_SANDBOX_MAX_TIMEOUT", "300")),
+            network_enabled=os.getenv("FRIDAY_SANDBOX_NETWORK_ENABLED", "false").lower()
+            == "true",
             read_only_rootfs=os.getenv(
                 "FRIDAY_SANDBOX_READ_ONLY_ROOTFS", "true"
-            ).lower() == "true",
+            ).lower()
+            == "true",
             workspace_base_path=Path(
-                os.getenv(
-                    "FRIDAY_SANDBOX_WORKSPACE_PATH", "/tmp/friday-workspaces"
-                )
+                os.getenv("FRIDAY_SANDBOX_WORKSPACE_PATH", "/tmp/friday-workspaces")
             ),
         )
 
@@ -234,7 +223,8 @@ class SandboxConfig(BaseModel):
             sandbox_type=os.getenv("FRIDAY_SANDBOX_TYPE", "docker"),
             fallback_to_subprocess=os.getenv(
                 "FRIDAY_SANDBOX_FALLBACK_SUBPROCESS", "true"
-            ).lower() == "true",
+            ).lower()
+            == "true",
         )
 
     def merge_overrides(self, overrides: dict[str, Any]) -> SandboxConfig:

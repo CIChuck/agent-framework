@@ -5,9 +5,9 @@ Tests the chunk-summarize-synthesize pipeline with mocked LLM.
 """
 
 import json
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from friday_memory.ingestion.large_file_processor import (
     ChunkSummary,
     LargeFileProcessor,
@@ -17,10 +17,10 @@ from friday_memory.ingestion.large_file_processor import (
     SmartFilePromptsConfig,
 )
 
-
 # =============================================================================
 # FIXTURES
 # =============================================================================
+
 
 @pytest.fixture
 def mock_llm():
@@ -35,7 +35,9 @@ def mock_memory_controller():
     """Create a mock memory controller."""
     controller = MagicMock()
     controller.store_document = AsyncMock(return_value="doc-123")
-    controller.store_documents_batch = AsyncMock(return_value=["raw-1", "raw-2", "raw-3"])
+    controller.store_documents_batch = AsyncMock(
+        return_value=["raw-1", "raw-2", "raw-3"]
+    )
     controller.store_insights_batch_with_metadata = AsyncMock(return_value=3)
     return controller
 
@@ -146,6 +148,7 @@ if __name__ == "__main__":
 # CONFIGURATION TESTS
 # =============================================================================
 
+
 class TestConfiguration:
     """Tests for configuration dataclasses."""
 
@@ -199,6 +202,7 @@ class TestConfiguration:
 # PROSE PROCESSING TESTS
 # =============================================================================
 
+
 class TestProseProcessing:
     """Tests for prose/document processing."""
 
@@ -207,11 +211,13 @@ class TestProseProcessing:
         """Test basic prose processing."""
         # Setup mock responses
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "Test summary",
-                "entities": ["AI", "computer science"],
-                "key_points": ["AI research", "modern applications"],
-            })
+            content=json.dumps(
+                {
+                    "summary": "Test summary",
+                    "entities": ["AI", "computer science"],
+                    "key_points": ["AI research", "modern applications"],
+                }
+            )
         )
 
         result = await processor.process(
@@ -232,23 +238,35 @@ class TestProseProcessing:
         # Setup mock responses for summarization and synthesis
         mock_llm.chat_completion.side_effect = [
             # Chunk summaries
-            MagicMock(content=json.dumps({
-                "summary": "Section 1 summary",
-                "entities": ["AI"],
-                "key_points": ["point 1"],
-            })),
-            MagicMock(content=json.dumps({
-                "summary": "Section 2 summary",
-                "entities": ["ML"],
-                "key_points": ["point 2"],
-            })),
+            MagicMock(
+                content=json.dumps(
+                    {
+                        "summary": "Section 1 summary",
+                        "entities": ["AI"],
+                        "key_points": ["point 1"],
+                    }
+                )
+            ),
+            MagicMock(
+                content=json.dumps(
+                    {
+                        "summary": "Section 2 summary",
+                        "entities": ["ML"],
+                        "key_points": ["point 2"],
+                    }
+                )
+            ),
             # Synthesis
-            MagicMock(content=json.dumps({
-                "summary": "Overall document summary",
-                "key_themes": ["AI", "ML"],
-                "entities": ["AI", "ML"],
-                "insights": ["insight 1"],
-            })),
+            MagicMock(
+                content=json.dumps(
+                    {
+                        "summary": "Overall document summary",
+                        "key_themes": ["AI", "ML"],
+                        "entities": ["AI", "ML"],
+                        "insights": ["insight 1"],
+                    }
+                )
+            ),
         ]
 
         result = await processor.process(
@@ -276,6 +294,7 @@ class TestProseProcessing:
 # CODE PROCESSING TESTS
 # =============================================================================
 
+
 class TestCodeProcessing:
     """Tests for code processing."""
 
@@ -283,11 +302,13 @@ class TestCodeProcessing:
     async def test_process_code_basic(self, processor, mock_llm):
         """Test basic code processing."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "A calculator class",
-                "purpose": "Basic arithmetic",
-                "dependencies": ["typing"],
-            })
+            content=json.dumps(
+                {
+                    "summary": "A calculator class",
+                    "purpose": "Basic arithmetic",
+                    "dependencies": ["typing"],
+                }
+            )
         )
 
         result = await processor.process(
@@ -307,11 +328,13 @@ class TestCodeProcessing:
     async def test_code_extracts_symbols(self, processor, mock_llm):
         """Test that code processing extracts symbols."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "Calculator functionality",
-                "purpose": "Math operations",
-                "dependencies": [],
-            })
+            content=json.dumps(
+                {
+                    "summary": "Calculator functionality",
+                    "purpose": "Math operations",
+                    "dependencies": [],
+                }
+            )
         )
 
         result = await processor.process(
@@ -330,18 +353,23 @@ class TestCodeProcessing:
 # MEMORY STORAGE TESTS
 # =============================================================================
 
+
 class TestMemoryStorage:
     """Tests for memory storage integration."""
 
     @pytest.mark.asyncio
-    async def test_store_to_memory(self, processor_with_memory, mock_llm, mock_memory_controller):
+    async def test_store_to_memory(
+        self, processor_with_memory, mock_llm, mock_memory_controller
+    ):
         """Test storing results to memory."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "Test document about AI",
-                "entities": ["AI"],
-                "key_points": ["AI research"],
-            })
+            content=json.dumps(
+                {
+                    "summary": "Test document about AI",
+                    "entities": ["AI"],
+                    "key_points": ["AI research"],
+                }
+            )
         )
 
         result = await processor_with_memory.process(
@@ -356,17 +384,21 @@ class TestMemoryStorage:
         assert len(result.stored_ids) > 0
 
     @pytest.mark.asyncio
-    async def test_no_store_when_disabled(self, processor_with_memory, mock_llm, mock_memory_controller):
+    async def test_no_store_when_disabled(
+        self, processor_with_memory, mock_llm, mock_memory_controller
+    ):
         """Test that memory storage is skipped when disabled."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "Test summary",
-                "entities": [],
-                "key_points": [],
-            })
+            content=json.dumps(
+                {
+                    "summary": "Test summary",
+                    "entities": [],
+                    "key_points": [],
+                }
+            )
         )
 
-        result = await processor_with_memory.process(
+        await processor_with_memory.process(
             content=SAMPLE_PROSE,
             file_path="/test/doc.md",
             file_type="prose",
@@ -381,6 +413,7 @@ class TestMemoryStorage:
 # CONTEXT CONTENT TESTS
 # =============================================================================
 
+
 class TestContextContent:
     """Tests for context content generation."""
 
@@ -388,11 +421,13 @@ class TestContextContent:
     async def test_context_content_includes_summary(self, processor, mock_llm):
         """Test that context content includes the summary."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "summary": "This is a comprehensive overview",
-                "entities": ["AI"],
-                "key_points": [],
-            })
+            content=json.dumps(
+                {
+                    "summary": "This is a comprehensive overview",
+                    "entities": ["AI"],
+                    "key_points": [],
+                }
+            )
         )
 
         result = await processor.process(
@@ -408,11 +443,13 @@ class TestContextContent:
     async def test_context_content_for_code(self, processor, mock_llm):
         """Test context content format for code files."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content=json.dumps({
-                "overview": "A calculator module",
-                "components": ["Calculator class"],
-                "dependencies": ["typing"],
-            })
+            content=json.dumps(
+                {
+                    "overview": "A calculator module",
+                    "components": ["Calculator class"],
+                    "dependencies": ["typing"],
+                }
+            )
         )
 
         result = await processor.process(
@@ -429,6 +466,7 @@ class TestContextContent:
 # =============================================================================
 # ERROR HANDLING TESTS
 # =============================================================================
+
 
 class TestErrorHandling:
     """Tests for error handling."""
@@ -468,7 +506,7 @@ class TestErrorHandling:
     async def test_json_in_markdown_block(self, processor, mock_llm):
         """Test parsing JSON wrapped in markdown code block."""
         mock_llm.chat_completion.return_value = MagicMock(
-            content='```json\n{"summary": "Test", "entities": [], "key_points": []}\n```'
+            content='```json\n{"summary": "Test", "entities": [], "key_points": []}\n```'  # noqa: E501
         )
 
         result = await processor.process(
@@ -484,6 +522,7 @@ class TestErrorHandling:
 # =============================================================================
 # RESULT DATACLASS TESTS
 # =============================================================================
+
 
 class TestResultDataclasses:
     """Tests for result dataclasses."""

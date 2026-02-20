@@ -16,12 +16,10 @@ import re
 import shlex
 import subprocess
 from pathlib import Path
-from typing import Any
 
 from pydantic import BaseModel, Field
 
 from ..base import FridayTool, ToolResult
-
 
 # =============================================================================
 # DEFAULT BLOCKED COMMANDS
@@ -115,7 +113,7 @@ class CommandSafetyValidator:
         Args:
             blocked_commands: Commands to block (uses DEFAULT_BLOCKED_COMMANDS if None)
             blocked_patterns: Regex patterns to block (uses DEFAULT_BLOCKED_PATTERNS if None)
-        """
+        """  # noqa: E501
         self.blocked_commands = blocked_commands or DEFAULT_BLOCKED_COMMANDS.copy()
         self.blocked_patterns = [
             re.compile(p) for p in (blocked_patterns or DEFAULT_BLOCKED_PATTERNS)
@@ -135,7 +133,7 @@ class CommandSafetyValidator:
         # 1. Check for blocked patterns first (e.g., fork bombs)
         for pattern in self.blocked_patterns:
             if pattern.search(command):
-                return False, f"Command matches blocked pattern"
+                return False, "Command matches blocked pattern"
 
         # 2. Extract and check all commands in the command line
         commands = self._extract_commands(command)
@@ -171,7 +169,7 @@ class CommandSafetyValidator:
         # Replace subshell markers with semicolon-separated content
         # This ensures subshell commands are treated as separate commands
         normalized = command_line
-        # Replace $(...) with semicolon-separated content (so it splits as a separate segment)
+        # Replace $(...) with semicolon-separated content (so it splits as a separate segment)  # noqa: E501
         normalized = re.sub(r"\$\(([^)]+)\)", r"; \1 ;", normalized)
         # Replace `...` with semicolon-separated content
         normalized = re.sub(r"`([^`]+)`", r"; \1 ;", normalized)
@@ -317,9 +315,7 @@ class CommandExecuteTool(FridayTool):
         cwd: str | None = Field(
             default=None, description="Working directory (defaults to current)"
         )
-        timeout: int = Field(
-            default=30, ge=1, le=300, description="Timeout in seconds"
-        )
+        timeout: int = Field(default=30, ge=1, le=300, description="Timeout in seconds")
         env: dict[str, str] | None = Field(
             default=None, description="Additional environment variables"
         )

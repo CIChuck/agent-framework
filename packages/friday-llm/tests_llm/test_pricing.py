@@ -5,14 +5,12 @@ Tests cost estimation with built-in and custom pricing.
 """
 
 import pytest
-
 from friday_llm.pricing import (
+    DEFAULT_MODEL_PRICING,
+    CostCalculator,
     ModelPricing,
     PricingConfig,
-    CostCalculator,
-    DEFAULT_MODEL_PRICING,
 )
-from friday_llm.telemetry_models import CostEstimate
 
 
 class TestModelPricing:
@@ -114,7 +112,9 @@ class TestCostCalculator:
         expected_output = 0.5 * 0.06  # 0.03
         assert cost.input_cost == pytest.approx(expected_input, rel=1e-6)
         assert cost.output_cost == pytest.approx(expected_output, rel=1e-6)
-        assert cost.total_cost == pytest.approx(expected_input + expected_output, rel=1e-6)
+        assert cost.total_cost == pytest.approx(
+            expected_input + expected_output, rel=1e-6
+        )
         assert cost.currency == "USD"
         assert cost.pricing_model == "gpt-4"
 

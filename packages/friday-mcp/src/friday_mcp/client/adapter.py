@@ -8,9 +8,10 @@ Follows the pattern from friday-tools/adapters/.
 from __future__ import annotations
 
 import logging
-from typing import Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from friday_core.interfaces.tools import SchemaFormat
+
 from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
 
@@ -115,7 +116,7 @@ class MCPToolAdapter:
 
     def __init__(
         self,
-        client: "MCPClientBase",
+        client: MCPClientBase,
         prefix: str = "",
     ):
         """
@@ -148,9 +149,7 @@ class MCPToolAdapter:
             for tool_def in mcp_tools
         ]
 
-        logger.debug(
-            f"Adapted {len(self._tools_cache)} tools from {self._client.name}"
-        )
+        logger.debug(f"Adapted {len(self._tools_cache)} tools from {self._client.name}")
 
         return list(self._tools_cache)
 

@@ -13,9 +13,9 @@ Tests cover:
 Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
 """
 
-import pytest
 from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from friday_memory.lifecycle.tool_content import (
     ToolContentConfig,
     ToolContentManager,
@@ -240,9 +240,7 @@ class TestToolContentManagerDecay:
         assert decayed == []
 
         # Check decay at turn 8 (gap from turn 4 = 4, threshold=3) - should decay
-        mock_llm.chat_completion = AsyncMock(
-            return_value=MagicMock(content="Summary")
-        )
+        mock_llm.chat_completion = AsyncMock(return_value=MagicMock(content="Summary"))
         decayed = await manager.check_and_decay(8)
         assert "tc_1" in decayed
 
@@ -254,9 +252,7 @@ class TestToolContentManagerDecay:
             decay_threshold_turns=3,
         )
         mock_llm = AsyncMock()
-        mock_llm.chat_completion = AsyncMock(
-            return_value=MagicMock(content="Summary")
-        )
+        mock_llm.chat_completion = AsyncMock(return_value=MagicMock(content="Summary"))
         manager = ToolContentManager(config, mock_llm)
 
         content = "x" * 600
@@ -309,9 +305,7 @@ class TestToolContentManagerPolicies:
             },
         )
         mock_llm = AsyncMock()
-        mock_llm.chat_completion = AsyncMock(
-            return_value=MagicMock(content="Summary")
-        )
+        mock_llm.chat_completion = AsyncMock(return_value=MagicMock(content="Summary"))
         manager = ToolContentManager(config, mock_llm)
 
         content = "x" * 600

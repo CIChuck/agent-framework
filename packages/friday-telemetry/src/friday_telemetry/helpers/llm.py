@@ -11,9 +11,10 @@ from __future__ import annotations
 
 import time
 import uuid
+from collections.abc import Generator
 from contextlib import contextmanager
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Generator, Protocol
+from typing import TYPE_CHECKING, Any, Protocol
 
 from friday_telemetry.attributes import OTelAttributes
 from friday_telemetry.models.llm import (
@@ -612,7 +613,9 @@ class LLMTelemetryHelper:
                 attributes[OTelAttributes.FRIDAY_TOKENS_PER_SEC] = (
                     metrics.streaming.tokens_per_second
                 )
-            attributes[OTelAttributes.FRIDAY_CHUNK_COUNT] = metrics.streaming.chunk_count
+            attributes[OTelAttributes.FRIDAY_CHUNK_COUNT] = (
+                metrics.streaming.chunk_count
+            )
 
         # Error info
         if not metrics.success:
@@ -626,7 +629,9 @@ class LLMTelemetryHelper:
                 attributes["error_message"] = metrics.error_message
 
         # Emit event
-        event_name = "llm_completion_success" if metrics.success else "llm_completion_error"
+        event_name = (
+            "llm_completion_success" if metrics.success else "llm_completion_error"
+        )
         self.telemetry.capture_event(event_name, attributes)
 
     def _emit_embedding_metrics(self, tracker: EmbeddingTracker) -> None:
@@ -652,7 +657,9 @@ class LLMTelemetryHelper:
         if metrics.response_model:
             attributes[OTelAttributes.RESPONSE_MODEL] = metrics.response_model
         if metrics.embedding_dimensions:
-            attributes[OTelAttributes.EMBEDDINGS_DIMENSION] = metrics.embedding_dimensions
+            attributes[OTelAttributes.EMBEDDINGS_DIMENSION] = (
+                metrics.embedding_dimensions
+            )
         if metrics.cost:
             attributes[OTelAttributes.FRIDAY_COST_USD] = metrics.cost.total_cost
 

@@ -33,7 +33,11 @@ class GitStatusTool(BaseTool):
         return {
             "type": "object",
             "properties": {
-                "path": {"type": "string", "description": "Repository path", "default": "."},
+                "path": {
+                    "type": "string",
+                    "description": "Repository path",
+                    "default": ".",
+                },
             },
             "required": [],
         }
@@ -71,7 +75,11 @@ class GitDiffTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "staged": {"type": "boolean", "description": "Show staged changes", "default": False},
+                "staged": {
+                    "type": "boolean",
+                    "description": "Show staged changes",
+                    "default": False,
+                },
                 "file": {"type": "string", "description": "Specific file to diff"},
             },
             "required": [],
@@ -119,7 +127,11 @@ class GitLogTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "count": {"type": "integer", "description": "Number of commits", "default": 10},
+                "count": {
+                    "type": "integer",
+                    "description": "Number of commits",
+                    "default": 10,
+                },
                 "oneline": {"type": "boolean", "default": True},
             },
             "required": [],
@@ -164,7 +176,11 @@ class GitShowTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "commit": {"type": "string", "description": "Commit hash or ref", "default": "HEAD"},
+                "commit": {
+                    "type": "string",
+                    "description": "Commit hash or ref",
+                    "default": "HEAD",
+                },
             },
             "required": [],
         }

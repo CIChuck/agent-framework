@@ -4,11 +4,11 @@ Tests for LiteLLM Embedding Service.
 Tests embedding generation with mocked LiteLLM responses.
 """
 
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, patch
 
-from friday_llm import LiteLLMEmbeddingService
+import pytest
 from friday_core.telemetry import DebugTelemetryRecorder
+from friday_llm import LiteLLMEmbeddingService
 
 
 class MockUsage:
@@ -77,9 +77,7 @@ class TestLiteLLMEmbeddingService:
         with patch("litellm.aembedding", new_callable=AsyncMock) as mock_embed:
             mock_embed.return_value = mock_response
 
-            result = await embedding_service.embed_documents(
-                ["doc1", "doc2", "doc3"]
-            )
+            result = await embedding_service.embed_documents(["doc1", "doc2", "doc3"])
 
             assert len(result) == 3
             assert result[0] == [0.1, 0.2, 0.3]
@@ -110,9 +108,7 @@ class TestLiteLLMEmbeddingService:
                 return MockEmbeddingResponse(mock_embeddings_batch2)
 
         with patch("litellm.aembedding", side_effect=mock_embedding):
-            result = await embedding_service.embed_documents(
-                ["doc1", "doc2", "doc3"]
-            )
+            result = await embedding_service.embed_documents(["doc1", "doc2", "doc3"])
 
             assert len(result) == 3
             assert call_count[0] == 2  # Called twice due to batching

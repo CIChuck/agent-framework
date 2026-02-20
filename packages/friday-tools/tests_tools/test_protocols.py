@@ -1,12 +1,14 @@
 """Tests for tool protocols and base classes."""
+
 import pytest
-from friday_tools import BaseTool, DefaultToolRegistry, FunctionTool, tool
+
+from friday_tools import DefaultToolRegistry, FunctionTool
 
 
 class TestBaseTool:
     def test_function_tool_creation(self):
         async def greet(name: str) -> str:
-            '''Greet someone.'''
+            """Greet someone."""
             return f"Hello, {name}!"
 
         ft = FunctionTool(greet, category="utility")

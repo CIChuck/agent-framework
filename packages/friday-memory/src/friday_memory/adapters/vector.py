@@ -10,7 +10,6 @@ import asyncio
 from typing import TYPE_CHECKING, Any, Protocol
 
 import chromadb
-
 from friday_core import TelemetryInterface, VectorStoreAdapter
 
 if TYPE_CHECKING:
@@ -68,7 +67,7 @@ class ChromaVectorStore(VectorStoreAdapter):
             path: Local path for persistence (alias for persist_directory)
             persist_directory: Local path for persistence. If None, uses ephemeral client.
             telemetry: Optional telemetry recorder for white-box testing
-        """
+        """  # noqa: E501
         self._collection_name = collection_name
         self._embedding_function = embedding_function
         self._telemetry = telemetry
@@ -212,8 +211,12 @@ class ChromaVectorStore(VectorStoreAdapter):
                 formatted.append(
                     {
                         "id": doc_id,
-                        "text": results["documents"][0][i] if results["documents"] else "",
-                        "metadata": results["metadatas"][0][i] if results["metadatas"] else {},
+                        "text": results["documents"][0][i]
+                        if results["documents"]
+                        else "",
+                        "metadata": results["metadatas"][0][i]
+                        if results["metadatas"]
+                        else {},
                         "similarity": similarity,
                         "distance": distance,
                     }
@@ -363,11 +366,13 @@ class ChromaVectorStore(VectorStoreAdapter):
 
         documents = []
         for i, doc_id in enumerate(results["ids"]):
-            documents.append({
-                "id": doc_id,
-                "text": results["documents"][i] if results["documents"] else "",
-                "metadata": results["metadatas"][i] if results["metadatas"] else {},
-            })
+            documents.append(
+                {
+                    "id": doc_id,
+                    "text": results["documents"][i] if results["documents"] else "",
+                    "metadata": results["metadatas"][i] if results["metadatas"] else {},
+                }
+            )
 
         return documents
 

@@ -22,7 +22,7 @@ Ref: docs/build-plan/large-file-processor-plan.md
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -34,34 +34,50 @@ from friday_tools.sandbox import FilesystemSandbox
 if TYPE_CHECKING:
     from friday_llm.service import LiteLLMService
     from friday_memory.controller.memory_controller import MemoryController
-    from friday_memory.ingestion.large_file_processor import LargeFileProcessorConfig, ProcessingResult
+    from friday_memory.ingestion.large_file_processor import (
+        LargeFileProcessorConfig,
+    )
 
 logger = logging.getLogger(__name__)
 
 
 # File type detection
 CODE_EXTENSIONS = {
-    ".py", ".pyw", ".pyi",  # Python
+    ".py",
+    ".pyw",
+    ".pyi",  # Python
     ".rs",  # Rust
-    ".js", ".jsx", ".mjs",  # JavaScript
-    ".ts", ".tsx", ".mts",  # TypeScript
+    ".js",
+    ".jsx",
+    ".mjs",  # JavaScript
+    ".ts",
+    ".tsx",
+    ".mts",  # TypeScript
     ".go",  # Go
     ".java",  # Java
-    ".c", ".cpp", ".cc", ".h", ".hpp",  # C/C++
+    ".c",
+    ".cpp",
+    ".cc",
+    ".h",
+    ".hpp",  # C/C++
     ".cs",  # C#
     ".rb",  # Ruby
     ".php",  # PHP
     ".swift",  # Swift
-    ".kt", ".kts",  # Kotlin
+    ".kt",
+    ".kts",  # Kotlin
     ".scala",  # Scala
     ".r",  # R
     ".lua",  # Lua
-    ".sh", ".bash", ".zsh",  # Shell
+    ".sh",
+    ".bash",
+    ".zsh",  # Shell
 }
 
 DATA_EXTENSIONS = {
     ".json",
-    ".yaml", ".yml",
+    ".yaml",
+    ".yml",
     ".xml",
     ".csv",
     ".toml",
@@ -70,10 +86,24 @@ DATA_EXTENSIONS = {
 }
 
 BINARY_EXTENSIONS = {
-    ".pdf", ".doc", ".docx", ".xls", ".xlsx",
-    ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-    ".zip", ".tar", ".gz", ".7z",
-    ".exe", ".dll", ".so", ".dylib",
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".bmp",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".7z",
+    ".exe",
+    ".dll",
+    ".so",
+    ".dylib",
 }
 
 
@@ -125,31 +155,30 @@ class SmartFileReadTool(FridayTool):
             description="File path to read (absolute or relative to working directory)"
         )
         add_to_context: bool = Field(
-            default=True,
-            description="Return content/summary to conversation context"
+            default=True, description="Return content/summary to conversation context"
         )
         store_to_memory: bool = Field(
             default=False,
-            description="Store processed content in long-term memory for future retrieval"
+            description="Store processed content in long-term memory for future retrieval",  # noqa: E501
         )
         description: str | None = Field(
             default=None,
-            description="Context about the file to help with summarization (e.g., 'API documentation for the auth module')"
+            description="Context about the file to help with summarization (e.g., 'API documentation for the auth module')",  # noqa: E501
         )
         force_chunked: bool = Field(
             default=False,
-            description="Force chunked processing even for small files (useful for detailed analysis)"
+            description="Force chunked processing even for small files (useful for detailed analysis)",  # noqa: E501
         )
         force_reprocess: bool = Field(
             default=False,
-            description="Force re-processing even if file is cached (use when file content changed)"
+            description="Force re-processing even if file is cached (use when file content changed)",  # noqa: E501
         )
 
     def __init__(
         self,
-        fallback_llm: "LiteLLMService | None" = None,
-        memory_controller: "MemoryController | None" = None,
-        config: "LargeFileProcessorConfig | None" = None,
+        fallback_llm: LiteLLMService | None = None,
+        memory_controller: MemoryController | None = None,
+        config: LargeFileProcessorConfig | None = None,
         sandbox: FilesystemSandbox | None = None,
     ) -> None:
         """
@@ -232,7 +261,7 @@ class SmartFileReadTool(FridayTool):
             suffix = validated_path.suffix.lower()
             if suffix in BINARY_EXTENSIONS:
                 return ToolResult(
-                    content=f"Binary file detected ({suffix}). Use a specialized tool for this file type.",
+                    content=f"Binary file detected ({suffix}). Use a specialized tool for this file type.",  # noqa: E501
                     error=None,
                     data={"file_type": "binary", "extension": suffix},
                     metadata={"file_path": path_str, "processing": "skipped"},
@@ -335,7 +364,9 @@ class SmartFileReadTool(FridayTool):
                 metadata={"file_path": args.path},
             )
 
-    def _check_session_cache(self, path_str: str, current_mtime: float) -> CachedFileEntry | None:
+    def _check_session_cache(
+        self, path_str: str, current_mtime: float
+    ) -> CachedFileEntry | None:
         """
         Check session cache for a valid cached entry.
 
@@ -375,7 +406,9 @@ class SmartFileReadTool(FridayTool):
         try:
             # Query vector store for existing file synthesis
             # Look for documents with matching source path
-            if hasattr(self._memory, "vector") and hasattr(self._memory.vector, "get_all"):
+            if hasattr(self._memory, "vector") and hasattr(
+                self._memory.vector, "get_all"
+            ):
                 results = await self._memory.vector.get_all(
                     where={"source": path_str, "type": "file_synthesis"},
                     limit=1,
@@ -383,7 +416,11 @@ class SmartFileReadTool(FridayTool):
 
                 if results and len(results.get("documents", [])) > 0:
                     doc = results["documents"][0]
-                    metadata = results.get("metadatas", [{}])[0] if results.get("metadatas") else {}
+                    metadata = (
+                        results.get("metadatas", [{}])[0]
+                        if results.get("metadatas")
+                        else {}
+                    )
 
                     return {
                         "content": doc,
@@ -511,7 +548,9 @@ class SmartFileReadTool(FridayTool):
 
         # Add storage confirmation
         if store_to_memory and result.stored_ids:
-            response_content += f"\n\n*Stored {len(result.stored_ids)} items to memory.*"
+            response_content += (
+                f"\n\n*Stored {len(result.stored_ids)} items to memory.*"
+            )
 
         return ToolResult(
             content=response_content,
@@ -587,7 +626,9 @@ class SmartFileReadTool(FridayTool):
         if store_to_memory and stored_id:
             response_content += f"\n\n*Stored to memory (ID: {stored_id})*"
         elif store_to_memory and not stored_id and not should_store:
-            response_content += f"\n\n*File already in memory (skipped duplicate storage)*"
+            response_content += (
+                "\n\n*File already in memory (skipped duplicate storage)*"
+            )
 
         return ToolResult(
             content=response_content,
@@ -644,5 +685,7 @@ class SmartFileReadTool(FridayTool):
         return {
             "entries": len(self._session_cache),
             "files": list(self._session_cache.keys()),
-            "total_chars_cached": sum(e.total_chars for e in self._session_cache.values()),
+            "total_chars_cached": sum(
+                e.total_chars for e in self._session_cache.values()
+            ),
         }

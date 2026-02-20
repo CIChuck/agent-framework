@@ -8,7 +8,8 @@ Ref: Phase 1 - Scalable Adapters Build Plan
 from typing import Any
 
 from friday_core.interfaces.memory import GraphStoreAdapter
-from friday_memory.models.graph import GraphNode, GraphEdge
+
+from friday_memory.models.graph import GraphEdge, GraphNode
 
 
 class NullGraphStore(GraphStoreAdapter):
@@ -70,9 +71,7 @@ class NullGraphStore(GraphStoreAdapter):
 
     # --- Traversal Operations (Protocol Requirements) ---
 
-    async def get_neighbors(
-        self, node_id: str, depth: int = 1
-    ) -> list[dict[str, Any]]:
+    async def get_neighbors(self, node_id: str, depth: int = 1) -> list[dict[str, Any]]:
         """
         Always returns empty list.
 
@@ -116,9 +115,7 @@ class NullGraphStore(GraphStoreAdapter):
         """
         return True
 
-    async def fuzzy_search(
-        self, query: str, threshold: float = 0.8
-    ) -> list[GraphNode]:
+    async def fuzzy_search(self, query: str, threshold: float = 0.8) -> list[GraphNode]:
         """
         Always returns empty list.
 
@@ -131,9 +128,7 @@ class NullGraphStore(GraphStoreAdapter):
         """
         return []
 
-    async def rank_nodes(
-        self, algorithm: str = "pagerank"
-    ) -> list[dict[str, Any]]:
+    async def rank_nodes(self, algorithm: str = "pagerank") -> list[dict[str, Any]]:
         """
         Always returns empty list.
 

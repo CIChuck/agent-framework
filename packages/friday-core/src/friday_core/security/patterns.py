@@ -260,7 +260,8 @@ class InjectionPatternLibrary:
         threshold_index = threshold_order.index(sensitivity)
 
         return [
-            p for p in self._all_patterns
+            p
+            for p in self._all_patterns
             if threshold_order.index(p.sensitivity_threshold) <= threshold_index
         ]
 

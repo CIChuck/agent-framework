@@ -9,16 +9,16 @@ This document set is currently marked **Proposed for Approval**.
 ## Documents
 
 1. `phase-1-build-plan.md`
-   - Historical baseline copied from `docs/design/agents/Phase-2/phase-1-build-plan.md` for transition context.
+   - Historical baseline retained locally in this folder for transition context.
 2. `comprehensive-agent-framework-design.md`
    - Architectural rationale, control-plane overview diagrams, workflow/pipeline/task framing, and component responsibilities.
 3. `technical-specifications.md`
    - Additive interfaces, schemas (including workflow/pipeline/task contracts), state machines, policy rules, and runtime path/topology requirements.
-4. `phase-2-build-plan.md`
+4. Phase 2 build baseline (archived)
    - Detailed implementation plan for Alt Phase 2.
-5. `phase-2-execution-plan.md`
+5. Phase 2 execution baseline (archived)
    - AI-executable decomposition of Phase 2 into bounded subphases with handoff artifacts and exit criteria.
-6. `phase-2-file-impact-manifest.md`
+6. Phase 2 file-impact baseline (archived)
    - Pre-implementation file scope lock (by subphase) for AI-agent execution control.
 7. `phase-3-transition-plan.md`
    - Transition contract from Alt Phase 2 to Phase 3.
@@ -42,19 +42,18 @@ This document set is currently marked **Proposed for Approval**.
    - AI-executable decomposition of Phase 3 into bounded subphases with gate-driven evidence handoffs.
 17. `phase-3-file-impact-manifest.md`
    - Pre-implementation file scope lock (by subphase) for Phase 3 execution control.
-18. `phase-4-build-plan.md`
+18. `docs/design/agents/Phase-4/phase-4-build-plan.md`
    - Runtime coherence plan for YAML-first runtime config, multi-LLM pool, canonical workflow/pipeline/task execution, and compatibility migration.
-19. `phase-4-build-plan-examples.md`
+19. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
    - Developer-focused examples for single-agent and multi-agent workflow construction, including runtime and agent binding patterns.
-20. `phase-4-ai-agent-implementation-guide.md`
+20. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
    - AI synthetic developer execution guide for implementing the Phase 4 runtime/workflow model with deterministic gates and evidence requirements.
 
 ## Source Inputs
 
 This alt track incorporates findings from:
 
-- `docs/design/agents/Phase-2/codex-phase-2-build-plan-commentary.md`
-- Existing Phase 2 docs under `docs/design/agents/Phase-2/`
+- Legacy Phase 2 commentary and baseline planning notes (archived).
 - Skill reference ecosystems:
   - `https://github.com/agentskills/agentskills/tree/main`
   - `https://github.com/anthropics/skills`
@@ -88,6 +87,6 @@ This glossary is the single source of truth for skill terms used across Alt-Phas
 
 1. Start with `comprehensive-agent-framework-design.md` for the architecture overview and control-plane gestalt.
 2. Continue to `technical-specifications.md` for canonical workflow/pipeline/task schemas and execution semantics.
-3. Use `phase-2-build-plan.md` and `phase-3-build-plan.md` for macro sequencing and release gates.
+3. Use Phase 2 build baseline (archived) and `phase-3-build-plan.md` for macro sequencing and release gates.
 4. Use `phase-3-execution-plan.md` and `phase-3-file-impact-manifest.md` for bounded AI-executable implementation planning.
-5. Use `phase-4-build-plan.md` for coherence contracts and acceptance gates, then `phase-4-build-plan-examples.md` and `phase-4-ai-agent-implementation-guide.md` for developer and AI-implementer execution guidance.
+5. Use `docs/design/agents/Phase-4/phase-4-build-plan.md` for coherence contracts and acceptance gates, then `docs/design/agents/Phase-4/phase-4-build-plan-examples.md` and `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md` for developer and AI-implementer execution guidance.

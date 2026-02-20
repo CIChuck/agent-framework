@@ -9,7 +9,6 @@ Creates memory stores with known issues for testing:
 """
 
 import json
-import os
 import shutil
 import sqlite3
 import tempfile
@@ -235,13 +234,10 @@ def memory_with_issues(temp_memory_dir):
         ("turn_001", "session_1", "Hello", "Hi there!", recent_date, 1),
         ("turn_002", "session_1", "What is Python?", "Python is...", recent_date, 1),
         ("turn_003", "session_1", "Tell me about Chuck", "Chuck is...", recent_date, 0),
-        # turn_004, turn_005, turn_006, turn_old are missing - will cause orphaned provenance
+        # turn_004, turn_005, turn_006, turn_old are missing - will cause orphaned provenance  # noqa: E501
     ]
 
-    conn.executemany(
-        "INSERT INTO turns VALUES (?, ?, ?, ?, ?, ?)",
-        turns
-    )
+    conn.executemany("INSERT INTO turns VALUES (?, ?, ?, ?, ?, ?)", turns)
     conn.commit()
     conn.close()
 
@@ -321,7 +317,7 @@ def clean_memory_dir(temp_memory_dir):
 
     conn.execute(
         "INSERT INTO turns VALUES (?, ?, ?, ?, ?, ?)",
-        ("turn_001", "session_1", "Hello", "Hi!", now, 1)
+        ("turn_001", "session_1", "Hello", "Hi!", now, 1),
     )
     conn.commit()
     conn.close()

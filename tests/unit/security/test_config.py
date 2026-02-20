@@ -1,7 +1,6 @@
 """Tests for security configuration models."""
 
 import pytest
-
 from friday_core.security import SanitizationConfig
 
 

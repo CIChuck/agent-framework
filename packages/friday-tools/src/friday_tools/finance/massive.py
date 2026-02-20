@@ -88,8 +88,7 @@ class GetMarketDataTool(MassiveBaseTool):
                 "ticker": {
                     "type": "string",
                     "description": (
-                        "Symbol or alias "
-                        "(e.g., 'AAPL', 'sp500', 'total_bond')."
+                        "Symbol or alias (e.g., 'AAPL', 'sp500', 'total_bond')."
                     ),
                 },
                 "data_type": {
@@ -179,8 +178,7 @@ class GetCryptoDataTool(MassiveBaseTool):
                     "type": "boolean",
                     "default": False,
                     "description": (
-                        "If true, compares BTC vs Bonds "
-                        "for a 'Risk On/Off' signal."
+                        "If true, compares BTC vs Bonds for a 'Risk On/Off' signal."
                     ),
                 },
             },

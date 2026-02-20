@@ -9,9 +9,10 @@ from __future__ import annotations
 
 import time
 import uuid
+from collections.abc import Generator
 from contextlib import contextmanager
 from datetime import datetime
-from typing import TYPE_CHECKING, Any, Generator, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 from friday_telemetry.attributes import FridayMemoryAttributes
 from friday_telemetry.models.memory import (
@@ -31,7 +32,11 @@ class MemoryWriteTracker:
         self,
         helper: MemoryTelemetryHelper,
         operation: Literal[
-            "store_fact", "store_insight", "store_document", "ingest_file", "batch_store"
+            "store_fact",
+            "store_insight",
+            "store_document",
+            "ingest_file",
+            "batch_store",
         ],
         store_type: Literal["vector", "graph", "episodic"],
     ) -> None:
@@ -418,7 +423,11 @@ class MemoryTelemetryHelper:
     def track_write(
         self,
         operation: Literal[
-            "store_fact", "store_insight", "store_document", "ingest_file", "batch_store"
+            "store_fact",
+            "store_insight",
+            "store_document",
+            "ingest_file",
+            "batch_store",
         ],
         store_type: Literal["vector", "graph", "episodic"],
     ) -> Generator[MemoryWriteTracker, None, None]:

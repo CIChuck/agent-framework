@@ -3,11 +3,10 @@ Tests for friday-cli command registry.
 """
 
 import pytest
-
 from friday_cli import (
-    CommandRegistry,
-    CommandInfo,
     ArgumentSpec,
+    CommandInfo,
+    CommandRegistry,
     arg,
 )
 

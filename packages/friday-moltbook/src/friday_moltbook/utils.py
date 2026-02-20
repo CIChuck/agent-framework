@@ -24,9 +24,7 @@ def validate_avatar_file(path: str) -> Path:
     file_path = ensure_file_exists(path)
     suffix = file_path.suffix.lower()
     if suffix not in ALLOWED_AVATAR_EXTENSIONS:
-        raise MoltbookValidationError(
-            f"Avatar format '{suffix}' not allowed."
-        )
+        raise MoltbookValidationError(f"Avatar format '{suffix}' not allowed.")
     size = file_path.stat().st_size
     if size > MAX_AVATAR_SIZE_BYTES:
         raise MoltbookValidationError(

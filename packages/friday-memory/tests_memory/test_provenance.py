@@ -10,13 +10,11 @@ Tests cover:
 - MemoryController author tracking
 
 Ref: docs/build-plan/shared-memory-provenance-build-plan.md
-"""
+"""  # noqa: E501
 
 import uuid
-from datetime import datetime
 
 import pytest
-
 from friday_memory import (
     InteractionTurn,
     ProvenanceMetadata,

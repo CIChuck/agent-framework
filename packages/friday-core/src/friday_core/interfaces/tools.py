@@ -10,8 +10,9 @@ Ref: Batch 3 Specification, Section 2.3
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from enum import Enum
-from typing import Any, Callable, Generic, Protocol, TypeVar, runtime_checkable
+from typing import Any, Generic, Protocol, TypeVar, runtime_checkable
 
 
 class SchemaFormat(str, Enum):
@@ -260,7 +261,9 @@ class ToolRegistry(Protocol):
         """
         ...
 
-    def get_tools_by_tags(self, tags: list[str], match_all: bool = False) -> list[ToolDefinition]:
+    def get_tools_by_tags(
+        self, tags: list[str], match_all: bool = False
+    ) -> list[ToolDefinition]:
         """
         Get tools matching specified tags.
 

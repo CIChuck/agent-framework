@@ -276,7 +276,10 @@ class DecayCalculator:
         # Solve for t where: score * exp(-lambda * t) = threshold
         # t = -ln(threshold / score) / lambda
         try:
-            hours = -math.log(self._config.decay_threshold / effective_score) / self._config.decay_rate
+            hours = (
+                -math.log(self._config.decay_threshold / effective_score)
+                / self._config.decay_rate
+            )
             return max(0.0, hours)
         except (ValueError, ZeroDivisionError):
             return None

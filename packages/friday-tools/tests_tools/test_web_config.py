@@ -150,37 +150,41 @@ class TestWebConfig:
         assert config.ssl.verify is True
 
     def test_from_dict_partial(self):
-        config = WebConfig.from_dict({
-            "client": {"timeout": 60.0},
-            "security": {"allow_private_ips": True},
-        })
+        config = WebConfig.from_dict(
+            {
+                "client": {"timeout": 60.0},
+                "security": {"allow_private_ips": True},
+            }
+        )
         assert config.client.timeout == 60.0
         assert config.client.max_retries == 3  # default
         assert config.security.allow_private_ips is True
         assert config.ssl.verify is True  # default
 
     def test_from_dict_full(self):
-        config = WebConfig.from_dict({
-            "client": {
-                "timeout": 45.0,
-                "max_retries": 5,
-                "user_agent": "MyBot/2.0",
-            },
-            "ssl": {
-                "verify": False,
-            },
-            "proxy": {
-                "http": "http://proxy:8080",
-            },
-            "security": {
-                "allow_private_ips": True,
-                "blocked_hosts": ["evil.com"],
-            },
-            "reader": {
-                "default_format": "markdown",
-                "max_content_length": 100000,
-            },
-        })
+        config = WebConfig.from_dict(
+            {
+                "client": {
+                    "timeout": 45.0,
+                    "max_retries": 5,
+                    "user_agent": "MyBot/2.0",
+                },
+                "ssl": {
+                    "verify": False,
+                },
+                "proxy": {
+                    "http": "http://proxy:8080",
+                },
+                "security": {
+                    "allow_private_ips": True,
+                    "blocked_hosts": ["evil.com"],
+                },
+                "reader": {
+                    "default_format": "markdown",
+                    "max_content_length": 100000,
+                },
+            }
+        )
         assert config.client.timeout == 45.0
         assert config.client.max_retries == 5
         assert config.client.user_agent == "MyBot/2.0"

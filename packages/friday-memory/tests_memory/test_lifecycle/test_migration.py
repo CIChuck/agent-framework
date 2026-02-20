@@ -10,12 +10,10 @@ Tests cover:
 - Migration detection (check_migration_needed)
 """
 
-from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
-
-from friday_memory.lifecycle import MemoryMigrator, MigrationReport, MemoryStage
+from friday_memory.lifecycle import MemoryMigrator, MemoryStage, MigrationReport
 
 
 class TestMigrationReport:
@@ -80,11 +78,13 @@ class TestMemoryMigrator:
     def mock_vector_store(self):
         """Create a mock vector store."""
         store = MagicMock()
-        store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {"type": "insight"}},
-            {"id": "v2", "metadata": {"type": "summary", "stage": "long_term"}},
-            {"id": "v3", "metadata": {"type": "insight"}},
-        ])
+        store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {"type": "insight"}},
+                {"id": "v2", "metadata": {"type": "summary", "stage": "long_term"}},
+                {"id": "v3", "metadata": {"type": "insight"}},
+            ]
+        )
         store.update_metadata = AsyncMock()
         return store
 
@@ -200,7 +200,9 @@ class TestMemoryMigrator:
         assert report.nodes_scanned == 0
 
     @pytest.mark.asyncio
-    async def test_check_migration_needed_true(self, mock_vector_store, mock_graph_store):
+    async def test_check_migration_needed_true(
+        self, mock_vector_store, mock_graph_store
+    ):
         """Test check_migration_needed returns True when migration needed."""
         migrator = MemoryMigrator(
             vector_store=mock_vector_store,
@@ -215,10 +217,12 @@ class TestMemoryMigrator:
         """Test check_migration_needed returns False when all migrated."""
         # Create store where all items have lifecycle metadata
         vector_store = MagicMock()
-        vector_store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {"stage": "long_term"}},
-            {"id": "v2", "metadata": {"stage": "short_term"}},
-        ])
+        vector_store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {"stage": "long_term"}},
+                {"id": "v2", "metadata": {"stage": "short_term"}},
+            ]
+        )
 
         node1 = MagicMock()
         node1.id = "n1"
@@ -246,7 +250,9 @@ class TestMemoryMigrator:
 
         # Has stage = already migrated
         assert migrator._has_lifecycle_metadata({"stage": "long_term"})
-        assert migrator._has_lifecycle_metadata({"stage": "short_term", "type": "insight"})
+        assert migrator._has_lifecycle_metadata(
+            {"stage": "short_term", "type": "insight"}
+        )
 
     def test_add_lifecycle_metadata(self):
         """Test _add_lifecycle_metadata adds correct fields."""
@@ -285,9 +291,11 @@ class TestIdempotentMigration:
         """Test that running migration twice doesn't double-migrate."""
         # First run: documents without stage
         vector_store = MagicMock()
-        vector_store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {"type": "insight"}},
-        ])
+        vector_store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {"type": "insight"}},
+            ]
+        )
         vector_store.update_metadata = AsyncMock()
 
         migrator = MemoryMigrator(vector_store=vector_store)
@@ -297,9 +305,11 @@ class TestIdempotentMigration:
         assert report1.vectors_migrated == 1
 
         # Simulate that vector now has stage after first migration
-        vector_store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {"type": "insight", "stage": "long_term"}},
-        ])
+        vector_store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {"type": "insight", "stage": "long_term"}},
+            ]
+        )
 
         # Second migration - should skip already migrated
         report2 = await migrator.migrate(dry_run=False)
@@ -311,10 +321,12 @@ class TestIdempotentMigration:
         """Test that partial migration can be continued."""
         # Simulate some migrated, some not
         vector_store = MagicMock()
-        vector_store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {"stage": "long_term"}},  # Already migrated
-            {"id": "v2", "metadata": {"type": "insight"}},  # Needs migration
-        ])
+        vector_store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {"stage": "long_term"}},  # Already migrated
+                {"id": "v2", "metadata": {"type": "insight"}},  # Needs migration
+            ]
+        )
         vector_store.update_metadata = AsyncMock()
 
         migrator = MemoryMigrator(vector_store=vector_store)
@@ -334,12 +346,12 @@ class TestMigrationErrorHandling:
     async def test_vector_update_error_recorded(self):
         """Test that vector update errors are recorded in report."""
         vector_store = MagicMock()
-        vector_store.get_all = AsyncMock(return_value=[
-            {"id": "v1", "metadata": {}},
-        ])
-        vector_store.update_metadata = AsyncMock(
-            side_effect=Exception("Update failed")
+        vector_store.get_all = AsyncMock(
+            return_value=[
+                {"id": "v1", "metadata": {}},
+            ]
         )
+        vector_store.update_metadata = AsyncMock(side_effect=Exception("Update failed"))
 
         migrator = MemoryMigrator(vector_store=vector_store)
 
@@ -358,7 +370,9 @@ class TestMigrationErrorHandling:
 
         graph_store = MagicMock()
         graph_store.get_all_nodes = AsyncMock(return_value=[node])
-        graph_store.get_neighbors = AsyncMock(return_value=[])  # Empty list of neighbors
+        graph_store.get_neighbors = AsyncMock(
+            return_value=[]
+        )  # Empty list of neighbors
         graph_store.remove_node = AsyncMock(side_effect=Exception("Remove failed"))
 
         migrator = MemoryMigrator(graph_store=graph_store)

@@ -3,8 +3,6 @@
 import json
 from pathlib import Path
 
-import pytest
-
 from friday_memory.maintenance.backup import BackupManager
 
 
@@ -89,7 +87,7 @@ class TestBackupManager:
         assert len(backups) == 0
 
         # Create backups
-        manifest1 = manager.create_backup()
+        manager.create_backup()
         manifest2 = manager.create_backup()
 
         backups = manager.list_backups()
@@ -141,9 +139,9 @@ class TestBackupManager:
 
         # Check that vector subdirectory structure is preserved
         backup_path = Path(manifest.backup_dir)
-        vector_backup = backup_path / "vector"
+        backup_path / "vector"
 
         # transcript.db should be in vector/
-        for rel_path in manifest.checksums.keys():
+        for rel_path in manifest.checksums:
             if "transcript.db" in rel_path:
                 assert "vector" in rel_path

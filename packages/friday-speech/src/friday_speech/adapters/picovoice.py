@@ -12,9 +12,16 @@ from friday_core.logging import get_logger
 
 from ..config import PicovoiceConfig, VoiceSettingsConfig
 from ..errors import AdapterError, DependencyError, STTError, WakeWordError
-from ..interfaces import AudioFormat, AudioStream, STTAdapter, TTSAdapter, WakeWordAdapter
+from ..interfaces import (
+    AudioFormat,
+    AudioStream,
+    STTAdapter,
+    TTSAdapter,
+    WakeWordAdapter,
+)
 
 logger = get_logger(__name__)
+
 
 class PicovoiceOrcaAdapter(TTSAdapter):
     """Picovoice Orca TTS adapter."""
@@ -51,7 +58,11 @@ class PicovoiceOrcaAdapter(TTSAdapter):
             import inspect
 
             supported = inspect.signature(pvorca.create).parameters
-            filtered = {k: v for k, v in create_kwargs.items() if k in supported and v is not None}
+            filtered = {
+                k: v
+                for k, v in create_kwargs.items()
+                if k in supported and v is not None
+            }
             dropped = {k for k in create_kwargs if k not in filtered}
             if dropped:
                 self._logger.warning(
@@ -61,7 +72,7 @@ class PicovoiceOrcaAdapter(TTSAdapter):
             orca = pvorca.create(**filtered)
         except TypeError as exc:
             self._logger.error(
-                "Picovoice Orca create() failed with configured parameters; retrying with minimal args.",
+                "Picovoice Orca create() failed with configured parameters; retrying with minimal args.",  # noqa: E501
                 error=str(exc),
             )
             orca = pvorca.create(
@@ -70,13 +81,14 @@ class PicovoiceOrcaAdapter(TTSAdapter):
             )
 
         try:
-            sanitized = _sanitize_for_orca(text, getattr(orca, "valid_characters", None))
-            pcm_data = orca.synthesize(sanitized, speech_rate=self._config.orca.speech_rate)
+            sanitized = _sanitize_for_orca(
+                text, getattr(orca, "valid_characters", None)
+            )
+            pcm_data = orca.synthesize(
+                sanitized, speech_rate=self._config.orca.speech_rate
+            )
             if isinstance(pcm_data, tuple):
-                if pcm_data:
-                    pcm_data = pcm_data[0]
-                else:
-                    pcm_data = None
+                pcm_data = pcm_data[0] if pcm_data else None
             pcm_bytes = _ensure_pcm_bytes(pcm_data)
 
             self.sample_rate = getattr(orca, "sample_rate", None)
@@ -114,7 +126,9 @@ def _ensure_pcm_bytes(payload: Any) -> bytes:
         if any(isinstance(item, float) for item in payload):
             max_abs = max(abs(float(item)) for item in payload)
             if max_abs <= 1.0:
-                scaled = [int(max(-1.0, min(1.0, float(item))) * 32767) for item in payload]
+                scaled = [
+                    int(max(-1.0, min(1.0, float(item))) * 32767) for item in payload
+                ]
                 return array("h", scaled).tobytes()
         return array("h", payload).tobytes()
     if isinstance(payload, tuple):
@@ -129,7 +143,7 @@ def _ensure_pcm_bytes(payload: Any) -> bytes:
             if key in payload:
                 return _ensure_pcm_bytes(payload[key])
     if hasattr(payload, "pcm"):
-        return _ensure_pcm_bytes(getattr(payload, "pcm"))
+        return _ensure_pcm_bytes(payload.pcm)
     if hasattr(payload, "tobytes"):
         try:
             return payload.tobytes()
@@ -144,7 +158,10 @@ def _ensure_pcm_bytes(payload: Any) -> bytes:
             return payload.tobytes()
     except Exception:
         pass
-    logger.error("Unsupported PCM payload from Picovoice Orca", payload_type=type(payload).__name__)
+    logger.error(
+        "Unsupported PCM payload from Picovoice Orca",
+        payload_type=type(payload).__name__,
+    )
     raise AdapterError("Unsupported PCM payload from Picovoice Orca")
 
 
@@ -204,7 +221,7 @@ class PicovoicePorcupineAdapter(WakeWordAdapter):
             from pvrecorder import PvRecorder  # type: ignore
         except Exception as exc:  # pragma: no cover - dependency gate
             raise DependencyError(
-                "Picovoice Porcupine not installed. Install with: pip install pvporcupine pvrecorder"
+                "Picovoice Porcupine not installed. Install with: pip install pvporcupine pvrecorder"  # noqa: E501
             ) from exc
 
         porcupine_config = self._config.porcupine
@@ -255,5 +272,5 @@ class PicovoiceLeopardAdapter(STTAdapter):
 
     async def transcribe(self) -> str:
         raise STTError(
-            "Picovoice STT is not wired yet. Provide a custom STT adapter or implement capture."
+            "Picovoice STT is not wired yet. Provide a custom STT adapter or implement capture."  # noqa: E501
         )

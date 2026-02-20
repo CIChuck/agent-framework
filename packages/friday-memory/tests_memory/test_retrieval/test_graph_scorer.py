@@ -3,7 +3,6 @@
 import math
 
 import pytest
-
 from friday_memory.models import GraphEdge, GraphNode, ProvenanceMetadata
 from friday_memory.retrieval.graph_scorer import (
     GraphPathScorer,
@@ -203,9 +202,7 @@ class TestGraphPathScorer:
         source = create_test_node("s1", "Python")
 
         # Similar path
-        target_similar = create_test_node(
-            "t1", "Related", embedding=similar_embedding
-        )
+        target_similar = create_test_node("t1", "Related", embedding=similar_embedding)
         edge_similar = create_test_edge("s1", "t1", "rel", embedding=similar_embedding)
         scored_similar = scorer.score_path_sync(
             source, edge_similar, target_similar, query_embedding
@@ -262,7 +259,9 @@ class TestGraphPathScorer:
 
         for i in range(3):
             hit_count = (i + 1) * 10  # 10, 20, 30
-            t = create_test_node(f"t{i}", f"Target{i}", hit_count=hit_count, embedding=emb)
+            t = create_test_node(
+                f"t{i}", f"Target{i}", hit_count=hit_count, embedding=emb
+            )
             e = create_test_edge("s1", f"t{i}", "rel", embedding=emb)
             targets.append(t)
             edges.append(e)

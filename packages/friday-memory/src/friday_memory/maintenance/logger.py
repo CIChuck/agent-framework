@@ -121,17 +121,19 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging entity removal."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.ENTITY_REMOVED,
-            item_id=entity_id,
-            item_type="entity",
-            store="graph",
-            reason=reason,
-            content_preview=content_preview,
-            content_full=content_full,
-            metadata=metadata or {},
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.ENTITY_REMOVED,
+                item_id=entity_id,
+                item_type="entity",
+                store="graph",
+                reason=reason,
+                content_preview=content_preview,
+                content_full=content_full,
+                metadata=metadata or {},
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_entity_merged(
         self,
@@ -142,18 +144,20 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging entity merge."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.ENTITY_MERGED,
-            item_id=primary_id,
-            item_type="entity",
-            store="graph",
-            merged_into_id=primary_id,
-            merged_from_ids=merged_ids,
-            reason=reason,
-            content_preview=content_preview,
-            metadata=metadata or {},
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.ENTITY_MERGED,
+                item_id=primary_id,
+                item_type="entity",
+                store="graph",
+                merged_into_id=primary_id,
+                merged_from_ids=merged_ids,
+                reason=reason,
+                content_preview=content_preview,
+                metadata=metadata or {},
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_insight_removed(
         self,
@@ -164,17 +168,19 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging insight removal."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.INSIGHT_REMOVED,
-            item_id=insight_id,
-            item_type="insight",
-            store="vector",
-            reason=reason,
-            content_preview=content_preview,
-            content_full=content_full,
-            metadata=metadata or {},
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.INSIGHT_REMOVED,
+                item_id=insight_id,
+                item_type="insight",
+                store="vector",
+                reason=reason,
+                content_preview=content_preview,
+                content_full=content_full,
+                metadata=metadata or {},
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_edge_removed(
         self,
@@ -184,16 +190,18 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging edge removal."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.EDGE_REMOVED,
-            item_id=edge_id,
-            item_type="edge",
-            store="graph",
-            reason=reason,
-            content_preview=content_preview,
-            metadata=metadata or {},
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.EDGE_REMOVED,
+                item_id=edge_id,
+                item_type="edge",
+                store="graph",
+                reason=reason,
+                content_preview=content_preview,
+                metadata=metadata or {},
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_fact_classified(
         self,
@@ -208,23 +216,25 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging fact classification."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.FACT_CLASSIFIED,
-            item_id=fact_id,
-            item_type="fact",
-            store="vector",
-            reason=reason,
-            content_preview=content_preview,
-            prompt_sent=prompt_sent,
-            llm_response_raw=llm_response_raw,
-            llm_response_parsed=llm_response_parsed,
-            metadata={
-                "falsifiable": falsifiable,
-                "claim_type": claim_type,
-                **(metadata or {}),
-            },
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.FACT_CLASSIFIED,
+                item_id=fact_id,
+                item_type="fact",
+                store="vector",
+                reason=reason,
+                content_preview=content_preview,
+                prompt_sent=prompt_sent,
+                llm_response_raw=llm_response_raw,
+                llm_response_parsed=llm_response_parsed,
+                metadata={
+                    "falsifiable": falsifiable,
+                    "claim_type": claim_type,
+                    **(metadata or {}),
+                },
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_fact_verified(
         self,
@@ -242,26 +252,28 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging fact verification."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.FACT_VERIFIED,
-            item_id=fact_id,
-            item_type="fact",
-            store="vector",
-            reason=reason,
-            confidence=confidence,
-            content_preview=content_preview,
-            prompt_sent=prompt_sent,
-            llm_response_raw=llm_response_raw,
-            llm_response_parsed=llm_response_parsed,
-            metadata={
-                "verdict": verdict,
-                "evidence_summary": evidence_summary,
-                "sources": sources or [],
-                "correction": correction,
-                **(metadata or {}),
-            },
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.FACT_VERIFIED,
+                item_id=fact_id,
+                item_type="fact",
+                store="vector",
+                reason=reason,
+                confidence=confidence,
+                content_preview=content_preview,
+                prompt_sent=prompt_sent,
+                llm_response_raw=llm_response_raw,
+                llm_response_parsed=llm_response_parsed,
+                metadata={
+                    "verdict": verdict,
+                    "evidence_summary": evidence_summary,
+                    "sources": sources or [],
+                    "correction": correction,
+                    **(metadata or {}),
+                },
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_meta_insight_created(
         self,
@@ -276,24 +288,26 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging meta-insight creation."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.META_INSIGHT_CREATED,
-            item_id=insight_id,
-            item_type="meta_insight",
-            store="vector",
-            reason=reason,
-            confidence=confidence,
-            content_preview=content[:200] if content else None,
-            content_full=content,
-            prompt_sent=prompt_sent,
-            llm_response_raw=llm_response_raw,
-            llm_response_parsed=llm_response_parsed,
-            metadata={
-                "source_ids": source_ids,
-                **(metadata or {}),
-            },
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.META_INSIGHT_CREATED,
+                item_id=insight_id,
+                item_type="meta_insight",
+                store="vector",
+                reason=reason,
+                confidence=confidence,
+                content_preview=content[:200] if content else None,
+                content_full=content,
+                prompt_sent=prompt_sent,
+                llm_response_raw=llm_response_raw,
+                llm_response_parsed=llm_response_parsed,
+                metadata={
+                    "source_ids": source_ids,
+                    **(metadata or {}),
+                },
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_relationship_inferred(
         self,
@@ -309,25 +323,27 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging relationship inference."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.RELATIONSHIP_INFERRED,
-            item_id=relationship_id,
-            item_type="relationship",
-            store="graph",
-            reason=reason,
-            confidence=confidence,
-            content_preview=f"{source_entity} --[{relation}]--> {target_entity}",
-            prompt_sent=prompt_sent,
-            llm_response_raw=llm_response_raw,
-            llm_response_parsed=llm_response_parsed,
-            metadata={
-                "source_entity": source_entity,
-                "relation": relation,
-                "target_entity": target_entity,
-                **(metadata or {}),
-            },
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.RELATIONSHIP_INFERRED,
+                item_id=relationship_id,
+                item_type="relationship",
+                store="graph",
+                reason=reason,
+                confidence=confidence,
+                content_preview=f"{source_entity} --[{relation}]--> {target_entity}",
+                prompt_sent=prompt_sent,
+                llm_response_raw=llm_response_raw,
+                llm_response_parsed=llm_response_parsed,
+                metadata={
+                    "source_entity": source_entity,
+                    "relation": relation,
+                    "target_entity": target_entity,
+                    **(metadata or {}),
+                },
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_knowledge_gap_identified(
         self,
@@ -342,24 +358,26 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging knowledge gap identification."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.KNOWLEDGE_GAP_IDENTIFIED,
-            item_id=gap_id,
-            item_type="knowledge_gap",
-            store="analysis",
-            reason=reason,
-            content_preview=description[:200] if description else None,
-            content_full=description,
-            prompt_sent=prompt_sent,
-            llm_response_raw=llm_response_raw,
-            llm_response_parsed=llm_response_parsed,
-            metadata={
-                "related_entities": related_entities,
-                "priority": priority,
-                **(metadata or {}),
-            },
-            dry_run=self._dry_run,
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.KNOWLEDGE_GAP_IDENTIFIED,
+                item_id=gap_id,
+                item_type="knowledge_gap",
+                store="analysis",
+                reason=reason,
+                content_preview=description[:200] if description else None,
+                content_full=description,
+                prompt_sent=prompt_sent,
+                llm_response_raw=llm_response_raw,
+                llm_response_parsed=llm_response_parsed,
+                metadata={
+                    "related_entities": related_entities,
+                    "priority": priority,
+                    **(metadata or {}),
+                },
+                dry_run=self._dry_run,
+            )
+        )
 
     def log_backup_created(
         self,
@@ -369,20 +387,22 @@ class ReorganizationLogger:
         metadata: dict[str, Any] | None = None,
     ) -> None:
         """Convenience method for logging backup creation."""
-        self.log_action(ActionLogEntry(
-            action_type=ActionType.BACKUP_CREATED,
-            item_id=backup_id,
-            item_type="backup",
-            store="all",
-            reason="Pre-reorganization backup",
-            content_preview=f"Backup to {backup_dir} ({file_count} files)",
-            metadata={
-                "backup_dir": backup_dir,
-                "file_count": file_count,
-                **(metadata or {}),
-            },
-            dry_run=False,  # Backups are always real
-        ))
+        self.log_action(
+            ActionLogEntry(
+                action_type=ActionType.BACKUP_CREATED,
+                item_id=backup_id,
+                item_type="backup",
+                store="all",
+                reason="Pre-reorganization backup",
+                content_preview=f"Backup to {backup_dir} ({file_count} files)",
+                metadata={
+                    "backup_dir": backup_dir,
+                    "file_count": file_count,
+                    **(metadata or {}),
+                },
+                dry_run=False,  # Backups are always real
+            )
+        )
 
     def get_log_directory(self) -> Path:
         """Get the resolved log directory path."""
@@ -429,7 +449,7 @@ class ReorganizationLogger:
     def _format_markdown(self) -> str:
         """Format log entries as Markdown."""
         lines = [
-            f"# Memory Reorganization Log",
+            "# Memory Reorganization Log",
             "",
             f"**Session ID:** {self._session_id}",
             f"**Generated:** {datetime.now().isoformat()}",
@@ -442,13 +462,15 @@ class ReorganizationLogger:
         lines.extend(self._format_markdown_summary())
 
         # Detailed entries section
-        lines.extend([
-            "",
-            "---",
-            "",
-            "## Action Details",
-            "",
-        ])
+        lines.extend(
+            [
+                "",
+                "---",
+                "",
+                "## Action Details",
+                "",
+            ]
+        )
 
         for i, entry in enumerate(self._entries, 1):
             lines.extend(self._format_markdown_entry(i, entry))
@@ -476,11 +498,13 @@ class ReorganizationLogger:
         for action_type, count in sorted(action_counts.items()):
             lines.append(f"| {action_type} | {count} |")
 
-        lines.extend([
-            "",
-            f"**Dry Run Actions:** {dry_run_count}",
-            f"**Executed Actions:** {len(self._entries) - dry_run_count}",
-        ])
+        lines.extend(
+            [
+                "",
+                f"**Dry Run Actions:** {dry_run_count}",
+                f"**Executed Actions:** {len(self._entries) - dry_run_count}",
+            ]
+        )
 
         return lines
 
@@ -505,13 +529,15 @@ class ReorganizationLogger:
         # Normal verbosity: add content preview
         if self._config.verbosity in (LogVerbosity.NORMAL, LogVerbosity.VERBOSE):
             if entry.content_preview:
-                lines.extend([
-                    "",
-                    "**Content Preview:**",
-                    "```",
-                    entry.content_preview,
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Content Preview:**",
+                        "```",
+                        entry.content_preview,
+                        "```",
+                    ]
+                )
 
             if entry.merged_into_id:
                 lines.append(f"- **Merged Into:** `{entry.merged_into_id}`")
@@ -520,60 +546,72 @@ class ReorganizationLogger:
                 lines.append(f"- **Merged From:** {merged_ids}")
 
             if entry.metadata:
-                lines.extend([
-                    "",
-                    "**Metadata:**",
-                    "```json",
-                    json.dumps(entry.metadata, indent=2, default=str),
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Metadata:**",
+                        "```json",
+                        json.dumps(entry.metadata, indent=2, default=str),
+                        "```",
+                    ]
+                )
 
         # Verbose: add full content, prompts, and responses
         if self._config.verbosity == LogVerbosity.VERBOSE:
             if entry.content_full and entry.content_full != entry.content_preview:
-                lines.extend([
-                    "",
-                    "**Full Content:**",
-                    "```",
-                    entry.content_full,
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Full Content:**",
+                        "```",
+                        entry.content_full,
+                        "```",
+                    ]
+                )
 
             if entry.prompt_sent:
-                lines.extend([
-                    "",
-                    "**Prompt Sent to LLM:**",
-                    "```",
-                    entry.prompt_sent,
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Prompt Sent to LLM:**",
+                        "```",
+                        entry.prompt_sent,
+                        "```",
+                    ]
+                )
 
             if entry.llm_response_raw:
-                lines.extend([
-                    "",
-                    "**Raw LLM Response:**",
-                    "```",
-                    entry.llm_response_raw,
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Raw LLM Response:**",
+                        "```",
+                        entry.llm_response_raw,
+                        "```",
+                    ]
+                )
 
             if entry.llm_response_parsed:
-                lines.extend([
-                    "",
-                    "**Parsed LLM Response:**",
-                    "```json",
-                    json.dumps(entry.llm_response_parsed, indent=2, default=str),
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Parsed LLM Response:**",
+                        "```json",
+                        json.dumps(entry.llm_response_parsed, indent=2, default=str),
+                        "```",
+                    ]
+                )
 
             if entry.config_snapshot:
-                lines.extend([
-                    "",
-                    "**Config Snapshot:**",
-                    "```json",
-                    json.dumps(entry.config_snapshot, indent=2, default=str),
-                    "```",
-                ])
+                lines.extend(
+                    [
+                        "",
+                        "**Config Snapshot:**",
+                        "```json",
+                        json.dumps(entry.config_snapshot, indent=2, default=str),
+                        "```",
+                    ]
+                )
 
         lines.append("")
         return lines
@@ -674,21 +712,25 @@ class ReorganizationLogger:
         ]
 
         if self._config.verbosity in (LogVerbosity.NORMAL, LogVerbosity.VERBOSE):
-            columns.extend([
-                "content_preview",
-                "merged_into_id",
-                "merged_from_ids",
-                "metadata",
-            ])
+            columns.extend(
+                [
+                    "content_preview",
+                    "merged_into_id",
+                    "merged_from_ids",
+                    "metadata",
+                ]
+            )
 
         if self._config.verbosity == LogVerbosity.VERBOSE:
-            columns.extend([
-                "content_full",
-                "prompt_sent",
-                "llm_response_raw",
-                "llm_response_parsed",
-                "config_snapshot",
-            ])
+            columns.extend(
+                [
+                    "content_full",
+                    "prompt_sent",
+                    "llm_response_raw",
+                    "llm_response_parsed",
+                    "config_snapshot",
+                ]
+            )
 
         writer = csv.DictWriter(output, fieldnames=columns, extrasaction="ignore")
         writer.writeheader()

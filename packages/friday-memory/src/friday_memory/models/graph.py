@@ -46,12 +46,12 @@ class ProvenanceMetadata(BaseModel):
         created_at: Timestamp of creation
         author_id: Creator identifier (agent name or user ID)
         parent_ids: IDs of parent data this was derived from (for lineage chains)
-    """
+    """  # noqa: E501
 
     source_id: str = Field(..., description="UUID of the originating Turn or Document")
     source_type: str = Field(
         ...,
-        description="Origin type: 'interaction', 'document', 'inference', 'agent', 'user'",
+        description="Origin type: 'interaction', 'document', 'inference', 'agent', 'user'",  # noqa: E501
     )
     confidence: float = Field(
         default=1.0,
@@ -197,7 +197,7 @@ class GraphNode(BaseModel):
     source_memory_ids: list[str] = Field(
         default_factory=list,
         description="IDs of vector memories that contributed to this node's creation. "
-        "Used for coordinated decay: if ALL source memories decay, this node decays too.",
+        "Used for coordinated decay: if ALL source memories decay, this node decays too.",  # noqa: E501
     )
 
     # Optional embedding for semantic operations
@@ -265,7 +265,7 @@ class GraphEdge(BaseModel):
     # Pre-computed embedding for fast path relevancy scoring
     embedding: list[float] | None = Field(
         default=None,
-        description="Pre-computed embedding of the relation for path relevancy scoring. "
+        description="Pre-computed embedding of the relation for path relevancy scoring. "  # noqa: E501
         "Should be computed during consolidation to avoid retrieval-time latency.",
     )
 

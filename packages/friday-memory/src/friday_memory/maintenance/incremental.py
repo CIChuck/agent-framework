@@ -15,7 +15,6 @@ Ref: docs/build-plan/copilot-promotion-build-plan.md, Issue 4
 
 from __future__ import annotations
 
-import asyncio
 import logging
 import time
 from dataclasses import dataclass, field
@@ -142,9 +141,9 @@ class IncrementalGraphMaintainer:
 
     def __init__(
         self,
-        graph_store: "GraphStoreAdapter",
+        graph_store: GraphStoreAdapter,
         config: IncrementalMaintenanceConfig | None = None,
-        telemetry: "TelemetryInterface | None" = None,
+        telemetry: TelemetryInterface | None = None,
     ) -> None:
         """
         Initialize the incremental maintainer.
@@ -228,14 +227,14 @@ class IncrementalGraphMaintainer:
                 await self._dedupe_recent_entities(result)
 
             # Phase 2: Orphan edge cleanup
-            if self._config.orphan_cleanup_enabled and not self._time_budget_exhausted():
+            if (
+                self._config.orphan_cleanup_enabled
+                and not self._time_budget_exhausted()
+            ):
                 await self._cleanup_orphan_edges(result)
 
             # Phase 3: Hebbian consolidation (full mode only)
-            if (
-                self._config.mode == "full"
-                and not self._time_budget_exhausted()
-            ):
+            if self._config.mode == "full" and not self._time_budget_exhausted():
                 await self._consolidate_hebbian(result)
 
             # Track run
@@ -312,8 +311,7 @@ class IncrementalGraphMaintainer:
 
                 # Filter to actual duplicates (different ID, similar label)
                 duplicates = [
-                    m for m in matches
-                    if m.id != entity.id and m.id not in merged_ids
+                    m for m in matches if m.id != entity.id and m.id not in merged_ids
                 ]
 
                 if not duplicates:
@@ -332,12 +330,14 @@ class IncrementalGraphMaintainer:
                         await self._graph.merge_nodes(primary.id, dup.id)
                         merged_ids.add(dup.id)
                         result.entities_merged += 1
-                        result.merge_details.append({
-                            "primary_id": primary.id,
-                            "merged_id": dup.id,
-                            "primary_label": primary.label,
-                            "merged_label": dup.label,
-                        })
+                        result.merge_details.append(
+                            {
+                                "primary_id": primary.id,
+                                "merged_id": dup.id,
+                                "primary_label": primary.label,
+                                "merged_label": dup.label,
+                            }
+                        )
 
                         self._emit_event(
                             "incremental_entity_merged",
@@ -348,7 +348,9 @@ class IncrementalGraphMaintainer:
                             },
                         )
                     except Exception as e:
-                        result.errors.append(f"Merge failed: {primary.id} <- {dup.id}: {e}")
+                        result.errors.append(
+                            f"Merge failed: {primary.id} <- {dup.id}: {e}"
+                        )
 
         except Exception as e:
             result.errors.append(f"Dedup phase failed: {e}")
@@ -372,7 +374,7 @@ class IncrementalGraphMaintainer:
 
             # Check edges for orphans (bounded by config)
             orphans_found = 0
-            for edge in all_edges[:self._config.max_orphans_per_run * 3]:
+            for edge in all_edges[: self._config.max_orphans_per_run * 3]:
                 if self._time_budget_exhausted():
                     result.time_budget_exhausted = True
                     break
@@ -392,13 +394,15 @@ class IncrementalGraphMaintainer:
                     try:
                         await self._graph.remove_edge(edge.source_id, edge.target_id)
                         result.orphans_removed += 1
-                        result.orphan_details.append({
-                            "source_id": edge.source_id,
-                            "target_id": edge.target_id,
-                            "relation": edge.relation,
-                            "source_missing": source_missing,
-                            "target_missing": target_missing,
-                        })
+                        result.orphan_details.append(
+                            {
+                                "source_id": edge.source_id,
+                                "target_id": edge.target_id,
+                                "relation": edge.relation,
+                                "source_missing": source_missing,
+                                "target_missing": target_missing,
+                            }
+                        )
 
                         self._emit_event(
                             "incremental_orphan_removed",
@@ -410,7 +414,7 @@ class IncrementalGraphMaintainer:
                         )
                     except Exception as e:
                         result.errors.append(
-                            f"Orphan removal failed: {edge.source_id}->{edge.target_id}: {e}"
+                            f"Orphan removal failed: {edge.source_id}->{edge.target_id}: {e}"  # noqa: E501
                         )
 
         except Exception as e:

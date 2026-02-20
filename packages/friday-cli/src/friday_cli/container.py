@@ -13,20 +13,8 @@ Ref: Phase 1 Build Plan, Step 6
 """
 
 import logging
-from dataclasses import dataclass, field
 import os
-from typing import Any
-
-from friday_core import TelemetryInterface
-from friday_core.security import SanitizationConfig
-from friday_core.profiles import MemoryProfile
-
-from friday_llm import LiteLLMEmbeddingService, LiteLLMService
-
-from friday_memory import (
-    ContextAssembler,
-    MemoryController,
-)
+from dataclasses import dataclass, field
 
 from friday_agent import (
     AgentLoader,
@@ -36,7 +24,14 @@ from friday_agent import (
     CopilotAgent,
     DefaultToolRegistry,
 )
-
+from friday_core import TelemetryInterface
+from friday_core.profiles import MemoryProfile
+from friday_core.security import SanitizationConfig
+from friday_llm import LiteLLMEmbeddingService, LiteLLMService
+from friday_memory import (
+    ContextAssembler,
+    MemoryController,
+)
 from friday_runtime import RuntimeConfig, RuntimeKernel
 
 logger = logging.getLogger(__name__)
@@ -57,9 +52,7 @@ class FridayConfig:
     llm_model: str = field(
         default_factory=lambda: os.getenv("FRIDAY_LLM_MODEL", "gpt-4")
     )
-    llm_api_key: str | None = field(
-        default_factory=lambda: os.getenv("OPENAI_API_KEY")
-    )
+    llm_api_key: str | None = field(default_factory=lambda: os.getenv("OPENAI_API_KEY"))
     llm_api_base: str | None = field(
         default_factory=lambda: os.getenv("FRIDAY_LLM_API_BASE")
     )
@@ -73,31 +66,22 @@ class FridayConfig:
 
     # ChromaDB Configuration
     chroma_path: str = field(
-        default_factory=lambda: os.getenv(
-            "FRIDAY_CHROMA_PATH", ".friday/chroma"
-        )
+        default_factory=lambda: os.getenv("FRIDAY_CHROMA_PATH", ".friday/chroma")
     )
     chroma_collection: str = field(
-        default_factory=lambda: os.getenv(
-            "FRIDAY_CHROMA_COLLECTION", "friday_memory"
-        )
+        default_factory=lambda: os.getenv("FRIDAY_CHROMA_COLLECTION", "friday_memory")
     )
 
     # Telemetry Configuration
     telemetry_enabled: bool = field(
-        default_factory=lambda: os.getenv(
-            "FRIDAY_TELEMETRY_ENABLED", "false"
-        ).lower()
+        default_factory=lambda: os.getenv("FRIDAY_TELEMETRY_ENABLED", "false").lower()
         == "true"
     )
     telemetry_endpoint: str | None = field(
         default_factory=lambda: os.getenv("FRIDAY_OTEL_ENDPOINT")
     )
     debug_mode: bool = field(
-        default_factory=lambda: os.getenv(
-            "FRIDAY_DEBUG", "false"
-        ).lower()
-        == "true"
+        default_factory=lambda: os.getenv("FRIDAY_DEBUG", "false").lower() == "true"
     )
 
     # Agent Configuration
@@ -219,45 +203,35 @@ class FridayContainer:
     def llm(self) -> LiteLLMService:
         """Get LLM service."""
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.llm
 
     @property
     def embeddings(self) -> LiteLLMEmbeddingService:
         """Get embedding service."""
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.embeddings
 
     @property
     def memory(self) -> MemoryController:
         """Get memory controller."""
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.memory
 
     @property
     def context_engine(self) -> ContextAssembler:
         """Get context assembler."""
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.context_engine
 
     @property
     def tool_registry(self) -> DefaultToolRegistry:
         """Get tool registry."""
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.tool_registry
 
     @property
@@ -291,9 +265,7 @@ class FridayContainer:
             Configured CopilotAgent instance
         """
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.get_copilot_agent(profile)
 
     def get_team_agent(self, name: str) -> CopilotAgent:
@@ -307,9 +279,7 @@ class FridayContainer:
             Configured CopilotAgent instance
         """
         if not self._initialized:
-            raise RuntimeError(
-                "Container not initialized. Call initialize() first."
-            )
+            raise RuntimeError("Container not initialized. Call initialize() first.")
         return self._kernel.get_team_agent(name)
 
     def list_available_agents(self) -> list[str]:

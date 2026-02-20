@@ -31,7 +31,6 @@ from datetime import datetime
 from unittest.mock import AsyncMock
 
 from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
     ChromaVectorStore,
     ElementXGraphStore,
@@ -56,10 +55,12 @@ def create_mock_embedding_model():
 
     async def embed_documents(texts):
         import random
+
         return [[random.random() for _ in range(1536)] for _ in texts]
 
     async def embed_query(text):
         import random
+
         return [random.random() for _ in range(1536)]
 
     mock.embed_documents = embed_documents
@@ -341,7 +342,9 @@ async def main():
     for neighbor_info in alice_neighbors:
         node_data = neighbor_info["node"]
         relation = neighbor_info["relation"]
-        print(f"  - {node_data.get('label', 'unknown')} ({node_data.get('type', 'unknown')}) via '{relation}'")
+        print(
+            f"  - {node_data.get('label', 'unknown')} ({node_data.get('type', 'unknown')}) via '{relation}'"  # noqa: E501
+        )
 
     # Fuzzy search for entities
     matches = await graph_store.fuzzy_search("alice", threshold=0.6)

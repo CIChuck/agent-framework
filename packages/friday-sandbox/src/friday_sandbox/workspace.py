@@ -7,12 +7,13 @@ Ref: docs/specs/sandbox_specifications.md - Section 5: Workspace Management
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import logging
 import shutil
 import uuid
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable
 
 from .config import WorkspaceConfig
 from .models import Workspace, WorkspaceExpiredError, WorkspaceNotFoundError
@@ -72,10 +73,8 @@ class WorkspaceManager:
         """Stop the background cleanup task."""
         if self._cleanup_task and not self._cleanup_task.done():
             self._cleanup_task.cancel()
-            try:
+            with contextlib.suppress(asyncio.CancelledError):
                 await self._cleanup_task
-            except asyncio.CancelledError:
-                pass
             self._cleanup_task = None
             logger.debug("Stopped workspace cleanup loop")
 
@@ -160,7 +159,9 @@ class WorkspaceManager:
 
         if check_expired:
             # Check soft limit (warning)
-            elapsed = (_utc_now() - _ensure_utc(workspace.last_accessed_at)).total_seconds()
+            elapsed = (
+                _utc_now() - _ensure_utc(workspace.last_accessed_at)
+            ).total_seconds()
             if elapsed > self.config.ttl_soft_limit_seconds and not workspace.preserve:
                 logger.warning(
                     f"Workspace {workspace_id} approaching TTL limit "
@@ -169,10 +170,7 @@ class WorkspaceManager:
                 )
 
             # Check hard limit (error)
-            if (
-                elapsed > self.config.ttl_hard_limit_seconds
-                and not workspace.preserve
-            ):
+            if elapsed > self.config.ttl_hard_limit_seconds and not workspace.preserve:
                 raise WorkspaceExpiredError(workspace_id)
 
             if workspace.is_expired:
@@ -245,9 +243,7 @@ class WorkspaceManager:
             return False
 
         if workspace.preserve and not force:
-            logger.debug(
-                f"Skipping cleanup of preserved workspace {workspace_id}"
-            )
+            logger.debug(f"Skipping cleanup of preserved workspace {workspace_id}")
             return False
 
         # Delete directory
@@ -287,12 +283,12 @@ class WorkspaceManager:
                 if workspace.preserve:
                     continue
 
-                elapsed = (now - _ensure_utc(workspace.last_accessed_at)).total_seconds()
+                elapsed = (
+                    now - _ensure_utc(workspace.last_accessed_at)
+                ).total_seconds()
 
                 # Force cleanup if past hard limit
-                if elapsed > self.config.ttl_hard_limit_seconds:
-                    expired_ids.append(workspace_id)
-                elif workspace.is_expired:
+                if elapsed > self.config.ttl_hard_limit_seconds or workspace.is_expired:
                     expired_ids.append(workspace_id)
 
         count = 0

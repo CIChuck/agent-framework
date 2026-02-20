@@ -6,11 +6,10 @@ import tempfile
 from pathlib import Path
 
 import pytest
-
 from friday_cli.cli_config import (
-    CLIConfig,
     DEFAULT_THINKING_MESSAGES,
     DEFAULT_TOOL_PROCESSING_MESSAGES,
+    CLIConfig,
     IconsConfig,
     PromptConfig,
     SpinnerConfig,
@@ -73,12 +72,14 @@ class TestIconsConfig:
         assert icons.info == "ℹ"
 
     def test_ascii_alternatives(self):
-        icons = IconsConfig.from_dict({
-            "error": "ERROR:",
-            "warning": "WARN:",
-            "success": "OK:",
-            "info": "INFO:",
-        })
+        icons = IconsConfig.from_dict(
+            {
+                "error": "ERROR:",
+                "warning": "WARN:",
+                "success": "OK:",
+                "info": "INFO:",
+            }
+        )
 
         assert icons.error == "ERROR:"
         assert icons.warning == "WARN:"
@@ -134,10 +135,12 @@ class TestSpinnerConfig:
         assert "Thinking..." in DEFAULT_THINKING_MESSAGES
 
     def test_from_dict_partial(self):
-        spinner = SpinnerConfig.from_dict({
-            "spinner_type": "line",
-            "randomize": False,
-        })
+        spinner = SpinnerConfig.from_dict(
+            {
+                "spinner_type": "line",
+                "randomize": False,
+            }
+        )
 
         assert spinner.spinner_type == "line"
         assert spinner.randomize is False
@@ -147,19 +150,23 @@ class TestSpinnerConfig:
         assert spinner.spinner_style == "cyan"
 
     def test_custom_styles(self):
-        spinner = SpinnerConfig.from_dict({
-            "text_style": "bold magenta",
-            "spinner_style": "yellow",
-        })
+        spinner = SpinnerConfig.from_dict(
+            {
+                "text_style": "bold magenta",
+                "spinner_style": "yellow",
+            }
+        )
 
         assert spinner.text_style == "bold magenta"
         assert spinner.spinner_style == "yellow"
 
     def test_legacy_style_key(self):
         """Test backwards compatibility with old 'style' key."""
-        spinner = SpinnerConfig.from_dict({
-            "style": "bold green",  # Old key name
-        })
+        spinner = SpinnerConfig.from_dict(
+            {
+                "style": "bold green",  # Old key name
+            }
+        )
 
         # Should map to text_style
         assert spinner.text_style == "bold green"
@@ -170,10 +177,12 @@ class TestSpinnerConfig:
         custom_thinking = ["Working...", "Processing..."]
         custom_tool = ["Analyzing..."]
 
-        spinner = SpinnerConfig.from_dict({
-            "thinking_messages": custom_thinking,
-            "tool_messages": custom_tool,
-        })
+        spinner = SpinnerConfig.from_dict(
+            {
+                "thinking_messages": custom_thinking,
+                "tool_messages": custom_tool,
+            }
+        )
 
         assert spinner.thinking_messages == custom_thinking
         assert spinner.tool_messages == custom_tool
@@ -201,10 +210,12 @@ class TestCLIConfig:
         assert config.config_path is None
 
     def test_from_dict(self):
-        config = CLIConfig.from_dict({
-            "theme": {"error": "red"},
-            "icons": {"error": "[X]"},
-        })
+        config = CLIConfig.from_dict(
+            {
+                "theme": {"error": "red"},
+                "icons": {"error": "[X]"},
+            }
+        )
 
         assert config.theme.error == "red"
         assert config.icons.error == "[X]"

@@ -4,7 +4,6 @@ import uuid
 from datetime import datetime, timedelta
 
 import pytest
-
 from friday_memory.lifecycle.decay import DecayConfig
 from friday_memory.lifecycle.promotion import (
     MemoryPromotionService,
@@ -130,9 +129,7 @@ class TestPromotionScorer:
         """Memory 24h+ old should be eligible."""
         created_at = now - timedelta(hours=25)  # 25 hours old
 
-        assert scorer.is_eligible_for_promotion(
-            MemoryStage.SHORT_TERM, created_at, now
-        )
+        assert scorer.is_eligible_for_promotion(MemoryStage.SHORT_TERM, created_at, now)
 
     def test_should_promote_above_threshold(self, scorer):
         """Score >= 0.7 (default threshold) should promote."""
@@ -290,12 +287,14 @@ class TestMemoryPromotionService:
         # Add eligible memory to short-term
         await collection_manager.add_to_short_term(
             texts=["Memory ready for promotion"],
-            metadatas=[{
-                "type": "insight",
-                "created_at": old_time,
-                "access_count": 5,
-                "confidence": 0.9,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "created_at": old_time,
+                    "access_count": 5,
+                    "confidence": 0.9,
+                }
+            ],
             ids=["mem_promote"],
         )
 
@@ -327,12 +326,14 @@ class TestMemoryPromotionService:
 
         await collection_manager.add_to_short_term(
             texts=["Too young memory"],
-            metadatas=[{
-                "type": "insight",
-                "created_at": recent_time,
-                "access_count": 5,
-                "confidence": 0.9,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "created_at": recent_time,
+                    "access_count": 5,
+                    "confidence": 0.9,
+                }
+            ],
             ids=["mem_young"],
         )
 
@@ -350,12 +351,14 @@ class TestMemoryPromotionService:
         # Add directly to long-term with low decay score
         await collection_manager.long_term.add_documents(
             texts=["Decaying memory"],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "decay_score": 0.1,  # Below threshold (0.2)
-                "last_accessed_at": old_access,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "decay_score": 0.1,  # Below threshold (0.2)
+                    "last_accessed_at": old_access,
+                }
+            ],
             ids=["mem_decay"],
         )
 
@@ -382,11 +385,13 @@ class TestMemoryPromotionService:
             ids=["mem_decayed"],
             documents=["Decayed memory"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "decayed",
-                "decay_score": 0.1,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "decayed",
+                    "decay_score": 0.1,
+                }
+            ],
         )
 
         # Verify in decayed
@@ -413,12 +418,14 @@ class TestMemoryPromotionService:
             ids=["mem_lt"],
             documents=["Long-term memory"],
             embeddings=[[0.5] * 768],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "decay_score": 0.5,
-                "access_count": 1,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "decay_score": 0.5,
+                    "access_count": 1,
+                }
+            ],
         )
 
         # Access the memory

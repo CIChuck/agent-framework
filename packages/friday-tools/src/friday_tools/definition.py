@@ -11,7 +11,8 @@ from __future__ import annotations
 
 import inspect
 from abc import ABC, abstractmethod
-from typing import Any, Callable, get_type_hints
+from collections.abc import Callable
+from typing import Any, get_type_hints
 
 from friday_core.interfaces.tools import SchemaFormat
 
@@ -112,7 +113,7 @@ class BaseTool(ABC):
 
         Returns:
             Dictionary suitable for LLM function calling.
-        """
+        """  # noqa: E501
         plain_schema = {
             "name": self.name,
             "description": self.description,
@@ -218,7 +219,9 @@ class FunctionTool(BaseTool):
     def _generate_schema(self) -> dict[str, Any]:
         """Generate JSON schema from function signature."""
         sig = inspect.signature(self._func)
-        hints = get_type_hints(self._func) if hasattr(self._func, "__annotations__") else {}
+        hints = (
+            get_type_hints(self._func) if hasattr(self._func, "__annotations__") else {}
+        )
 
         properties = {}
         required = []
@@ -267,8 +270,12 @@ class FunctionTool(BaseTool):
                 continue
             if in_args:
                 if stripped.startswith(f"{param_name}:"):
-                    return stripped[len(param_name) + 1:].strip()
-                if stripped and not stripped.startswith(" ") and ":" not in stripped[:20]:
+                    return stripped[len(param_name) + 1 :].strip()
+                if (
+                    stripped
+                    and not stripped.startswith(" ")
+                    and ":" not in stripped[:20]
+                ):
                     in_args = False
 
         return f"Parameter {param_name}"
@@ -290,8 +297,10 @@ def create_tool(
             return f"Hello, {name}!"
         ```
     """
+
     def decorator(func: Callable) -> FunctionTool:
         return FunctionTool(
             func, name=name, description=description, category=category, tags=tags
         )
+
     return decorator

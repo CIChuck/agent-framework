@@ -27,7 +27,7 @@ class TestReturnCapture:
 
     def test_extract_return_value_with_value(self):
         """Test extracting return value from stdout."""
-        stdout = 'Some output\n__FRIDAY_RETURN_START__\n{"value": {"key": "test"}}\n__FRIDAY_RETURN_END__\n'
+        stdout = 'Some output\n__FRIDAY_RETURN_START__\n{"value": {"key": "test"}}\n__FRIDAY_RETURN_END__\n'  # noqa: E501
 
         cleaned, value, raw = extract_return_value(stdout)
 
@@ -47,7 +47,7 @@ class TestReturnCapture:
 
     def test_extract_return_value_with_error(self):
         """Test extraction of error result."""
-        stdout = '__FRIDAY_RETURN_START__\n{"error": {"type": "ValueError", "message": "bad value"}}\n__FRIDAY_RETURN_END__\n'
+        stdout = '__FRIDAY_RETURN_START__\n{"error": {"type": "ValueError", "message": "bad value"}}\n__FRIDAY_RETURN_END__\n'  # noqa: E501
 
         cleaned, value, raw = extract_return_value(stdout)
 
@@ -68,6 +68,7 @@ class TestReturnTypeValidation:
 
     def test_validate_return_type_success(self):
         """Test successful validation with Pydantic model."""
+
         class ResultModel(BaseModel):
             name: str
             count: int
@@ -81,13 +82,14 @@ class TestReturnTypeValidation:
 
     def test_validate_return_type_failure(self):
         """Test validation failure raises error."""
+
         class ResultModel(BaseModel):
             name: str
             count: int
 
         value = {"name": "test"}  # Missing 'count'
 
-        with pytest.raises(Exception):  # ValidationError
+        with pytest.raises(Exception):  # ValidationError  # noqa: B017
             validate_return_type(value, ResultModel)
 
     def test_validate_return_type_non_pydantic(self):
@@ -109,6 +111,7 @@ class TestSerialization:
 
     def test_serialize_for_sandbox_pydantic(self):
         """Test serializing a Pydantic model."""
+
         class TestModel(BaseModel):
             name: str
             value: int

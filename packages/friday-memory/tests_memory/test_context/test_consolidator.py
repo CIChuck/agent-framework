@@ -11,18 +11,16 @@ Note: Tests use mock LLMClient protocol from conftest fixtures.
 
 import uuid
 from datetime import datetime
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock
 
 import pytest
-
 from friday_core.interfaces.llm import ChatCompletionResponse
-
 from friday_memory import (
+    ConflictResolutionResponse,
     InteractionTurn,
     MemoryController,
     ProvenanceMetadata,
     SummarizationResponse,
-    ConflictResolutionResponse,
 )
 from friday_memory.context.consolidator import MemoryConsolidator
 
@@ -36,7 +34,7 @@ def mock_llm_client_with_responses():
 
     # Default summarization response
     summarization_response = ChatCompletionResponse(
-        content='{"summary": "Test summary", "key_topics": ["topic1"], "decisions": ["decision1"], "tokens_original": 100, "tokens_compressed": 20}',
+        content='{"summary": "Test summary", "key_topics": ["topic1"], "decisions": ["decision1"], "tokens_original": 100, "tokens_compressed": 20}',  # noqa: E501
     )
     summarization_response._parsed_model = SummarizationResponse(
         summary="Test summary",
@@ -48,7 +46,7 @@ def mock_llm_client_with_responses():
 
     # Default conflict resolution response
     conflict_response = ChatCompletionResponse(
-        content='{"has_conflict": true, "resolution": "Resolved", "current_value": "new_value", "historical_note": "Changed from old"}',
+        content='{"has_conflict": true, "resolution": "Resolved", "current_value": "new_value", "historical_note": "Changed from old"}',  # noqa: E501
     )
     conflict_response._parsed_model = ConflictResolutionResponse(
         has_conflict=True,

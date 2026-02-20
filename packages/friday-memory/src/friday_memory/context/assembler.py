@@ -96,7 +96,9 @@ class ContextAssembler(ContextEngineeringInterface):
         self._max_tokens = max_tokens
         self._telemetry = telemetry
         # Token counting now uses a configurable estimator (approx by default).
-        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
+        self._token_estimator = build_token_estimator(
+            token_estimator_config, model_name
+        )
 
         # Session state storage (in production, this would be persistent)
         self._sessions: dict[str, SessionState] = {}
@@ -202,7 +204,10 @@ class ContextAssembler(ContextEngineeringInterface):
         if added > 0:
             self._emit_event(
                 "tools_expanded",
-                {"tools_added": added, "total_tools": len(self._tool_manager.active_tools)},
+                {
+                    "tools_added": added,
+                    "total_tools": len(self._tool_manager.active_tools),
+                },
             )
         return added
 
@@ -253,7 +258,11 @@ class ContextAssembler(ContextEngineeringInterface):
         Returns:
             List of ToolRecommendation objects with scores and reasons.
         """
-        tools = available_tools if available_tools is not None else self._tool_manager.active_tools
+        tools = (
+            available_tools
+            if available_tools is not None
+            else self._tool_manager.active_tools
+        )
         return self._tool_manager.generate_recommendations(query, tools, top_k)
 
     @property
@@ -305,9 +314,7 @@ class ContextAssembler(ContextEngineeringInterface):
 
     # --- Session Management ---
 
-    async def initialize_session(
-        self, session_id: str, user_id: str
-    ) -> SessionState:
+    async def initialize_session(self, session_id: str, user_id: str) -> SessionState:
         """
         Loads or creates the session context, establishing the 'Thread'.
 
@@ -339,9 +346,7 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         return state
 
-    async def restore_checkpoint(
-        self, session_id: str, turn_id: str
-    ) -> SessionState:
+    async def restore_checkpoint(self, session_id: str, turn_id: str) -> SessionState:
         """
         Reverts the session state to a previous turn.
 
@@ -379,7 +384,11 @@ class ContextAssembler(ContextEngineeringInterface):
 
         self._emit_event(
             "checkpoint_restored",
-            {"session_id": session_id, "turn_id": turn_id, "turns_remaining": len(remaining_turns)},
+            {
+                "session_id": session_id,
+                "turn_id": turn_id,
+                "turns_remaining": len(remaining_turns),
+            },
         )
         return state
 
@@ -406,9 +415,8 @@ class ContextAssembler(ContextEngineeringInterface):
             # In a real implementation, this would use an event bus
             # For now, we just call the extractor directly
             import asyncio
-            asyncio.create_task(
-                self._extractor.extract(interaction_turn)
-            )
+
+            asyncio.create_task(self._extractor.extract(interaction_turn))
         else:
             # Blocking extraction for critical updates
             await self._extractor.extract(interaction_turn)
@@ -504,7 +512,11 @@ class ContextAssembler(ContextEngineeringInterface):
             recommendations: list[ToolRecommendation] = []
             tool_hints: list[str] = []
 
-            tools_to_use = available_tools if available_tools is not None else self._tool_manager.active_tools
+            tools_to_use = (
+                available_tools
+                if available_tools is not None
+                else self._tool_manager.active_tools
+            )
             if tools_to_use:
                 # Calculate tool budget (25% of total budget by default)
                 tool_budget = int(budget_limit * 0.25)
@@ -518,7 +530,9 @@ class ContextAssembler(ContextEngineeringInterface):
                 # Generate usage hints based on recommendations
                 if recommendations:
                     for rec in recommendations[:3]:  # Top 3 hints
-                        tool_hints.append(f"Consider using {rec.tool_name}: {rec.reason}")
+                        tool_hints.append(
+                            f"Consider using {rec.tool_name}: {rec.reason}"
+                        )
 
             # Create final payload with tool context
             final_payload = ContextPayload(
@@ -530,7 +544,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 recent_memories=budgeted_payload.recent_memories,
                 insights=budgeted_payload.insights,
                 summaries=budgeted_payload.summaries,
-                                # Tool context fields
+                # Tool context fields
                 tool_schemas=tool_schemas,
                 recommended_tools=recommendations,
                 tool_usage_hints=tool_hints,
@@ -595,7 +609,7 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=payload.recent_memories,
             insights=payload.insights,
             summaries=payload.summaries,
-                        # Preserve tool fields (even if empty at this stage)
+            # Preserve tool fields (even if empty at this stage)
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
             tool_usage_hints=payload.tool_usage_hints,
@@ -651,14 +665,11 @@ class ContextAssembler(ContextEngineeringInterface):
         # engine will add (timestamps, role prefixes, section
         # headers, etc.).  Without this, _apply_budget() thinks
         # content fits but _validate_prompt_budget() finds overage.
-        formatting_overhead = self._estimate_formatting_overhead(
-            filtered_payload
-        )
+        formatting_overhead = self._estimate_formatting_overhead(filtered_payload)
         effective_budget = budget_limit - formatting_overhead
 
         logger.debug(
-            "Budget adjustment: raw=%d, "
-            "formatting_overhead=%d, effective=%d",
+            "Budget adjustment: raw=%d, formatting_overhead=%d, effective=%d",
             budget_limit,
             formatting_overhead,
             effective_budget,
@@ -684,7 +695,9 @@ class ContextAssembler(ContextEngineeringInterface):
         entities = list(filtered_payload.entities)
         facts = list(filtered_payload.facts)
         insights = list(filtered_payload.insights) if filtered_payload.insights else []
-        summaries = list(filtered_payload.summaries) if filtered_payload.summaries else []
+        summaries = (
+            list(filtered_payload.summaries) if filtered_payload.summaries else []
+        )
 
         # Separate short-term and long-term passages for lifecycle-aware pruning
         short_term, long_term = self._separate_by_stage(passages)
@@ -694,12 +707,23 @@ class ContextAssembler(ContextEngineeringInterface):
         if prior_history:
             prior_history = []  # Drop all prior history first
             current_tokens = self._estimate_tokens_full(
-                prior_history + history, short_term + long_term, entities, facts, insights, summaries
+                prior_history + history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
             )
             if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
-                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                    prior_history=prior_history
+                    filtered_payload,
+                    history,
+                    short_term + long_term,
+                    entities,
+                    facts,
+                    insights,
+                    summaries,
+                    prior_history=prior_history,
                 )
 
         # 1. Drop deep history (turns 10+)
@@ -710,8 +734,14 @@ class ContextAssembler(ContextEngineeringInterface):
             )
             if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
-                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                    prior_history=prior_history
+                    filtered_payload,
+                    history,
+                    short_term + long_term,
+                    entities,
+                    facts,
+                    insights,
+                    summaries,
+                    prior_history=prior_history,
                 )
 
         # 2. Drop low-relevancy long-term memories (inclusion_score < 0.3)
@@ -721,8 +751,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                prior_history=prior_history
+                filtered_payload,
+                history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
+                prior_history=prior_history,
             )
 
         # 3. Drop weak vector matches (relevancy_score < 0.5)
@@ -733,8 +769,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                prior_history=prior_history
+                filtered_payload,
+                history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
+                prior_history=prior_history,
             )
 
         # 4. Drop more history (keep last 5)
@@ -745,8 +787,14 @@ class ContextAssembler(ContextEngineeringInterface):
             )
             if current_tokens <= effective_budget:
                 return self._create_pruned_payload_full(
-                    filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                    prior_history=prior_history
+                    filtered_payload,
+                    history,
+                    short_term + long_term,
+                    entities,
+                    facts,
+                    insights,
+                    summaries,
+                    prior_history=prior_history,
                 )
 
         # 5. Reduce to top passages by relevancy (keep short-term first)
@@ -757,8 +805,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                prior_history=prior_history
+                filtered_payload,
+                history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
+                prior_history=prior_history,
             )
 
         # 6. Drop insights and summaries
@@ -769,8 +823,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                prior_history=prior_history
+                filtered_payload,
+                history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
+                prior_history=prior_history,
             )
 
         # 7. Drop entities and facts
@@ -781,8 +841,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
         if current_tokens <= effective_budget:
             return self._create_pruned_payload_full(
-                filtered_payload, history, short_term + long_term, entities, facts, insights, summaries,
-                prior_history=prior_history
+                filtered_payload,
+                history,
+                short_term + long_term,
+                entities,
+                facts,
+                insights,
+                summaries,
+                prior_history=prior_history,
             )
 
         # 8. Keep only last 2 turns (critical)
@@ -806,8 +872,14 @@ class ContextAssembler(ContextEngineeringInterface):
         )
 
         return self._create_pruned_payload_full(
-            filtered_payload, history, short_term, entities, facts, insights, summaries,
-            prior_history=prior_history
+            filtered_payload,
+            history,
+            short_term,
+            entities,
+            facts,
+            insights,
+            summaries,
+            prior_history=prior_history,
         )
 
     def _filter_decayed(self, payload: ContextPayload) -> ContextPayload:
@@ -855,7 +927,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 recent_memories=payload.recent_memories,
                 insights=payload.insights,
                 summaries=payload.summaries,
-                                # Preserve tool fields
+                # Preserve tool fields
                 tool_schemas=payload.tool_schemas,
                 recommended_tools=payload.recommended_tools,
                 tool_usage_hints=payload.tool_usage_hints,
@@ -867,9 +939,7 @@ class ContextAssembler(ContextEngineeringInterface):
 
         return payload
 
-    def _filter_superseded(
-        self, payload: ContextPayload
-    ) -> ContextPayload:
+    def _filter_superseded(self, payload: ContextPayload) -> ContextPayload:
         """Filter out superseded insights and passages.
 
         Defense-in-depth: the memory controller already filters
@@ -951,7 +1021,7 @@ class ContextAssembler(ContextEngineeringInterface):
         """
         # Define thresholds
         expected_history_limit = 10  # Typical history limit
-        cold_session_threshold = 3   # If fewer turns, session is "cold"
+        cold_session_threshold = 3  # If fewer turns, session is "cold"
 
         history_count = len(payload.history)
         summaries_count = len(payload.summaries) if payload.summaries else 0
@@ -997,7 +1067,7 @@ class ContextAssembler(ContextEngineeringInterface):
             recent_memories=payload.recent_memories,
             insights=payload.insights,
             summaries=[],  # Clear summaries
-                        # Preserve tool fields
+            # Preserve tool fields
             tool_schemas=payload.tool_schemas,
             recommended_tools=payload.recommended_tools,
             tool_usage_hints=payload.tool_usage_hints,
@@ -1026,7 +1096,10 @@ class ContextAssembler(ContextEngineeringInterface):
         # Extract keywords from query (lowercased, removing common words)
         query_keywords = self._extract_keywords(query)
         min_query_keywords = int(config.get("min_query_keywords", 0))
-        if config.get("skip_on_short_query", False) and len(query_keywords) < min_query_keywords:
+        if (
+            config.get("skip_on_short_query", False)
+            and len(query_keywords) < min_query_keywords
+        ):
             return payload
 
         apply_to = set(config.get("apply_to", []))
@@ -1034,7 +1107,9 @@ class ContextAssembler(ContextEngineeringInterface):
         min_overlap_count = int(config.get("min_overlap_count", 1))
         keep_recent = config.get("keep_recent", {})
 
-        def score_item(text: str, extra_keywords: set[str] | None = None) -> tuple[float, int]:
+        def score_item(
+            text: str, extra_keywords: set[str] | None = None
+        ) -> tuple[float, int]:
             item_keywords = self._extract_keywords(text)
             if extra_keywords:
                 item_keywords |= extra_keywords
@@ -1090,11 +1165,18 @@ class ContextAssembler(ContextEngineeringInterface):
         excluded_passages = 0
 
         if "insights" in apply_to and insights:
+
             def insight_extra_keywords(item: dict[str, Any]) -> set[str]:
-                entities_mentioned = item.get("metadata", {}).get("entities_mentioned", "")
+                entities_mentioned = item.get("metadata", {}).get(
+                    "entities_mentioned", ""
+                )
                 if not entities_mentioned:
                     return set()
-                return {e.strip().lower() for e in entities_mentioned.split(";") if e.strip()}
+                return {
+                    e.strip().lower()
+                    for e in entities_mentioned.split(";")
+                    if e.strip()
+                }
 
             insights, excluded_insights = filter_items(
                 insights,
@@ -1111,6 +1193,7 @@ class ContextAssembler(ContextEngineeringInterface):
             )
 
         if "passages" in apply_to and passages:
+
             def passage_extra_keywords(item: dict[str, Any]) -> set[str]:
                 metadata = item.get("metadata", {})
                 extra_parts = [
@@ -1201,22 +1284,142 @@ class ContextAssembler(ContextEngineeringInterface):
         """
         # Common stopwords to filter out
         stopwords = {
-            "the", "a", "an", "is", "are", "was", "were", "be", "been", "being",
-            "have", "has", "had", "do", "does", "did", "will", "would", "could",
-            "should", "may", "might", "must", "shall", "can", "need", "dare",
-            "ought", "used", "to", "of", "in", "for", "on", "with", "at", "by",
-            "from", "up", "about", "into", "through", "during", "before", "after",
-            "above", "below", "between", "under", "again", "further", "then",
-            "once", "here", "there", "when", "where", "why", "how", "all", "each",
-            "few", "more", "most", "other", "some", "such", "no", "nor", "not",
-            "only", "own", "same", "so", "than", "too", "very", "just", "and",
-            "but", "if", "or", "because", "as", "until", "while", "this", "that",
-            "these", "those", "am", "it", "its", "i", "me", "my", "myself", "we",
-            "our", "ours", "ourselves", "you", "your", "yours", "yourself",
-            "yourselves", "he", "him", "his", "himself", "she", "her", "hers",
-            "herself", "they", "them", "their", "theirs", "themselves", "what",
-            "which", "who", "whom", "also", "get", "got", "getting", "like",
-            "really", "think", "know", "want", "make", "see", "say", "said",
+            "the",
+            "a",
+            "an",
+            "is",
+            "are",
+            "was",
+            "were",
+            "be",
+            "been",
+            "being",
+            "have",
+            "has",
+            "had",
+            "do",
+            "does",
+            "did",
+            "will",
+            "would",
+            "could",
+            "should",
+            "may",
+            "might",
+            "must",
+            "shall",
+            "can",
+            "need",
+            "dare",
+            "ought",
+            "used",
+            "to",
+            "of",
+            "in",
+            "for",
+            "on",
+            "with",
+            "at",
+            "by",
+            "from",
+            "up",
+            "about",
+            "into",
+            "through",
+            "during",
+            "before",
+            "after",
+            "above",
+            "below",
+            "between",
+            "under",
+            "again",
+            "further",
+            "then",
+            "once",
+            "here",
+            "there",
+            "when",
+            "where",
+            "why",
+            "how",
+            "all",
+            "each",
+            "few",
+            "more",
+            "most",
+            "other",
+            "some",
+            "such",
+            "no",
+            "nor",
+            "not",
+            "only",
+            "own",
+            "same",
+            "so",
+            "than",
+            "too",
+            "very",
+            "just",
+            "and",
+            "but",
+            "if",
+            "or",
+            "because",
+            "as",
+            "until",
+            "while",
+            "this",
+            "that",
+            "these",
+            "those",
+            "am",
+            "it",
+            "its",
+            "i",
+            "me",
+            "my",
+            "myself",
+            "we",
+            "our",
+            "ours",
+            "ourselves",
+            "you",
+            "your",
+            "yours",
+            "yourself",
+            "yourselves",
+            "he",
+            "him",
+            "his",
+            "himself",
+            "she",
+            "her",
+            "hers",
+            "herself",
+            "they",
+            "them",
+            "their",
+            "theirs",
+            "themselves",
+            "what",
+            "which",
+            "who",
+            "whom",
+            "also",
+            "get",
+            "got",
+            "getting",
+            "like",
+            "really",
+            "think",
+            "know",
+            "want",
+            "make",
+            "see",
+            "say",
+            "said",
         }
 
         # Extract words, lowercase, filter stopwords and short words
@@ -1339,7 +1542,9 @@ class ContextAssembler(ContextEngineeringInterface):
         """Create a new payload with pruned content including insights/summaries."""
         return ContextPayload(
             history=history,
-            prior_history=prior_history if prior_history is not None else original.prior_history,
+            prior_history=prior_history
+            if prior_history is not None
+            else original.prior_history,
             passages=passages,
             entities=entities,
             facts=facts,
@@ -1357,7 +1562,9 @@ class ContextAssembler(ContextEngineeringInterface):
                 "original_prior_history": len(original.prior_history),
                 "original_passages": len(original.passages),
                 "original_insights": len(original.insights) if original.insights else 0,
-                "original_summaries": len(original.summaries) if original.summaries else 0,
+                "original_summaries": len(original.summaries)
+                if original.summaries
+                else 0,
             },
         )
 
@@ -1400,10 +1607,7 @@ class ContextAssembler(ContextEngineeringInterface):
 
         # Per-turn overhead: timestamp + role prefix for
         # user and assistant messages (~30 tokens each)
-        turn_count = (
-            len(payload.history)
-            + len(payload.prior_history)
-        )
+        turn_count = len(payload.history) + len(payload.prior_history)
         overhead += turn_count * 2 * 30
 
         # Section headers for supporting context
@@ -1424,14 +1628,8 @@ class ContextAssembler(ContextEngineeringInterface):
         overhead += len(payload.passages) * 15
 
         # Per-list-item overhead for insights and summaries
-        insight_count = (
-            len(payload.insights) if payload.insights else 0
-        )
-        summary_count = (
-            len(payload.summaries)
-            if payload.summaries
-            else 0
-        )
+        insight_count = len(payload.insights) if payload.insights else 0
+        summary_count = len(payload.summaries) if payload.summaries else 0
         overhead += (insight_count + summary_count) * 3
 
         # Separator between context and query

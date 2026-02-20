@@ -156,10 +156,7 @@ class ContextBudgetMonitor:
         if self._compaction_in_progress:
             return False
 
-        if (
-            self._turns_since_last_compaction
-            < self._config.cooldown_turns
-        ):
+        if self._turns_since_last_compaction < self._config.cooldown_turns:
             return False
 
         if not self._history:
@@ -182,8 +179,7 @@ class ContextBudgetMonitor:
         # Warning: compaction recommended
         if latest.severity == BudgetSeverity.WARNING:
             logger.info(
-                "Budget warning (%.1f%%), "
-                "triggering compaction",
+                "Budget warning (%.1f%%), triggering compaction",
                 latest.utilization_pct,
             )
             return True
@@ -193,9 +189,7 @@ class ContextBudgetMonitor:
         threshold_pct = self._config.compaction_threshold * 100
         if trend > 0 and latest.utilization_pct > threshold_pct:
             logger.info(
-                "Rising utilization trend "
-                "(%.1f%%, trend=+%.1f), "
-                "triggering compaction",
+                "Rising utilization trend (%.1f%%, trend=+%.1f), triggering compaction",
                 latest.utilization_pct,
                 trend,
             )
@@ -244,18 +238,14 @@ class ContextBudgetMonitor:
             return {
                 "current_tokens": 0,
                 "available_budget": 0,
-                "target_utilization": (
-                    self._config.target_utilization
-                ),
+                "target_utilization": (self._config.target_utilization),
             }
 
         latest = self._history[-1]
         return {
             "current_tokens": latest.total_tokens,
             "available_budget": latest.available_budget,
-            "target_utilization": (
-                self._config.target_utilization
-            ),
+            "target_utilization": (self._config.target_utilization),
         }
 
     def mark_compaction_started(self) -> None:
@@ -304,21 +294,13 @@ class ContextBudgetMonitor:
         """
         latest = self._history[-1] if self._history else None
         return {
-            "current_utilization_pct": (
-                latest.utilization_pct if latest else 0.0
-            ),
+            "current_utilization_pct": (latest.utilization_pct if latest else 0.0),
             "current_severity": (
-                latest.severity.value
-                if latest
-                else BudgetSeverity.NORMAL.value
+                latest.severity.value if latest else BudgetSeverity.NORMAL.value
             ),
             "trend": self.get_utilization_trend(),
-            "turns_since_compaction": (
-                self._turns_since_last_compaction
-            ),
+            "turns_since_compaction": (self._turns_since_last_compaction),
             "total_compactions": self._total_compactions,
-            "compaction_in_progress": (
-                self._compaction_in_progress
-            ),
+            "compaction_in_progress": (self._compaction_in_progress),
             "history_size": len(self._history),
         }

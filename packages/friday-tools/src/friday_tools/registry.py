@@ -9,9 +9,10 @@ Provides DefaultToolRegistry for managing tool collections and the
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
-from friday_core.interfaces.tools import SchemaFormat, ToolDefinition
+from friday_core.interfaces.tools import ToolDefinition
 from friday_core.logging import get_logger
 
 from .definition import FunctionTool
@@ -170,7 +171,8 @@ class DefaultToolRegistry:
             List of tools in the specified category.
         """
         return [
-            tool for tool in self._tools.values()
+            tool
+            for tool in self._tools.values()
             if getattr(tool, "category", "uncategorized") == category
         ]
 
@@ -226,10 +228,7 @@ class DefaultToolRegistry:
         Returns:
             List of tool schemas for the category.
         """
-        return [
-            tool.to_schema(format)
-            for tool in self.get_tools_by_category(category)
-        ]
+        return [tool.to_schema(format) for tool in self.get_tools_by_category(category)]
 
     def tool(
         self,
@@ -249,7 +248,8 @@ class DefaultToolRegistry:
             async def greet(name: str) -> str:
                 return f"Hello, {name}!"
             ```
-        """
+        """  # noqa: E501
+
         def decorator(func: Callable) -> FunctionTool:
             if not category or category == "uncategorized":
                 raise ValueError(
@@ -264,6 +264,7 @@ class DefaultToolRegistry:
             )
             self.register(tool)
             return tool
+
         return decorator
 
     def clear(self) -> None:

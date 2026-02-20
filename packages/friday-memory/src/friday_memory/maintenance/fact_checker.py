@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import json
 import logging
-import uuid
 from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
@@ -115,7 +114,7 @@ class FactChecker:
             pass
 
         # Strategy 2: Extract from markdown code block
-        code_block_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', content)
+        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
         if code_block_match:
             try:
                 return json.loads(code_block_match.group(1))
@@ -123,7 +122,7 @@ class FactChecker:
                 pass
 
         # Strategy 3: Find JSON object in text (first { to last })
-        brace_match = re.search(r'\{[\s\S]*\}', content)
+        brace_match = re.search(r"\{[\s\S]*\}", content)
         if brace_match:
             try:
                 return json.loads(brace_match.group(0))
@@ -131,7 +130,7 @@ class FactChecker:
                 pass
 
         # Strategy 4: Try to fix common JSON issues
-        fixed = re.sub(r',\s*([}\]])', r'\1', content)
+        fixed = re.sub(r",\s*([}\]])", r"\1", content)
         try:
             return json.loads(fixed)
         except json.JSONDecodeError:
@@ -155,7 +154,9 @@ class FactChecker:
                     logger.warning(f"Failed to open ChromaDB at {vector_dir}: {e}")
                     continue
 
-        logger.warning(f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}")
+        logger.warning(
+            f"ChromaDB not found in {self._memory_dir} or {self._memory_dir / 'vector'}"
+        )
         return None
 
     def _get_unclassified_facts(self) -> list[dict[str, Any]]:
@@ -189,11 +190,13 @@ class FactChecker:
                 if "falsifiable" in metadata:
                     continue
 
-                facts.append({
-                    "id": doc_id,
-                    "text": data["documents"][i] if data["documents"] else "",
-                    "metadata": metadata,
-                })
+                facts.append(
+                    {
+                        "id": doc_id,
+                        "text": data["documents"][i] if data["documents"] else "",
+                        "metadata": metadata,
+                    }
+                )
 
             return facts
 
@@ -230,11 +233,13 @@ class FactChecker:
                 if unverified_only and metadata.get("verified") is not None:
                     continue
 
-                claims.append({
-                    "id": doc_id,
-                    "text": data["documents"][i] if data["documents"] else "",
-                    "metadata": metadata,
-                })
+                claims.append(
+                    {
+                        "id": doc_id,
+                        "text": data["documents"][i] if data["documents"] else "",
+                        "metadata": metadata,
+                    }
+                )
 
             return claims
 
@@ -431,12 +436,15 @@ class FactChecker:
 
                 # Update metadata if not dry run
                 if not dry_run:
-                    self._update_fact_metadata(fact["id"], {
-                        "falsifiable": falsifiable,
-                        "claim_type": claim_type.value,
-                        "classification_reasoning": reasoning,
-                        "classified_at": datetime.now().isoformat(),
-                    })
+                    self._update_fact_metadata(
+                        fact["id"],
+                        {
+                            "falsifiable": falsifiable,
+                            "claim_type": claim_type.value,
+                            "classification_reasoning": reasoning,
+                            "classified_at": datetime.now().isoformat(),
+                        },
+                    )
 
             except Exception as e:
                 logger.error(f"Error classifying fact {fact['id']}: {e}")
@@ -486,7 +494,7 @@ class FactChecker:
         if claims is None:
             claims = self._get_falsifiable_claims(unverified_only=True)
 
-        claims = claims[:self._config.batch_size]
+        claims = claims[: self._config.batch_size]
 
         logger.info(f"Verifying {len(claims)} claims (dry_run={dry_run})")
 
@@ -565,15 +573,18 @@ class FactChecker:
 
                 # Update metadata if not dry run
                 if not dry_run:
-                    self._update_fact_metadata(claim_id, {
-                        "verified": verdict == VerificationVerdict.VERIFIED,
-                        "verification_verdict": verdict.value,
-                        "verification_confidence": confidence,
-                        "verification_sources": json.dumps(sources),
-                        "verification_note": correction or "",
-                        "verified_at": datetime.now().isoformat(),
-                        "verified_by": "fact_checker_v1",
-                    })
+                    self._update_fact_metadata(
+                        claim_id,
+                        {
+                            "verified": verdict == VerificationVerdict.VERIFIED,
+                            "verification_verdict": verdict.value,
+                            "verification_confidence": confidence,
+                            "verification_sources": json.dumps(sources),
+                            "verification_note": correction or "",
+                            "verified_at": datetime.now().isoformat(),
+                            "verified_by": "fact_checker_v1",
+                        },
+                    )
 
             except Exception as e:
                 logger.error(f"Error verifying claim {claim.get('id', 'unknown')}: {e}")
@@ -630,13 +641,11 @@ class FactChecker:
         report.classified_facts = classified
 
         # Count conversational facts
-        report.skipped_conversational = sum(
-            1 for c in classified if not c.falsifiable
-        )
+        report.skipped_conversational = sum(1 for c in classified if not c.falsifiable)
 
         # 2. Get falsifiable claims (including newly classified)
         falsifiable_claims = self._get_falsifiable_claims(unverified_only=True)
-        falsifiable_claims = falsifiable_claims[:self._config.batch_size]
+        falsifiable_claims = falsifiable_claims[: self._config.batch_size]
 
         report.total_claims = len(falsifiable_claims)
 
@@ -688,10 +697,12 @@ class FactChecker:
         if report.verified_claims:
             lines.append("VERIFIED CLAIMS:")
             for claim in report.verified_claims[:10]:
-                preview = claim.original_text[:50] + "..." if len(claim.original_text) > 50 else claim.original_text
-                lines.append(
-                    f"  [{claim.verdict.value}] {preview}"
+                preview = (
+                    claim.original_text[:50] + "..."
+                    if len(claim.original_text) > 50
+                    else claim.original_text
                 )
+                lines.append(f"  [{claim.verdict.value}] {preview}")
                 if claim.correction:
                     lines.append(f"    Correction: {claim.correction}")
             if len(report.verified_claims) > 10:

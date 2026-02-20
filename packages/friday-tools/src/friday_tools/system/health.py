@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import psutil
-from typing import Any
 from pydantic import BaseModel, Field
 
 from friday_tools.base import FridayTool, ToolResult
@@ -12,32 +11,35 @@ class SystemHealthTool(FridayTool):
     Check system health metrics (CPU, RAM, Disk).
     Useful for Sentinel agents to monitor host stability.
     """
+
     name = "system_health"
     description = "Get current system resource usage (CPU, Memory, Disk)."
-    
+
     class Input(BaseModel):
-        check_disk: bool = Field(False, description="Whether to include disk usage (can be slow).")
+        check_disk: bool = Field(
+            False, description="Whether to include disk usage (can be slow)."
+        )
 
     async def run(self, args: Input) -> ToolResult:
         # CPU
         cpu_percent = psutil.cpu_percent(interval=0.1)
-        
+
         # Memory
         mem = psutil.virtual_memory()
         mem_info = {
             "total_gb": round(mem.total / (1024**3), 2),
             "available_gb": round(mem.available / (1024**3), 2),
-            "percent": mem.percent
+            "percent": mem.percent,
         }
-        
+
         # Disk
         disk_info = {}
         if args.check_disk:
-            disk = psutil.disk_usage('/')
+            disk = psutil.disk_usage("/")
             disk_info = {
                 "total_gb": round(disk.total / (1024**3), 2),
                 "free_gb": round(disk.free / (1024**3), 2),
-                "percent": disk.percent
+                "percent": disk.percent,
             }
 
         content = (
@@ -52,6 +54,6 @@ class SystemHealthTool(FridayTool):
             data={
                 "cpu": {"percent": cpu_percent},
                 "memory": mem_info,
-                "disk": disk_info
-            }
+                "disk": disk_info,
+            },
         )

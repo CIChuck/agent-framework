@@ -132,10 +132,14 @@ class SpinnerConfig:
     """Configuration for the thinking spinner."""
 
     # Messages shown while waiting for initial LLM response
-    thinking_messages: list[str] = field(default_factory=lambda: list(DEFAULT_THINKING_MESSAGES))
+    thinking_messages: list[str] = field(
+        default_factory=lambda: list(DEFAULT_THINKING_MESSAGES)
+    )
 
     # Messages shown while processing tool results (Re-Act loop)
-    tool_messages: list[str] = field(default_factory=lambda: list(DEFAULT_TOOL_PROCESSING_MESSAGES))
+    tool_messages: list[str] = field(
+        default_factory=lambda: list(DEFAULT_TOOL_PROCESSING_MESSAGES)
+    )
 
     # Spinner animation type (dots, line, dots12, bouncingBar, etc.)
     spinner_type: str = "dots"
@@ -155,8 +159,12 @@ class SpinnerConfig:
         # Support legacy 'style' key for backwards compatibility
         text_style = data.get("text_style", data.get("style", "bold cyan"))
         return cls(
-            thinking_messages=data.get("thinking_messages", list(DEFAULT_THINKING_MESSAGES)),
-            tool_messages=data.get("tool_messages", list(DEFAULT_TOOL_PROCESSING_MESSAGES)),
+            thinking_messages=data.get(
+                "thinking_messages", list(DEFAULT_THINKING_MESSAGES)
+            ),
+            tool_messages=data.get(
+                "tool_messages", list(DEFAULT_TOOL_PROCESSING_MESSAGES)
+            ),
             spinner_type=data.get("spinner_type", "dots"),
             randomize=data.get("randomize", True),
             text_style=text_style,

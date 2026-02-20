@@ -102,7 +102,7 @@ class ToolContentManager:
     def __init__(
         self,
         config: ToolContentConfig | None = None,
-        llm_client: "LLMClient | None" = None,
+        llm_client: LLMClient | None = None,
     ):
         """
         Initialize the ToolContentManager.
@@ -159,7 +159,7 @@ class ToolContentManager:
 
         if token_count < self.config.min_tokens_for_tracking:
             logger.debug(
-                f"Tool output {tool_call_id} too small ({token_count} tokens), not tracking"
+                f"Tool output {tool_call_id} too small ({token_count} tokens), not tracking"  # noqa: E501
             )
             return False
 
@@ -239,13 +239,13 @@ class ToolContentManager:
                 output.tool_name, self.config.decay_threshold_turns
             )
 
-            # Parse turn number from turn_id (assumes turn_id ends with number or is just number)
+            # Parse turn number from turn_id (assumes turn_id ends with number or is just number)  # noqa: E501
             try:
                 last_ref_turn = self._parse_turn_number(
                     output.last_referenced_turn_id or output.turn_id
                 )
             except ValueError:
-                # If we can't parse the turn number, use the position in referencing_turns
+                # If we can't parse the turn number, use the position in referencing_turns  # noqa: E501
                 last_ref_turn = len(output.referencing_turns)
 
             gap = current_turn_number - last_ref_turn
@@ -256,7 +256,7 @@ class ToolContentManager:
                 output.summary = summary
                 decayed.append(tool_call_id)
                 logger.info(
-                    f"Decayed tool output: {tool_call_id} (gap={gap}, threshold={threshold})"
+                    f"Decayed tool output: {tool_call_id} (gap={gap}, threshold={threshold})"  # noqa: E501
                 )
 
         return decayed
@@ -274,7 +274,7 @@ class ToolContentManager:
             return int(turn_id)
         except ValueError:
             # For UUIDs or other formats, raise so caller can handle
-            raise ValueError(f"Cannot parse turn number from: {turn_id}")
+            raise ValueError(f"Cannot parse turn number from: {turn_id}")  # noqa: B904
 
     async def _summarize_content(self, output: TrackedToolOutput) -> str:
         """
@@ -294,7 +294,7 @@ class ToolContentManager:
             max_chars = 200
             if len(output.content) <= max_chars:
                 return output.content
-            return f"{output.content[:max_chars]}... [truncated, original {output.token_count} tokens]"
+            return f"{output.content[:max_chars]}... [truncated, original {output.token_count} tokens]"  # noqa: E501
 
         prompt = f"""Summarize the following tool output in 2-3 sentences.
 Focus on the key information that would be useful for future reference.
@@ -313,7 +313,7 @@ Summary:"""
         except Exception as e:
             logger.warning(f"Failed to generate summary via LLM: {e}")
             # Fallback on error
-            return f"{output.content[:200]}... [summarization failed, original {output.token_count} tokens]"
+            return f"{output.content[:200]}... [summarization failed, original {output.token_count} tokens]"  # noqa: E501
 
     def clear(self) -> int:
         """

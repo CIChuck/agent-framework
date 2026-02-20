@@ -16,7 +16,7 @@ from typing import Any
 from .base import ReaderResult
 from .csv_reader import CsvReader
 from .docx_reader import DocxReader
-from .encoding import read_with_smart_encoding, EncodingResult
+from .encoding import read_with_smart_encoding
 from .pdf_reader import PdfReader
 from .xlsx_reader import XlsxReader
 
@@ -33,13 +33,48 @@ class TextReader:
     """
 
     COMMON_TEXT_EXTENSIONS = {
-        ".txt", ".md", ".rst", ".log", ".ini", ".cfg", ".conf",
-        ".json", ".yaml", ".yml", ".xml", ".html", ".htm",
-        ".py", ".js", ".ts", ".jsx", ".tsx", ".java", ".c", ".cpp", ".h",
-        ".go", ".rs", ".rb", ".php", ".sh", ".bash", ".zsh",
-        ".sql", ".r", ".m", ".swift", ".kt", ".scala",
-        ".css", ".scss", ".sass", ".less",
-        ".env", ".gitignore", ".dockerignore",
+        ".txt",
+        ".md",
+        ".rst",
+        ".log",
+        ".ini",
+        ".cfg",
+        ".conf",
+        ".json",
+        ".yaml",
+        ".yml",
+        ".xml",
+        ".html",
+        ".htm",
+        ".py",
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        ".java",
+        ".c",
+        ".cpp",
+        ".h",
+        ".go",
+        ".rs",
+        ".rb",
+        ".php",
+        ".sh",
+        ".bash",
+        ".zsh",
+        ".sql",
+        ".r",
+        ".m",
+        ".swift",
+        ".kt",
+        ".scala",
+        ".css",
+        ".scss",
+        ".sass",
+        ".less",
+        ".env",
+        ".gitignore",
+        ".dockerignore",
     }
 
     @property
@@ -63,10 +98,7 @@ class TextReader:
 
         # Check MIME type
         mime_type, _ = mimetypes.guess_type(str(path))
-        if mime_type and mime_type.startswith("text/"):
-            return True
-
-        return False
+        return bool(mime_type and mime_type.startswith("text/"))
 
     def read(
         self,
@@ -201,11 +233,10 @@ class BinaryFallbackReader:
                     preview_data = f.read(hex_preview_bytes)
                 hex_lines = []
                 for i in range(0, len(preview_data), 16):
-                    chunk = preview_data[i:i+16]
+                    chunk = preview_data[i : i + 16]
                     hex_part = " ".join(f"{b:02x}" for b in chunk)
                     ascii_part = "".join(
-                        chr(b) if 32 <= b < 127 else "."
-                        for b in chunk
+                        chr(b) if 32 <= b < 127 else "." for b in chunk
                     )
                     hex_lines.append(f"{i:08x}  {hex_part:<48}  {ascii_part}")
                 content_lines.append("\nHex preview:")

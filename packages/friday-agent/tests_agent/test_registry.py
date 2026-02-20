@@ -46,6 +46,7 @@ class TestToolDecorator:
     def test_decorator_requires_category(self):
         """Tool decorator should require explicit category."""
         with pytest.raises(ValueError, match="non-default category"):
+
             @tool(name="no_category")  # type: ignore[misc]
             def no_category() -> str:
                 return "nope"
@@ -81,6 +82,7 @@ class TestDefaultToolRegistry:
 
     def test_manual_registration_requires_category(self, registry):
         """Manual registration should require explicit category."""
+
         def my_tool(x: str) -> str:
             return x
 

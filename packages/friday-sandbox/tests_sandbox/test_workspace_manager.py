@@ -5,8 +5,7 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from friday_sandbox import Workspace, WorkspaceExpiredError, WorkspaceNotFoundError
-from friday_sandbox.workspace import WorkspaceManager
+from friday_sandbox import Workspace, WorkspaceNotFoundError
 
 
 class TestWorkspaceManager:

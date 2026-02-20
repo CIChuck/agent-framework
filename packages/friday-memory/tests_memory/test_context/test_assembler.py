@@ -14,22 +14,17 @@ import uuid
 from datetime import datetime
 
 import pytest
-
-from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
-    ChromaVectorStore,
     ContextPayload,
-    ElementXGraphStore,
-    InMemoryEpisodicStore,
     InteractionTurn,
     MemoryController,
-    SessionState,
 )
 from friday_memory.context import ContextAssembler
 
 
-def create_turn(user_msg: str = "Hello", session_id: str = "test_session") -> InteractionTurn:
+def create_turn(
+    user_msg: str = "Hello", session_id: str = "test_session"
+) -> InteractionTurn:
     """Helper to create test turns."""
     return InteractionTurn(
         id=str(uuid.uuid4()),
@@ -68,7 +63,9 @@ class TestSessionManagement:
         assert state.scoped_vars == {}
 
     @pytest.mark.asyncio
-    async def test_initialize_session_existing(self, context_assembler: ContextAssembler):
+    async def test_initialize_session_existing(
+        self, context_assembler: ContextAssembler
+    ):
         """Test initializing returns existing session."""
         # Initialize twice
         state1 = await context_assembler.initialize_session("sess", "user")
@@ -140,7 +137,13 @@ class TestBudgetPruning:
     def test_apply_budget_drops_deep_history(self, context_assembler: ContextAssembler):
         """Test that deep history is dropped when budget is exceeded."""
         # Create many turns with longer messages to trigger budget pruning
-        turns = [create_turn(f"This is a longer message number {i} with more content to count tokens " * 10) for i in range(15)]
+        turns = [
+            create_turn(
+                f"This is a longer message number {i} with more content to count tokens "  # noqa: E501
+                * 10
+            )
+            for i in range(15)
+        ]
 
         payload = ContextPayload(
             history=turns,
@@ -157,7 +160,9 @@ class TestBudgetPruning:
         # Should have fewer turns (pruning keeps last 10, then last 5, then last 2)
         assert len(pruned.history) <= 10
 
-    def test_apply_budget_drops_weak_passages(self, context_assembler: ContextAssembler):
+    def test_apply_budget_drops_weak_passages(
+        self, context_assembler: ContextAssembler
+    ):
         """Test that low-similarity passages are dropped when budget is exceeded."""
         # Create passages with lots of text to trigger budget pruning
         long_text = "This is a very long passage with lots of content " * 50
@@ -202,7 +207,7 @@ class TestCheckpointRestoration:
             turn_ids.append(turn.id)
 
         # Initialize session
-        state = await context_assembler.initialize_session(session_id, "user")
+        await context_assembler.initialize_session(session_id, "user")
 
         # Restore to turn 2
         restored = await context_assembler.restore_checkpoint(session_id, turn_ids[2])

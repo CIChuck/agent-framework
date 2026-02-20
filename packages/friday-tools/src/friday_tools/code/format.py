@@ -32,8 +32,15 @@ class CodeFormatTool(BaseTool):
         return {
             "type": "object",
             "properties": {
-                "path": {"type": "string", "description": "File or directory to format"},
-                "formatter": {"type": "string", "enum": ["ruff", "black", "prettier"], "default": "ruff"},
+                "path": {
+                    "type": "string",
+                    "description": "File or directory to format",
+                },
+                "formatter": {
+                    "type": "string",
+                    "enum": ["ruff", "black", "prettier"],
+                    "default": "ruff",
+                },
             },
             "required": ["path"],
         }
@@ -47,17 +54,23 @@ class CodeFormatTool(BaseTool):
             if formatter == "ruff":
                 result = subprocess.run(
                     ["ruff", "format", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             elif formatter == "black":
                 result = subprocess.run(
                     ["black", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             elif formatter == "prettier":
                 result = subprocess.run(
                     ["prettier", "--write", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             else:
                 return f"Unknown formatter: {formatter}"
@@ -91,7 +104,11 @@ class CodeLintTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "description": "File or directory to lint"},
-                "linter": {"type": "string", "enum": ["ruff", "pylint", "eslint"], "default": "ruff"},
+                "linter": {
+                    "type": "string",
+                    "enum": ["ruff", "pylint", "eslint"],
+                    "default": "ruff",
+                },
             },
             "required": ["path"],
         }
@@ -105,17 +122,23 @@ class CodeLintTool(BaseTool):
             if linter == "ruff":
                 result = subprocess.run(
                     ["ruff", "check", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             elif linter == "pylint":
                 result = subprocess.run(
                     ["pylint", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             elif linter == "eslint":
                 result = subprocess.run(
                     ["eslint", str(validated)],
-                    capture_output=True, text=True, timeout=60
+                    capture_output=True,
+                    text=True,
+                    timeout=60,
                 )
             else:
                 return f"Unknown linter: {linter}"

@@ -9,13 +9,10 @@ Tests cover:
 """
 
 import uuid
-from datetime import datetime
 from unittest.mock import AsyncMock
 
 import pytest
-
 from friday_core import DebugTelemetryRecorder
-
 from friday_memory import (
     ChromaVectorStore,
     CollectionConfig,
@@ -25,8 +22,7 @@ from friday_memory import (
     MemoryController,
 )
 from friday_memory.context import ContextAssembler
-from friday_memory.lifecycle.stages import MemoryStage
-from friday_memory.models import ContextPayload, SessionState
+from friday_memory.models import ContextPayload
 
 
 def _unique_config():
@@ -314,7 +310,7 @@ class TestLifecycleAwareBudgeting:
         assert result.passages[0]["id"] == "1"
 
     def test_apply_budget_drops_low_relevancy_long_term_first(self, assembler):
-        """Test that low-relevancy long-term is dropped before short-term when budget is tight."""
+        """Test that low-relevancy long-term is dropped before short-term when budget is tight."""  # noqa: E501
         payload = ContextPayload(
             history=[],
             passages=[
@@ -392,7 +388,7 @@ class TestLifecycleAwareBudgeting:
         result = assembler._apply_budget(payload, 50)
 
         # Short-term should be preserved
-        ids = [p["id"] for p in result.passages]
+        [p["id"] for p in result.passages]
         # At minimum, short-term should still be present
         short_term_count = sum(
             1

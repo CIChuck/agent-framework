@@ -3,12 +3,11 @@
 import uuid
 
 import pytest
-
+from friday_memory.lifecycle.stages import MemoryStage, PromotionState
 from friday_memory.retrieval.collection_manager import (
     CollectionConfig,
     CollectionManager,
 )
-from friday_memory.lifecycle.stages import MemoryStage, PromotionState
 
 
 class MockEmbeddingFunction:
@@ -250,22 +249,26 @@ class TestCollectionManager:
         # This simulates a crash during promotion
         await manager.long_term.add_documents(
             texts=["Incomplete promotion"],
-            metadatas=[{
-                "type": "insight",
-                "stage": "long_term",
-                "promotion_state": PromotionState.PENDING.value,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "long_term",
+                    "promotion_state": PromotionState.PENDING.value,
+                }
+            ],
             ids=["pending1"],
         )
 
         # Also add to short-term to simulate the incomplete promotion
         await manager.short_term.add_documents(
             texts=["Incomplete promotion"],
-            metadatas=[{
-                "type": "insight",
-                "stage": "short_term",
-                "promotion_state": PromotionState.NONE.value,
-            }],
+            metadatas=[
+                {
+                    "type": "insight",
+                    "stage": "short_term",
+                    "promotion_state": PromotionState.NONE.value,
+                }
+            ],
             ids=["pending1"],
         )
 

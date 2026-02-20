@@ -138,6 +138,7 @@ class SupportingContextConfig(BaseModel):
         description="Hard limit on items per section",
     )
 
+
 # Pattern to match existing timestamp/role prefixes that may have been echoed back
 # Matches patterns like: [2026-01-27 10:42] [Assistant]:
 TIMESTAMP_ROLE_PATTERN = re.compile(
@@ -194,12 +195,16 @@ class PromptArchitect:
         if supporting_context_config is None:
             self._supporting_context_config = SupportingContextConfig()
         elif isinstance(supporting_context_config, dict):
-            self._supporting_context_config = SupportingContextConfig(**supporting_context_config)
+            self._supporting_context_config = SupportingContextConfig(
+                **supporting_context_config
+            )
         else:
             self._supporting_context_config = supporting_context_config
 
         # Token counting now uses a configurable estimator (approx by default).
-        self._token_estimator = build_token_estimator(token_estimator_config, model_name)
+        self._token_estimator = build_token_estimator(
+            token_estimator_config, model_name
+        )
 
         # Budget status from the most recent format_prompt() call.
         # Populated by _validate_prompt_budget() for downstream consumers
@@ -268,7 +273,9 @@ class PromptArchitect:
             List of message dicts in OpenAI-compatible format
         """
         # Check if we should use cache-optimized layout
-        if self._cache_config and self._cache_config.should_cache(turn_count, self.model_name):
+        if self._cache_config and self._cache_config.should_cache(
+            turn_count, self.model_name
+        ):
             messages = self._format_prompt_cached(
                 system_prompt=system_prompt,
                 user_query=user_query,
@@ -321,17 +328,12 @@ class PromptArchitect:
         )
 
         # Calculate total tokens in messages
-        message_tokens = sum(
-            self.count_tokens(m.get("content", ""))
-            for m in messages
-        )
+        message_tokens = sum(self.count_tokens(m.get("content", "")) for m in messages)
 
         # Add tool definition tokens if present
         tool_tokens = 0
         if tool_definitions:
-            tool_tokens = self.count_tokens(
-                json.dumps(tool_definitions)
-            )
+            tool_tokens = self.count_tokens(json.dumps(tool_definitions))
 
         total_tokens = message_tokens + tool_tokens
 
@@ -339,14 +341,10 @@ class PromptArchitect:
         available_budget = self.max_tokens - self.output_buffer
 
         utilization_pct = (
-            (total_tokens / available_budget) * 100
-            if available_budget > 0
-            else 100.0
+            (total_tokens / available_budget) * 100 if available_budget > 0 else 100.0
         )
         overage = max(0, total_tokens - available_budget)
-        severity = BudgetSeverity.from_utilization(
-            utilization_pct
-        )
+        severity = BudgetSeverity.from_utilization(utilization_pct)
 
         # Backward-compatible logging
         if total_tokens > available_budget:
@@ -363,8 +361,7 @@ class PromptArchitect:
             )
         else:
             logger.debug(
-                "Prompt budget: %d/%d tokens "
-                "(%.1f%% utilized)",
+                "Prompt budget: %d/%d tokens (%.1f%% utilized)",
                 total_tokens,
                 available_budget,
                 utilization_pct,
@@ -444,16 +441,18 @@ class PromptArchitect:
             if turn.user_message:
                 # Strip any echoed timestamp/role prefixes to prevent nesting
                 clean_msg = self._strip_existing_prefixes(turn.user_message)
-                messages.append({
-                    "role": "user",
-                    "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
-                })
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
+                    }
+                )
 
             # Check if this turn has tool calls
-            # NOTE: Historical tool calls are rendered as plain text summaries, not native
-            # tool message format. Native format requires strict pairing (tool_result must
+            # NOTE: Historical tool calls are rendered as plain text summaries, not native  # noqa: E501
+            # tool message format. Native format requires strict pairing (tool_result must  # noqa: E501
             # immediately follow its tool_call), which breaks when restoring history.
-            # Current in-progress tool interactions use native format via _process_with_tools().
+            # Current in-progress tool interactions use native format via _process_with_tools().  # noqa: E501
             #
             # Lifecycle support: If a tool result has is_decayed=True, we render the
             # summary instead of the full output to save context tokens.
@@ -483,7 +482,9 @@ class PromptArchitect:
 
                                 if is_decayed and summary:
                                     # Use the LLM-generated summary for decayed outputs
-                                    tool_summary_parts.append(f"    ✓ [Summary]: {summary}")
+                                    tool_summary_parts.append(
+                                        f"    ✓ [Summary]: {summary}"
+                                    )
                                 else:
                                     # Full output (truncate if too long)
                                     output_str = str(tr.output) if tr.output else ""
@@ -492,18 +493,23 @@ class PromptArchitect:
                                     tool_summary_parts.append(f"    ✓ {output_str}")
                             break
 
-                messages.append({
-                    "role": "assistant",
-                    "content": f"{timestamp_str}[{self.assistant_name}]: " + "\n".join(tool_summary_parts),
-                })
+                messages.append(
+                    {
+                        "role": "assistant",
+                        "content": f"{timestamp_str}[{self.assistant_name}]: "
+                        + "\n".join(tool_summary_parts),
+                    }
+                )
             elif turn.assistant_message:
                 # No tool calls - just append assistant message
                 # Strip any echoed timestamp/role prefixes to prevent nesting
                 clean_msg = self._strip_existing_prefixes(turn.assistant_message)
-                messages.append({
-                    "role": "assistant",
-                    "content": f"{timestamp_str}[{self.assistant_name}]: {clean_msg}",
-                })
+                messages.append(
+                    {
+                        "role": "assistant",
+                        "content": f"{timestamp_str}[{self.assistant_name}]: {clean_msg}",  # noqa: E501
+                    }
+                )
 
         # 3. Final message: supporting context + query
         # Supporting context is placed immediately before the query for recency effect
@@ -512,7 +518,9 @@ class PromptArchitect:
             payload, state, context_format, max_tokens=supporting_context_budget
         )
         if supporting_context:
-            final_content = f"{supporting_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+            final_content = (
+                f"{supporting_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+            )
         else:
             final_content = f"[{self.user_name}]: {user_query}"
 
@@ -546,16 +554,32 @@ class PromptArchitect:
         from friday_memory.context.cache_config import CacheBreakpoint, CacheProvider
 
         messages: list[dict[str, Any]] = []
-        cache_marker = self._cache_config.get_cache_control_marker(self.model_name) if self._cache_config else None
-        provider = self._cache_config.detect_provider(self.model_name) if self._cache_config else CacheProvider.NONE
-        breakpoint = self._cache_config.breakpoint if self._cache_config else CacheBreakpoint.AFTER_HISTORY
+        cache_marker = (
+            self._cache_config.get_cache_control_marker(self.model_name)
+            if self._cache_config
+            else None
+        )
+        provider = (
+            self._cache_config.detect_provider(self.model_name)
+            if self._cache_config
+            else CacheProvider.NONE
+        )
+        breakpoint = (
+            self._cache_config.breakpoint
+            if self._cache_config
+            else CacheBreakpoint.AFTER_HISTORY
+        )
 
         # 1. System message [CACHEABLE]
         system_content = self._build_system_content(system_prompt)
         system_msg: dict[str, Any] = {"role": "system", "content": system_content}
 
         # Add cache marker for system-only breakpoint
-        if breakpoint == CacheBreakpoint.SYSTEM_ONLY and cache_marker and provider == CacheProvider.ANTHROPIC:
+        if (
+            breakpoint == CacheBreakpoint.SYSTEM_ONLY
+            and cache_marker
+            and provider == CacheProvider.ANTHROPIC
+        ):
             system_msg["cache_control"] = cache_marker
 
         messages.append(system_msg)
@@ -566,10 +590,17 @@ class PromptArchitect:
             static_context = self._build_static_context(payload, context_format)
 
         if static_context:
-            static_msg: dict[str, Any] = {"role": "user", "content": f"[Context Reference]\n{static_context}"}
+            static_msg: dict[str, Any] = {
+                "role": "user",
+                "content": f"[Context Reference]\n{static_context}",
+            }
 
             # Add cache marker for after-static breakpoint
-            if breakpoint == CacheBreakpoint.AFTER_STATIC and cache_marker and provider == CacheProvider.ANTHROPIC:
+            if (
+                breakpoint == CacheBreakpoint.AFTER_STATIC
+                and cache_marker
+                and provider == CacheProvider.ANTHROPIC
+            ):
                 static_msg["cache_control"] = cache_marker
 
             messages.append(static_msg)
@@ -592,10 +623,12 @@ class PromptArchitect:
             # User message
             if turn.user_message:
                 clean_msg = self._strip_existing_prefixes(turn.user_message)
-                messages.append({
-                    "role": "user",
-                    "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
-                })
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": f"{timestamp_str}[{self.user_name}]: {clean_msg}",
+                    }
+                )
 
             # Assistant message (with tool call handling)
             if turn.tool_calls:
@@ -617,7 +650,9 @@ class PromptArchitect:
                                 is_decayed = getattr(tr, "is_decayed", False)
                                 summary = getattr(tr, "summary", None)
                                 if is_decayed and summary:
-                                    tool_summary_parts.append(f"    ✓ [Summary]: {summary}")
+                                    tool_summary_parts.append(
+                                        f"    ✓ [Summary]: {summary}"
+                                    )
                                 else:
                                     output_str = str(tr.output) if tr.output else ""
                                     if len(output_str) > 500:
@@ -627,12 +662,18 @@ class PromptArchitect:
 
                 assistant_msg: dict[str, Any] = {
                     "role": "assistant",
-                    "content": f"{timestamp_str}[{self.assistant_name}]: " + "\n".join(tool_summary_parts),
+                    "content": f"{timestamp_str}[{self.assistant_name}]: "
+                    + "\n".join(tool_summary_parts),
                 }
 
                 # Add cache marker on last history message for after-history breakpoint
-                is_last = (i == len(all_history) - 1)
-                if is_last and breakpoint == CacheBreakpoint.AFTER_HISTORY and cache_marker and provider == CacheProvider.ANTHROPIC:
+                is_last = i == len(all_history) - 1
+                if (
+                    is_last
+                    and breakpoint == CacheBreakpoint.AFTER_HISTORY
+                    and cache_marker
+                    and provider == CacheProvider.ANTHROPIC
+                ):
                     assistant_msg["cache_control"] = cache_marker
 
                 messages.append(assistant_msg)
@@ -645,8 +686,13 @@ class PromptArchitect:
                 }
 
                 # Add cache marker on last history message
-                is_last = (i == len(all_history) - 1)
-                if is_last and breakpoint == CacheBreakpoint.AFTER_HISTORY and cache_marker and provider == CacheProvider.ANTHROPIC:
+                is_last = i == len(all_history) - 1
+                if (
+                    is_last
+                    and breakpoint == CacheBreakpoint.AFTER_HISTORY
+                    and cache_marker
+                    and provider == CacheProvider.ANTHROPIC
+                ):
                     assistant_msg["cache_control"] = cache_marker
 
                 messages.append(assistant_msg)
@@ -656,7 +702,9 @@ class PromptArchitect:
         dynamic_context = self._build_dynamic_context(payload, state, context_format)
 
         if dynamic_context:
-            final_content = f"{dynamic_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+            final_content = (
+                f"{dynamic_context}\n\n---\n\n[{self.user_name}]: {user_query}"
+            )
         else:
             final_content = f"[{self.user_name}]: {user_query}"
 
@@ -693,7 +741,7 @@ class PromptArchitect:
         # Semantic passages from vector search
         if payload.passages:
             sections.append("\n## Relevant Context")
-            for i, passage in enumerate(payload.passages[:10], 1):
+            for _i, passage in enumerate(payload.passages[:10], 1):
                 text = passage.get("text", "")
                 metadata = passage.get("metadata", {})
                 source = metadata.get("filename") or metadata.get("source", "memory")
@@ -798,7 +846,7 @@ class PromptArchitect:
             System prompt content
         """
         # For now, just return the base prompt
-        # Future: Add function/tool definitions here when Friday-Tools integration is added
+        # Future: Add function/tool definitions here when Friday-Tools integration is added  # noqa: E501
         return base_prompt
 
     def _build_supporting_context(
@@ -943,7 +991,7 @@ class PromptArchitect:
         max_passages = config.max_items.get("passages", 10)
         lines = ["\n## Relevant Context"]
 
-        for i, passage in enumerate(payload.passages[:max_passages], 1):
+        for _i, passage in enumerate(payload.passages[:max_passages], 1):
             text = passage.get("text", "")
             metadata = passage.get("metadata", {})
             source = metadata.get("filename") or metadata.get("source", "memory")
@@ -1042,9 +1090,7 @@ class PromptArchitect:
 
         return f"\n{self._format_state_block(state)}"
 
-    def _truncate_section_to_budget(
-        self, section_content: str, max_tokens: int
-    ) -> str:
+    def _truncate_section_to_budget(self, section_content: str, max_tokens: int) -> str:
         """
         Truncate a section to fit within the given token budget.
 
@@ -1107,7 +1153,8 @@ class PromptArchitect:
             context["relevant_context"] = [
                 {
                     "text": p.get("text", ""),
-                    "source": p.get("metadata", {}).get("filename") or p.get("metadata", {}).get("source", "memory"),
+                    "source": p.get("metadata", {}).get("filename")
+                    or p.get("metadata", {}).get("source", "memory"),
                     "type": p.get("metadata", {}).get("type", ""),
                     "similarity": p.get("similarity", 0.0),
                 }
@@ -1137,19 +1184,25 @@ class PromptArchitect:
             recommendations = []
             for rec in payload.recommended_tools:
                 if hasattr(rec, "tool_name"):
-                    recommendations.append({
-                        "tool_name": rec.tool_name,
-                        "reason": rec.reason,
-                        "relevance_score": getattr(rec, "relevance_score", 0.0),
-                        "suggested_parameters": getattr(rec, "suggested_parameters", None),
-                    })
+                    recommendations.append(
+                        {
+                            "tool_name": rec.tool_name,
+                            "reason": rec.reason,
+                            "relevance_score": getattr(rec, "relevance_score", 0.0),
+                            "suggested_parameters": getattr(
+                                rec, "suggested_parameters", None
+                            ),
+                        }
+                    )
                 else:
-                    recommendations.append({
-                        "tool_name": rec.get("tool_name", "unknown"),
-                        "reason": rec.get("reason", ""),
-                        "relevance_score": rec.get("relevance_score", 0.0),
-                        "suggested_parameters": rec.get("suggested_parameters"),
-                    })
+                    recommendations.append(
+                        {
+                            "tool_name": rec.get("tool_name", "unknown"),
+                            "reason": rec.get("reason", ""),
+                            "relevance_score": rec.get("relevance_score", 0.0),
+                            "suggested_parameters": rec.get("suggested_parameters"),
+                        }
+                    )
             context["recommended_tools"] = recommendations
 
         # Tool usage hints
@@ -1216,7 +1269,9 @@ class PromptArchitect:
                 tool_elem = SubElement(tools_elem, "tool")
                 if hasattr(rec, "tool_name"):
                     tool_elem.set("name", rec.tool_name)
-                    tool_elem.set("relevance", str(getattr(rec, "relevance_score", 0.0)))
+                    tool_elem.set(
+                        "relevance", str(getattr(rec, "relevance_score", 0.0))
+                    )
                     reason_elem = SubElement(tool_elem, "reason")
                     reason_elem.text = rec.reason
                     suggested = getattr(rec, "suggested_parameters", None)
@@ -1294,18 +1349,10 @@ class PromptArchitect:
 
         # Build section builders for each section type (markdown variants)
         section_builders: dict[str, callable] = {
-            "known_facts": lambda: self._build_section_known_facts_md(
-                payload, config
-            ),
-            "passages": lambda: self._build_section_passages_md(
-                payload, config
-            ),
-            "insights": lambda: self._build_section_insights_md(
-                payload, config
-            ),
-            "summaries": lambda: self._build_section_summaries_md(
-                payload, config
-            ),
+            "known_facts": lambda: self._build_section_known_facts_md(payload, config),
+            "passages": lambda: self._build_section_passages_md(payload, config),
+            "insights": lambda: self._build_section_insights_md(payload, config),
+            "summaries": lambda: self._build_section_summaries_md(payload, config),
             "tools": lambda: self._build_section_tools_md(payload, config),
             "state": lambda: self._build_section_state(state),
         }
@@ -1387,10 +1434,7 @@ class PromptArchitect:
         for passage in payload.passages[:max_passages]:
             text = passage.get("text", "")
             metadata = passage.get("metadata", {})
-            source = (
-                metadata.get("filename")
-                or metadata.get("source", "memory")
-            )
+            source = metadata.get("filename") or metadata.get("source", "memory")
             doc_type = metadata.get("type", "")
             similarity = passage.get("similarity", 0.0)
 
@@ -1460,12 +1504,14 @@ class PromptArchitect:
 
         # Tool recommendations table
         if payload.recommended_tools:
-            lines.extend([
-                "\n## Recommended Tools",
-                "",
-                "| Tool | Relevance | Reason |",
-                "|------|-----------|--------|",
-            ])
+            lines.extend(
+                [
+                    "\n## Recommended Tools",
+                    "",
+                    "| Tool | Relevance | Reason |",
+                    "|------|-----------|--------|",
+                ]
+            )
             for rec in payload.recommended_tools[:max_tools]:
                 if hasattr(rec, "tool_name"):
                     tool_name = rec.tool_name
@@ -1475,9 +1521,7 @@ class PromptArchitect:
                     tool_name = rec.get("tool_name", "unknown")
                     relevance = rec.get("relevance_score", 0.0)
                     reason = rec.get("reason", "")
-                lines.append(
-                    f"| `{tool_name}` | {relevance:.2f} | {reason} |"
-                )
+                lines.append(f"| `{tool_name}` | {relevance:.2f} | {reason} |")
 
         # Tool usage hints
         if payload.tool_usage_hints:
@@ -1490,7 +1534,9 @@ class PromptArchitect:
     def _format_transparency_block(self, recent_memories: list[str]) -> str:
         """Format the transparency block showing recent auto-archived memories."""
         lines = ["## Recent Memories"]
-        lines.append("The system has automatically archived the following observations:")
+        lines.append(
+            "The system has automatically archived the following observations:"
+        )
         for memory in recent_memories[:5]:  # Limit to 5 most recent
             lines.append(f"- {memory}")
         return "\n".join(lines)
@@ -1572,6 +1618,7 @@ class PromptArchitect:
         if tool_definitions:
             # Estimate tool tokens (JSON serialization)
             import json
+
             tools_str = json.dumps(tool_definitions)
             fixed += self.count_tokens(tools_str)
 

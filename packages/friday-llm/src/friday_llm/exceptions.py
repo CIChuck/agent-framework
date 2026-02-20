@@ -43,7 +43,7 @@ class LLMTimeoutError(LLMServiceError):
         except LLMTimeoutError as e:
             logger.warning(f"{e.operation} timed out after {e.timeout_seconds}s on {e.model}")
             return "The AI is taking too long to respond..."
-    """
+    """  # noqa: E501
 
     def __init__(
         self,
@@ -61,7 +61,7 @@ class LLMTimeoutError(LLMServiceError):
     def __str__(self) -> str:
         return (
             f"{self.args[0]} "
-            f"(operation={self.operation}, timeout={self.timeout_seconds}s, model={self.model})"
+            f"(operation={self.operation}, timeout={self.timeout_seconds}s, model={self.model})"  # noqa: E501
         )
 
 
@@ -98,7 +98,7 @@ class LLMRetryExhaustedError(LLMServiceError):
     def __str__(self) -> str:
         return (
             f"{self.args[0]} "
-            f"(attempts={self.attempts}, last_error={type(self.last_error).__name__}: {self.last_error}, "
+            f"(attempts={self.attempts}, last_error={type(self.last_error).__name__}: {self.last_error}, "  # noqa: E501
             f"model={self.model})"
         )
 
@@ -135,6 +135,5 @@ class CircuitBreakerOpenError(LLMServiceError):
 
     def __str__(self) -> str:
         return (
-            f"{self.args[0]} "
-            f"(retry_after={self.retry_after:.1f}s, model={self.model})"
+            f"{self.args[0]} (retry_after={self.retry_after:.1f}s, model={self.model})"
         )

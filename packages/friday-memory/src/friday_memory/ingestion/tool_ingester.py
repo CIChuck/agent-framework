@@ -124,7 +124,7 @@ class ToolOutputIngester:
 
     def __init__(
         self,
-        collection_manager: "CollectionManager",
+        collection_manager: CollectionManager,
         config: ToolOutputIngesterConfig | None = None,
         chunker: SemanticChunker | None = None,
     ) -> None:
@@ -176,9 +176,7 @@ class ToolOutputIngester:
             return False, "ingestion_disabled"
 
         # Check policy
-        policy = self._config.tool_policies.get(
-            tool_name, self._config.default_policy
-        )
+        policy = self._config.tool_policies.get(tool_name, self._config.default_policy)
 
         if policy == ToolIngestionPolicy.NEVER:
             return False, "policy:never"
@@ -192,7 +190,10 @@ class ToolOutputIngester:
         # Check size threshold
         token_count = len(content) // self.CHARS_PER_TOKEN
         if token_count < self._config.min_tokens_for_ingestion:
-            return False, f"below_threshold:{token_count}<{self._config.min_tokens_for_ingestion}"
+            return (
+                False,
+                f"below_threshold:{token_count}<{self._config.min_tokens_for_ingestion}",
+            )
 
         return True, "eligible"
 
@@ -278,18 +279,20 @@ class ToolOutputIngester:
                 chunk_id = f"tool_{tool_call_id}_chunk_{chunk.index}"
                 chunk_ids.append(chunk_id)
                 chunk_texts.append(chunk.text)
-                chunk_metadatas.append({
-                    "type": "tool_output",
-                    "tool_name": tool_name,
-                    "tool_call_id": tool_call_id,
-                    "turn_id": turn_id,
-                    "chunk_index": chunk.index,
-                    "total_chunks": chunk.total,
-                    "has_overlap": chunk.has_overlap,
-                    "source_path": source_path or "",
-                    "ingested_at": now,
-                    **security_flat,
-                })
+                chunk_metadatas.append(
+                    {
+                        "type": "tool_output",
+                        "tool_name": tool_name,
+                        "tool_call_id": tool_call_id,
+                        "turn_id": turn_id,
+                        "chunk_index": chunk.index,
+                        "total_chunks": chunk.total,
+                        "has_overlap": chunk.has_overlap,
+                        "source_path": source_path or "",
+                        "ingested_at": now,
+                        **security_flat,
+                    }
+                )
 
             # Store in short-term collection
             await self._collection_manager.add_to_short_term(
@@ -298,9 +301,7 @@ class ToolOutputIngester:
                 ids=chunk_ids,
             )
 
-            logger.debug(
-                f"Ingested tool output: {tool_name} ({len(chunks)} chunks)"
-            )
+            logger.debug(f"Ingested tool output: {tool_name} ({len(chunks)} chunks)")
 
             return IngestionResult(
                 stored=True,

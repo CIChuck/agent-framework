@@ -8,14 +8,12 @@ Ref: docs/build-plan/memory-chat-v2-prd.md
 
 from __future__ import annotations
 
-import asyncio
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from pathlib import Path
-from typing import Any, Callable
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
-from prompt_toolkit.completion import Completer, Completion, WordCompleter
+from prompt_toolkit.completion import Completer, Completion
 from prompt_toolkit.formatted_text import HTML
 from prompt_toolkit.history import FileHistory, InMemoryHistory
 from prompt_toolkit.key_binding import KeyBindings
@@ -31,12 +29,14 @@ def _build_prompt_style() -> Style:
 
 
 # Default style for the prompt (for backwards compatibility)
-DEFAULT_STYLE = Style.from_dict({
-    "prompt": "bold cyan",
-    "prompt.name": "bold cyan",
-    "prompt.separator": "white",
-    "continuation": "gray",
-})
+DEFAULT_STYLE = Style.from_dict(
+    {
+        "prompt": "bold cyan",
+        "prompt.name": "bold cyan",
+        "prompt.separator": "white",
+        "continuation": "gray",
+    }
+)
 
 
 class CommandCompleter(Completer):
@@ -61,9 +61,7 @@ class CommandCompleter(Completer):
         self.commands = sorted(commands)
         self.meta_dict = meta_dict or {}
 
-    def get_completions(
-        self, document, complete_event
-    ) -> Iterable[Completion]:
+    def get_completions(self, document, complete_event) -> Iterable[Completion]:
         """Generate completions for the current input."""
         text = document.text_before_cursor
 
@@ -193,9 +191,13 @@ class InputHandler:
 
     def _format_prompt(self) -> HTML:
         """Format the input prompt with styling."""
-        return HTML(f"<prompt.name>{self.prompt_name}</prompt.name><prompt.separator>: </prompt.separator>")
+        return HTML(
+            f"<prompt.name>{self.prompt_name}</prompt.name><prompt.separator>: </prompt.separator>"  # noqa: E501
+        )
 
-    def _format_continuation(self, width: int, line_number: int, is_soft_wrap: bool) -> str:
+    def _format_continuation(
+        self, width: int, line_number: int, is_soft_wrap: bool
+    ) -> str:
         """Format continuation prompt for multi-line input."""
         return "... "
 
@@ -215,7 +217,9 @@ class InputHandler:
             else:
                 result = self._session.prompt(
                     self._format_prompt(),
-                    prompt_continuation=self._format_continuation if self.multiline else None,
+                    prompt_continuation=self._format_continuation
+                    if self.multiline
+                    else None,
                 )
             return result.strip()
         except EOFError:
@@ -240,7 +244,9 @@ class InputHandler:
             else:
                 result = await self._session.prompt_async(
                     self._format_prompt(),
-                    prompt_continuation=self._format_continuation if self.multiline else None,
+                    prompt_continuation=self._format_continuation
+                    if self.multiline
+                    else None,
                 )
             return result.strip()
         except EOFError:

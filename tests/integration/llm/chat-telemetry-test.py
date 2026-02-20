@@ -37,8 +37,18 @@ from typing import Any
 
 # Add the packages to the path for local development
 # This allows running the script without installing packages via `uv sync`
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "packages", "friday-llm", "src"))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "packages", "friday-core", "src"))
+sys.path.insert(
+    0,
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "..", "packages", "friday-llm", "src"
+    ),
+)
+sys.path.insert(
+    0,
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "..", "packages", "friday-core", "src"
+    ),
+)
 
 import yaml
 from friday_core.telemetry import DebugTelemetryRecorder
@@ -52,6 +62,7 @@ from friday_llm import (
 # =============================================================================
 # SECTION 1: Configuration Loading
 # =============================================================================
+
 
 @dataclass
 class LLMConfig:
@@ -68,6 +79,7 @@ class LLMConfig:
         temperature: Sampling temperature (0.0-1.0)
         max_retries: Maximum retry attempts for transient errors
     """
+
     model: str
     api_base: str | None = None
     api_key: str | None = None
@@ -134,6 +146,7 @@ def create_llm_config(config_dict: dict[str, Any]) -> LLMConfig:
 # SECTION 2: Custom Telemetry Provider
 # =============================================================================
 
+
 @dataclass
 class ConversationTurn:
     """
@@ -153,6 +166,7 @@ class ConversationTurn:
     - User consent
     - Encryption at rest
     """
+
     turn_id: str
     prompt_messages: list[dict[str, str]]
     response_content: str | None = None
@@ -318,14 +332,17 @@ class DemoTelemetryProvider(DebugTelemetryRecorder):
 
         # Log the turn
         user_msg = next(
-            (m["content"] for m in reversed(messages) if m["role"] == "user"),
-            "N/A"
+            (m["content"] for m in reversed(messages) if m["role"] == "user"), "N/A"
         )
         preview = user_msg[:50] + "..." if len(user_msg) > 50 else user_msg
         print(f"  [TELEMETRY] Conversation turn recorded: {turn_id}")
         print(f"              Prompt: {preview}")
         if response_content:
-            resp_preview = response_content[:50] + "..." if len(response_content) > 50 else response_content
+            resp_preview = (
+                response_content[:50] + "..."
+                if len(response_content) > 50
+                else response_content
+            )
             print(f"              Response: {resp_preview}")
 
         return turn_id
@@ -384,7 +401,9 @@ class DemoTelemetryProvider(DebugTelemetryRecorder):
         print(f"{'─' * 60}")
         print(f"\nTotal Spans: {len(self.spans)}")
         for span_id, span in self.spans.items():
-            duration = f"{span.duration_ms:.1f}ms" if span.duration_ms is not None else "N/A"
+            duration = (
+                f"{span.duration_ms:.1f}ms" if span.duration_ms is not None else "N/A"
+            )
             print(f"\n  Span: {span.name} ({span_id})")
             print(f"  Duration: {duration}")
             if span.data:
@@ -394,6 +413,7 @@ class DemoTelemetryProvider(DebugTelemetryRecorder):
 # =============================================================================
 # SECTION 3: Service Factory
 # =============================================================================
+
 
 def create_llm_service(
     config: LLMConfig,
@@ -449,6 +469,7 @@ def create_llm_service(
 # SECTION 4: Demo Functions
 # =============================================================================
 
+
 async def demo_basic_telemetry(
     service: LiteLLMService,
     config: LLMConfig,
@@ -476,6 +497,7 @@ async def demo_basic_telemetry(
     ]
 
     import time
+
     start_time = time.perf_counter()
 
     response = await service.chat_completion(
@@ -535,11 +557,11 @@ async def demo_conversation_context(
     # In a real app, session_id might come from your auth system
     # conversation_id might be stored in your database
     context = ConversationContext(
-        session_id="user-12345",           # Unique user session
-        conversation_id="conv-abc-123",    # Conversation thread ID
-        turn_id="turn-1",                  # Current turn in conversation
-        turn_number=1,                     # Turn sequence number
-        message_count=2,                   # Messages in context
+        session_id="user-12345",  # Unique user session
+        conversation_id="conv-abc-123",  # Conversation thread ID
+        turn_id="turn-1",  # Current turn in conversation
+        turn_number=1,  # Turn sequence number
+        message_count=2,  # Messages in context
     )
 
     print(f"\nContext: session={context.session_id}, conv={context.conversation_id}")
@@ -637,7 +659,10 @@ async def demo_streaming_ttft(
 
     messages = [
         {"role": "system", "content": "You are a storyteller. Be creative but brief."},
-        {"role": "user", "content": "Tell me a very short story about a robot in 2-3 sentences."},
+        {
+            "role": "user",
+            "content": "Tell me a very short story about a robot in 2-3 sentences.",
+        },
     ]
 
     print("\nStreaming response:")
@@ -665,7 +690,7 @@ async def demo_streaming_ttft(
     telemetry.record_conversation_turn(
         messages=messages,
         response_content=full_response,
-        response_model=service.model,  # Use service model since streaming doesn't return it
+        response_model=service.model,  # Use service model since streaming doesn't return it  # noqa: E501
         duration_ms=duration_ms,
         input_tokens=0,  # Not available for streaming
         output_tokens=0,  # Not available for streaming
@@ -820,6 +845,7 @@ async def demo_error_tracking(config: LLMConfig) -> None:
 # =============================================================================
 # SECTION 5: Main Entry Point
 # =============================================================================
+
 
 def print_banner(config: LLMConfig) -> None:
     """Print welcome banner with configuration details."""

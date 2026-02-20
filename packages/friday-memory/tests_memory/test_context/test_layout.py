@@ -7,10 +7,10 @@ Tests cover:
 - Dynamic budget calculation
 """
 
-import pytest
-
-from friday_memory import ContextPayload, PromptArchitect, SessionState
 from datetime import datetime
+
+import pytest
+from friday_memory import ContextPayload, PromptArchitect, SessionState
 
 
 @pytest.fixture
@@ -113,7 +113,7 @@ class TestPromptFormatting:
         assert messages[-1]["content"] == "[User]: Hello!"
 
     def test_format_prompt_with_transparency_block(self, architect: PromptArchitect):
-        """Test formatting with recent memories (now in final user message as prior knowledge)."""
+        """Test formatting with recent memories (now in final user message as prior knowledge)."""  # noqa: E501
         payload = ContextPayload(
             history=[],
             passages=[],

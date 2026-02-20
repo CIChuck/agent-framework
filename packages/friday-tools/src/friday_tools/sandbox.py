@@ -122,6 +122,7 @@ class FilesystemSandbox:
         # Add temp directories if allowed
         if allow_temp:
             import tempfile
+
             self.allowed_paths.append(Path(tempfile.gettempdir()).resolve())
             # Also add /tmp explicitly on Unix
             if os.name != "nt":
@@ -146,22 +147,20 @@ class FilesystemSandbox:
         # Check blocked patterns first
         for pattern in self.blocked_patterns:
             if pattern.search(path_str):
-                raise PathSecurityError(
-                    f"Path matches blocked pattern: {path}"
-                )
+                raise PathSecurityError(f"Path matches blocked pattern: {path}")
 
         # Check explicit blocked paths
         for blocked in self.blocked_paths:
             if resolved == blocked or self._is_child_of(resolved, blocked):
-                raise PathSecurityError(
-                    f"Path is explicitly blocked: {path}"
-                )
+                raise PathSecurityError(f"Path is explicitly blocked: {path}")
 
         # Check if path is within allowed paths
         if self.allowed_paths:
             allowed = False
             for allowed_path in self.allowed_paths:
-                if resolved == allowed_path or self._is_child_of(resolved, allowed_path):
+                if resolved == allowed_path or self._is_child_of(
+                    resolved, allowed_path
+                ):
                     allowed = True
                     break
 
@@ -266,7 +265,7 @@ class ShellSandbox:
             allowed_commands: Whitelist of allowed commands (if set, only these allowed).
             blocked_commands: Additional blocked commands.
             allow_dangerous_patterns: If True, allow shell metacharacters.
-        """
+        """  # noqa: E501
         self.allowed_commands: set[str] | None = None
         if allowed_commands:
             self.allowed_commands = set(allowed_commands)
@@ -276,9 +275,7 @@ class ShellSandbox:
             self.blocked_commands.update(blocked_commands)
 
         self.allow_dangerous_patterns = allow_dangerous_patterns
-        self.dangerous_patterns = [
-            re.compile(p) for p in self.DANGEROUS_PATTERNS
-        ]
+        self.dangerous_patterns = [re.compile(p) for p in self.DANGEROUS_PATTERNS]
 
     def validate_command(self, command: str) -> str:
         """
@@ -306,12 +303,10 @@ class ShellSandbox:
 
         # Check if command is blocked
         if base_command in self.blocked_commands:
-            raise CommandSecurityError(
-                f"Command is blocked: {base_command}"
-            )
+            raise CommandSecurityError(f"Command is blocked: {base_command}")
 
         # Check if command is in allowed list (if whitelist is set)
-        if self.allowed_commands is not None:
+        if self.allowed_commands is not None:  # noqa: SIM102
             if base_command not in self.allowed_commands:
                 raise CommandSecurityError(
                     f"Command is not in allowed list: {base_command}"

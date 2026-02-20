@@ -26,7 +26,11 @@ def register_tools_commands(registry, session: "MemoryChatSession") -> None:
         "tools",
         lambda ctx, category=None, **kwargs: ctx.cmd_tools(category),
         arguments=[
-            arg("category", required=False, description="Filter by tool category (e.g., utility, filesystem)"),
+            arg(
+                "category",
+                required=False,
+                description="Filter by tool category (e.g., utility, filesystem)",
+            ),
         ],
         description="List available tools, optionally filtered by category",
         category="tools",
@@ -49,7 +53,11 @@ def register_tools_commands(registry, session: "MemoryChatSession") -> None:
         "inject-tools",
         lambda ctx, names="", **kwargs: ctx.cmd_inject_tools(names),
         arguments=[
-            arg("names", required=True, description="Comma-separated list of tool names to inject"),
+            arg(
+                "names",
+                required=True,
+                description="Comma-separated list of tool names to inject",
+            ),
         ],
         description="Inject tools into context for testing",
         category="tools",
@@ -66,7 +74,11 @@ def register_tools_commands(registry, session: "MemoryChatSession") -> None:
         "recommend-tools",
         lambda ctx, query="", **kwargs: ctx.cmd_recommend_tools(query),
         arguments=[
-            arg("query", required=True, description="Query to get tool recommendations for"),
+            arg(
+                "query",
+                required=True,
+                description="Query to get tool recommendations for",
+            ),
         ],
         description="Test tool recommendations for a query",
         category="tools",

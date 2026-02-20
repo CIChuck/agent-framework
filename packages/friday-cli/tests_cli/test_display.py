@@ -3,25 +3,23 @@ Tests for friday-cli display functions.
 """
 
 import io
-from unittest.mock import patch
 
 import pytest
-from rich.console import Console
-
 from friday_cli import (
+    display_banner,
+    display_code,
     display_error,
-    display_warning,
-    display_success,
+    display_help,
     display_info,
     display_json,
-    display_code,
-    display_table,
-    display_banner,
     display_panel,
-    display_help,
-    set_console,
+    display_success,
+    display_table,
+    display_warning,
     get_console,
+    set_console,
 )
+from rich.console import Console
 
 
 @pytest.fixture
@@ -255,7 +253,10 @@ class TestThinkingIndicator:
 
     def test_random_tool_processing_creates_indicator(self):
         from friday_cli import ThinkingIndicator
-        from friday_cli.cli_config import DEFAULT_TOOL_PROCESSING_MESSAGES, set_cli_config
+        from friday_cli.cli_config import (
+            DEFAULT_TOOL_PROCESSING_MESSAGES,
+            set_cli_config,
+        )
 
         # Reset to defaults
         set_cli_config(None)
@@ -266,15 +267,17 @@ class TestThinkingIndicator:
         indicator.stop()
 
     def test_random_thinking_uses_config(self):
-        from friday_cli import ThinkingIndicator, CLIConfig, set_cli_config
+        from friday_cli import CLIConfig, ThinkingIndicator, set_cli_config
 
         # Set custom config with specific messages
-        custom_config = CLIConfig.from_dict({
-            "spinner": {
-                "thinking_messages": ["Custom thinking..."],
-                "randomize": True,
+        custom_config = CLIConfig.from_dict(
+            {
+                "spinner": {
+                    "thinking_messages": ["Custom thinking..."],
+                    "randomize": True,
+                }
             }
-        })
+        )
         set_cli_config(custom_config)
 
         indicator = ThinkingIndicator.random_thinking()
@@ -284,15 +287,17 @@ class TestThinkingIndicator:
         set_cli_config(None)
 
     def test_random_thinking_no_randomize(self):
-        from friday_cli import ThinkingIndicator, CLIConfig, set_cli_config
+        from friday_cli import CLIConfig, ThinkingIndicator, set_cli_config
 
         # Set config with randomize=False
-        custom_config = CLIConfig.from_dict({
-            "spinner": {
-                "thinking_messages": ["First", "Second", "Third"],
-                "randomize": False,
+        custom_config = CLIConfig.from_dict(
+            {
+                "spinner": {
+                    "thinking_messages": ["First", "Second", "Third"],
+                    "randomize": False,
+                }
             }
-        })
+        )
         set_cli_config(custom_config)
 
         # Should always return first message
@@ -304,14 +309,16 @@ class TestThinkingIndicator:
         set_cli_config(None)
 
     def test_spinner_type_from_config(self):
-        from friday_cli import ThinkingIndicator, CLIConfig, set_cli_config
+        from friday_cli import CLIConfig, ThinkingIndicator, set_cli_config
 
         # Set custom spinner type
-        custom_config = CLIConfig.from_dict({
-            "spinner": {
-                "spinner_type": "line",
+        custom_config = CLIConfig.from_dict(
+            {
+                "spinner": {
+                    "spinner_type": "line",
+                }
             }
-        })
+        )
         set_cli_config(custom_config)
 
         indicator = ThinkingIndicator.random_thinking()
@@ -331,15 +338,17 @@ class TestThinkingIndicator:
         assert indicator.spinner_type == "dots"
 
     def test_spinner_style_from_config(self):
-        from friday_cli import ThinkingIndicator, CLIConfig, set_cli_config
+        from friday_cli import CLIConfig, ThinkingIndicator, set_cli_config
 
         # Set custom spinner styles
-        custom_config = CLIConfig.from_dict({
-            "spinner": {
-                "text_style": "bold magenta",
-                "spinner_style": "yellow",
+        custom_config = CLIConfig.from_dict(
+            {
+                "spinner": {
+                    "text_style": "bold magenta",
+                    "spinner_style": "yellow",
+                }
             }
-        })
+        )
         set_cli_config(custom_config)
 
         # Start indicator to verify styles are applied (no crash)

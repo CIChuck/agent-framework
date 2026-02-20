@@ -34,7 +34,11 @@ class GitBranchListTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "all": {"type": "boolean", "description": "Include remote branches", "default": False},
+                "all": {
+                    "type": "boolean",
+                    "description": "Include remote branches",
+                    "default": False,
+                },
             },
             "required": [],
         }
@@ -76,7 +80,10 @@ class GitBranchCreateTool(BaseTool):
             "properties": {
                 "path": {"type": "string", "default": "."},
                 "name": {"type": "string", "description": "Branch name"},
-                "start_point": {"type": "string", "description": "Start from this commit/branch"},
+                "start_point": {
+                    "type": "string",
+                    "description": "Start from this commit/branch",
+                },
             },
             "required": ["name"],
         }
@@ -121,8 +128,15 @@ class GitCheckoutTool(BaseTool):
             "type": "object",
             "properties": {
                 "path": {"type": "string", "default": "."},
-                "target": {"type": "string", "description": "Branch, tag, or commit to checkout"},
-                "create": {"type": "boolean", "description": "Create branch if it doesn't exist", "default": False},
+                "target": {
+                    "type": "string",
+                    "description": "Branch, tag, or commit to checkout",
+                },
+                "create": {
+                    "type": "boolean",
+                    "description": "Create branch if it doesn't exist",
+                    "default": False,
+                },
             },
             "required": ["target"],
         }

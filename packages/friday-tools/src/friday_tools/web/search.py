@@ -44,9 +44,7 @@ class WebSearchTool(BaseTool):
                    Accepts WebConfig object, dict (from YAML), or None.
                    Uses DEFAULT_WEB_CONFIG if not provided.
         """
-        logger.debug(
-            f"WebSearchTool.__init__ called with config type: {type(config)}"
-        )
+        logger.debug(f"WebSearchTool.__init__ called with config type: {type(config)}")
         if config is None:
             self._config = DEFAULT_WEB_CONFIG
         elif isinstance(config, dict):

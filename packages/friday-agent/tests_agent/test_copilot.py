@@ -4,14 +4,13 @@ Tests for CopilotAgent.
 Tests the Re-Act loop and tool execution with mocked dependencies.
 """
 
-import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
-from dataclasses import dataclass
+from unittest.mock import AsyncMock, MagicMock
 
+import pytest
 from friday_agent import AgentProfile, CopilotAgent, DefaultToolRegistry
 from friday_core.interfaces import ChatCompletionResponse, ToolCall
 from friday_core.telemetry import DebugTelemetryRecorder
-from friday_memory.models import SessionState, ContextPayload
+from friday_memory.models import ContextPayload, SessionState
 
 
 @pytest.fixture
@@ -32,14 +31,16 @@ def mock_memory():
     """Create a mock memory controller."""
     mock = MagicMock()
     mock.add_turn = AsyncMock(return_value=True)
-    mock.recall = AsyncMock(return_value=ContextPayload(
-        history=[],
-        passages=[],
-        entities=[],
-        facts=[],
-        recent_memories=[],
-        debug_info={},
-    ))
+    mock.recall = AsyncMock(
+        return_value=ContextPayload(
+            history=[],
+            passages=[],
+            entities=[],
+            facts=[],
+            recent_memories=[],
+            debug_info={},
+        )
+    )
     return mock
 
 
@@ -47,21 +48,27 @@ def mock_memory():
 def mock_context_engine():
     """Create a mock context engine."""
     mock = MagicMock()
-    mock.initialize_session = AsyncMock(return_value=SessionState(
-        session_id="test-session",
-        user_id="test-user",
-    ))
-    mock.assemble_context = AsyncMock(return_value=ContextPayload(
-        history=[],
-        passages=[],
-        entities=[],
-        facts=[],
-        recent_memories=[],
-        debug_info={},
-    ))
-    mock.format_prompt = AsyncMock(return_value=[
-        {"role": "system", "content": "You are a test assistant."},
-    ])
+    mock.initialize_session = AsyncMock(
+        return_value=SessionState(
+            session_id="test-session",
+            user_id="test-user",
+        )
+    )
+    mock.assemble_context = AsyncMock(
+        return_value=ContextPayload(
+            history=[],
+            passages=[],
+            entities=[],
+            facts=[],
+            recent_memories=[],
+            debug_info={},
+        )
+    )
+    mock.format_prompt = AsyncMock(
+        return_value=[
+            {"role": "system", "content": "You are a test assistant."},
+        ]
+    )
     mock.extract_context = AsyncMock()
     return mock
 
@@ -70,10 +77,12 @@ def mock_context_engine():
 def mock_llm():
     """Create a mock LLM client."""
     mock = MagicMock()
-    mock.chat_completion = AsyncMock(return_value=ChatCompletionResponse(
-        content="Hello! I'm here to help.",
-        tool_calls=[],
-    ))
+    mock.chat_completion = AsyncMock(
+        return_value=ChatCompletionResponse(
+            content="Hello! I'm here to help.",
+            tool_calls=[],
+        )
+    )
     return mock
 
 

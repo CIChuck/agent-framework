@@ -12,7 +12,6 @@ Ref: Batch 1 Specification, Section 1
 from abc import ABC
 
 import pytest
-
 from friday_core import (
     ContextEngineeringInterface,
     EpisodicStoreAdapter,
@@ -69,6 +68,9 @@ class TestEpisodicStoreAdapter:
             async def mark_consolidated(self, turn_ids):
                 return True
 
+            async def mark_compacted(self, turn_ids):
+                return True
+
             async def rewind_history(self, session_id, target_turn_id):
                 return True
 
@@ -111,7 +113,9 @@ class TestVectorStoreAdapter:
             async def add_documents(self, texts, metadatas, ids):
                 return True
 
-            async def query(self, query_text, n_results=5, where=None, rerank=False, hybrid=False):
+            async def query(
+                self, query_text, n_results=5, where=None, rerank=False, hybrid=False
+            ):
                 return []
 
             async def delete(self, ids):

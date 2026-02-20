@@ -4,11 +4,11 @@ Tests for LiteLLM Service.
 Tests chat completion functionality with mocked LiteLLM responses.
 """
 
-import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from friday_llm import LiteLLMService
+import pytest
 from friday_core.telemetry import DebugTelemetryRecorder
+from friday_llm import LiteLLMService
 
 
 class MockChoice:
@@ -166,13 +166,9 @@ class TestLiteLLMService:
             name: str
             value: int
 
-        mock_response = MockResponse(
-            content='{"name": "test", "value": 42}'
-        )
+        mock_response = MockResponse(content='{"name": "test", "value": 42}')
 
-        with patch(
-            "litellm.acompletion", new_callable=AsyncMock
-        ) as mock_completion:
+        with patch("litellm.acompletion", new_callable=AsyncMock) as mock_completion:
             mock_completion.return_value = mock_response
 
             response = await service.chat_completion(
@@ -196,9 +192,7 @@ class TestLiteLLMService:
         fenced_json = '```json\n{"name": "test", "value": 42}\n```'
         mock_response = MockResponse(content=fenced_json)
 
-        with patch(
-            "litellm.acompletion", new_callable=AsyncMock
-        ) as mock_completion:
+        with patch("litellm.acompletion", new_callable=AsyncMock) as mock_completion:
             mock_completion.return_value = mock_response
 
             response = await service.chat_completion(
@@ -221,9 +215,7 @@ class TestLiteLLMService:
         fenced = '```\n{"name": "hello"}\n```'
         mock_response = MockResponse(content=fenced)
 
-        with patch(
-            "litellm.acompletion", new_callable=AsyncMock
-        ) as mock_completion:
+        with patch("litellm.acompletion", new_callable=AsyncMock) as mock_completion:
             mock_completion.return_value = mock_response
 
             response = await service.chat_completion(
@@ -235,9 +227,7 @@ class TestLiteLLMService:
             assert response._parsed_model.name == "hello"
 
     @pytest.mark.asyncio
-    async def test_response_model_parse_failure_leaves_none(
-        self, service
-    ):
+    async def test_response_model_parse_failure_leaves_none(self, service):
         """Test that _parsed_model is None when parsing fails."""
         from pydantic import BaseModel
 
@@ -246,9 +236,7 @@ class TestLiteLLMService:
 
         mock_response = MockResponse(content="not json at all")
 
-        with patch(
-            "litellm.acompletion", new_callable=AsyncMock
-        ) as mock_completion:
+        with patch("litellm.acompletion", new_callable=AsyncMock) as mock_completion:
             mock_completion.return_value = mock_response
 
             response = await service.chat_completion(

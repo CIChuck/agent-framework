@@ -36,7 +36,7 @@ async def display_streaming_response(
         delay: Seconds to wait between chunks (default 0.01)
     """
     for i in range(0, len(content), chunk_size):
-        chunk = content[i:i + chunk_size]
+        chunk = content[i : i + chunk_size]
         sys.stdout.write(chunk)
         sys.stdout.flush()
         if delay > 0:
@@ -69,7 +69,7 @@ def parse_text_tool_calls(
     tool_names = {t["function"]["name"] for t in tool_schemas}
 
     # Match patterns like: → tool_name(arg1='value1', arg2='value2')
-    tool_pattern = r'→?\s*(\w+)\(([^)]*)\)'
+    tool_pattern = r"→?\s*(\w+)\(([^)]*)\)"
     matches = re.findall(tool_pattern, content)
 
     for tool_name, args_str in matches:
@@ -81,17 +81,21 @@ def parse_text_tool_calls(
                 arg_pattern = r"(\w+)\s*=\s*(?:'([^']*)'|\"([^\"]*)\"|(\S+))"
                 for match in re.finditer(arg_pattern, args_str):
                     key = match.group(1)
-                    # Value is in group 2 (single quote), 3 (double quote), or 4 (unquoted)
+                    # Value is in group 2 (single quote), 3 (double quote), or 4 (unquoted)  # noqa: E501
                     value = match.group(2) or match.group(3) or match.group(4)
                     args[key] = value
 
-            parsed_tool_calls.append({
-                "id": f"text_parsed_{tool_name}_{len(parsed_tool_calls)}",
-                "name": tool_name,
-                "arguments": args,
-            })
+            parsed_tool_calls.append(
+                {
+                    "id": f"text_parsed_{tool_name}_{len(parsed_tool_calls)}",
+                    "name": tool_name,
+                    "arguments": args,
+                }
+            )
 
     if parsed_tool_calls:
-        logger.info(f"Parsed {len(parsed_tool_calls)} text-based tool call(s) from model response")
+        logger.info(
+            f"Parsed {len(parsed_tool_calls)} text-based tool call(s) from model response"  # noqa: E501
+        )
 
     return parsed_tool_calls

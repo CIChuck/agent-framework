@@ -27,8 +27,14 @@ def register_workflow_commands(registry, session: "MemoryChatSession") -> None:
             ctx.cmd_workflow(subcommand, args)
         ),
         arguments=[
-            arg("subcommand", required=False, description="list|run|status|approve|skip"),
-            arg("args", required=False, description="Additional arguments for subcommand"),
+            arg(
+                "subcommand", required=False, description="list|run|status|approve|skip"
+            ),
+            arg(
+                "args",
+                required=False,
+                description="Additional arguments for subcommand",
+            ),
         ],
         description="Manage workflows (list, run, status, approve, skip)",
         category="workflows",

@@ -6,17 +6,15 @@ import asyncio
 import shutil
 import tempfile
 from array import array
+from collections.abc import AsyncIterator, Iterable
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
-from collections.abc import AsyncIterator
 
 from friday_core.logging import get_logger
 
 from .config import LimitsConfig, PlaybackConfig, SpeechMode
 from .errors import DependencyError, PlaybackError
 from .interfaces import AudioFormat, AudioStream
-
 
 logger = get_logger(__name__)
 
@@ -148,11 +146,11 @@ async def _play_pcm_stream(
 
     speaker_kwargs: dict[str, int] = {}
     if hasattr(speaker_config, "device_index"):
-        device_index = getattr(speaker_config, "device_index")
+        device_index = speaker_config.device_index
         if device_index is not None:
             speaker_kwargs["device_index"] = device_index
     if hasattr(speaker_config, "buffer_size_secs"):
-        speaker_kwargs["buffer_size_secs"] = getattr(speaker_config, "buffer_size_secs")
+        speaker_kwargs["buffer_size_secs"] = speaker_config.buffer_size_secs
 
     supported = {}
     try:
@@ -163,7 +161,9 @@ async def _play_pcm_stream(
             bits_per_sample = getattr(speaker_config, "bits_per_sample", 16)
             if bits_per_sample:
                 speaker_kwargs["bits_per_sample"] = bits_per_sample
-        filtered = {k: v for k, v in speaker_kwargs.items() if k in supported and v is not None}
+        filtered = {
+            k: v for k, v in speaker_kwargs.items() if k in supported and v is not None
+        }
         dropped = {k for k in speaker_kwargs if k not in filtered}
         if dropped:
             logger.warning(
@@ -173,11 +173,13 @@ async def _play_pcm_stream(
         speaker = PvSpeaker(stream.sample_rate, **filtered)
     except TypeError as exc:
         logger.error(
-            "PvSpeaker init failed with configured parameters; retrying with minimal args.",
+            "PvSpeaker init failed with configured parameters; retrying with minimal args.",  # noqa: E501
             error=str(exc),
         )
         if "bits_per_sample" in supported:
-            speaker = PvSpeaker(stream.sample_rate, speaker_kwargs.get("bits_per_sample", 16))
+            speaker = PvSpeaker(
+                stream.sample_rate, speaker_kwargs.get("bits_per_sample", 16)
+            )
         else:
             speaker = PvSpeaker(stream.sample_rate)
     speaker.start()
@@ -195,7 +197,9 @@ async def _play_pcm_stream(
                 continue
             if max_frames is not None and frames_written >= max_frames:
                 break
-            if bits_per_sample == 16 and isinstance(chunk, (bytes, bytearray, memoryview)):
+            if bits_per_sample == 16 and isinstance(
+                chunk, (bytes, bytearray, memoryview)
+            ):
                 pcm_samples = array("h")
                 pcm_samples.frombytes(bytes(chunk))
                 offset = 0

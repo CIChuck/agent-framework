@@ -109,8 +109,8 @@ class MemoryLifecycleMetadata(BaseModel):
     )
     protected: bool = Field(
         default=False,
-        description="If True, memory is exempt from decay and eligible for immediate promotion. "
-        "Used for explicitly ingested documents that represent intentional knowledge preservation.",
+        description="If True, memory is exempt from decay and eligible for immediate promotion. "  # noqa: E501
+        "Used for explicitly ingested documents that represent intentional knowledge preservation.",  # noqa: E501
     )
 
     def to_metadata_dict(self) -> dict[str, str | float | int | bool | None]:
@@ -125,7 +125,9 @@ class MemoryLifecycleMetadata(BaseModel):
             "decay_score": self.decay_score,
             "created_at": self.created_at.isoformat(),
             "last_accessed_at": self.last_accessed_at.isoformat(),
-            "last_decay_at": self.last_decay_at.isoformat() if self.last_decay_at else None,
+            "last_decay_at": self.last_decay_at.isoformat()
+            if self.last_decay_at
+            else None,
             "promoted_at": self.promoted_at.isoformat() if self.promoted_at else None,
             "decayed_at": self.decayed_at.isoformat() if self.decayed_at else None,
             "access_count": self.access_count,

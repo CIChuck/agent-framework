@@ -8,7 +8,7 @@ based on a multi-factor scoring system:
 - Usage: Frequently-used memories get a boost (hit_count)
 
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Long-Term Memory Inclusion Scoring"
-"""
+"""  # noqa: E501
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ class InclusionScorerConfig(BaseModel):
         default=0.005,
         ge=0.0001,
         le=0.1,
-        description="Per-hour decay rate for inclusion scoring (separate from lifecycle decay)",
+        description="Per-hour decay rate for inclusion scoring (separate from lifecycle decay)",  # noqa: E501
     )
     usage_boost_factor: float = Field(
         default=0.1,

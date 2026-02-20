@@ -1,7 +1,5 @@
 """Tests for telemetry providers."""
 
-import pytest
-
 from friday_telemetry import (
     CompositeProvider,
     DebugTelemetryRecorder,

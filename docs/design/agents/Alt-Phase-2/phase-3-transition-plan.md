@@ -8,7 +8,7 @@
 - `docs/design/agents/Alt-Phase-2/agent-contract-compliance-matrix.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-schema-spec.md`
 - `docs/design/agents/Alt-Phase-2/agent-contract-test-strategy.md`
-- `docs/design/agents/Alt-Phase-2/phase-2-build-plan.md`
+- Phase 2 build baseline (archived)
 
 ---
 

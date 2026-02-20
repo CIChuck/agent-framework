@@ -1,4 +1,5 @@
 """Integration stubs (not yet implemented)."""
+
 from .calendar import calendar_create_event, calendar_list_events
 from .database import database_query
 from .email import email_send

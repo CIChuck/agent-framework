@@ -13,13 +13,14 @@ logger = logging.getLogger(__name__)
 class ToolResult(BaseModel):
     """
     Standardized return object for all Friday Tools.
-    
+
     Attributes:
         content: The human-readable string representation (for LLM context).
         data: The raw structured data (for Memory/Code analysis).
         metadata: Additional context (e.g., execution time, source IDs).
         error: Optional error message if execution failed.
     """
+
     content: str
     data: Any | None = None
     metadata: dict[str, Any] = Field(default_factory=dict)
@@ -117,23 +118,19 @@ class FridayTool(ToolDefinition, ABC):
         except Exception as e:
             arg_summary = {
                 k: (
-                    f"<{type(v).__name__}, "
-                    f"len={len(v)}>"
+                    f"<{type(v).__name__}, len={len(v)}>"
                     if isinstance(v, str) and len(v) > 200
                     else v
                 )
                 for k, v in kwargs.items()
             }
             logger.error(
-                "Tool '%s' input validation failed: %s | "
-                "args=%s",
+                "Tool '%s' input validation failed: %s | args=%s",
                 self.name,
                 e,
                 arg_summary,
             )
-            return (
-                f"Error executing tool '{self.name}': {e}"
-            )
+            return f"Error executing tool '{self.name}': {e}"
 
         try:
             result = await self.run(validated_args)
@@ -145,9 +142,7 @@ class FridayTool(ToolDefinition, ABC):
                 e,
                 exc_info=True,
             )
-            return (
-                f"Error executing tool '{self.name}': {e}"
-            )
+            return f"Error executing tool '{self.name}': {e}"
 
     @staticmethod
     def _recover_raw_args(
@@ -177,8 +172,7 @@ class FridayTool(ToolDefinition, ABC):
             parsed = json.loads(raw)
             if isinstance(parsed, dict):
                 logger.info(
-                    "Recovered tool args from raw JSON "
-                    "(len=%d)",
+                    "Recovered tool args from raw JSON (len=%d)",
                     len(raw),
                 )
                 return parsed
@@ -192,7 +186,7 @@ class FridayTool(ToolDefinition, ABC):
             # Check if we're inside an unclosed string
             in_str = False
             for ch in attempt:
-                if ch == '\\':
+                if ch == "\\":
                     continue
                 if ch == '"':
                     in_str = not in_str
@@ -206,8 +200,7 @@ class FridayTool(ToolDefinition, ABC):
                 parsed = json.loads(attempt)
                 if isinstance(parsed, dict):
                     logger.info(
-                        "Recovered tool args from "
-                        "truncated JSON (len=%d)",
+                        "Recovered tool args from truncated JSON (len=%d)",
                         len(raw),
                     )
                     return parsed
@@ -220,10 +213,10 @@ class FridayTool(ToolDefinition, ABC):
     async def run(self, args: BaseModel) -> ToolResult:
         """
         Implementation logic for the tool.
-        
+
         Args:
             args: The validated Input model.
-            
+
         Returns:
             A ToolResult object containing structured data.
         """

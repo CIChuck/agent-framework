@@ -4,10 +4,7 @@ Unit tests for the code_chunker module.
 Tests structure-aware code chunking for Python and generic languages.
 """
 
-import pytest
-
 from friday_tools.filesystem.code_chunker import (
-    BaseLanguageChunker,
     ChunkType,
     CodeChunk,
     CodeChunkerFactory,
@@ -15,7 +12,6 @@ from friday_tools.filesystem.code_chunker import (
     PythonCodeChunker,
     SymbolTable,
 )
-
 
 # =============================================================================
 # SAMPLE CODE FOR TESTING
@@ -65,14 +61,14 @@ def main():
     print(calc.add(5))
 '''
 
-PYTHON_CODE_IMPORTS_ONLY = '''
+PYTHON_CODE_IMPORTS_ONLY = """
 import os
 import sys
 from pathlib import Path
 from typing import Any, Dict
-'''
+"""
 
-GENERIC_CODE_JS = '''
+GENERIC_CODE_JS = """
 // A simple module
 
 import { something } from "./other";
@@ -92,9 +88,9 @@ class Person {
 }
 
 export default Person;
-'''
+"""
 
-GENERIC_CODE_RUST = '''
+GENERIC_CODE_RUST = """
 //! Module documentation
 
 use std::io;
@@ -116,12 +112,13 @@ impl Person {
         Person { name: name.to_string() }
     }
 }
-'''
+"""
 
 
 # =============================================================================
 # PYTHON CHUNKER TESTS
 # =============================================================================
+
 
 class TestPythonCodeChunker:
     """Tests for PythonCodeChunker."""
@@ -225,6 +222,7 @@ class TestPythonCodeChunker:
 # GENERIC CHUNKER TESTS
 # =============================================================================
 
+
 class TestGenericCodeChunker:
     """Tests for GenericCodeChunker."""
 
@@ -279,6 +277,7 @@ class TestGenericCodeChunker:
 # FACTORY TESTS
 # =============================================================================
 
+
 class TestCodeChunkerFactory:
     """Tests for CodeChunkerFactory."""
 
@@ -321,12 +320,15 @@ class TestCodeChunkerFactory:
         assert CodeChunkerFactory.supports_extension(".js")
         assert CodeChunkerFactory.supports_extension(".go")
         # Unknown extensions still return True (generic chunker available)
-        assert CodeChunkerFactory.supports_extension(".xyz") is False or True  # Implementation-dependent
+        assert (
+            CodeChunkerFactory.supports_extension(".xyz") is False or True
+        )  # Implementation-dependent
 
 
 # =============================================================================
 # DATA CLASS TESTS
 # =============================================================================
+
 
 class TestDataClasses:
     """Tests for data classes."""

@@ -19,7 +19,12 @@ from pathlib import Path
 from typing import Any
 
 from .config import SandboxConfig, WorkspaceConfig
-from .models import ExecutionResult, SandboxExecutionError, SandboxTimeoutError, Workspace
+from .models import (
+    ExecutionResult,
+    SandboxExecutionError,
+    SandboxTimeoutError,
+    Workspace,
+)
 from .serialization import (
     extract_return_value,
     validate_return_type,
@@ -88,7 +93,9 @@ class SubprocessSandbox:
             ValueError: If language is not supported.
         """
         if language != "python":
-            raise ValueError(f"Unsupported language: {language}. Only 'python' is supported.")
+            raise ValueError(
+                f"Unsupported language: {language}. Only 'python' is supported."
+            )
 
         # Resolve timeout
         timeout = timeout_seconds or self.config.docker.default_timeout_seconds
@@ -137,12 +144,12 @@ class SubprocessSandbox:
             except asyncio.TimeoutError:
                 process.kill()
                 process.wait()
-                raise SandboxTimeoutError(timeout)
+                raise SandboxTimeoutError(timeout)  # noqa: B904
 
         except SandboxTimeoutError:
             raise
         except Exception as e:
-            raise SandboxExecutionError(f"Failed to execute code: {e}")
+            raise SandboxExecutionError(f"Failed to execute code: {e}")  # noqa: B904
 
         execution_time_ms = (time.time() - start_time) * 1000
 

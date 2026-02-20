@@ -9,7 +9,8 @@ Ref: Model Context Protocol Specification (https://modelcontextprotocol.io)
 
 from __future__ import annotations
 
-from typing import Any, Callable, Protocol, runtime_checkable
+from collections.abc import Callable
+from typing import Any, Protocol, runtime_checkable
 
 # Import unified tool protocols from friday-core
 from friday_core.interfaces.tools import (

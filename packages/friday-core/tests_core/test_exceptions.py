@@ -10,7 +10,6 @@ Ref: Batch 0 Specification, Section 4.2
 """
 
 import pytest
-
 from friday_core import (
     ContextOverflowError,
     FridayError,

@@ -15,7 +15,6 @@ import uuid
 from pathlib import Path
 
 import pytest
-
 from friday_memory import ElementXGraphStore, GraphEdge, GraphNode, ProvenanceMetadata
 
 
@@ -30,7 +29,8 @@ def create_node(
         type=node_type,
         label=label,
         properties={},
-        provenance=provenance or ProvenanceMetadata(
+        provenance=provenance
+        or ProvenanceMetadata(
             source_id="test",
             source_type="test",
             confidence=1.0,
@@ -50,7 +50,8 @@ def create_edge(
         target_id=target_id,
         relation=relation,
         weight=1.0,
-        provenance=provenance or ProvenanceMetadata(
+        provenance=provenance
+        or ProvenanceMetadata(
             source_id="test",
             source_type="test",
             confidence=1.0,
@@ -330,7 +331,9 @@ class TestElementXGraphStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_add_node_allows_duplicate_with_warning(self, graph_store: ElementXGraphStore):
+    async def test_add_node_allows_duplicate_with_warning(
+        self, graph_store: ElementXGraphStore
+    ):
         """Test that by default duplicate nodes are added with warning."""
         alice1 = create_node("Alice")
         alice2 = create_node("Alice")  # Same label, different ID
@@ -388,7 +391,9 @@ class TestElementXGraphStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_add_edge_allows_different_relations(self, graph_store: ElementXGraphStore):
+    async def test_add_edge_allows_different_relations(
+        self, graph_store: ElementXGraphStore
+    ):
         """Test that edges with different relations are not duplicates."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -453,7 +458,9 @@ class TestElementXGraphStore:
         assert found.relation == "knows"
 
     @pytest.mark.asyncio
-    async def test_find_edge_with_relation_filter(self, graph_store: ElementXGraphStore):
+    async def test_find_edge_with_relation_filter(
+        self, graph_store: ElementXGraphStore
+    ):
         """Test find_edge with relation filter."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -498,10 +505,14 @@ class TestElementXGraphStore:
         assert await graph_store.edge_exists(alice.id, bob.id) is True
         assert await graph_store.edge_exists(alice.id, bob.id, "knows") is True
         assert await graph_store.edge_exists(alice.id, bob.id, "works_with") is False
-        assert await graph_store.edge_exists(bob.id, alice.id) is False  # Wrong direction
+        assert (
+            await graph_store.edge_exists(bob.id, alice.id) is False
+        )  # Wrong direction
 
     @pytest.mark.asyncio
-    async def test_edge_deduplication_case_insensitive(self, graph_store: ElementXGraphStore):
+    async def test_edge_deduplication_case_insensitive(
+        self, graph_store: ElementXGraphStore
+    ):
         """Test that edge relation comparison is case-insensitive."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -520,7 +531,9 @@ class TestElementXGraphStore:
         assert result2 is False
 
     @pytest.mark.asyncio
-    async def test_node_deduplication_case_insensitive(self, graph_store: ElementXGraphStore):
+    async def test_node_deduplication_case_insensitive(
+        self, graph_store: ElementXGraphStore
+    ):
         """Test that node label comparison is case-insensitive."""
         alice1 = create_node("Alice")
         alice2 = create_node("ALICE")  # Same label, different case

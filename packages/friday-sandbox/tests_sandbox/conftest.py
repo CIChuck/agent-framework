@@ -1,8 +1,5 @@
 """Pytest configuration and fixtures for friday-sandbox tests."""
 
-import tempfile
-from pathlib import Path
-
 import pytest
 
 from friday_sandbox import SandboxConfig, WorkspaceConfig, WorkspaceManager

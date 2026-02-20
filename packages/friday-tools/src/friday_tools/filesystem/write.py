@@ -66,12 +66,8 @@ class FileWriteTool(FridayTool):
                 exist.
         """
 
-        path: str = Field(
-            description="Path to the file to write"
-        )
-        content: str = Field(
-            description="Content to write to the file"
-        )
+        path: str = Field(description="Path to the file to write")
+        content: str = Field(description="Content to write to the file")
         mode: str = Field(
             default="write",
             description=(
@@ -89,12 +85,10 @@ class FileWriteTool(FridayTool):
             ),
         )
         encoding: str = Field(
-            default="utf-8",
-            description="File encoding (e.g., utf-8, latin-1, ascii)"
+            default="utf-8", description="File encoding (e.g., utf-8, latin-1, ascii)"
         )
         create_dirs: bool = Field(
-            default=True,
-            description="Create parent directories if they don't exist"
+            default=True, description="Create parent directories if they don't exist"
         )
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
@@ -121,8 +115,7 @@ class FileWriteTool(FridayTool):
         if args.mode not in ("write", "append"):
             return ToolResult(
                 content=(
-                    f"Error: Invalid mode '{args.mode}'. "
-                    "Use 'write' or 'append'."
+                    f"Error: Invalid mode '{args.mode}'. Use 'write' or 'append'."
                 ),
                 error=f"Invalid mode: {args.mode}",
             )
@@ -171,11 +164,13 @@ class FileWriteTool(FridayTool):
         try:
             if args.create_dirs:
                 validated_path.parent.mkdir(
-                    parents=True, exist_ok=True,
+                    parents=True,
+                    exist_ok=True,
                 )
 
             validated_path.write_text(
-                args.content, encoding=args.encoding,
+                args.content,
+                encoding=args.encoding,
             )
 
             stat_info = validated_path.stat()
@@ -200,9 +195,7 @@ class FileWriteTool(FridayTool):
                 },
                 metadata={
                     "path": args.path,
-                    "action": (
-                        "create" if not file_existed else "overwrite"
-                    ),
+                    "action": ("create" if not file_existed else "overwrite"),
                 },
             )
 
@@ -251,7 +244,8 @@ class FileWriteTool(FridayTool):
 
         try:
             with validated_path.open(
-                "a", encoding=args.encoding,
+                "a",
+                encoding=args.encoding,
             ) as f:
                 f.write(args.content)
 
@@ -283,9 +277,7 @@ class FileWriteTool(FridayTool):
             )
         except OSError as e:
             return ToolResult(
-                content=(
-                    f"Error: Failed to append to file: {e}"
-                ),
+                content=(f"Error: Failed to append to file: {e}"),
                 error=str(e),
             )
 
@@ -370,7 +362,7 @@ class FileInsertTool(BaseTool):
                 },
                 "line_number": {
                     "type": "integer",
-                    "description": "Line number to insert at (1-indexed, content inserted before this line)",
+                    "description": "Line number to insert at (1-indexed, content inserted before this line)",  # noqa: E501
                     "minimum": 1,
                 },
                 "content": {
@@ -563,7 +555,9 @@ class FilePatchTool(BaseTool):
 
         try:
             # Simple patch application - parse unified diff
-            lines = validated_path.read_text(encoding=encoding).splitlines(keepends=True)
+            lines = validated_path.read_text(encoding=encoding).splitlines(
+                keepends=True
+            )
             new_lines = self._apply_patch(lines, patch_content)
 
             validated_path.write_text("".join(new_lines), encoding=encoding)
@@ -587,7 +581,7 @@ class FilePatchTool(BaseTool):
                 match = re.match(r"@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@", line)
                 if match:
                     old_start = int(match.group(1)) - 1
-                    new_start = int(match.group(2)) - 1
+                    int(match.group(2)) - 1
 
                     i += 1
                     offset = 0

@@ -5,8 +5,7 @@ Tests file type detection, size-based routing, and tool behavior.
 """
 
 import tempfile
-from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -16,20 +15,21 @@ from friday_tools.filesystem.smart_read import (
     DATA_EXTENSIONS,
     SmartFileReadTool,
 )
-from friday_tools.base import ToolResult
-
 
 # =============================================================================
 # FIXTURES
 # =============================================================================
 
+
 @pytest.fixture
 def mock_llm():
     """Create a mock LLM service."""
     llm = MagicMock()
-    llm.chat_completion = AsyncMock(return_value=MagicMock(
-        content='{"summary": "Test summary", "entities": [], "key_points": []}'
-    ))
+    llm.chat_completion = AsyncMock(
+        return_value=MagicMock(
+            content='{"summary": "Test summary", "entities": [], "key_points": []}'
+        )
+    )
     return llm
 
 
@@ -79,6 +79,7 @@ def tool_with_memory(mock_llm, mock_memory):
 # =============================================================================
 # FILE TYPE DETECTION TESTS
 # =============================================================================
+
 
 class TestFileTypeDetection:
     """Tests for file type detection."""
@@ -155,6 +156,7 @@ class TestExtensionSets:
 # SMALL FILE HANDLING TESTS
 # =============================================================================
 
+
 class TestSmallFileHandling:
     """Tests for handling small files (direct read)."""
 
@@ -193,7 +195,9 @@ class TestSmallFileHandling:
         result = await tool_minimal.run(args)
 
         assert result.error is not None
-        assert "not found" in result.error.lower() or "not within" in result.error.lower()
+        assert (
+            "not found" in result.error.lower() or "not within" in result.error.lower()
+        )
 
     @pytest.mark.asyncio
     async def test_directory_error(self, tool_minimal):
@@ -209,6 +213,7 @@ class TestSmallFileHandling:
 # =============================================================================
 # LARGE FILE HANDLING TESTS
 # =============================================================================
+
 
 class TestLargeFileHandling:
     """Tests for handling large files (chunked processing)."""
@@ -265,6 +270,7 @@ class TestLargeFileHandling:
 # MEMORY STORAGE TESTS
 # =============================================================================
 
+
 class TestMemoryStorage:
     """Tests for memory storage integration."""
 
@@ -296,12 +302,16 @@ class TestMemoryStorage:
 
             assert result.error is None
             # Should mention storage in content
-            assert "memory" in result.content.lower() or len(result.data.get("stored_ids", [])) > 0
+            assert (
+                "memory" in result.content.lower()
+                or len(result.data.get("stored_ids", [])) > 0
+            )
 
 
 # =============================================================================
 # CACHING TESTS
 # =============================================================================
+
 
 class TestCaching:
     """Tests for the three-layer caching system."""
@@ -329,7 +339,6 @@ class TestCaching:
     @pytest.mark.asyncio
     async def test_session_cache_invalidation_on_mtime_change(self, tool_with_llm):
         """Test that cache is invalidated when file mtime changes."""
-        import os
         import time
 
         with tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False) as f:
@@ -427,6 +436,7 @@ class TestCaching:
 # BINARY FILE TESTS
 # =============================================================================
 
+
 class TestBinaryFiles:
     """Tests for binary file handling."""
 
@@ -462,6 +472,7 @@ class TestBinaryFiles:
 # CONTEXT OUTPUT TESTS
 # =============================================================================
 
+
 class TestContextOutput:
     """Tests for context output behavior."""
 
@@ -495,6 +506,7 @@ class TestContextOutput:
 # =============================================================================
 # TOOL SCHEMA TESTS
 # =============================================================================
+
 
 class TestToolSchema:
     """Tests for tool schema and metadata."""

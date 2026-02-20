@@ -127,7 +127,9 @@ class MemoryService:
                     "retrieve_failed", {"query": query, "error": str(e)}
                 )
                 if span_id:
-                    self._telemetry.end_span(span_id, {"status": "error", "error": str(e)})
+                    self._telemetry.end_span(
+                        span_id, {"status": "error", "error": str(e)}
+                    )
 
             raise
 
@@ -175,7 +177,11 @@ class MemoryService:
         await asyncio.sleep(0.01)
 
         results = [
-            {"id": f"doc_{i}", "content": f"Document {i} about {query}", "score": 0.95 - i * 0.05}
+            {
+                "id": f"doc_{i}",
+                "content": f"Document {i} about {query}",
+                "score": 0.95 - i * 0.05,
+            }
             for i in range(limit)
         ]
 
@@ -223,7 +229,9 @@ async def run_production_simulation():
     service = ctx.create_memory_service()
 
     result = await service.retrieve("What are the best practices for API design?")
-    print(f"\nRetrieved {len(result.documents)} documents in {result.latency_ms:.2f}ms\n")
+    print(
+        f"\nRetrieved {len(result.documents)} documents in {result.latency_ms:.2f}ms\n"
+    )
 
 
 async def run_development_simulation():
@@ -248,7 +256,7 @@ async def run_development_simulation():
 
         # Show span hierarchy
         print("\nSpan timings:")
-        for span_id, span in recorder.spans.items():
+        for _span_id, span in recorder.spans.items():
             if span.duration_ms is not None:
                 indent = "  " if span.parent_id else ""
                 print(f"{indent}{span.name}: {span.duration_ms:.2f}ms")
@@ -266,7 +274,7 @@ async def run_test_harness():
     service = MemoryService(logger=test_logger, telemetry=test_recorder)
 
     # Execute the operation
-    result = await service.retrieve("test query", limit=5)
+    await service.retrieve("test query", limit=5)
 
     # White-box assertions on internal behavior
     print("Running assertions on telemetry data...")

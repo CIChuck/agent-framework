@@ -7,7 +7,7 @@ Manages three separate ChromaDB collections for different memory stages:
 - decayed: Low-value memories pending cleanup (not queried by default)
 
 Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Storage Architecture Decision"
-"""
+"""  # noqa: E501
 
 from __future__ import annotations
 
@@ -98,10 +98,10 @@ class CollectionManager:
 
     def __init__(
         self,
-        embedding_function: "EmbeddingModel",
+        embedding_function: EmbeddingModel,
         config: CollectionConfig | None = None,
         path: str | None = None,
-        telemetry: "TelemetryInterface | None" = None,
+        telemetry: TelemetryInterface | None = None,
     ) -> None:
         """
         Initialize the collection manager.
@@ -307,9 +307,7 @@ class CollectionManager:
                 if "created_at" in metadata:
                     try:
                         metadata["created_at_ts"] = int(
-                            datetime.fromisoformat(
-                                metadata["created_at"]
-                            ).timestamp()
+                            datetime.fromisoformat(metadata["created_at"]).timestamp()
                         )
                     except (ValueError, TypeError):
                         metadata["created_at_ts"] = now_ts
@@ -722,7 +720,7 @@ class CollectionManager:
     async def cleanup_orphaned_graph_nodes(
         self,
         deleted_memory_ids: set[str],
-        graph_store: "GraphStoreAdapter",
+        graph_store: GraphStoreAdapter,
         dry_run: bool = True,
     ) -> dict[str, Any]:
         """

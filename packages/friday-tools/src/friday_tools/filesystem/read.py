@@ -7,12 +7,9 @@ Ref: docs/build-plan/tool-improvement-build-plan.md - Enhanced file reading
 
 from __future__ import annotations
 
-import itertools
-import os
 import re
 import stat
 from datetime import datetime
-from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel, Field
@@ -41,21 +38,16 @@ class FileReadTool(FridayTool):
     tags = ["file", "read", "text", "cat"]
 
     class Input(BaseModel):
-        path: str = Field(
-            description="Path to the file to read"
-        )
+        path: str = Field(description="Path to the file to read")
         encoding: str = Field(
             default="auto",
-            description="File encoding. Use 'auto' for automatic detection, or specify explicitly (utf-8, latin-1, etc.)"
+            description="File encoding. Use 'auto' for automatic detection, or specify explicitly (utf-8, latin-1, etc.)",  # noqa: E501
         )
         start_line: int = Field(
-            default=1,
-            ge=1,
-            description="Starting line number (1-indexed, default: 1)"
+            default=1, ge=1, description="Starting line number (1-indexed, default: 1)"
         )
         max_lines: int | None = Field(
-            default=None,
-            description="Maximum number of lines to read (None for all)"
+            default=None, description="Maximum number of lines to read (None for all)"
         )
 
     def __init__(self, sandbox: FilesystemSandbox | None = None):
@@ -68,13 +60,13 @@ class FileReadTool(FridayTool):
         if not validated_path.exists():
             return ToolResult(
                 content=f"Error: File not found: {args.path}",
-                error=f"File not found: {args.path}"
+                error=f"File not found: {args.path}",
             )
 
         if not validated_path.is_file():
             return ToolResult(
                 content=f"Error: Not a file: {args.path}",
-                error=f"Not a file: {args.path}"
+                error=f"Not a file: {args.path}",
             )
 
         try:
@@ -100,8 +92,8 @@ class FileReadTool(FridayTool):
 
             if start_idx >= total_lines:
                 return ToolResult(
-                    content=f"Error: Start line {args.start_line} exceeds file length ({total_lines} lines)",
-                    error=f"Start line out of range"
+                    content=f"Error: Start line {args.start_line} exceeds file length ({total_lines} lines)",  # noqa: E501
+                    error="Start line out of range",
                 )
 
             if args.max_lines is not None:
@@ -117,7 +109,7 @@ class FileReadTool(FridayTool):
 
             # Add truncation notice if applicable
             if truncated:
-                content += f"\n... (showing lines {args.start_line}-{truncated_at_line} of {total_lines})"
+                content += f"\n... (showing lines {args.start_line}-{truncated_at_line} of {total_lines})"  # noqa: E501
 
             # Count lines in returned content
             line_count = len(selected_lines)
@@ -139,25 +131,19 @@ class FileReadTool(FridayTool):
                     "truncated": truncated,
                     "truncated_at_line": truncated_at_line,
                     "start_line": args.start_line,
-                }
+                },
             )
 
         except UnicodeDecodeError as e:
             msg = f"Failed to decode file: {e}"
-            return ToolResult(
-                content=f"Error: {msg}",
-                error=f"Encoding error: {e}"
-            )
+            return ToolResult(content=f"Error: {msg}", error=f"Encoding error: {e}")
         except PermissionError:
             return ToolResult(
                 content=f"Error: Permission denied: {args.path}",
-                error="Permission denied"
+                error="Permission denied",
             )
         except Exception as e:
-            return ToolResult(
-                content=f"Error: Failed to read file: {e}",
-                error=str(e)
-            )
+            return ToolResult(content=f"Error: Failed to read file: {e}", error=str(e))
 
 
 class FileReadLinesTool(BaseTool):
@@ -227,7 +213,7 @@ class FileReadLinesTool(BaseTool):
             end_idx = end_line
 
             if start_idx >= len(lines):
-                return f"Error: Start line {start_line} exceeds file length ({len(lines)} lines)"
+                return f"Error: Start line {start_line} exceeds file length ({len(lines)} lines)"  # noqa: E501
 
             selected_lines = lines[start_idx:end_idx]
             return "".join(selected_lines)
@@ -248,7 +234,7 @@ class FileInfoTool(BaseTool):
 
     @property
     def description(self) -> str:
-        return "Get metadata about a file including size, modification time, and permissions."
+        return "Get metadata about a file including size, modification time, and permissions."  # noqa: E501
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
@@ -348,7 +334,7 @@ class FileGrepTool(BaseTool):
                 },
                 "context_lines": {
                     "type": "integer",
-                    "description": "Number of context lines to show before/after matches",
+                    "description": "Number of context lines to show before/after matches",  # noqa: E501
                     "default": 0,
                 },
             },
@@ -384,7 +370,9 @@ class FileGrepTool(BaseTool):
                         context_block = []
                         for j in range(start, end):
                             prefix = ">" if j == i - 1 else " "
-                            context_block.append(f"{prefix}{j+1}: {lines[j].rstrip()}")
+                            context_block.append(
+                                f"{prefix}{j + 1}: {lines[j].rstrip()}"
+                            )
                         matches.append("\n".join(context_block))
                     else:
                         matches.append(f"{i}: {line.rstrip()}")

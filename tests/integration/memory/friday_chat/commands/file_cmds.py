@@ -22,7 +22,11 @@ def register_file_commands(registry, session: "MemoryChatSession") -> None:
         "read",
         lambda ctx, path="", **kwargs: asyncio.create_task(ctx.cmd_read_file(path)),
         arguments=[
-            arg("path", required=True, description="Path to file (supports txt, csv, pdf, docx, xlsx)"),
+            arg(
+                "path",
+                required=True,
+                description="Path to file (supports txt, csv, pdf, docx, xlsx)",
+            ),
         ],
         description="Read file with smart format detection",
         category="files",
@@ -32,7 +36,11 @@ def register_file_commands(registry, session: "MemoryChatSession") -> None:
         "ingest",
         lambda ctx, path="", **kwargs: asyncio.create_task(ctx.cmd_ingest_file(path)),
         arguments=[
-            arg("path", required=True, description="Path to file to ingest into vector memory"),
+            arg(
+                "path",
+                required=True,
+                description="Path to file to ingest into vector memory",
+            ),
         ],
         description="Ingest file content into vector memory",
         category="files",

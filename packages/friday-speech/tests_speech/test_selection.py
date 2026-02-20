@@ -1,7 +1,7 @@
 """Tests for speech text selection and tag parsing."""
 
-from friday_speech.selection import select_speech_text
 from friday_speech.config import SelectionConfig, SelectionStrategy
+from friday_speech.selection import select_speech_text
 
 
 def test_include_tags_override_strategy() -> None:

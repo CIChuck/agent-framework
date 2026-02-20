@@ -86,13 +86,17 @@ def display_error(
         console.print(f"  [muted]{str(exception)}[/muted]")
 
         if show_traceback:
-            tb = traceback.format_exception(type(exception), exception, exception.__traceback__)
-            console.print(Panel(
-                "".join(tb),
-                title="Traceback",
-                border_style="red",
-                expand=False,
-            ))
+            tb = traceback.format_exception(
+                type(exception), exception, exception.__traceback__
+            )
+            console.print(
+                Panel(
+                    "".join(tb),
+                    title="Traceback",
+                    border_style="red",
+                    expand=False,
+                )
+            )
 
 
 def display_warning(message: str) -> None:
@@ -284,12 +288,14 @@ def display_banner(
         content.append("\n")
         content.append(f"v{version}", style="dim cyan")
 
-    console.print(Panel(
-        content,
-        border_style="cyan",
-        expand=False,
-        padding=(1, 4),
-    ))
+    console.print(
+        Panel(
+            content,
+            border_style="cyan",
+            expand=False,
+            padding=(1, 4),
+        )
+    )
 
 
 def display_panel(
@@ -316,12 +322,14 @@ def display_panel(
     }
     border_style = style_map.get(style, "white")
 
-    console.print(Panel(
-        content,
-        title=title,
-        border_style=border_style,
-        expand=False,
-    ))
+    console.print(
+        Panel(
+            content,
+            title=title,
+            border_style=border_style,
+            expand=False,
+        )
+    )
 
 
 def display_separator(char: str = "─", style: str = "muted") -> None:
@@ -371,12 +379,14 @@ def display_help(
     if tips:
         console.print()
         tips_text = "\n".join(f"• {tip}" for tip in tips)
-        console.print(Panel(
-            tips_text,
-            title="Tips",
-            border_style="green",
-            expand=False,
-        ))
+        console.print(
+            Panel(
+                tips_text,
+                title="Tips",
+                border_style="green",
+                expand=False,
+            )
+        )
 
 
 def display_command_help(
@@ -395,7 +405,7 @@ def display_command_help(
         usage: Usage string (e.g., "/reset [--transcript]")
         arguments: List of argument dicts with name, description, required, default, choices
         aliases: Optional list of aliases
-    """
+    """  # noqa: E501
     console = get_console()
 
     # Header
@@ -587,12 +597,16 @@ def display_history(
         # User message
         user_msg = turn.get("user_message", "")
         if user_msg:
-            console.print(f"{prefix}{time_str}[bold cyan]{user_name}:[/bold cyan] {user_msg}")
+            console.print(
+                f"{prefix}{time_str}[bold cyan]{user_name}:[/bold cyan] {user_msg}"
+            )
 
         # Assistant message
         asst_msg = turn.get("assistant_message", "")
         if asst_msg:
-            console.print(f"{prefix}{time_str}[bold green]{assistant_name}:[/bold green] {asst_msg}")
+            console.print(
+                f"{prefix}{time_str}[bold green]{assistant_name}:[/bold green] {asst_msg}"  # noqa: E501
+            )
 
         console.print()
 
@@ -644,7 +658,9 @@ def display_context_payload(
     # History count
     history = payload.get("history", [])
     prior_history = payload.get("prior_history", [])
-    console.print(f"[cyan]History:[/cyan] {len(history)} turns ({len(prior_history)} prior)")
+    console.print(
+        f"[cyan]History:[/cyan] {len(history)} turns ({len(prior_history)} prior)"
+    )
 
     # Insights
     insights = payload.get("insights", [])

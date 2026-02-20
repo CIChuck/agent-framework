@@ -6,11 +6,10 @@ Tests retry logic, timeouts, circuit breaker, and exception handling.
 
 import asyncio
 import warnings
+from unittest.mock import AsyncMock, patch
 
 import litellm
 import pytest
-from unittest.mock import AsyncMock, patch
-
 from friday_llm import (
     CircuitBreaker,
     CircuitBreakerConfig,
@@ -23,7 +22,6 @@ from friday_llm import (
 )
 from friday_llm.circuit_breaker import CircuitState
 
-
 # =============================================================================
 # Mock Classes for Testing
 # =============================================================================
@@ -33,10 +31,14 @@ class MockChoice:
     """Mock LiteLLM response choice."""
 
     def __init__(self, content: str = None, tool_calls: list = None):
-        self.message = type("Message", (), {
-            "content": content,
-            "tool_calls": tool_calls or [],
-        })()
+        self.message = type(
+            "Message",
+            (),
+            {
+                "content": content,
+                "tool_calls": tool_calls or [],
+            },
+        )()
 
 
 class MockResponse:
@@ -45,11 +47,15 @@ class MockResponse:
     def __init__(self, content: str = None, tool_calls: list = None):
         self.choices = [MockChoice(content, tool_calls)]
         self.model = "gpt-4"
-        self.usage = type("Usage", (), {
-            "prompt_tokens": 10,
-            "completion_tokens": 20,
-            "total_tokens": 30,
-        })()
+        self.usage = type(
+            "Usage",
+            (),
+            {
+                "prompt_tokens": 10,
+                "completion_tokens": 20,
+                "total_tokens": 30,
+            },
+        )()
 
 
 class MockEmbeddingData:

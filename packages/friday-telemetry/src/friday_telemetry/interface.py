@@ -33,7 +33,7 @@ class TelemetryInterface(ABC):
         Args:
             event_name: Identifier for the event type (e.g., 'memory_recall', 'tool_usage')
             data: Arbitrary event data to record
-        """
+        """  # noqa: E501
         pass
 
     @abstractmethod

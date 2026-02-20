@@ -8,8 +8,9 @@ Ref: Batch 3 Specification, Section 5.1
 """
 
 import inspect
+from collections.abc import Callable
 from functools import partial
-from typing import Any, Callable, get_type_hints
+from typing import Any, get_type_hints
 
 from friday_core.interfaces.tools import SchemaFormat, ToolDefinition
 from friday_core.logging import get_logger
@@ -51,14 +52,12 @@ def tool(
             '''
             # Implementation
             pass
-    """
+    """  # noqa: E501
 
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         tool_name = name or func.__name__
         if not category or category == "uncategorized":
-            raise ValueError(
-                f"Tool '{tool_name}' must declare a non-default category."
-            )
+            raise ValueError(f"Tool '{tool_name}' must declare a non-default category.")
         tool_desc = description or (func.__doc__ or "").split("\n")[0].strip()
 
         # Extract parameters from signature
@@ -377,7 +376,7 @@ class DefaultToolRegistry:
 
         Raises:
             ValueError: If tool with same name already registered.
-        """
+        """  # noqa: E501
         # Handle keyword argument 'name' for backward compatibility
         if name is not None:
             tool_or_name = name
@@ -414,7 +413,10 @@ class DefaultToolRegistry:
         if isinstance(tool_obj, DecoratedFunctionTool):
             self._tools[tool_obj.name] = tool_obj
         else:
-            if not getattr(tool_obj, "category", None) or tool_obj.category == "uncategorized":
+            if (
+                not getattr(tool_obj, "category", None)
+                or tool_obj.category == "uncategorized"
+            ):
                 raise ValueError(
                     f"Tool '{tool_obj.name}' must declare a non-default category."
                 )
@@ -451,9 +453,7 @@ class DefaultToolRegistry:
             parameters: JSON Schema for parameters
         """
         if not category or category == "uncategorized":
-            raise ValueError(
-                f"Tool '{name}' must declare a non-default category."
-            )
+            raise ValueError(f"Tool '{name}' must declare a non-default category.")
         tool = DecoratedFunctionTool(
             func=func,
             name=name,
