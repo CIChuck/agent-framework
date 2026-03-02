@@ -47,7 +47,7 @@ Preserved commitments:
 8. Global embedding policy.
 9. Current YAML secret allowance plus future key-store direction.
 10. Runtime validation semantics.
-11. Workstreams A-I (retained and expanded).
+11. Workstreams A-J (A-I retained and expanded, with inserted Workstream D for agent abstraction/runtime-factory decoupling).
 12. Test/gate posture and compatibility guarantees.
 
 Net-new depth added in this revision:
@@ -58,6 +58,7 @@ Net-new depth added in this revision:
 4. Dispatch lifecycle and governance detail.
 5. Observability evidence requirements for release gates.
 6. Migration/rollout/rollback timeline.
+7. Agent abstraction layering and runtime-factory decoupling for workflow execution paths.
 
 ---
 
@@ -76,6 +77,10 @@ Net-new depth added in this revision:
 11. Unknown keys hard-fail in runtime/agent/workflow/pipeline/task YAML (`unknown_key_policy=fail`).
 12. `owner_role` resolution is allowed only through explicit `agents.role_bindings`.
 13. Artifact policy and task-output artifact bindings are YAML-defined and validated before dispatch.
+14. Runtime workflow execution paths use a generic typed agent factory and must not hardcode concrete interactive/copilot agent classes.
+15. `InteractiveAgent` is the direct-runtime interactive default; workflow execution resolves agent behavior via selected agent profile and factory mapping.
+16. `CopilotAgent` naming/API remains compatibility-only for Phase 4 and is removed in Phase 5.
+17. `agent_type` is a profile-level runtime contract with default `interactive` when omitted.
 
 Coherence defaults ratified in this plan:
 
@@ -83,6 +88,8 @@ Coherence defaults ratified in this plan:
 2. Legacy workflow model is compatibility-only during transition.
 3. Assignment ownership must resolve to concrete agent IDs before claim/start.
 4. Deterministic behavior is mandatory for dispatch, claim, retry, lease recovery, and cancellation.
+5. Workflow chooses the execution owner; runtime resolves the selected owner's profile and instantiates by `agent_type` through generic factory mapping.
+6. Convenience runtime entrypoints for interactive chat are separate from canonical workflow dispatch paths.
 
 ---
 
@@ -100,6 +107,8 @@ Coherence defaults ratified in this plan:
 8. Preserve env-only compatibility path and single-agent default behavior.
 9. Add diagnostics for config source provenance and execution assignment evidence.
 10. Update companion Alt-Phase-2 docs to maintain cross-document coherence.
+11. Add agent abstraction hierarchy (`AgentBase`, `ReplAgentBase`, `InteractiveAgent`) and runtime-factory decoupling in workflow execution paths.
+12. Add one-phase compatibility aliases for copilot naming and runtime convenience APIs with explicit Phase 5 removal target.
 
 ## 4.2 Out of Scope
 
@@ -123,6 +132,7 @@ This model is the developer frame of reference for single-agent and multi-agent 
    - Load agent profiles.
    - Validate each profile against runtime policy.
    - Resolve each agent `llm_service` binding.
+   - Resolve each agent `agent_type` for factory mapping.
 3. Session activation:
    - Create runtime session and bind orchestrator context.
 4. Workflow dispatch:
@@ -132,6 +142,7 @@ This model is the developer frame of reference for single-agent and multi-agent 
 5. Task execution:
    - Assign dependency-ready tasks.
    - Enforce claim/lease/heartbeat semantics.
+   - Resolve owner to agent profile, then instantiate via generic typed factory.
    - Execute via orchestrator on resolved agent runtime profile.
 6. Completion:
    - Emit lineage, telemetry, and artifacts.
@@ -234,6 +245,8 @@ Semantics:
 3. Strict mode disabled:
    - unresolved declaration may fallback to `llm_pool.default_service`.
 4. Unknown `llm_service` always fails startup.
+5. Add `agent_type: interactive|autonomous|custom` (default `interactive` when omitted).
+6. Unknown `agent_type` mapping fails startup/preflight.
 
 ## 6.4 Workflow/Pipeline/Task Contract
 
@@ -251,6 +264,7 @@ Owner resolution policy:
 2. `owner_role` resolves through `agents.role_bindings.<owner_role> -> <agent_id>`.
 3. Missing role binding, mapped unknown agent, or ambiguous binding fails dispatch.
 4. Concrete owner must be resolved before assignment claim/start.
+5. Resolved owner profile determines runtime `agent_type` selection through the generic typed factory.
 
 Dispatch lifecycle:
 
@@ -311,6 +325,7 @@ Semantics:
 | --- | --- | --- |
 | `task_id` | string | Non-empty identifier; lowercase-normalized; alnum plus `_` / `-`. |
 | `owner_agent_id` / `owner_role` | string | Exactly one selector must be present. |
+| `agent_type` (profile-level) | string | Optional in profile; defaults to `interactive`; must resolve in runtime factory map. |
 | `required_skills` | list[string] | Optional; non-empty unique skill refs when present. |
 | `input_contract` | map[string,string] | Output/input type names must be non-empty strings. |
 | `output_contract` | map[string,string] | Output/input type names must be non-empty strings. |
@@ -327,6 +342,31 @@ Semantics:
 5. Unsupported legacy constructs fail with deterministic adapter errors.
 6. Adapter is transitional and subject to phased deprecation policy.
 7. Adapter routing obeys `config_policy.workflow_mode`.
+
+## 6.8 Agent Abstraction and Runtime Factory Contract
+
+Abstraction hierarchy:
+
+1. `AgentBase` owns shared infrastructure contracts:
+   - session and memory lifecycle,
+   - tool execution primitive and policy checks,
+   - turn archiving and telemetry hooks.
+2. `ReplAgentBase` derives from `AgentBase` and owns the generic LLM REPL/tool-calling loop.
+3. `InteractiveAgent` derives from `ReplAgentBase` as the concrete interactive runtime default.
+4. Other agent types may derive from `AgentBase` directly or from `ReplAgentBase` depending on execution strategy.
+
+Runtime factory behavior:
+
+1. Runtime must expose a generic typed factory for workflow execution paths.
+2. Workflow dispatch paths must not instantiate concrete interactive/copilot classes directly.
+3. Factory resolution inputs are the selected owner agent profile and its `agent_type`.
+4. Unknown or unregistered `agent_type` fails startup/preflight deterministically.
+
+Compatibility behavior:
+
+1. `CopilotAgent` naming and `get_copilot_agent()` runtime convenience API remain compatibility aliases in Phase 4.
+2. Compatibility aliases emit deprecation guidance toward `InteractiveAgent` and `get_interactive_agent()`.
+3. Compatibility aliases are removed in Phase 5.
 
 ---
 
@@ -405,7 +445,27 @@ Definition of done:
 1. Agent creation path deterministically resolves one runtime LLM service.
 2. Binding failures are fail-fast at startup/preflight, not mid-run.
 
-## Feature 5: Pipeline-First Workflow Execution
+## Feature 5: Agent Abstraction Layer and Runtime Factory Decoupling
+
+Purpose:
+
+1. Ensure runtime infrastructure is decoupled from concrete agent behavior classes in workflow execution paths.
+
+Requirements:
+
+1. `AgentBase` remains the shared infrastructure contract.
+2. `ReplAgentBase` owns generic LLM REPL/tool-calling loop behavior.
+3. `InteractiveAgent` is the concrete direct-runtime interactive default.
+4. Runtime workflow execution uses a generic typed factory keyed by resolved profile `agent_type`.
+5. Workflow execution paths must not hardcode concrete interactive/copilot instantiation.
+6. Compatibility alias behavior is explicit and time-bounded to Phase 4.
+
+Definition of done:
+
+1. Workflow execution paths resolve agent instances through factory mapping, not concrete class calls.
+2. `CopilotAgent`/`get_copilot_agent()` compatibility aliases are documented with Phase 5 removal target.
+
+## Feature 6: Pipeline-First Workflow Execution
 
 Purpose:
 
@@ -425,7 +485,7 @@ Definition of done:
 1. Runtime workflow execution path uses canonical model as default.
 2. Deterministic dispatch traces are produced.
 
-## Feature 6: Legacy Workflow Adapter
+## Feature 7: Legacy Workflow Adapter
 
 Purpose:
 
@@ -443,7 +503,7 @@ Definition of done:
 1. Legacy workflows run without breaking existing users.
 2. Migration guidance is clear and measurable.
 
-## Feature 7: Owner Resolution Governance
+## Feature 8: Owner Resolution Governance
 
 Purpose:
 
@@ -461,7 +521,7 @@ Definition of done:
 1. Owner resolution contract is explicit in specs and tests.
 2. Claim operations reject agent mismatch deterministically.
 
-## Feature 8: Observability and Compliance Evidence
+## Feature 9: Observability and Compliance Evidence
 
 Purpose:
 
@@ -585,7 +645,41 @@ Definition of done:
 
 1. Agent instantiation cannot proceed with unresolved LLM binding in strict mode.
 
-## Workstream D: Canonical Execution Path Unification
+## Workstream D: Agent Abstraction and Runtime Factory Decoupling
+
+Target files:
+
+1. `packages/friday-agent/src/friday_agent/base.py`
+2. `packages/friday-agent/src/friday_agent/repl_base.py`
+3. `packages/friday-agent/src/friday_agent/interactive.py`
+4. `packages/friday-agent/src/friday_agent/profile.py`
+5. `packages/friday-runtime/src/friday_runtime/kernel.py`
+6. `packages/friday-runtime/tests_runtime/test_kernel.py`
+7. `packages/friday-agent/tests_agent/test_base.py`
+8. `packages/friday-agent/tests_agent/test_orchestrator.py`
+
+Tasks:
+
+1. Establish `AgentBase` as shared infrastructure layer and keep behavior-neutral execution contract.
+2. Introduce `ReplAgentBase` for generic LLM REPL/tool-calling loop behavior.
+3. Standardize `InteractiveAgent` as concrete interactive implementation.
+4. Add profile `agent_type` contract and runtime validation for supported factory mappings.
+5. Replace workflow-path concrete factory calls with generic typed factory resolution.
+6. Keep direct-runtime interactive convenience path separate from canonical workflow dispatch.
+7. Preserve compatibility aliases for `CopilotAgent` and `get_copilot_agent()` with deprecation warnings.
+8. Document Phase 5 removal target for compatibility aliases.
+
+Deliverables:
+
+1. Decoupled runtime factory behavior for workflow execution paths.
+2. Agent abstraction contracts and compatibility/deprecation policy tests.
+
+Definition of done:
+
+1. Workflow execution no longer depends on concrete interactive/copilot runtime binding.
+2. Compatibility aliases exist in Phase 4 with explicit Phase 5 removal guidance.
+
+## Workstream E: Canonical Execution Path Unification
 
 Target files:
 
@@ -609,7 +703,7 @@ Definition of done:
 
 1. Canonical path is default and documented.
 
-## Workstream E: Legacy Workflow Adapter and Migration Governance
+## Workstream F: Legacy Workflow Adapter and Migration Governance
 
 Target files:
 
@@ -636,7 +730,7 @@ Definition of done:
 
 1. Legacy workloads run through adapter with explicit signal for migration.
 
-## Workstream F: Owner Resolution and Assignment Governance
+## Workstream G: Owner Resolution and Assignment Governance
 
 Target files:
 
@@ -661,7 +755,7 @@ Definition of done:
 
 1. No task can start without concrete, validated ownership.
 
-## Workstream G: Observability and Cost Attribution
+## Workstream H: Observability and Cost Attribution
 
 Target files:
 
@@ -687,7 +781,7 @@ Definition of done:
 
 1. Gate artifacts can prove execution lineage and model-service attribution.
 
-## Workstream H: Documentation and Migration Coherence
+## Workstream I: Documentation and Migration Coherence
 
 Target docs:
 
@@ -713,7 +807,7 @@ Definition of done:
 
 1. An implementation agent can execute from docs without unresolved design decisions.
 
-## Workstream I: Artifact Configuration and Output Binding
+## Workstream J: Artifact Configuration and Output Binding
 
 Target files:
 
@@ -788,7 +882,16 @@ Carried acceptance requirements:
 4. Strict-mode binding requirement.
 5. Per-service resilience behavior.
 
-## 11.3 Workflow/Pipeline/Task Runtime Tests
+## 11.3 Agent Abstraction and Runtime Factory Tests
+
+1. `AgentBase` infrastructure behavior remains reusable and behavior-neutral.
+2. `ReplAgentBase` implements generic LLM REPL/tool-calling loop contracts.
+3. `InteractiveAgent` behavior matches direct-runtime interactive expectations.
+4. Runtime typed factory resolves instances from profile `agent_type`.
+5. Workflow execution paths do not instantiate concrete interactive/copilot classes directly.
+6. Compatibility aliases (`CopilotAgent`, `get_copilot_agent()`) emit deprecation guidance and map to interactive behavior in Phase 4.
+
+## 11.4 Workflow/Pipeline/Task Runtime Tests
 
 1. Workflow-to-pipeline reference integrity.
 2. Pipeline task-graph integrity.
@@ -798,7 +901,7 @@ Carried acceptance requirements:
 6. Lease-expiry recovery and reassignment readiness.
 7. Retry-policy behavior and terminal failure conditions.
 
-## 11.4 Owner Resolution and Assignment Tests
+## 11.5 Owner Resolution and Assignment Tests
 
 1. Direct `owner_agent_id` resolution.
 2. Deterministic `owner_role` resolution via `agents.role_bindings`.
@@ -807,7 +910,7 @@ Carried acceptance requirements:
 5. Missing role binding failure behavior.
 6. Role binding points to unknown agent failure behavior.
 
-## 11.5 Cross-Pipeline Handoff and Lineage Tests
+## 11.6 Cross-Pipeline Handoff and Lineage Tests
 
 1. Typed handoff success and lineage creation.
 2. Typed contract mismatch failure.
@@ -815,32 +918,32 @@ Carried acceptance requirements:
 4. Artifact contract validation for produced/consumed declarations.
 5. Deterministic failure when required workflow artifact is missing.
 
-## 11.6 Legacy Adapter Compatibility Tests
+## 11.7 Legacy Adapter Compatibility Tests
 
 1. Legacy workflow definition conversion and execution.
 2. Compatibility warning emission.
 3. No regressions in existing single-agent default path.
 
-## 11.7 Observability and Gate Evidence
+## 11.8 Observability and Gate Evidence
 
 1. Event completeness validation for required IDs and LLM metadata.
 2. Cost/usage attribution by `llm_service`.
 3. Gate artifact publication for compliance review.
 
-## 11.8 Phase Gates
+## 11.9 Phase Gates
 
 1. Subphase-local pytest/ruff/mypy gates pass.
 2. Full repository gate set runs per execution governance policy.
 3. Required evidence artifacts are generated and reviewable.
 
-## 11.9 Canonical Gate Commands
+## 11.10 Canonical Gate Commands
 
 1. `uv run pytest`
 2. `uv run pytest tests/integration`
 3. `uv run ruff check .`
 4. `uv run mypy packages tests main.py`
 
-## 11.10 Artifact Configuration and Publication Tests
+## 11.11 Artifact Configuration and Publication Tests
 
 1. Runtime `artifacts` policy load and defaulting behavior.
 2. `task.output_artifacts.from_output` must map to task `output_contract`.
@@ -860,7 +963,9 @@ Rollout model:
    - Legacy adapter enabled with warning-only migration signals.
 2. Release N+1:
    - Migration signals elevated to CI warning gates for workflows using `workflow_mode=legacy`.
-3. Release N+2:
+   - Compatibility aliases (`CopilotAgent`, `get_copilot_agent()`) remain available with deprecation warnings.
+3. Release N+2 / Phase 5:
+   - Remove compatibility aliases for copilot naming/runtime convenience API.
    - Legacy path retirement decision evaluated using migration evidence.
 
 Rollback model:
@@ -883,6 +988,10 @@ Rollback model:
    Mitigation: deterministic owner resolver and hard-fail ambiguity policy.
 5. Risk: plaintext secret exposure in YAML.
    Mitigation: explicit warning posture and future key-store migration commitment.
+6. Risk: runtime remains coupled to concrete interactive agent behavior in workflow paths.
+   Mitigation: generic typed factory in runtime workflow paths plus abstraction conformance tests.
+7. Risk: delayed migration from copilot compatibility aliases causes downstream breakage at removal.
+   Mitigation: one-phase warning policy and explicit Phase 5 removal timeline in docs and tests.
 
 ---
 
@@ -905,6 +1014,10 @@ Rollback model:
 15. `config_policy.workflow_mode` behavior (`canonical|legacy|auto`) is deterministic and fully tested.
 16. This plan includes canonical YAML examples for runtime config, agent profile, workflow definition, and pipeline/task definitions.
 17. Artifacts are first-class and configurable via YAML across runtime/workflow/pipeline/task contracts, with deterministic validation and output binding.
+18. Runtime workflow execution paths instantiate agents through generic typed factory mapping and do not hardcode concrete interactive/copilot classes.
+19. Workflow-selected owner resolution governs execution-time agent behavior by selecting the owner profile and its `agent_type`.
+20. Direct-runtime interactive defaults are explicit (`InteractiveAgent`) and isolated from canonical workflow dispatch policy.
+21. Copilot naming/runtime convenience aliases remain compatibility-only in Phase 4 and are scheduled for removal in Phase 5.
 
 ---
 
@@ -920,12 +1033,13 @@ Companion scope requirements:
 1. Show workflow/pipeline/task creation for single-agent and multi-agent use cases.
 2. Show how task ownership binds to agents (`owner_agent_id`, `owner_role`).
 3. Show how agent profiles bind to runtime services (`llm_service`, strict-mode expectations).
-4. Show how runtime configuration binds execution environment (`llm_pool`, memory mode, paths, scratch, policy).
-5. Show dispatch lifecycle behavior (assign, claim, run, awaiting human, complete/fail, lease recovery).
-6. Show typed handoff and lineage expectations across pipelines.
-7. Show artifact policy and output artifact binding behavior in runtime/workflow/pipeline/task YAML.
-8. Show compatibility adapter behavior and migration posture for legacy workflows.
-9. Map examples and implementation tasks back to this plan's acceptance criteria.
+4. Show how profile `agent_type` maps to runtime factory behavior.
+5. Show how runtime configuration binds execution environment (`llm_pool`, memory mode, paths, scratch, policy).
+6. Show dispatch lifecycle behavior (assign, claim, run, awaiting human, complete/fail, lease recovery).
+7. Show typed handoff and lineage expectations across pipelines.
+8. Show artifact policy and output artifact binding behavior in runtime/workflow/pipeline/task YAML.
+9. Show compatibility adapter behavior and migration posture for legacy workflows.
+10. Map examples and implementation tasks back to this plan's acceptance criteria.
 
 ## 15.1 Canonical YAML File Examples (Normative)
 
@@ -996,6 +1110,7 @@ goal: Build evidence set from trusted sources
 system_prompt: |
   You gather evidence and cite sources.
 llm_service: fast_openai
+agent_type: interactive
 tool_autonomy: hybrid
 injected_tools:
   - recall_memory
@@ -1121,17 +1236,21 @@ The matrix below maps each acceptance criterion to exact sections in the three P
 | 4 | 6.3, 11.2, 15.1.2 | 4.1, 5.2 | 2, 5 |
 | 5 | 3, 6.3, 8, 11.2 | 8 | 6 |
 | 6 | 3, 4.2, 11.1 | 3 | 2, 8 |
-| 7 | 6.4, 7 Feature 5, 11.3 | 2, 4, 5 | 2, 7 |
-| 8 | 6.7, 7 Feature 6, 11.6, 12 | 6 | 2, 4, 8 |
-| 9 | 6.4, 7 Feature 7, 11.4 | 5.6, 7, 8 | 2, 5, 6 |
-| 10 | 6.4, 6.5, 11.5 | 5.6, 7, 8 | 2, 6, 7 |
+| 7 | 6.4, 7 Feature 6, 11.4 | 2, 4, 5 | 2, 7 |
+| 8 | 6.7, 7 Feature 7, 11.7, 12 | 6 | 2, 4, 8 |
+| 9 | 6.4, 7 Feature 8, 11.5 | 5.6, 7, 8 | 2, 5, 6 |
+| 10 | 6.4, 6.5, 11.6 | 5.6, 7, 8 | 2, 6, 7 |
 | 11 | 4.1, 10, 12 | 3, 4.4 | 8 |
 | 12 | 3, 10, 13 | 3 | 8 |
-| 13 | 3, 6.4, 11.4 | 5.1, 5.6, 7, 8 | 2, 5, 6 |
+| 13 | 3, 6.4, 11.5 | 5.1, 5.6, 7, 8 | 2, 5, 6 |
 | 14 | 3, 6.1, 8, 14 | 3, 7, 8 | 2, 5, 6 |
-| 15 | 3, 6.1, 11.6, 12, 14 | 6, 7 | 2, 4 |
+| 15 | 3, 6.1, 11.7, 12, 14 | 6, 7 | 2, 4 |
 | 16 | 15.1 | 3, 4, 5 | 3 |
-| 17 | 3, 6.1, 6.5, 7 Feature 5, 11.10, 14, 15.1 | 3, 4, 5, 7, 8 | 2, 5, 6, 7, 10 |
+| 17 | 3, 6.1, 6.5, 7 Feature 6, 11.11, 14, 15.1 | 3, 4, 5, 7, 8 | 2, 5, 6, 7, 10 |
+| 18 | 3, 6.8, 7 Feature 5, 9 Workstream D, 11.3 | 4.1, 4.2, 8 | 2, 5, 6 |
+| 19 | 3, 6.4, 6.8, 7 Feature 5, 11.3, 14 | 4.2, 5.3, 8 | 2, 5, 6 |
+| 20 | 3, 6.8, 11.3, 14 | 4.1, 8 | 2, 5 |
+| 21 | 3, 6.8, 11.3, 12, 14 | 4.1, 8 | 2, 4, 8 |
 
 Reviewer guidance:
 
@@ -1143,6 +1262,6 @@ Reviewer guidance:
 
 ## 16. Implementation Readiness Statement
 
-This Phase 4 plan is decision-complete for implementing runtime configuration coherence, multi-LLM service pooling, per-agent model binding, and canonical hierarchical workflow execution with compatibility migration support.
+This Phase 4 plan is decision-complete for implementing runtime configuration coherence, multi-LLM service pooling, per-agent model binding, agent abstraction/runtime-factory decoupling, and canonical hierarchical workflow execution with compatibility migration support.
 
 No unresolved architectural choices should remain for implementation teams if this plan is accepted as written.
