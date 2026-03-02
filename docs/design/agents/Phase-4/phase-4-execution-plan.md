@@ -7,6 +7,13 @@
 - `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`  
 - `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`  
 **Purpose:** Decompose Phase 4 into bounded, low-context subphases that an AI implementation agent can execute continuously with deterministic validation and minimal architectural drift.
+**Role:** Historical and canonical full-sequence execution reference retained for traceability.  
+**Active Execution:** Use `docs/design/agents/Phase-4/phase-4-a-execution-plan.md` and `docs/design/agents/Phase-4/phase-4-b-execution-plan.md` for implementation runs.
+
+Execution slicing companions (for lower-context implementation runs):
+
+1. `docs/design/agents/Phase-4/phase-4-a-execution-plan.md`
+2. `docs/design/agents/Phase-4/phase-4-b-execution-plan.md`
 
 ---
 

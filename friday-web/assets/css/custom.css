@@ -1,0 +1,179 @@
+/* Friday Framework — Brand Color Overrides */
+
+:root {
+  --primary: #1a1f36;
+  --accent: #f59e0b;
+  --accent-hover: #d97706;
+}
+
+/* ── Hero Section ─────────────────────────────────────────── */
+.friday-hero {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.friday-hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+
+.friday-hero p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.friday-hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* Primary CTA — amber */
+.friday-btn-primary {
+  background-color: var(--accent);
+  color: #1a1f36;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.friday-btn-primary:hover {
+  background-color: var(--accent-hover);
+  color: #1a1f36;
+}
+
+/* Secondary CTA — outline */
+.friday-btn-secondary {
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.friday-btn-secondary:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Install snippet */
+.friday-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+}
+
+/* ── Section Labels ───────────────────────────────────────── */
+.friday-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Problem Statement ────────────────────────────────────── */
+.friday-problem {
+  background-color: #f8f9fb;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.dark .friday-problem {
+  background-color: #111827;
+}
+
+.friday-problem blockquote {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  color: #374151;
+  line-height: 1.7;
+  border-left: 4px solid var(--accent);
+  padding-left: 1.5rem;
+  text-align: left;
+}
+
+.dark .friday-problem blockquote {
+  color: #d1d5db;
+}
+
+/* ── Memory Lifecycle Badges ──────────────────────────────── */
+.memory-stage {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.memory-stage.episodic   { background: #dbeafe; color: #1e40af; }
+.memory-stage.short-term { background: #d1fae5; color: #065f46; }
+.memory-stage.long-term  { background: #ede9fe; color: #5b21b6; }
+.memory-stage.decayed    { background: #f3f4f6; color: #6b7280; }
+
+.dark .memory-stage.episodic   { background: #1e3a5f; color: #93c5fd; }
+.dark .memory-stage.short-term { background: #064e3b; color: #6ee7b7; }
+.dark .memory-stage.long-term  { background: #3b1f6e; color: #c4b5fd; }
+.dark .memory-stage.decayed    { background: #1f2937; color: #9ca3af; }
+
+/* ── Architecture Block ───────────────────────────────────── */
+.friday-arch {
+  background-color: var(--primary);
+  color: #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  overflow-x: auto;
+}
+
+/* ── GitHub CTA Banner ────────────────────────────────────── */
+.friday-cta-banner {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.friday-cta-banner h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.friday-cta-banner p {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ── Accent color for Hextra nav/link overrides ───────────── */
+.hextra-toc a:hover,
+.hextra-sidebar a:hover {
+  color: var(--accent);
+}

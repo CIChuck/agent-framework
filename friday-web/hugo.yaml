@@ -1,0 +1,67 @@
+baseURL: "https://friday.dev/" # UPDATE before first deploy
+title: "Friday Framework"
+languageCode: "en-us"
+enableGitInfo: true
+
+module:
+  imports:
+    - path: github.com/imfing/hextra
+
+menu:
+  main:
+    - name: Docs
+      pageRef: /docs
+      weight: 1
+    - name: GitHub
+      url: "https://github.com/your-org/agent-framework"
+      weight: 2
+      params:
+        icon: github
+    - name: Search
+      weight: 3
+      params:
+        type: search
+    - name: Theme Toggle
+      weight: 4
+      params:
+        type: theme-toggle
+
+params:
+  description: "AI agents with genuine persistent memory, adaptive learning, and multi-agent collaboration."
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    width: wide
+    logo:
+      path: images/logo.svg
+      dark: images/logo-dark.svg
+      link: /
+      width: 32
+      height: 32
+  theme:
+    default: system
+    displayToggle: true
+  search:
+    enable: true
+    type: flexsearch
+  page:
+    width: wide
+    displayPagination: true
+  editURL:
+    enable: false # Enable when repo goes public at v0.2.0
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+  footer:
+    displayCopyright: true
+    displayPoweredBy: false
+
+markup:
+  highlight:
+    lineNos: true
+    tabWidth: 2
+    style: github-dark
+  goldmark:
+    renderer:
+      unsafe: false
+
+canonifyURLs: false

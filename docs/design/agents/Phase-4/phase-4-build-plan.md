@@ -1028,6 +1028,12 @@ Phase 4 implementation includes two companion guides:
 1. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
 2. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
 
+Execution-plan companions:
+
+1. `docs/design/agents/Phase-4/phase-4-execution-plan.md` (full historical decomposition)
+2. `docs/design/agents/Phase-4/phase-4-a-execution-plan.md` (foundation slice)
+3. `docs/design/agents/Phase-4/phase-4-b-execution-plan.md` (workflow/governance slice)
+
 Companion scope requirements:
 
 1. Show workflow/pipeline/task creation for single-agent and multi-agent use cases.

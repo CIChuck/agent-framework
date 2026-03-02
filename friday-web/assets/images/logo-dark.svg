@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Dark mode variant: transparent bg, white F, amber dot -->
+  <rect x="8" y="7" width="4" height="18" rx="1.5" fill="#ffffff"/>
+  <rect x="8" y="7" width="13" height="4" rx="1.5" fill="#ffffff"/>
+  <rect x="8" y="14" width="10" height="4" rx="1.5" fill="#ffffff"/>
+  <circle cx="24" cy="24" r="4" fill="#f59e0b"/>
+</svg>
