@@ -117,7 +117,7 @@ llm:
   
   #temperature: 0.4
   
-  max_tokens: 1500
+  max_tokens: 2500
 
   # Max retries for transient errors
   max_retries: 3
@@ -143,7 +143,8 @@ extraction:
   #             "openrouter/meta-llama/llama-3.1-8b-instruct"
   #
   # Set to null or remove to use the main LLM for extraction
-  model: "openai/gpt-oss-20b"
+  #model: "openai/gpt-oss-20b"
+  model: "openai/gemma-3-27b-it"
   api_base: "http://localhost:1234/v1"
   api_key: "lm-studio"
     
@@ -163,6 +164,7 @@ extraction:
 
   # localAPI key
   #api_key: "lm-studio"
+
   # open router key
   #api_key: "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"
 
@@ -580,21 +582,21 @@ memory:
     # Time budget per normal compaction run (milliseconds)
     # Acts as a safety net — primary stop is goal achievement.
     # Philosophy: thorough compaction once > repeated tiny runs.
-    max_duration_ms: 15000
+    max_duration_ms: 45000
 
     # Time budget for critical compaction (milliseconds)
     # Used when utilization exceeds critical_threshold.
-    critical_max_duration_ms: 45000
+    critical_max_duration_ms: 60000
 
     # Turn summarization: min turns before summarizing
     min_turns_to_summarize: 5
 
     # Turn summarization: max turns per summary batch
-    max_turns_per_summary: 8
+    max_turns_per_summary: 15
 
     # Recency window: protect the N most recent turns from compaction
     # These turns stay as raw history for conversational continuity
-    compaction_recency_window: 4
+    compaction_recency_window: 5
 
     # Insight deduplication: merge redundant insights
     insight_dedup_enabled: true
@@ -1710,7 +1712,7 @@ tools:
   loop:
     # Maximum tool calling iterations per turn (default: 10)
     # Increase for complex multi-step tasks, decrease to limit runaway loops
-    max_iterations: 15
+    max_iterations: 45
 
     # Abort after N consecutive tool failures (default: 3)
     # Prevents infinite retry loops when tools are broken

@@ -24,11 +24,18 @@ Acceptance criteria primarily covered:
 1. AC 1-6
 2. AC 18-21
 
+Secondary regression guardrails observed and reported in handoff:
+
+1. AC 11
+2. AC 14
+3. AC 15
+4. AC 17
+
 Out of scope (deferred to Phase 4-B):
 
 1. Canonical workflow/pipeline/task dispatch implementation
 2. Owner resolution governance
-3. Artifact output contract enforcement
+3. Workflow/pipeline/task artifact contract enforcement, including `required_artifacts`, `artifact_contract`, and `output_artifacts` validation and dispatch-time enforcement
 4. Legacy adapter routing, observability evidence rollup, and final phase closeout
 
 ---
@@ -60,6 +67,16 @@ Standard gates:
 3. `uv run ruff check .`
 4. `uv run mypy packages tests main.py`
 
+For this plan, the full Phase 4 companion set means:
+
+1. `docs/design/agents/Phase-4/phase-4-build-plan.md`
+2. `docs/design/agents/Phase-4/phase-4-execution-plan.md`
+3. `docs/design/agents/Phase-4/phase-4-a-execution-plan.md`
+4. `docs/design/agents/Phase-4/phase-4-b-execution-plan.md`
+5. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
+6. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
+7. `docs/design/agents/Phase-4/phase-4-executive-overview.md`
+
 ---
 
 ## 3. Subphase Breakdown
@@ -76,17 +93,22 @@ Target files:
 2. `docs/design/agents/Phase-4/phase-4-build-plan.md`
 3. `docs/design/agents/Phase-4/phase-4-execution-plan.md`
 4. `docs/design/agents/Phase-4/phase-4-b-execution-plan.md`
+5. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
+6. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
+7. `docs/design/agents/Phase-4/phase-4-executive-overview.md`
 
 Execution scope:
 
 1. Confirm locked decisions for config precedence, LLM bindings, and agent abstraction hierarchy.
 2. Confirm Workstreams A-D dependency order.
-3. Classify blocking debt versus waiver-eligible debt for foundation implementation.
+3. Verify the full Phase 4 companion set remains coherent for foundation-scope contracts across the build plan, historical execution plan, split execution plans, examples, AI guide, and executive overview.
+4. Classify blocking debt versus waiver-eligible debt for foundation implementation, including whether any document drift must be corrected before A1 or can be carried forward explicitly.
 
 Required checks:
 
 1. Verify AC mapping table in this document covers AC 1-6 and 18-21 without gaps.
 2. Verify 4-A/4-B dependency boundaries have no contradictory statements.
+3. Verify the full Phase 4 companion set contains no contradictory Workstream A-D guidance.
 
 Exit criteria:
 
@@ -109,7 +131,8 @@ Execution scope:
 
 1. Implement nested YAML parsing and deterministic precedence.
 2. Enforce `allow_env_override` and unknown-key hard-fail behavior.
-3. Validate runtime `artifacts` policy fields and path constraints.
+3. Parse and validate runtime-level `artifacts` policy fields, defaults, and path constraints.
+4. Do not implement workflow/pipeline/task artifact contract parsing or enforcement in this subphase.
 
 Required checks:
 
@@ -165,7 +188,7 @@ Goal:
 
 1. Decouple workflow execution from concrete copilot/interactive binding.
 
-Target files:
+Target files (expected additions or modifications):
 
 1. `packages/friday-agent/src/friday_agent/base.py`
 2. `packages/friday-agent/src/friday_agent/repl_base.py`
@@ -183,6 +206,7 @@ Execution scope:
 3. Own and enforce profile-level `agent_type` contract semantics for runtime factory mapping.
 4. Validate factory contract hooks for workflow-selected owner execution; full owner-resolution enforcement remains in Phase 4-B (Subphase B2).
 5. Keep compatibility aliases for Phase 4 with explicit Phase 5 removal policy.
+6. Do not implement canonical `workflow -> pipeline -> task` dispatch behavior, lifecycle transition enforcement, or workflow routing behavior in this subphase.
 
 Required checks:
 
@@ -193,7 +217,8 @@ Required checks:
 
 Exit criteria:
 
-1. No canonical workflow path depends on direct concrete copilot/interactive instantiation.
+1. No workflow-path agent instantiation depends on direct concrete copilot/interactive binding.
+2. Canonical dispatch implementation remains reserved for Phase 4-B.
 
 ---
 
@@ -208,19 +233,26 @@ Target files:
 1. `docs/design/agents/Phase-4/subphase-artifacts/phase-4-a/subphase-a-4/`
 2. `docs/design/agents/Phase-4/phase-4-a-execution-plan.md`
 3. `docs/design/agents/Phase-4/phase-4-b-execution-plan.md`
+4. `docs/design/agents/Phase-4/phase-4-build-plan.md`
+5. `docs/design/agents/Phase-4/phase-4-execution-plan.md`
+6. `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
+7. `docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md`
+8. `docs/design/agents/Phase-4/phase-4-executive-overview.md`
 
 Execution scope:
 
-1. Validate AC coverage for 1-6 and 18-21.
-2. Publish foundation evidence bundle and unresolved-risk register.
-3. Publish explicit Phase 4-B prerequisites and blocked items.
-4. Publish `phase-4-a-handoff-manifest.yaml` conforming to the contract in section 7.
+1. Validate primary AC coverage for AC 1-6 and 18-21.
+2. Re-validate that the full Phase 4 companion set remains coherent after 4-A completion.
+3. Publish foundation evidence bundle, unresolved-risk register, and any accepted downstream document drift.
+4. Publish explicit Phase 4-B prerequisites, blocked items, and the statement that runtime artifact policy foundation is complete while workflow/pipeline/task artifact contract enforcement remains pending for Phase 4-B.
+5. Publish `phase-4-a-handoff-manifest.yaml` conforming to the contract in section 7, including regression guardrail status.
 
 Required checks:
 
 1. Run full gate command set defined in section 2.
 2. Verify `phase-4-a-handoff-manifest.yaml` contains all required keys and non-empty values.
-3. Verify each AC in the 4-A set is marked `complete` or `waived` with owner/date.
+3. Verify each primary AC in the 4-A set is marked `complete` or `waived` with owner/date.
+4. Verify regression guardrails for AC 11, 14, 15, and 17 are marked `pass`, `risk`, or `blocked` with evidence links.
 
 Exit criteria:
 
@@ -237,6 +269,13 @@ Exit criteria:
 | A2 | AC 3, 4, 5 |
 | A3 | AC 18, 19, 20, 21 |
 | A4 | AC 1-6, 18-21 completion/waiver validation |
+
+Secondary regression criteria observed during 4-A execution and handoff:
+
+1. AC 11: existing env-only startup and single-agent defaults remain functional
+2. AC 14: unknown keys in runtime/agent/workflow/pipeline/task YAML contracts fail hard
+3. AC 15: `config_policy.workflow_mode` behavior does not regress where exercised by foundation work
+4. AC 17: runtime-level artifact configuration foundation is established without claiming cross-layer artifact completion
 
 ---
 
@@ -270,13 +309,26 @@ Phase 4-B may begin only after:
 1. Workstreams A-D are complete and evidenced.
 2. Generic typed factory behavior is validated in workflow paths.
 3. AC 1-6 and 18-21 are either complete or explicitly waived with owner/date.
-4. Handoff package contains unresolved risks and mitigation ownership.
-5. `phase-4-a-handoff-manifest.yaml` is present and includes:
+4. Regression guardrails for AC 11, 14, 15, and 17 are reported with evidence and any `risk` or `blocked` status is explicitly accepted as a B-track blocker or mitigation item.
+5. Runtime artifact policy foundation is complete and cross-layer artifact contract enforcement is explicitly carried forward to Phase 4-B.
+6. Handoff package contains unresolved risks, mitigation ownership, and any accepted downstream document drift.
+7. Full Phase 4 companion-set coherence status is recorded in the handoff package.
+8. `phase-4-a-handoff-manifest.yaml` is present and includes:
    - `phase: phase-4-a`
    - `completed_workstreams: [A, B, C, D]`
    - `ac_status` map for AC 1-6 and 18-21 (`complete|waived`)
+   - `regression_guardrails` object keyed by `AC11`, `AC14`, `AC15`, and `AC17`
+   - each `regression_guardrails.<ac_id>` entry is an object with:
+     - `status: pass|risk|blocked`
+     - `evidence: [<path>, ...]`
+     - `notes: <string>` (optional)
    - `waivers` list with `ac_id`, `owner`, `expiration_date`, `mitigation_plan`
    - `open_risks` list with `risk_id`, `owner`, `severity`, `mitigation`
+   - `document_coherence_status` object with:
+     - `companion_set: [<path>, ...]`
+     - `status: coherent|drift_accepted|blocked`
+     - `verified_in_subphase: A0|A4`
+     - `accepted_downstream_drift: [ { document, issue, disposition, owner } ]`
    - `blocking_items_for_4b` list
    - `required_inputs_for_4b` list
    - `evidence_index` path list
