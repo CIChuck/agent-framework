@@ -79,6 +79,8 @@ warn_return_any = true
 warn_unused_ignores = true
 disallow_untyped_defs = true
 ignore_missing_imports = true
+exclude = '(^|/|\\\\)(conftest\\.py|examples($|/|\\\\).*)'
+explicit_package_bases = true
 
 [tool.pytest.ini_options]
 testpaths = ["packages/*/tests_*"]

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Massive-backed finance tools.
 

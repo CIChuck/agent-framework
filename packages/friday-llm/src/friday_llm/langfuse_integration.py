@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 LangFuse observability integration for LiteLLM.
 

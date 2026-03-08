@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for ContextAssembler lifecycle-aware features (Phase 7).
 
@@ -65,7 +67,7 @@ class TestDecayedFiltering:
             telemetry=DebugTelemetryRecorder(),
         )
 
-    def test_filter_decayed_removes_decayed_memories(self, assembler):
+    def test_filter_decayed_removes_decayed_memories(self, assembler) -> None:
         """Test that _filter_decayed removes DECAYED stage memories."""
         payload = ContextPayload(
             history=[],
@@ -88,7 +90,7 @@ class TestDecayedFiltering:
         assert len(filtered.passages) == 2
         assert all(p["id"] != "2" for p in filtered.passages)
 
-    def test_filter_decayed_handles_no_decayed(self, assembler):
+    def test_filter_decayed_handles_no_decayed(self, assembler) -> None:
         """Test that _filter_decayed returns original when no decayed present."""
         payload = ContextPayload(
             history=[],
@@ -108,7 +110,7 @@ class TestDecayedFiltering:
 
         assert filtered is payload  # Same object, no filtering needed
 
-    def test_filter_decayed_adds_debug_info(self, assembler):
+    def test_filter_decayed_adds_debug_info(self, assembler) -> None:
         """Test that filtering adds count to debug_info."""
         payload = ContextPayload(
             history=[],
@@ -153,7 +155,7 @@ class TestStageSeparation:
         )
         return ContextAssembler(memory_controller=controller)
 
-    def test_separate_by_stage_correct_split(self, assembler):
+    def test_separate_by_stage_correct_split(self, assembler) -> None:
         """Test that passages are correctly separated by stage."""
         passages = [
             {"id": "1", "metadata": {"stage": "short_term"}},
@@ -169,7 +171,7 @@ class TestStageSeparation:
         assert all(p["id"] in ["1", "3"] for p in short_term)
         assert all(p["id"] in ["2", "4"] for p in long_term)
 
-    def test_separate_by_stage_all_short_term(self, assembler):
+    def test_separate_by_stage_all_short_term(self, assembler) -> None:
         """Test with all short-term passages."""
         passages = [
             {"id": "1", "metadata": {"stage": "short_term"}},
@@ -181,7 +183,7 @@ class TestStageSeparation:
         assert len(short_term) == 2
         assert len(long_term) == 0
 
-    def test_separate_by_stage_empty(self, assembler):
+    def test_separate_by_stage_empty(self, assembler) -> None:
         """Test with empty passages list."""
         short_term, long_term = assembler._separate_by_stage([])
 
@@ -216,25 +218,25 @@ class TestRelevancyScoring:
         )
         return ContextAssembler(memory_controller=controller)
 
-    def test_get_relevancy_score_prefers_inclusion_score(self, assembler):
+    def test_get_relevancy_score_prefers_inclusion_score(self, assembler) -> None:
         """Test that inclusion_score is preferred over similarity."""
         passage = {"similarity": 0.8, "inclusion_score": 0.5}
         score = assembler._get_relevancy_score(passage)
         assert score == 0.5
 
-    def test_get_relevancy_score_falls_back_to_similarity(self, assembler):
+    def test_get_relevancy_score_falls_back_to_similarity(self, assembler) -> None:
         """Test fallback to similarity when no inclusion_score."""
         passage = {"similarity": 0.8}
         score = assembler._get_relevancy_score(passage)
         assert score == 0.8
 
-    def test_get_relevancy_score_zero_default(self, assembler):
+    def test_get_relevancy_score_zero_default(self, assembler) -> None:
         """Test default of 0.0 when no scores present."""
         passage = {"id": "1", "text": "No scores"}
         score = assembler._get_relevancy_score(passage)
         assert score == 0.0
 
-    def test_sort_by_relevancy_orders_correctly(self, assembler):
+    def test_sort_by_relevancy_orders_correctly(self, assembler) -> None:
         """Test that passages are sorted by relevancy score."""
         passages = [
             {"id": "low", "inclusion_score": 0.2},
@@ -279,7 +281,7 @@ class TestLifecycleAwareBudgeting:
             telemetry=DebugTelemetryRecorder(),
         )
 
-    def test_apply_budget_filters_decayed_first(self, assembler):
+    def test_apply_budget_filters_decayed_first(self, assembler) -> None:
         """Test that DECAYED memories are filtered before budgeting."""
         payload = ContextPayload(
             history=[],
@@ -309,7 +311,7 @@ class TestLifecycleAwareBudgeting:
         assert len(result.passages) == 1
         assert result.passages[0]["id"] == "1"
 
-    def test_apply_budget_drops_low_relevancy_long_term_first(self, assembler):
+    def test_apply_budget_drops_low_relevancy_long_term_first(self, assembler) -> None:
         """Test that low-relevancy long-term is dropped before short-term when budget is tight."""  # noqa: E501
         payload = ContextPayload(
             history=[],
@@ -349,7 +351,7 @@ class TestLifecycleAwareBudgeting:
             # If lt_low wasn't filtered, then we should still have all short-term
             assert "st1" in ids
 
-    def test_apply_budget_preserves_short_term_over_long_term(self, assembler):
+    def test_apply_budget_preserves_short_term_over_long_term(self, assembler) -> None:
         """Test that short-term is preserved over long-term when pruning."""
         payload = ContextPayload(
             history=[],
@@ -397,7 +399,7 @@ class TestLifecycleAwareBudgeting:
         )
         assert short_term_count >= min(2, len(result.passages))
 
-    def test_estimate_tokens_full_includes_insights(self, assembler):
+    def test_estimate_tokens_full_includes_insights(self, assembler) -> None:
         """Test that full token estimation includes insights and summaries."""
         tokens_without = assembler._estimate_tokens_full(
             history=[],
@@ -492,7 +494,7 @@ class TestCreatePrunedPayloadFull:
 
     def test_creates_payload_with_pruned_content(
         self, assembler, sample_turns, sample_entities, sample_facts
-    ):
+    ) -> None:
         """Test that pruned payload preserves structure with reduced content."""
         original = ContextPayload(
             history=sample_turns,

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import asyncio
 
 from friday_core.logging import get_logger

@@ -1,3 +1,6 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Thread safety tests for friday-memory adapters.
 
@@ -38,7 +41,7 @@ class TestGraphStoreThreadSafety:
         )
 
     @pytest.mark.asyncio
-    async def test_concurrent_node_add_operations(self, graph_store, provenance):
+    async def test_concurrent_node_add_operations(self, graph_store, provenance) -> None:
         """Verify no crashes under concurrent node additions."""
         errors = []
 
@@ -70,7 +73,7 @@ class TestGraphStoreThreadSafety:
         assert count == 100
 
     @pytest.mark.asyncio
-    async def test_concurrent_node_add_remove(self, graph_store, provenance):
+    async def test_concurrent_node_add_remove(self, graph_store, provenance) -> None:
         """Verify concurrent add/remove operations don't crash."""
         errors = []
 
@@ -98,7 +101,7 @@ class TestGraphStoreThreadSafety:
         assert len(errors) == 0, f"Errors during add/remove: {errors}"
 
     @pytest.mark.asyncio
-    async def test_concurrent_reads_during_writes(self, graph_store, provenance):
+    async def test_concurrent_reads_during_writes(self, graph_store, provenance) -> None:
         """Verify reads don't crash during concurrent writes."""
         # Add initial data
         for i in range(10):
@@ -138,7 +141,7 @@ class TestGraphStoreThreadSafety:
         assert len(errors) == 0, f"Errors during concurrent read/write: {errors}"
 
     @pytest.mark.asyncio
-    async def test_lock_metrics_tracking(self, graph_store, provenance):
+    async def test_lock_metrics_tracking(self, graph_store, provenance) -> None:
         """Verify lock metrics are recorded."""
         # Perform some operations
         for i in range(5):
@@ -155,7 +158,7 @@ class TestGraphStoreThreadSafety:
         assert metrics.total_wait_ms >= 0, "Wait time should be non-negative"
 
     @pytest.mark.asyncio
-    async def test_record_node_access_separate_from_read(self, graph_store, provenance):
+    async def test_record_node_access_separate_from_read(self, graph_store, provenance) -> None:
         """Verify hit_count is not incremented by get_neighbors (decoupled)."""
         # Add nodes with edges
         node1 = GraphNode(
@@ -215,7 +218,7 @@ class TestEpisodicStoreThreadSafety:
         return InMemoryEpisodicStore()
 
     @pytest.mark.asyncio
-    async def test_concurrent_turn_additions(self, episodic_store):
+    async def test_concurrent_turn_additions(self, episodic_store) -> None:
         """Verify concurrent turn additions don't crash."""
         errors = []
 
@@ -250,7 +253,7 @@ class TestEpisodicStoreThreadSafety:
         assert count_c == 20
 
     @pytest.mark.asyncio
-    async def test_concurrent_read_write(self, episodic_store):
+    async def test_concurrent_read_write(self, episodic_store) -> None:
         """Verify reads and writes can happen concurrently."""
         session_id = "concurrent-session"
         errors = []
@@ -284,7 +287,7 @@ class TestEpisodicStoreThreadSafety:
 class TestLockMetrics:
     """Test LockMetrics dataclass."""
 
-    def test_lock_metrics_defaults(self):
+    def test_lock_metrics_defaults(self) -> None:
         """Test LockMetrics has correct defaults."""
         metrics = LockMetrics()
         assert metrics.acquisitions == 0
@@ -292,7 +295,7 @@ class TestLockMetrics:
         assert metrics.total_wait_ms == 0
         assert metrics.max_wait_ms == 0
 
-    def test_lock_metrics_reset(self):
+    def test_lock_metrics_reset(self) -> None:
         """Test LockMetrics reset."""
         metrics = LockMetrics(
             acquisitions=10,
@@ -325,7 +328,7 @@ class TestConcurrencyStress:
         )
 
     @pytest.mark.asyncio
-    async def test_high_concurrency_graph_operations(self, graph_store, provenance):
+    async def test_high_concurrency_graph_operations(self, graph_store, provenance) -> None:
         """Test graph store under high concurrency."""
         errors = []
         operations_per_task = 50

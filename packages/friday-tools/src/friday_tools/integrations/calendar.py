@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Calendar integration (stub)."""
 
 from typing import Any

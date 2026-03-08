@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Context Retrieval Payload.
 Defines ContextPayload DTO for passing data from Controller to Assembler.

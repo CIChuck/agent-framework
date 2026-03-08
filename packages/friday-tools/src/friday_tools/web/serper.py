@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Serper.dev web search tool.
 

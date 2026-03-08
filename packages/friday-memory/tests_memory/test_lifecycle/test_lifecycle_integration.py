@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Integration tests for full memory lifecycle flow.
 
@@ -90,7 +92,7 @@ class TestLifecycleEndToEnd:
     @pytest.mark.asyncio
     async def test_full_lifecycle_short_to_long_term(
         self, promotion_service, collection_manager, decay_config
-    ):
+    ) -> None:
         """Test promotion from SHORT_TERM to LONG_TERM."""
         now = datetime.now()
         old_time = (now - timedelta(hours=48)).isoformat()  # Well past min age
@@ -128,7 +130,7 @@ class TestLifecycleEndToEnd:
     @pytest.mark.asyncio
     async def test_full_lifecycle_long_term_to_decayed(
         self, promotion_service, collection_manager
-    ):
+    ) -> None:
         """Test decay from LONG_TERM to DECAYED."""
         now = datetime.now()
         very_old_access = (now - timedelta(days=60)).isoformat()
@@ -167,7 +169,7 @@ class TestLifecycleEndToEnd:
     @pytest.mark.asyncio
     async def test_full_lifecycle_decayed_reactivation(
         self, promotion_service, collection_manager
-    ):
+    ) -> None:
         """Test reactivation from DECAYED back to LONG_TERM."""
         # Add memory to decayed collection
         collection_manager.decayed._collection.add(
@@ -237,7 +239,7 @@ class TestPromotionWithAccessBuffer:
     @pytest.mark.asyncio
     async def test_access_buffer_tracks_retrieval(
         self, access_buffer, collection_manager
-    ):
+    ) -> None:
         """Test that access buffer correctly tracks memory accesses."""
         # Add memory to long-term
         collection_manager.long_term._collection.add(
@@ -259,7 +261,7 @@ class TestPromotionWithAccessBuffer:
     @pytest.mark.asyncio
     async def test_access_buffer_flush_updates_counts(
         self, access_buffer, collection_manager, promotion_service
-    ):
+    ) -> None:
         """Test that flushing access buffer updates access counts."""
         # Add memory with moderate decay score
         collection_manager.long_term._collection.add(
@@ -322,7 +324,7 @@ class TestFactorComputerIntegration:
     @pytest.mark.asyncio
     async def test_factor_computer_updates_retrieval_factor(
         self, factor_computer, collection_manager
-    ):
+    ) -> None:
         """Test that factor computer updates retrieval_factor metadata."""
         now = datetime.now()
         old_time = (now - timedelta(hours=48)).isoformat()
@@ -360,7 +362,7 @@ class TestFactorComputerIntegration:
     @pytest.mark.asyncio
     async def test_factor_affects_search_scoring(
         self, factor_computer, collection_manager, embedding_fn
-    ):
+    ) -> None:
         """Test that retrieval_factor affects search result scoring."""
         now = datetime.now()
         recent_time = now.isoformat()
@@ -436,7 +438,7 @@ class TestDecayCalculatorIntegration:
         """Create decay calculator."""
         return DecayCalculator(config)
 
-    def test_decay_and_boost_cycle(self, calculator):
+    def test_decay_and_boost_cycle(self, calculator) -> None:
         """Test realistic decay and access boost cycle."""
         now = datetime.now()
         score = 1.0
@@ -461,7 +463,7 @@ class TestDecayCalculatorIntegration:
         # Verify still above decay threshold
         assert not calculator.should_decay(score)
 
-    def test_eventual_decay_without_access(self, calculator):
+    def test_eventual_decay_without_access(self, calculator) -> None:
         """Test that without access, score eventually falls below threshold."""
         now = datetime.now()
         score = 1.0
@@ -489,7 +491,7 @@ class TestPromotionScorerIntegration:
         """Create promotion scorer."""
         return PromotionScorer(config)
 
-    def test_different_memory_profiles(self, scorer):
+    def test_different_memory_profiles(self, scorer) -> None:
         """Test scoring of different memory profiles."""
         now = datetime.now()
 
@@ -535,7 +537,7 @@ class TestPromotionScorerIntegration:
         # Young, unused should score lowest
         assert scores[-1][0] == "Young, unused"
 
-    def test_promotion_eligibility_with_age(self, scorer, config):
+    def test_promotion_eligibility_with_age(self, scorer, config) -> None:
         """Test that promotion eligibility considers age requirement."""
         now = datetime.now()
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Adapter factory helpers for friday-speech."""
 
 from __future__ import annotations

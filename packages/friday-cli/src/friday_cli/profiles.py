@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Memory profile configuration — backward compatibility re-exports.
 

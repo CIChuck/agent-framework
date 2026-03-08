@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Unit tests for AgentRegistry.
 

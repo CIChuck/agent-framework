@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Pytest configuration and fixtures for friday-mcp tests."""
 
 from unittest.mock import AsyncMock, MagicMock

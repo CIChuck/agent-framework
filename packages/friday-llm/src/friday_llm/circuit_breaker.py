@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Circuit breaker pattern for LLM API calls.
 

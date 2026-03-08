@@ -17,11 +17,16 @@ from friday_agent.workflows.engine import (
     WorkflowEngine,
     WorkflowError,
 )
-from friday_agent.workflows.loader import WorkflowLoader, WorkflowLoadError
+from friday_agent.workflows.loader import (
+    CanonicalWorkflowBundle,
+    WorkflowLoader,
+    WorkflowLoadError,
+)
 from friday_agent.workflows.models import (
     ArtifactLifecycleState,
     ArtifactPolicy,
     ArtifactRecord,
+    CanonicalWorkflowExecution,
     DelegationHandoff,
     HITLAuthorityPolicy,
     HITLDecision,
@@ -50,6 +55,7 @@ __all__ = [
     "ArtifactLifecycleState",
     "ArtifactPolicy",
     "ArtifactRecord",
+    "CanonicalWorkflowExecution",
     "DelegationHandoff",
     "HITLAuthorityPolicy",
     "HITLDecision",
@@ -77,6 +83,7 @@ __all__ = [
     "WorkflowEngine",
     "WorkflowError",
     # Loader
+    "CanonicalWorkflowBundle",
     "WorkflowLoader",
     "WorkflowLoadError",
 ]

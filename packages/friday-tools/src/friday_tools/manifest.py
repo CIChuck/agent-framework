@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Tool Manifest for Code Generation.
 

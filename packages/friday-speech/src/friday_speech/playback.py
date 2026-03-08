@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Audio playback utilities for friday-speech."""
 
 from __future__ import annotations

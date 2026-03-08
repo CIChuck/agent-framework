@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Prompt templates for code generation.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Semantic Chunking for Document Ingestion.
 

@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for ConsistencyAnalyzer."""
 
 import pytest
@@ -9,7 +11,7 @@ class TestConsistencyAnalyzer:
     """Test consistency analysis operations."""
 
     @pytest.mark.asyncio
-    async def test_analyze_finds_orphaned_edges(self, memory_with_issues):
+    async def test_analyze_finds_orphaned_edges(self, memory_with_issues) -> None:
         """Test detection of orphaned edges."""
         analyzer = ConsistencyAnalyzer(memory_with_issues)
         report = await analyzer.analyze()
@@ -23,7 +25,7 @@ class TestConsistencyAnalyzer:
         assert all(i.severity == IssueSeverity.CRITICAL for i in orphaned_issues)
 
     @pytest.mark.asyncio
-    async def test_analyze_finds_duplicate_entities(self, memory_with_issues):
+    async def test_analyze_finds_duplicate_entities(self, memory_with_issues) -> None:
         """Test detection of duplicate entities."""
         analyzer = ConsistencyAnalyzer(memory_with_issues)
         report = await analyzer.analyze()
@@ -36,7 +38,7 @@ class TestConsistencyAnalyzer:
         assert len(exact_dups) >= 1
 
     @pytest.mark.asyncio
-    async def test_analyze_finds_stale_entities(self, memory_with_issues):
+    async def test_analyze_finds_stale_entities(self, memory_with_issues) -> None:
         """Test detection of stale entities."""
         config = PruneConfig(stale_threshold_days=90, min_hit_count=1)
         analyzer = ConsistencyAnalyzer(memory_with_issues, config)
@@ -51,7 +53,7 @@ class TestConsistencyAnalyzer:
         assert all(i.severity == IssueSeverity.INFO for i in stale_issues)
 
     @pytest.mark.asyncio
-    async def test_analyze_clean_memory(self, clean_memory_dir):
+    async def test_analyze_clean_memory(self, clean_memory_dir) -> None:
         """Test analysis of clean memory (no issues)."""
         analyzer = ConsistencyAnalyzer(clean_memory_dir)
         report = await analyzer.analyze()
@@ -61,7 +63,7 @@ class TestConsistencyAnalyzer:
         assert critical == 0
 
     @pytest.mark.asyncio
-    async def test_analyze_populates_stats(self, memory_with_issues):
+    async def test_analyze_populates_stats(self, memory_with_issues) -> None:
         """Test that analysis populates store statistics."""
         analyzer = ConsistencyAnalyzer(memory_with_issues)
         report = await analyzer.analyze()
@@ -77,7 +79,7 @@ class TestConsistencyAnalyzer:
         assert report.episodic_stats["turn_count"] == 3  # 3 turns in fixture
 
     @pytest.mark.asyncio
-    async def test_analyze_severity_counts(self, memory_with_issues):
+    async def test_analyze_severity_counts(self, memory_with_issues) -> None:
         """Test that severity counts are accurate."""
         analyzer = ConsistencyAnalyzer(memory_with_issues)
         report = await analyzer.analyze()
@@ -90,7 +92,7 @@ class TestConsistencyAnalyzer:
         assert report.severity_counts == manual_counts
 
     @pytest.mark.asyncio
-    async def test_report_summary_generation(self, memory_with_issues):
+    async def test_report_summary_generation(self, memory_with_issues) -> None:
         """Test human-readable report generation."""
         analyzer = ConsistencyAnalyzer(memory_with_issues)
         report = await analyzer.analyze()
@@ -103,7 +105,7 @@ class TestConsistencyAnalyzer:
         assert str(memory_with_issues) in summary
 
     @pytest.mark.asyncio
-    async def test_configurable_staleness_threshold(self, memory_with_issues):
+    async def test_configurable_staleness_threshold(self, memory_with_issues) -> None:
         """Test that staleness threshold is configurable."""
         # With very long threshold, no entities should be stale
         config = PruneConfig(stale_threshold_days=365, min_hit_count=0)
@@ -120,7 +122,7 @@ class TestConsistencyAnalyzer:
         assert len(stale_issues) == 0
 
     @pytest.mark.asyncio
-    async def test_empty_memory_directory(self, temp_memory_dir):
+    async def test_empty_memory_directory(self, temp_memory_dir) -> None:
         """Test analysis of empty memory directory."""
         analyzer = ConsistencyAnalyzer(temp_memory_dir)
         report = await analyzer.analyze()

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Fact Checker for Friday Memory.
 

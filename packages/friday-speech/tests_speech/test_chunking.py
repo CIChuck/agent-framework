@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for speech chunking helpers."""
 
 from friday_speech.chunking import chunk_text

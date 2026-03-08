@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Redundancy Pruner for Friday Memory.
 

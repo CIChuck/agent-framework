@@ -733,6 +733,7 @@ class WorkflowPipelineDefinition(BaseModel):
     pipeline_refs: tuple[str, ...]
     entry_pipeline_id: str | None = None
     completion_criteria: tuple[str, ...] = Field(default_factory=tuple)
+    required_artifacts: list[WorkflowRequiredArtifact] = Field(default_factory=list)
     timeout_seconds: int | None = None
 
     @field_validator("pipeline_refs", mode="before")
@@ -794,6 +795,12 @@ class WorkflowPipelineDefinition(BaseModel):
                         f"Pipeline '{pipeline_id}' has upstream dependency "
                         f"'{dep_id}' outside workflow pipeline_refs"
                     )
+        for artifact in self.required_artifacts:
+            if artifact.produced_by_pipeline not in set(self.pipeline_refs):
+                errors.append(
+                    f"Required artifact '{artifact.artifact_id}' references unknown "
+                    f"producer pipeline '{artifact.produced_by_pipeline}'"
+                )
         return errors
 
     def get_pipeline_order(self, pipelines: dict[str, PipelineDefinition]) -> list[str]:
@@ -835,7 +842,9 @@ class TaskDefinition(BaseModel):
     owner_role: str | None = None
     required_skills: tuple[str, ...] = Field(default_factory=tuple)
     input_contract: dict[str, str] = Field(default_factory=dict)
+    input_bindings: dict[str, str] = Field(default_factory=dict)
     output_contract: dict[str, str] = Field(default_factory=dict)
+    output_artifacts: list[TaskOutputArtifact] = Field(default_factory=list)
     dependencies: tuple[str, ...] = Field(default_factory=tuple)
     retry_policy: dict[str, str] = Field(default_factory=dict)
     hitl_policy_ref: str | None = None
@@ -899,7 +908,7 @@ class TaskDefinition(BaseModel):
             raise ValueError("owner selectors must be non-empty when provided")
         return normalized
 
-    @field_validator("input_contract", "output_contract")
+    @field_validator("input_contract", "output_contract", "input_bindings")
     @classmethod
     def validate_contract_types(cls, v: dict[str, str]) -> dict[str, str]:
         """Require type contract entries to be non-empty string pairs."""
@@ -910,16 +919,34 @@ class TaskDefinition(BaseModel):
                 raise ValueError("contract type names must be non-empty strings")
         return v
 
-    @field_validator("retry_policy")
+    @field_validator("output_artifacts")
     @classmethod
-    def validate_retry_policy(cls, v: dict[str, str]) -> dict[str, str]:
+    def validate_output_artifacts_list(
+        cls, v: list[TaskOutputArtifact]
+    ) -> list[TaskOutputArtifact]:
+        """Require artifact mappings to be unique per artifact_id."""
+        artifact_ids = [artifact.artifact_id for artifact in v]
+        if len(artifact_ids) != len(set(artifact_ids)):
+            raise ValueError("output_artifacts must not contain duplicate artifact_id values")
+        return v
+
+    @field_validator("retry_policy", mode="before")
+    @classmethod
+    def validate_retry_policy(cls, v: Any) -> dict[str, str]:
         """Validate retry policy field values when present."""
+        if v is None:
+            return {}
+        if not isinstance(v, dict):
+            raise ValueError("retry_policy must be a mapping")
+        normalized: dict[str, str] = {}
         for key, value in v.items():
             if not isinstance(key, str) or not key.strip():
                 raise ValueError("retry_policy keys must be non-empty strings")
-            if not isinstance(value, str) or not value.strip():
+            value_str = str(value).strip()
+            if not value_str:
                 raise ValueError("retry_policy values must be non-empty strings")
-        return v
+            normalized[key.strip()] = value_str
+        return normalized
 
     @field_validator("task_id")
     @classmethod
@@ -937,7 +964,93 @@ class TaskDefinition(BaseModel):
         has_role = self.owner_role is not None
         if has_agent == has_role:
             raise ValueError("exactly one of owner_agent_id or owner_role must be set")
+        if self.input_bindings and not set(self.input_bindings).issubset(self.input_contract):
+            raise ValueError(
+                "input_bindings keys must reference declared input_contract keys"
+            )
+        output_keys = set(self.output_contract)
+        for artifact in self.output_artifacts:
+            if artifact.from_output not in output_keys:
+                raise ValueError(
+                    "output_artifacts.from_output must reference a declared output_contract key"
+                )
         return self
+
+
+class WorkflowRequiredArtifact(BaseModel):
+    """Workflow-level final artifact obligation."""
+
+    artifact_id: str
+    type: str
+    produced_by_pipeline: str
+
+    @field_validator("artifact_id", "type", "produced_by_pipeline")
+    @classmethod
+    def validate_non_empty_fields(cls, v: str) -> str:
+        """Require non-empty string fields."""
+        normalized = v.strip()
+        if not normalized:
+            raise ValueError("workflow artifact fields must be non-empty strings")
+        return normalized
+
+
+class PipelineProducedArtifact(BaseModel):
+    """Pipeline-produced artifact contract entry."""
+
+    artifact_id: str
+    type: str
+    producer_task_id: str
+
+    @field_validator("artifact_id", "type", "producer_task_id")
+    @classmethod
+    def validate_non_empty_fields(cls, v: str) -> str:
+        """Require non-empty string fields."""
+        normalized = v.strip()
+        if not normalized:
+            raise ValueError("produced artifact fields must be non-empty strings")
+        return normalized
+
+
+class PipelineConsumedArtifact(BaseModel):
+    """Pipeline-consumed artifact contract entry."""
+
+    artifact_id: str
+    type: str
+    from_pipeline: str
+
+    @field_validator("artifact_id", "type", "from_pipeline")
+    @classmethod
+    def validate_non_empty_fields(cls, v: str) -> str:
+        """Require non-empty string fields."""
+        normalized = v.strip()
+        if not normalized:
+            raise ValueError("consumed artifact fields must be non-empty strings")
+        return normalized
+
+
+class PipelineArtifactContract(BaseModel):
+    """Produced/consumed artifact contract for a pipeline."""
+
+    produced: list[PipelineProducedArtifact] = Field(default_factory=list)
+    consumed: list[PipelineConsumedArtifact] = Field(default_factory=list)
+
+
+class TaskOutputArtifact(BaseModel):
+    """Task-level output-to-artifact publication mapping."""
+
+    artifact_id: str
+    from_output: str
+    type: str
+    required: bool = True
+
+    @field_validator("artifact_id", "from_output", "type")
+    @classmethod
+    def validate_non_empty_fields(cls, v: str) -> str:
+        """Require non-empty string fields."""
+        normalized = v.strip()
+        if not normalized:
+            raise ValueError("task output artifact fields must be non-empty strings")
+        return normalized
 
 
 class TaskAssignment(BaseModel):
@@ -979,6 +1092,7 @@ class PipelineDefinition(BaseModel):
     upstream_pipeline_ids: tuple[str, ...] = Field(default_factory=tuple)
     input_contract: dict[str, str] = Field(default_factory=dict)
     output_contract: dict[str, str] = Field(default_factory=dict)
+    artifact_contract: PipelineArtifactContract = Field(default_factory=PipelineArtifactContract)
 
     @field_validator("tasks")
     @classmethod
@@ -1065,6 +1179,26 @@ class PipelineDefinition(BaseModel):
             self.get_task_order()
         except ValueError as e:
             errors.append(str(e))
+
+        valid_task_ids = set(task_ids)
+        produced_artifacts = set()
+        for artifact in self.artifact_contract.produced:
+            produced_artifacts.add(artifact.artifact_id)
+            if artifact.producer_task_id not in valid_task_ids:
+                errors.append(
+                    f"artifact_contract.produced '{artifact.artifact_id}' references "
+                    f"unknown producer_task_id '{artifact.producer_task_id}'"
+                )
+
+        for task in self.tasks:
+            for output_artifact in task.output_artifacts:
+                if output_artifact.artifact_id in produced_artifacts:
+                    continue
+                errors.append(
+                    f"task '{task.task_id}' output artifact "
+                    f"'{output_artifact.artifact_id}' "
+                    "is not declared in pipeline artifact_contract.produced"
+                )
         return errors
 
     def get_task_order(self) -> list[str]:
@@ -1198,6 +1332,20 @@ class PipelineExecutionState(BaseModel):
             self.status = PipelineExecutionStatus.RUNNING
         else:
             self.status = PipelineExecutionStatus.BLOCKED
+
+
+class CanonicalWorkflowExecution(BaseModel):
+    """Runtime execution state for canonical workflow -> pipeline -> task runs."""
+
+    workflow_id: str
+    execution_id: str
+    status: PipelineExecutionStatus = PipelineExecutionStatus.CREATED
+    pipeline_states: dict[str, PipelineExecutionState] = Field(default_factory=dict)
+    pipeline_results: dict[str, PipelineResult] = Field(default_factory=dict)
+    variables: dict[str, Any] = Field(default_factory=dict)
+    published_artifacts: dict[str, ArtifactRecord] = Field(default_factory=dict)
+    started_at: datetime | None = None
+    completed_at: datetime | None = None
 
 
 class PipelineResult(BaseModel):

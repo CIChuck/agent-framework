@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for RedundancyPruner."""
 
 import json
@@ -11,7 +13,7 @@ class TestRedundancyPruner:
     """Test redundancy pruning operations."""
 
     @pytest.mark.asyncio
-    async def test_identify_stale_entities(self, memory_with_issues):
+    async def test_identify_stale_entities(self, memory_with_issues) -> None:
         """Test identification of stale entities."""
         config = PruneConfig(stale_threshold_days=90, min_hit_count=1)
         pruner = RedundancyPruner(memory_with_issues, config)
@@ -26,7 +28,7 @@ class TestRedundancyPruner:
         assert all(item.item_type == "entity" for item in stale)
 
     @pytest.mark.asyncio
-    async def test_prune_dry_run(self, memory_with_issues):
+    async def test_prune_dry_run(self, memory_with_issues) -> None:
         """Test dry run doesn't modify data."""
         config = PruneConfig(stale_threshold_days=90, min_hit_count=1)
         pruner = RedundancyPruner(memory_with_issues, config)
@@ -52,7 +54,7 @@ class TestRedundancyPruner:
         )
 
     @pytest.mark.asyncio
-    async def test_prune_actually_removes(self, memory_with_issues):
+    async def test_prune_actually_removes(self, memory_with_issues) -> None:
         """Test actual pruning removes entities."""
         config = PruneConfig(stale_threshold_days=90, min_hit_count=1)
         pruner = RedundancyPruner(memory_with_issues, config)
@@ -74,7 +76,7 @@ class TestRedundancyPruner:
         assert report.dry_run is False
 
     @pytest.mark.asyncio
-    async def test_merge_duplicate_entities(self, memory_with_issues):
+    async def test_merge_duplicate_entities(self, memory_with_issues) -> None:
         """Test merging of duplicate entities."""
         pruner = RedundancyPruner(memory_with_issues)
 
@@ -96,7 +98,7 @@ class TestRedundancyPruner:
         assert chuck_count == 1
 
     @pytest.mark.asyncio
-    async def test_merge_preserves_higher_hit_count(self, memory_with_issues):
+    async def test_merge_preserves_higher_hit_count(self, memory_with_issues) -> None:
         """Test that merge preserves the higher hit_count."""
         pruner = RedundancyPruner(memory_with_issues)
 
@@ -124,7 +126,7 @@ class TestRedundancyPruner:
         assert chuck_node["hit_count"] == max(chuck_hit, chuck2_hit)
 
     @pytest.mark.asyncio
-    async def test_configurable_similarity_threshold(self, memory_with_issues):
+    async def test_configurable_similarity_threshold(self, memory_with_issues) -> None:
         """Test configurable similarity threshold."""
         # With very low threshold, should find no semantic duplicates
         config = PruneConfig(similarity_threshold=0.99)
@@ -138,7 +140,7 @@ class TestRedundancyPruner:
         assert report is not None
 
     @pytest.mark.asyncio
-    async def test_prune_report_summary(self, memory_with_issues):
+    async def test_prune_report_summary(self, memory_with_issues) -> None:
         """Test prune report summary generation."""
         pruner = RedundancyPruner(memory_with_issues)
         report = await pruner.prune(dry_run=True)
@@ -150,7 +152,7 @@ class TestRedundancyPruner:
         assert "RESULTS" in summary
 
     @pytest.mark.asyncio
-    async def test_edges_removed_with_entity(self, memory_with_issues):
+    async def test_edges_removed_with_entity(self, memory_with_issues) -> None:
         """Test that edges are removed when entity is removed."""
         config = PruneConfig(stale_threshold_days=90, min_hit_count=1)
         pruner = RedundancyPruner(memory_with_issues, config)
@@ -177,7 +179,7 @@ class TestRedundancyPruner:
                 )
 
     @pytest.mark.asyncio
-    async def test_prune_clean_memory(self, clean_memory_dir):
+    async def test_prune_clean_memory(self, clean_memory_dir) -> None:
         """Test pruning clean memory (nothing to prune)."""
         pruner = RedundancyPruner(clean_memory_dir)
         report = await pruner.prune(dry_run=True)

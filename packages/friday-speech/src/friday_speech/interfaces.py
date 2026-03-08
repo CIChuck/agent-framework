@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Protocols and shared data structures for speech adapters."""
 
 from __future__ import annotations

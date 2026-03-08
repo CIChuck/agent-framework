@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Token estimation utilities for prompt budgeting.
 

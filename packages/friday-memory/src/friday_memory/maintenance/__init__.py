@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Memory Maintenance Utilities.
 

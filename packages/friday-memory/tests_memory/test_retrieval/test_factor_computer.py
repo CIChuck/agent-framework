@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for RetrievalFactorComputer."""
 
 import uuid
@@ -39,14 +41,14 @@ def unique_config():
 class TestFactorComputerConfig:
     """Test FactorComputerConfig defaults and customization."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = FactorComputerConfig()
         assert config.decay_rate == 0.005
         assert config.usage_boost_factor == 0.1
         assert config.min_factor == 0.01
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration."""
         config = FactorComputerConfig(
             decay_rate=0.01,
@@ -61,7 +63,7 @@ class TestFactorComputerConfig:
 class TestFactorComputeResult:
     """Test FactorComputeResult dataclass."""
 
-    def test_default_values(self):
+    def test_default_values(self) -> None:
         """Test default initialization."""
         result = FactorComputeResult()
         assert result.updated == 0
@@ -69,12 +71,12 @@ class TestFactorComputeResult:
         assert result.errors == []
         assert not result.has_errors()
 
-    def test_has_errors(self):
+    def test_has_errors(self) -> None:
         """Test error detection."""
         result = FactorComputeResult(errors=["Something went wrong"])
         assert result.has_errors()
 
-    def test_summary(self):
+    def test_summary(self) -> None:
         """Test summary generation."""
         result = FactorComputeResult(updated=10, skipped=5)
         summary = result.summary()
@@ -100,7 +102,7 @@ class TestRetrievalFactorComputer:
         """Fixed timestamp for testing."""
         return datetime(2024, 1, 15, 12, 0, 0)
 
-    def test_compute_time_factor_fresh_memory(self, computer, now):
+    def test_compute_time_factor_fresh_memory(self, computer, now) -> None:
         """Fresh memory should have time factor close to 1.0."""
         created_at = now - timedelta(hours=1)
         factor = computer.compute_time_factor(created_at, now)
@@ -108,7 +110,7 @@ class TestRetrievalFactorComputer:
         # exp(-0.005 * 1) ≈ 0.995
         assert 0.99 < factor <= 1.0
 
-    def test_compute_time_factor_day_old_memory(self, computer, now):
+    def test_compute_time_factor_day_old_memory(self, computer, now) -> None:
         """24-hour old memory should have reduced time factor."""
         created_at = now - timedelta(hours=24)
         factor = computer.compute_time_factor(created_at, now)
@@ -116,7 +118,7 @@ class TestRetrievalFactorComputer:
         # exp(-0.005 * 24) ≈ 0.887
         assert 0.88 < factor < 0.90
 
-    def test_compute_time_factor_week_old_memory(self, computer, now):
+    def test_compute_time_factor_week_old_memory(self, computer, now) -> None:
         """Week-old memory should have significantly reduced time factor."""
         created_at = now - timedelta(hours=168)
         factor = computer.compute_time_factor(created_at, now)
@@ -124,7 +126,7 @@ class TestRetrievalFactorComputer:
         # exp(-0.005 * 168) ≈ 0.43
         assert 0.42 < factor < 0.44
 
-    def test_compute_time_factor_very_old_memory(self, computer, now):
+    def test_compute_time_factor_very_old_memory(self, computer, now) -> None:
         """Very old memory should hit min_factor floor."""
         config = FactorComputerConfig(min_factor=0.1)
         computer = RetrievalFactorComputer(config)
@@ -135,24 +137,24 @@ class TestRetrievalFactorComputer:
         # Should be floored at min_factor
         assert factor >= 0.1
 
-    def test_compute_usage_factor_no_hits(self, computer):
+    def test_compute_usage_factor_no_hits(self, computer) -> None:
         """Memory with no hits should have usage factor of 1.0."""
         factor = computer.compute_usage_factor(0)
         assert factor == 1.0
 
-    def test_compute_usage_factor_low_hits(self, computer):
+    def test_compute_usage_factor_low_hits(self, computer) -> None:
         """Memory with low hits should have slightly boosted factor."""
         factor = computer.compute_usage_factor(1)
         # 1.0 + (0.1 * log(2)) ≈ 1.069
         assert 1.06 < factor < 1.08
 
-    def test_compute_usage_factor_high_hits(self, computer):
+    def test_compute_usage_factor_high_hits(self, computer) -> None:
         """Memory with high hits should have significant boost."""
         factor = computer.compute_usage_factor(20)
         # 1.0 + (0.1 * log(21)) ≈ 1.30
         assert 1.29 < factor < 1.31
 
-    def test_compute_usage_factor_very_high_hits(self, computer):
+    def test_compute_usage_factor_very_high_hits(self, computer) -> None:
         """Usage factor has diminishing returns."""
         factor_50 = computer.compute_usage_factor(50)
         factor_100 = computer.compute_usage_factor(100)
@@ -162,7 +164,7 @@ class TestRetrievalFactorComputer:
         # Difference should be small due to log scaling
         assert factor_100 - factor_50 < 0.1
 
-    def test_compute_retrieval_factor_fresh_unused(self, computer, now):
+    def test_compute_retrieval_factor_fresh_unused(self, computer, now) -> None:
         """Fresh unused memory should have factor close to 1.0."""
         created_at = now - timedelta(hours=1)
         factor = computer.compute_retrieval_factor(created_at, hit_count=0, now=now)
@@ -170,7 +172,7 @@ class TestRetrievalFactorComputer:
         # time_factor ≈ 0.995, usage_factor = 1.0
         assert 0.99 < factor <= 1.0
 
-    def test_compute_retrieval_factor_old_popular(self, computer, now):
+    def test_compute_retrieval_factor_old_popular(self, computer, now) -> None:
         """Old but popular memory should maintain decent factor."""
         created_at = now - timedelta(hours=168)  # Week old
         factor = computer.compute_retrieval_factor(created_at, hit_count=20, now=now)
@@ -179,7 +181,7 @@ class TestRetrievalFactorComputer:
         # Combined ≈ 0.56
         assert 0.5 < factor < 0.6
 
-    def test_compute_retrieval_factor_combines_factors(self, computer, now):
+    def test_compute_retrieval_factor_combines_factors(self, computer, now) -> None:
         """Retrieval factor should be product of time and usage factors."""
         created_at = now - timedelta(hours=24)
 
@@ -215,7 +217,7 @@ class TestRetrievalFactorComputerWithCollection:
         return RetrievalFactorComputer()
 
     @pytest.mark.asyncio
-    async def test_compute_factors_empty_collection(self, computer, collection_manager):
+    async def test_compute_factors_empty_collection(self, computer, collection_manager) -> None:
         """Test computing factors on empty collection."""
         result = await computer.compute_factors(collection_manager.long_term)
 
@@ -224,7 +226,7 @@ class TestRetrievalFactorComputerWithCollection:
         assert not result.has_errors()
 
     @pytest.mark.asyncio
-    async def test_compute_factors_updates_metadata(self, computer, collection_manager):
+    async def test_compute_factors_updates_metadata(self, computer, collection_manager) -> None:
         """Test that compute_factors updates retrieval_factor in metadata."""
         now = datetime.now()
         old_time = (now - timedelta(hours=24)).isoformat()
@@ -265,7 +267,7 @@ class TestRetrievalFactorComputerWithCollection:
     @pytest.mark.asyncio
     async def test_compute_factors_skips_recently_computed(
         self, computer, collection_manager
-    ):
+    ) -> None:
         """Test that recently computed factors are skipped."""
         now = datetime.now()
 
@@ -297,7 +299,7 @@ class TestRetrievalFactorComputerWithCollection:
         assert result.updated == 0
 
     @pytest.mark.asyncio
-    async def test_compute_factors_force_update(self, computer, collection_manager):
+    async def test_compute_factors_force_update(self, computer, collection_manager) -> None:
         """Test that force_update recomputes all factors."""
         now = datetime.now()
 
@@ -332,7 +334,7 @@ class TestRetrievalFactorComputerWithCollection:
 class TestCalculateInclusionScoreFast:
     """Test the fast inclusion score helper function."""
 
-    def test_with_retrieval_factor(self):
+    def test_with_retrieval_factor(self) -> None:
         """Test score calculation with pre-computed factor."""
         score = calculate_inclusion_score_fast(
             similarity=0.8,
@@ -340,7 +342,7 @@ class TestCalculateInclusionScoreFast:
         )
         assert abs(score - 0.96) < 0.001  # 0.8 * 1.2
 
-    def test_with_missing_factor(self):
+    def test_with_missing_factor(self) -> None:
         """Test fallback when retrieval_factor is missing."""
         score = calculate_inclusion_score_fast(
             similarity=0.8,
@@ -348,7 +350,7 @@ class TestCalculateInclusionScoreFast:
         )
         assert abs(score - 0.4) < 0.001  # 0.8 * 0.5 (default)
 
-    def test_with_low_similarity(self):
+    def test_with_low_similarity(self) -> None:
         """Test with low similarity score."""
         score = calculate_inclusion_score_fast(
             similarity=0.3,
@@ -356,7 +358,7 @@ class TestCalculateInclusionScoreFast:
         )
         assert abs(score - 0.45) < 0.001  # 0.3 * 1.5
 
-    def test_performance_vs_full_calculation(self):
+    def test_performance_vs_full_calculation(self) -> None:
         """Verify fast calculation matches expected formula."""
         # This is more of a documentation test
         similarity = 0.75

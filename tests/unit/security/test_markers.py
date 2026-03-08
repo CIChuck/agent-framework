@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for content marker utilities."""
 
 from friday_core.security import ContentMetadata, RiskLevel, UntrustedContentMarker

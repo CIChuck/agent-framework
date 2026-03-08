@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Headless execution tests for the Friday Lab.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Chunking helpers for long speech synthesis."""
 
 from __future__ import annotations

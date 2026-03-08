@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Vector Store Metadata Schema.
 

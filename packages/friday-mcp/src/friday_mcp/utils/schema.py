@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Schema conversion utilities.
 

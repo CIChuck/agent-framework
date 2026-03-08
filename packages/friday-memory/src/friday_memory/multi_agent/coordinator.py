@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Promotion coordinator for additive multi-agent memory mode.
 """

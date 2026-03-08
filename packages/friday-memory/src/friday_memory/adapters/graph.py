@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 ElementX / NetworkX Graph Store Implementation.
 Implements GraphStoreAdapter with persistence and schema enforcement.

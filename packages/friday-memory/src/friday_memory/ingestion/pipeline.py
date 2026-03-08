@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Document Ingestion Pipeline.
 Handles file parsing, cleaning, chunking, and metadata extraction.

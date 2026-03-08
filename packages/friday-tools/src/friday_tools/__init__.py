@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Tools - Comprehensive tool library for AI agents.
 

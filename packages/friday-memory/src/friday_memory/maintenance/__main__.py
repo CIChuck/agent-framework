@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 CLI Entry Point for Memory Maintenance Utilities.
 

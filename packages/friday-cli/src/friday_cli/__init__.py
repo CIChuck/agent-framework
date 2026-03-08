@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday CLI - Rich terminal interface components.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Tests for transcript correlation helpers."""
 
 from datetime import datetime

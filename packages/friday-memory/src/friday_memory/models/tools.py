@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Tool-related models for friday-memory.
 

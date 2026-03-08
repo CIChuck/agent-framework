@@ -13,6 +13,7 @@ from typing import Any, Literal
 
 # Tool autonomy modes
 ToolAutonomy = Literal["manual", "auto", "hybrid"]
+AgentType = Literal["interactive", "autonomous", "custom"]
 
 
 @dataclass
@@ -68,6 +69,8 @@ class AgentProfile:
     # LLM parameters
     temperature: float = 0.7
     max_tokens: int | None = None
+    llm_service: str | None = None
+    agent_type: AgentType = "interactive"
 
     # Tool autonomy settings
     tool_autonomy: ToolAutonomy = "manual"
@@ -135,6 +138,8 @@ class AgentProfile:
             "context_strategy": self.context_strategy,
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
+            "llm_service": self.llm_service,
+            "agent_type": self.agent_type,
             # Tool autonomy settings
             "tool_autonomy": self.tool_autonomy,
             "injected_tools": self.injected_tools,
@@ -161,6 +166,8 @@ class AgentProfile:
             context_strategy=data.get("context_strategy", "standard"),
             temperature=data.get("temperature", 0.7),
             max_tokens=data.get("max_tokens"),
+            llm_service=data.get("llm_service"),
+            agent_type=data.get("agent_type", "interactive"),
             # Tool autonomy settings
             tool_autonomy=data.get("tool_autonomy", "manual"),
             injected_tools=data.get("injected_tools", []),

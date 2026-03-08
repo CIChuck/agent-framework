@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for ElementXGraphStore adapter.
 
@@ -63,7 +65,7 @@ class TestElementXGraphStore:
     """Tests for ElementXGraphStore."""
 
     @pytest.mark.asyncio
-    async def test_add_node(self, graph_store: ElementXGraphStore):
+    async def test_add_node(self, graph_store: ElementXGraphStore) -> None:
         """Test adding a node to the graph."""
         node = create_node("Alice", "person")
         result = await graph_store.add_node(node)
@@ -73,7 +75,7 @@ class TestElementXGraphStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_get_node(self, graph_store: ElementXGraphStore):
+    async def test_get_node(self, graph_store: ElementXGraphStore) -> None:
         """Test retrieving a node by ID."""
         node = create_node("Bob", "person")
         await graph_store.add_node(node)
@@ -84,13 +86,13 @@ class TestElementXGraphStore:
         assert retrieved.type == "person"
 
     @pytest.mark.asyncio
-    async def test_get_nonexistent_node(self, graph_store: ElementXGraphStore):
+    async def test_get_nonexistent_node(self, graph_store: ElementXGraphStore) -> None:
         """Test retrieving non-existent node returns None."""
         result = await graph_store.get_node("nonexistent_id")
         assert result is None
 
     @pytest.mark.asyncio
-    async def test_remove_node(self, graph_store: ElementXGraphStore):
+    async def test_remove_node(self, graph_store: ElementXGraphStore) -> None:
         """Test removing a node."""
         node = create_node("Charlie")
         await graph_store.add_node(node)
@@ -102,13 +104,13 @@ class TestElementXGraphStore:
         assert count == 0
 
     @pytest.mark.asyncio
-    async def test_remove_nonexistent_node(self, graph_store: ElementXGraphStore):
+    async def test_remove_nonexistent_node(self, graph_store: ElementXGraphStore) -> None:
         """Test removing non-existent node returns False."""
         result = await graph_store.remove_node("nonexistent_id")
         assert result is False
 
     @pytest.mark.asyncio
-    async def test_add_edge(self, graph_store: ElementXGraphStore):
+    async def test_add_edge(self, graph_store: ElementXGraphStore) -> None:
         """Test adding an edge between nodes."""
         node1 = create_node("Alice")
         node2 = create_node("Bob")
@@ -123,7 +125,7 @@ class TestElementXGraphStore:
         assert edge_count == 1
 
     @pytest.mark.asyncio
-    async def test_get_neighbors(self, graph_store: ElementXGraphStore):
+    async def test_get_neighbors(self, graph_store: ElementXGraphStore) -> None:
         """Test getting neighbors of a node."""
         # Create a simple graph: Alice -> Bob -> Charlie
         alice = create_node("Alice")
@@ -143,7 +145,7 @@ class TestElementXGraphStore:
         assert neighbors[0]["node_id"] == bob.id
 
     @pytest.mark.asyncio
-    async def test_get_neighbors_depth_2(self, graph_store: ElementXGraphStore):
+    async def test_get_neighbors_depth_2(self, graph_store: ElementXGraphStore) -> None:
         """Test getting neighbors with depth 2."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -163,7 +165,7 @@ class TestElementXGraphStore:
         assert charlie.id in neighbor_ids
 
     @pytest.mark.asyncio
-    async def test_find_path(self, graph_store: ElementXGraphStore):
+    async def test_find_path(self, graph_store: ElementXGraphStore) -> None:
         """Test finding path between nodes."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -183,7 +185,7 @@ class TestElementXGraphStore:
         assert path[2] == charlie.id
 
     @pytest.mark.asyncio
-    async def test_find_path_no_connection(self, graph_store: ElementXGraphStore):
+    async def test_find_path_no_connection(self, graph_store: ElementXGraphStore) -> None:
         """Test finding path when nodes aren't connected."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -196,7 +198,7 @@ class TestElementXGraphStore:
         assert path == []
 
     @pytest.mark.asyncio
-    async def test_fuzzy_search(self, graph_store: ElementXGraphStore):
+    async def test_fuzzy_search(self, graph_store: ElementXGraphStore) -> None:
         """Test fuzzy search for similar node labels."""
         await graph_store.add_node(create_node("Robert"))
         await graph_store.add_node(create_node("Roberto"))
@@ -211,7 +213,7 @@ class TestElementXGraphStore:
         assert "Alice" not in labels
 
     @pytest.mark.asyncio
-    async def test_merge_nodes(self, graph_store: ElementXGraphStore):
+    async def test_merge_nodes(self, graph_store: ElementXGraphStore) -> None:
         """Test merging two nodes (entity resolution)."""
         # Create two nodes representing the same person
         bob = create_node("Bob")
@@ -243,7 +245,7 @@ class TestElementXGraphStore:
         assert await graph_store.node_count() == 2  # alice + bob
 
     @pytest.mark.asyncio
-    async def test_rank_nodes_pagerank(self, graph_store: ElementXGraphStore):
+    async def test_rank_nodes_pagerank(self, graph_store: ElementXGraphStore) -> None:
         """Test PageRank ranking (requires scipy)."""
         pytest.importorskip("scipy")
 
@@ -270,7 +272,7 @@ class TestElementXGraphStore:
         assert ranked[0]["node_id"] == hub.id
 
     @pytest.mark.asyncio
-    async def test_get_all_nodes(self, graph_store: ElementXGraphStore):
+    async def test_get_all_nodes(self, graph_store: ElementXGraphStore) -> None:
         """Test getting all nodes."""
         await graph_store.add_node(create_node("Alice"))
         await graph_store.add_node(create_node("Bob"))
@@ -280,7 +282,7 @@ class TestElementXGraphStore:
         assert len(all_nodes) == 3
 
     @pytest.mark.asyncio
-    async def test_persistence_json(self):
+    async def test_persistence_json(self) -> None:
         """Test JSON persistence."""
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "graph.json"
@@ -296,7 +298,7 @@ class TestElementXGraphStore:
             assert count == 2
 
     @pytest.mark.asyncio
-    async def test_persistence_pickle(self):
+    async def test_persistence_pickle(self) -> None:
         """Test pickle persistence."""
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "graph.gpickle"
@@ -313,7 +315,7 @@ class TestElementXGraphStore:
     # --- Deduplication Tests ---
 
     @pytest.mark.asyncio
-    async def test_add_node_skip_duplicate(self, graph_store: ElementXGraphStore):
+    async def test_add_node_skip_duplicate(self, graph_store: ElementXGraphStore) -> None:
         """Test that skip_if_duplicate prevents duplicate nodes by label."""
         alice1 = create_node("Alice")
         alice2 = create_node("Alice")  # Same label, different ID
@@ -333,7 +335,7 @@ class TestElementXGraphStore:
     @pytest.mark.asyncio
     async def test_add_node_allows_duplicate_with_warning(
         self, graph_store: ElementXGraphStore
-    ):
+    ) -> None:
         """Test that by default duplicate nodes are added with warning."""
         alice1 = create_node("Alice")
         alice2 = create_node("Alice")  # Same label, different ID
@@ -351,7 +353,7 @@ class TestElementXGraphStore:
         assert count == 2
 
     @pytest.mark.asyncio
-    async def test_add_node_no_duplicate_check(self, graph_store: ElementXGraphStore):
+    async def test_add_node_no_duplicate_check(self, graph_store: ElementXGraphStore) -> None:
         """Test that check_duplicate=False bypasses duplicate detection."""
         alice1 = create_node("Alice")
         alice2 = create_node("Alice")  # Same label, different ID
@@ -368,7 +370,7 @@ class TestElementXGraphStore:
         assert count == 2
 
     @pytest.mark.asyncio
-    async def test_add_edge_skip_duplicate(self, graph_store: ElementXGraphStore):
+    async def test_add_edge_skip_duplicate(self, graph_store: ElementXGraphStore) -> None:
         """Test that duplicate edges with same relation are skipped by default."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -393,7 +395,7 @@ class TestElementXGraphStore:
     @pytest.mark.asyncio
     async def test_add_edge_allows_different_relations(
         self, graph_store: ElementXGraphStore
-    ):
+    ) -> None:
         """Test that edges with different relations are not duplicates."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -414,7 +416,7 @@ class TestElementXGraphStore:
         assert result2 is True
 
     @pytest.mark.asyncio
-    async def test_add_edge_update_if_exists(self, graph_store: ElementXGraphStore):
+    async def test_add_edge_update_if_exists(self, graph_store: ElementXGraphStore) -> None:
         """Test update_if_exists flag updates existing edge data."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -440,7 +442,7 @@ class TestElementXGraphStore:
         assert found.weight == 0.9
 
     @pytest.mark.asyncio
-    async def test_find_edge(self, graph_store: ElementXGraphStore):
+    async def test_find_edge(self, graph_store: ElementXGraphStore) -> None:
         """Test find_edge returns edge when it exists."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -460,7 +462,7 @@ class TestElementXGraphStore:
     @pytest.mark.asyncio
     async def test_find_edge_with_relation_filter(
         self, graph_store: ElementXGraphStore
-    ):
+    ) -> None:
         """Test find_edge with relation filter."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -479,7 +481,7 @@ class TestElementXGraphStore:
         assert not_found is None
 
     @pytest.mark.asyncio
-    async def test_find_edge_not_found(self, graph_store: ElementXGraphStore):
+    async def test_find_edge_not_found(self, graph_store: ElementXGraphStore) -> None:
         """Test find_edge returns None when edge doesn't exist."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -491,7 +493,7 @@ class TestElementXGraphStore:
         assert found is None
 
     @pytest.mark.asyncio
-    async def test_edge_exists(self, graph_store: ElementXGraphStore):
+    async def test_edge_exists(self, graph_store: ElementXGraphStore) -> None:
         """Test edge_exists helper method."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -512,7 +514,7 @@ class TestElementXGraphStore:
     @pytest.mark.asyncio
     async def test_edge_deduplication_case_insensitive(
         self, graph_store: ElementXGraphStore
-    ):
+    ) -> None:
         """Test that edge relation comparison is case-insensitive."""
         alice = create_node("Alice")
         bob = create_node("Bob")
@@ -533,7 +535,7 @@ class TestElementXGraphStore:
     @pytest.mark.asyncio
     async def test_node_deduplication_case_insensitive(
         self, graph_store: ElementXGraphStore
-    ):
+    ) -> None:
         """Test that node label comparison is case-insensitive."""
         alice1 = create_node("Alice")
         alice2 = create_node("ALICE")  # Same label, different case

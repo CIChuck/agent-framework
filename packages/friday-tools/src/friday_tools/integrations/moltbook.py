@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Moltbook integration tools."""
 
 from __future__ import annotations

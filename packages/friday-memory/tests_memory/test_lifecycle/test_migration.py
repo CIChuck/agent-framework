@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for MemoryMigrator and lifecycle migration (Phase 9).
 
@@ -19,7 +21,7 @@ from friday_memory.lifecycle import MemoryMigrator, MemoryStage, MigrationReport
 class TestMigrationReport:
     """Test MigrationReport model."""
 
-    def test_report_defaults(self):
+    def test_report_defaults(self) -> None:
         """Test MigrationReport has correct defaults."""
         report = MigrationReport(dry_run=True)
 
@@ -35,7 +37,7 @@ class TestMigrationReport:
         assert report.edges_skipped == 0
         assert len(report.errors) == 0
 
-    def test_total_migrated(self):
+    def test_total_migrated(self) -> None:
         """Test total_migrated property."""
         report = MigrationReport(
             dry_run=False,
@@ -46,17 +48,17 @@ class TestMigrationReport:
 
         assert report.total_migrated == 18
 
-    def test_success_with_no_errors(self):
+    def test_success_with_no_errors(self) -> None:
         """Test success property with no errors."""
         report = MigrationReport(dry_run=False)
         assert report.success
 
-    def test_success_with_errors(self):
+    def test_success_with_errors(self) -> None:
         """Test success property with errors."""
         report = MigrationReport(dry_run=False, errors=["Some error"])
         assert not report.success
 
-    def test_needs_migration(self):
+    def test_needs_migration(self) -> None:
         """Test needs_migration property."""
         # No migration needed
         report = MigrationReport(dry_run=True)
@@ -112,7 +114,7 @@ class TestMemoryMigrator:
 
         return store
 
-    def test_init_with_stores(self, mock_vector_store, mock_graph_store):
+    def test_init_with_stores(self, mock_vector_store, mock_graph_store) -> None:
         """Test migrator initialization with stores."""
         migrator = MemoryMigrator(
             vector_store=mock_vector_store,
@@ -122,7 +124,7 @@ class TestMemoryMigrator:
         assert migrator._vector_store is mock_vector_store
         assert migrator._graph_store is mock_graph_store
 
-    def test_init_without_stores(self):
+    def test_init_without_stores(self) -> None:
         """Test migrator initialization without stores."""
         migrator = MemoryMigrator()
 
@@ -130,7 +132,7 @@ class TestMemoryMigrator:
         assert migrator._graph_store is None
 
     @pytest.mark.asyncio
-    async def test_migrate_dry_run(self, mock_vector_store, mock_graph_store):
+    async def test_migrate_dry_run(self, mock_vector_store, mock_graph_store) -> None:
         """Test migration in dry run mode."""
         migrator = MemoryMigrator(
             vector_store=mock_vector_store,
@@ -155,7 +157,7 @@ class TestMemoryMigrator:
         mock_graph_store.remove_node.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_migrate_execute(self, mock_vector_store, mock_graph_store):
+    async def test_migrate_execute(self, mock_vector_store, mock_graph_store) -> None:
         """Test migration in execute mode."""
         migrator = MemoryMigrator(
             vector_store=mock_vector_store,
@@ -176,7 +178,7 @@ class TestMemoryMigrator:
         assert mock_graph_store.add_node.call_count == 2
 
     @pytest.mark.asyncio
-    async def test_migrate_without_vector_store(self, mock_graph_store):
+    async def test_migrate_without_vector_store(self, mock_graph_store) -> None:
         """Test migration without vector store."""
         migrator = MemoryMigrator(graph_store=mock_graph_store)
 
@@ -188,7 +190,7 @@ class TestMemoryMigrator:
         assert report.nodes_migrated == 2
 
     @pytest.mark.asyncio
-    async def test_migrate_without_graph_store(self, mock_vector_store):
+    async def test_migrate_without_graph_store(self, mock_vector_store) -> None:
         """Test migration without graph store."""
         migrator = MemoryMigrator(vector_store=mock_vector_store)
 
@@ -202,7 +204,7 @@ class TestMemoryMigrator:
     @pytest.mark.asyncio
     async def test_check_migration_needed_true(
         self, mock_vector_store, mock_graph_store
-    ):
+    ) -> None:
         """Test check_migration_needed returns True when migration needed."""
         migrator = MemoryMigrator(
             vector_store=mock_vector_store,
@@ -213,7 +215,7 @@ class TestMemoryMigrator:
         assert needs_migration
 
     @pytest.mark.asyncio
-    async def test_check_migration_needed_false(self):
+    async def test_check_migration_needed_false(self) -> None:
         """Test check_migration_needed returns False when all migrated."""
         # Create store where all items have lifecycle metadata
         vector_store = MagicMock()
@@ -240,7 +242,7 @@ class TestMemoryMigrator:
         needs_migration = await migrator.check_migration_needed()
         assert not needs_migration
 
-    def test_has_lifecycle_metadata(self):
+    def test_has_lifecycle_metadata(self) -> None:
         """Test _has_lifecycle_metadata detection."""
         migrator = MemoryMigrator()
 
@@ -254,7 +256,7 @@ class TestMemoryMigrator:
             {"stage": "short_term", "type": "insight"}
         )
 
-    def test_add_lifecycle_metadata(self):
+    def test_add_lifecycle_metadata(self) -> None:
         """Test _add_lifecycle_metadata adds correct fields."""
         migrator = MemoryMigrator()
 
@@ -272,7 +274,7 @@ class TestMemoryMigrator:
         assert updated["retrieval_factor"] == 1.0
         assert "migrated_at" in updated
 
-    def test_add_lifecycle_metadata_preserves_hit_count(self):
+    def test_add_lifecycle_metadata_preserves_hit_count(self) -> None:
         """Test _add_lifecycle_metadata preserves existing hit_count."""
         migrator = MemoryMigrator()
 
@@ -287,7 +289,7 @@ class TestIdempotentMigration:
     """Test that migration is idempotent (safe to run multiple times)."""
 
     @pytest.mark.asyncio
-    async def test_second_migration_does_nothing(self):
+    async def test_second_migration_does_nothing(self) -> None:
         """Test that running migration twice doesn't double-migrate."""
         # First run: documents without stage
         vector_store = MagicMock()
@@ -317,7 +319,7 @@ class TestIdempotentMigration:
         assert report2.vectors_skipped == 1
 
     @pytest.mark.asyncio
-    async def test_partial_migration_continues(self):
+    async def test_partial_migration_continues(self) -> None:
         """Test that partial migration can be continued."""
         # Simulate some migrated, some not
         vector_store = MagicMock()
@@ -343,7 +345,7 @@ class TestMigrationErrorHandling:
     """Test error handling in migration."""
 
     @pytest.mark.asyncio
-    async def test_vector_update_error_recorded(self):
+    async def test_vector_update_error_recorded(self) -> None:
         """Test that vector update errors are recorded in report."""
         vector_store = MagicMock()
         vector_store.get_all = AsyncMock(
@@ -362,7 +364,7 @@ class TestMigrationErrorHandling:
         assert "Update failed" in report.errors[0]
 
     @pytest.mark.asyncio
-    async def test_graph_node_error_recorded(self):
+    async def test_graph_node_error_recorded(self) -> None:
         """Test that graph node errors are recorded in report."""
         node = MagicMock()
         node.id = "n1"

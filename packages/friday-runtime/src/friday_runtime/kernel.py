@@ -14,17 +14,21 @@ Ref: Phase 1 Build Plan, Step 4.3
 
 import logging
 import uuid
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from friday_agent import (
     AgentLoader,
     AgentOrchestrator,
     AgentProfile,
     AgentRegistry,
+    AutonomousAgent,
     CopilotAgent,
     DefaultToolRegistry,
+    InteractiveAgent,
 )
+from friday_core.interfaces import ToolRegistry
 from friday_core.interfaces.runtime import SystemRuntime
 from friday_core.profiles import MemoryProfile
 from friday_core.security import SanitizationConfig
@@ -82,6 +86,10 @@ class RuntimeKernel(SystemRuntime):
         self._agent_loader: AgentLoader | None = None
         self._agent_registry: AgentRegistry | None = None
         self._orchestrator: AgentOrchestrator | None = None
+        self._agent_factories: dict[str, Callable[[AgentProfile], Any]] = {
+            "interactive": self._create_interactive_agent,
+            "autonomous": self._create_autonomous_agent,
+        }
 
     # --- SystemRuntime Implementation ---
 
@@ -96,6 +104,11 @@ class RuntimeKernel(SystemRuntime):
 
         logger.info("Starting RuntimeKernel...")
         await self._di.boot()
+        try:
+            self._agent_registry = self._build_agent_registry()
+        except Exception:
+            await self._di.shutdown()
+            raise
         self._initialized = True
         logger.info("RuntimeKernel started successfully")
 
@@ -165,14 +178,74 @@ class RuntimeKernel(SystemRuntime):
         from friday_memory import ScratchPadStore
 
         loader = WorkflowLoader(Path(self._config.agents_dir or "agents") / "workflows")
-        workflow = loader.load(workflow_name)
-
         scratchpad = ScratchPadStore()
         engine = WorkflowEngine(
             orchestrator=self.orchestrator,
             scratchpad=scratchpad,
+            telemetry=self.telemetry,
+            agent_info_resolver=self.get_agent_info,
         )
-        return await engine.execute(workflow, initial_inputs)
+
+        if self._config.workflow_mode == "legacy":
+            bundle = loader.load_legacy_as_canonical(workflow_name)
+            self._emit_workflow_routing_event(
+                workflow_name=workflow_name,
+                requested_mode="legacy",
+                resolved_mode="legacy_adapter",
+            )
+            return await engine.execute_canonical(
+                bundle.workflow,
+                bundle.pipelines,
+                initial_inputs,
+                role_bindings=self._config.agents_role_bindings,
+            )
+
+        if self._config.workflow_mode == "canonical":
+            bundle = loader.load_canonical(workflow_name)
+            self._emit_workflow_routing_event(
+                workflow_name=workflow_name,
+                requested_mode="canonical",
+                resolved_mode="canonical",
+            )
+            return await engine.execute_canonical(
+                bundle.workflow,
+                bundle.pipelines,
+                initial_inputs,
+                role_bindings=self._config.agents_role_bindings,
+            )
+
+        # auto mode: attempt canonical first, then fall back to legacy path.
+        try:
+            bundle = loader.load_canonical(workflow_name)
+        except Exception:
+            bundle = loader.load_legacy_as_canonical(workflow_name)
+            logger.warning(
+                "Canonical workflow load failed for '%s'; using legacy adapter path",
+                workflow_name,
+            )
+            self._emit_workflow_routing_event(
+                workflow_name=workflow_name,
+                requested_mode="auto",
+                resolved_mode="legacy_adapter",
+            )
+            return await engine.execute_canonical(
+                bundle.workflow,
+                bundle.pipelines,
+                initial_inputs,
+                role_bindings=self._config.agents_role_bindings,
+            )
+
+        self._emit_workflow_routing_event(
+            workflow_name=workflow_name,
+            requested_mode="auto",
+            resolved_mode="canonical",
+        )
+        return await engine.execute_canonical(
+            bundle.workflow,
+            bundle.pipelines,
+            initial_inputs,
+            role_bindings=self._config.agents_role_bindings,
+        )
 
     # --- Eager Service Accessors ---
 
@@ -257,13 +330,7 @@ class RuntimeKernel(SystemRuntime):
         - All agents from the agents directory (if it exists)
         """
         if self._agent_registry is None:
-            self._agent_registry = AgentRegistry(self.agent_loader)
-            self._agent_registry.set_factory(self._create_agent)
-
-            try:
-                self._agent_registry.load_all_from_directory()
-            except Exception as e:
-                logger.warning(f"Could not load agents from directory: {e}")
+            self._agent_registry = self._build_agent_registry()
 
         return self._agent_registry
 
@@ -292,6 +359,14 @@ class RuntimeKernel(SystemRuntime):
 
     # --- Agent Factory ---
 
+    def register_agent_factory(
+        self,
+        agent_type: str,
+        factory: Callable[[AgentProfile], Any],
+    ) -> None:
+        """Register or override a runtime factory for a profile `agent_type`."""
+        self._agent_factories[agent_type] = factory
+
     def get_copilot_agent(
         self,
         profile: AgentProfile | None = None,
@@ -314,8 +389,36 @@ class RuntimeKernel(SystemRuntime):
             profile=profile,
             memory=self.memory,
             context_engine=self.context_engine,
-            llm=self.llm,
-            tool_registry=self.tool_registry,
+            llm=self._get_llm_for_profile(profile),
+            tool_registry=self._tool_registry_interface(),
+            telemetry=self.telemetry,
+            sanitization_config=self._sanitization_config,
+        )
+
+    def get_interactive_agent(
+        self,
+        profile: AgentProfile | None = None,
+    ) -> InteractiveAgent:
+        """
+        Create an InteractiveAgent with all dependencies wired.
+
+        Args:
+            profile: Agent profile (uses default if not provided).
+
+        Returns:
+            Configured InteractiveAgent instance.
+        """
+        self._ensure_initialized()
+
+        if profile is None:
+            profile = self._default_profile()
+
+        return InteractiveAgent(
+            profile=profile,
+            memory=self.memory,
+            context_engine=self.context_engine,
+            llm=self._get_llm_for_profile(profile),
+            tool_registry=self._tool_registry_interface(),
             telemetry=self.telemetry,
             sanitization_config=self._sanitization_config,
         )
@@ -360,6 +463,8 @@ class RuntimeKernel(SystemRuntime):
             "name": profile.name,
             "role": profile.role,
             "goal": profile.goal,
+            "llm_service": self._resolve_llm_service_name(profile),
+            "agent_type": profile.agent_type,
             "capabilities": profile.capabilities,
             "tools": profile.tools,
             "tool_autonomy": profile.tool_autonomy,
@@ -372,7 +477,67 @@ class RuntimeKernel(SystemRuntime):
         if not self._initialized:
             raise RuntimeError("RuntimeKernel not started. Call start() first.")
 
-    def _create_agent(self, profile: AgentProfile) -> CopilotAgent:
+    def _build_agent_registry(self) -> AgentRegistry:
+        """Create and validate the registry against runtime LLM bindings."""
+        registry = AgentRegistry(self.agent_loader)
+        registry.set_factory(self._create_agent)
+
+        if self.agent_loader.agents_dir.exists():
+            registry.load_all_from_directory()
+            self._validate_agent_profiles(registry.list_profiles())
+
+        return registry
+
+    def _validate_agent_profiles(self, profiles: list[AgentProfile]) -> None:
+        """Fail startup deterministically on invalid agent/runtime bindings."""
+        for profile in profiles:
+            resolved_service = self._resolve_llm_service_name(profile)
+            self._resolve_agent_factory(profile.agent_type)
+            logger.debug(
+                "Validated agent '%s' LLM binding to service '%s' (agent_type=%s)",
+                profile.name,
+                resolved_service,
+                profile.agent_type,
+            )
+
+    def _resolve_llm_service_name(self, profile: AgentProfile) -> str:
+        """Resolve the effective runtime LLM service for a profile."""
+        if profile.llm_service is not None:
+            if profile.llm_service not in self._config.llm_pool.services:
+                raise ValueError(
+                    f"Agent '{profile.name}' references unknown llm_service "
+                    f"'{profile.llm_service}'"
+                )
+            return profile.llm_service
+
+        if self._config.strict_agent_llm_binding:
+            raise ValueError(
+                f"Agent '{profile.name}' must declare llm_service when "
+                "strict_agent_llm_binding is enabled"
+            )
+
+        return self._config.llm_pool.default_service
+
+    def _get_llm_for_profile(self, profile: AgentProfile) -> Any:
+        """Return the configured runtime LLM client for the agent profile."""
+        service_name = self._resolve_llm_service_name(profile)
+        try:
+            return self._di.llm_pool[service_name]
+        except KeyError as exc:
+            raise RuntimeError(
+                f"Runtime LLM pool missing configured service '{service_name}'"
+            ) from exc
+
+    def _resolve_agent_factory(self, agent_type: str) -> Callable[[AgentProfile], Any]:
+        """Resolve the runtime factory for the profile `agent_type`."""
+        try:
+            return self._agent_factories[agent_type]
+        except KeyError as exc:
+            raise ValueError(
+                f"Unregistered agent_type '{agent_type}' for runtime factory mapping"
+            ) from exc
+
+    def _create_agent(self, profile: AgentProfile) -> Any:
         """
         Factory function for creating agents from profiles.
 
@@ -382,14 +547,34 @@ class RuntimeKernel(SystemRuntime):
             profile: Agent profile to instantiate.
 
         Returns:
-            Configured CopilotAgent instance.
+            Configured agent instance.
         """
-        return CopilotAgent(
+        return self._resolve_agent_factory(profile.agent_type)(profile)
+
+    def _tool_registry_interface(self) -> ToolRegistry:
+        """Return the registry narrowed to the protocol expected by agents."""
+        return cast(ToolRegistry, self.tool_registry)
+
+    def _create_interactive_agent(self, profile: AgentProfile) -> InteractiveAgent:
+        """Create the default interactive runtime agent."""
+        return InteractiveAgent(
             profile=profile,
             memory=self.memory,
             context_engine=self.context_engine,
-            llm=self.llm,
-            tool_registry=self.tool_registry,
+            llm=self._get_llm_for_profile(profile),
+            tool_registry=self._tool_registry_interface(),
+            telemetry=self.telemetry,
+            sanitization_config=self._sanitization_config,
+        )
+
+    def _create_autonomous_agent(self, profile: AgentProfile) -> AutonomousAgent:
+        """Create the autonomous runtime agent."""
+        return AutonomousAgent(
+            profile=profile,
+            memory=self.memory,
+            context_engine=self.context_engine,
+            llm=self._get_llm_for_profile(profile),
+            tool_registry=self._tool_registry_interface(),
             telemetry=self.telemetry,
             sanitization_config=self._sanitization_config,
         )
@@ -418,4 +603,25 @@ class RuntimeKernel(SystemRuntime):
                 "scratchpad_list",
             ],
             temperature=0.7,
+            llm_service=self._config.llm_pool.default_service,
+            agent_type="interactive",
+        )
+
+    def _emit_workflow_routing_event(
+        self,
+        *,
+        workflow_name: str,
+        requested_mode: str,
+        resolved_mode: str,
+    ) -> None:
+        """Emit auditable workflow routing information when telemetry is enabled."""
+        if self.telemetry is None:
+            return
+        self.telemetry.capture_event(
+            "workflow_mode_selected",
+            {
+                "workflow_name": workflow_name,
+                "requested_mode": requested_mode,
+                "resolved_mode": resolved_mode,
+            },
         )

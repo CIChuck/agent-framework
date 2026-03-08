@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for provenance tracking in friday-memory.
 
@@ -29,7 +31,7 @@ from friday_memory.models.graph import (
 class TestProvenanceValidation:
     """Tests for ProvenanceMetadata validation and normalization."""
 
-    def test_author_id_normalized_to_lowercase(self):
+    def test_author_id_normalized_to_lowercase(self) -> None:
         """Test that author_id is normalized to lowercase."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -38,7 +40,7 @@ class TestProvenanceValidation:
         )
         assert provenance.author_id == "myagent"
 
-    def test_author_id_trimmed(self):
+    def test_author_id_trimmed(self) -> None:
         """Test that author_id is trimmed."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -47,7 +49,7 @@ class TestProvenanceValidation:
         )
         assert provenance.author_id == "researcher"
 
-    def test_author_id_empty_string_raises(self):
+    def test_author_id_empty_string_raises(self) -> None:
         """Test that empty string author_id raises ValueError."""
         with pytest.raises(ValueError, match="cannot be empty"):
             ProvenanceMetadata(
@@ -56,7 +58,7 @@ class TestProvenanceValidation:
                 author_id="",
             )
 
-    def test_author_id_whitespace_only_raises(self):
+    def test_author_id_whitespace_only_raises(self) -> None:
         """Test that whitespace-only author_id raises ValueError."""
         with pytest.raises(ValueError, match="cannot be empty"):
             ProvenanceMetadata(
@@ -65,7 +67,7 @@ class TestProvenanceValidation:
                 author_id="   ",
             )
 
-    def test_author_id_none_allowed(self):
+    def test_author_id_none_allowed(self) -> None:
         """Test that None author_id is allowed."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -73,7 +75,7 @@ class TestProvenanceValidation:
         )
         assert provenance.author_id is None
 
-    def test_source_type_normalized(self):
+    def test_source_type_normalized(self) -> None:
         """Test that source_type is normalized to lowercase."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -81,7 +83,7 @@ class TestProvenanceValidation:
         )
         assert provenance.source_type == "agent"
 
-    def test_source_type_trimmed(self):
+    def test_source_type_trimmed(self) -> None:
         """Test that source_type is trimmed."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -93,7 +95,7 @@ class TestProvenanceValidation:
 class TestProvenanceLineage:
     """Tests for ProvenanceMetadata lineage tracking."""
 
-    def test_with_parent_adds_parent_id(self):
+    def test_with_parent_adds_parent_id(self) -> None:
         """Test that with_parent adds a parent ID."""
         original = ProvenanceMetadata(
             source_id="original",
@@ -106,7 +108,7 @@ class TestProvenanceLineage:
         # Original should be unchanged
         assert original.parent_ids == []
 
-    def test_with_parent_preserves_other_fields(self):
+    def test_with_parent_preserves_other_fields(self) -> None:
         """Test that with_parent preserves all other fields."""
         original = ProvenanceMetadata(
             source_id="original",
@@ -121,7 +123,7 @@ class TestProvenanceLineage:
         assert derived.author_id == original.author_id
         assert derived.confidence == original.confidence
 
-    def test_multiple_parents_chain(self):
+    def test_multiple_parents_chain(self) -> None:
         """Test chaining multiple with_parent calls."""
         original = ProvenanceMetadata(
             source_id="base",
@@ -133,7 +135,7 @@ class TestProvenanceLineage:
 
         assert third.parent_ids == ["parent_1", "parent_2", "parent_3"]
 
-    def test_parent_ids_default_empty(self):
+    def test_parent_ids_default_empty(self) -> None:
         """Test that parent_ids defaults to empty list."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -145,7 +147,7 @@ class TestProvenanceLineage:
 class TestProvenanceSerialization:
     """Tests for ProvenanceMetadata to_dict/from_dict methods."""
 
-    def test_to_dict_basic(self):
+    def test_to_dict_basic(self) -> None:
         """Test basic serialization to dict."""
         provenance = ProvenanceMetadata(
             source_id="doc_123",
@@ -162,7 +164,7 @@ class TestProvenanceSerialization:
         assert "created_at" in data
         assert data["parent_ids"] == []
 
-    def test_from_dict_basic(self):
+    def test_from_dict_basic(self) -> None:
         """Test basic deserialization from dict."""
         data = {
             "source_id": "source_abc",
@@ -179,7 +181,7 @@ class TestProvenanceSerialization:
         assert provenance.author_id == "extractor"
         assert provenance.confidence == 0.8
 
-    def test_round_trip_serialization(self):
+    def test_round_trip_serialization(self) -> None:
         """Test that to_dict/from_dict are inverse operations."""
         original = ProvenanceMetadata(
             source_id="round_trip",
@@ -197,7 +199,7 @@ class TestProvenanceSerialization:
         assert restored.confidence == original.confidence
         assert restored.parent_ids == original.parent_ids
 
-    def test_from_dict_with_missing_optional_fields(self):
+    def test_from_dict_with_missing_optional_fields(self) -> None:
         """Test deserialization with minimal required fields."""
         data = {
             "source_id": "minimal",
@@ -213,7 +215,7 @@ class TestProvenanceSerialization:
 class TestProvenanceFactoryFunctions:
     """Tests for provenance factory functions."""
 
-    def test_create_agent_provenance(self):
+    def test_create_agent_provenance(self) -> None:
         """Test create_agent_provenance factory."""
         provenance = create_agent_provenance("researcher")
 
@@ -222,7 +224,7 @@ class TestProvenanceFactoryFunctions:
         assert provenance.source_id == "manual"
         assert provenance.confidence == 1.0
 
-    def test_create_agent_provenance_with_options(self):
+    def test_create_agent_provenance_with_options(self) -> None:
         """Test create_agent_provenance with custom options."""
         provenance = create_agent_provenance(
             author_id="coder",
@@ -235,7 +237,7 @@ class TestProvenanceFactoryFunctions:
         assert provenance.source_id == "code_review"
         assert provenance.confidence == 0.9
 
-    def test_create_user_provenance(self):
+    def test_create_user_provenance(self) -> None:
         """Test create_user_provenance factory."""
         provenance = create_user_provenance("user_123")
 
@@ -244,7 +246,7 @@ class TestProvenanceFactoryFunctions:
         assert provenance.source_id == "user_input"
         assert provenance.confidence == 1.0
 
-    def test_create_user_provenance_with_source_id(self):
+    def test_create_user_provenance_with_source_id(self) -> None:
         """Test create_user_provenance with custom source_id."""
         provenance = create_user_provenance(
             user_id="user_456",
@@ -254,7 +256,7 @@ class TestProvenanceFactoryFunctions:
         assert provenance.author_id == "user_456"
         assert provenance.source_id == "api_request"
 
-    def test_create_extraction_provenance(self):
+    def test_create_extraction_provenance(self) -> None:
         """Test create_extraction_provenance factory."""
         provenance = create_extraction_provenance(
             author_id="consolidator",
@@ -266,7 +268,7 @@ class TestProvenanceFactoryFunctions:
         assert provenance.source_id == "turn_789"
         assert provenance.confidence == 0.9
 
-    def test_create_extraction_provenance_with_parents(self):
+    def test_create_extraction_provenance_with_parents(self) -> None:
         """Test create_extraction_provenance with parent_ids."""
         provenance = create_extraction_provenance(
             author_id="consolidator",
@@ -282,7 +284,7 @@ class TestProvenanceFactoryFunctions:
 class TestInteractionTurnAgentId:
     """Tests for agent_id field in InteractionTurn."""
 
-    def test_turn_with_agent_id(self):
+    def test_turn_with_agent_id(self) -> None:
         """Test creating turn with agent_id."""
         turn = InteractionTurn(
             id=str(uuid.uuid4()),
@@ -293,7 +295,7 @@ class TestInteractionTurnAgentId:
         )
         assert turn.agent_id == "researcher"
 
-    def test_turn_without_agent_id(self):
+    def test_turn_without_agent_id(self) -> None:
         """Test creating turn without agent_id defaults to None."""
         turn = InteractionTurn(
             id=str(uuid.uuid4()),
@@ -303,7 +305,7 @@ class TestInteractionTurnAgentId:
         )
         assert turn.agent_id is None
 
-    def test_turn_agent_id_in_dict(self):
+    def test_turn_agent_id_in_dict(self) -> None:
         """Test that agent_id is included in model_dump."""
         turn = InteractionTurn(
             id="turn_123",
@@ -319,31 +321,31 @@ class TestInteractionTurnAgentId:
 class TestMemoryControllerAuthorTracking:
     """Tests for MemoryController author tracking."""
 
-    def test_default_author_is_system(self, memory_controller):
+    def test_default_author_is_system(self, memory_controller) -> None:
         """Test that default author is 'system'."""
         assert memory_controller.current_author == "system"
 
-    def test_set_author(self, memory_controller):
+    def test_set_author(self, memory_controller) -> None:
         """Test setting a new author."""
         memory_controller.set_author("researcher")
         assert memory_controller.current_author == "researcher"
 
-    def test_set_author_normalizes_to_lowercase(self, memory_controller):
+    def test_set_author_normalizes_to_lowercase(self, memory_controller) -> None:
         """Test that set_author normalizes to lowercase."""
         memory_controller.set_author("MyAgent")
         assert memory_controller.current_author == "myagent"
 
-    def test_set_author_trims_whitespace(self, memory_controller):
+    def test_set_author_trims_whitespace(self, memory_controller) -> None:
         """Test that set_author trims whitespace."""
         memory_controller.set_author("  coder  ")
         assert memory_controller.current_author == "coder"
 
-    def test_set_author_empty_raises(self, memory_controller):
+    def test_set_author_empty_raises(self, memory_controller) -> None:
         """Test that empty author raises ValueError."""
         with pytest.raises(ValueError):
             memory_controller.set_author("")
 
-    def test_set_author_whitespace_raises(self, memory_controller):
+    def test_set_author_whitespace_raises(self, memory_controller) -> None:
         """Test that whitespace-only author raises ValueError."""
         with pytest.raises(ValueError):
             memory_controller.set_author("   ")
@@ -355,7 +357,7 @@ class TestMemoryControllerAuthorTracking:
         episodic_store,
         telemetry,
         collection_manager,
-    ):
+    ) -> None:
         """Test creating controller with custom default author."""
         from friday_memory import MemoryController
 

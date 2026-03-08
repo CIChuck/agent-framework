@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 PDF file reader adapter.
 

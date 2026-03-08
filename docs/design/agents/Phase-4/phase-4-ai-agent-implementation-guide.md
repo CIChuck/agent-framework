@@ -190,6 +190,14 @@ For each subphase, produce artifacts proving:
 4. Runtime-to-agent service binding evidence (`llm_service`, model, provider).
 5. Artifact publication evidence (`artifact_id`, `type`, producer task, pipeline, workflow).
 6. Compatibility adapter warning behavior (where exercised).
+7. Runtime routing evidence via `workflow_mode_selected`.
+8. Canonical execution telemetry evidence via:
+   - `workflow_execution_started|completed|failed`
+   - `pipeline_execution_started|completed|failed|blocked`
+   - `workflow_task_started|completed|failed`
+   - `workflow_typed_handoff_validated`
+   - `workflow_artifact_published`
+9. Per-task `llm_service` attribution joined to workflow/pipeline/task/assignment identity.
 
 Evidence must map clearly to the Phase 4 acceptance criteria.
 

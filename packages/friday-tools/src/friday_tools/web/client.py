@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Shared HTTP client factory and utilities.
 

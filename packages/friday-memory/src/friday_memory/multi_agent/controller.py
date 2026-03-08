@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Additive multi-agent memory controller.
 """

@@ -405,7 +405,7 @@ Use this checklist to validate Phase 4 completeness:
 12. Every workflow `required_artifacts` entry is produced by a declared pipeline artifact contract.
 13. Dispatch lifecycle behavior is explicitly testable.
 14. Legacy adapter behavior is documented and warnings are expected.
-15. Observability data includes workflow/pipeline/task/assignment, LLM binding, and artifact publication metadata.
+15. Observability data includes workflow/pipeline/task/assignment, resolved `llm_service`, typed handoff lineage, artifact publication metadata, and routing evidence such as `workflow_mode_selected`.
 16. Unknown keys are treated as hard-fail validation errors.
 17. Acceptance criteria from Phase 4 plan can be mapped to specific tests and outputs.
 

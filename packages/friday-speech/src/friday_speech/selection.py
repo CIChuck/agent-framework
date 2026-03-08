@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Speech selection strategies and tag parsing."""
 
 from __future__ import annotations

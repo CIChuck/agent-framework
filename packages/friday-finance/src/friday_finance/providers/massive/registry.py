@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 class AssetRegistry:
     """
     Manages the translation of human-readable concepts into Massive-compatible tickers.

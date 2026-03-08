@@ -1,5 +1,15 @@
 # Repository Guidelines
 
+## Repository Policy
+- The canonical engineering policy for this repository is [docs/policies/repository-engineering-policy.md](docs/policies/repository-engineering-policy.md).
+- All code changes must comply with that policy.
+Priority operational rules for agents:
+- Do not add `# mypy: ignore-errors` to source files under `packages/*/src` without an explicit waiver.
+- Do not rely on `assert` as the sole enforcement mechanism for essential runtime invariants; use explicit exceptions.
+- Prefer interface or contract fixes over repeated `cast(...)`.
+- Cross-package contracts should use typed models or declared interfaces, not incidental implementation details.
+- If a requested change conflicts with repository policy, stop and explain the conflict.
+
 ## Project Structure & Module Organization
 - `packages/` contains workspace libraries. Core modules include `friday-core` (interfaces/config/logging), `friday-memory` (memory + Chroma), `friday-llm` (LiteLLM clients), and `friday-agent` (orchestration + tools). Supporting/runtime modules include `friday-cli`, `friday-sandbox`, `friday-tools`, `friday-mcp`, `friday-transcript`, `friday-optimization`, `friday-runtime`, `friday-speech`, `friday-telemetry`, `friday-finance`, and `friday-moltbook`.
 - `packages/friday-cli/src` hosts runtime wiring (`container.py`, REPL/server hooks) and the Typer/FastAPI surface.

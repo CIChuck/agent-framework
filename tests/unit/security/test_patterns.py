@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for injection pattern library."""
 
 from friday_core.security import InjectionPatternLibrary

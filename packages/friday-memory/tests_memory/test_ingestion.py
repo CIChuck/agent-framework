@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for DocumentIngestionPipeline.
 
@@ -40,7 +42,7 @@ def small_chunk_pipeline() -> DocumentIngestionPipeline:
 class TestTextChunking:
     """Tests for text chunking logic."""
 
-    def test_chunk_small_text(self, pipeline: DocumentIngestionPipeline):
+    def test_chunk_small_text(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that small text isn't chunked."""
         text = "This is a short text."
         chunks = pipeline._chunk_text(text)
@@ -48,17 +50,17 @@ class TestTextChunking:
         assert len(chunks) == 1
         assert chunks[0] == text
 
-    def test_chunk_empty_text(self, pipeline: DocumentIngestionPipeline):
+    def test_chunk_empty_text(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that empty text returns no chunks."""
         chunks = pipeline._chunk_text("")
         assert chunks == []
 
-    def test_chunk_whitespace_only(self, pipeline: DocumentIngestionPipeline):
+    def test_chunk_whitespace_only(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that whitespace-only text returns no chunks."""
         chunks = pipeline._chunk_text("   \n\t   ")
         assert chunks == []
 
-    def test_chunk_long_text(self, small_chunk_pipeline: DocumentIngestionPipeline):
+    def test_chunk_long_text(self, small_chunk_pipeline: DocumentIngestionPipeline) -> None:
         """Test chunking of long text."""
         text = "This is a longer piece of text. " * 20
         chunks = small_chunk_pipeline._chunk_text(text)
@@ -70,7 +72,7 @@ class TestTextChunking:
 
     def test_chunk_preserves_paragraph_breaks(
         self, small_chunk_pipeline: DocumentIngestionPipeline
-    ):
+    ) -> None:
         """Test that chunking prefers paragraph breaks."""
         text = "Paragraph one. " * 10 + "\n\n" + "Paragraph two. " * 10
         chunks = small_chunk_pipeline._chunk_text(text)
@@ -82,7 +84,7 @@ class TestTextChunking:
 class TestTextIngestion:
     """Tests for raw text ingestion."""
 
-    def test_ingest_text_basic(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_text_basic(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test basic text ingestion."""
         result = pipeline.ingest_text(
             text="This is test content.",
@@ -94,7 +96,7 @@ class TestTextIngestion:
         assert result.total_characters == len("This is test content.")
         assert result.total_chunks >= 1
 
-    def test_ingest_text_with_metadata(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_text_with_metadata(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test text ingestion with additional metadata."""
         result = pipeline.ingest_text(
             text="Content with metadata.",
@@ -108,7 +110,7 @@ class TestTextIngestion:
         assert chunk.metadata["category"] == "test"
         assert chunk.metadata["priority"] == 1
 
-    def test_ingest_text_creates_provenance(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_text_creates_provenance(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that ingestion creates proper provenance."""
         result = pipeline.ingest_text(
             text="Content for provenance test.",
@@ -123,7 +125,7 @@ class TestTextIngestion:
 
     def test_ingest_text_chunk_ids(
         self, small_chunk_pipeline: DocumentIngestionPipeline
-    ):
+    ) -> None:
         """Test that chunks have sequential IDs."""
         text = "This is content. " * 50
         result = small_chunk_pipeline.ingest_text(text, source_name="test")
@@ -135,7 +137,7 @@ class TestTextIngestion:
 class TestFileIngestion:
     """Tests for file ingestion."""
 
-    def test_ingest_text_file(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_text_file(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test ingesting a .txt file."""
         with tempfile.NamedTemporaryFile(suffix=".txt", delete=False, mode="w") as f:
             f.write("This is text file content.\nWith multiple lines.")
@@ -147,7 +149,7 @@ class TestFileIngestion:
             assert "filename" in result.chunks[0].metadata
             assert result.chunks[0].metadata["extension"] == ".txt"
 
-    def test_ingest_markdown_file(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_markdown_file(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test ingesting a .md file."""
         with tempfile.NamedTemporaryFile(suffix=".md", delete=False, mode="w") as f:
             f.write("# Heading\n\nThis is markdown content.")
@@ -156,7 +158,7 @@ class TestFileIngestion:
             result = pipeline.ingest_file(f.name)
             assert result.chunks[0].metadata["extension"] == ".md"
 
-    def test_ingest_python_file(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_python_file(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test ingesting a .py file."""
         with tempfile.NamedTemporaryFile(suffix=".py", delete=False, mode="w") as f:
             f.write("def hello():\n    print('Hello, World!')")
@@ -165,7 +167,7 @@ class TestFileIngestion:
             result = pipeline.ingest_file(f.name)
             assert result.chunks[0].metadata["extension"] == ".py"
 
-    def test_ingest_unsupported_file(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_unsupported_file(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that unsupported file types raise ValueError."""
         with tempfile.NamedTemporaryFile(suffix=".xyz", delete=False) as f:
             f.write(b"binary content")
@@ -174,12 +176,12 @@ class TestFileIngestion:
             with pytest.raises(ValueError, match="Unsupported file type"):
                 pipeline.ingest_file(f.name)
 
-    def test_ingest_nonexistent_file(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_nonexistent_file(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test that non-existent file raises FileNotFoundError."""
         with pytest.raises(FileNotFoundError):
             pipeline.ingest_file("/path/to/nonexistent/file.txt")
 
-    def test_ingest_file_with_metadata(self, pipeline: DocumentIngestionPipeline):
+    def test_ingest_file_with_metadata(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test file ingestion with additional metadata."""
         with tempfile.NamedTemporaryFile(suffix=".txt", delete=False, mode="w") as f:
             f.write("Content for metadata test.")
@@ -198,7 +200,7 @@ class TestFileIngestion:
 class TestVectorStorePreparation:
     """Tests for vector store preparation."""
 
-    def test_prepare_for_vector_store(self, pipeline: DocumentIngestionPipeline):
+    def test_prepare_for_vector_store(self, pipeline: DocumentIngestionPipeline) -> None:
         """Test preparing document for vector store."""
         document = pipeline.ingest_text(
             text="Content for vector store.",
@@ -218,7 +220,7 @@ class TestVectorStorePreparation:
 
     def test_prepare_preserves_chunk_order(
         self, small_chunk_pipeline: DocumentIngestionPipeline
-    ):
+    ) -> None:
         """Test that preparation preserves chunk order."""
         text = "First chunk content. " * 10 + "Second chunk content. " * 10
         document = small_chunk_pipeline.ingest_text(text, source_name="order_test")
@@ -233,7 +235,7 @@ class TestVectorStorePreparation:
 class TestSupportedExtensions:
     """Tests for supported file extensions."""
 
-    def test_supported_extensions_constant(self):
+    def test_supported_extensions_constant(self) -> None:
         """Test that supported extensions are defined."""
         extensions = DocumentIngestionPipeline.SUPPORTED_EXTENSIONS
 

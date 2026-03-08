@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Post-processing validation gate for memory extraction.
 

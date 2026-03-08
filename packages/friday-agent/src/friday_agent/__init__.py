@@ -23,10 +23,12 @@ Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
 from friday_agent.autonomous import AutonomousAgent
 from friday_agent.base import AgentBase
 from friday_agent.copilot import CopilotAgent
+from friday_agent.interactive import InteractiveAgent
 from friday_agent.loader import AgentConfigError, AgentLoader
 from friday_agent.orchestrator import AgentOrchestrator, OrchestratorError
 from friday_agent.profile import AgentProfile
 from friday_agent.registry import AgentRegistry, AgentRegistryError
+from friday_agent.repl_base import ReplAgentBase
 from friday_agent.skills import SkillCatalog, SkillCatalogEntry, validate_skill_ref
 from friday_agent.tools import DefaultToolRegistry, tool
 from friday_agent.workflows import (
@@ -44,6 +46,8 @@ __all__ = [
     # Agent classes
     "AgentProfile",
     "AgentBase",
+    "ReplAgentBase",
+    "InteractiveAgent",
     "CopilotAgent",
     "AutonomousAgent",
     # Configuration

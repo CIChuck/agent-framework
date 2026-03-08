@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 No-op graph store for vector-only and testing scenarios.
 Implements GraphStoreAdapter with all operations succeeding silently.

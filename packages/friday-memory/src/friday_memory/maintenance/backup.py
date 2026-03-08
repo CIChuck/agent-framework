@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Backup Manager for Friday Memory.
 

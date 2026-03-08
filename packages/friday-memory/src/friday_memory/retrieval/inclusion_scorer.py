@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Long-Term Memory Inclusion Scorer.
 

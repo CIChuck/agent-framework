@@ -45,8 +45,14 @@ class AgentLoader:
         all_profiles = loader.load_all()
     """
 
-    # Required fields in agent config
-    REQUIRED_FIELDS = ["name", "role", "goal", "system_prompt"]
+    # Required fields in agent config. `system_prompt_template` remains a
+    # compatibility alias for serialized/internal shapes.
+    REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
+        "name": ("name",),
+        "role": ("role",),
+        "goal": ("goal",),
+        "system_prompt": ("system_prompt", "system_prompt_template"),
+    }
 
     # Default values for optional fields
     DEFAULTS: dict[str, Any] = {
@@ -56,6 +62,8 @@ class AgentLoader:
         "capabilities": [],
         "temperature": 0.7,
         "max_tokens": None,
+        "llm_service": None,
+        "agent_type": "interactive",
         "context_strategy": "standard",
         "memory_config": {},
         "metadata": {},
@@ -228,7 +236,11 @@ class AgentLoader:
             raise AgentConfigError("Config must be a YAML object", path)
 
         # Validate required fields
-        missing = [f for f in self.REQUIRED_FIELDS if f not in config]
+        missing = [
+            field_name
+            for field_name, aliases in self.REQUIRED_FIELDS.items()
+            if not any(alias in config for alias in aliases)
+        ]
         if missing:
             raise AgentConfigError(f"Missing required fields: {missing}", path)
 
@@ -251,11 +263,14 @@ class AgentLoader:
             "role": (str, "must be a string"),
             "goal": (str, "must be a string"),
             "system_prompt": (str, "must be a string"),
+            "system_prompt_template": (str, "must be a string"),
             "tools": (list, "must be a list"),
             "skills": (list, "must be a list"),
             "capabilities": (list, "must be a list"),
             "temperature": ((int, float), "must be a number"),
             "max_tokens": (int, "must be an integer"),
+            "llm_service": (str, "must be a string"),
+            "agent_type": (str, "must be a string"),
             "tool_autonomy": (str, "must be a string"),
             "context_strategy": (str, "must be a string"),
             "memory_config": (dict, "must be an object"),
@@ -265,9 +280,23 @@ class AgentLoader:
             "required_tools": (list, "must be a list"),
         }
 
+        unknown_fields = sorted(set(config) - set(validators))
+        if unknown_fields:
+            raise AgentConfigError(f"Unknown fields: {unknown_fields}", path)
+
         for field, (expected_type, message) in validators.items():
             if field in config and not isinstance(config[field], expected_type):
                 raise AgentConfigError(f"Field '{field}' {message}", path)
+
+        if (
+            "system_prompt" in config
+            and "system_prompt_template" in config
+            and config["system_prompt"] != config["system_prompt_template"]
+        ):
+            raise AgentConfigError(
+                "system_prompt and system_prompt_template must match when both are set",
+                path,
+            )
 
         # Validate enums
         if config.get("tool_autonomy") not in ("manual", "auto", "hybrid", None):
@@ -283,6 +312,12 @@ class AgentLoader:
         ):
             raise AgentConfigError(
                 "context_strategy must be 'minimal', 'standard', or 'extended'", path
+            )
+
+        if config.get("agent_type") not in ("interactive", "autonomous", "custom", None):
+            raise AgentConfigError(
+                "agent_type must be 'interactive', 'autonomous', or 'custom'",
+                path,
             )
 
         # Validate temperature range
@@ -312,11 +347,16 @@ class AgentLoader:
             name=full_config["name"],
             role=full_config["role"],
             goal=full_config["goal"],
-            system_prompt_template=full_config["system_prompt"],
+            system_prompt_template=full_config.get(
+                "system_prompt",
+                full_config.get("system_prompt_template", ""),
+            ),
             tools=full_config["tools"],
             tool_autonomy=full_config["tool_autonomy"],
             temperature=full_config["temperature"],
             max_tokens=full_config["max_tokens"],
+            llm_service=full_config["llm_service"],
+            agent_type=full_config["agent_type"],
             context_strategy=full_config["context_strategy"],
             # Tool autonomy
             injected_tools=full_config["injected_tools"],

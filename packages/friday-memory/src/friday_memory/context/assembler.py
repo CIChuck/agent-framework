@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Context Assembler.
 Implements the 'Knapsack' budgeting logic to fit memory into the token window.

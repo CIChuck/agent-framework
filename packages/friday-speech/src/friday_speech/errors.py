@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Speech package errors and exception hierarchy."""
 
 

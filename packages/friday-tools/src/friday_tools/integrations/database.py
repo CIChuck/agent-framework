@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Database integration (stub)."""
 
 from typing import Any

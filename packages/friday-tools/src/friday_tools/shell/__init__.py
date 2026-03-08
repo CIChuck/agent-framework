@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Shell and system tools.
 

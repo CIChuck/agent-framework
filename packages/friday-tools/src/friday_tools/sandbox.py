@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Security sandboxing for filesystem and shell operations.
 

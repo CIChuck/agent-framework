@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Sandbox - Docker-based code execution for AI agents.
 

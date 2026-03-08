@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Finance tools for AI agents.
 

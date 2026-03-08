@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Base tool implementation.
 

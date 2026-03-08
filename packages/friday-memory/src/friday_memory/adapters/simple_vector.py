@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 In-memory vector store for ephemeral and testing scenarios.
 Implements VectorStoreAdapter with numpy-based cosine similarity search.

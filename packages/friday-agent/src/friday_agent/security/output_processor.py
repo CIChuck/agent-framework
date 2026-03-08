@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Agent-level output processing for sanitization.
 

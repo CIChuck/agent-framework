@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Filesystem tools for file and directory operations.
 

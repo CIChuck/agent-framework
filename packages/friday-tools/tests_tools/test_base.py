@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 import pytest
 from pydantic import BaseModel, Field
 

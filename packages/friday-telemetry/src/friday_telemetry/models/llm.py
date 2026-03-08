@@ -125,6 +125,34 @@ class ConversationContext(BaseModel):
     turn_number: int = Field(default=0, ge=0, description="Turn sequence number")
     parent_span_id: str | None = Field(default=None, description="Parent trace span")
     message_count: int = Field(default=0, ge=0, description="Messages in context")
+    workflow_id: str | None = Field(
+        default=None,
+        description="Workflow identifier for execution attribution",
+    )
+    execution_id: str | None = Field(
+        default=None,
+        description="Workflow execution identifier for attribution",
+    )
+    pipeline_id: str | None = Field(
+        default=None,
+        description="Pipeline identifier for execution attribution",
+    )
+    task_id: str | None = Field(
+        default=None,
+        description="Task identifier for execution attribution",
+    )
+    assignment_id: str | None = Field(
+        default=None,
+        description="Assignment identifier for execution attribution",
+    )
+    agent_id: str | None = Field(
+        default=None,
+        description="Assigned agent identifier for attribution",
+    )
+    llm_service: str | None = Field(
+        default=None,
+        description="Resolved runtime LLM service name for the operation",
+    )
 
 
 class LLMCallMetrics(BaseModel):
@@ -142,6 +170,34 @@ class LLMCallMetrics(BaseModel):
         description="Conversation/session context (gen_ai.conversation.id)",
     )
     turn_id: str | None = Field(default=None, description="Turn within conversation")
+    workflow_id: str | None = Field(
+        default=None,
+        description="Workflow identifier for execution attribution",
+    )
+    execution_id: str | None = Field(
+        default=None,
+        description="Workflow execution identifier for attribution",
+    )
+    pipeline_id: str | None = Field(
+        default=None,
+        description="Pipeline identifier for execution attribution",
+    )
+    task_id: str | None = Field(
+        default=None,
+        description="Task identifier for execution attribution",
+    )
+    assignment_id: str | None = Field(
+        default=None,
+        description="Assignment identifier for execution attribution",
+    )
+    agent_id: str | None = Field(
+        default=None,
+        description="Assigned agent identifier for attribution",
+    )
+    llm_service: str | None = Field(
+        default=None,
+        description="Resolved runtime LLM service name for the request",
+    )
 
     # Operation Info (OpenTelemetry attributes)
     operation_name: GenAIOperationType = Field(
@@ -214,6 +270,34 @@ class EmbeddingMetrics(BaseModel):
     provider_name: str = Field(default="litellm")
     request_model: str = Field(description="Embedding model name")
     response_model: str | None = Field(default=None)
+    workflow_id: str | None = Field(
+        default=None,
+        description="Workflow identifier for execution attribution",
+    )
+    execution_id: str | None = Field(
+        default=None,
+        description="Workflow execution identifier for attribution",
+    )
+    pipeline_id: str | None = Field(
+        default=None,
+        description="Pipeline identifier for execution attribution",
+    )
+    task_id: str | None = Field(
+        default=None,
+        description="Task identifier for execution attribution",
+    )
+    assignment_id: str | None = Field(
+        default=None,
+        description="Assignment identifier for execution attribution",
+    )
+    agent_id: str | None = Field(
+        default=None,
+        description="Assigned agent identifier for attribution",
+    )
+    llm_service: str | None = Field(
+        default=None,
+        description="Resolved runtime LLM service name for the embedding call",
+    )
 
     # Timing
     start_time: datetime = Field(default_factory=datetime.now)

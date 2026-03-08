@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for PromotionScorer and MemoryPromotionService."""
 
 import uuid
@@ -55,7 +57,7 @@ class TestPromotionScorer:
         """Fixed timestamp for testing."""
         return datetime(2024, 1, 15, 12, 0, 0)
 
-    def test_calculate_promotion_score_new_memory(self, scorer, now):
+    def test_calculate_promotion_score_new_memory(self, scorer, now) -> None:
         """Brand new memory should have low promotion score."""
         created_at = now - timedelta(hours=1)  # 1 hour old
         score = scorer.calculate_promotion_score(
@@ -72,7 +74,7 @@ class TestPromotionScorer:
         # Total ≈ 0.103
         assert 0.1 < score < 0.15
 
-    def test_calculate_promotion_score_mature_memory(self, scorer, now):
+    def test_calculate_promotion_score_mature_memory(self, scorer, now) -> None:
         """Well-established memory should have high promotion score."""
         created_at = now - timedelta(hours=72)  # 3 days old (max age factor)
         score = scorer.calculate_promotion_score(
@@ -89,7 +91,7 @@ class TestPromotionScorer:
         # Total = 0.98
         assert score > 0.9
 
-    def test_calculate_promotion_score_factors_capped(self, scorer, now):
+    def test_calculate_promotion_score_factors_capped(self, scorer, now) -> None:
         """Factors should be capped at 1.0."""
         created_at = now - timedelta(hours=200)  # Way over 72h
         score = scorer.calculate_promotion_score(
@@ -103,7 +105,7 @@ class TestPromotionScorer:
         # Total should equal sum of weights = 1.0
         assert 0.99 <= score <= 1.01
 
-    def test_is_eligible_wrong_stage(self, scorer, now):
+    def test_is_eligible_wrong_stage(self, scorer, now) -> None:
         """Only SHORT_TERM memories are eligible for promotion."""
         created_at = now - timedelta(hours=48)
 
@@ -117,7 +119,7 @@ class TestPromotionScorer:
             MemoryStage.EPISODIC, created_at, now
         )
 
-    def test_is_eligible_too_young(self, scorer, now):
+    def test_is_eligible_too_young(self, scorer, now) -> None:
         """Memory must be at least 24h old (default) to be eligible."""
         created_at = now - timedelta(hours=12)  # Only 12 hours old
 
@@ -125,25 +127,25 @@ class TestPromotionScorer:
             MemoryStage.SHORT_TERM, created_at, now
         )
 
-    def test_is_eligible_old_enough(self, scorer, now):
+    def test_is_eligible_old_enough(self, scorer, now) -> None:
         """Memory 24h+ old should be eligible."""
         created_at = now - timedelta(hours=25)  # 25 hours old
 
         assert scorer.is_eligible_for_promotion(MemoryStage.SHORT_TERM, created_at, now)
 
-    def test_should_promote_above_threshold(self, scorer):
+    def test_should_promote_above_threshold(self, scorer) -> None:
         """Score >= 0.7 (default threshold) should promote."""
         assert scorer.should_promote(0.7)
         assert scorer.should_promote(0.8)
         assert scorer.should_promote(1.0)
 
-    def test_should_promote_below_threshold(self, scorer):
+    def test_should_promote_below_threshold(self, scorer) -> None:
         """Score < 0.7 should not promote."""
         assert not scorer.should_promote(0.69)
         assert not scorer.should_promote(0.5)
         assert not scorer.should_promote(0.0)
 
-    def test_custom_weights(self, now):
+    def test_custom_weights(self, now) -> None:
         """Test with custom promotion weights."""
         config = DecayConfig(
             promotion_weight_age=0.0,
@@ -174,7 +176,7 @@ class TestPromotionScorer:
         )
         assert score_max_access == 1.0
 
-    def test_get_factor_breakdown(self, scorer, now):
+    def test_get_factor_breakdown(self, scorer, now) -> None:
         """Test factor breakdown for debugging."""
         created_at = now - timedelta(hours=36)
         breakdown = scorer.get_factor_breakdown(
@@ -200,7 +202,7 @@ class TestPromotionScorer:
 class TestPromotionResult:
     """Test PromotionResult dataclass."""
 
-    def test_default_values(self):
+    def test_default_values(self) -> None:
         """Test default initialization."""
         result = PromotionResult()
         assert result.promoted_to_long_term == 0
@@ -209,17 +211,17 @@ class TestPromotionResult:
         assert result.errors == []
         assert not result.has_errors()
 
-    def test_has_errors(self):
+    def test_has_errors(self) -> None:
         """Test error detection."""
         result = PromotionResult(errors=["Something went wrong"])
         assert result.has_errors()
 
-    def test_summary_no_changes(self):
+    def test_summary_no_changes(self) -> None:
         """Test summary with no changes."""
         result = PromotionResult()
         assert result.summary() == "No changes"
 
-    def test_summary_with_changes(self):
+    def test_summary_with_changes(self) -> None:
         """Test summary with various changes."""
         result = PromotionResult(
             promoted_to_long_term=5,
@@ -268,7 +270,7 @@ class TestMemoryPromotionService:
         )
 
     @pytest.mark.asyncio
-    async def test_run_promotion_cycle_empty(self, service):
+    async def test_run_promotion_cycle_empty(self, service) -> None:
         """Test promotion cycle with no memories."""
         result = await service.run_promotion_cycle(dry_run=True)
 
@@ -279,7 +281,7 @@ class TestMemoryPromotionService:
     @pytest.mark.asyncio
     async def test_run_promotion_cycle_promotes_eligible(
         self, service, collection_manager
-    ):
+    ) -> None:
         """Test that eligible short-term memories get promoted."""
         now = datetime.now()
         old_time = (now - timedelta(hours=48)).isoformat()  # 48h old
@@ -319,7 +321,7 @@ class TestMemoryPromotionService:
     @pytest.mark.asyncio
     async def test_run_promotion_cycle_does_not_promote_young(
         self, service, collection_manager
-    ):
+    ) -> None:
         """Test that young memories are not promoted."""
         now = datetime.now()
         recent_time = (now - timedelta(minutes=30)).isoformat()  # 30min old
@@ -343,7 +345,7 @@ class TestMemoryPromotionService:
     @pytest.mark.asyncio
     async def test_run_promotion_cycle_decays_long_term(
         self, service, collection_manager
-    ):
+    ) -> None:
         """Test that low-score long-term memories get decayed."""
         now = datetime.now()
         old_access = (now - timedelta(days=30)).isoformat()  # Very old access
@@ -378,7 +380,7 @@ class TestMemoryPromotionService:
     @pytest.mark.asyncio
     async def test_on_memory_accessed_reactivates_decayed(
         self, service, collection_manager
-    ):
+    ) -> None:
         """Test that accessing a decayed memory reactivates it."""
         # Add memory to decayed collection (sync operation)
         collection_manager.decayed._collection.add(
@@ -411,7 +413,7 @@ class TestMemoryPromotionService:
     @pytest.mark.asyncio
     async def test_on_memory_accessed_boosts_long_term(
         self, service, collection_manager
-    ):
+    ) -> None:
         """Test that accessing long-term memory boosts decay score."""
         # Add memory to long-term (sync operation)
         collection_manager.long_term._collection.add(

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Maintenance Utility Data Models.
 

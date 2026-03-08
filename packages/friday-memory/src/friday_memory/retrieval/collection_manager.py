@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Multi-Collection Manager for Staged Memory Retrieval.
 

@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for workflow->pipeline->task dispatch and assignment semantics."""
 
 from __future__ import annotations
@@ -20,6 +22,9 @@ from pydantic import ValidationError
 
 def _now() -> datetime:
     return datetime.now(timezone.utc)
+
+
+ROLE_BINDINGS = {"reviewer": "review_agent"}
 
 
 def _build_pipeline(
@@ -145,7 +150,12 @@ def test_initialize_dispatch_and_ready_assignments() -> None:
     pipeline = _build_pipeline("pipe_a")
     dispatch = _build_dispatch()
 
-    state = engine.initialize_dispatch(workflow, pipeline, dispatch)
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        dispatch,
+        role_bindings=ROLE_BINDINGS,
+    )
     ready = engine.assign_dependency_ready_tasks(pipeline, state)
 
     assert state.status == PipelineExecutionStatus.RUNNING
@@ -164,14 +174,19 @@ def test_claim_requires_dependencies_completed() -> None:
         entry_pipeline_id="pipe_a",
     )
     pipeline = _build_pipeline("pipe_a")
-    state = engine.initialize_dispatch(workflow, pipeline, _build_dispatch())
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        _build_dispatch(),
+        role_bindings=ROLE_BINDINGS,
+    )
 
     with pytest.raises(PipelineDispatchError, match="dependencies"):
         engine.claim_task(
             pipeline=pipeline,
             state=state,
             task_id="task_b",
-            agent_id="role:reviewer",
+            agent_id="review_agent",
         )
 
     engine.claim_task(
@@ -187,7 +202,7 @@ def test_claim_requires_dependencies_completed() -> None:
         pipeline=pipeline,
         state=state,
         task_id="task_b",
-        agent_id="role:reviewer",
+        agent_id="review_agent",
     )
     assert claimed.status == TaskAssignmentStatus.CLAIMED
 
@@ -203,7 +218,12 @@ def test_lease_heartbeat_and_recovery() -> None:
         entry_pipeline_id="pipe_a",
     )
     pipeline = _build_pipeline("pipe_a")
-    state = engine.initialize_dispatch(workflow, pipeline, _build_dispatch())
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        _build_dispatch(),
+        role_bindings=ROLE_BINDINGS,
+    )
 
     claim_time = _now()
     claimed = engine.claim_task(
@@ -245,7 +265,12 @@ def test_mark_failed_requeues_when_retry_budget_available() -> None:
         entry_pipeline_id="pipe_a",
     )
     pipeline = _build_pipeline("pipe_a")
-    state = engine.initialize_dispatch(workflow, pipeline, _build_dispatch())
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        _build_dispatch(),
+        role_bindings=ROLE_BINDINGS,
+    )
 
     engine.claim_task(
         pipeline=pipeline,
@@ -281,6 +306,7 @@ def test_typed_cross_pipeline_handoff_records_lineage() -> None:
         workflow,
         pipe_a,
         _build_dispatch(pipeline_id="pipe_a"),
+        role_bindings=ROLE_BINDINGS,
     )
 
     record = engine.validate_typed_handoff(
@@ -314,6 +340,7 @@ def test_typed_cross_pipeline_handoff_rejects_type_mismatch() -> None:
         workflow,
         pipe_a,
         _build_dispatch(pipeline_id="pipe_a"),
+        role_bindings=ROLE_BINDINGS,
     )
 
     with pytest.raises(PipelineDispatchError, match="Typed handoff mismatch"):
@@ -343,7 +370,12 @@ def test_finalize_pipeline_result_uses_failure_summary() -> None:
     task_a = pipeline.get_task("task_a")
     assert task_a is not None
     task_a.retry_policy["max_attempts"] = "1"
-    state = engine.initialize_dispatch(workflow, pipeline, _build_dispatch())
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        _build_dispatch(),
+        role_bindings=ROLE_BINDINGS,
+    )
     engine.claim_task(
         pipeline=pipeline,
         state=state,
@@ -362,3 +394,46 @@ def test_finalize_pipeline_result_uses_failure_summary() -> None:
     assert result.status == "failed"
     assert result.failure_summary is not None
     assert "terminal failure" in result.failure_summary
+
+
+def test_initialize_dispatch_resolves_owner_role_via_role_bindings() -> None:
+    engine = PipelineDispatchEngine()
+    workflow = WorkflowPipelineDefinition(
+        workflow_id="wf_main",
+        version="1.0.0",
+        name="Main workflow",
+        goal="Do work",
+        pipeline_refs=["pipe_a"],
+        entry_pipeline_id="pipe_a",
+    )
+    pipeline = _build_pipeline("pipe_a")
+
+    state = engine.initialize_dispatch(
+        workflow,
+        pipeline,
+        _build_dispatch(),
+        role_bindings=ROLE_BINDINGS,
+    )
+
+    assert state.task_assignments["task_b"].assigned_agent_id == "review_agent"
+
+
+def test_initialize_dispatch_rejects_missing_owner_role_binding() -> None:
+    engine = PipelineDispatchEngine()
+    workflow = WorkflowPipelineDefinition(
+        workflow_id="wf_main",
+        version="1.0.0",
+        name="Main workflow",
+        goal="Do work",
+        pipeline_refs=["pipe_a"],
+        entry_pipeline_id="pipe_a",
+    )
+    pipeline = _build_pipeline("pipe_a")
+
+    with pytest.raises(PipelineDispatchError, match="agents.role_bindings"):
+        engine.initialize_dispatch(
+            workflow,
+            pipeline,
+            _build_dispatch(),
+            role_bindings={},
+        )

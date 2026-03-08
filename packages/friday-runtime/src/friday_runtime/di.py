@@ -9,10 +9,11 @@ Ref: Phase 1 Build Plan, Step 4.2
 """
 
 import logging
-from typing import Any
+from typing import Any, cast
 
 from friday_agent import DefaultToolRegistry
 from friday_core import TelemetryInterface
+from friday_core.interfaces import EmbeddingModel, EpisodicStoreAdapter, LLMClient
 from friday_core.profiles import (
     MemoryProfile,
     create_graph_store,
@@ -20,6 +21,7 @@ from friday_core.profiles import (
 )
 from friday_core.telemetry import DebugTelemetryRecorder, OpenTelemetryProvider
 from friday_llm import LiteLLMEmbeddingService, LiteLLMService
+from friday_llm.config import ResilienceConfig
 from friday_memory import (
     CollectionConfig,
     CollectionManager,
@@ -64,6 +66,7 @@ class DIContainer:
         # Service slots (populated during boot)
         self.telemetry: TelemetryInterface | None = None
         self.llm: LiteLLMService | None = None
+        self.llm_pool: dict[str, LiteLLMService] = {}
         self.embeddings: LiteLLMEmbeddingService | None = None
         self.vector_store: Any = None
         self.graph_store: Any = None
@@ -121,27 +124,42 @@ class DIContainer:
 
     def _create_llm_services(self) -> None:
         """Create LLM and embedding services."""
-        self.llm = LiteLLMService(
-            model_name=self._config.llm_model,
-            api_key=self._config.llm_api_key,
-            api_base=self._config.llm_api_base,
-            telemetry=self.telemetry,
-        )
+        self.llm_pool = {}
+        for service_name, service_config in self._config.llm_pool.services.items():
+            self.llm_pool[service_name] = LiteLLMService(
+                model_name=service_config.model,
+                api_key=service_config.api_key,
+                api_base=service_config.api_base,
+                telemetry=self.telemetry,
+                resilience=ResilienceConfig(
+                    max_retries=service_config.resilience.max_retries,
+                    timeout_seconds=float(service_config.resilience.timeout_seconds),
+                ),
+            )
+
+        self.llm = self.llm_pool[self._config.llm_pool.default_service]
+        default_service = self._config.get_llm_service_config()
 
         self.embeddings = LiteLLMEmbeddingService(
             model_name=self._config.embedding_model,
-            api_key=self._config.llm_api_key,
-            api_base=self._config.llm_api_base,
+            api_key=default_service.api_key,
+            api_base=default_service.api_base,
             telemetry=self.telemetry,
         )
 
-        logger.info(f"LLM service configured with model: {self._config.llm_model}")
+        logger.info(
+            "LLM pool configured with default service '%s' (%s) across %d services",
+            self._config.llm_pool.default_service,
+            default_service.model,
+            len(self.llm_pool),
+        )
 
     async def _create_storage_adapters(self) -> None:
         """Create storage adapter instances based on memory profile."""
+        assert self.embeddings is not None
         self.vector_store = create_vector_store(
             profile=self._memory_profile,
-            embedding_function=self.embeddings,
+            embedding_function=cast(EmbeddingModel, self.embeddings),
             path=self._config.chroma_path,
             collection_name=self._config.chroma_collection,
         )
@@ -159,6 +177,8 @@ class DIContainer:
 
     def _create_memory_controller(self) -> None:
         """Create memory controller with lifecycle-aware collections."""
+        assert self.embeddings is not None
+        assert self.episodic_store is not None
         base_name = self._config.chroma_collection
         collection_config = CollectionConfig(
             short_term_collection=f"{base_name}_short",
@@ -166,7 +186,7 @@ class DIContainer:
             decayed_collection=f"{base_name}_decayed",
         )
         collection_manager = CollectionManager(
-            embedding_function=self.embeddings,
+            embedding_function=cast(EmbeddingModel, self.embeddings),
             config=collection_config,
             path=self._config.chroma_path,
             telemetry=self.telemetry,
@@ -175,7 +195,7 @@ class DIContainer:
         self.memory = MemoryController(
             vector_store=self.vector_store,
             graph_store=self.graph_store,
-            episodic_store=self.episodic_store,
+            episodic_store=cast(EpisodicStoreAdapter, self.episodic_store),
             telemetry=self.telemetry,
             collection_manager=collection_manager,
         )
@@ -192,6 +212,7 @@ class DIContainer:
 
         self.multi_agent_journal = PromotionJournal()
         self.multi_agent_coordinator = PromotionCoordinator(self.multi_agent_journal)
+        assert self.memory is not None
         self.multi_agent_memory = MultiAgentMemoryController(
             memory=self.memory,
             session_id="runtime-default",
@@ -211,6 +232,8 @@ class DIContainer:
 
     def _create_context_engine(self) -> None:
         """Create context assembler and wire extractor."""
+        assert self.memory is not None
+        assert self.llm is not None
         self.context_engine = ContextAssembler(
             memory_controller=self.memory,
             telemetry=self.telemetry,
@@ -218,7 +241,7 @@ class DIContainer:
 
         extractor = MemoryExtractor(
             memory_controller=self.memory,
-            llm=self.llm,
+            llm=cast(LLMClient, self.llm),
             telemetry=self.telemetry,
         )
         self.context_engine.set_extractor(extractor)

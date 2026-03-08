@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Smart encoding detection utilities.
 

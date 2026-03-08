@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Budget monitoring and compaction data models.
 

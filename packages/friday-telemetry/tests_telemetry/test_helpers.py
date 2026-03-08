@@ -1,7 +1,9 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for telemetry helpers."""
 
 import pytest
 from friday_telemetry import (
+    ConversationContext,
     DebugTelemetryRecorder,
     ErrorCategory,
     LLMTelemetryHelper,
@@ -85,9 +87,20 @@ class TestLLMTelemetryHelper:
         """Test tracking a successful completion."""
         recorder = DebugTelemetryRecorder()
         helper = LLMTelemetryHelper(telemetry=recorder, provider_name="test")
+        context = ConversationContext(
+            session_id="session-1",
+            workflow_id="wf-1",
+            execution_id="exec-1",
+            pipeline_id="pl-1",
+            task_id="task-1",
+            assignment_id="assign-1",
+            agent_id="agent-1",
+            llm_service="reasoning",
+        )
 
         with helper.track_completion(
             model="gpt-4",
+            context=context,
             temperature=0.7,
             max_tokens=1000,
             tool_count=2,
@@ -106,6 +119,13 @@ class TestLLMTelemetryHelper:
         assert event.name == "llm_completion_success"
         assert event.data["gen_ai.request.model"] == "gpt-4"
         assert event.data["success"] is True
+        assert event.data["friday.workflow.id"] == "wf-1"
+        assert event.data["friday.execution.id"] == "exec-1"
+        assert event.data["friday.pipeline.id"] == "pl-1"
+        assert event.data["friday.task.id"] == "task-1"
+        assert event.data["friday.assignment.id"] == "assign-1"
+        assert event.data["friday.agent.id"] == "agent-1"
+        assert event.data["friday.llm.service"] == "reasoning"
 
     def test_track_completion_error(self):
         """Test tracking a failed completion."""
@@ -126,11 +146,18 @@ class TestLLMTelemetryHelper:
         """Test tracking a successful embedding."""
         recorder = DebugTelemetryRecorder()
         helper = LLMTelemetryHelper(telemetry=recorder)
+        context = ConversationContext(
+            session_id="session-1",
+            workflow_id="wf-embed",
+            execution_id="exec-embed",
+            llm_service="embedding-default",
+        )
 
         with helper.track_embedding(
             model="text-embedding-3-small",
             text_count=5,
             total_characters=1000,
+            context=context,
         ) as tracker:
             tracker.set_response(
                 embedding_dimensions=1536,
@@ -143,6 +170,9 @@ class TestLLMTelemetryHelper:
         event = recorder.events[0]
         assert event.name == "embeddings_generated"
         assert event.data["text_count"] == 5
+        assert event.data["friday.workflow.id"] == "wf-embed"
+        assert event.data["friday.execution.id"] == "exec-embed"
+        assert event.data["friday.llm.service"] == "embedding-default"
 
     def test_span_creation(self):
         """Test that spans are created for operations."""

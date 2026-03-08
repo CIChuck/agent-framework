@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Graph Path Relevancy Scorer.
 

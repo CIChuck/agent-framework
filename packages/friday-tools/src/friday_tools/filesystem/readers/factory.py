@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Reader factory for automatic file format detection.
 

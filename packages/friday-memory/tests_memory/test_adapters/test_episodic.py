@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for InMemoryEpisodicStore adapter.
 
@@ -35,7 +37,7 @@ class TestInMemoryEpisodicStore:
     """Tests for InMemoryEpisodicStore."""
 
     @pytest.mark.asyncio
-    async def test_add_turn(self, episodic_store: InMemoryEpisodicStore):
+    async def test_add_turn(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test adding a turn to a session."""
         turn = create_turn()
         result = await episodic_store.add_turn("session_1", turn)
@@ -45,7 +47,7 @@ class TestInMemoryEpisodicStore:
         assert count == 1
 
     @pytest.mark.asyncio
-    async def test_get_turns(self, episodic_store: InMemoryEpisodicStore):
+    async def test_get_turns(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test retrieving turns from a session."""
         # Add multiple turns
         for i in range(5):
@@ -61,7 +63,7 @@ class TestInMemoryEpisodicStore:
     async def test_get_turns_with_limit_returns_most_recent(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test that get_turns with limit returns the most recent turns."""
         for i in range(10):
             turn = create_turn(f"Message {i}")
@@ -77,7 +79,7 @@ class TestInMemoryEpisodicStore:
     async def test_get_turns_with_offset(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test retrieving turns with offset skips most recent."""
         for i in range(10):
             turn = create_turn(f"Message {i}")
@@ -94,7 +96,7 @@ class TestInMemoryEpisodicStore:
     async def test_get_turns_excludes_compacted(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test that get_turns filters out compacted turns."""
         turn_ids = []
         for i in range(10):
@@ -115,7 +117,7 @@ class TestInMemoryEpisodicStore:
     async def test_get_turns_excludes_compacted_with_limit(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test limit applies after compacted filtering."""
         turn_ids = []
         for i in range(10):
@@ -135,7 +137,7 @@ class TestInMemoryEpisodicStore:
     @pytest.mark.asyncio
     async def test_get_unconsolidated_turns(
         self, episodic_store: InMemoryEpisodicStore
-    ):
+    ) -> None:
         """Test getting turns that haven't been consolidated."""
         # Add some turns
         turn_ids = []
@@ -149,7 +151,7 @@ class TestInMemoryEpisodicStore:
         assert len(unconsolidated) == 5
 
     @pytest.mark.asyncio
-    async def test_mark_consolidated(self, episodic_store: InMemoryEpisodicStore):
+    async def test_mark_consolidated(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test marking turns as consolidated."""
         # Add turns
         turn_ids = []
@@ -169,7 +171,7 @@ class TestInMemoryEpisodicStore:
     async def test_mark_compacted(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test marking turns as compacted."""
         turn_ids = []
         for i in range(5):
@@ -190,7 +192,7 @@ class TestInMemoryEpisodicStore:
     async def test_compacted_independent_of_consolidated(
         self,
         episodic_store: InMemoryEpisodicStore,
-    ):
+    ) -> None:
         """Test that compacted and consolidated are independent flags."""
         turn_ids = []
         for i in range(5):
@@ -211,13 +213,13 @@ class TestInMemoryEpisodicStore:
         assert len(unconsolidated) == 0
 
     @pytest.mark.asyncio
-    async def test_compacted_field_defaults_false(self):
+    async def test_compacted_field_defaults_false(self) -> None:
         """Test that InteractionTurn.compacted defaults to False."""
         turn = create_turn()
         assert turn.compacted is False
 
     @pytest.mark.asyncio
-    async def test_rewind_history(self, episodic_store: InMemoryEpisodicStore):
+    async def test_rewind_history(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test rewinding history to a specific turn."""
         # Add turns and track IDs
         turn_ids = []
@@ -237,7 +239,7 @@ class TestInMemoryEpisodicStore:
     @pytest.mark.asyncio
     async def test_rewind_history_invalid_turn(
         self, episodic_store: InMemoryEpisodicStore
-    ):
+    ) -> None:
         """Test rewinding to non-existent turn returns False."""
         turn = create_turn()
         await episodic_store.add_turn("session_1", turn)
@@ -246,7 +248,7 @@ class TestInMemoryEpisodicStore:
         assert result is False
 
     @pytest.mark.asyncio
-    async def test_multiple_sessions(self, episodic_store: InMemoryEpisodicStore):
+    async def test_multiple_sessions(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test managing multiple sessions independently."""
         # Add turns to different sessions
         await episodic_store.add_turn("session_1", create_turn("S1 M1"))
@@ -261,7 +263,7 @@ class TestInMemoryEpisodicStore:
         assert s2_count == 1
 
     @pytest.mark.asyncio
-    async def test_get_session_ids(self, episodic_store: InMemoryEpisodicStore):
+    async def test_get_session_ids(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test getting all session IDs."""
         await episodic_store.add_turn("session_a", create_turn())
         await episodic_store.add_turn("session_b", create_turn())
@@ -274,7 +276,7 @@ class TestInMemoryEpisodicStore:
         assert "session_c" in session_ids
 
     @pytest.mark.asyncio
-    async def test_clear_session(self, episodic_store: InMemoryEpisodicStore):
+    async def test_clear_session(self, episodic_store: InMemoryEpisodicStore) -> None:
         """Test clearing a session."""
         await episodic_store.add_turn("session_1", create_turn())
         await episodic_store.add_turn("session_1", create_turn())

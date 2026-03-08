@@ -771,6 +771,14 @@ Tasks:
 3. Emit typed handoff lineage entries.
 4. Emit compatibility mode flag and migration metadata when adapter path is used.
 5. Emit artifact publication metadata and output-to-artifact mapping evidence.
+6. Emit canonical workflow telemetry events from the execution stack:
+   - `workflow_execution_started|completed|failed`
+   - `pipeline_execution_started|completed|failed|blocked`
+   - `workflow_task_started|completed|failed`
+   - `workflow_typed_handoff_validated`
+   - `workflow_artifact_published`
+7. Emit `workflow_mode_selected` from runtime routing whenever `workflow_mode` resolves to canonical, legacy-adapter, or auto-selected adapter behavior.
+8. Ensure per-task `llm_service` attribution is attached before orchestrator delegation so compliance and cost evidence can be joined to assignment/task identity.
 
 Deliverables:
 

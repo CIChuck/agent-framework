@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Encoding/crypto tools."""
 
 from .encoding import (

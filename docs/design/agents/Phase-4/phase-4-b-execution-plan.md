@@ -232,8 +232,10 @@ Execution scope:
 
 1. Implement legacy-to-canonical translation for supported schemas.
 2. Enforce `workflow_mode` routing behavior.
-3. Emit compatibility warnings and migration metadata.
-4. Produce deterministic errors for unsupported legacy constructs.
+3. Route legacy workloads through the adapter into canonical engine execution rather than maintaining a separate legacy executor.
+4. Emit compatibility warnings and migration metadata.
+5. Emit `workflow_mode_selected` audit events whenever runtime resolves `canonical|legacy|auto`.
+6. Produce deterministic errors for unsupported legacy constructs.
 
 Required checks:
 
@@ -266,6 +268,13 @@ Execution scope:
 2. Emit `llm_service`, model, provider attribution.
 3. Emit typed handoff lineage and artifact publication metadata.
 4. Emit compatibility mode/migration metadata for adapter path usage.
+5. Emit canonical execution telemetry events:
+   - `workflow_execution_started|completed|failed`
+   - `pipeline_execution_started|completed|failed|blocked`
+   - `workflow_task_started|completed|failed`
+   - `workflow_typed_handoff_validated`
+   - `workflow_artifact_published`
+6. Ensure per-task `llm_service` attribution is resolved before delegation and carried in workflow task evidence.
 
 Required checks:
 

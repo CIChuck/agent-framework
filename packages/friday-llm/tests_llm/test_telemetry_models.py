@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Tests for LLM Telemetry Models.
 
@@ -152,6 +153,13 @@ class TestConversationContext:
             turn_number=3,
             parent_span_id="span-789",
             message_count=5,
+            workflow_id="wf-1",
+            execution_id="exec-1",
+            pipeline_id="pl-1",
+            task_id="task-1",
+            assignment_id="assign-1",
+            agent_id="agent-1",
+            llm_service="reasoning",
         )
         assert context.session_id == "user-123"
         assert context.conversation_id == "conv-456"
@@ -159,6 +167,8 @@ class TestConversationContext:
         assert context.turn_number == 3
         assert context.parent_span_id == "span-789"
         assert context.message_count == 5
+        assert context.workflow_id == "wf-1"
+        assert context.llm_service == "reasoning"
 
 
 class TestLLMCallMetrics:
@@ -184,6 +194,13 @@ class TestLLMCallMetrics:
             request_id="req-123",
             conversation_id="conv-456",
             turn_id="turn-1",
+            workflow_id="wf-1",
+            execution_id="exec-1",
+            pipeline_id="pl-1",
+            task_id="task-1",
+            assignment_id="assign-1",
+            agent_id="agent-1",
+            llm_service="reasoning",
             operation_name=GenAIOperationType.CHAT,
             provider_name="openai",
             request_model="gpt-4",
@@ -201,6 +218,8 @@ class TestLLMCallMetrics:
         assert metrics.request_id == "req-123"
         assert metrics.conversation_id == "conv-456"
         assert metrics.provider_name == "openai"
+        assert metrics.workflow_id == "wf-1"
+        assert metrics.llm_service == "reasoning"
         assert metrics.tool_count == 3
         assert metrics.duration_ms == 500.0
         assert metrics.usage.input_tokens == 100
@@ -243,6 +262,9 @@ class TestEmbeddingMetrics:
             request_id="req-123",
             request_model="text-embedding-3-small",
             response_model="text-embedding-3-small",
+            workflow_id="wf-embed",
+            execution_id="exec-embed",
+            llm_service="embedding-default",
             duration_ms=100.0,
             text_count=5,
             total_characters=500,
@@ -254,6 +276,8 @@ class TestEmbeddingMetrics:
         )
         assert metrics.text_count == 5
         assert metrics.total_characters == 500
+        assert metrics.workflow_id == "wf-embed"
+        assert metrics.llm_service == "embedding-default"
         assert metrics.embedding_dimensions == 1536
         assert metrics.batch_count == 2
 

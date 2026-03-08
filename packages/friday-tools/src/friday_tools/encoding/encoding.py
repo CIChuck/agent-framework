@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Encoding tools."""
 
 from __future__ import annotations

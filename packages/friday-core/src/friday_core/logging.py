@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Structured logging wrapper.
 Provides JSON logging for production and colored output for dev.

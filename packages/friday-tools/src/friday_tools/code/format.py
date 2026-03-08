@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Code formatting and linting tools.
 

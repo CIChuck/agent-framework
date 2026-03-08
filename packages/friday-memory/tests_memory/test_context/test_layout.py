@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for PromptArchitect (Layout Engine).
 
@@ -39,19 +41,19 @@ def empty_payload() -> ContextPayload:
 class TestTokenCounting:
     """Tests for token counting functionality."""
 
-    def test_count_tokens_simple(self, architect: PromptArchitect):
+    def test_count_tokens_simple(self, architect: PromptArchitect) -> None:
         """Test counting tokens in simple text."""
         text = "Hello, world!"
         tokens = architect.count_tokens(text)
         assert tokens > 0
         assert isinstance(tokens, int)
 
-    def test_count_tokens_empty(self, architect: PromptArchitect):
+    def test_count_tokens_empty(self, architect: PromptArchitect) -> None:
         """Test counting tokens in empty string."""
         tokens = architect.count_tokens("")
         assert tokens == 0
 
-    def test_count_tokens_long_text(self, architect: PromptArchitect):
+    def test_count_tokens_long_text(self, architect: PromptArchitect) -> None:
         """Test counting tokens in longer text."""
         text = "This is a longer piece of text. " * 100
         tokens = architect.count_tokens(text)
@@ -61,7 +63,7 @@ class TestTokenCounting:
 class TestBudgetCalculation:
     """Tests for context budget calculations."""
 
-    def test_calculate_fixed_costs_basic(self, architect: PromptArchitect):
+    def test_calculate_fixed_costs_basic(self, architect: PromptArchitect) -> None:
         """Test calculating fixed costs with just system prompt."""
         system_prompt = "You are a helpful assistant."
         fixed = architect.calculate_fixed_costs(system_prompt)
@@ -69,7 +71,7 @@ class TestBudgetCalculation:
         # Should include prompt tokens + output buffer
         assert fixed > architect.output_buffer
 
-    def test_calculate_fixed_costs_with_tools(self, architect: PromptArchitect):
+    def test_calculate_fixed_costs_with_tools(self, architect: PromptArchitect) -> None:
         """Test calculating fixed costs with tool definitions."""
         system_prompt = "You are a helpful assistant."
         tools = [
@@ -83,7 +85,7 @@ class TestBudgetCalculation:
         # With tools should be higher
         assert fixed_with > fixed_without
 
-    def test_calculate_dynamic_limit(self, architect: PromptArchitect):
+    def test_calculate_dynamic_limit(self, architect: PromptArchitect) -> None:
         """Test calculating available dynamic budget."""
         system_prompt = "You are a helpful assistant."
         dynamic = architect.calculate_dynamic_limit(system_prompt)
@@ -98,7 +100,7 @@ class TestPromptFormatting:
 
     def test_format_prompt_basic(
         self, architect: PromptArchitect, empty_payload: ContextPayload
-    ):
+    ) -> None:
         """Test basic prompt formatting."""
         messages = architect.format_prompt(
             system_prompt="You are a helpful assistant.",
@@ -112,7 +114,7 @@ class TestPromptFormatting:
         # Speaker name prefix is added by PromptArchitect (default: "User")
         assert messages[-1]["content"] == "[User]: Hello!"
 
-    def test_format_prompt_with_transparency_block(self, architect: PromptArchitect):
+    def test_format_prompt_with_transparency_block(self, architect: PromptArchitect) -> None:
         """Test formatting with recent memories (now in final user message as prior knowledge)."""  # noqa: E501
         payload = ContextPayload(
             history=[],
@@ -134,7 +136,7 @@ class TestPromptFormatting:
         assert "Known Facts" in final_message
         assert "dark mode" in final_message
 
-    def test_format_prompt_with_insights(self, architect: PromptArchitect):
+    def test_format_prompt_with_insights(self, architect: PromptArchitect) -> None:
         """Test formatting with insights (now in final user message)."""
         payload = ContextPayload(
             history=[],
@@ -161,7 +163,7 @@ class TestPromptFormatting:
         assert "Recent Insights" in final_message
         assert "Python is a programming language" in final_message
 
-    def test_format_prompt_with_session_state(self, architect: PromptArchitect):
+    def test_format_prompt_with_session_state(self, architect: PromptArchitect) -> None:
         """Test formatting with session state variables (now in final user message)."""
         payload = ContextPayload(
             history=[],

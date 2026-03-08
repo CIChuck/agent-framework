@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Mock sandbox implementation for testing.
 

@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest

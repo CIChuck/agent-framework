@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for speech text selection and tag parsing."""
 
 from friday_speech.config import SelectionConfig, SelectionStrategy

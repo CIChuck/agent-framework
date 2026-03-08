@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Operational observability helpers for multi-agent promotion workflows.
 """

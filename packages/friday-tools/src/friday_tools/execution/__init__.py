@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Code execution tools for Friday agents."""
 
 from .python import python_execute

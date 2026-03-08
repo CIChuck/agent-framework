@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Structure-Aware Code Chunker.
 

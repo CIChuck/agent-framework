@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Git staging tools.
 

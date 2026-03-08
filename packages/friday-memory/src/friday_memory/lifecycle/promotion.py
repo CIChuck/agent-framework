@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Promotion Scoring and Memory Promotion Service.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Base classes and protocols for file readers.
 

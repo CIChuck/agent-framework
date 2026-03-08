@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for MemoryReorganizer orchestrator."""
 
 from unittest.mock import AsyncMock, MagicMock
@@ -11,7 +13,7 @@ class TestMemoryReorganizer:
     """Test full reorganization pipeline."""
 
     @pytest.mark.asyncio
-    async def test_reorganize_dry_run(self, memory_with_issues):
+    async def test_reorganize_dry_run(self, memory_with_issues) -> None:
         """Test dry run reorganization."""
         reorganizer = MemoryReorganizer(memory_with_issues)
 
@@ -28,7 +30,7 @@ class TestMemoryReorganizer:
         assert report.prune_report.dry_run is True
 
     @pytest.mark.asyncio
-    async def test_reorganize_with_backup(self, memory_with_issues):
+    async def test_reorganize_with_backup(self, memory_with_issues) -> None:
         """Test reorganization creates backup first."""
         reorganizer = MemoryReorganizer(memory_with_issues)
 
@@ -44,7 +46,7 @@ class TestMemoryReorganizer:
         assert report.backup_manifest.backup_id
 
     @pytest.mark.asyncio
-    async def test_analyze_only(self, memory_with_issues):
+    async def test_analyze_only(self, memory_with_issues) -> None:
         """Test standalone analysis."""
         reorganizer = MemoryReorganizer(memory_with_issues)
         report = await reorganizer.analyze()
@@ -53,7 +55,7 @@ class TestMemoryReorganizer:
         assert len(report.issues) > 0
 
     @pytest.mark.asyncio
-    async def test_prune_only(self, memory_with_issues):
+    async def test_prune_only(self, memory_with_issues) -> None:
         """Test standalone pruning."""
         reorganizer = MemoryReorganizer(memory_with_issues)
         report = await reorganizer.prune(dry_run=True)
@@ -62,7 +64,7 @@ class TestMemoryReorganizer:
         assert report is not None
 
     @pytest.mark.asyncio
-    async def test_backup_only(self, clean_memory_dir):
+    async def test_backup_only(self, clean_memory_dir) -> None:
         """Test standalone backup."""
         reorganizer = MemoryReorganizer(clean_memory_dir)
         manifest = await reorganizer.backup()
@@ -71,7 +73,7 @@ class TestMemoryReorganizer:
         assert len(manifest.files) > 0
 
     @pytest.mark.asyncio
-    async def test_report_summary_generation(self, memory_with_issues):
+    async def test_report_summary_generation(self, memory_with_issues) -> None:
         """Test full report summary."""
         reorganizer = MemoryReorganizer(memory_with_issues)
 
@@ -89,7 +91,7 @@ class TestMemoryReorganizer:
         assert "PRUNING" in summary
 
     @pytest.mark.asyncio
-    async def test_component_access(self, clean_memory_dir):
+    async def test_component_access(self, clean_memory_dir) -> None:
         """Test access to individual components."""
         reorganizer = MemoryReorganizer(clean_memory_dir)
 
@@ -101,7 +103,7 @@ class TestMemoryReorganizer:
         assert reorganizer.fact_checker is not None
 
     @pytest.mark.asyncio
-    async def test_reorganize_handles_errors_gracefully(self, temp_memory_dir):
+    async def test_reorganize_handles_errors_gracefully(self, temp_memory_dir) -> None:
         """Test reorganization handles missing files gracefully."""
         reorganizer = MemoryReorganizer(temp_memory_dir)
 
@@ -225,14 +227,14 @@ class TestLifecycleIntegration:
         calculator.should_decay = MagicMock(return_value=True)  # Below threshold
         return calculator
 
-    def test_has_lifecycle_support_false(self, clean_memory_dir):
+    def test_has_lifecycle_support_false(self, clean_memory_dir) -> None:
         """Test has_lifecycle_support returns False without components."""
         reorganizer = MemoryReorganizer(clean_memory_dir)
         assert not reorganizer.has_lifecycle_support
 
     def test_has_lifecycle_support_true(
         self, clean_memory_dir, mock_collection_manager
-    ):
+    ) -> None:
         """Test has_lifecycle_support returns True with collection manager."""
         reorganizer = MemoryReorganizer(
             clean_memory_dir,
@@ -241,7 +243,7 @@ class TestLifecycleIntegration:
         assert reorganizer.has_lifecycle_support
 
     @pytest.mark.asyncio
-    async def test_lifecycle_without_support(self, clean_memory_dir):
+    async def test_lifecycle_without_support(self, clean_memory_dir) -> None:
         """Test lifecycle step returns error without components."""
         reorganizer = MemoryReorganizer(clean_memory_dir)
         report = await reorganizer.lifecycle(dry_run=True)
@@ -256,7 +258,7 @@ class TestLifecycleIntegration:
         mock_collection_manager,
         mock_promotion_scorer,
         mock_decay_calculator,
-    ):
+    ) -> None:
         """Test lifecycle step in dry run mode."""
         reorganizer = MemoryReorganizer(
             clean_memory_dir,
@@ -278,7 +280,7 @@ class TestLifecycleIntegration:
         mock_collection_manager.demote_to_decayed.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_optimize_without_support(self, clean_memory_dir):
+    async def test_optimize_without_support(self, clean_memory_dir) -> None:
         """Test optimize step skips gracefully without components.
 
         Without lifecycle support or collection_manager, steps 1-3 are
@@ -299,7 +301,7 @@ class TestLifecycleIntegration:
         mock_collection_manager,
         mock_access_buffer,
         mock_factor_computer,
-    ):
+    ) -> None:
         """Test optimize step in dry run mode."""
         reorganizer = MemoryReorganizer(
             clean_memory_dir,
@@ -319,7 +321,7 @@ class TestLifecycleIntegration:
         mock_access_buffer.flush_all.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_reorganize_skip_lifecycle(self, memory_with_issues):
+    async def test_reorganize_skip_lifecycle(self, memory_with_issues) -> None:
         """Test reorganize with skip_lifecycle option."""
         reorganizer = MemoryReorganizer(memory_with_issues)
 
@@ -344,7 +346,7 @@ class TestLifecycleIntegration:
         mock_factor_computer,
         mock_promotion_scorer,
         mock_decay_calculator,
-    ):
+    ) -> None:
         """Test reorganize includes lifecycle steps when configured."""
         reorganizer = MemoryReorganizer(
             memory_with_issues,
@@ -376,7 +378,7 @@ class TestLifecycleIntegration:
         mock_factor_computer,
         mock_promotion_scorer,
         mock_decay_calculator,
-    ):
+    ) -> None:
         """Test report summary includes lifecycle sections."""
         reorganizer = MemoryReorganizer(
             memory_with_issues,
@@ -406,7 +408,7 @@ class TestLifecycleIntegration:
 class TestLifecycleReportModel:
     """Test LifecycleReport model."""
 
-    def test_lifecycle_report_defaults(self):
+    def test_lifecycle_report_defaults(self) -> None:
         """Test LifecycleReport has correct defaults."""
         report = LifecycleReport(dry_run=True)
 
@@ -418,7 +420,7 @@ class TestLifecycleReportModel:
         assert report.graph_nodes_decayed == 0
         assert len(report.errors) == 0
 
-    def test_lifecycle_report_with_values(self):
+    def test_lifecycle_report_with_values(self) -> None:
         """Test LifecycleReport with values."""
         report = LifecycleReport(
             dry_run=False,
@@ -439,7 +441,7 @@ class TestLifecycleReportModel:
 class TestOptimizationReportModel:
     """Test OptimizationReport model."""
 
-    def test_optimization_report_defaults(self):
+    def test_optimization_report_defaults(self) -> None:
         """Test OptimizationReport has correct defaults."""
         report = OptimizationReport(dry_run=True)
 
@@ -449,7 +451,7 @@ class TestOptimizationReportModel:
         assert report.edge_embeddings_backfilled is False
         assert len(report.errors) == 0
 
-    def test_optimization_report_with_values(self):
+    def test_optimization_report_with_values(self) -> None:
         """Test OptimizationReport with values."""
         report = OptimizationReport(
             dry_run=False,

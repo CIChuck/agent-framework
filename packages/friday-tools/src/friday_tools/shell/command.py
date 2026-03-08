@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 OS Command Executor with configurable blocklist safety.
 

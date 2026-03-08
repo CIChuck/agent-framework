@@ -15,14 +15,16 @@ import logging
 import uuid
 from collections.abc import Awaitable, Callable
 from datetime import datetime, timedelta, timezone
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, cast
 
 from friday_memory.multi_agent import ScratchPlanItemStatus
+from friday_telemetry.interface import TelemetryInterface
 
 from friday_agent.workflows.models import (
     ArtifactLifecycleState,
     ArtifactPolicy,
     ArtifactRecord,
+    CanonicalWorkflowExecution,
     HITLDecision,
     HITLDecisionAction,
     HITLPolicy,
@@ -108,6 +110,8 @@ class WorkflowEngine:
         hitl_policy: HITLPolicy | None = None,
         artifact_policy: ArtifactPolicy | None = None,
         scratchpad: Any | None = None,
+        telemetry: TelemetryInterface | None = None,
+        agent_info_resolver: Callable[[str], dict[str, Any] | None] | None = None,
     ):
         """
         Initialize workflow engine.
@@ -124,6 +128,8 @@ class WorkflowEngine:
         self._hitl_policy = hitl_policy
         self._artifact_policy = artifact_policy
         self._scratchpad = scratchpad
+        self._telemetry = telemetry
+        self._agent_info_resolver = agent_info_resolver
 
     async def execute(
         self,
@@ -211,6 +217,125 @@ class WorkflowEngine:
         finally:
             if execution.status != TaskStatus.WAITING_APPROVAL:
                 execution.completed_at = _utc_now()
+
+        return execution
+
+    async def execute_canonical(
+        self,
+        workflow: WorkflowPipelineDefinition,
+        pipelines: dict[str, PipelineDefinition],
+        initial_inputs: dict[str, Any] | None = None,
+        *,
+        role_bindings: dict[str, str] | None = None,
+    ) -> CanonicalWorkflowExecution:
+        """
+        Execute a canonical workflow -> pipeline -> task hierarchy.
+
+        Args:
+            workflow: Canonical workflow definition
+            pipelines: Resolved pipeline definitions keyed by pipeline_id
+            initial_inputs: Initial variable values
+            role_bindings: Runtime role->agent binding map
+
+        Returns:
+            Canonical workflow execution state/result bundle
+        """
+        dispatch_engine = PipelineDispatchEngine()
+        dispatch_engine.validate_hierarchy(workflow, pipelines)
+
+        execution = CanonicalWorkflowExecution(
+            workflow_id=workflow.workflow_id,
+            execution_id=f"{workflow.workflow_id}_{uuid.uuid4().hex[:8]}",
+            variables=dict(initial_inputs or {}),
+            started_at=_utc_now(),
+            status=PipelineExecutionStatus.CREATED,
+        )
+        workflow_span_id = self._start_span(
+            "workflow_execution",
+            {
+                "workflow_id": workflow.workflow_id,
+                "execution_id": execution.execution_id,
+                "pipeline_count": len(workflow.pipeline_refs),
+            },
+        )
+
+        try:
+            for pipeline_id in workflow.get_pipeline_order(pipelines):
+                pipeline = pipelines[pipeline_id]
+                dispatch = PipelineDispatch(
+                    dispatch_id=f"{execution.execution_id}:{pipeline_id}",
+                    workflow_id=workflow.workflow_id,
+                    pipeline_id=pipeline_id,
+                    session_id=execution.execution_id,
+                    run_id=execution.execution_id,
+                    requested_by="runtime",
+                    started_at=_utc_now(),
+                )
+                state = dispatch_engine.initialize_dispatch(
+                    workflow,
+                    pipeline,
+                    dispatch,
+                    role_bindings=role_bindings,
+                )
+                execution.pipeline_states[pipeline_id] = state
+                self._validate_pipeline_consumed_artifacts(
+                    workflow=workflow,
+                    pipeline=pipeline,
+                    pipelines=pipelines,
+                    state=state,
+                    execution=execution,
+                    dispatch_engine=dispatch_engine,
+                )
+                await self._run_pipeline(
+                    workflow=workflow,
+                    pipeline=pipeline,
+                    state=state,
+                    execution=execution,
+                    dispatch_engine=dispatch_engine,
+                )
+                execution.pipeline_results[pipeline_id] = dispatch_engine.finalize_pipeline(
+                    state,
+                    output_artifacts=self._pipeline_artifact_ids(execution, pipeline_id),
+                    trace_ids=(
+                        [state.dispatch_id]
+                        if self._telemetry is not None
+                        else []
+                    ),
+                )
+
+            self._validate_required_artifacts(workflow, execution)
+            execution.status = PipelineExecutionStatus.COMPLETED
+            self._capture_event(
+                "workflow_execution_completed",
+                {
+                    "workflow_id": workflow.workflow_id,
+                    "execution_id": execution.execution_id,
+                    "status": execution.status.value,
+                    "pipeline_count": len(execution.pipeline_results),
+                    "artifact_count": len(execution.published_artifacts),
+                },
+            )
+        except Exception:
+            execution.status = PipelineExecutionStatus.FAILED
+            self._capture_event(
+                "workflow_execution_failed",
+                {
+                    "workflow_id": workflow.workflow_id,
+                    "execution_id": execution.execution_id,
+                    "status": execution.status.value,
+                },
+            )
+            raise
+        finally:
+            execution.completed_at = _utc_now()
+            self._end_span(
+                workflow_span_id,
+                {
+                    "status": execution.status.value,
+                    "pipeline_count": len(execution.pipeline_results),
+                    "artifact_count": len(execution.published_artifacts),
+                },
+            )
 
         return execution
 
@@ -524,6 +649,30 @@ class WorkflowEngine:
 
         return resolved
 
+    def _resolve_pipeline_inputs(
+        self,
+        task: TaskDefinition,
+        variables: dict[str, Any],
+    ) -> dict[str, Any]:
+        """Resolve canonical pipeline-task inputs from execution variables."""
+        resolved: dict[str, Any] = {}
+        bindings = task.input_bindings or {
+            input_name: f"${input_name}" for input_name in task.input_contract
+        }
+        for input_name in task.input_contract:
+            binding = bindings.get(input_name, f"${input_name}")
+            if binding.startswith("$"):
+                variable_name = binding[1:]
+                if variable_name not in variables:
+                    raise WorkflowError(
+                        f"Missing canonical input '{variable_name}' for task '{task.task_id}'",
+                        task_id=task.task_id,
+                    )
+                resolved[input_name] = variables[variable_name]
+            else:
+                resolved[input_name] = binding
+        return resolved
+
     def _build_prompt(
         self,
         task: TaskNode,
@@ -551,6 +700,446 @@ class WorkflowEngine:
                 parts.append(f"- {name}: {value_str}")
 
         return "\n".join(parts)
+
+    def _build_pipeline_prompt(
+        self,
+        task: TaskDefinition,
+        inputs: dict[str, Any],
+    ) -> str:
+        """Build agent prompt from canonical task definition and resolved inputs."""
+        parts = [task.description]
+        if inputs:
+            parts.append("\n\nInputs:")
+            for name, value in inputs.items():
+                value_str = str(value)
+                if len(value_str) > 500:
+                    value_str = value_str[:500] + "..."
+                parts.append(f"- {name}: {value_str}")
+        if task.completion_criteria:
+            parts.append("\n\nCompletion criteria:")
+            for criterion in task.completion_criteria:
+                parts.append(f"- {criterion}")
+        return "\n".join(parts)
+
+    def _normalize_pipeline_outputs(
+        self,
+        task: TaskDefinition,
+        result: Any,
+    ) -> dict[str, Any]:
+        """Map orchestrator result into declared canonical output keys."""
+        if not task.output_contract:
+            return {}
+        if isinstance(result, dict):
+            missing = [key for key in task.output_contract if key not in result]
+            if missing:
+                raise WorkflowError(
+                    f"Task '{task.task_id}' result missing output keys {missing}",
+                    task_id=task.task_id,
+                )
+            return {key: result[key] for key in task.output_contract}
+        output_keys = list(task.output_contract)
+        if len(output_keys) == 1:
+            return {output_keys[0]: result}
+        raise WorkflowError(
+            f"Task '{task.task_id}' must return a mapping for multi-output contracts",
+            task_id=task.task_id,
+        )
+
+    async def _run_pipeline(
+        self,
+        *,
+        workflow: WorkflowPipelineDefinition,
+        pipeline: PipelineDefinition,
+        state: PipelineExecutionState,
+        execution: CanonicalWorkflowExecution,
+        dispatch_engine: PipelineDispatchEngine,
+    ) -> list[str]:
+        """Run a canonical pipeline to completion."""
+        produced_artifacts: list[str] = []
+        pipeline_span_id = self._start_span(
+            "pipeline_execution",
+            {
+                "workflow_id": workflow.workflow_id,
+                "execution_id": execution.execution_id,
+                "pipeline_id": pipeline.pipeline_id,
+                "dispatch_id": state.dispatch_id,
+            },
+        )
+        self._capture_event(
+            "pipeline_execution_started",
+            {
+                "workflow_id": workflow.workflow_id,
+                "execution_id": execution.execution_id,
+                "pipeline_id": pipeline.pipeline_id,
+                "dispatch_id": state.dispatch_id,
+            },
+        )
+        while True:
+            ready_assignments = dispatch_engine.assign_dependency_ready_tasks(
+                pipeline, state
+            )
+            if not ready_assignments:
+                if state.status == PipelineExecutionStatus.COMPLETED:
+                    self._capture_event(
+                        "pipeline_execution_completed",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "dispatch_id": state.dispatch_id,
+                            "artifact_count": len(produced_artifacts),
+                            "lineage_count": len(state.lineage_records),
+                        },
+                    )
+                    self._end_span(
+                        pipeline_span_id,
+                        {
+                            "status": state.status.value,
+                            "artifact_count": len(produced_artifacts),
+                            "lineage_count": len(state.lineage_records),
+                        },
+                    )
+                    return produced_artifacts
+                if state.status == PipelineExecutionStatus.FAILED:
+                    self._capture_event(
+                        "pipeline_execution_failed",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "dispatch_id": state.dispatch_id,
+                            "status": state.status.value,
+                        },
+                    )
+                    self._end_span(
+                        pipeline_span_id,
+                        {"status": state.status.value},
+                    )
+                    raise WorkflowError(
+                        f"Pipeline '{pipeline.pipeline_id}' failed during canonical execution"
+                    )
+                if state.status == PipelineExecutionStatus.BLOCKED:
+                    self._capture_event(
+                        "pipeline_execution_blocked",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "dispatch_id": state.dispatch_id,
+                            "status": state.status.value,
+                        },
+                    )
+                    self._end_span(
+                        pipeline_span_id,
+                        {"status": state.status.value},
+                    )
+                    raise WorkflowError(
+                        f"Pipeline '{pipeline.pipeline_id}' blocked with no runnable tasks"
+                    )
+                self._end_span(
+                    pipeline_span_id,
+                    {"status": state.status.value},
+                )
+                return produced_artifacts
+
+            for assignment in ready_assignments:
+                task = pipeline.get_task(assignment.task_id)
+                if task is None:
+                    raise WorkflowError(
+                        f"Task '{assignment.task_id}' not found in pipeline '{pipeline.pipeline_id}'"
+                    )
+                owner_agent_id = assignment.assigned_agent_id
+                agent_info = self._resolve_agent_info(owner_agent_id)
+                llm_service = agent_info.get("llm_service") if agent_info else None
+                dispatch_engine.claim_task(
+                    pipeline,
+                    state,
+                    task.task_id,
+                    owner_agent_id,
+                )
+                dispatch_engine.start_task(pipeline, state, task.task_id)
+                try:
+                    self._capture_event(
+                        "workflow_task_started",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "task_id": task.task_id,
+                            "assigned_agent_id": owner_agent_id,
+                            "owner_role": task.owner_role,
+                            "llm_service": llm_service,
+                        },
+                    )
+                    resolved_inputs = self._resolve_pipeline_inputs(
+                        task,
+                        execution.variables,
+                    )
+                    prompt = self._build_pipeline_prompt(task, resolved_inputs)
+                    delegate_kwargs: dict[str, Any] = {"return_to_current": True}
+                    result = await self._orchestrator.delegate(
+                        owner_agent_id,
+                        prompt,
+                        **delegate_kwargs,
+                    )
+                    outputs = self._normalize_pipeline_outputs(task, result)
+                    execution.variables.update(outputs)
+                    produced_artifacts.extend(
+                        self._publish_task_artifacts(
+                            workflow=workflow,
+                            pipeline=pipeline,
+                            task=task,
+                            outputs=outputs,
+                            execution=execution,
+                        )
+                    )
+                    dispatch_engine.mark_task_completed(pipeline, state, task.task_id)
+                    self._capture_event(
+                        "workflow_task_completed",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "task_id": task.task_id,
+                            "assigned_agent_id": owner_agent_id,
+                            "owner_role": task.owner_role,
+                            "llm_service": llm_service,
+                            "output_keys": sorted(outputs),
+                        },
+                    )
+                except Exception as e:
+                    dispatch_engine.mark_task_failed(
+                        pipeline,
+                        state,
+                        task.task_id,
+                        failure_summary=str(e),
+                    )
+                    self._capture_event(
+                        "workflow_task_failed",
+                        {
+                            "workflow_id": workflow.workflow_id,
+                            "execution_id": execution.execution_id,
+                            "pipeline_id": pipeline.pipeline_id,
+                            "task_id": task.task_id,
+                            "assigned_agent_id": owner_agent_id,
+                            "owner_role": task.owner_role,
+                            "llm_service": llm_service,
+                            "error": str(e),
+                        },
+                    )
+                    raise
+
+    def _publish_task_artifacts(
+        self,
+        *,
+        workflow: WorkflowPipelineDefinition,
+        pipeline: PipelineDefinition,
+        task: TaskDefinition,
+        outputs: dict[str, Any],
+        execution: CanonicalWorkflowExecution,
+    ) -> list[str]:
+        """Publish task output artifacts into canonical execution state."""
+        published: list[str] = []
+        produced_contracts = {
+            artifact.artifact_id: artifact for artifact in pipeline.artifact_contract.produced
+        }
+        for output_artifact in task.output_artifacts:
+            contract = produced_contracts.get(output_artifact.artifact_id)
+            if contract is None:
+                raise WorkflowError(
+                    f"Task '{task.task_id}' publishes undeclared artifact "
+                    f"'{output_artifact.artifact_id}'"
+                )
+            if contract.producer_task_id != task.task_id:
+                raise WorkflowError(
+                    f"Artifact '{output_artifact.artifact_id}' is bound to "
+                    f"producer_task_id '{contract.producer_task_id}', not '{task.task_id}'"
+                )
+            if contract.type != output_artifact.type:
+                raise WorkflowError(
+                    f"Artifact '{output_artifact.artifact_id}' type mismatch between "
+                    "task output_artifacts and pipeline artifact_contract"
+                )
+            if output_artifact.from_output not in outputs:
+                raise WorkflowError(
+                    f"Task '{task.task_id}' did not emit required output "
+                    f"'{output_artifact.from_output}' for artifact publication"
+                )
+
+            execution.published_artifacts[output_artifact.artifact_id] = ArtifactRecord(
+                artifact_id=output_artifact.artifact_id,
+                lifecycle_state=ArtifactLifecycleState.FINAL,
+                created_by=task.task_id,
+                provenance={
+                    "workflow_id": workflow.workflow_id,
+                    "pipeline_id": pipeline.pipeline_id,
+                    "task_id": task.task_id,
+                    "from_output": output_artifact.from_output,
+                    "type": output_artifact.type,
+                },
+                updated_at=_utc_now(),
+                published_at=_utc_now(),
+            )
+            published.append(output_artifact.artifact_id)
+            self._capture_event(
+                "workflow_artifact_published",
+                {
+                    "workflow_id": workflow.workflow_id,
+                    "execution_id": execution.execution_id,
+                    "pipeline_id": pipeline.pipeline_id,
+                    "task_id": task.task_id,
+                    "artifact_id": output_artifact.artifact_id,
+                    "artifact_type": output_artifact.type,
+                },
+            )
+        return published
+
+    def _validate_pipeline_consumed_artifacts(
+        self,
+        *,
+        workflow: WorkflowPipelineDefinition,
+        pipeline: PipelineDefinition,
+        pipelines: dict[str, PipelineDefinition],
+        state: PipelineExecutionState,
+        execution: CanonicalWorkflowExecution,
+        dispatch_engine: PipelineDispatchEngine,
+    ) -> None:
+        """Validate that consumed artifacts are available before pipeline execution."""
+        for consumed in pipeline.artifact_contract.consumed:
+            artifact = execution.published_artifacts.get(consumed.artifact_id)
+            if artifact is None:
+                raise WorkflowError(
+                    f"Pipeline '{pipeline.pipeline_id}' missing required consumed "
+                    f"artifact '{consumed.artifact_id}'"
+                )
+            if artifact.provenance.get("pipeline_id") != consumed.from_pipeline:
+                raise WorkflowError(
+                    f"Artifact '{consumed.artifact_id}' was not produced by "
+                    f"expected pipeline '{consumed.from_pipeline}'"
+                )
+            if artifact.provenance.get("type") != consumed.type:
+                raise WorkflowError(
+                    f"Artifact '{consumed.artifact_id}' type mismatch for pipeline "
+                    f"'{pipeline.pipeline_id}'"
+                )
+            producer_pipeline = pipelines.get(consumed.from_pipeline)
+            if producer_pipeline is None:
+                raise WorkflowError(
+                    f"Producer pipeline '{consumed.from_pipeline}' not found for "
+                    f"artifact '{consumed.artifact_id}'"
+                )
+            output_name = self._resolve_contract_key(
+                producer_pipeline.output_contract,
+                artifact_id=consumed.artifact_id,
+                type_name=consumed.type,
+            )
+            input_name = self._resolve_contract_key(
+                pipeline.input_contract,
+                artifact_id=consumed.artifact_id,
+                type_name=consumed.type,
+            )
+            record = dispatch_engine.validate_typed_handoff(
+                workflow_id=workflow.workflow_id,
+                from_pipeline=producer_pipeline,
+                to_pipeline=pipeline,
+                output_name=output_name,
+                input_name=input_name,
+                artifact_id=consumed.artifact_id,
+                correlation_id=execution.execution_id,
+                state=state,
+            )
+            self._capture_event(
+                "workflow_typed_handoff_validated",
+                {
+                    "workflow_id": record.workflow_id,
+                    "execution_id": execution.execution_id,
+                    "from_pipeline_id": record.from_pipeline_id,
+                    "to_pipeline_id": record.to_pipeline_id,
+                    "artifact_id": record.artifact_id,
+                    "output_name": record.output_name,
+                    "input_name": record.input_name,
+                },
+            )
+
+    def _validate_required_artifacts(
+        self,
+        workflow: WorkflowPipelineDefinition,
+        execution: CanonicalWorkflowExecution,
+    ) -> None:
+        """Validate workflow-level required artifacts before final success."""
+        for required in workflow.required_artifacts:
+            artifact = execution.published_artifacts.get(required.artifact_id)
+            if artifact is None:
+                raise WorkflowError(
+                    f"Workflow '{workflow.workflow_id}' missing required artifact "
+                    f"'{required.artifact_id}'"
+                )
+            if artifact.provenance.get("pipeline_id") != required.produced_by_pipeline:
+                raise WorkflowError(
+                    f"Required artifact '{required.artifact_id}' was not produced by "
+                    f"expected pipeline '{required.produced_by_pipeline}'"
+                )
+            if artifact.provenance.get("type") != required.type:
+                raise WorkflowError(
+                    f"Required artifact '{required.artifact_id}' type mismatch"
+                )
+
+    def _pipeline_artifact_ids(
+        self,
+        execution: CanonicalWorkflowExecution,
+        pipeline_id: str,
+    ) -> list[str]:
+        """Return published artifact IDs for a specific pipeline."""
+        return sorted(
+            artifact_id
+            for artifact_id, artifact in execution.published_artifacts.items()
+            if artifact.provenance.get("pipeline_id") == pipeline_id
+        )
+
+    def _resolve_contract_key(
+        self,
+        contract: dict[str, str],
+        *,
+        artifact_id: str,
+        type_name: str,
+    ) -> str:
+        """Resolve a contract key for lineage/correlation by artifact ID or type."""
+        if artifact_id in contract:
+            return artifact_id
+        matches = [key for key, declared_type in contract.items() if declared_type == type_name]
+        if len(matches) == 1:
+            return matches[0]
+        raise WorkflowError(
+            f"Unable to resolve contract key for artifact '{artifact_id}' ({type_name})"
+        )
+
+    def _resolve_agent_info(self, agent_name: str) -> dict[str, Any] | None:
+        """Resolve runtime metadata for an assigned agent when available."""
+        if self._agent_info_resolver is None:
+            return None
+        try:
+            return self._agent_info_resolver(agent_name)
+        except Exception:
+            logger.debug("Failed to resolve agent info for '%s'", agent_name)
+            return None
+
+    def _capture_event(self, event_name: str, data: dict[str, Any]) -> None:
+        """Emit telemetry event when a recorder is configured."""
+        if self._telemetry is not None:
+            self._telemetry.capture_event(event_name, data)
+
+    def _start_span(self, name: str, data: dict[str, Any]) -> str | None:
+        """Start a telemetry span and emit a matching start event when enabled."""
+        if self._telemetry is None:
+            return None
+        span_id = cast(str, self._telemetry.start_span(name))
+        self._telemetry.capture_event(f"{name}_started", {**data, "span_id": span_id})
+        return span_id
+
+    def _end_span(self, span_id: str | None, data: dict[str, Any]) -> None:
+        """End a telemetry span when enabled."""
+        if span_id is not None and self._telemetry is not None:
+            self._telemetry.end_span(span_id, data)
 
     def _build_handoff_payload(
         self, task: TaskNode, execution: WorkflowExecution
@@ -1327,6 +1916,8 @@ class PipelineDispatchEngine:
         workflow: WorkflowPipelineDefinition,
         pipeline: PipelineDefinition,
         dispatch: PipelineDispatch,
+        *,
+        role_bindings: dict[str, str] | None = None,
     ) -> PipelineExecutionState:
         """Initialize assignment and dispatch state for a pipeline run."""
         if pipeline.pipeline_id != dispatch.pipeline_id:
@@ -1349,7 +1940,9 @@ class PipelineDispatchEngine:
                 workflow_id=workflow.workflow_id,
                 pipeline_id=pipeline.pipeline_id,
                 task_id=task.task_id,
-                assigned_agent_id=self._resolve_task_owner(task),
+                assigned_agent_id=self._resolve_task_owner(
+                    task, role_bindings=role_bindings
+                ),
                 assigned_at=dispatch.started_at,
                 status=TaskAssignmentStatus.ASSIGNED,
             )
@@ -1684,13 +2277,28 @@ class PipelineDispatchEngine:
             trace_ids=trace_ids or [],
         )
 
-    def _resolve_task_owner(self, task: TaskDefinition) -> str:
+    def _resolve_task_owner(
+        self,
+        task: TaskDefinition,
+        *,
+        role_bindings: dict[str, str] | None = None,
+    ) -> str:
         """Resolve deterministic assignment owner ID for a task."""
         if task.owner_agent_id is not None:
             return task.owner_agent_id
         if task.owner_role is None:
             raise PipelineDispatchError(f"task '{task.task_id}' missing owner selector")
-        return f"role:{task.owner_role}"
+        if role_bindings is None:
+            raise PipelineDispatchError(
+                f"task '{task.task_id}' uses owner_role without runtime role_bindings"
+            )
+        resolved = role_bindings.get(task.owner_role)
+        if resolved is None or not resolved.strip():
+            raise PipelineDispatchError(
+                f"task '{task.task_id}' owner_role '{task.owner_role}' "
+                "does not resolve through agents.role_bindings"
+            )
+        return resolved.strip()
 
     def _get_assignment(
         self, state: PipelineExecutionState, *, task_id: str

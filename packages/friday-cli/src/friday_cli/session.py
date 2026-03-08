@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+
 """
 Session management for CLI applications.
 

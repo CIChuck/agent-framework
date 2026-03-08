@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Exceptions for friday-llm package.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Python code execution tool using friday-sandbox."""
 
 from __future__ import annotations

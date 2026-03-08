@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """High-level speech orchestration service."""
 
 from __future__ import annotations

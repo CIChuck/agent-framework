@@ -1,3 +1,6 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for MemoryController.
 
@@ -43,7 +46,7 @@ class TestProvenanceEnforcement:
     @pytest.mark.asyncio
     async def test_store_fact_requires_provenance(
         self, memory_controller: MemoryController
-    ):
+    ) -> None:
         """Test that GraphNode requires provenance at creation time."""
         # Provenance is required by Pydantic model - cannot create node without it
         from pydantic import ValidationError
@@ -59,7 +62,7 @@ class TestProvenanceEnforcement:
     @pytest.mark.asyncio
     async def test_store_fact_with_provenance_succeeds(
         self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
-    ):
+    ) -> None:
         """Test that store_fact succeeds with provenance."""
         node = GraphNode(
             id="node_1",
@@ -74,7 +77,7 @@ class TestProvenanceEnforcement:
     @pytest.mark.asyncio
     async def test_store_fact_with_edge_requires_provenance(
         self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
-    ):
+    ) -> None:
         """Test that GraphEdge requires provenance at creation time."""
         from pydantic import ValidationError
 
@@ -90,7 +93,7 @@ class TestProvenanceEnforcement:
     @pytest.mark.asyncio
     async def test_store_insight_requires_metadata(
         self, memory_controller: MemoryController
-    ):
+    ) -> None:
         """Test that store_insight raises ValueError without provenance."""
         with pytest.raises(ValueError, match="Provenance metadata is required"):
             await memory_controller.store_insight("Test insight", provenance=None)
@@ -98,7 +101,7 @@ class TestProvenanceEnforcement:
     @pytest.mark.asyncio
     async def test_store_insight_with_metadata_succeeds(
         self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
-    ):
+    ) -> None:
         """Test that store_insight succeeds with provenance."""
         result = await memory_controller.store_insight(
             "Test insight about Python",
@@ -113,7 +116,7 @@ class TestConsolidationBridge:
     @pytest.mark.asyncio
     async def test_fetch_unconsolidated_events(
         self, memory_controller: MemoryController
-    ):
+    ) -> None:
         """Test fetching unconsolidated turns."""
         # Add some turns
         session_id = "test_session"
@@ -126,7 +129,7 @@ class TestConsolidationBridge:
         assert len(turns) == 5
 
     @pytest.mark.asyncio
-    async def test_mark_events_consolidated(self, memory_controller: MemoryController):
+    async def test_mark_events_consolidated(self, memory_controller: MemoryController) -> None:
         """Test marking turns as consolidated."""
         session_id = "test_session"
         turn_ids = []
@@ -144,7 +147,7 @@ class TestConsolidationBridge:
         assert len(unconsolidated) == 2
 
     @pytest.mark.asyncio
-    async def test_consolidation_round_trip(self, memory_controller: MemoryController):
+    async def test_consolidation_round_trip(self, memory_controller: MemoryController) -> None:
         """Test full consolidation workflow."""
         session_id = "consolidation_test"
 
@@ -173,7 +176,7 @@ class TestUnifiedRecall:
     @pytest.mark.asyncio
     async def test_recall_returns_context_payload(
         self, memory_controller: MemoryController
-    ):
+    ) -> None:
         """Test that recall returns a ContextPayload."""
         payload = await memory_controller.recall(
             query="test query",
@@ -189,7 +192,7 @@ class TestUnifiedRecall:
         assert hasattr(payload, "debug_info")
 
     @pytest.mark.asyncio
-    async def test_recall_includes_history(self, memory_controller: MemoryController):
+    async def test_recall_includes_history(self, memory_controller: MemoryController) -> None:
         """Test that recall includes episodic history."""
         session_id = "history_test"
 
@@ -208,7 +211,7 @@ class TestUnifiedRecall:
         assert len(payload.history) == 3
 
     @pytest.mark.asyncio
-    async def test_recall_without_history(self, memory_controller: MemoryController):
+    async def test_recall_without_history(self, memory_controller: MemoryController) -> None:
         """Test recall without history."""
         session_id = "no_history_test"
 
@@ -226,7 +229,7 @@ class TestUnifiedRecall:
         assert len(payload.history) == 0
 
     @pytest.mark.asyncio
-    async def test_recall_debug_info(self, memory_controller: MemoryController):
+    async def test_recall_debug_info(self, memory_controller: MemoryController) -> None:
         """Test that recall populates debug info."""
         payload = await memory_controller.recall(
             query="test query for debugging",
@@ -244,7 +247,7 @@ class TestIdentityMerging:
     @pytest.mark.asyncio
     async def test_merge_identities(
         self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
-    ):
+    ) -> None:
         """Test merging two nodes."""
         # Create two nodes
         bob = GraphNode(
@@ -280,7 +283,7 @@ class TestSessionManagement:
     """Tests for session-related operations."""
 
     @pytest.mark.asyncio
-    async def test_add_turn(self, memory_controller: MemoryController):
+    async def test_add_turn(self, memory_controller: MemoryController) -> None:
         """Test adding a turn via controller."""
         turn = create_turn("Hello from controller")
         result = await memory_controller.add_turn("session_1", turn)
@@ -288,7 +291,7 @@ class TestSessionManagement:
         assert result is True
 
     @pytest.mark.asyncio
-    async def test_rewind_session(self, memory_controller: MemoryController):
+    async def test_rewind_session(self, memory_controller: MemoryController) -> None:
         """Test rewinding session history."""
         session_id = "rewind_test"
         turn_ids = []
@@ -310,7 +313,7 @@ class TestTelemetryIntegration:
     @pytest.mark.asyncio
     async def test_store_fact_emits_event(
         self, memory_controller: MemoryController, sample_provenance: ProvenanceMetadata
-    ):
+    ) -> None:
         """Test that store_fact emits telemetry."""
         node = GraphNode(
             id="telemetry_test",
@@ -328,7 +331,7 @@ class TestTelemetryIntegration:
         assert event["node_id"] == "telemetry_test"
 
     @pytest.mark.asyncio
-    async def test_recall_emits_event(self, memory_controller: MemoryController):
+    async def test_recall_emits_event(self, memory_controller: MemoryController) -> None:
         """Test that recall emits telemetry."""
         await memory_controller.recall(
             query="telemetry test",

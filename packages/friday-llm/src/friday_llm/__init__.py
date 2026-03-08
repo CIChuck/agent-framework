@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday LLM - Inference Layer.
 

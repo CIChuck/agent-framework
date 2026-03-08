@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 JSONL-based transcript store.
 

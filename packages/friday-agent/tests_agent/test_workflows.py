@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Unit tests for workflow system.
 
@@ -30,6 +31,9 @@ from friday_agent.workflows import (
     HITLDecision,
     HITLDecisionAction,
     HITLPolicy,
+    PipelineDefinition,
+    PipelineExecutionStatus,
+    TaskDefinition,
     TaskNode,
     TaskState,
     TaskStatus,
@@ -39,8 +43,10 @@ from friday_agent.workflows import (
     WorkflowExecution,
     WorkflowLoader,
     WorkflowLoadError,
+    WorkflowPipelineDefinition,
 )
 from friday_memory.multi_agent import ScratchPadStore, ScratchPlanItemStatus
+from friday_telemetry.providers.debug import DebugTelemetryRecorder
 from pydantic import ValidationError
 
 
@@ -1363,3 +1369,387 @@ tasks:
 
         assert workflow1 is not workflow2
         assert workflow2.name == "Updated Workflow"
+
+    def test_load_canonical_workflow_bundle(self, temp_workflows_dir):
+        """Test loading canonical workflow and pipeline YAML bundle."""
+        workflow_dir = temp_workflows_dir / "wf_analysis"
+        pipelines_dir = workflow_dir / "pipelines"
+        pipelines_dir.mkdir(parents=True)
+        (workflow_dir / "workflow.yaml").write_text(
+            """
+workflow_id: wf_analysis
+version: 1.0.0
+name: Analysis
+goal: Analyze input
+pipeline_refs:
+  - pl_analysis
+entry_pipeline_id: pl_analysis
+required_artifacts:
+  - artifact_id: summary_artifact
+    type: markdown
+    produced_by_pipeline: pl_analysis
+""".strip()
+        )
+        (pipelines_dir / "pl_analysis.yaml").write_text(
+            """
+pipeline_id: pl_analysis
+version: 1.0.0
+workflow_id: wf_analysis
+goal: Analyze input
+upstream_pipeline_ids: []
+input_contract:
+  source_paths: list[str]
+output_contract:
+  summary_artifact: markdown
+artifact_contract:
+  produced:
+    - artifact_id: summary_artifact
+      type: markdown
+      producer_task_id: write_summary
+  consumed: []
+tasks:
+  - task_id: write_summary
+    name: Write Summary
+    description: Create summary.
+    owner_agent_id: analyst
+    input_contract:
+      source_paths: list[str]
+    output_contract:
+      summary_artifact: markdown
+    output_artifacts:
+      - artifact_id: summary_artifact
+        from_output: summary_artifact
+        type: markdown
+        required: true
+    dependencies: []
+    retry_policy:
+      max_attempts: 1
+""".strip()
+        )
+
+        loader = WorkflowLoader(temp_workflows_dir)
+        bundle = loader.load_canonical("wf_analysis")
+
+        assert bundle.workflow.workflow_id == "wf_analysis"
+        assert isinstance(bundle.workflow, WorkflowPipelineDefinition)
+        assert set(bundle.pipelines) == {"pl_analysis"}
+        assert bundle.pipelines["pl_analysis"].artifact_contract.produced[0].artifact_id == (
+            "summary_artifact"
+        )
+
+    def test_list_workflows_includes_canonical_workflow_dirs(self, temp_workflows_dir):
+        """Test list_workflows includes canonical workflow directories."""
+        workflow_dir = temp_workflows_dir / "wf_dir"
+        workflow_dir.mkdir()
+        (workflow_dir / "workflow.yaml").write_text(
+            """
+workflow_id: wf_dir
+version: 1.0.0
+name: Workflow Dir
+goal: Example
+pipeline_refs:
+  - pl_one
+""".strip()
+        )
+
+        loader = WorkflowLoader(temp_workflows_dir)
+        assert loader.list_workflows() == ["wf_dir"]
+
+    def test_load_legacy_workflow_as_canonical_bundle(self, temp_workflows_dir):
+        """Test adapting a legacy flat workflow into a canonical bundle."""
+        (temp_workflows_dir / "legacy.yaml").write_text(
+            """
+id: legacy
+name: Legacy Workflow
+description: Legacy workflow path
+tasks:
+  - id: research
+    name: Research
+    description: Gather input.
+    agent: researcher
+    inputs:
+      source_paths: $source_paths
+      mode: deep
+    outputs:
+      - evidence_bundle
+  - id: synthesize
+    name: Synthesize
+    description: Create report.
+    agent: synthesizer
+    depends_on:
+      - research
+    inputs:
+      evidence_bundle: $evidence_bundle
+    outputs:
+      - final_report
+""".strip()
+        )
+
+        loader = WorkflowLoader(temp_workflows_dir)
+        bundle = loader.load_legacy_as_canonical("legacy")
+
+        assert bundle.workflow.workflow_id == "legacy"
+        assert bundle.workflow.pipeline_refs == ("legacy_legacy_pipeline",)
+        pipeline = bundle.pipelines["legacy_legacy_pipeline"]
+        assert pipeline.entrypoints == ("research",)
+        assert pipeline.input_contract == {"source_paths": "any"}
+        assert pipeline.output_contract == {"final_report": "any"}
+        assert pipeline.tasks[0].input_bindings == {
+            "source_paths": "$source_paths",
+            "mode": "deep",
+        }
+        assert pipeline.tasks[1].dependencies == ("research",)
+
+
+class TestCanonicalWorkflowEngine:
+    """Tests for canonical workflow -> pipeline -> task execution."""
+
+    @pytest.mark.asyncio
+    async def test_execute_canonical_workflow_resolves_owner_role_and_outputs(self):
+        mock_orchestrator = MagicMock()
+        mock_orchestrator.delegate = AsyncMock(
+            side_effect=[
+                {"evidence_bundle": {"sources": 3}},
+                {"recommendation_report": "# Final"},
+            ]
+        )
+        telemetry = DebugTelemetryRecorder()
+        agent_info = {
+            "researcher": {"llm_service": "research-tier"},
+            "synthesizer": {"llm_service": "synthesis-tier"},
+        }
+        engine = WorkflowEngine(
+            mock_orchestrator,
+            telemetry=telemetry,
+            agent_info_resolver=agent_info.get,
+        )
+
+        workflow = WorkflowPipelineDefinition(
+            workflow_id="wf_research",
+            version="1.0.0",
+            name="Research",
+            goal="Produce report",
+            pipeline_refs=("pl_research", "pl_synthesis"),
+            entry_pipeline_id="pl_research",
+            required_artifacts=[
+                {
+                    "artifact_id": "recommendation_report",
+                    "type": "markdown",
+                    "produced_by_pipeline": "pl_synthesis",
+                }
+            ],
+        )
+
+        pipelines = {
+            "pl_research": PipelineDefinition(
+                pipeline_id="pl_research",
+                version="1.0.0",
+                workflow_id="wf_research",
+                goal="Research",
+                upstream_pipeline_ids=(),
+                input_contract={"source_paths": "list[str]"},
+                output_contract={"evidence_bundle": "json"},
+                artifact_contract={
+                    "produced": [
+                        {
+                            "artifact_id": "evidence_bundle",
+                            "type": "json",
+                            "producer_task_id": "collect_sources",
+                        }
+                    ],
+                    "consumed": [],
+                },
+                tasks=[
+                    TaskDefinition(
+                        task_id="collect_sources",
+                        name="Collect Sources",
+                        description="Collect sources.",
+                        owner_agent_id="researcher",
+                        input_contract={"source_paths": "list[str]"},
+                        output_contract={"evidence_bundle": "json"},
+                        output_artifacts=[
+                            {
+                                "artifact_id": "evidence_bundle",
+                                "from_output": "evidence_bundle",
+                                "type": "json",
+                                "required": True,
+                            }
+                        ],
+                    )
+                ],
+            ),
+            "pl_synthesis": PipelineDefinition(
+                pipeline_id="pl_synthesis",
+                version="1.0.0",
+                workflow_id="wf_research",
+                goal="Synthesize",
+                upstream_pipeline_ids=("pl_research",),
+                input_contract={"evidence_bundle": "json"},
+                output_contract={"recommendation_report": "markdown"},
+                artifact_contract={
+                    "produced": [
+                        {
+                            "artifact_id": "recommendation_report",
+                            "type": "markdown",
+                            "producer_task_id": "produce_recommendations",
+                        }
+                    ],
+                    "consumed": [
+                        {
+                            "artifact_id": "evidence_bundle",
+                            "type": "json",
+                            "from_pipeline": "pl_research",
+                        }
+                    ],
+                },
+                tasks=[
+                    TaskDefinition(
+                        task_id="produce_recommendations",
+                        name="Produce Recommendations",
+                        description="Produce recommendation report.",
+                        owner_role="synthesis",
+                        input_contract={"evidence_bundle": "json"},
+                        output_contract={"recommendation_report": "markdown"},
+                        output_artifacts=[
+                            {
+                                "artifact_id": "recommendation_report",
+                                "from_output": "recommendation_report",
+                                "type": "markdown",
+                                "required": True,
+                            }
+                        ],
+                    )
+                ],
+            ),
+        }
+
+        execution = await engine.execute_canonical(
+            workflow,
+            pipelines,
+            {"source_paths": ["a.md", "b.md"]},
+            role_bindings={"synthesis": "synthesizer"},
+        )
+
+        assert execution.status == PipelineExecutionStatus.COMPLETED
+        assert execution.variables["evidence_bundle"] == {"sources": 3}
+        assert execution.variables["recommendation_report"] == "# Final"
+        assert execution.pipeline_results["pl_research"].status == "completed"
+        assert execution.pipeline_results["pl_synthesis"].status == "completed"
+        assert execution.pipeline_results["pl_synthesis"].output_artifacts == [
+            "recommendation_report"
+        ]
+        assert "recommendation_report" in execution.published_artifacts
+        assert mock_orchestrator.delegate.call_args_list[1].args[0] == "synthesizer"
+        assert execution.pipeline_states["pl_synthesis"].lineage_records[0].artifact_id == (
+            "evidence_bundle"
+        )
+        task_events = telemetry.get_all_events("workflow_task_completed")
+        assert len(task_events) == 2
+        assert task_events[0]["llm_service"] == "research-tier"
+        assert task_events[1]["llm_service"] == "synthesis-tier"
+        assert telemetry.get_event("workflow_typed_handoff_validated") is not None
+        assert telemetry.get_event("workflow_artifact_published") is not None
+
+    @pytest.mark.asyncio
+    async def test_execute_canonical_workflow_supports_legacy_input_bindings(self):
+        """Test canonical execution resolves explicit input bindings for adapted legacy tasks."""
+        mock_orchestrator = MagicMock()
+        mock_orchestrator.delegate = AsyncMock(
+            side_effect=[
+                {"evidence_bundle": {"sources": 2, "mode": "deep"}},
+                {"final_report": "# Report"},
+            ]
+        )
+        engine = WorkflowEngine(mock_orchestrator)
+
+        workflow = WorkflowPipelineDefinition(
+            workflow_id="legacy",
+            version="1.0.0",
+            name="Legacy",
+            goal="Legacy adapted workflow",
+            pipeline_refs=("legacy_pipeline",),
+        )
+        pipelines = {
+            "legacy_pipeline": PipelineDefinition(
+                pipeline_id="legacy_pipeline",
+                version="1.0.0",
+                workflow_id="legacy",
+                goal="Legacy pipeline",
+                input_contract={"source_paths": "any"},
+                output_contract={"final_report": "any"},
+                tasks=[
+                    TaskDefinition(
+                        task_id="research",
+                        name="Research",
+                        description="Gather sources.",
+                        owner_agent_id="researcher",
+                        input_contract={"source_paths": "any", "mode": "any"},
+                        input_bindings={"source_paths": "$source_paths", "mode": "deep"},
+                        output_contract={"evidence_bundle": "any"},
+                    ),
+                    TaskDefinition(
+                        task_id="synthesize",
+                        name="Synthesize",
+                        description="Write report.",
+                        owner_agent_id="synthesizer",
+                        input_contract={"evidence_bundle": "any"},
+                        input_bindings={"evidence_bundle": "$evidence_bundle"},
+                        output_contract={"final_report": "any"},
+                        dependencies=("research",),
+                    ),
+                ],
+            )
+        }
+
+        execution = await engine.execute_canonical(
+            workflow,
+            pipelines,
+            {"source_paths": ["a.md"]},
+        )
+
+        assert execution.status == PipelineExecutionStatus.COMPLETED
+        first_prompt = mock_orchestrator.delegate.call_args_list[0].args[1]
+        assert "- mode: deep" in first_prompt
+        assert execution.variables["final_report"] == "# Report"
+
+    @pytest.mark.asyncio
+    async def test_execute_canonical_workflow_fails_when_required_artifact_missing(self):
+        mock_orchestrator = MagicMock()
+        mock_orchestrator.delegate = AsyncMock(return_value={"result": "ok"})
+        engine = WorkflowEngine(mock_orchestrator)
+
+        workflow = WorkflowPipelineDefinition(
+            workflow_id="wf_missing_artifact",
+            version="1.0.0",
+            name="Missing Artifact",
+            goal="Test failure",
+            pipeline_refs=("pl_one",),
+            required_artifacts=[
+                {
+                    "artifact_id": "required_artifact",
+                    "type": "markdown",
+                    "produced_by_pipeline": "pl_one",
+                }
+            ],
+        )
+        pipelines = {
+            "pl_one": PipelineDefinition(
+                pipeline_id="pl_one",
+                version="1.0.0",
+                workflow_id="wf_missing_artifact",
+                goal="Only pipeline",
+                output_contract={"result": "markdown"},
+                tasks=[
+                    TaskDefinition(
+                        task_id="task_one",
+                        name="Task One",
+                        description="Do work.",
+                        owner_agent_id="agent",
+                        output_contract={"result": "markdown"},
+                    )
+                ],
+            )
+        }
+
+        with pytest.raises(WorkflowError, match="missing required artifact"):
+            await engine.execute_canonical(workflow, pipelines)

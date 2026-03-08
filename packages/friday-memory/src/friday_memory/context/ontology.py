@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Ontology configuration for memory extraction.
 

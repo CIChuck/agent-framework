@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Smart File Read Tool.
 

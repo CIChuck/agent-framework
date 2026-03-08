@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Experiment 1: The 'Live Wire' Test.
 Verifies that Telemetry hooks are correctly emitting traces.

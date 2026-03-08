@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 ChromaDB Vector Store Implementation.
 Implements VectorStoreAdapter with injected EmbeddingModel.

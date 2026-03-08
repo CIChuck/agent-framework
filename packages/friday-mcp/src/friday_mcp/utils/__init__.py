@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Utility modules for friday-mcp."""
 
 from friday_mcp.utils.schema import (

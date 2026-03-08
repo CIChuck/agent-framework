@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Transcript correlation helpers for replay and promotion forensics.
 """

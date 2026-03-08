@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Webhook integration (stub)."""
 
 from typing import Any

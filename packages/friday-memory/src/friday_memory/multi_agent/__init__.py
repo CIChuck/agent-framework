@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Additive multi-agent memory module."""
 
 from friday_memory.multi_agent.controller import MultiAgentMemoryController

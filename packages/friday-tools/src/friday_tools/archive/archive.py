@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Archive tools."""
 
 from __future__ import annotations

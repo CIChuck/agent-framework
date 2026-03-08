@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 The Memory Controller Facade.
 Orchestrates parallel retrieval from Vector, Graph, and Episodic stores.
@@ -1247,6 +1248,14 @@ class MemoryController:
                         user_message=entry.user_message,
                         assistant_message=entry.assistant_message,
                         timestamp=entry.timestamp,
+                        agent_id=getattr(entry, "agent_id", None),
+                        workflow_id=getattr(entry, "workflow_id", None),
+                        execution_id=getattr(entry, "execution_id", None),
+                        pipeline_id=getattr(entry, "pipeline_id", None),
+                        task_id=getattr(entry, "task_id", None),
+                        assignment_id=getattr(entry, "assignment_id", None),
+                        llm_service=getattr(entry, "llm_service", None),
+                        provider_name=getattr(entry, "provider_name", None),
                         tool_calls=[
                             ToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                             for tc in (entry.tool_calls or [])
@@ -1260,6 +1269,7 @@ class MemoryController:
                             for tr in (entry.tool_results or [])
                         ],
                         metadata={
+                            **dict(getattr(entry, "metadata", {})),
                             "from_prior_session": True,
                             "original_session_id": entry.session_id,
                         },

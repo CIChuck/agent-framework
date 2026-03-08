@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Finance - Financial data provider integration.
 

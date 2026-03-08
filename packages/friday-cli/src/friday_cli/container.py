@@ -15,6 +15,8 @@ Ref: Phase 1 Build Plan, Step 6
 import logging
 import os
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import cast
 
 from friday_agent import (
     AgentLoader,
@@ -111,6 +113,11 @@ class FridayConfig:
         Returns:
             Equivalent RuntimeConfig instance.
         """
+        defaults = RuntimeConfig.deployment_profile_defaults("local", cwd=Path.cwd())
+        runtime_data_root = Path(defaults["runtime_data_root"])
+        if not runtime_data_root.parent.exists():
+            runtime_data_root = Path(defaults["workspace_root"]).parent / ".friday-runtime"
+
         return RuntimeConfig(
             llm_model=self.llm_model,
             llm_api_key=self.llm_api_key,
@@ -122,6 +129,9 @@ class FridayConfig:
             telemetry_endpoint=self.telemetry_endpoint,
             debug_mode=self.debug_mode,
             agents_dir=self.agents_dir,
+            install_root=defaults["install_root"],
+            runtime_data_root=str(runtime_data_root),
+            workspace_root=defaults["workspace_root"],
         )
 
 
@@ -197,35 +207,35 @@ class FridayContainer:
     @property
     def telemetry(self) -> TelemetryInterface | None:
         """Get telemetry interface."""
-        return self._kernel.telemetry
+        return cast(TelemetryInterface | None, self._kernel.telemetry)
 
     @property
     def llm(self) -> LiteLLMService:
         """Get LLM service."""
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.llm
+        return cast(LiteLLMService, self._kernel.llm)
 
     @property
     def embeddings(self) -> LiteLLMEmbeddingService:
         """Get embedding service."""
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.embeddings
+        return cast(LiteLLMEmbeddingService, self._kernel.embeddings)
 
     @property
     def memory(self) -> MemoryController:
         """Get memory controller."""
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.memory
+        return cast(MemoryController, self._kernel.memory)
 
     @property
     def context_engine(self) -> ContextAssembler:
         """Get context assembler."""
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.context_engine
+        return cast(ContextAssembler, self._kernel.context_engine)
 
     @property
     def tool_registry(self) -> DefaultToolRegistry:
@@ -266,7 +276,7 @@ class FridayContainer:
         """
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.get_copilot_agent(profile)
+        return cast(CopilotAgent, self._kernel.get_copilot_agent(profile))
 
     def get_team_agent(self, name: str) -> CopilotAgent:
         """
@@ -280,7 +290,7 @@ class FridayContainer:
         """
         if not self._initialized:
             raise RuntimeError("Container not initialized. Call initialize() first.")
-        return self._kernel.get_team_agent(name)
+        return cast(CopilotAgent, self._kernel.get_team_agent(name))
 
     def list_available_agents(self) -> list[str]:
         """
@@ -289,7 +299,7 @@ class FridayContainer:
         Returns:
             Sorted list of agent names
         """
-        return self._kernel.list_available_agents()
+        return cast(list[str], self._kernel.list_available_agents())
 
     def get_agent_info(self, name: str) -> dict | None:
         """
@@ -301,7 +311,7 @@ class FridayContainer:
         Returns:
             Dict with agent info or None if not found
         """
-        return self._kernel.get_agent_info(name)
+        return cast(dict | None, self._kernel.get_agent_info(name))
 
 
 # --- Convenience Functions ---

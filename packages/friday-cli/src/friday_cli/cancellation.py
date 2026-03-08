@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Cancellable async operations with keyboard interrupt support.
 

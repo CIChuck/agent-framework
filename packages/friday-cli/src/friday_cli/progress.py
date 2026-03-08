@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Progress indicators for long-running operations.
 

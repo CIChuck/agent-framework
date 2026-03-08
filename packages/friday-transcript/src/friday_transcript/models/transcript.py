@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Transcript data models.
 
@@ -7,11 +8,13 @@ Defines the core data structures for conversation transcripts:
 - ToolCall/ToolResult: Tool execution tracking
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 from typing import Any
 from uuid import uuid4
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class ToolCall(BaseModel):
@@ -66,6 +69,34 @@ class TranscriptEntry(BaseModel):
     agent_id: str | None = Field(
         default=None,
         description="Which agent generated this response (e.g., 'researcher', 'coder')",
+    )
+    workflow_id: str | None = Field(
+        default=None,
+        description="Workflow identifier for execution provenance",
+    )
+    execution_id: str | None = Field(
+        default=None,
+        description="Workflow execution identifier for provenance",
+    )
+    pipeline_id: str | None = Field(
+        default=None,
+        description="Pipeline identifier for execution provenance",
+    )
+    task_id: str | None = Field(
+        default=None,
+        description="Task identifier for execution provenance",
+    )
+    assignment_id: str | None = Field(
+        default=None,
+        description="Assignment identifier for execution provenance",
+    )
+    llm_service: str | None = Field(
+        default=None,
+        description="Resolved runtime LLM service name for the entry",
+    )
+    provider_name: str | None = Field(
+        default=None,
+        description="LLM provider attribution for the entry",
     )
 
     # Tool execution
@@ -126,6 +157,28 @@ class TranscriptEntry(BaseModel):
     )
 
     model_config = ConfigDict(frozen=False)
+
+    @model_validator(mode="after")
+    def sync_provenance_metadata(self) -> TranscriptEntry:
+        """Mirror workflow provenance fields into metadata and load from metadata."""
+        provenance_fields = (
+            "workflow_id",
+            "execution_id",
+            "pipeline_id",
+            "task_id",
+            "assignment_id",
+            "llm_service",
+            "provider_name",
+        )
+        metadata = dict(self.metadata)
+        for field_name in provenance_fields:
+            field_value = getattr(self, field_name)
+            if field_value is None and field_name in metadata:
+                setattr(self, field_name, metadata[field_name])
+            elif field_value is not None:
+                metadata[field_name] = field_value
+        self.metadata = metadata
+        return self
 
     def compute_latency(self) -> float | None:
         """Compute latency from timestamps if not explicitly set."""

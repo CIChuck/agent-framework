@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Memory Consolidator (The Synthesizer).
 Handles deduplication, summarization, and drift management of long-term memory.

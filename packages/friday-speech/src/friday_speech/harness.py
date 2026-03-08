@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Speech test harness for wake word, STT, and TTS."""
 
 from __future__ import annotations

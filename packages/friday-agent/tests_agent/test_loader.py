@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """
 Unit tests for AgentLoader.
 
@@ -38,6 +39,8 @@ capabilities:
 skills:
   - planner.basic@1.0.0
 temperature: 0.5
+llm_service: primary
+agent_type: autonomous
 tool_autonomy: auto
 """
         (agents_dir / "test_agent.yaml").write_text(valid_config)
@@ -76,6 +79,8 @@ capabilities:
         assert "testing" in profile.capabilities
         assert "planner.basic@1.0.0" in profile.skills
         assert profile.temperature == 0.5
+        assert profile.llm_service == "primary"
+        assert profile.agent_type == "autonomous"
         assert profile.tool_autonomy == "auto"
 
     def test_load_yml_extension(self, loader):
@@ -186,6 +191,21 @@ tool_autonomy: invalid_value
         with pytest.raises(AgentConfigError, match="tool_autonomy"):
             loader.load("bad_autonomy")
 
+    def test_invalid_agent_type(self, temp_agents_dir):
+        """Test that invalid agent_type raises error."""
+        config = """
+name: bad_agent_type
+role: "Test Agent"
+goal: "Test invalid agent type"
+system_prompt: "You are a test."
+agent_type: invalid_value
+"""
+        (temp_agents_dir / "bad_agent_type.yaml").write_text(config)
+
+        loader = AgentLoader(temp_agents_dir)
+        with pytest.raises(AgentConfigError, match="agent_type"):
+            loader.load("bad_agent_type")
+
     def test_invalid_context_strategy(self, temp_agents_dir):
         """Test that invalid context_strategy raises error."""
         config = """
@@ -239,6 +259,21 @@ tools: "should be a list"
         with pytest.raises(AgentConfigError, match="must be a list"):
             loader.load("bad_type")
 
+    def test_unknown_field_rejected(self, temp_agents_dir):
+        """Test that unknown fields fail hard."""
+        config = """
+name: bad_unknown
+role: "Test Agent"
+goal: "Test unknown field handling"
+system_prompt: "You are a test."
+unexpected_field: true
+"""
+        (temp_agents_dir / "bad_unknown.yaml").write_text(config)
+
+        loader = AgentLoader(temp_agents_dir)
+        with pytest.raises(AgentConfigError, match="Unknown fields"):
+            loader.load("bad_unknown")
+
     def test_invalid_skill_reference(self, temp_agents_dir):
         """Test that invalid skill reference format raises error."""
         config = """
@@ -287,6 +322,8 @@ system_prompt: "You are a minimal agent."
         assert profile.capabilities == []
         assert profile.temperature == 0.7
         assert profile.max_tokens is None
+        assert profile.llm_service is None
+        assert profile.agent_type == "interactive"
         assert profile.context_strategy == "standard"
         assert profile.memory_config == {}
         assert profile.metadata == {}

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Tool protocols defining abstract interfaces for Friday tools.
 

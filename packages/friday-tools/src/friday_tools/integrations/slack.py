@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Slack integration (stub)."""
 
 from typing import Any

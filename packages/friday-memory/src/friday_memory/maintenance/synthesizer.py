@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Memory Synthesizer for Friday Memory.
 

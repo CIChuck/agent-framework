@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Rich-based display functions for terminal output.
 

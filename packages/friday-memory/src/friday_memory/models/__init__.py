@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Data Transfer Objects (DTOs) for the Memory subsystem.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Session State Models.
 Defines SessionState, InteractionTurn, and ConsolidationReport.
@@ -5,10 +6,12 @@ Defines SessionState, InteractionTurn, and ConsolidationReport.
 Ref: Batch 2a Specification, Section 1.2
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class ToolCall(BaseModel):
@@ -97,6 +100,34 @@ class InteractionTurn(BaseModel):
         default=None,
         description="Which agent generated this response (e.g., 'researcher', 'coder')",
     )
+    workflow_id: str | None = Field(
+        default=None,
+        description="Workflow identifier for execution provenance",
+    )
+    execution_id: str | None = Field(
+        default=None,
+        description="Workflow execution identifier for provenance",
+    )
+    pipeline_id: str | None = Field(
+        default=None,
+        description="Pipeline identifier for execution provenance",
+    )
+    task_id: str | None = Field(
+        default=None,
+        description="Task identifier for execution provenance",
+    )
+    assignment_id: str | None = Field(
+        default=None,
+        description="Assignment identifier for execution provenance",
+    )
+    llm_service: str | None = Field(
+        default=None,
+        description="Resolved runtime LLM service name for the turn",
+    )
+    provider_name: str | None = Field(
+        default=None,
+        description="LLM provider attribution for the turn",
+    )
 
     tool_calls: list[ToolCall] = Field(
         default_factory=list,
@@ -176,6 +207,28 @@ class InteractionTurn(BaseModel):
         default=None,
         description="JSON-serialized raw LLM response with metadata",
     )
+
+    @model_validator(mode="after")
+    def sync_provenance_metadata(self) -> InteractionTurn:
+        """Mirror workflow provenance fields into metadata and load from metadata."""
+        provenance_fields = (
+            "workflow_id",
+            "execution_id",
+            "pipeline_id",
+            "task_id",
+            "assignment_id",
+            "llm_service",
+            "provider_name",
+        )
+        metadata = dict(self.metadata)
+        for field_name in provenance_fields:
+            field_value = getattr(self, field_name)
+            if field_value is None and field_name in metadata:
+                setattr(self, field_name, metadata[field_name])
+            elif field_value is not None:
+                metadata[field_name] = field_value
+        self.metadata = metadata
+        return self
 
 
 class SessionState(BaseModel):

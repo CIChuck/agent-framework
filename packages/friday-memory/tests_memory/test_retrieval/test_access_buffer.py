@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for AccessBuffer."""
 
 import asyncio
@@ -15,7 +17,7 @@ from friday_memory.retrieval.access_buffer import (
 class TestAccessBufferConfig:
     """Test AccessBufferConfig defaults and customization."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = AccessBufferConfig()
         assert config.max_buffer_size == 1000
@@ -23,7 +25,7 @@ class TestAccessBufferConfig:
         assert config.wal_path is None
         assert config.decay_score_boost == 0.1
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration."""
         config = AccessBufferConfig(
             max_buffer_size=500,
@@ -40,7 +42,7 @@ class TestAccessBufferConfig:
 class TestFlushResult:
     """Test FlushResult dataclass."""
 
-    def test_default_values(self):
+    def test_default_values(self) -> None:
         """Test default initialization."""
         result = FlushResult()
         assert result.short_term_flushed == 0
@@ -48,17 +50,17 @@ class TestFlushResult:
         assert result.errors == []
         assert not result.has_errors()
 
-    def test_has_errors(self):
+    def test_has_errors(self) -> None:
         """Test error detection."""
         result = FlushResult(errors=["Something went wrong"])
         assert result.has_errors()
 
-    def test_summary_no_flushes(self):
+    def test_summary_no_flushes(self) -> None:
         """Test summary with no flushes."""
         result = FlushResult()
         assert result.summary() == "No accesses flushed"
 
-    def test_summary_with_flushes(self):
+    def test_summary_with_flushes(self) -> None:
         """Test summary with flushed data."""
         result = FlushResult(short_term_flushed=5, long_term_flushed=10)
         summary = result.summary()
@@ -79,7 +81,7 @@ class TestAccessBuffer:
         """Create buffer with default config."""
         return AccessBuffer(config)
 
-    def test_init_defaults(self):
+    def test_init_defaults(self) -> None:
         """Test buffer initializes with defaults."""
         buffer = AccessBuffer()
         assert buffer.short_term_count == 0
@@ -88,7 +90,7 @@ class TestAccessBuffer:
         assert buffer.total_accesses == 0
 
     @pytest.mark.asyncio
-    async def test_record_access_short_term(self, buffer):
+    async def test_record_access_short_term(self, buffer) -> None:
         """Test recording short-term access."""
         await buffer.record_access("mem1", "short_term")
 
@@ -97,7 +99,7 @@ class TestAccessBuffer:
         assert buffer.total_accesses == 1
 
     @pytest.mark.asyncio
-    async def test_record_access_long_term(self, buffer):
+    async def test_record_access_long_term(self, buffer) -> None:
         """Test recording long-term access."""
         await buffer.record_access("mem1", "long_term")
 
@@ -106,7 +108,7 @@ class TestAccessBuffer:
         assert buffer.total_accesses == 1
 
     @pytest.mark.asyncio
-    async def test_record_multiple_accesses_same_memory(self, buffer):
+    async def test_record_multiple_accesses_same_memory(self, buffer) -> None:
         """Test multiple accesses to same memory accumulate."""
         await buffer.record_access("mem1", "long_term")
         await buffer.record_access("mem1", "long_term")
@@ -116,7 +118,7 @@ class TestAccessBuffer:
         assert buffer.total_accesses == 3  # Total accesses
 
     @pytest.mark.asyncio
-    async def test_record_multiple_memories(self, buffer):
+    async def test_record_multiple_memories(self, buffer) -> None:
         """Test tracking multiple different memories."""
         await buffer.record_access("mem1", "short_term")
         await buffer.record_access("mem2", "short_term")
@@ -126,7 +128,7 @@ class TestAccessBuffer:
         assert buffer.long_term_count == 1
         assert buffer.total_count == 3
 
-    def test_get_stats(self, buffer):
+    def test_get_stats(self, buffer) -> None:
         """Test get_stats returns correct statistics."""
         stats = buffer.get_stats()
 
@@ -137,7 +139,7 @@ class TestAccessBuffer:
         assert "seconds_since_flush" in stats
 
     @pytest.mark.asyncio
-    async def test_get_stats_after_accesses(self, buffer):
+    async def test_get_stats_after_accesses(self, buffer) -> None:
         """Test stats update after recording accesses."""
         await buffer.record_access("mem1", "short_term")
         await buffer.record_access("mem1", "short_term")
@@ -149,18 +151,18 @@ class TestAccessBuffer:
         assert stats["long_term_memories"] == 1
         assert stats["long_term_accesses"] == 1
 
-    def test_needs_flush_empty_buffer(self, buffer):
+    def test_needs_flush_empty_buffer(self, buffer) -> None:
         """Test needs_flush returns False for empty buffer."""
         assert not buffer.needs_flush()
 
     @pytest.mark.asyncio
-    async def test_needs_flush_with_data(self, buffer):
+    async def test_needs_flush_with_data(self, buffer) -> None:
         """Test needs_flush returns False when below thresholds."""
         await buffer.record_access("mem1", "short_term")
         # Default max_buffer_size is 1000, so this shouldn't trigger
         assert not buffer.needs_flush()
 
-    def test_clear_buffer(self, buffer):
+    def test_clear_buffer(self, buffer) -> None:
         """Test clearing buffers."""
         # This is a sync operation
         buffer._short_term_buffer["mem1"] = 5
@@ -172,7 +174,7 @@ class TestAccessBuffer:
         assert buffer.long_term_count == 0
 
     @pytest.mark.asyncio
-    async def test_flush_all_empty(self, buffer):
+    async def test_flush_all_empty(self, buffer) -> None:
         """Test flush_all with empty buffers."""
         result = await buffer.flush_all()
 
@@ -201,7 +203,7 @@ class TestAccessBufferWAL:
         return AccessBuffer(wal_config)
 
     @pytest.mark.asyncio
-    async def test_wal_persists_on_access(self, wal_buffer, temp_wal_path):
+    async def test_wal_persists_on_access(self, wal_buffer, temp_wal_path) -> None:
         """Test that WAL file is written on access."""
         await wal_buffer.record_access("mem1", "long_term")
 
@@ -215,7 +217,7 @@ class TestAccessBufferWAL:
         assert "long_term" in content
 
     @pytest.mark.asyncio
-    async def test_recover_from_wal(self, wal_buffer, temp_wal_path):
+    async def test_recover_from_wal(self, wal_buffer, temp_wal_path) -> None:
         """Test recovering access events from WAL."""
         # Write some events to WAL
         await wal_buffer.record_access("mem1", "short_term")
@@ -234,7 +236,7 @@ class TestAccessBufferWAL:
         assert wal_buffer.long_term_count == 1
 
     @pytest.mark.asyncio
-    async def test_recover_from_nonexistent_wal(self, wal_buffer, temp_wal_path):
+    async def test_recover_from_nonexistent_wal(self, wal_buffer, temp_wal_path) -> None:
         """Test recovery handles missing WAL file."""
         # Delete the WAL file
         temp_wal_path.unlink(missing_ok=True)
@@ -243,7 +245,7 @@ class TestAccessBufferWAL:
         assert recovered == 0
 
     @pytest.mark.asyncio
-    async def test_recover_clears_wal(self, wal_buffer, temp_wal_path):
+    async def test_recover_clears_wal(self, wal_buffer, temp_wal_path) -> None:
         """Test that WAL is cleared after successful recovery."""
         await wal_buffer.record_access("mem1", "long_term")
         await asyncio.sleep(0.1)
@@ -259,7 +261,7 @@ class TestAccessBufferConcurrency:
     """Test AccessBuffer thread safety."""
 
     @pytest.mark.asyncio
-    async def test_concurrent_access_recording(self):
+    async def test_concurrent_access_recording(self) -> None:
         """Test concurrent access recording is thread-safe."""
         buffer = AccessBuffer()
 

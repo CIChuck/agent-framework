@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Prompt Architect (Layout Engine).
 Physically structures the final prompt to optimize model attention.

@@ -145,6 +145,13 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             assistant_message=turn.assistant_message,
             # Agent tracking for provenance
             agent_id=getattr(turn, "agent_id", None),
+            workflow_id=getattr(turn, "workflow_id", None),
+            execution_id=getattr(turn, "execution_id", None),
+            pipeline_id=getattr(turn, "pipeline_id", None),
+            task_id=getattr(turn, "task_id", None),
+            assignment_id=getattr(turn, "assignment_id", None),
+            llm_service=getattr(turn, "llm_service", None),
+            provider_name=getattr(turn, "provider_name", None),
             tool_calls=[
                 ToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                 for tc in getattr(turn, "tool_calls", [])
@@ -218,6 +225,13 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                 assistant_message=entry.assistant_message,
                 # Agent tracking for provenance
                 agent_id=getattr(entry, "agent_id", None),
+                workflow_id=getattr(entry, "workflow_id", None),
+                execution_id=getattr(entry, "execution_id", None),
+                pipeline_id=getattr(entry, "pipeline_id", None),
+                task_id=getattr(entry, "task_id", None),
+                assignment_id=getattr(entry, "assignment_id", None),
+                llm_service=getattr(entry, "llm_service", None),
+                provider_name=getattr(entry, "provider_name", None),
                 tool_calls=[
                     MemoryToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                     for tc in entry.tool_calls
@@ -271,6 +285,13 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
                     assistant_message=entry.assistant_message,
                     # Agent tracking for provenance
                     agent_id=getattr(entry, "agent_id", None),
+                    workflow_id=getattr(entry, "workflow_id", None),
+                    execution_id=getattr(entry, "execution_id", None),
+                    pipeline_id=getattr(entry, "pipeline_id", None),
+                    task_id=getattr(entry, "task_id", None),
+                    assignment_id=getattr(entry, "assignment_id", None),
+                    llm_service=getattr(entry, "llm_service", None),
+                    provider_name=getattr(entry, "provider_name", None),
                     tool_calls=[
                         MemoryToolCall(id=tc.id, name=tc.name, arguments=tc.arguments)
                         for tc in entry.tool_calls
@@ -304,7 +325,7 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         # Delegate to store if it supports persistent consolidation tracking
         if hasattr(self._store, "mark_entries_consolidated"):
             count = await self._store.mark_entries_consolidated(turn_ids)
-            return count > 0
+            return int(count) > 0
 
         # Fallback for stores without persistent consolidation support
         # Log warning since consolidation state won't persist across restarts
@@ -330,7 +351,7 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
 
         if hasattr(self._store, "mark_entries_compacted"):
             count = await self._store.mark_entries_compacted(turn_ids)
-            return count > 0
+            return int(count) > 0
 
         # Fallback for stores without persistent compaction support
         import logging

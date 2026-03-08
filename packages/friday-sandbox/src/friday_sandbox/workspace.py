@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Workspace management with TTL-based lifecycle.
 

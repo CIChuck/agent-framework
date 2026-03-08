@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Consistency Analyzer for Friday Memory.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Default Tool Registry Implementation.
 

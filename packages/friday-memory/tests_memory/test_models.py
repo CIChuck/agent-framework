@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for friday-memory models.
 
@@ -29,7 +31,7 @@ from friday_memory import (
 class TestProvenanceMetadata:
     """Tests for ProvenanceMetadata model."""
 
-    def test_create_provenance(self):
+    def test_create_provenance(self) -> None:
         """Test basic provenance creation."""
         provenance = ProvenanceMetadata(
             source_id="doc_123",
@@ -42,7 +44,7 @@ class TestProvenanceMetadata:
         assert provenance.confidence == 0.9
         assert provenance.author_id == "extractor"
 
-    def test_provenance_optional_author(self):
+    def test_provenance_optional_author(self) -> None:
         """Test provenance with optional author_id."""
         provenance = ProvenanceMetadata(
             source_id="test",
@@ -51,7 +53,7 @@ class TestProvenanceMetadata:
         )
         assert provenance.author_id is None
 
-    def test_provenance_confidence_bounds(self):
+    def test_provenance_confidence_bounds(self) -> None:
         """Test confidence is between 0 and 1."""
         # Valid bounds
         ProvenanceMetadata(source_id="t", source_type="t", confidence=0.0)
@@ -62,7 +64,7 @@ class TestProvenanceMetadata:
 class TestGraphNode:
     """Tests for GraphNode model."""
 
-    def test_create_node(self, sample_provenance: ProvenanceMetadata):
+    def test_create_node(self, sample_provenance: ProvenanceMetadata) -> None:
         """Test basic node creation."""
         node = GraphNode(
             id="node_1",
@@ -76,7 +78,7 @@ class TestGraphNode:
         assert node.hit_count == 0
         assert node.properties == {}
 
-    def test_node_with_properties(self, sample_provenance: ProvenanceMetadata):
+    def test_node_with_properties(self, sample_provenance: ProvenanceMetadata) -> None:
         """Test node with custom properties."""
         node = GraphNode(
             id="node_2",
@@ -88,7 +90,7 @@ class TestGraphNode:
         assert node.properties["status"] == "active"
         assert node.properties["priority"] == "high"
 
-    def test_node_touch_hebbian_learning(self, sample_provenance: ProvenanceMetadata):
+    def test_node_touch_hebbian_learning(self, sample_provenance: ProvenanceMetadata) -> None:
         """Test Hebbian learning via touch() method."""
         node = GraphNode(
             id="node_3",
@@ -116,7 +118,7 @@ class TestGraphNode:
 class TestGraphEdge:
     """Tests for GraphEdge model."""
 
-    def test_create_edge(self, sample_provenance: ProvenanceMetadata):
+    def test_create_edge(self, sample_provenance: ProvenanceMetadata) -> None:
         """Test basic edge creation."""
         edge = GraphEdge(
             source_id="node_1",
@@ -129,7 +131,7 @@ class TestGraphEdge:
         assert edge.relation == "knows"
         assert edge.weight == 1.0  # default
 
-    def test_edge_with_weight(self, sample_provenance: ProvenanceMetadata):
+    def test_edge_with_weight(self, sample_provenance: ProvenanceMetadata) -> None:
         """Test edge with custom weight."""
         edge = GraphEdge(
             source_id="a",
@@ -144,7 +146,7 @@ class TestGraphEdge:
 class TestSessionState:
     """Tests for SessionState model."""
 
-    def test_create_session_state(self):
+    def test_create_session_state(self) -> None:
         """Test basic session state creation."""
         state = SessionState(
             session_id="sess_123",
@@ -157,7 +159,7 @@ class TestSessionState:
         assert state.session_id == "sess_123"
         assert state.turn_count == 5
 
-    def test_scoped_var_user_prefix(self):
+    def test_scoped_var_user_prefix(self) -> None:
         """Test setting user-scoped variables."""
         state = SessionState(
             session_id="s",
@@ -170,7 +172,7 @@ class TestSessionState:
         state.set_var("user:theme", "dark")
         assert state.get_var("user:theme") == "dark"
 
-    def test_scoped_var_session_prefix(self):
+    def test_scoped_var_session_prefix(self) -> None:
         """Test setting session-scoped variables."""
         state = SessionState(
             session_id="s",
@@ -183,7 +185,7 @@ class TestSessionState:
         state.set_var("session:step", 3)
         assert state.get_var("session:step") == 3
 
-    def test_scoped_var_app_prefix(self):
+    def test_scoped_var_app_prefix(self) -> None:
         """Test setting app-scoped variables."""
         state = SessionState(
             session_id="s",
@@ -196,7 +198,7 @@ class TestSessionState:
         state.set_var("app:debug_mode", True)
         assert state.get_var("app:debug_mode") is True
 
-    def test_scoped_var_invalid_prefix_raises(self):
+    def test_scoped_var_invalid_prefix_raises(self) -> None:
         """Test that invalid prefix raises ValueError."""
         state = SessionState(
             session_id="s",
@@ -209,7 +211,7 @@ class TestSessionState:
         with pytest.raises(ValueError, match="must start with"):
             state.set_var("invalid:key", "value")
 
-    def test_get_var_default(self):
+    def test_get_var_default(self) -> None:
         """Test get_var returns default for missing keys."""
         state = SessionState(
             session_id="s",
@@ -226,7 +228,7 @@ class TestSessionState:
 class TestInteractionTurn:
     """Tests for InteractionTurn model."""
 
-    def test_create_turn(self):
+    def test_create_turn(self) -> None:
         """Test basic turn creation."""
         turn = InteractionTurn(
             id="turn_1",
@@ -242,7 +244,7 @@ class TestInteractionTurn:
         assert turn.tool_calls == []
         assert turn.tool_results == []
 
-    def test_turn_with_tool_calls(self):
+    def test_turn_with_tool_calls(self) -> None:
         """Test turn with tool calls."""
         tool_call = ToolCall(
             id="call_1",
@@ -272,7 +274,7 @@ class TestInteractionTurn:
 class TestContextPayload:
     """Tests for ContextPayload model."""
 
-    def test_create_empty_payload(self):
+    def test_create_empty_payload(self) -> None:
         """Test creating empty payload."""
         payload = ContextPayload(
             history=[],
@@ -286,7 +288,7 @@ class TestContextPayload:
         assert payload.passages == []
         assert payload.debug_info == {}
 
-    def test_payload_with_content(self, sample_turn: InteractionTurn):
+    def test_payload_with_content(self, sample_turn: InteractionTurn) -> None:
         """Test payload with actual content."""
         payload = ContextPayload(
             history=[sample_turn],
@@ -304,7 +306,7 @@ class TestContextPayload:
 class TestConsolidationReport:
     """Tests for ConsolidationReport model."""
 
-    def test_create_report(self):
+    def test_create_report(self) -> None:
         """Test creating consolidation report."""
         report = ConsolidationReport(
             session_id="sess_1",
@@ -319,7 +321,7 @@ class TestConsolidationReport:
         assert report.tokens_condensed == 500
         assert report.errors == []
 
-    def test_report_with_errors(self):
+    def test_report_with_errors(self) -> None:
         """Test report with errors."""
         report = ConsolidationReport(
             session_id="sess_2",

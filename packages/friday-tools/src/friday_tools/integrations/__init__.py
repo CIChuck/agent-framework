@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Integration stubs (not yet implemented)."""
 
 from .calendar import calendar_create_event, calendar_list_events

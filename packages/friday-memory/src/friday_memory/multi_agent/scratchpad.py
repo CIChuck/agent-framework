@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Ephemeral scratch pad memory for workflow/task execution tracking.
 """

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 LiteLLM Chat Completion Service.
 

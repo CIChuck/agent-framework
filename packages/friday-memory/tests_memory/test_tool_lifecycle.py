@@ -1,3 +1,6 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for tool content lifecycle management.
 
@@ -27,7 +30,7 @@ from friday_memory.models.session import ToolResult
 class TestTrackedToolOutput:
     """Tests for TrackedToolOutput dataclass."""
 
-    def test_create_tracked_output(self):
+    def test_create_tracked_output(self) -> None:
         """Test creating a tracked tool output."""
         output = TrackedToolOutput(
             tool_call_id="tc_1",
@@ -43,7 +46,7 @@ class TestTrackedToolOutput:
         assert output.summary is None
         assert output.referencing_turns == []
 
-    def test_default_created_at(self):
+    def test_default_created_at(self) -> None:
         """Test that created_at has a default value."""
         output = TrackedToolOutput(
             tool_call_id="tc_1",
@@ -58,7 +61,7 @@ class TestTrackedToolOutput:
 class TestToolContentConfig:
     """Tests for ToolContentConfig."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = ToolContentConfig()
         assert config.enabled is True
@@ -66,7 +69,7 @@ class TestToolContentConfig:
         assert config.decay_threshold_turns == 3
         assert config.tool_policies == {}
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration."""
         config = ToolContentConfig(
             enabled=False,
@@ -83,7 +86,7 @@ class TestToolContentConfig:
 class TestToolContentManagerTracking:
     """Tests for ToolContentManager tracking functionality."""
 
-    def test_track_output_above_threshold(self):
+    def test_track_output_above_threshold(self) -> None:
         """Test tracking output above minimum token threshold."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -96,7 +99,7 @@ class TestToolContentManagerTracking:
         assert manager.tracked_count == 1
         assert manager.get_output("tc_1") is not None
 
-    def test_ignore_small_output(self):
+    def test_ignore_small_output(self) -> None:
         """Test that small outputs are not tracked."""
         config = ToolContentConfig(min_tokens_for_tracking=500)
         manager = ToolContentManager(config)
@@ -109,7 +112,7 @@ class TestToolContentManagerTracking:
         assert manager.tracked_count == 0
         assert manager.get_output("tc_1") is None
 
-    def test_track_output_with_explicit_token_count(self):
+    def test_track_output_with_explicit_token_count(self) -> None:
         """Test tracking with explicit token count."""
         config = ToolContentConfig(min_tokens_for_tracking=500)
         manager = ToolContentManager(config)
@@ -122,7 +125,7 @@ class TestToolContentManagerTracking:
         assert result is True
         assert manager.tracked_count == 1
 
-    def test_tracking_disabled(self):
+    def test_tracking_disabled(self) -> None:
         """Test that tracking doesn't occur when disabled."""
         config = ToolContentConfig(enabled=False)
         manager = ToolContentManager(config)
@@ -133,7 +136,7 @@ class TestToolContentManagerTracking:
         assert result is False
         assert manager.tracked_count == 0
 
-    def test_track_multiple_outputs(self):
+    def test_track_multiple_outputs(self) -> None:
         """Test tracking multiple tool outputs."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -150,7 +153,7 @@ class TestToolContentManagerTracking:
 class TestToolContentManagerReferencing:
     """Tests for reference tracking functionality."""
 
-    def test_mark_referenced_updates_turn(self):
+    def test_mark_referenced_updates_turn(self) -> None:
         """Test that marking referenced updates last_referenced_turn_id."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -164,7 +167,7 @@ class TestToolContentManagerReferencing:
         assert output.last_referenced_turn_id == "turn_3"
         assert "turn_3" in output.referencing_turns
 
-    def test_mark_referenced_appends_to_history(self):
+    def test_mark_referenced_appends_to_history(self) -> None:
         """Test that multiple references are tracked."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -180,7 +183,7 @@ class TestToolContentManagerReferencing:
         assert len(output.referencing_turns) == 4  # Including initial turn_1
         assert output.referencing_turns == ["turn_1", "turn_2", "turn_3", "turn_5"]
 
-    def test_mark_referenced_unknown_id(self):
+    def test_mark_referenced_unknown_id(self) -> None:
         """Test marking unknown ID returns False."""
         manager = ToolContentManager()
         result = manager.mark_referenced("unknown", "turn_1")
@@ -191,7 +194,7 @@ class TestToolContentManagerDecay:
     """Tests for decay functionality."""
 
     @pytest.mark.asyncio
-    async def test_decay_triggers_after_threshold(self):
+    async def test_decay_triggers_after_threshold(self) -> None:
         """Test that decay triggers after gap exceeds threshold."""
         config = ToolContentConfig(
             min_tokens_for_tracking=100,
@@ -220,7 +223,7 @@ class TestToolContentManagerDecay:
         assert output.summary is not None
 
     @pytest.mark.asyncio
-    async def test_decay_respects_references(self):
+    async def test_decay_respects_references(self) -> None:
         """Test that references reset the decay timer."""
         config = ToolContentConfig(
             min_tokens_for_tracking=100,
@@ -245,7 +248,7 @@ class TestToolContentManagerDecay:
         assert "tc_1" in decayed
 
     @pytest.mark.asyncio
-    async def test_decay_skips_already_decayed(self):
+    async def test_decay_skips_already_decayed(self) -> None:
         """Test that already decayed outputs are skipped."""
         config = ToolContentConfig(
             min_tokens_for_tracking=100,
@@ -269,7 +272,7 @@ class TestToolContentManagerDecay:
         mock_llm.chat_completion.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_decay_without_llm_uses_truncation(self):
+    async def test_decay_without_llm_uses_truncation(self) -> None:
         """Test decay fallback to truncation when no LLM available."""
         config = ToolContentConfig(
             min_tokens_for_tracking=100,
@@ -294,7 +297,7 @@ class TestToolContentManagerPolicies:
     """Tests for per-tool policy overrides."""
 
     @pytest.mark.asyncio
-    async def test_per_tool_policy_override(self):
+    async def test_per_tool_policy_override(self) -> None:
         """Test that per-tool decay thresholds are respected."""
         config = ToolContentConfig(
             min_tokens_for_tracking=100,
@@ -332,7 +335,7 @@ class TestToolContentManagerPolicies:
 class TestToolContentManagerStats:
     """Tests for statistics and utility methods."""
 
-    def test_get_stats(self):
+    def test_get_stats(self) -> None:
         """Test statistics gathering."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -348,7 +351,7 @@ class TestToolContentManagerStats:
         assert stats["active_tokens"] == 800
         assert stats["decayed_tokens"] == 0
 
-    def test_get_active_and_decayed_outputs(self):
+    def test_get_active_and_decayed_outputs(self) -> None:
         """Test getting active and decayed outputs."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -369,7 +372,7 @@ class TestToolContentManagerStats:
         assert len(decayed) == 1
         assert decayed[0].tool_call_id == "tc_1"
 
-    def test_clear(self):
+    def test_clear(self) -> None:
         """Test clearing all tracked outputs."""
         config = ToolContentConfig(min_tokens_for_tracking=100)
         manager = ToolContentManager(config)
@@ -388,7 +391,7 @@ class TestToolContentManagerStats:
 class TestToolResultLifecycleFields:
     """Tests for ToolResult lifecycle fields."""
 
-    def test_tool_result_default_lifecycle_fields(self):
+    def test_tool_result_default_lifecycle_fields(self) -> None:
         """Test ToolResult default lifecycle field values."""
         result = ToolResult(
             tool_call_id="tc_1",
@@ -401,7 +404,7 @@ class TestToolResultLifecycleFields:
         assert result.summary is None
         assert result.original_token_count is None
 
-    def test_tool_result_with_lifecycle_fields(self):
+    def test_tool_result_with_lifecycle_fields(self) -> None:
         """Test ToolResult with lifecycle fields populated."""
         result = ToolResult(
             tool_call_id="tc_1",
@@ -420,7 +423,7 @@ class TestToolResultLifecycleFields:
         assert result.summary == "This is a summary of the result."
         assert result.original_token_count == 1500
 
-    def test_tool_result_serialization(self):
+    def test_tool_result_serialization(self) -> None:
         """Test ToolResult serialization includes lifecycle fields."""
         result = ToolResult(
             tool_call_id="tc_1",

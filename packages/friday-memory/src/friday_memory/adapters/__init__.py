@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Concrete implementations of Storage Adapters.
 

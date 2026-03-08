@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Benchmark tests for retrieval latency.
 
@@ -65,7 +67,7 @@ def measure_time_ms(func):
 class TestFastInclusionScoreBenchmark:
     """Benchmark calculate_inclusion_score_fast function."""
 
-    def test_fast_score_calculation_speed(self):
+    def test_fast_score_calculation_speed(self) -> None:
         """Fast score should compute in microseconds."""
         iterations = 10000
         metadata = {
@@ -85,7 +87,7 @@ class TestFastInclusionScoreBenchmark:
             f"10K calculations took {elapsed_ms:.2f}ms (avg {avg_us:.2f}μs each)"
         )
 
-    def test_fast_vs_full_scorer_speed(self):
+    def test_fast_vs_full_scorer_speed(self) -> None:
         """Compare fast calculation vs full scorer."""
         iterations = 1000
         now = datetime.now()
@@ -127,7 +129,7 @@ class TestAccessBufferBenchmark:
         return AccessBuffer(AccessBufferConfig())
 
     @pytest.mark.asyncio
-    async def test_record_access_latency(self, buffer):
+    async def test_record_access_latency(self, buffer) -> None:
         """Recording access should be fast."""
         iterations = 1000
         timings = []
@@ -146,7 +148,7 @@ class TestAccessBufferBenchmark:
         assert p99_ms < 2, f"P99 record_access latency: {p99_ms:.3f}ms"
 
     @pytest.mark.asyncio
-    async def test_concurrent_access_recording(self, buffer):
+    async def test_concurrent_access_recording(self, buffer) -> None:
         """Test concurrent access recording performance."""
 
         async def record_many(prefix: str, count: int):
@@ -183,7 +185,7 @@ class TestVectorSearchBenchmark:
         )
 
     @pytest.mark.asyncio
-    async def test_empty_collection_search_latency(self, collection_manager):
+    async def test_empty_collection_search_latency(self, collection_manager) -> None:
         """Search on empty collection should be very fast."""
         timings = []
         for _ in range(100):
@@ -200,7 +202,7 @@ class TestVectorSearchBenchmark:
         assert avg_ms < 50, f"Empty collection search avg: {avg_ms:.2f}ms"
 
     @pytest.mark.asyncio
-    async def test_populated_collection_search_latency(self, collection_manager):
+    async def test_populated_collection_search_latency(self, collection_manager) -> None:
         """Search on populated collection should meet target latency."""
         # Add 100 documents
         now = datetime.now()
@@ -265,7 +267,7 @@ class TestFactorComputerBenchmark:
         return RetrievalFactorComputer()
 
     @pytest.mark.asyncio
-    async def test_compute_factors_latency(self, factor_computer, collection_manager):
+    async def test_compute_factors_latency(self, factor_computer, collection_manager) -> None:
         """Factor computation should be efficient."""
         now = datetime.now()
 
@@ -326,7 +328,7 @@ class TestEndToEndRetrievalBenchmark:
     @pytest.mark.asyncio
     async def test_full_retrieval_pipeline_latency(
         self, collection_manager, access_buffer
-    ):
+    ) -> None:
         """Test end-to-end retrieval pipeline meets target latency."""
         now = datetime.now()
         scorer = LongTermInclusionScorer()
@@ -383,7 +385,7 @@ class TestEndToEndRetrievalBenchmark:
         assert p99_ms < 250, f"Full pipeline max: {p99_ms:.2f}ms"
 
     @pytest.mark.asyncio
-    async def test_optimized_vs_unoptimized_retrieval(self, collection_manager):
+    async def test_optimized_vs_unoptimized_retrieval(self, collection_manager) -> None:
         """Compare optimized (pre-computed factors) vs unoptimized retrieval."""
         now = datetime.now()
 

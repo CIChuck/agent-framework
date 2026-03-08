@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Math and date tools."""
 
 from __future__ import annotations

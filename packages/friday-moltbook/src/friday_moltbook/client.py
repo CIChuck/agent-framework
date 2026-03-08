@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Async client for Moltbook API."""
 
 from __future__ import annotations

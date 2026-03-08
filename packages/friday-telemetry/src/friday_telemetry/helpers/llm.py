@@ -300,6 +300,13 @@ class CompletionTracker:
             request_id=self.request_id,
             conversation_id=self.context.conversation_id if self.context else None,
             turn_id=self.context.turn_id if self.context else None,
+            workflow_id=self.context.workflow_id if self.context else None,
+            execution_id=self.context.execution_id if self.context else None,
+            pipeline_id=self.context.pipeline_id if self.context else None,
+            task_id=self.context.task_id if self.context else None,
+            assignment_id=self.context.assignment_id if self.context else None,
+            agent_id=self.context.agent_id if self.context else None,
+            llm_service=self.context.llm_service if self.context else None,
             operation_name=GenAIOperationType.CHAT,
             provider_name=self.helper.provider_name,
             request_model=self.model,
@@ -333,11 +340,13 @@ class EmbeddingTracker:
         model: str,
         text_count: int,
         total_characters: int,
+        context: ConversationContext | None = None,
     ) -> None:
         self.helper = helper
         self.model = model
         self.text_count = text_count
         self.total_characters = total_characters
+        self.context = context
 
         self.request_id = str(uuid.uuid4())
         self.span_id: str | None = None
@@ -427,6 +436,13 @@ class EmbeddingTracker:
             provider_name=self.helper.provider_name,
             request_model=self.model,
             response_model=self.response_model,
+            workflow_id=self.context.workflow_id if self.context else None,
+            execution_id=self.context.execution_id if self.context else None,
+            pipeline_id=self.context.pipeline_id if self.context else None,
+            task_id=self.context.task_id if self.context else None,
+            assignment_id=self.context.assignment_id if self.context else None,
+            agent_id=self.context.agent_id if self.context else None,
+            llm_service=self.context.llm_service if self.context else None,
             duration_ms=duration_ms,
             text_count=self.text_count,
             total_characters=self.total_characters,
@@ -529,6 +545,7 @@ class LLMTelemetryHelper:
         model: str,
         text_count: int,
         total_characters: int,
+        context: ConversationContext | None = None,
     ) -> Generator[EmbeddingTracker, None, None]:
         """
         Context manager for tracking an embedding operation.
@@ -546,6 +563,7 @@ class LLMTelemetryHelper:
             model=model,
             text_count=text_count,
             total_characters=total_characters,
+            context=context,
         )
         tracker.start()
 
@@ -591,6 +609,20 @@ class LLMTelemetryHelper:
             attributes[OTelAttributes.CONVERSATION_ID] = metrics.conversation_id
         if metrics.turn_id:
             attributes[OTelAttributes.FRIDAY_TURN_ID] = metrics.turn_id
+        if metrics.workflow_id:
+            attributes[OTelAttributes.FRIDAY_WORKFLOW_ID] = metrics.workflow_id
+        if metrics.execution_id:
+            attributes[OTelAttributes.FRIDAY_EXECUTION_ID] = metrics.execution_id
+        if metrics.pipeline_id:
+            attributes[OTelAttributes.FRIDAY_PIPELINE_ID] = metrics.pipeline_id
+        if metrics.task_id:
+            attributes[OTelAttributes.FRIDAY_TASK_ID] = metrics.task_id
+        if metrics.assignment_id:
+            attributes[OTelAttributes.FRIDAY_ASSIGNMENT_ID] = metrics.assignment_id
+        if metrics.agent_id:
+            attributes[OTelAttributes.FRIDAY_AGENT_ID] = metrics.agent_id
+        if metrics.llm_service:
+            attributes[OTelAttributes.FRIDAY_LLM_SERVICE] = metrics.llm_service
         if metrics.cost:
             attributes[OTelAttributes.FRIDAY_COST_USD] = metrics.cost.total_cost
         if metrics.finish_reasons:
@@ -656,6 +688,20 @@ class LLMTelemetryHelper:
 
         if metrics.response_model:
             attributes[OTelAttributes.RESPONSE_MODEL] = metrics.response_model
+        if metrics.workflow_id:
+            attributes[OTelAttributes.FRIDAY_WORKFLOW_ID] = metrics.workflow_id
+        if metrics.execution_id:
+            attributes[OTelAttributes.FRIDAY_EXECUTION_ID] = metrics.execution_id
+        if metrics.pipeline_id:
+            attributes[OTelAttributes.FRIDAY_PIPELINE_ID] = metrics.pipeline_id
+        if metrics.task_id:
+            attributes[OTelAttributes.FRIDAY_TASK_ID] = metrics.task_id
+        if metrics.assignment_id:
+            attributes[OTelAttributes.FRIDAY_ASSIGNMENT_ID] = metrics.assignment_id
+        if metrics.agent_id:
+            attributes[OTelAttributes.FRIDAY_AGENT_ID] = metrics.agent_id
+        if metrics.llm_service:
+            attributes[OTelAttributes.FRIDAY_LLM_SERVICE] = metrics.llm_service
         if metrics.embedding_dimensions:
             attributes[OTelAttributes.EMBEDDINGS_DIMENSION] = (
                 metrics.embedding_dimensions

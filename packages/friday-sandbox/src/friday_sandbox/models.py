@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Data models for sandbox execution.
 

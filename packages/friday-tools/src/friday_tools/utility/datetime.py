@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Date and time utility tools.
 

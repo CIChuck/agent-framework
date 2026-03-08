@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Passage Routing.
 

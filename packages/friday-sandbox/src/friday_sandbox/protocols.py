@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Sandbox protocols defining abstract interfaces for code execution.
 

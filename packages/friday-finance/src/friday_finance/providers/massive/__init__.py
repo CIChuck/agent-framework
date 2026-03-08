@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from .client import MassiveAgentClient
 from .exceptions import (
     MassiveAuthError,

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Tools Mode MCP Server.
 

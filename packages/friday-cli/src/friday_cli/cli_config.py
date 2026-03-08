@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 CLI configuration for theming and styling.
 

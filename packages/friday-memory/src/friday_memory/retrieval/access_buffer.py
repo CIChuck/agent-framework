@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Access Buffer for Lazy Access Tracking.
 

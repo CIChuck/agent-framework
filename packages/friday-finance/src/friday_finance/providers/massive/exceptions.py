@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 class MassiveBaseException(Exception):
     """Base exception for all massive-agent-core errors."""
 

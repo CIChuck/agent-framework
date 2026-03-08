@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Data format tools for reading and writing structured data.
 

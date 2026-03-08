@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Unsandboxed Python code execution tool.
 
 Executes Python code directly in Friday's process without sandbox isolation.

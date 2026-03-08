@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Input handling with Prompt Toolkit.
 

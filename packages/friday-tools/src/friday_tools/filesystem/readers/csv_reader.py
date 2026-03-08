@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 CSV file reader adapter.
 

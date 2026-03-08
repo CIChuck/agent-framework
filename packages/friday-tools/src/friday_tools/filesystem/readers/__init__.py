@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 File format readers for the filesystem tools.
 

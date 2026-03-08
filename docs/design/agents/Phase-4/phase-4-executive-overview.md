@@ -5,7 +5,8 @@
 **Audience:** Technical architects, platform engineers, runtime developers, workflow developers  
 **Primary References:**  
 - `docs/design/agents/Phase-4/phase-4-build-plan.md`  
-- `docs/design/agents/Phase-4/phase-4-execution-plan.md`  
+- `docs/design/agents/Phase-4/phase-4-a-execution-plan.md`
+- `docs/design/agents/Phase-4/phase-4-b-execution-plan.md`
 - `docs/design/agents/Phase-4/phase-4-build-plan-examples.md`
 
 ---
@@ -154,10 +155,11 @@ Key additions:
 2. Routing control via `workflow_mode`.
 3. Compatibility warning and migration metadata emission.
 4. Translation matrix requirement for supported/unsupported legacy constructs.
+5. Runtime audit event `workflow_mode_selected` records whether execution used canonical, legacy-adapter, or auto-selected adapter routing.
 
 Functional effect:
 
-1. Existing workloads can continue during migration windows.
+1. Existing workloads can continue during migration windows by flowing through the adapter into the canonical execution engine.
 2. Teams can phase migration without freezing delivery.
 
 ## 3.8 Observability and Compliance Evidence
@@ -169,6 +171,12 @@ Key additions:
 3. Typed handoff lineage records.
 4. Artifact publication metadata and evidence requirements.
 5. Phase-gate alignment with deterministic test and evidence outputs.
+6. Canonical workflow telemetry events:
+   - `workflow_execution_started|completed|failed`
+   - `pipeline_execution_started|completed|failed|blocked`
+   - `workflow_task_started|completed|failed`
+   - `workflow_typed_handoff_validated`
+   - `workflow_artifact_published`
 
 Functional effect:
 
@@ -236,4 +244,3 @@ Phase 4 is successful when:
 3. Artifact outputs are contract-governed and lineage-backed.
 4. Legacy workflows run through explicit adapter controls with migration evidence.
 5. Acceptance criteria are fully mapped to verifiable test and evidence outputs.
-

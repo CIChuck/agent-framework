@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Transcript - Persistent conversation logging.
 

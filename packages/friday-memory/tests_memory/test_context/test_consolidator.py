@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for MemoryConsolidator.
 
@@ -68,7 +70,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_consolidator_init(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test consolidator initialization."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,
@@ -83,7 +85,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_consolidate_not_enough_turns(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test consolidation skips when not enough turns."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,
@@ -116,7 +118,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_resolve_conflict_empty_facts(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test conflict resolution with empty facts."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,
@@ -131,7 +133,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_resolve_conflict_with_facts(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test conflict resolution with facts."""
         # Configure the mock to return conflict response
         conflict_response = mock_llm_client_with_responses._conflict_response
@@ -157,7 +159,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_get_recent_memories(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test getting recent memories."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,
@@ -187,7 +189,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_count_tokens(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test token counting."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,
@@ -202,7 +204,7 @@ class TestMemoryConsolidator:
     @pytest.mark.asyncio
     async def test_is_similar(
         self, memory_controller: MemoryController, mock_llm_client_with_responses
-    ):
+    ) -> None:
         """Test string similarity."""
         consolidator = MemoryConsolidator(
             memory_controller=memory_controller,

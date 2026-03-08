@@ -302,14 +302,15 @@ Primary sources:
 Execution scope:
 
 1. Implement legacy-to-canonical translation for supported schemas.
-2. Emit compatibility warnings and migration metadata.
-3. Route behavior via `config_policy.workflow_mode` (`canonical|legacy|auto`).
-4. Document unsupported legacy constructs with deterministic errors.
+2. Route legacy workloads through the explicit adapter path into canonical workflow execution.
+3. Emit compatibility warnings and migration metadata.
+4. Emit `workflow_mode_selected` audit events when runtime resolves `config_policy.workflow_mode` (`canonical|legacy|auto`).
+5. Document unsupported legacy constructs with deterministic errors.
 
 Deliverables:
 
 1. Adapter translation matrix and routing checklist.
-2. Compatibility tests and warning evidence.
+2. Compatibility tests and warning/audit evidence.
 3. Subphase artifact triad.
 
 Exit criteria:
@@ -332,9 +333,13 @@ Execution scope:
 
 1. Emit workflow/pipeline/task/assignment identity metadata.
 2. Emit `llm_service`, model, provider attribution.
-3. Emit typed handoff lineage records.
-4. Emit artifact publication metadata (`artifact_id`, type, producer task, pipeline, workflow).
-5. Emit compatibility mode and migration metadata when adapter path is used.
+3. Emit typed handoff lineage records and `workflow_typed_handoff_validated` evidence.
+4. Emit artifact publication metadata (`artifact_id`, type, producer task, pipeline, workflow) through explicit `workflow_artifact_published` evidence.
+5. Emit compatibility mode and migration metadata when adapter path is used, including `workflow_mode_selected`.
+6. Emit canonical engine telemetry events for workflow, pipeline, and task lifecycle:
+   - `workflow_execution_started|completed|failed`
+   - `pipeline_execution_started|completed|failed|blocked`
+   - `workflow_task_started|completed|failed`
 
 Deliverables:
 

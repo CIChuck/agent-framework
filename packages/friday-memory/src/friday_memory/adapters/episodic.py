@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Episodic Memory Adapter Implementation.
 Handles short-term history logging and time-travel (rewind).

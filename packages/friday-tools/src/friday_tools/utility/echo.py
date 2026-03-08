@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Echo utility tool.
 

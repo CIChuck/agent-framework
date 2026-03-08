@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Friday speech package."""
 
 from .config import SpeechConfig

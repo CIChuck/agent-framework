@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for Orca sanitization helper."""
 
 from friday_speech.adapters.picovoice import _sanitize_for_orca

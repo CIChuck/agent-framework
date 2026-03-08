@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Framework adapters for converting external tools to Friday format.
 

@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for telemetry models."""
 
 from friday_telemetry import (
@@ -84,6 +85,13 @@ class TestLLMCallMetrics:
             request_id="req-123",
             conversation_id="conv-456",
             turn_id="turn-1",
+            workflow_id="wf-1",
+            execution_id="exec-1",
+            pipeline_id="pl-1",
+            task_id="task-1",
+            assignment_id="assign-1",
+            agent_id="agent-1",
+            llm_service="fast_openai",
             operation_name=GenAIOperationType.CHAT,
             provider_name="openai",
             request_model="gpt-4",
@@ -101,6 +109,8 @@ class TestLLMCallMetrics:
             total_attempts=1,
         )
         assert metrics.conversation_id == "conv-456"
+        assert metrics.workflow_id == "wf-1"
+        assert metrics.llm_service == "fast_openai"
         assert metrics.usage.total_tokens == 150
 
 
@@ -115,9 +125,18 @@ class TestConversationContext:
             turn_id="turn-1",
             turn_number=3,
             message_count=7,
+            workflow_id="wf-1",
+            execution_id="exec-1",
+            pipeline_id="pl-1",
+            task_id="task-1",
+            assignment_id="assign-1",
+            agent_id="agent-1",
+            llm_service="reasoning",
         )
         assert context.session_id == "session-123"
         assert context.turn_number == 3
+        assert context.workflow_id == "wf-1"
+        assert context.llm_service == "reasoning"
 
 
 class TestMemoryWriteMetrics:

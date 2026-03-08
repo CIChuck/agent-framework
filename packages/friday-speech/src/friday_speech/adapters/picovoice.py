@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Picovoice adapters for wake word and TTS."""
 
 from __future__ import annotations

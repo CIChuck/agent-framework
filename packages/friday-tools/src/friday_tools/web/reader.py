@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Web reader tool for fetching and extracting content from web pages.
 

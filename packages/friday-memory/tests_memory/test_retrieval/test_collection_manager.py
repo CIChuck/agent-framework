@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for CollectionManager."""
 
 import uuid
@@ -35,7 +37,7 @@ def unique_config():
 class TestCollectionConfig:
     """Test CollectionConfig model."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = CollectionConfig()
         assert config.short_term_collection == "memories_short_term"
@@ -45,7 +47,7 @@ class TestCollectionConfig:
         assert config.long_term_min_similarity == 0.7
         assert config.default_n_results == 5
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration."""
         config = CollectionConfig(
             short_term_collection="test_short",
@@ -75,7 +77,7 @@ class TestCollectionManager:
         )
 
     @pytest.mark.asyncio
-    async def test_add_to_short_term(self, manager):
+    async def test_add_to_short_term(self, manager) -> None:
         """Test adding documents to short-term collection."""
         result = await manager.add_to_short_term(
             texts=["Test memory content"],
@@ -90,7 +92,7 @@ class TestCollectionManager:
         assert stats["long_term"] == 0
 
     @pytest.mark.asyncio
-    async def test_add_sets_stage_metadata(self, manager):
+    async def test_add_sets_stage_metadata(self, manager) -> None:
         """Test that add_to_short_term sets correct stage metadata."""
         await manager.add_to_short_term(
             texts=["Test memory"],
@@ -104,7 +106,7 @@ class TestCollectionManager:
         assert doc["metadata"]["promotion_state"] == PromotionState.NONE.value
 
     @pytest.mark.asyncio
-    async def test_query_parallel_collections(self, manager):
+    async def test_query_parallel_collections(self, manager) -> None:
         """Test querying short-term and long-term in parallel."""
         # Add to short-term
         await manager.add_to_short_term(
@@ -120,7 +122,7 @@ class TestCollectionManager:
         assert len(results["short_term"]) >= 0  # May be filtered by similarity
 
     @pytest.mark.asyncio
-    async def test_promote_memory(self, manager):
+    async def test_promote_memory(self, manager) -> None:
         """Test promoting memory from short-term to long-term."""
         # Add to short-term first
         await manager.add_to_short_term(
@@ -151,13 +153,13 @@ class TestCollectionManager:
         assert "promoted_at" in doc["metadata"]
 
     @pytest.mark.asyncio
-    async def test_promote_nonexistent_memory(self, manager):
+    async def test_promote_nonexistent_memory(self, manager) -> None:
         """Test promoting non-existent memory returns False."""
         success = await manager.promote_memory("nonexistent")
         assert success is False
 
     @pytest.mark.asyncio
-    async def test_demote_to_decayed(self, manager):
+    async def test_demote_to_decayed(self, manager) -> None:
         """Test demoting memory to decayed collection."""
         # Add to short-term and promote to long-term
         await manager.add_to_short_term(
@@ -184,7 +186,7 @@ class TestCollectionManager:
         assert "decayed_at" in doc["metadata"]
 
     @pytest.mark.asyncio
-    async def test_reactivate_from_decayed(self, manager):
+    async def test_reactivate_from_decayed(self, manager) -> None:
         """Test reactivating decayed memory back to long-term."""
         # Add, promote, then demote
         await manager.add_to_short_term(
@@ -211,7 +213,7 @@ class TestCollectionManager:
         assert doc["metadata"]["decay_score"] == 0.5  # Reset to neutral
 
     @pytest.mark.asyncio
-    async def test_get_stats(self, manager):
+    async def test_get_stats(self, manager) -> None:
         """Test getting stats across all collections."""
         await manager.add_to_short_term(
             texts=["Short 1", "Short 2"],
@@ -228,7 +230,7 @@ class TestCollectionManager:
         assert stats["total"] == 2
 
     @pytest.mark.asyncio
-    async def test_clear_all(self, manager):
+    async def test_clear_all(self, manager) -> None:
         """Test clearing all collections."""
         await manager.add_to_short_term(
             texts=["Memory 1", "Memory 2"],
@@ -243,7 +245,7 @@ class TestCollectionManager:
         assert stats["total"] == 0
 
     @pytest.mark.asyncio
-    async def test_recover_incomplete_promotions(self, manager):
+    async def test_recover_incomplete_promotions(self, manager) -> None:
         """Test recovery of incomplete promotions."""
         # Manually add a memory with PENDING promotion state to long-term
         # This simulates a crash during promotion

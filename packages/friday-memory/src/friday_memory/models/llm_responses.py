@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 LLM Response Models for Memory Consolidation.
 

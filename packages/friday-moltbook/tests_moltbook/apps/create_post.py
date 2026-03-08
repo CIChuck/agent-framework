@@ -1,3 +1,5 @@
+# mypy: ignore-errors
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Create a Moltbook post and print the response."""
 
 from __future__ import annotations

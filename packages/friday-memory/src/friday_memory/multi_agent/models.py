@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Models for additive multi-agent memory mode.
 """

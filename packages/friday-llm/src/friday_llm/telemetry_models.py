@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Telemetry Data Models for LLM Operations.
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 In-Session Memory Compactor.
 

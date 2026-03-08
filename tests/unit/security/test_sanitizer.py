@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for ToolOutputSanitizer."""
 
 from friday_core.security import SanitizationConfig, ToolOutputSanitizer

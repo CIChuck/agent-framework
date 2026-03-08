@@ -58,6 +58,13 @@ class OTelAttributes:
     FRIDAY_ATTEMPT = "friday.retry.attempt"
     FRIDAY_TOTAL_ATTEMPTS = "friday.retry.total_attempts"
     FRIDAY_ERROR_CATEGORY = "friday.error.category"
+    FRIDAY_WORKFLOW_ID = "friday.workflow.id"
+    FRIDAY_EXECUTION_ID = "friday.execution.id"
+    FRIDAY_PIPELINE_ID = "friday.pipeline.id"
+    FRIDAY_TASK_ID = "friday.task.id"
+    FRIDAY_ASSIGNMENT_ID = "friday.assignment.id"
+    FRIDAY_AGENT_ID = "friday.agent.id"
+    FRIDAY_LLM_SERVICE = "friday.llm.service"
 
 
 class FridayMemoryAttributes:

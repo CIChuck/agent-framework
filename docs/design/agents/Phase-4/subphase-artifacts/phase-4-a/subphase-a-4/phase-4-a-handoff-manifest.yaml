@@ -1,0 +1,88 @@
+phase: phase-4-a
+completed_workstreams:
+  - A
+  - B
+  - C
+  - D
+ac_status:
+  AC1: complete
+  AC2: complete
+  AC3: complete
+  AC4: complete
+  AC5: complete
+  AC6: complete
+  AC18: complete
+  AC19: complete
+  AC20: complete
+  AC21: complete
+regression_guardrails:
+  AC11:
+    status: pass
+    evidence:
+      - packages/friday-cli/src/friday_cli/container.py
+      - tests/lab/test_legacy_compatibility.py
+    notes: Legacy container startup remained functional after stricter runtime config validation.
+  AC14:
+    status: pass
+    evidence:
+      - packages/friday-runtime/src/friday_runtime/config.py
+      - packages/friday-agent/src/friday_agent/loader.py
+      - packages/friday-runtime/tests_runtime/test_config.py
+      - packages/friday-agent/tests_agent/test_loader.py
+    notes: Runtime and agent YAML unknown-key handling now fail hard.
+  AC15:
+    status: pass
+    evidence:
+      - packages/friday-runtime/src/friday_runtime/config.py
+      - packages/friday-runtime/tests_runtime/test_config.py
+    notes: `workflow_mode` contract remains present and unchanged by foundation work.
+  AC17:
+    status: pass
+    evidence:
+      - packages/friday-runtime/src/friday_runtime/config.py
+      - packages/friday-runtime/tests_runtime/test_config.py
+    notes: Runtime artifact policy/path validation is implemented; cross-layer enforcement is deferred to 4-B.
+waivers: []
+open_risks:
+  - risk_id: PH4A-INTAKE-001
+    owner: phase-4-b
+    severity: medium
+    mitigation: >
+      Phase 4-A subphase artifacts were assembled retroactively after implementation;
+      B0 must validate them and either accept them as baseline evidence or convert gaps
+      into explicit blockers before code changes proceed.
+document_coherence_status:
+  companion_set:
+    - docs/design/agents/Phase-4/phase-4-build-plan.md
+    - docs/design/agents/Phase-4/phase-4-execution-plan.md
+    - docs/design/agents/Phase-4/phase-4-a-execution-plan.md
+    - docs/design/agents/Phase-4/phase-4-b-execution-plan.md
+    - docs/design/agents/Phase-4/phase-4-build-plan-examples.md
+    - docs/design/agents/Phase-4/phase-4-ai-agent-implementation-guide.md
+    - docs/design/agents/Phase-4/phase-4-executive-overview.md
+  status: drift_accepted
+  verified_in_subphase: A4
+  accepted_downstream_drift:
+    - document: docs/design/agents/Phase-4/phase-4-execution-plan.md
+      issue: Stale umbrella execution plan language conflicts with active split-plan execution boundaries.
+      disposition: Treat as historical/non-authoritative reference during implementation.
+      owner: phase-4-b
+blocking_items_for_4b: []
+required_inputs_for_4b:
+  - docs/design/agents/Phase-4/phase-4-build-plan.md
+  - docs/design/agents/Phase-4/phase-4-b-execution-plan.md
+  - packages/friday-runtime/src/friday_runtime/kernel.py
+  - packages/friday-agent/src/friday_agent/workflows/engine.py
+  - packages/friday-agent/src/friday_agent/workflows/models.py
+evidence_index:
+  - docs/design/agents/Phase-4/subphase-artifacts/phase-4-a/subphase-a-4/subphase-summary.md
+  - docs/design/agents/Phase-4/subphase-artifacts/phase-4-a/subphase-a-4/verification-summary.md
+  - docs/design/agents/Phase-4/subphase-artifacts/phase-4-a/subphase-a-4/next-subphase-brief.md
+  - packages/friday-runtime/tests_runtime/test_config.py
+  - packages/friday-runtime/tests_runtime/test_di.py
+  - packages/friday-runtime/tests_runtime/test_kernel.py
+  - packages/friday-agent/tests_agent/test_loader.py
+  - packages/friday-agent/tests_agent/test_base.py
+  - packages/friday-agent/tests_agent/test_orchestrator.py
+  - packages/friday-agent/tests_agent/test_copilot.py
+  - tests/lab/test_legacy_compatibility.py

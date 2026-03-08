@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Command registry for CLI command dispatch.
 

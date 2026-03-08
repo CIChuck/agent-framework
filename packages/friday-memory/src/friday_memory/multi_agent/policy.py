@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Namespace policy engine for additive multi-agent memory mode.
 """

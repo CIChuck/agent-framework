@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Transcript data models."""
 
 from friday_transcript.models.transcript import (

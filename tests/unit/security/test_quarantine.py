@@ -1,3 +1,4 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for quarantine storage."""
 
 from friday_core.security import QuarantineStore

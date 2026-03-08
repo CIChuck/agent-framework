@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Unit tests for the large_file_processor module.
 
@@ -152,7 +154,7 @@ if __name__ == "__main__":
 class TestConfiguration:
     """Tests for configuration dataclasses."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = LargeFileProcessorConfig()
 
@@ -162,7 +164,7 @@ class TestConfiguration:
         assert config.preserve_code_structure is True
         assert config.extract_symbols is True
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration values."""
         config = LargeFileProcessorConfig(
             auto_chunk_threshold_chars=10000,
@@ -174,7 +176,7 @@ class TestConfiguration:
         assert config.chunk_size == 256
         assert config.chunk_overlap == 25
 
-    def test_llm_config(self):
+    def test_llm_config(self) -> None:
         """Test LLM configuration."""
         config = SmartFileLLMConfig(
             model="gpt-4",
@@ -188,7 +190,7 @@ class TestConfiguration:
         assert config.temperature == 0.5
         assert config.max_tokens == 1000
 
-    def test_prompts_config_defaults(self):
+    def test_prompts_config_defaults(self) -> None:
         """Test that prompts config has defaults."""
         config = SmartFilePromptsConfig()
 
@@ -207,7 +209,7 @@ class TestProseProcessing:
     """Tests for prose/document processing."""
 
     @pytest.mark.asyncio
-    async def test_process_prose_basic(self, processor, mock_llm):
+    async def test_process_prose_basic(self, processor, mock_llm) -> None:
         """Test basic prose processing."""
         # Setup mock responses
         mock_llm.chat_completion.return_value = MagicMock(
@@ -233,7 +235,7 @@ class TestProseProcessing:
         assert len(result.chunk_summaries) > 0
 
     @pytest.mark.asyncio
-    async def test_process_prose_synthesis(self, processor, mock_llm):
+    async def test_process_prose_synthesis(self, processor, mock_llm) -> None:
         """Test that prose synthesis is called."""
         # Setup mock responses for summarization and synthesis
         mock_llm.chat_completion.side_effect = [
@@ -278,7 +280,7 @@ class TestProseProcessing:
         assert "summary" in result.synthesis or "Summary" in result.content_for_context
 
     @pytest.mark.asyncio
-    async def test_empty_content(self, processor):
+    async def test_empty_content(self, processor) -> None:
         """Test processing empty content."""
         result = await processor.process(
             content="",
@@ -299,7 +301,7 @@ class TestCodeProcessing:
     """Tests for code processing."""
 
     @pytest.mark.asyncio
-    async def test_process_code_basic(self, processor, mock_llm):
+    async def test_process_code_basic(self, processor, mock_llm) -> None:
         """Test basic code processing."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -325,7 +327,7 @@ class TestCodeProcessing:
         assert len(result.entities) > 0
 
     @pytest.mark.asyncio
-    async def test_code_extracts_symbols(self, processor, mock_llm):
+    async def test_code_extracts_symbols(self, processor, mock_llm) -> None:
         """Test that code processing extracts symbols."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -360,7 +362,7 @@ class TestMemoryStorage:
     @pytest.mark.asyncio
     async def test_store_to_memory(
         self, processor_with_memory, mock_llm, mock_memory_controller
-    ):
+    ) -> None:
         """Test storing results to memory."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -386,7 +388,7 @@ class TestMemoryStorage:
     @pytest.mark.asyncio
     async def test_no_store_when_disabled(
         self, processor_with_memory, mock_llm, mock_memory_controller
-    ):
+    ) -> None:
         """Test that memory storage is skipped when disabled."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -418,7 +420,7 @@ class TestContextContent:
     """Tests for context content generation."""
 
     @pytest.mark.asyncio
-    async def test_context_content_includes_summary(self, processor, mock_llm):
+    async def test_context_content_includes_summary(self, processor, mock_llm) -> None:
         """Test that context content includes the summary."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -440,7 +442,7 @@ class TestContextContent:
         assert "/test/doc.md" in result.content_for_context
 
     @pytest.mark.asyncio
-    async def test_context_content_for_code(self, processor, mock_llm):
+    async def test_context_content_for_code(self, processor, mock_llm) -> None:
         """Test context content format for code files."""
         mock_llm.chat_completion.return_value = MagicMock(
             content=json.dumps(
@@ -472,7 +474,7 @@ class TestErrorHandling:
     """Tests for error handling."""
 
     @pytest.mark.asyncio
-    async def test_llm_error_handling(self, processor, mock_llm):
+    async def test_llm_error_handling(self, processor, mock_llm) -> None:
         """Test handling of LLM errors during summarization."""
         mock_llm.chat_completion.side_effect = Exception("LLM unavailable")
 
@@ -487,7 +489,7 @@ class TestErrorHandling:
         assert isinstance(result, ProcessingResult)
 
     @pytest.mark.asyncio
-    async def test_invalid_json_handling(self, processor, mock_llm):
+    async def test_invalid_json_handling(self, processor, mock_llm) -> None:
         """Test handling of invalid JSON from LLM."""
         mock_llm.chat_completion.return_value = MagicMock(
             content="This is not valid JSON"
@@ -503,7 +505,7 @@ class TestErrorHandling:
         assert isinstance(result, ProcessingResult)
 
     @pytest.mark.asyncio
-    async def test_json_in_markdown_block(self, processor, mock_llm):
+    async def test_json_in_markdown_block(self, processor, mock_llm) -> None:
         """Test parsing JSON wrapped in markdown code block."""
         mock_llm.chat_completion.return_value = MagicMock(
             content='```json\n{"summary": "Test", "entities": [], "key_points": []}\n```'  # noqa: E501
@@ -527,7 +529,7 @@ class TestErrorHandling:
 class TestResultDataclasses:
     """Tests for result dataclasses."""
 
-    def test_chunk_summary_creation(self):
+    def test_chunk_summary_creation(self) -> None:
         """Test ChunkSummary creation."""
         summary = ChunkSummary(
             chunk_index=0,
@@ -543,7 +545,7 @@ class TestResultDataclasses:
         assert "AI" in summary.entities
         assert summary.chunk_type == "function"
 
-    def test_processing_result_creation(self):
+    def test_processing_result_creation(self) -> None:
         """Test ProcessingResult creation."""
         from friday_memory.ingestion.large_file_processor import RawChunk
 

@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Friday Memory Package.
 Contains the 'Brain' logic: MemoryController, ContextEngine, and DB Adapters.

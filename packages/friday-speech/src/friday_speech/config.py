@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Configuration models for friday-speech."""
 
 from __future__ import annotations

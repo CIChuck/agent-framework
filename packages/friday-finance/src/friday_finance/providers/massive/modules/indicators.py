@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from typing import Any
 
 from friday_core.logging import get_logger

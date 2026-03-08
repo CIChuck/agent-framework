@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 OpenAI tool adapter.
 

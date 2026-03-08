@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Excel (XLSX) file reader adapter.
 

@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """Tests for GraphPathScorer."""
 
 import math
@@ -60,37 +62,37 @@ def create_test_edge(
 class TestCosineSimilarity:
     """Test cosine_similarity function."""
 
-    def test_identical_vectors(self):
+    def test_identical_vectors(self) -> None:
         """Identical vectors should have similarity 1.0."""
         vec = [1.0, 2.0, 3.0]
         assert cosine_similarity(vec, vec) == pytest.approx(1.0)
 
-    def test_orthogonal_vectors(self):
+    def test_orthogonal_vectors(self) -> None:
         """Orthogonal vectors should have similarity 0.0."""
         vec1 = [1.0, 0.0]
         vec2 = [0.0, 1.0]
         assert cosine_similarity(vec1, vec2) == pytest.approx(0.0)
 
-    def test_opposite_vectors(self):
+    def test_opposite_vectors(self) -> None:
         """Opposite vectors should have similarity -1.0."""
         vec1 = [1.0, 2.0, 3.0]
         vec2 = [-1.0, -2.0, -3.0]
         assert cosine_similarity(vec1, vec2) == pytest.approx(-1.0)
 
-    def test_empty_vectors(self):
+    def test_empty_vectors(self) -> None:
         """Empty vectors should return 0.0."""
         assert cosine_similarity([], []) == 0.0
         assert cosine_similarity([1.0], []) == 0.0
 
-    def test_mismatched_length(self):
+    def test_mismatched_length(self) -> None:
         """Mismatched length vectors should return 0.0."""
         assert cosine_similarity([1.0, 2.0], [1.0]) == 0.0
 
-    def test_zero_vectors(self):
+    def test_zero_vectors(self) -> None:
         """Zero vectors should return 0.0."""
         assert cosine_similarity([0.0, 0.0], [1.0, 2.0]) == 0.0
 
-    def test_known_similarity(self):
+    def test_known_similarity(self) -> None:
         """Test with known similarity value."""
         vec1 = [1.0, 0.0, 0.0]
         vec2 = [1.0, 1.0, 0.0]
@@ -102,7 +104,7 @@ class TestCosineSimilarity:
 class TestGraphPathScorerConfig:
     """Test GraphPathScorerConfig model."""
 
-    def test_default_config(self):
+    def test_default_config(self) -> None:
         """Test default configuration values."""
         config = GraphPathScorerConfig()
         assert config.edge_weight == 0.4
@@ -110,7 +112,7 @@ class TestGraphPathScorerConfig:
         assert config.hit_count_boost == 0.05
         assert config.inclusion_threshold == 0.5
 
-    def test_custom_config(self):
+    def test_custom_config(self) -> None:
         """Test custom configuration."""
         config = GraphPathScorerConfig(
             edge_weight=0.3,
@@ -146,12 +148,12 @@ class TestGraphPathScorer:
         """Create an embedding dissimilar to query."""
         return [0.0, 1.0, 0.0]  # Orthogonal to query
 
-    def test_usage_boost_no_hits(self, scorer):
+    def test_usage_boost_no_hits(self, scorer) -> None:
         """No hits should give usage boost of 1.0."""
         boost = scorer.calculate_usage_boost(0, 0)
         assert boost == 1.0
 
-    def test_usage_boost_with_hits(self, scorer):
+    def test_usage_boost_with_hits(self, scorer) -> None:
         """Higher hit counts should give higher boost."""
         boost_0 = scorer.calculate_usage_boost(0, 0)
         boost_5 = scorer.calculate_usage_boost(5, 5)
@@ -159,7 +161,7 @@ class TestGraphPathScorer:
 
         assert boost_0 < boost_5 < boost_20
 
-    def test_usage_boost_uses_minimum(self, scorer):
+    def test_usage_boost_uses_minimum(self, scorer) -> None:
         """Usage boost should use minimum of source and target hits."""
         boost_min_5 = scorer.calculate_usage_boost(5, 100)
         boost_both_5 = scorer.calculate_usage_boost(5, 5)
@@ -168,7 +170,7 @@ class TestGraphPathScorer:
 
     def test_score_path_sync_with_embeddings(
         self, scorer, query_embedding, similar_embedding
-    ):
+    ) -> None:
         """Test synchronous scoring with pre-computed embeddings."""
         source = create_test_node("s1", "Python", hit_count=5)
         target = create_test_node(
@@ -183,7 +185,7 @@ class TestGraphPathScorer:
         assert scored.edge_similarity > 0
         assert scored.target_similarity > 0
 
-    def test_score_path_sync_without_embeddings(self, scorer, query_embedding):
+    def test_score_path_sync_without_embeddings(self, scorer, query_embedding) -> None:
         """Test scoring without embeddings returns 0 similarities."""
         source = create_test_node("s1", "Python")
         target = create_test_node("t1", "Programming")
@@ -197,7 +199,7 @@ class TestGraphPathScorer:
 
     def test_score_path_sync_similar_vs_dissimilar(
         self, scorer, query_embedding, similar_embedding, dissimilar_embedding
-    ):
+    ) -> None:
         """Similar paths should score higher than dissimilar ones."""
         source = create_test_node("s1", "Python")
 
@@ -223,7 +225,7 @@ class TestGraphPathScorer:
 
     def test_filter_paths_sync_applies_threshold(
         self, scorer, query_embedding, similar_embedding, dissimilar_embedding
-    ):
+    ) -> None:
         """filter_paths_sync should exclude paths below threshold."""
         source = create_test_node("s1", "Source")
 
@@ -248,7 +250,7 @@ class TestGraphPathScorer:
         if len(filtered) > 0:
             assert all(p.score >= scorer.inclusion_threshold for p in filtered)
 
-    def test_filter_paths_sync_sorts_by_score(self, scorer, query_embedding):
+    def test_filter_paths_sync_sorts_by_score(self, scorer, query_embedding) -> None:
         """filter_paths_sync should return paths sorted by score descending."""
         source = create_test_node("s1", "Source")
 
@@ -273,7 +275,7 @@ class TestGraphPathScorer:
             for i in range(len(filtered) - 1):
                 assert filtered[i].score >= filtered[i + 1].score
 
-    def test_filter_paths_sync_max_paths(self, scorer, query_embedding):
+    def test_filter_paths_sync_max_paths(self, scorer, query_embedding) -> None:
         """filter_paths_sync should respect max_paths limit."""
         source = create_test_node("s1", "Source")
         emb = [0.9, 0.1, 0.0]
@@ -289,7 +291,7 @@ class TestGraphPathScorer:
         assert len(filtered) <= 3
 
     @pytest.mark.asyncio
-    async def test_score_path_async_with_fallback(self, scorer, query_embedding):
+    async def test_score_path_async_with_fallback(self, scorer, query_embedding) -> None:
         """Test async scoring with embedding function fallback."""
         source = create_test_node("s1", "Python")
         target = create_test_node("t1", "Programming")
@@ -308,7 +310,7 @@ class TestGraphPathScorer:
         assert scored.target_similarity > 0
 
     @pytest.mark.asyncio
-    async def test_filter_paths_async(self, scorer, query_embedding):
+    async def test_filter_paths_async(self, scorer, query_embedding) -> None:
         """Test async path filtering."""
         source = create_test_node("s1", "Source")
         emb = [0.9, 0.1, 0.0]
@@ -330,7 +332,7 @@ class TestGraphPathScorer:
 class TestScoredPath:
     """Test ScoredPath class."""
 
-    def test_to_dict(self):
+    def test_to_dict(self) -> None:
         """Test ScoredPath.to_dict() conversion."""
         source = create_test_node("s1", "Source")
         target = create_test_node("t1", "Target")

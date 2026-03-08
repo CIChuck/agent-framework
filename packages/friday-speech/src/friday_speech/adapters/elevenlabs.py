@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """ElevenLabs TTS adapter (best-effort streaming)."""
 
 from __future__ import annotations

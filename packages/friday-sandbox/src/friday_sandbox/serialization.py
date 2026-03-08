@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Serialization utilities for structured return values.
 

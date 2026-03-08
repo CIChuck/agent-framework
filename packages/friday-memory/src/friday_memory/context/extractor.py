@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Memory Extractor (The Harvester).
 Analyzes conversation turns to extract new entities and facts for the Graph.

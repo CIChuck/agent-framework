@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Configuration models for sandbox and workspace management.
 

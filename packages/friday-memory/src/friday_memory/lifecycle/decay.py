@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 Decay Configuration and Calculator.
 

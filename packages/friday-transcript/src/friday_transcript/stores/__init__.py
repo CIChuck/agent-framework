@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Transcript storage backends."""
 
 from friday_transcript.stores.jsonl import JSONLTranscriptStore

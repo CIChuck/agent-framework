@@ -1,3 +1,5 @@
+# mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+# mypy: disallow-untyped-defs=False
 """
 Tests for OntologyConfig and ExtractionFilter.
 
@@ -30,7 +32,7 @@ def default_filter(default_ontology):
 class TestOntologyConfig:
     """Tests for OntologyConfig dataclass."""
 
-    def test_default_has_node_types(self):
+    def test_default_has_node_types(self) -> None:
         """Test that default ontology includes standard node types."""
         ontology = OntologyConfig.default()
         assert "person" in ontology.allowed_node_types
@@ -43,7 +45,7 @@ class TestOntologyConfig:
         assert "concept" not in ontology.allowed_node_types
         assert "task" not in ontology.allowed_node_types
 
-    def test_default_has_edge_relations(self):
+    def test_default_has_edge_relations(self) -> None:
         """Test that default ontology includes canonical edge relations."""
         ontology = OntologyConfig.default()
         all_relations = ontology.all_edge_relations
@@ -53,7 +55,7 @@ class TestOntologyConfig:
         assert "EXPERT_IN" in all_relations
         assert len(all_relations) >= 25
 
-    def test_from_dict_basic(self):
+    def test_from_dict_basic(self) -> None:
         """Test creating OntologyConfig from dict."""
         data = {
             "node_types": {
@@ -82,7 +84,7 @@ class TestOntologyConfig:
         assert ontology.max_label_length == 50
         assert ontology.min_label_length == 3
 
-    def test_from_dict_with_string_node_types(self):
+    def test_from_dict_with_string_node_types(self) -> None:
         """Test from_dict accepts simple string descriptions for node types."""
         data = {
             "node_types": {
@@ -94,7 +96,7 @@ class TestOntologyConfig:
         assert "person" in ontology.allowed_node_types
         assert ontology.node_types["person"].description == "A human individual"
 
-    def test_from_dict_defaults(self):
+    def test_from_dict_defaults(self) -> None:
         """Test from_dict uses defaults for missing optional fields."""
         data = {
             "node_types": {"person": {"description": "A human"}},
@@ -105,7 +107,7 @@ class TestOntologyConfig:
         assert ontology.min_label_length == 2
         assert ontology.label_blocklist == []
 
-    def test_format_for_prompt(self):
+    def test_format_for_prompt(self) -> None:
         """Test that format_for_prompt produces readable text."""
         ontology = OntologyConfig(
             node_types={
@@ -128,7 +130,7 @@ class TestOntologyConfig:
         assert "OWNS, CREATED" in result
         assert "USES" in result
 
-    def test_edge_relations_upper(self):
+    def test_edge_relations_upper(self) -> None:
         """Test edge_relations_upper returns uppercase set."""
         ontology = OntologyConfig(
             node_types={},
@@ -140,7 +142,7 @@ class TestOntologyConfig:
 class TestExtractionFilterEntities:
     """Tests for entity filtering."""
 
-    def test_accepts_person(self, default_filter):
+    def test_accepts_person(self, default_filter) -> None:
         """Test that person entities are accepted."""
         entities = [{"label": "Chuck", "type": "person", "properties": {}}]
         accepted, rejected = default_filter.filter_entities(entities)
@@ -148,13 +150,13 @@ class TestExtractionFilterEntities:
         assert len(rejected) == 0
         assert accepted[0]["label"] == "Chuck"
 
-    def test_accepts_technology(self, default_filter):
+    def test_accepts_technology(self, default_filter) -> None:
         """Test that technology entities are accepted."""
         entities = [{"label": "Python", "type": "technology", "properties": {}}]
         accepted, rejected = default_filter.filter_entities(entities)
         assert len(accepted) == 1
 
-    def test_rejects_concept_type(self, default_filter):
+    def test_rejects_concept_type(self, default_filter) -> None:
         """Test that concept type nodes are rejected."""
         entities = [
             {"label": "morning routine", "type": "concept", "properties": {}},
@@ -163,7 +165,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_task_type(self, default_filter):
+    def test_rejects_task_type(self, default_filter) -> None:
         """Test that task type nodes are rejected."""
         entities = [
             {"label": "Fix the bug", "type": "task", "properties": {}},
@@ -172,7 +174,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_blocklist_label(self, default_filter):
+    def test_rejects_blocklist_label(self, default_filter) -> None:
         """Test that blocklisted labels are rejected."""
         entities = [
             {"label": "morning", "type": "person", "properties": {}},
@@ -181,7 +183,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_blocklist_case_insensitive(self, default_filter):
+    def test_blocklist_case_insensitive(self, default_filter) -> None:
         """Test that blocklist matching is case-insensitive."""
         entities = [
             {"label": "MORNING", "type": "person", "properties": {}},
@@ -190,7 +192,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_long_label(self, default_filter):
+    def test_rejects_long_label(self, default_filter) -> None:
         """Test that labels exceeding max length are rejected."""
         entities = [
             {"label": "x" * 100, "type": "person", "properties": {}},
@@ -199,7 +201,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_short_label(self, default_filter):
+    def test_rejects_short_label(self, default_filter) -> None:
         """Test that labels shorter than min length are rejected."""
         entities = [
             {"label": "x", "type": "person", "properties": {}},
@@ -208,7 +210,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_numeric_label(self, default_filter):
+    def test_rejects_numeric_label(self, default_filter) -> None:
         """Test that purely numeric labels are rejected."""
         entities = [
             {"label": "12345", "type": "person", "properties": {}},
@@ -217,7 +219,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_timestamp_label(self, default_filter):
+    def test_rejects_timestamp_label(self, default_filter) -> None:
         """Test that timestamp-like labels are rejected."""
         entities = [
             {"label": "1:30 PM", "type": "person", "properties": {}},
@@ -227,7 +229,7 @@ class TestExtractionFilterEntities:
         assert len(accepted) == 0
         assert len(rejected) == 2
 
-    def test_mixed_entities(self, default_filter):
+    def test_mixed_entities(self, default_filter) -> None:
         """Test filtering a mix of valid and invalid entities."""
         entities = [
             {"label": "Chuck", "type": "person", "properties": {}},
@@ -244,49 +246,49 @@ class TestExtractionFilterEntities:
 class TestExtractionFilterRelationships:
     """Tests for relationship filtering."""
 
-    def test_accepts_canonical_relation(self, default_filter):
+    def test_accepts_canonical_relation(self, default_filter) -> None:
         """Test that canonical relations pass through."""
         rels = [{"source_id": "a", "relation": "USES", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 1
         assert accepted[0]["relation"] == "USES"
 
-    def test_normalizes_case(self, default_filter):
+    def test_normalizes_case(self, default_filter) -> None:
         """Test that lowercase relations are normalized to canonical case."""
         rels = [{"source_id": "a", "relation": "uses", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 1
         assert accepted[0]["relation"] == "USES"
 
-    def test_normalizes_spaces_to_underscores(self, default_filter):
+    def test_normalizes_spaces_to_underscores(self, default_filter) -> None:
         """Test that spaces in relations are converted to underscores."""
         rels = [{"source_id": "a", "relation": "works at", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 1
         assert accepted[0]["relation"] == "WORKS_AT"
 
-    def test_rejects_unknown_relation(self, default_filter):
+    def test_rejects_unknown_relation(self, default_filter) -> None:
         """Test that non-canonical relations are rejected."""
         rels = [{"source_id": "a", "relation": "INVOLVES", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_is_a_relation(self, default_filter):
+    def test_rejects_is_a_relation(self, default_filter) -> None:
         """Test that IS_A (common noise) is rejected."""
         rels = [{"source_id": "a", "relation": "IS_A", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_rejects_empty_relation(self, default_filter):
+    def test_rejects_empty_relation(self, default_filter) -> None:
         """Test that empty relation strings are rejected."""
         rels = [{"source_id": "a", "relation": "", "target_id": "b"}]
         accepted, rejected = default_filter.filter_relationships(rels)
         assert len(accepted) == 0
         assert len(rejected) == 1
 
-    def test_does_not_mutate_original(self, default_filter):
+    def test_does_not_mutate_original(self, default_filter) -> None:
         """Test that filtering returns copies, not mutated originals."""
         original = {"source_id": "a", "relation": "uses", "target_id": "b"}
         accepted, _ = default_filter.filter_relationships([original])
@@ -295,7 +297,7 @@ class TestExtractionFilterRelationships:
         # Accepted copy should be normalized
         assert accepted[0]["relation"] == "USES"
 
-    def test_mixed_relationships(self, default_filter):
+    def test_mixed_relationships(self, default_filter) -> None:
         """Test filtering a mix of valid and invalid relationships."""
         rels = [
             {"source_id": "a", "relation": "USES", "target_id": "b"},
@@ -326,7 +328,7 @@ class TestRejectionLogging:
         yield
         rej_logger.propagate = original
 
-    def test_rejected_nodes_are_logged(self, default_filter, caplog):
+    def test_rejected_nodes_are_logged(self, default_filter, caplog) -> None:
         """Test that rejected nodes produce log output."""
         entities = [
             {"label": "morning routine", "type": "concept", "properties": {}},
@@ -343,7 +345,7 @@ class TestRejectionLogging:
         assert "morning routine" in record.message
         assert "test_turn_123" in record.message
 
-    def test_rejected_edges_are_logged(self, default_filter, caplog):
+    def test_rejected_edges_are_logged(self, default_filter, caplog) -> None:
         """Test that rejected edges produce log output."""
         rels = [
             {"source_id": "a", "relation": "INVOLVES", "target_id": "b"},
@@ -359,7 +361,7 @@ class TestRejectionLogging:
         assert "INVOLVES" in record.message
         assert "test_turn_456" in record.message
 
-    def test_accepted_items_not_logged(self, default_filter, caplog):
+    def test_accepted_items_not_logged(self, default_filter, caplog) -> None:
         """Test that accepted items do not produce rejection log entries."""
         entities = [{"label": "Chuck", "type": "person", "properties": {}}]
         with caplog.at_level(

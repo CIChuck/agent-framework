@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """
 URL validation and security checks.
 

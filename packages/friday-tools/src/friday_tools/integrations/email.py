@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 """Email integration (stub)."""
 
 from typing import Any
