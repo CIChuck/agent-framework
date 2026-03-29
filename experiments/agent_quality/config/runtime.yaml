@@ -1,0 +1,64 @@
+config_policy:
+  allow_env_override: false
+  strict_agent_llm_binding: false
+  workflow_mode: canonical
+  unknown_key_policy: fail
+
+llm:
+  provider: openai
+  model: deterministic-quality-probe
+  api_key: test-key
+
+llm_pool:
+  default_service: deterministic
+  services:
+    deterministic:
+      provider: openai
+      model: deterministic-quality-probe
+      api_key: test-key
+      resilience:
+        timeout_seconds: 60
+        max_retries: 2
+
+embedding_pool:
+  default_service: deterministic_embeddings
+  services:
+    deterministic_embeddings:
+      provider: openai
+      model: text-embedding-3-small
+      api_key: test-key
+      resilience:
+        timeout_seconds: 60
+        max_retries: 2
+
+embedding:
+  model: text-embedding-3-small
+
+memory:
+  mode: single_agent
+  chroma_path: .friday/chroma
+  chroma_collection: friday_memory
+  recall:
+    semantic_retrieval_enabled: true
+  extraction:
+    enabled: false
+    llm_service: deterministic
+
+telemetry:
+  enabled: false
+  endpoint:
+  debug_mode: false
+
+agents:
+  dir: experiments/agent_quality/agents
+  role_bindings: {}
+
+scratch:
+  backend: in_memory
+  path:
+
+artifacts:
+  enabled: true
+  root_dir: experiments/agent_quality/artifacts
+  lineage_required: true
+  publish_on_task_success: true

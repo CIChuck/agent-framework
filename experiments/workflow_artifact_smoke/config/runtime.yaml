@@ -1,0 +1,117 @@
+So config.yaml first, runtime.local.yaml next, and if config_policy:
+  allow_env_override: false
+  strict_agent_llm_binding: false
+  workflow_mode: canonical
+  unknown_key_policy: fail
+
+prompting:
+  base_system_prompt: >
+    You are operating inside the Friday Agent Framework runtime.
+    Use tools when they materially improve accuracy.
+    Return outputs that satisfy the workflow contract exactly.
+
+llm:
+  provider: openai
+  model: moonshot/kimi-k2.5
+
+llm_pool:
+  default_service: agent_primary
+  services:
+    agent_primary:
+      provider: openai
+      model: moonshot/kimi-k2.5
+      api_base: https://api.moonshot.ai/v1
+      resilience:
+        timeout_seconds: 120
+        max_retries: 1
+    extraction_primary:
+      provider: openai
+      model: moonshot/kimi-k2.5
+      api_base: https://api.moonshot.ai/v1
+      resilience:
+        timeout_seconds: 120
+        max_retries: 1
+
+embedding:
+  model: text-embedding-3-small
+
+embedding_pool:
+  default_service: embedding_primary
+  services:
+    embedding_primary:
+      provider: openai
+      model: text-embedding-3-small
+      api_base: https://api.openai.com/v1
+      resilience:
+        timeout_seconds: 60
+        max_retries: 1
+
+memory:
+  mode: single_agent
+  chroma_path: experiments/workflow_artifact_smoke/runtime_data/memory/chroma
+  chroma_collection: workflow_artifact_smoke
+  recall:
+    semantic_retrieval_enabled: true
+  extraction:
+    enabled: true
+    llm_service: extraction_primary
+    embedding_service: embedding_primary
+    user_name: Workflow
+    assistant_name: FridayAgent
+
+telemetry:
+  enabled: false
+  endpoint:
+  debug_mode: false
+
+agents:
+  dir: experiments/workflow_artifact_smoke/agents
+  role_bindings: {}
+
+workflows:
+  dir: experiments/workflow_artifact_smoke/workflows
+
+tools:
+  providers:
+    builtin:
+      enabled: true
+      mode: all
+    friday_tools:
+      enabled: true
+      mode: selected
+      include_categories:
+        - web
+        - filesystem
+      include_tools:
+        - web_search
+        - web_reader
+        - file_write
+    mcp:
+      enabled: false
+      mode: selected
+      config:
+        auto_connect: false
+        tool_name_prefix: mcp_
+        servers: []
+
+transcript:
+  enabled: true
+  backend: sqlite
+  path: transcripts/workflow-artifact-smoke.db
+  capture_context_log: true
+
+runtime_paths:
+  install_root: .
+  runtime_data_root: experiments/workflow_artifact_smoke/runtime_data
+  workspace_root: experiments/workflow_artifact_smoke/outputs
+  cache_root: experiments/workflow_artifact_smoke/runtime_data/cache
+
+scratch:
+  backend: in_memory
+  path:
+
+artifacts:
+  enabled: true
+  root_dir: artifacts
+  lineage_required: true
+  publish_on_task_success: true

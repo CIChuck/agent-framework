@@ -1,0 +1,11 @@
+llm_pool:
+  services:
+    agent_primary:
+      api_key: your-moonshot-api-key
+    extraction_primary:
+      api_key: your-moonshot-api-key
+
+embedding_pool:
+  services:
+    embedding_primary:
+      api_key: your-openai-api-key

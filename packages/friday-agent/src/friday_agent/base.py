@@ -16,6 +16,7 @@ Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
 """
 
 import asyncio
+import json
 import uuid
 from abc import ABC, abstractmethod
 from typing import Any
@@ -31,6 +32,7 @@ from friday_memory import InteractionTurn, MemoryController, SessionState
 
 from friday_agent.security import AgentOutputProcessor
 
+from .prompting import PromptComposition
 from .profile import AgentProfile
 
 logger = get_logger(__name__)
@@ -66,6 +68,9 @@ class AgentBase(ABC):
         tool_registry: ToolRegistry,
         telemetry: TelemetryInterface | None = None,
         sanitization_config: SanitizationConfig | None = None,
+        runtime_base_system_prompt: str | None = None,
+        resolved_llm_service_name: str | None = None,
+        resolved_provider_name: str | None = None,
     ) -> None:
         """
         Initialize the agent base.
@@ -84,6 +89,9 @@ class AgentBase(ABC):
         self.llm = llm
         self.tool_registry = tool_registry
         self.telemetry = telemetry
+        self.runtime_base_system_prompt = runtime_base_system_prompt
+        self.resolved_llm_service_name = resolved_llm_service_name
+        self.resolved_provider_name = resolved_provider_name
         self._output_processor = AgentOutputProcessor(
             config=sanitization_config,
             telemetry=telemetry,
@@ -408,6 +416,9 @@ class AgentBase(ABC):
         assistant_message: str | None = None,
         tool_calls: list[dict[str, Any]] | None = None,
         tool_results: list[dict[str, Any]] | None = None,
+        raw_prompt_messages: list[dict[str, Any]] | None = None,
+        raw_response_payload: dict[str, Any] | None = None,
+        prompt_composition: PromptComposition | None = None,
     ) -> None:
         """
         Archive an interaction turn to episodic memory.
@@ -419,6 +430,9 @@ class AgentBase(ABC):
             assistant_message: The assistant's response
             tool_calls: List of tool calls made
             tool_results: List of tool results
+            raw_prompt_messages: Final prompt messages sent to the LLM
+            raw_response_payload: Serialized response payload from the LLM
+            prompt_composition: Prompt layering metadata for the turn
         """
         from friday_memory.models import (
             ToolCall as MemoryToolCall,
@@ -434,8 +448,41 @@ class AgentBase(ABC):
             user_message=user_message,
             assistant_message=assistant_message,
             agent_id=self.profile.name,  # Provenance: track which agent generated this
+            llm_service=self.resolved_llm_service_name,
+            provider_name=self.resolved_provider_name,
             tool_calls=[MemoryToolCall(**tc) for tc in (tool_calls or [])],
             tool_results=[MemoryToolResult(**tr) for tr in (tool_results or [])],
+            model_name=getattr(self.llm, "model", None),
+            temperature=self.profile.temperature,
+            raw_prompt=(
+                json.dumps(raw_prompt_messages)
+                if raw_prompt_messages is not None
+                else None
+            ),
+            raw_response=(
+                json.dumps(raw_response_payload)
+                if raw_response_payload is not None
+                else None
+            ),
+            metadata={
+                "llm_service": self.resolved_llm_service_name,
+                "provider_name": self.resolved_provider_name,
+                "runtime_base_system_prompt": (
+                    prompt_composition.runtime_base_prompt
+                    if prompt_composition is not None
+                    else None
+                ),
+                "agent_system_prompt": (
+                    prompt_composition.agent_prompt
+                    if prompt_composition is not None
+                    else self.profile.render_system_prompt()
+                ),
+                "composed_system_prompt": (
+                    prompt_composition.composed_system_prompt
+                    if prompt_composition is not None
+                    else self.profile.render_system_prompt()
+                ),
+            },
         )
 
         # Store in episodic memory

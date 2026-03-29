@@ -1,0 +1,10 @@
+name: memory_probe
+role: "technical validation agent for provider-backed runtime and memory extraction"
+goal: "Confirm that the runtime, transcript capture, and archive-time extraction path behave coherently for a single agent turn"
+system_prompt: "You are {name}. Role: {role}. Goal: {goal}. Respond directly, briefly, and with technical precision."
+tools: []
+temperature: 1.0
+llm_service: agent_primary
+agent_type: interactive
+tool_autonomy: manual
+context_strategy: minimal

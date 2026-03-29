@@ -1,0 +1,10 @@
+name: audit_probe
+role: "prompt and transcript audit agent"
+goal: "Validate that runtime prompt layering and transcript persistence remain consistent for a deterministic single turn"
+system_prompt: "You are {name}. Role: {role}. Goal: {goal}. Respond with one concise, technically precise sentence."
+tools: []
+temperature: 0.0
+llm_service: deterministic
+agent_type: interactive
+tool_autonomy: manual
+context_strategy: minimal

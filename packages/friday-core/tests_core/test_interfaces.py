@@ -204,6 +204,12 @@ class TestGraphStoreAdapter:
             async def rank_nodes(self, algorithm="pagerank"):
                 return []
 
+            async def get_top_nodes(self, n=10, sort_by="hit_count"):
+                return []
+
+            async def get_all_edges(self):
+                return []
+
         store = ConcreteGraphStore()
         assert isinstance(store, GraphStoreAdapter)
 
@@ -265,7 +271,9 @@ class TestContextEngineeringInterface:
             async def consolidate_memory(self, session_id):
                 return {"session_id": session_id}
 
-            async def assemble_context(self, query, state, budget_limit):
+            async def assemble_context(
+                self, query, state, budget_limit, context_strategy="standard"
+            ):
                 return {"query": query}
 
             async def format_prompt(self, system_prompt, payload):

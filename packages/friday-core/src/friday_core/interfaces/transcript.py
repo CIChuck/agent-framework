@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     # Forward references to types - avoids circular imports
     from typing import TypeAlias
 
+    ContextLogEntry: TypeAlias = Any
     TranscriptEntry: TypeAlias = Any
     TranscriptSession: TypeAlias = Any
     InteractionTurn: TypeAlias = Any
@@ -57,6 +58,15 @@ class TranscriptStoreProtocol(Protocol):
         ...
 
 
+@runtime_checkable
+class ContextLogStoreProtocol(Protocol):
+    """Optional protocol for transcript stores that support raw context logging."""
+
+    async def store_context_log(self, context_entry: "ContextLogEntry") -> bool:
+        """Persist a raw prompt/response context log entry."""
+        ...
+
+
 class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
     """
     Bridge adapter that connects TranscriptStore to EpisodicStoreAdapter.
@@ -80,6 +90,7 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         transcript_store: TranscriptStoreProtocol,
         model_name: str = "unknown",
         system_prompt: str | None = None,
+        capture_context_log: bool = True,
     ) -> None:
         """
         Initialize the bridge adapter.
@@ -88,10 +99,13 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
             transcript_store: The underlying TranscriptStore implementation
             model_name: Model name for new sessions (used in session creation)
             system_prompt: System prompt for new sessions
+            capture_context_log: Whether raw prompt/response context logs should
+                be persisted alongside transcript entries
         """
         self._store = transcript_store
         self._model_name = model_name
         self._system_prompt = system_prompt
+        self._capture_context_log = capture_context_log
 
         # Track turn counts per session for turn_number assignment
         self._turn_counts: dict[str, int] = {}
@@ -184,7 +198,43 @@ class TranscriptBackedEpisodicStore(EpisodicStoreAdapter):
         result = await self._store.append_entry(entry)
         if result:
             self._turn_counts[session_id] = turn_number
+            await self._store_context_log_if_supported(
+                session_id=session_id,
+                turn_number=turn_number,
+                turn=turn,
+            )
         return result
+
+    async def _store_context_log_if_supported(
+        self,
+        *,
+        session_id: str,
+        turn_number: int,
+        turn: "InteractionTurn",
+    ) -> None:
+        if not self._capture_context_log:
+            return
+        if not isinstance(self._store, ContextLogStoreProtocol):
+            return
+        if getattr(turn, "raw_prompt", None) is None and getattr(
+            turn, "raw_response", None
+        ) is None:
+            return
+
+        try:
+            from friday_transcript import ContextLogEntry
+        except ImportError:
+            return
+
+        await self._store.store_context_log(
+            ContextLogEntry(
+                session_id=session_id,
+                turn_number=turn_number,
+                entry_id=turn.id,
+                raw_prompt=getattr(turn, "raw_prompt", None) or "[]",
+                raw_response=getattr(turn, "raw_response", None),
+            )
+        )
 
     async def get_turns(
         self, session_id: str, limit: int = 10, offset: int = 0

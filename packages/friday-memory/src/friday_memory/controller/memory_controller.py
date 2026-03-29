@@ -422,6 +422,7 @@ class MemoryController:
         history_limit: int = 10,
         vector_results: int = 5,
         graph_depth: int = 1,
+        semantic_retrieval: bool = True,
     ) -> ContextPayload:
         """
         Orchestrates parallel retrieval from all memory stores.
@@ -441,6 +442,9 @@ class MemoryController:
             history_limit: Maximum history turns to retrieve
             vector_results: Number of vector search results
             graph_depth: Depth for graph traversal
+            semantic_retrieval: Whether semantic retrieval should be used.
+                When False, skips priming, query embedding, vector retrieval,
+                graph retrieval, and supporting semantic context.
 
         Returns:
             ContextPayload with aggregated retrieval results
@@ -462,18 +466,17 @@ class MemoryController:
             "query_length": len(query),
             "token_limit": token_limit,
             "budget_limits": limits,  # Record the calculated limits
+            "semantic_retrieval": semantic_retrieval,
         }
 
         try:
             # Initialize session priming if needed
-            if session_id and self._priming_config.get("enabled", True):
+            if (
+                semantic_retrieval
+                and session_id
+                and self._priming_config.get("enabled", True)
+            ):
                 await self._ensure_session_primed(session_id)
-
-            # Compute query embedding ONCE for reuse across vector + graph retrieval.
-            # This avoids redundant embedding API calls (was 2 per recall, now 1).
-            query_embedding = (
-                await self._collection_manager._embedding_function.embed_query(query)
-            )
 
             # Parallel retrieval from all stores (using budget-aware limits)
             tasks = []
@@ -482,25 +485,39 @@ class MemoryController:
             async def _empty_list() -> list:
                 return []
 
+            async def _empty_graph_data() -> dict[str, Any]:
+                return {}
+
             if include_history and session_id:
                 tasks.append(self._retrieve_episodic(session_id, limits["history"]))
             else:
                 tasks.append(_empty_list())
 
-            # Vector retrieval via lifecycle collections (shared embedding)
-            tasks.append(
-                self._retrieve_vector_lifecycle(
-                    query, vector_results, query_embedding=query_embedding
+            if semantic_retrieval:
+                # Compute query embedding ONCE for reuse across vector + graph retrieval.
+                # This avoids redundant embedding API calls (was 2 per recall, now 1).
+                query_embedding = (
+                    await self._collection_manager._embedding_function.embed_query(query)
                 )
-            )
-            debug_info["lifecycle_enabled"] = True
 
-            # Graph retrieval with semantic path scoring (shared embedding)
-            tasks.append(
-                self._retrieve_graph_with_scoring(
-                    query, graph_depth, query_embedding=query_embedding
+                # Vector retrieval via lifecycle collections (shared embedding)
+                tasks.append(
+                    self._retrieve_vector_lifecycle(
+                        query, vector_results, query_embedding=query_embedding
+                    )
                 )
-            )
+                debug_info["lifecycle_enabled"] = True
+
+                # Graph retrieval with semantic path scoring (shared embedding)
+                tasks.append(
+                    self._retrieve_graph_with_scoring(
+                        query, graph_depth, query_embedding=query_embedding
+                    )
+                )
+            else:
+                tasks.append(_empty_list())
+                tasks.append(_empty_graph_data())
+                debug_info["lifecycle_enabled"] = False
 
             results = await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -519,45 +536,51 @@ class MemoryController:
                 else []
             )
 
-            # Use budget-aware limits for insights and summaries
-            recency_days = self._priming_config.get("recency_days", 0)
-
-            recent_insights = await self._fetch_recent_insights(
-                limits["insights"], recency_days
-            )
-            recent_summaries = await self._fetch_recent_summaries(
-                limits["summaries"], recency_days
-            )
-
-            # Fetch prior session history for cross-session continuity
             prior_history: list[InteractionTurn] = []
-            previous_session_turns = self._priming_config.get(
-                "previous_session_turns", 5
-            )
-            if previous_sessions > 0 and session_id and limits["prior_turns"] > 0:
-                prior_history = await self._fetch_prior_session_history(
-                    session_id,
-                    previous_sessions,
-                    min(previous_session_turns, limits["prior_turns"]),
+            recent_insights: list[dict[str, Any]] = []
+            recent_summaries: list[dict[str, Any]] = []
+            relationship_summaries: list[str] = []
+            all_relationships: list[str] = []
+
+            if semantic_retrieval:
+                # Use budget-aware limits for insights and summaries
+                recency_days = self._priming_config.get("recency_days", 0)
+
+                recent_insights = await self._fetch_recent_insights(
+                    limits["insights"], recency_days
+                )
+                recent_summaries = await self._fetch_recent_summaries(
+                    limits["summaries"], recency_days
                 )
 
-            # Get top entities using budget-aware limit
-            top_entities = await self.graph.get_top_nodes(
-                limits["entities"],
-                sort_by="hit_count",
-            )
+                # Fetch prior session history for cross-session continuity
+                previous_session_turns = self._priming_config.get(
+                    "previous_session_turns", 5
+                )
+                if previous_sessions > 0 and session_id and limits["prior_turns"] > 0:
+                    prior_history = await self._fetch_prior_session_history(
+                        session_id,
+                        previous_sessions,
+                        min(previous_session_turns, limits["prior_turns"]),
+                    )
 
-            # Merge top entities with query entities (dedup by ID)
-            existing_ids = {e.id for e in entities}
-            for entity in top_entities:
-                if entity.id not in existing_ids:
-                    entities.append(entity)
-                    existing_ids.add(entity.id)
+                # Get top entities using budget-aware limit
+                top_entities = await self.graph.get_top_nodes(
+                    limits["entities"],
+                    sort_by="hit_count",
+                )
 
-            # Build relationship summaries for all entities (budget-limited)
-            # Uses merged list: query-matched + top entities by hit_count
-            all_relationships = await self._build_relationship_summaries(entities)
-            relationship_summaries = all_relationships[: limits["relationships"]]
+                # Merge top entities with query entities (dedup by ID)
+                existing_ids = {e.id for e in entities}
+                for entity in top_entities:
+                    if entity.id not in existing_ids:
+                        entities.append(entity)
+                        existing_ids.add(entity.id)
+
+                # Build relationship summaries for all entities (budget-limited)
+                # Uses merged list: query-matched + top entities by hit_count
+                all_relationships = await self._build_relationship_summaries(entities)
+                relationship_summaries = all_relationships[: limits["relationships"]]
 
             # Record debug info — includes retrieval limits for observability
             debug_info["retrieval_limits"] = limits
@@ -571,7 +594,7 @@ class MemoryController:
             debug_info["relationships_count"] = len(relationship_summaries)
             debug_info["relationships_total"] = len(all_relationships)
             debug_info["scored_graph_paths"] = len(scored_paths)
-            debug_info["query_embedding_shared"] = True
+            debug_info["query_embedding_shared"] = semantic_retrieval
             debug_info["total_latency"] = time.time() - start_time
 
             self._emit_event("memory_recall_completed", debug_info)

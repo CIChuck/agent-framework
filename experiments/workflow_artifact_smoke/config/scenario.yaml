@@ -1,0 +1,3 @@
+workflow_name: wf_agentic_news
+query: agentic AI news
+output_filename: summary_report.md

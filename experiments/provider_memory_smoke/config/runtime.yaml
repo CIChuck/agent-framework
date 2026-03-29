@@ -1,0 +1,266 @@
+config_policy:
+  allow_env_override: false
+  strict_agent_llm_binding: false
+  workflow_mode: canonical
+  unknown_key_policy: fail
+
+prompting:
+  base_system_prompt: |
+    You are operating inside the Friday Agent Framework runtime.
+    Follow the selected agent's role and goal, keep responses concise and technically precise,
+    and preserve details that are useful for durable memory extraction.
+
+llm:
+  provider: moonshot
+  model: moonshot/kimi-k2.5
+  api_base: https://api.moonshot.ai/v1
+  #api_key: cccccc
+
+llm_pool:
+  default_service: agent_primary
+  services:
+    agent_primary:
+      provider: moonshot
+      model: moonshot/kimi-k2.5
+      api_base: https://api.moonshot.ai/v1
+      #api_key: cccccc
+      resilience:
+        timeout_seconds: 90
+        max_retries: 3
+    extraction_primary:
+      provider: openai
+      model: openai/gemma-3-27b-it
+      api_base: http://localhost:1234/v1
+      resilience:
+        timeout_seconds: 90
+        max_retries: 2
+
+embedding:
+  model: openai/nomic-embed-text-v1.5
+
+embedding_pool:
+  default_service: embedding_primary
+  services:
+    embedding_primary:
+      provider: openai
+      model: openai/nomic-embed-text-v1.5
+      api_base: http://127.0.0.1:1234/v1
+      #api_key: cccccc
+      resilience:
+        timeout_seconds: 60
+        max_retries: 2
+
+memory:
+  mode: single_agent
+  chroma_path: /Users/chuckrussell/Dev/gendev/agent-framework/experiments/provider_memory_smoke/memory
+  chroma_collection: provider_memory_smoke
+  recall:
+    semantic_retrieval_enabled: false
+  extraction:
+    enabled: true
+    llm_service: extraction_primary
+    embedding_service: embedding_primary
+    max_tokens: 4000
+    rejection_log: experiments/provider_memory_smoke/artifacts/extraction_rejections.log
+    user_name: User
+    assistant_name: Friday
+    ontology:
+      node_types:
+        person:
+          description: "A human individual"
+          examples: ["Chuck", "Elon Musk", "Dr. Smith"]
+        organization:
+          description: "A company, institution, or group"
+          examples: ["Google", "MIT", "United Nations"]
+        technology:
+          description: "A software tool, language, framework, or hardware"
+          examples: ["Python", "React", "ChromaDB", "GPU"]
+        location:
+          description: "A physical or virtual place"
+          examples: ["San Francisco", "GitHub", "AWS us-east-1"]
+        product:
+          description: "A named product, service, or system"
+          examples: ["Friday", "ChatGPT", "iPhone"]
+        document:
+          description: "A named document, spec, or reference"
+          examples: ["README", "RFC 7231", "build plan"]
+        event:
+          description: "A time-bound occurrence with specific participants or purpose"
+          examples: ["meeting", "conference", "deployment", "wedding"]
+      edge_relations:
+        ownership:
+          - OWNS
+          - CREATED
+          - AUTHORED
+          - FOUNDED
+          - HOSTS
+        association:
+          - WORKS_AT
+          - MEMBER_OF
+          - AFFILIATED_WITH
+          - PART_OF
+          - CONTAINS
+        usage:
+          - USES
+          - SHOULD_USE
+          - LEVERAGES
+          - DEPENDS_ON
+          - BUILT_WITH
+          - INTEGRATES
+          - UTILIZES
+        action:
+          - MANAGES
+          - ESTABLISHES
+          - MAINTAINS
+          - CONTRIBUTES_TO
+          - DEVELOPS
+          - SUPPORTS
+          - PROMOTES
+          - SELLS
+          - IMPROVES
+          - ENHANCES
+          - CAUSES
+          - PREVENTS
+          - WEAKENS
+          - DEFINES
+        knowledge:
+          - KNOWS
+          - EXPERT_IN
+          - STUDIES
+          - TEACHES
+        relationship:
+          - RELATES_TO
+          - RELATED_TO
+          - SIMILAR_TO
+          - DERIVES_FROM
+          - REPLACES
+          - SPOUSE_OF
+          - SIBLING_OF
+          - PARENT_OF
+          - IS_A
+          - REPORTS_TO
+          - MARRIED_TO
+        spatial:
+          - LOCATED_IN
+          - DEPLOYED_ON
+          - HOSTED_BY
+          - HELD_AT
+        preference:
+          - PREFERS
+          - DISLIKES
+          - RECOMMENDS
+        participation:
+          - WILL_ATTEND
+          - AVOIDS
+      label_blocklist:
+        - morning
+        - afternoon
+        - evening
+        - today
+        - yesterday
+        - data
+        - thing
+        - stuff
+        - something
+      max_label_length: 66
+      min_label_length: 2
+    prompt: |
+      Analyze the conversation turn below to extract a knowledge graph and semantic memories.
+
+      Turn ID: {turn_id}
+      Timestamp: {timestamp}
+
+      Conversation Context:
+      - Speaker A (Human): {user_name}
+      - Speaker B (AI): {assistant_name}
+
+      TEXT TO ANALYZE:
+      {user_name}: {user_message}
+      {assistant_name}: {assistant_response}
+
+      {ontology_constraints}
+
+      INSTRUCTIONS:
+
+      1. **Entity Extraction (Nodes)**
+         - Extract ONLY concrete, named entities: specific people, organizations, technologies, locations, products, or documents.
+         - Do NOT extract abstract concepts, feelings, time references, adjectives, or generic terms.
+         - Do NOT extract "{user_name}" or "{assistant_name}" unless they are referred to by a proper name in the conversation.
+         - Each entity must have a `type` from the ALLOWED TYPES listed above.
+         - **Canonicalization**: Create an `id` in snake_case.
+         - **Resolution**: Resolve pronouns to the specific noun if clear from context.
+         - **Be selective**: Only extract entities that carry meaningful, reusable knowledge.
+
+      2. **Relationship Extraction (Edges)**
+         - Extract directional relationships: SOURCE -> RELATION -> TARGET.
+         - The `relation` field MUST be one of the ALLOWED RELATIONS listed above.
+         - Source and target must reference entity `id` values from your entity list.
+         - Prefer the most specific applicable relation.
+         - Do NOT create relationships for trivial or obvious connections.
+
+      3. **Insight Extraction (Structured Facts)**
+         - Extract 1-3 rich, contextual observations worth remembering long-term.
+         - **text**: A complete 1-2 sentence observation.
+         - **topic**: One of "preference", "biographical", "technical", or "constraint".
+         - **entities**: Entity names mentioned in this insight.
+         - **confidence**: 0.0-1.0 based on how explicitly the information was stated.
+         - **sentiment**: "positive", "negative", or "neutral".
+
+      4. **Turn Summary**
+         - Write a 2-4 sentence paragraph summarizing the conversation turn.
+
+      JSON OUTPUT FORMAT:
+
+      Respond ONLY with valid JSON:
+
+      {{
+          "entities": [
+              {{"id": "entity_id", "label": "Display Name", "type": "ALLOWED_TYPE", "properties": {{}}}}
+          ],
+          "relationships": [
+              {{"source_id": "actor_id", "relation": "ALLOWED_RELATION", "target_id": "recipient_id"}}
+          ],
+          "insights": [
+              {{
+                  "text": "Rich, contextual sentence worth remembering.",
+                  "topic": "preference|biographical|technical|constraint",
+                  "entities": ["entity1"],
+                  "confidence": 0.9,
+                  "sentiment": "positive|negative|neutral"
+              }}
+          ],
+          "summary": "A 2-4 sentence summary of this conversation turn."
+      }}
+
+      If nothing meaningful is found, return empty arrays and empty string for summary.
+
+telemetry:
+  enabled: false
+  endpoint:
+  debug_mode: false
+
+agents:
+  dir: experiments/provider_memory_smoke/agents
+  role_bindings: {}
+
+transcript:
+  enabled: true
+  backend: sqlite
+  path: transcripts/provider_memory_smoke.db
+  capture_context_log: true
+
+runtime_paths:
+  install_root: .
+  runtime_data_root: /tmp/friday-provider-memory-smoke-runtime
+  workspace_root: .
+  cache_root: /tmp/friday-provider-memory-smoke-cache
+
+scratch:
+  backend: in_memory
+  path:
+
+artifacts:
+  enabled: true
+  root_dir: artifacts
+  lineage_required: true
+  publish_on_task_success: true

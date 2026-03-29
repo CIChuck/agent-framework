@@ -1,0 +1,33 @@
+{
+  "backup_id": "dd6f586b-94b0-496c-b1b8-52d54afbe90e",
+  "created_at": "2026-03-28T16:29:13.446542",
+  "source_dir": "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector",
+  "backup_dir": "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/backups/20260328_162913_d38e1ee1",
+  "files": {
+    "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/graph.json": "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/backups/20260328_162913_d38e1ee1/graph.json",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/transcript.db": "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/backups/20260328_162913_d38e1ee1/transcript.db",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/chroma.sqlite3": "/Users/chuckrussell/Dev/gendev/agent-framework/tests/integration/memory/vector/backups/20260328_162913_d38e1ee1/chroma.sqlite3"
+  },
+  "checksums": {
+    "graph.json": "056a1d79f09844862132f4634ad2374525960ded138af0413c43826171e9a469",
+    "transcript.db": "283dd088e8a4f0f2af0727da51bf1c706780b5391ff334183f54ab88968570e4",
+    "chroma.sqlite3": "ceb6032e1a22302a0bc935a7e18e5946de432483c8ee60ccd196a26ea861d968"
+  },
+  "store_stats": {
+    "graph": {
+      "exists": true,
+      "node_count": 1161,
+      "edge_count": 1021,
+      "file_size": 25147568
+    },
+    "vector": {
+      "exists": true,
+      "file_size": 47947776,
+      "file_count": 1
+    },
+    "episodic": {
+      "exists": true,
+      "file_size": 51630080
+    }
+  }
+}

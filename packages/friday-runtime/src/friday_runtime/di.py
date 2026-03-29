@@ -13,7 +13,12 @@ from typing import Any, cast
 
 from friday_agent import DefaultToolRegistry
 from friday_core import TelemetryInterface
-from friday_core.interfaces import EmbeddingModel, EpisodicStoreAdapter, LLMClient
+from friday_core.interfaces import (
+    EmbeddingModel,
+    EpisodicStoreAdapter,
+    LLMClient,
+    TranscriptBackedEpisodicStore,
+)
 from friday_core.profiles import (
     MemoryProfile,
     create_graph_store,
@@ -31,11 +36,14 @@ from friday_memory import (
     MemoryExtractor,
     MultiAgentMemoryController,
     NamespacePolicyEngine,
+    OntologyConfig,
     PromotionCoordinator,
     PromotionJournal,
 )
+from friday_transcript import SQLiteTranscriptStore
 
 from friday_runtime.config import RuntimeConfig
+from friday_runtime.tool_loading import register_runtime_tools
 
 logger = logging.getLogger(__name__)
 
@@ -67,10 +75,12 @@ class DIContainer:
         self.telemetry: TelemetryInterface | None = None
         self.llm: LiteLLMService | None = None
         self.llm_pool: dict[str, LiteLLMService] = {}
+        self.embedding_pool: dict[str, LiteLLMEmbeddingService] = {}
         self.embeddings: LiteLLMEmbeddingService | None = None
         self.vector_store: Any = None
         self.graph_store: Any = None
-        self.episodic_store: InMemoryEpisodicStore | None = None
+        self.episodic_store: EpisodicStoreAdapter | None = None
+        self.transcript_store: SQLiteTranscriptStore | None = None
         self.memory: MemoryController | None = None
         self.multi_agent_memory: MultiAgentMemoryController | None = None
         self.multi_agent_journal: PromotionJournal | None = None
@@ -140,23 +150,43 @@ class DIContainer:
         self.llm = self.llm_pool[self._config.llm_pool.default_service]
         default_service = self._config.get_llm_service_config()
 
-        self.embeddings = LiteLLMEmbeddingService(
-            model_name=self._config.embedding_model,
-            api_key=default_service.api_key,
-            api_base=default_service.api_base,
-            telemetry=self.telemetry,
-        )
+        self.embedding_pool = {}
+        for (
+            service_name,
+            embedding_service_config,
+        ) in self._config.embedding_pool.services.items():
+            self.embedding_pool[service_name] = LiteLLMEmbeddingService(
+                model_name=embedding_service_config.model,
+                api_key=embedding_service_config.api_key,
+                api_base=embedding_service_config.api_base,
+                telemetry=self.telemetry,
+                resilience=ResilienceConfig(
+                    max_retries=embedding_service_config.resilience.max_retries,
+                    timeout_seconds=float(
+                        embedding_service_config.resilience.timeout_seconds
+                    ),
+                ),
+            )
+
+        self.embeddings = self.embedding_pool[self._config.embedding_pool.default_service]
+        default_embedding_service = self._config.get_embedding_service_config()
 
         logger.info(
-            "LLM pool configured with default service '%s' (%s) across %d services",
+            "LLM pool configured with default service '%s' (%s) across %d services; "
+            "embedding pool default '%s' (%s) across %d services",
             self._config.llm_pool.default_service,
             default_service.model,
             len(self.llm_pool),
+            self._config.embedding_pool.default_service,
+            default_embedding_service.model,
+            len(self.embedding_pool),
         )
 
     async def _create_storage_adapters(self) -> None:
         """Create storage adapter instances based on memory profile."""
         assert self.embeddings is not None
+        graph_storage_path = self._config.resolve_runtime_state_path("memory/graph.json")
+        graph_storage_path.parent.mkdir(parents=True, exist_ok=True)
         self.vector_store = create_vector_store(
             profile=self._memory_profile,
             embedding_function=cast(EmbeddingModel, self.embeddings),
@@ -166,10 +196,24 @@ class DIContainer:
 
         self.graph_store = create_graph_store(
             profile=self._memory_profile,
-            storage_path=None,  # In-memory by default
+            storage_path=str(graph_storage_path),
         )
 
-        self.episodic_store = InMemoryEpisodicStore()
+        if self._config.transcript.enabled:
+            transcript_path = self._config.resolve_transcript_path(
+                self._config.transcript.path
+            )
+            transcript_path.parent.mkdir(parents=True, exist_ok=True)
+            self.transcript_store = SQLiteTranscriptStore(transcript_path)
+            self.episodic_store = TranscriptBackedEpisodicStore(
+                transcript_store=self.transcript_store,
+                model_name=self._config.get_llm_service_config().model,
+                system_prompt=self._config.prompting.base_system_prompt,
+                capture_context_log=self._config.transcript.capture_context_log,
+            )
+        else:
+            self.transcript_store = None
+            self.episodic_store = InMemoryEpisodicStore()
 
         logger.info(
             f"Storage adapters initialized (profile: {self._memory_profile.value})"
@@ -198,6 +242,7 @@ class DIContainer:
             episodic_store=cast(EpisodicStoreAdapter, self.episodic_store),
             telemetry=self.telemetry,
             collection_manager=collection_manager,
+            transcript_store=self.transcript_store,
         )
 
         logger.info("Memory controller initialized with lifecycle collections")
@@ -233,37 +278,63 @@ class DIContainer:
     def _create_context_engine(self) -> None:
         """Create context assembler and wire extractor."""
         assert self.memory is not None
-        assert self.llm is not None
         self.context_engine = ContextAssembler(
             memory_controller=self.memory,
             telemetry=self.telemetry,
         )
 
-        extractor = MemoryExtractor(
-            memory_controller=self.memory,
-            llm=cast(LLMClient, self.llm),
-            telemetry=self.telemetry,
-        )
-        self.context_engine.set_extractor(extractor)
+        if self._config.memory_extraction.enabled:
+            assert self.llm is not None
+            extraction_llm = self.llm_pool[self._config.memory_extraction.llm_service or self._config.llm_pool.default_service]
+            extraction_embeddings: EmbeddingModel | None = None
+            extraction_embedding_service = (
+                self._config.memory_extraction.embedding_service
+            )
+            if extraction_embedding_service is not None:
+                extraction_embeddings = cast(
+                    EmbeddingModel,
+                    self.embedding_pool[extraction_embedding_service],
+                )
 
-        logger.info("Context engine initialized with extractor")
+            ontology = self._config.memory_extraction.ontology
+            extractor = MemoryExtractor(
+                memory_controller=self.memory,
+                llm=cast(LLMClient, extraction_llm),
+                telemetry=self.telemetry,
+                prompt_template=self._config.memory_extraction.prompt,
+                user_name=self._config.memory_extraction.user_name,
+                assistant_name=self._config.memory_extraction.assistant_name,
+                embedding_model=extraction_embeddings,
+                max_tokens=self._config.memory_extraction.max_tokens,
+                ontology_config=(
+                    OntologyConfig.from_dict(ontology) if ontology is not None else None
+                ),
+                rejection_log_path=self._config.memory_extraction.rejection_log,
+            )
+            self.context_engine.set_extractor(extractor)
+            logger.info(
+                "Context engine initialized with extractor service '%s'",
+                self._config.memory_extraction.llm_service,
+            )
+        else:
+            logger.info("Context engine initialized without archive extractor")
 
     def _create_tool_registry(self) -> None:
         """Create and configure tool registry."""
         self.tool_registry = DefaultToolRegistry()
-
-        # Load decorated tools
-        self.tool_registry.load_decorated_tools()
+        register_runtime_tools(self.tool_registry, self._config.tools)
 
         # Bind dependencies to built-in tools
-        self.tool_registry.bind_dependency(
-            "recall_memory",
-            memory=self.memory,
-        )
-        self.tool_registry.bind_dependency(
-            "store_fact",
-            memory=self.memory,
-        )
+        if self.tool_registry.has_tool("recall_memory"):
+            self.tool_registry.bind_dependency(
+                "recall_memory",
+                memory=self.memory,
+            )
+        if self.tool_registry.has_tool("store_fact"):
+            self.tool_registry.bind_dependency(
+                "store_fact",
+                memory=self.memory,
+            )
 
         logger.info(
             f"Tool registry initialized with "

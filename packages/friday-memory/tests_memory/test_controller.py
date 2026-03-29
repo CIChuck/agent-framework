@@ -240,6 +240,26 @@ class TestUnifiedRecall:
         assert "query_length" in payload.debug_info
         assert "total_latency" in payload.debug_info
 
+    @pytest.mark.asyncio
+    async def test_recall_minimal_mode_skips_query_embedding(
+        self, memory_controller: MemoryController
+    ) -> None:
+        """Minimal recall should not require semantic embedding."""
+        embedding_model = memory_controller._collection_manager._embedding_function
+
+        payload = await memory_controller.recall(
+            query="minimal query",
+            session_id="minimal_test",
+            include_history=False,
+            semantic_retrieval=False,
+        )
+
+        embedding_model.embed_query.assert_not_called()
+        assert payload.passages == []
+        assert payload.entities == []
+        assert payload.facts == []
+        assert payload.debug_info["semantic_retrieval"] is False
+
 
 class TestIdentityMerging:
     """Tests for merge_identities."""

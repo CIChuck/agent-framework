@@ -1,0 +1,11 @@
+llm_pool:
+  services:
+    agent_primary:
+      api_key: "replace-with-agent-provider-key"
+    extraction_primary:
+      api_key: "replace-with-extraction-provider-key"
+
+embedding_pool:
+  services:
+    embedding_primary:
+      api_key: "replace-with-embedding-provider-key"

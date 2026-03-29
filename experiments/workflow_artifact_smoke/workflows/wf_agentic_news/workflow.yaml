@@ -1,0 +1,15 @@
+workflow_id: wf_agentic_news
+version: 1.0.0
+name: Agentic AI News Summary
+goal: Research and summarize the most recent reputable agentic AI news article.
+pipeline_refs:
+  - pl_research
+  - pl_write
+entry_pipeline_id: pl_research
+completion_criteria:
+  - A researcher selects one recent reputable article about agentic AI.
+  - A writer produces a three-paragraph markdown summary for that article.
+required_artifacts:
+  - artifact_id: summary_report
+    type: markdown_file
+    produced_by_pipeline: pl_write

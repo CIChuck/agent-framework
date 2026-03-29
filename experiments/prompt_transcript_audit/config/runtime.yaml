@@ -1,0 +1,76 @@
+config_policy:
+  allow_env_override: false
+  strict_agent_llm_binding: false
+  workflow_mode: canonical
+  unknown_key_policy: fail
+
+prompting:
+  base_system_prompt: |
+    You are operating inside the Friday Agent Framework runtime audit harness.
+    Follow the selected agent's role and goal, keep answers concise, and preserve
+    details needed to verify transcript and prompt provenance.
+
+llm:
+  provider: openai
+  model: deterministic-prompt-transcript-audit
+  api_key: test-key
+
+llm_pool:
+  default_service: deterministic
+  services:
+    deterministic:
+      provider: openai
+      model: deterministic-prompt-transcript-audit
+      api_key: test-key
+      resilience:
+        timeout_seconds: 60
+        max_retries: 2
+
+embedding:
+  model: text-embedding-3-small
+
+embedding_pool:
+  default_service: deterministic_embeddings
+  services:
+    deterministic_embeddings:
+      provider: openai
+      model: text-embedding-3-small
+      api_key: test-key
+      resilience:
+        timeout_seconds: 60
+        max_retries: 2
+
+memory:
+  mode: single_agent
+  chroma_path: .friday/chroma
+  chroma_collection: prompt_transcript_audit
+  recall:
+    semantic_retrieval_enabled: false
+  extraction:
+    enabled: false
+    llm_service: deterministic
+
+telemetry:
+  enabled: false
+  endpoint:
+  debug_mode: false
+
+agents:
+  dir: experiments/prompt_transcript_audit/agents
+  role_bindings: {}
+
+transcript:
+  enabled: true
+  backend: sqlite
+  path: transcripts/prompt_transcript_audit.db
+  capture_context_log: true
+
+scratch:
+  backend: in_memory
+  path:
+
+artifacts:
+  enabled: true
+  root_dir: experiments/prompt_transcript_audit/artifacts
+  lineage_required: true
+  publish_on_task_success: true

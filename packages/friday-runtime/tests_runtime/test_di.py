@@ -1,10 +1,21 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 from pathlib import Path
+from typing import Any, cast
 from unittest.mock import MagicMock
 
+import pytest
 from friday_core.profiles import MemoryProfile
-from friday_runtime.config import LLMServiceConfig, RuntimeConfig
+from friday_runtime.config import (
+    EmbeddingServiceConfig,
+    LLMServiceConfig,
+    MCPToolProviderConfig,
+    RuntimeConfig,
+    ToolProviderConfig,
+    ToolProvidersConfig,
+    ToolsConfig,
+)
 from friday_runtime.di import DIContainer
+from friday_transcript import SQLiteTranscriptStore
 
 
 def _config(tmp_path: Path, memory_mode: str) -> RuntimeConfig:
@@ -64,7 +75,6 @@ def test_di_creates_named_llm_pool_and_selects_default_service(tmp_path: Path):
     assert di.llm_pool["default"].model == "gpt-4o-mini"
     assert di.llm_pool["reasoning"].model == "o3"
     assert di.embeddings is not None
-    assert di.embeddings.api_key == "reasoning-key"
 
 
 def test_di_maps_runtime_resilience_to_service_clients(tmp_path: Path):
@@ -89,3 +99,177 @@ def test_di_maps_runtime_resilience_to_service_clients(tmp_path: Path):
     assert di.llm is not None
     assert di.llm.resilience.timeout_seconds == 45
     assert di.llm.resilience.max_retries == 4
+
+
+def test_di_creates_named_embedding_pool_and_selects_default_service(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.embedding_pool_default_service = "graph"
+    config.embedding_pool_services = {
+        "default": EmbeddingServiceConfig(
+            provider="openai",
+            model="text-embedding-3-small",
+            api_key="default-embed-key",
+        ),
+        "graph": EmbeddingServiceConfig(
+            provider="openai",
+            model="text-embedding-3-large",
+            api_key="graph-embed-key",
+        ),
+    }
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di._create_llm_services()
+
+    assert set(di.embedding_pool) == {"default", "graph"}
+    assert di.embeddings is di.embedding_pool["graph"]
+    assert di.embeddings.api_key == "graph-embed-key"
+
+
+def test_di_skips_archive_extractor_when_disabled(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.memory_extraction_enabled = False
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di.memory = MagicMock()
+    di._create_context_engine()
+
+    assert di.context_engine is not None
+    assert di.context_engine._extractor is None
+
+
+def test_di_uses_configured_archive_extraction_services(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.llm_pool_services = {
+        "default": LLMServiceConfig(
+            provider="openai",
+            model="gpt-4o-mini",
+            api_key="default-key",
+        ),
+        "extractor": LLMServiceConfig(
+            provider="openai",
+            model="gpt-4.1-mini",
+            api_key="extractor-key",
+        ),
+    }
+    config.embedding_pool_services = {
+        "default": EmbeddingServiceConfig(
+            provider="openai",
+            model="text-embedding-3-small",
+            api_key="embed-key",
+        ),
+        "archive": EmbeddingServiceConfig(
+            provider="openai",
+            model="text-embedding-3-large",
+            api_key="archive-key",
+        ),
+    }
+    config.memory_extraction_enabled = True
+    config.memory_extraction_llm_service = "extractor"
+    config.memory_extraction_embedding_service = "archive"
+    config.memory_extraction_max_tokens = 2048
+    config.memory_extraction_user_name = "Chuck"
+    config.memory_extraction_assistant_name = "Friday"
+    config.memory_extraction_ontology = {
+        "node_types": {"person": {"description": "human"}},
+        "edge_relations": {"association": ["KNOWS"]},
+    }
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di._create_llm_services()
+    di.memory = MagicMock()
+    di._create_context_engine()
+
+    assert di.context_engine is not None
+    extractor = di.context_engine._extractor
+    assert extractor is not None
+    assert extractor._llm is di.llm_pool["extractor"]
+    assert extractor._embedding_model is di.embedding_pool["archive"]
+    assert extractor._max_tokens == 2048
+    assert extractor._user_name == "Chuck"
+    assert extractor._assistant_name == "Friday"
+
+
+@pytest.mark.asyncio
+async def test_di_uses_transcript_backed_episodic_store_when_enabled(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.transcript_enabled = True
+    config.transcript_path = "transcripts/runtime.db"
+    config.transcript_capture_context_log = False
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di._create_llm_services()
+    await di._create_storage_adapters()
+
+    assert isinstance(di.transcript_store, SQLiteTranscriptStore)
+    assert di.episodic_store is not None
+    assert di.episodic_store.__class__.__name__ == "TranscriptBackedEpisodicStore"
+    assert cast(Any, di.transcript_store)._db_path == config.resolve_transcript_path(
+        config.transcript_path
+    )
+    assert cast(Any, di.episodic_store)._capture_context_log is False
+
+
+def test_di_loads_builtin_tools_by_default(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di.memory = MagicMock()
+    di._create_tool_registry()
+
+    assert di.tool_registry is not None
+    names = set(di.tool_registry.list_names())
+    assert "recall_memory" in names
+    assert "store_fact" in names
+    assert "web_search" not in names
+
+
+def test_di_loads_friday_tools_provider_with_category_filter(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.tools_config = ToolsConfig(
+        providers=ToolProvidersConfig(
+            builtin=ToolProviderConfig(enabled=True),
+            friday_tools=ToolProviderConfig(
+                enabled=True,
+                mode="selected",
+                include_categories=("web",),
+                include_tools=("file_write",),
+            ),
+        )
+    )
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di.memory = MagicMock()
+    di._create_tool_registry()
+
+    assert di.tool_registry is not None
+    names = set(di.tool_registry.list_names())
+    assert "recall_memory" in names
+    assert "web_search" in names
+    assert "web_reader" in names
+    assert "file_write" in names
+
+
+def test_di_rejects_unimplemented_mcp_tool_provider(tmp_path: Path):
+    config = _config(tmp_path, "single_agent")
+    config.tools_config = ToolsConfig(
+        providers=ToolProvidersConfig(
+            builtin=ToolProviderConfig(enabled=True),
+            mcp=MCPToolProviderConfig.from_dict(
+                {
+                    "enabled": True,
+                    "mode": "selected",
+                    "include_tools": ["mcp_filesystem_read_file"],
+                    "config": {
+                        "auto_connect": False,
+                        "servers": [],
+                    },
+                }
+            ),
+        )
+    )
+
+    di = DIContainer(config, MemoryProfile.FULL)
+    di.memory = MagicMock()
+
+    with pytest.raises(RuntimeError, match="MCP runtime loading is not implemented"):
+        di._create_tool_registry()

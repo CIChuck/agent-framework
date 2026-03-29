@@ -227,6 +227,7 @@ class WorkflowEngine:
         initial_inputs: dict[str, Any] | None = None,
         *,
         role_bindings: dict[str, str] | None = None,
+        execution_id: str | None = None,
     ) -> CanonicalWorkflowExecution:
         """
         Execute a canonical workflow -> pipeline -> task hierarchy.
@@ -245,7 +246,7 @@ class WorkflowEngine:
 
         execution = CanonicalWorkflowExecution(
             workflow_id=workflow.workflow_id,
-            execution_id=f"{workflow.workflow_id}_{uuid.uuid4().hex[:8]}",
+            execution_id=execution_id or f"{workflow.workflow_id}_{uuid.uuid4().hex[:8]}",
             variables=dict(initial_inputs or {}),
             started_at=_utc_now(),
             status=PipelineExecutionStatus.CREATED,
@@ -966,17 +967,22 @@ class WorkflowEngine:
                     f"'{output_artifact.from_output}' for artifact publication"
                 )
 
+            output_value = outputs[output_artifact.from_output]
+            provenance = {
+                "workflow_id": workflow.workflow_id,
+                "pipeline_id": pipeline.pipeline_id,
+                "task_id": task.task_id,
+                "from_output": output_artifact.from_output,
+                "type": output_artifact.type,
+            }
+            if isinstance(output_value, (str, int, float, bool)):
+                provenance["output_ref"] = str(output_value)
+
             execution.published_artifacts[output_artifact.artifact_id] = ArtifactRecord(
                 artifact_id=output_artifact.artifact_id,
                 lifecycle_state=ArtifactLifecycleState.FINAL,
                 created_by=task.task_id,
-                provenance={
-                    "workflow_id": workflow.workflow_id,
-                    "pipeline_id": pipeline.pipeline_id,
-                    "task_id": task.task_id,
-                    "from_output": output_artifact.from_output,
-                    "type": output_artifact.type,
-                },
+                provenance=provenance,
                 updated_at=_utc_now(),
                 published_at=_utc_now(),
             )

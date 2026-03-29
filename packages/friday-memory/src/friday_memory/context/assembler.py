@@ -409,7 +409,7 @@ class ContextAssembler(ContextEngineeringInterface):
             async_execution: If True, run extraction asynchronously
         """
         if self._extractor is None:
-            logger.warning("No extractor configured, skipping extraction")
+            logger.debug("No extractor configured, skipping extraction")
             return
 
         if async_execution:
@@ -461,6 +461,7 @@ class ContextAssembler(ContextEngineeringInterface):
         state: SessionState,
         budget_limit: int,
         available_tools: list[dict[str, Any]] | None = None,
+        context_strategy: str = "standard",
     ) -> ContextPayload:
         """
         The core 'Recall' step.
@@ -484,6 +485,8 @@ class ContextAssembler(ContextEngineeringInterface):
             budget_limit: Calculated token ceiling (Dynamic_Limit)
             available_tools: Optional tools to consider for selection.
                             If None, uses active_tools from tool_manager.
+            context_strategy: Retrieval strategy name. `minimal` bypasses
+                            semantic retrieval and uses history-only recall.
 
         Returns:
             ContextPayload: Strictly budgeted retrieval results with tool context
@@ -499,6 +502,7 @@ class ContextAssembler(ContextEngineeringInterface):
                 session_id=state.session_id,
                 token_limit=budget_limit,
                 include_history=True,
+                semantic_retrieval=context_strategy != "minimal",
             )
 
             # Optionally route/guard passage inclusion

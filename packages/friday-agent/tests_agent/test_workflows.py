@@ -1639,6 +1639,12 @@ class TestCanonicalWorkflowEngine:
             "recommendation_report"
         ]
         assert "recommendation_report" in execution.published_artifacts
+        assert (
+            execution.published_artifacts["recommendation_report"].provenance[
+                "output_ref"
+            ]
+            == "# Final"
+        )
         assert mock_orchestrator.delegate.call_args_list[1].args[0] == "synthesizer"
         assert execution.pipeline_states["pl_synthesis"].lineage_records[0].artifact_id == (
             "evidence_bundle"

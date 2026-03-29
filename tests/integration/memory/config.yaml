@@ -98,26 +98,45 @@ llm:
   ########################################################
   #
   # Moonshot Base
-  api_base: "https://api.moonshot.ai/v1"
+  #api_base: "https://api.moonshot.ai/v1"
 
   # Moonshot API Key 
-  api_key: "sk-CppcUK1EIpnIf17cV0FPupTtYUA2GhaCLo0BfvHFMabqhLly"
+  #api_key: "sk-CppcUK1EIpnIf17cV0FPupTtYUA2GhaCLo0BfvHFMabqhLly"
 
   # Moonshot Model
-  model: "moonshot/kimi-k2.5"
+  #model: "moonshot/kimi-k2.5"
 
+  ########################################################
+
+ ########################################################
+  # MiniiMax Models
+  ########################################################
+  #
+  #  Base w/ Anthropic endpoint
+  #api_base: "https://api.minimax.io/anthropic"
+  api_base: "https://api.minimax.io/v1"
+
+  # MiniMax API Key 
+  api_key: "sk-api-nrb4DEhGgplejB4EqmCmS00e9QAFrT6YMNColCVIjv2R4XOIzpxhRfAFJZfLkoVY3qhrmNSAkeM9J5BdnpdyAkpmDbWEF5DMi0KnBtbfIzefRWX5bKCMq2M"
+
+  # MiniMax Model
+  # alternate model: MiniMax-M2.7-highspeed
+  # model: "anthropic/MiniMax-M2.7"
+  model: "minimax/MiniMax-M2.7-highspeed"
   ########################################################
 
 
   ########################################################
   # EXTRA PARMS
   ########################################################
-  # Kimi K2.5 requirements. 
+  # Kimi K2.5 requirements is temp = 1
   temperature: 1
+  top_p: 0.95 
+  top_k: 40 
   
   #temperature: 0.4
   
-  max_tokens: 2500
+  max_tokens: 20000
 
   # Max retries for transient errors
   max_retries: 3
@@ -129,7 +148,7 @@ llm:
   # Set to true for models that support it (e.g. Kimi K2.5 thinking).
   # When false, thinking is explicitly disabled to avoid
   # reasoning_content validation errors during tool calls.
-  thinking: false
+  thinking: true
 
 # Extraction LLM Settings (for entity/relationship extraction)
 # Can use a smaller, faster model optimized for structured output
@@ -517,11 +536,11 @@ memory:
   #   - Claude: 100000-200000
   #   - Local models: Check your LM Studio/Ollama config
   
-  context_window: 40000
+  context_window: 50000
 
   # Tokens reserved for model output (response generation)
   # Rule of thumb: 1000-2000 for conversational, more for long-form
-  output_buffer: 1000
+  output_buffer: 2500
 
   # Token Estimation Configuration
   # Controls how token counts are approximated for budget calculations.
@@ -541,7 +560,7 @@ memory:
   # With budget_ratio=0.30, history gets ~70% of dynamic budget.
   # Each turn is ~150-300 tokens. 15 turns × 200 = ~3,000 tokens.
   # Plus prior_history turns (previous_sessions × previous_session_turns).
-  max_history_turns: 50
+  max_history_turns: 35
 
   # Consolidation settings
   consolidate_after_turns: 15
@@ -674,7 +693,7 @@ memory:
       known_facts: 30
       insights: 20
       summaries: 15
-      tools: 5
+      tools: 10
 
   # =============================================================================
   # PASSAGE ROUTER (LLM-GATED PASSAGE INCLUSION)
@@ -712,7 +731,7 @@ memory:
     model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
     api_base: "http://localhost:1234/v1"
     api_key: "lm-studio"
-    max_retries: 1
+    max_retries: 2
     timeout_seconds: 5
     temperature: 0.1
     max_tokens: 80
@@ -821,7 +840,7 @@ memory:
     # supporting_context gets: (context_window - fixed_costs) * budget_ratio
     # With 40K context, ~4K fixed costs: (40K - 4K) * 0.25 = ~9K
     # Set priming lower to leave room for formatting overhead
-    token_budget: 4000         # ~10% of context window (leaves headroom)
+    token_budget: 5000         # ~10% of context window (leaves headroom)
 
     # -------------------------------------------------------------------------
     # CROSS-SESSION HISTORY
@@ -1712,7 +1731,7 @@ tools:
   loop:
     # Maximum tool calling iterations per turn (default: 10)
     # Increase for complex multi-step tasks, decrease to limit runaway loops
-    max_iterations: 45
+    max_iterations: 25
 
     # Abort after N consecutive tool failures (default: 3)
     # Prevents infinite retry loops when tools are broken

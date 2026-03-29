@@ -1,0 +1,10 @@
+name: quality_probe
+role: "Quality Probe"
+goal: "Validate the direct Phase 4 agent runtime path with a single deterministic turn."
+system_prompt: "You are {name}, a {role}. Goal: {goal}. Respond with a short direct answer."
+tools: []
+temperature: 0.0
+llm_service: deterministic
+agent_type: interactive
+tool_autonomy: manual
+context_strategy: minimal

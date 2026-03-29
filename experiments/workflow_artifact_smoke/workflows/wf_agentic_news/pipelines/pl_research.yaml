@@ -1,0 +1,44 @@
+pipeline_id: pl_research
+version: 1.0.0
+workflow_id: wf_agentic_news
+goal: Select the most recent reputable article about agentic AI.
+upstream_pipeline_ids: []
+input_contract:
+  query: string
+output_contract:
+  selected_article: json
+artifact_contract:
+  produced:
+    - artifact_id: selected_article
+      type: json
+      producer_task_id: research_article
+  consumed: []
+tasks:
+  - task_id: research_article
+    name: Research Article
+    description: >
+      Search for recent news about agentic AI.
+      Choose the most recent article from a reputable source.
+      Read the selected article.
+      Return only a valid JSON object with exactly these keys:
+      "title", "url", "source", "published_at", "article_notes", "selection_rationale".
+      The "article_notes" field should contain concise notes from the selected article only.
+      If the publication date is not available, set "published_at" to null.
+      Do not wrap the JSON in markdown fences.
+    owner_agent_id: researcher
+    input_contract:
+      query: string
+    output_contract:
+      selected_article: json
+    output_artifacts:
+      - artifact_id: selected_article
+        from_output: selected_article
+        type: json
+        required: true
+    dependencies: []
+    retry_policy:
+      max_attempts: 1
+    completion_criteria:
+      - Return valid JSON only.
+      - Select one article only.
+      - Choose the most recent reputable article you can justify from the search results.

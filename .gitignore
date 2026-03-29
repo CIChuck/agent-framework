@@ -10,3 +10,6 @@ build/
 chroma_db/
 *.gpickle
 keys.txt
+experiments/*/config/runtime.local.yaml
+experiments/*/artifacts/*
+!experiments/*/artifacts/.gitkeep

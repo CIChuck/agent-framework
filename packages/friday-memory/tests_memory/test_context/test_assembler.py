@@ -116,6 +116,25 @@ class TestContextAssembly:
         # Payload should be minimal due to budget constraints
         assert payload is not None
 
+    @pytest.mark.asyncio
+    async def test_assemble_context_minimal_strategy_uses_history_only_recall(
+        self, context_assembler: ContextAssembler, memory_controller: MemoryController
+    ) -> None:
+        """Minimal context strategy should bypass semantic retrieval."""
+        state = await context_assembler.initialize_session("minimal_ctx", "user")
+        embedding_model = memory_controller._collection_manager._embedding_function
+
+        payload = await context_assembler.assemble_context(
+            query="test query",
+            state=state,
+            budget_limit=2000,
+            context_strategy="minimal",
+        )
+
+        embedding_model.embed_query.assert_not_called()
+        assert payload.passages == []
+        assert payload.entities == []
+
 
 class TestBudgetPruning:
     """Tests for context budget pruning."""

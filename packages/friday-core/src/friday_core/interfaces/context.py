@@ -126,7 +126,11 @@ class ContextEngineeringInterface(ABC):
 
     @abstractmethod
     async def assemble_context(
-        self, query: str, state: "SessionState", budget_limit: int
+        self,
+        query: str,
+        state: "SessionState",
+        budget_limit: int,
+        context_strategy: str = "standard",
     ) -> "ContextPayload":
         """
         The core 'Recall' step - selects, ranks, and compresses data.
@@ -143,6 +147,9 @@ class ContextEngineeringInterface(ABC):
             query: The search string (user message or agent query)
             state: Current SessionState with scoped variables
             budget_limit: Maximum tokens for dynamic content
+            context_strategy: Retrieval strategy name. `minimal` may bypass
+                semantic recall, while `standard` and `extended` use the full
+                semantic memory pipeline.
 
         Returns:
             ContextPayload with history, passages, entities, facts

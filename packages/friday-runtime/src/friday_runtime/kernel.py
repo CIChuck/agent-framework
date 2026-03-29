@@ -35,6 +35,10 @@ from friday_core.security import SanitizationConfig
 
 from friday_runtime.config import RuntimeConfig
 from friday_runtime.di import DIContainer
+from friday_runtime.tool_loading import (
+    collect_profile_tool_references,
+    validate_agent_tool_bindings,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -177,7 +181,10 @@ class RuntimeKernel(SystemRuntime):
         from friday_agent.workflows import WorkflowEngine, WorkflowLoader
         from friday_memory import ScratchPadStore
 
-        loader = WorkflowLoader(Path(self._config.agents_dir or "agents") / "workflows")
+        workflow_session_id = await self.create_session(user_id="workflow")
+        await self.orchestrator.set_session(workflow_session_id, user_id="workflow")
+
+        loader = WorkflowLoader(self._resolve_workflows_dir())
         scratchpad = ScratchPadStore()
         engine = WorkflowEngine(
             orchestrator=self.orchestrator,
@@ -198,6 +205,7 @@ class RuntimeKernel(SystemRuntime):
                 bundle.pipelines,
                 initial_inputs,
                 role_bindings=self._config.agents_role_bindings,
+                execution_id=workflow_session_id,
             )
 
         if self._config.workflow_mode == "canonical":
@@ -212,6 +220,7 @@ class RuntimeKernel(SystemRuntime):
                 bundle.pipelines,
                 initial_inputs,
                 role_bindings=self._config.agents_role_bindings,
+                execution_id=workflow_session_id,
             )
 
         # auto mode: attempt canonical first, then fall back to legacy path.
@@ -233,6 +242,7 @@ class RuntimeKernel(SystemRuntime):
                 bundle.pipelines,
                 initial_inputs,
                 role_bindings=self._config.agents_role_bindings,
+                execution_id=workflow_session_id,
             )
 
         self._emit_workflow_routing_event(
@@ -245,6 +255,7 @@ class RuntimeKernel(SystemRuntime):
             bundle.pipelines,
             initial_inputs,
             role_bindings=self._config.agents_role_bindings,
+            execution_id=workflow_session_id,
         )
 
     # --- Eager Service Accessors ---
@@ -443,7 +454,7 @@ class RuntimeKernel(SystemRuntime):
         Returns:
             Sorted list of agent names.
         """
-        return self.agent_registry.list_agents()
+        return cast(list[str], self.agent_registry.list_agents())
 
     def get_agent_info(self, name: str) -> dict | None:
         """
@@ -488,11 +499,34 @@ class RuntimeKernel(SystemRuntime):
 
         return registry
 
+    def _resolve_workflows_dir(self) -> Path:
+        """Resolve workflow bundle root for runtime workflow execution."""
+        configured = self._config.workflows_dir
+        if configured:
+            raw = Path(configured).expanduser()
+            if raw.is_absolute():
+                return raw.resolve()
+            install_root = Path(self._config.install_root or ".").expanduser().resolve()
+            return (install_root / raw).resolve()
+
+        agents_dir = Path(self._config.agents_dir or "agents")
+        return (agents_dir / "workflows").resolve()
+
     def _validate_agent_profiles(self, profiles: list[AgentProfile]) -> None:
         """Fail startup deterministically on invalid agent/runtime bindings."""
+        registry = self._di.tool_registry
+        if registry is None:
+            raise RuntimeError("Runtime tool registry not initialized during startup")
+
+        available_tool_names = set(cast(list[str], registry.list_names()))
         for profile in profiles:
             resolved_service = self._resolve_llm_service_name(profile)
             self._resolve_agent_factory(profile.agent_type)
+            validate_agent_tool_bindings(
+                agent_name=profile.name,
+                declared_tools=collect_profile_tool_references(profile),
+                available_tool_names=available_tool_names,
+            )
             logger.debug(
                 "Validated agent '%s' LLM binding to service '%s' (agent_type=%s)",
                 profile.name,
@@ -508,7 +542,7 @@ class RuntimeKernel(SystemRuntime):
                     f"Agent '{profile.name}' references unknown llm_service "
                     f"'{profile.llm_service}'"
                 )
-            return profile.llm_service
+            return cast(str, profile.llm_service)
 
         if self._config.strict_agent_llm_binding:
             raise ValueError(
@@ -516,7 +550,7 @@ class RuntimeKernel(SystemRuntime):
                 "strict_agent_llm_binding is enabled"
             )
 
-        return self._config.llm_pool.default_service
+        return cast(str, self._config.llm_pool.default_service)
 
     def _get_llm_for_profile(self, profile: AgentProfile) -> Any:
         """Return the configured runtime LLM client for the agent profile."""
@@ -527,6 +561,10 @@ class RuntimeKernel(SystemRuntime):
             raise RuntimeError(
                 f"Runtime LLM pool missing configured service '{service_name}'"
             ) from exc
+
+    def _get_llm_service_config_for_profile(self, profile: AgentProfile) -> Any:
+        """Return the resolved runtime LLM service config for the profile."""
+        return self._config.get_llm_service_config(self._resolve_llm_service_name(profile))
 
     def _resolve_agent_factory(self, agent_type: str) -> Callable[[AgentProfile], Any]:
         """Resolve the runtime factory for the profile `agent_type`."""
@@ -557,6 +595,7 @@ class RuntimeKernel(SystemRuntime):
 
     def _create_interactive_agent(self, profile: AgentProfile) -> InteractiveAgent:
         """Create the default interactive runtime agent."""
+        llm_service_config = self._get_llm_service_config_for_profile(profile)
         return InteractiveAgent(
             profile=profile,
             memory=self.memory,
@@ -565,10 +604,14 @@ class RuntimeKernel(SystemRuntime):
             tool_registry=self._tool_registry_interface(),
             telemetry=self.telemetry,
             sanitization_config=self._sanitization_config,
+            runtime_base_system_prompt=self._config.prompting.base_system_prompt,
+            resolved_llm_service_name=self._resolve_llm_service_name(profile),
+            resolved_provider_name=llm_service_config.provider,
         )
 
     def _create_autonomous_agent(self, profile: AgentProfile) -> AutonomousAgent:
         """Create the autonomous runtime agent."""
+        llm_service_config = self._get_llm_service_config_for_profile(profile)
         return AutonomousAgent(
             profile=profile,
             memory=self.memory,
@@ -577,6 +620,9 @@ class RuntimeKernel(SystemRuntime):
             tool_registry=self._tool_registry_interface(),
             telemetry=self.telemetry,
             sanitization_config=self._sanitization_config,
+            runtime_base_system_prompt=self._config.prompting.base_system_prompt,
+            resolved_llm_service_name=self._resolve_llm_service_name(profile),
+            resolved_provider_name=llm_service_config.provider,
         )
 
     def _default_profile(self) -> AgentProfile:

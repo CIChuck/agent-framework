@@ -7,7 +7,13 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 from friday_agent import CopilotAgent, InteractiveAgent
 from friday_core.profiles import MemoryProfile
-from friday_runtime.config import LLMServiceConfig, RuntimeConfig
+from friday_runtime.config import (
+    LLMServiceConfig,
+    RuntimeConfig,
+    ToolProviderConfig,
+    ToolProvidersConfig,
+    ToolsConfig,
+)
 from friday_runtime.kernel import RuntimeKernel
 from friday_telemetry.providers.debug import DebugTelemetryRecorder
 
@@ -17,6 +23,8 @@ def _runtime_config(
     agents_dir: Path,
     strict: bool = False,
     debug_mode: bool = False,
+    tools_config: ToolsConfig | None = None,
+    workflows_dir: Path | None = None,
 ) -> RuntimeConfig:
     install_root = tmp_path / "install"
     runtime_data_root = tmp_path / "runtime-data" / "friday"
@@ -30,8 +38,10 @@ def _runtime_config(
         runtime_data_root=str(runtime_data_root),
         workspace_root=str(workspace_root),
         agents_dir=str(agents_dir),
+        workflows_dir=str(workflows_dir) if workflows_dir is not None else None,
         strict_agent_llm_binding=strict,
         debug_mode=debug_mode,
+        tools_config=tools_config or ToolsConfig(),
         llm_pool_default_service="default",
         llm_pool_services={
             "default": LLMServiceConfig(
@@ -123,6 +133,76 @@ agent_type: custom
 
 
 @pytest.mark.asyncio
+async def test_kernel_start_fails_when_agent_references_unloaded_tool(tmp_path: Path):
+    agents_dir = tmp_path / "agents"
+    agents_dir.mkdir()
+    (agents_dir / "researcher.yaml").write_text(
+        """
+name: researcher
+role: "Researcher"
+goal: "Find information"
+system_prompt: "You are a researcher."
+llm_service: default
+agent_type: interactive
+tools:
+  - web_search
+""".strip()
+    )
+
+    kernel = RuntimeKernel(
+        config=_runtime_config(tmp_path, agents_dir),
+        memory_profile=MemoryProfile.TESTING,
+    )
+
+    with pytest.raises(ValueError, match="unavailable tool"):
+        await kernel.start()
+
+
+@pytest.mark.asyncio
+async def test_kernel_start_succeeds_when_runtime_loads_declared_friday_tool(
+    tmp_path: Path,
+):
+    agents_dir = tmp_path / "agents"
+    agents_dir.mkdir()
+    (agents_dir / "researcher.yaml").write_text(
+        """
+name: researcher
+role: "Researcher"
+goal: "Find information"
+system_prompt: "You are a researcher."
+llm_service: default
+agent_type: interactive
+tools:
+  - web_search
+""".strip()
+    )
+
+    kernel = RuntimeKernel(
+        config=_runtime_config(
+            tmp_path,
+            agents_dir,
+            tools_config=ToolsConfig(
+                providers=ToolProvidersConfig(
+                    builtin=ToolProviderConfig(enabled=True),
+                    friday_tools=ToolProviderConfig(
+                        enabled=True,
+                        mode="selected",
+                        include_tools=("web_search",),
+                    ),
+                )
+            ),
+        ),
+        memory_profile=MemoryProfile.TESTING,
+    )
+    await kernel.start()
+
+    try:
+        assert "web_search" in kernel.tool_registry.list_names()
+    finally:
+        await kernel.stop()
+
+
+@pytest.mark.asyncio
 async def test_kernel_create_agent_uses_interactive_factory_mapping(tmp_path: Path):
     agents_dir = tmp_path / "agents"
     agents_dir.mkdir()
@@ -162,7 +242,9 @@ agent_type: interactive
 @pytest.mark.asyncio
 async def test_kernel_execute_workflow_uses_canonical_pipeline_path(tmp_path: Path):
     agents_dir = tmp_path / "agents"
-    workflows_dir = agents_dir / "workflows" / "wf_research"
+    agents_dir.mkdir()
+    workflows_root = tmp_path / "workflows"
+    workflows_dir = workflows_root / "wf_research"
     pipelines_dir = workflows_dir / "pipelines"
     pipelines_dir.mkdir(parents=True)
     (agents_dir / "researcher.yaml").write_text(
@@ -243,7 +325,7 @@ tasks:
 """.strip()
     )
 
-    config = _runtime_config(tmp_path, agents_dir)
+    config = _runtime_config(tmp_path, agents_dir, workflows_dir=workflows_root)
     config.workflow_mode = "canonical"
     config.agents_role_bindings = {"synthesis": "synthesizer"}
 
@@ -262,6 +344,7 @@ tasks:
                 {"recommendation_report": "# Recommendation"},
             ]
         )
+        mock_orchestrator.set_session = AsyncMock()
         kernel._orchestrator = mock_orchestrator
 
         execution = await kernel.execute_workflow(
@@ -270,7 +353,9 @@ tasks:
         )
 
         assert execution.status.value == "completed"
+        assert execution.execution_id
         assert execution.variables["recommendation_report"] == "# Recommendation"
+        assert execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
         assert mock_orchestrator.delegate.call_args_list[1].args[0] == "synthesizer"
     finally:
         await kernel.stop()
@@ -281,7 +366,8 @@ async def test_kernel_execute_workflow_legacy_mode_uses_adapter_and_emits_routin
     tmp_path: Path,
 ):
     agents_dir = tmp_path / "agents"
-    workflows_dir = agents_dir / "workflows"
+    agents_dir.mkdir()
+    workflows_dir = tmp_path / "workflows"
     workflows_dir.mkdir(parents=True)
     (agents_dir / "researcher.yaml").write_text(
         """
@@ -331,7 +417,12 @@ tasks:
 """.strip()
     )
 
-    config = _runtime_config(tmp_path, agents_dir, debug_mode=True)
+    config = _runtime_config(
+        tmp_path,
+        agents_dir,
+        debug_mode=True,
+        workflows_dir=workflows_dir,
+    )
     config.workflow_mode = "legacy"
 
     kernel = RuntimeKernel(
@@ -350,6 +441,7 @@ tasks:
                 {"brief": "# Brief"},
             ]
         )
+        mock_orchestrator.set_session = AsyncMock()
         kernel._orchestrator = mock_orchestrator
 
         execution = await kernel.execute_workflow(
@@ -358,6 +450,7 @@ tasks:
         )
 
         assert execution.status.value == "completed"
+        assert execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
         assert execution.variables["brief"] == "# Brief"
         first_prompt = mock_orchestrator.delegate.call_args_list[0].args[1]
         assert "- mode: deep" in first_prompt

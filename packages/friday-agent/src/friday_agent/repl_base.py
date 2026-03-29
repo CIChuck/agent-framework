@@ -14,6 +14,7 @@ from friday_core.interfaces import ChatCompletionResponse
 from friday_memory.context.assembler import ContextAssembler
 
 from friday_agent.base import AgentBase
+from friday_agent.prompting import compose_system_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,11 @@ class ReplAgentBase(AgentBase):
             if self.session_state is None:
                 await self.initialize_session()
 
-            system_prompt = self.profile.render_system_prompt()
+            prompt_composition = compose_system_prompt(
+                profile=self.profile,
+                runtime_base_prompt=self.runtime_base_system_prompt,
+            )
+            system_prompt = prompt_composition.composed_system_prompt
             tool_schemas = self._get_tool_schemas()
             context_engine = cast(ContextAssembler, self.context_engine)
             budget_limit = context_engine.calculate_budget_limit(
@@ -62,6 +67,7 @@ class ReplAgentBase(AgentBase):
                 query=input_signal,
                 state=self.session_state,
                 budget_limit=budget_limit,
+                context_strategy=self.profile.context_strategy,
             )
 
             messages = await self.context_engine.format_prompt(
@@ -75,6 +81,7 @@ class ReplAgentBase(AgentBase):
             iteration = 0
             accumulated_tool_calls: list[dict[str, Any]] = []
             accumulated_tool_results: list[dict[str, Any]] = []
+            llm_trace: list[dict[str, Any]] = []
 
             while iteration < self.MAX_ITERATIONS:
                 iteration += 1
@@ -84,10 +91,18 @@ class ReplAgentBase(AgentBase):
                     {"iteration": iteration, "message_count": len(messages)},
                 )
 
+                prompt_snapshot = [dict(message) for message in messages]
                 response: ChatCompletionResponse = await self.llm.chat_completion(
                     messages=messages,
                     tools=tool_schemas if tool_schemas else None,
                     temperature=self.profile.temperature,
+                )
+                llm_trace.append(
+                    {
+                        "iteration": iteration,
+                        "messages": prompt_snapshot,
+                        "response": self._serialize_chat_response(response),
+                    }
                 )
 
                 if response.has_tool_calls:
@@ -166,6 +181,12 @@ class ReplAgentBase(AgentBase):
                     tool_results=accumulated_tool_results
                     if accumulated_tool_results
                     else None,
+                    raw_prompt_messages=prompt_snapshot,
+                    raw_response_payload={
+                        **self._serialize_chat_response(response),
+                        "llm_trace": llm_trace,
+                    },
+                    prompt_composition=prompt_composition,
                 )
 
                 self._emit_event(
@@ -192,6 +213,7 @@ class ReplAgentBase(AgentBase):
                 tool_results=accumulated_tool_results
                 if accumulated_tool_results
                 else None,
+                prompt_composition=prompt_composition,
             )
 
             raise RuntimeError(error_msg)
@@ -199,3 +221,20 @@ class ReplAgentBase(AgentBase):
         finally:
             if self.telemetry and span_id is not None:
                 self.telemetry.end_span(span_id)
+
+    @staticmethod
+    def _serialize_chat_response(response: ChatCompletionResponse) -> dict[str, Any]:
+        return {
+            "content": response.content,
+            "tool_calls": [
+                {
+                    "id": tool_call.id,
+                    "name": tool_call.name,
+                    "arguments": tool_call.arguments,
+                }
+                for tool_call in response.tool_calls
+            ],
+            "model": response.model,
+            "usage": dict(response.usage),
+            "reasoning_content": response.reasoning_content,
+        }

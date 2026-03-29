@@ -1,0 +1,49 @@
+pipeline_id: pl_write
+version: 1.0.0
+workflow_id: wf_agentic_news
+goal: Write and publish the markdown summary report.
+upstream_pipeline_ids:
+  - pl_research
+input_contract:
+  selected_article: json
+  output_path: path
+output_contract:
+  summary_report: markdown_file
+artifact_contract:
+  produced:
+    - artifact_id: summary_report
+      type: markdown_file
+      producer_task_id: write_summary_report
+  consumed:
+    - artifact_id: selected_article
+      type: json
+      from_pipeline: pl_research
+tasks:
+  - task_id: write_summary_report
+    name: Write Summary Report
+    description: >
+      Use only the selected_article input.
+      Write a markdown report at the exact output_path provided.
+      The report must contain exactly three paragraphs summarizing the single selected article.
+      Mention the article title or source in the report.
+      Use the file_write tool to save the markdown content.
+      After the file is written successfully, respond with the exact output_path string and nothing else.
+    owner_agent_id: writer
+    input_contract:
+      selected_article: json
+      output_path: path
+    output_contract:
+      summary_report: markdown_file
+    output_artifacts:
+      - artifact_id: summary_report
+        from_output: summary_report
+        type: markdown_file
+        required: true
+    dependencies: []
+    retry_policy:
+      max_attempts: 1
+    completion_criteria:
+      - Use only the selected article.
+      - Produce exactly three paragraphs.
+      - Write the markdown file to output_path.
+      - Return only the output_path string after the file is written.

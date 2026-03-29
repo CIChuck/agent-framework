@@ -365,6 +365,35 @@ class GraphStoreAdapter(ABC):
         """
         pass
 
+    @abstractmethod
+    async def get_top_nodes(
+        self,
+        n: int = 10,
+        sort_by: str = "hit_count",
+    ) -> list["GraphNode"]:
+        """
+        Gets the top nodes sorted by a supported ranking field.
+
+        Args:
+            n: Maximum number of nodes to return
+            sort_by: Ranking field name, typically ``hit_count`` or
+                ``last_accessed``
+
+        Returns:
+            List of GraphNodes sorted by the requested criteria
+        """
+        pass
+
+    @abstractmethod
+    async def get_all_edges(self) -> list["GraphEdge"]:
+        """
+        Gets every relationship edge currently stored in the graph.
+
+        Returns:
+            List of GraphEdges in storage order
+        """
+        pass
+
 
 class ArbitrationDecision(str, Enum):
     """Decision returned by an arbitration provider."""
