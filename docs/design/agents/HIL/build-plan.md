@@ -34,18 +34,20 @@ Single `HILController` instance shared across `MemoryChatSession` and `AgentOrch
 
 > These signatures are the authoritative spec. Use them exactly — do not rename parameters or reorder arguments.
 
-### `HILInterface` ABC (`friday-core`)
+### `HILDecision` + `HILInterface` Protocols (`friday-core`)
 ```python
-class HILDecision(ABC):
+@runtime_checkable
+class HILDecision(Protocol):
+    """Structural type — enforced by mypy and isinstance(), not ABC machinery."""
     allowed: bool
     reason: str
     display_command: str | None
 
-class HILInterface(ABC):
-    @abstractmethod
+@runtime_checkable
+class HILInterface(Protocol):
+    """Structural type for approval gates. Consistent with tools.py pattern."""
     async def initialize(self) -> None: ...
 
-    @abstractmethod
     async def check_approval(
         self,
         tool_name: str,
@@ -133,6 +135,15 @@ class HILAuditWriter:
         decision: HILDecision,
     ) -> None:
         """Append one row. Log WARNING on failure — never raises."""
+
+    async def read_recent(
+        self,
+        session_id: str,
+        n: int = 20,
+    ) -> list[dict]:
+        """Return last n audit rows for session as list of dicts.
+        Keys: timestamp, agent_id, tool, command, decision, reason.
+        Returns [] when disabled or on read failure."""
 ```
 
 SQLite schema:
@@ -160,6 +171,7 @@ class HILController(HILInterface):
         self.config = config
         self._session_id = session_id
         self.session = HILSession()
+        self._lock = asyncio.Lock()     # serializes check_approval() — prevents duplicate prompts
         self._audit = HILAuditWriter(config.audit_path, config.audit_enabled, config.context)
         _overlap = set(config.exempt_tools) & set(config.blocked_tools)
         if _overlap:
@@ -171,18 +183,23 @@ class HILController(HILInterface):
     async def check_approval(
         self, tool_name: str, tool_args: dict, agent_id: str | None = None
     ) -> HILDecision:
-        # Decision chain (first match wins):
-        # 1. exempt_tools → allow (reason: exempt_tool)
-        # 2. blocked_tools → deny (reason: blocked_tool)  [beats yolo]
-        # 3. extract command: command_execute → tool_args["command"], else None
-        # 4. first_word(command) in blocked_commands → deny (reason: blocked_command) [beats yolo]
-        # 5. mode == "yolo" → allow (reason: yolo_mode)
-        # 6. first_word(command) in safe_commands → allow (reason: safe_command)
-        # 7. SHA256(tool+args) in trusted_hashes → allow (reason: trusted_hash)
-        # 8. first_word(command) in ask_once_commands AND in ask_once_approved → allow (reason: ask_once_approved)
-        # 9. prompt user → user_approved_once | user_denied | user_approved_always
-        # Every branch: await self._audit.write(self._session_id, agent_id, tool_name,
-        #                                       command, context=self.config.context, decision=decision)
+        async with self._lock:
+            # Decision chain (first match wins):
+            # 1. exempt_tools → allow (reason: exempt_tool)
+            # 2. blocked_tools → deny (reason: blocked_tool)  [beats yolo]
+            # 3. extract command: command_execute → tool_args["command"], else None
+            # 4. first_word(command) in blocked_commands → deny (reason: blocked_command) [beats yolo]
+            # 5. mode == "yolo" → allow (reason: yolo_mode)
+            # 6. first_word(command) in safe_commands → allow (reason: safe_command)
+            # 7. SHA256(tool+args) in trusted_hashes → allow (reason: trusted_hash)
+            # 8. first_word(command) in ask_once_commands AND in ask_once_approved → allow (reason: ask_once_approved)
+            # 9. prompt user:
+            #      [1] user_approved_once — one-shot, NO trust state change
+            #      [2] user_denied
+            #      [3] user_approved_always — stores hash in trusted_command_hashes;
+            #          if command tool AND first_word in ask_once_commands: also adds first_word to ask_once_approved
+            # Every branch: await self._audit.write(self._session_id, agent_id, tool_name,
+            #                                       command, context=self.config.context, decision=decision)
 
     def _extract_command(self, tool_name: str, tool_args: dict) -> str | None: ...
     @staticmethod
@@ -196,7 +213,7 @@ class HILController(HILInterface):
         """Re-resolve effective mode: context_modes.get(new_context, base_mode)."""
     def clear_session(self) -> str: ...
     async def show_audit(self, n: int = 20) -> str:
-        """Query last n rows WHERE session_id = self._session_id ORDER BY timestamp DESC.
+        """Call self._audit.read_recent(self._session_id, n) for data.
         Render rich.table.Table with columns [timestamp, agent_id, tool, command, decision, reason].
         Capture via Console(file=StringIO()). Return captured string."""
 ```
@@ -226,9 +243,10 @@ class HILController(HILInterface):
 2. MODIFY `packages/friday-core/src/friday_core/interfaces/__init__.py`
 
 **Step 1.1 — Create `hil.py`**
-- Implement `HILDecision(ABC)` and `HILInterface(ABC)` exactly as shown in Specification Reference
-- Add module docstring: `"""Abstract HIL (Human-in-the-Loop) interface. Ref: docs/design/agents/HIL/design.md §4.4"""`
-- Imports needed: `from __future__ import annotations`, `from abc import ABC, abstractmethod`, `from typing import Any`
+- Implement both `HILDecision` and `HILInterface` as `@runtime_checkable Protocol` classes exactly as shown in Specification Reference
+- Add module docstring: `"""HIL (Human-in-the-Loop) interface protocols. Ref: docs/design/agents/HIL/design.md §4.4"""`
+- Imports needed: `from __future__ import annotations`, `from typing import Any, Protocol, runtime_checkable`
+- No ABC or abstractmethod imports — both types are Protocols
 
 **Step 1.2 — Update `interfaces/__init__.py`**
 - Read the file first to find the existing export pattern
@@ -240,6 +258,12 @@ class HILController(HILInterface):
 ```bash
 cd packages/friday-core && python -c "from friday_core.interfaces.hil import HILInterface, HILDecision; print('OK')"
 ```
+
+**Boundary Impact:**
+- Package: `friday-core`
+- Contract change: New `HILInterface` and `HILDecision` Protocols in `friday_core.interfaces.hil`
+- Affected downstream: `friday-agent` (Phase 9), `friday-hil` (Phase 4), `friday-runtime` (Phase 10)
+- Validation: import check above
 
 ---
 
@@ -366,6 +390,7 @@ print('OK')
 - `__init__(self, db_path: Path, enabled: bool, context: str)` — store all three; `context` stored for reference only (not used for write records — callers pass current context at write time)
 - `initialize()` — open `aiosqlite` connection, `PRAGMA journal_mode=WAL`, run `CREATE TABLE IF NOT EXISTS` + `CREATE INDEX IF NOT EXISTS` from schema in Specification Reference; `Path.mkdir(parents=True, exist_ok=True)` before opening DB; raise `RuntimeError` on failure when `enabled=True`; no-op when `enabled=False`
 - `write(session_id, agent_id, tool_name, command, context, decision)` — insert one row; `id=str(uuid.uuid4())`, `timestamp=datetime.utcnow().isoformat()`, `command_hash=SHA256(json.dumps({"tool": tool_name, ...}, sort_keys=True))`; catch all exceptions and log at `WARNING` level — never re-raise
+- `read_recent(session_id, n=20) -> list[dict]` — query `SELECT timestamp, agent_id, tool, command, decision, reason FROM hil_audit WHERE session_id = ? ORDER BY timestamp DESC LIMIT ?`; return list of dicts with those keys; return `[]` when `enabled=False` or on read failure (log at WARNING)
 - Use `friday_core.logging.get_logger(__name__)` for all logging — never `print()` or stdlib `logging`
 
 **`[STOP]`** — Do not implement `HILController` or `prompt.py` yet.
@@ -432,16 +457,19 @@ print('import OK')
 
 **Step 7.1 — Class skeleton and `__init__`**
 - Constructor signature: `def __init__(self, config: HILConfig, session_id: str) -> None`
-- Store: `self.config`, `self._session_id`, `self.session = HILSession()`, `self._audit = HILAuditWriter(...)`
+- Store: `self.config`, `self._session_id`, `self.session = HILSession()`, `self._lock = asyncio.Lock()`, `self._audit = HILAuditWriter(...)`
 - Log overlap warning for `exempt_tools ∩ blocked_tools`
 - `initialize()` → `await self._audit.initialize()`
+- Import `asyncio` at module level
 
 **Step 7.2 — Private helpers**
-- `_extract_command(tool_name, tool_args) -> str | None` — returns `tool_args["command"]` if `tool_name == "command_execute"`, else `None`
+- `_extract_command(tool_name, tool_args) -> str | None` — returns `tool_args["command"]` if `tool_name == "command_execute"`, else `None`. Note: hard-coded to `command_execute` only in v0.1. If future tools also execute shell commands, this method will need updating or a config-driven mapping.
 - `_first_word(command) -> str` — `command.split()[0]` (staticmethod)
 - `_hash_call(tool_name, tool_args) -> str` — `hashlib.sha256(json.dumps({"tool": tool_name, "args": tool_args}, sort_keys=True).encode()).hexdigest()`
 
 **Step 7.3 — `check_approval()` decision chain**
+The entire decision chain runs under `async with self._lock:` to serialize concurrent calls and prevent duplicate prompts (see design.md §6 concurrency note).
+
 Implement exactly the 9-step chain from Specification Reference, in order. After every decision branch (before returning), call:
 ```python
 await self._audit.write(
@@ -451,12 +479,14 @@ await self._audit.write(
 ```
 Log `DEBUG` for auto-allow decisions (rules 1–8), `INFO` for user-prompted decisions (rule 9).
 
+**`ask_once` mode note:** The coarse-grained `ask_once_approved` fast-path (rule 8) only applies to command-executing tools with first-word in `ask_once_commands`. Non-command tools in `ask_once` mode only get exact-hash trust via option [3] — they are effectively `strict` unless the user picks option [3] for the exact same call.
+
 **Step 7.4 — Runtime command helpers**
 - `status_text() -> str` — one-liner per field: mode, context, trust store sizes, audit DB path, session_id
 - `set_mode(mode) -> str` — validate against `["yolo", "strict", "ask_once"]`, update `self.config.mode`, return confirmation string
 - `set_context(context) -> str` — update `self.config.context`, re-resolve `self.config.mode = self.config.context_modes.get(context, self.config.base_mode)`, return confirmation
 - `clear_session() -> str` — reset `self.session = HILSession()`, return confirmation
-- `show_audit(n=20) -> str` — query SQLite `WHERE session_id = self._session_id ORDER BY timestamp DESC LIMIT n`, render `rich.table.Table` with columns `[timestamp, agent_id, tool, command, decision, reason]`, capture via `Console(file=StringIO())`, return string. `NULL agent_id` → `"direct"`, `NULL command` → `"—"`.
+- `show_audit(n=20) -> str` — call `self._audit.read_recent(self._session_id, n)` for data, render `rich.table.Table` with columns `[timestamp, agent_id, tool, command, decision, reason]`, capture via `Console(file=StringIO())`, return string. `NULL agent_id` → `"direct"`, `NULL command` → `"—"`.
 
 **`[STOP]`** — Do not touch any file outside `controller.py`.
 
@@ -548,7 +578,7 @@ python -c "from friday_hil import HILConfig, HILSession, HILDecision, HILControl
 **Touch exactly one file:**
 - MODIFY `packages/friday-agent/src/friday_agent/base.py`
 
-**Read the file first.** Then make exactly three changes:
+**Read the file first.** Then make exactly three changes (plus a subclass verification step):
 
 **Change 9.1 — Import**
 Add to the imports section (with other conditional/TYPE_CHECKING imports to avoid circular deps):
@@ -580,40 +610,67 @@ if self._hil is not None:
         )
 ```
 
-**`[STOP]`** — Do not modify any other method in `base.py`. Do not touch `orchestrator.py` yet.
+**Change 9.4 — Verify subclass forwarding**
+After modifying `AgentBase.__init__()`, check `CopilotAgent.__init__()` and any other `AgentBase` subclasses in `friday-agent` to confirm `hil_controller` is forwarded to `super().__init__()`. If a subclass has its own `__init__` that does not forward `hil_controller` (either explicitly or via `**kwargs`), add it as an explicit parameter in the same phase. Do not defer this to a later phase — the Level 2 integration tests (Phase 19) depend on it.
+
+**`[STOP]`** — Do not modify any other method in `base.py` beyond these changes. Do not touch `orchestrator.py` yet.
 
 **Verify:**
 ```bash
 pytest packages/friday-agent/tests_agent/ -x -q 2>&1 | tail -5
 ```
 All existing tests must still pass.
+
+**Boundary Impact:**
+- Package: `friday-agent`
+- Contract change: `AgentBase.__init__()` gains optional `hil_controller` param; `_execute_tool_call()` gains HIL gate
+- Affected downstream: All `AgentBase` subclasses must forward `hil_controller` to `super().__init__()`. RuntimeKernel factory methods must pass the new param.
+- Validation: `pytest packages/friday-agent/tests_agent/ -x -q`
 
 ---
 
-### Phase 10 — friday-agent: AgentOrchestrator
+### Phase 10 — RuntimeKernel HIL Integration
 
 **Prerequisites:** Phase 9 complete and passing
 
-**Touch exactly one file:**
-- MODIFY `packages/friday-agent/src/friday_agent/orchestrator.py`
+**Touch exactly these files:**
+1. MODIFY `packages/friday-runtime/src/friday_runtime/di.py`
+2. MODIFY `packages/friday-runtime/src/friday_runtime/kernel.py`
+3. MODIFY `packages/friday-agent/src/friday_agent/orchestrator.py` (optional param only)
 
-**Read the file first.** Then make exactly two changes:
+**Read each file first.** `AgentOrchestrator._ensure_agent()` delegates agent construction to `AgentRegistry.create_agent()`, which calls a factory callable set by `RuntimeKernel`. HIL injection happens in the factory, not in the orchestrator.
 
-**Change 10.1 — `AgentOrchestrator.__init__()`**
-- Add `hil_controller: "HILInterface | None" = None` as a parameter
+**Change 10.1 — `DIContainer` (`di.py`)**
+- Add `self.hil_controller: HILInterface | None = None` as an optional slot (alongside existing optional slots like `multi_agent_memory`)
+- Add `_create_hil_controller()` method following the `_create_multi_agent_stack()` config-gated pattern:
+  - If HIL is not enabled in config → set `self.hil_controller = None` and return
+  - Otherwise create `HILController` from config, store on `self.hil_controller`
+- Call `_create_hil_controller()` in `boot()` after `_create_tool_registry()`
+
+**Change 10.2 — `RuntimeKernel` (`kernel.py`)**
+- Add `hil_controller` property that accesses `self._di.hil_controller`
+- In `_create_interactive_agent(profile)` (line ~596): add `hil_controller=self._di.hil_controller` to the agent constructor call
+- In `_create_autonomous_agent(profile)` (line ~612): same addition
+
+**Change 10.3 — `AgentOrchestrator` (`orchestrator.py`) — backward compat only**
+- Add `hil_controller: "HILInterface | None" = None` to `AgentOrchestrator.__init__()` for manual-DI flows
 - Store as `self._hil: "HILInterface | None" = hil_controller`
+- Do NOT modify `_ensure_agent()` — it delegates to the registry factory which already handles injection via RuntimeKernel
 
-**Change 10.2 — `_ensure_agent()`**
-- Read the method to find where agent instances are constructed
-- Pass `hil_controller=self._hil` to the agent constructor call
-
-**`[STOP]`** — Do not modify any other method. Do not touch `friday.py` yet.
+**`[STOP]`** — Do not touch `friday.py` yet.
 
 **Verify:**
 ```bash
 pytest packages/friday-agent/tests_agent/ -x -q 2>&1 | tail -5
+pytest packages/friday-runtime/ -x -q 2>&1 | tail -5
 ```
 All existing tests must still pass.
+
+**Boundary Impact:**
+- Packages: `friday-runtime`, `friday-agent`
+- Contract change: `DIContainer` gains optional `hil_controller` slot; RuntimeKernel factory methods inject `hil_controller` into agents; `AgentOrchestrator.__init__()` gains optional `hil_controller` param
+- Affected downstream: All experiments using RuntimeKernel gain HIL support automatically when enabled in config
+- Validation: test commands above
 
 ---
 
@@ -650,7 +707,7 @@ print('import OK')
 
 **Read the file first** — it is ~8000 lines. Identify:
 - The import block at the top
-- The `main()` function and where `config.get("tools", {})` appears
+- The `main()` function, specifically where `session_id` is created (~line 7758)
 
 **Change 12.1 — Add imports** (near other optional-feature imports):
 ```python
@@ -659,7 +716,9 @@ from friday_core.interfaces.hil import HILInterface
 ```
 
 **Change 12.2 — HIL init block in `main()`**
-After `tools_config = config.get("tools", {})` (or the equivalent config extraction block), add:
+After `session_id` creation (~line 7758: `session_id = f"session_{uuid.uuid4().hex[:8]}"`), before `MemoryChatSession` construction (~line 7782), add:
+
+**Note:** `tools_config` is extracted much earlier (~line 7131), but `session_id` is not created until ~line 7758. The HIL init block must be placed after `session_id` because `HILController` requires it at construction time.
 ```python
 hil_config_dict = config.get("hil", {})
 hil_controller: HILInterface | None = None
@@ -694,19 +753,18 @@ print('import OK')
 **Touch exactly one file:**
 - MODIFY `tests/integration/memory/friday.py`
 
-**Read the file** to locate `AgentOrchestrator(...)` construction and `MemoryChatSession.__init__()`.
+**Read the file** to locate `MemoryChatSession.__init__()` and the `MemoryChatSession(...)` instantiation in `main()`.
 
-**Change 13.1 — `AgentOrchestrator` construction**
-Find the `AgentOrchestrator(...)` call in `main()`. Add `hil_controller=hil_controller` as a keyword argument. Do not change any other arguments.
+> **Note:** `friday.py` v0.1 supports direct-chat HIL only. Orchestrated-agent HIL is handled by the RuntimeKernel factory (Phase 10). There is no `AgentOrchestrator(...)` construction in `friday.py` to modify.
 
-**Change 13.2 — `MemoryChatSession.__init__()`**
-- Add `hil_controller: "HILInterface | None" = None` parameter (after existing params)
+**Change 13.1 — `MemoryChatSession.__init__()`**
+- Add `hil_controller: "HILInterface | None" = None` parameter (after existing optional params)
 - Store as `self._hil: "HILInterface | None" = hil_controller`
 
-**Change 13.3 — `MemoryChatSession` instantiation in `main()`**
-Find where `MemoryChatSession(...)` is called in `main()`. Add `hil_controller=hil_controller`.
+**Change 13.2 — `MemoryChatSession` instantiation in `main()`**
+Find where `MemoryChatSession(...)` is called in `main()` (line ~7782). Add `hil_controller=hil_controller`.
 
-**`[STOP]`** — Do not add the tool intercept yet. Stop after these three changes.
+**`[STOP]`** — Do not add the tool intercept yet. Stop after these two changes.
 
 **Verify:**
 ```bash
@@ -845,8 +903,6 @@ hil:
     - sort
     - uniq
     - cut
-    - awk
-    - sed
   ask_once_commands:
     - python
     - git
@@ -872,11 +928,12 @@ hil:
 
 **Prerequisites:** Phase 16 complete
 
-**Create exactly four files:**
-1. CREATE `packages/friday-hil/tests_hil/test_config.py`
-2. CREATE `packages/friday-hil/tests_hil/test_audit.py`
-3. CREATE `packages/friday-hil/tests_hil/test_decision_chain.py`
-4. CREATE `packages/friday-hil/tests_hil/test_prompt.py`
+**Create exactly five files:**
+1. CREATE `packages/friday-hil/tests_hil/conftest.py` (shared fixtures — see test-plan.md Level 1)
+2. CREATE `packages/friday-hil/tests_hil/test_config.py`
+3. CREATE `packages/friday-hil/tests_hil/test_audit.py`
+4. CREATE `packages/friday-hil/tests_hil/test_decision_chain.py`
+5. CREATE `packages/friday-hil/tests_hil/test_prompt.py`
 
 Follow the test coverage list from `docs/design/agents/HIL/test-plan.md` Level 1.
 
@@ -894,6 +951,9 @@ Follow the test coverage list from `docs/design/agents/HIL/test-plan.md` Level 1
 - `write()` inserts row with correct `session_id`, `agent_id`, `decision`, `reason`, `context`
 - `write()` silently logs (does not raise) on insert failure
 - `context` column stores the value passed to `write()`, not the value from `__init__`
+- `read_recent()` returns correct rows as list of dicts, ordered by most recent first
+- `read_recent()` filters by `session_id` — rows from other sessions are excluded
+- `read_recent()` returns `[]` when `enabled=False`
 
 **`test_decision_chain.py`** must cover every branch of `check_approval()`:
 - Rule 1: `exempt_tools` → allow without prompt
@@ -926,9 +986,11 @@ All tests must pass.
 
 ---
 
-### Phase 18 — End-to-End Verification
+### Phase 18 — End-to-End Verification (Manual Only)
 
 **Prerequisites:** All prior phases complete and verified
+
+**Note:** This phase is a manual developer verification step, not intended for CI automation. The interactive TTY prompts and Rich panel rendering require a human operator. Automated coverage for all HIL logic is provided by Phases 17, 19–22.
 
 Run the following sequence in order. Each step must produce the stated result before proceeding to the next.
 
@@ -981,7 +1043,7 @@ pytest packages/friday-agent/tests_agent/ packages/friday-hil/tests_hil/ -x -q
 Create `MockHILController` exactly as specified in `docs/design/agents/HIL/test-plan.md` § Shared Helpers.
 - Module docstring: `"""friday_hil.testing — Test doubles for the HIL package."""`
 - Import `HILDecision` from `friday_hil.decision` (not from `friday_hil` to avoid circular imports)
-- The class must satisfy the `HILInterface` protocol without subclassing it (structural typing)
+- The class satisfies the `HILInterface` `Protocol` structurally — no subclassing or import of `HILInterface` is needed. Verify with `isinstance(MockHILController(), HILInterface)` since the protocol is `@runtime_checkable`.
 
 **Step 19.2 — `test_hil_integration.py`**
 Implement all tests from `docs/design/agents/HIL/test-plan.md` Level 2:

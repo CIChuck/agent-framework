@@ -40,12 +40,16 @@ Import as: from friday_hil.testing import MockHILController
 """
 from __future__ import annotations
 from dataclasses import dataclass, field
-from friday_core.interfaces.hil import HILInterface, HILDecision as HILDecisionABC
 from friday_hil.decision import HILDecision
 
 @dataclass
 class MockHILController:
-    """Test double for HILInterface. Records all calls; returns pre-configured decisions."""
+    """Test double that satisfies `HILInterface` Protocol structurally.
+
+    No subclassing or import of HILInterface needed — the Protocol is
+    @runtime_checkable, so ``isinstance(MockHILController(), HILInterface)``
+    returns True.  Records all calls; returns pre-configured decisions.
+    """
 
     # Map tool_name → decision to return (default: allow/yolo_mode)
     decisions: dict[str, HILDecision] = field(default_factory=dict)
@@ -61,7 +65,7 @@ class MockHILController:
 
     async def check_approval(
         self, tool_name: str, tool_args: dict, agent_id: str | None = None
-    ) -> HILDecisionABC:
+    ) -> HILDecision:
         self.calls.append((tool_name, tool_args, agent_id))
         return self.decisions.get(tool_name, self.default_decision)
 
@@ -126,7 +130,7 @@ class ToolCallLLMClient:
 ### `conftest.py` (new)
 
 ```python
-import pytest, tempfile
+import pytest, pytest_asyncio, tempfile
 from pathlib import Path
 from friday_hil.config import HILConfig
 from friday_hil.controller import HILController
@@ -151,13 +155,13 @@ def strict_config(tmp_db) -> HILConfig:
         "audit": {"path": str(tmp_db)},
     })
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def yolo_controller(yolo_config) -> HILController:
     ctrl = HILController(yolo_config, session_id="test-session")
     await ctrl.initialize()
     return ctrl
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def strict_controller(strict_config) -> HILController:
     ctrl = HILController(strict_config, session_id="test-session")
     await ctrl.initialize()
@@ -187,6 +191,9 @@ async def strict_controller(strict_config) -> HILController:
 | `test_write_context_uses_call_time_value` | `context` column = value passed to `write()`, not value from `__init__` |
 | `test_write_silently_logs_on_failure` | Injected DB error → no exception raised, WARNING logged |
 | `test_write_null_agent_id_for_direct_chat` | `agent_id=None` stored as SQL NULL |
+| `test_read_recent_returns_correct_rows` | After 3 writes, `read_recent(session_id, 2)` returns 2 most recent rows as dicts |
+| `test_read_recent_filters_by_session_id` | Rows from other sessions are not returned |
+| `test_read_recent_returns_empty_when_disabled` | `enabled=False` → returns `[]` |
 
 ### `test_decision_chain.py`
 
@@ -206,6 +213,9 @@ All tests use `asyncio_mode = "auto"` (already configured globally). No real TTY
 | `test_nontty_auto_deny` | 8 | Monkeypatch `sys.stdin.isatty → False` → `reason=user_denied`, no hang (non-TTY path within prompt rule) |
 | `test_debug_log_emitted_for_auto_allow` | 1–8 | `caplog` captures DEBUG entry for exempt/safe/yolo decisions |
 | `test_audit_write_called_on_every_branch` | all | `_audit.write()` called exactly once per `check_approval()` call |
+| `test_ask_once_option1_no_trust_state_change` | 8 | Option [1] approval does not populate `trusted_command_hashes` or `ask_once_approved` |
+| `test_ask_once_option3_populates_both_stores` | 6,7 | Option [3] stores hash in `trusted_command_hashes` AND, for command tools with first-word in `ask_once_commands`, adds first-word to `ask_once_approved` |
+| `test_ask_once_non_command_tool_exact_hash_only` | 6 | Non-command tool in `ask_once` mode: option [3] stores exact hash only; different args still prompt |
 
 ### `test_prompt.py`
 
@@ -269,8 +279,8 @@ def agent_with_hil(profile, mock_memory, mock_context_engine, mock_llm, tool_reg
 | Test | Verifies |
 |------|---------|
 | `test_orchestrator_stores_hil_controller` | `AgentOrchestrator(hil_controller=mock)` → `self._hil == mock` |
-| `test_orchestrator_passes_hil_to_spawned_agents` | `_ensure_agent()` passes `hil_controller=self._hil` to agent ctor |
 | `test_orchestrator_none_hil_propagates` | `hil_controller=None` propagates; agents' `_hil` is `None` |
+| `test_runtime_kernel_factory_injects_hil` | `RuntimeKernel` factory methods (`_create_interactive_agent`, `_create_autonomous_agent`) pass `hil_controller=self._di.hil_controller` to agent constructor |
 
 ---
 
@@ -295,7 +305,13 @@ if str(INTEGRATION_ROOT) not in sys.path:
 
 ### `test_memory_chat_hil.py` — Fixtures
 
+> **Note:** These fixtures use the real `MemoryChatSession` constructor signature. Minimal
+> mocks are provided for every required parameter — check the current `MemoryChatSession.__init__()`
+> if the signature evolves.
+
 ```python
+from unittest.mock import AsyncMock, MagicMock
+
 @pytest.fixture
 def mock_hil():
     return MockHILController()
@@ -307,16 +323,37 @@ def deny_hil():
     )
 
 @pytest.fixture
-def session(mock_hil):
+def mock_llm():
+    """Minimal LiteLLMService stand-in."""
+    return AsyncMock()
+
+@pytest.fixture
+def mock_controller():
+    """Minimal MemoryController stand-in."""
+    return AsyncMock()
+
+@pytest.fixture
+def mock_assembler():
+    """Minimal ContextAssembler stand-in."""
+    return AsyncMock()
+
+@pytest.fixture
+def mock_architect():
+    """Minimal PromptArchitect stand-in."""
+    return MagicMock()
+
+@pytest.fixture
+def session(mock_hil, mock_llm, mock_controller, mock_assembler, mock_architect):
     """MemoryChatSession with all heavy deps mocked and mock HIL injected."""
     from friday import MemoryChatSession
     sess = MemoryChatSession(
-        llm=mock_llm_fixture(),
-        tool_registry=minimal_tool_registry(),
-        memory_controller=mock_memory(),
-        context_assembler=mock_context_assembler(),
-        hil_controller=mock_hil,
+        controller=mock_controller,
+        assembler=mock_assembler,
+        architect=mock_architect,
+        system_prompt="Test system prompt",
         session_id="test-session-hil",
+        user_id="test-user",
+        hil_controller=mock_hil,
     )
     return sess
 ```

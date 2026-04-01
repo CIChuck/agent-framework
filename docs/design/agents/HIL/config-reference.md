@@ -65,13 +65,13 @@ hil:
     - sort
     - uniq
     - cut
-    - awk
-    - sed
 
-  # Shell command prefixes that prompt once per session, then auto-approve.
+  # Shell command prefixes eligible for coarse-grained (first-word) session trust.
   # On first encounter the user sees the approval prompt (options 1/2/3).
-  # If approved (1 or 3), the first-word token is added to the session's
-  # ask_once_approved set — subsequent calls with the same first word skip prompting.
+  # Option [1]: one-shot approval only — no trust state is changed.
+  # Option [3]: stores the exact call hash in trusted_command_hashes AND adds the
+  #   first-word token to ask_once_approved — subsequent calls sharing that first
+  #   word auto-approve for the rest of the session.
   # Only applies to command-executing tools.
   ask_once_commands:
     - python
@@ -88,14 +88,16 @@ hil:
     - dd
     - mkfs
 
-  # Timeout behaviour when human is unavailable (reserved for v0.2).
-  # In v0.1 this field is parsed but has no runtime effect.
+  # ── Reserved for v0.2 ──────────────────────────────────────────────
+  # autonomous_fallback is NOT parsed or represented in HILConfig in v0.1.
+  # It is shown here for forward-compatibility reference only.
   # In v0.2: when HIL is in `autonomous` context and a prompt is required,
   # a timer fires; on expiry it applies `action` and writes an audit record
   # with reason='timeout_fallback'.
-  autonomous_fallback:
-    action: deny                # deny | allow — what to do when no human responds
-    timeout_seconds: 30         # seconds to wait before applying action (v0.2)
+  #
+  # autonomous_fallback:
+  #   action: deny              # deny | allow — what to do when no human responds
+  #   timeout_seconds: 30       # seconds to wait before applying action
 
   # Audit logging configuration.
   audit:
@@ -147,11 +149,11 @@ In all modes, `blocked_tools` and `blocked_commands` always deny, and `exempt_to
 |------|:---:|:---:|:---:|:---:|
 | `yolo` | allow | allow | allow | allow |
 | `strict` | allow | prompt every time† | allow | prompt every time |
-| `ask_once` | allow | prompt once → then allow | allow | prompt once → then allow |
+| `ask_once` | allow | prompt once; option [3] grants first-word trust | allow | prompt each unique call; option [3] stores exact hash only |
 
 **† `strict` + `ask_once_commands` clarification:** In `strict` mode, `ask_once_commands` are prompted *every time*. The `ask_once_approved` set (priority 7) is only populated when the user approves with option [3], which also adds the hash to `trusted_command_hashes`. On a subsequent call in `strict` mode, the `trusted_hash` check (priority 6) fires first — so once the user has chosen [3], that exact call is auto-approved even in `strict` mode. The practical effect: first call always prompts; option [3] silences *that exact call* for the session; other calls with the same first-word still prompt unless approved individually.
 
-**`ask_once` mode clarification:** In `ask_once` mode, *every* tool (not just `ask_once_commands`) is only prompted once. After the first approval, the call hash is stored in `trusted_command_hashes` and subsequent identical calls auto-approve. `ask_once_commands` additionally store the first-word token in `ask_once_approved`, so *any* call sharing that first word also auto-approves — a coarser-grained trust than the exact-hash mechanism.
+**`ask_once` mode clarification:** In `ask_once` mode, non-command tools (tools that do not execute shell commands) are effectively prompted like `strict` — each unique call requires its own approval. Option [1] is a one-shot approval with no trust state change. Option [3] stores the exact call hash in `trusted_command_hashes`, so only that *identical* call auto-approves on subsequent invocations. For tools in `ask_once_commands`, option [3] *additionally* stores the first-word token in `ask_once_approved`, granting coarser-grained trust — any call sharing that first word auto-approves for the rest of the session.
 
 ---
 

@@ -33,23 +33,33 @@ Each phase adds dependencies (a Dolt MySQL adapter, eventually Beads client bind
 
 ```
 friday-core
-  └── interfaces/hil.py        (HILInterface ABC, HILDecision ABC)
+  └── interfaces/hil.py        (HILInterface Protocol, HILDecision Protocol)
        │
        ├── friday-agent         (accepts HILInterface | None, never imports friday-hil)
        │     └── AgentBase._execute_tool_call()  ← HIL gate
-       │     └── AgentOrchestrator               ← passes hil_controller to agents
        │
-       └── friday-hil           (implements HILInterface; deps: friday-core + aiosqlite + rich)
-             └── HILController
+       ├── friday-hil           (implements HILInterface; deps: friday-core + aiosqlite + rich)
+       │     └── HILController
+       │
+       └── friday-runtime       (injects hil_controller via agent factory methods)
+             └── RuntimeKernel._create_interactive_agent()  ← passes hil_controller
+             └── RuntimeKernel._create_autonomous_agent()   ← passes hil_controller
 ```
 
-Neither `friday-agent` nor `friday-hil` depends on the other. They are wired together at the application layer (`friday.py`). This is identical to how `friday-llm` implements `LLMClient` from `friday-core` without `friday-agent` importing `friday-llm` directly.
+Neither `friday-agent` nor `friday-hil` depends on the other. They are connected through two wiring modes:
+
+1. **RuntimeKernel-managed** (runtime/experiment flows): `RuntimeKernel` creates `HILController` during `boot()`, stores it on `DIContainer`, and injects it into agents via its factory methods (`_create_interactive_agent`, `_create_autonomous_agent`). `AgentOrchestrator._ensure_agent()` delegates to `AgentRegistry.create_agent()`, which calls the RuntimeKernel factory — the orchestrator never directly constructs agents or injects HIL.
+
+2. **Manual DI in `friday.py`** (direct-chat): `HILController` is created in `main()` and passed to `MemoryChatSession`. This path covers direct-chat tool interception and `/hil` commands only — orchestrated-agent HIL is handled by the RuntimeKernel path.
+
+This mirrors how `friday-llm` implements `LLMClient` from `friday-core` without `friday-agent` importing `friday-llm` directly.
 
 **Dependency chain position:**
 ```
 friday-core → ... → friday-agent
 friday-core → friday-hil
-(apps) → friday-agent + friday-hil  (wired here)
+friday-core → ... → friday-agent → friday-runtime  (factory injects hil_controller)
+(friday.py) → friday-hil  (manual DI for direct-chat)
 ```
 
 ---
@@ -64,8 +74,8 @@ src/friday_hil/
 ├── __init__.py       # Public exports: HILConfig, HILSession, HILDecision, HILController
 ├── config.py         # HILConfig dataclass + from_dict()
 ├── session.py        # HILSession — mutable per-session trust state
-├── decision.py       # HILDecision — concrete implementation of friday-core ABC
-├── controller.py     # HILController — main decision engine (implements HILInterface)
+├── decision.py       # HILDecision — concrete implementation of friday-core Protocol
+├── controller.py     # HILController — main decision engine (satisfies HILInterface Protocol)
 ├── prompt.py         # Rich terminal UI for interactive approval prompts
 └── audit.py          # HILAuditWriter — SQLite (aiosqlite) now, Dolt later
 tests_hil/
@@ -118,18 +128,26 @@ optional_sections = {
 
 ```python
 """
-Abstract HIL (Human-in-the-Loop) interface for the Friday Framework.
+HIL (Human-in-the-Loop) interface protocols for the Friday Framework.
+
+Both HILDecision and HILInterface are @runtime_checkable Protocols,
+consistent with the pattern used in friday_core.interfaces.tools
+(ToolDefinition, ToolAdapter, ToolRegistry).
 
 Ref: PRD_HIL_Beads_Dolt_Integration.md §5
 """
 from __future__ import annotations
-from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 
 
-class HILDecision(ABC):
+@runtime_checkable
+class HILDecision(Protocol):
     """
-    Abstract result of an HIL approval check.
+    Structural type for an HIL approval check result.
+
+    Concrete implementations (e.g., friday_hil.decision.HILDecision dataclass)
+    must provide these attributes. Enforced by mypy at type-check time and by
+    isinstance() at runtime via @runtime_checkable.
 
     Attributes:
         allowed: True if the tool call may proceed.
@@ -141,17 +159,23 @@ class HILDecision(ABC):
     display_command: str | None
 
 
-class HILInterface(ABC):
-    """Abstract approval gate for tool execution in the ReAct loop."""
+@runtime_checkable
+class HILInterface(Protocol):
+    """
+    Structural type for an approval gate in the ReAct loop.
 
-    @abstractmethod
+    Implementations (HILController, MockHILController) satisfy this
+    protocol structurally — no subclassing required. This enables
+    test doubles without importing the concrete package.
+    """
+
     async def initialize(self) -> None:
         """
         Perform async initialization (e.g., create audit DB).
         Must be awaited before any calls to check_approval().
         """
+        ...
 
-    @abstractmethod
     async def check_approval(
         self,
         tool_name: str,
@@ -170,6 +194,7 @@ class HILInterface(ABC):
         Returns:
             HILDecision with allowed=True/False and a reason code.
         """
+        ...
 ```
 
 Also update `friday-core/interfaces/__init__.py` to export `HILDecision` and `HILInterface`.
@@ -205,9 +230,12 @@ check_approval(tool_name, tool_args, agent_id=None)
       │
       └─ Prompt user (Rich terminal UI)
              [1] yes   → allow once        (reason: user_approved_once)
+                         ONE-SHOT ONLY — no trust state change
              [2] no    → deny              (reason: user_denied)
              [3] allow → add hash to trust store, allow  (reason: user_approved_always)
-                         if ask_once_command: also add first_word to ask_once_approved
+                         ALWAYS: adds SHA256(tool+args) to trusted_command_hashes
+                         CONDITIONAL: if tool is command-executing AND first_word(command)
+                           is in ask_once_commands, also add first_word to ask_once_approved
 ```
 
 Every branch calls:
@@ -219,7 +247,9 @@ await self._audit.write(
 ```
 The `context` parameter captures the mode *active at the time of the decision* — not the context at controller init. This ensures audit records remain accurate after a `/hil context` switch mid-session.
 
-**`strict` mode + `ask_once_commands` interaction:** In `strict` mode, `ask_once_commands` are prompted *every time* — priority 7 only fires in `ask_once` mode. However, once the user chooses option [3] for a specific call, the exact call hash is added to `trusted_command_hashes` (priority 6). On a subsequent call with identical tool name and args, priority 6 fires first and auto-approves, even in `strict` mode. Practical effect: first call always prompts; option [3] silences that *exact call* for the session; calls with the same command first-word but different args still prompt individually.
+**`strict` mode + `ask_once_commands` interaction:** In `strict` mode, `ask_once_commands` are prompted *every time* — priority 7 only fires in `ask_once` mode. Option [1] ("Yes — execute once") is a one-shot approval with no trust state change — the same call will prompt again on next encounter. Option [3] ("Allow") adds the exact call hash to `trusted_command_hashes` (priority 6) and, for command-executing tools with first-word in `ask_once_commands`, also adds the first-word to `ask_once_approved`. On a subsequent call with identical tool name and args, priority 6 fires first and auto-approves, even in `strict` mode. Practical effect: first call always prompts; option [1] is ephemeral; option [3] silences that *exact call* for the session; calls with the same command first-word but different args still prompt unless individually approved with option [3].
+
+**`ask_once` mode and non-command tools:** In `ask_once` mode, the coarse-grained `ask_once_approved` set (priority 7) only stores first-word command tokens — which is `None` for non-command tools like `file_read`. For these tools, auto-approval is only possible via `trusted_hash` (priority 6), which requires an exact match on tool name + args. This means `ask_once` mode is effectively `strict` for non-command tools unless the user picks option [3] on the exact same call. This is intentional — coarse-grain trust ("approve all `git` commands") makes sense for shell commands, but auto-approving `file_read` for any path because one read was approved would be too permissive.
 
 **`blocked_tools` vs `blocked_commands`:** `blocked_tools` matches on tool name (any tool, by registered name). `blocked_commands` matches on the first word of the shell command string (only for command-executing tools). This symmetry mirrors `exempt_tools` / `safe_commands`.
 
@@ -251,6 +281,8 @@ The **same `HILController` instance** (and therefore the same `HILSession`) is p
 - `AgentOrchestrator` → injected into each `AgentBase` subclass at construction time
 
 This means a user approving `command_execute({"command": "git status"})` in the direct chat also trusts it when a workflow delegates to a sub-agent.
+
+**Concurrency safety:** `HILController` holds an `asyncio.Lock` that serializes all `check_approval()` calls. Under asyncio's cooperative scheduling, concurrent calls from multiple orchestrated agents could interleave at `await` points (the prompt input and audit write), leading to duplicate prompts for the same call. The lock ensures only one approval check is active at a time — while one agent's call is being prompted, other agents' calls queue behind the lock. This adds negligible latency (prompts are human-speed) and eliminates the race between "check if hash exists" and "insert hash after approval."
 
 ---
 
@@ -287,23 +319,37 @@ Import added to `base.py`:
 from friday_core.interfaces.hil import HILInterface
 ```
 
-### 7.2 `AgentOrchestrator` (`friday-agent`)
+### 7.2 Orchestrated Agents (`friday-runtime`)
 
-Added `hil_controller: HILInterface | None = None` to `AgentOrchestrator.__init__()`. Stored as `self._hil` and passed to each agent at construction time inside `_ensure_agent()`:
+`AgentOrchestrator._ensure_agent()` does **not** directly construct agents. It delegates to `AgentRegistry.create_agent(name)` (orchestrator.py line 523), which calls a factory callable set by `RuntimeKernel`. HIL injection for orchestrated agents happens in the factory methods, not in the orchestrator.
 
-```python
-async def _ensure_agent(self, agent_name: str) -> None:
-    """Initialize agent and inject shared HIL controller."""
-    # ... existing agent creation ...
-    agent = AgentClass(..., hil_controller=self._hil)
-    self._agents[agent_name] = agent
+**RuntimeKernel wiring (the real factory boundary):**
+
+1. `DIContainer` gains an optional `hil_controller: HILInterface | None` slot, created during `boot()` via a config-gated `_create_hil_controller()` method (following the same pattern as `multi_agent_memory`).
+
+2. `RuntimeKernel._create_interactive_agent(profile)` and `_create_autonomous_agent(profile)` (kernel.py lines 596-626) pass `hil_controller=self._di.hil_controller` to the agent constructor alongside existing dependencies (memory, context_engine, llm, tool_registry, etc.).
+
+3. `RuntimeKernel` exposes `hil_controller` as a property for experiment access.
+
+**Agent creation flow with HIL:**
+```
+RuntimeKernel.boot()
+  └── _create_hil_controller()  → stores on DIContainer
+
+AgentOrchestrator._ensure_agent(name)
+  └── AgentRegistry.create_agent(name)
+      └── factory(profile)  ← set by RuntimeKernel
+          └── RuntimeKernel._create_interactive_agent(profile)
+              └── InteractiveAgent(..., hil_controller=self._di.hil_controller)
 ```
 
-The `AgentOrchestrator` is constructed with `hil_controller` in `main()` — not patched after the fact.
+`AgentOrchestrator.__init__()` retains an optional `hil_controller: HILInterface | None = None` parameter for backward compatibility with manual-DI flows, but in RuntimeKernel-managed flows the factory handles injection.
 
-### 7.3 `friday.py` — Chat Agent Integration
+### 7.3 `friday.py` — Direct-Chat Integration
 
-`friday.py` is the application layer that wires `friday-hil` into the chat session. Changes span six locations.
+`friday.py` wires `friday-hil` into the direct-chat session (`MemoryChatSession`). This covers tool-call interception and `/hil` CLI commands. Orchestrated-agent HIL is handled by RuntimeKernel (see §7.2).
+
+Changes span five locations (A–E, plus the `/hil` command in F).
 
 #### A. Imports
 
@@ -314,7 +360,7 @@ from friday_core.interfaces.hil import HILInterface
 
 #### B. `main()` — construct and initialize the controller
 
-After `tools_config = config.get("tools", {})`:
+After `session_id` creation (~line 7758), before `MemoryChatSession` construction (~line 7782):
 
 ```python
 hil_config_dict = config.get("hil", {})
@@ -334,20 +380,11 @@ if hil_config_dict:
 
 `session_id` is the same ID passed to `MemoryChatSession` and `SQLiteTranscriptStore` — all three share the same session anchor. `initialize()` is called eagerly at startup so DB path errors surface immediately rather than mid-session.
 
-#### C. `AgentOrchestrator` construction
+**Note:** `tools_config` is extracted much earlier in `main()` (~line 7131), but `session_id` is not created until line ~7758. The HIL init block must be placed after `session_id` creation because `HILController` requires it at construction time.
 
-Pass `hil_controller` at construction time:
+#### C. `MemoryChatSession.__init__` — accept and store the controller
 
-```python
-orchestrator = AgentOrchestrator(
-    ...
-    hil_controller=hil_controller,
-)
-```
-
-#### D. `MemoryChatSession.__init__` — accept and store the controller
-
-New parameter (after `tools_config`):
+New parameter (after `sanitization_config`):
 
 ```python
 hil_controller: "HILInterface | None" = None,
@@ -359,9 +396,15 @@ Stored directly:
 self._hil: HILInterface | None = hil_controller
 ```
 
+The real `MemoryChatSession.__init__()` (friday.py lines 290-322) has required params: `llm` (LiteLLMService), `controller` (MemoryController), `assembler` (ContextAssembler), `architect` (PromptArchitect), `system_prompt` (str), `session_id` (str), `user_id` (str). `hil_controller` is added as an optional param alongside other optional params like `orchestrator`, `tools_config`, etc.
+
+#### D. `MemoryChatSession` instantiation in `main()`
+
+Add `hil_controller=hil_controller` to the existing `MemoryChatSession(...)` call at line ~7782.
+
 #### E. `MemoryChatSession._process_with_tools()` — intercept before execution
 
-Inserted inside `for tc in tool_calls_to_process:`, after `all_tool_calls.append(...)` and before `# Execute the tool` (~line 6808). `agent_id` is `None` — this is direct chat, not an orchestrated agent:
+Inserted inside `for tc in tool_calls_to_process:` (line ~6789), after `all_tool_calls.append(...)` (lines ~6801-6807) and before `raw_result = await _execute_tool(...)` (line ~6814). `agent_id` is `None` — this is direct chat, not an orchestrated agent:
 
 ```python
 # HIL: check approval before executing
@@ -490,6 +533,7 @@ class HILController(HILInterface):
         self.config = config
         self._session_id = session_id   # baked in at construction; same ID as transcript session
         self.session = HILSession()
+        self._lock = asyncio.Lock()     # serializes check_approval() — see §6 concurrency note
         self._audit = HILAuditWriter(
             db_path=config.audit_path,
             enabled=config.audit_enabled,
@@ -517,9 +561,10 @@ class HILController(HILInterface):
         tool_args: dict,
         agent_id: str | None = None,
     ) -> HILDecision:
-        """Apply the HIL decision chain. Writes audit record before returning."""
-        ...
-        # All branches call:
+        """Apply the HIL decision chain under self._lock. Writes audit record before returning."""
+        async with self._lock:
+            ...
+        # All branches call (inside the lock):
         # await self._audit.write(
         #     self._session_id, agent_id, tool_name, command,
         #     context=self.config.context, decision=decision,
@@ -564,6 +609,20 @@ class HILAuditWriter:
         on the controller), not the context stored at HILAuditWriter init. This ensures
         records remain accurate after a /hil context switch mid-session.
         """
+
+    async def read_recent(
+        self,
+        session_id: str,
+        n: int = 20,
+    ) -> list[dict]:
+        """
+        Return the last n audit records for the given session as a list of dicts.
+
+        Each dict has keys: timestamp, agent_id, tool, command, decision, reason.
+        Returns an empty list when disabled or on read failure.
+        Keeps all DB access inside HILAuditWriter — the controller only formats output.
+        This ensures the Dolt migration (v0.2) is contained entirely within audit.py.
+        """
 ```
 
 **Concurrent write safety:** `HILAuditWriter.write()` uses `aiosqlite`, which serializes all writes to a single background thread. Multiple concurrent calls from different agents in the same session (e.g., two orchestrated agents executing tools simultaneously) are safe — writes are enqueued, not dropped or interleaved.
@@ -598,7 +657,7 @@ ORDER BY denials DESC;
 
 ### `HILController.show_audit(n)` — in-session query
 
-Called by `/hil audit [n]`. Queries the SQLite DB filtered to the current `session_id`, formats output via `rich.table.Table` (not `friday_cli.display_table()` — keeping `rich` direct):
+Called by `/hil audit [n]`. Delegates data retrieval to `HILAuditWriter.read_recent()`, then formats output via `rich.table.Table` (not `friday_cli.display_table()` — keeping `rich` direct):
 
 ```python
 async def show_audit(self, n: int = 20) -> str:
@@ -607,9 +666,9 @@ async def show_audit(self, n: int = 20) -> str:
     for inline display in the chat UI.
     Filtered by self._session_id — shows only records for the active session.
 
-    Implementation: queries SQLite ORDER BY timestamp DESC LIMIT n, renders a
-    rich.table.Table with columns [timestamp, agent_id, tool, command, decision,
-    reason], then captures output to string via Console(file=StringIO()).print(table).
+    Implementation: calls self._audit.read_recent(self._session_id, n) for data,
+    renders a rich.table.Table with columns [timestamp, agent_id, tool, command,
+    decision, reason], then captures output to string via Console(file=StringIO()).print(table).
     agent_id NULL is displayed as 'direct'. command NULL is displayed as '—'.
     """
 ```
@@ -723,7 +782,17 @@ Tests live in `packages/friday-hil/tests_hil/`, following the monorepo conventio
 
 ---
 
-## 13. Open Questions (from PRD §9)
+## 13. Relationship to Workflow HITL
+
+The `friday-agent` package already includes workflow-level HITL (Human-in-the-Loop) constructs in `packages/friday-agent/src/friday_agent/workflows/models.py`: `HITLPolicy`, `HITLRequest`, `HITLDecision` (a Pydantic model with `HITLDecisionAction` enum), and `HITLAuthorityPolicy`. These types govern task execution and task state transitions within the workflow engine (`WorkflowEngine` in `workflows/engine.py`), including role-based approval, timeout policies, and structured request/response flows.
+
+Tool-call HIL (this design) operates on a **separate control plane**. Workflow HITL decides whether a *task* should proceed — it has concepts like `TaskStatus.WAITING_APPROVAL`, approval callbacks, and authority policies. Tool-call HIL decides whether a *tool invocation* within a ReAct loop should proceed — it has concepts like `safe_commands`, `blocked_tools`, and session trust stores. They are complementary, not competing: a workflow task may be approved by workflow HITL, and individual tool calls within that task's execution may still be gated by tool-call HIL.
+
+**Naming:** Workflow-level uses "HITL" (Human-in-the-Loop), tool-call-level uses "HIL". This is an intentional abbreviation distinction for different scopes. The types are fully separate — `HITLDecision` (workflow) has fields like `approver_id`, `approver_role`, `request_id`, while `HILDecision` (tool-call) has `allowed`, `reason`, `display_command`. They live in different packages (`friday_agent.workflows.models` vs `friday_hil.decision`). Unification of the two systems is explicitly deferred to a future version.
+
+---
+
+## 14. Open Questions (from PRD §9)
 
 | Question | Current Answer |
 |----------|---------------|
