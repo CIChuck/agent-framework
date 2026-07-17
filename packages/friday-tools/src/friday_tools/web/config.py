@@ -5,7 +5,7 @@ Web tools configuration.
 Provides Pydantic models for configuring HTTP client, SSL, proxy,
 security, and content extraction settings.
 
-Ref: docs/specs/tool_specification.md - Category 5-6: Web Tools
+Ref: docs/reference/specs/tool_specification.md - Category 5-6: Web Tools
 """
 
 from __future__ import annotations

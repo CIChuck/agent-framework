@@ -4,7 +4,7 @@ Agent Registry.
 Central registry for agent profiles with capability-based lookup
 and on-demand agent instantiation.
 
-Ref: docs/build-plan/to-do/agent-registry-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/agent-registry-build-plan.md
 """
 
 from __future__ import annotations

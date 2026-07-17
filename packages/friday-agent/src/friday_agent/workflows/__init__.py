@@ -8,7 +8,7 @@ complex multi-agent tasks with:
 - Human-in-the-loop approval gates
 - YAML workflow definitions
 
-Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/dynamic-workflows-build-plan.md
 """
 
 from friday_agent.workflows.engine import (

@@ -5,7 +5,7 @@ All mutable runtime state is tracked in WorkflowExecution.task_states.
 TaskNode objects are never mutated — the same WorkflowDefinition can
 be executed concurrently without state collision.
 
-Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/dynamic-workflows-build-plan.md
 Ref: Phase 1 Build Plan, Step 3
 """
 

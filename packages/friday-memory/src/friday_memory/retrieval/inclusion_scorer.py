@@ -8,7 +8,7 @@ based on a multi-factor scoring system:
 - Age: Older memories need higher similarity to qualify
 - Usage: Frequently-used memories get a boost (hit_count)
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Long-Term Memory Inclusion Scoring"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "Long-Term Memory Inclusion Scoring"
 """  # noqa: E501
 
 from __future__ import annotations

@@ -4,7 +4,7 @@ OpenTelemetry Attribute Constants.
 Provides standardized attribute names following OpenTelemetry semantic
 conventions, with Friday-specific extensions.
 
-Ref: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+Ref: https://opentelemetry.io/docs/reference/specs/semconv/gen-ai/
 """
 
 
@@ -15,7 +15,7 @@ class OTelAttributes:
     These follow the official OpenTelemetry semantic conventions for
     generative AI systems.
 
-    Ref: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+    Ref: https://opentelemetry.io/docs/reference/specs/semconv/gen-ai/
     """
 
     # Operation

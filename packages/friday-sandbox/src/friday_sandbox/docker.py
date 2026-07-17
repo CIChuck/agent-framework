@@ -2,7 +2,7 @@
 """
 Docker-based sandbox implementation.
 
-Ref: docs/specs/sandbox_specifications.md - Section 7: Docker Implementation
+Ref: docs/reference/specs/sandbox_specifications.md - Section 7: Docker Implementation
 
 Provides secure, isolated code execution in Docker containers with:
 - Memory and CPU limits

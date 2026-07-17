@@ -4,7 +4,7 @@ LLM Telemetry Helper.
 
 This module re-exports from friday-telemetry for backwards compatibility.
 
-Ref: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+Ref: https://opentelemetry.io/docs/reference/specs/semconv/gen-ai/
 """
 
 # Re-export from friday-telemetry for backwards compatibility

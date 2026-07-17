@@ -5,7 +5,7 @@ URL validation and security checks.
 Provides SSRF (Server-Side Request Forgery) protection by validating
 URLs before making HTTP requests.
 
-Ref: docs/specs/tool_specification.md - Category 5-6: Web Tools
+Ref: docs/reference/specs/tool_specification.md - Category 5-6: Web Tools
 """
 
 from __future__ import annotations

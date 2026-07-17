@@ -2,7 +2,7 @@
 """
 Framework adapters for converting external tools to Friday format.
 
-Ref: docs/specs/tool_specification.md - Section 6: Adapters
+Ref: docs/reference/specs/tool_specification.md - Section 6: Adapters
 
 These adapters allow tools from other frameworks (LangChain, Anthropic,
 OpenAI) to be used within the Friday framework.

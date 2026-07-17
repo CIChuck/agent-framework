@@ -2,7 +2,7 @@
 """
 System information tools.
 
-Ref: docs/specs/tool_specification.md - Category 4: System Tools
+Ref: docs/reference/specs/tool_specification.md - Category 4: System Tools
 """
 
 from __future__ import annotations

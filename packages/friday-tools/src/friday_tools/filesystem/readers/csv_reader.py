@@ -5,7 +5,7 @@ CSV file reader adapter.
 Uses Python's built-in csv module with smart dialect and encoding detection.
 No additional dependencies required.
 
-Ref: docs/build-plan/tool-improvement-build-plan.md - Phase 3b
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 3b
 """
 
 from __future__ import annotations

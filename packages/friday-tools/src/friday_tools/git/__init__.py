@@ -2,7 +2,7 @@
 """
 Git tools for version control operations.
 
-Ref: docs/specs/tool_specification.md - Category 10: Git Operations
+Ref: docs/reference/specs/tool_specification.md - Category 10: Git Operations
 
 Provides 10 tools for git status, history, and branch management.
 """

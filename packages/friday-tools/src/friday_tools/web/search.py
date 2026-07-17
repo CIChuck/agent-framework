@@ -2,7 +2,7 @@
 """
 Web search tools.
 
-Ref: docs/specs/tool_specification.md - Category 5: Web Search
+Ref: docs/reference/specs/tool_specification.md - Category 5: Web Search
 """
 
 from __future__ import annotations

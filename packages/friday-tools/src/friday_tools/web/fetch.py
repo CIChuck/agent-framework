@@ -2,7 +2,7 @@
 """
 Web fetching tools.
 
-Ref: docs/specs/tool_specification.md - Category 5: Web Fetch
+Ref: docs/reference/specs/tool_specification.md - Category 5: Web Fetch
 """
 
 from __future__ import annotations

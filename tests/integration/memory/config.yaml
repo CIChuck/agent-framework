@@ -98,13 +98,13 @@ llm:
   ########################################################
   #
   # Moonshot Base
-  #api_base: "https://api.moonshot.ai/v1"
+  api_base: "https://api.moonshot.ai/v1"
 
   # Moonshot API Key 
-  #api_key: "sk-CppcUK1EIpnIf17cV0FPupTtYUA2GhaCLo0BfvHFMabqhLly"
+  api_key: "sk-CppcUK1EIpnIf17cV0FPupTtYUA2GhaCLo0BfvHFMabqhLly"
 
   # Moonshot Model
-  #model: "moonshot/kimi-k2.5"
+  model: "moonshot/kimi-k3"
 
   ########################################################
 
@@ -114,15 +114,15 @@ llm:
   #
   #  Base w/ Anthropic endpoint
   #api_base: "https://api.minimax.io/anthropic"
-  api_base: "https://api.minimax.io/v1"
+  #api_base: "https://api.minimax.io/v1"
 
   # MiniMax API Key 
-  api_key: "sk-api-nrb4DEhGgplejB4EqmCmS00e9QAFrT6YMNColCVIjv2R4XOIzpxhRfAFJZfLkoVY3qhrmNSAkeM9J5BdnpdyAkpmDbWEF5DMi0KnBtbfIzefRWX5bKCMq2M"
+  #api_key: "sk-api-nrb4DEhGgplejB4EqmCmS00e9QAFrT6YMNColCVIjv2R4XOIzpxhRfAFJZfLkoVY3qhrmNSAkeM9J5BdnpdyAkpmDbWEF5DMi0KnBtbfIzefRWX5bKCMq2M"
 
   # MiniMax Model
   # alternate model: MiniMax-M2.7-highspeed
   # model: "anthropic/MiniMax-M2.7"
-  model: "minimax/MiniMax-M2.7-highspeed"
+  #model: "minimax/MiniMax-M2.7-highspeed"
   ########################################################
 
 
@@ -163,7 +163,9 @@ extraction:
   #
   # Set to null or remove to use the main LLM for extraction
   #model: "openai/gpt-oss-20b"
-  model: "openai/gemma-3-27b-it"
+  #model: "openai/gemma-3-27b-it"
+  
+  model: "openai/qwen3.6-35b-a3b-mlx"
   api_base: "http://localhost:1234/v1"
   api_key: "lm-studio"
     
@@ -728,7 +730,8 @@ memory:
 
   passage_router:
     enabled: true
-    model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
+    #model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
+    model: "openai/qwen3.6-35b-a3b-mlx"
     api_base: "http://localhost:1234/v1"
     api_key: "lm-studio"
     max_retries: 2

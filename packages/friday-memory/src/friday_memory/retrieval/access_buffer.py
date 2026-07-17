@@ -5,7 +5,7 @@ Access Buffer for Lazy Access Tracking.
 Buffers memory access events in-memory for batch processing during reorganization.
 Eliminates synchronous DB writes during retrieval for better latency.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md - Optimization B
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md - Optimization B
 """
 
 import asyncio

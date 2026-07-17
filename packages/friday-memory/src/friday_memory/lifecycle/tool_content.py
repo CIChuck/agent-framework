@@ -6,7 +6,7 @@ Tracks large tool outputs and manages reference-based decay.
 When a tool output is not referenced for N turns, it gets summarized
 to save context tokens while preserving key information.
 
-Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/tool-content-lifecycle-build-plan.md
 """
 
 from __future__ import annotations

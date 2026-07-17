@@ -5,7 +5,7 @@ Session management for CLI applications.
 
 Provides configuration loading, lifecycle management, and graceful shutdown.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

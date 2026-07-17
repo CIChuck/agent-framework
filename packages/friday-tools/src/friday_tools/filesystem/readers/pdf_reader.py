@@ -5,7 +5,7 @@ PDF file reader adapter.
 Uses pypdf for text extraction from PDF documents.
 Optional dependency: pip install friday-tools[documents]
 
-Ref: docs/build-plan/tool-improvement-build-plan.md - Phase 3a
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 3a
 """
 
 from __future__ import annotations

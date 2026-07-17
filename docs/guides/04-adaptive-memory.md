@@ -2189,7 +2189,7 @@ With adaptive memory mastered, you're ready to explore how Friday uses this memo
 
 **Continue to:**
 - **[Section 5: Tools](05-tools.md)** - 50+ built-in tools and custom tool creation
-- **[Section 7: Multi-Agent Orchestration](07-multi-agent-orchestration.md)** - Collaborative agent teams with shared memory
+- **[Section 7: Multi-Agent Orchestration](07-multi-agent.md)** - Collaborative agent teams with shared memory
 - **[Section 9: CLI Reference](09-cli-reference.md)** - Complete command documentation
 - **[Section 10: Configuration Guide](10-configuration.md)** - Detailed memory configuration options
 

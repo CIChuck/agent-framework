@@ -2,7 +2,7 @@
 """
 Base tool implementation.
 
-Ref: docs/specs/tool_specification.md - Section 3: BaseTool
+Ref: docs/reference/specs/tool_specification.md - Section 3: BaseTool
 
 Provides the BaseTool class that implements ToolDefinition protocol,
 making it easy to create new tools by subclassing.

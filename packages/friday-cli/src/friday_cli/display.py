@@ -5,7 +5,7 @@ Rich-based display functions for terminal output.
 Provides professional terminal formatting using the Rich library,
 including status messages, tables, syntax highlighting, and panels.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

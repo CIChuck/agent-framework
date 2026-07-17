@@ -5,7 +5,7 @@ Promotion Scoring and Memory Promotion Service.
 Implements the promotion logic for SHORT_TERM → LONG_TERM transitions
 and the full lifecycle management service.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "PromotionScorer" and "MemoryPromotionService"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "PromotionScorer" and "MemoryPromotionService"
 """  # noqa: E501
 
 from __future__ import annotations

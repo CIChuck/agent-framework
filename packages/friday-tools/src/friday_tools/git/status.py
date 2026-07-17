@@ -2,7 +2,7 @@
 """
 Git status tools.
 
-Ref: docs/specs/tool_specification.md - Category 10: Git Operations - Status
+Ref: docs/reference/specs/tool_specification.md - Category 10: Git Operations - Status
 """
 
 from __future__ import annotations

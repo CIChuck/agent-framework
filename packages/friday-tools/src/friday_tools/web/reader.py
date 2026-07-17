@@ -9,7 +9,7 @@ Provides a production-ready tool for reading web content with:
 - Metadata extraction (title, description, Open Graph)
 - Configurable via WebConfig
 
-Ref: docs/specs/tool_specification.md - Category 5: Web Fetch
+Ref: docs/reference/specs/tool_specification.md - Category 5: Web Fetch
 """
 
 from __future__ import annotations

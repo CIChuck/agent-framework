@@ -2,7 +2,7 @@
 """
 Code formatting and linting tools.
 
-Ref: docs/specs/tool_specification.md - Category 11: Code Tools - Format
+Ref: docs/reference/specs/tool_specification.md - Category 11: Code Tools - Format
 """
 
 from __future__ import annotations

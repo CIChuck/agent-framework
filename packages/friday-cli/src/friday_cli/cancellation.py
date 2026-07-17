@@ -5,7 +5,7 @@ Cancellable async operations with keyboard interrupt support.
 Allows users to cancel long-running operations (like LLM calls) by pressing
 Escape, without exiting the entire CLI application.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

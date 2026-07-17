@@ -2,7 +2,7 @@
 """
 YAML tools.
 
-Ref: docs/specs/tool_specification.md - Category 7: Data Formats - YAML
+Ref: docs/reference/specs/tool_specification.md - Category 7: Data Formats - YAML
 """
 
 from __future__ import annotations

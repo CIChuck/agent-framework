@@ -1,8 +1,11 @@
-# Section 9: CLI Reference - memory-chat-v2.py
+# Friday Agent Framework
+## Section 9: CLI Reference - memory-chat-v2.py
 
-**Document Version:** 1.0
+**Version:** 1.0
 **Framework Version:** v0.1.0
 **Last Updated:** 2026-01-24
+
+
 
 ---
 

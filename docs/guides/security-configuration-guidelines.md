@@ -1,7 +1,13 @@
-# Security Configuration Guidelines
+# Friday Agent Framework
+## Security Configuration Guidelines
+**Version:** 1.0
+**Framework Version:** v0.1.0
+**Last Updated:** 2026-07-17
+
+---
 
 This guide documents the prompt-injection security features defined in
-`docs/security/prompt-injection-mitigation-build-plan.md`, and provides
+`docs/planning/security/prompt-injection-mitigation-build-plan.md`, and provides
 configuration guidance for operators and developers.
 
 Status: This guide reflects the planned security architecture. Some items may
@@ -213,6 +219,6 @@ Expected events:
 
 ## 11. Related Documents
 
-- `docs/security/prompt-injection-mitigation-build-plan.md`
-- `docs/security/tool-security-audit.md`
+- `docs/planning/security/prompt-injection-mitigation-build-plan.md`
+- `docs/reference/security/tool-security-audit.md`
 

@@ -5,7 +5,7 @@ Friday CLI - Rich terminal interface components.
 Provides professional terminal output using the Rich library,
 including status messages, tables, syntax highlighting, and progress indicators.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from .cancellation import (

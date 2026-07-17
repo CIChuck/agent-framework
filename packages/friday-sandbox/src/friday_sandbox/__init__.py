@@ -5,7 +5,7 @@ Friday Sandbox - Docker-based code execution for AI agents.
 This package provides secure, isolated code execution environments
 for AI agents to run dynamically generated code safely.
 
-Ref: docs/specs/sandbox_specifications.md
+Ref: docs/reference/specs/sandbox_specifications.md
 """
 
 from .config import DockerConfig, SandboxConfig, WorkspaceConfig

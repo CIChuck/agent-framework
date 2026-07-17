@@ -11,7 +11,7 @@ Tests cover:
 - InteractionTurn with agent_id
 - MemoryController author tracking
 
-Ref: docs/build-plan/shared-memory-provenance-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/shared-memory-provenance-build-plan.md
 """  # noqa: E501
 
 import uuid

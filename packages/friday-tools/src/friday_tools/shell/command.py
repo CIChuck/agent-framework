@@ -2,7 +2,7 @@
 """
 OS Command Executor with configurable blocklist safety.
 
-Ref: docs/specs/tool_specification.md - Category 4: Shell Execution
+Ref: docs/reference/specs/tool_specification.md - Category 4: Shell Execution
 
 Provides a more permissive command execution tool compared to ShellSandbox.
 Allows pipes, command chaining, and redirects (within cwd) while blocking

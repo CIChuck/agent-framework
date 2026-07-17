@@ -5,7 +5,7 @@ Vector Store Metadata Schema.
 Defines the metadata fields used for vector store documents,
 including lifecycle management fields.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md
 """
 
 from datetime import datetime

@@ -2,7 +2,7 @@
 """
 Git branch tools.
 
-Ref: docs/specs/tool_specification.md - Category 10: Git Operations - Branches
+Ref: docs/reference/specs/tool_specification.md - Category 10: Git Operations - Branches
 """
 
 from __future__ import annotations

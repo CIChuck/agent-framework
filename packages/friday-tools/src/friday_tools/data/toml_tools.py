@@ -2,7 +2,7 @@
 """
 TOML tools.
 
-Ref: docs/specs/tool_specification.md - Category 7: Data Formats - TOML
+Ref: docs/reference/specs/tool_specification.md - Category 7: Data Formats - TOML
 """
 
 from __future__ import annotations

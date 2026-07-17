@@ -2549,7 +2549,7 @@ You've now mastered Friday's advanced capabilities:
 
 - **[Section 12: Use Cases](12-use-cases.md)** - Real-world applications
 - **[Section 13: Troubleshooting](13-troubleshooting.md)** - Debugging production issues
-- **[Appendix D: Protocol Specifications](appendix-d-protocols.md)** - Complete interface definitions
+- **[Appendix D: Protocol Specifications](14-appendices.md#appendix-d-protocol-specifications)** - Complete interface definitions
 
 ---
 

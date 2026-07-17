@@ -17,7 +17,7 @@ Supports:
 - Prose files: Semantic chunking with overlap
 - Data files: Treated as prose with appropriate parsing
 
-Ref: docs/build-plan/large-file-processor-plan.md
+Ref: docs/planning/build-plans/large-file-processor-plan.md
 """
 
 from __future__ import annotations

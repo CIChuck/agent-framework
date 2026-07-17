@@ -4,7 +4,7 @@ Data models for workflow task graphs.
 TaskNode is an immutable definition of a task. All mutable runtime
 state lives in TaskState, keyed by task ID inside WorkflowExecution.
 
-Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/dynamic-workflows-build-plan.md
 Ref: Phase 1 Build Plan, Step 3
 """
 

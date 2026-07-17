@@ -2,7 +2,7 @@
 """
 Sandbox protocols defining abstract interfaces for code execution.
 
-Ref: docs/specs/sandbox_specifications.md - Section 2: SandboxProtocol
+Ref: docs/reference/specs/sandbox_specifications.md - Section 2: SandboxProtocol
 """
 
 from __future__ import annotations

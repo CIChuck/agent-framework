@@ -2,7 +2,7 @@
 """
 Anthropic tool adapter.
 
-Ref: docs/specs/tool_specification.md - Section 6.2: Anthropic Adapter
+Ref: docs/reference/specs/tool_specification.md - Section 6.2: Anthropic Adapter
 
 Converts Anthropic tool definitions (dict format) to Friday's ToolDefinition.
 """

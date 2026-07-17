@@ -1,8 +1,11 @@
-# Section 10: Configuration Guide
+# Friday Agent Framework
+## Section 10: Configuration Guide
 
-**Friday Agent Framework - Comprehensive User Guide**
+**Version:** 1.0
+**Framework Version:** v0.1.0
+**Last Updated:** 2026-01-24
 
-Version 1.0 | Framework Version: v0.1.0 | Last Updated: 2026-01-24
+
 
 ---
 

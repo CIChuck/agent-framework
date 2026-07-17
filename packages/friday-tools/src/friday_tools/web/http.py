@@ -2,7 +2,7 @@
 """
 HTTP client tools.
 
-Ref: docs/specs/tool_specification.md - Category 6: HTTP Client
+Ref: docs/reference/specs/tool_specification.md - Category 6: HTTP Client
 
 All tools use shared infrastructure:
 - URL validation with SSRF protection (validators.py)

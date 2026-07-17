@@ -5,7 +5,7 @@ Excel (XLSX) file reader adapter.
 Uses openpyxl for reading Excel files.
 Optional dependency: pip install friday-tools[spreadsheets]
 
-Ref: docs/build-plan/tool-improvement-build-plan.md - Phase 3b
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 3b
 """
 
 from __future__ import annotations

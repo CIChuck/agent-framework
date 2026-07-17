@@ -5,7 +5,7 @@ Defines agent identity, capabilities, and configuration.
 Serializable to YAML/JSON for config-driven agents.
 
 Ref: Batch 3 Specification, Section 4.1
-Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-calling-build-plan.md, Phase 5
 """
 
 from dataclasses import dataclass, field

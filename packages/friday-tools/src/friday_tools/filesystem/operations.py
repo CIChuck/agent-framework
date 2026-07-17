@@ -2,7 +2,7 @@
 """
 Filesystem operation tools.
 
-Ref: docs/specs/tool_specification.md - Category 3: Filesystem - Operations
+Ref: docs/reference/specs/tool_specification.md - Category 3: Filesystem - Operations
 """
 
 from __future__ import annotations

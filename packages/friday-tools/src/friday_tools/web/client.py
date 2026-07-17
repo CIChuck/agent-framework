@@ -5,7 +5,7 @@ Shared HTTP client factory and utilities.
 Provides a configured httpx AsyncClient based on WebConfig settings,
 with support for retries, proxies, SSL configuration, and response size limiting.
 
-Ref: docs/specs/tool_specification.md - Category 5-6: Web Tools
+Ref: docs/reference/specs/tool_specification.md - Category 5-6: Web Tools
 """
 
 from __future__ import annotations

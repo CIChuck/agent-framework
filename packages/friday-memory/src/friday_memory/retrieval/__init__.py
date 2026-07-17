@@ -9,7 +9,7 @@ This module provides multi-collection architecture for staged memory retrieval:
 - AccessBuffer: Lazy access tracking for latency optimization
 - RetrievalFactorComputer: Pre-computed retrieval factors
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 2, 3 & 5
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Phase 2, 3 & 5
 """
 
 from friday_memory.retrieval.access_buffer import (

@@ -2,7 +2,7 @@
 """
 Data format tools for reading and writing structured data.
 
-Ref: docs/specs/tool_specification.md - Categories 7-8: Data Format Tools
+Ref: docs/reference/specs/tool_specification.md - Categories 7-8: Data Format Tools
 
 Provides 11 tools for JSON, YAML, TOML, CSV, and XML handling.
 """

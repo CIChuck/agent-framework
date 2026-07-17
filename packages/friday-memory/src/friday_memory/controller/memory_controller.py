@@ -15,8 +15,8 @@ Provenance tracking:
 - Query by author via get_facts_by_author(), get_insights_by_author()
 
 Ref: Batch 2 Specification, Section 2
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 6
-Ref: docs/build-plan/shared-memory-provenance-build-plan.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Phase 6
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/shared-memory-provenance-build-plan.md
 """
 
 import asyncio

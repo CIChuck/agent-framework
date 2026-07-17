@@ -2,7 +2,7 @@
 """
 Filesystem writing tools.
 
-Ref: docs/specs/tool_specification.md - Category 2: Filesystem - Writing
+Ref: docs/reference/specs/tool_specification.md - Category 2: Filesystem - Writing
 """
 
 from __future__ import annotations

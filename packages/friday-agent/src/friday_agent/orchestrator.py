@@ -7,8 +7,8 @@ Coordinates multiple agents within a session, handling:
 - Task delegation between agents
 - Single active agent at a time (MVP model)
 
-Ref: docs/build-plan/to-do/orchestrator-mvp-build-plan.md
-Ref: docs/build-plan/phase-3-execution-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/orchestrator-mvp-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/phase-3-execution-plan.md
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
 """
 Workspace management with TTL-based lifecycle.
 
-Ref: docs/specs/sandbox_specifications.md - Section 5: Workspace Management
+Ref: docs/reference/specs/sandbox_specifications.md - Section 5: Workspace Management
 """
 
 from __future__ import annotations

@@ -5,7 +5,7 @@ Memory Lifecycle Stages and Metadata.
 Defines the lifecycle stages for memory management and the metadata
 model for tracking memory state through its lifecycle.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Core Components"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "Core Components"
 """
 
 from datetime import datetime

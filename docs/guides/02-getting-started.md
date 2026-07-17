@@ -856,7 +856,7 @@ You now have a working Friday agent with persistent memory. Ready to go deeper?
 - **[Section 9: CLI Reference](09-cli-reference.md)** - Complete command documentation
 
 **Or explore:**
-- **[Section 7: Multi-Agent Orchestration](07-multi-agent-orchestration.md)** - Build agent teams
+- **[Section 7: Multi-Agent Orchestration](07-multi-agent.md)** - Build agent teams
 - **[Section 8: Workflows](08-workflows.md)** - Create automated task graphs
 - **[Section 12: Use Cases](12-use-cases.md)** - Real-world examples
 

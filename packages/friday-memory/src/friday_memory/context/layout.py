@@ -4,8 +4,8 @@ Prompt Architect (Layout Engine).
 Physically structures the final prompt to optimize model attention.
 
 Ref: Batch 2a Specification, Section 5
-Ref: docs/build-plan/tool-calling-build-plan.md, Phase 4
-Ref: docs/build-plan/copilot-promotion-build-plan.md (Prompt Caching)
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-calling-build-plan.md, Phase 4
+Ref: docs/planning/build-plans/copilot-promotion-build-plan.md (Prompt Caching)
 
 Layout Strategy (Optimized for Attention - Default):
 1. System Message: Base prompt (identity & guardrails)

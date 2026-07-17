@@ -12,7 +12,7 @@ Query: "How do I configure logging?"
 
 The solution: Score each path and only include paths above the relevancy threshold.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Graph Path Relevancy Scoring"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "Graph Path Relevancy Scoring"
 """  # noqa: E501
 
 from __future__ import annotations

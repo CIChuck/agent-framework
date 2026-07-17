@@ -4,7 +4,7 @@ Progress indicators for long-running operations.
 
 Provides spinners and progress bars using Rich, with async compatibility.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

@@ -5,7 +5,7 @@ Command registry for CLI command dispatch.
 Provides decorator-based command registration, argument parsing,
 help generation, and aliasing support.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

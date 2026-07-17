@@ -778,7 +778,7 @@ def promote_memories(
         - decay_memories(): Companion lifecycle operation
         - PromotionScorer: Scoring algorithm details
 
-    Ref: docs/specs/Friday Framework - Component Specifications - Batch 2.md
+    Ref: docs/reference/specs/Friday Framework - Component Specifications - Batch 2.md
     """
     pass
 ```
@@ -802,7 +802,7 @@ If your contribution adds user-facing functionality, update the relevant guide s
 
 **4. Architecture specs** (Required for major changes)
 
-Significant architectural changes need spec documentation in `docs/specs/`:
+Significant architectural changes need spec documentation in `docs/reference/specs/`:
 - Design rationale
 - Alternatives considered
 - Implementation details
@@ -900,7 +900,7 @@ Links to specs, research papers, related ADRs
 - ✗ Slight overhead (abstract methods)
 - ✗ More upfront design work
 
-**Reference:** `docs/specs/Friday Framework - Component Specifications - Batch 0.md`
+**Reference:** `docs/reference/specs/Friday Framework - Component Specifications - Batch 0.md`
 
 ---
 
@@ -926,7 +926,7 @@ Links to specs, research papers, related ADRs
 - ✗ More complex architecture
 - ✗ Multiple store implementations to maintain
 
-**Reference:** `docs/specs/Friday Framework - Component Specifications - Batch 1.md`
+**Reference:** `docs/reference/specs/Friday Framework - Component Specifications - Batch 1.md`
 
 ---
 
@@ -982,7 +982,7 @@ Links to specs, research papers, related ADRs
 
 **Mitigation:** Promotion scoring uses multiple factors (age, access, confidence, connections), not just hit_count alone.
 
-**Reference:** `docs/specs/Friday Framework - Component Specifications - Batch 2.md`
+**Reference:** `docs/reference/specs/Friday Framework - Component Specifications - Batch 2.md`
 
 ---
 
@@ -1068,7 +1068,7 @@ Links to specs, research papers, related ADRs
 
 ADRs are documented in several places:
 
-1. **Inline in specs** - `docs/specs/` contain ADRs embedded in batch specifications
+1. **Inline in specs** - `docs/reference/specs/` contain ADRs embedded in batch specifications
 2. **Guide sections** - Major ADRs summarized in relevant guide sections
 3. **Code comments** - Implementation references ADRs: `# Ref: ADR-003 - Shared Memory`
 4. **Future dedicated directory** - `docs/adrs/` (planned for v0.2.0)
@@ -1077,7 +1077,7 @@ ADRs are documented in several places:
 
 ```bash
 # Search for ADR references in specs
-grep -r "ADR-" docs/specs/
+grep -r "ADR-" docs/reference/specs/
 
 # Find architecture decisions in guides
 grep -r "Decision:" docs/guides/
@@ -1527,7 +1527,7 @@ What actually happens?
 
 **Current Documentation:**
 - User guide: `docs/guides/` in repository
-- Specifications: `docs/specs/` in repository
+- Specifications: `docs/reference/specs/` in repository
 - API reference: Generated from docstrings (future)
 
 **Documentation Improvements:**
@@ -1796,7 +1796,7 @@ While not required, we appreciate:
 
 **Resources:**
 - Documentation: `docs/guides/` in repository
-- Specifications: `docs/specs/` for architectural details
+- Specifications: `docs/reference/specs/` for architectural details
 - ADRs: Design decisions and rationale
 - CLAUDE.md: Guidance for Claude Code when working with Friday
 

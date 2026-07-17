@@ -2,7 +2,7 @@
 """
 Tool protocols defining abstract interfaces for Friday tools.
 
-Ref: docs/specs/tool_specification.md - Section 2: Protocols
+Ref: docs/reference/specs/tool_specification.md - Section 2: Protocols
 
 All protocols are imported from friday-core for unified definitions.
 This module re-exports them for backward compatibility.

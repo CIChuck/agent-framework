@@ -2,7 +2,7 @@
 """
 CSV tools.
 
-Ref: docs/specs/tool_specification.md - Category 7-8: Data Formats - CSV
+Ref: docs/reference/specs/tool_specification.md - Category 7-8: Data Formats - CSV
 """
 
 from __future__ import annotations

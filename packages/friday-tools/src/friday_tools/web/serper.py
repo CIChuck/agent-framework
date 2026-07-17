@@ -2,7 +2,7 @@
 """
 Serper.dev web search tool.
 
-Ref: docs/specs/tool_specification.md - Category 5: Web Search
+Ref: docs/reference/specs/tool_specification.md - Category 5: Web Search
 
 Provides Google search results via Serper.dev SERP API. More reliable than
 scraping, returns structured results with URLs, titles, and snippets.

@@ -2,7 +2,7 @@
 """
 Configuration models for sandbox and workspace management.
 
-Ref: docs/specs/sandbox_specifications.md - Section 4: Configuration
+Ref: docs/reference/specs/sandbox_specifications.md - Section 4: Configuration
 
 Configuration follows a layered approach:
 1. Package defaults (defined here)

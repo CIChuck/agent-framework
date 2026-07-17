@@ -14,7 +14,7 @@ Tests cover:
 - Task retry logic
 - Workflow reusability (same definition, concurrent executions)
 
-Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/dynamic-workflows-build-plan.md
 Ref: Phase 1 Build Plan, Step 3
 """
 

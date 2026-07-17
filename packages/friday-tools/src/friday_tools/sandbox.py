@@ -2,7 +2,7 @@
 """
 Security sandboxing for filesystem and shell operations.
 
-Ref: docs/specs/tool_specification.md - Section 5: Security
+Ref: docs/reference/specs/tool_specification.md - Section 5: Security
 
 Provides path validation and command filtering to prevent
 dangerous operations from tools.

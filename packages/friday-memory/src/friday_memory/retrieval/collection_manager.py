@@ -7,7 +7,7 @@ Manages three separate ChromaDB collections for different memory stages:
 - long_term: Proven, frequently-accessed memories (higher threshold + inclusion scoring)
 - decayed: Low-value memories pending cleanup (not queried by default)
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Storage Architecture Decision"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "Storage Architecture Decision"
 """  # noqa: E501
 
 from __future__ import annotations

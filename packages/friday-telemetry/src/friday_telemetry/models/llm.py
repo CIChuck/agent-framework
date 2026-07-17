@@ -4,7 +4,7 @@ Telemetry Data Models for LLM Operations.
 Provides Pydantic models for structured LLM telemetry following
 OpenTelemetry GenAI semantic conventions.
 
-Ref: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+Ref: https://opentelemetry.io/docs/reference/specs/semconv/gen-ai/
 """
 
 from __future__ import annotations

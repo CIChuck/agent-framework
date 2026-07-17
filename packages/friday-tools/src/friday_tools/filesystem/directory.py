@@ -2,7 +2,7 @@
 """
 Directory tools.
 
-Ref: docs/specs/tool_specification.md - Category 1 & 3: Directory Operations
+Ref: docs/reference/specs/tool_specification.md - Category 1 & 3: Directory Operations
 """
 
 from __future__ import annotations

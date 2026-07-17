@@ -9,7 +9,7 @@ exponential calculations.
 The retrieval_factor is stored in memory metadata and used for fast
 inclusion scoring: inclusion_score = similarity * retrieval_factor
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md - Optimization A
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md - Optimization A
 """
 
 import logging

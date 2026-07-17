@@ -4,7 +4,7 @@ Input handling with Prompt Toolkit.
 
 Provides readline-style editing, history, auto-completion, and multi-line input.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
 """
 Text processing tools.
 
-Ref: docs/specs/tool_specification.md - Category 9: Text Processing
+Ref: docs/reference/specs/tool_specification.md - Category 9: Text Processing
 
 Provides 8 tools for text manipulation, search, and conversion.
 """

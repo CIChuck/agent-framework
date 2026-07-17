@@ -17,7 +17,7 @@ Components:
 - Built-in tools: scratchpad, recall_memory, store_fact
 
 Ref: Batch 3 Specification, Section 4
-Ref: docs/build-plan/to-do/dynamic-workflows-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/dynamic-workflows-build-plan.md
 """
 
 from friday_agent.autonomous import AutonomousAgent

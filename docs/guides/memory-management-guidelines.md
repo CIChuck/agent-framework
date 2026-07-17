@@ -1,4 +1,10 @@
-# Memory Management Guidelines
+# Friday Agent Framework
+## Memory Management Guidelines
+**Version:** 1.0
+**Framework Version:** v0.1.0
+**Last Updated:** 2026-07-17
+
+---
 
 This document describes how Friday-Memory manages context size, token budgets, and memory lifecycle to prevent LLM timeouts and optimize performance.
 

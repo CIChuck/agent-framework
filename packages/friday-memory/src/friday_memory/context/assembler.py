@@ -15,8 +15,8 @@ Tool context integration (Phase 3):
 - Preserves tool fields through all filtering operations
 
 Ref: Batch 2a Specification, Section 2
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Phase 7
-Ref: docs/build-plan/tool-calling-build-plan.md, Phase 3
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Phase 7
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-calling-build-plan.md, Phase 3
 """
 
 import logging

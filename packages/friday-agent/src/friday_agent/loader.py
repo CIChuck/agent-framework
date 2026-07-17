@@ -4,7 +4,7 @@ Agent Configuration Loader.
 Loads agent profiles from YAML configuration files.
 Supports validation, caching, and hot reload.
 
-Ref: docs/build-plan/to-do/agent-configuration-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/agent-configuration-build-plan.md
 """
 
 from __future__ import annotations

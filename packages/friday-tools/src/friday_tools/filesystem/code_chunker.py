@@ -6,7 +6,7 @@ Splits source code into semantically coherent chunks at function/class boundarie
 using language-specific parsing. Falls back to regex-based chunking for
 unsupported languages.
 
-Ref: docs/build-plan/large-file-processor-plan.md
+Ref: docs/planning/build-plans/large-file-processor-plan.md
 """
 
 from __future__ import annotations

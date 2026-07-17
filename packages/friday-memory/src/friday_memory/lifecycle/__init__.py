@@ -5,8 +5,8 @@ Memory Lifecycle Management Module.
 Provides temporal decay, promotion scoring, lifecycle stage management,
 migration utilities, and tool content lifecycle for the Friday memory system.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md
-Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/tool-content-lifecycle-build-plan.md
 """
 
 from friday_memory.lifecycle.decay import (

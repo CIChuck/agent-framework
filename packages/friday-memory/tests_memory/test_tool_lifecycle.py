@@ -13,7 +13,7 @@ Tests cover:
 - Per-tool policy overrides
 - ToolResult lifecycle fields
 
-Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/tool-content-lifecycle-build-plan.md
 """
 
 from unittest.mock import AsyncMock, MagicMock

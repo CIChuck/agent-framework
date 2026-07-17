@@ -2,7 +2,7 @@
 """
 JSON tools.
 
-Ref: docs/specs/tool_specification.md - Category 7: Data Formats - JSON
+Ref: docs/reference/specs/tool_specification.md - Category 7: Data Formats - JSON
 """
 
 from __future__ import annotations

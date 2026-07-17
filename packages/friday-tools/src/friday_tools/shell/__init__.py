@@ -2,7 +2,7 @@
 """
 Shell and system tools.
 
-Ref: docs/specs/tool_specification.md - Category 4: Shell/System Tools
+Ref: docs/reference/specs/tool_specification.md - Category 4: Shell/System Tools
 
 Provides 7 tools for shell command execution and system information.
 """

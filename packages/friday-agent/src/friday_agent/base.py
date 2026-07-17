@@ -12,7 +12,7 @@ Tool Selection Integration (Phase 5):
 - Provides set_tools_for_task(), expand_tools(), clear_tools()
 
 Ref: Batch 3 Specification, Section 4.2
-Ref: docs/build-plan/tool-calling-build-plan.md, Phase 5
+Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-calling-build-plan.md, Phase 5
 """
 
 import asyncio

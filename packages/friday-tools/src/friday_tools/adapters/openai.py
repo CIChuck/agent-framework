@@ -2,7 +2,7 @@
 """
 OpenAI tool adapter.
 
-Ref: docs/specs/tool_specification.md - Section 6.3: OpenAI Adapter
+Ref: docs/reference/specs/tool_specification.md - Section 6.3: OpenAI Adapter
 
 Converts OpenAI function calling format to Friday's ToolDefinition.
 """

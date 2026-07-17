@@ -1,4 +1,10 @@
-# Friday Speech Guide
+# Friday Agent Framework
+## Speech Guide
+**Version:** 1.0
+**Framework Version:** v0.1.0
+**Last Updated:** 2026-07-17
+
+---
 
 This guide covers the Friday speech package (`friday-speech`) including setup, configuration, and testing.
 

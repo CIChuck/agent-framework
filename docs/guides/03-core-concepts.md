@@ -404,7 +404,7 @@ controller = MemoryController(
 
 ## 3.3 Monorepo Package Structure
 
-### The Eight Packages
+### The Fifteen Packages
 
 Friday is structured as a **monorepo**—multiple packages in a single repository, with clear dependency relationships. The framework uses **uv** (a modern, high-performance Python package manager) for workspace management, enabling 10-100x faster installations than traditional tools while maintaining full PyPI compatibility. This enables independent development, selective installation, and fine-grained versioning.
 
@@ -418,7 +418,16 @@ friday-agent-framework/
 │   ├── friday-tools/          # Tool catalog (50+ built-in tools)
 │   ├── friday-transcript/     # Conversation logging (SQLite)
 │   ├── friday-mcp/            # Model Context Protocol integration
-│   └── friday-optimization/   # Algorithms (knapsack, token budgeting)
+│   ├── friday-optimization/   # Algorithms (knapsack, token budgeting)
+│   ├── friday-cli/            # Interactive terminal interface
+│   ├── friday-runtime/        # Agent execution loop and lifecycle
+│   ├── friday-sandbox/        # Isolated tool execution environment
+│   ├── friday-telemetry/      # Observability, metrics, cost tracking
+│   ├── friday-speech/         # Voice I/O (see speech.md)
+│   │
+│   ├── Application packages:
+│   ├── friday-finance/        # Finance application built on Friday
+│   └── friday-moltbook/       # Moltbook application built on Friday
 │
 ├── tests/                     # Integration tests
 ├── workflows/                 # Example YAML workflows
@@ -431,21 +440,27 @@ friday-agent-framework/
 The dependency graph is **directed and acyclic**—packages only depend on layers below them:
 
 ```
-                    friday-core
-                        │
-            ┌───────────┼───────────┐
-            │           │           │
-       friday-memory  friday-llm  friday-optimization
-            │           │
-            └─────┬─────┘
-                  │
-            friday-agent
-                  │
-        ┌─────────┼──────────┐
-        │         │          │
-   friday-tools  friday-  friday-
-                transcript   mcp
+friday-core
+│
+┌───────────┼───────────┬──────────────────┐
+│           │           │                  │
+friday-memory  friday-llm  friday-optimization  friday-telemetry
+│           │
+└─────┬─────┘
+      │
+friday-agent
+│
+┌─────────┼──────────┬───────────┬──────────────┐
+│         │          │           │              │
+friday-tools  friday-  friday-  friday-sandbox  friday-runtime
+          transcript  mcp
+│
+┌─────────┴──────────┐
+│                    │
+friday-cli       friday-speech
 ```
+
+Application packages (`friday-finance`, `friday-moltbook`) sit above the framework layer and depend on `friday-agent` and its siblings—never the reverse.
 
 **Why this matters:**
 - **Independent evolution**: Changes in `friday-tools` don't affect `friday-memory`
@@ -463,7 +478,7 @@ Friday uses **uv** as its package manager and build tool. uv is a modern, high-p
 
 - **10-100x faster installation** compared to pip
 - **Deterministic dependency resolution** (like Poetry, but faster)
-- **Workspace support** for monorepos (critical for Friday's 8-package structure)
+- **Workspace support** for monorepos (critical for Friday's monorepo structure)
 - **Compatible with pip** (uses PyPI, respects requirements.txt)
 - **Single binary** installation (no bootstrapping issues)
 
@@ -483,7 +498,7 @@ Friday uses **uv** as its package manager and build tool. uv is a modern, high-p
 
 **For Users:**
 - **Faster iteration**: Install packages in seconds, not minutes
-- **Less friction**: Single command (`uv sync`) handles all dependencies across all 8 packages
+- **Less friction**: Single command (`uv sync`) handles all dependencies across all 15 packages
 - **Better errors**: Clear, actionable error messages for dependency conflicts
 - **pip compatibility**: Can still use `pip install friday-agent` from PyPI
 
@@ -810,7 +825,7 @@ uv run python -c "from friday_agent import CopilotAgent; print('✓ Ready')"
 
 **Why uv for development?**
 - **Speed**: 12s for full Friday install vs. 245s with pip
-- **Workspace support**: Single command for all 8 packages
+- **Workspace support**: Single command for all 15 packages
 - **Reproducibility**: Lock files ensure consistent environments
 - **pip-compatible**: Can still use `pip install` commands
 
@@ -1129,7 +1144,7 @@ Friday's architecture is built on four foundational principles:
 
 1. **Intelligence Plane / Control Plane Separation** - Intelligence (memory, reasoning) is independent of execution (tools, actions)
 2. **Protocol-First Design** - Every component is swappable via abstract interfaces (zero vendor lock-in)
-3. **Modular Packages** - Eight independent packages with clear dependencies (selective installation, isolated testing)
+3. **Modular Packages** - Thirteen framework packages with clear dependencies (selective installation, isolated testing)
 4. **Memory Loop** - Continuous learning through Context → Action → Learning cycle (compound knowledge growth)
 
 These principles combine to create a framework that is:
@@ -1154,7 +1169,7 @@ With this mental model established, you're ready to explore Friday's capabilitie
 → **[Section 9: CLI Reference](09-cli-reference.md)** - Command-by-command documentation
 
 **For Multi-Agent:**
-→ **[Section 7: Multi-Agent Orchestration](07-multi-agent-orchestration.md)** - Building collaborative agent teams
+→ **[Section 7: Multi-Agent Orchestration](07-multi-agent.md)** - Building collaborative agent teams
 
 **For Deployment:**
 → **[Section 10: Configuration Guide](10-configuration.md)** - Complete YAML reference

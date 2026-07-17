@@ -10,7 +10,7 @@ Handles processing of large files through a three-stage pipeline:
 Supports separate LLM configurations for summarization and synthesis,
 allowing cost optimization (cheap/fast for chunks, capable for synthesis).
 
-Ref: docs/build-plan/large-file-processor-plan.md
+Ref: docs/planning/build-plans/large-file-processor-plan.md
 """
 
 from __future__ import annotations

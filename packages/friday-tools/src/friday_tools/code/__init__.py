@@ -2,7 +2,7 @@
 """
 Code tools for formatting, linting, and analysis.
 
-Ref: docs/specs/tool_specification.md - Category 11: Code Tools
+Ref: docs/reference/specs/tool_specification.md - Category 11: Code Tools
 """
 
 from .analyze import code_extract_symbols, code_parse_ast

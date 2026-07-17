@@ -2,7 +2,7 @@
 """
 Shell execution tools.
 
-Ref: docs/specs/tool_specification.md - Category 4: Shell Execution
+Ref: docs/reference/specs/tool_specification.md - Category 4: Shell Execution
 """
 
 from __future__ import annotations

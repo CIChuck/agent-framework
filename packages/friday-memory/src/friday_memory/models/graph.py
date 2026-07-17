@@ -4,8 +4,8 @@ Graph Data Models.
 Defines GraphNode, GraphEdge, and ProvenanceMetadata with strong typing.
 
 Ref: Batch 1 Specification, Section 2.1
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md (lifecycle extensions)
-Ref: docs/build-plan/shared-memory-provenance-build-plan.md (provenance tracking)
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md (lifecycle extensions)
+Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/shared-memory-provenance-build-plan.md (provenance tracking)
 """
 
 from datetime import datetime

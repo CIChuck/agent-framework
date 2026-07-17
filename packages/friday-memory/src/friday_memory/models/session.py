@@ -33,7 +33,7 @@ class ToolResult(BaseModel):
     are tracked and automatically summarized when they become stale
     (not referenced for N turns).
 
-    Ref: docs/build-plan/to-do/tool-content-lifecycle-build-plan.md
+    Ref: docs/archive/agent-phase-artifacts/completed-friday-agentic-core/tool-content-lifecycle-build-plan.md
     """
 
     tool_call_id: str = Field(..., description="ID of the corresponding tool call")

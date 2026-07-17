@@ -5,7 +5,7 @@ Decay Configuration and Calculator.
 Implements exponential temporal decay for memory lifecycle management.
 The decay formula: score(t) = score_0 * exp(-lambda * hours_since_last_access)
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "Core Components"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "Core Components"
 """
 
 import math

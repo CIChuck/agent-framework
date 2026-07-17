@@ -2,7 +2,7 @@
 """
 XML tools.
 
-Ref: docs/specs/tool_specification.md - Category 7: Data Formats - XML
+Ref: docs/reference/specs/tool_specification.md - Category 7: Data Formats - XML
 """
 
 from __future__ import annotations

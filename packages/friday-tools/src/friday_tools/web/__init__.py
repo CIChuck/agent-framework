@@ -2,7 +2,7 @@
 """
 Web tools for HTTP requests and web scraping.
 
-Ref: docs/specs/tool_specification.md - Categories 5-6: Web Tools
+Ref: docs/reference/specs/tool_specification.md - Categories 5-6: Web Tools
 
 Provides tools for web search, fetching, content reading, and HTTP operations.
 """

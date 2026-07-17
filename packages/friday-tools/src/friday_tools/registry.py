@@ -2,7 +2,7 @@
 """
 Tool registry implementation.
 
-Ref: docs/specs/tool_specification.md - Section 4: Registry
+Ref: docs/reference/specs/tool_specification.md - Section 4: Registry
 
 Provides DefaultToolRegistry for managing tool collections and the
 @tool decorator for easy tool registration.

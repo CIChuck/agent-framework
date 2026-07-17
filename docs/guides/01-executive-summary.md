@@ -36,7 +36,7 @@ At its core, Friday implements a **three-tier memory architecture** inspired by 
 
 This isn't a database wrapper. It's a **memory loop**: every conversation feeds learning, every learning informs future conversations, and importance naturally emerges through use. Friday implements **Hebbian learning** ("neurons that fire together wire together")—entities and relationships strengthen with repeated access, while unused memories naturally decay. The result is a system that mirrors human memory: remembering what matters, forgetting what doesn't, and reactivating forgotten knowledge when it becomes relevant again.
 
-**Friday is modular.** The framework consists of eight independent Python packages:
+**Friday is modular.** The framework consists of thirteen independent Python packages:
 
 - `friday-core` - Abstract protocols for complete implementation swappability
 - `friday-memory` - Three-tier memory system with lifecycle management
@@ -46,6 +46,13 @@ This isn't a database wrapper. It's a **memory loop**: every conversation feeds 
 - `friday-transcript` - Complete conversation logging with export (JSONL, Markdown, training data)
 - `friday-mcp` - Model Context Protocol integration for external tool systems
 - `friday-optimization` - Knapsack algorithms for optimal context packing
+- `friday-cli` - Interactive terminal interface
+- `friday-runtime` - Agent execution loop and lifecycle management
+- `friday-sandbox` - Isolated tool execution environment
+- `friday-telemetry` - Observability, metrics, and cost tracking
+- `friday-speech` - Voice I/O
+
+Two application packages (`friday-finance`, `friday-moltbook`) are built on the framework but are not part of it.
 
 You can use the full stack or individual packages. Need just the memory system? Use `friday-memory`. Need provider-agnostic LLM calls? Use `friday-llm`. Every major component is defined as an **abstract protocol**—swap ChromaDB for Pinecone, replace LiteLLM with a custom client, bring your own graph database. Zero vendor lock-in.
 

@@ -6,7 +6,7 @@ This package provides a wide variety of tools for AI agents including
 filesystem operations, web access, data format handling, git operations,
 and more.
 
-Ref: docs/specs/tool_specification.md
+Ref: docs/reference/specs/tool_specification.md
 """
 
 from .base import FridayTool, ToolResult

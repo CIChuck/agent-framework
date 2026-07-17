@@ -2,7 +2,7 @@
 """
 Serialization utilities for structured return values.
 
-Ref: docs/specs/sandbox_specifications.md - Section 6: Structured Returns
+Ref: docs/reference/specs/sandbox_specifications.md - Section 6: Structured Returns
 
 Handles conversion between Python objects and JSON, with special
 support for Pydantic models as return types.

@@ -2,7 +2,7 @@
 """
 Filesystem tools for file and directory operations.
 
-Ref: docs/specs/tool_specification.md - Categories 1-3: Filesystem Tools
+Ref: docs/reference/specs/tool_specification.md - Categories 1-3: Filesystem Tools
 
 Provides 17 tools for reading, writing, and managing files and directories.
 """

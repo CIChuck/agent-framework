@@ -2,7 +2,7 @@
 """
 Text conversion tools.
 
-Ref: docs/specs/tool_specification.md - Category 9: Text Processing - Convert
+Ref: docs/reference/specs/tool_specification.md - Category 9: Text Processing - Convert
 """
 
 from __future__ import annotations

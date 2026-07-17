@@ -5,7 +5,7 @@ CLI configuration for theming and styling.
 Loads optional cli-config.yaml for customizing the look and feel
 of the Friday CLI terminal interface.
 
-Ref: docs/build-plan/memory-chat-v2-prd.md
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-chat-v2-prd.md
 """
 
 from __future__ import annotations

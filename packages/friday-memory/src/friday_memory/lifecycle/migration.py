@@ -5,7 +5,7 @@ Memory Lifecycle Migration Utilities.
 Provides migration from legacy single-collection memories to
 lifecycle-aware multi-collection storage.
 
-Ref: docs/build-plan/memory-lifecycle-staging-decay.md, Section "/migrate Command"
+Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-staging-decay.md, Section "/migrate Command"
 """
 
 from __future__ import annotations

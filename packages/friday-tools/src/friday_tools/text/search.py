@@ -2,7 +2,7 @@
 """
 Text search tools.
 
-Ref: docs/specs/tool_specification.md - Category 9: Text Processing - Search
+Ref: docs/reference/specs/tool_specification.md - Category 9: Text Processing - Search
 """
 
 from __future__ import annotations

@@ -4,7 +4,7 @@ LLM Telemetry Helper.
 Provides a reusable helper class for capturing LLM telemetry
 with consistent OpenTelemetry attribute naming.
 
-Ref: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+Ref: https://opentelemetry.io/docs/reference/specs/semconv/gen-ai/
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
 """
 Data models for sandbox execution.
 
-Ref: docs/specs/sandbox_specifications.md - Section 3: Data Models
+Ref: docs/reference/specs/sandbox_specifications.md - Section 3: Data Models
 """
 
 from __future__ import annotations
