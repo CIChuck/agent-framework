@@ -24,6 +24,12 @@ Priority operational rules for agents:
 - `docs/` contains guides, specs, design notes, build plans, and repository policy. Some older docs describe target or legacy architecture; verify against current package metadata before relying on them.
 - `main.py` is only a minimal smoke entry point.
 
+## FridayV2 Implementation Boundary
+- FridayV2 planning and implementation are tracked under `docs/planning/` and the new `packages/friday-chat` app package.
+- During the FridayV2 parity implementation pass, do not modify existing framework package source or tests under `packages/friday-*`, except for `packages/friday-chat`.
+- Allowed FridayV2 implementation targets are `packages/friday-chat/`, `packages/friday-chat/tests_chat/`, minimal workspace metadata needed to register/run `friday-chat`, and FridayV2 planning docs.
+- If FridayV2 work reveals a needed framework package fix or API improvement, record it in [docs/planning/build-plans/friday-chat-v2-framework-upgrade-log.md](docs/planning/build-plans/friday-chat-v2-framework-upgrade-log.md) instead of patching the frozen framework package during the parity pass.
+
 ## Build, Test, and Development Commands
 - `uv sync --all-extras`: install all workspace dependencies, including optional extras.
 - `uv sync`: install the default workspace dependency set.
