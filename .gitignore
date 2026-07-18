@@ -8,8 +8,15 @@ dist/
 build/
 *.egg-info/
 chroma_db/
+.friday/
+/vector/
+/exports/
+tests/integration/memory/vector/*/
+tests/integration/memory/vector/backups/*/
+tests/integration/memory/vector/reorganization_logs/*
 *.gpickle
 keys.txt
 experiments/*/config/runtime.local.yaml
 experiments/*/artifacts/*
 !experiments/*/artifacts/.gitkeep
+scripts/source-friday-chat-example-env.sh

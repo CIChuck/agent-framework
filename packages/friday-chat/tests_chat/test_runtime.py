@@ -1,0 +1,403 @@
+"""Runtime factory tests for FridayV2."""
+
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any, cast
+
+from friday_chat.adapters import (
+    FrameworkChatModel,
+    FrameworkEmbeddingService,
+    FrameworkMaintenanceAdapter,
+    FrameworkMemoryAdapter,
+    FrameworkToolRegistryAdapter,
+    FrameworkTranscriptAdapter,
+    FrameworkWorkflowAdapter,
+)
+from friday_chat.config import FridayChatConfig
+from friday_chat.runtime import (
+    MAINTENANCE_LLM_ROLES,
+    FakeChatModel,
+    FakeMemoryController,
+    FakeSpeechAdapter,
+    FakeTranscriptStore,
+    build_runtime,
+)
+from friday_chat.turns.processor import TurnProcessor
+from friday_memory import AccessBuffer, MemoryPromotionService, RetrievalFactorComputer
+from friday_memory.maintenance import IncrementalGraphMaintainer
+
+
+def _config(data: dict[str, object]) -> FridayChatConfig:
+    return FridayChatConfig.model_validate(data)
+
+
+class ErroringExtractor:
+    """Extractor test double that mirrors framework error payloads."""
+
+    def __init__(self, error: str) -> None:
+        self.error = error
+        self.calls = 0
+
+    async def extract(self, turn: object) -> dict[str, Any]:
+        self.calls += 1
+        return {"error": self.error, "extracted": {}, "stats": {}}
+
+
+def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
+    config = _config({"llm": {"model": "openai/test-chat-model"}})
+
+    runtime = build_runtime(config)
+
+    assert isinstance(runtime.chat_llm, FakeChatModel)
+    assert runtime.chat_llm.model == "openai/test-chat-model"
+    assert runtime.tool_context is None
+    assert runtime.diagnostics.maintenance_llm_fallbacks == list(
+        MAINTENANCE_LLM_ROLES
+    )
+
+
+def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "chat": {"workflows_dir": str(tmp_path / "workflows")},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="test-session")
+
+    assert isinstance(runtime.chat_llm, FrameworkChatModel)
+    assert isinstance(runtime.embedding, FrameworkEmbeddingService)
+    assert isinstance(runtime.memory, FrameworkMemoryAdapter)
+    assert isinstance(runtime.transcript, FrameworkTranscriptAdapter)
+    assert isinstance(runtime.tools, FrameworkToolRegistryAdapter)
+    assert isinstance(runtime.workflow, FrameworkWorkflowAdapter)
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+
+
+def test_real_runtime_builds_friday_py_lifecycle_collaborators(
+    tmp_path: Path,
+) -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "lifecycle": {
+                "enabled": True,
+                "decay_rate": 0.01,
+                "access_boost": 0.2,
+                "promotion_threshold": 0.7,
+                "decay_threshold": 0.5,
+                "short_term_min_age_hours": 24,
+                "decayed_retention_days": 3,
+                "access_buffer": {
+                    "max_buffer_size": 12,
+                    "max_buffer_age_seconds": 34,
+                    "decay_score_boost": 0.1,
+                },
+                "factor_computer": {
+                    "decay_rate": 0.005,
+                    "usage_boost_factor": 0.1,
+                    "min_factor": 0.01,
+                },
+            },
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="test-session")
+
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+    assert isinstance(runtime.maintenance.promotion_service, MemoryPromotionService)
+    assert isinstance(runtime.maintenance.access_buffer, AccessBuffer)
+    assert isinstance(runtime.maintenance.factor_computer, RetrievalFactorComputer)
+    assert isinstance(runtime.maintenance.incremental_maintainer, IncrementalGraphMaintainer)
+    assert runtime.maintenance.access_buffer.config.max_buffer_size == 12
+
+
+def test_real_runtime_workflow_adapter_loads_configured_workflow_dir(
+    tmp_path: Path,
+) -> None:
+    workflows_dir = tmp_path / "workflows"
+    workflows_dir.mkdir()
+    (workflows_dir / "sample.yaml").write_text(
+        "id: sample\n"
+        "name: Sample Workflow\n"
+        "description: Configured workflow directory fixture.\n"
+        "tasks:\n"
+        "  - id: draft\n"
+        "    name: Draft\n"
+        "    description: Draft the requested output.\n"
+        "    agent: friday\n"
+        "    outputs:\n"
+        "      - draft\n"
+        "    requires_approval: false\n"
+    )
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "chat": {"workflows_dir": str(workflows_dir)},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="test-session")
+
+    assert runtime.workflow.list_workflows() == {
+        "sample": "Configured workflow directory fixture."
+    }
+
+
+def test_real_runtime_builds_passage_router_from_friday_py_config_shape(
+    tmp_path: Path,
+) -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {
+                "persist_directory": str(tmp_path / "vector"),
+                "passage_router": {
+                    "enabled": True,
+                    "model": "openai/router-model",
+                    "temperature": 0.0,
+                    "max_tokens": 80,
+                    "timeout_seconds": 4.0,
+                    "min_confidence": 0.75,
+                    "fallback_mode": "exclude",
+                    "include_on_empty_query": False,
+                    "heuristic_keywords": ["remember"],
+                    "min_similarity": 0.6,
+                    "min_similarity_tool_output": 0.8,
+                    "min_keep_on_empty": 1,
+                },
+            },
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="test-session")
+
+    assert isinstance(runtime.memory, FrameworkMemoryAdapter)
+    assert runtime.memory.passage_router is not None
+    router_config = runtime.memory.passage_router.config
+    assert router_config.min_confidence == 0.75
+    assert router_config.fallback_mode == "exclude"
+
+
+def test_real_runtime_builds_extraction_llm_from_friday_py_config_shape(
+    tmp_path: Path,
+) -> None:
+    config = _config(
+        {
+            "llm": {
+                "model": "openai/test-chat-model",
+                "max_retries": 5,
+                "timeout_seconds": 60.0,
+            },
+            "extraction": {
+                "model": "openai/test-extraction-model",
+                "api_base": "http://localhost:1234/v1",
+                "api_key": "lm-studio",
+                "max_retries": 4,
+                "timeout_seconds": 90.0,
+            },
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="extraction-config-test")
+
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+    extractor = runtime.maintenance.extractor
+    assert extractor is not None
+    extraction_llm = extractor._llm
+    assert extraction_llm.model == "openai/test-extraction-model"
+    assert extraction_llm.api_base == "http://localhost:1234/v1"
+    assert extraction_llm.api_key == "lm-studio"
+    assert extraction_llm.resilience.max_retries == 4
+    assert extraction_llm.resilience.timeout_seconds == 90.0
+
+
+async def test_framework_maintenance_requeues_extraction_error_payloads() -> None:
+    extractor = ErroringExtractor("LLM call timed out after 90.0s")
+    adapter = FrameworkMaintenanceAdapter(
+        config=_config({"llm": {"model": "openai/test-chat-model"}}),
+        session_id="extraction-error-test",
+        memory=cast(Any, object()),
+        embedding=cast(Any, None),
+        llm_service=cast(Any, object()),
+        llm_models={},
+        llm_services={},
+        extractor=cast(Any, extractor),
+    )
+    adapter.pending_extraction = [("remember this", "noted")]
+
+    try:
+        await adapter.extract_buffered_turns(trigger_reason="background_interval")
+    except RuntimeError as exc:
+        assert "Memory extraction failed" in str(exc)
+    else:
+        raise AssertionError("expected extraction error to fail the background batch")
+
+    assert extractor.calls == 1
+    assert adapter.pending_extraction == [("remember this", "noted")]
+    assert adapter.background_actions == []
+
+
+def test_tool_auto_injection_follows_config() -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "tools": {
+                "enabled": True,
+                "registry": {"enabled_categories": ["utility"]},
+                "context": {"include_in_context": True},
+            },
+        }
+    )
+
+    runtime = build_runtime(config)
+
+    assert runtime.diagnostics.tool_context_injected is True
+    assert runtime.tool_context is not None
+    assert "echo" in runtime.tool_context
+    assert "remember" not in runtime.tool_context
+
+
+def test_maintenance_models_use_configured_roles_without_fallbacks() -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/primary"},
+            "maintenance": {
+                "llm": {
+                    role: {"model": f"openai/{role}"}
+                    for role in MAINTENANCE_LLM_ROLES
+                }
+            },
+        }
+    )
+
+    runtime = build_runtime(config)
+
+    assert runtime.diagnostics.maintenance_llm_fallbacks == []
+    assert runtime.maintenance.llm_models == {
+        role: f"openai/{role}" for role in MAINTENANCE_LLM_ROLES
+    }
+
+
+async def test_turn_processor_records_fake_turn_and_uses_tool_context() -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "tools": {"context": {"include_in_context": True}},
+            "speech": {"enabled": True},
+        }
+    )
+    runtime = build_runtime(config)
+
+    result = await TurnProcessor(runtime).process("hello")
+
+    assert result.assistant_message == "Friday: hello"
+    assert result.tool_context_injected is True
+    assert isinstance(runtime.memory, FakeMemoryController)
+    assert runtime.memory.stored_turns == [("hello", result.assistant_message)]
+    assert isinstance(runtime.transcript, FakeTranscriptStore)
+    assert runtime.transcript.turns == [("hello", result.assistant_message)]
+    assert isinstance(runtime.speech, FakeSpeechAdapter)
+    assert runtime.speech.spoken == [result.assistant_message]
+
+
+async def test_real_runtime_preserves_configured_file_read_alias(
+    tmp_path: Path,
+) -> None:
+    target = tmp_path / "config.yaml"
+    target.write_text("answer: 42\n")
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {
+                "enabled": True,
+                "registry": [
+                    {
+                        "name": "file_read",
+                        "module": "friday_tools.filesystem.smart_read",
+                        "class": "SmartFileReadTool",
+                    },
+                    {
+                        "name": "file_write",
+                        "module": "friday_tools.filesystem",
+                        "class": "FileWriteTool",
+                    },
+                ],
+            },
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="tool-alias-test")
+    tool_names = [tool.name for tool in runtime.tools.list_tools()]
+    result = await runtime.tools.call_tool("file_read", {"path": str(target)})
+
+    assert tool_names == ["file_read", "file_write"]
+    assert "smart_read" not in tool_names
+    assert "answer: 42" in result
+    assert isinstance(runtime.tools, FrameworkToolRegistryAdapter)
+    file_read_tool = runtime.tools.tools["file_read"]
+    assert getattr(file_read_tool, "_fallback_llm", None) is not None
+    assert getattr(file_read_tool, "_config", None) is not None
+
+
+def test_real_runtime_injects_web_config_into_serper_tool(tmp_path: Path) -> None:
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "web": {
+                "client": {"timeout": 12.0, "max_retries": 1},
+                "serper_api_key": "test-serper-key",
+            },
+            "tools": {
+                "enabled": True,
+                "registry": [
+                    {
+                        "name": "serper_search",
+                        "module": "friday_tools.web",
+                        "class": "SerperSearchTool",
+                    },
+                    {
+                        "name": "web_reader",
+                        "module": "friday_tools.web",
+                        "class": "WebReaderTool",
+                    },
+                ],
+            },
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="web-config-test")
+
+    assert isinstance(runtime.tools, FrameworkToolRegistryAdapter)
+    serper_tool = runtime.tools.tools["serper_search"]
+    web_reader_tool = runtime.tools.tools["web_reader"]
+    assert serper_tool._config.serper_api_key == "test-serper-key"
+    assert serper_tool._config.client.timeout == 12.0
+    assert web_reader_tool._config.serper_api_key == "test-serper-key"

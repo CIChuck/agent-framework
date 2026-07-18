@@ -11,6 +11,7 @@ Related planning docs:
 - `docs/planning/build-plans/friday-chat-v2-behavioral-contracts.md`
 - `docs/planning/build-plans/friday-chat-v2-compatibility-testing-protocol.md`
 - `docs/planning/build-plans/friday-chat-v2-framework-upgrade-log.md`
+- `docs/planning/build-plans/friday-chat-v2-code-generation-task-list.md`
 
 ## Goal
 
@@ -149,6 +150,8 @@ framework-upgrade pass after FridayV2 parity is measurable.
 - The parity matrix is the implementation checklist.
 - The behavioral contracts are the implementation rule source for command and
   subsystem semantics.
+- The code generation task list is the ordered execution checklist once the user
+  approves implementation.
 - `friday.py` is a behavioral reference, not a source file to copy wholesale.
 - Existing framework packages are frozen during the parity pass; discovered
   framework changes go into the framework upgrade log.

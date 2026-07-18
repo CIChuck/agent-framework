@@ -28,8 +28,7 @@ the current system.
   - Session priming and lifecycle-aware memory inclusion.
 - Agent orchestration:
   - Interactive ReAct-style agents.
-  - Multi-agent 
-  routing and delegation.
+  - Multi-agent routing and delegation.
   - Workflow/task graph execution with human-in-the-loop support.
 - Tooling:
   - Filesystem, shell, web, git, data, text, code, system, finance, and memory

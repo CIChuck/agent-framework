@@ -29,6 +29,7 @@ dependencies = [
     "friday-mcp",
     "friday-transcript",
     "friday-cli",
+    "friday-chat",
     "friday-telemetry",
     "friday-finance",
     # Document format support
@@ -45,6 +46,7 @@ dev = [
     "respx>=0.20.0",
     "ruff>=0.4.0",
     "mypy>=1.10.0",
+    "types-PyYAML>=6.0.12",
 ]
 
 [tool.uv.sources]
@@ -59,6 +61,7 @@ friday-moltbook = { workspace = true }
 friday-mcp = { workspace = true }
 friday-transcript = { workspace = true }
 friday-cli = { workspace = true }
+friday-chat = { workspace = true }
 friday-telemetry = { workspace = true }
 friday-finance = { workspace = true }
 
@@ -92,4 +95,5 @@ dev = [
     "pytest>=9.0.2",
     "pytest-asyncio>=1.3.0",
     "respx>=0.20.0",
+    "types-PyYAML>=6.0.12",
 ]

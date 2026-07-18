@@ -52,13 +52,29 @@ beyond command registration and dispatch.
 Reference artifacts:
 
 - `tests/integration/memory/config.yaml`
+- `tests/integration/memory/cli-config.yaml`
+- `tests/integration/memory/friday.py:7102`
 - `tests/integration/memory/friday.py:7121`
+- `tests/integration/memory/friday.py:7355`
+- `tests/integration/memory/friday.py:6325`
+- `tests/integration/memory/friday.py:6376`
+- `tests/integration/memory/friday.py:6413`
+- `tests/integration/memory/friday.py:6440`
+- `tests/integration/memory/friday.py:6630`
+- `tests/integration/memory/friday.py:6653`
+- `tests/integration/memory/friday.py:7542`
+- `tests/integration/memory/friday.py:7762`
+- `tests/integration/memory/friday.py:7782`
 
 Test goals:
 
 - FridayV2 accepts the Friday-py-style config shape without forcing users to
   restructure the file.
 - FridayV2 normalizes that config into typed models.
+- FridayV2 loads the companion CLI display config used by the reference CLI.
+- FridayV2 shows heartbeat/progress feedback while waiting for model responses.
+- FridayV2 initializes the command-line session with the configured
+  `chat.system_prompt`.
 - Secrets use environment placeholders in fixtures and examples.
 - Every supported config key is traceable.
 
@@ -82,6 +98,22 @@ Required tests:
   `maintenance.prompts`, `tools.loop`, `tools.registry`, `tools.context`,
   `smart_file.llm`, `web.reader`, `security.sanitization`, and
   `speech.selection`.
+- Auto-load `cli-config.yaml` from the same directory as `--config` when present.
+- Verify an explicit `--cli-config` override wins over sibling auto-discovery.
+- Verify missing CLI display config falls back to defaults.
+- Verify no-tool conversation turns start a thinking heartbeat after prompt
+  submission and stop it on first streamed chunk.
+- Verify no-tool heartbeat cleanup on completion without chunks, cancellation,
+  timeout, retry exhaustion, circuit-breaker failure, and unexpected errors.
+- Verify tool turns use a thinking heartbeat for the first model call and
+  tool-processing heartbeats for later model calls.
+- Verify heartbeat spinner type, style, randomization, thinking messages, and
+  tool messages come from the effective CLI display config.
+- Verify command-line startup uses `chat.system_prompt` for the effective
+  system prompt, transcript/session metadata, prompt formatting, context-budget
+  calculation, `/prompt`, and `/debug`.
+- Verify speech prompt augmentation starts from the configured base prompt and
+  can be disabled without losing that base prompt.
 
 Acceptance:
 
@@ -90,6 +122,10 @@ Acceptance:
 - The sanitized fixture is committed; real secrets are not.
 - A config traceability table or equivalent machine-readable mapping exists and
   is checked by tests.
+- CLI display config and startup system-prompt compatibility tests run without a
+  real terminal or provider credentials.
+- Heartbeat compatibility tests use fake display/indicator adapters and do not
+  depend on terminal animation timing.
 
 ## Layer 2: Command Surface Parity
 
@@ -158,6 +194,38 @@ Required tests:
   increments turn count.
 - A tool turn calls the tool loop, records tool calls/results, sanitizes output,
   truncates oversized results, and preserves tool-call/tool-result pairs.
+- A normal conversation turn preserves structured provider tool calls, executes
+  the configured tool, feeds the result back into the model, and returns
+  non-empty final content.
+- A date/time tool scenario proves asking for the date executes the configured
+  date/time tool.
+- A tool-call-only model response never becomes an empty assistant response.
+- The actual model message payload includes the effective system prompt,
+  assembled supporting context, current-session history, active tools, current
+  query, and turn count where configured.
+- By the fourth or fifth turn, a summary request receives earlier conversation
+  turns in model context and cannot be treated as the first turn.
+- Raw prompt capture stores the same message payload that was sent to the model.
+- Background extraction tests prove every persisted turn is buffered and positive
+  interval extraction processes the full buffered batch.
+- Exit-flush tests prove interval `-1` buffers turns and extracts them on exit
+  when configured.
+- Real-runtime maintenance tests prove extraction/summarization/lifecycle/
+  compaction are wired to real services or the framework-upgrade gap is logged.
+- Budget-aware compaction tests prove `memory.compaction.enabled` initializes the
+  real budget monitor and compactor when framework dependencies are available.
+- Budget-aware compaction tests prove actual prompt budget status is recorded
+  after each successful persisted turn, threshold breach schedules background
+  compaction, pending extraction flushes before compaction, budget context and
+  time-budget values reach the compactor, completion is marked on success or
+  failure, and the next chat prompt waits for in-flight compaction.
+- Exit reorganization tests prove `session.reorganize_on_exit` runs real
+  reorganization cleanup before transcript finalization when a persistence
+  directory exists.
+- Reorganization mode tests prove `reorganize_mode: fast` skips synthesis and
+  verification, while full/deep modes wire configured maintenance LLM roles.
+- Reorganization failure tests prove warning-level diagnostics are surfaced and
+  transcript finalization still runs.
 - LLM timeout, retry exhaustion, circuit breaker, and cancellation produce
   user-facing errors without corrupting state.
 - `/context`, `/prompt`, `/debug`, `/debug-budget`, `/timing`, `/history`, and

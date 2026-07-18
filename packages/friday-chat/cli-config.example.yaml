@@ -1,0 +1,103 @@
+# FridayV2 CLI display configuration.
+#
+# This file contains client-side terminal preferences only. It does not contain
+# provider credentials or local runtime state.
+
+theme:
+  error: "bold red"
+  warning: "bold yellow"
+  success: "bold green"
+  info: "bold blue"
+  muted: "dim"
+  highlight: "bold cyan"
+
+icons:
+  error: "X"
+  warning: "!"
+  success: "OK"
+  info: "i"
+
+banner:
+  enabled: true
+  style: "ascii"
+  title: "Friday"
+  subtitle: "{assistant_name} CLI"
+  show_version: true
+  border_style: "bright_cyan"
+  title_style: "bold cyan"
+  subtitle_style: "dim white"
+  version_style: "dim cyan"
+  shadow_style: "#1a1a2e"
+  bottom_shadow_width: 52
+  gradient:
+    - "#4A90D9"
+    - "#5B7FD9"
+    - "#6C6ED9"
+    - "#7D5DD9"
+    - "#8E4CD9"
+    - "#9F5CB8"
+    - "#B06C97"
+    - "#C17C76"
+    - "#B08090"
+  art: |2
+              ███████╗██████╗ ██╗██████╗  █████╗ ██╗   ██╗
+             ██╔════╝██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝
+            █████╗  ██████╔╝██║██║  ██║███████║ ╚████╔╝
+           ██╔══╝  ██╔══██╗██║██║  ██║██╔══██║  ╚██╔╝
+          ██║     ██║  ██║██║██████╔╝██║  ██║   ██║
+         ╚═╝     ╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝
+  tips_enabled: true
+  tips_title: "Tips for getting started:"
+  tips:
+    - "Ask questions, edit files, or run commands."
+    - "Be specific for the best results."
+    - "`/help` for more information."
+  tips_title_style: "dim white"
+  tip_number_style: "dim white"
+  tip_text_style: "white"
+  command_style: "bold #9F5CB8"
+
+prompt:
+  style: "bold cyan"
+  name_style: "bold cyan"
+  separator_style: "white"
+  continuation_style: "gray"
+
+response:
+  prefix: true
+  name_style: "bold bright_green"
+  separator_style: "bright_green"
+  text_style: "bright_green"
+
+spinner:
+  spinner_type: "dots12"
+  text_style: "bold green"
+  spinner_style: "bright white"
+  randomize: true
+
+  thinking_messages:
+      - "Thinking..."
+      - "Pondering..."
+      - "Consulting..."
+      - "Brewing..."
+      - "Crunching..."
+      - "Baking..."
+      - "Spinning..."
+      - "Ruminating..."
+      - "Assembling..."
+      - "Agitating..."
+      - "Divining..."
+      - "Sifting..."
+      - "Dreaming..."
+      - "Summoning..."
+      - "Defragging..."
+
+  tool_messages:
+      - "Gluing..."
+      - "Tooling..."
+      - "Wrenching..."
+      - "Hammering..."
+      - "Drilling..."
+      - "Sawing..."
+      - "Ripping..."
+      - "Planing..."
