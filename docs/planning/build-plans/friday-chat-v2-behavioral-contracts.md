@@ -54,6 +54,10 @@ Required behavior:
   `logging`, `llm`, `extraction`, `embedding`, `memory`, `transcript`, `chat`,
   `maintenance`, `lifecycle`, `smart_file`, `tools`, `web`, `langfuse`,
   `finance`, `security`, `session`, and `speech`.
+- Preserve the full active YAML option path surface from
+  `tests/integration/memory/config.yaml` for first-pass migration. The
+  FridayV2 example config and sanitized compatibility fixture must remain
+  path-equivalent to that reference config.
 - Normalize YAML into typed FridayV2 config models before constructing runtime
   services.
 - Preserve config shape for the first migration. Renames must be additive or
@@ -69,11 +73,71 @@ Required behavior:
 Required tests:
 
 - Sanitized copy of `tests/integration/memory/config.yaml` loads successfully.
+- Sanitized fixture and `packages/friday-chat/config.example.yaml` contain the
+  same active YAML option paths as `tests/integration/memory/config.yaml`.
 - Minimal config loads successfully.
 - Missing required LLM config fails before runtime creation.
 - Env placeholders resolve for API keys and base URLs.
 - Unknown/deprecated key policy is tested.
 - Traceability check fails for unmapped supported keys.
+
+### CLI Display And Startup Prompt Config
+
+Reference: `tests/integration/memory/cli-config.yaml`, `friday.py:7102`,
+`friday.py:7355`, `friday.py:6325`, `friday.py:6376`, `friday.py:6413`,
+`friday.py:6440`, `friday.py:6630`, `friday.py:6653`, `friday.py:7542`,
+`friday.py:7762`, `friday.py:7782`, `friday.py:4400`
+
+Required behavior:
+
+- Treat `cli-config.yaml` as part of Friday CLI compatibility, not optional
+  visual polish.
+- When `--config <path>` is provided, auto-load `cli-config.yaml` from the same
+  directory as `<path>` when it exists.
+- Provide a FridayV2 `--cli-config <path>` override for non-sibling layouts.
+- Use defaults when no CLI display config exists.
+- Support typed config for `theme`, `icons`, `prompt`, and `spinner` settings
+  from the reference CLI config.
+- Render the startup greeting/banner before entering the interactive loop.
+- Start a visible thinking heartbeat after prompt submission while waiting for a
+  no-tool conversation response.
+- Stop the no-tool heartbeat on the first streamed chunk, completion without
+  chunks, cancellation, timeout, retry exhaustion, circuit-breaker failure, or
+  unexpected error.
+- During tool turns, use a thinking heartbeat for the first model call and a
+  tool-processing heartbeat for later model calls.
+- Stop every tool-turn heartbeat in a cleanup path before processing returned
+  tool calls or surfacing errors.
+- Source heartbeat spinner type, message lists, styles, and randomization from
+  the effective CLI display config.
+- Initialize the base system prompt from `chat.system_prompt` during
+  command-line startup.
+- Use the same configured base prompt for transcript/session metadata, prompt
+  formatting, context-budget calculation, `/prompt`, and `/debug`.
+- Apply speech prompt augmentation only when speech is enabled, and restore the
+  base configured prompt when speech is disabled.
+- Do not hard-code `"You are Friday."` or `"You are a helpful assistant."` in any
+  command-line startup path when `chat.system_prompt` is configured.
+
+Required tests:
+
+- Auto-discovery loads sibling `cli-config.yaml`.
+- Explicit `--cli-config` wins over sibling auto-discovery.
+- Missing CLI display config falls back to defaults.
+- Startup banner/greeting output is testable with a fake console sink.
+- No-tool conversation heartbeat starts before the model call and stops on first
+  streamed chunk.
+- No-tool heartbeat cleanup is tested for cancellation and model-call failure.
+- Tool-turn heartbeat tests prove first-call thinking messages and later-call
+  tool-processing messages.
+- Heartbeat config tests prove spinner settings come from the effective
+  `cli-config.yaml`.
+- Startup system prompt equals `chat.system_prompt` before speech augmentation.
+- Speech enable/disable updates the effective prompt without losing the base
+  configured prompt.
+- Transcript/session metadata persists the configured system prompt.
+- Turn prompt formatting, context-budget calculation, `/prompt`, and `/debug`
+  all use the effective configured system prompt.
 
 ### Config Surface Keys
 
@@ -187,6 +251,13 @@ Required behavior:
 - Assemble context with query, session state, and dynamic budget limit.
 - Format prompt using system prompt, assembled payload, configured context
   format, current user query, and current turn count.
+- Send the formatted prompt/message payload to the LLM. The model call must not
+  receive only the raw user message when context, system prompt, history, or
+  tools are configured.
+- Preserve current-session history across turns and include it in later prompt
+  assembly according to `memory.max_history_turns`.
+- Use the same prompt/message payload for raw prompt capture that was sent to the
+  LLM.
 - Record timing keys: `init`, `budget_calc`, `context_assembly`,
   `prompt_format`, `pre_llm_total`, `llm_call`, and `total`.
 - Store final prompt messages for `/prompt` and `/debug`.
@@ -218,7 +289,12 @@ Required tests:
 
 - No-tool turn with fake LLM and fake stores.
 - Tool turn with fake tools.
+- Multi-turn summary scenario proves prior turns are present in the fourth or
+  fifth turn's model payload.
+- Actual LLM call payload includes system prompt, supporting context, history,
+  active tools, current query, and turn count where configured.
 - Raw prompt capture on and off.
+- Raw prompt capture matches the actual model message payload.
 - Persistence failure path.
 - Timeout, retry exhaustion, circuit breaker, and cancellation.
 - Extraction interval values `0`, positive `N`, and `-1`.
@@ -549,6 +625,9 @@ Required tests:
 Required behavior:
 
 - Tool-enabled turns use non-streaming LLM calls with active tool schemas.
+- LLM adapters must preserve structured tool-call responses. A tool-call-only
+  provider response must not be reduced to an empty assistant message or a
+  non-executable text placeholder.
 - Loop settings come from `tools.loop`: `max_iterations`,
   `max_consecutive_failures`, `max_tool_messages`, and
   `max_tool_result_chars`.
@@ -556,8 +635,17 @@ Required behavior:
 - If the provider returns function calls, normalize them into tool call records.
 - If no API tool calls are returned and text fallback is retained, parse
   `tool_name(arg=value)` style calls only for active tool names.
+- FridayV2 does not retain model-output text-parsed tool calls in the initial
+  parity implementation. Tool execution is driven by explicit provider
+  function-call records or direct `/run-tool` command invocation. This avoids
+  ambiguous assistant-text parsing while preserving prototype command
+  compatibility for plain-text `/run-tool` parameters.
 - Preserve provider `reasoning_content` on assistant tool-call messages.
 - Execute tool calls in order.
+- Feed sanitized tool results back into the working model message list and
+  continue the loop until final content or max iterations.
+- A normal conversation turn that asks for date/time must execute the configured
+  date/time tool and return a non-empty assistant answer.
 - Append test injection payload to the next tool result when configured, then
   clear the payload.
 - Require every tool to exist and declare a non-default category.
@@ -579,6 +667,8 @@ Required behavior:
 Required tests:
 
 - API tool calls and optional text-parsed calls.
+- Tool-call-only provider response is preserved and executed.
+- End-to-end date/time tool scenario.
 - Reasoning content preservation.
 - Tool error circuit breaker.
 - Truncation.
@@ -749,39 +839,90 @@ Required tests:
 
 ## Background Work And Exit Maintenance
 
-Reference: `friday.py:5752`, `friday.py:5779`, `friday.py:5832`,
-`friday.py:6224`, `friday.py:6237`
+Reference: `friday.py:1441`, `friday.py:5752`, `friday.py:5779`,
+`friday.py:5832`, `friday.py:5923`, `friday.py:5938`, `friday.py:5974`,
+`friday.py:6224`, `friday.py:6237`, `friday.py:7870`, `friday.py:7989`,
+`friday.py:8003`
 
 Required behavior:
 
 - Extraction interval rules:
   `0` means every turn, positive `N` means turns divisible by `N`, and `-1`
   means only on exit.
+- Every successfully persisted turn is buffered for extraction before the
+  interval rule is evaluated.
+- Positive interval `N` extracts all buffered turns when the interval triggers,
+  not only the trigger turn.
 - Extraction batches count entities, facts, and relationships and log failures
   per turn without failing the user turn.
+- Real runtime mode must wire real extraction, summarization, lifecycle, and
+  compaction services where existing framework packages provide them. If a real
+  service cannot be wired without framework edits, the gap must be logged in the
+  framework upgrade log and exposed in diagnostics.
 - Pending extraction must flush before compaction to prevent knowledge loss.
   Failed flush restores pending turns.
 - Background tool decay runs after successful persisted turns when tool content
   manager exists.
 - Incremental graph maintenance runs when configured maintainer says it should.
-- Budget-aware compaction records budget status and starts compaction when the
-  monitor threshold is crossed.
+- Budget-aware compaction initializes `ContextBudgetMonitor` from
+  `memory.compaction` when enabled.
+- Real runtime mode initializes `InSessionCompactor` with the framework memory
+  controller, collection manager, configured extraction/maintenance LLM, and
+  typed compaction config when dependencies are available.
+- After each successfully persisted turn, budget-aware compaction records the
+  actual prompt budget status produced during prompt formatting.
+- When the monitor threshold is crossed, FridayV2 marks compaction started and
+  schedules real compaction as background work.
+- Compaction must flush pending extraction before consolidating turns. If the
+  flush fails, compaction stops and pending turns remain buffered.
+- Compaction must pass session id, trigger reason, time budget, current tokens,
+  available budget, and target utilization into the compactor.
+- Compaction completion must be marked in a cleanup path on success or failure.
+- Before processing the next chat prompt, the interactive loop must await any
+  in-flight compaction task and surface progress feedback.
 - Exit maintenance order:
   0. extract buffered turns,
   1. flush access buffer when enabled,
   2. run lifecycle cycle when enabled,
   3. run reorganization when enabled.
+- Exit maintenance must run before transcript finalization and resource cleanup.
 - `session.flush_on_exit`, `session.lifecycle_on_exit`,
   `session.reorganize_on_exit`, and `session.reorganize_mode` control exit
   behavior.
+- When `session.reorganize_on_exit` is enabled and a persistence directory exists,
+  real runtime mode must construct and run the framework `MemoryReorganizer` or
+  log a framework-upgrade gap if frozen framework package constraints prevent it.
+- Exit reorganization must pass maintenance config, maintenance LLM roles,
+  embedding function, collection manager, access buffer, lifecycle scoring/decay
+  collaborators, and graph store where those services are available.
+- Exit reorganization must run with `backup_first=True`, `dry_run=False`, and
+  `skip_lifecycle=True` because lifecycle already runs earlier in the exit order.
+- `reorganize_mode: fast` skips synthesis and verification LLM work; full/deep
+  modes use configured maintenance LLM roles where available.
+- Exit reorganization errors are warning-level exit-maintenance failures and must
+  not prevent transcript finalization.
 
 Required tests:
 
 - Extraction interval matrix.
+- Extraction interval matrix proves buffered turns are not dropped between
+  interval triggers.
 - Flush-before-compaction success and failure.
+- Real-runtime maintenance wiring test proves required services are not silently
+  replaced with fake implementations.
 - Tool decay and graph maintenance scheduling.
-- Budget monitor compaction trigger.
+- Budget monitor initialization from `memory.compaction`.
+- Budget status recording after persisted turns.
+- Threshold-triggered background compaction scheduling.
+- Flush-before-compaction success and failure.
+- Budget context/time-budget propagation into the compactor.
+- Completion marking on compaction success and failure.
+- Next-prompt gating while compaction is in flight.
 - Exit maintenance order and config flags.
+- Real exit reorganization cleanup runs before transcript finalization.
+- Reorganization mode tests cover fast skip behavior and full/deep maintenance
+  LLM role wiring.
+- Reorganization failure tests prove transcript finalization still runs.
 
 ## Persistence And Runtime State
 

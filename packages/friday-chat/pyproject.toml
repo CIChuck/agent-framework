@@ -1,0 +1,55 @@
+[project]
+name = "friday-chat"
+version = "0.1.0"
+description = "FridayV2 chat application package"
+requires-python = ">=3.10"
+dependencies = [
+    "friday-core",
+    "friday-runtime",
+    "friday-memory",
+    "friday-llm",
+    "friday-agent",
+    "friday-tools",
+    "friday-transcript",
+    "friday-cli",
+    "friday-speech",
+    "friday-finance",
+    "pydantic>=2.0",
+    "pyyaml>=6.0.0",
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "types-PyYAML>=6.0.12",
+]
+
+[project.scripts]
+friday-chat = "friday_chat.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/friday_chat"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests_chat"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.uv.sources]
+friday-core = { workspace = true }
+friday-runtime = { workspace = true }
+friday-memory = { workspace = true }
+friday-llm = { workspace = true }
+friday-agent = { workspace = true }
+friday-tools = { workspace = true }
+friday-transcript = { workspace = true }
+friday-cli = { workspace = true }
+friday-speech = { workspace = true }
+friday-finance = { workspace = true }

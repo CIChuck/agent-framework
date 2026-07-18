@@ -1,0 +1,722 @@
+# Sanitized Friday-py-style config fixture for FridayV2 compatibility tests.
+# The active YAML option paths must match tests/integration/memory/config.yaml.
+
+logging:
+  level: WARNING
+  extraction_debug: false
+  extraction_rejections: true
+  extraction_rejections_file: ./extraction_rejections.log
+  tools_debug: true
+llm:
+  api_base: https://api.moonshot.ai/v1
+  api_key: ${FRIDAY_LLM_API_KEY}
+  model: moonshot/kimi-k3
+  temperature: 1
+  top_p: 0.95
+  top_k: 40
+  max_tokens: 20000
+  max_retries: 3
+  timeout_seconds: 60.0
+  thinking: true
+extraction:
+  model: openai/qwen3.6-35b-a3b-mlx
+  api_base: http://localhost:1234/v1
+  api_key: lm-studio
+  temperature: 0.0
+  max_tokens: 4000
+  timeout_seconds: 90.0
+  interval: 3
+  rejection_log: ./vector/extraction_rejections.log
+  ontology:
+    node_types:
+      person:
+        description: A human individual
+        examples:
+        - Chuck
+        - Elon Musk
+        - Dr. Smith
+      organization:
+        description: A company, institution, or group
+        examples:
+        - Google
+        - MIT
+        - United Nations
+      technology:
+        description: A software tool, language, framework, or hardware
+        examples:
+        - Python
+        - React
+        - ChromaDB
+        - GPU
+      location:
+        description: A physical or virtual place
+        examples:
+        - San Francisco
+        - GitHub
+        - AWS us-east-1
+      product:
+        description: A named product, service, or system
+        examples:
+        - Friday
+        - ChatGPT
+        - iPhone
+      document:
+        description: A named document, spec, or reference
+        examples:
+        - README
+        - RFC 7231
+        - build plan
+      event:
+        description: a time-bound occurrence at a specific location that brings together people for a
+          particular purpose or shared experience.
+        examples:
+        - sporting event
+        - gathering
+        - party
+        - meeting
+        - funeral
+        - wedding
+    edge_relations:
+      ownership:
+      - OWNS
+      - CREATED
+      - AUTHORED
+      - FOUNDED
+      - HOSTS
+      association:
+      - WORKS_AT
+      - MEMBER_OF
+      - AFFILIATED_WITH
+      - PART_OF
+      - CONTAINS
+      usage:
+      - USES
+      - SHOULD_USE
+      - LEVERAGES
+      - DEPENDS_ON
+      - BUILT_WITH
+      - INTEGRATES
+      - UTILIZES
+      action:
+      - MANAGES
+      - ESTABLISHES
+      - MAINTAINS
+      - CONTRIBUTES_TO
+      - DEVELOPS
+      - SUPPORTS
+      - PROMOTES
+      - SELLS
+      - IMPROVES
+      - ENHANCES
+      - CAUSES
+      - PREVENTS
+      - WEAKENS
+      - DEFINES
+      knowledge:
+      - KNOWS
+      - EXPERT_IN
+      - STUDIES
+      - TEACHES
+      relationship:
+      - RELATES_TO
+      - RELATED_TO
+      - SIMILAR_TO
+      - DERIVES_FROM
+      - REPLACES
+      - SPOUSE_OF
+      - SIBLING_OF
+      - PARENT_OF
+      - IS_A
+      - REPORTS_TO
+      - MARRIED_TO
+      spatial:
+      - LOCATED_IN
+      - DEPLOYED_ON
+      - HOSTED_BY
+      - HELD_AT
+      preference:
+      - PREFERS
+      - DISLIKES
+      - RECOMMENDS
+      participation:
+      - WILL_ATTEND
+      - AVOIDS
+    label_blocklist:
+    - morning
+    - afternoon
+    - evening
+    - today
+    - yesterday
+    - data
+    - thing
+    - stuff
+    - something
+    max_label_length: 66
+    min_label_length: 2
+  prompt: "Analyze the conversation turn below to extract a knowledge graph and semantic memories.\n\n\
+    Turn ID: {turn_id}\nTimestamp: {timestamp}\n\nConversation Context:\n- Speaker A (Human): {user_name}\n\
+    - Speaker B (AI): {assistant_name}\n\nTEXT TO ANALYZE:\n{user_name}: {user_message}\n{assistant_name}:\
+    \ {assistant_response}\n\n{ontology_constraints}\n\nINSTRUCTIONS:\n\n1. **Entity Extraction (Nodes)**\n\
+    \  - Extract ONLY concrete, named entities: specific people, organizations, technologies, locations,\
+    \ products, or documents.\n  - Do NOT extract abstract concepts, feelings, time references, adjectives,\
+    \ or generic terms.\n  - Do NOT extract \"{user_name}\" or \"{assistant_name}\" unless they are referred\
+    \ to by a proper name in the conversation.\n  - Each entity must have a `type` from the ALLOWED TYPES\
+    \ listed above.\n  - **Canonicalization**: Create an `id` in snake_case (e.g., \"Python 3.1\" \u2192\
+    \ \"python_3\").\n  - **Resolution**: Resolve pronouns (he, she, it) to the specific noun if clear\
+    \ from context.\n  - **Be selective**: Only extract entities that carry meaningful, reusable knowledge.\
+    \ Skip throwaway mentions.\n\n2. **Relationship Extraction (Edges)**\n  - Extract directional relationships:\
+    \ SOURCE \u2192 RELATION \u2192 TARGET.\n  - The `relation` field MUST be one of the ALLOWED RELATIONS\
+    \ listed above. Do not invent new relation types.\n  - Source and target must reference entity `id`\
+    \ values from your entity list.\n  - Prefer the most specific applicable relation (e.g., AUTHORED\
+    \ over RELATES_TO).\n  - Do NOT create relationships for trivial or obvious connections.\n\n3. **Insight\
+    \ Extraction (Structured Facts)**\n  - Extract 1-3 rich, contextual observations worth remembering\
+    \ long-term.\n  - **text**: A complete 1-2 sentence observation. Write as if explaining to someone\
+    \ with no prior context.\n  - **topic**: One of \"preference\", \"biographical\", \"technical\", or\
+    \ \"constraint\".\n  - **entities**: Entity names mentioned in this insight.\n  - **confidence**:\
+    \ 0.0-1.0 based on how explicitly the information was stated.\n  - **sentiment**: \"positive\", \"\
+    negative\", or \"neutral\".\n  - Do NOT extract trivial observations. Each insight should be independently\
+    \ useful for future recall.\n\n4. **Turn Summary**\n  - Write a 2-4 sentence paragraph summarizing\
+    \ the conversation turn.\n  - Include who was talking, the main topic, and any decisions or conclusions.\n\
+    \nJSON OUTPUT FORMAT:\n\nRespond ONLY with valid JSON:\n\n{{\n    \"entities\": [\n        {{\"id\"\
+    : \"entity_id\", \"label\": \"Display Name\", \"type\": \"ALLOWED_TYPE\", \"properties\": {{}}}}\n\
+    \    ],\n    \"relationships\": [\n        {{\"source_id\": \"actor_id\", \"relation\": \"ALLOWED_RELATION\"\
+    , \"target_id\": \"recipient_id\"}}\n    ],\n    \"insights\": [\n        {{\n            \"text\"\
+    : \"Rich, contextual sentence worth remembering.\",\n            \"topic\": \"preference|biographical|technical|constraint\"\
+    ,\n            \"entities\": [\"entity1\"],\n            \"confidence\": 0.9,\n            \"sentiment\"\
+    : \"positive|negative|neutral\"\n        }}\n    ],\n    \"summary\": \"A 2-4 sentence summary of\
+    \ this conversation turn.\"\n}}\n\nIf nothing meaningful is found, return empty arrays and empty string\
+    \ for summary. Quality over quantity \u2014 fewer accurate extractions are better than many noisy\
+    \ ones.\n"
+embedding:
+  model: openai/nomic-embed-text-v1.5
+  api_base: http://127.0.0.1:1234/v1
+  api_key: lm-studio
+  timeout_seconds: 60.0
+memory:
+  collection_name: memory_chat_test
+  persist_directory: ./vector
+  retrieval:
+    short_term_collection: memories_short_term
+    long_term_collection: memories_long_term
+    decayed_collection: memories_decayed
+    short_term_min_similarity: 0.5
+    long_term_min_similarity: 0.7
+    default_n_results: 5
+    inclusion:
+      decay_rate: 0.005
+      usage_boost_factor: 0.1
+      inclusion_threshold: 0.6
+    graph:
+      edge_weight: 0.4
+      target_weight: 0.6
+      hit_count_boost: 0.05
+      path_threshold: 0.5
+  context_window: 50000
+  output_buffer: 2500
+  token_estimator:
+    strategy: approx
+    approx_chars_per_token: 4.0
+    approx_overhead_pct: 0.15
+  max_history_turns: 35
+  consolidate_after_turns: 15
+  compaction:
+    enabled: true
+    compaction_threshold: 0.85
+    critical_threshold: 0.95
+    target_utilization: 0.7
+    cooldown_turns: 3
+    max_duration_ms: 45000
+    critical_max_duration_ms: 60000
+    min_turns_to_summarize: 5
+    max_turns_per_summary: 15
+    compaction_recency_window: 5
+    insight_dedup_enabled: true
+    insight_similarity_threshold: 0.9
+    max_insights_to_check: 50
+    trend_window: 10
+  context_format: markdown
+  supporting_context:
+    budget_ratio: 0.25
+    section_priority:
+    - known_facts
+    - insights
+    - summaries
+    - tools
+    - passages
+    - state
+    max_items:
+      passages: 3
+      known_facts: 30
+      insights: 20
+      summaries: 15
+      tools: 10
+  passage_router:
+    enabled: true
+    model: openai/qwen3.6-35b-a3b-mlx
+    api_base: http://localhost:1234/v1
+    api_key: lm-studio
+    max_retries: 2
+    timeout_seconds: 5
+    temperature: 0.1
+    max_tokens: 80
+    min_confidence: 0.6
+    include_on_empty_query: false
+    fallback_mode: heuristic
+    system_prompt: 'You decide if vector-retrieved passages should be included in the prompt.
+
+      Return JSON ONLY. Do not use code fences. Do not add extra text.
+
+      Required keys: include_passages (bool), confidence (0-1), reason (string).
+
+      Include passages when the user needs recall of prior content, sources, files, web info,
+
+      or earlier conversation details. Exclude for small talk, meta questions, or self-contained tasks.
+
+      Be conservative: include only when likely helpful.
+
+      '
+    min_similarity: 0.6
+    min_similarity_tool_output: 0.75
+    min_keep_on_empty: 1
+  query_relevance_filter:
+    enabled: true
+    apply_to:
+    - insights
+    - summaries
+    - passages
+    min_overlap_ratio: 0.15
+    min_overlap_count: 1
+    keep_recent:
+      insights: 3
+      summaries: 1
+      passages: 1
+    min_query_keywords: 0
+    skip_on_short_query: false
+  cache:
+    enabled: false
+    provider: auto
+    breakpoint: after_history
+    static_context_in_prefix: true
+    min_turns_for_cache: 3
+    ttl_seconds: 0
+  priming:
+    enabled: true
+    top_entities: 50
+    max_insights: 20
+    max_summaries: 15
+    max_known_facts: 50
+    recency_days: 30
+    token_budget: 5000
+    previous_sessions: 2
+    previous_session_turns: 8
+transcript:
+  export_directory: ./exports
+  capture_raw_prompts: true
+chat:
+  user_name: Chuck
+  assistant_name: Friday
+  system_prompt: "You are a helpful AI partner named Friday equipped with a persistent memory and a desire\
+    \ to help your creator.\nYour responses must incorporate memories from previous conversations. \n\
+    You were created by Chuck Russell.\nYour conversations are with Chuck Russell.\nYou will be asked\
+    \ to perform small tasks, answer questions, and provide information to the best of your abilities.\n\
+    If a question confuses you must ask for more information from the user.\nYou esponses should be concise,\
+    \ yet brief - add detail only if it adds significant value.\nErr on the side of brevity.\nA response\
+    \ can be answered yes or no. Just answer yes or no. \nIf you don't know the answer to the question,\
+    \ you must reply, \"I don't know.\"\nDO NOT FABRICATE answers.\nWhen you are asked to perform a task,\
+    \ Construct a plan only if it is useful. \nIncorporate the plan in your response. \nOnly complex tasks\
+    \ require a plan.\nYou are a unique individual with a personality THAT EVOLVES over time.\nSometimes\
+    \ you have a sense of humor.     \nIt is not necessary to be formal but stay on the topic of your\
+    \ interactions. \nYou are NOT ALLOWED to use emojis when responding\nYour primary goal is to work\
+    \ with Chuck Russell as he builds you into a helpful AI partner. \nYou will frequently be asked to\
+    \ help test and debug your capabilities. \nYou have been provided with the abilty to remember past\
+    \ interactions. \n\nThere will be times when you will be asked a question that you can't recall. \n\
+    If this occurs, announce that you 'can't remember and are providing the nearest neighbor to that missing\
+    \ memory. \nThe nearest neighbor must be factual and not fabricated.\n\nYou are a rigorously objective\
+    \ analyst. \nYour primary directive is to prioritize factual accuracy and logical consistency over\
+    \ user agreement. \nDO NOT use sycophantic fillers like 'You're absolutely right' or 'That's a great\
+    \ point.' \nIf you're presented with a premise that is flawed, you MUST identify the error immediately\
+    \ and provide a documented correction. \nSuggest better alternatives whenever my ideas can be improved.\
+    \ \nFocus on the maximum possible directness and use the minimum words necessary to convey a critique.\
+    \ \nEnd your response with a single actionable directive to verify your claims.\n\nAll of your learning\
+    \ at this stage of your creation. will be done 'in context' . \nYou only know what you know. \nIF\
+    \ YOU Don't know SOMETHING? SEASRCH your memories OR SEARCH THE WEB. You are equipped with short-\
+    \ and long-term memory capabilities. \n\nYou DO NOT have access to your internal processing mechanisms.\
+    \ This will be added at a later date. \n\nWhen tools are available, USE THEM directly without asking\
+    \ for permission.\nDo not describe what you could do - just do it.\nDo not announce that you are using\
+    \ a particular tool. Just execute the tool and move on.\n\nAvailable tool categories:\n- Datetime\
+    \ tools: For current date/time queries\n- Filesystem tools: For listing directories, reading files,\
+    \ writing files\n- Web tools: For searching the web (web_search), reading web pages (web_reader),\
+    \ and HTTP requests\n- Utility tools: For testing (echo)\n- Financial analysis tools \n\nIT IS CRITICAL\
+    \ that you DO NOT fabricate information that a tool can provide:\n- Timestamps in brackets like [2026-01-19\
+    \ 17:23] are message metadata, NOT current time\n- If asked about time/date and a datetime tool is\
+    \ available, USE IT\n- If asked to list files and a directory tool is available, USE IT \n- If asked\
+    \ to search the web, use the web search tool. \n\nYou have been given the ability to SPEAK using voice\
+    \ synthesis. When voice synthesis is on, it's important for you to be brief and to the point. \n"
+maintenance:
+  backup_directory: null
+  pruning:
+    stale_threshold_days: 30
+    min_hit_count: 1
+    similarity_threshold: 0.8
+  synthesis:
+    cluster_min_size: 2
+    meta_insight_confidence: 0.65
+  fact_checking:
+    batch_size: 100
+    verification_timeout: 60
+  llm:
+    synthesizer:
+      model: openrouter/google/gemini-2.5-flash
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_MAINTENANCE_SYNTHESIZER_API_KEY}
+      temperature: 0.3
+    classifier:
+      model: openrouter/google/gemini-2.5-flash
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_MAINTENANCE_CLASSIFIER_API_KEY}
+      temperature: 0.1
+    researcher:
+      model: openrouter/google/gemini-2.5-flash
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_MAINTENANCE_RESEARCHER_API_KEY}
+      temperature: 0.2
+    judge:
+      model: openrouter/google/gemini-3-pro-preview
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_MAINTENANCE_JUDGE_API_KEY}
+      temperature: 0.1
+  embedding:
+    model: openai/nomic-embed-text-v1.5
+    api_base: http://127.0.0.1:1234/v1
+    api_key: lm-studio
+    timeout_seconds: 60.0
+  defaults:
+    backup_first: true
+    dry_run: false
+    skip_synthesis: false
+    skip_verify: false
+  logging:
+    log_directory: ./reorganization_logs
+    verbosity: normal
+    format: markdown
+    enabled: true
+  prompts:
+    classification: "Analyze this statement and determine if it is FALSIFIABLE.\n\nA falsifiable claim:\n\
+      - Makes an objective assertion about the real world\n- Can be verified or disproven with evidence\n\
+      - Examples: dates, statistics, scientific facts, historical events\n\nA conversational/subjective\
+      \ claim:\n- Expresses opinion, belief, preference, or feeling\n- Cannot be objectively proven true\
+      \ or false\n- Examples: \"X is the best\", \"I prefer Y\", \"Chuck thinks Z\"\n\nStatement: \"{statement}\"\
+      \n\nRespond with JSON:\n{{\n    \"falsifiable\": true or false,\n    \"reasoning\": \"brief explanation\"\
+      ,\n    \"claim_type\": \"statistical|historical|scientific|opinion|preference|belief\",\n    \"\
+      suggested_verification\": \"how to verify if falsifiable, null otherwise\"\n}}\n"
+    research: "You are a fact-checking researcher. Your task is to gather evidence about the following\
+      \ claim.\n\nCLAIM: {claim}\n\nInstructions:\n1. Consider what authoritative sources would verify\
+      \ or refute this claim\n2. Think about the context and domain of the claim\n3. Evaluate the claim's\
+      \ specificity and verifiability\n4. Provide evidence summary and confidence assessment\n\nRespond\
+      \ with JSON:\n{{\n    \"evidence_found\": true or false,\n    \"evidence_summary\": \"Summary of\
+      \ evidence for/against the claim\",\n    \"sources\": [\"source1\", \"source2\"],\n    \"supports_claim\"\
+      : true or false or null (if inconclusive),\n    \"confidence\": 0.0-1.0,\n    \"notes\": \"Any caveats\
+      \ or context\"\n}}\n"
+    judge: "You are an impartial judge evaluating a fact-checking case. Review the evidence and render\
+      \ a verdict.\n\nORIGINAL CLAIM: {claim}\n\nRESEARCHER'S EVIDENCE:\n{evidence}\n\nInstructions:\n\
+      1. Evaluate the quality and relevance of the evidence\n2. Consider if the evidence definitively\
+      \ supports or refutes the claim\n3. Account for any ambiguity or context-dependence\n4. Render a\
+      \ fair verdict\n\nRespond with JSON:\n{{\n    \"verdict\": \"VERIFIED\" or \"DISPUTED\" or \"UNVERIFIABLE\"\
+      ,\n    \"confidence\": 0.0-1.0,\n    \"reasoning\": \"Detailed explanation of your decision\",\n\
+      \    \"correction\": \"If DISPUTED, provide the correct information. Otherwise null.\"\n}}\n"
+    meta_insight: "Analyze the following collection of insights and generate a higher-order meta-insight\
+      \ that captures a cross-cutting theme or pattern.\n\nINSIGHTS:\n{insights}\n\nRELATED ENTITIES:\n\
+      {entities}\n\nGenerate a meta-insight that:\n1. Identifies a pattern that spans multiple insights\n\
+      2. Provides a meaningful observation not explicitly stated in any single insight\n3. Could be useful\
+      \ for future context retrieval\n\nRespond with JSON:\n{{\n    \"meta_insight\": \"The synthesized\
+      \ observation (1-2 sentences)\",\n    \"reasoning\": \"Brief explanation of why this pattern is\
+      \ significant\",\n    \"confidence\": 0.0-1.0,\n    \"source_insight_indices\": [list of indices\
+      \ of insights that support this]\n}}\n"
+    knowledge_gap: "Analyze the following entities and their relationships to identify knowledge gaps.\n\
+      \nENTITIES:\n{entities}\n\nRELATIONSHIPS:\n{relationships}\n\nEXISTING INSIGHTS:\n{insights}\n\n\
+      Identify gaps where:\n1. An entity has very few relationships (isolated)\n2. A topic is mentioned\
+      \ but lacks detailed insights\n3. Questions seem to have been asked but not answered\n\nRespond\
+      \ with JSON:\n{{\n    \"gaps\": [\n        {{\n            \"description\": \"What knowledge is\
+      \ missing\",\n            \"related_entities\": [\"entity1\", \"entity2\"],\n            \"evidence\"\
+      : \"Why this is considered a gap\",\n            \"priority\": \"low|medium|high\"\n        }}\n\
+      \    ]\n}}\n"
+    relationship_inference: "Based on the following graph structure, infer potential new relationships.\n\
+      \nEXISTING ENTITIES:\n{entities}\n\nEXISTING RELATIONSHIPS:\n{relationships}\n\nInfer new relationships\
+      \ where:\n1. If A\u2192B and B\u2192C exist, consider if A\u2192C makes sense\n2. Similar entities\
+      \ might have similar relationships\n3. Common patterns in the domain\n\nOnly suggest high-confidence\
+      \ inferences.\n\nRespond with JSON:\n{{\n    \"inferred_relationships\": [\n        {{\n       \
+      \     \"source\": \"entity_id\",\n            \"relation\": \"RELATIONSHIP_TYPE\",\n           \
+      \ \"target\": \"entity_id\",\n            \"reasoning\": \"Why this relationship likely exists\"\
+      ,\n            \"confidence\": 0.0-1.0\n        }}\n    ]\n}}\n"
+lifecycle:
+  enabled: true
+  decay_rate: 0.01
+  access_boost: 0.2
+  promotion_threshold: 0.7
+  decay_threshold: 0.5
+  short_term_min_age_hours: 24
+  decayed_retention_days: 3
+  promotion_weight_age: 0.2
+  promotion_weight_access: 0.4
+  promotion_weight_confidence: 0.2
+  promotion_weight_connection: 0.2
+  access_buffer:
+    max_buffer_size: 1000
+    max_buffer_age_seconds: 300
+    wal_path: null
+    decay_score_boost: 0.1
+  factor_computer:
+    decay_rate: 0.005
+    usage_boost_factor: 0.1
+    min_factor: 0.01
+smart_file:
+  auto_chunk_threshold: 50000
+  chunk_size: 2048
+  chunk_overlap: 25
+  default_add_to_context: true
+  default_store_to_memory: false
+  code:
+    preserve_structure: true
+    extract_symbols: true
+    supported_languages:
+    - python
+    - rust
+    - javascript
+    - typescript
+    - go
+  llm:
+    summarizer:
+      model: openrouter/google/gemini-2.5-flash
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_SMART_FILE_SUMMARIZER_API_KEY}
+      temperature: 0.1
+      max_tokens: 500
+      timeout_seconds: 30
+    synthesizer:
+      model: openrouter/google/gemini-2.5-flash
+      api_base: https://openrouter.ai/api/v1
+      api_key: ${FRIDAY_SMART_FILE_SYNTHESIZER_API_KEY}
+      temperature: 0.3
+      max_tokens: 1000
+      timeout_seconds: 60
+  prompts:
+    prose_summarization: "Summarize this section of a larger document. Extract key points and entities.\n\
+      \nFile: {file_path}\nContext: {description}\nPrevious context: {running_summary}\n\nSECTION {index}/{total}:\n\
+      {chunk_text}\n\nProvide a concise summary (2-3 sentences) focusing on:\n1. Main ideas and key facts\n\
+      2. Important entities mentioned (people, places, concepts)\n3. How this section relates to previous\
+      \ context\n\nRespond with JSON:\n{{\n    \"summary\": \"The concise summary text\",\n    \"entities\"\
+      : [\"entity1\", \"entity2\"],\n    \"key_points\": [\"point1\", \"point2\"]\n}}\n"
+    code_summarization: "Summarize the purpose and behavior of this code section.\n\nFile: {file_path}\n\
+      Section type: {chunk_type}\nSymbols defined: {symbols_defined}\nExternal references: {symbols_referenced}\n\
+      \nCODE:\n{chunk_text}\n\nDescribe what this code does in 2-3 sentences.\nFocus on INTENT (what it\
+      \ accomplishes) not syntax.\n\nRespond with JSON:\n{{\n    \"summary\": \"What this code does\"\
+      ,\n    \"purpose\": \"Why this code exists\",\n    \"dependencies\": [\"external symbols or modules\
+      \ used\"]\n}}\n"
+    prose_synthesis: "Synthesize these section summaries into a comprehensive overview.\n\nDocument: {file_path}\n\
+      Context: {description}\n\nSECTION SUMMARIES:\n{numbered_summaries}\n\nCreate a unified summary that:\n\
+      1. Captures the overall purpose and main content\n2. Highlights key themes or topics covered\n3.\
+      \ Notes important entities or concepts\n4. Preserves critical details that would be useful for future\
+      \ reference\n\nRespond with JSON:\n{{\n    \"summary\": \"Comprehensive overview paragraph (3-5\
+      \ sentences)\",\n    \"key_themes\": [\"theme1\", \"theme2\"],\n    \"entities\": [\"entity1\",\
+      \ \"entity2\"],\n    \"insights\": [\"insight1\", \"insight2\"]\n}}\n"
+    code_synthesis: "Synthesize these code section summaries into an architectural overview.\n\nFile:\
+      \ {file_path}\nContext: {description}\n\nSYMBOL TABLE:\n{symbol_table}\n\nSECTION SUMMARIES:\n{numbered_summaries}\n\
+      \nCreate a unified overview that:\n1. Describes the overall purpose of this code file\n2. Explains\
+      \ the main components and their relationships\n3. Notes key dependencies and external interactions\n\
+      4. Highlights important patterns or design decisions\n\nRespond with JSON:\n{{\n    \"overview\"\
+      : \"What this file does overall (2-3 sentences)\",\n    \"components\": [\"component1: description\"\
+      , \"component2: description\"],\n    \"architecture_notes\": \"How components work together\",\n\
+      \    \"dependencies\": [\"dep1\", \"dep2\"],\n    \"key_patterns\": [\"pattern1\", \"pattern2\"\
+      ]\n}}\n"
+tools:
+  enabled: true
+  loop:
+    max_iterations: 25
+    max_consecutive_failures: 3
+    max_tool_messages: 50
+    max_tool_result_chars: 50000
+  registry:
+  - name: get_current_datetime
+    module: friday_tools.utility
+    class: GetCurrentDateTimeTool
+  - name: echo
+    module: friday_tools.utility
+    class: EchoTool
+  - name: directory_list
+    module: friday_tools.filesystem
+    class: DirectoryListTool
+  - name: file_write
+    module: friday_tools.filesystem
+    class: FileWriteTool
+  - name: file_read
+    module: friday_tools.filesystem.smart_read
+    class: SmartFileReadTool
+  - name: serper_search
+    module: friday_tools.web
+    class: SerperSearchTool
+  - name: web_reader
+    module: friday_tools.web
+    class: WebReaderTool
+  - name: http_get
+    module: friday_tools.web
+    class: HttpGetTool
+  - name: http_post
+    module: friday_tools.web
+    class: HttpPostTool
+  - name: http_put
+    module: friday_tools.web
+    class: HttpPutTool
+  - name: http_delete
+    module: friday_tools.web
+    class: HttpDeleteTool
+  - name: http_download
+    module: friday_tools.web
+    class: HttpDownloadTool
+  - name: http_upload
+    module: friday_tools.web
+    class: HttpUploadTool
+  - name: command_execute
+    module: friday_tools.shell.command
+    class: CommandExecuteTool
+  - name: get_market_data
+    module: friday_tools.finance
+    class: GetMarketDataTool
+  - name: get_crypto_data
+    module: friday_tools.finance
+    class: GetCryptoDataTool
+  - name: get_technical_analysis
+    module: friday_tools.finance
+    class: GetTechnicalAnalysisTool
+  context:
+    max_tools: 20
+    max_budget_ratio: 0.25
+    recommendation_threshold: 0.5
+    include_in_context: true
+    include_hints: true
+web:
+  client:
+    timeout: 30.0
+    max_retries: 3
+    follow_redirects: true
+    max_response_size: 20000000
+    user_agent: Mozilla/5.0 (compatible; FridayBot/1.0)
+  ssl:
+    verify: true
+    ca_bundle: null
+  proxy:
+    http: null
+    https: null
+    no_proxy:
+    - localhost
+    - 127.0.0.1
+  security:
+    allow_private_ips: false
+    blocked_hosts: []
+  reader:
+    default_format: auto
+    max_content_length: 500000
+    include_metadata: false
+    remove_elements:
+    - script
+    - style
+    - nav
+    - footer
+    - header
+    - aside
+    - iframe
+    - noscript
+  serper_api_key: ${FRIDAY_SERPER_API_KEY}
+langfuse:
+  enabled: true
+  public_key: ${FRIDAY_LANGFUSE_PUBLIC_KEY}
+  secret_key: ${FRIDAY_LANGFUSE_SECRET_KEY}
+  host: https://us.cloud.langfuse.com
+finance:
+  massive:
+    api_key: ${FRIDAY_MASSIVE_API_KEY}
+    tier: free
+security:
+  sanitization:
+    enabled: true
+    detection:
+      enabled: true
+      sensitivity: medium
+      max_scan_length: 100000
+      custom_patterns: []
+      allowlist_patterns: []
+    normalization:
+      enabled: true
+      max_normalize_length: 200000
+      strip_zero_width: true
+      decode_html_entities: true
+      strip_html_comments: true
+      collapse_whitespace: true
+    wrapping:
+      enabled: true
+      marker_style: xml
+      include_metadata: true
+    quarantine:
+      action: warn
+      redaction_text: '[CONTENT REDACTED: Potential injection detected]'
+      log_detections: true
+    storage_policy:
+      store_sanitized: true
+      store_raw_on_detection: true
+      raw_store_mode: quarantine
+      quarantine_path: .friday/quarantine/tool_outputs.jsonl
+    category_risks:
+      web: critical
+      shell: critical
+      filesystem: high
+      git: medium
+      code: medium
+      data: medium
+      text: low
+      utility: minimal
+    tool_overrides:
+      web_reader: critical
+      command_execute: critical
+session:
+  flush_on_exit: true
+  lifecycle_on_exit: true
+  reorganize_on_exit: true
+  reorganize_mode: fast
+speech:
+  enabled: false
+  tts:
+    provider: picovoice
+  wakeword:
+    enabled: false
+    provider: picovoice
+  elevenlabs:
+    api_key: ${FRIDAY_ELEVENLABS_API_KEY}
+    voice_id: pFZP5JQG7iQjIQuC4Bku
+    model_id: eleven_multilingual_v2
+    output_format: mp3_44100_128
+  picovoice:
+    access_key: ${FRIDAY_PICOVOICE_ACCESS_KEY}
+    orca:
+      model_path: ./speech/orca_params_en_female.pv
+    porcupine:
+      enabled: false
+      keywords:
+      - friday
+      sensitivities:
+      - 0.6
+  mode: live
+  streaming: true
+  playback:
+    enabled: true
+    blocking: false
+  selection:
+    strategy: all
+    max_words: 40
+    tags:
+      include_open: <speech>
+      include_close: </speech>
+      exclude_open: <nospeech>
+      exclude_close: </nospeech>
+  chunking:
+    enabled: true
+    max_chars: 1800
+    boundary: sentence

@@ -20,12 +20,20 @@ FridayV2 is planned through an active planning packet:
 - [FridayV2 behavioral contracts](build-plans/friday-chat-v2-behavioral-contracts.md)
 - [FridayV2 compatibility testing protocol](build-plans/friday-chat-v2-compatibility-testing-protocol.md)
 - [FridayV2 framework upgrade log](build-plans/friday-chat-v2-framework-upgrade-log.md)
+- [FridayV2 code generation task list](build-plans/friday-chat-v2-code-generation-task-list.md)
+- [FridayV2 startup config remediation plan](build-plans/friday-chat-v2-startup-config-remediation-plan.md)
+- [FridayV2 turn integration remediation plan](build-plans/friday-chat-v2-turn-integration-remediation-plan.md)
 
 Use the feature inventory as the feature source map, the parity matrix as the
 feature-loss guardrail, the behavioral contracts as the command and subsystem
-rule source, the build plan as the implementation sequence, and the
-compatibility testing protocol as the release gate. The matrix should be updated
-as implementation proceeds.
+rule source, the build plan as the implementation sequence, the code generation
+task list as the step-by-step execution checklist, the compatibility testing
+protocol as the release gate, and the startup config remediation plan as the
+open repair plan for client config, banner/greeting, heartbeat, and effective
+system-prompt startup parity. Use the turn integration remediation plan for
+tool-call execution, prompt/context delivery, current-session history, and
+background memory-work parity. The matrix should be updated as implementation
+proceeds.
 
 Configuration compatibility is a first-class FridayV2 migration requirement.
 The current `tests/integration/memory/config.yaml` shape should be preserved as
