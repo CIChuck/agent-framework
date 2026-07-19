@@ -1392,30 +1392,6 @@
       "source_memory_ids": [],
       "embedding": null
     },
-    "f77782ca-5576-43be-bd40-e3841f87d960": {
-      "id": "f77782ca-5576-43be-bd40-e3841f87d960",
-      "type": "product",
-      "label": "Friday Agent Framework",
-      "properties": {},
-      "provenance": {
-        "source_id": "d6e71996-8a1c-4dc3-9dc0-9c93d534f86b",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 19:54:26.150589",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 19:54:26.173015",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 19:54:26.173016",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
     "aa5398b2-7830-43f6-a539-7ba9978c1219": {
       "id": "aa5398b2-7830-43f6-a539-7ba9978c1219",
       "type": "location",
@@ -1512,102 +1488,6 @@
       "source_memory_ids": [],
       "embedding": null
     },
-    "7bf9ef14-d4df-460f-a0e5-72640aca6305": {
-      "id": "7bf9ef14-d4df-460f-a0e5-72640aca6305",
-      "type": "entity",
-      "label": "guides_subfolder",
-      "properties": {},
-      "provenance": {
-        "source_id": "d6e71996-8a1c-4dc3-9dc0-9c93d534f86b",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 19:54:26.150589",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 19:54:26.221573",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 19:54:26.221574",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "4189e232-3bbf-4260-b3c5-2e78c792f222": {
-      "id": "4189e232-3bbf-4260-b3c5-2e78c792f222",
-      "type": "entity",
-      "label": "chuck",
-      "properties": {},
-      "provenance": {
-        "source_id": "d6e71996-8a1c-4dc3-9dc0-9c93d534f86b",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 19:54:26.150589",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 19:54:26.273492",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 19:54:26.273499",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "c334cdf0-b9da-4ade-81e1-121043cb3ecd": {
-      "id": "c334cdf0-b9da-4ade-81e1-121043cb3ecd",
-      "type": "entity",
-      "label": "git",
-      "properties": {},
-      "provenance": {
-        "source_id": "d6e71996-8a1c-4dc3-9dc0-9c93d534f86b",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 19:54:26.150589",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 1,
-      "last_accessed": "2026-07-17 19:55:11.517433",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 19:54:26.280067",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "31bbcb1f-0de1-4100-a299-138d99821d66": {
-      "id": "31bbcb1f-0de1-4100-a299-138d99821d66",
-      "type": "entity",
-      "label": "friday",
-      "properties": {},
-      "provenance": {
-        "source_id": "b580cf8c-67c6-482d-95a3-c3d80079eb85",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 19:55:11.480791",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 19:55:11.511412",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 19:55:11.511414",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
     "55fff736-6f54-4e70-a3d4-6e6b0ed78d73": {
       "id": "55fff736-6f54-4e70-a3d4-6e6b0ed78d73",
       "type": "technology",
@@ -1698,54 +1578,6 @@
       "stage": "short_term",
       "decay_score": 1.0,
       "created_at": "2026-07-17 20:02:17.013829",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "8991d5c7-9b13-47f6-b457-0b69015f63c1": {
-      "id": "8991d5c7-9b13-47f6-b457-0b69015f63c1",
-      "type": "entity",
-      "label": "friday_py",
-      "properties": {},
-      "provenance": {
-        "source_id": "267f0108-411f-4ef4-a1c7-96d96c697a79",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 20:02:16.999978",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 20:02:17.021673",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 20:02:17.021674",
-      "last_decay_at": null,
-      "promoted_at": null,
-      "decayed_at": null,
-      "source_memory_ids": [],
-      "embedding": null
-    },
-    "6db7fbf2-49b8-4237-be08-c610e9a603e5": {
-      "id": "6db7fbf2-49b8-4237-be08-c610e9a603e5",
-      "type": "entity",
-      "label": "gemini_api",
-      "properties": {},
-      "provenance": {
-        "source_id": "267f0108-411f-4ef4-a1c7-96d96c697a79",
-        "source_type": "extraction",
-        "confidence": 0.8,
-        "created_at": "2026-07-17 20:02:16.999978",
-        "author_id": "memory_extractor",
-        "parent_ids": []
-      },
-      "hit_count": 0,
-      "last_accessed": "2026-07-17 20:02:17.029290",
-      "stage": "short_term",
-      "decay_score": 1.0,
-      "created_at": "2026-07-17 20:02:17.029292",
       "last_decay_at": null,
       "promoted_at": null,
       "decayed_at": null,
@@ -23032,7 +22864,7 @@
     },
     {
       "source": "547ff27c-cf3c-4be4-ab53-e65d00ab9337",
-      "target": "7bf9ef14-d4df-460f-a0e5-72640aca6305",
+      "target": "aa5398b2-7830-43f6-a539-7ba9978c1219",
       "relation": "CONTAINS",
       "properties": {},
       "provenance": {
@@ -24607,8 +24439,8 @@
       "created_at": "2026-07-17 15:46:24.140391"
     },
     {
-      "source": "4189e232-3bbf-4260-b3c5-2e78c792f222",
-      "target": "c334cdf0-b9da-4ade-81e1-121043cb3ecd",
+      "source": "84f65e03-c24b-4d75-b534-2b2a86d6d7c2",
+      "target": "3935a5f5-4f4b-48fc-b991-3f0ac0609c3b",
       "relation": "USES",
       "properties": {},
       "provenance": {
@@ -25395,8 +25227,8 @@
       "created_at": "2026-07-17 19:54:26.293885"
     },
     {
-      "source": "31bbcb1f-0de1-4100-a299-138d99821d66",
-      "target": "c334cdf0-b9da-4ade-81e1-121043cb3ecd",
+      "source": "82c44f73-b01a-4fa0-8dfb-cd292915cf5f",
+      "target": "3935a5f5-4f4b-48fc-b991-3f0ac0609c3b",
       "relation": "USES",
       "properties": {},
       "provenance": {
@@ -26183,8 +26015,8 @@
       "created_at": "2026-07-17 19:55:11.554106"
     },
     {
-      "source": "8991d5c7-9b13-47f6-b457-0b69015f63c1",
-      "target": "6db7fbf2-49b8-4237-be08-c610e9a603e5",
+      "source": "50163aaa-6639-4557-b522-bcf4e5347cc6",
+      "target": "90659a10-8e32-4a4d-a6b8-5f0bc296f112",
       "relation": "DEPENDS_ON",
       "properties": {},
       "provenance": {
