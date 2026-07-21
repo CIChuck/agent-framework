@@ -1,20 +1,15 @@
 [project]
-name = "friday-tools"
-version = "0.1.0"
+name = "friday-framework-tools"
+version = "0.1.0a0"
 description = "Comprehensive tool library for AI agents"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "tools", "llm", "automation"]
 
 dependencies = [
     # Core protocols
-    "friday-core",
-    "friday-moltbook",
-    # Sandbox for code execution
-    "friday-sandbox",
-    # Finance data providers
-    "friday-finance",
+    "friday-framework-core==0.1.0a0",
     # HTTP & Web
     "httpx>=0.25.0",
     "beautifulsoup4>=4.12.0",
@@ -35,6 +30,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+sandbox = [
+    "friday-framework-sandbox==0.1.0a0",
+]
+finance = [
+    "friday-framework-finance==0.1.0a0",
+]
+moltbook = [
+    "friday-framework-moltbook==0.1.0a0",
+]
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
@@ -47,9 +51,9 @@ langchain = ["langchain-core>=0.1.0"]
 anthropic = ["anthropic>=0.25.0"]
 openai = ["openai>=1.0.0"]
 all-adapters = [
-    "friday-tools[langchain]",
-    "friday-tools[anthropic]",
-    "friday-tools[openai]",
+    "friday-framework-tools[langchain]==0.1.0a0",
+    "friday-framework-tools[anthropic]==0.1.0a0",
+    "friday-framework-tools[openai]==0.1.0a0",
 ]
 
 # Document format readers (optional)
@@ -65,8 +69,8 @@ spreadsheets = [
 
 # All file format support
 all-formats = [
-    "friday-tools[documents]",
-    "friday-tools[spreadsheets]",
+    "friday-framework-tools[documents]==0.1.0a0",
+    "friday-framework-tools[spreadsheets]==0.1.0a0",
 ]
 
 [build-system]
@@ -77,10 +81,10 @@ build-backend = "hatchling.build"
 packages = ["src/friday_tools"]
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-sandbox = { workspace = true }
-friday-moltbook = { workspace = true }
-friday-finance = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-sandbox = { workspace = true }
+friday-framework-moltbook = { workspace = true }
+friday-framework-finance = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests_tools"]

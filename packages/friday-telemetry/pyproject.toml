@@ -1,8 +1,10 @@
 [project]
-name = "friday-telemetry"
-version = "0.1.0"
+name = "friday-framework-telemetry"
+version = "0.1.0a0"
 description = "Unified telemetry for Friday framework"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
     "pydantic>=2.0",
 ]

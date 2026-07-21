@@ -1,12 +1,14 @@
 [project]
-name = "friday-finance"
-version = "0.1.0"
+name = "friday-framework-finance"
+version = "0.1.0a0"
 description = "Financial data provider integration for Friday Agent Framework"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
     "massive",
-    "friday-core",
+    "friday-framework-core==0.1.0a0",
 ]
 
 [build-system]
@@ -18,3 +20,6 @@ packages = ["src/friday_finance"]
 
 [project.scripts]
 friday-finance-demo = "friday_finance.demo:main"
+
+[tool.uv.sources]
+friday-framework-core = { workspace = true }

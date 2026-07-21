@@ -1,13 +1,15 @@
 [project]
-name = "friday-core"
-version = "0.1.0"
+name = "friday-framework-core"
+version = "0.1.0a0"
 description = "Foundation interfaces and utilities for Friday"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
     "pydantic>=2.0",
     "pydantic-settings>=2.0",
     "structlog>=24.0.0",
-    "friday-telemetry",
+    "friday-framework-telemetry==0.1.0a0",
 ]
 
 [project.optional-dependencies]
@@ -34,4 +36,4 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-telemetry = { workspace = true }
+friday-framework-telemetry = { workspace = true }

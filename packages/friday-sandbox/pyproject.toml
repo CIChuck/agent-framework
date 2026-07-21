@@ -1,9 +1,9 @@
 [project]
-name = "friday-sandbox"
-version = "0.1.0"
+name = "friday-framework-sandbox"
+version = "0.1.0a0"
 description = "Docker-based code execution sandbox for AI agents"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "sandbox", "docker", "code-execution"]
 

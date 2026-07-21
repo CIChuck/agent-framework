@@ -1,16 +1,16 @@
 [project]
-name = "friday-mcp"
-version = "0.1.0"
+name = "friday-framework-mcp"
+version = "0.1.0a0"
 description = "MCP (Model Context Protocol) integration for Friday Framework"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "mcp", "model-context-protocol", "llm"]
 
 dependencies = [
     # Core protocols
-    "friday-core",
+    "friday-framework-core==0.1.0a0",
 
     # HTTP client for SSE transport
     "httpx>=0.25.0",
@@ -34,9 +34,9 @@ server = [
 
 # Full integration with Friday packages
 full = [
-    "friday-mcp[server]",
-    "friday-tools",
-    "friday-agent",
+    "friday-framework-mcp[server]==0.1.0a0",
+    "friday-framework-tools==0.1.0a0",
+    "friday-framework-agent==0.1.0a0",
 ]
 
 [build-system]
@@ -52,7 +52,9 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-core = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-tools = { workspace = true }
+friday-framework-agent = { workspace = true }
 
 [tool.ruff]
 line-length = 88

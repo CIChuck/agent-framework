@@ -1,11 +1,13 @@
 [project]
-name = "friday-agent"
-version = "0.1.0"
+name = "friday-framework-agent"
+version = "0.1.0a0"
 description = "Agent orchestration layer for Friday Framework"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-core",
-    "friday-memory",
+    "friday-framework-core==0.1.0a0",
+    "friday-framework-memory==0.1.0a0",
 ]
 
 [project.optional-dependencies]
@@ -27,5 +29,5 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-memory = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-memory = { workspace = true }

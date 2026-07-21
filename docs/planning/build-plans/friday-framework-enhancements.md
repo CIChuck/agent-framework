@@ -316,7 +316,35 @@ Acceptance:
 - Friday Chat no longer needs an `Any` cast for graph diagnostic methods.
 - FU-001 can be marked resolved in the framework upgrade log.
 
-### Task 6: Run Full Framework Closeout Gates
+### Task 6: Update User And Developer Guides
+
+**Goal:** Keep guide content aligned with the framework validation and contract
+enhancement work before closeout.
+
+Work:
+
+- Update `docs/guides/15-contributing.md` with the restored root validation
+  expectations, package-local test packaging rules, and guidance for preserving
+  repo-wide pytest/mypy discovery.
+- Update `docs/guides/13-troubleshooting.md` with common root validation
+  failures, including duplicate test module discovery, Ruff gate failures, and
+  framework package validation debt triage.
+- Update any directly affected user-facing guide if the implementation changes
+  observable configuration or runtime behavior.
+
+Validation:
+
+```bash
+git diff --check -- docs/guides
+```
+
+Acceptance:
+
+- Guide updates describe what changed, why it matters, and how to validate it.
+- Guide updates separate restored validation expectations from known legacy debt.
+- Implementation is not considered complete until these guide updates are done.
+
+### Task 7: Run Full Framework Closeout Gates
 
 **Goal:** Prove the framework enhancement unit restores the intended repository
 signals.
@@ -346,7 +374,8 @@ Acceptance:
 3. Task 3: fix runtime builtin tool registration.
 4. Task 4: restore Ruff.
 5. Task 5: resolve graph-store protocol gap.
-6. Task 6: run closeout gates.
+6. Task 6: update user and developer guides.
+7. Task 7: run closeout gates.
 
 This order is intentional: root discovery must be fixed before repo-wide test
 and type results can be trusted.
@@ -368,6 +397,8 @@ and type results can be trusted.
 - Root Ruff passes.
 - The graph-store protocol gap is resolved or explicitly deferred with updated
   rationale.
+- `docs/guides/15-contributing.md` and `docs/guides/13-troubleshooting.md` are
+  updated for the restored framework validation workflow.
 - Root validation commands have fresh recorded outcomes.
 - `docs/planning/build-plans/friday-chat-v2-framework-upgrade-log.md` is updated
   for FU-001/FU-002 status as appropriate.

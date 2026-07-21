@@ -346,6 +346,35 @@ Acceptance:
 - External config is normalized into the same runtime model.
 - Precedence and diagnostics are documented and tested.
 
+### Phase 5: Update User And Developer Guides
+
+Goal:
+
+- Document MCP client configuration and runtime behavior before the MCP
+  enhancement work is considered complete.
+
+Work:
+
+- Update `docs/guides/05-tools.md` with MCP tools as a runtime tool provider,
+  naming/prefix behavior, tool filtering, and normal tool-loop execution.
+- Update `docs/guides/10-configuration.md` with the canonical inline
+  `tools.providers.mcp` YAML shape and any optional external include behavior if
+  implemented.
+- Update `docs/guides/11-advanced-topics.md` with MCP lifecycle, stdio/SSE
+  transport considerations, security boundaries, and memory/provenance behavior.
+- Update `docs/guides/13-troubleshooting.md` with MCP connection, tool
+  discovery, tool binding, timeout, filtering, and shutdown diagnostics.
+
+Acceptance:
+
+- The guides explain that inline `tools.providers.mcp` config is canonical.
+- The guides show at least one stdio MCP server example.
+- The guides explain how MCP tools interact with tool context budgeting and
+  Friday memory provenance.
+- The guides document common failure modes and remediation steps.
+- MCP implementation is not considered complete until these guide updates are
+  done.
+
 ## 6. Open Questions
 
 - Should MCP server failures be fatal by default when `enabled=true`, or should
@@ -368,6 +397,7 @@ uv run pytest packages/friday-runtime/tests_runtime
 uv run pytest packages/friday-chat/tests_chat
 uv run mypy packages/friday-mcp packages/friday-runtime packages/friday-chat
 uv run ruff check packages/friday-mcp packages/friday-runtime packages/friday-chat
+git diff --check -- docs/guides
 git diff --check
 ```
 
@@ -379,3 +409,15 @@ uv run pytest
 uv run mypy packages tests main.py
 uv run ruff check .
 ```
+
+## 8. Completion Criteria
+
+- MCP client tools can be configured through inline `tools.providers.mcp`.
+- MCP tools register through the runtime tool provider path and execute through
+  normal Friday tool-calling flows.
+- MCP tool schemas participate in context budgeting and filtering.
+- MCP tool outputs have explicit sanitization and provenance behavior.
+- Runtime shutdown disconnects MCP clients.
+- `docs/guides/05-tools.md`, `docs/guides/10-configuration.md`,
+  `docs/guides/11-advanced-topics.md`, and
+  `docs/guides/13-troubleshooting.md` are updated before closeout.

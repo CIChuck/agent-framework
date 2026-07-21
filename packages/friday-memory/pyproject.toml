@@ -1,11 +1,13 @@
 [project]
-name = "friday-memory"
-version = "0.1.0"
+name = "friday-framework-memory"
+version = "0.1.0a0"
 description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-core",
-    "friday-llm",
+    "friday-framework-core==0.1.0a0",
+    "friday-framework-llm==0.1.0a0",
     "chromadb>=0.4.0",
     "networkx>=3.0",
     "numpy>=1.24.0",
@@ -26,8 +28,8 @@ build-backend = "hatchling.build"
 packages = ["src/friday_memory"]
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-llm = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-llm = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests_memory"]

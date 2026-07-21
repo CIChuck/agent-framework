@@ -1,19 +1,19 @@
 [project]
 name = "friday-chat"
-version = "0.1.0"
+version = "0.1.0a0"
 description = "FridayV2 chat application package"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-core",
-    "friday-runtime",
-    "friday-memory",
-    "friday-llm",
-    "friday-agent",
-    "friday-tools",
-    "friday-transcript",
-    "friday-cli",
-    "friday-speech",
-    "friday-finance",
+    "friday-framework-core==0.1.0a0",
+    "friday-framework-runtime==0.1.0a0",
+    "friday-framework-memory==0.1.0a0",
+    "friday-framework-llm==0.1.0a0",
+    "friday-framework-agent==0.1.0a0",
+    "friday-framework-tools==0.1.0a0",
+    "friday-framework-transcript==0.1.0a0",
+    "friday-framework-cli==0.1.0a0",
     "pydantic>=2.0",
     "pyyaml>=6.0.0",
     "typer>=0.9.0",
@@ -21,6 +21,24 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+speech = [
+    "friday-framework-speech==0.1.0a0",
+]
+finance = [
+    "friday-framework-finance==0.1.0a0",
+    "friday-framework-tools[finance]==0.1.0a0",
+]
+sandbox = [
+    "friday-framework-sandbox==0.1.0a0",
+    "friday-framework-tools[sandbox]==0.1.0a0",
+]
+moltbook = [
+    "friday-framework-moltbook==0.1.0a0",
+    "friday-framework-tools[moltbook]==0.1.0a0",
+]
+full = [
+    "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a0",
+]
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
@@ -43,13 +61,15 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-runtime = { workspace = true }
-friday-memory = { workspace = true }
-friday-llm = { workspace = true }
-friday-agent = { workspace = true }
-friday-tools = { workspace = true }
-friday-transcript = { workspace = true }
-friday-cli = { workspace = true }
-friday-speech = { workspace = true }
-friday-finance = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-runtime = { workspace = true }
+friday-framework-memory = { workspace = true }
+friday-framework-llm = { workspace = true }
+friday-framework-agent = { workspace = true }
+friday-framework-tools = { workspace = true }
+friday-framework-transcript = { workspace = true }
+friday-framework-cli = { workspace = true }
+friday-framework-speech = { workspace = true }
+friday-framework-finance = { workspace = true }
+friday-framework-sandbox = { workspace = true }
+friday-framework-moltbook = { workspace = true }

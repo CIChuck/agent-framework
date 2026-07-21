@@ -1,15 +1,15 @@
 [project]
-name = "friday-speech"
-version = "0.1.0"
+name = "friday-framework-speech"
+version = "0.1.0a0"
 description = "Speech services (TTS, wake word) for Friday"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["speech", "tts", "wakeword", "audio", "assistant"]
 
 dependencies = [
     "pydantic>=2.0.0",
-    "friday-core",
+    "friday-framework-core==0.1.0a0",
     "pyyaml>=6.0.0",
 ]
 
@@ -42,3 +42,6 @@ packages = ["src/friday_speech"]
 testpaths = ["tests_speech"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
+
+[tool.uv.sources]
+friday-framework-core = { workspace = true }

@@ -114,6 +114,13 @@ friday-agent-framework/
 └── README.md
 ```
 
+**Packaging name convention:** PyPI distribution names may differ from source
+folder and import package names. For example, the source folder
+`packages/friday-core` publishes as `friday-framework-core`, but the Python
+import package remains `friday_core`. Use the public distribution name in
+`pyproject.toml` dependency declarations and the import package name in Python
+code.
+
 ### 15.1.4 Installing Dependencies
 
 Friday uses a **monorepo workspace** architecture. All packages share dependencies and are developed together.
@@ -1723,6 +1730,9 @@ Friday's design has been shaped by:
 ### 15.6.4 License
 
 **Friday Framework is licensed under the MIT License.**
+
+By submitting a contribution to Friday Framework, you agree that your
+contribution is provided under the project's MIT License.
 
 ```
 MIT License

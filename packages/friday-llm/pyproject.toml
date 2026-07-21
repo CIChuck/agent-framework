@@ -1,11 +1,13 @@
 [project]
-name = "friday-llm"
-version = "0.1.0"
+name = "friday-framework-llm"
+version = "0.1.0a0"
 description = "LLM inference layer for Friday Framework"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-core",
-    "friday-telemetry",
+    "friday-framework-core==0.1.0a0",
+    "friday-framework-telemetry==0.1.0a0",
     "litellm>=1.81.0",
     "tenacity>=8.2.0",
 ]
@@ -32,5 +34,5 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-telemetry = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-telemetry = { workspace = true }

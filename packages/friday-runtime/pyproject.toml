@@ -1,15 +1,17 @@
 [project]
-name = "friday-runtime"
-version = "0.1.0"
+name = "friday-framework-runtime"
+version = "0.1.0a0"
 description = "Headless runtime kernel for the Friday Agent Framework"
 requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-core",
-    "friday-memory",
-    "friday-llm",
-    "friday-telemetry",
-    "friday-agent",
-    "friday-transcript",
+    "friday-framework-core==0.1.0a0",
+    "friday-framework-memory==0.1.0a0",
+    "friday-framework-llm==0.1.0a0",
+    "friday-framework-telemetry==0.1.0a0",
+    "friday-framework-agent==0.1.0a0",
+    "friday-framework-transcript==0.1.0a0",
 ]
 
 [project.optional-dependencies]
@@ -31,9 +33,9 @@ asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.uv.sources]
-friday-core = { workspace = true }
-friday-memory = { workspace = true }
-friday-llm = { workspace = true }
-friday-telemetry = { workspace = true }
-friday-agent = { workspace = true }
-friday-transcript = { workspace = true }
+friday-framework-core = { workspace = true }
+friday-framework-memory = { workspace = true }
+friday-framework-llm = { workspace = true }
+friday-framework-telemetry = { workspace = true }
+friday-framework-agent = { workspace = true }
+friday-framework-transcript = { workspace = true }
