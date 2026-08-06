@@ -2,6 +2,7 @@
 name = "friday-framework-memory"
 version = "0.1.0a0"
 description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
@@ -13,6 +14,13 @@ dependencies = [
     "numpy>=1.24.0",
     "tiktoken>=0.5.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-memory"
 
 [project.optional-dependencies]
 dev = [

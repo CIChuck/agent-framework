@@ -9,23 +9,26 @@ logging:
   extraction_rejections_file: .friday/extraction_rejections.log
   tools_debug: true
 llm:
+  #model: "openai/qwen3.5-35b"
+  #api_base: "http://10.190.8.25:8000/v1"
+  #api_key: "vllm"
   api_base: https://api.moonshot.ai/v1
   api_key: ${FRIDAY_LLM_API_KEY}
   model: moonshot/kimi-k3
-  temperature: 1
+  temperature: 1.0
   top_p: 0.95
   top_k: 40
   max_tokens: 20000
   max_retries: 3
-  timeout_seconds: 120.0
+  timeout_seconds: 240.0
   thinking: true
 extraction:
   model: openai/qwen3.6-35b-a3b-mlx
-  api_base: http://localhost:1234/v1
+  api_base: http://127.0.0.1:1234/v1
   api_key: lm-studio
-  temperature: 0.0
-  max_tokens: 4000
-  timeout_seconds: 90.0
+  temperature: 0.1
+  max_tokens: 8000
+  timeout_seconds: 300.0
   interval: 3
   rejection_log: .friday/vector/extraction_rejections.log
   ontology:
@@ -194,7 +197,7 @@ embedding:
   api_key: lm-studio
   timeout_seconds: 60.0
 memory:
-  collection_name: memory_chat_test
+  collection_name: memories_long_term
   persist_directory: .friday/vector
   retrieval:
     short_term_collection: memories_short_term
@@ -252,14 +255,14 @@ memory:
       summaries: 15
       tools: 10
   passage_router:
-    enabled: true
+    enabled: false
     model: openai/qwen3.6-35b-a3b-mlx
-    api_base: http://localhost:1234/v1
+    api_base: http://127.0.0.1:1234/v1
     api_key: lm-studio
     max_retries: 2
-    timeout_seconds: 20
+    timeout_seconds: 90
     temperature: 0.1
-    max_tokens: 80
+    max_tokens: 1024
     min_confidence: 0.6
     include_on_empty_query: false
     fallback_mode: heuristic
@@ -608,7 +611,7 @@ web:
     http: null
     https: null
     no_proxy:
-    - localhost
+    - doing
     - 127.0.0.1
   security:
     allow_private_ips: false

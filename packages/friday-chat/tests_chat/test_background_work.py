@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import asyncio
 
-from friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink
+from friday_chat.app import (
+    ConsoleInputSource,
+    FridayChatApp,
+    ListInputSource,
+    ListOutputSink,
+)
 from friday_chat.background import BackgroundTaskManager, BackgroundWorkCoordinator
 from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
 from friday_chat.config import FridayChatConfig
@@ -19,6 +24,8 @@ def _runtime(
     compaction_utilization: float = 0.0,
     compaction_threshold: float = 1.0,
     compaction_cooldown_turns: int = 1,
+    context_window: int = 8192,
+    output_buffer: int = 1024,
 ) -> FridayRuntime:
     config = FridayChatConfig.model_validate(
         {
@@ -27,6 +34,8 @@ def _runtime(
             "tools": {"enabled": True},
             "lifecycle": {"factor_computer": {"enabled": True}},
             "memory": {
+                "context_window": context_window,
+                "output_buffer": output_buffer,
                 "compaction": {
                     "enabled": compaction_enabled,
                     "current_utilization": compaction_utilization,
@@ -37,6 +46,24 @@ def _runtime(
         }
     )
     return build_runtime(config)
+
+
+class FirstTurnThenIdlePrompt:
+    """Return one turn, then remain idle until released with EOF."""
+
+    def __init__(self, first_message: str) -> None:
+        self._first_message = first_message
+        self._call_count = 0
+        self.idle = asyncio.Event()
+        self.release = asyncio.Event()
+
+    async def __call__(self, _prompt: str) -> str:
+        self._call_count += 1
+        if self._call_count == 1:
+            return self._first_message
+        self.idle.set()
+        await self.release.wait()
+        raise EOFError
 
 
 async def test_extraction_interval_matrix() -> None:
@@ -122,6 +149,44 @@ async def test_background_routes_tool_decay_graph_and_budget_compaction() -> Non
     )
     assert runtime.maintenance.compaction_calls[0]["current_tokens"] == 950
     assert runtime.maintenance.compaction_calls[0]["available_budget"] == 1000
+
+
+async def test_app_completes_background_work_while_next_prompt_is_idle() -> None:
+    runtime = _runtime(
+        extraction_interval=1,
+        compaction_enabled=True,
+        compaction_threshold=0.5,
+        context_window=512,
+        output_buffer=100,
+    )
+    prompt = FirstTurnThenIdlePrompt("x" * 2000)
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=ConsoleInputSource(prompt_fn=prompt),
+        output_sink=ListOutputSink(),
+    )
+    app_task = asyncio.create_task(app.run())
+
+    result = None
+    try:
+        await asyncio.wait_for(prompt.idle.wait(), timeout=1.0)
+        await asyncio.wait_for(app.background.wait_for_all(), timeout=1.0)
+
+        assert app_task.done() is False
+        assert "extract:background_interval:1" in runtime.maintenance.background_actions
+        assert "tool_decay" in runtime.maintenance.background_actions
+        assert "incremental_graph_maintenance" in (
+            runtime.maintenance.background_actions
+        )
+        assert len(runtime.maintenance.compaction_calls) == 1
+    finally:
+        prompt.release.set()
+        result = await asyncio.wait_for(app_task, timeout=1.0)
+
+    assert result is not None
+    assert result.exit_reason == "eof"
+    assert result.turns_processed == 1
+    assert app.background.closed is True
 
 
 async def test_budget_compaction_flushes_extraction_before_compacting() -> None:

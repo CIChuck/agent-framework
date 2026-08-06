@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
+
 dependencies = [
     "friday-framework-core==0.1.0a0",
     "friday-framework-memory==0.1.0a0",
@@ -80,6 +81,13 @@ dev = [
     "mypy>=1.10.0",
     "types-PyYAML>=6.0.12",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework"
 
 [tool.uv.sources]
 friday-framework-core = { workspace = true }

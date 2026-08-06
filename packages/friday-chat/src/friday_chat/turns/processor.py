@@ -534,8 +534,10 @@ def _build_model_messages(
     turn_count: int,
 ) -> list[dict[str, Any]]:
     return [
-        {"role": "system", "content": system_prompt},
-        {"role": "system", "content": f"Turn: {turn_count}\n{context_text}"},
+        {
+            "role": "system",
+            "content": f"{system_prompt}\n\nTurn: {turn_count}\n{context_text}",
+        },
         {"role": "user", "content": user_message},
     ]
 

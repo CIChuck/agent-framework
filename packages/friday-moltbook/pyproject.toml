@@ -2,6 +2,7 @@
 name = "friday-framework-moltbook"
 version = "0.1.0a0"
 description = "Moltbook API client and models"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
@@ -11,6 +12,13 @@ dependencies = [
     "httpx>=0.25.0",
     "pydantic>=2.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-moltbook"
 
 [project.optional-dependencies]
 dev = [

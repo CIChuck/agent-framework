@@ -266,6 +266,20 @@ def test_assistant_response_text_applies_configured_rich_styles() -> None:
     assert "bright_green" in str(text.spans[-1].style)
 
 
+async def test_generic_output_sink_preserves_literal_help_arguments(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    sink = FridayCliOutputSink()
+
+    await sink.write(
+        "Usage: /help [command]\nUsage: /run-tool <name> [json]"
+    )
+
+    assert capsys.readouterr().out == (
+        "Usage: /help [command]\nUsage: /run-tool <name> [json]\n"
+    )
+
+
 async def test_streaming_sink_strips_duplicate_assistant_prefix(
     capsys: pytest.CaptureFixture[str],
 ) -> None:

@@ -33,6 +33,7 @@ Read in order for a full walkthrough; jump directly for reference.
 | [Memory Management Guidelines](memory-management-guidelines.md) | Memory budgets and lifecycle guidance |
 | [Security Configuration Guidelines](security-configuration-guidelines.md) | Security posture and configuration |
 | [Speech Guide](speech.md) | Voice I/O via `friday-speech` |
+| [Desktop Deployment With uv](16-desktop-deployment.md) | Desktop install and launch paths for `friday-chat` with `uv`, `uvx`, config, and API keys |
 | [OUTLINE.md](OUTLINE.md) | Detailed outline and section descriptions of the full guide |
 
 ## Where to Start

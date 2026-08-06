@@ -2,6 +2,7 @@
 name = "friday-framework-speech"
 version = "0.1.0a0"
 description = "Speech services (TTS, wake word) for Friday"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
@@ -12,6 +13,13 @@ dependencies = [
     "friday-framework-core==0.1.0a0",
     "pyyaml>=6.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-speech"
 
 [project.optional-dependencies]
 elevenlabs = [

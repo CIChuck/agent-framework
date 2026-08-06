@@ -9,8 +9,12 @@ from typing import Any
 import yaml
 
 PLANNING_ROOT = Path("docs/planning")
-PARITY_MATRIX = PLANNING_ROOT / "build-plans" / "friday-chat-v2-parity-matrix.md"
-CONTRACTS = PLANNING_ROOT / "build-plans" / "friday-chat-v2-behavioral-contracts.md"
+COMPATIBILITY_PLAN_ROOT = (
+    PLANNING_ROOT / "build-plans" / "friday-chat-v2-aechive"
+)
+# These archived plans remain the pinned authority for FridayV2 parity coverage.
+PARITY_MATRIX = COMPATIBILITY_PLAN_ROOT / "friday-chat-v2-parity-matrix.md"
+CONTRACTS = COMPATIBILITY_PLAN_ROOT / "friday-chat-v2-behavioral-contracts.md"
 OVERRIDES = Path(__file__).parent / "fixtures" / "parity_overrides.yaml"
 
 

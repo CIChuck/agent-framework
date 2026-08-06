@@ -650,7 +650,7 @@ LM Studio provides a GUI for running local models with OpenAI-compatible API.
 ```yaml
 llm:
   model: "openai/local-model"      # LM Studio uses OpenAI format
-  api_base: "http://localhost:1234/v1"
+  api_base: "http://127.0.0.1:1234/v1"
   api_key: "lm-studio"             # Any non-empty string
   temperature: 0.7
 ```
@@ -5049,4 +5049,3 @@ With these configuration options, you can tailor Friday to your specific use cas
 - Section 11: Deployment & Operations - Production deployment patterns
 - Section 12: Troubleshooting & FAQ - Common issues and solutions
 - Section 13: API Reference - Complete API documentation
-

@@ -421,6 +421,13 @@ Current reservation-build run:
 - `twine check` passes for all artifacts. Most packages still warn about
   missing long descriptions; this is acceptable for a reservation build but
   should be fixed before the clean `0.1.0` alpha.
+- During the 2026-07-21 rate-limit pause, package-local `README.md` files and
+  `[project.urls]` metadata were added across all packages. The remaining
+  unuploaded `0.1.0a0` artifacts were rebuilt and now pass `twine check`
+  without long-description warnings.
+- The four packages already uploaded to PyPI at `0.1.0a0` cannot be changed in
+  place; their PyPI descriptions should be corrected by publishing a future
+  `0.1.0a1` or `0.1.0` version after reservation is complete.
 - Artifact leak scan found no obvious local state or secret path names such as
   `.env`, `.friday`, Chroma paths, transcript databases, local key files, or
   PyPI recovery-code filenames.
@@ -435,13 +442,36 @@ Current reservation-build run:
 - Retried `friday-framework-core` on 2026-07-21 with valid Twine credentials and
   the same reservation artifacts. PyPI still returned `429 Too Many Requests`,
   so the new-project rate limit had not yet reset or been lifted.
+- Retried `friday-framework-core` again on 2026-07-21 after revalidating the
+  remaining artifacts and `twine check` results. PyPI again returned `429 Too
+  Many Requests` before accepting any new artifact, so no additional projects
+  were published in this retry.
+- Retried uploads at 2026-07-21 17:30 EDT. PyPI accepted
+  `friday-framework-core`, `friday-framework-finance`, `friday-framework-llm`,
+  and `friday-framework-speech`, then returned `429 Too Many Requests` while
+  creating `friday-framework-mcp`.
+- Retried uploads at 2026-07-22 18:30 EDT after validating the nine remaining
+  artifacts. PyPI accepted `friday-framework-mcp`,
+  `friday-framework-memory`, `friday-framework-agent`, and
+  `friday-framework-tools`, then returned `429 Too Many Requests` while
+  creating `friday-framework-optimization`.
+- Retried uploads at 2026-07-23 17:41 EDT after validating the five remaining
+  artifacts. PyPI returned `429 Too Many Requests` while creating
+  `friday-framework-optimization`, before accepting any additional artifact.
+- Retried `friday-framework-optimization` at 2026-07-23 18:00 EDT after
+  validating the targeted artifacts. PyPI again returned `429 Too Many
+  Requests` before accepting any additional artifact.
+- Retried uploads at 2026-07-23 20:55 EDT after validating the five remaining
+  artifacts. PyPI accepted `friday-framework-optimization`,
+  `friday-framework-runtime`, `friday-framework-cli`, and `friday-chat`.
+  Uploading `friday-framework` first hit a DNS failure during Twine's
+  `--skip-existing` preflight, then reached PyPI without `--skip-existing` and
+  returned `429 Too Many Requests` before accepting the final meta-package.
 - Fully uploaded reservation projects so far:
   - `friday-framework-telemetry`
   - `friday-framework-transcript`
   - `friday-framework-sandbox`
   - `friday-framework-moltbook`
-- Remaining projects to upload after the PyPI new-project limit resets or is
-  lifted:
   - `friday-framework-core`
   - `friday-framework-finance`
   - `friday-framework-llm`
@@ -454,9 +484,92 @@ Current reservation-build run:
   - `friday-framework-runtime`
   - `friday-framework-cli`
   - `friday-chat`
+- Remaining projects to upload after the PyPI new-project limit resets or is
+  lifted:
   - `friday-framework`
-- Resume uploads with `--skip-existing` so already uploaded files are not
-  treated as failures.
+- Resume uploads with `--skip-existing` for multi-package retries so already
+  uploaded files are not treated as failures. The final `friday-framework`
+  meta-package retry currently omits `--skip-existing` to avoid Twine's legacy
+  PyPI JSON preflight lookup after that lookup hit a DNS failure.
+- A non-secret helper script exists at
+  `scripts/resume-pypi-reservation-upload.sh`. It expects `TWINE_USERNAME` and
+  `TWINE_PASSWORD` to already be set in the environment, uploads the remaining
+  package queue, and spaces attempts using `PYPI_UPLOAD_DELAY_SECONDS` with a
+  default of 60 seconds.
+- A metadata validation helper exists at `scripts/check-package-metadata.py`.
+  It checks lock-step version metadata, MIT license metadata, author metadata,
+  README presence, project URLs, wheel package selection, and exact internal
+  Friday dependency pins.
+- An artifact validation helper exists at `scripts/check-package-artifacts.py`.
+  It checks artifact counts, wheel import-package contents, long-description
+  metadata, project URL metadata, root metadata-only wheel behavior, and obvious
+  local state or secret path names.
+- A local install smoke helper exists at `scripts/smoke-install-artifacts.sh`.
+  The default mode creates a temporary venv and installs `friday-chat` from the
+  local artifact directory while allowing third-party dependencies to resolve
+  from package indexes. The `--wheel-only` mode installs all Friday wheels into
+  a temporary target directory with `--no-deps` and validates imports using an
+  existing dependency environment.
+- A strict no-index install smoke was attempted and correctly failed because
+  the reservation artifact directory contains only Friday wheels, not
+  third-party wheels such as `pydantic`.
+- The default online-dependency install smoke was attempted but blocked by DNS
+  failures while pip resolved third-party packages from PyPI.
+- The wheel-only smoke passed using `.venv/bin/python` for runtime dependencies
+  and local built wheels for Friday packages:
+
+```bash
+PYTHON_BIN=.venv/bin/python \
+  INSTALL_PYTHON_BIN=python3 \
+  scripts/smoke-install-artifacts.sh --wheel-only
+```
+
+- Focused artifact validation for the 13 remaining unuploaded packages passed:
+
+```bash
+python3 scripts/check-package-artifacts.py \
+  dist/pypi-reservation-0.1.0a0 \
+  --skip-base friday_framework_moltbook \
+  --skip-base friday_framework_sandbox \
+  --skip-base friday_framework_telemetry \
+  --skip-base friday_framework_transcript
+```
+
+- Focused artifact validation for the nine packages remaining before the
+  2026-07-22 retry passed:
+
+```bash
+python3 scripts/check-package-artifacts.py \
+  dist/pypi-reservation-0.1.0a0 \
+  --skip-base friday_framework_moltbook \
+  --skip-base friday_framework_sandbox \
+  --skip-base friday_framework_telemetry \
+  --skip-base friday_framework_transcript \
+  --skip-base friday_framework_core \
+  --skip-base friday_framework_finance \
+  --skip-base friday_framework_llm \
+  --skip-base friday_framework_speech
+```
+
+- Focused artifact validation for the five packages remaining after the
+  2026-07-22 retry passed:
+
+```bash
+python3 scripts/check-package-artifacts.py \
+  dist/pypi-reservation-0.1.0a0 \
+  --skip-base friday_framework_moltbook \
+  --skip-base friday_framework_sandbox \
+  --skip-base friday_framework_telemetry \
+  --skip-base friday_framework_transcript \
+  --skip-base friday_framework_core \
+  --skip-base friday_framework_finance \
+  --skip-base friday_framework_llm \
+  --skip-base friday_framework_speech \
+  --skip-base friday_framework_mcp \
+  --skip-base friday_framework_memory \
+  --skip-base friday_framework_agent \
+  --skip-base friday_framework_tools
+```
 
 Reservation upload command shape:
 
@@ -464,24 +577,7 @@ Reservation upload command shape:
 export TWINE_USERNAME=__token__
 export TWINE_PASSWORD='pypi-...'
 
-uv run --with twine twine upload \
-  dist/pypi-reservation-0.1.0a0/friday_framework_telemetry-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_transcript-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_sandbox-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_moltbook-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_core-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_finance-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_llm-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_speech-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_mcp-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_memory-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_agent-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_tools-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_optimization-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_runtime-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework_cli-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_chat-0.1.0a0* \
-  dist/pypi-reservation-0.1.0a0/friday_framework-0.1.0a0*
+PYPI_UPLOAD_DELAY_SECONDS=60 scripts/resume-pypi-reservation-upload.sh
 ```
 
 Post-upload checks:

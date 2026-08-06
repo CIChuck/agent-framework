@@ -1,4 +1,4 @@
-# friday-mcp
+# Friday Framework MCP
 
 MCP (Model Context Protocol) integration for the Friday Framework.
 
@@ -13,13 +13,13 @@ MCP (Model Context Protocol) integration for the Friday Framework.
 
 ```bash
 # Core package
-pip install friday-mcp
+pip install friday-framework-mcp
 
 # With SSE server support
-pip install friday-mcp[server]
+pip install friday-framework-mcp[server]
 
 # Full integration with Friday
-pip install friday-mcp[full]
+pip install friday-framework-mcp[full]
 ```
 
 ## Quick Start

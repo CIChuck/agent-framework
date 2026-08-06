@@ -19,6 +19,8 @@ from friday_cli import (
 from rich.panel import Panel
 from rich.text import Text
 
+from friday_chat.input_sources import AsyncPromptCallable, AsyncPromptReader
+
 HeartbeatKind = Literal["thinking", "tool"]
 DisplayConfigSource = Literal["explicit", "sibling", "defaults"]
 
@@ -236,7 +238,7 @@ class FridayCliOutputSink:
         self._stream_prefix_buffer = ""
 
     async def write(self, text: str) -> None:
-        get_console().print(text)
+        get_console().print(text, markup=False)
 
     async def write_assistant_response(self, text: str, *, assistant_name: str) -> None:
         get_console().print(
@@ -304,11 +306,17 @@ class FridayCliOutputSink:
 class FridayCliInputSource:
     """Console input source with configured prompt text."""
 
-    def __init__(self, prompt: str) -> None:
+    def __init__(
+        self,
+        prompt: str,
+        *,
+        prompt_fn: AsyncPromptCallable | None = None,
+    ) -> None:
         self._prompt = prompt
+        self._reader = AsyncPromptReader(prompt_fn)
 
     async def read(self) -> str:
-        return input(self._prompt)
+        return await self._reader.read(self._prompt)
 
 
 def resolve_display_config(

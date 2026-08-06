@@ -307,6 +307,11 @@ Required behavior:
 
 - FridayV2 must use one registry for help and dispatch.
 - Registered commands and aliases must be the source for `/help`.
+- General `/help` must group commands by category and render each command's
+  aliases, short description, complete usage syntax, and structured argument
+  details from registry metadata.
+- Structured argument details must identify required and optional arguments and
+  include declared defaults and choices.
 - The legacy fallback router must not be recreated.
 - Fallback-only prototype commands `/debug-retrieval` and `/list-ingested` must
   either be registered in FridayV2 or explicitly marked as changed.
@@ -317,6 +322,10 @@ Required tests:
 - Parse the prototype registry and compare with FridayV2 registry.
 - Verify alias coverage.
 - Verify `/help` and `/help <command>` are generated from registry metadata.
+- Verify literal usage syntax such as `[command]` and `[json]` survives terminal
+  rendering.
+- Verify every registered command has non-empty category, description, and
+  usage metadata, and every declared argument has a description.
 - Duplicate command registration fails.
 
 ## Session Commands
@@ -330,8 +339,10 @@ Contracts:
   session turn count if state exists. It does not clear persistent stores.
 - `/cls`, `/clearscreen`: clear terminal through display abstraction and return
   an empty response.
-- `/help`: list commands grouped by category.
-- `/help <command>`: show detail from registry metadata.
+- `/help`: list commands grouped by category using the legacy verbose layout,
+  including aliases, description, usage, and argument details.
+- `/help <command>`: show category, usage, description, aliases, and structured
+  argument details from registry metadata.
 
 Required tests:
 

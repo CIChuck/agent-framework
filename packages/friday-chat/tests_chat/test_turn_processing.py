@@ -447,6 +447,20 @@ async def test_raw_prompt_capture_records_actual_model_payload() -> None:
     assert runtime.transcript.context_logs[0][1] == result.raw_response
 
 
+async def test_model_payload_combines_system_prompt_and_context() -> None:
+    runtime = build_runtime(_config({"llm": {"model": "openai/test-chat-model"}}))
+
+    await TurnProcessor(runtime).process("hello")
+
+    assert isinstance(runtime.chat_llm, FakeChatModel)
+    actual_payload = runtime.chat_llm.calls[0]
+    assert [message["role"] for message in actual_payload] == ["system", "user"]
+    system_content = actual_payload[0]["content"]
+    assert isinstance(system_content, str)
+    assert system_content.startswith("You are Friday.\n\nTurn: 1\nContext payload:")
+    assert "Memory: none" in system_content
+
+
 async def test_streaming_path_uses_fake_llm_response() -> None:
     runtime = build_runtime(
         _config(

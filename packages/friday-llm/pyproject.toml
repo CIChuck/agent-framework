@@ -2,6 +2,7 @@
 name = "friday-framework-llm"
 version = "0.1.0a0"
 description = "LLM inference layer for Friday Framework"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
@@ -11,6 +12,13 @@ dependencies = [
     "litellm>=1.81.0",
     "tenacity>=8.2.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-llm"
 
 [project.optional-dependencies]
 langfuse = [

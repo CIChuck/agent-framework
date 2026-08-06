@@ -15,6 +15,7 @@ from friday_chat.commands.registry import (
 )
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import DisplayController, format_assistant_response
+from friday_chat.input_sources import AsyncPromptCallable, AsyncPromptReader
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.session import FridaySession
 from friday_chat.shell import ShellService
@@ -126,11 +127,17 @@ class ListOutputSink:
 class ConsoleInputSource:
     """Console input adapter for manual interactive use."""
 
-    def __init__(self, prompt: str = "> ") -> None:
+    def __init__(
+        self,
+        prompt: str = "> ",
+        *,
+        prompt_fn: AsyncPromptCallable | None = None,
+    ) -> None:
         self._prompt = prompt
+        self._reader = AsyncPromptReader(prompt_fn)
 
     async def read(self) -> str:
-        return input(self._prompt)
+        return await self._reader.read(self._prompt)
 
 
 class ConsoleOutputSink:
@@ -431,7 +438,48 @@ def _format_turn_processing_error(
             "Consider increasing llm.timeout_seconds or reducing tool result size."
         )
     message = str(exc) or exc.__class__.__name__
+    cause = _format_exception_cause(exc)
+    if cause:
+        return f"Turn failed: {message} Last error: {cause}"
     return f"Turn failed: {message}"
+
+
+def _format_exception_cause(exc: BaseException) -> str | None:
+    cause = _root_exception_cause(exc)
+    if cause is None:
+        return None
+    message = " ".join(str(cause).split())
+    response_body = _exception_response_body(cause)
+    if response_body:
+        message = f"{message} Response body: {response_body}"
+    if len(message) > 500:
+        message = f"{message[:497]}..."
+    return f"{cause.__class__.__name__}: {message}"
+
+
+def _root_exception_cause(exc: BaseException) -> BaseException | None:
+    current = exc.__cause__ or exc.__context__
+    seen: set[int] = {id(exc)}
+    root: BaseException | None = current
+    while current is not None and id(current) not in seen:
+        seen.add(id(current))
+        root = current
+        nested = getattr(current, "last_error", None)
+        if isinstance(nested, BaseException):
+            current = nested
+            continue
+        current = current.__cause__ or current.__context__
+    return root
+
+
+def _exception_response_body(exc: BaseException) -> str | None:
+    response = getattr(exc, "response", None)
+    if response is None:
+        return None
+    text = getattr(response, "text", None)
+    if not isinstance(text, str) or not text.strip():
+        return None
+    return " ".join(text.split())
 
 
 __all__ = [

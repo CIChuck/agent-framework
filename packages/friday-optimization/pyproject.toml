@@ -2,6 +2,7 @@
 name = "friday-framework-optimization"
 version = "0.1.0a0"
 description = "DSPy optimization playground"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
@@ -9,6 +10,13 @@ dependencies = [
     "friday-framework-memory==0.1.0a0",
     "dspy-ai>=2.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-optimization"
 
 [project.optional-dependencies]
 dev = [

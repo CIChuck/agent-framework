@@ -64,6 +64,17 @@ class CommandResult:
 
 
 @dataclass(frozen=True)
+class CommandArgument:
+    """One user-facing command argument used by generated help."""
+
+    name: str
+    description: str
+    required: bool = False
+    default: str | None = None
+    choices: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class CommandMetadata:
     """Command metadata used for dispatch and generated help."""
 
@@ -72,6 +83,7 @@ class CommandMetadata:
     category: str
     usage: str
     aliases: tuple[str, ...] = ()
+    arguments: tuple[CommandArgument, ...] = ()
     detail: str | None = None
 
 
@@ -102,22 +114,46 @@ class CommandRegistry:
         category: str,
         usage: str | None = None,
         aliases: Iterable[str] = (),
+        arguments: Iterable[CommandArgument] = (),
         detail: str | None = None,
         handler: CommandHandler | None = None,
     ) -> None:
         """Register a command and its aliases."""
         normalized_name = _normalize_command_name(name)
+        if not normalized_name:
+            raise ValueError("Command name must not be empty.")
+        normalized_description = description.strip()
+        if not normalized_description:
+            raise ValueError(f"Command /{normalized_name} requires a description.")
+        normalized_category = category.strip()
+        if not normalized_category:
+            raise ValueError(f"Command /{normalized_name} requires a category.")
+        normalized_usage = (usage or f"/{normalized_name}").strip()
+        if not normalized_usage:
+            raise ValueError(f"Command /{normalized_name} requires usage text.")
         normalized_aliases = tuple(_normalize_command_name(alias) for alias in aliases)
+        normalized_arguments = tuple(arguments)
+        for argument in normalized_arguments:
+            if not argument.name.strip():
+                raise ValueError(
+                    f"Command /{normalized_name} has an argument without a name."
+                )
+            if not argument.description.strip():
+                raise ValueError(
+                    f"Command /{normalized_name} argument {argument.name!r} "
+                    "requires a description."
+                )
         duplicate = self._first_duplicate_name((normalized_name, *normalized_aliases))
         if duplicate is not None:
             raise ValueError(f"Command already registered: /{duplicate}")
 
         metadata = CommandMetadata(
             name=normalized_name,
-            description=description,
-            category=category,
-            usage=usage or f"/{normalized_name}",
+            description=normalized_description,
+            category=normalized_category,
+            usage=normalized_usage,
             aliases=normalized_aliases,
+            arguments=normalized_arguments,
             detail=detail,
         )
         self._commands[normalized_name] = metadata
@@ -171,26 +207,23 @@ class CommandRegistry:
                 )
             return _render_command_detail(metadata)
 
-        lines = ["Available commands:"]
+        lines = ["Available commands:", "Use /help <command> for focused details."]
         for category in sorted({command.category for command in self._commands.values()}):
             lines.append("")
-            lines.append(f"{category}:")
-            for command in sorted(
+            lines.append(category.upper())
+            lines.append("-")
+            category_commands = sorted(
                 (
                     command
                     for command in self._commands.values()
                     if command.category == category
                 ),
                 key=lambda command: command.name,
-            ):
-                alias_text = ""
-                if command.aliases:
-                    alias_text = " (aliases: " + ", ".join(
-                        f"/{alias}" for alias in command.aliases
-                    ) + ")"
-                lines.append(f"  /{command.name}{alias_text} - {command.description}")
-        lines.append("")
-        lines.append("Use /help <command> for focused details.")
+            )
+            for index, command in enumerate(category_commands):
+                lines.extend(_render_command_summary(command))
+                if index < len(category_commands) - 1:
+                    lines.append("")
         return "\n".join(lines)
 
     def _first_duplicate_name(self, names: Iterable[str]) -> str | None:
@@ -1343,6 +1376,12 @@ def build_default_registry() -> CommandRegistry:
         description="Show available commands or focused command help.",
         category="session",
         usage="/help [command]",
+        arguments=(
+            CommandArgument(
+                "command",
+                "Command name or alias to inspect.",
+            ),
+        ),
         handler=_help_handler,
     )
     registry.register(
@@ -1361,6 +1400,7 @@ def build_default_registry() -> CommandRegistry:
             category=spec.category,
             usage=spec.usage,
             aliases=spec.aliases,
+            arguments=spec.arguments,
             handler=BASIC_COMMAND_HANDLERS.get(spec.name),
         )
 
@@ -1440,10 +1480,49 @@ def _render_command_detail(metadata: CommandMetadata) -> str:
     ]
     if metadata.aliases:
         lines.append("Aliases: " + ", ".join(f"/{alias}" for alias in metadata.aliases))
+    lines.extend(_render_arguments(metadata.arguments))
     if metadata.detail:
         lines.append("")
         lines.append(metadata.detail)
     return "\n".join(lines)
+
+
+def _render_command_summary(metadata: CommandMetadata) -> list[str]:
+    alias_text = ""
+    if metadata.aliases:
+        aliases = ", ".join(f"/{alias}" for alias in metadata.aliases)
+        alias_text = f" (aliases: {aliases})"
+    lines = [
+        f"/{metadata.name}{alias_text}",
+        f"  Description: {metadata.description}",
+        f"  Usage: {metadata.usage}",
+    ]
+    lines.extend(_render_arguments(metadata.arguments, indent="  "))
+    return lines
+
+
+def _render_arguments(
+    arguments: tuple[CommandArgument, ...],
+    *,
+    indent: str = "",
+) -> list[str]:
+    if not arguments:
+        return [f"{indent}Arguments: none"]
+
+    lines = [f"{indent}Arguments:"]
+    for argument in arguments:
+        requirement = "required" if argument.required else "optional"
+        qualifiers: list[str] = []
+        if argument.default is not None:
+            qualifiers.append(f"default={argument.default}")
+        if argument.choices:
+            qualifiers.append(f"choices={', '.join(argument.choices)}")
+        qualifier_text = f" ({', '.join(qualifiers)})" if qualifiers else ""
+        lines.append(
+            f"{indent}  - {argument.name} [{requirement}]{qualifier_text}: "
+            f"{argument.description}"
+        )
+    return lines
 
 
 async def _memory_record_list(
@@ -1780,6 +1859,24 @@ class CommandSpec:
     category: str
     usage: str
     aliases: tuple[str, ...] = ()
+    arguments: tuple[CommandArgument, ...] = ()
+
+
+def _argument(
+    name: str,
+    description: str,
+    *,
+    required: bool = False,
+    default: str | None = None,
+    choices: tuple[str, ...] = (),
+) -> CommandArgument:
+    return CommandArgument(
+        name=name,
+        description=description,
+        required=required,
+        default=default,
+        choices=choices,
+    )
 
 
 DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
@@ -1793,19 +1890,37 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec("history", "Show conversation history.", "session", "/history"),
     CommandSpec("vars", "Show scoped variables.", "session", "/vars"),
-    CommandSpec("set", "Set a scoped variable.", "session", "/set <key> <value>"),
+    CommandSpec(
+        "set",
+        "Set a scoped variable.",
+        "session",
+        "/set <key> <value>",
+        arguments=(
+            _argument("key", "Variable key to set.", required=True),
+            _argument(
+                "value",
+                "Variable value; remaining words are joined.",
+                required=True,
+            ),
+        ),
+    ),
     CommandSpec("memory", "Show memory statistics.", "memory", "/memory"),
     CommandSpec(
         "context",
         "Show the assembled context payload.",
         "memory",
         "/context [--debug] [--file]",
+        arguments=(
+            _argument("--debug", "Include detailed token diagnostics."),
+            _argument("--file", "Export the context to a file."),
+        ),
     ),
     CommandSpec(
         "prompt",
         "Show the full formatted prompt sent to the LLM.",
         "memory",
         "/prompt [--file]",
+        arguments=(_argument("--file", "Export the prompt to a file."),),
     ),
     CommandSpec("prime", "Load and show primed context.", "memory", "/prime"),
     CommandSpec("debug", "Show context assembly debug information.", "memory", "/debug"),
@@ -1821,11 +1936,29 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "List graph entities and relationships.",
         "memory",
         "/entities [nodes|name]",
+        arguments=(
+            _argument(
+                "nodes|name",
+                "Use 'nodes' for node details or provide an entity name to inspect.",
+            ),
+        ),
     ),
     CommandSpec("insights", "List durable insights.", "memory", "/insights"),
     CommandSpec("summaries", "List turn summaries.", "memory", "/summaries"),
     CommandSpec("meta", "List meta insights.", "memory", "/meta"),
-    CommandSpec("reset", "Reset one or more memory stores.", "memory", "/reset [store]"),
+    CommandSpec(
+        "reset",
+        "Reset one or more memory stores.",
+        "memory",
+        "/reset [graph|vector|episodic]",
+        arguments=(
+            _argument(
+                "store",
+                "Memory store to reset; omit to reset every supported store.",
+                choices=("graph", "vector", "episodic"),
+            ),
+        ),
+    ),
     CommandSpec(
         "compact",
         "Manually trigger context compaction.",
@@ -1837,6 +1970,13 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "Show retrieval diagnostics for a query.",
         "memory",
         "/debug-retrieval <query>",
+        arguments=(
+            _argument(
+                "query",
+                "Retrieval query; remaining words are joined.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec(
         "list-ingested",
@@ -1849,51 +1989,139 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "transcript",
         "Show current or selected transcript.",
         "transcript",
-        "/transcript [id|export]",
+        "/transcript [current-session|export]",
+        arguments=(
+            _argument(
+                "target",
+                "Show the current session or export the transcript database.",
+                default="current-session",
+                choices=("current-session", "export"),
+            ),
+        ),
     ),
     CommandSpec(
         "export",
         "Export the current session.",
         "transcript",
-        "/export [csv|jsonl|markdown|training]",
+        "/export [csv|jsonl|markdown|md|training]",
+        arguments=(
+            _argument(
+                "format",
+                "Output format for the current session export.",
+                default="jsonl",
+                choices=("csv", "jsonl", "markdown", "md", "training"),
+            ),
+        ),
     ),
     CommandSpec(
         "export-prompts",
         "Export captured raw prompts and responses.",
         "transcript",
-        "/export-prompts [session_id]",
+        "/export-prompts",
     ),
-    CommandSpec("replay", "Replay a transcript CSV.", "transcript", "/replay <csv>"),
+    CommandSpec(
+        "replay",
+        "Replay a transcript CSV.",
+        "transcript",
+        "/replay <csv_path> [delay_seconds]",
+        arguments=(
+            _argument("csv_path", "Transcript CSV path.", required=True),
+            _argument(
+                "delay_seconds",
+                "Delay between replayed user turns.",
+                default="0",
+            ),
+        ),
+    ),
     CommandSpec(
         "reorganize",
         "Run memory reorganization.",
         "maintenance",
-        "/reorganize [options]",
+        (
+            "/reorganize [--execute] [--no-backup] "
+            "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
+            "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] "
+            "[--force-reembed]"
+        ),
+        arguments=(
+            _argument("--execute", "Apply changes instead of using dry-run mode."),
+            _argument("--no-backup", "Skip the backup before mutating operations."),
+            _argument(
+                "mode",
+                "Run one reorganization step instead of the full operation.",
+                choices=(
+                    "--backup",
+                    "--dedupe",
+                    "--analyze",
+                    "--prune",
+                    "--synthesize",
+                    "--verify",
+                ),
+            ),
+            _argument("--skip-synthesis", "Skip synthesis during a full run."),
+            _argument("--skip-verify", "Skip verification during a full run."),
+            _argument("--skip-lifecycle", "Skip lifecycle processing."),
+            _argument("--force-reembed", "Force eligible records to be re-embedded."),
+        ),
     ),
     CommandSpec(
         "lifecycle",
         "Run or inspect memory lifecycle processing.",
         "maintenance",
-        "/lifecycle [options]",
+        "/lifecycle [--execute] [--stats|--flush|--optimize]",
+        arguments=(
+            _argument("--execute", "Apply lifecycle changes instead of a dry run."),
+            _argument(
+                "mode",
+                "Inspect statistics, flush access data, or optimize lifecycle state.",
+                choices=("--stats", "--flush", "--optimize"),
+            ),
+        ),
     ),
     CommandSpec(
         "migrate",
         "Migrate existing memories to lifecycle metadata.",
         "maintenance",
-        "/migrate [--force]",
+        "/migrate [--force|--execute|--stats]",
+        arguments=(
+            _argument(
+                "mode",
+                "Execute migration or report dry-run statistics.",
+                choices=("--force", "--execute", "--stats"),
+            ),
+        ),
     ),
-    CommandSpec("tools", "List available tools.", "tools", "/tools [category]"),
+    CommandSpec(
+        "tools",
+        "List available tools.",
+        "tools",
+        "/tools [category]",
+        arguments=(
+            _argument("category", "Optional runtime tool category filter."),
+        ),
+    ),
     CommandSpec(
         "run-tool",
         "Execute a named tool.",
         "tools",
         "/run-tool <name> [json]",
+        arguments=(
+            _argument("name", "Registered tool name.", required=True),
+            _argument("json", "JSON object containing tool parameters."),
+        ),
     ),
     CommandSpec(
         "inject-tools",
         "Inject selected tools into context.",
         "tools",
-        "/inject-tools <names>",
+        "/inject-tools <name> [name ...]",
+        arguments=(
+            _argument(
+                "name",
+                "One or more whitespace-separated registered tool names.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec(
         "clear-tools",
@@ -1906,6 +2134,13 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "Recommend tools for a query.",
         "tools",
         "/recommend-tools <query>",
+        arguments=(
+            _argument(
+                "query",
+                "Recommendation query; remaining words are joined.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec("tool-budget", "Show tool token budget information.", "tools", "/tool-budget"),
     CommandSpec("security", "Show security status.", "security", "/security"),
@@ -1913,37 +2148,91 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "security-test",
         "Run local security sanitization tests.",
         "security",
-        "/security-test",
+        "/security-test [instruction|delimiter|jailbreak|exfil|all]",
+        arguments=(
+            _argument(
+                "type",
+                "Security sample type to run.",
+                default="all",
+                choices=("instruction", "delimiter", "jailbreak", "exfil", "all"),
+            ),
+        ),
     ),
     CommandSpec(
         "security-config",
-        "Show security configuration.",
+        "Update security configuration.",
         "security",
-        "/security-config",
+        "/security-config <sensitivity|action|wrapping> <value>",
+        arguments=(
+            _argument(
+                "setting",
+                "Security setting to update.",
+                required=True,
+                choices=("sensitivity", "action", "wrapping"),
+            ),
+            _argument(
+                "value",
+                "Validated value for the selected security setting.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec(
         "inject-payload",
         "Inject a test payload for security validation.",
         "security",
         "/inject-payload <payload>",
+        arguments=(
+            _argument(
+                "payload",
+                "Test payload; remaining words are joined.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec(
         "speech",
         "Configure speech settings.",
         "speech",
-        "/speech on|off|mode|voice|provider|config",
+        (
+            "/speech [on|off|config|mode <live|file>|voice <name>|provider "
+            "<elevenlabs|picovoice>]"
+        ),
+        arguments=(
+            _argument(
+                "action",
+                "Speech setting to inspect or update.",
+                default="config",
+                choices=("on", "off", "config", "mode", "voice", "provider"),
+            ),
+            _argument(
+                "value",
+                "Value required by mode, voice, or provider actions.",
+            ),
+        ),
     ),
     CommandSpec(
         "speech-test",
         "Run the speech validation harness.",
         "speech",
         "/speech-test [once|loop]",
+        arguments=(
+            _argument(
+                "mode",
+                "Run one speech test or request loop mode.",
+                default="once",
+                choices=("once", "loop"),
+            ),
+        ),
     ),
     CommandSpec(
         "switch",
         "Switch active agent or show current agent status.",
         "orchestration",
         "/switch [agent]",
+        arguments=(
+            _argument("agent", "Agent name; omit to show the active agent."),
+        ),
     ),
     CommandSpec("agents", "List available agents.", "orchestration", "/agents"),
     CommandSpec(
@@ -1951,12 +2240,23 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "Show detailed agent information.",
         "orchestration",
         "/agent [name]",
+        arguments=(
+            _argument("name", "Agent name; omit to inspect the active agent."),
+        ),
     ),
     CommandSpec(
         "delegate",
         "Delegate a task to another agent.",
         "orchestration",
         "/delegate <agent> <task>",
+        arguments=(
+            _argument("agent", "Target agent name.", required=True),
+            _argument(
+                "task",
+                "Task text; remaining words are joined.",
+                required=True,
+            ),
+        ),
     ),
     CommandSpec(
         "status",
@@ -1968,19 +2268,53 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "workflow",
         "List, run, or control workflows.",
         "workflow",
-        "/workflow list|run|status|approve|skip",
+        "/workflow <list|run|status|approve|skip> [name] [key=value ...]",
+        arguments=(
+            _argument(
+                "action",
+                "Workflow operation.",
+                required=True,
+                choices=("list", "run", "status", "approve", "skip"),
+            ),
+            _argument(
+                "name",
+                "Workflow name for run, or an optional approval/skip identifier.",
+            ),
+            _argument(
+                "key=value",
+                "Optional workflow inputs for the run action.",
+            ),
+        ),
     ),
-    CommandSpec("read", "Read a file with smart detection.", "files", "/read <path>"),
+    CommandSpec(
+        "read",
+        "Read a file with smart detection.",
+        "files",
+        "/read <path> [--lines=N]",
+        arguments=(
+            _argument("path", "File path to read.", required=True),
+            _argument("--lines=N", "Maximum number of lines to return."),
+        ),
+    ),
     CommandSpec(
         "ingest",
         "Ingest file content into vector memory.",
         "files",
-        "/ingest <path> [description]",
+        "/ingest <path> [description] [--lines=N]",
+        arguments=(
+            _argument("path", "File path to ingest.", required=True),
+            _argument(
+                "description",
+                "Optional source description; remaining words are joined.",
+            ),
+            _argument("--lines=N", "Maximum number of source lines to ingest."),
+        ),
     ),
 )
 
 
 __all__ = [
+    "CommandArgument",
     "CommandContext",
     "CommandHandler",
     "CommandMetadata",

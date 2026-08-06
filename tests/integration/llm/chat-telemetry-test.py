@@ -107,7 +107,7 @@ def load_config(config_path: Path) -> dict[str, Any]:
         print("""
 llm:
   model: "openai/local-model"
-  api_base: "http://localhost:1234/v1"
+  api_base: "http://127.0.0.1:1234/v1"
   api_key: "lm-studio"
   temperature: 0.7
   max_retries: 3

@@ -4,12 +4,22 @@ from __future__ import annotations
 
 import asyncio
 
+import httpx
 import pytest
-from friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink
+from friday_chat.app import (
+    FridayChatApp,
+    ListInputSource,
+    ListOutputSink,
+    _format_turn_processing_error,
+)
 from friday_chat.background import BackgroundTaskManager
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import FakeTranscriptStore, build_runtime
-from friday_chat.turns.processor import TurnResult, TurnTimeoutError
+from friday_chat.turns.processor import (
+    TurnResult,
+    TurnRetryExhaustedError,
+    TurnTimeoutError,
+)
 
 
 def _config(data: dict[str, object]) -> FridayChatConfig:
@@ -47,6 +57,14 @@ class PlainTurnHandler:
             retrieved_memory_count=0,
             tool_context_injected=False,
         )
+
+
+class RetryWrapperError(RuntimeError):
+    """Test double matching friday-llm retry errors with nested provider cause."""
+
+    def __init__(self, last_error: BaseException) -> None:
+        super().__init__("LLM call failed after 4 attempts")
+        self.last_error = last_error
 
 
 class ChunkRecordingOutputSink(ListOutputSink):
@@ -125,6 +143,52 @@ async def test_app_formats_plain_assistant_response_with_configured_name() -> No
 
     assert result.turns_processed == 1
     assert output.values == ["Friday: plain response"]
+
+
+def test_turn_processing_error_includes_direct_provider_cause() -> None:
+    config = _config({"llm": {"model": "openai/test-chat-model"}})
+    error = TurnRetryExhaustedError("LLM retry attempts exhausted.")
+    error.__cause__ = RuntimeError("provider returned 429 Too Many Requests")
+
+    assert _format_turn_processing_error(error, config) == (
+        "Turn failed: LLM retry attempts exhausted. "
+        "Last error: RuntimeError: provider returned 429 Too Many Requests"
+    )
+
+
+def test_turn_processing_error_unwraps_retry_provider_cause() -> None:
+    config = _config({"llm": {"model": "openai/test-chat-model"}})
+    error = TurnRetryExhaustedError("LLM retry attempts exhausted.")
+    error.__cause__ = RetryWrapperError(
+        ValueError("unsupported parameter: thinking")
+    )
+
+    assert _format_turn_processing_error(error, config) == (
+        "Turn failed: LLM retry attempts exhausted. "
+        "Last error: ValueError: unsupported parameter: thinking"
+    )
+
+
+def test_turn_processing_error_includes_http_response_body() -> None:
+    config = _config({"llm": {"model": "openai/test-chat-model"}})
+    error = TurnRetryExhaustedError("LLM retry attempts exhausted.")
+    request = httpx.Request("POST", "http://10.190.8.25:8000/v1/chat/completions")
+    response = httpx.Response(
+        400,
+        request=request,
+        text='{"error":{"message":"extra fields not permitted: metadata"}}',
+    )
+    error.__cause__ = httpx.HTTPStatusError(
+        "Client error '400 Bad Request'",
+        request=request,
+        response=response,
+    )
+
+    assert _format_turn_processing_error(error, config) == (
+        "Turn failed: LLM retry attempts exhausted. "
+        "Last error: HTTPStatusError: Client error '400 Bad Request' "
+        'Response body: {"error":{"message":"extra fields not permitted: metadata"}}'
+    )
 
 
 async def test_app_exits_cleanly_on_keyboard_interrupt() -> None:
@@ -274,6 +338,25 @@ async def test_session_initializes_lazily_on_first_chat_turn() -> None:
         "assistant_name": "Friday",
     }
     assert app.session.turn_ids == ["1"]
+
+
+async def test_app_help_output_includes_usage_and_argument_descriptions() -> None:
+    runtime = build_runtime(_config({"llm": {"model": "openai/test-chat-model"}}))
+    output = ListOutputSink()
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource(["/help", "/q"]),
+        output_sink=output,
+    )
+
+    result = await app.run()
+
+    assert result.exit_reason == "command_exit"
+    assert "Usage: /context [--debug] [--file]" in output.values[0]
+    assert "- --debug [optional]: Include detailed token diagnostics." in (
+        output.values[0]
+    )
+    assert "Description: Show the assembled context payload." in output.values[0]
 
 
 async def test_command_only_session_does_not_initialize_chat_defaults() -> None:

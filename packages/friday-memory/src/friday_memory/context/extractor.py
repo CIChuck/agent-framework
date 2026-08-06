@@ -27,6 +27,12 @@ from friday_memory.context.extraction_filter import (
 )
 from friday_memory.context.ontology import OntologyConfig
 from friday_memory.controller import MemoryController
+from friday_memory.json_response import (
+    json_parse_warning_detail,
+    json_response_text,
+    parse_json_object_from_text,
+    strip_llm_reasoning,
+)
 from friday_memory.models import (
     GraphEdge,
     GraphNode,
@@ -198,46 +204,37 @@ class MemoryExtractor:
         if self._telemetry:
             self._telemetry.capture_event(event_name, data)
 
-    def _parse_json_response(self, content: str) -> dict[str, Any]:
+    def _parse_json_response(
+        self,
+        content: str,
+        *,
+        reasoning_content: str | None = None,
+    ) -> dict[str, Any]:
         """
         Parse JSON from LLM response, handling various formats.
 
         Local LLMs often wrap JSON in markdown code blocks or add extra text.
         This method tries multiple strategies to extract valid JSON.
         """
-        import re
-
-        # Strategy 1: Try direct parse
-        try:
-            return json.loads(content)
-        except json.JSONDecodeError:
-            pass
-
-        # Strategy 2: Extract from markdown code block
-        # Match ```json ... ``` or ``` ... ```
-        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
-        if code_block_match:
-            try:
-                return json.loads(code_block_match.group(1))
-            except json.JSONDecodeError:
-                pass
-
-        # Strategy 3: Find JSON object in text (first { to last })
-        brace_match = re.search(r"\{[\s\S]*\}", content)
-        if brace_match:
-            try:
-                return json.loads(brace_match.group(0))
-            except json.JSONDecodeError:
-                pass
+        parse_content = content if content.strip() else reasoning_content or ""
+        parsed = parse_json_object_from_text(parse_content)
+        if parsed is not None:
+            return parsed
 
         # Strategy 4: Try to repair truncated JSON
         # If JSON was cut off mid-way (token limit), try to salvage what we can
-        repaired = self._repair_truncated_json(content)
+        repaired = self._repair_truncated_json(strip_llm_reasoning(parse_content))
         if repaired:
             return repaired
 
         # Strategy 5: Return empty extraction structure
-        logger.warning(f"Could not parse JSON from response: {content[:200]}...")
+        logger.warning(
+            json_parse_warning_detail(
+                "memory extraction",
+                content,
+                reasoning_content=reasoning_content,
+            )
+        )
         return {
             "entities": [],
             "facts": [],
@@ -389,13 +386,25 @@ class MemoryExtractor:
             logger.debug(f"Extraction response object: {response}")
             logger.debug(f"Extraction response type: {type(response)}")
             logger.debug(f"Extraction response.content: {response.content!r}")
+            reasoning_content = getattr(response, "reasoning_content", None)
+            if reasoning_content:
+                logger.debug(
+                    "Extraction response.reasoning_content chars: %d",
+                    len(reasoning_content),
+                )
 
             # Parse response - handle various LLM output formats
             content = response.content or ""
-            logger.debug(
-                f"Extraction LLM response: {content[:500] if content else '(empty)'}"
+            if content:
+                logger.debug(f"Extraction LLM response: {content[:500]}")
+            elif reasoning_content:
+                logger.debug("Extraction LLM response: content empty; reasoning present")
+            else:
+                logger.debug("Extraction LLM response: (empty)")
+            extracted = self._parse_json_response(
+                content,
+                reasoning_content=reasoning_content,
             )
-            extracted = self._parse_json_response(content)
 
             # Store extracted data
             stats = await self._store_extractions(turn, extracted)
@@ -677,8 +686,7 @@ class MemoryExtractor:
                 temperature=0.0,
                 max_tokens=self._max_tokens,
             )
-            content = response.content or "{}"
-            result = json.loads(content)
+            result = parse_json_object_from_text(json_response_text(response)) or {}
             return result.get("entities", [])
         except Exception as e:
             logger.warning(f"Quick entity extraction failed: {e}")

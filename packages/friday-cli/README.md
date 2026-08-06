@@ -1,4 +1,4 @@
-# Friday CLI
+# Friday Framework CLI
 
 Rich-based terminal interface components for the Friday Framework.
 
@@ -17,8 +17,8 @@ Friday CLI provides professional terminal interface components using the [Rich](
 # From the monorepo root
 uv sync
 
-# Or install directly
-uv pip install -e apps/friday-cli
+# Or install directly from PyPI
+pip install friday-framework-cli
 ```
 
 ## Quick Start

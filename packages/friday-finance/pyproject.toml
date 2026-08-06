@@ -11,6 +11,13 @@ dependencies = [
     "friday-framework-core==0.1.0a0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/CIChuck/agent-framework"
+Repository = "https://github.com/CIChuck/agent-framework"
+Issues = "https://github.com/CIChuck/agent-framework/issues"
+Documentation = "https://github.com/CIChuck/agent-framework/tree/main/docs"
+Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-finance"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

@@ -85,7 +85,7 @@ llm:
   # api_key: "lm-studio"
   
   # LLStudio Base
-  #api_base: "http://localhost:1234/v1"
+  #api_base: "http://127.0.0.1:1234/v1"
 
   # LMStudio MODEL PATTERN:  "openai/<MODEL NAME>"
   #model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
@@ -166,7 +166,7 @@ extraction:
   #model: "openai/gemma-3-27b-it"
   
   model: "openai/qwen3.6-35b-a3b-mlx"
-  api_base: "http://localhost:1234/v1"
+  api_base: "http://127.0.0.1:1234/v1"
   api_key: "lm-studio"
     
 
@@ -732,7 +732,7 @@ memory:
     enabled: true
     #model: "openai/llama-3-2-3b-instruct-finetuned-gsm8k-v1"
     model: "openai/qwen3.6-35b-a3b-mlx"
-    api_base: "http://localhost:1234/v1"
+    api_base: "http://127.0.0.1:1234/v1"
     api_key: "lm-studio"
     max_retries: 2
     timeout_seconds: 5

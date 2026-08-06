@@ -18,6 +18,10 @@ from typing import TYPE_CHECKING, Any
 
 import chromadb
 
+from friday_memory.json_response import (
+    json_parse_warning_detail,
+    parse_json_object_from_text,
+)
 from friday_memory.maintenance.models import (
     ClaimType,
     ClassifiedFact,
@@ -93,7 +97,12 @@ class FactChecker:
         self._prompts = prompts or PromptsConfig()
         self._reorg_logger = reorg_logger
 
-    def _parse_json_response(self, content: str) -> dict[str, Any]:
+    def _parse_json_response(
+        self,
+        content: str,
+        *,
+        reasoning_content: str | None = None,
+    ) -> dict[str, Any]:
         """
         Parse JSON from LLM response, handling various formats.
 
@@ -106,39 +115,19 @@ class FactChecker:
         Returns:
             Parsed JSON as dict, or empty dict if parsing fails
         """
-        import re
-
-        # Strategy 1: Try direct parse
-        try:
-            return json.loads(content)
-        except json.JSONDecodeError:
-            pass
-
-        # Strategy 2: Extract from markdown code block
-        code_block_match = re.search(r"```(?:json)?\s*([\s\S]*?)\s*```", content)
-        if code_block_match:
-            try:
-                return json.loads(code_block_match.group(1))
-            except json.JSONDecodeError:
-                pass
-
-        # Strategy 3: Find JSON object in text (first { to last })
-        brace_match = re.search(r"\{[\s\S]*\}", content)
-        if brace_match:
-            try:
-                return json.loads(brace_match.group(0))
-            except json.JSONDecodeError:
-                pass
-
-        # Strategy 4: Try to fix common JSON issues
-        fixed = re.sub(r",\s*([}\]])", r"\1", content)
-        try:
-            return json.loads(fixed)
-        except json.JSONDecodeError:
-            pass
+        parse_content = content if content.strip() else reasoning_content or ""
+        parsed = parse_json_object_from_text(parse_content)
+        if parsed is not None:
+            return parsed
 
         # Strategy 5: Return empty structure
-        logger.warning(f"Could not parse JSON from response: {content[:200]}...")
+        logger.warning(
+            json_parse_warning_detail(
+                "memory fact-checking",
+                content,
+                reasoning_content=reasoning_content,
+            )
+        )
         return {}
 
     def _get_chroma_client(self) -> chromadb.ClientAPI | None:
@@ -268,7 +257,10 @@ class FactChecker:
             temperature=0.1,
         )
 
-        return self._parse_json_response(response.content or "")
+        return self._parse_json_response(
+            response.content or "",
+            reasoning_content=getattr(response, "reasoning_content", None),
+        )
 
     async def _research_claim(self, claim_text: str) -> dict[str, Any]:
         """
@@ -290,7 +282,10 @@ class FactChecker:
             temperature=0.3,
         )
 
-        return self._parse_json_response(response.content or "")
+        return self._parse_json_response(
+            response.content or "",
+            reasoning_content=getattr(response, "reasoning_content", None),
+        )
 
     async def _judge_claim(
         self,
@@ -318,7 +313,10 @@ class FactChecker:
             temperature=0.1,
         )
 
-        return self._parse_json_response(response.content or "")
+        return self._parse_json_response(
+            response.content or "",
+            reasoning_content=getattr(response, "reasoning_content", None),
+        )
 
     def _update_fact_metadata(
         self,

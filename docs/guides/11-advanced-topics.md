@@ -168,14 +168,14 @@ async def handle_research_request(request):
 ```bash
 # Install LM Studio for local embeddings
 # Download nomic-embed-text-v1.5 (768-dim, 0.5GB)
-# Start local server: http://localhost:1234
+# Start local server: http://127.0.0.1:1234
 ```
 
 ```yaml
 memory:
   vector_store:
     embedding_model: "nomic-embed-text-v1.5"
-    embedding_endpoint: "http://localhost:1234/v1/embeddings"
+    embedding_endpoint: "http://127.0.0.1:1234/v1/embeddings"
 
 llm:
   model: "gpt-4o"
@@ -313,7 +313,7 @@ memory:
     type: "chromadb"
     persist_directory: "/data/friday/vector"
     embedding_model: "nomic-embed-text-v1.5"
-    embedding_endpoint: "http://localhost:1234/v1/embeddings"
+    embedding_endpoint: "http://127.0.0.1:1234/v1/embeddings"
 
   graph_store:
     type: "networkx"

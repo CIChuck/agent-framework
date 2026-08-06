@@ -208,7 +208,7 @@ def test_real_runtime_builds_extraction_llm_from_friday_py_config_shape(
             },
             "extraction": {
                 "model": "openai/test-extraction-model",
-                "api_base": "http://localhost:1234/v1",
+                "api_base": "http://127.0.0.1:1234/v1",
                 "api_key": "lm-studio",
                 "max_retries": 4,
                 "timeout_seconds": 90.0,
@@ -227,7 +227,7 @@ def test_real_runtime_builds_extraction_llm_from_friday_py_config_shape(
     assert extractor is not None
     extraction_llm = extractor._llm
     assert extraction_llm.model == "openai/test-extraction-model"
-    assert extraction_llm.api_base == "http://localhost:1234/v1"
+    assert extraction_llm.api_base == "http://127.0.0.1:1234/v1"
     assert extraction_llm.api_key == "lm-studio"
     assert extraction_llm.resilience.max_retries == 4
     assert extraction_llm.resilience.timeout_seconds == 90.0
