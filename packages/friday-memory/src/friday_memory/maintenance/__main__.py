@@ -60,7 +60,10 @@ def create_parser() -> argparse.ArgumentParser:
     )
 
     # --- Restore command ---
-    restore_parser = subparsers.add_parser("restore", help="Restore from backup")
+    restore_parser = subparsers.add_parser(
+        "restore",
+        help="Restore from backup (currently fail-closed)",
+    )
     restore_parser.add_argument(
         "--dir",
         "-d",
@@ -122,7 +125,7 @@ def create_parser() -> argparse.ArgumentParser:
     prune_parser.add_argument(
         "--no-dry-run",
         action="store_true",
-        help="Actually perform the pruning",
+        help="Request pruning mutation (currently rejected; use Friday Chat)",
     )
     prune_parser.add_argument(
         "--backup-first",
@@ -165,7 +168,7 @@ def create_parser() -> argparse.ArgumentParser:
     synth_parser.add_argument(
         "--no-dry-run",
         action="store_true",
-        help="Actually perform synthesis",
+        help="Request synthesis mutation (currently rejected; use Friday Chat)",
     )
     synth_parser.add_argument(
         "--backup-first",
@@ -229,7 +232,7 @@ def create_parser() -> argparse.ArgumentParser:
     verify_parser.add_argument(
         "--no-dry-run",
         action="store_true",
-        help="Actually perform verification",
+        help="Request verification mutation (currently rejected; use Friday Chat)",
     )
     verify_parser.add_argument(
         "--limit",
@@ -267,7 +270,7 @@ def create_parser() -> argparse.ArgumentParser:
     reorg_parser.add_argument(
         "--no-dry-run",
         action="store_true",
-        help="Actually perform reorganization",
+        help="Request reorganization mutation (currently rejected; use Friday Chat)",
     )
     reorg_parser.add_argument(
         "--backup-first",
@@ -278,7 +281,7 @@ def create_parser() -> argparse.ArgumentParser:
     reorg_parser.add_argument(
         "--no-backup",
         action="store_true",
-        help="Skip backup (dangerous!)",
+        help="Legacy backup bypass (rejected; recovery bundles are mandatory)",
     )
     reorg_parser.add_argument(
         "--skip-synthesis",
@@ -324,6 +327,22 @@ def get_llm_service(args):
         return None
 
 
+def _fail_closed(what: str) -> int:
+    """Fail closed for standalone mutation/restore paths (REORG-00).
+
+    The standalone CLI cannot assemble Friday Chat's transcript-inclusive
+    recovery bundle and would bypass the coordinated maintenance gate.
+    """
+    print(
+        f"FAIL-CLOSED: the standalone Friday Memory {what} is disabled. It "
+        "cannot assemble Friday Chat's transcript-inclusive recovery bundle "
+        "and would bypass the coordinated maintenance gate. Use `/reorganize` "
+        "inside Friday Chat, which enforces verified recovery bundles, "
+        "rollback, and recovery journaling."
+    )
+    return 2
+
+
 async def cmd_backup(args) -> int:
     """Handle backup command."""
     from friday_memory.maintenance.backup import BackupManager
@@ -335,48 +354,17 @@ async def cmd_backup(args) -> int:
     print(f"  ID: {manifest.backup_id}")
     print(f"  Location: {manifest.backup_dir}")
     print(f"  Files: {len(manifest.files)}")
+    print(
+        "NOTE: this is a memory-only file backup, not a complete Friday Chat "
+        "recovery bundle. It is not usable by `/reorganize --recover`."
+    )
 
     return 0
 
 
 async def cmd_restore(args) -> int:
     """Handle restore command."""
-    from friday_memory.maintenance.backup import BackupManager
-
-    manager = BackupManager(args.dir)
-
-    if args.backup_dir:
-        # Load manifest from specific directory
-        manifest_path = Path(args.backup_dir) / "manifest.json"
-        if not manifest_path.exists():
-            print(f"Error: No manifest found at {args.backup_dir}")
-            return 1
-
-        from friday_memory.maintenance.models import BackupManifest
-
-        manifest = BackupManifest.model_validate_json(manifest_path.read_text())
-    else:
-        # Find backup by ID or use latest
-        backups = manager.list_backups()
-        if not backups:
-            print("No backups found")
-            return 1
-
-        if args.backup_id:
-            manifest = next(
-                (b for b in backups if b.backup_id.startswith(args.backup_id)), None
-            )
-            if not manifest:
-                print(f"Backup not found: {args.backup_id}")
-                return 1
-        else:
-            manifest = backups[0]  # Latest
-
-    print(f"Restoring from backup {manifest.backup_id[:8]}...")
-    manager.restore_backup(manifest)
-    print("Restore complete!")
-
-    return 0
+    return _fail_closed("restore command")
 
 
 async def cmd_list(args) -> int:
@@ -423,16 +411,12 @@ async def cmd_analyze(args) -> int:
 
 async def cmd_prune(args) -> int:
     """Handle prune command."""
-    from friday_memory.maintenance.backup import BackupManager
+    dry_run = not args.no_dry_run
+    if not dry_run:
+        return _fail_closed("prune mutation path")
+
     from friday_memory.maintenance.models import PruneConfig
     from friday_memory.maintenance.pruner import RedundancyPruner
-
-    dry_run = not args.no_dry_run
-
-    if args.backup_first and not dry_run:
-        manager = BackupManager(args.dir)
-        manifest = manager.create_backup()
-        print(f"Backup created: {manifest.backup_id[:8]}")
 
     config = PruneConfig(
         stale_threshold_days=args.stale_days,
@@ -450,16 +434,13 @@ async def cmd_prune(args) -> int:
 
 async def cmd_synthesize(args) -> int:
     """Handle synthesize command."""
-    from friday_memory.maintenance.backup import BackupManager
+    dry_run = not args.no_dry_run
+    if not dry_run:
+        return _fail_closed("synthesize mutation path")
+
     from friday_memory.maintenance.synthesizer import MemorySynthesizer
 
-    dry_run = not args.no_dry_run
     llm = get_llm_service(args)
-
-    if args.backup_first and not dry_run:
-        manager = BackupManager(args.dir)
-        manifest = manager.create_backup()
-        print(f"Backup created: {manifest.backup_id[:8]}")
 
     synthesizer = MemorySynthesizer(args.dir, llm_service=llm)
     report = await synthesizer.synthesize(dry_run=dry_run)
@@ -483,7 +464,7 @@ async def cmd_classify(args) -> int:
         classifier_llm=llm,
     )
 
-    classified = await checker.classify_facts(limit=args.limit)
+    classified = await checker.classify_facts(limit=args.limit, dry_run=True)
 
     print(f"\nClassified {len(classified)} facts:")
     falsifiable = sum(1 for c in classified if c.falsifiable)
@@ -511,10 +492,13 @@ async def cmd_classify(args) -> int:
 
 async def cmd_verify(args) -> int:
     """Handle verify command."""
+    dry_run = not args.no_dry_run
+    if not dry_run:
+        return _fail_closed("verify mutation path")
+
     from friday_memory.maintenance.fact_checker import FactChecker
     from friday_memory.maintenance.models import FactCheckConfig
 
-    dry_run = not args.no_dry_run
     llm = get_llm_service(args)
 
     if not llm:
@@ -539,10 +523,18 @@ async def cmd_verify(args) -> int:
 
 async def cmd_reorganize(args) -> int:
     """Handle reorganize command."""
-    from friday_memory.maintenance.reorganizer import MemoryReorganizer
+    if args.no_backup:
+        print(
+            "FAIL-CLOSED: --no-backup is rejected. Execute mode always "
+            "requires a complete verified recovery bundle."
+        )
+        return 2
 
     dry_run = not args.no_dry_run
-    backup_first = not args.no_backup
+    if not dry_run:
+        return _fail_closed("reorganize mutation path")
+
+    from friday_memory.maintenance.reorganizer import MemoryReorganizer
 
     llm = get_llm_service(args)
 
@@ -552,7 +544,7 @@ async def cmd_reorganize(args) -> int:
     )
 
     report = await reorganizer.reorganize(
-        backup_first=backup_first,
+        backup_first=True,
         dry_run=dry_run,
         skip_synthesis=args.skip_synthesis,
         skip_verify=args.skip_verify,

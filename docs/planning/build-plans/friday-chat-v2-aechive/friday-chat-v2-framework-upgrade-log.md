@@ -111,3 +111,50 @@ Source Evidence: `uv run pytest` reported 11 failures outside Friday Chat
 `uv run ruff check .` reported 12 existing issues outside Friday Chat;
 `uv run mypy packages tests main.py` still exits 1 with no remaining
 `packages/friday-chat` errors.
+
+## FU-003: Scoped Reorganization Recovery Contract Exception
+
+Status: resolved
+Discovered During: Reorganization Remediation 1
+Framework Package: `packages/friday-memory` and `packages/friday-transcript`
+Requested Change: Authorize the smallest public, typed store-owned mutation,
+snapshot, integrity, and restore boundaries needed by the Friday Chat
+coordinator while preserving Friday Memory and Friday Transcript independence.
+Reason: Safe coordinated reorganization cannot be implemented in the app layer
+by guessing paths or copying live Chroma and WAL-mode SQLite files. Each package
+must own its persistence invariants; Friday Chat must own the aggregate bundle,
+journal, exclusion, rollback, and recovery policy.
+Impact If Not Changed: Manual and exit reorganization would remain fail-closed
+because no complete Transcript-inclusive recovery bundle or verified rollback
+could be assembled.
+FridayV2 Workaround: None. The approved construction directive granted a scoped
+freeze exception for explicit Friday Memory layout/recovery/mutation contracts,
+the public graph adapter operations they require, and a narrow Friday Transcript
+WAL-safe snapshot participant. Friday Chat composes those public contracts
+without private cross-package access.
+Compatibility Risk: Medium persistence risk, controlled by schema-versioned
+strict models, owner-only artifacts, operation-time path/lease revalidation,
+mandatory verified snapshots, postcondition checks, and disposable rollback and
+restart-recovery drills. Existing state is not moved or rewritten merely to
+adopt the contracts.
+Suggested Follow-Up Tests: Retain the focused package recovery/mutation suites,
+the provider-free PTY test, the real-participant full pipeline drill, and the
+rollback-failure/restart/recovery drill as release gates. Do not delete retained
+recovery evidence automatically without a separately approved retention policy.
+Source Evidence: Gate B independently validated Chroma public-API logical export
+and rebuild plus SQLite online backup/restore. Gate C independently validated the
+shared coordinator, durable journal/bundle, fault boundaries, rollback, and
+restart recovery. Gate D focused evidence covers the explicit provider matrix,
+real mutation participant, nested typed results, owner-only categorical logs,
+Transcript live-integrity preflight, operation-time alias revalidation, and
+bounded PTY progress. Final enablement uses one typed, request-specific
+coordinator capability: backup and recovery remain available without the
+mutation adapter, while mutating manual/exit modes require it. Synthesized
+`meta_insight` records retain bounded source lineage, and no-error unfinished
+journals remain inspectable and explicitly terminalizable. Final package/root
+validation remains recorded in the construction directive's supervised
+execution record.
+Cleanup Point: This exception is complete when the supervising maintainer closes
+Gate D. Future maintenance must use these public contracts or receive separate
+authority; the deprecated app paths through `MemoryReorganizer` are not an
+authorized recovery-policy bypass.

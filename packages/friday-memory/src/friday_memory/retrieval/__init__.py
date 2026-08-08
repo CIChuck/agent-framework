@@ -15,6 +15,12 @@ Ref: docs/archive/build-plans/completed/friday-core-legacy/memory-lifecycle-stag
 from friday_memory.retrieval.access_buffer import (
     AccessBuffer,
     AccessBufferConfig,
+    AccessBufferQuiescenceError,
+    AccessBufferQuiescenceToken,
+    AccessBufferWalError,
+    AccessCollectionType,
+    AccessMetadataCollection,
+    AccessWalRecord,
     FlushResult,
 )
 from friday_memory.retrieval.collection_manager import (
@@ -53,6 +59,12 @@ __all__ = [
     # Access buffer (Phase 5)
     "AccessBufferConfig",
     "AccessBuffer",
+    "AccessBufferQuiescenceError",
+    "AccessBufferQuiescenceToken",
+    "AccessBufferWalError",
+    "AccessCollectionType",
+    "AccessMetadataCollection",
+    "AccessWalRecord",
     "FlushResult",
     # Factor computer (Phase 5)
     "FactorComputerConfig",

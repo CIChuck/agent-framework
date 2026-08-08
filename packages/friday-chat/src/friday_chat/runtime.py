@@ -5,13 +5,24 @@ from __future__ import annotations
 import asyncio
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from typing import Any, Protocol
+from pathlib import Path
+from tempfile import gettempdir
+from typing import TYPE_CHECKING, Any, Protocol
+from uuid import uuid4
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolDefinition
 from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCallRequest
+
+if TYPE_CHECKING:
+    from friday_memory import MemoryRecoveryParticipant
+    from friday_transcript import TranscriptSnapshotParticipant
+
+    from friday_chat.reorganization.coordinator import MaintenanceMutationAdapter
+    from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
+    from friday_chat.reorganization.mutation import LifecycleStepReport
 
 Message = Mapping[str, Any]
 
@@ -20,6 +31,11 @@ MAINTENANCE_LLM_ROLES: tuple[str, ...] = (
     "classifier",
     "researcher",
     "judge",
+)
+
+REORGANIZATION_EXECUTE_DISABLED_REASON = (
+    "direct maintenance mutation is disabled; use the Friday Chat "
+    "reorganization coordinator so mandatory recovery policy is enforced."
 )
 
 
@@ -194,8 +210,17 @@ class MaintenanceService(Protocol):
     async def run_lifecycle(self) -> None:
         """Run lifecycle maintenance."""
 
+    async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Report reorganization lifecycle scope without mutation."""
+
+    async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Run promotion/decay reorganization without embedding backfill."""
+
     async def reorganize_memory(self, mode: str) -> None:
         """Run configured memory reorganization."""
+
+    def reorganization_execute_status(self) -> tuple[bool, str]:
+        """Report whether mutating reorganization is currently safe."""
 
     async def flush_pending_extraction(self) -> int:
         """Flush pending extraction turns."""
@@ -271,6 +296,10 @@ class FridayRuntime:
     workflow: WorkflowEngine
     maintenance: MaintenanceService
     diagnostics: RuntimeDiagnostics
+    maintenance_layout: FridayChatMaintenanceLayout
+    memory_recovery: MemoryRecoveryParticipant | None
+    transcript_recovery: TranscriptSnapshotParticipant | None
+    reorganization_mutation: MaintenanceMutationAdapter | None = None
     tool_context: str | None = None
     budget_monitor: Any | None = None
     compactor: Any | None = None
@@ -304,13 +333,14 @@ class FakeChatModel:
                 return ChatModelResponse.from_text(response)
             return response
         if messages and messages[-1].get("role") == "tool":
-            return ChatModelResponse.from_text(f"Friday: {messages[-1].get('content', '')}")
+            return ChatModelResponse.from_text(
+                f"Friday: {messages[-1].get('content', '')}"
+            )
         content = messages[-1].get("content", "") if messages else ""
         lowered = str(content).lower()
         tool_names = {tool.name for tool in tools}
-        if (
-            "get_current_datetime" in tool_names
-            and ("date" in lowered or "time" in lowered)
+        if "get_current_datetime" in tool_names and (
+            "date" in lowered or "time" in lowered
         ):
             return ChatModelResponse(
                 tool_calls=(
@@ -602,6 +632,10 @@ class FakeMaintenanceService:
     migration_needed: bool = True
     background_actions: list[str] = field(default_factory=list)
 
+    def reorganization_execute_status(self) -> tuple[bool, str]:
+        """Keep direct fake-runtime mutation outside the coordinator disabled."""
+        return False, REORGANIZATION_EXECUTE_DISABLED_REASON
+
     async def flush_memory(self) -> None:
         """Record configured memory flush maintenance."""
         self.actions.append("flush_memory")
@@ -610,10 +644,34 @@ class FakeMaintenanceService:
         """Record configured lifecycle maintenance."""
         self.actions.append("run_lifecycle")
 
+    async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Return a provider-free fake lifecycle preview."""
+        from friday_chat.reorganization.mutation import LifecycleStepReport
+
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=0,
+            candidate_count=0,
+            changed_count=None,
+        )
+
+    async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Return a provider-free fake lifecycle execution report."""
+        from friday_chat.reorganization.mutation import LifecycleStepReport
+
+        self.actions.append("run_reorganization_lifecycle")
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=0,
+            candidate_count=0,
+            changed_count=0,
+        )
+
     async def reorganize_memory(self, mode: str) -> None:
-        """Record configured memory reorganization."""
-        self._raise_next_error()
-        self.actions.append(f"reorganize_memory:{mode}")
+        """Refuse the fake direct mutation path outside the coordinator."""
+        _allowed, reason = self.reorganization_execute_status()
+        self.actions.append("reorganize_skipped:execute_disabled")
+        self.background_actions.append(f"reorganize_execute_disabled:{reason}")
 
     async def reset_store(self, store: str) -> str:
         """Record reset of one fake memory store."""
@@ -637,6 +695,21 @@ class FakeMaintenanceService:
         force_reembed: bool = False,
     ) -> dict[str, Any]:
         """Record a fake reorganization request."""
+        if not dry_run:
+            _allowed, reason = self.reorganization_execute_status()
+            self.actions.append(f"reorganize:{mode}:execute_disabled")
+            return {
+                "mode": mode,
+                "dry_run": dry_run,
+                "backup_first": backup_first,
+                "skip_synthesis": skip_synthesis,
+                "skip_verify": skip_verify,
+                "skip_lifecycle": skip_lifecycle,
+                "force_reembed": force_reembed,
+                "scanned": 0,
+                "changed": 0,
+                "errors": [f"Execute disabled: {reason}"],
+            }
         self._raise_next_error()
         self.actions.append(f"reorganize:{mode}")
         return {
@@ -788,7 +861,31 @@ def build_runtime(
     """Build a FridayV2 runtime bundle from typed config."""
     config = _apply_startup_speech_prompt(config)
     if not fake:
-        return _build_framework_runtime(config, session_id=session_id)
+        from friday_chat.reorganization.assembly import resolve_maintenance_layout
+
+        captured_process_cwd = Path.cwd()
+        maintenance_layout = resolve_maintenance_layout(
+            config,
+            captured_process_cwd=captured_process_cwd,
+        )
+        return _build_framework_runtime(
+            config,
+            session_id=session_id,
+            maintenance_layout=maintenance_layout,
+        )
+
+    from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
+
+    fake_root = Path(gettempdir()).resolve() / f"friday-chat-fake-{uuid4().hex}"
+    maintenance_layout = FridayChatMaintenanceLayout.resolve_once(
+        captured_process_cwd=fake_root,
+        vector_directory=fake_root / "vector",
+        graph_path=fake_root / "graph.json",
+        access_buffer_wal_path=None,
+        transcript_database_path=fake_root / "transcript.sqlite",
+        recovery_root=fake_root / "recovery",
+        log_root=fake_root / "logs",
+    )
 
     diagnostics = RuntimeDiagnostics()
     enabled_categories = _enabled_tool_categories(config.tools.registry)
@@ -820,6 +917,10 @@ def build_runtime(
         workflow=FakeWorkflowEngine(),
         maintenance=maintenance,
         diagnostics=diagnostics,
+        maintenance_layout=maintenance_layout,
+        memory_recovery=None,
+        transcript_recovery=None,
+        reorganization_mutation=None,
         tool_context=tool_context if tool_definitions else None,
         budget_monitor=budget_monitor,
         compactor=maintenance if budget_monitor is not None else None,
@@ -861,6 +962,7 @@ def _build_framework_runtime(
     config: FridayChatConfig,
     *,
     session_id: str,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FridayRuntime:
     from friday_chat.adapters import (
         build_framework_chat_model,
@@ -879,8 +981,13 @@ def _build_framework_runtime(
         config,
         embedding,
         session_id=session_id,
+        maintenance_layout=maintenance_layout,
     )
-    transcript = build_framework_transcript_adapter(config, session_id=session_id)
+    transcript = build_framework_transcript_adapter(
+        config,
+        session_id=session_id,
+        maintenance_layout=maintenance_layout,
+    )
     tools = build_framework_tool_registry(config)
     tool_definitions = tools.list_tools() if config.tools.enabled else ()
     tool_context = None
@@ -901,6 +1008,57 @@ def _build_framework_runtime(
         chat_llm=chat_llm,
         llm_models=maintenance_models,
         diagnostics=diagnostics,
+        maintenance_layout=maintenance_layout,
+    )
+
+    from friday_memory import (
+        ExplicitMemoryMutationParticipant,
+        MemoryMaintenanceLayout,
+        MemoryMaintenanceParticipant,
+    )
+
+    from friday_chat.reorganization.mutation import (
+        FrameworkMaintenanceMutationAdapter,
+        build_explicit_maintenance_provider_registry,
+    )
+
+    memory_recovery = (
+        MemoryMaintenanceParticipant(
+            MemoryMaintenanceLayout(
+                vector_directory=maintenance_layout.vector_directory,
+                graph_path=maintenance_layout.graph_path,
+                access_buffer_wal_path=maintenance_layout.access_buffer_wal_path,
+                recovery_directory=maintenance_layout.recovery_root,
+                log_directory=maintenance_layout.log_root,
+            ),
+            graph_store=memory.recovery_graph_store,
+            access_buffer=maintenance.access_buffer,
+        )
+        if memory.recovery_graph_store is not None
+        else None
+    )
+    memory_mutation = (
+        ExplicitMemoryMutationParticipant(
+            MemoryMaintenanceLayout(
+                vector_directory=maintenance_layout.vector_directory,
+                graph_path=maintenance_layout.graph_path,
+                access_buffer_wal_path=maintenance_layout.access_buffer_wal_path,
+                recovery_directory=maintenance_layout.recovery_root,
+                log_directory=maintenance_layout.log_root,
+            ),
+            graph_store=memory.recovery_graph_store,
+        )
+        if memory.recovery_graph_store is not None
+        else None
+    )
+    reorganization_mutation = (
+        FrameworkMaintenanceMutationAdapter(
+            memory=memory_mutation,
+            providers=build_explicit_maintenance_provider_registry(config),
+            lifecycle=maintenance,
+        )
+        if memory_mutation is not None
+        else None
     )
 
     return FridayRuntime(
@@ -915,6 +1073,10 @@ def _build_framework_runtime(
         workflow=workflow,
         maintenance=maintenance,
         diagnostics=diagnostics,
+        maintenance_layout=maintenance_layout,
+        memory_recovery=memory_recovery,
+        transcript_recovery=transcript.store,
+        reorganization_mutation=reorganization_mutation,
         tool_context=tool_context if tool_definitions else None,
         budget_monitor=maintenance.budget_monitor,
         compactor=maintenance.compactor,
@@ -956,6 +1118,7 @@ def _enabled_tool_categories(registry_config: Any) -> tuple[str, ...] | None:
 
 __all__ = [
     "MAINTENANCE_LLM_ROLES",
+    "REORGANIZATION_EXECUTE_DISABLED_REASON",
     "ChatModel",
     "EmbeddingService",
     "FakeChatModel",

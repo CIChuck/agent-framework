@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import sys
-from collections.abc import Awaitable, Callable, Coroutine, Sequence
+from collections.abc import Awaitable, Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Literal, Protocol, cast
 
@@ -16,6 +16,15 @@ from friday_chat.commands.registry import (
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import DisplayController, format_assistant_response
 from friday_chat.input_sources import AsyncPromptCallable, AsyncPromptReader
+from friday_chat.reorganization.assembly import (
+    ExitReorganizationModeError,
+    build_exit_reorganization_request,
+)
+from friday_chat.reorganization.coordinator import (
+    MaintenanceRuntimeHooks,
+    ReorganizationCoordinator,
+)
+from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.session import FridaySession
 from friday_chat.shell import ShellService
@@ -155,6 +164,65 @@ class ConsoleOutputSink:
         sys.stdout.flush()
 
 
+@dataclass
+class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
+    """Direct app hooks used only after coordinator exclusivity is established."""
+
+    runtime: FridayRuntime
+    background: BackgroundTaskManager
+
+    async def drain_for_manual_maintenance(self) -> None:
+        await self.background.cancel_pending()
+        failures = 0
+        failures += not await self._run_step(
+            "flush_pending_extraction",
+            self.runtime.maintenance.flush_pending_extraction(),
+        )
+        failures += not await self._run_step(
+            "flush_memory",
+            self.runtime.maintenance.flush_memory(),
+        )
+        if failures:
+            raise RuntimeError("manual maintenance drain failed")
+
+    async def close_for_shutdown(self, *, snapshot_requested: bool) -> None:
+        await self.background.close()
+        failures = 0
+        failures += not await self._run_step(
+            "flush_pending_extraction",
+            self.runtime.maintenance.flush_pending_extraction(),
+        )
+        if self.runtime.config.session.flush_on_exit or snapshot_requested:
+            failures += not await self._run_step(
+                "flush_memory",
+                self.runtime.maintenance.flush_memory(),
+            )
+        if self.runtime.config.session.lifecycle_on_exit:
+            failures += not await self._run_step(
+                "run_lifecycle",
+                self.runtime.maintenance.run_lifecycle(),
+            )
+        if snapshot_requested and failures:
+            raise RuntimeError("shutdown maintenance drain failed")
+
+    async def finalize_transcript(self) -> None:
+        await self.runtime.transcript.finalize()
+
+    async def _run_step(
+        self,
+        name: str,
+        operation: Awaitable[object],
+    ) -> bool:
+        try:
+            await operation
+        except Exception as exc:
+            self.runtime.diagnostics.maintenance_warnings.append(
+                f"{name}: {type(exc).__name__}"
+            )
+            return False
+        return True
+
+
 class FridayChatApp:
     """Top-level FridayV2 application lifecycle."""
 
@@ -168,6 +236,8 @@ class FridayChatApp:
         turn_handler: TurnHandler | None = None,
         background: BackgroundTaskManager | None = None,
         background_work: BackgroundWorkCoordinator | None = None,
+        maintenance_gate: MaintenanceAdmissionGate | None = None,
+        reorganization_coordinator: ReorganizationCoordinator | None = None,
         command_registry: CommandRegistry | None = None,
         command_context: RegistryCommandContext | None = None,
         shell_service: ShellService | None = None,
@@ -190,15 +260,56 @@ class FridayChatApp:
             heartbeat_factory=display,
         )
         self.background = background or BackgroundTaskManager()
+        if reorganization_coordinator is not None:
+            if (
+                maintenance_gate is not None
+                and maintenance_gate is not reorganization_coordinator.gate
+            ):
+                raise ValueError("app maintenance gate does not match coordinator")
+            maintenance_gate = reorganization_coordinator.gate
+        self.maintenance_gate = maintenance_gate or MaintenanceAdmissionGate()
         self.background_work = background_work or BackgroundWorkCoordinator(
             runtime=runtime,
             manager=self.background,
+            gate=self.maintenance_gate,
+        )
+        if self.background_work.gate is not self.maintenance_gate:
+            raise ValueError("background work must use the app maintenance gate")
+        self.maintenance_hooks = AppMaintenanceRuntimeHooks(
+            runtime=runtime,
+            background=self.background,
+        )
+        self.reorganization_coordinator = (
+            reorganization_coordinator
+            or ReorganizationCoordinator(
+                layout=runtime.maintenance_layout,
+                gate=self.maintenance_gate,
+                memory_participant=runtime.memory_recovery,
+                transcript_participant=runtime.transcript_recovery,
+                runtime_hooks=self.maintenance_hooks,
+                mutation_adapter=runtime.reorganization_mutation,
+                application_version=version,
+            )
         )
         self.command_registry = command_registry or build_default_registry()
         self.command_context = command_context or RegistryCommandContext(
             runtime=runtime,
             registry=self.command_registry,
+            maintenance_gate=self.maintenance_gate,
+            reorganization_coordinator=self.reorganization_coordinator,
         )
+        if self.command_context.maintenance_gate is None:
+            self.command_context.maintenance_gate = self.maintenance_gate
+        if self.command_context.reorganization_coordinator is None:
+            self.command_context.reorganization_coordinator = (
+                self.reorganization_coordinator
+            )
+        if (
+            self.command_context.maintenance_gate is not self.maintenance_gate
+            or self.command_context.reorganization_coordinator
+            is not self.reorganization_coordinator
+        ):
+            raise ValueError("command context must use the app maintenance boundary")
         self.shell_service = shell_service or ShellService()
         self.display = display
         self.version = version
@@ -216,6 +327,14 @@ class FridayChatApp:
     def start(self) -> None:
         """Mark the app as started."""
         self._started = True
+        if self.reorganization_coordinator.recovery_inspection_configured:
+            try:
+                warnings = self.reorganization_coordinator.startup_recovery_warnings()
+            except Exception as exc:
+                warnings = (
+                    f"reorganization startup inspection failed: {type(exc).__name__}",
+                )
+            self.runtime.diagnostics.maintenance_warnings.extend(warnings)
         if self.display is not None:
             self.display.render_banner(
                 assistant_name=self.runtime.config.chat.assistant_name,
@@ -253,10 +372,14 @@ class FridayChatApp:
                     await self.output_sink.write(routed)
                     continue
 
-                was_command, command_result = await self.command_registry.execute(
-                    user_message,
-                    self.command_context,
-                )
+                self.command_context.command_progress = self.output_sink.write
+                try:
+                    was_command, command_result = await self.command_registry.execute(
+                        user_message,
+                        self.command_context,
+                    )
+                finally:
+                    self.command_context.command_progress = None
                 if was_command:
                     if command_result is not None and command_result.output:
                         await self.output_sink.write(command_result.output)
@@ -265,34 +388,31 @@ class FridayChatApp:
                         break
                     continue
 
-                self._ensure_session_initialized()
-                if (
-                    self.runtime.compaction_task is not None
-                    and not self.runtime.compaction_task.done()
-                ):
-                    await self.output_sink.write("Optimizing context memory...")
-                    await self.background_work.wait_for_inflight_compaction()
-                try:
-                    result = await self._process_chat_turn(user_message)
-                except TurnProcessingError as exc:
-                    await self.output_sink.write(
-                        _format_turn_processing_error(exc, self.runtime.config)
+                async with self.maintenance_gate.shared("chat-turn"):
+                    self._ensure_session_initialized()
+                    if (
+                        self.runtime.compaction_task is not None
+                        and not self.runtime.compaction_task.done()
+                    ):
+                        await self.output_sink.write("Optimizing context memory...")
+                        await self.background_work.wait_for_inflight_compaction()
+                    try:
+                        result = await self._process_chat_turn(user_message)
+                    except TurnProcessingError as exc:
+                        await self.output_sink.write(
+                            _format_turn_processing_error(exc, self.runtime.config)
+                        )
+                        continue
+                    self._record_turn_state(user_message, result)
+                    turns_processed += 1
+                    self.background_work.schedule_after_turn(
+                        turn_count=turns_processed,
+                        user_message=user_message,
+                        assistant_message=result.assistant_message,
+                        budget_status=result.budget_status,
                     )
-                    continue
-                self._record_turn_state(user_message, result)
-                turns_processed += 1
-                self.background_work.schedule_after_turn(
-                    turn_count=turns_processed,
-                    user_message=user_message,
-                    assistant_message=result.assistant_message,
-                    budget_status=result.budget_status,
-                )
         finally:
-            try:
-                await self._run_exit_maintenance()
-            finally:
-                await self.runtime.transcript.finalize()
-                await self.background.close()
+            await self._shutdown_through_coordinator()
             self._started = False
 
         return AppRunResult(
@@ -354,37 +474,31 @@ class FridayChatApp:
         if callable(finish_stream):
             await finish_stream()
 
-    async def _run_exit_maintenance(self) -> None:
-        config = self.runtime.config.session
-        await self._run_maintenance_step(
-            "flush_pending_extraction",
-            self.runtime.maintenance.flush_pending_extraction(),
-        )
-        if config.flush_on_exit:
-            await self._run_maintenance_step(
-                "flush_memory",
-                self.runtime.maintenance.flush_memory(),
-            )
-        if config.lifecycle_on_exit:
-            await self._run_maintenance_step(
-                "run_lifecycle",
-                self.runtime.maintenance.run_lifecycle(),
-            )
-        if config.reorganize_on_exit:
-            await self._run_maintenance_step(
-                f"reorganize_memory:{config.reorganize_mode}",
-                self.runtime.maintenance.reorganize_memory(config.reorganize_mode),
-            )
-
-    async def _run_maintenance_step(
-        self,
-        name: str,
-        operation: Coroutine[object, object, object],
-    ) -> None:
+    async def _shutdown_through_coordinator(self) -> None:
+        request = None
+        skipped_action: str | None = None
         try:
-            await operation
+            request = build_exit_reorganization_request(self.runtime.config)
+        except ExitReorganizationModeError as exc:
+            skipped_action = "reorganize_skipped:invalid_exit_mode"
+            self.runtime.diagnostics.maintenance_warnings.append(str(exc))
+        capability = self.reorganization_coordinator.execution_capability
+        if request is not None and not capability.available_for(request):
+            skipped_action = "reorganize_skipped:execute_disabled"
+            self.runtime.diagnostics.maintenance_warnings.append(
+                "reorganize_memory:"
+                f"{self.runtime.config.session.reorganize_mode}: execute disabled: "
+                f"{capability.reason_for(request)}"
+            )
+            request = None
+        try:
+            await self.reorganization_coordinator.shutdown(request)
         except Exception as exc:
-            self.runtime.diagnostics.maintenance_warnings.append(f"{name}: {exc}")
+            self.runtime.diagnostics.maintenance_warnings.append(
+                f"shutdown coordinator: {type(exc).__name__}"
+            )
+        if skipped_action is not None:
+            self.runtime.maintenance.actions.append(skipped_action)
 
     async def _route_agent_message(self, user_message: str) -> str:
         route_text = user_message[1:].strip()

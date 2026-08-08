@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import re
 from collections.abc import Awaitable, Callable, Iterable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -15,6 +16,16 @@ from friday_chat.commands.files import (
     format_file_read,
     parse_line_limit,
 )
+from friday_chat.reorganization.contracts import (
+    OperationTrigger,
+    ProgressStep,
+    RecoveryRequest,
+    ReorganizationMode,
+    ReorganizationRequest,
+    ReorganizationResult,
+)
+from friday_chat.reorganization.coordinator import ReorganizationCoordinator
+from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.replay import ReplayService, parse_replay_delay
 from friday_chat.security import sanitize_payload, validate_security_update
 from friday_chat.speech import (
@@ -27,11 +38,25 @@ if TYPE_CHECKING:
     from friday_chat.runtime import FridayRuntime
 
 
+_SHARED_ADMISSION_COMMANDS = frozenset(
+    {
+        "reset",
+        "lifecycle",
+        "migrate",
+        "compact",
+        "ingest",
+        "replay",
+        "run-tool",
+    }
+)
+
+
 @dataclass
 class CommandContext:
     """Runtime context passed to command handlers."""
 
     runtime: FridayRuntime | None = None
+    command_progress: Callable[[str], Awaitable[None]] | None = None
     exit_requested: bool = False
     variables: dict[str, str] = field(default_factory=dict)
     history: list[tuple[str, str]] = field(default_factory=list)
@@ -189,7 +214,15 @@ class CommandRegistry:
             )
 
         handler = self._handlers[canonical_name]
-        result = await handler(context, args, metadata)
+        gate = getattr(context, "maintenance_gate", None)
+        if (
+            canonical_name in _SHARED_ADMISSION_COMMANDS
+            and isinstance(gate, MaintenanceAdmissionGate)
+        ):
+            async with gate.shared(f"command:{canonical_name}"):
+                result = await handler(context, args, metadata)
+        else:
+            result = await handler(context, args, metadata)
         if result.exit_requested:
             context.exit_requested = True
         return True, result
@@ -537,40 +570,185 @@ async def _reorganize_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
+    try:
+        invocation = _parse_reorganize_invocation(args)
+    except _ReorganizeUsageError as exc:
+        return CommandResult(output=str(exc))
+
+    if invocation.recovery_run_id is not None:
+        coordinator = getattr(context, "reorganization_coordinator", None)
+        if not isinstance(coordinator, ReorganizationCoordinator):
+            return CommandResult(output="Reorganization coordinator is not initialized.")
+        recovery_request = RecoveryRequest(
+            run_id=invocation.recovery_run_id,
+            execute=not invocation.dry_run,
+        )
+        if not invocation.dry_run:
+            refusal = _reorganization_execute_refusal(coordinator, recovery_request)
+            if refusal is not None:
+                return CommandResult(output=refusal)
+        progress = _CommandReorganizationProgress.for_context(context)
+        if progress is not None:
+            await progress.acknowledge(
+                mode="recovery",
+                dry_run=invocation.dry_run,
+            )
+        try:
+            result = await coordinator.recover(
+                recovery_request,
+                progress=progress,
+            )
+        except Exception as exc:
+            return CommandResult(output=_reorganization_failure_output(exc))
+        return CommandResult(
+            output=_format_reorganization_result(
+                result,
+                dry_run=invocation.dry_run,
+            )
+        )
+
     if context.runtime is None or not context.runtime.config.memory.persist_directory:
         return CommandResult(output="Cannot reorganize: memory.persist_directory is required.")
+    coordinator = getattr(context, "reorganization_coordinator", None)
+    if not isinstance(coordinator, ReorganizationCoordinator):
+        return CommandResult(output="Reorganization coordinator is not initialized.")
 
-    flags = set(args)
-    dry_run = "--execute" not in flags
-    backup_first = "--no-backup" not in flags
-    mode = _select_reorganize_mode(flags)
+    reorganization_request = ReorganizationRequest(
+        trigger=OperationTrigger.MANUAL,
+        mode=ReorganizationMode(invocation.mode),
+        execute=not invocation.dry_run,
+        skip_synthesis=invocation.skip_synthesis,
+        skip_verify=invocation.skip_verify,
+        skip_lifecycle=invocation.skip_lifecycle,
+        force_reembed=invocation.force_reembed,
+    )
+    if not invocation.dry_run:
+        refusal = _reorganization_execute_refusal(
+            coordinator,
+            reorganization_request,
+        )
+        if refusal is not None:
+            return CommandResult(output=refusal)
+
+    progress = _CommandReorganizationProgress.for_context(context)
+    if progress is not None:
+        await progress.acknowledge(
+            mode=invocation.mode,
+            dry_run=invocation.dry_run,
+        )
 
     try:
-        result = await context.runtime.maintenance.reorganize(
-            mode=mode,
-            dry_run=dry_run,
-            backup_first=backup_first,
-            skip_synthesis="--skip-synthesis" in flags,
-            skip_verify="--skip-verify" in flags,
-            skip_lifecycle="--skip-lifecycle" in flags,
-            force_reembed="--force-reembed" in flags,
+        result = await coordinator.run(
+            reorganization_request,
+            progress=progress,
         )
     except Exception as exc:
-        return CommandResult(output=f"Error during reorganization: {_classify_error(exc)}")
+        return CommandResult(output=_reorganization_failure_output(exc))
 
+    return CommandResult(
+        output=_format_reorganization_result(result, dry_run=invocation.dry_run)
+    )
+
+
+def _format_reorganization_result(
+    result: ReorganizationResult,
+    *,
+    dry_run: bool,
+) -> str:
+    """Render typed, content-safe coordinator evidence for the command surface."""
     lines = [
-        f"Reorganization mode: {result['mode']}",
-        f"Dry run: {result['dry_run']}",
-        f"Backup first: {result['backup_first']}",
-        f"Scanned: {result['scanned']}",
-        f"Changed: {result['changed']}",
+        f"Reorganization mode: {result.mode.value if result.mode else 'recovery'}",
+        f"Dry run: {dry_run}",
+        f"Status: {result.status.value}",
     ]
-    if context.runtime.diagnostics.maintenance_llm_fallbacks:
+    if result.run_id is not None:
+        lines.append(f"Run ID: {result.run_id}")
+    if result.recovery_manifest_path is not None:
+        lines.append(f"Recovery manifest: {result.recovery_manifest_path}")
+    if result.journal_path is not None:
+        lines.append(f"Journal: {result.journal_path}")
+    if result.reorganization_log_path is not None:
+        lines.append(f"Reorganization log: {result.reorganization_log_path}")
+    if dry_run:
+        lines.append("Recovery bundle: not created during dry run")
+    elif result.recovery_manifest_path is None:
+        lines.append("Recovery bundle: unavailable")
+    if result.attempted_steps:
         lines.append(
-            "LLM fallbacks: "
-            + ", ".join(context.runtime.diagnostics.maintenance_llm_fallbacks)
+            "Attempted progress: "
+            + ", ".join(step.value for step in result.attempted_steps)
         )
-    return CommandResult(output="\n".join(lines))
+    if result.completed_steps:
+        lines.append(
+            "Completed progress: "
+            + ", ".join(step.value for step in result.completed_steps)
+        )
+    if result.skipped_steps:
+        lines.append(
+            "Skipped progress: "
+            + ", ".join(step.value for step in result.skipped_steps)
+        )
+    for store in result.stores:
+        count = "unavailable" if store.item_count is None else str(store.item_count)
+        lines.append(
+            f"Store {store.store}: {store.status.value}; "
+            f"verified={str(store.verified).lower()}; items={count}"
+        )
+    for step in result.mutation_steps:
+        scanned = (
+            "unavailable" if step.scanned_count is None else str(step.scanned_count)
+        )
+        candidates = (
+            "unavailable"
+            if step.candidate_count is None
+            else str(step.candidate_count)
+        )
+        changed = (
+            "unavailable" if step.changed_count is None else str(step.changed_count)
+        )
+        lines.append(
+            f"Step {step.step.value}: {step.status.value}; scanned={scanned}; "
+            f"candidates={candidates}; changed={changed}"
+        )
+    lines.extend(f"Warning: {warning}" for warning in result.warnings)
+    lines.extend(
+        f"Error [{error.code.value}]: {error.message}"
+        for error in result.errors
+    )
+    return "\n".join(lines)
+
+
+@dataclass
+class _CommandReorganizationProgress:
+    """One-command bounded, content-safe progress bridge."""
+
+    write: Callable[[str], Awaitable[None]]
+    emitted: int = 0
+
+    _MAX_EVENTS = 24
+
+    @classmethod
+    def for_context(
+        cls,
+        context: CommandContext,
+    ) -> _CommandReorganizationProgress | None:
+        if context.command_progress is None:
+            return None
+        return cls(write=context.command_progress)
+
+    async def acknowledge(self, *, mode: str, dry_run: bool) -> None:
+        await self._emit(
+            f"Reorganization accepted: mode={mode}; dry_run={str(dry_run).lower()}"
+        )
+
+    async def __call__(self, step: ProgressStep, message: str) -> None:
+        await self._emit(f"Reorganization progress [{step.value}]: {message}")
+
+    async def _emit(self, message: str) -> None:
+        if self.emitted >= self._MAX_EVENTS:
+            return
+        self.emitted += 1
+        await self.write(message)
 
 
 async def _lifecycle_handler(
@@ -1365,6 +1543,8 @@ class RegistryCommandContext(CommandContext):
     """Command context that carries the active registry for help rendering."""
 
     registry: CommandRegistry = field(default_factory=lambda: build_default_registry())
+    maintenance_gate: MaintenanceAdmissionGate | None = None
+    reorganization_coordinator: ReorganizationCoordinator | None = None
 
 
 def build_default_registry() -> CommandRegistry:
@@ -1401,6 +1581,7 @@ def build_default_registry() -> CommandRegistry:
             usage=spec.usage,
             aliases=spec.aliases,
             arguments=spec.arguments,
+            detail=spec.detail,
             handler=BASIC_COMMAND_HANDLERS.get(spec.name),
         )
 
@@ -1601,18 +1782,155 @@ def _write_export_file(context: CommandContext, kind: str, text: str) -> Path:
     return path
 
 
-def _select_reorganize_mode(flags: set[str]) -> str:
-    for flag, mode in (
-        ("--backup", "backup"),
-        ("--dedupe", "dedupe"),
-        ("--analyze", "analyze"),
-        ("--prune", "prune"),
-        ("--synthesize", "synthesize"),
-        ("--verify", "verify"),
-    ):
-        if flag in flags:
-            return mode
-    return "full"
+_REORGANIZE_MODE_FLAGS = {
+    "--backup": "backup",
+    "--dedupe": "dedupe",
+    "--analyze": "analyze",
+    "--prune": "prune",
+    "--synthesize": "synthesize",
+    "--verify": "verify",
+}
+_REORGANIZE_FULL_ONLY_FLAGS = (
+    "--skip-synthesis",
+    "--skip-verify",
+    "--skip-lifecycle",
+    "--force-reembed",
+)
+_REORGANIZE_USAGE = (
+    "Usage: /reorganize [--execute] "
+    "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
+    "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n"
+    "       /reorganize --recover <run-id> [--execute]"
+)
+_REORGANIZE_RUN_ID = re.compile(r"^[0-9a-f]{32}$")
+
+
+class _ReorganizeUsageError(ValueError):
+    """Raised when /reorganize arguments violate the strict grammar."""
+
+
+@dataclass(frozen=True)
+class _ReorganizeInvocation:
+    mode: str
+    dry_run: bool
+    skip_synthesis: bool
+    skip_verify: bool
+    skip_lifecycle: bool
+    force_reembed: bool
+    recovery_run_id: str | None = None
+
+
+def _parse_reorganize_invocation(args: tuple[str, ...]) -> _ReorganizeInvocation:
+    """Parse /reorganize arguments under the strict remediation grammar."""
+    known_flags = (
+        set(_REORGANIZE_MODE_FLAGS) | set(_REORGANIZE_FULL_ONLY_FLAGS) | {"--execute"}
+    )
+    seen: set[str] = set()
+    recovery_run_id: str | None = None
+    index = 0
+    while index < len(args):
+        token = args[index]
+        if token == "--recover":
+            if token in seen:
+                raise _ReorganizeUsageError(
+                    f"Duplicate argument '{token}'.\n{_REORGANIZE_USAGE}"
+                )
+            seen.add(token)
+            if index + 1 >= len(args):
+                raise _ReorganizeUsageError(
+                    f"--recover requires a run ID.\n{_REORGANIZE_USAGE}"
+                )
+            recovery_run_id = args[index + 1]
+            if _REORGANIZE_RUN_ID.fullmatch(recovery_run_id) is None:
+                raise _ReorganizeUsageError(
+                    "Recovery run ID must be 32 lowercase hexadecimal characters.\n"
+                    f"{_REORGANIZE_USAGE}"
+                )
+            index += 2
+            continue
+        if token in known_flags:
+            if token in seen:
+                raise _ReorganizeUsageError(
+                    f"Duplicate argument '{token}'.\n{_REORGANIZE_USAGE}"
+                )
+            seen.add(token)
+            index += 1
+            continue
+        if token == "execute":
+            raise _ReorganizeUsageError(
+                "Unknown argument 'execute'. Mutation requires the exact "
+                f"--execute flag.\n{_REORGANIZE_USAGE}"
+            )
+        if token == "--no-backup":
+            raise _ReorganizeUsageError(
+                "--no-backup has been removed. Execute mode always creates a "
+                "verified recovery bundle before mutation."
+            )
+        raise _ReorganizeUsageError(
+            f"Unknown argument '{token}'.\n{_REORGANIZE_USAGE}"
+        )
+    mode_flags = [token for token in args if token in _REORGANIZE_MODE_FLAGS]
+    full_only = [token for token in args if token in _REORGANIZE_FULL_ONLY_FLAGS]
+    if recovery_run_id is not None:
+        if mode_flags or full_only:
+            raise _ReorganizeUsageError(
+                "--recover cannot be combined with ordinary reorganization modes "
+                f"or flags.\n{_REORGANIZE_USAGE}"
+            )
+        return _ReorganizeInvocation(
+            mode="full",
+            dry_run="--execute" not in args,
+            skip_synthesis=False,
+            skip_verify=False,
+            skip_lifecycle=False,
+            force_reembed=False,
+            recovery_run_id=recovery_run_id,
+        )
+    if len(mode_flags) > 1:
+        raise _ReorganizeUsageError(
+            "Conflicting mode flags: "
+            + " ".join(mode_flags)
+            + f". Supply at most one.\n{_REORGANIZE_USAGE}"
+        )
+    mode = _REORGANIZE_MODE_FLAGS[mode_flags[0]] if mode_flags else "full"
+    if mode != "full" and full_only:
+        raise _ReorganizeUsageError(
+            f"{full_only[0]} is only valid with the full reorganization mode.\n"
+            f"{_REORGANIZE_USAGE}"
+        )
+    execute = "--execute" in args
+    if mode == "analyze" and execute:
+        raise _ReorganizeUsageError(
+            "--analyze is analysis-only; --execute has no effect and is rejected."
+        )
+    return _ReorganizeInvocation(
+        mode=mode,
+        dry_run=not execute,
+        skip_synthesis="--skip-synthesis" in args,
+        skip_verify="--skip-verify" in args,
+        skip_lifecycle="--skip-lifecycle" in args,
+        force_reembed="--force-reembed" in args,
+    )
+
+
+def _reorganization_execute_refusal(
+    coordinator: ReorganizationCoordinator,
+    request: ReorganizationRequest | RecoveryRequest,
+) -> str | None:
+    """Return a fail-closed refusal from the shared coordinator capability."""
+    capability = coordinator.execution_capability
+    if not capability.available_for(request):
+        return f"Reorganization execute is disabled: {capability.reason_for(request)}"
+    return None
+
+
+def _reorganization_failure_output(exc: BaseException) -> str:
+    """Render bounded type-only failure evidence for the command surface."""
+    error_type = re.sub(r"[^A-Za-z0-9_.-]", "_", type(exc).__name__)[:64]
+    return (
+        "Reorganization failed safely "
+        f"({error_type or 'Error'}). Review sanitized diagnostics and recovery status."
+    )
 
 
 def _classify_error(exc: BaseException) -> str:
@@ -1860,6 +2178,7 @@ class CommandSpec:
     usage: str
     aliases: tuple[str, ...] = ()
     arguments: tuple[CommandArgument, ...] = ()
+    detail: str | None = None
 
 
 def _argument(
@@ -2035,17 +2354,15 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "reorganize",
-        "Run memory reorganization.",
+        "Preview or explicitly execute coordinated memory reorganization.",
         "maintenance",
-        (
-            "/reorganize [--execute] [--no-backup] "
-            "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
-            "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] "
-            "[--force-reembed]"
-        ),
+        _REORGANIZE_USAGE.removeprefix("Usage: "),
         arguments=(
-            _argument("--execute", "Apply changes instead of using dry-run mode."),
-            _argument("--no-backup", "Skip the backup before mutating operations."),
+            _argument(
+                "--execute",
+                "Apply changes (exact flag required; a verified recovery bundle "
+                "is always created first).",
+            ),
             _argument(
                 "mode",
                 "Run one reorganization step instead of the full operation.",
@@ -2062,6 +2379,22 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             _argument("--skip-verify", "Skip verification during a full run."),
             _argument("--skip-lifecycle", "Skip lifecycle processing."),
             _argument("--force-reembed", "Force eligible records to be re-embedded."),
+            _argument(
+                "--recover <run-id>",
+                "Inspect a retained run; add exact --execute to restore its "
+                "recorded verified bundle.",
+            ),
+        ),
+        detail=(
+            "The command is dry-run by default. Full mode runs dedupe, prune, "
+            "synthesis, verification, and lifecycle unless a full-only skip flag "
+            "is supplied. --analyze is read-only and rejects --execute. Every "
+            "mutating mode first creates a verified Memory and Transcript recovery "
+            "bundle; Transcript content is recovery-only and is never reorganized. "
+            "Plain 'execute' and --no-backup are rejected. Recovery artifacts and "
+            "the owner-only categorical log are retained; use the exact --recover "
+            "forms shown above after recovery_required. Automatic exit "
+            "reorganization is separately configurable and defaults to disabled."
         ),
     ),
     CommandSpec(

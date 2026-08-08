@@ -51,6 +51,13 @@ from friday_transcript import (
 )
 
 from friday_chat.config import FridayChatConfig
+from friday_chat.reorganization.contracts import (
+    ReorganizationError,
+    ReorganizationErrorCode,
+)
+from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
+from friday_chat.reorganization.mutation import LifecycleStepReport
+from friday_chat.runtime import REORGANIZATION_EXECUTE_DISABLED_REASON
 from friday_chat.tools.schemas import ToolDefinition
 from friday_chat.turns.models import (
     ChatModelResponse,
@@ -137,6 +144,7 @@ class FrameworkMemoryAdapter:
     collection_manager: CollectionManager
     config: FridayChatConfig
     session_id: str
+    recovery_graph_store: ElementXGraphStore | None = None
     passage_router: PassageRouter | None = None
 
     async def retrieve(
@@ -337,9 +345,80 @@ class FrameworkMaintenanceAdapter:
             await self.promotion_service.run_promotion_cycle(dry_run=False)
         self.actions.append("run_lifecycle")
 
+    async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Report promotion/decay scope without mutation or embedding backfill."""
+        if self.promotion_service is None:
+            return LifecycleStepReport(
+                succeeded=False,
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
+                        message="deterministic lifecycle promotion is unavailable",
+                    ),
+                ),
+            )
+        stats = await self.promotion_service.collection_manager.get_stats()
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=sum(
+                int(value) for value in stats.values() if isinstance(value, int)
+            ),
+            candidate_count=None,
+            changed_count=None,
+            warnings=(
+                "lifecycle candidate and change counts are unavailable before execution",
+            ),
+        )
+
+    async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Run promotion/decay only; never backfill graph edge embeddings."""
+        self._raise_next_error()
+        if self.promotion_service is None:
+            return LifecycleStepReport(
+                succeeded=False,
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
+                        message="deterministic lifecycle promotion is unavailable",
+                    ),
+                ),
+            )
+        stats = await self.promotion_service.collection_manager.get_stats()
+        result = await self.promotion_service.run_promotion_cycle(dry_run=False)
+        if result.errors:
+            return LifecycleStepReport(
+                succeeded=False,
+                scanned_count=sum(
+                    int(value) for value in stats.values() if isinstance(value, int)
+                ),
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.MUTATION_FAILED,
+                        message="deterministic lifecycle promotion reported errors",
+                    ),
+                ),
+            )
+        changed_count = (
+            result.promoted_to_long_term
+            + result.decayed_from_long_term
+            + result.reactivated
+        )
+        self.actions.append("run_reorganization_lifecycle")
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=sum(
+                int(value) for value in stats.values() if isinstance(value, int)
+            ),
+            candidate_count=None,
+            changed_count=changed_count,
+        )
+
+    def reorganization_execute_status(self) -> tuple[bool, str]:
+        """Keep legacy direct mutation outside the Chat coordinator disabled."""
+        return False, REORGANIZATION_EXECUTE_DISABLED_REASON
+
     async def reorganize_memory(self, mode: str) -> None:
         """Run full framework memory reorganization."""
-        self._raise_next_error()
         persist_directory = self.config.memory.persist_directory
         if not persist_directory:
             self.actions.append("reorganize_skipped:no_persist_directory")
@@ -348,6 +427,14 @@ class FrameworkMaintenanceAdapter:
         if not memory_dir.exists():
             self.actions.append("reorganize_skipped:no_persist_directory")
             return
+
+        allowed, reason = self.reorganization_execute_status()
+        if not allowed:
+            self.actions.append("reorganize_skipped:execute_disabled")
+            self.background_actions.append(f"reorganize_execute_disabled:{reason}")
+            return
+
+        self._raise_next_error()
 
         skip_llm_work = mode == "fast"
         reorganizer = MemoryReorganizer(
@@ -542,7 +629,9 @@ class FrameworkMaintenanceAdapter:
                     ),
                     long_term_collection=self.promotion_service.collection_manager.long_term,
                 )
-                flushed = flush_result.short_term_flushed + flush_result.long_term_flushed
+                flushed = (
+                    flush_result.short_term_flushed + flush_result.long_term_flushed
+                )
                 errors.extend(flush_result.errors)
             if self.factor_computer is not None:
                 factor_result = await self.factor_computer.compute_factors(
@@ -593,7 +682,6 @@ class FrameworkMaintenanceAdapter:
         force_reembed: bool = False,
     ) -> dict[str, Any]:
         """Manual reorganization command hook."""
-        self._raise_next_error()
         persist_directory = self.config.memory.persist_directory
         if not persist_directory:
             return {
@@ -608,6 +696,23 @@ class FrameworkMaintenanceAdapter:
                 "changed": 0,
                 "errors": ["No persistence directory configured."],
             }
+        if not dry_run:
+            allowed, reason = self.reorganization_execute_status()
+            if not allowed:
+                self.actions.append(f"reorganize:{mode}:execute_disabled")
+                return {
+                    "mode": mode,
+                    "dry_run": dry_run,
+                    "backup_first": backup_first,
+                    "skip_synthesis": skip_synthesis,
+                    "skip_verify": skip_verify,
+                    "skip_lifecycle": skip_lifecycle,
+                    "force_reembed": force_reembed,
+                    "scanned": 0,
+                    "changed": 0,
+                    "errors": [f"Execute disabled: {reason}"],
+                }
+        self._raise_next_error()
         memory_dir = Path(persist_directory)
         reorganizer = MemoryReorganizer(
             memory_dir=memory_dir,
@@ -901,9 +1006,10 @@ def build_framework_memory_adapter(
     embedding: FrameworkEmbeddingService,
     *,
     session_id: str,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkMemoryAdapter:
-    persist_directory = config.memory.persist_directory or ".friday/vector"
-    graph_path = str(Path(persist_directory).with_name("graph.json"))
+    persist_directory = str(maintenance_layout.vector_directory)
+    graph_path = str(maintenance_layout.graph_path)
     collection_config = CollectionConfig(
         short_term_collection=str(
             config.memory.retrieval.get("short_term_collection", "memories_short_term")
@@ -953,6 +1059,9 @@ def build_framework_memory_adapter(
         collection_manager=collection_manager,
         config=config,
         session_id=session_id,
+        recovery_graph_store=(
+            graph_store if isinstance(graph_store, ElementXGraphStore) else None
+        ),
         passage_router=_build_passage_router(config),
     )
 
@@ -961,11 +1070,10 @@ def build_framework_transcript_adapter(
     config: FridayChatConfig,
     *,
     session_id: str,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkTranscriptAdapter:
-    export_directory = Path(config.transcript.export_directory or "./exports")
-    db_path = export_directory / "friday_transcripts.sqlite"
     return FrameworkTranscriptAdapter(
-        store=SQLiteTranscriptStore(db_path),
+        store=SQLiteTranscriptStore(maintenance_layout.transcript_database_path),
         config=config,
         session_id=session_id,
     )
@@ -1004,6 +1112,7 @@ def build_framework_maintenance_adapter(
     chat_llm: FrameworkChatModel,
     llm_models: dict[str, str],
     diagnostics: Any,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkMaintenanceAdapter:
     """Build real framework maintenance services for FridayV2."""
     llm_services = {
@@ -1056,7 +1165,6 @@ def build_framework_maintenance_adapter(
         access_config = config.lifecycle.access_buffer
         if access_config.get("enabled", True) is not False:
             try:
-                wal_path = access_config.get("wal_path")
                 access_buffer = AccessBuffer(
                     AccessBufferConfig(
                         max_buffer_size=int(
@@ -1071,7 +1179,7 @@ def build_framework_maintenance_adapter(
                                 lifecycle_config.get("access_buffer_age_seconds", 300),
                             )
                         ),
-                        wal_path=Path(wal_path) if isinstance(wal_path, str) else None,
+                        wal_path=maintenance_layout.access_buffer_wal_path,
                         decay_score_boost=float(
                             access_config.get(
                                 "decay_score_boost",
@@ -1253,11 +1361,7 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
         "min_similarity_tool_output",
         "min_keep_on_empty",
     )
-    router_kwargs = {
-        key: router_config[key]
-        for key in fields
-        if key in router_config
-    }
+    router_kwargs = {key: router_config[key] for key in fields if key in router_config}
     router_kwargs["enabled"] = True
     return PassageRouter(
         llm=router_llm,
@@ -1277,11 +1381,11 @@ def _build_role_llm_service(
         api_key=_optional_string(role_data.get("api_key")) or config.llm.api_key,
         api_base=_optional_string(role_data.get("api_base")) or config.llm.api_base,
         resilience=ResilienceConfig(
-            max_retries=_int_from_mapping(role_data, "max_retries", config.llm.max_retries),
+            max_retries=_int_from_mapping(
+                role_data, "max_retries", config.llm.max_retries
+            ),
             timeout_seconds=float(
-                role_data.get("timeout_seconds")
-                or config.llm.timeout_seconds
-                or 30.0
+                role_data.get("timeout_seconds") or config.llm.timeout_seconds or 30.0
             ),
         ),
     )
@@ -1306,7 +1410,9 @@ def _build_extraction_llm_service(
     )
 
 
-def _framework_maintenance_config(config: FridayChatConfig) -> FrameworkMaintenanceConfig:
+def _framework_maintenance_config(
+    config: FridayChatConfig,
+) -> FrameworkMaintenanceConfig:
     payload = config.maintenance.model_dump(mode="python")
     payload["collection_name"] = config.memory.collection_name
     return FrameworkMaintenanceConfig.model_validate(payload)
@@ -1432,7 +1538,8 @@ def _build_smart_file_llm_service(config: FridayChatConfig) -> LiteLLMService:
         or config.llm.model
         or "unknown",
         api_key=_optional_string(summarizer_data.get("api_key")) or config.llm.api_key,
-        api_base=_optional_string(summarizer_data.get("api_base")) or config.llm.api_base,
+        api_base=_optional_string(summarizer_data.get("api_base"))
+        or config.llm.api_base,
         resilience=ResilienceConfig(
             max_retries=_int_from_mapping(
                 summarizer_data,

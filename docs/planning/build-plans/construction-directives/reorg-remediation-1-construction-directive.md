@@ -731,3 +731,211 @@ Stop and ask for direction if:
 When stopped, leave execute mode fail-closed, preserve recovery artifacts and
 unrelated state, and report the smallest decision or authority needed to
 continue.
+
+## Supervised Execution Record
+
+### Gate A: PASS — 2026-08-06
+
+The primary implementation sub-agent reported a candidate `PASS`; the
+supervising agent independently reviewed the implementation and closed the
+gate. Evidence:
+
+- branch `feature/reorg-remediation-1` is based on `9d4eac0`; approved directive
+  checkpoint `5518ede` is present on the branch and its remote;
+- inherited and unrelated worktree state was preserved;
+- macOS was verified locally; documented Linux and Windows durability and
+  lease behavior remains unverified and fail-closed for later gates;
+- pre-edit focused baselines were Friday Chat `198 passed`, Friday Memory
+  `588 passed, 1 skipped`, and Friday Transcript `4 passed`;
+- disposable synthetic fixtures reproduce the split-layout, incomplete-backup,
+  incorrect dispatch/count, and unquiesced-shutdown failures without active
+  `.friday` state;
+- manual, exit, standalone restore, and standalone mutation paths fail closed;
+  parsing is strict and example/template exit reorganization defaults are
+  disabled;
+- independent post-change validation passed: focused Gate A `83 passed`,
+  Friday Chat `204 passed`, Friday Memory `602 passed, 1 skipped`, Friday
+  Transcript `4 passed`, affected Ruff checks, Friday Chat mypy, changed Friday
+  Memory CLI mypy, and `git diff --check`.
+
+Gate B was authorized only after this independent supervisory review.
+
+### Gate B: PASS — 2026-08-06
+
+The primary implementation sub-agent reported a candidate `PASS`; the
+supervising agent independently reviewed the recovery contracts, store
+implementations, failure boundaries, and test evidence before closing the
+gate. Evidence:
+
+- `REORG-01` adds strict, versioned, closed Chat, Memory, and Transcript
+  recovery contracts without private cross-package access or untyped persisted
+  dictionaries;
+- Friday Memory now uses explicit graph, vector, access-buffer WAL, recovery,
+  and log paths; discovery distinguishes present, not configured,
+  configured-but-absent, unsupported, incomplete, and corrupt state;
+- Chroma recovery uses bounded public-API logical export and rebuild for every
+  collection, preserving exact checksum-protected artifact bytes, collection
+  configuration/schema, IDs, documents, metadata, URIs, ordering, dimensions,
+  and query-index evidence;
+- Chroma 1.4.0 cosine rebuilds on the verified macOS ARM platform can move a
+  coordinate by at most two float32 ULPs. The persisted manifest fixes the
+  permitted bound at `Literal[2]`; two ULPs is accepted only for finite,
+  exactly represented float32 embeddings, three ULPs and all non-embedding
+  drift fail closed, and repeated recovery always rebuilds from the original
+  exact artifact so drift cannot accumulate;
+- Friday Memory proves each snapshot restorable in isolated Chroma state before
+  reporting it verified, validates graph checksums before deserializing the
+  same bytes, preserves live graph permissions, and fsyncs recovery and live
+  replacement directory entries on supported POSIX filesystems;
+- Friday Transcript uses SQLite online backup to capture committed WAL state,
+  verifies an owner-only staged copy, requires a store-issued writer-gate token
+  for restore, rechecks staged checksum/schema/integrity before replacement,
+  preserves live database permissions, and fsyncs the live directory entry;
+- manifest and artifact swap, checksum, corruption, missing-state,
+  unsupported-record, path overlap/alias, stale-token, permission, writer
+  blocking, schema drift, and restore-integrity cases fail closed in disposable
+  tests;
+- independent post-change validation passed: focused Gate B and retained Gate
+  A coverage `55 passed`, Friday Chat `207 passed`, Friday Memory `622 passed,
+  1 skipped`, Friday Transcript `17 passed`, all three affected Ruff gates,
+  Friday Chat mypy `63 source files`, required Friday Memory mypy `16 source
+  files`, required Friday Transcript mypy `7 source files`, cross-package import
+  smoke, and `git diff --check`;
+- the required root pytest attempt remains blocked during collection by the
+  pre-existing duplicate `test_display.py` module names in Friday Chat and
+  Friday CLI; no caches were cleaned and the passing package gates establish
+  the changed scope;
+- no provider or DGX endpoint was contacted, active `.friday` state was not
+  used, recovery artifacts were created only under disposable test paths, and
+  manual, shutdown, and standalone execute containment remains fail-closed.
+
+Gate C was authorized only after this independent supervisory review.
+
+### Gate C: PASS — 2026-08-06
+
+The primary implementation sub-agent reported a candidate `PASS`; the
+supervising agent independently reviewed the coordinator, admission gate,
+runtime integration, recovery ordering, configured-absence behavior, and gate
+evidence before closing the gate. Evidence:
+
+- `REORG-04` and `REORG-05` now use one app-owned coordinator and one shared
+  in-process admission gate across chat turns, conflicting commands, replay,
+  background work, manual reorganization, recovery, and shutdown;
+- manual execution and explicit recovery drain retained pending runtime state
+  before snapshot or restore without finalizing the active transcript;
+  shutdown closes admission, drains and closes background work, flushes required
+  memory state, finalizes the transcript once, and only then permits snapshot;
+- a Darwin-verified, layout-scoped inter-process lease rejects overlapping
+  process ownership and retains journal-linked evidence for unfinished work;
+  unverified platforms remain fail-closed;
+- an owner-only, versioned journal is durable before snapshot creation, and a
+  complete checksum-bound aggregate Friday Memory and Friday Transcript bundle
+  is durable and verified before mutation;
+- deterministic faults cover every coordinator safe boundary and each mutation
+  step before and after execution; post-mutation errors, progress-callback
+  failures, and cancellation trigger verified rollback;
+- rollback failure produces `recovery_required`, leaves an unfinished durable
+  journal and exact bundle, blocks ordinary mutation, and supports startup
+  detection, inspection, and explicit exact-bundle recovery from fresh
+  participant and coordinator instances;
+- configured-but-absent graph persistence is represented without a fabricated
+  artifact, is treated as a supported owned state, and rollback restores exact
+  path absence and empty in-memory graph state; configured-but-absent vector
+  persistence remains fail-closed;
+- independent focused validation passed: Friday Chat `56 passed`, Friday Memory
+  `40 passed`, Friday Transcript `13 passed`, and the disposable cross-package
+  rollback-failure/restart/recovery drill `1 passed`;
+- independent package validation passed: Friday Chat `271 passed`, Friday
+  Memory `655 passed, 1 skipped`, and Friday Transcript `17 passed`;
+- all three affected Ruff gates passed; Friday Chat mypy passed `73 source
+  files`, affected Friday Memory mypy passed `17 source files`, affected Friday
+  Transcript mypy passed `7 source files`, the cross-package import smoke printed
+  `Friday imports OK`, the baseline ancestor check passed, and
+  `git diff --check` passed;
+- the required root pytest attempt collected `1917` tests and stopped during
+  collection only at the pre-existing duplicate `test_display.py` module-name
+  collision between Friday Chat and Friday CLI; no caches were cleaned;
+- production command and automatic-exit execution remain contained, no external
+  provider or DGX endpoint was contacted, active `.friday` state was not read or
+  changed, and the pre-existing live Friday Chat process was not signaled or
+  interacted with.
+
+Gate D was authorized only after this independent supervisory review. Its
+user-facing execute guard must remain fail-closed until every Gate D criterion
+passes.
+
+### Gate D: PASS — 2026-08-06
+
+The primary implementation sub-agent reported a candidate `PASS`. The
+supervising agent did not accept the first candidate: independent review found
+stale command-receipt state, incomplete dry-run and store-failure preflight
+propagation, insufficient operation-time layout revalidation, inferred rather
+than inspected transcript integrity, contradictory result states, lost
+synthesis provenance, incomplete unfinished-journal handling, and a split
+manual-versus-exit capability guard. Those findings were corrected and
+retested before the supervising agent approved Gate D. Final evidence:
+
+- every advertised `analyze`, `backup`, `dedupe`, `prune`, `synthesize`,
+  `verify`, and `full` mode uses strict plan-bound dispatch; recovery inspection
+  and execution use their documented coordinator path, and standalone Friday
+  Memory mutation and restore paths remain fail-closed;
+- the request-specific execution capability requires only the participants and
+  hooks needed for backup or recovery, adds the production mutation participant
+  for mutating modes, and is shared by manual and exit requests; automatic exit
+  reorganization remains configurable and disabled by default;
+- provider preflight is mode-selective and uses only explicit maintenance
+  synthesizer, classifier, researcher, judge, and embedding roles; unused roles
+  and the primary chat/DGX provider are not required, and all required tests use
+  deterministic provider adapters without network access;
+- graph, vector, access-buffer, transcript, recovery, and log layouts are
+  explicitly preflighted and revalidated for permissions, containment,
+  symlinks, hard links, overlap, capacity, platform support, lease ownership,
+  store discovery, transcript integrity, and unfinished journals before
+  mutation;
+- typed nested store, mutation, cancellation, attempted, completed, skipped,
+  rollback, and recovery evidence cannot report contradictory success and
+  failure states; unavailable counts remain explicitly unavailable rather than
+  being rendered as zero;
+- the production mutation participant performs deterministic exact
+  deduplication and pruning, typed synthesis and verification, and bounded
+  Chroma embedding verification while retaining legacy meta-insight type and
+  canonical bounded source provenance;
+- the owner-only audit log contains categorical execution evidence only;
+  terminal and recovery failures render sanitized types without memory,
+  transcript, prompt, credential, provider-response, or raw exception content;
+- the provider-free PTY tests prove immediate acknowledgement, at most 24
+  bounded categorical progress events, cancellation-pending behavior during
+  shielded atomic work, terminal cleanup, and final path/store/step reporting;
+- `/help reorganize`, exact command arguments, recovery syntax, behavioral
+  contracts, example and packaged configuration, and framework-upgrade
+  documentation describe the enabled manual capability and disabled-by-default
+  exit behavior accurately;
+- the disposable recovery drill covers full execution, deliberate failure,
+  verified rollback, rollback failure, restart inspection, and explicit exact-
+  bundle recovery. No execute-mode test used active user data;
+- independent final focused validation across the twelve command, contract,
+  coordinator, mutation, terminal, participant, snapshot, safety, and recovery
+  modules passed `183` tests;
+- independent package validation passed: Friday Chat `300 passed`, Friday
+  Memory `662 passed, 1 skipped`, and Friday Transcript `19 passed`;
+- affected Ruff gates passed; mypy passed Friday Chat `76 source files`, the
+  expanded affected Friday Memory gate `20 source files`, and the expanded
+  affected Friday Transcript gate `8 source files`; the cross-package import
+  smoke printed `Friday imports OK`, the baseline ancestor check passed, and
+  `git diff --check` passed;
+- the required root pytest attempt stopped during collection only at the known
+  baseline duplicate `test_display.py` module-name collision between Friday
+  Chat and Friday CLI. Both colliding files exist at baseline `9d4eac0`; no
+  caches were cleaned, and the passing focused and package gates establish the
+  changed scope;
+- `REORG-00` through `REORG-08` are complete. No directive stop condition is
+  active, no optional live-provider smoke was run, no DGX or external provider
+  was contacted, active `.friday` state was not read or changed, the live Friday
+  Chat process was not signaled, and unrelated worktree state was preserved.
+
+Gate D and the construction directive are approved as `PASS`. Manual execute
+and explicit recovery are available only through the typed app-owned
+coordinator capability; automatic exit remains disabled by default, and legacy
+direct or incomplete paths remain contained. The implementation and this
+execution record remain uncommitted and unpushed pending separate user
+authorization.

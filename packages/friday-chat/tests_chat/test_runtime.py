@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, cast
 
+import pytest
 from friday_chat.adapters import (
     FrameworkChatModel,
     FrameworkEmbeddingService,
@@ -14,6 +15,7 @@ from friday_chat.adapters import (
     FrameworkTranscriptAdapter,
     FrameworkWorkflowAdapter,
 )
+from friday_chat.app import FridayChatApp, ListInputSource
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import (
     MAINTENANCE_LLM_ROLES,
@@ -44,6 +46,13 @@ class ErroringExtractor:
         return {"error": self.error, "extracted": {}, "stats": {}}
 
 
+class MemoryOnlyExecuteParticipant:
+    """Participant-shaped double that must not unlock Gate A execution."""
+
+    def preflight_status(self) -> tuple[bool, str]:
+        return True, "memory-only preflight passed"
+
+
 def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
     config = _config({"llm": {"model": "openai/test-chat-model"}})
 
@@ -55,6 +64,46 @@ def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
     assert runtime.diagnostics.maintenance_llm_fallbacks == list(
         MAINTENANCE_LLM_ROLES
     )
+
+
+@pytest.mark.asyncio
+async def test_fake_build_start_run_never_inspects_active_recovery_root(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    process_cwd = tmp_path / "checkout"
+    recovery_root = process_cwd / ".friday" / "recovery"
+    recovery_root.mkdir(parents=True)
+    sentinel = recovery_root / "operator-sentinel"
+    sentinel.write_text("must remain untouched")
+    visited: list[Path] = []
+    original_iterdir = Path.iterdir
+
+    def recording_iterdir(path: Path):  # type: ignore[no-untyped-def]
+        visited.append(path.resolve(strict=False))
+        return original_iterdir(path)
+
+    monkeypatch.chdir(process_cwd)
+    monkeypatch.setattr(Path, "iterdir", recording_iterdir)
+    runtime = build_runtime(
+        _config(
+            {
+                "llm": {"model": "openai/test-chat-model"},
+                "memory": {"persist_directory": ".friday/vector"},
+                "maintenance": {"backup_directory": ".friday/recovery"},
+            }
+        )
+    )
+    result = await FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource([]),
+    ).run()
+    inspected_paths = tuple(visited)
+
+    assert result.exit_reason == "eof"
+    assert recovery_root.resolve() not in inspected_paths
+    assert sentinel.read_text() == "must remain untouched"
+    assert not runtime.maintenance_layout.recovery_root.is_relative_to(process_cwd)
 
 
 def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) -> None:
@@ -78,6 +127,42 @@ def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) 
     assert isinstance(runtime.tools, FrameworkToolRegistryAdapter)
     assert isinstance(runtime.workflow, FrameworkWorkflowAdapter)
     assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+
+
+async def test_real_runtime_manual_and_exit_execute_paths_remain_contained(
+    tmp_path: Path,
+) -> None:
+    vector_directory = tmp_path / "vector"
+    vector_directory.mkdir()
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(vector_directory)},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {"registry": []},
+        }
+    )
+    runtime = build_runtime(config, fake=False, session_id="synthetic-session")
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+    assert isinstance(runtime.memory, FrameworkMemoryAdapter)
+    runtime.memory.__dict__["maintenance_participant"] = (
+        MemoryOnlyExecuteParticipant()
+    )
+
+    manual = await runtime.maintenance.reorganize(
+        mode="full",
+        dry_run=False,
+        backup_first=True,
+    )
+    await runtime.maintenance.reorganize_memory("fast")
+
+    assert manual["errors"]
+    assert "Execute disabled:" in manual["errors"][0]
+    assert runtime.maintenance.actions == [
+        "reorganize:full:execute_disabled",
+        "reorganize_skipped:execute_disabled",
+    ]
 
 
 def test_real_runtime_builds_friday_py_lifecycle_collaborators(

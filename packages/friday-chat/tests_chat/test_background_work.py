@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import asyncio
 
+import pytest
 from friday_chat.app import (
+    AppMaintenanceRuntimeHooks,
     ConsoleInputSource,
     FridayChatApp,
     ListInputSource,
@@ -13,6 +15,7 @@ from friday_chat.app import (
 from friday_chat.background import BackgroundTaskManager, BackgroundWorkCoordinator
 from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
 from friday_chat.config import FridayChatConfig
+from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_memory.models.budget import BudgetSeverity, BudgetStatus
 
@@ -285,6 +288,65 @@ async def test_background_shutdown_cancels_pending_tasks() -> None:
     assert manager.failures == []
 
 
+@pytest.mark.parametrize("shutdown", [False, True])
+async def test_cancelled_queued_background_work_is_retained_for_drain(
+    shutdown: bool,
+) -> None:
+    runtime = _runtime(extraction_interval=0)
+    manager = BackgroundTaskManager()
+    gate = MaintenanceAdmissionGate()
+    coordinator = BackgroundWorkCoordinator(runtime, manager, gate)
+    entered = asyncio.Event()
+    release = asyncio.Event()
+
+    async def hold_exclusive() -> None:
+        async with gate.exclusive("test-maintenance"):
+            entered.set()
+            await release.wait()
+
+    exclusive = asyncio.create_task(hold_exclusive())
+    await entered.wait()
+    coordinator.schedule_after_turn(
+        turn_count=1,
+        user_message="cancelled",
+        assistant_message="not admitted",
+    )
+    await asyncio.sleep(0)
+    assert manager.pending_count == 3
+    assert runtime.maintenance.pending_extraction == [
+        ("cancelled", "not admitted")
+    ]
+    assert runtime.maintenance.background_actions == []
+
+    hooks = AppMaintenanceRuntimeHooks(runtime, manager)
+    if shutdown:
+        await hooks.close_for_shutdown(snapshot_requested=True)
+    else:
+        await hooks.drain_for_manual_maintenance()
+
+    assert runtime.maintenance.pending_extraction == []
+    assert manager.pending_count == 0
+    assert manager.failures == []
+    assert runtime.maintenance.actions[:2] == [
+        "flush_pending_extraction",
+        "flush_memory",
+    ]
+    assert manager.closed is shutdown
+
+    release.set()
+    await exclusive
+    if not shutdown:
+        coordinator.schedule_after_turn(
+            turn_count=2,
+            user_message="admitted",
+            assistant_message="processed",
+        )
+        await manager.wait_for_all()
+        assert "extract:background_interval:1" in (
+            runtime.maintenance.background_actions
+        )
+
+
 async def test_exit_maintenance_order_extracts_before_flush_lifecycle_reorganize() -> None:
     config = FridayChatConfig.model_validate(
         {
@@ -310,5 +372,5 @@ async def test_exit_maintenance_order_extracts_before_flush_lifecycle_reorganize
         "flush_pending_extraction",
         "flush_memory",
         "run_lifecycle",
-        "reorganize_memory:deep",
+        "reorganize_skipped:execute_disabled",
     )

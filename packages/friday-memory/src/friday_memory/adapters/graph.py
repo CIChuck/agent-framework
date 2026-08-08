@@ -7,9 +7,12 @@ Ref: Batch 1 Specification, Section 2.2
 """
 
 import asyncio
+import hashlib
 import json
 import logging
+import os
 import pickle
+import stat
 from contextlib import asynccontextmanager, suppress
 from dataclasses import dataclass
 from datetime import datetime
@@ -17,6 +20,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from time import perf_counter
 from typing import Any
+from uuid import uuid4
 
 import networkx as nx
 
@@ -38,6 +42,14 @@ class LockMetrics:
         self.contentions = 0
         self.total_wait_ms = 0
         self.max_wait_ms = 0
+
+
+@dataclass(frozen=True)
+class GraphRecoverySummary:
+    """Content counts for a validated graph recovery artifact."""
+
+    node_count: int
+    edge_count: int
 
 
 from friday_core import GraphStoreAdapter, TelemetryInterface  # noqa: E402
@@ -87,6 +99,11 @@ class ElementXGraphStore(GraphStoreAdapter):
         # Load existing graph if path exists
         if self._storage_path and self._storage_path.exists():
             self._load()
+
+    @property
+    def storage_path(self) -> Path | None:
+        """Return the explicitly configured persistent graph path."""
+        return self._storage_path
 
     def _emit_event(self, event_name: str, data: dict) -> None:
         """Emit telemetry event if recorder is configured."""
@@ -139,6 +156,11 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         # Write to temp file first
         temp_path = Path(str(self._storage_path) + ".tmp")
+        existing_mode = (
+            stat.S_IMODE(self._storage_path.stat().st_mode)
+            if self._storage_path.exists()
+            else None
+        )
 
         try:
             if self._storage_path.suffix == ".json":
@@ -160,6 +182,8 @@ class ElementXGraphStore(GraphStoreAdapter):
 
             # Atomic rename (on POSIX systems)
             temp_path.replace(self._storage_path)
+            if os.name == "posix" and existing_mode is not None:
+                self._storage_path.chmod(existing_mode)
         except Exception as e:
             logger.error(f"Failed to save graph: {e}")
             # Clean up temp file if it exists
@@ -172,18 +196,164 @@ class ElementXGraphStore(GraphStoreAdapter):
         if not self._storage_path or not self._storage_path.exists():
             return
 
-        if self._storage_path.suffix == ".json":
-            data = json.loads(self._storage_path.read_text())
-            self._graph = nx.DiGraph()
+        self._graph = self._read_graph_file(self._storage_path)
+
+    @staticmethod
+    def _read_graph_file(path: Path) -> nx.DiGraph:
+        """Read and validate one graph persistence file without changing live state."""
+        return ElementXGraphStore._read_graph_payload(path, path.read_bytes())
+
+    @staticmethod
+    def _read_graph_payload(path: Path, payload: bytes) -> nx.DiGraph:
+        """Deserialize the exact graph bytes supplied by the checksum boundary."""
+        if path.suffix == ".json":
+            data = json.loads(payload.decode("utf-8"))
+            graph = nx.DiGraph()
             for nid, attrs in data.get("nodes", {}).items():
-                self._graph.add_node(nid, **attrs)
-            for edge in data.get("edges", []):
+                graph.add_node(nid, **attrs)
+            for stored_edge in data.get("edges", []):
+                edge = dict(stored_edge)
                 source = edge.pop("source")
                 target = edge.pop("target")
-                self._graph.add_edge(source, target, **edge)
-        else:
-            with open(self._storage_path, "rb") as f:
-                self._graph = pickle.load(f)
+                graph.add_edge(source, target, **edge)
+            return graph
+
+        graph = pickle.loads(payload)
+        if not isinstance(graph, nx.DiGraph):
+            raise ValueError("Graph persistence file does not contain a directed graph")
+        return graph
+
+    @staticmethod
+    def _write_owner_only(path: Path, payload: bytes) -> None:
+        """Atomically write a graph artifact with owner-only permissions."""
+        path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        if os.name == "posix":
+            path.parent.chmod(0o700)
+        temp_path = path.with_name(f".{path.name}.tmp")
+        descriptor = os.open(temp_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        try:
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temp_path, path)
+            if os.name == "posix":
+                path.chmod(0o600)
+                ElementXGraphStore._fsync_directory(path.parent)
+        except Exception:
+            temp_path.unlink(missing_ok=True)
+            raise
+
+    @staticmethod
+    def _require_checksum(path: Path, expected_sha256: str) -> bytes:
+        """Read an artifact and reject checksum mismatch before deserialization."""
+        payload = path.read_bytes()
+        actual_sha256 = hashlib.sha256(payload).hexdigest()
+        if actual_sha256 != expected_sha256:
+            raise ValueError("Graph recovery artifact checksum mismatch")
+        return payload
+
+    @staticmethod
+    def _replace_live_file(path: Path, payload: bytes) -> None:
+        """Atomically replace live graph bytes without changing parent permissions."""
+        path.parent.mkdir(parents=True, exist_ok=True)
+        existing_mode = (
+            stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o600
+        )
+        temp_path = path.with_name(f".{path.name}.{uuid4().hex}.restore")
+        descriptor = os.open(
+            temp_path,
+            os.O_WRONLY | os.O_CREAT | os.O_EXCL,
+            existing_mode,
+        )
+        try:
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temp_path, path)
+            if os.name == "posix":
+                path.chmod(existing_mode)
+                ElementXGraphStore._fsync_directory(path.parent)
+        except Exception:
+            temp_path.unlink(missing_ok=True)
+            raise
+
+    @staticmethod
+    def _fsync_directory(directory: Path) -> None:
+        """Durably commit a directory entry on supported POSIX filesystems."""
+        descriptor = os.open(directory, os.O_RDONLY)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+
+    async def create_recovery_snapshot(
+        self, destination: str | Path
+    ) -> GraphRecoverySummary:
+        """Persist and copy an exact graph artifact while holding the store lock."""
+        if self._storage_path is None:
+            raise ValueError("Persistent graph storage is not configured")
+
+        destination_path = Path(destination)
+        async with self._acquire_lock():
+            self._save()
+            if not self._storage_path.exists():
+                raise FileNotFoundError("Configured graph persistence file is absent")
+            payload = self._storage_path.read_bytes()
+            graph = self._read_graph_payload(self._storage_path, payload)
+            self._write_owner_only(destination_path, payload)
+
+        return GraphRecoverySummary(
+            node_count=graph.number_of_nodes(),
+            edge_count=graph.number_of_edges(),
+        )
+
+    async def verify_recovery_snapshot(
+        self, snapshot_path: str | Path, expected_sha256: str
+    ) -> GraphRecoverySummary:
+        """Validate a graph recovery artifact without changing live state."""
+        path = Path(snapshot_path)
+        payload = self._require_checksum(path, expected_sha256)
+        graph = self._read_graph_payload(path, payload)
+        return GraphRecoverySummary(
+            node_count=graph.number_of_nodes(),
+            edge_count=graph.number_of_edges(),
+        )
+
+    async def restore_recovery_snapshot(
+        self, snapshot_path: str | Path, expected_sha256: str
+    ) -> GraphRecoverySummary:
+        """Restore an exact graph artifact while holding the store lock."""
+        if self._storage_path is None:
+            raise ValueError("Persistent graph storage is not configured")
+
+        snapshot = Path(snapshot_path)
+        payload = self._require_checksum(snapshot, expected_sha256)
+        recovered_graph = self._read_graph_payload(snapshot, payload)
+        async with self._acquire_lock():
+            self._replace_live_file(self._storage_path, payload)
+            self._graph = recovered_graph
+
+        return GraphRecoverySummary(
+            node_count=recovered_graph.number_of_nodes(),
+            edge_count=recovered_graph.number_of_edges(),
+        )
+
+    async def restore_configured_absence(self) -> GraphRecoverySummary:
+        """Restore an explicitly configured-but-absent graph persistence state."""
+        if self._storage_path is None:
+            raise ValueError("Persistent graph storage is not configured")
+
+        async with self._acquire_lock():
+            if self._storage_path.exists():
+                if not self._storage_path.is_file():
+                    raise ValueError("Configured graph persistence is not a file")
+                self._storage_path.unlink()
+                self._fsync_directory(self._storage_path.parent)
+            self._graph = nx.DiGraph()
+
+        return GraphRecoverySummary(node_count=0, edge_count=0)
 
     # --- CRUD Operations ---
 

@@ -175,6 +175,20 @@ async def test_focused_help_includes_structured_argument_details() -> None:
     assert "- --file [optional]: Export the context to a file." in result.output
 
 
+async def test_reorganize_help_documents_exact_execution_and_recovery() -> None:
+    registry = build_default_registry()
+    context = RegistryCommandContext(registry=registry)
+
+    _, result = await registry.execute("/help reorganize", context)
+
+    assert result is not None
+    assert "/reorganize --recover <run-id> [--execute]" in result.output
+    assert "dry-run by default" in result.output
+    assert "Plain 'execute' and --no-backup are rejected" in result.output
+    assert "Transcript content is recovery-only" in result.output
+    assert "defaults to disabled" in result.output
+
+
 async def test_unknown_command_returns_registry_response() -> None:
     registry = build_default_registry()
 

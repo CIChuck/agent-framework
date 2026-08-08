@@ -680,7 +680,7 @@ security:
 session:
   flush_on_exit: true
   lifecycle_on_exit: true
-  reorganize_on_exit: true
+  reorganize_on_exit: false
   reorganize_mode: fast
 speech:
   enabled: false

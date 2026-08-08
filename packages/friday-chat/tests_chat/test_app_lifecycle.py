@@ -100,6 +100,39 @@ async def test_app_exits_cleanly_on_eof() -> None:
     assert runtime.transcript.finalized is True
 
 
+async def test_app_injects_one_gate_and_chat_turn_waits_for_exclusive() -> None:
+    runtime = build_runtime(_config({"llm": {"model": "openai/test-chat-model"}}))
+    output = ListOutputSink()
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource(["hello"]),
+        output_sink=output,
+    )
+    assert app.reorganization_coordinator.gate is app.maintenance_gate
+    assert app.background_work.gate is app.maintenance_gate
+    assert app.command_context.maintenance_gate is app.maintenance_gate
+    entered = asyncio.Event()
+    release = asyncio.Event()
+
+    async def hold_exclusive() -> None:
+        async with app.maintenance_gate.exclusive("test-maintenance"):
+            entered.set()
+            await release.wait()
+
+    exclusive = asyncio.create_task(hold_exclusive())
+    await entered.wait()
+    running = asyncio.create_task(app.run())
+    await asyncio.sleep(0)
+
+    assert not running.done()
+    assert output.values == []
+    release.set()
+    await exclusive
+    result = await running
+    assert result.turns_processed == 1
+    assert output.values == ["Friday: hello"]
+
+
 async def test_app_streams_chat_turns_through_chunk_sink() -> None:
     runtime = build_runtime(
         _config(
@@ -281,11 +314,15 @@ async def test_exit_maintenance_follows_session_config() -> None:
     assert result.maintenance_actions == (
         "flush_pending_extraction",
         "run_lifecycle",
-        "reorganize_memory:deep",
+        "reorganize_skipped:execute_disabled",
+    )
+    assert len(runtime.diagnostics.maintenance_warnings) == 1
+    assert "reorganize_memory:deep: execute disabled:" in (
+        runtime.diagnostics.maintenance_warnings[0]
     )
 
 
-async def test_exit_maintenance_warning_does_not_block_transcript_finalization() -> None:
+async def test_exit_containment_precedes_service_errors_and_finalizes_transcript() -> None:
     runtime = build_runtime(
         _config(
             {
@@ -305,9 +342,11 @@ async def test_exit_maintenance_warning_does_not_block_transcript_finalization()
     result = await app.run()
 
     assert result.exit_reason == "eof"
-    assert runtime.diagnostics.maintenance_warnings == [
-        "reorganize_memory:fast: reorganize failed"
-    ]
+    assert len(runtime.diagnostics.maintenance_warnings) == 1
+    assert "reorganize_memory:fast: execute disabled:" in (
+        runtime.diagnostics.maintenance_warnings[0]
+    )
+    assert len(runtime.maintenance.errors) == 1
     assert isinstance(runtime.transcript, FakeTranscriptStore)
     assert runtime.transcript.finalized is True
 

@@ -459,43 +459,94 @@ Required tests:
 
 Required behavior:
 
-- Require `persist_dir`; otherwise return an error.
-- Default mode is dry-run. `--execute` switches to execution.
-- Default is `backup_first=True`. `--no-backup` disables backup before mutating
-  operations.
-- `--skip-synthesis`, `--skip-verify`, `--skip-lifecycle`, and
-  `--force-reembed` alter the full reorganize call.
-- Single-step modes take precedence in this order: `--backup`, `--dedupe`,
-  `--analyze`, `--prune`, `--synthesize`, `--verify`, otherwise full
-  reorganization.
-- `--backup` creates only a backup and does not care about dry-run mode.
-- `--dedupe` runs insight deduplication, backs up first only when executing and
-  backup is enabled, and reports scanned, clusters, superseded, sample clusters,
-  and errors.
-- `--analyze` is read-only and reports graph, vector, episodic, issue severity,
-  and duplicate group summary.
-- `--prune`, `--synthesize`, and `--verify` run only their respective steps and
-  report step-specific counts.
-- Full reorganization calls `reorganize()` with backup, dry-run,
-  skip-synthesis, skip-verify, skip-lifecycle, and force-reembed flags.
-- Maintenance LLM roles fall back to main chat LLM when not configured and
-  should be reported.
-- Maintenance embedding uses configured maintenance embedding unless setup
-  fails, then falls back to session embedding.
+- Require a configured vector persistence directory; otherwise return an error.
+- Default to a side-effect-free dry run. Only the exact `--execute` flag may
+  authorize mutation; plain `execute`, `--no-backup`, duplicate, unknown, and
+  incompatible flags are rejected.
+- Route `--backup`, `--analyze`, `--dedupe`, `--prune`, `--synthesize`, and
+  `--verify` to exactly that operation. With no mode flag, run the full typed
+  pipeline. Full-only skip and re-embedding flags are invalid for single-step
+  modes, and analyze rejects execute authorization.
+- Use the app-owned coordinator for both manual and shutdown requests. Every
+  mutating request must first create and verify one aggregate Friday Memory and
+  Friday Transcript recovery bundle; there is no backup bypass.
+- Authorize execution from one typed coordinator capability and the actual
+  request. Backup and explicit recovery require Memory and Transcript recovery
+  participants plus runtime quiescence hooks; mutating modes and configured
+  exit full/fast/deep additionally require the mutation adapter. Explicit
+  recovery remains available when mutation providers or adapters are absent.
+  Legacy direct maintenance and standalone Friday Memory mutation/restore paths
+  remain fail-closed.
+- Include Transcript only in snapshot, rollback, and recovery. Transcript
+  content is never analyzed, classified, pruned, synthesized, verified, or
+  otherwise reorganized.
+- Use only explicitly configured `maintenance.llm.<role>` and
+  `maintenance.embedding` providers. The primary chat LLM, primary embedding,
+  and DGX availability are never implicit maintenance fallbacks. Preflight only
+  capabilities required by the selected mode and flags.
+- Persist synthesized vector records as `meta_insight` with bounded canonical
+  `source_memories` JSON, `source_count`, and
+  `provenance_source_type=synthesis`; verify that exact lineage as a live-store
+  postcondition without copying memory content into logs.
+- Report typed per-store and per-step outcomes. Preserve unavailable counts as
+  unavailable, never as zero, and never convert nested failure evidence into a
+  successful terminal state.
+- Acknowledge accepted work before awaiting the coordinator and emit bounded,
+  content-safe progress. Cancellation during an atomic section is reported as
+  pending and takes effect at the next safe boundary.
+- Show retained recovery-manifest, journal, and categorical owner-only log paths
+  when they exist. Normal output and logs contain no memory or Transcript
+  content, credentials, prompts, or raw provider responses.
+- Support exact recovery inspection with `/reorganize --recover <run-id>` and
+  exact restoration with `/reorganize --recover <run-id> --execute`. Restore the
+  recorded verified bundle; never replace it with a snapshot of partially
+  mutated state.
 
 Error behavior:
 
-- Embedding/vector errors include embedding-service guidance.
-- Timeout errors suggest increasing `timeout_seconds`.
-- Connection errors suggest checking reachable LLM/embedding services.
+- Coordinator results expose typed, content-safe error categories. Exceptions
+  escaping an ordinary or recovery coordinator call render only a bounded
+  exception type and generic recovery guidance; raw paths, provider responses,
+  and exception messages are not printed in the REPL.
 
 Required tests:
 
-- Mode precedence for combinations of single-step flags.
-- Dry-run default and execute behavior.
-- Backup behavior for mutating single-step modes.
-- LLM and embedding fallback reporting.
-- Error classification.
+- Strict syntax and the complete mode/flag capability matrix.
+- Dry-run idempotence and execute containment/authorization behavior.
+- Mode-specific provider readiness, omission when unused, timeout, and sanitized
+  failure without a live provider dependency.
+- Real participant full execute, automatic rollback, rollback failure, restart
+  detection, and explicit recovery against disposable stores.
+- Provider-free PTY acknowledgement, bounded progress, cancellation-pending
+  reporting, nullable metrics, and content-safe terminal output.
+
+Recovery and operator contract:
+
+- Resolve vector, graph, optional access-buffer WAL, Transcript, recovery, and
+  log paths once against the process working directory. Reject source/recovery/
+  log overlap, symlink traversal, hard-link identity substitution, permission
+  failure, inadequate capacity, unsupported lease semantics, and unfinished
+  journals before mutation.
+- Persist a schema-versioned owner-only journal before snapshot creation. Do not
+  cross the mutation boundary until the checksum-bound aggregate bundle contains
+  complete, verified Friday Memory and Friday Transcript participant manifests.
+- On post-mutation error or cancellation, restore and verify the exact retained
+  bundle. Return `failed_rolled_back` only after verification. If restoration or
+  verification fails, return `recovery_required`, retain the unfinished journal
+  and bundle, and block ordinary mutation.
+- On restart, surface unfinished run IDs. Inspection is read-only. Explicit
+  recovery drains conflicting runtime state and restores only the bundle already
+  bound into that journal.
+- Recovery directories are owner-only (`0700`) and artifacts are owner-only
+  (`0600`) on the verified POSIX platform. The reorganization log is a separate
+  schema-versioned categorical envelope with the same restrictive permissions;
+  operators follow its journal path for terminal details.
+- Bundles, journals, and failed-run evidence are retained. This remediation does
+  not automate retention or remove legacy/nested logs. Existing vector-only
+  backups remain incomplete Friday Chat recovery artifacts and cannot be used as
+  aggregate recovery bundles.
+- Relative configuration retains its existing process-working-directory base;
+  this remediation does not relocate or migrate on-disk state.
 
 ### `/lifecycle ...`
 
@@ -891,27 +942,25 @@ Required behavior:
 - Compaction completion must be marked in a cleanup path on success or failure.
 - Before processing the next chat prompt, the interactive loop must await any
   in-flight compaction task and surface progress feedback.
-- Exit maintenance order:
-  0. extract buffered turns,
-  1. flush access buffer when enabled,
-  2. run lifecycle cycle when enabled,
-  3. run reorganization when enabled.
-- Exit maintenance must run before transcript finalization and resource cleanup.
+- Exit maintenance drains buffered extraction/access state and closes conflicting
+  background work before coordinated reorganization.
+- When coordinated exit reorganization is enabled, finalize the Transcript before
+  taking its recovery snapshot, then run the same typed coordinator used by the
+  manual command. Final resource cleanup follows the coordinator.
 - `session.flush_on_exit`, `session.lifecycle_on_exit`,
   `session.reorganize_on_exit`, and `session.reorganize_mode` control exit
   behavior.
-- When `session.reorganize_on_exit` is enabled and a persistence directory exists,
-  real runtime mode must construct and run the framework `MemoryReorganizer` or
-  log a framework-upgrade gap if frozen framework package constraints prevent it.
-- Exit reorganization must pass maintenance config, maintenance LLM roles,
-  embedding function, collection manager, access buffer, lifecycle scoring/decay
-  collaborators, and graph store where those services are available.
-- Exit reorganization must run with `backup_first=True`, `dry_run=False`, and
-  `skip_lifecycle=True` because lifecycle already runs earlier in the exit order.
-- `reorganize_mode: fast` skips synthesis and verification LLM work; full/deep
-  modes use configured maintenance LLM roles where available.
-- Exit reorganization errors are warning-level exit-maintenance failures and must
-  not prevent transcript finalization.
+- `session.reorganize_on_exit` remains configurable and defaults to `false`.
+  Enabling it requests execute through the same coordinator and mandatory
+  aggregate recovery policy as the manual command.
+- `reorganize_mode: fast` maps to full mode with synthesis and verification
+  skipped. `full` and `deep` map to the complete pipeline. Unknown enabled values
+  fail closed.
+- Exit provider selection uses only explicit maintenance roles and embedding;
+  it does not inherit the primary chat or embedding provider.
+- Exit reorganization errors remain visible as maintenance warnings and must not
+  prevent final resource cleanup. Post-mutation failure must first complete
+  verified rollback or retain `recovery_required` evidence.
 
 Required tests:
 
@@ -930,7 +979,8 @@ Required tests:
 - Completion marking on compaction success and failure.
 - Next-prompt gating while compaction is in flight.
 - Exit maintenance order and config flags.
-- Real exit reorganization cleanup runs before transcript finalization.
+- Exit closes and drains tracked work before transcript finalization, and any
+  coordinated recovery snapshot or execution decision follows finalization.
 - Reorganization mode tests cover fast skip behavior and full/deep maintenance
   LLM role wiring.
 - Reorganization failure tests prove transcript finalization still runs.

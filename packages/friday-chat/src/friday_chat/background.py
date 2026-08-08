@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import Coroutine
-from dataclasses import dataclass
+from collections.abc import Callable, Coroutine
+from dataclasses import dataclass, field
 from typing import Any, TypeVar
 
+from friday_chat.reorganization.gate import (
+    MaintenanceAdmissionError,
+    MaintenanceAdmissionGate,
+)
 from friday_chat.runtime import FridayRuntime
 
 T = TypeVar("T")
@@ -48,13 +52,17 @@ class BackgroundTaskManager:
 
     async def close(self) -> None:
         """Cancel and await all pending background tasks."""
+        await self.cancel_pending()
+        self._closed = True
+
+    async def cancel_pending(self) -> None:
+        """Cancel and drain pending work without closing future admission."""
         pending = [task for task in self._tasks if not task.done()]
         for task in pending:
             task.cancel()
         if pending:
             await asyncio.gather(*pending, return_exceptions=True)
         self._tasks.clear()
-        self._closed = True
 
     def _record_completion(self, task: asyncio.Task[Any]) -> None:
         self._tasks.discard(task)
@@ -71,6 +79,9 @@ class BackgroundWorkCoordinator:
 
     runtime: FridayRuntime
     manager: BackgroundTaskManager
+    gate: MaintenanceAdmissionGate = field(
+        default_factory=MaintenanceAdmissionGate
+    )
 
     def schedule_after_turn(
         self,
@@ -86,17 +97,28 @@ class BackgroundWorkCoordinator:
         )
         if self._should_extract(turn_count):
             self.manager.create_task(
-                self.runtime.maintenance.extract_buffered_turns(
-                    trigger_reason="background_interval"
+                self._run_shared(
+                    "background-extraction",
+                    lambda: self.runtime.maintenance.extract_buffered_turns(
+                        trigger_reason="background_interval",
+                    ),
                 )
             )
 
         if self.runtime.config.tools.enabled:
-            self.manager.create_task(self.runtime.maintenance.run_tool_decay())
+            self.manager.create_task(
+                self._run_shared(
+                    "background-tool-decay",
+                    self.runtime.maintenance.run_tool_decay,
+                )
+            )
 
         if self.runtime.config.lifecycle.factor_computer.get("enabled") is True:
             self.manager.create_task(
-                self.runtime.maintenance.run_incremental_graph_maintenance()
+                self._run_shared(
+                    "background-graph-maintenance",
+                    self.runtime.maintenance.run_incremental_graph_maintenance,
+                )
             )
 
         self._schedule_budget_compaction(budget_status)
@@ -124,8 +146,22 @@ class BackgroundWorkCoordinator:
             return
         monitor.mark_compaction_started()
         self.runtime.compaction_task = self.manager.create_task(
-            self._run_budget_compaction()
+            self._run_shared(
+                "background-compaction",
+                self._run_budget_compaction,
+            )
         )
+
+    async def _run_shared(
+        self,
+        operation_name: str,
+        operation_factory: Callable[[], Coroutine[Any, Any, object]],
+    ) -> None:
+        try:
+            async with self.gate.shared(operation_name):
+                await operation_factory()
+        except MaintenanceAdmissionError:
+            return
 
     async def _run_budget_compaction(self) -> None:
         monitor = self.runtime.budget_monitor
