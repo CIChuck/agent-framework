@@ -1,13 +1,13 @@
 # Construction Directive: Friday Chat Command Remediation 1
 
-Status: Ready for supervised execution approval
+Status: Approved for supervised execution
 Date: 2026-08-08
 Expected branch: `feature/friday-chat-command-remediation-1`
 Required baseline ancestor: `baed8f2`
 Planning checkpoint: `31bbcf1`
 Controlling plan: [Friday Chat Command Remediation Plan](../chat-command-remediation)
-Approval state: Documentation checkpoint only; implementation requires a
-separate explicit execution instruction
+Approval state: Approved by the maintainer for supervised execution; the
+primary supervising agent may approve Gates A through F under this directive
 
 ## AI Builder Role
 
@@ -216,6 +216,11 @@ conditions at every gate. After that review, the supervising agent may record
 `PASS`, close the gate, and direct work to continue without waiting for the
 user. Consult the user when a gate is `FAIL` or `BLOCKED`, a stop condition is
 active, or additional scope or authority is required.
+
+This delegation applies through Gate F. At Gate F, pause for explicit maintainer
+approval before any action that would remove containment or enable an execution
+path. This remediation does not plan either action; if neither is required, the
+supervising agent may review and close Gate F under the delegated authority.
 
 For every gate, append a durable execution record to this directive containing:
 
