@@ -12,8 +12,17 @@ the chat client can be run using this dhell script : scripts/run-friday-chat-exa
 
 # Friday Chat Command Remediation Plan
 
-Status: proposed; analysis and planning only. No remediation described below is
-implemented merely because it appears in this document.
+Status: approved for construction-directive preparation. Implementation still
+requires explicit execution of the approved construction directive; no
+remediation described below is implemented merely because it appears in this
+document.
+
+Planning checkpoint: `31bbcf1` on
+`feature/friday-chat-command-remediation-1`
+Required implementation branch: `feature/friday-chat-command-remediation-1`
+Committed baseline ancestor: `baed8f2` on `feature/reorg-remediation-1`
+Construction directive:
+[`friday-chat-command-remediation-1-construction-directive.md`](construction-directives/friday-chat-command-remediation-1-construction-directive.md)
 
 ## Objective
 
@@ -60,12 +69,17 @@ This plan is intentionally scoped to Friday Chat:
 - do not contact configured live endpoints during automated validation;
 - preserve all unrelated tracked and untracked worktree state.
 
-The current branch contains uncommitted reorganization remediation that
-overlaps `app.py`, `runtime.py`, `adapters.py`, `commands/registry.py`, and
-Friday Chat tests. Before executing this plan, finish or checkpoint that work
-under its own authority, then create a separate command-remediation branch from
-the intended committed base. Do not intermingle the two implementations in one
-commit series.
+The reorganization remediation is checkpointed separately at `baed8f2` on
+`feature/reorg-remediation-1`. This command-remediation branch was created from
+that commit, so the reorganization implementation is inherited history rather
+than uncommitted or intermingled command-remediation work. At construction
+start, verify that `baed8f2` remains an ancestor, identify every change above
+that baseline, and preserve unrelated tracked and untracked state.
+
+Integration order is mandatory: merge `feature/reorg-remediation-1` first,
+then update the base of `feature/friday-chat-command-remediation-1` if needed
+and merge it second. Do not merge the command-remediation branch first because
+its ancestry contains the reorganization implementation.
 
 ## Analysis Evidence
 
@@ -266,10 +280,12 @@ success.
 
 ### `CCR-00`: Baseline, branch isolation, and executable reproductions
 
-1. Complete or checkpoint reorganization remediation and start a separate
-   feature branch.
-2. Record `git status --short --branch`, intended baseline ancestor, and all
-   inherited changes.
+1. Verify the completed branch-isolation prerequisite: the current branch is
+   `feature/friday-chat-command-remediation-1`, `baed8f2` is its committed
+   baseline ancestor, and the reorganization branch remains a separate merge
+   unit.
+2. Record `git status --short --branch`, baseline ancestor, all inherited
+   changes, and all unrelated tracked or untracked state.
 3. Retain the current 23-test focused result as the fake baseline.
 4. Convert the disposable real-adapter probe into regression tests that prove:
    persisted sessions are omitted; persisted entries are invisible; memory
@@ -540,8 +556,8 @@ Stop and request direction if:
   explicit policy in this plan;
 - a mandatory test would require active `.friday` data, a live provider, or an
   external tool call;
-- implementation conflicts with uncommitted reorganization work that cannot be
-  isolated safely;
+- the implementation branch no longer descends from `baed8f2`, or unexpected
+  reorganization divergence cannot be isolated safely;
 - a repository-policy waiver or broad typing suppression appears necessary.
 
 ## Definition Of Done
