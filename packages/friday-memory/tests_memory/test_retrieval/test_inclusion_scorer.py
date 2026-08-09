@@ -2,7 +2,7 @@
 # mypy: disallow-untyped-defs=False
 """Tests for LongTermInclusionScorer."""
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pytest
 from friday_memory.retrieval.inclusion_scorer import (
@@ -58,6 +58,18 @@ class TestLongTermInclusionScorer:
         created_at = now - timedelta(hours=24)
         time_factor = scorer.calculate_time_factor(created_at, now)
         # At 24 hours with decay_rate=0.005: exp(-0.005 * 24) ≈ 0.89
+        assert 0.88 < time_factor < 0.90
+
+    def test_time_factor_accepts_aware_timestamp_with_naive_now(
+        self,
+        scorer,
+        now,
+    ) -> None:
+        aware_now = now.astimezone()
+        created_at = (aware_now - timedelta(hours=24)).astimezone(timezone.utc)
+
+        time_factor = scorer.calculate_time_factor(created_at, now)
+
         assert 0.88 < time_factor < 0.90
 
     def test_time_factor_week_old_memory(self, scorer, now) -> None:

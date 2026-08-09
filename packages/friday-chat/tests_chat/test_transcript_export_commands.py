@@ -40,9 +40,11 @@ async def test_sessions_and_transcript_commands_use_fake_transcript(
     _, transcript = await registry.execute("/transcript", context)
 
     assert sessions is not None
-    assert "- current-session (1 turns)" in sessions.output
+    assert (
+        f"- {runtime.session_identity.value} (1 turns) [current]" in sessions.output
+    )
     assert transcript is not None
-    assert "Transcript: current-session" in transcript.output
+    assert f"Transcript: {runtime.session_identity.value}" in transcript.output
     assert "User: hello" in transcript.output
 
 
@@ -55,10 +57,14 @@ async def test_transcript_export_writes_database_csv(tmp_path: Path) -> None:
     _, result = await registry.execute("/transcript export", context)
 
     assert result is not None
-    path = tmp_path / "friday_transcripts.csv"
-    assert path.exists()
-    assert "session_id,turn_number,user_message,assistant_message" in path.read_text()
-    assert str(path) in result.output
+    directories = list(tmp_path.glob("transcript-export-*"))
+    assert len(directories) == 1
+    sessions_path = directories[0] / "sessions.csv"
+    entries_path = directories[0] / "entries.csv"
+    assert sessions_path.exists()
+    assert entries_path.exists()
+    assert '"session_id","turn_number"' in entries_path.read_text()
+    assert str(directories[0]) in result.output
 
 
 async def test_current_session_export_formats(tmp_path: Path) -> None:
@@ -91,7 +97,9 @@ async def test_export_prompts_handles_missing_context_log(tmp_path: Path) -> Non
     _, result = await registry.execute("/export-prompts", context)
 
     assert result is not None
-    assert result.output == "No captured raw prompts to export."
+    assert result.output.endswith(
+        "Enable transcript.capture_raw_prompts to capture them."
+    )
     assert not (tmp_path / "friday_prompts.json").exists()
 
 

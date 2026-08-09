@@ -16,7 +16,7 @@ from friday_chat.background import BackgroundTaskManager, BackgroundWorkCoordina
 from friday_chat.commands.registry import RegistryCommandContext, build_default_registry
 from friday_chat.config import FridayChatConfig
 from friday_chat.reorganization.gate import MaintenanceAdmissionGate
-from friday_chat.runtime import FridayRuntime, build_runtime
+from friday_chat.runtime import FridayRuntime, PendingExtractionTurn, build_runtime
 from friday_memory.models.budget import BudgetSeverity, BudgetStatus
 
 
@@ -69,6 +69,29 @@ class FirstTurnThenIdlePrompt:
         raise EOFError
 
 
+class PromptDuringExtraction:
+    """Submit a second chat turn while first-turn extraction is running."""
+
+    def __init__(
+        self,
+        extraction_started: asyncio.Event,
+        extraction_completed: asyncio.Event,
+    ) -> None:
+        self._extraction_started = extraction_started
+        self._extraction_completed = extraction_completed
+        self._call_count = 0
+
+    async def read(self) -> str:
+        self._call_count += 1
+        if self._call_count == 1:
+            return "first"
+        if self._call_count == 2:
+            await self._extraction_started.wait()
+            return "second"
+        await self._extraction_completed.wait()
+        raise EOFError
+
+
 async def test_extraction_interval_matrix() -> None:
     async def scheduled_intervals(interval: int, turns: int) -> list[str]:
         runtime = _runtime(extraction_interval=interval)
@@ -115,6 +138,124 @@ async def test_interval_extraction_processes_full_buffered_batch() -> None:
         "incremental_graph_maintenance",
     ]
     assert runtime.maintenance.pending_extraction == []
+
+
+async def test_preempted_extraction_is_requeued_and_resumed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    runtime = _runtime(extraction_interval=3)
+    manager = BackgroundTaskManager()
+    coordinator = BackgroundWorkCoordinator(runtime, manager)
+    extraction_started = asyncio.Event()
+    extraction_completed = asyncio.Event()
+    unrelated_release = asyncio.Event()
+    extraction_attempts = 0
+
+    unrelated_task = manager.create_task(unrelated_release.wait())
+
+    async def controlled_extraction(*, trigger_reason: str) -> int:
+        nonlocal extraction_attempts
+        extraction_attempts += 1
+        turns = list(runtime.maintenance.pending_extraction)
+        runtime.maintenance.pending_extraction.clear()
+        if extraction_attempts == 1:
+            extraction_started.set()
+            try:
+                await asyncio.Event().wait()
+            except asyncio.CancelledError:
+                runtime.maintenance.pending_extraction[:0] = turns
+                raise
+        runtime.maintenance.background_actions.append(
+            f"extract:{trigger_reason}:{len(turns)}"
+        )
+        extraction_completed.set()
+        return len(turns)
+
+    monkeypatch.setattr(
+        runtime.maintenance,
+        "extract_buffered_turns",
+        controlled_extraction,
+    )
+    coordinator.schedule_after_turn(
+        turn_count=3,
+        user_message="foreground priority",
+        assistant_message="defer extraction",
+    )
+    await asyncio.wait_for(extraction_started.wait(), timeout=1.0)
+
+    assert await coordinator.preempt_extraction_for_foreground_turn() is True
+    assert len(runtime.maintenance.pending_extraction) == 1
+    pending = runtime.maintenance.pending_extraction[0]
+    assert isinstance(pending, PendingExtractionTurn)
+    assert pending.user_message == "foreground priority"
+    assert pending.assistant_message == "defer extraction"
+    assert pending.turn_id
+    assert unrelated_task.done() is False
+
+    coordinator.resume_preempted_extraction()
+    unrelated_release.set()
+    await asyncio.wait_for(extraction_completed.wait(), timeout=1.0)
+    await manager.wait_for_all()
+
+    assert extraction_attempts == 2
+    assert unrelated_task.cancelled() is False
+    assert runtime.maintenance.pending_extraction == []
+    assert "extract:foreground_resume:1" in (
+        runtime.maintenance.background_actions
+    )
+
+
+async def test_app_preempts_extraction_before_processing_next_chat_turn(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    runtime = _runtime(extraction_interval=1)
+    extraction_started = asyncio.Event()
+    extraction_cancelled = asyncio.Event()
+    extraction_completed = asyncio.Event()
+    extraction_attempts = 0
+
+    async def controlled_extraction(*, trigger_reason: str) -> int:
+        nonlocal extraction_attempts
+        extraction_attempts += 1
+        turns = list(runtime.maintenance.pending_extraction)
+        runtime.maintenance.pending_extraction.clear()
+        if extraction_attempts == 1:
+            extraction_started.set()
+            try:
+                await asyncio.Event().wait()
+            except asyncio.CancelledError:
+                runtime.maintenance.pending_extraction[:0] = turns
+                extraction_cancelled.set()
+                raise
+        runtime.maintenance.background_actions.append(
+            f"extract:{trigger_reason}:{len(turns)}"
+        )
+        extraction_completed.set()
+        return len(turns)
+
+    monkeypatch.setattr(
+        runtime.maintenance,
+        "extract_buffered_turns",
+        controlled_extraction,
+    )
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=PromptDuringExtraction(
+            extraction_started,
+            extraction_completed,
+        ),
+        output_sink=ListOutputSink(),
+    )
+
+    result = await asyncio.wait_for(app.run(), timeout=1.0)
+
+    assert result.turns_processed == 2
+    assert extraction_cancelled.is_set()
+    assert extraction_attempts == 2
+    assert runtime.maintenance.pending_extraction == []
+    assert "extract:background_interval:2" in (
+        runtime.maintenance.background_actions
+    )
 
 
 async def test_background_routes_tool_decay_graph_and_budget_compaction() -> None:
@@ -289,7 +430,7 @@ async def test_background_shutdown_cancels_pending_tasks() -> None:
 
 
 @pytest.mark.parametrize("shutdown", [False, True])
-async def test_cancelled_queued_background_work_is_retained_for_drain(
+async def test_cancelled_background_extraction_is_deferred_or_flushed_at_shutdown(
     shutdown: bool,
 ) -> None:
     runtime = _runtime(extraction_interval=0)
@@ -313,29 +454,45 @@ async def test_cancelled_queued_background_work_is_retained_for_drain(
     )
     await asyncio.sleep(0)
     assert manager.pending_count == 3
-    assert runtime.maintenance.pending_extraction == [
-        ("cancelled", "not admitted")
-    ]
+    assert len(runtime.maintenance.pending_extraction) == 1
+    pending = runtime.maintenance.pending_extraction[0]
+    assert isinstance(pending, PendingExtractionTurn)
+    assert pending.user_message == "cancelled"
+    assert pending.assistant_message == "not admitted"
+    assert pending.turn_id
     assert runtime.maintenance.background_actions == []
 
-    hooks = AppMaintenanceRuntimeHooks(runtime, manager)
+    hooks = AppMaintenanceRuntimeHooks(runtime, manager, coordinator)
+    await hooks.prepare_for_manual_maintenance()
     if shutdown:
         await hooks.close_for_shutdown(snapshot_requested=True)
+        assert runtime.maintenance.pending_extraction == []
+        assert runtime.maintenance.actions[:2] == [
+            "flush_pending_extraction",
+            "flush_memory",
+        ]
     else:
-        await hooks.drain_for_manual_maintenance()
+        drain_result = await hooks.drain_for_manual_maintenance()
+        assert drain_result.buffered_extraction_count == 1
+        assert drain_result.extraction_preempted is True
+        assert runtime.maintenance.pending_extraction == [pending]
+        assert runtime.maintenance.actions == ["flush_memory"]
 
-    assert runtime.maintenance.pending_extraction == []
     assert manager.pending_count == 0
     assert manager.failures == []
-    assert runtime.maintenance.actions[:2] == [
-        "flush_pending_extraction",
-        "flush_memory",
-    ]
     assert manager.closed is shutdown
 
     release.set()
     await exclusive
     if not shutdown:
+        resume_result = hooks.resume_after_manual_maintenance()
+        assert resume_result.required is True
+        assert resume_result.scheduled is True
+        await manager.wait_for_all()
+        assert runtime.maintenance.pending_extraction == []
+        assert "extract:maintenance_resume:1" in (
+            runtime.maintenance.background_actions
+        )
         coordinator.schedule_after_turn(
             turn_count=2,
             user_message="admitted",
@@ -345,6 +502,34 @@ async def test_cancelled_queued_background_work_is_retained_for_drain(
         assert "extract:background_interval:1" in (
             runtime.maintenance.background_actions
         )
+
+
+async def test_manual_maintenance_does_not_resume_normally_buffered_turns() -> None:
+    runtime = _runtime(extraction_interval=3)
+    manager = BackgroundTaskManager()
+    coordinator = BackgroundWorkCoordinator(runtime, manager)
+    pending = PendingExtractionTurn(
+        turn_id="buffered-turn",
+        user_message="queued",
+        assistant_message="not yet due",
+    )
+    runtime.maintenance.pending_extraction = [pending]
+    hooks = AppMaintenanceRuntimeHooks(runtime, manager, coordinator)
+
+    await hooks.prepare_for_manual_maintenance()
+    drain = await hooks.drain_for_manual_maintenance()
+    resume = hooks.resume_after_manual_maintenance()
+
+    assert drain.buffered_extraction_count == 1
+    assert drain.extraction_preempted is False
+    assert drain.warnings == (
+        "1 extraction turn is buffered for the next configured trigger; "
+        "no extraction task was running",
+    )
+    assert resume.required is False
+    assert resume.scheduled is False
+    assert runtime.maintenance.pending_extraction == [pending]
+    assert coordinator.extraction_running is False
 
 
 async def test_exit_maintenance_order_extracts_before_flush_lifecycle_reorganize() -> None:

@@ -107,7 +107,44 @@ def test_default_help_metadata_matches_handler_syntax() -> None:
         "/security-config <sensitivity|action|wrapping> <value>"
     )
     assert commands["migrate"].usage == "/migrate [--force|--execute|--stats]"
-    assert commands["export-prompts"].usage == "/export-prompts"
+    assert commands["transcript"].usage == "/transcript [session_id|export]"
+    assert commands["export-prompts"].usage == "/export-prompts [session_id]"
+
+
+def test_remediated_command_help_documents_final_runtime_contracts() -> None:
+    commands = build_default_registry().commands
+
+    assert commands["cls"].aliases == ("clearscreen",)
+    assert "display boundary" in commands["cls"].description
+    assert commands["cls"].detail is not None
+    assert "no replacement text" in commands["cls"].detail
+
+    assert "typed memory" in commands["memory"].description.lower()
+    assert commands["memory"].detail is not None
+    assert "unavailable or unconfigured" in commands["memory"].detail
+    assert "provenance" in commands["meta"].description
+    assert commands["meta"].detail is not None
+    assert "excludes decayed records" in commands["meta"].detail
+
+    assert "persisted transcript sessions" in commands["sessions"].description
+    assert commands["transcript"].usage == "/transcript [session_id|export]"
+    assert commands["transcript"].arguments[0].name == "target"
+    assert "bound store-query values" in (commands["transcript"].detail or "")
+    assert "never copies the live SQLite database" in (
+        commands["export"].detail or ""
+    )
+    assert "transcript.capture_raw_prompts" in (
+        commands["export-prompts"].detail or ""
+    )
+
+    assert commands["inject-tools"].usage == "/inject-tools <name> [name ...]"
+    assert commands["inject-tools"].arguments[0].required is True
+    assert "accepted atomically" in commands["inject-tools"].arguments[0].description
+    assert "manual mode" in (commands["inject-tools"].detail or "")
+    assert "restore automatic" in commands["clear-tools"].description
+    assert "authoritative tool selection" in commands["tool-budget"].description
+    assert commands["tool-budget"].detail is not None
+    assert "tools.context.max_budget_ratio" in commands["tool-budget"].detail
 
 
 @pytest.mark.parametrize(

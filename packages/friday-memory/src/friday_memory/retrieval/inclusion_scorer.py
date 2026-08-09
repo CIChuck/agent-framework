@@ -18,6 +18,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
+from friday_memory.temporal import elapsed_hours
+
 
 class InclusionScorerConfig(BaseModel):
     """Configuration for long-term inclusion scoring."""
@@ -118,8 +120,7 @@ class LongTermInclusionScorer:
         Returns:
             Decay factor between 0.0 and 1.0
         """
-        now = now or datetime.now()
-        age_hours = (now - created_at).total_seconds() / 3600
+        age_hours = elapsed_hours(created_at, now)
 
         # Ensure non-negative age
         age_hours = max(0, age_hours)

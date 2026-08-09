@@ -28,6 +28,7 @@ from friday_memory.context import (
     CacheBreakpoint,
     CacheProvider,
     ContextAssembler,
+    ExtractionCommitCompletedUnderCancellation,
     MemoryConsolidator,
     MemoryExtractor,
     OntologyConfig,
@@ -58,6 +59,7 @@ from friday_memory.lifecycle import (
     PromotionScorer,
     PromotionState,
 )
+from friday_memory.maintenance.models import SynthesisConfig
 from friday_memory.maintenance.mutation import (
     DuplicateMemoryGroup,
     ExplicitMemoryMutationParticipant,
@@ -76,6 +78,8 @@ from friday_memory.maintenance.mutation import (
     MemoryVectorAddition,
     MemoryVerificationStatus,
     MemoryVerificationUpdate,
+    SynthesisCandidateGroup,
+    SynthesisMetadataMigration,
     VectorCollectionDimension,
     VectorMemoryRecord,
     VectorMemoryReference,
@@ -201,6 +205,7 @@ __all__ = [
     "CacheBreakpoint",
     "ContextAssembler",
     "MemoryExtractor",
+    "ExtractionCommitCompletedUnderCancellation",
     "MemoryConsolidator",
     "OntologyConfig",
     "PassageRouter",
@@ -280,6 +285,9 @@ __all__ = [
     "MemoryVerificationStatus",
     "MemoryVerificationUpdate",
     "MemoryVectorAddition",
+    "SynthesisCandidateGroup",
+    "SynthesisConfig",
+    "SynthesisMetadataMigration",
     "VectorMemoryRecord",
     "VectorMemoryReference",
     "VectorCollectionDimension",

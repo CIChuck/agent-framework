@@ -6,12 +6,13 @@ import asyncio
 from collections.abc import Callable, Coroutine
 from dataclasses import dataclass, field
 from typing import Any, TypeVar
+from uuid import uuid4
 
 from friday_chat.reorganization.gate import (
     MaintenanceAdmissionError,
     MaintenanceAdmissionGate,
 )
-from friday_chat.runtime import FridayRuntime
+from friday_chat.runtime import FridayRuntime, PendingExtractionTurn
 
 T = TypeVar("T")
 
@@ -82,6 +83,11 @@ class BackgroundWorkCoordinator:
     gate: MaintenanceAdmissionGate = field(
         default_factory=MaintenanceAdmissionGate
     )
+    _extraction_tasks: set[asyncio.Task[None]] = field(
+        default_factory=set,
+        init=False,
+        repr=False,
+    )
 
     def schedule_after_turn(
         self,
@@ -93,17 +99,14 @@ class BackgroundWorkCoordinator:
     ) -> None:
         """Schedule background work due after a persisted turn."""
         self.runtime.maintenance.pending_extraction.append(
-            (user_message, assistant_message)
+            PendingExtractionTurn(
+                turn_id=str(uuid4()),
+                user_message=user_message,
+                assistant_message=assistant_message,
+            )
         )
         if self._should_extract(turn_count):
-            self.manager.create_task(
-                self._run_shared(
-                    "background-extraction",
-                    lambda: self.runtime.maintenance.extract_buffered_turns(
-                        trigger_reason="background_interval",
-                    ),
-                )
-            )
+            self._schedule_extraction(trigger_reason="background_interval")
 
         if self.runtime.config.tools.enabled:
             self.manager.create_task(
@@ -129,6 +132,34 @@ class BackgroundWorkCoordinator:
         if task is not None and not task.done():
             await task
 
+    async def preempt_extraction_for_foreground_turn(self) -> bool:
+        """Cancel in-flight extraction before foreground inference begins."""
+        pending = [task for task in self._extraction_tasks if not task.done()]
+        cancellation_requested = False
+        for task in pending:
+            cancellation_requested = task.cancel() or cancellation_requested
+        if pending:
+            await asyncio.gather(*pending, return_exceptions=True)
+        return cancellation_requested
+
+    @property
+    def extraction_running(self) -> bool:
+        """Return whether an extraction task is active or awaiting admission."""
+        return any(not task.done() for task in self._extraction_tasks)
+
+    def resume_preempted_extraction(
+        self,
+        *,
+        trigger_reason: str = "foreground_resume",
+    ) -> bool:
+        """Resume deferred extraction after foreground inference completes."""
+        if not self.runtime.maintenance.pending_extraction:
+            return False
+        if self.extraction_running:
+            return False
+        self._schedule_extraction(trigger_reason=trigger_reason)
+        return True
+
     def _should_extract(self, turn_count: int) -> bool:
         interval = self.runtime.config.extraction.interval
         if interval == -1:
@@ -136,6 +167,18 @@ class BackgroundWorkCoordinator:
         if interval == 0:
             return True
         return interval > 0 and turn_count % interval == 0
+
+    def _schedule_extraction(self, *, trigger_reason: str) -> None:
+        task = self.manager.create_task(
+            self._run_shared(
+                "background-extraction",
+                lambda: self.runtime.maintenance.extract_buffered_turns(
+                    trigger_reason=trigger_reason,
+                ),
+            )
+        )
+        self._extraction_tasks.add(task)
+        task.add_done_callback(self._extraction_tasks.discard)
 
     def _schedule_budget_compaction(self, budget_status: Any | None) -> None:
         monitor = self.runtime.budget_monitor

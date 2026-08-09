@@ -18,6 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
 from friday_memory.lifecycle.stages import MemoryStage
+from friday_memory.temporal import elapsed_hours
 
 if TYPE_CHECKING:
     from friday_memory.retrieval.collection_manager import CollectionManager
@@ -89,8 +90,7 @@ class PromotionScorer:
         Returns:
             Promotion score (0.0-1.0)
         """
-        now = now or datetime.now()
-        hours_in_short_term = (now - created_at).total_seconds() / 3600
+        hours_in_short_term = elapsed_hours(created_at, now)
 
         # Calculate normalized factors
         factors = {
@@ -129,8 +129,7 @@ class PromotionScorer:
         if stage != MemoryStage.SHORT_TERM:
             return False
 
-        now = now or datetime.now()
-        hours_in_short_term = (now - created_at).total_seconds() / 3600
+        hours_in_short_term = elapsed_hours(created_at, now)
 
         return hours_in_short_term >= self._config.short_term_min_age_hours
 
@@ -162,8 +161,7 @@ class PromotionScorer:
         Returns:
             Dict with 'factors', 'weights', 'contributions', and 'total'
         """
-        now = now or datetime.now()
-        hours_in_short_term = (now - created_at).total_seconds() / 3600
+        hours_in_short_term = elapsed_hours(created_at, now)
 
         factors = {
             "age": min(1.0, hours_in_short_term / 72),

@@ -30,6 +30,8 @@ from friday_chat.reorganization.contracts import (
 )
 from friday_chat.reorganization.coordinator import (
     CoordinatorFaultPoint,
+    ManualMaintenanceDrainResult,
+    ManualMaintenanceResumeResult,
     MutationPreflight,
     MutationStep,
     MutationStepResult,
@@ -70,10 +72,37 @@ from friday_transcript import (
 class RecordingHooks:
     calls: list[str] = field(default_factory=list)
     events: list[str] = field(default_factory=list)
+    buffered_extraction_count: int = 0
+    extraction_preempted: bool = False
+    resume_calls: int = 0
+    resume_scheduled: bool = True
+    gate: MaintenanceAdmissionGate | None = None
+    resume_observed_exclusive_active: bool | None = None
 
-    async def drain_for_manual_maintenance(self) -> None:
+    async def prepare_for_manual_maintenance(self) -> None:
+        return None
+
+    async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult:
         self.calls.append("drain")
         self.events.append("access_buffer_drain")
+        return ManualMaintenanceDrainResult(
+            buffered_extraction_count=self.buffered_extraction_count,
+            extraction_preempted=self.extraction_preempted,
+        )
+
+    def resume_after_manual_maintenance(self) -> ManualMaintenanceResumeResult:
+        self.resume_calls += 1
+        if self.gate is not None:
+            self.resume_observed_exclusive_active = self.gate.snapshot.exclusive_active
+        return ManualMaintenanceResumeResult(
+            required=self.extraction_preempted,
+            scheduled=(
+                self.extraction_preempted
+                and self.buffered_extraction_count > 0
+                and self.resume_scheduled
+            ),
+            pending_count=self.buffered_extraction_count,
+        )
 
     async def close_for_shutdown(self, *, snapshot_requested: bool) -> None:
         assert snapshot_requested
@@ -282,10 +311,17 @@ class PendingStateHooks:
     events: list[str]
     calls: list[str] = field(default_factory=list)
 
-    async def drain_for_manual_maintenance(self) -> None:
+    async def prepare_for_manual_maintenance(self) -> None:
+        return None
+
+    async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult:
         self.calls.append("drain")
         self.events.append("runtime_pending_drain")
         self.pending_state.clear()
+        return ManualMaintenanceDrainResult()
+
+    def resume_after_manual_maintenance(self) -> ManualMaintenanceResumeResult:
+        return ManualMaintenanceResumeResult()
 
     async def close_for_shutdown(self, *, snapshot_requested: bool) -> None:
         del snapshot_requested
@@ -301,8 +337,14 @@ class FailingShutdownHooks:
     events: list[str]
     calls: list[str] = field(default_factory=list)
 
-    async def drain_for_manual_maintenance(self) -> None:
+    async def prepare_for_manual_maintenance(self) -> None:
+        return None
+
+    async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult:
         raise AssertionError("shutdown must not use the manual drain")
+
+    def resume_after_manual_maintenance(self) -> ManualMaintenanceResumeResult:
+        raise AssertionError("shutdown must not resume preempted extraction")
 
     async def close_for_shutdown(self, *, snapshot_requested: bool) -> None:
         assert snapshot_requested
@@ -418,6 +460,7 @@ async def _production_coordinator(
         application_version="test",
         fault_injector=inject,
     )
+    hooks.gate = coordinator.gate
     return ProductionCoordinatorFixture(
         coordinator=coordinator,
         memory=memory,
@@ -488,6 +531,36 @@ async def test_gate_closure_wakes_and_rejects_queued_shared_waiter() -> None:
         await shared
     release_exclusive.set()
     await exclusive
+
+
+@pytest.mark.asyncio
+async def test_exclusive_preparation_can_cancel_an_active_shared_writer() -> None:
+    gate = MaintenanceAdmissionGate()
+    writer_started = asyncio.Event()
+
+    async def active_writer() -> None:
+        async with gate.shared("background-extraction"):
+            writer_started.set()
+            await asyncio.Event().wait()
+
+    writer = asyncio.create_task(active_writer())
+    await writer_started.wait()
+
+    async def prepare() -> None:
+        snapshot = gate.snapshot
+        assert snapshot.active_shared == 1
+        assert snapshot.exclusive_waiters == 1
+        assert snapshot.accepting_shared is False
+        writer.cancel()
+        await asyncio.gather(writer, return_exceptions=True)
+
+    async with gate.exclusive("manual-reorganization", prepare=prepare):
+        snapshot = gate.snapshot
+        assert snapshot.active_shared == 0
+        assert snapshot.exclusive_active is True
+
+    assert writer.cancelled()
+    assert gate.snapshot.accepting_shared is True
 
 
 @pytest.mark.asyncio
@@ -563,6 +636,8 @@ async def test_environment_preflight_failure_prevents_snapshot_and_mutation(
     failure_kind: str,
 ) -> None:
     fixture = await _production_coordinator(tmp_path)
+    fixture.hooks.buffered_extraction_count = 1
+    fixture.hooks.extraction_preempted = True
     if failure_kind == "permission":
         fixture.layout.log_root.mkdir(mode=0o700)
         fixture.layout.log_root.chmod(0o755)
@@ -592,6 +667,7 @@ async def test_environment_preflight_failure_prevents_snapshot_and_mutation(
         application_version="test",
         environment_preflight=environment,
     )
+    fixture.hooks.gate = coordinator.gate
 
     result = await coordinator.run(
         ReorganizationRequest(
@@ -606,6 +682,8 @@ async def test_environment_preflight_failure_prevents_snapshot_and_mutation(
     assert result.recovery_manifest_path is None
     assert "execute:dedupe" not in fixture.mutation.calls
     assert await fixture.graph.get_node("mutation-node") is None
+    assert fixture.hooks.resume_calls == 1
+    assert fixture.hooks.resume_observed_exclusive_active is False
 
 
 @pytest.mark.asyncio
@@ -680,6 +758,83 @@ async def test_production_participants_create_verified_bundle_before_mutation(
 
 
 @pytest.mark.asyncio
+async def test_execute_defers_pending_extraction_without_blocking_mutation(
+    tmp_path: Path,
+) -> None:
+    fixture = await _production_coordinator(tmp_path)
+    fixture.hooks.buffered_extraction_count = 1
+
+    result = await fixture.coordinator.run(
+        ReorganizationRequest(
+            trigger=OperationTrigger.MANUAL,
+            mode=ReorganizationMode.DEDUPE,
+            execute=True,
+        )
+    )
+
+    assert result.status is ResultStatus.COMPLETED_WITH_WARNINGS
+    assert result.warnings == [
+        "1 extraction turn is buffered for the next configured trigger; "
+        "no extraction task was running"
+    ]
+    assert fixture.hooks.resume_calls == 1
+    assert fixture.hooks.resume_observed_exclusive_active is False
+    assert result.recovery_manifest_path is not None
+    assert await fixture.graph.get_node("mutation-node") is not None
+
+
+@pytest.mark.asyncio
+async def test_execute_resumes_only_preempted_extraction_after_gate_release(
+    tmp_path: Path,
+) -> None:
+    fixture = await _production_coordinator(tmp_path)
+    fixture.hooks.buffered_extraction_count = 2
+    fixture.hooks.extraction_preempted = True
+
+    result = await fixture.coordinator.run(
+        ReorganizationRequest(
+            trigger=OperationTrigger.MANUAL,
+            mode=ReorganizationMode.DEDUPE,
+            execute=True,
+        )
+    )
+
+    assert result.status is ResultStatus.COMPLETED_WITH_WARNINGS
+    assert result.warnings == [
+        "Running extraction was preempted safely; 2 unfinished turns were "
+        "preserved for post-maintenance resumption"
+    ]
+    assert fixture.hooks.resume_calls == 1
+    assert fixture.hooks.resume_observed_exclusive_active is False
+
+
+@pytest.mark.asyncio
+async def test_execute_reports_unscheduled_post_maintenance_resume(
+    tmp_path: Path,
+) -> None:
+    fixture = await _production_coordinator(tmp_path)
+    fixture.hooks.buffered_extraction_count = 1
+    fixture.hooks.extraction_preempted = True
+    fixture.hooks.resume_scheduled = False
+
+    result = await fixture.coordinator.run(
+        ReorganizationRequest(
+            trigger=OperationTrigger.MANUAL,
+            mode=ReorganizationMode.DEDUPE,
+            execute=True,
+        )
+    )
+
+    assert result.status is ResultStatus.COMPLETED_WITH_WARNINGS
+    assert result.warnings[-1] == (
+        "1 preempted extraction turn remains preserved, but post-maintenance "
+        "resumption could not be scheduled"
+    )
+    assert fixture.hooks.resume_calls == 1
+    assert fixture.hooks.resume_observed_exclusive_active is False
+
+
+@pytest.mark.asyncio
 async def test_post_mutation_fault_rolls_back_production_participants(
     tmp_path: Path,
 ) -> None:
@@ -687,6 +842,8 @@ async def test_post_mutation_fault_rolls_back_production_participants(
         tmp_path,
         fault_point=CoordinatorFaultPoint.AFTER_MUTATION_STEP,
     )
+    fixture.hooks.buffered_extraction_count = 1
+    fixture.hooks.extraction_preempted = True
 
     result = await fixture.coordinator.run(
         ReorganizationRequest(
@@ -697,6 +854,7 @@ async def test_post_mutation_fault_rolls_back_production_participants(
     )
 
     assert result.status is ResultStatus.FAILED_ROLLED_BACK
+    assert fixture.hooks.resume_calls == 1
     assert await fixture.graph.get_node("mutation-node") is None
     assert await fixture.graph.get_node("baseline-node") is not None
     assert await fixture.transcript.count_entries("session-1") == 1
@@ -711,6 +869,8 @@ async def test_post_mutation_cancellation_triggers_verified_rollback(
         cancel_at_fault=True,
         fault_point=CoordinatorFaultPoint.AFTER_MUTATION_STEP,
     )
+    fixture.hooks.buffered_extraction_count = 1
+    fixture.hooks.extraction_preempted = True
 
     result = await fixture.coordinator.run(
         ReorganizationRequest(
@@ -721,6 +881,7 @@ async def test_post_mutation_cancellation_triggers_verified_rollback(
     )
 
     assert result.status is ResultStatus.FAILED_ROLLED_BACK
+    assert fixture.hooks.resume_calls == 1
     assert any(
         error.code is ReorganizationErrorCode.CANCELLED for error in result.errors
     )

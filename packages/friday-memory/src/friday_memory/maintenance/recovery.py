@@ -172,6 +172,18 @@ _JSON_MAPPING = TypeAdapter(dict[str, JsonValue])
 _RUN_ID_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}")
 _CHROMA_EXPORT_BATCH_SIZE = 128
 _CHROMA_INDEX_PROBE_RESULTS = 8
+_LEGACY_HNSW_METADATA_KEYS = frozenset(
+    {
+        "hnsw:space",
+        "hnsw:construction_ef",
+        "hnsw:M",
+        "hnsw:search_ef",
+        "hnsw:num_threads",
+        "hnsw:batch_size",
+        "hnsw:sync_threshold",
+        "hnsw:resize_factor",
+    }
+)
 
 
 class MemoryMaintenanceParticipant:
@@ -462,6 +474,20 @@ class MemoryMaintenanceParticipant:
         return validated
 
     @staticmethod
+    def _canonical_collection_metadata(
+        metadata: dict[str, JsonValue] | None,
+    ) -> dict[str, JsonValue] | None:
+        """Separate legacy Chroma configuration from user metadata."""
+        if metadata is None:
+            return None
+        canonical = {
+            key: value
+            for key, value in metadata.items()
+            if key not in _LEGACY_HNSW_METADATA_KEYS
+        }
+        return canonical or None
+
+    @staticmethod
     def _collection_from_public_api(collection: Collection) -> ChromaCollectionSnapshot:
         configuration = _JSON_MAPPING.validate_python(collection.configuration_json)
         schema = MemoryMaintenanceParticipant._public_collection_schema(collection)
@@ -471,7 +497,7 @@ class MemoryMaintenanceParticipant:
             raise MemorySnapshotError(
                 "A Chroma collection uses an unsupported public configuration"
             )
-        metadata = (
+        metadata = MemoryMaintenanceParticipant._canonical_collection_metadata(
             _JSON_MAPPING.validate_python(collection.metadata)
             if collection.metadata is not None
             else None
@@ -1331,7 +1357,9 @@ class MemoryMaintenanceParticipant:
         ):
             collection = client.create_collection(
                 name=collection_snapshot.name,
-                metadata=collection_snapshot.metadata,
+                metadata=cls._canonical_collection_metadata(
+                    collection_snapshot.metadata
+                ),
                 schema=schema,
             )
             if _JSON_MAPPING.validate_python(
@@ -1419,7 +1447,10 @@ class MemoryMaintenanceParticipant:
         ):
             if (
                 expected_collection.name != actual_collection.name
-                or expected_collection.metadata != actual_collection.metadata
+                or cls._canonical_collection_metadata(
+                    expected_collection.metadata
+                )
+                != cls._canonical_collection_metadata(actual_collection.metadata)
                 or expected_collection.configuration
                 != actual_collection.configuration
                 or expected_collection.collection_schema

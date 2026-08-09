@@ -17,6 +17,7 @@ from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFa
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
+from friday_chat.tools.selection import ToolBudgetSnapshot
 from friday_chat.turns.metrics import elapsed_seconds, now_seconds
 from friday_chat.turns.models import (
     ChatModelResponse,
@@ -39,6 +40,8 @@ class TurnResult:
     metrics: TurnMetrics | None = None
     context_budget_tokens: int = 0
     tool_schema_tokens: int = 0
+    selected_tool_names: tuple[str, ...] = ()
+    tool_budget_snapshot: ToolBudgetSnapshot | None = None
     budget_status: BudgetStatus | None = None
     tool_calls: tuple[ToolCallRecord, ...] = ()
     raw_response: str = ""
@@ -51,7 +54,8 @@ class PreparedTurn:
     user_message: str
     total_start: float
     tool_definitions: tuple[ToolDefinition, ...]
-    tool_schema_tokens: int
+    tool_budget_snapshot: ToolBudgetSnapshot
+    tool_context_injected: bool
     context_budget_tokens: int
     retrieval_seconds: float
     memories: list[str]
@@ -115,15 +119,20 @@ class TurnProcessor:
     async def process(self, user_message: str) -> TurnResult:
         """Process a deterministic fake turn."""
         if self._circuit_breaker_open:
-            raise TurnCircuitBreakerOpenError("Turn processing circuit breaker is open.")
+            raise TurnCircuitBreakerOpenError(
+                "Turn processing circuit breaker is open."
+            )
 
         prepared = await self._prepare_turn(user_message)
-        assistant_message, model_response, tool_calls, llm_seconds = (
-            await self._complete_model_turn(
-                prepared.user_message,
-                prepared.messages,
-                prepared.tool_definitions,
-            )
+        (
+            assistant_message,
+            model_response,
+            tool_calls,
+            llm_seconds,
+        ) = await self._complete_model_turn(
+            prepared.user_message,
+            prepared.messages,
+            prepared.tool_definitions,
         )
         raw_response = _serialize_response(model_response)
 
@@ -141,17 +150,23 @@ class TurnProcessor:
         )
         await self._runtime.speech.speak(assistant_message)
         self._turn_count += 1
+        self._runtime.tool_selection.record_completed_turn(
+            prepared.tool_budget_snapshot,
+            tuple(call.name for call in tool_calls),
+        )
 
         return TurnResult(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             retrieved_memory_count=len(prepared.memories),
-            tool_context_injected=self._runtime.tool_context is not None,
+            tool_context_injected=prepared.tool_context_injected,
             prompt=prepared.prompt_text,
             context=prepared.context_text,
             metrics=metrics,
             context_budget_tokens=prepared.context_budget_tokens,
-            tool_schema_tokens=prepared.tool_schema_tokens,
+            tool_schema_tokens=prepared.tool_budget_snapshot.schema_tokens,
+            selected_tool_names=prepared.tool_budget_snapshot.selected_names,
+            tool_budget_snapshot=prepared.tool_budget_snapshot,
             budget_status=prepared.budget_status,
             tool_calls=tool_calls,
             raw_response=raw_response,
@@ -176,16 +191,21 @@ class TurnProcessor:
     ) -> TurnResult:
         """Process a no-tool turn using streaming output."""
         if self._circuit_breaker_open:
-            raise TurnCircuitBreakerOpenError("Turn processing circuit breaker is open.")
+            raise TurnCircuitBreakerOpenError(
+                "Turn processing circuit breaker is open."
+            )
 
         prepared = await self._prepare_turn(user_message)
         if prepared.tool_definitions:
-            assistant_message, model_response, tool_calls, llm_seconds = (
-                await self._complete_model_turn(
-                    prepared.user_message,
-                    prepared.messages,
-                    prepared.tool_definitions,
-                )
+            (
+                assistant_message,
+                model_response,
+                tool_calls,
+                llm_seconds,
+            ) = await self._complete_model_turn(
+                prepared.user_message,
+                prepared.messages,
+                prepared.tool_definitions,
             )
             await on_chunk(assistant_message)
         else:
@@ -232,17 +252,23 @@ class TurnProcessor:
         )
         await self._runtime.speech.speak(assistant_message)
         self._turn_count += 1
+        self._runtime.tool_selection.record_completed_turn(
+            prepared.tool_budget_snapshot,
+            tuple(call.name for call in tool_calls),
+        )
 
         return TurnResult(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             retrieved_memory_count=len(prepared.memories),
-            tool_context_injected=self._runtime.tool_context is not None,
+            tool_context_injected=prepared.tool_context_injected,
             prompt=prepared.prompt_text,
             context=prepared.context_text,
             metrics=metrics,
             context_budget_tokens=prepared.context_budget_tokens,
-            tool_schema_tokens=prepared.tool_schema_tokens,
+            tool_schema_tokens=prepared.tool_budget_snapshot.schema_tokens,
+            selected_tool_names=prepared.tool_budget_snapshot.selected_names,
+            tool_budget_snapshot=prepared.tool_budget_snapshot,
             budget_status=prepared.budget_status,
             tool_calls=tool_calls,
             raw_response=raw_response,
@@ -250,17 +276,14 @@ class TurnProcessor:
 
     async def _prepare_turn(self, user_message: str) -> PreparedTurn:
         total_start = now_seconds()
-        tool_definitions: tuple[ToolDefinition, ...] = ()
-        if self._runtime.config.tools.enabled:
-            tool_definitions = _select_turn_tools(
-                user_message,
-                tuple(self._runtime.tools.list_tools()),
-                self._runtime.config,
-            )
-        tool_schema_tokens = _estimate_tool_schema_tokens(tool_definitions)
+        self._runtime.tool_selection.synchronize_registered_tools(
+            self._runtime.tools.list_tools()
+        )
+        selection = self._runtime.tool_selection.select_for_turn(user_message)
+        tool_definitions = selection.definitions
         context_budget_tokens = _calculate_dynamic_context_budget(
             self._runtime.config,
-            tool_schema_tokens=tool_schema_tokens,
+            tool_budget=selection.budget,
         )
 
         retrieval_start = now_seconds()
@@ -270,8 +293,11 @@ class TurnProcessor:
         )
         retrieval_seconds = elapsed_seconds(retrieval_start)
 
-        tool_context = self._runtime.tool_context
-        if tool_context is not None:
+        tool_context = None
+        if (
+            self._runtime.config.tools.context.get("include_in_context") is True
+            and tool_definitions
+        ):
             tool_context = _build_tool_context_block(tool_definitions)
         context_text = _build_context_text(memories, tool_context)
         current_turn = self._turn_count + 1
@@ -289,14 +315,14 @@ class TurnProcessor:
         )
         budget_status = _build_budget_status(
             prompt_text,
-            self._runtime.config,
-            tool_schema_tokens=tool_schema_tokens,
+            tool_budget=selection.budget,
         )
         return PreparedTurn(
             user_message=user_message,
             total_start=total_start,
             tool_definitions=tool_definitions,
-            tool_schema_tokens=tool_schema_tokens,
+            tool_budget_snapshot=selection.budget,
+            tool_context_injected=tool_context is not None,
             context_budget_tokens=context_budget_tokens,
             retrieval_seconds=retrieval_seconds,
             memories=memories,
@@ -545,224 +571,33 @@ def _build_model_messages(
 def _calculate_dynamic_context_budget(
     config: FridayChatConfig,
     *,
-    tool_schema_tokens: int,
+    tool_budget: ToolBudgetSnapshot,
 ) -> int:
-    context_window = config.memory.context_window or 8192
-    output_buffer = config.memory.output_buffer or 1024
     system_prompt_tokens = max(1, len(config.chat.system_prompt) // 4)
-    return max(512, context_window - output_buffer - system_prompt_tokens - tool_schema_tokens)
-
-
-def _estimate_tool_schema_tokens(tools: tuple[ToolDefinition, ...]) -> int:
-    return sum(
-        max(1, (len(tool.name) + len(tool.description) + len(str(tool.input_schema))) // 4)
-        for tool in tools
+    return min(
+        tool_budget.available_context_tokens,
+        max(
+            0,
+            tool_budget.available_context_tokens
+            - system_prompt_tokens
+            - tool_budget.schema_tokens,
+        ),
     )
-
-
-def _select_turn_tools(
-    user_message: str,
-    tools: tuple[ToolDefinition, ...],
-    config: FridayChatConfig,
-) -> tuple[ToolDefinition, ...]:
-    if not tools:
-        return ()
-
-    context_config = config.tools.context
-    max_tools = _int_from_mapping(context_config, "max_tools", len(tools))
-    max_tools = max(1, max_tools)
-    threshold = _float_from_mapping(context_config, "recommendation_threshold", 0.5)
-    scored = [
-        (score, index, tool)
-        for index, tool in enumerate(tools)
-        if (score := _tool_relevance_score(user_message, tool)) >= threshold
-    ]
-    if not scored:
-        return tools[:max_tools]
-
-    scored.sort(key=lambda item: (-item[0], item[1]))
-    return tuple(tool for _score, _index, tool in scored[:max_tools])
-
-
-def _tool_relevance_score(user_message: str, tool: ToolDefinition) -> float:
-    query_tokens = _scoring_tokens(user_message)
-    if not query_tokens:
-        return 0.0
-
-    name_tokens = _scoring_tokens(tool.name)
-    description_tokens = _scoring_tokens(tool.description)
-    schema_tokens = _scoring_tokens(json.dumps(tool.input_schema, sort_keys=True))
-    category_tokens = _scoring_tokens(tool.category)
-
-    score = 0.0
-    if query_tokens & name_tokens:
-        score += 0.4
-    description_overlap = len(query_tokens & description_tokens)
-    score += min(description_overlap * 0.15, 0.3)
-    schema_overlap = len(query_tokens & schema_tokens)
-    score += min(schema_overlap * 0.05, 0.15)
-    if query_tokens & category_tokens:
-        score += 0.1
-    if _matches_temporal_tool(user_message, tool):
-        score += 0.6
-    if _matches_file_read_tool(user_message, tool):
-        score += 0.6
-    if _matches_file_write_tool(user_message, tool):
-        score += 0.6
-    if _is_file_read_query(user_message) and _is_file_write_tool(tool):
-        score -= 0.5
-    if _is_file_write_query(user_message) and _is_file_read_tool(tool):
-        score -= 0.5
-    return min(score, 1.0)
-
-
-def _matches_temporal_tool(user_message: str, tool: ToolDefinition) -> bool:
-    tool_tokens = _normalized_tokens(
-        f"{tool.name} {tool.description} {json.dumps(tool.input_schema, sort_keys=True)}"
-    )
-    if not ({"date", "time", "datetime", "current"} & tool_tokens):
-        return False
-    query_tokens = _normalized_tokens(user_message)
-    return bool(
-        {
-            "date",
-            "time",
-            "day",
-            "today",
-            "now",
-            "timezone",
-        }
-        & query_tokens
-    )
-
-
-def _matches_file_read_tool(user_message: str, tool: ToolDefinition) -> bool:
-    if not _is_file_read_query(user_message):
-        return False
-    return _is_file_read_tool(tool)
-
-
-def _matches_file_write_tool(user_message: str, tool: ToolDefinition) -> bool:
-    if not _is_file_write_query(user_message):
-        return False
-    return _is_file_write_tool(tool)
-
-
-def _is_file_read_query(user_message: str) -> bool:
-    query_tokens = _normalized_tokens(user_message)
-    read_intents = {
-        "read",
-        "review",
-        "evaluate",
-        "inspect",
-        "analyze",
-        "analyse",
-        "summarize",
-        "summarise",
-        "show",
-        "open",
-        "load",
-    }
-    file_markers = {
-        "file",
-        "path",
-        "config",
-        "yaml",
-        "yml",
-        "json",
-        "toml",
-        "md",
-        "py",
-        "txt",
-    }
-    return bool(query_tokens & read_intents) and (
-        bool(query_tokens & file_markers) or "/" in user_message or "\\" in user_message
-    )
-
-
-def _is_file_write_query(user_message: str) -> bool:
-    query_tokens = _normalized_tokens(user_message)
-    write_intents = {
-        "write",
-        "create",
-        "save",
-        "edit",
-        "modify",
-        "update",
-        "append",
-        "overwrite",
-        "delete",
-        "remove",
-    }
-    file_markers = {"file", "path", "config", "yaml", "yml", "json", "toml", "md", "py", "txt"}
-    return bool(query_tokens & write_intents) and (
-        bool(query_tokens & file_markers) or "/" in user_message or "\\" in user_message
-    )
-
-
-def _is_file_read_tool(tool: ToolDefinition) -> bool:
-    tool_tokens = _normalized_tokens(
-        f"{tool.name} {tool.description} {json.dumps(tool.input_schema, sort_keys=True)}"
-    )
-    return "path" in tool_tokens and (
-        "read" in tool_tokens or "summarize" in tool_tokens or "process" in tool_tokens
-    )
-
-
-def _is_file_write_tool(tool: ToolDefinition) -> bool:
-    tool_tokens = _normalized_tokens(
-        f"{tool.name} {tool.description} {json.dumps(tool.input_schema, sort_keys=True)}"
-    )
-    return "path" in tool_tokens and (
-        "write" in tool_tokens
-        or "append" in tool_tokens
-        or "overwrite" in tool_tokens
-    )
-
-
-def _normalized_tokens(value: str) -> set[str]:
-    return {_normalize_token(token) for token in re.findall(r"[a-z0-9]+", value.lower())}
-
-
-def _scoring_tokens(value: str) -> set[str]:
-    ignored = {
-        "a",
-        "an",
-        "and",
-        "api",
-        "current",
-        "dev",
-        "for",
-        "get",
-        "the",
-        "to",
-        "using",
-        "with",
-    }
-    return {token for token in _normalized_tokens(value) if token not in ignored}
-
-
-def _normalize_token(token: str) -> str:
-    if len(token) > 3 and token.endswith("ies"):
-        return f"{token[:-3]}y"
-    if len(token) > 3 and token.endswith("s"):
-        return token[:-1]
-    return token
 
 
 def _build_budget_status(
     prompt_text: str,
-    config: FridayChatConfig,
     *,
-    tool_schema_tokens: int,
+    tool_budget: ToolBudgetSnapshot,
 ) -> BudgetStatus:
-    available_budget = max(
-        1,
-        (config.memory.context_window or 8192) - (config.memory.output_buffer or 1024),
-    )
+    available_budget = tool_budget.available_context_tokens
     message_tokens = max(1, len(prompt_text) // 4)
-    total_tokens = message_tokens + tool_schema_tokens
-    utilization_pct = (total_tokens / available_budget) * 100
+    total_tokens = message_tokens + tool_budget.schema_tokens
+    utilization_pct = (
+        (total_tokens / available_budget) * 100
+        if available_budget
+        else (100.0 if total_tokens else 0.0)
+    )
     return BudgetStatus(
         total_tokens=total_tokens,
         available_budget=available_budget,
@@ -770,7 +605,7 @@ def _build_budget_status(
         overage_tokens=max(0, total_tokens - available_budget),
         severity=BudgetSeverity.from_utilization(utilization_pct),
         message_tokens=message_tokens,
-        tool_tokens=tool_schema_tokens,
+        tool_tokens=tool_budget.schema_tokens,
     )
 
 
@@ -839,7 +674,9 @@ def _ensure_chat_response(response: object) -> ChatModelResponse:
         return response
     if isinstance(response, str):
         return ChatModelResponse.from_text(response)
-    raise TypeError(f"Chat model returned unsupported response type: {type(response)!r}")
+    raise TypeError(
+        f"Chat model returned unsupported response type: {type(response)!r}"
+    )
 
 
 def _assistant_message_from_response(
@@ -865,7 +702,9 @@ def _assistant_message_from_response(
     return message
 
 
-def _tool_result_messages(calls: tuple[ToolCallRecord, ...] | list[ToolCallRecord]) -> list[dict[str, Any]]:
+def _tool_result_messages(
+    calls: tuple[ToolCallRecord, ...] | list[ToolCallRecord],
+) -> list[dict[str, Any]]:
     return [
         {
             "role": "tool",

@@ -13,6 +13,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field, model_validator
 
+from friday_memory.temporal import elapsed_hours
+
 
 class DecayConfig(BaseModel):
     """
@@ -175,8 +177,7 @@ class DecayCalculator:
         if not self._config.enabled:
             return current_score
 
-        now = now or datetime.now()
-        hours_since_access = (now - last_accessed_at).total_seconds() / 3600
+        hours_since_access = elapsed_hours(last_accessed_at, now)
 
         # Apply exponential decay
         decay_factor = math.exp(-self._config.decay_rate * hours_since_access)
@@ -240,8 +241,7 @@ class DecayCalculator:
         Returns:
             True if the memory has met the minimum age requirement.
         """
-        now = now or datetime.now()
-        hours_in_short_term = (now - created_at).total_seconds() / 3600
+        hours_in_short_term = elapsed_hours(created_at, now)
         return hours_in_short_term >= self._config.short_term_min_age_hours
 
     def calculate_hours_until_decay(

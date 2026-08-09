@@ -184,6 +184,70 @@ class ReorganizationExecutionCapability:
         return self.mutation_reason
 
 
+@dataclass(frozen=True)
+class ManualMaintenanceDrainResult:
+    """Content-safe evidence from quiescing the interactive runtime."""
+
+    buffered_extraction_count: int = 0
+    extraction_preempted: bool = False
+
+    def __post_init__(self) -> None:
+        if self.buffered_extraction_count < 0:
+            raise ValueError("buffered extraction count cannot be negative")
+
+    @property
+    def warnings(self) -> tuple[str, ...]:
+        """Render bounded warnings without exposing pending turn content."""
+        if self.buffered_extraction_count == 0:
+            return ()
+        label = "turn" if self.buffered_extraction_count == 1 else "turns"
+        if self.extraction_preempted:
+            return (
+                "Running extraction was preempted safely; "
+                f"{self.buffered_extraction_count} unfinished {label} were preserved "
+                "for post-maintenance resumption",
+            )
+        verb = "is" if self.buffered_extraction_count == 1 else "are"
+        return (
+            f"{self.buffered_extraction_count} extraction {label} {verb} buffered for "
+            "the next configured trigger; no extraction task was running",
+        )
+
+
+@dataclass(frozen=True)
+class ManualMaintenanceResumeResult:
+    """Content-safe evidence from post-maintenance extraction resumption."""
+
+    required: bool = False
+    scheduled: bool = False
+    pending_count: int = 0
+    error_type: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.pending_count < 0:
+            raise ValueError("pending extraction count cannot be negative")
+        if self.scheduled and not self.required:
+            raise ValueError("unrequired extraction resumption cannot be scheduled")
+        if self.scheduled and self.error_type is not None:
+            raise ValueError("scheduled extraction resumption cannot contain an error")
+
+    @property
+    def warnings(self) -> tuple[str, ...]:
+        if self.error_type is not None:
+            return (
+                "Post-maintenance extraction resumption failed "
+                f"({self.error_type}); preserved turns remain queued",
+            )
+        if not self.required or self.scheduled or self.pending_count == 0:
+            return ()
+        label = "turn" if self.pending_count == 1 else "turns"
+        verb = "remains" if self.pending_count == 1 else "remain"
+        return (
+            f"{self.pending_count} preempted extraction {label} {verb} preserved, "
+            "but post-maintenance resumption could not be scheduled",
+        )
+
+
 class MaintenanceMutationAdapter(Protocol):
     """Constructor-injected mutation boundary; never selected by a CLI flag."""
 
@@ -216,9 +280,13 @@ class MaintenanceMutationAdapter(Protocol):
 
 
 class MaintenanceRuntimeHooks(Protocol):
-    """Direct runtime hooks called only while coordinator exclusivity is held."""
+    """Runtime hooks for exclusive-intent preparation and maintenance."""
 
-    async def drain_for_manual_maintenance(self) -> None: ...
+    async def prepare_for_manual_maintenance(self) -> None: ...
+
+    async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult: ...
+
+    def resume_after_manual_maintenance(self) -> ManualMaintenanceResumeResult: ...
 
     async def close_for_shutdown(self, *, snapshot_requested: bool) -> None: ...
 
@@ -317,8 +385,24 @@ class ReorganizationCoordinator:
         if not request.execute:
             async with self.gate.shared("reorganization-dry-run"):
                 return await self._dry_run(request, progress=progress)
-        async with self.gate.exclusive("reorganization-execute"):
-            return await self._execute_locked(request, progress=progress)
+        prepare = (
+            self._runtime_hooks.prepare_for_manual_maintenance
+            if self._runtime_hooks is not None
+            else None
+        )
+        try:
+            async with self.gate.exclusive(
+                "reorganization-execute",
+                prepare=prepare,
+            ):
+                result = await self._execute_locked(request, progress=progress)
+        except BaseException:
+            self._resume_manual_maintenance()
+            raise
+        return self._with_resume_evidence(
+            result,
+            self._resume_manual_maintenance(),
+        )
 
     async def shutdown(
         self,
@@ -327,9 +411,12 @@ class ReorganizationCoordinator:
         progress: MaintenanceProgressCallback | None = None,
     ) -> ReorganizationResult | None:
         """Close admission, drain writers, finalize, then optionally snapshot."""
+        hooks = self._require_runtime_hooks()
         await self.gate.close_shared_admission()
-        async with self.gate.exclusive("shutdown"):
-            hooks = self._require_runtime_hooks()
+        async with self.gate.exclusive(
+            "shutdown",
+            prepare=hooks.prepare_for_manual_maintenance,
+        ):
             shutdown_error: BaseException | None = None
             try:
                 await hooks.close_for_shutdown(
@@ -370,8 +457,24 @@ class ReorganizationCoordinator:
         if not request.execute:
             async with self.gate.shared("reorganization-recovery-inspection"):
                 return self._inspect_recovery(request)
-        async with self.gate.exclusive("reorganization-recovery-execute"):
-            return await self._recover_locked(request, progress=progress)
+        prepare = (
+            self._runtime_hooks.prepare_for_manual_maintenance
+            if self._runtime_hooks is not None
+            else None
+        )
+        try:
+            async with self.gate.exclusive(
+                "reorganization-recovery-execute",
+                prepare=prepare,
+            ):
+                result = await self._recover_locked(request, progress=progress)
+        except BaseException:
+            self._resume_manual_maintenance()
+            raise
+        return self._with_resume_evidence(
+            result,
+            self._resume_manual_maintenance(),
+        )
 
     def startup_recovery_warnings(self) -> tuple[str, ...]:
         """Read unfinished journals without creating or mutating any artifact."""
@@ -593,7 +696,8 @@ class ReorganizationCoordinator:
             )
             hooks = self._require_runtime_hooks()
             if not state_already_drained:
-                await hooks.drain_for_manual_maintenance()
+                drain_result = await hooks.drain_for_manual_maintenance()
+                warnings.extend(drain_result.warnings)
             completed.append(ProgressStep.QUIESCING)
 
             await self._progress(
@@ -1053,6 +1157,7 @@ class ReorganizationCoordinator:
         attempted: list[ProgressStep] = []
         completed = list(journal.completed_steps)
         errors = list(journal.errors)
+        warnings: list[str] = []
         lease: LayoutLeaseHandle | None = None
 
         if not self._crossed_mutation(journal):
@@ -1118,7 +1223,10 @@ class ReorganizationCoordinator:
                 progress,
                 attempted,
             )
-            await self._require_runtime_hooks().drain_for_manual_maintenance()
+            drain_result = (
+                await self._require_runtime_hooks().drain_for_manual_maintenance()
+            )
+            warnings.extend(drain_result.warnings)
             if ProgressStep.QUIESCING not in completed:
                 completed.append(ProgressStep.QUIESCING)
             await self._progress(
@@ -1141,7 +1249,7 @@ class ReorganizationCoordinator:
                 completed.append(ProgressStep.COMPLETE)
             terminal_status = (
                 ResultStatus.COMPLETED_WITH_WARNINGS
-                if errors
+                if errors or warnings
                 else ResultStatus.COMPLETED
             )
             cursor = self._transition(
@@ -1166,7 +1274,8 @@ class ReorganizationCoordinator:
                     ["prior run errors remain available in the retained journal"]
                     if errors
                     else []
-                ),
+                )
+                + warnings,
             )
         except BaseException as exc:
             if isinstance(exc, (KeyboardInterrupt, SystemExit)):
@@ -1841,6 +1950,34 @@ class ReorganizationCoordinator:
             raise DurableArtifactError("runtime quiescence hooks are unavailable")
         return self._runtime_hooks
 
+    def _resume_manual_maintenance(self) -> ManualMaintenanceResumeResult:
+        """Resume preempted work after exclusive admission has been released."""
+        if self._runtime_hooks is None:
+            return ManualMaintenanceResumeResult()
+        try:
+            return self._runtime_hooks.resume_after_manual_maintenance()
+        except Exception as exc:
+            return ManualMaintenanceResumeResult(
+                required=True,
+                error_type=type(exc).__name__,
+            )
+
+    @staticmethod
+    def _with_resume_evidence(
+        result: ReorganizationResult,
+        resume: ManualMaintenanceResumeResult,
+    ) -> ReorganizationResult:
+        """Attach categorical resumption failures without hiding terminal state."""
+        if not resume.warnings:
+            return result
+        warnings = [*result.warnings, *resume.warnings]
+        status = result.status
+        if status is ResultStatus.COMPLETED:
+            status = ResultStatus.COMPLETED_WITH_WARNINGS
+        payload = result.model_dump(mode="python")
+        payload.update(status=status, warnings=warnings)
+        return ReorganizationResult.model_validate(payload)
+
     def _require_mutation_adapter(self) -> MaintenanceMutationAdapter:
         if self._mutation is None:
             raise DurableArtifactError("maintenance mutation adapter is unavailable")
@@ -1933,6 +2070,8 @@ class ReorganizationCoordinator:
 
 __all__ = [
     "CoordinatorFaultPoint",
+    "ManualMaintenanceDrainResult",
+    "ManualMaintenanceResumeResult",
     "MaintenanceMutationAdapter",
     "MaintenanceProgressCallback",
     "MaintenanceRuntimeHooks",

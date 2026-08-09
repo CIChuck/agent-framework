@@ -109,6 +109,31 @@ class TestProvenanceEnforcement:
         )
         assert result is True
 
+    @pytest.mark.asyncio
+    async def test_store_insight_upsert_is_idempotent(
+        self,
+        memory_controller: MemoryController,
+        sample_provenance: ProvenanceMetadata,
+    ) -> None:
+        await memory_controller.store_insight(
+            "Initial extraction",
+            provenance=sample_provenance,
+            record_id="stable-extraction-id",
+            upsert=True,
+        )
+        await memory_controller.store_insight(
+            "Retried extraction",
+            provenance=sample_provenance,
+            record_id="stable-extraction-id",
+            upsert=True,
+        )
+
+        short_term = memory_controller.collection_manager.short_term
+        assert await short_term.count() == 1
+        stored = await short_term.get_by_id("stable-extraction-id")
+        assert stored is not None
+        assert stored["text"] == "Retried extraction"
+
 
 class TestConsolidationBridge:
     """Tests for consolidation proxy methods."""

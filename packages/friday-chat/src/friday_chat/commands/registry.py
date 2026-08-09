@@ -2,19 +2,58 @@
 
 from __future__ import annotations
 
-import csv
-import io
 import json
 import re
-from collections.abc import Awaitable, Callable, Iterable, Mapping
+from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
+from friday_chat.commands.contracts import (
+    CommandArgument,
+    CommandContext,
+    CommandHandler,
+    CommandMetadata,
+    CommandResult,
+    CommandUiEffect,
+)
 from friday_chat.commands.files import (
     SmartFileReader,
     format_file_read,
     parse_line_limit,
+)
+from friday_chat.commands.memory import (
+    insights_handler,
+    memory_handler,
+    meta_handler,
+    summaries_handler,
+)
+from friday_chat.commands.memory import (
+    preview_text as _preview_text,
+)
+from friday_chat.commands.memory import (
+    record_value as _record_value,
+)
+from friday_chat.commands.session import cls_handler
+from friday_chat.commands.tools import (
+    clear_tools_handler,
+    inject_tools_handler,
+    tool_budget_handler,
+)
+from friday_chat.commands.tools import (
+    find_tool as _find_tool,
+)
+from friday_chat.commands.tools import (
+    list_runtime_tools as _list_runtime_tools,
+)
+from friday_chat.commands.transcript import (
+    export_directory as _export_directory,
+)
+from friday_chat.commands.transcript import (
+    export_handler,
+    export_prompts_handler,
+    sessions_handler,
+    transcript_handler,
 )
 from friday_chat.reorganization.contracts import (
     OperationTrigger,
@@ -34,10 +73,6 @@ from friday_chat.speech import (
 )
 from friday_chat.tools.schemas import ToolDefinition
 
-if TYPE_CHECKING:
-    from friday_chat.runtime import FridayRuntime
-
-
 _SHARED_ADMISSION_COMMANDS = frozenset(
     {
         "reset",
@@ -49,73 +84,6 @@ _SHARED_ADMISSION_COMMANDS = frozenset(
         "run-tool",
     }
 )
-
-
-@dataclass
-class CommandContext:
-    """Runtime context passed to command handlers."""
-
-    runtime: FridayRuntime | None = None
-    command_progress: Callable[[str], Awaitable[None]] | None = None
-    exit_requested: bool = False
-    variables: dict[str, str] = field(default_factory=dict)
-    history: list[tuple[str, str]] = field(default_factory=list)
-    last_context: str | None = None
-    last_prompt: str | None = None
-    last_debug: dict[str, str] = field(default_factory=dict)
-    last_timing: dict[str, float] = field(default_factory=dict)
-    injected_tools: set[str] = field(default_factory=set)
-    tool_results: list[str] = field(default_factory=list)
-    tool_lifecycle_records: list[str] = field(default_factory=list)
-    tool_ingestions: list[str] = field(default_factory=list)
-    injected_payload: str | None = None
-    security_stats: dict[str, int] = field(
-        default_factory=lambda: {
-            "total_scans": 0,
-            "detections": 0,
-            "blocked": 0,
-            "patterns_seen": 0,
-        }
-    )
-
-
-@dataclass(frozen=True)
-class CommandResult:
-    """Result from command dispatch."""
-
-    output: str
-    handled: bool = True
-    exit_requested: bool = False
-
-
-@dataclass(frozen=True)
-class CommandArgument:
-    """One user-facing command argument used by generated help."""
-
-    name: str
-    description: str
-    required: bool = False
-    default: str | None = None
-    choices: tuple[str, ...] = ()
-
-
-@dataclass(frozen=True)
-class CommandMetadata:
-    """Command metadata used for dispatch and generated help."""
-
-    name: str
-    description: str
-    category: str
-    usage: str
-    aliases: tuple[str, ...] = ()
-    arguments: tuple[CommandArgument, ...] = ()
-    detail: str | None = None
-
-
-CommandHandler = Callable[
-    [CommandContext, tuple[str, ...], CommandMetadata],
-    Awaitable[CommandResult],
-]
 
 
 class CommandRegistry:
@@ -295,17 +263,9 @@ async def _clear_handler(
     _metadata: CommandMetadata,
 ) -> CommandResult:
     context.history.clear()
-    if context.runtime is not None and hasattr(context.runtime.memory, "stored_turns"):
-        context.runtime.memory.stored_turns.clear()
+    if context.runtime is not None:
+        await context.runtime.memory.clear_session_memory()
     return CommandResult(output="Conversation history cleared.")
-
-
-async def _cls_handler(
-    _context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return CommandResult(output="Screen cleared.")
 
 
 async def _history_handler(
@@ -320,26 +280,6 @@ async def _history_handler(
         lines.append(f"{index}. User: {user_message}")
         lines.append(f"   Friday: {assistant_message}")
     return CommandResult(output="\n".join(lines))
-
-
-async def _memory_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    stored_count = 0
-    retrieval_count = 0
-    if context.runtime is not None and hasattr(context.runtime.memory, "stored_turns"):
-        stored_count = len(context.runtime.memory.stored_turns)
-    if context.runtime is not None and hasattr(context.runtime.memory, "retrievals"):
-        retrieval_count = len(context.runtime.memory.retrievals)
-    return CommandResult(
-        output=(
-            "Memory statistics:\n"
-            f"- stored_turns: {stored_count}\n"
-            f"- retrievals: {retrieval_count}"
-        )
-    )
 
 
 async def _context_handler(
@@ -497,30 +437,6 @@ async def _entities_handler(
     return CommandResult(output="\n".join(lines))
 
 
-async def _insights_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Insights", "list_insights")
-
-
-async def _summaries_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Summaries", "list_summaries")
-
-
-async def _meta_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Meta insights", "list_meta_insights")
-
-
 async def _reset_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -551,8 +467,9 @@ async def _reset_handler(
     context.last_context = None
     context.last_prompt = None
     context.last_debug = {}
-    if hasattr(context.runtime.memory, "stored_turns"):
-        context.runtime.memory.stored_turns.clear()
+    context.last_budget_status = None
+    if requested_store in {None, "episodic"}:
+        await context.runtime.memory.clear_session_memory()
     if requested_store is None:
         context.history.clear()
         context.runtime.maintenance.pending_extraction.clear()
@@ -1266,70 +1183,6 @@ async def _workflow_handler(
     return CommandResult(output=f"Unknown workflow subcommand: {subcommand}")
 
 
-async def _sessions_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    turns = _read_transcript_turns(context)
-    return CommandResult(
-        output=(
-            "Transcript sessions:\n"
-            f"- current-session ({len(turns)} turns)"
-        )
-    )
-
-
-async def _transcript_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if args and args[0] == "export":
-        path = _write_transcript_csv(context, "friday_transcripts.csv")
-        return CommandResult(output=f"Exported transcript database to {path}")
-    if args and args[0] != "current-session":
-        return CommandResult(output=f"Transcript session not found: {args[0]}")
-
-    turns = _read_transcript_turns(context)
-    if not turns:
-        return CommandResult(output="No transcript turns recorded.")
-    return CommandResult(output=_format_transcript(turns))
-
-
-async def _export_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    export_format = args[0].lower() if args else "jsonl"
-    if export_format == "md":
-        export_format = "markdown"
-    if export_format not in {"csv", "jsonl", "markdown", "training"}:
-        return CommandResult(output="Usage: /export [csv|jsonl|markdown|md|training]")
-
-    path = _write_current_session_export(context, export_format)
-    return CommandResult(output=f"Exported current session to {path}")
-
-
-async def _export_prompts_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    context_logs = _read_context_logs(context)
-    if not context_logs:
-        return CommandResult(output="No captured raw prompts to export.")
-
-    path = _export_directory(context) / "friday_prompts.json"
-    payload = [
-        {"prompt": prompt, "raw_response": raw_response}
-        for prompt, raw_response in context_logs
-    ]
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    return CommandResult(output=f"Exported raw prompts to {path}")
-
-
 async def _tools_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1410,40 +1263,6 @@ async def _run_tool_handler(
     return CommandResult(output=f"Tool {tool.name} result:\n{llm_output}")
 
 
-async def _inject_tools_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if not args:
-        return CommandResult(output="Usage: /inject-tools <names>")
-
-    missing: list[str] = []
-    injected: list[ToolDefinition] = []
-    for name in args:
-        tool = _find_tool(context, name)
-        if tool is None:
-            missing.append(name)
-            continue
-        context.injected_tools.add(tool.name)
-        injected.append(tool)
-
-    lines = ["Injected tools:"]
-    lines.extend(f"- {tool.name} ({tool.category})" for tool in injected)
-    if missing:
-        lines.append("Missing tools: " + ", ".join(missing))
-    return CommandResult(output="\n".join(lines))
-
-
-async def _clear_tools_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    context.injected_tools.clear()
-    return CommandResult(output="Cleared injected tools.")
-
-
 async def _recommend_tools_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1470,36 +1289,6 @@ async def _recommend_tools_handler(
             f"category={tool.category}, reason={reason}"
         )
     return CommandResult(output="\n".join(lines))
-
-
-async def _tool_budget_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    active_names = sorted(context.injected_tools)
-    if not active_names:
-        return CommandResult(output="No active tools injected.")
-
-    max_percent = 10
-    if context.runtime is not None:
-        raw_percent = context.runtime.config.tools.context.get("max_schema_budget_percent")
-        if isinstance(raw_percent, int):
-            max_percent = raw_percent
-    estimated_tokens = sum(len(name) + 20 for name in active_names)
-    max_allowed = 1000
-    usage_percent = (estimated_tokens / max_allowed) * 100
-    return CommandResult(
-        output=(
-            "Tool budget:\n"
-            f"- active_tools: {len(active_names)}\n"
-            f"- estimated_tokens: {estimated_tokens}\n"
-            f"- max_allowed: {max_allowed}\n"
-            f"- budget_limit_percent: {max_percent}\n"
-            f"- usage_percent: {usage_percent:.1f}\n"
-            f"- injected: {', '.join(active_names)}"
-        )
-    )
 
 
 async def _vars_handler(
@@ -1590,9 +1379,9 @@ def build_default_registry() -> CommandRegistry:
 
 BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "clear": _clear_handler,
-    "cls": _cls_handler,
+    "cls": cls_handler,
     "history": _history_handler,
-    "memory": _memory_handler,
+    "memory": memory_handler,
     "context": _context_handler,
     "prompt": _prompt_handler,
     "debug": _debug_handler,
@@ -1601,9 +1390,9 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "prime": _prime_handler,
     "debug-retrieval": _debug_retrieval_handler,
     "entities": _entities_handler,
-    "insights": _insights_handler,
-    "summaries": _summaries_handler,
-    "meta": _meta_handler,
+    "insights": insights_handler,
+    "summaries": summaries_handler,
+    "meta": meta_handler,
     "reset": _reset_handler,
     "reorganize": _reorganize_handler,
     "lifecycle": _lifecycle_handler,
@@ -1625,16 +1414,16 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "delegate": _delegate_handler,
     "status": _status_handler,
     "workflow": _workflow_handler,
-    "sessions": _sessions_handler,
-    "transcript": _transcript_handler,
-    "export": _export_handler,
-    "export-prompts": _export_prompts_handler,
+    "sessions": sessions_handler,
+    "transcript": transcript_handler,
+    "export": export_handler,
+    "export-prompts": export_prompts_handler,
     "tools": _tools_handler,
     "run-tool": _run_tool_handler,
-    "inject-tools": _inject_tools_handler,
-    "clear-tools": _clear_tools_handler,
+    "inject-tools": inject_tools_handler,
+    "clear-tools": clear_tools_handler,
     "recommend-tools": _recommend_tools_handler,
-    "tool-budget": _tool_budget_handler,
+    "tool-budget": tool_budget_handler,
     "vars": _vars_handler,
     "set": _set_handler,
 }
@@ -1704,50 +1493,6 @@ def _render_arguments(
             f"{argument.description}"
         )
     return lines
-
-
-async def _memory_record_list(
-    context: CommandContext,
-    title: str,
-    method_name: str,
-) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Memory runtime is not initialized.")
-    method = getattr(context.runtime.memory, method_name)
-    records = await method()
-    if not records:
-        return CommandResult(output=f"No {title.lower()} found.")
-    lines = [f"{title}:"]
-    for record in records[:100]:
-        lines.append(f"- {_record_summary(record)}")
-    return CommandResult(output="\n".join(lines))
-
-
-def _record_summary(record: Mapping[str, Any]) -> str:
-    text = _record_value(record, "text", "content", "summary", "document")
-    if text:
-        return _preview_text(text)
-    metadata = record.get("metadata")
-    if isinstance(metadata, Mapping):
-        text = _record_value(metadata, "text", "content", "summary", "topic")
-        if text:
-            return _preview_text(text)
-    return _preview_text(json.dumps(record, default=str))
-
-
-def _record_value(record: Mapping[str, Any], *keys: str) -> str:
-    for key in keys:
-        value = record.get(key)
-        if value is not None:
-            return str(value)
-    return ""
-
-
-def _preview_text(text: str, *, limit: int = 160) -> str:
-    normalized = " ".join(text.split())
-    if len(normalized) <= limit:
-        return normalized
-    return normalized[: limit - 3] + "..."
 
 
 def _build_context_text(context: CommandContext) -> str:
@@ -1945,110 +1690,6 @@ def _classify_error(exc: BaseException) -> str:
     return message or exc.__class__.__name__
 
 
-def _export_directory(context: CommandContext) -> Path:
-    export_directory = Path("./exports")
-    if context.runtime is not None and context.runtime.config.transcript.export_directory:
-        export_directory = Path(context.runtime.config.transcript.export_directory)
-    export_directory.mkdir(parents=True, exist_ok=True)
-    return export_directory
-
-
-def _read_transcript_turns(context: CommandContext) -> list[tuple[str, str]]:
-    if context.runtime is None:
-        return []
-    turns = getattr(context.runtime.transcript, "turns", [])
-    if not isinstance(turns, list):
-        return []
-    return [
-        (str(user_message), str(assistant_message))
-        for user_message, assistant_message in turns
-    ]
-
-
-def _read_context_logs(context: CommandContext) -> list[tuple[str, str]]:
-    if context.runtime is None:
-        return []
-    context_logs = getattr(context.runtime.transcript, "context_logs", [])
-    if not isinstance(context_logs, list):
-        return []
-    return [(str(prompt), str(response)) for prompt, response in context_logs]
-
-
-def _format_transcript(turns: list[tuple[str, str]]) -> str:
-    lines = ["Transcript: current-session"]
-    for index, (user_message, assistant_message) in enumerate(turns, start=1):
-        lines.append(f"{index}. User: {user_message}")
-        lines.append(f"   Friday: {assistant_message}")
-    return "\n".join(lines)
-
-
-def _write_transcript_csv(context: CommandContext, filename: str) -> Path:
-    path = _export_directory(context) / filename
-    handle = io.StringIO()
-    writer = csv.writer(handle)
-    writer.writerow(["session_id", "turn_number", "user_message", "assistant_message"])
-    for index, (user_message, assistant_message) in enumerate(
-        _read_transcript_turns(context),
-        start=1,
-    ):
-        writer.writerow(["current-session", index, user_message, assistant_message])
-    path.write_text(handle.getvalue(), encoding="utf-8")
-    return path
-
-
-def _write_current_session_export(context: CommandContext, export_format: str) -> Path:
-    turns = _read_transcript_turns(context)
-    export_directory = _export_directory(context)
-    if export_format == "csv":
-        return _write_transcript_csv(context, "friday_current_session.csv")
-    if export_format == "jsonl":
-        path = export_directory / "friday_current_session.jsonl"
-        lines = [
-            json.dumps(
-                {
-                    "session_id": "current-session",
-                    "turn_number": index,
-                    "user_message": user_message,
-                    "assistant_message": assistant_message,
-                }
-            )
-            for index, (user_message, assistant_message) in enumerate(turns, start=1)
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
-        return path
-    if export_format == "training":
-        path = export_directory / "friday_current_session_training.jsonl"
-        lines = [
-            json.dumps(
-                {
-                    "messages": [
-                        {"role": "user", "content": user_message},
-                        {"role": "assistant", "content": assistant_message},
-                    ]
-                }
-            )
-            for user_message, assistant_message in turns
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
-        return path
-
-    path = export_directory / "friday_current_session.md"
-    path.write_text(_format_transcript_markdown(turns), encoding="utf-8")
-    return path
-
-
-def _format_transcript_markdown(turns: list[tuple[str, str]]) -> str:
-    lines = ["# Transcript: current-session", ""]
-    for index, (user_message, assistant_message) in enumerate(turns, start=1):
-        lines.append(f"## Turn {index}")
-        lines.append("")
-        lines.append(f"**User:** {user_message}")
-        lines.append("")
-        lines.append(f"**Friday:** {assistant_message}")
-        lines.append("")
-    return "\n".join(lines).rstrip() + "\n"
-
-
 def _format_speech_config(context: CommandContext) -> str:
     if context.runtime is None:
         return "Speech runtime is not initialized."
@@ -2072,19 +1713,6 @@ def _parse_workflow_inputs(args: tuple[str, ...]) -> dict[str, str]:
         key, value = arg.split("=", maxsplit=1)
         inputs[key] = value
     return inputs
-
-
-def _list_runtime_tools(context: CommandContext) -> list[ToolDefinition]:
-    if context.runtime is None:
-        return []
-    return list(context.runtime.tools.list_tools())
-
-
-def _find_tool(context: CommandContext, name: str) -> ToolDefinition | None:
-    for tool in _list_runtime_tools(context):
-        if tool.name == name:
-            return tool
-    return None
 
 
 def _tool_parameter_names(tool: ToolDefinition) -> list[str]:
@@ -2202,10 +1830,14 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     CommandSpec("clear", "Clear conversation history.", "session", "/clear"),
     CommandSpec(
         "cls",
-        "Clear the terminal screen.",
+        "Clear the terminal through the display boundary.",
         "session",
         "/cls",
         aliases=("clearscreen",),
+        detail=(
+            "Requests one clear-screen UI effect and emits no replacement text. "
+            "Unavailable or failed display boundaries report an honest error."
+        ),
     ),
     CommandSpec("history", "Show conversation history.", "session", "/history"),
     CommandSpec("vars", "Show scoped variables.", "session", "/vars"),
@@ -2223,7 +1855,17 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             ),
         ),
     ),
-    CommandSpec("memory", "Show memory statistics.", "memory", "/memory"),
+    CommandSpec(
+        "memory",
+        "Show typed memory, transcript, session, and context statistics.",
+        "memory",
+        "/memory",
+        detail=(
+            "Reports public episodic, vector, graph, transcript, lifecycle, "
+            "priming, app-session, and last-context metrics. Empty stores report "
+            "zero; unavailable or unconfigured components are labeled honestly."
+        ),
+    ),
     CommandSpec(
         "context",
         "Show the assembled context payload.",
@@ -2264,7 +1906,18 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec("insights", "List durable insights.", "memory", "/insights"),
     CommandSpec("summaries", "List turn summaries.", "memory", "/summaries"),
-    CommandSpec("meta", "List meta insights.", "memory", "/meta"),
+    CommandSpec(
+        "meta",
+        "List active meta insights with lifecycle and provenance metadata.",
+        "memory",
+        "/meta",
+        detail=(
+            "Queries typed short- and long-term meta_insight records, excludes "
+            "decayed records, and shows bounded synthesis provenance, source, "
+            "confidence, and verification fields when available. It never runs "
+            "synthesis or reorganization."
+        ),
+    ),
     CommandSpec(
         "reset",
         "Reset one or more memory stores.",
@@ -2303,40 +1956,67 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "memory",
         "/list-ingested",
     ),
-    CommandSpec("sessions", "List transcript sessions.", "transcript", "/sessions"),
+    CommandSpec(
+        "sessions",
+        "List persisted transcript sessions with current and primed markers.",
+        "transcript",
+        "/sessions",
+    ),
     CommandSpec(
         "transcript",
-        "Show current or selected transcript.",
+        "Show a persisted current or selected transcript, or export all sessions.",
         "transcript",
-        "/transcript [current-session|export]",
+        "/transcript [session_id|export]",
         arguments=(
             _argument(
                 "target",
-                "Show the current session or export the transcript database.",
-                default="current-session",
-                choices=("current-session", "export"),
+                "Persisted session identifier to show, or export for all "
+                "non-archived sessions.",
+                default="current session",
             ),
+        ),
+        detail=(
+            "With no target, queries the runtime's current session identity. "
+            "Selected identifiers are bound store-query values, never paths. "
+            "The export target writes deterministic sessions.csv and entries.csv "
+            "beneath a safely contained timestamped export directory."
         ),
     ),
     CommandSpec(
         "export",
-        "Export the current session.",
+        "Export persisted entries from the current session.",
         "transcript",
         "/export [csv|jsonl|markdown|md|training]",
         arguments=(
             _argument(
                 "format",
                 "Output format for the current session export.",
-                default="jsonl",
+                default="markdown",
                 choices=("csv", "jsonl", "markdown", "md", "training"),
             ),
+        ),
+        detail=(
+            "Queries the current persisted transcript and writes a safely "
+            "contained CSV, JSONL, Markdown, or training JSONL export. It never "
+            "copies the live SQLite database."
         ),
     ),
     CommandSpec(
         "export-prompts",
-        "Export captured raw prompts and responses.",
+        "Export persisted captured prompts and responses for one session.",
         "transcript",
-        "/export-prompts",
+        "/export-prompts [session_id]",
+        arguments=(
+            _argument(
+                "session_id",
+                "Session identifier; omit for the current session.",
+            ),
+        ),
+        detail=(
+            "Queries context-log records for the current or selected session and "
+            "writes contained JSON. Empty output explains that "
+            "transcript.capture_raw_prompts must be enabled."
+        ),
     ),
     CommandSpec(
         "replay",
@@ -2426,7 +2106,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "tools",
-        "List available tools.",
+        "List registered runtime tools and optionally filter by category.",
         "tools",
         "/tools [category]",
         arguments=(
@@ -2445,20 +2125,26 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "inject-tools",
-        "Inject selected tools into context.",
+        "Set the exact manual tool schema set for subsequent turns.",
         "tools",
         "/inject-tools <name> [name ...]",
         arguments=(
             _argument(
                 "name",
-                "One or more whitespace-separated registered tool names.",
+                "One or more whitespace-separated registered names accepted "
+                "atomically within configured count and schema-token limits.",
                 required=True,
             ),
+        ),
+        detail=(
+            "Switches runtime selection to manual mode only after every name and "
+            "the complete schema set pass validation. The accepted set remains "
+            "model-bound until /clear-tools restores automatic selection."
         ),
     ),
     CommandSpec(
         "clear-tools",
-        "Clear injected tools from context.",
+        "Clear the pending manual set and restore automatic tool selection.",
         "tools",
         "/clear-tools",
     ),
@@ -2475,7 +2161,19 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             ),
         ),
     ),
-    CommandSpec("tool-budget", "Show tool token budget information.", "tools", "/tool-budget"),
+    CommandSpec(
+        "tool-budget",
+        "Inspect authoritative tool selection and schema-budget state.",
+        "tools",
+        "/tool-budget",
+        detail=(
+            "Distinguishes registered tools, pending manual selection, the most "
+            "recent automatic selection, the last completed turn, and executed "
+            "tools. Schema estimates and limits use tools.context.max_tools, "
+            "tools.context.max_budget_ratio, memory.context_window, and "
+            "memory.output_buffer."
+        ),
+    ),
     CommandSpec("security", "Show security status.", "security", "/security"),
     CommandSpec(
         "security-test",
@@ -2654,6 +2352,7 @@ __all__ = [
     "CommandRegistry",
     "CommandResult",
     "CommandSpec",
+    "CommandUiEffect",
     "DEFAULT_COMMAND_SPECS",
     "RegistryCommandContext",
     "build_default_registry",

@@ -5,15 +5,35 @@ from __future__ import annotations
 import asyncio
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from tempfile import gettempdir
 from typing import TYPE_CHECKING, Any, Protocol
 from uuid import uuid4
 
 from friday_chat.config import FridayChatConfig
+from friday_chat.memory_views import (
+    MemoryCollection,
+    MemoryDiagnosticReason,
+    MemoryDiagnosticWarning,
+    MemoryMetric,
+    MemoryRecordKind,
+    MemoryRecordQueryResult,
+    MemoryRecordView,
+    MemoryStoreComponent,
+    MemoryStoreStatistics,
+)
+from friday_chat.session import SessionIdentity, resolve_session_identity
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.selection import ToolSelectionState
+from friday_chat.transcripts import (
+    TranscriptContextLogView,
+    TranscriptEntryView,
+    TranscriptQueryStore,
+    TranscriptSessionView,
+)
 from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCallRequest
 
 if TYPE_CHECKING:
@@ -37,6 +57,31 @@ REORGANIZATION_EXECUTE_DISABLED_REASON = (
     "direct maintenance mutation is disabled; use the Friday Chat "
     "reorganization coordinator so mandatory recovery policy is enforced."
 )
+
+
+@dataclass(frozen=True)
+class PendingExtractionTurn:
+    """One stable extraction work item retained across retries."""
+
+    turn_id: str
+    user_message: str
+    assistant_message: str
+
+    def __post_init__(self) -> None:
+        if not self.turn_id.strip():
+            raise ValueError("pending extraction turn identity cannot be empty")
+
+
+def _configured_nonnegative_int(value: object) -> int | None:
+    """Return a validated non-negative integer for permissive config mappings."""
+    if isinstance(value, int) and not isinstance(value, bool) and value >= 0:
+        return value
+    return None
+
+
+def _configured_bool(value: object) -> bool | None:
+    """Return a strict boolean without coercing malformed flexible config."""
+    return value if isinstance(value, bool) else None
 
 
 class ChatModel(Protocol):
@@ -93,6 +138,9 @@ class MemoryController(Protocol):
     async def store_turn(self, user_message: str, assistant_message: str) -> None:
         """Store a completed user/assistant turn."""
 
+    async def clear_session_memory(self) -> bool:
+        """Clear episodic memory for the adapter's current session."""
+
     async def ingest_document(
         self,
         *,
@@ -111,17 +159,17 @@ class MemoryController(Protocol):
     async def list_relationships(self, name: str | None = None) -> list[dict[str, Any]]:
         """Return graph relationship records."""
 
-    async def list_insights(self) -> list[dict[str, Any]]:
-        """Return insight records."""
+    async def query_memory_statistics(self) -> MemoryStoreStatistics:
+        """Return typed statistics from configured memory stores."""
 
-    async def list_summaries(self) -> list[dict[str, Any]]:
-        """Return summary records."""
+    async def query_memory_records(
+        self,
+        kind: MemoryRecordKind,
+    ) -> MemoryRecordQueryResult:
+        """Return typed records for one closed memory kind."""
 
-    async def list_meta_insights(self) -> list[dict[str, Any]]:
-        """Return meta-insight records."""
 
-
-class TranscriptStore(Protocol):
+class TranscriptStore(TranscriptQueryStore, Protocol):
     """Narrow transcript contract needed by lifecycle and exports."""
 
     async def record_turn(self, user_message: str, assistant_message: str) -> None:
@@ -196,7 +244,7 @@ class MaintenanceService(Protocol):
     actions: list[str]
     reset_calls: list[str]
     archived_transcripts: bool
-    pending_extraction: list[tuple[str, str]]
+    pending_extraction: list[PendingExtractionTurn]
     flush_pending_error: BaseException | None
     compaction_running: bool
     compaction_calls: list[dict[str, Any]]
@@ -285,6 +333,7 @@ class RuntimeDiagnostics:
 class FridayRuntime:
     """Concrete bundle of FridayV2 runtime services."""
 
+    session_identity: SessionIdentity
     config: FridayChatConfig
     chat_llm: ChatModel
     embedding: EmbeddingService
@@ -297,6 +346,7 @@ class FridayRuntime:
     maintenance: MaintenanceService
     diagnostics: RuntimeDiagnostics
     maintenance_layout: FridayChatMaintenanceLayout
+    tool_selection: ToolSelectionState
     memory_recovery: MemoryRecoveryParticipant | None
     transcript_recovery: TranscriptSnapshotParticipant | None
     reorganization_mutation: MaintenanceMutationAdapter | None = None
@@ -387,8 +437,16 @@ class FakeMemoryController:
     retrieval_token_limits: list[int | None] = field(default_factory=list)
     ingested_documents: list[dict[str, str | int | None]] = field(default_factory=list)
     summaries: list[dict[str, Any]] = field(default_factory=list)
+    insights: list[dict[str, Any]] = field(default_factory=list)
+    meta_insights: list[dict[str, Any]] = field(default_factory=list)
     entities: list[dict[str, Any]] = field(default_factory=list)
     relationships: list[dict[str, Any]] = field(default_factory=list)
+    session_id: str = "fake-session"
+    graph_configured: bool = False
+    lifecycle_enabled: bool = False
+    access_buffer_configured: bool = False
+    priming_enabled: bool | None = True
+    priming_previous_sessions: int | None = 0
 
     async def retrieve(
         self,
@@ -406,6 +464,11 @@ class FakeMemoryController:
 
     async def store_turn(self, user_message: str, assistant_message: str) -> None:
         self.stored_turns.append((user_message, assistant_message))
+
+    async def clear_session_memory(self) -> bool:
+        had_turns = bool(self.stored_turns)
+        self.stored_turns.clear()
+        return had_turns
 
     async def ingest_document(
         self,
@@ -460,40 +523,267 @@ class FakeMemoryController:
             ).lower()
         ]
 
-    async def list_insights(self) -> list[dict[str, Any]]:
-        return []
-
-    async def list_summaries(self) -> list[dict[str, Any]]:
-        return list(self.summaries)
-
     async def record_summary(self, text: str, metadata: Mapping[str, Any]) -> None:
         self.summaries.append({"text": text, "metadata": dict(metadata)})
 
-    async def list_meta_insights(self) -> list[dict[str, Any]]:
-        return []
+    async def query_memory_statistics(self) -> MemoryStoreStatistics:
+        vector_count = len(self.insights) + len(self.summaries) + len(self.meta_insights)
+        graph_nodes = (
+            MemoryMetric.available(len(self.entities))
+            if self.graph_configured
+            else MemoryMetric.not_configured()
+        )
+        graph_relationships = (
+            MemoryMetric.available(len(self.relationships))
+            if self.graph_configured
+            else MemoryMetric.not_configured()
+        )
+        access_entries = (
+            MemoryMetric.available(0)
+            if self.access_buffer_configured
+            else MemoryMetric.not_configured()
+        )
+        access_events = (
+            MemoryMetric.available(0)
+            if self.access_buffer_configured
+            else MemoryMetric.not_configured()
+        )
+        warning_items: list[MemoryDiagnosticWarning] = []
+        priming_enabled: MemoryMetric[bool]
+        if self.priming_enabled is None:
+            priming_enabled = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.CONFIG_VALUE_INVALID
+            )
+            warning_items.append(
+                MemoryDiagnosticWarning(
+                    MemoryStoreComponent.PRIMING,
+                    MemoryDiagnosticReason.CONFIG_VALUE_INVALID,
+                )
+            )
+        else:
+            priming_enabled = MemoryMetric.available(self.priming_enabled)
+        priming_previous_sessions: MemoryMetric[int]
+        if self.priming_previous_sessions is None:
+            priming_previous_sessions = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.CONFIG_VALUE_INVALID
+            )
+            if not warning_items:
+                warning_items.append(
+                    MemoryDiagnosticWarning(
+                        MemoryStoreComponent.PRIMING,
+                        MemoryDiagnosticReason.CONFIG_VALUE_INVALID,
+                    )
+                )
+        else:
+            priming_previous_sessions = MemoryMetric.available(
+                self.priming_previous_sessions
+            )
+        return MemoryStoreStatistics(
+            episodic_turns=MemoryMetric.available(len(self.stored_turns)),
+            vector_short_term=MemoryMetric.available(vector_count),
+            vector_long_term=MemoryMetric.available(0),
+            vector_decayed=MemoryMetric.available(0),
+            vector_active_total=MemoryMetric.available(vector_count),
+            vector_total=MemoryMetric.available(vector_count),
+            graph_nodes=graph_nodes,
+            graph_relationships=graph_relationships,
+            lifecycle_enabled=MemoryMetric.available(self.lifecycle_enabled),
+            access_buffer_entries=access_entries,
+            access_buffer_accesses=access_events,
+            priming_enabled=priming_enabled,
+            priming_previous_sessions=priming_previous_sessions,
+            warnings=tuple(warning_items),
+        )
+
+    async def query_memory_records(
+        self,
+        kind: MemoryRecordKind,
+    ) -> MemoryRecordQueryResult:
+        records_by_kind = {
+            MemoryRecordKind.INSIGHT: self.insights,
+            MemoryRecordKind.SUMMARY: self.summaries,
+            MemoryRecordKind.META_INSIGHT: self.meta_insights,
+        }
+        views = tuple(
+            _fake_memory_record_view(record, kind=kind, index=index)
+            for index, record in enumerate(records_by_kind[kind], start=1)
+        )
+        return MemoryRecordQueryResult(kind=kind, records=views)
+
+
+def _fake_memory_record_view(
+    record: Mapping[str, Any],
+    *,
+    kind: MemoryRecordKind,
+    index: int,
+) -> MemoryRecordView:
+    """Map an in-process fake record to the production query contract."""
+    metadata_value = record.get("metadata")
+    metadata = metadata_value if isinstance(metadata_value, Mapping) else {}
+    text_value = record.get("text")
+    if text_value is None:
+        text_value = record.get("content")
+    if text_value is None:
+        text_value = record.get("summary")
+    record_id = record.get("id")
+    stage = metadata.get("stage")
+    confidence = metadata.get("confidence")
+    source_count = metadata.get("source_count")
+    return MemoryRecordView(
+        record_id=(
+            str(record_id)
+            if isinstance(record_id, str) and record_id
+            else f"fake-{kind.value}-{index}"
+        ),
+        kind=kind,
+        text=str(text_value or ""),
+        collection=MemoryCollection.SHORT_TERM,
+        lifecycle_stage=str(stage) if isinstance(stage, str) else None,
+        confidence=(
+            float(confidence)
+            if isinstance(confidence, (int, float)) and not isinstance(confidence, bool)
+            else None
+        ),
+        source_count=(
+            source_count
+            if isinstance(source_count, int) and not isinstance(source_count, bool)
+            else None
+        ),
+    )
 
 
 @dataclass
 class FakeTranscriptStore:
     """In-memory transcript store for runtime and lifecycle tests."""
 
+    session_id: str = "fake-session"
+    user_id: str = "User"
+    model_name: str = "fake/test-chat-model"
     turns: list[tuple[str, str]] = field(default_factory=list)
     interactions: list[InteractionTurn] = field(default_factory=list)
     context_logs: list[tuple[str, str]] = field(default_factory=list)
     session_system_prompt: str | None = None
     finalized: bool = False
+    archived: bool = False
+    started_at: datetime = field(default_factory=datetime.now)
+    ended_at: datetime | None = None
+    _turn_timestamps: list[datetime] = field(default_factory=list)
+    _context_timestamps: list[datetime] = field(default_factory=list)
 
     async def record_turn(self, user_message: str, assistant_message: str) -> None:
         self.turns.append((user_message, assistant_message))
+        self._turn_timestamps.append(datetime.now())
 
     async def record_interaction(self, turn: InteractionTurn) -> None:
         self.interactions.append(turn)
 
     async def record_context_log(self, prompt: str, raw_response: str) -> None:
         self.context_logs.append((prompt, raw_response))
+        self._context_timestamps.append(datetime.now())
 
     async def finalize(self) -> None:
         self.finalized = True
+        self.ended_at = datetime.now()
+
+    async def query_sessions(
+        self,
+        *,
+        limit: int = 1000,
+        include_archived: bool = False,
+    ) -> tuple[TranscriptSessionView, ...]:
+        if limit <= 0 or (self.archived and not include_archived):
+            return ()
+        return (self._session_view(),)
+
+    async def query_session(self, session_id: str) -> TranscriptSessionView | None:
+        if session_id != self.session_id:
+            return None
+        return self._session_view()
+
+    async def query_entries(
+        self,
+        session_id: str,
+    ) -> tuple[TranscriptEntryView, ...]:
+        if session_id != self.session_id:
+            return ()
+        entries: list[TranscriptEntryView] = []
+        for index, (user_message, assistant_message) in enumerate(
+            self.turns,
+            start=1,
+        ):
+            interaction = (
+                self.interactions[index - 1]
+                if index <= len(self.interactions)
+                else None
+            )
+            timestamp = (
+                self._turn_timestamps[index - 1]
+                if index <= len(self._turn_timestamps)
+                else self.started_at
+            )
+            entries.append(
+                TranscriptEntryView(
+                    entry_id=(
+                        interaction.turn_id
+                        if interaction is not None
+                        else f"fake-turn-{index}"
+                    ),
+                    session_id=self.session_id,
+                    turn_number=index,
+                    user_message=user_message,
+                    assistant_message=assistant_message,
+                    timestamp=timestamp,
+                    model_name=self.model_name,
+                    latency_ms=(
+                        interaction.metrics.total_seconds * 1000
+                        if interaction is not None
+                        else None
+                    ),
+                )
+            )
+        return tuple(entries)
+
+    async def query_context_logs(
+        self,
+        session_id: str,
+    ) -> tuple[TranscriptContextLogView, ...]:
+        if session_id != self.session_id:
+            return ()
+        return tuple(
+            TranscriptContextLogView(
+                log_id=f"fake-context-{index}",
+                session_id=self.session_id,
+                turn_number=index,
+                entry_id=(
+                    self.interactions[index - 1].turn_id
+                    if index <= len(self.interactions)
+                    else None
+                ),
+                raw_prompt=prompt,
+                raw_response=raw_response,
+                captured_at=(
+                    self._context_timestamps[index - 1]
+                    if index <= len(self._context_timestamps)
+                    else self.started_at
+                ),
+            )
+            for index, (prompt, raw_response) in enumerate(
+                self.context_logs,
+                start=1,
+            )
+        )
+
+    def _session_view(self) -> TranscriptSessionView:
+        return TranscriptSessionView(
+            session_id=self.session_id,
+            user_id=self.user_id,
+            started_at=self.started_at,
+            ended_at=self.ended_at,
+            model_name=self.model_name,
+            total_turns=len(self.turns),
+            total_tokens=0,
+            archived=self.archived,
+        )
 
 
 @dataclass
@@ -624,7 +914,7 @@ class FakeMaintenanceService:
     actions: list[str] = field(default_factory=list)
     reset_calls: list[str] = field(default_factory=list)
     archived_transcripts: bool = False
-    pending_extraction: list[tuple[str, str]] = field(default_factory=list)
+    pending_extraction: list[PendingExtractionTurn] = field(default_factory=list)
     flush_pending_error: BaseException | None = None
     compaction_running: bool = False
     compaction_calls: list[dict[str, Any]] = field(default_factory=list)
@@ -856,9 +1146,14 @@ def build_runtime(
     config: FridayChatConfig,
     *,
     fake: bool = True,
-    session_id: str = "friday-v2",
+    session_identity: SessionIdentity | None = None,
+    session_id: str | None = None,
 ) -> FridayRuntime:
     """Build a FridayV2 runtime bundle from typed config."""
+    resolved_session_identity = resolve_session_identity(
+        session_identity=session_identity,
+        session_id=session_id,
+    )
     config = _apply_startup_speech_prompt(config)
     if not fake:
         from friday_chat.reorganization.assembly import resolve_maintenance_layout
@@ -870,7 +1165,7 @@ def build_runtime(
         )
         return _build_framework_runtime(
             config,
-            session_id=session_id,
+            session_identity=resolved_session_identity,
             maintenance_layout=maintenance_layout,
         )
 
@@ -890,7 +1185,7 @@ def build_runtime(
     diagnostics = RuntimeDiagnostics()
     enabled_categories = _enabled_tool_categories(config.tools.registry)
     tools = FakeToolRegistry.from_enabled_categories(enabled_categories)
-    tool_definitions = tools.list_tools() if config.tools.enabled else ()
+    tool_definitions = tools.list_tools()
     tool_context = None
     if config.tools.enabled and config.tools.context.get("include_in_context") is True:
         tool_context = tools.get_context_block()
@@ -899,18 +1194,43 @@ def build_runtime(
     maintenance_models, fallbacks = _resolve_maintenance_llms(config)
     diagnostics.maintenance_llm_fallbacks = fallbacks
     budget_monitor = _build_budget_monitor(config, diagnostics)
-    memory = FakeMemoryController()
+    access_buffer_config = config.lifecycle.access_buffer
+    memory = FakeMemoryController(
+        session_id=resolved_session_identity.value,
+        graph_configured=config.lifecycle.enabled,
+        lifecycle_enabled=config.lifecycle.enabled,
+        access_buffer_configured=(
+            config.lifecycle.enabled
+            and access_buffer_config.get("enabled", True) is not False
+        ),
+        priming_enabled=_configured_bool(
+            config.memory.priming.get("enabled", True)
+        ),
+        priming_previous_sessions=(
+            0
+            if "previous_sessions" not in config.memory.priming
+            else _configured_nonnegative_int(
+                config.memory.priming.get("previous_sessions"),
+            )
+        ),
+    )
     maintenance = FakeMaintenanceService(
         llm_models=maintenance_models,
         summary_sink=memory,
     )
 
     return FridayRuntime(
+        session_identity=resolved_session_identity,
         config=config,
         chat_llm=FakeChatModel(model=config.llm.model or "unknown"),
         embedding=FakeEmbeddingService(),
         memory=memory,
-        transcript=FakeTranscriptStore(session_system_prompt=config.chat.system_prompt),
+        transcript=FakeTranscriptStore(
+            session_id=resolved_session_identity.value,
+            user_id=config.chat.user_name,
+            model_name=config.llm.model or "unknown",
+            session_system_prompt=config.chat.system_prompt,
+        ),
         tools=tools,
         speech=FakeSpeechAdapter(enabled=config.speech.enabled),
         orchestrator=FakeOrchestrator(),
@@ -918,6 +1238,7 @@ def build_runtime(
         maintenance=maintenance,
         diagnostics=diagnostics,
         maintenance_layout=maintenance_layout,
+        tool_selection=ToolSelectionState(config, tool_definitions),
         memory_recovery=None,
         transcript_recovery=None,
         reorganization_mutation=None,
@@ -961,7 +1282,7 @@ def _resolve_maintenance_llms(
 def _build_framework_runtime(
     config: FridayChatConfig,
     *,
-    session_id: str,
+    session_identity: SessionIdentity,
     maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FridayRuntime:
     from friday_chat.adapters import (
@@ -980,16 +1301,16 @@ def _build_framework_runtime(
     memory = build_framework_memory_adapter(
         config,
         embedding,
-        session_id=session_id,
+        session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
     )
     transcript = build_framework_transcript_adapter(
         config,
-        session_id=session_id,
+        session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
     )
     tools = build_framework_tool_registry(config)
-    tool_definitions = tools.list_tools() if config.tools.enabled else ()
+    tool_definitions = tuple(tools.list_tools())
     tool_context = None
     if config.tools.enabled and config.tools.context.get("include_in_context") is True:
         tool_context = tools.get_context_block()
@@ -1002,7 +1323,7 @@ def _build_framework_runtime(
     workflow = build_framework_workflow_adapter(config, orchestrator=orchestrator)
     maintenance = build_framework_maintenance_adapter(
         config,
-        session_id=session_id,
+        session_id=session_identity.value,
         memory=memory,
         embedding=embedding,
         chat_llm=chat_llm,
@@ -1020,7 +1341,11 @@ def _build_framework_runtime(
     from friday_chat.reorganization.mutation import (
         FrameworkMaintenanceMutationAdapter,
         build_explicit_maintenance_provider_registry,
+        build_memory_synthesis_config,
+        build_synthesis_guidance,
     )
+
+    synthesis_config = build_memory_synthesis_config(config)
 
     memory_recovery = (
         MemoryMaintenanceParticipant(
@@ -1047,6 +1372,7 @@ def _build_framework_runtime(
                 log_directory=maintenance_layout.log_root,
             ),
             graph_store=memory.recovery_graph_store,
+            synthesis_config=synthesis_config,
         )
         if memory.recovery_graph_store is not None
         else None
@@ -1056,12 +1382,14 @@ def _build_framework_runtime(
             memory=memory_mutation,
             providers=build_explicit_maintenance_provider_registry(config),
             lifecycle=maintenance,
+            synthesis_guidance=build_synthesis_guidance(config),
         )
         if memory_mutation is not None
         else None
     )
 
     return FridayRuntime(
+        session_identity=session_identity,
         config=config,
         chat_llm=chat_llm,
         embedding=embedding,
@@ -1074,6 +1402,7 @@ def _build_framework_runtime(
         maintenance=maintenance,
         diagnostics=diagnostics,
         maintenance_layout=maintenance_layout,
+        tool_selection=ToolSelectionState(config, tool_definitions),
         memory_recovery=memory_recovery,
         transcript_recovery=transcript.store,
         reorganization_mutation=reorganization_mutation,
@@ -1134,6 +1463,7 @@ __all__ = [
     "MemoryController",
     "Orchestrator",
     "RuntimeDiagnostics",
+    "SessionIdentity",
     "SpeechAdapter",
     "TranscriptStore",
     "ToolRegistry",

@@ -139,6 +139,78 @@ async def test_snapshot_accepts_journal_owned_run_directory(tmp_path: Path) -> N
 
 
 @pytest.mark.asyncio
+async def test_snapshot_normalizes_legacy_hnsw_collection_metadata(
+    tmp_path: Path,
+) -> None:
+    vector_path = tmp_path / "vector"
+    graph_path = tmp_path / "graph.gpickle"
+    client = chromadb.PersistentClient(path=str(vector_path))
+    client.create_collection(
+        "legacy_empty",
+        metadata={"hnsw:space": "cosine"},
+    )
+    populated = client.create_collection(
+        "legacy_populated",
+        metadata={"hnsw:space": "cosine"},
+    )
+    populated.add(
+        ids="legacy-1",
+        documents="legacy document",
+        metadatas={"rank": 1},
+        embeddings=[1.0, 0.0],
+    )
+    client.create_collection(
+        "legacy_with_user_metadata",
+        metadata={"hnsw:space": "cosine", "purpose": "preserved"},
+    )
+    graph = ElementXGraphStore(str(graph_path))
+    layout = MemoryMaintenanceLayout(
+        vector_directory=vector_path,
+        graph_path=graph_path,
+        recovery_directory=tmp_path / "recovery",
+        log_directory=tmp_path / "logs",
+    )
+    participant = MemoryMaintenanceParticipant(layout, graph_store=graph)
+
+    async with participant.maintenance_quiescence(
+        MemoryRecoveryOperation.SNAPSHOT
+    ) as token:
+        result = await participant.create_snapshot("legacy-friday", token)
+
+    assert result.verified
+    assert result.manifest_path is not None
+    manifest = MemorySnapshotManifest.model_validate_json(
+        result.manifest_path.read_text()
+    )
+    vector_artifact = result.manifest_path.parent / manifest.vector.artifact_filename
+    snapshot = ChromaLogicalSnapshot.model_validate_json(
+        vector_artifact.read_text()
+    )
+    assert [collection.metadata for collection in snapshot.collections] == [
+        None,
+        None,
+        {"purpose": "preserved"},
+    ]
+    for collection in snapshot.collections:
+        hnsw_configuration = collection.configuration["hnsw"]
+        assert isinstance(hnsw_configuration, dict)
+        assert hnsw_configuration["space"] == "cosine"
+
+    async with participant.maintenance_quiescence(
+        MemoryRecoveryOperation.RESTORE
+    ) as token:
+        restored = await participant.restore_snapshot(result.manifest_path, token)
+
+    assert restored.verified
+    restored_client = chromadb.PersistentClient(path=str(vector_path))
+    assert restored_client.get_collection("legacy_empty").metadata is None
+    assert restored_client.get_collection("legacy_populated").count() == 1
+    assert restored_client.get_collection("legacy_with_user_metadata").metadata == {
+        "purpose": "preserved"
+    }
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize("unsafe_kind", ["mode", "symlink", "memory_exists"])
 async def test_snapshot_rejects_unsafe_existing_run_directory(
     tmp_path: Path,

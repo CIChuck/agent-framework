@@ -2,15 +2,20 @@
 
 from __future__ import annotations
 
+import os
+import select
 from pathlib import Path
 
 import pytest
-from friday_chat.app import FridayChatApp, ListInputSource
+from friday_chat import display as display_module
+from friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink
+from friday_chat.commands.registry import CommandUiEffect, build_default_registry
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import (
     BannerDisplayConfig,
     DisplayConfigResult,
     FridayChatDisplayConfigError,
+    FridayCliDisplay,
     FridayCliOutputSink,
     Heartbeat,
     HeartbeatKind,
@@ -22,6 +27,7 @@ from friday_chat.display import (
     strip_assistant_prefix,
 )
 from friday_chat.runtime import build_runtime
+from rich.console import Console
 
 EXAMPLE_CLI_CONFIG = Path("packages/friday-chat/cli-config.example.yaml")
 
@@ -46,6 +52,7 @@ class RecordingDisplay:
     def __init__(self) -> None:
         self.banners: list[tuple[str, str]] = []
         self.events: list[str] = []
+        self.clear_calls = 0
 
     def render_banner(self, *, assistant_name: str, version: str) -> None:
         self.banners.append((assistant_name, version))
@@ -55,6 +62,26 @@ class RecordingDisplay:
 
     def create_heartbeat(self, kind: HeartbeatKind) -> Heartbeat:
         return RecordingHeartbeat(self.events, kind)
+
+    def clear_screen(self) -> None:
+        self.clear_calls += 1
+
+
+class FailingClearDisplay(RecordingDisplay):
+    """Display double that proves clear failures are sanitized."""
+
+    def clear_screen(self) -> None:
+        raise RuntimeError("private terminal failure detail")
+
+
+class RecordingConsole:
+    """Small console double for production clear delegation."""
+
+    def __init__(self) -> None:
+        self.clear_calls = 0
+
+    def clear(self) -> None:
+        self.clear_calls += 1
 
 
 def _write_cli_config(path: Path, *, error_style: str) -> None:
@@ -298,3 +325,96 @@ async def test_streaming_sink_strips_duplicate_assistant_prefix(
     await sink.finish_stream()
 
     assert capsys.readouterr().out == "Friday: hello\n"
+
+
+async def test_clear_aliases_share_one_empty_typed_effect() -> None:
+    registry = build_default_registry()
+
+    _, direct = await registry.execute("/cls")
+    _, alias = await registry.execute("/clearscreen")
+
+    assert direct == alias
+    assert direct is not None
+    assert direct.output == ""
+    assert direct.ui_effects == (CommandUiEffect.CLEAR_SCREEN,)
+
+
+async def test_app_dispatches_clear_effect_without_replacement_output() -> None:
+    runtime = build_runtime(
+        FridayChatConfig.model_validate({"llm": {"model": "fake/clear-test"}})
+    )
+    display = RecordingDisplay()
+    output = ListOutputSink()
+
+    await FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource(["/cls", "/clearscreen"]),
+        output_sink=output,
+        display=display,
+    ).run()
+
+    assert display.clear_calls == 2
+    assert output.values == []
+
+
+async def test_unavailable_and_failed_clear_are_honest_and_sanitized() -> None:
+    config = FridayChatConfig.model_validate({"llm": {"model": "fake/clear-test"}})
+    unavailable_output = ListOutputSink()
+    await FridayChatApp(
+        runtime=build_runtime(config),
+        input_source=ListInputSource(["/cls"]),
+        output_sink=unavailable_output,
+    ).run()
+
+    failed_output = ListOutputSink()
+    await FridayChatApp(
+        runtime=build_runtime(config),
+        input_source=ListInputSource(["/clearscreen"]),
+        output_sink=failed_output,
+        display=FailingClearDisplay(),
+    ).run()
+
+    assert unavailable_output.values == [
+        "Unable to clear the terminal: display is unavailable."
+    ]
+    assert failed_output.values == ["Unable to clear the terminal."]
+    assert "private terminal failure detail" not in failed_output.values[0]
+
+
+def test_production_display_delegates_clear_to_rich_console(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    console = RecordingConsole()
+    monkeypatch.setattr(display_module, "get_console", lambda: console)
+    display = FridayCliDisplay(resolve_display_config(config_path=None).config)
+
+    display.clear_screen()
+
+    assert console.clear_calls == 1
+
+
+@pytest.mark.skipif(os.name != "posix", reason="PTY smoke requires POSIX")
+def test_production_clear_emits_control_sequence_through_pty(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import pty
+
+    master_fd, slave_fd = pty.openpty()
+    try:
+        with os.fdopen(slave_fd, "w", buffering=1, encoding="utf-8") as slave:
+            console = Console(file=slave, force_terminal=True, color_system="standard")
+            monkeypatch.setattr(display_module, "get_console", lambda: console)
+            display = FridayCliDisplay(
+                resolve_display_config(config_path=None).config
+            )
+
+            display.clear_screen()
+            slave.flush()
+            ready, _, _ = select.select([master_fd], [], [], 1.0)
+            assert ready == [master_fd]
+            emitted = os.read(master_fd, 128)
+    finally:
+        os.close(master_fd)
+
+    assert b"\x1b[2J" in emitted
+    assert b"\x1b[H" in emitted

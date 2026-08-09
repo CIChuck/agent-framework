@@ -20,6 +20,8 @@ from friday_chat.reorganization.contracts import (
 )
 from friday_chat.reorganization.coordinator import (
     CoordinatorFaultPoint,
+    ManualMaintenanceDrainResult,
+    ManualMaintenanceResumeResult,
     MutationPreflight,
     MutationStep,
     MutationStepResult,
@@ -51,6 +53,7 @@ from friday_memory import (
     MemoryMaintenanceParticipant,
     MemoryVerificationStatus,
     ProvenanceMetadata,
+    SynthesisConfig,
 )
 from friday_transcript import (
     SQLiteTranscriptStore,
@@ -92,6 +95,8 @@ class DeterministicIntegrationLlm(MaintenanceLlmProvider):
                             records[1]["memory_id"],
                         ),
                         document="Synthetic provider-composed insight",
+                        confidence=0.9,
+                        reasoning="The topic records support this synthesis",
                     ),
                 )
             )
@@ -156,8 +161,15 @@ class DeterministicIntegrationLifecycle:
 class RecoveryHooks:
     calls: list[str] = field(default_factory=list)
 
-    async def drain_for_manual_maintenance(self) -> None:
+    async def prepare_for_manual_maintenance(self) -> None:
+        return None
+
+    async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult:
         self.calls.append("drain")
+        return ManualMaintenanceDrainResult()
+
+    def resume_after_manual_maintenance(self) -> ManualMaintenanceResumeResult:
+        return ManualMaintenanceResumeResult()
 
     async def close_for_shutdown(self, *, snapshot_requested: bool) -> None:
         del snapshot_requested
@@ -273,9 +285,21 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
             "Distinct synthetic insight",
         ],
         metadatas=[
-            {"type": "insight", "topic": "synthetic"},
-            {"type": "insight", "topic": "synthetic"},
-            {"type": "insight", "topic": "synthetic"},
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
         ],
         embeddings=embeddings,
     )
@@ -330,6 +354,7 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
         memory=ExplicitMemoryMutationParticipant(
             memory_layout,
             graph_store=graph,
+            synthesis_config=SynthesisConfig(cluster_min_size=2),
         ),
         providers=ExplicitMaintenanceProviderRegistry(
             llms=providers,
@@ -402,6 +427,26 @@ async def test_full_execute_uses_production_mutation_and_deterministic_providers
     assert embedding.probe_calls == 1
     assert embedding.embed_calls == 1
     assert lifecycle.execute_calls == 1
+
+    vector_count_after_first_run = collection.count()
+    repeated = await coordinator.run(
+        ReorganizationRequest(
+            trigger=OperationTrigger.MANUAL,
+            mode=ReorganizationMode.FULL,
+            execute=True,
+        )
+    )
+
+    assert repeated.status is ResultStatus.COMPLETED
+    repeated_synthesis = next(
+        step
+        for step in repeated.mutation_steps
+        if step.step is MutationStep.SYNTHESIZE
+    )
+    assert repeated_synthesis.changed_count == 0
+    assert collection.count() == vector_count_after_first_run
+    assert providers[MaintenanceLlmRole.SYNTHESIZER].completion_calls == 1
+    assert embedding.embed_calls == 1
 
 
 @pytest.mark.asyncio

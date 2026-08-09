@@ -13,7 +13,8 @@ import json
 import math
 import re
 import struct
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Protocol, runtime_checkable
 
@@ -31,6 +32,7 @@ from pydantic import (
 )
 
 from friday_memory.adapters.graph import ElementXGraphStore
+from friday_memory.maintenance.models import SynthesisConfig
 from friday_memory.maintenance.recovery_models import (
     CHROMA_REBUILD_MAXIMUM_FLOAT32_ULP_DRIFT,
     MemoryMaintenanceLayout,
@@ -88,6 +90,10 @@ class VectorMemoryRecord(VectorMemoryReference):
 
 
 _MAX_SOURCE_PROVENANCE_CHARS = 32_000
+_MAX_SYNTHESIS_GROUPS_PER_PLAN = 128
+_MAX_SYNTHESIS_PROVIDER_RECORDS_PER_PLAN = 512
+_MAX_SYNTHESIS_SOURCE_RECORDS_PER_GROUP = 512
+_SYNTHESIS_FINGERPRINT_VERSION = "1"
 
 
 def _canonical_source_memories(source_memory_ids: tuple[str, ...]) -> str:
@@ -104,6 +110,22 @@ class DuplicateMemoryGroup(StrictMutationModel):
 
     survivor: VectorMemoryReference
     duplicates: tuple[VectorMemoryReference, ...]
+
+
+class SynthesisCandidateGroup(StrictMutationModel):
+    """One deterministic, topic-coherent provider input group."""
+
+    collection: str
+    topic: str = Field(min_length=1, max_length=256)
+    fingerprint: str = Field(pattern=r"^[0-9a-f]{64}$")
+    source_memory_ids: tuple[str, ...] = Field(min_length=2, max_length=512)
+
+
+class SynthesisMetadataMigration(VectorMemoryReference):
+    """Deterministic lineage backfill for a legacy synthesized record."""
+
+    topic: str = Field(min_length=1, max_length=256)
+    fingerprint: str = Field(pattern=r"^[0-9a-f]{64}$")
 
 
 class GraphEdgeReference(StrictMutationModel):
@@ -142,9 +164,13 @@ class MemoryMutationPlan(StrictMutationModel):
     graph_node_targets: tuple[str, ...] = ()
     graph_edge_targets: tuple[GraphEdgeReference, ...] = ()
     provider_records: tuple[VectorMemoryRecord, ...] = ()
+    synthesis_groups: tuple[SynthesisCandidateGroup, ...] = ()
+    synthesis_metadata_migrations: tuple[SynthesisMetadataMigration, ...] = ()
+    existing_document_hashes: tuple[str, ...] = ()
     target_records: tuple[VectorMemoryRecord, ...] = ()
     all_vector_references: tuple[VectorMemoryReference, ...] = ()
     maximum_output_count: int | None = Field(default=None, ge=0, le=128)
+    minimum_synthesis_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
     warnings: tuple[str, ...] = ()
     errors: tuple[MemoryMutationError, ...] = ()
 
@@ -161,6 +187,12 @@ class MemoryVectorAddition(VectorMemoryReference):
     document: str = Field(min_length=1, max_length=32_000)
     embedding: tuple[float, ...] = Field(min_length=1, max_length=8192)
     source_memory_ids: tuple[str, ...] = Field(min_length=2, max_length=256)
+    topic: str = Field(min_length=1, max_length=256)
+    confidence: float = Field(ge=0.0, le=1.0)
+    reasoning: str = Field(min_length=1, max_length=8_000)
+    synthesis_fingerprint: str = Field(pattern=r"^[0-9a-f]{64}$")
+    synthesis_version: str = Field(min_length=1, max_length=64)
+    created_at: datetime
 
     @model_validator(mode="after")
     def validate_embedding(self) -> MemoryVectorAddition:
@@ -175,6 +207,8 @@ class MemoryVectorAddition(VectorMemoryReference):
             > _MAX_SOURCE_PROVENANCE_CHARS
         ):
             raise ValueError("source memory provenance exceeds its bounded limit")
+        if self.created_at.tzinfo is None or self.created_at.utcoffset() is None:
+            raise ValueError("synthesis creation time must include a timezone")
         return self
 
 
@@ -227,6 +261,7 @@ class MemoryMutationCommand(StrictMutationModel):
     plan_id: str = Field(pattern=r"^[0-9a-f]{64}$")
     step: MemoryMutationStep
     vector_additions: tuple[MemoryVectorAddition, ...] = ()
+    synthesis_metadata_migrations: tuple[SynthesisMetadataMigration, ...] = ()
     verification_updates: tuple[MemoryVerificationUpdate, ...] = ()
     embedding_updates: tuple[MemoryEmbeddingUpdate, ...] = ()
     graph_embedding_updates: tuple[GraphEmbeddingUpdate, ...] = ()
@@ -234,7 +269,10 @@ class MemoryMutationCommand(StrictMutationModel):
     @model_validator(mode="after")
     def validate_step_payload(self) -> MemoryMutationCommand:
         fields_for_step = {
-            MemoryMutationStep.SYNTHESIZE: self.vector_additions,
+            MemoryMutationStep.SYNTHESIZE: (
+                *self.vector_additions,
+                *self.synthesis_metadata_migrations,
+            ),
             MemoryMutationStep.VERIFY: self.verification_updates,
             MemoryMutationStep.REEMBED: (
                 *self.embedding_updates,
@@ -323,9 +361,11 @@ class ExplicitMemoryMutationParticipant:
         layout: MemoryMaintenanceLayout,
         *,
         graph_store: ElementXGraphStore | None,
+        synthesis_config: SynthesisConfig | None = None,
     ) -> None:
         self.layout = layout
         self._graph_store = graph_store
+        self._synthesis_config = synthesis_config or SynthesisConfig()
 
     @staticmethod
     def _with_plan_id(plan: MemoryMutationPlan) -> MemoryMutationPlan:
@@ -407,11 +447,235 @@ class ExplicitMemoryMutationParticipant:
         normalized = _SPACE_PATTERN.sub(" ", document).strip().casefold()
         return normalized or None
 
+    @classmethod
+    def _document_hash(cls, document: str | None) -> str | None:
+        normalized = cls._normalized_document(document)
+        if normalized is None:
+            return None
+        return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
     @staticmethod
     def _is_insight(record: VectorMemoryRecord) -> bool:
         metadata = record.metadata or {}
         kind = metadata.get("type", metadata.get("memory_type"))
-        return kind in {"insight", "long_term"}
+        return kind in {"insight", "long_term", "meta_insight"}
+
+    @staticmethod
+    def _normalized_topic(record: VectorMemoryRecord) -> str | None:
+        topic = (record.metadata or {}).get("topic")
+        if not isinstance(topic, str):
+            return None
+        normalized = " ".join(topic.split()).casefold()
+        return normalized or None
+
+    @staticmethod
+    def _is_verified_source(record: VectorMemoryRecord) -> bool:
+        return (record.metadata or {}).get("verification_status") == "verified"
+
+    @staticmethod
+    def _synthesis_source_ids(record: VectorMemoryRecord) -> tuple[str, ...]:
+        raw = (record.metadata or {}).get("source_memories")
+        if not isinstance(raw, str) or len(raw) > _MAX_SOURCE_PROVENANCE_CHARS:
+            return ()
+        try:
+            decoded = json.loads(raw)
+        except (json.JSONDecodeError, TypeError):
+            return ()
+        if (
+            not isinstance(decoded, list)
+            or len(decoded) < 2
+            or len(decoded) > 256
+            or not all(isinstance(item, str) and item for item in decoded)
+        ):
+            return ()
+        result = tuple(decoded)
+        return result if len(result) == len(set(result)) else ()
+
+    @classmethod
+    def _synthesis_fingerprint(
+        cls,
+        collection: str,
+        topic: str,
+        records: tuple[VectorMemoryRecord, ...],
+    ) -> str:
+        sources = []
+        for record in records:
+            document_hash = cls._document_hash(record.document)
+            if document_hash is None:
+                raise ValueError("synthesis source document is empty")
+            sources.append((record.memory_id, document_hash))
+        payload = {
+            "collection": collection,
+            "topic": topic,
+            "sources": sorted(sources),
+            "version": _SYNTHESIS_FINGERPRINT_VERSION,
+        }
+        encoded = json.dumps(
+            payload,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=True,
+        ).encode("utf-8")
+        return hashlib.sha256(encoded).hexdigest()
+
+    def _synthesis_plan(
+        self,
+        records: tuple[VectorMemoryRecord, ...],
+    ) -> tuple[
+        tuple[VectorMemoryRecord, ...],
+        tuple[SynthesisCandidateGroup, ...],
+        tuple[SynthesisMetadataMigration, ...],
+        tuple[str, ...],
+        tuple[str, ...],
+    ]:
+        grouped: dict[tuple[str, str], list[VectorMemoryRecord]] = {}
+        unverified_sources = 0
+        for record in records:
+            topic = self._normalized_topic(record)
+            if (
+                not record.document
+                or not self._is_active(record)
+                or not self._is_insight(record)
+                or (record.metadata or {}).get("type") == "meta_insight"
+                or topic is None
+            ):
+                continue
+            if not self._is_verified_source(record):
+                unverified_sources += 1
+                continue
+            grouped.setdefault((record.collection, topic), []).append(record)
+
+        all_groups: list[tuple[SynthesisCandidateGroup, tuple[VectorMemoryRecord, ...]]] = []
+        deferred_source_records = 0
+        for (collection, topic), group_records in sorted(grouped.items()):
+            ordered = tuple(sorted(group_records, key=lambda item: item.memory_id))
+            if len(ordered) < self._synthesis_config.cluster_min_size:
+                continue
+            bounded_records = ordered[:_MAX_SYNTHESIS_SOURCE_RECORDS_PER_GROUP]
+            deferred_source_records += len(ordered) - len(bounded_records)
+            all_groups.append(
+                (
+                    SynthesisCandidateGroup(
+                        collection=collection,
+                        topic=topic,
+                        fingerprint=self._synthesis_fingerprint(
+                            collection,
+                            topic,
+                            ordered,
+                        ),
+                        source_memory_ids=tuple(
+                            record.memory_id for record in bounded_records
+                        ),
+                    ),
+                    bounded_records,
+                )
+            )
+
+        existing_fingerprints = {
+            str((record.metadata or {}).get("synthesis_fingerprint"))
+            for record in records
+            if self._is_active(record)
+            and (record.metadata or {}).get("type") == "meta_insight"
+            and isinstance(
+                (record.metadata or {}).get("synthesis_fingerprint"), str
+            )
+        }
+        migrations: list[SynthesisMetadataMigration] = []
+        legacy_records = tuple(
+            record
+            for record in records
+            if self._is_active(record)
+            and (record.metadata or {}).get("type") == "meta_insight"
+            and (record.metadata or {}).get("maintenance_generated") is True
+            and not (record.metadata or {}).get("synthesis_fingerprint")
+        )
+        pending_groups: list[SynthesisCandidateGroup] = []
+        provider_records: list[VectorMemoryRecord] = []
+        for group, bounded_group_records in all_groups:
+            covered = group.fingerprint in existing_fingerprints
+            group_source_ids = set(group.source_memory_ids)
+            if not covered:
+                matching_legacy = tuple(
+                    record
+                    for record in legacy_records
+                    if record.collection == group.collection
+                    and (
+                        legacy_source_ids := self._synthesis_source_ids(record)
+                    )
+                    and set(legacy_source_ids).issubset(group_source_ids)
+                )
+                if matching_legacy:
+                    covered = True
+                    migrations.extend(
+                        SynthesisMetadataMigration(
+                            collection=record.collection,
+                            memory_id=record.memory_id,
+                            topic=group.topic,
+                            fingerprint=group.fingerprint,
+                        )
+                        for record in matching_legacy
+                    )
+            if covered:
+                continue
+            pending_groups.append(group)
+            provider_records.extend(bounded_group_records)
+
+        selected_groups: list[SynthesisCandidateGroup] = []
+        selected_record_count = 0
+        deferred_groups = 0
+        for group in pending_groups:
+            group_record_count = len(group.source_memory_ids)
+            if (
+                len(selected_groups) >= _MAX_SYNTHESIS_GROUPS_PER_PLAN
+                or selected_record_count + group_record_count
+                > _MAX_SYNTHESIS_PROVIDER_RECORDS_PER_PLAN
+            ):
+                deferred_groups += 1
+                continue
+            selected_groups.append(group)
+            selected_record_count += group_record_count
+        pending_groups = selected_groups
+        selected_provider_keys = {
+            (group.collection, memory_id)
+            for group in pending_groups
+            for memory_id in group.source_memory_ids
+        }
+        provider_records = [
+            record
+            for record in provider_records
+            if (record.collection, record.memory_id) in selected_provider_keys
+        ]
+        document_hashes = tuple(
+            sorted(
+                document_hash
+                for record in records
+                if self._is_active(record)
+                and (document_hash := self._document_hash(record.document)) is not None
+            )
+        )
+        warnings: list[str] = []
+        if unverified_sources:
+            warnings.append(
+                f"{unverified_sources} synthesis source records are quarantined "
+                "until verification succeeds"
+            )
+        if deferred_groups:
+            warnings.append(
+                f"{deferred_groups} synthesis topic groups were deferred by the "
+                "per-run group limit"
+            )
+        if deferred_source_records:
+            warnings.append(
+                f"{deferred_source_records} synthesis source records were deferred "
+                "by the per-topic source limit"
+            )
+        return (
+            tuple(provider_records),
+            tuple(pending_groups),
+            tuple(migrations),
+            document_hashes,
+            tuple(warnings),
+        )
 
     @classmethod
     def _duplicate_groups(
@@ -487,22 +751,7 @@ class ExplicitMemoryMutationParticipant:
             if record.document and ExplicitMemoryMutationParticipant._is_active(record)
         )
         if step is MemoryMutationStep.SYNTHESIZE:
-            topic_counts: dict[str, int] = {}
-            for record in active:
-                topic = (record.metadata or {}).get("topic")
-                if isinstance(topic, str) and topic.strip():
-                    topic_counts[topic.strip().casefold()] = (
-                        topic_counts.get(topic.strip().casefold(), 0) + 1
-                    )
-            return tuple(
-                record
-                for record in active
-                if isinstance((record.metadata or {}).get("topic"), str)
-                and topic_counts.get(
-                    str((record.metadata or {}).get("topic")).strip().casefold(), 0
-                )
-                >= 2
-            )
+            return ()
         if step is MemoryMutationStep.VERIFY:
             return tuple(
                 record
@@ -574,14 +823,18 @@ class ExplicitMemoryMutationParticipant:
             if step is MemoryMutationStep.REEMBED
         )
         provider_records = self._provider_candidates(step, records)
-        synthesis_topics = {
+        synthesis_groups: tuple[SynthesisCandidateGroup, ...] = ()
+        synthesis_metadata_migrations: tuple[SynthesisMetadataMigration, ...] = ()
+        existing_document_hashes: tuple[str, ...] = ()
+        synthesis_warnings: tuple[str, ...] = ()
+        if step is MemoryMutationStep.SYNTHESIZE:
             (
-                record.collection,
-                str((record.metadata or {}).get("topic")).strip().casefold(),
-            )
-            for record in provider_records
-            if step is MemoryMutationStep.SYNTHESIZE
-        }
+                provider_records,
+                synthesis_groups,
+                synthesis_metadata_migrations,
+                existing_document_hashes,
+                synthesis_warnings,
+            ) = self._synthesis_plan(records)
         if step is MemoryMutationStep.DEDUPE:
             candidate_count = sum(len(group.duplicates) for group in duplicate_groups)
         elif step is MemoryMutationStep.PRUNE:
@@ -591,7 +844,11 @@ class ExplicitMemoryMutationParticipant:
             MemoryMutationStep.VERIFY,
             MemoryMutationStep.REEMBED,
         }:
-            candidate_count = len(provider_records) + len(edge_targets)
+            candidate_count = (
+                len(provider_records)
+                + len(synthesis_metadata_migrations)
+                + len(edge_targets)
+            )
         else:
             candidate_count = (
                 sum(len(group.duplicates) for group in duplicate_groups)
@@ -635,6 +892,9 @@ class ExplicitMemoryMutationParticipant:
                 ),
                 graph_edge_targets=edge_targets,
                 provider_records=provider_records,
+                synthesis_groups=synthesis_groups,
+                synthesis_metadata_migrations=synthesis_metadata_migrations,
+                existing_document_hashes=existing_document_hashes,
                 target_records=target_records,
                 all_vector_references=tuple(
                     VectorMemoryReference(
@@ -644,10 +904,16 @@ class ExplicitMemoryMutationParticipant:
                     for record in records
                 ),
                 maximum_output_count=(
-                    len(synthesis_topics)
+                    len(synthesis_groups)
                     if step is MemoryMutationStep.SYNTHESIZE
                     else None
                 ),
+                minimum_synthesis_confidence=(
+                    self._synthesis_config.meta_insight_confidence
+                    if step is MemoryMutationStep.SYNTHESIZE
+                    else None
+                ),
+                warnings=synthesis_warnings,
             )
         )
 
@@ -656,7 +922,7 @@ class ExplicitMemoryMutationParticipant:
 
     @staticmethod
     def _write_metadata(
-        metadata: dict[str, JsonValue] | None,
+        metadata: Mapping[str, object] | None,
     ) -> dict[str, str | int | float | bool]:
         result: dict[str, str | int | float | bool] = {}
         for key, value in (metadata or {}).items():
@@ -670,6 +936,7 @@ class ExplicitMemoryMutationParticipant:
     def _command_has_payload(command: MemoryMutationCommand) -> bool:
         return bool(
             command.vector_additions
+            or command.synthesis_metadata_migrations
             or command.verification_updates
             or command.embedding_updates
             or command.graph_embedding_updates
@@ -706,37 +973,71 @@ class ExplicitMemoryMutationParticipant:
             for item in plan.vector_collection_dimensions
         }
         if command.step is MemoryMutationStep.SYNTHESIZE:
-            allowed_collections = {
-                record.collection for record in plan.provider_records
-            }
+            groups = {group.fingerprint: group for group in plan.synthesis_groups}
+            if (
+                command.synthesis_metadata_migrations
+                != plan.synthesis_metadata_migrations
+            ):
+                raise ValueError("synthesis migration differs from its fresh plan")
             existing_keys = {
                 self._reference_key(reference)
                 for reference in plan.all_vector_references
             }
-            prefix = f"reorg-{plan.plan_id[:12]}-"
             addition_keys = {
                 self._reference_key(addition) for addition in command.vector_additions
             }
             if (
-                not command.vector_additions
-                or plan.maximum_output_count is None
+                plan.maximum_output_count is None
                 or len(command.vector_additions) > plan.maximum_output_count
                 or len(addition_keys) != len(command.vector_additions)
             ):
                 raise ValueError("synthesis candidates require provider output")
+            addition_fingerprints = {
+                addition.synthesis_fingerprint for addition in command.vector_additions
+            }
+            addition_document_hashes = {
+                self._document_hash(addition.document)
+                for addition in command.vector_additions
+            }
+            if (
+                len(addition_fingerprints) != len(command.vector_additions)
+                or len(addition_document_hashes) != len(command.vector_additions)
+                or any(
+                    document_hash in plan.existing_document_hashes
+                    for document_hash in addition_document_hashes
+                )
+            ):
+                raise ValueError("synthesis output duplicates existing memory")
             for addition in command.vector_additions:
+                group = groups.get(addition.synthesis_fingerprint)
                 source_keys = {
                     (addition.collection, memory_id)
                     for memory_id in addition.source_memory_ids
                 }
+                group_source_keys = (
+                    {
+                        (group.collection, memory_id)
+                        for memory_id in group.source_memory_ids
+                    }
+                    if group is not None
+                    else set()
+                )
                 if (
-                    addition.collection not in allowed_collections
-                    or not addition.memory_id.startswith(prefix)
+                    group is None
+                    or addition.collection != group.collection
+                    or addition.topic != group.topic
+                    or addition.memory_id
+                    != f"reorg-synth-{group.fingerprint[:20]}"
                     or self._reference_key(addition) in existing_keys
                     or not addition.document.strip()
                     or dimensions.get(addition.collection) != len(addition.embedding)
                     or len(source_keys) < 2
+                    or not source_keys.issubset(group_source_keys)
                     or not source_keys.issubset(provider_keys)
+                    or plan.minimum_synthesis_confidence is None
+                    or addition.confidence < plan.minimum_synthesis_confidence
+                    or addition.synthesis_version
+                    != _SYNTHESIS_FINGERPRINT_VERSION
                 ):
                     raise ValueError("synthesis output exceeds its fresh plan")
             return
@@ -844,6 +1145,26 @@ class ExplicitMemoryMutationParticipant:
                             metadata=metadata,
                         )
                     )
+            if command.step is MemoryMutationStep.SYNTHESIZE:
+                for migration in command.synthesis_metadata_migrations:
+                    result = collections[migration.collection].get(
+                        ids=[migration.memory_id],
+                        include=["metadatas"],
+                    )
+                    metadatas = result.get("metadatas")
+                    if not metadatas or metadatas[0] is None:
+                        raise ValueError("legacy synthesis metadata is absent")
+                    metadata = self._write_metadata(metadatas[0])
+                    metadata["topic"] = migration.topic
+                    metadata["synthesis_fingerprint"] = migration.fingerprint
+                    metadata["synthesis_version"] = _SYNTHESIS_FINGERPRINT_VERSION
+                    deterministic_updates.append(
+                        MemoryMetadataUpdate(
+                            collection=migration.collection,
+                            memory_id=migration.memory_id,
+                            metadata=metadata,
+                        )
+                    )
             for metadata_update in deterministic_updates:
                 collections[metadata_update.collection].update(
                     ids=[metadata_update.memory_id],
@@ -884,6 +1205,9 @@ class ExplicitMemoryMutationParticipant:
                     metadatas=[
                         {
                             "type": "meta_insight",
+                            "topic": addition.topic,
+                            "confidence": addition.confidence,
+                            "reasoning": addition.reasoning,
                             "source_count": len(addition.source_memory_ids),
                             "source_memories": _canonical_source_memories(
                                 addition.source_memory_ids
@@ -891,6 +1215,12 @@ class ExplicitMemoryMutationParticipant:
                             "provenance_source_type": "synthesis",
                             "maintenance_generated": True,
                             "verification_status": "unverified",
+                            "synthesis_fingerprint": addition.synthesis_fingerprint,
+                            "synthesis_version": addition.synthesis_version,
+                            "created_at": addition.created_at.astimezone(
+                                timezone.utc
+                            ).isoformat(),
+                            "created_at_ts": int(addition.created_at.timestamp()),
                         }
                         for addition in additions
                     ],
@@ -979,7 +1309,27 @@ class ExplicitMemoryMutationParticipant:
             graph_edges_by_key = {
                 (edge.source_id, edge.target_id, edge.relation): edge for edge in edges
             }
+            final_verification_statuses = {
+                self._reference_key(update): update.status.value
+                for command in commands
+                for update in command.verification_updates
+            }
             for command in commands:
+                for migration in command.synthesis_metadata_migrations:
+                    result = collections_by_name[migration.collection].get(
+                        ids=[migration.memory_id], include=["metadatas"]
+                    )
+                    metadatas = result.get("metadatas")
+                    if (
+                        metadatas is None
+                        or metadatas[0] is None
+                        or metadatas[0].get("topic") != migration.topic
+                        or metadatas[0].get("synthesis_fingerprint")
+                        != migration.fingerprint
+                        or metadatas[0].get("synthesis_version")
+                        != _SYNTHESIS_FINGERPRINT_VERSION
+                    ):
+                        raise ValueError("synthesis migration postcondition failed")
                 for addition in command.vector_additions:
                     result = collections_by_name[addition.collection].get(
                         ids=[addition.memory_id],
@@ -1002,6 +1352,24 @@ class ExplicitMemoryMutationParticipant:
                         or (metadatas[0] or {}).get("provenance_source_type")
                         != "synthesis"
                         or (metadatas[0] or {}).get("maintenance_generated") is not True
+                        or (metadatas[0] or {}).get("verification_status")
+                        != final_verification_statuses.get(
+                            self._reference_key(addition),
+                            "unverified",
+                        )
+                        or (metadatas[0] or {}).get("topic") != addition.topic
+                        or (metadatas[0] or {}).get("confidence")
+                        != addition.confidence
+                        or (metadatas[0] or {}).get("reasoning")
+                        != addition.reasoning
+                        or (metadatas[0] or {}).get("synthesis_fingerprint")
+                        != addition.synthesis_fingerprint
+                        or (metadatas[0] or {}).get("synthesis_version")
+                        != addition.synthesis_version
+                        or (metadatas[0] or {}).get("created_at")
+                        != addition.created_at.astimezone(timezone.utc).isoformat()
+                        or (metadatas[0] or {}).get("created_at_ts")
+                        != int(addition.created_at.timestamp())
                         or embeddings is None
                         or not self._embedding_equivalent(
                             embeddings[0], addition.embedding
@@ -1122,6 +1490,8 @@ __all__ = [
     "MemoryVerificationStatus",
     "MemoryVerificationUpdate",
     "MemoryVectorAddition",
+    "SynthesisCandidateGroup",
+    "SynthesisMetadataMigration",
     "VectorMemoryRecord",
     "VectorMemoryReference",
     "VectorCollectionDimension",

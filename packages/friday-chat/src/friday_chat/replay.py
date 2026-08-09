@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from friday_chat.runtime import FridayRuntime
+from friday_chat.session import SessionIdentity, SessionIdentityMismatchError
 from friday_chat.turns.processor import TurnProcessor
 
 SleepFn = Callable[[float], Awaitable[None]]
@@ -39,6 +40,7 @@ class ReplayService:
         self,
         runtime: FridayRuntime | None = None,
         *,
+        session_identity: SessionIdentity | None = None,
         sleep: SleepFn = asyncio.sleep,
     ) -> None:
         if runtime is None:
@@ -48,7 +50,15 @@ class ReplayService:
             runtime = build_runtime(
                 FridayChatConfig.model_validate(
                     {"llm": {"model": "fake/test-chat-model"}}
-                )
+                ),
+                session_identity=session_identity,
+            )
+        elif (
+            session_identity is not None
+            and runtime.session_identity != session_identity
+        ):
+            raise SessionIdentityMismatchError(
+                "replay session identity does not match injected runtime"
             )
         self.runtime = runtime
         self.sleep = sleep

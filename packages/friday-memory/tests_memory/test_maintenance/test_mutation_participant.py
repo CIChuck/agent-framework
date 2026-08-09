@@ -2,6 +2,7 @@
 
 import json
 from collections.abc import Sequence
+from datetime import datetime, timezone
 from pathlib import Path
 
 import chromadb
@@ -20,6 +21,7 @@ from friday_memory import (
     MemoryVerificationStatus,
     MemoryVerificationUpdate,
     ProvenanceMetadata,
+    SynthesisConfig,
 )
 from friday_memory.models.graph import MemoryStage as GraphMemoryStage
 from pydantic import ValidationError
@@ -27,6 +29,8 @@ from pydantic import ValidationError
 
 async def _participant(
     root: Path,
+    *,
+    synthesis_config: SynthesisConfig | None = None,
 ) -> tuple[ExplicitMemoryMutationParticipant, ElementXGraphStore]:
     vector = root / "vector"
     graph_path = root / "graph.gpickle"
@@ -47,10 +51,22 @@ async def _participant(
             "Synthetic pending fact",
         ],
         metadatas=[
-            {"type": "insight", "topic": "synthetic"},
-            {"type": "insight", "topic": "synthetic"},
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
             {"type": "insight", "stage": "decayed"},
-            {"type": "insight", "topic": "synthetic"},
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "verified",
+            },
         ],
         embeddings=embeddings,
     )
@@ -103,7 +119,14 @@ async def _participant(
         recovery_directory=root / "recovery",
         log_directory=root / "logs",
     )
-    return ExplicitMemoryMutationParticipant(layout, graph_store=graph), graph
+    return (
+        ExplicitMemoryMutationParticipant(
+            layout,
+            graph_store=graph,
+            synthesis_config=synthesis_config,
+        ),
+        graph,
+    )
 
 
 @pytest.mark.asyncio
@@ -135,7 +158,7 @@ async def test_plans_are_read_only_and_cover_all_configured_collections(
     assert [target.memory_id for target in prune.vector_targets] == ["expired"]
     assert prune.graph_node_targets == ("decayed-node",)
     assert synthesize.candidate_count == 3
-    assert verify.candidate_count == 4
+    assert verify.candidate_count == 1
     assert reembed.candidate_count == 5
     assert {
         collection.name: collection.count()
@@ -224,7 +247,117 @@ def test_synthesis_source_provenance_is_bounded() -> None:
             document="Synthetic provider-produced insight",
             embedding=(0.75, 0.25),
             source_memory_ids=("a" * 16_000, "b" * 16_000),
+            topic="synthetic",
+            confidence=0.9,
+            reasoning="Synthetic bounded provenance test",
+            synthesis_fingerprint="a" * 64,
+            synthesis_version="1",
+            created_at=datetime.now(timezone.utc),
         )
+
+
+@pytest.mark.asyncio
+async def test_synthesis_groups_are_verified_topic_bound_and_configured(
+    tmp_path: Path,
+) -> None:
+    participant, _ = await _participant(
+        tmp_path,
+        synthesis_config=SynthesisConfig(
+            cluster_min_size=2,
+            meta_insight_confidence=0.8,
+        ),
+    )
+    primary = chromadb.PersistentClient(path=str(tmp_path / "vector")).get_collection(
+        "primary"
+    )
+    primary.add(
+        ids=["bio-a", "bio-b", "rejected-synthetic"],
+        documents=[
+            "Synthetic biography A",
+            "Synthetic biography B",
+            "Rejected synthetic source",
+        ],
+        metadatas=[
+            {
+                "type": "insight",
+                "topic": "Biographical",
+                "verification_status": "verified",
+            },
+            {
+                "type": "insight",
+                "topic": " biographical ",
+                "verification_status": "verified",
+            },
+            {
+                "type": "insight",
+                "topic": "synthetic",
+                "verification_status": "rejected",
+            },
+        ],
+        embeddings=[[0.5, 0.5], [0.5, 0.5], [0.5, 0.5]],
+    )
+
+    plan = await participant.plan(MemoryMutationStep.SYNTHESIZE)
+
+    assert plan.minimum_synthesis_confidence == 0.8
+    assert {group.topic for group in plan.synthesis_groups} == {
+        "biographical",
+        "synthetic",
+    }
+    assert all(
+        "rejected-synthetic" not in group.source_memory_ids
+        for group in plan.synthesis_groups
+    )
+    assert all(
+        {
+            str((record.metadata or {}).get("topic")).strip().casefold()
+            for record in plan.provider_records
+            if record.memory_id in group.source_memory_ids
+        }
+        == {group.topic}
+        for group in plan.synthesis_groups
+    )
+
+
+@pytest.mark.asyncio
+async def test_legacy_synthesis_lineage_migrates_once_without_provider_output(
+    tmp_path: Path,
+) -> None:
+    participant, _ = await _participant(tmp_path)
+    primary = chromadb.PersistentClient(path=str(tmp_path / "vector")).get_collection(
+        "primary"
+    )
+    primary.add(
+        ids=["legacy-meta"],
+        documents=["Legacy synthesized memory"],
+        metadatas=[
+            {
+                "type": "meta_insight",
+                "source_memories": '["insight-a","insight-b"]',
+                "maintenance_generated": True,
+                "verification_status": "verified",
+            }
+        ],
+        embeddings=[[0.75, 0.25]],
+    )
+    plan = await participant.plan(MemoryMutationStep.SYNTHESIZE)
+    assert plan.synthesis_groups == ()
+    assert len(plan.synthesis_metadata_migrations) == 1
+
+    command = MemoryMutationCommand(
+        plan_id=plan.plan_id,
+        step=plan.step,
+        synthesis_metadata_migrations=plan.synthesis_metadata_migrations,
+    )
+    result = await participant.apply(plan, command)
+
+    assert result.succeeded
+    assert result.changed_count == 1
+    assert (await participant.verify_postconditions((command,))).verified
+    repeat_plan = await participant.plan(MemoryMutationStep.SYNTHESIZE)
+    assert repeat_plan.candidate_count == 0
+    assert repeat_plan.synthesis_groups == ()
+    assert repeat_plan.synthesis_metadata_migrations == ()
 
 
 @pytest.mark.asyncio
@@ -233,17 +366,25 @@ async def test_synthesis_verification_and_reembedding_postconditions(
 ) -> None:
     synthesis_participant, _ = await _participant(tmp_path / "synthesis")
     synthesis_plan = await synthesis_participant.plan(MemoryMutationStep.SYNTHESIZE)
+    synthesis_group = synthesis_plan.synthesis_groups[0]
     synthesis = MemoryVectorAddition(
         collection="primary",
-        memory_id=f"reorg-{synthesis_plan.plan_id[:12]}-synthetic",
+        memory_id=f"reorg-synth-{synthesis_group.fingerprint[:20]}",
         document="Synthetic provider-produced insight",
         embedding=(0.75, 0.25),
         source_memory_ids=("insight-a", "insight-b"),
+        topic=synthesis_group.topic,
+        confidence=0.9,
+        reasoning="Synthetic memories support one higher-order observation",
+        synthesis_fingerprint=synthesis_group.fingerprint,
+        synthesis_version="1",
+        created_at=datetime.now(timezone.utc),
     )
     synthesis_command = MemoryMutationCommand(
         plan_id=synthesis_plan.plan_id,
         step=MemoryMutationStep.SYNTHESIZE,
         vector_additions=(synthesis,),
+        synthesis_metadata_migrations=synthesis_plan.synthesis_metadata_migrations,
     )
     synthesis_result = await synthesis_participant.apply(
         synthesis_plan, synthesis_command
@@ -272,6 +413,12 @@ async def test_synthesis_verification_and_reembedding_postconditions(
     ]
     assert synthesized_metadata["source_memories"] == '["insight-a","insight-b"]'
     assert synthesized_metadata["provenance_source_type"] == "synthesis"
+    assert synthesized_metadata["topic"] == "synthetic"
+    assert synthesized_metadata["confidence"] == 0.9
+    assert synthesized_metadata["synthesis_fingerprint"] == synthesis_group.fingerprint
+    assert synthesized_metadata["verification_status"] == "unverified"
+    assert synthesized_metadata["created_at"] == synthesis.created_at.isoformat()
+    assert synthesized_metadata["created_at_ts"] == int(synthesis.created_at.timestamp())
     verification_after_synthesis = await synthesis_participant.plan(
         MemoryMutationStep.VERIFY
     )
@@ -296,6 +443,10 @@ async def test_synthesis_verification_and_reembedding_postconditions(
     )
     assert not corrupted_provenance.verified
     assert corrupted_provenance.errors[0].code.value == "postcondition_failed"
+
+    repeat_plan = await synthesis_participant.plan(MemoryMutationStep.SYNTHESIZE)
+    assert repeat_plan.candidate_count == 0
+    assert repeat_plan.synthesis_groups == ()
 
     verification_participant, _ = await _participant(tmp_path / "verification")
     verification_plan = await verification_participant.plan(MemoryMutationStep.VERIFY)

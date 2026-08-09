@@ -12,10 +12,9 @@ the chat client can be run using this dhell script : scripts/run-friday-chat-exa
 
 # Friday Chat Command Remediation Plan
 
-Status: approved for construction-directive preparation. Implementation still
-requires explicit execution of the approved construction directive; no
-remediation described below is implemented merely because it appears in this
-document.
+Status: construction executed through Gate F on 2026-08-08; Gates A-F are
+`PASS` under delegated independent supervisor approval. No merge, publication,
+or optional active-state smoke has occurred.
 
 Planning checkpoint: `31bbcf1` on
 `feature/friday-chat-command-remediation-1`
@@ -584,3 +583,62 @@ This remediation is complete only when:
 - active user state and external providers were untouched;
 - no unrelated changes, commits, pushes, PRs, or merges are included without
   separate authority.
+
+## Construction Evidence — Gate F PASS (2026-08-08)
+
+All six reported areas now have production-path evidence:
+
+- `/sessions` lists persisted transcript sessions with current and primed
+  identity markers;
+- `/transcript` and transcript exports query persisted current, selected, and
+  all-session data without copying SQLite or rewriting historical identities;
+- `/tool-budget`, with `/inject-tools` and `/clear-tools` support, shares one
+  canonical immutable selection snapshot across count/token enforcement,
+  context/model schemas, and turn telemetry;
+- `/cls` and `/clearscreen` return the same typed effect, invoke the app display
+  boundary once, produce no success substitute, and emit real terminal clear
+  and home sequences through supported-platform PTY coverage;
+- `/memory` reports typed real-store/session/context statistics and preserves
+  unavailable or unconfigured states instead of fabricating zeroes;
+- `/meta` lists active short- and long-term synthesized records with provenance,
+  excludes decayed records, and does not generate or reorganize memory.
+
+Cross-cutting remediation evidence proves that one immutable per-invocation
+session identity reaches runtime, memory, transcript, maintenance, app,
+command, and replay boundaries; session identity is not a seventh reported
+command area.
+
+The retained provider-free UAT derives configuration from
+`packages/friday-chat/config.example.yaml`, places every declared
+persistence/export/log/recovery path below one temporary root, seeds two
+transcripts plus episodic/vector/graph/access/meta state through public
+operations, uses deterministic chat and embedding doubles, and runs the exact
+required slash-command sequence through production CLI input, output, display,
+and PTY boundaries. Provider/network tripwires remain armed, the tool registry
+records no execution, and the UAT passes.
+
+Validation at this checkpoint:
+
+- prescribed focused modules: `109 passed in 1.54s`;
+- repository-example disposable UAT: `1 passed in 1.23s`;
+- retained disposable production module plus UAT: `9 passed in 1.38s`;
+- registry metadata plus UAT: `17 passed in 1.14s`;
+- full Friday Chat package: `356 passed in 8.80s`;
+- Ruff: clean; mypy: clean across `87` source files;
+- runtime/agent import smoke, `git diff --check`, baseline ancestry, and scoped
+  worktree inspection: pass;
+- repository root: expected exit `2`, `2009` items collected, with the sole
+  documented Friday Chat/Friday CLI `test_display.py` import-file mismatch.
+
+No Gate F framework upgrade gap was discovered. Existing `FU-004` remains the
+Gate C Friday Transcript archived-session row-mapping/public-API limitation;
+no frozen package, schema, example, dependency, workspace metadata, database
+layout, migration, recovery format, or default data root changed. The optional
+configured-script smoke remains deferred because it requires separate
+authority to read active local state and cannot replace the disposable UAT.
+
+Exact integration order: merge
+`feature/reorg-remediation-1` first, then merge
+`feature/friday-chat-command-remediation-1`. The authorized pre-implementation
+checkpoint is the only implementation-session commit/push; no post-checkpoint
+staging, commit, push, PR, or merge has occurred.

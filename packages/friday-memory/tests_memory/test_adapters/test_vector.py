@@ -16,6 +16,7 @@ Note: Tests use mock EmbeddingModel protocol from conftest fixtures.
 
 import uuid
 
+import chromadb
 import pytest
 from friday_memory import ChromaVectorStore
 
@@ -63,6 +64,46 @@ class TestNormalizeWhere:
 class TestChromaVectorStore:
     """Tests for ChromaVectorStore."""
 
+    def test_new_collection_uses_modern_hnsw_configuration(
+        self,
+        tmp_path,
+        mock_embedding_model,
+    ) -> None:
+        collection_name = "modern_configuration"
+        ChromaVectorStore(
+            collection_name=collection_name,
+            embedding_function=mock_embedding_model,
+            persist_directory=str(tmp_path),
+        )
+
+        collection = chromadb.PersistentClient(path=str(tmp_path)).get_collection(
+            collection_name
+        )
+        assert collection.metadata is None
+        assert collection.configuration_json["hnsw"]["space"] == "cosine"
+
+    def test_existing_legacy_hnsw_collection_remains_compatible(
+        self,
+        tmp_path,
+        mock_embedding_model,
+    ) -> None:
+        collection_name = "legacy_configuration"
+        client = chromadb.PersistentClient(path=str(tmp_path))
+        client.create_collection(
+            collection_name,
+            metadata={"hnsw:space": "cosine"},
+        )
+
+        ChromaVectorStore(
+            collection_name=collection_name,
+            embedding_function=mock_embedding_model,
+            persist_directory=str(tmp_path),
+        )
+
+        collection = client.get_collection(collection_name)
+        assert collection.metadata == {"hnsw:space": "cosine"}
+        assert collection.configuration_json["hnsw"]["space"] == "cosine"
+
     @pytest.mark.asyncio
     async def test_add_documents(self, vector_store: ChromaVectorStore) -> None:
         """Test adding documents to the store."""
@@ -88,6 +129,28 @@ class TestChromaVectorStore:
         assert result is True
         count = await vector_store.count()
         assert count == 0
+
+    @pytest.mark.asyncio
+    async def test_upsert_documents_reuses_stable_identity(
+        self,
+        vector_store: ChromaVectorStore,
+    ) -> None:
+        await vector_store.upsert_documents(
+            texts=["Initial extraction"],
+            metadatas=[{"source": "turn-1"}],
+            ids=["stable-extraction-id"],
+        )
+        await vector_store.upsert_documents(
+            texts=["Retried extraction"],
+            metadatas=[{"source": "turn-1", "retried": True}],
+            ids=["stable-extraction-id"],
+        )
+
+        assert await vector_store.count() == 1
+        stored = await vector_store.get_by_id("stable-extraction-id")
+        assert stored is not None
+        assert stored["text"] == "Retried extraction"
+        assert stored["metadata"]["retried"] is True
 
     @pytest.mark.asyncio
     async def test_query_documents(self, vector_store: ChromaVectorStore) -> None:

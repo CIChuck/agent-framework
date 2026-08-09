@@ -17,7 +17,7 @@ def _context(*, max_tool_result_chars: int = 50000) -> RegistryCommandContext:
             "llm": {"model": "openai/test-chat-model"},
             "tools": {
                 "loop": {"max_tool_result_chars": max_tool_result_chars},
-                "context": {"max_schema_budget_percent": 12},
+                "context": {"max_budget_ratio": 0.25},
             },
         }
     )
@@ -142,21 +142,33 @@ async def test_inject_clear_and_tool_budget_commands() -> None:
     registry = build_default_registry()
     context = _context()
 
-    _, inject_result = await registry.execute("/inject-tools echo missing", context)
+    _, rejected_result = await registry.execute(
+        "/inject-tools echo missing",
+        context,
+    )
+    _, rejected_budget = await registry.execute("/tool-budget", context)
+    _, inject_result = await registry.execute("/inject-tools echo", context)
     _, budget_result = await registry.execute("/tool-budget", context)
     _, clear_result = await registry.execute("/clear-tools", context)
     _, cleared_budget = await registry.execute("/tool-budget", context)
 
+    assert rejected_result is not None
+    assert "unknown_tool" in rejected_result.output
+    assert "Manual selection unchanged" in rejected_result.output
+    assert rejected_budget is not None
+    assert "mode: automatic" in rejected_budget.output
+    assert "pending_manual: none" in rejected_budget.output
     assert inject_result is not None
     assert "- echo (utility)" in inject_result.output
-    assert "Missing tools: missing" in inject_result.output
     assert budget_result is not None
-    assert "active_tools: 1" in budget_result.output
-    assert "budget_limit_percent: 12" in budget_result.output
+    assert "mode: manual" in budget_result.output
+    assert "pending_manual: 1 (echo)" in budget_result.output
+    assert "max_budget_ratio: 0.250" in budget_result.output
     assert clear_result is not None
     assert clear_result.output == "Cleared injected tools."
     assert cleared_budget is not None
-    assert cleared_budget.output == "No active tools injected."
+    assert "mode: automatic" in cleared_budget.output
+    assert "pending_manual: none" in cleared_budget.output
 
 
 async def test_recommend_tools_returns_scored_results() -> None:

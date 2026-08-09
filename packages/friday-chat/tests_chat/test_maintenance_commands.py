@@ -19,7 +19,11 @@ from friday_chat.reorganization import (
     ReorganizationResult,
     ResultStatus,
 )
-from friday_chat.runtime import FakeMemoryController, build_runtime
+from friday_chat.runtime import (
+    FakeMemoryController,
+    PendingExtractionTurn,
+    build_runtime,
+)
 
 
 def _context(
@@ -610,7 +614,9 @@ async def test_compact_flushes_pending_extraction_before_run() -> None:
     registry = build_default_registry()
     context = _context()
     assert context.runtime is not None
-    context.runtime.maintenance.pending_extraction = [("u", "a")]
+    context.runtime.maintenance.pending_extraction = [
+        PendingExtractionTurn("compact-turn", "u", "a")
+    ]
 
     _, result = await registry.execute("/compact", context)
 
@@ -626,14 +632,15 @@ async def test_compact_flush_failure_preserves_pending_turns_and_skips_compactor
     registry = build_default_registry()
     context = _context()
     assert context.runtime is not None
-    context.runtime.maintenance.pending_extraction = [("u", "a")]
+    pending = PendingExtractionTurn("compact-failure-turn", "u", "a")
+    context.runtime.maintenance.pending_extraction = [pending]
     context.runtime.maintenance.flush_pending_error = RuntimeError("connection lost")
 
     _, result = await registry.execute("/compact", context)
 
     assert result is not None
     assert "Check reachable LLM/embedding services" in result.output
-    assert context.runtime.maintenance.pending_extraction == [("u", "a")]
+    assert context.runtime.maintenance.pending_extraction == [pending]
     assert context.runtime.maintenance.compaction_calls == []
 
 

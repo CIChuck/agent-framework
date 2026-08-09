@@ -76,6 +76,9 @@ class DisplayController(HeartbeatFactory, Protocol):
     def prompt_text(self, *, user_name: str) -> str:
         """Return the interactive input prompt string."""
 
+    def clear_screen(self) -> None:
+        """Clear the interactive terminal display."""
+
 
 @dataclass(frozen=True)
 class ResponseDisplayConfig:
@@ -223,6 +226,10 @@ class FridayCliDisplay:
 
     def create_heartbeat(self, kind: HeartbeatKind) -> Heartbeat:
         return FridayCliHeartbeat.for_kind(kind)
+
+    def clear_screen(self) -> None:
+        """Delegate terminal clearing to the configured Rich console."""
+        get_console().clear()
 
 
 class FridayCliOutputSink:

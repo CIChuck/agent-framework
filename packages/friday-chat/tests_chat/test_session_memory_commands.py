@@ -106,7 +106,9 @@ async def test_basic_memory_diagnostic_commands_with_fake_runtime(tmp_path: Path
         assert result is not None
         command_outputs[command] = result.output
 
-    assert "stored_turns" in command_outputs["/memory"]
+    assert "episodic_current_session_turns: 0" in command_outputs["/memory"]
+    assert "Graph:\n- nodes: not configured" in command_outputs["/memory"]
+    assert "Last context:\n- total_tokens: unavailable" in command_outputs["/memory"]
     assert "characters" in command_outputs["/context --debug"]
     assert "System: You are Friday." in command_outputs["/prompt"]
     assert "retrieved_memory_count" in command_outputs["/debug"]
@@ -117,7 +119,8 @@ async def test_basic_memory_diagnostic_commands_with_fake_runtime(tmp_path: Path
     assert command_outputs["/entities"] == "No entities found."
     assert command_outputs["/insights"] == "No insights found."
     assert command_outputs["/summaries"] == "No summaries found."
-    assert command_outputs["/meta"] == "No meta insights found."
+    assert "No meta insights found." in command_outputs["/meta"]
+    assert "Decayed records: excluded" in command_outputs["/meta"]
 
 
 async def test_entities_command_lists_relationships() -> None:

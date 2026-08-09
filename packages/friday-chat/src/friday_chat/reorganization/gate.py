@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 
@@ -102,8 +102,13 @@ class MaintenanceAdmissionGate:
                     self._shared_by_task[task] = depth - 1
 
     @asynccontextmanager
-    async def exclusive(self, operation: str) -> AsyncIterator[None]:
-        """Close new shared admission and wait for active writers to drain."""
+    async def exclusive(
+        self,
+        operation: str,
+        *,
+        prepare: Callable[[], Awaitable[None]] | None = None,
+    ) -> AsyncIterator[None]:
+        """Close new shared admission, prepare, then drain active writers."""
         del operation
         task = self._current_task()
         if task is self._exclusive_owner:
@@ -118,18 +123,29 @@ class MaintenanceAdmissionGate:
                 "shared admission cannot be upgraded to exclusive"
             )
 
+        waiter_registered = False
         async with self._condition:
             self._exclusive_waiters += 1
-            try:
+            waiter_registered = True
+            self._condition.notify_all()
+        try:
+            if prepare is not None:
+                await prepare()
+            async with self._condition:
                 await self._condition.wait_for(
                     lambda: self._exclusive_owner is None
                     and self._active_shared == 0
                 )
                 self._exclusive_owner = task
                 self._exclusive_depth = 1
-            finally:
                 self._exclusive_waiters -= 1
+                waiter_registered = False
                 self._condition.notify_all()
+        finally:
+            if waiter_registered:
+                async with self._condition:
+                    self._exclusive_waiters -= 1
+                    self._condition.notify_all()
         try:
             yield
         finally:
