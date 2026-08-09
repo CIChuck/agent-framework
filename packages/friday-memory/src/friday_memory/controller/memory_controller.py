@@ -1701,6 +1701,9 @@ class MemoryController:
         text: str,
         provenance: ProvenanceMetadata | None = None,
         extra_metadata: dict[str, Any] | None = None,
+        *,
+        record_id: str | None = None,
+        upsert: bool = False,
     ) -> bool:
         """
         Writes a semantic block (e.g., insight, summary) to the Vector store.
@@ -1723,8 +1726,9 @@ class MemoryController:
                 "The provenance parameter cannot be None."
             )
 
-        # Generate unique ID
-        insight_id = str(uuid.uuid4())
+        if upsert and record_id is None:
+            raise ValueError("idempotent insight storage requires a stable record ID")
+        insight_id = record_id or str(uuid.uuid4())
 
         # Prepare metadata dict with provenance
         meta_dict: dict[str, Any] = {
@@ -1741,11 +1745,18 @@ class MemoryController:
             meta_dict.update(extra_metadata)
 
         # Store in short-term collection (lifecycle-aware)
-        await self._collection_manager.add_to_short_term(
-            texts=[text],
-            metadatas=[meta_dict],
-            ids=[insight_id],
-        )
+        if upsert:
+            await self._collection_manager.upsert_to_short_term(
+                texts=[text],
+                metadatas=[meta_dict],
+                ids=[insight_id],
+            )
+        else:
+            await self._collection_manager.add_to_short_term(
+                texts=[text],
+                metadatas=[meta_dict],
+                ids=[insight_id],
+            )
 
         self._emit_event(
             "insight_stored",
@@ -1822,6 +1833,9 @@ class MemoryController:
         self,
         items: list[tuple[str, dict[str, Any]]],
         provenance: ProvenanceMetadata | None = None,
+        *,
+        record_ids: list[str] | None = None,
+        upsert: bool = False,
     ) -> int:
         """
         Batch store insights with per-item metadata to the Vector store.
@@ -1850,8 +1864,13 @@ class MemoryController:
                 "The provenance parameter cannot be None."
             )
 
-        # Generate unique IDs for each item
-        ids = [str(uuid.uuid4()) for _ in items]
+        if record_ids is not None and len(record_ids) != len(items):
+            raise ValueError("insight record IDs must match the item count")
+        if record_ids is not None and len(record_ids) != len(set(record_ids)):
+            raise ValueError("insight record IDs must be unique")
+        if upsert and record_ids is None:
+            raise ValueError("idempotent insight storage requires stable record IDs")
+        ids = record_ids or [str(uuid.uuid4()) for _ in items]
         texts = [text for text, _ in items]
 
         # Build metadata for each item: provenance + extra_metadata
@@ -1872,11 +1891,18 @@ class MemoryController:
             metadatas.append(meta)
 
         # Store batch in short-term collection (lifecycle-aware)
-        await self._collection_manager.add_to_short_term(
-            texts=texts,
-            metadatas=metadatas,
-            ids=ids,
-        )
+        if upsert:
+            await self._collection_manager.upsert_to_short_term(
+                texts=texts,
+                metadatas=metadatas,
+                ids=ids,
+            )
+        else:
+            await self._collection_manager.add_to_short_term(
+                texts=texts,
+                metadatas=metadatas,
+                ids=ids,
+            )
 
         self._emit_event(
             "insights_batch_stored",

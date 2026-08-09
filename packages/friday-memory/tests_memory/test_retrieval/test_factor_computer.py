@@ -3,7 +3,7 @@
 """Tests for RetrievalFactorComputer."""
 
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pytest
 from friday_memory.retrieval.collection_manager import (
@@ -116,6 +116,18 @@ class TestRetrievalFactorComputer:
         factor = computer.compute_time_factor(created_at, now)
 
         # exp(-0.005 * 24) ≈ 0.887
+        assert 0.88 < factor < 0.90
+
+    def test_compute_time_factor_accepts_aware_timestamp_with_naive_now(
+        self,
+        computer,
+        now,
+    ) -> None:
+        aware_now = now.astimezone()
+        created_at = (aware_now - timedelta(hours=24)).astimezone(timezone.utc)
+
+        factor = computer.compute_time_factor(created_at, now)
+
         assert 0.88 < factor < 0.90
 
     def test_compute_time_factor_week_old_memory(self, computer, now) -> None:

@@ -66,6 +66,7 @@ Command and subsystem business rules are defined in
 | High-value nested config compatibility | `tests/integration/memory/config.yaml` | `friday_chat.config`, `friday_chat.runtime` | Nested sections `memory.retrieval`, `memory.priming`, `memory.cache`, `memory.supporting_context`, `memory.passage_router`, `memory.query_relevance_filter`, `memory.compaction`, `maintenance.llm`, `maintenance.prompts`, `tools.registry`, `tools.context`, `smart_file.llm`, `web.reader`, `security.sanitization`, and `speech.selection` are accepted and traced | tested |
 | Config traceability | `friday.py:7121`, `friday.py:7203`, `friday.py:7400`, `friday.py:7817` | `friday_chat.config`, `friday_chat.runtime` | Every supported top-level and nested config key maps to a runtime consumer, compatibility handler, or explicit deprecation record | tested |
 | Runtime composition | `friday.py:7530` | `friday_chat.runtime` | LLM, embedding, stores, transcript, context assembler, extractor, tools, and maintenance services are created through factory methods | tested |
+| Per-invocation session identity | `friday.py:6020`, `friday.py:7530` | `friday_chat.session`, `friday_chat.runtime`, `friday_chat.app`, `friday_chat.replay` | One immutable `session_<unique-id>` identity is generated per production invocation and propagated through runtime, persistence, app, command, maintenance, and replay boundaries; injected identity mismatch fails explicitly | verified |
 | Interactive loop | `friday.py:7968` | `friday_chat.app` | Empty input skipped, commands dispatched, chat messages processed, EOF and keyboard interrupt exit cleanly | tested |
 | Shutdown | `friday.py:8003` | `friday_chat.app`, `friday_chat.background` | Exit maintenance runs as configured; transcript finalized; tracked tasks cancelled or awaited | tested |
 
@@ -93,10 +94,10 @@ Command and subsystem business rules are defined in
 | Single command registry | `friday.py:429`, `friday.py:1111` | `friday_chat.commands` | FridayV2 has no legacy fallback router; all commands register through one registry | tested |
 | `/exit`, `/quit`, `/q` | `friday.py:437` | `commands.session` | Exit command returns app-level exit signal | tested |
 | `/clear` | `friday.py:446` | `commands.session` | Clears turn IDs, pending extraction, last payload, and turn count | tested |
-| `/cls`, `/clearscreen` | `friday.py:453` | `commands.session` | Clears terminal through display abstraction | tested |
+| `/cls`, `/clearscreen` | `friday.py:453` | `commands.session` | Returns one typed clear effect; the app invokes the production display boundary exactly once with no false replacement output, and supported-platform PTY coverage observes terminal clear/home sequences | verified |
 | `/help`, `/help <command>` | `friday.py:1087`, `friday.py:5642` | `commands.help` | Lists grouped commands and detailed argument help | tested |
 | `/history` | `friday.py:462` | `commands.memory` | Shows conversation history with timestamps and tool calls | tested |
-| `/memory` | `friday.py:469` | `commands.memory` | Shows episodic, vector, graph, transcript, and lifecycle stats where available | tested |
+| `/memory` | `friday.py:469` | `commands.memory` | Shows typed episodic, vector, graph, transcript, lifecycle, priming, session, and context statistics; unavailable/unconfigured sources are not rendered as fabricated zeroes | verified |
 | `/context [--debug] [--file]` | `friday.py:476` | `commands.memory` | Shows assembled context, optional token diagnostics, and optional export | tested |
 | `/prompt [--file]` | `friday.py:497` | `commands.memory` | Shows full formatted prompt and optional export | tested |
 | `/prime` | `friday.py:511` | `commands.memory` | Loads and displays primed context before first turn | tested |
@@ -108,25 +109,25 @@ Command and subsystem business rules are defined in
 | `/entities`, `/entities nodes`, `/entities <name>` | `friday.py:539` | `commands.memory` | Supports entity list, node details, and lookup views | tested |
 | `/insights` | `friday.py:564` | `commands.memory` | Lists insight records with structured metadata | tested |
 | `/summaries` | `friday.py:571` | `commands.memory` | Lists summary records | tested |
-| `/meta` | `friday.py:578` | `commands.memory` | Lists meta insights | tested |
+| `/meta` | `friday.py:578` | `commands.memory` | Lists active short- and long-term meta insights through public memory APIs with provenance and partial-failure warnings; excludes decayed records and performs no synthesis or reorganization | verified |
 | `/vars` | `friday.py:585` | `commands.memory` | Shows scoped variables | tested |
 | `/set <key> <value>` | `friday.py:1087` | `commands.memory` | Sets scoped variable with validation | tested |
-| `/sessions` | `friday.py:593` | `commands.transcript` | Lists transcript sessions | tested |
-| `/transcript [session_id]` | `friday.py:600` | `commands.transcript` | Shows current or selected transcript; supports export subcommand behavior | tested |
-| `/export [format]` | `friday.py:616` | `commands.transcript` | Supports csv, jsonl, markdown, and training exports | tested |
-| `/export-prompts [session_id]` | `friday.py:634` | `commands.transcript` | Exports raw context log prompts/responses to JSON | tested |
+| `/sessions` | `friday.py:593` | `commands.transcript` | Lists persisted sessions through the public transcript query API with current and primed markers | verified |
+| `/transcript [session_id]` | `friday.py:600` | `commands.transcript` | Queries persisted current or safely bound selected-session entries; all-session export uses deterministic public queries beneath the configured export root | verified |
+| `/export [format]` | `friday.py:616` | `commands.transcript` | Exports persisted current-session entries as csv, jsonl, markdown, or training data beneath the configured export root | verified |
+| `/export-prompts [session_id]` | `friday.py:634` | `commands.transcript` | Exports persisted raw context-log records for the current or safely bound selected session, with honest capture-disabled guidance | verified |
 | `/reset [store]` | `friday.py:651` | `commands.maintenance` | Resets all memory or graph/vector/episodic store only | tested |
 | `/reorganize ...` | `friday.py:671`, `friday.py:3361` | `commands.maintenance` | Supports all prototype flags, including `--force-reembed`, and dry-run default | tested |
 | `/lifecycle ...` | `friday.py:734` | `commands.maintenance` | Supports execute, stats, optimize, and flush modes | tested |
 | `/migrate ...` | `friday.py:767`, `friday.py:3855` | `commands.maintenance` | Resolves prototype mismatch: registry advertises `--execute`/`--stats`, handler implements `--force`; FridayV2 supports compatibility aliases or documents an intentional change | tested |
 | `/compact` | `friday.py:794` | `commands.maintenance` | Runs manual compaction and reports result | tested |
 | `/replay <csv> [delay]` | `friday.py:803`, `friday.py:3124` | `friday_chat.replay`, `commands.testing` | Resets memory, loads CSV turns in order, processes through normal pipeline | tested |
-| `/tools [category]` | `friday.py:827` | `commands.tools` | Lists tools and filters by category | tested |
+| `/tools [category]` | `friday.py:827` | `commands.tools` | Lists registered runtime tool definitions and filters by category | verified |
 | `/run-tool <name> [json]` | `friday.py:841`, `friday.py:4117` | `commands.tools` | Validates JSON params and plain-text param mapping, executes tool, sanitizes output, records security stats | tested |
-| `/inject-tools <names>` | `friday.py:854`, `friday.py:4231` | `commands.tools` | Sets active tool schemas for chat context and resolves whitespace-vs-comma argument mismatch | tested |
-| `/clear-tools` | `friday.py:868` | `commands.tools` | Clears active tool schemas | tested |
+| `/inject-tools <names>` | `friday.py:854`, `friday.py:4231` | `commands.tools` | Atomically sets an exact persistent manual schema selection after canonical name, count, and token-budget validation; supports tested whitespace/comma separators | verified |
+| `/clear-tools` | `friday.py:868` | `commands.tools` | Clears pending manual selection and restores automatic per-turn selection without disabling the registry | verified |
 | `/recommend-tools <query>` | `friday.py:875` | `commands.tools` | Shows recommended tools for query | tested |
-| `/tool-budget` | `friday.py:889` | `commands.tools` | Shows tool token budget impact | tested |
+| `/tool-budget` | `friday.py:889` | `commands.tools` | Reports authoritative automatic/manual/last-completed/executed selection state and the same canonical schema-token snapshot consumed by turn budgeting and the model payload | verified |
 | `/security` | `friday.py:897` | `commands.security` | Shows security config and scan/detection stats | tested |
 | `/security-test [type]` | `friday.py:904` | `commands.security` | Runs injection detection probes | tested |
 | `/security-config <setting> <value>` | `friday.py:921` | `commands.security` | Updates security config with rollback on invalid values | tested |
@@ -149,7 +150,7 @@ Command and subsystem business rules are defined in
 | Feature | Prototype evidence | Target | Acceptance criteria | Status |
 | --- | --- | --- | --- | --- |
 | Tool registry config loading | `friday.py:7175` | `friday_chat.tools.registry` | Loads configured tools without mutable module-global lookup | tested |
-| Auto tool context injection | `friday.py:7817` | `friday_chat.runtime` | Honors `tools.context.include_in_context` by activating all loaded tool schemas at startup | tested |
+| Auto tool context injection | `friday.py:7817` | `friday_chat.runtime`, `friday_chat.tools.selection`, `friday_chat.turns.processor` | Intentionally changes startup-wide activation into bounded query-aware automatic selection or persistent validated manual selection when `tools.context.include_in_context` is enabled; one immutable canonical schema snapshot feeds context, budget telemetry, and the model call | verified |
 | Passage router setup | `friday.py:7400` | `friday_chat.runtime` | Optional passage router LLM/config is constructed from `memory.passage_router` and applied to recalled passages with graceful fallback | tested |
 | Maintenance LLM roles | `friday.py:7481` | `friday_chat.runtime` | Optional synthesizer, classifier, researcher, and judge LLMs are constructed with fallback reporting | tested |
 | Session maintenance config | `config.yaml`, `friday.py:8003` | `friday_chat.config`, `friday_chat.app` | `session.flush_on_exit`, `session.lifecycle_on_exit`, `session.reorganize_on_exit`, and `session.reorganize_mode` control exit maintenance | tested |
@@ -179,6 +180,7 @@ Command and subsystem business rules are defined in
 | Config traceability | Every supported config key has a mapped consumer, compatibility handler, or explicit deprecation record | tested |
 | Framework freeze | No FridayV2 parity implementation test mutates existing framework packages; upgrade needs are logged instead | tested |
 | Contract coverage | Every implemented parity row has a behavioral contract or explicit simple-command exemption in `parity_overrides.yaml` | tested |
+| Disposable command UAT | Example-derived one-root real runtime, public seeded stores, deterministic chat/embedding doubles, transport tripwires, production CLI input/output/display, supported-platform PTY, exact Gate F slash-command sequence | verified |
 | Command registry | Every command is registered exactly once and appears in help | tested |
 | Command parsing | Flags, positional args, unknown commands, detailed help, `/migrate` compatibility aliases, and `/inject-tools` name separators | tested |
 | Turn processor | No-tool streaming path with fake LLM and fake memory controller | tested |

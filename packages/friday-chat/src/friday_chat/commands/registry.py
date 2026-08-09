@@ -2,19 +2,69 @@
 
 from __future__ import annotations
 
-import csv
-import io
 import json
-from collections.abc import Awaitable, Callable, Iterable, Mapping
+import re
+from collections.abc import Awaitable, Callable, Iterable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
+from friday_chat.commands.contracts import (
+    CommandArgument,
+    CommandContext,
+    CommandHandler,
+    CommandMetadata,
+    CommandResult,
+    CommandUiEffect,
+)
 from friday_chat.commands.files import (
     SmartFileReader,
     format_file_read,
     parse_line_limit,
 )
+from friday_chat.commands.memory import (
+    insights_handler,
+    memory_handler,
+    meta_handler,
+    summaries_handler,
+)
+from friday_chat.commands.memory import (
+    preview_text as _preview_text,
+)
+from friday_chat.commands.memory import (
+    record_value as _record_value,
+)
+from friday_chat.commands.session import cls_handler
+from friday_chat.commands.tools import (
+    clear_tools_handler,
+    inject_tools_handler,
+    tool_budget_handler,
+)
+from friday_chat.commands.tools import (
+    find_tool as _find_tool,
+)
+from friday_chat.commands.tools import (
+    list_runtime_tools as _list_runtime_tools,
+)
+from friday_chat.commands.transcript import (
+    export_directory as _export_directory,
+)
+from friday_chat.commands.transcript import (
+    export_handler,
+    export_prompts_handler,
+    sessions_handler,
+    transcript_handler,
+)
+from friday_chat.reorganization.contracts import (
+    OperationTrigger,
+    ProgressStep,
+    RecoveryRequest,
+    ReorganizationMode,
+    ReorganizationRequest,
+    ReorganizationResult,
+)
+from friday_chat.reorganization.coordinator import ReorganizationCoordinator
+from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.replay import ReplayService, parse_replay_delay
 from friday_chat.security import sanitize_payload, validate_security_update
 from friday_chat.speech import (
@@ -23,74 +73,17 @@ from friday_chat.speech import (
 )
 from friday_chat.tools.schemas import ToolDefinition
 
-if TYPE_CHECKING:
-    from friday_chat.runtime import FridayRuntime
-
-
-@dataclass
-class CommandContext:
-    """Runtime context passed to command handlers."""
-
-    runtime: FridayRuntime | None = None
-    exit_requested: bool = False
-    variables: dict[str, str] = field(default_factory=dict)
-    history: list[tuple[str, str]] = field(default_factory=list)
-    last_context: str | None = None
-    last_prompt: str | None = None
-    last_debug: dict[str, str] = field(default_factory=dict)
-    last_timing: dict[str, float] = field(default_factory=dict)
-    injected_tools: set[str] = field(default_factory=set)
-    tool_results: list[str] = field(default_factory=list)
-    tool_lifecycle_records: list[str] = field(default_factory=list)
-    tool_ingestions: list[str] = field(default_factory=list)
-    injected_payload: str | None = None
-    security_stats: dict[str, int] = field(
-        default_factory=lambda: {
-            "total_scans": 0,
-            "detections": 0,
-            "blocked": 0,
-            "patterns_seen": 0,
-        }
-    )
-
-
-@dataclass(frozen=True)
-class CommandResult:
-    """Result from command dispatch."""
-
-    output: str
-    handled: bool = True
-    exit_requested: bool = False
-
-
-@dataclass(frozen=True)
-class CommandArgument:
-    """One user-facing command argument used by generated help."""
-
-    name: str
-    description: str
-    required: bool = False
-    default: str | None = None
-    choices: tuple[str, ...] = ()
-
-
-@dataclass(frozen=True)
-class CommandMetadata:
-    """Command metadata used for dispatch and generated help."""
-
-    name: str
-    description: str
-    category: str
-    usage: str
-    aliases: tuple[str, ...] = ()
-    arguments: tuple[CommandArgument, ...] = ()
-    detail: str | None = None
-
-
-CommandHandler = Callable[
-    [CommandContext, tuple[str, ...], CommandMetadata],
-    Awaitable[CommandResult],
-]
+_SHARED_ADMISSION_COMMANDS = frozenset(
+    {
+        "reset",
+        "lifecycle",
+        "migrate",
+        "compact",
+        "ingest",
+        "replay",
+        "run-tool",
+    }
+)
 
 
 class CommandRegistry:
@@ -189,7 +182,15 @@ class CommandRegistry:
             )
 
         handler = self._handlers[canonical_name]
-        result = await handler(context, args, metadata)
+        gate = getattr(context, "maintenance_gate", None)
+        if (
+            canonical_name in _SHARED_ADMISSION_COMMANDS
+            and isinstance(gate, MaintenanceAdmissionGate)
+        ):
+            async with gate.shared(f"command:{canonical_name}"):
+                result = await handler(context, args, metadata)
+        else:
+            result = await handler(context, args, metadata)
         if result.exit_requested:
             context.exit_requested = True
         return True, result
@@ -262,17 +263,9 @@ async def _clear_handler(
     _metadata: CommandMetadata,
 ) -> CommandResult:
     context.history.clear()
-    if context.runtime is not None and hasattr(context.runtime.memory, "stored_turns"):
-        context.runtime.memory.stored_turns.clear()
+    if context.runtime is not None:
+        await context.runtime.memory.clear_session_memory()
     return CommandResult(output="Conversation history cleared.")
-
-
-async def _cls_handler(
-    _context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return CommandResult(output="Screen cleared.")
 
 
 async def _history_handler(
@@ -287,26 +280,6 @@ async def _history_handler(
         lines.append(f"{index}. User: {user_message}")
         lines.append(f"   Friday: {assistant_message}")
     return CommandResult(output="\n".join(lines))
-
-
-async def _memory_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    stored_count = 0
-    retrieval_count = 0
-    if context.runtime is not None and hasattr(context.runtime.memory, "stored_turns"):
-        stored_count = len(context.runtime.memory.stored_turns)
-    if context.runtime is not None and hasattr(context.runtime.memory, "retrievals"):
-        retrieval_count = len(context.runtime.memory.retrievals)
-    return CommandResult(
-        output=(
-            "Memory statistics:\n"
-            f"- stored_turns: {stored_count}\n"
-            f"- retrievals: {retrieval_count}"
-        )
-    )
 
 
 async def _context_handler(
@@ -464,30 +437,6 @@ async def _entities_handler(
     return CommandResult(output="\n".join(lines))
 
 
-async def _insights_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Insights", "list_insights")
-
-
-async def _summaries_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Summaries", "list_summaries")
-
-
-async def _meta_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    return await _memory_record_list(context, "Meta insights", "list_meta_insights")
-
-
 async def _reset_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -518,8 +467,9 @@ async def _reset_handler(
     context.last_context = None
     context.last_prompt = None
     context.last_debug = {}
-    if hasattr(context.runtime.memory, "stored_turns"):
-        context.runtime.memory.stored_turns.clear()
+    context.last_budget_status = None
+    if requested_store in {None, "episodic"}:
+        await context.runtime.memory.clear_session_memory()
     if requested_store is None:
         context.history.clear()
         context.runtime.maintenance.pending_extraction.clear()
@@ -537,40 +487,185 @@ async def _reorganize_handler(
     args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
+    try:
+        invocation = _parse_reorganize_invocation(args)
+    except _ReorganizeUsageError as exc:
+        return CommandResult(output=str(exc))
+
+    if invocation.recovery_run_id is not None:
+        coordinator = getattr(context, "reorganization_coordinator", None)
+        if not isinstance(coordinator, ReorganizationCoordinator):
+            return CommandResult(output="Reorganization coordinator is not initialized.")
+        recovery_request = RecoveryRequest(
+            run_id=invocation.recovery_run_id,
+            execute=not invocation.dry_run,
+        )
+        if not invocation.dry_run:
+            refusal = _reorganization_execute_refusal(coordinator, recovery_request)
+            if refusal is not None:
+                return CommandResult(output=refusal)
+        progress = _CommandReorganizationProgress.for_context(context)
+        if progress is not None:
+            await progress.acknowledge(
+                mode="recovery",
+                dry_run=invocation.dry_run,
+            )
+        try:
+            result = await coordinator.recover(
+                recovery_request,
+                progress=progress,
+            )
+        except Exception as exc:
+            return CommandResult(output=_reorganization_failure_output(exc))
+        return CommandResult(
+            output=_format_reorganization_result(
+                result,
+                dry_run=invocation.dry_run,
+            )
+        )
+
     if context.runtime is None or not context.runtime.config.memory.persist_directory:
         return CommandResult(output="Cannot reorganize: memory.persist_directory is required.")
+    coordinator = getattr(context, "reorganization_coordinator", None)
+    if not isinstance(coordinator, ReorganizationCoordinator):
+        return CommandResult(output="Reorganization coordinator is not initialized.")
 
-    flags = set(args)
-    dry_run = "--execute" not in flags
-    backup_first = "--no-backup" not in flags
-    mode = _select_reorganize_mode(flags)
+    reorganization_request = ReorganizationRequest(
+        trigger=OperationTrigger.MANUAL,
+        mode=ReorganizationMode(invocation.mode),
+        execute=not invocation.dry_run,
+        skip_synthesis=invocation.skip_synthesis,
+        skip_verify=invocation.skip_verify,
+        skip_lifecycle=invocation.skip_lifecycle,
+        force_reembed=invocation.force_reembed,
+    )
+    if not invocation.dry_run:
+        refusal = _reorganization_execute_refusal(
+            coordinator,
+            reorganization_request,
+        )
+        if refusal is not None:
+            return CommandResult(output=refusal)
+
+    progress = _CommandReorganizationProgress.for_context(context)
+    if progress is not None:
+        await progress.acknowledge(
+            mode=invocation.mode,
+            dry_run=invocation.dry_run,
+        )
 
     try:
-        result = await context.runtime.maintenance.reorganize(
-            mode=mode,
-            dry_run=dry_run,
-            backup_first=backup_first,
-            skip_synthesis="--skip-synthesis" in flags,
-            skip_verify="--skip-verify" in flags,
-            skip_lifecycle="--skip-lifecycle" in flags,
-            force_reembed="--force-reembed" in flags,
+        result = await coordinator.run(
+            reorganization_request,
+            progress=progress,
         )
     except Exception as exc:
-        return CommandResult(output=f"Error during reorganization: {_classify_error(exc)}")
+        return CommandResult(output=_reorganization_failure_output(exc))
 
+    return CommandResult(
+        output=_format_reorganization_result(result, dry_run=invocation.dry_run)
+    )
+
+
+def _format_reorganization_result(
+    result: ReorganizationResult,
+    *,
+    dry_run: bool,
+) -> str:
+    """Render typed, content-safe coordinator evidence for the command surface."""
     lines = [
-        f"Reorganization mode: {result['mode']}",
-        f"Dry run: {result['dry_run']}",
-        f"Backup first: {result['backup_first']}",
-        f"Scanned: {result['scanned']}",
-        f"Changed: {result['changed']}",
+        f"Reorganization mode: {result.mode.value if result.mode else 'recovery'}",
+        f"Dry run: {dry_run}",
+        f"Status: {result.status.value}",
     ]
-    if context.runtime.diagnostics.maintenance_llm_fallbacks:
+    if result.run_id is not None:
+        lines.append(f"Run ID: {result.run_id}")
+    if result.recovery_manifest_path is not None:
+        lines.append(f"Recovery manifest: {result.recovery_manifest_path}")
+    if result.journal_path is not None:
+        lines.append(f"Journal: {result.journal_path}")
+    if result.reorganization_log_path is not None:
+        lines.append(f"Reorganization log: {result.reorganization_log_path}")
+    if dry_run:
+        lines.append("Recovery bundle: not created during dry run")
+    elif result.recovery_manifest_path is None:
+        lines.append("Recovery bundle: unavailable")
+    if result.attempted_steps:
         lines.append(
-            "LLM fallbacks: "
-            + ", ".join(context.runtime.diagnostics.maintenance_llm_fallbacks)
+            "Attempted progress: "
+            + ", ".join(step.value for step in result.attempted_steps)
         )
-    return CommandResult(output="\n".join(lines))
+    if result.completed_steps:
+        lines.append(
+            "Completed progress: "
+            + ", ".join(step.value for step in result.completed_steps)
+        )
+    if result.skipped_steps:
+        lines.append(
+            "Skipped progress: "
+            + ", ".join(step.value for step in result.skipped_steps)
+        )
+    for store in result.stores:
+        count = "unavailable" if store.item_count is None else str(store.item_count)
+        lines.append(
+            f"Store {store.store}: {store.status.value}; "
+            f"verified={str(store.verified).lower()}; items={count}"
+        )
+    for step in result.mutation_steps:
+        scanned = (
+            "unavailable" if step.scanned_count is None else str(step.scanned_count)
+        )
+        candidates = (
+            "unavailable"
+            if step.candidate_count is None
+            else str(step.candidate_count)
+        )
+        changed = (
+            "unavailable" if step.changed_count is None else str(step.changed_count)
+        )
+        lines.append(
+            f"Step {step.step.value}: {step.status.value}; scanned={scanned}; "
+            f"candidates={candidates}; changed={changed}"
+        )
+    lines.extend(f"Warning: {warning}" for warning in result.warnings)
+    lines.extend(
+        f"Error [{error.code.value}]: {error.message}"
+        for error in result.errors
+    )
+    return "\n".join(lines)
+
+
+@dataclass
+class _CommandReorganizationProgress:
+    """One-command bounded, content-safe progress bridge."""
+
+    write: Callable[[str], Awaitable[None]]
+    emitted: int = 0
+
+    _MAX_EVENTS = 24
+
+    @classmethod
+    def for_context(
+        cls,
+        context: CommandContext,
+    ) -> _CommandReorganizationProgress | None:
+        if context.command_progress is None:
+            return None
+        return cls(write=context.command_progress)
+
+    async def acknowledge(self, *, mode: str, dry_run: bool) -> None:
+        await self._emit(
+            f"Reorganization accepted: mode={mode}; dry_run={str(dry_run).lower()}"
+        )
+
+    async def __call__(self, step: ProgressStep, message: str) -> None:
+        await self._emit(f"Reorganization progress [{step.value}]: {message}")
+
+    async def _emit(self, message: str) -> None:
+        if self.emitted >= self._MAX_EVENTS:
+            return
+        self.emitted += 1
+        await self.write(message)
 
 
 async def _lifecycle_handler(
@@ -1088,70 +1183,6 @@ async def _workflow_handler(
     return CommandResult(output=f"Unknown workflow subcommand: {subcommand}")
 
 
-async def _sessions_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    turns = _read_transcript_turns(context)
-    return CommandResult(
-        output=(
-            "Transcript sessions:\n"
-            f"- current-session ({len(turns)} turns)"
-        )
-    )
-
-
-async def _transcript_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if args and args[0] == "export":
-        path = _write_transcript_csv(context, "friday_transcripts.csv")
-        return CommandResult(output=f"Exported transcript database to {path}")
-    if args and args[0] != "current-session":
-        return CommandResult(output=f"Transcript session not found: {args[0]}")
-
-    turns = _read_transcript_turns(context)
-    if not turns:
-        return CommandResult(output="No transcript turns recorded.")
-    return CommandResult(output=_format_transcript(turns))
-
-
-async def _export_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    export_format = args[0].lower() if args else "jsonl"
-    if export_format == "md":
-        export_format = "markdown"
-    if export_format not in {"csv", "jsonl", "markdown", "training"}:
-        return CommandResult(output="Usage: /export [csv|jsonl|markdown|md|training]")
-
-    path = _write_current_session_export(context, export_format)
-    return CommandResult(output=f"Exported current session to {path}")
-
-
-async def _export_prompts_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    context_logs = _read_context_logs(context)
-    if not context_logs:
-        return CommandResult(output="No captured raw prompts to export.")
-
-    path = _export_directory(context) / "friday_prompts.json"
-    payload = [
-        {"prompt": prompt, "raw_response": raw_response}
-        for prompt, raw_response in context_logs
-    ]
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    return CommandResult(output=f"Exported raw prompts to {path}")
-
-
 async def _tools_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1232,40 +1263,6 @@ async def _run_tool_handler(
     return CommandResult(output=f"Tool {tool.name} result:\n{llm_output}")
 
 
-async def _inject_tools_handler(
-    context: CommandContext,
-    args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    if not args:
-        return CommandResult(output="Usage: /inject-tools <names>")
-
-    missing: list[str] = []
-    injected: list[ToolDefinition] = []
-    for name in args:
-        tool = _find_tool(context, name)
-        if tool is None:
-            missing.append(name)
-            continue
-        context.injected_tools.add(tool.name)
-        injected.append(tool)
-
-    lines = ["Injected tools:"]
-    lines.extend(f"- {tool.name} ({tool.category})" for tool in injected)
-    if missing:
-        lines.append("Missing tools: " + ", ".join(missing))
-    return CommandResult(output="\n".join(lines))
-
-
-async def _clear_tools_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    context.injected_tools.clear()
-    return CommandResult(output="Cleared injected tools.")
-
-
 async def _recommend_tools_handler(
     context: CommandContext,
     args: tuple[str, ...],
@@ -1292,36 +1289,6 @@ async def _recommend_tools_handler(
             f"category={tool.category}, reason={reason}"
         )
     return CommandResult(output="\n".join(lines))
-
-
-async def _tool_budget_handler(
-    context: CommandContext,
-    _args: tuple[str, ...],
-    _metadata: CommandMetadata,
-) -> CommandResult:
-    active_names = sorted(context.injected_tools)
-    if not active_names:
-        return CommandResult(output="No active tools injected.")
-
-    max_percent = 10
-    if context.runtime is not None:
-        raw_percent = context.runtime.config.tools.context.get("max_schema_budget_percent")
-        if isinstance(raw_percent, int):
-            max_percent = raw_percent
-    estimated_tokens = sum(len(name) + 20 for name in active_names)
-    max_allowed = 1000
-    usage_percent = (estimated_tokens / max_allowed) * 100
-    return CommandResult(
-        output=(
-            "Tool budget:\n"
-            f"- active_tools: {len(active_names)}\n"
-            f"- estimated_tokens: {estimated_tokens}\n"
-            f"- max_allowed: {max_allowed}\n"
-            f"- budget_limit_percent: {max_percent}\n"
-            f"- usage_percent: {usage_percent:.1f}\n"
-            f"- injected: {', '.join(active_names)}"
-        )
-    )
 
 
 async def _vars_handler(
@@ -1365,6 +1332,8 @@ class RegistryCommandContext(CommandContext):
     """Command context that carries the active registry for help rendering."""
 
     registry: CommandRegistry = field(default_factory=lambda: build_default_registry())
+    maintenance_gate: MaintenanceAdmissionGate | None = None
+    reorganization_coordinator: ReorganizationCoordinator | None = None
 
 
 def build_default_registry() -> CommandRegistry:
@@ -1401,6 +1370,7 @@ def build_default_registry() -> CommandRegistry:
             usage=spec.usage,
             aliases=spec.aliases,
             arguments=spec.arguments,
+            detail=spec.detail,
             handler=BASIC_COMMAND_HANDLERS.get(spec.name),
         )
 
@@ -1409,9 +1379,9 @@ def build_default_registry() -> CommandRegistry:
 
 BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "clear": _clear_handler,
-    "cls": _cls_handler,
+    "cls": cls_handler,
     "history": _history_handler,
-    "memory": _memory_handler,
+    "memory": memory_handler,
     "context": _context_handler,
     "prompt": _prompt_handler,
     "debug": _debug_handler,
@@ -1420,9 +1390,9 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "prime": _prime_handler,
     "debug-retrieval": _debug_retrieval_handler,
     "entities": _entities_handler,
-    "insights": _insights_handler,
-    "summaries": _summaries_handler,
-    "meta": _meta_handler,
+    "insights": insights_handler,
+    "summaries": summaries_handler,
+    "meta": meta_handler,
     "reset": _reset_handler,
     "reorganize": _reorganize_handler,
     "lifecycle": _lifecycle_handler,
@@ -1444,16 +1414,16 @@ BASIC_COMMAND_HANDLERS: dict[str, CommandHandler] = {
     "delegate": _delegate_handler,
     "status": _status_handler,
     "workflow": _workflow_handler,
-    "sessions": _sessions_handler,
-    "transcript": _transcript_handler,
-    "export": _export_handler,
-    "export-prompts": _export_prompts_handler,
+    "sessions": sessions_handler,
+    "transcript": transcript_handler,
+    "export": export_handler,
+    "export-prompts": export_prompts_handler,
     "tools": _tools_handler,
     "run-tool": _run_tool_handler,
-    "inject-tools": _inject_tools_handler,
-    "clear-tools": _clear_tools_handler,
+    "inject-tools": inject_tools_handler,
+    "clear-tools": clear_tools_handler,
     "recommend-tools": _recommend_tools_handler,
-    "tool-budget": _tool_budget_handler,
+    "tool-budget": tool_budget_handler,
     "vars": _vars_handler,
     "set": _set_handler,
 }
@@ -1525,50 +1495,6 @@ def _render_arguments(
     return lines
 
 
-async def _memory_record_list(
-    context: CommandContext,
-    title: str,
-    method_name: str,
-) -> CommandResult:
-    if context.runtime is None:
-        return CommandResult(output="Memory runtime is not initialized.")
-    method = getattr(context.runtime.memory, method_name)
-    records = await method()
-    if not records:
-        return CommandResult(output=f"No {title.lower()} found.")
-    lines = [f"{title}:"]
-    for record in records[:100]:
-        lines.append(f"- {_record_summary(record)}")
-    return CommandResult(output="\n".join(lines))
-
-
-def _record_summary(record: Mapping[str, Any]) -> str:
-    text = _record_value(record, "text", "content", "summary", "document")
-    if text:
-        return _preview_text(text)
-    metadata = record.get("metadata")
-    if isinstance(metadata, Mapping):
-        text = _record_value(metadata, "text", "content", "summary", "topic")
-        if text:
-            return _preview_text(text)
-    return _preview_text(json.dumps(record, default=str))
-
-
-def _record_value(record: Mapping[str, Any], *keys: str) -> str:
-    for key in keys:
-        value = record.get(key)
-        if value is not None:
-            return str(value)
-    return ""
-
-
-def _preview_text(text: str, *, limit: int = 160) -> str:
-    normalized = " ".join(text.split())
-    if len(normalized) <= limit:
-        return normalized
-    return normalized[: limit - 3] + "..."
-
-
 def _build_context_text(context: CommandContext) -> str:
     sections = ["Context payload:"]
     if context.runtime is not None and context.runtime.tool_context:
@@ -1601,18 +1527,155 @@ def _write_export_file(context: CommandContext, kind: str, text: str) -> Path:
     return path
 
 
-def _select_reorganize_mode(flags: set[str]) -> str:
-    for flag, mode in (
-        ("--backup", "backup"),
-        ("--dedupe", "dedupe"),
-        ("--analyze", "analyze"),
-        ("--prune", "prune"),
-        ("--synthesize", "synthesize"),
-        ("--verify", "verify"),
-    ):
-        if flag in flags:
-            return mode
-    return "full"
+_REORGANIZE_MODE_FLAGS = {
+    "--backup": "backup",
+    "--dedupe": "dedupe",
+    "--analyze": "analyze",
+    "--prune": "prune",
+    "--synthesize": "synthesize",
+    "--verify": "verify",
+}
+_REORGANIZE_FULL_ONLY_FLAGS = (
+    "--skip-synthesis",
+    "--skip-verify",
+    "--skip-lifecycle",
+    "--force-reembed",
+)
+_REORGANIZE_USAGE = (
+    "Usage: /reorganize [--execute] "
+    "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
+    "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] [--force-reembed]\n"
+    "       /reorganize --recover <run-id> [--execute]"
+)
+_REORGANIZE_RUN_ID = re.compile(r"^[0-9a-f]{32}$")
+
+
+class _ReorganizeUsageError(ValueError):
+    """Raised when /reorganize arguments violate the strict grammar."""
+
+
+@dataclass(frozen=True)
+class _ReorganizeInvocation:
+    mode: str
+    dry_run: bool
+    skip_synthesis: bool
+    skip_verify: bool
+    skip_lifecycle: bool
+    force_reembed: bool
+    recovery_run_id: str | None = None
+
+
+def _parse_reorganize_invocation(args: tuple[str, ...]) -> _ReorganizeInvocation:
+    """Parse /reorganize arguments under the strict remediation grammar."""
+    known_flags = (
+        set(_REORGANIZE_MODE_FLAGS) | set(_REORGANIZE_FULL_ONLY_FLAGS) | {"--execute"}
+    )
+    seen: set[str] = set()
+    recovery_run_id: str | None = None
+    index = 0
+    while index < len(args):
+        token = args[index]
+        if token == "--recover":
+            if token in seen:
+                raise _ReorganizeUsageError(
+                    f"Duplicate argument '{token}'.\n{_REORGANIZE_USAGE}"
+                )
+            seen.add(token)
+            if index + 1 >= len(args):
+                raise _ReorganizeUsageError(
+                    f"--recover requires a run ID.\n{_REORGANIZE_USAGE}"
+                )
+            recovery_run_id = args[index + 1]
+            if _REORGANIZE_RUN_ID.fullmatch(recovery_run_id) is None:
+                raise _ReorganizeUsageError(
+                    "Recovery run ID must be 32 lowercase hexadecimal characters.\n"
+                    f"{_REORGANIZE_USAGE}"
+                )
+            index += 2
+            continue
+        if token in known_flags:
+            if token in seen:
+                raise _ReorganizeUsageError(
+                    f"Duplicate argument '{token}'.\n{_REORGANIZE_USAGE}"
+                )
+            seen.add(token)
+            index += 1
+            continue
+        if token == "execute":
+            raise _ReorganizeUsageError(
+                "Unknown argument 'execute'. Mutation requires the exact "
+                f"--execute flag.\n{_REORGANIZE_USAGE}"
+            )
+        if token == "--no-backup":
+            raise _ReorganizeUsageError(
+                "--no-backup has been removed. Execute mode always creates a "
+                "verified recovery bundle before mutation."
+            )
+        raise _ReorganizeUsageError(
+            f"Unknown argument '{token}'.\n{_REORGANIZE_USAGE}"
+        )
+    mode_flags = [token for token in args if token in _REORGANIZE_MODE_FLAGS]
+    full_only = [token for token in args if token in _REORGANIZE_FULL_ONLY_FLAGS]
+    if recovery_run_id is not None:
+        if mode_flags or full_only:
+            raise _ReorganizeUsageError(
+                "--recover cannot be combined with ordinary reorganization modes "
+                f"or flags.\n{_REORGANIZE_USAGE}"
+            )
+        return _ReorganizeInvocation(
+            mode="full",
+            dry_run="--execute" not in args,
+            skip_synthesis=False,
+            skip_verify=False,
+            skip_lifecycle=False,
+            force_reembed=False,
+            recovery_run_id=recovery_run_id,
+        )
+    if len(mode_flags) > 1:
+        raise _ReorganizeUsageError(
+            "Conflicting mode flags: "
+            + " ".join(mode_flags)
+            + f". Supply at most one.\n{_REORGANIZE_USAGE}"
+        )
+    mode = _REORGANIZE_MODE_FLAGS[mode_flags[0]] if mode_flags else "full"
+    if mode != "full" and full_only:
+        raise _ReorganizeUsageError(
+            f"{full_only[0]} is only valid with the full reorganization mode.\n"
+            f"{_REORGANIZE_USAGE}"
+        )
+    execute = "--execute" in args
+    if mode == "analyze" and execute:
+        raise _ReorganizeUsageError(
+            "--analyze is analysis-only; --execute has no effect and is rejected."
+        )
+    return _ReorganizeInvocation(
+        mode=mode,
+        dry_run=not execute,
+        skip_synthesis="--skip-synthesis" in args,
+        skip_verify="--skip-verify" in args,
+        skip_lifecycle="--skip-lifecycle" in args,
+        force_reembed="--force-reembed" in args,
+    )
+
+
+def _reorganization_execute_refusal(
+    coordinator: ReorganizationCoordinator,
+    request: ReorganizationRequest | RecoveryRequest,
+) -> str | None:
+    """Return a fail-closed refusal from the shared coordinator capability."""
+    capability = coordinator.execution_capability
+    if not capability.available_for(request):
+        return f"Reorganization execute is disabled: {capability.reason_for(request)}"
+    return None
+
+
+def _reorganization_failure_output(exc: BaseException) -> str:
+    """Render bounded type-only failure evidence for the command surface."""
+    error_type = re.sub(r"[^A-Za-z0-9_.-]", "_", type(exc).__name__)[:64]
+    return (
+        "Reorganization failed safely "
+        f"({error_type or 'Error'}). Review sanitized diagnostics and recovery status."
+    )
 
 
 def _classify_error(exc: BaseException) -> str:
@@ -1625,110 +1688,6 @@ def _classify_error(exc: BaseException) -> str:
     if "connection" in lower_message or "connect" in lower_message:
         return f"{message} Check reachable LLM/embedding services."
     return message or exc.__class__.__name__
-
-
-def _export_directory(context: CommandContext) -> Path:
-    export_directory = Path("./exports")
-    if context.runtime is not None and context.runtime.config.transcript.export_directory:
-        export_directory = Path(context.runtime.config.transcript.export_directory)
-    export_directory.mkdir(parents=True, exist_ok=True)
-    return export_directory
-
-
-def _read_transcript_turns(context: CommandContext) -> list[tuple[str, str]]:
-    if context.runtime is None:
-        return []
-    turns = getattr(context.runtime.transcript, "turns", [])
-    if not isinstance(turns, list):
-        return []
-    return [
-        (str(user_message), str(assistant_message))
-        for user_message, assistant_message in turns
-    ]
-
-
-def _read_context_logs(context: CommandContext) -> list[tuple[str, str]]:
-    if context.runtime is None:
-        return []
-    context_logs = getattr(context.runtime.transcript, "context_logs", [])
-    if not isinstance(context_logs, list):
-        return []
-    return [(str(prompt), str(response)) for prompt, response in context_logs]
-
-
-def _format_transcript(turns: list[tuple[str, str]]) -> str:
-    lines = ["Transcript: current-session"]
-    for index, (user_message, assistant_message) in enumerate(turns, start=1):
-        lines.append(f"{index}. User: {user_message}")
-        lines.append(f"   Friday: {assistant_message}")
-    return "\n".join(lines)
-
-
-def _write_transcript_csv(context: CommandContext, filename: str) -> Path:
-    path = _export_directory(context) / filename
-    handle = io.StringIO()
-    writer = csv.writer(handle)
-    writer.writerow(["session_id", "turn_number", "user_message", "assistant_message"])
-    for index, (user_message, assistant_message) in enumerate(
-        _read_transcript_turns(context),
-        start=1,
-    ):
-        writer.writerow(["current-session", index, user_message, assistant_message])
-    path.write_text(handle.getvalue(), encoding="utf-8")
-    return path
-
-
-def _write_current_session_export(context: CommandContext, export_format: str) -> Path:
-    turns = _read_transcript_turns(context)
-    export_directory = _export_directory(context)
-    if export_format == "csv":
-        return _write_transcript_csv(context, "friday_current_session.csv")
-    if export_format == "jsonl":
-        path = export_directory / "friday_current_session.jsonl"
-        lines = [
-            json.dumps(
-                {
-                    "session_id": "current-session",
-                    "turn_number": index,
-                    "user_message": user_message,
-                    "assistant_message": assistant_message,
-                }
-            )
-            for index, (user_message, assistant_message) in enumerate(turns, start=1)
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
-        return path
-    if export_format == "training":
-        path = export_directory / "friday_current_session_training.jsonl"
-        lines = [
-            json.dumps(
-                {
-                    "messages": [
-                        {"role": "user", "content": user_message},
-                        {"role": "assistant", "content": assistant_message},
-                    ]
-                }
-            )
-            for user_message, assistant_message in turns
-        ]
-        path.write_text("\n".join(lines), encoding="utf-8")
-        return path
-
-    path = export_directory / "friday_current_session.md"
-    path.write_text(_format_transcript_markdown(turns), encoding="utf-8")
-    return path
-
-
-def _format_transcript_markdown(turns: list[tuple[str, str]]) -> str:
-    lines = ["# Transcript: current-session", ""]
-    for index, (user_message, assistant_message) in enumerate(turns, start=1):
-        lines.append(f"## Turn {index}")
-        lines.append("")
-        lines.append(f"**User:** {user_message}")
-        lines.append("")
-        lines.append(f"**Friday:** {assistant_message}")
-        lines.append("")
-    return "\n".join(lines).rstrip() + "\n"
 
 
 def _format_speech_config(context: CommandContext) -> str:
@@ -1754,19 +1713,6 @@ def _parse_workflow_inputs(args: tuple[str, ...]) -> dict[str, str]:
         key, value = arg.split("=", maxsplit=1)
         inputs[key] = value
     return inputs
-
-
-def _list_runtime_tools(context: CommandContext) -> list[ToolDefinition]:
-    if context.runtime is None:
-        return []
-    return list(context.runtime.tools.list_tools())
-
-
-def _find_tool(context: CommandContext, name: str) -> ToolDefinition | None:
-    for tool in _list_runtime_tools(context):
-        if tool.name == name:
-            return tool
-    return None
 
 
 def _tool_parameter_names(tool: ToolDefinition) -> list[str]:
@@ -1860,6 +1806,7 @@ class CommandSpec:
     usage: str
     aliases: tuple[str, ...] = ()
     arguments: tuple[CommandArgument, ...] = ()
+    detail: str | None = None
 
 
 def _argument(
@@ -1883,10 +1830,14 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     CommandSpec("clear", "Clear conversation history.", "session", "/clear"),
     CommandSpec(
         "cls",
-        "Clear the terminal screen.",
+        "Clear the terminal through the display boundary.",
         "session",
         "/cls",
         aliases=("clearscreen",),
+        detail=(
+            "Requests one clear-screen UI effect and emits no replacement text. "
+            "Unavailable or failed display boundaries report an honest error."
+        ),
     ),
     CommandSpec("history", "Show conversation history.", "session", "/history"),
     CommandSpec("vars", "Show scoped variables.", "session", "/vars"),
@@ -1904,7 +1855,17 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             ),
         ),
     ),
-    CommandSpec("memory", "Show memory statistics.", "memory", "/memory"),
+    CommandSpec(
+        "memory",
+        "Show typed memory, transcript, session, and context statistics.",
+        "memory",
+        "/memory",
+        detail=(
+            "Reports public episodic, vector, graph, transcript, lifecycle, "
+            "priming, app-session, and last-context metrics. Empty stores report "
+            "zero; unavailable or unconfigured components are labeled honestly."
+        ),
+    ),
     CommandSpec(
         "context",
         "Show the assembled context payload.",
@@ -1945,7 +1906,18 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec("insights", "List durable insights.", "memory", "/insights"),
     CommandSpec("summaries", "List turn summaries.", "memory", "/summaries"),
-    CommandSpec("meta", "List meta insights.", "memory", "/meta"),
+    CommandSpec(
+        "meta",
+        "List active meta insights with lifecycle and provenance metadata.",
+        "memory",
+        "/meta",
+        detail=(
+            "Queries typed short- and long-term meta_insight records, excludes "
+            "decayed records, and shows bounded synthesis provenance, source, "
+            "confidence, and verification fields when available. It never runs "
+            "synthesis or reorganization."
+        ),
+    ),
     CommandSpec(
         "reset",
         "Reset one or more memory stores.",
@@ -1984,40 +1956,67 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
         "memory",
         "/list-ingested",
     ),
-    CommandSpec("sessions", "List transcript sessions.", "transcript", "/sessions"),
+    CommandSpec(
+        "sessions",
+        "List persisted transcript sessions with current and primed markers.",
+        "transcript",
+        "/sessions",
+    ),
     CommandSpec(
         "transcript",
-        "Show current or selected transcript.",
+        "Show a persisted current or selected transcript, or export all sessions.",
         "transcript",
-        "/transcript [current-session|export]",
+        "/transcript [session_id|export]",
         arguments=(
             _argument(
                 "target",
-                "Show the current session or export the transcript database.",
-                default="current-session",
-                choices=("current-session", "export"),
+                "Persisted session identifier to show, or export for all "
+                "non-archived sessions.",
+                default="current session",
             ),
+        ),
+        detail=(
+            "With no target, queries the runtime's current session identity. "
+            "Selected identifiers are bound store-query values, never paths. "
+            "The export target writes deterministic sessions.csv and entries.csv "
+            "beneath a safely contained timestamped export directory."
         ),
     ),
     CommandSpec(
         "export",
-        "Export the current session.",
+        "Export persisted entries from the current session.",
         "transcript",
         "/export [csv|jsonl|markdown|md|training]",
         arguments=(
             _argument(
                 "format",
                 "Output format for the current session export.",
-                default="jsonl",
+                default="markdown",
                 choices=("csv", "jsonl", "markdown", "md", "training"),
             ),
+        ),
+        detail=(
+            "Queries the current persisted transcript and writes a safely "
+            "contained CSV, JSONL, Markdown, or training JSONL export. It never "
+            "copies the live SQLite database."
         ),
     ),
     CommandSpec(
         "export-prompts",
-        "Export captured raw prompts and responses.",
+        "Export persisted captured prompts and responses for one session.",
         "transcript",
-        "/export-prompts",
+        "/export-prompts [session_id]",
+        arguments=(
+            _argument(
+                "session_id",
+                "Session identifier; omit for the current session.",
+            ),
+        ),
+        detail=(
+            "Queries context-log records for the current or selected session and "
+            "writes contained JSON. Empty output explains that "
+            "transcript.capture_raw_prompts must be enabled."
+        ),
     ),
     CommandSpec(
         "replay",
@@ -2035,17 +2034,15 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "reorganize",
-        "Run memory reorganization.",
+        "Preview or explicitly execute coordinated memory reorganization.",
         "maintenance",
-        (
-            "/reorganize [--execute] [--no-backup] "
-            "[--backup|--dedupe|--analyze|--prune|--synthesize|--verify] "
-            "[--skip-synthesis] [--skip-verify] [--skip-lifecycle] "
-            "[--force-reembed]"
-        ),
+        _REORGANIZE_USAGE.removeprefix("Usage: "),
         arguments=(
-            _argument("--execute", "Apply changes instead of using dry-run mode."),
-            _argument("--no-backup", "Skip the backup before mutating operations."),
+            _argument(
+                "--execute",
+                "Apply changes (exact flag required; a verified recovery bundle "
+                "is always created first).",
+            ),
             _argument(
                 "mode",
                 "Run one reorganization step instead of the full operation.",
@@ -2062,6 +2059,22 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             _argument("--skip-verify", "Skip verification during a full run."),
             _argument("--skip-lifecycle", "Skip lifecycle processing."),
             _argument("--force-reembed", "Force eligible records to be re-embedded."),
+            _argument(
+                "--recover <run-id>",
+                "Inspect a retained run; add exact --execute to restore its "
+                "recorded verified bundle.",
+            ),
+        ),
+        detail=(
+            "The command is dry-run by default. Full mode runs dedupe, prune, "
+            "synthesis, verification, and lifecycle unless a full-only skip flag "
+            "is supplied. --analyze is read-only and rejects --execute. Every "
+            "mutating mode first creates a verified Memory and Transcript recovery "
+            "bundle; Transcript content is recovery-only and is never reorganized. "
+            "Plain 'execute' and --no-backup are rejected. Recovery artifacts and "
+            "the owner-only categorical log are retained; use the exact --recover "
+            "forms shown above after recovery_required. Automatic exit "
+            "reorganization is separately configurable and defaults to disabled."
         ),
     ),
     CommandSpec(
@@ -2093,7 +2106,7 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "tools",
-        "List available tools.",
+        "List registered runtime tools and optionally filter by category.",
         "tools",
         "/tools [category]",
         arguments=(
@@ -2112,20 +2125,26 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
     ),
     CommandSpec(
         "inject-tools",
-        "Inject selected tools into context.",
+        "Set the exact manual tool schema set for subsequent turns.",
         "tools",
         "/inject-tools <name> [name ...]",
         arguments=(
             _argument(
                 "name",
-                "One or more whitespace-separated registered tool names.",
+                "One or more whitespace-separated registered names accepted "
+                "atomically within configured count and schema-token limits.",
                 required=True,
             ),
+        ),
+        detail=(
+            "Switches runtime selection to manual mode only after every name and "
+            "the complete schema set pass validation. The accepted set remains "
+            "model-bound until /clear-tools restores automatic selection."
         ),
     ),
     CommandSpec(
         "clear-tools",
-        "Clear injected tools from context.",
+        "Clear the pending manual set and restore automatic tool selection.",
         "tools",
         "/clear-tools",
     ),
@@ -2142,7 +2161,19 @@ DEFAULT_COMMAND_SPECS: tuple[CommandSpec, ...] = (
             ),
         ),
     ),
-    CommandSpec("tool-budget", "Show tool token budget information.", "tools", "/tool-budget"),
+    CommandSpec(
+        "tool-budget",
+        "Inspect authoritative tool selection and schema-budget state.",
+        "tools",
+        "/tool-budget",
+        detail=(
+            "Distinguishes registered tools, pending manual selection, the most "
+            "recent automatic selection, the last completed turn, and executed "
+            "tools. Schema estimates and limits use tools.context.max_tools, "
+            "tools.context.max_budget_ratio, memory.context_window, and "
+            "memory.output_buffer."
+        ),
+    ),
     CommandSpec("security", "Show security status.", "security", "/security"),
     CommandSpec(
         "security-test",
@@ -2321,6 +2352,7 @@ __all__ = [
     "CommandRegistry",
     "CommandResult",
     "CommandSpec",
+    "CommandUiEffect",
     "DEFAULT_COMMAND_SPECS",
     "RegistryCommandContext",
     "build_default_registry",

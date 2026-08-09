@@ -88,7 +88,7 @@ class ChromaVectorStore(VectorStoreAdapter):
         # Get or create collection (without embedding function - we handle embeddings)
         self._collection = self._client.get_or_create_collection(
             name=collection_name,
-            metadata={"hnsw:space": "cosine"},
+            configuration={"hnsw": {"space": "cosine"}},
         )
 
     def _emit_event(self, event_name: str, data: dict) -> None:
@@ -152,6 +152,42 @@ class ChromaVectorStore(VectorStoreAdapter):
 
         self._emit_event(
             "vector_documents_added",
+            {"count": len(texts), "collection": self._collection_name},
+        )
+        return True
+
+    async def upsert_documents(
+        self,
+        texts: list[str],
+        metadatas: list[dict[str, Any]],
+        ids: list[str],
+    ) -> bool:
+        """Idempotently embed and replace documents at stable identifiers."""
+        if not texts:
+            return True
+        if len(texts) != len(metadatas) or len(texts) != len(ids):
+            raise ValueError("vector upsert inputs must have identical lengths")
+        if len(ids) != len(set(ids)):
+            raise ValueError("vector upsert identifiers must be unique")
+
+        span_id = None
+        if self._telemetry:
+            span_id = self._telemetry.start_span("vector_upsert")
+        try:
+            embeddings = await self._get_embeddings(texts)
+        finally:
+            if span_id:
+                self._telemetry.end_span(span_id)
+
+        async with self._lock:
+            self._collection.upsert(
+                documents=texts,
+                embeddings=embeddings,
+                metadatas=metadatas,
+                ids=ids,
+            )
+        self._emit_event(
+            "vector_documents_upserted",
             {"count": len(texts), "collection": self._collection_name},
         )
         return True

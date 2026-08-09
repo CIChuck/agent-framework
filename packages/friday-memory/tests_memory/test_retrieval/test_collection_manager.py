@@ -122,6 +122,50 @@ class TestCollectionManager:
         assert len(results["short_term"]) >= 0  # May be filtered by similarity
 
     @pytest.mark.asyncio
+    async def test_query_quarantines_unverified_maintenance_synthesis(
+        self, manager
+    ) -> None:
+        await manager.add_to_short_term(
+            texts=[
+                "Verified synthesis",
+                "Unverified synthesis",
+                "Rejected synthesis",
+                "Ordinary unverified memory",
+            ],
+            metadatas=[
+                {
+                    "type": "meta_insight",
+                    "maintenance_generated": True,
+                    "verification_status": "verified",
+                },
+                {
+                    "type": "meta_insight",
+                    "maintenance_generated": True,
+                    "verification_status": "unverified",
+                },
+                {
+                    "type": "meta_insight",
+                    "maintenance_generated": True,
+                    "verification_status": "rejected",
+                },
+                {"type": "insight", "verification_status": "unverified"},
+            ],
+            ids=["verified", "unverified", "rejected", "ordinary"],
+        )
+
+        results = await manager.query("synthesis", n_results=10)
+        returned_ids = {
+            result["id"]
+            for collection_results in results.values()
+            for result in collection_results
+        }
+
+        assert "verified" in returned_ids
+        assert "ordinary" in returned_ids
+        assert "unverified" not in returned_ids
+        assert "rejected" not in returned_ids
+
+    @pytest.mark.asyncio
     async def test_promote_memory(self, manager) -> None:
         """Test promoting memory from short-term to long-term."""
         # Add to short-term first

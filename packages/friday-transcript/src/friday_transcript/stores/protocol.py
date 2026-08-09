@@ -6,9 +6,15 @@ Defines the interface for transcript persistence backends.
 Implementations must be append-only for audit compliance.
 """
 
+from contextlib import AbstractAsyncContextManager
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Protocol, runtime_checkable
 
+from friday_transcript.models.snapshot import (
+    TranscriptRestoreQuiescenceToken,
+    TranscriptSnapshotResult,
+)
 from friday_transcript.models.transcript import TranscriptEntry, TranscriptSession
 
 
@@ -183,4 +189,45 @@ class TranscriptStore(Protocol):
             - p50_latency_ms: float
             - p95_latency_ms: float
         """
+        ...
+
+
+@runtime_checkable
+class TranscriptSnapshotParticipant(Protocol):
+    """Narrow public recovery interface for persistent transcript stores."""
+
+    async def inspect_live(self) -> TranscriptSnapshotResult:
+        """Inspect live integrity without initializing or changing the store."""
+        ...
+
+    async def create_snapshot(
+        self, destination_directory: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Create and verify a WAL-safe online snapshot."""
+        ...
+
+    async def verify_snapshot(
+        self, manifest_path: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Verify an existing snapshot without changing live state."""
+        ...
+
+    def restore_quiescence(
+        self,
+    ) -> AbstractAsyncContextManager[TranscriptRestoreQuiescenceToken]:
+        """Acquire the store-owned writer gate and issue an opaque restore token."""
+        ...
+
+    async def restore_snapshot(
+        self,
+        manifest_path: str | Path,
+        token: TranscriptRestoreQuiescenceToken,
+    ) -> TranscriptSnapshotResult:
+        """Restore only while the token's store-owned write gate is held."""
+        ...
+
+    async def verify_live(
+        self, manifest_path: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Verify the live database against a snapshot schema."""
         ...

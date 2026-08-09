@@ -20,6 +20,8 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel, Field
 
+from friday_memory.temporal import elapsed_hours
+
 if TYPE_CHECKING:
     from friday_memory.retrieval.collection_manager import ManagedCollection
 
@@ -129,8 +131,7 @@ class RetrievalFactorComputer:
         Returns:
             Decay factor between min_factor and 1.0.
         """
-        now = now or datetime.now()
-        age_hours = (now - created_at).total_seconds() / 3600
+        age_hours = elapsed_hours(created_at, now)
         age_hours = max(0, age_hours)
 
         factor = math.exp(-self._config.decay_rate * age_hours)
@@ -212,7 +213,7 @@ class RetrievalFactorComputer:
                     if last_computed:
                         try:
                             computed_at = datetime.fromisoformat(last_computed)
-                            age_hours = (now - computed_at).total_seconds() / 3600
+                            age_hours = elapsed_hours(computed_at, now)
                             if age_hours < 1.0:
                                 result.skipped += 1
                                 continue

@@ -19,6 +19,16 @@ from friday_transcript.correlation import (
 from friday_transcript.exporters.csv import CSVExporter
 from friday_transcript.exporters.jsonl import JSONLExporter
 from friday_transcript.exporters.markdown import MarkdownExporter
+from friday_transcript.models.snapshot import (
+    TranscriptIntegrityResult,
+    TranscriptRecoveryErrorCode,
+    TranscriptRecoveryErrorDetail,
+    TranscriptRestoreQuiescenceToken,
+    TranscriptSnapshotManifest,
+    TranscriptSnapshotResult,
+    TranscriptSnapshotStatus,
+    TranscriptSnapshotStrategy,
+)
 from friday_transcript.models.transcript import (
     ContextLogEntry,
     ToolCall,
@@ -27,8 +37,16 @@ from friday_transcript.models.transcript import (
     TranscriptSession,
 )
 from friday_transcript.stores.jsonl import JSONLTranscriptStore
-from friday_transcript.stores.protocol import TranscriptStore
-from friday_transcript.stores.sqlite import SQLiteTranscriptStore
+from friday_transcript.stores.protocol import (
+    TranscriptSnapshotParticipant,
+    TranscriptStore,
+)
+from friday_transcript.stores.sqlite import (
+    SQLiteTranscriptStore,
+    TranscriptPathError,
+    TranscriptQuiescenceError,
+    TranscriptRecoveryError,
+)
 
 __all__ = [
     # Models
@@ -37,11 +55,23 @@ __all__ = [
     "TranscriptSession",
     "ToolCall",
     "ToolResult",
+    "TranscriptIntegrityResult",
+    "TranscriptRecoveryErrorCode",
+    "TranscriptRecoveryErrorDetail",
+    "TranscriptRestoreQuiescenceToken",
+    "TranscriptSnapshotManifest",
+    "TranscriptSnapshotResult",
+    "TranscriptSnapshotStatus",
+    "TranscriptSnapshotStrategy",
     # Protocol
     "TranscriptStore",
+    "TranscriptSnapshotParticipant",
     # Store Implementations
     "SQLiteTranscriptStore",
     "JSONLTranscriptStore",
+    "TranscriptPathError",
+    "TranscriptQuiescenceError",
+    "TranscriptRecoveryError",
     # Exporters
     "CSVExporter",
     "JSONLExporter",

@@ -25,7 +25,10 @@ from friday_memory.context.extraction_filter import (
     ExtractionFilter,
     configure_rejection_logging,
 )
-from friday_memory.context.extractor import MemoryExtractor
+from friday_memory.context.extractor import (
+    ExtractionCommitCompletedUnderCancellation,
+    MemoryExtractor,
+)
 from friday_memory.context.layout import PromptArchitect, SupportingContextConfig
 from friday_memory.context.ontology import NodeTypeConfig, OntologyConfig
 from friday_memory.context.passage_router import (
@@ -40,6 +43,7 @@ __all__ = [
     "SupportingContextConfig",
     "ContextAssembler",
     "MemoryExtractor",
+    "ExtractionCommitCompletedUnderCancellation",
     "MemoryConsolidator",
     "ToolContextManager",
     "PassageRouter",

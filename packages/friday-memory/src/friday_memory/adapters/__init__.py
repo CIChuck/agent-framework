@@ -11,7 +11,7 @@ These classes implement the abstract protocols defined in friday-core:
 """
 
 from friday_memory.adapters.episodic import InMemoryEpisodicStore
-from friday_memory.adapters.graph import ElementXGraphStore
+from friday_memory.adapters.graph import ElementXGraphStore, GraphRecoverySummary
 from friday_memory.adapters.null_graph import NullGraphStore
 from friday_memory.adapters.simple_vector import SimpleVectorStore
 from friday_memory.adapters.vector import ChromaVectorStore
@@ -19,6 +19,7 @@ from friday_memory.adapters.vector import ChromaVectorStore
 __all__ = [
     "InMemoryEpisodicStore",
     "ElementXGraphStore",
+    "GraphRecoverySummary",
     "ChromaVectorStore",
     "SimpleVectorStore",
     "NullGraphStore",

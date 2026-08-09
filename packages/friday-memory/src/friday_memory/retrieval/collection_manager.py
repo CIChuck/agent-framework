@@ -243,11 +243,30 @@ class CollectionManager:
     ) -> list[dict[str, Any]]:
         """Query a collection and filter by minimum similarity threshold."""
         results = await collection.query(
-            query_text, n_results=n_results, query_embedding=query_embedding
+            query_text,
+            n_results=max(n_results, n_results * 3),
+            query_embedding=query_embedding,
         )
 
-        # Filter by similarity threshold
-        return [r for r in results if r.get("similarity", 0) >= min_similarity]
+        # Maintenance-generated synthesis remains quarantined until the explicit
+        # verification pipeline marks it verified. Diagnostic APIs may still
+        # inspect these records directly through ``get_all``.
+        return [
+            result
+            for result in results
+            if result.get("similarity", 0) >= min_similarity
+            and self._is_retrieval_eligible(result)
+        ][:n_results]
+
+    @staticmethod
+    def _is_retrieval_eligible(result: dict[str, Any]) -> bool:
+        metadata = result.get("metadata")
+        if not isinstance(metadata, dict):
+            return True
+        return not (
+            metadata.get("maintenance_generated") is True
+            and metadata.get("verification_status") != "verified"
+        )
 
     async def add_to_short_term(
         self,
@@ -291,7 +310,31 @@ class CollectionManager:
                 for i in range(len(texts))
             ]
 
-        # Ensure lifecycle metadata is set correctly
+        self._prepare_short_term_metadata(metadatas, protected=protected)
+        return await self._short_term.add_documents(texts, metadatas, ids)
+
+    async def upsert_to_short_term(
+        self,
+        texts: list[str],
+        metadatas: list[dict[str, Any]],
+        ids: list[str],
+        protected: bool = False,
+    ) -> bool:
+        """Idempotently store extraction records under stable identifiers."""
+        if not texts:
+            return True
+        if len(texts) != len(metadatas) or len(texts) != len(ids):
+            raise ValueError("short-term upsert inputs must have identical lengths")
+        self._prepare_short_term_metadata(metadatas, protected=protected)
+        return await self._short_term.upsert_documents(texts, metadatas, ids)
+
+    @staticmethod
+    def _prepare_short_term_metadata(
+        metadatas: list[dict[str, Any]],
+        *,
+        protected: bool,
+    ) -> None:
+        """Apply lifecycle defaults consistently for add and idempotent upsert."""
         now_dt = datetime.now()
         now = now_dt.isoformat()
         now_ts = int(now_dt.timestamp())
@@ -320,8 +363,6 @@ class CollectionManager:
                 metadata["hit_count"] = 0
             # Set protected status
             metadata["protected"] = protected
-
-        return await self._short_term.add_documents(texts, metadatas, ids)
 
     async def get_all(
         self,

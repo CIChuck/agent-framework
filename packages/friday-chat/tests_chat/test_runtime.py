@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import asyncio
 from pathlib import Path
 from typing import Any, cast
 
+import pytest
 from friday_chat.adapters import (
     FrameworkChatModel,
     FrameworkEmbeddingService,
@@ -14,6 +16,7 @@ from friday_chat.adapters import (
     FrameworkTranscriptAdapter,
     FrameworkWorkflowAdapter,
 )
+from friday_chat.app import FridayChatApp, ListInputSource
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import (
     MAINTENANCE_LLM_ROLES,
@@ -21,15 +24,34 @@ from friday_chat.runtime import (
     FakeMemoryController,
     FakeSpeechAdapter,
     FakeTranscriptStore,
+    PendingExtractionTurn,
     build_runtime,
 )
 from friday_chat.turns.processor import TurnProcessor
-from friday_memory import AccessBuffer, MemoryPromotionService, RetrievalFactorComputer
+from friday_memory import (
+    AccessBuffer,
+    ExtractionCommitCompletedUnderCancellation,
+    MemoryPromotionService,
+    RetrievalFactorComputer,
+)
+from friday_memory.lifecycle.promotion import PromotionResult
 from friday_memory.maintenance import IncrementalGraphMaintainer
 
 
 def _config(data: dict[str, object]) -> FridayChatConfig:
     return FridayChatConfig.model_validate(data)
+
+
+def _pending_turn(
+    turn_id: str,
+    user_message: str,
+    assistant_message: str,
+) -> PendingExtractionTurn:
+    return PendingExtractionTurn(
+        turn_id=turn_id,
+        user_message=user_message,
+        assistant_message=assistant_message,
+    )
 
 
 class ErroringExtractor:
@@ -44,6 +66,67 @@ class ErroringExtractor:
         return {"error": self.error, "extracted": {}, "stats": {}}
 
 
+class SelectiveExtractor:
+    """Record turns and fail on one selected user message."""
+
+    def __init__(self, failing_message: str) -> None:
+        self.failing_message = failing_message
+        self.calls: list[str] = []
+
+    async def extract(self, turn: Any) -> dict[str, Any]:
+        self.calls.append(turn.user_message)
+        if turn.user_message == self.failing_message:
+            return {"error": "synthetic timeout", "extracted": {}, "stats": {}}
+        return {"extracted": {}, "stats": {}}
+
+
+class BlockingExtractor:
+    """Remain in flight until the supervised task is cancelled."""
+
+    def __init__(self) -> None:
+        self.started = asyncio.Event()
+
+    async def extract(self, _turn: object) -> dict[str, Any]:
+        self.started.set()
+        await asyncio.Event().wait()
+        raise AssertionError("blocking extractor unexpectedly resumed")
+
+
+class CommitShieldingExtractor:
+    """Finish one simulated commit after the caller requests cancellation."""
+
+    def __init__(self) -> None:
+        self.started = asyncio.Event()
+        self.release = asyncio.Event()
+        self.committed_turn_ids: list[str] = []
+
+    async def extract(self, turn: Any) -> dict[str, Any]:
+        self.started.set()
+        while True:
+            try:
+                await self.release.wait()
+                break
+            except asyncio.CancelledError:
+                continue
+        self.committed_turn_ids.append(turn.id)
+        raise ExtractionCommitCompletedUnderCancellation
+
+
+class FailingPromotionService:
+    """Return a lifecycle result containing a categorical failure."""
+
+    async def run_promotion_cycle(self, *, dry_run: bool) -> PromotionResult:
+        assert dry_run is False
+        return PromotionResult(errors=["synthetic lifecycle failure"])
+
+
+class MemoryOnlyExecuteParticipant:
+    """Participant-shaped double that must not unlock Gate A execution."""
+
+    def preflight_status(self) -> tuple[bool, str]:
+        return True, "memory-only preflight passed"
+
+
 def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
     config = _config({"llm": {"model": "openai/test-chat-model"}})
 
@@ -55,6 +138,46 @@ def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
     assert runtime.diagnostics.maintenance_llm_fallbacks == list(
         MAINTENANCE_LLM_ROLES
     )
+
+
+@pytest.mark.asyncio
+async def test_fake_build_start_run_never_inspects_active_recovery_root(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    process_cwd = tmp_path / "checkout"
+    recovery_root = process_cwd / ".friday" / "recovery"
+    recovery_root.mkdir(parents=True)
+    sentinel = recovery_root / "operator-sentinel"
+    sentinel.write_text("must remain untouched")
+    visited: list[Path] = []
+    original_iterdir = Path.iterdir
+
+    def recording_iterdir(path: Path):  # type: ignore[no-untyped-def]
+        visited.append(path.resolve(strict=False))
+        return original_iterdir(path)
+
+    monkeypatch.chdir(process_cwd)
+    monkeypatch.setattr(Path, "iterdir", recording_iterdir)
+    runtime = build_runtime(
+        _config(
+            {
+                "llm": {"model": "openai/test-chat-model"},
+                "memory": {"persist_directory": ".friday/vector"},
+                "maintenance": {"backup_directory": ".friday/recovery"},
+            }
+        )
+    )
+    result = await FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource([]),
+    ).run()
+    inspected_paths = tuple(visited)
+
+    assert result.exit_reason == "eof"
+    assert recovery_root.resolve() not in inspected_paths
+    assert sentinel.read_text() == "must remain untouched"
+    assert not runtime.maintenance_layout.recovery_root.is_relative_to(process_cwd)
 
 
 def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) -> None:
@@ -78,6 +201,42 @@ def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) 
     assert isinstance(runtime.tools, FrameworkToolRegistryAdapter)
     assert isinstance(runtime.workflow, FrameworkWorkflowAdapter)
     assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+
+
+async def test_real_runtime_manual_and_exit_execute_paths_remain_contained(
+    tmp_path: Path,
+) -> None:
+    vector_directory = tmp_path / "vector"
+    vector_directory.mkdir()
+    config = _config(
+        {
+            "llm": {"model": "openai/test-chat-model"},
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(vector_directory)},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "tools": {"registry": []},
+        }
+    )
+    runtime = build_runtime(config, fake=False, session_id="synthetic-session")
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+    assert isinstance(runtime.memory, FrameworkMemoryAdapter)
+    runtime.memory.__dict__["maintenance_participant"] = (
+        MemoryOnlyExecuteParticipant()
+    )
+
+    manual = await runtime.maintenance.reorganize(
+        mode="full",
+        dry_run=False,
+        backup_first=True,
+    )
+    await runtime.maintenance.reorganize_memory("fast")
+
+    assert manual["errors"]
+    assert "Execute disabled:" in manual["errors"][0]
+    assert runtime.maintenance.actions == [
+        "reorganize:full:execute_disabled",
+        "reorganize_skipped:execute_disabled",
+    ]
 
 
 def test_real_runtime_builds_friday_py_lifecycle_collaborators(
@@ -245,7 +404,8 @@ async def test_framework_maintenance_requeues_extraction_error_payloads() -> Non
         llm_services={},
         extractor=cast(Any, extractor),
     )
-    adapter.pending_extraction = [("remember this", "noted")]
+    pending = _pending_turn("error-turn", "remember this", "noted")
+    adapter.pending_extraction = [pending]
 
     try:
         await adapter.extract_buffered_turns(trigger_reason="background_interval")
@@ -255,8 +415,112 @@ async def test_framework_maintenance_requeues_extraction_error_payloads() -> Non
         raise AssertionError("expected extraction error to fail the background batch")
 
     assert extractor.calls == 1
-    assert adapter.pending_extraction == [("remember this", "noted")]
+    assert adapter.pending_extraction == [pending]
     assert adapter.background_actions == []
+
+
+async def test_framework_maintenance_requeues_only_unfinished_batch_turns() -> None:
+    extractor = SelectiveExtractor("fail")
+    adapter = FrameworkMaintenanceAdapter(
+        config=_config({"llm": {"model": "openai/test-chat-model"}}),
+        session_id="partial-extraction-error-test",
+        memory=cast(Any, object()),
+        embedding=cast(Any, None),
+        llm_service=cast(Any, object()),
+        llm_models={},
+        llm_services={},
+        extractor=cast(Any, extractor),
+    )
+    adapter.pending_extraction = [
+        _pending_turn("complete-turn", "complete", "stored"),
+        _pending_turn("failed-turn", "fail", "defer"),
+        _pending_turn("later-turn", "later", "not attempted"),
+    ]
+
+    with pytest.raises(RuntimeError, match="Memory extraction failed"):
+        await adapter.extract_buffered_turns(trigger_reason="background_interval")
+
+    assert extractor.calls == ["complete", "fail"]
+    assert adapter.pending_extraction == [
+        _pending_turn("failed-turn", "fail", "defer"),
+        _pending_turn("later-turn", "later", "not attempted"),
+    ]
+
+
+async def test_framework_maintenance_requeues_cancelled_inflight_turn() -> None:
+    extractor = BlockingExtractor()
+    adapter = FrameworkMaintenanceAdapter(
+        config=_config({"llm": {"model": "openai/test-chat-model"}}),
+        session_id="cancelled-extraction-test",
+        memory=cast(Any, object()),
+        embedding=cast(Any, None),
+        llm_service=cast(Any, object()),
+        llm_models={},
+        llm_services={},
+        extractor=cast(Any, extractor),
+    )
+    pending = _pending_turn("cancelled-turn", "cancelled", "preserved")
+    adapter.pending_extraction = [pending]
+
+    task = asyncio.create_task(
+        adapter.extract_buffered_turns(trigger_reason="background_interval")
+    )
+    await extractor.started.wait()
+    task.cancel()
+    with pytest.raises(asyncio.CancelledError):
+        await task
+
+    assert adapter.pending_extraction == [pending]
+    assert adapter.background_actions == []
+
+
+async def test_framework_maintenance_does_not_requeue_committed_cancelled_turn() -> None:
+    extractor = CommitShieldingExtractor()
+    adapter = FrameworkMaintenanceAdapter(
+        config=_config({"llm": {"model": "openai/test-chat-model"}}),
+        session_id="commit-boundary-extraction-test",
+        memory=cast(Any, object()),
+        embedding=cast(Any, None),
+        llm_service=cast(Any, object()),
+        llm_models={},
+        llm_services={},
+        extractor=cast(Any, extractor),
+    )
+    committed = _pending_turn("committed-turn", "committed", "stored")
+    later = _pending_turn("later-turn", "later", "preserved")
+    adapter.pending_extraction = [committed, later]
+
+    task = asyncio.create_task(
+        adapter.extract_buffered_turns(trigger_reason="background_interval")
+    )
+    await asyncio.wait_for(extractor.started.wait(), timeout=1.0)
+    task.cancel()
+    extractor.release.set()
+
+    with pytest.raises(asyncio.CancelledError):
+        await task
+
+    assert extractor.committed_turn_ids == [committed.turn_id]
+    assert adapter.pending_extraction == [later]
+    assert adapter.background_actions == []
+
+
+async def test_framework_maintenance_surfaces_lifecycle_result_errors() -> None:
+    adapter = FrameworkMaintenanceAdapter(
+        config=_config({"llm": {"model": "openai/test-chat-model"}}),
+        session_id="lifecycle-error-test",
+        memory=cast(Any, object()),
+        embedding=cast(Any, None),
+        llm_service=cast(Any, object()),
+        llm_models={},
+        llm_services={},
+        promotion_service=cast(Any, FailingPromotionService()),
+    )
+
+    with pytest.raises(RuntimeError, match="lifecycle promotion reported errors"):
+        await adapter.run_lifecycle()
+
+    assert adapter.actions == []
 
 
 def test_tool_auto_injection_follows_config() -> None:

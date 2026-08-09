@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
+import asyncio
 import importlib
 import json
+import math
 import os
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, TypeGuard, cast
 from uuid import uuid4
 
 from friday_llm import LiteLLMEmbeddingService, LiteLLMService, ResilienceConfig
@@ -20,6 +22,7 @@ from friday_memory import (
     CollectionManager,
     DecayConfig,
     ElementXGraphStore,
+    ExtractionCommitCompletedUnderCancellation,
     FactorComputerConfig,
     InMemoryEpisodicStore,
     InteractionTurn,
@@ -51,7 +54,34 @@ from friday_transcript import (
 )
 
 from friday_chat.config import FridayChatConfig
+from friday_chat.memory_views import (
+    MemoryCollection,
+    MemoryDiagnosticReason,
+    MemoryDiagnosticWarning,
+    MemoryMetric,
+    MemoryRecordKind,
+    MemoryRecordQueryResult,
+    MemoryRecordView,
+    MemoryStoreComponent,
+    MemoryStoreStatistics,
+)
+from friday_chat.reorganization.contracts import (
+    ReorganizationError,
+    ReorganizationErrorCode,
+)
+from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
+from friday_chat.reorganization.mutation import LifecycleStepReport
+from friday_chat.runtime import (
+    REORGANIZATION_EXECUTE_DISABLED_REASON,
+    PendingExtractionTurn,
+)
 from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.selection import ToolBudgetCalculator
+from friday_chat.transcripts import (
+    TranscriptContextLogView,
+    TranscriptEntryView,
+    TranscriptSessionView,
+)
 from friday_chat.turns.models import (
     ChatModelResponse,
     ToolCallRequest,
@@ -59,6 +89,10 @@ from friday_chat.turns.models import (
 from friday_chat.turns.models import (
     InteractionTurn as ChatInteractionTurn,
 )
+
+_MAX_SOURCE_PROVENANCE_CHARS = 32_000
+_MAX_SOURCE_PROVENANCE_BYTES = 32_000
+_MAX_VISIBLE_SOURCE_IDS = 8
 
 
 @dataclass
@@ -137,7 +171,12 @@ class FrameworkMemoryAdapter:
     collection_manager: CollectionManager
     config: FridayChatConfig
     session_id: str
+    episodic_store: InMemoryEpisodicStore
+    graph_store: ElementXGraphStore | NullGraphStore
+    recovery_graph_store: ElementXGraphStore | None = None
     passage_router: PassageRouter | None = None
+    access_buffer: AccessBuffer | None = None
+    access_buffer_configured: bool = False
 
     async def retrieve(
         self,
@@ -145,7 +184,11 @@ class FrameworkMemoryAdapter:
         *,
         token_limit: int | None = None,
     ) -> list[str]:
-        resolved_token_limit = token_limit or _dynamic_context_budget(self.config)
+        resolved_token_limit = (
+            token_limit
+            if token_limit is not None
+            else _dynamic_context_budget(self.config)
+        )
         payload = await self._recall(
             query,
             token_limit=resolved_token_limit,
@@ -164,6 +207,10 @@ class FrameworkMemoryAdapter:
                 temperature=self.config.llm.temperature,
             ),
         )
+
+    async def clear_session_memory(self) -> bool:
+        """Clear current-session episodic state through its public API."""
+        return bool(await self.episodic_store.clear_session(self.session_id))
 
     async def ingest_document(
         self,
@@ -213,18 +260,16 @@ class FrameworkMemoryAdapter:
         }
 
     async def list_entities(self, name: str | None = None) -> list[dict[str, Any]]:
-        graph = cast(Any, self.controller.graph)
         if name:
-            found = await graph.find_by_label(name)
+            found = await self.graph_store.find_by_label(name)
             return [found.model_dump(mode="json")] if found is not None else []
-        nodes = await graph.get_all_nodes()
+        nodes = await self.graph_store.get_all_nodes()
         return [node.model_dump(mode="json") for node in nodes]
 
     async def list_relationships(self, name: str | None = None) -> list[dict[str, Any]]:
-        graph = cast(Any, self.controller.graph)
-        nodes = await graph.get_all_nodes()
+        nodes = await self.graph_store.get_all_nodes()
         node_by_id = {str(node.id): node for node in nodes}
-        edges = await graph.get_all_edges()
+        edges = await self.graph_store.get_all_edges()
         records: list[dict[str, Any]] = []
         for edge in edges:
             source = node_by_id.get(str(edge.source_id))
@@ -245,31 +290,201 @@ class FrameworkMemoryAdapter:
             records.append(record)
         return records
 
-    async def list_insights(self) -> list[dict[str, Any]]:
-        return cast(
-            list[dict[str, Any]],
-            await self.collection_manager.get_all(
-                limit=100,
-                where={"type": "insight"},
-            ),
+    async def query_memory_statistics(self) -> MemoryStoreStatistics:
+        """Aggregate honest store statistics through public component APIs."""
+        warnings: list[MemoryDiagnosticWarning] = []
+
+        try:
+            episodic_turns = MemoryMetric.available(
+                await self.episodic_store.get_turn_count(self.session_id)
+            )
+        except Exception:
+            episodic_turns = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.STORE_READ_FAILED
+            )
+            warnings.append(MemoryDiagnosticWarning(MemoryStoreComponent.EPISODIC))
+
+        vector_results = await asyncio.gather(
+            self.collection_manager.short_term.count(),
+            self.collection_manager.long_term.count(),
+            self.collection_manager.decayed.count(),
+            return_exceptions=True,
+        )
+        vector_components = (
+            MemoryStoreComponent.VECTOR_SHORT_TERM,
+            MemoryStoreComponent.VECTOR_LONG_TERM,
+            MemoryStoreComponent.VECTOR_DECAYED,
+        )
+        vector_metrics: list[MemoryMetric[int]] = []
+        for component, value in zip(vector_components, vector_results, strict=True):
+            if isinstance(value, asyncio.CancelledError):
+                raise value
+            if isinstance(value, Exception) or not _is_nonnegative_int(value):
+                vector_metrics.append(
+                    MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
+                )
+                warnings.append(MemoryDiagnosticWarning(component))
+            else:
+                vector_metrics.append(MemoryMetric.available(value))
+        short_term, long_term, decayed = vector_metrics
+        vector_active_total = _sum_available_metrics(short_term, long_term)
+        vector_total = _sum_available_metrics(short_term, long_term, decayed)
+
+        if self.config.lifecycle.enabled:
+            graph_results = await asyncio.gather(
+                self.graph_store.get_all_nodes(),
+                self.graph_store.get_all_edges(),
+                return_exceptions=True,
+            )
+            for graph_value in graph_results:
+                if isinstance(graph_value, asyncio.CancelledError):
+                    raise graph_value
+            graph_nodes = _length_metric(graph_results[0])
+            graph_relationships = _length_metric(graph_results[1])
+            if any(isinstance(value, Exception) for value in graph_results):
+                warnings.append(MemoryDiagnosticWarning(MemoryStoreComponent.GRAPH))
+        else:
+            graph_nodes = MemoryMetric.not_configured()
+            graph_relationships = MemoryMetric.not_configured()
+
+        access_buffer_entries: MemoryMetric[int]
+        access_buffer_accesses: MemoryMetric[int]
+        if not self.access_buffer_configured:
+            access_buffer_entries = MemoryMetric.not_configured()
+            access_buffer_accesses = MemoryMetric.not_configured()
+        elif self.access_buffer is None:
+            access_buffer_entries = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.COMPONENT_INITIALIZATION_FAILED
+            )
+            access_buffer_accesses = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.COMPONENT_INITIALIZATION_FAILED
+            )
+            warnings.append(MemoryDiagnosticWarning(MemoryStoreComponent.ACCESS_BUFFER))
+        else:
+            try:
+                access_stats = self.access_buffer.get_stats()
+                access_buffer_entries = MemoryMetric.available(
+                    access_stats["short_term_memories"]
+                    + access_stats["long_term_memories"]
+                )
+                access_buffer_accesses = MemoryMetric.available(
+                    access_stats["short_term_accesses"]
+                    + access_stats["long_term_accesses"]
+                )
+            except Exception:
+                access_buffer_entries = MemoryMetric.unavailable(
+                    MemoryDiagnosticReason.STORE_READ_FAILED
+                )
+                access_buffer_accesses = MemoryMetric.unavailable(
+                    MemoryDiagnosticReason.STORE_READ_FAILED
+                )
+                warnings.append(
+                    MemoryDiagnosticWarning(MemoryStoreComponent.ACCESS_BUFFER)
+                )
+
+        try:
+            priming_info = self.controller.get_priming_info(self.session_id)
+            priming_enabled_value = priming_info.get("enabled")
+            if not isinstance(priming_enabled_value, bool):
+                raise TypeError("priming enabled state is malformed")
+            priming_enabled = MemoryMetric.available(priming_enabled_value)
+        except Exception:
+            priming_enabled = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.STORE_READ_FAILED
+            )
+            warnings.append(MemoryDiagnosticWarning(MemoryStoreComponent.PRIMING))
+        configured_previous_sessions = _nonnegative_mapping_int(
+            self.config.memory.priming,
+            "previous_sessions",
+            0,
+        )
+        priming_previous_sessions: MemoryMetric[int]
+        if configured_previous_sessions is None:
+            priming_previous_sessions = MemoryMetric.unavailable(
+                MemoryDiagnosticReason.CONFIG_VALUE_INVALID
+            )
+            if not any(
+                warning.component is MemoryStoreComponent.PRIMING
+                for warning in warnings
+            ):
+                warnings.append(
+                    MemoryDiagnosticWarning(
+                        MemoryStoreComponent.PRIMING,
+                        MemoryDiagnosticReason.CONFIG_VALUE_INVALID,
+                    )
+                )
+        else:
+            priming_previous_sessions = MemoryMetric.available(
+                configured_previous_sessions
+            )
+
+        return MemoryStoreStatistics(
+            episodic_turns=episodic_turns,
+            vector_short_term=short_term,
+            vector_long_term=long_term,
+            vector_decayed=decayed,
+            vector_active_total=vector_active_total,
+            vector_total=vector_total,
+            graph_nodes=graph_nodes,
+            graph_relationships=graph_relationships,
+            lifecycle_enabled=MemoryMetric.available(self.config.lifecycle.enabled),
+            access_buffer_entries=access_buffer_entries,
+            access_buffer_accesses=access_buffer_accesses,
+            priming_enabled=priming_enabled,
+            priming_previous_sessions=priming_previous_sessions,
+            warnings=tuple(warnings),
         )
 
-    async def list_summaries(self) -> list[dict[str, Any]]:
-        return cast(
-            list[dict[str, Any]],
-            await self.collection_manager.get_all(
-                limit=100,
-                where={"type": "summary"},
+    async def query_memory_records(
+        self,
+        kind: MemoryRecordKind,
+    ) -> MemoryRecordQueryResult:
+        """Query active lifecycle collections without including decayed records."""
+        results = await asyncio.gather(
+            self.collection_manager.short_term.get_all(
+                limit=None,
+                where={"type": kind.value},
             ),
+            self.collection_manager.long_term.get_all(
+                limit=None,
+                where={"type": kind.value},
+            ),
+            return_exceptions=True,
         )
-
-    async def list_meta_insights(self) -> list[dict[str, Any]]:
-        return cast(
-            list[dict[str, Any]],
-            await self.collection_manager.get_all(
-                limit=100,
-                where={"type": "meta_insight"},
-            ),
+        warnings: list[MemoryDiagnosticWarning] = []
+        records: list[MemoryRecordView] = []
+        collections = (MemoryCollection.SHORT_TERM, MemoryCollection.LONG_TERM)
+        for collection, result in zip(collections, results, strict=True):
+            if isinstance(result, BaseException):
+                if isinstance(result, asyncio.CancelledError) or not isinstance(
+                    result, Exception
+                ):
+                    raise result
+                warnings.append(
+                    MemoryDiagnosticWarning(
+                        MemoryStoreComponent.VECTOR_SHORT_TERM
+                        if collection is MemoryCollection.SHORT_TERM
+                        else MemoryStoreComponent.VECTOR_LONG_TERM
+                    )
+                )
+                continue
+            malformed = False
+            for record in result:
+                view = _memory_record_view(record, kind=kind, collection=collection)
+                if view is None:
+                    malformed = True
+                else:
+                    records.append(view)
+            if malformed:
+                warnings.append(
+                    MemoryDiagnosticWarning(MemoryStoreComponent.MEMORY_RECORD)
+                )
+        records.sort(key=_memory_record_sort_key, reverse=True)
+        return MemoryRecordQueryResult(
+            kind=kind,
+            records=tuple(records[:100]),
+            warnings=tuple(warnings),
+            decayed_records_excluded=True,
         )
 
     async def _recall(self, query: str, *, token_limit: int) -> Any:
@@ -312,7 +527,7 @@ class FrameworkMaintenanceAdapter:
     actions: list[str] = field(default_factory=list)
     reset_calls: list[str] = field(default_factory=list)
     archived_transcripts: bool = False
-    pending_extraction: list[tuple[str, str]] = field(default_factory=list)
+    pending_extraction: list[PendingExtractionTurn] = field(default_factory=list)
     flush_pending_error: BaseException | None = None
     background_actions: list[str] = field(default_factory=list)
     compaction_running: bool = False
@@ -334,12 +549,85 @@ class FrameworkMaintenanceAdapter:
         """Run lifecycle maintenance."""
         self._raise_next_error()
         if self.promotion_service is not None:
-            await self.promotion_service.run_promotion_cycle(dry_run=False)
+            result = await self.promotion_service.run_promotion_cycle(dry_run=False)
+            if result.errors:
+                raise RuntimeError("lifecycle promotion reported errors")
         self.actions.append("run_lifecycle")
+
+    async def preview_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Report promotion/decay scope without mutation or embedding backfill."""
+        if self.promotion_service is None:
+            return LifecycleStepReport(
+                succeeded=False,
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
+                        message="deterministic lifecycle promotion is unavailable",
+                    ),
+                ),
+            )
+        stats = await self.promotion_service.collection_manager.get_stats()
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=sum(
+                int(value) for value in stats.values() if isinstance(value, int)
+            ),
+            candidate_count=None,
+            changed_count=None,
+            warnings=(
+                "lifecycle candidate and change counts are unavailable before execution",
+            ),
+        )
+
+    async def run_reorganization_lifecycle(self) -> LifecycleStepReport:
+        """Run promotion/decay only; never backfill graph edge embeddings."""
+        self._raise_next_error()
+        if self.promotion_service is None:
+            return LifecycleStepReport(
+                succeeded=False,
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.CAPABILITY_UNAVAILABLE,
+                        message="deterministic lifecycle promotion is unavailable",
+                    ),
+                ),
+            )
+        stats = await self.promotion_service.collection_manager.get_stats()
+        result = await self.promotion_service.run_promotion_cycle(dry_run=False)
+        if result.errors:
+            return LifecycleStepReport(
+                succeeded=False,
+                scanned_count=sum(
+                    int(value) for value in stats.values() if isinstance(value, int)
+                ),
+                errors=(
+                    ReorganizationError(
+                        code=ReorganizationErrorCode.MUTATION_FAILED,
+                        message="deterministic lifecycle promotion reported errors",
+                    ),
+                ),
+            )
+        changed_count = (
+            result.promoted_to_long_term
+            + result.decayed_from_long_term
+            + result.reactivated
+        )
+        self.actions.append("run_reorganization_lifecycle")
+        return LifecycleStepReport(
+            succeeded=True,
+            scanned_count=sum(
+                int(value) for value in stats.values() if isinstance(value, int)
+            ),
+            candidate_count=None,
+            changed_count=changed_count,
+        )
+
+    def reorganization_execute_status(self) -> tuple[bool, str]:
+        """Keep legacy direct mutation outside the Chat coordinator disabled."""
+        return False, REORGANIZATION_EXECUTE_DISABLED_REASON
 
     async def reorganize_memory(self, mode: str) -> None:
         """Run full framework memory reorganization."""
-        self._raise_next_error()
         persist_directory = self.config.memory.persist_directory
         if not persist_directory:
             self.actions.append("reorganize_skipped:no_persist_directory")
@@ -348,6 +636,14 @@ class FrameworkMaintenanceAdapter:
         if not memory_dir.exists():
             self.actions.append("reorganize_skipped:no_persist_directory")
             return
+
+        allowed, reason = self.reorganization_execute_status()
+        if not allowed:
+            self.actions.append("reorganize_skipped:execute_disabled")
+            self.background_actions.append(f"reorganize_execute_disabled:{reason}")
+            return
+
+        self._raise_next_error()
 
         skip_llm_work = mode == "fast"
         reorganizer = MemoryReorganizer(
@@ -394,11 +690,7 @@ class FrameworkMaintenanceAdapter:
             return 0
         pending = list(self.pending_extraction)
         self.pending_extraction.clear()
-        try:
-            await self._extract_turns(pending)
-        except Exception:
-            self.pending_extraction[:0] = pending
-            raise
+        await self._extract_turns(pending)
         self.actions.append("flush_pending_extraction")
         return len(pending)
 
@@ -412,11 +704,7 @@ class FrameworkMaintenanceAdapter:
             return 0
         pending = list(self.pending_extraction)
         self.pending_extraction.clear()
-        try:
-            await self._extract_turns(pending)
-        except Exception:
-            self.pending_extraction[:0] = pending
-            raise
+        await self._extract_turns(pending)
         self.background_actions.append(f"extract:{trigger_reason}:{len(pending)}")
         return len(pending)
 
@@ -542,7 +830,9 @@ class FrameworkMaintenanceAdapter:
                     ),
                     long_term_collection=self.promotion_service.collection_manager.long_term,
                 )
-                flushed = flush_result.short_term_flushed + flush_result.long_term_flushed
+                flushed = (
+                    flush_result.short_term_flushed + flush_result.long_term_flushed
+                )
                 errors.extend(flush_result.errors)
             if self.factor_computer is not None:
                 factor_result = await self.factor_computer.compute_factors(
@@ -593,7 +883,6 @@ class FrameworkMaintenanceAdapter:
         force_reembed: bool = False,
     ) -> dict[str, Any]:
         """Manual reorganization command hook."""
-        self._raise_next_error()
         persist_directory = self.config.memory.persist_directory
         if not persist_directory:
             return {
@@ -608,6 +897,23 @@ class FrameworkMaintenanceAdapter:
                 "changed": 0,
                 "errors": ["No persistence directory configured."],
             }
+        if not dry_run:
+            allowed, reason = self.reorganization_execute_status()
+            if not allowed:
+                self.actions.append(f"reorganize:{mode}:execute_disabled")
+                return {
+                    "mode": mode,
+                    "dry_run": dry_run,
+                    "backup_first": backup_first,
+                    "skip_synthesis": skip_synthesis,
+                    "skip_verify": skip_verify,
+                    "skip_lifecycle": skip_lifecycle,
+                    "force_reembed": force_reembed,
+                    "scanned": 0,
+                    "changed": 0,
+                    "errors": [f"Execute disabled: {reason}"],
+                }
+        self._raise_next_error()
         memory_dir = Path(persist_directory)
         reorganizer = MemoryReorganizer(
             memory_dir=memory_dir,
@@ -673,22 +979,34 @@ class FrameworkMaintenanceAdapter:
         if self.errors:
             raise self.errors.pop(0)
 
-    async def _extract_turns(self, turns: list[tuple[str, str]]) -> None:
+    async def _extract_turns(self, turns: list[PendingExtractionTurn]) -> None:
         if self.extractor is None:
             return
-        for user_message, assistant_message in turns:
-            result = await self.extractor.extract(
-                InteractionTurn(
-                    id=str(uuid4()),
-                    session_id=self.session_id,
-                    user_message=user_message,
-                    assistant_message=assistant_message,
-                    model_name=self.config.llm.model,
-                    temperature=self.config.llm.temperature,
+        for index, pending_turn in enumerate(turns):
+            try:
+                result = await self.extractor.extract(
+                    InteractionTurn(
+                        id=pending_turn.turn_id,
+                        session_id=self.session_id,
+                        user_message=pending_turn.user_message,
+                        assistant_message=pending_turn.assistant_message,
+                        model_name=self.config.llm.model,
+                        temperature=self.config.llm.temperature,
+                    )
                 )
-            )
-            if isinstance(result, Mapping) and result.get("error"):
-                raise RuntimeError(f"Memory extraction failed: {result['error']}")
+                if isinstance(result, Mapping) and result.get("error"):
+                    raise RuntimeError(
+                        f"Memory extraction failed: {result['error']}"
+                    )
+            except ExtractionCommitCompletedUnderCancellation:
+                self.pending_extraction[:0] = turns[index + 1 :]
+                raise asyncio.CancelledError from None
+            except asyncio.CancelledError:
+                self.pending_extraction[:0] = turns[index:]
+                raise
+            except Exception:
+                self.pending_extraction[:0] = turns[index:]
+                raise
 
 
 @dataclass
@@ -747,6 +1065,113 @@ class FrameworkTranscriptAdapter:
     async def finalize(self) -> None:
         await self.store.end_session(self.session_id)
 
+    async def query_sessions(
+        self,
+        *,
+        limit: int = 1000,
+        include_archived: bool = False,
+    ) -> tuple[TranscriptSessionView, ...]:
+        sessions = await self.store.list_sessions(
+            limit=min(max(limit, 0), 1000),
+            include_archived=include_archived,
+        )
+        visible_ids = (
+            await self._non_archived_session_ids()
+            if include_archived
+            else {session.session_id for session in sessions}
+        )
+        views = (
+            _transcript_session_view(
+                session,
+                archived=session.session_id not in visible_ids,
+            )
+            for session in sessions
+        )
+        return tuple(
+            sorted(
+                views,
+                key=lambda session: (
+                    _datetime_sort_key(session.started_at),
+                    session.session_id,
+                ),
+                reverse=True,
+            )
+        )
+
+    async def query_session(self, session_id: str) -> TranscriptSessionView | None:
+        session = await self.store.get_session(session_id)
+        if session is None:
+            return None
+        return _transcript_session_view(
+            session,
+            archived=session_id not in await self._non_archived_session_ids(),
+        )
+
+    async def query_entries(
+        self,
+        session_id: str,
+    ) -> tuple[TranscriptEntryView, ...]:
+        entries: list[TranscriptEntry] = []
+        offset = 0
+        page_size = 1000
+        while True:
+            page = await self.store.get_entries(
+                session_id,
+                limit=page_size,
+                offset=offset,
+            )
+            entries.extend(page)
+            if len(page) < page_size:
+                break
+            offset += page_size
+        views = (_transcript_entry_view(entry) for entry in entries)
+        return tuple(
+            sorted(
+                views,
+                key=lambda entry: (
+                    entry.turn_number,
+                    _datetime_sort_key(entry.timestamp),
+                    entry.entry_id,
+                ),
+            )
+        )
+
+    async def query_context_logs(
+        self,
+        session_id: str,
+    ) -> tuple[TranscriptContextLogView, ...]:
+        context_logs = await self.store.get_context_log_for_session(
+            session_id,
+            limit=100_000,
+        )
+        views = (_transcript_context_log_view(entry) for entry in context_logs)
+        return tuple(
+            sorted(
+                views,
+                key=lambda entry: (
+                    entry.turn_number,
+                    _datetime_sort_key(entry.captured_at),
+                    entry.log_id,
+                ),
+            )
+        )
+
+    async def _non_archived_session_ids(self) -> set[str]:
+        session_ids: set[str] = set()
+        offset = 0
+        page_size = 1000
+        while True:
+            page = await self.store.list_sessions(
+                limit=page_size,
+                offset=offset,
+                include_archived=False,
+            )
+            session_ids.update(session.session_id for session in page)
+            if len(page) < page_size:
+                break
+            offset += page_size
+        return session_ids
+
     async def _ensure_session(self) -> None:
         session = await self.store.get_session(self.session_id)
         if session is not None:
@@ -765,6 +1190,58 @@ class FrameworkTranscriptAdapter:
         if self._turn_number is None:
             self._turn_number = await self.store.count_entries(self.session_id)
         return self._turn_number + 1
+
+
+def _transcript_session_view(
+    session: TranscriptSession,
+    *,
+    archived: bool | None = None,
+) -> TranscriptSessionView:
+    return TranscriptSessionView(
+        session_id=session.session_id,
+        user_id=session.user_id,
+        started_at=session.started_at,
+        ended_at=session.ended_at,
+        model_name=session.model_name,
+        total_turns=session.total_turns,
+        total_tokens=session.total_tokens,
+        archived=session.archived if archived is None else archived,
+    )
+
+
+def _transcript_entry_view(entry: TranscriptEntry) -> TranscriptEntryView:
+    return TranscriptEntryView(
+        entry_id=entry.id,
+        session_id=entry.session_id,
+        turn_number=entry.turn_number,
+        user_message=entry.user_message,
+        assistant_message=entry.assistant_message,
+        timestamp=entry.timestamp,
+        model_name=entry.model_name,
+        total_tokens=entry.total_tokens,
+        latency_ms=entry.latency_ms,
+    )
+
+
+def _transcript_context_log_view(
+    entry: ContextLogEntry,
+) -> TranscriptContextLogView:
+    return TranscriptContextLogView(
+        log_id=entry.id,
+        session_id=entry.session_id,
+        turn_number=entry.turn_number,
+        entry_id=entry.entry_id,
+        raw_prompt=entry.raw_prompt,
+        raw_response=entry.raw_response,
+        captured_at=entry.captured_at,
+    )
+
+
+def _datetime_sort_key(value: datetime) -> float:
+    normalized = (
+        value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+    )
+    return normalized.timestamp()
 
 
 @dataclass
@@ -901,9 +1378,10 @@ def build_framework_memory_adapter(
     embedding: FrameworkEmbeddingService,
     *,
     session_id: str,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkMemoryAdapter:
-    persist_directory = config.memory.persist_directory or ".friday/vector"
-    graph_path = str(Path(persist_directory).with_name("graph.json"))
+    persist_directory = str(maintenance_layout.vector_directory)
+    graph_path = str(maintenance_layout.graph_path)
     collection_config = CollectionConfig(
         short_term_collection=str(
             config.memory.retrieval.get("short_term_collection", "memories_short_term")
@@ -940,10 +1418,11 @@ def build_framework_memory_adapter(
         if config.lifecycle.enabled
         else NullGraphStore()
     )
+    episodic_store = InMemoryEpisodicStore()
     controller = MemoryController(
         vector_store=vector_store,
         graph_store=graph_store,
-        episodic_store=InMemoryEpisodicStore(),
+        episodic_store=episodic_store,
         collection_manager=collection_manager,
         priming_config=config.memory.priming,
         recalc_interval=config.extraction.interval,
@@ -953,7 +1432,16 @@ def build_framework_memory_adapter(
         collection_manager=collection_manager,
         config=config,
         session_id=session_id,
+        episodic_store=episodic_store,
+        graph_store=graph_store,
+        recovery_graph_store=(
+            graph_store if isinstance(graph_store, ElementXGraphStore) else None
+        ),
         passage_router=_build_passage_router(config),
+        access_buffer_configured=(
+            config.lifecycle.enabled
+            and config.lifecycle.access_buffer.get("enabled", True) is not False
+        ),
     )
 
 
@@ -961,11 +1449,10 @@ def build_framework_transcript_adapter(
     config: FridayChatConfig,
     *,
     session_id: str,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkTranscriptAdapter:
-    export_directory = Path(config.transcript.export_directory or "./exports")
-    db_path = export_directory / "friday_transcripts.sqlite"
     return FrameworkTranscriptAdapter(
-        store=SQLiteTranscriptStore(db_path),
+        store=SQLiteTranscriptStore(maintenance_layout.transcript_database_path),
         config=config,
         session_id=session_id,
     )
@@ -1004,6 +1491,7 @@ def build_framework_maintenance_adapter(
     chat_llm: FrameworkChatModel,
     llm_models: dict[str, str],
     diagnostics: Any,
+    maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkMaintenanceAdapter:
     """Build real framework maintenance services for FridayV2."""
     llm_services = {
@@ -1056,7 +1544,6 @@ def build_framework_maintenance_adapter(
         access_config = config.lifecycle.access_buffer
         if access_config.get("enabled", True) is not False:
             try:
-                wal_path = access_config.get("wal_path")
                 access_buffer = AccessBuffer(
                     AccessBufferConfig(
                         max_buffer_size=int(
@@ -1071,7 +1558,7 @@ def build_framework_maintenance_adapter(
                                 lifecycle_config.get("access_buffer_age_seconds", 300),
                             )
                         ),
-                        wal_path=Path(wal_path) if isinstance(wal_path, str) else None,
+                        wal_path=maintenance_layout.access_buffer_wal_path,
                         decay_score_boost=float(
                             access_config.get(
                                 "decay_score_boost",
@@ -1178,6 +1665,7 @@ def build_framework_maintenance_adapter(
             f"Unable to initialize framework extraction: {exc}"
         )
 
+    memory.access_buffer = access_buffer
     return FrameworkMaintenanceAdapter(
         config=config,
         session_id=session_id,
@@ -1253,11 +1741,7 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
         "min_similarity_tool_output",
         "min_keep_on_empty",
     )
-    router_kwargs = {
-        key: router_config[key]
-        for key in fields
-        if key in router_config
-    }
+    router_kwargs = {key: router_config[key] for key in fields if key in router_config}
     router_kwargs["enabled"] = True
     return PassageRouter(
         llm=router_llm,
@@ -1277,11 +1761,11 @@ def _build_role_llm_service(
         api_key=_optional_string(role_data.get("api_key")) or config.llm.api_key,
         api_base=_optional_string(role_data.get("api_base")) or config.llm.api_base,
         resilience=ResilienceConfig(
-            max_retries=_int_from_mapping(role_data, "max_retries", config.llm.max_retries),
+            max_retries=_int_from_mapping(
+                role_data, "max_retries", config.llm.max_retries
+            ),
             timeout_seconds=float(
-                role_data.get("timeout_seconds")
-                or config.llm.timeout_seconds
-                or 30.0
+                role_data.get("timeout_seconds") or config.llm.timeout_seconds or 30.0
             ),
         ),
     )
@@ -1306,7 +1790,9 @@ def _build_extraction_llm_service(
     )
 
 
-def _framework_maintenance_config(config: FridayChatConfig) -> FrameworkMaintenanceConfig:
+def _framework_maintenance_config(
+    config: FridayChatConfig,
+) -> FrameworkMaintenanceConfig:
     payload = config.maintenance.model_dump(mode="python")
     payload["collection_name"] = config.memory.collection_name
     return FrameworkMaintenanceConfig.model_validate(payload)
@@ -1432,7 +1918,8 @@ def _build_smart_file_llm_service(config: FridayChatConfig) -> LiteLLMService:
         or config.llm.model
         or "unknown",
         api_key=_optional_string(summarizer_data.get("api_key")) or config.llm.api_key,
-        api_base=_optional_string(summarizer_data.get("api_base")) or config.llm.api_base,
+        api_base=_optional_string(summarizer_data.get("api_base"))
+        or config.llm.api_base,
         resilience=ResilienceConfig(
             max_retries=_int_from_mapping(
                 summarizer_data,
@@ -1565,10 +2052,177 @@ def _metadata_text(item: Mapping[str, Any]) -> str:
     return json.dumps(item, default=str)
 
 
+def _sum_available_metrics(
+    *metrics: MemoryMetric[int],
+) -> MemoryMetric[int]:
+    """Sum only fully available metrics; never replace a failed read with zero."""
+    if any(metric.value is None for metric in metrics):
+        return MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
+    return MemoryMetric.available(
+        sum(metric.value for metric in metrics if metric.value is not None)
+    )
+
+
+def _length_metric(value: object) -> MemoryMetric[int]:
+    """Map one gathered collection result to an honest count metric."""
+    if isinstance(value, Exception):
+        return MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
+    if not isinstance(value, list):
+        return MemoryMetric.unavailable(MemoryDiagnosticReason.STORE_READ_FAILED)
+    return MemoryMetric.available(len(value))
+
+
+def _memory_record_view(
+    record: object,
+    *,
+    kind: MemoryRecordKind,
+    collection: MemoryCollection,
+) -> MemoryRecordView | None:
+    """Validate and bound one framework vector record at the adapter boundary."""
+    if not isinstance(record, Mapping):
+        return None
+    record_id = _bounded_memory_text(record.get("id"), limit=256)
+    text_value = record.get("text")
+    if text_value is None:
+        text_value = record.get("document")
+    text = _bounded_memory_text(text_value, limit=4096)
+    if not record_id or not text:
+        return None
+    metadata_value = record.get("metadata")
+    metadata = metadata_value if isinstance(metadata_value, Mapping) else {}
+    source_memory_ids, provenance_truncated = _source_memory_ids(
+        metadata.get("source_memories")
+    )
+    source_count = _optional_nonnegative_int(metadata.get("source_count"))
+    verification_status = _bounded_memory_text(
+        metadata.get("verification_status"),
+        limit=64,
+    )
+    if verification_status is None and isinstance(metadata.get("verified"), bool):
+        verification_status = (
+            "verified" if metadata["verified"] is True else "unverified"
+        )
+    return MemoryRecordView(
+        record_id=record_id,
+        kind=kind,
+        text=text,
+        collection=collection,
+        lifecycle_stage=_bounded_memory_text(metadata.get("stage"), limit=64),
+        created_at=_optional_datetime(metadata.get("created_at")),
+        confidence=_optional_confidence(metadata.get("confidence")),
+        source_count=source_count,
+        provenance_source_type=_bounded_memory_text(
+            metadata.get("provenance_source_type") or metadata.get("source_type"),
+            limit=64,
+        ),
+        source_memory_ids=source_memory_ids,
+        provenance_truncated=provenance_truncated,
+        verification_status=verification_status,
+        verification_confidence=_optional_confidence(
+            metadata.get("verification_confidence")
+        ),
+    )
+
+
+def _bounded_memory_text(value: object, *, limit: int) -> str | None:
+    """Normalize untrusted scalar text and remove terminal control characters."""
+    if not isinstance(value, str):
+        return None
+    normalized = " ".join(
+        "".join(
+            character if character.isprintable() else " " for character in value
+        ).split()
+    )
+    if not normalized:
+        return None
+    return normalized[:limit]
+
+
+def _source_memory_ids(value: object) -> tuple[tuple[str, ...], bool]:
+    """Decode scalar-safe synthesis lineage into a bounded typed tuple."""
+    decoded = value
+    if isinstance(value, str):
+        if len(value) > _MAX_SOURCE_PROVENANCE_CHARS:
+            return (), False
+        try:
+            encoded_size = len(value.encode("utf-8", errors="strict"))
+        except UnicodeEncodeError:
+            return (), False
+        if encoded_size > _MAX_SOURCE_PROVENANCE_BYTES:
+            return (), False
+        try:
+            decoded = json.loads(value)
+        except (json.JSONDecodeError, TypeError):
+            return (), False
+    if not isinstance(decoded, list):
+        return (), False
+    visible: list[str] = []
+    truncated = len(decoded) > _MAX_VISIBLE_SOURCE_IDS
+    for candidate in decoded[: _MAX_VISIBLE_SOURCE_IDS + 1]:
+        item = _bounded_memory_text(candidate, limit=128)
+        if item is None:
+            continue
+        if len(visible) == _MAX_VISIBLE_SOURCE_IDS:
+            truncated = True
+            break
+        visible.append(item)
+    return tuple(visible), truncated
+
+
+def _optional_nonnegative_int(value: object) -> int | None:
+    if _is_nonnegative_int(value):
+        return value
+    return None
+
+
+def _is_nonnegative_int(value: object) -> TypeGuard[int]:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
+
+def _optional_confidence(value: object) -> float | None:
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        result = float(value)
+        return result if math.isfinite(result) and 0.0 <= result <= 1.0 else None
+    return None
+
+
+def _optional_datetime(value: object) -> datetime | None:
+    if isinstance(value, datetime):
+        return value
+    if not isinstance(value, str):
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def _memory_record_sort_key(record: MemoryRecordView) -> tuple[float, str]:
+    created = record.created_at
+    if created is None:
+        return (float("-inf"), record.record_id)
+    try:
+        return (created.timestamp(), record.record_id)
+    except (OSError, OverflowError, ValueError):
+        return (float("-inf"), record.record_id)
+
+
+def _nonnegative_mapping_int(
+    data: Mapping[str, Any],
+    key: str,
+    default: int,
+) -> int | None:
+    value = data.get(key, default)
+    if isinstance(value, int) and not isinstance(value, bool) and value >= 0:
+        return value
+    return None
+
+
 def _dynamic_context_budget(config: FridayChatConfig) -> int:
-    context_window = config.memory.context_window or 8192
-    output_buffer = config.memory.output_buffer or 1024
-    return max(512, context_window - output_buffer)
+    return ToolBudgetCalculator.from_config(
+        config,
+        registered_count=0,
+    ).available_context_tokens
 
 
 def _int_from_mapping(data: Mapping[str, Any], key: str, default: int) -> int:

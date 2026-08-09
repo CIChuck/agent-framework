@@ -13,6 +13,7 @@ Strategies:
 3. Sentiment/Preference Extraction: "User expressed frustration with Python."
 """
 
+import asyncio
 import json
 import logging
 import time
@@ -45,6 +46,10 @@ if TYPE_CHECKING:
 
 
 logger = logging.getLogger(__name__)
+
+
+class ExtractionCommitCompletedUnderCancellation(asyncio.CancelledError):
+    """Signal that the current extraction committed before cancellation won."""
 
 
 # Default extraction prompt template (used if none provided in config)
@@ -406,8 +411,20 @@ class MemoryExtractor:
                 reasoning_content=reasoning_content,
             )
 
-            # Store extracted data
-            stats = await self._store_extractions(turn, extracted)
+            # Once writes begin, keep this shared writer alive until the current
+            # turn reaches a safe commit boundary.  The caller can observe the
+            # retained cancellation request and stop before the next turn.
+            commit_task = asyncio.create_task(self._store_extractions(turn, extracted))
+            cancellation_pending = False
+            while True:
+                try:
+                    stats = await asyncio.shield(commit_task)
+                    break
+                except asyncio.CancelledError:
+                    if commit_task.cancelled():
+                        raise
+                    cancellation_pending = True
+                    continue
 
             self._emit_event(
                 "extraction_completed",
@@ -419,6 +436,9 @@ class MemoryExtractor:
                     "tasks": len(extracted.get("tasks", [])),
                 },
             )
+
+            if cancellation_pending:
+                raise ExtractionCommitCompletedUnderCancellation
 
             return {
                 "extracted": extracted,
@@ -473,10 +493,12 @@ class MemoryExtractor:
             """Find existing node or create new one. Returns (node, was_created)."""
             existing = await self._memory.graph.find_by_label(label, node_type)
             if existing:
-                # Touch the node to update hit_count (Hebbian learning)
-                existing.touch()
-                # Persist the updated hit_count back to the graph store
-                await self._memory.graph.update_node(existing)
+                last_turn = existing.properties.get("last_extraction_turn_id")
+                same_origin = existing.provenance.source_id == turn.id
+                if not same_origin and last_turn != turn.id:
+                    existing.touch()
+                    existing.properties["last_extraction_turn_id"] = turn.id
+                    await self._memory.graph.update_node(existing)
                 return existing, False
 
             # Create new node
@@ -619,23 +641,30 @@ class MemoryExtractor:
         # Store insights with metadata
         if insight_items:
             try:
+                record_ids = [
+                    self._extraction_record_id(turn.id, "insight", index)
+                    for index in range(len(insight_items))
+                ]
                 stored = await self._memory.store_insights_batch_with_metadata(
-                    insight_items, provenance
+                    insight_items,
+                    provenance,
+                    record_ids=record_ids,
+                    upsert=True,
                 )
                 stats["insights_stored"] = stored
                 logger.info(f"Batch stored {stored} insights in vector store")
-            except AttributeError:
-                # Fall back to simple batch storage if new method not available
-                texts = [text for text, _ in insight_items]
-                stored = await self._memory.store_insights_batch(texts, provenance)
-                stats["insights_stored"] = stored
-                logger.info(f"Batch stored {stored} insights (without metadata)")
             except Exception as e:
                 logger.warning(f"Failed to batch store insights: {e}")
-                # Fall back to individual storage
-                for text, metadata in insight_items:
+                # Retain the same stable identities if the batch path fails.
+                for index, (text, metadata) in enumerate(insight_items):
                     try:
-                        await self._memory.store_insight(text, provenance, metadata)
+                        await self._memory.store_insight(
+                            text,
+                            provenance,
+                            metadata,
+                            record_id=record_ids[index],
+                            upsert=True,
+                        )
                         stats["insights_stored"] += 1
                     except Exception as e2:
                         logger.warning(f"Failed to store insight: {e2}")
@@ -649,7 +678,11 @@ class MemoryExtractor:
                     "turn_id": turn.id,
                 }
                 await self._memory.store_insight(
-                    summary.strip(), provenance, summary_metadata
+                    summary.strip(),
+                    provenance,
+                    summary_metadata,
+                    record_id=self._extraction_record_id(turn.id, "summary", 0),
+                    upsert=True,
                 )
                 stats["summaries_stored"] = 1
                 logger.info("Stored turn summary in vector store")
@@ -661,6 +694,16 @@ class MemoryExtractor:
         # outside the knowledge graph.
 
         return stats
+
+    @staticmethod
+    def _extraction_record_id(turn_id: str, kind: str, index: int) -> str:
+        """Return the stable vector identity for one extraction output slot."""
+        return str(
+            uuid.uuid5(
+                uuid.NAMESPACE_URL,
+                f"friday:extraction:v1:{turn_id}:{kind}:{index}",
+            )
+        )
 
     async def extract_entities_only(self, text: str) -> list[str]:
         """

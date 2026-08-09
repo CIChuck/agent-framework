@@ -3,11 +3,16 @@
 from __future__ import annotations
 
 import asyncio
-from collections.abc import Coroutine
-from dataclasses import dataclass
+from collections.abc import Callable, Coroutine
+from dataclasses import dataclass, field
 from typing import Any, TypeVar
+from uuid import uuid4
 
-from friday_chat.runtime import FridayRuntime
+from friday_chat.reorganization.gate import (
+    MaintenanceAdmissionError,
+    MaintenanceAdmissionGate,
+)
+from friday_chat.runtime import FridayRuntime, PendingExtractionTurn
 
 T = TypeVar("T")
 
@@ -48,13 +53,17 @@ class BackgroundTaskManager:
 
     async def close(self) -> None:
         """Cancel and await all pending background tasks."""
+        await self.cancel_pending()
+        self._closed = True
+
+    async def cancel_pending(self) -> None:
+        """Cancel and drain pending work without closing future admission."""
         pending = [task for task in self._tasks if not task.done()]
         for task in pending:
             task.cancel()
         if pending:
             await asyncio.gather(*pending, return_exceptions=True)
         self._tasks.clear()
-        self._closed = True
 
     def _record_completion(self, task: asyncio.Task[Any]) -> None:
         self._tasks.discard(task)
@@ -71,6 +80,14 @@ class BackgroundWorkCoordinator:
 
     runtime: FridayRuntime
     manager: BackgroundTaskManager
+    gate: MaintenanceAdmissionGate = field(
+        default_factory=MaintenanceAdmissionGate
+    )
+    _extraction_tasks: set[asyncio.Task[None]] = field(
+        default_factory=set,
+        init=False,
+        repr=False,
+    )
 
     def schedule_after_turn(
         self,
@@ -82,21 +99,29 @@ class BackgroundWorkCoordinator:
     ) -> None:
         """Schedule background work due after a persisted turn."""
         self.runtime.maintenance.pending_extraction.append(
-            (user_message, assistant_message)
+            PendingExtractionTurn(
+                turn_id=str(uuid4()),
+                user_message=user_message,
+                assistant_message=assistant_message,
+            )
         )
         if self._should_extract(turn_count):
+            self._schedule_extraction(trigger_reason="background_interval")
+
+        if self.runtime.config.tools.enabled:
             self.manager.create_task(
-                self.runtime.maintenance.extract_buffered_turns(
-                    trigger_reason="background_interval"
+                self._run_shared(
+                    "background-tool-decay",
+                    self.runtime.maintenance.run_tool_decay,
                 )
             )
 
-        if self.runtime.config.tools.enabled:
-            self.manager.create_task(self.runtime.maintenance.run_tool_decay())
-
         if self.runtime.config.lifecycle.factor_computer.get("enabled") is True:
             self.manager.create_task(
-                self.runtime.maintenance.run_incremental_graph_maintenance()
+                self._run_shared(
+                    "background-graph-maintenance",
+                    self.runtime.maintenance.run_incremental_graph_maintenance,
+                )
             )
 
         self._schedule_budget_compaction(budget_status)
@@ -107,6 +132,34 @@ class BackgroundWorkCoordinator:
         if task is not None and not task.done():
             await task
 
+    async def preempt_extraction_for_foreground_turn(self) -> bool:
+        """Cancel in-flight extraction before foreground inference begins."""
+        pending = [task for task in self._extraction_tasks if not task.done()]
+        cancellation_requested = False
+        for task in pending:
+            cancellation_requested = task.cancel() or cancellation_requested
+        if pending:
+            await asyncio.gather(*pending, return_exceptions=True)
+        return cancellation_requested
+
+    @property
+    def extraction_running(self) -> bool:
+        """Return whether an extraction task is active or awaiting admission."""
+        return any(not task.done() for task in self._extraction_tasks)
+
+    def resume_preempted_extraction(
+        self,
+        *,
+        trigger_reason: str = "foreground_resume",
+    ) -> bool:
+        """Resume deferred extraction after foreground inference completes."""
+        if not self.runtime.maintenance.pending_extraction:
+            return False
+        if self.extraction_running:
+            return False
+        self._schedule_extraction(trigger_reason=trigger_reason)
+        return True
+
     def _should_extract(self, turn_count: int) -> bool:
         interval = self.runtime.config.extraction.interval
         if interval == -1:
@@ -114,6 +167,18 @@ class BackgroundWorkCoordinator:
         if interval == 0:
             return True
         return interval > 0 and turn_count % interval == 0
+
+    def _schedule_extraction(self, *, trigger_reason: str) -> None:
+        task = self.manager.create_task(
+            self._run_shared(
+                "background-extraction",
+                lambda: self.runtime.maintenance.extract_buffered_turns(
+                    trigger_reason=trigger_reason,
+                ),
+            )
+        )
+        self._extraction_tasks.add(task)
+        task.add_done_callback(self._extraction_tasks.discard)
 
     def _schedule_budget_compaction(self, budget_status: Any | None) -> None:
         monitor = self.runtime.budget_monitor
@@ -124,8 +189,22 @@ class BackgroundWorkCoordinator:
             return
         monitor.mark_compaction_started()
         self.runtime.compaction_task = self.manager.create_task(
-            self._run_budget_compaction()
+            self._run_shared(
+                "background-compaction",
+                self._run_budget_compaction,
+            )
         )
+
+    async def _run_shared(
+        self,
+        operation_name: str,
+        operation_factory: Callable[[], Coroutine[Any, Any, object]],
+    ) -> None:
+        try:
+            async with self.gate.shared(operation_name):
+                await operation_factory()
+        except MaintenanceAdmissionError:
+            return
 
     async def _run_budget_compaction(self) -> None:
         monitor = self.runtime.budget_monitor

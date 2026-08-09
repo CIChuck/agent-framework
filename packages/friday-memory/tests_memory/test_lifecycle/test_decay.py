@@ -13,7 +13,7 @@ Tests cover:
 - Hours until decay estimation
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pytest
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
@@ -212,6 +212,18 @@ class TestDecayCalculator:
         score = calculator.calculate_decay(1.0, datetime.now() - timedelta(hours=1))
         assert score > 0.0
 
+    def test_calculate_decay_accepts_aware_timestamp_with_naive_now(
+        self,
+        calculator,
+        now,
+    ) -> None:
+        aware_now = now.astimezone()
+        last_accessed = (aware_now - timedelta(hours=24)).astimezone(timezone.utc)
+
+        score = calculator.calculate_decay(1.0, last_accessed, now)
+
+        assert 0.78 < score < 0.80
+
     def test_apply_access_boost(self, calculator) -> None:
         """Access boost should increase score."""
         original = 0.5
@@ -287,6 +299,16 @@ class TestDecayCalculator:
         # Should not raise an error
         result = calculator.is_eligible_for_promotion_check(created_at)
         assert result is True
+
+    def test_is_eligible_accepts_aware_timestamp_with_naive_now(
+        self,
+        calculator,
+        now,
+    ) -> None:
+        aware_now = now.astimezone()
+        created_at = (aware_now - timedelta(hours=25)).astimezone(timezone.utc)
+
+        assert calculator.is_eligible_for_promotion_check(created_at, now)
 
     def test_calculate_hours_until_decay_above_threshold(self, calculator, now) -> None:
         """Should return hours until decay threshold is reached."""

@@ -6,14 +6,34 @@ Primary backend for persistent transcript storage.
 Uses aiosqlite for async operations.
 """
 
+import asyncio
+import hashlib
 import json
 import logging
+import os
+import shutil
+import sqlite3
+import stat
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import Any
+from uuid import uuid4
 
 import aiosqlite
+from pydantic import ValidationError
 
+from friday_transcript.models.snapshot import (
+    TranscriptIntegrityResult,
+    TranscriptRecoveryErrorCode,
+    TranscriptRecoveryErrorDetail,
+    TranscriptRestoreQuiescenceToken,
+    TranscriptSnapshotManifest,
+    TranscriptSnapshotResult,
+    TranscriptSnapshotStatus,
+)
 from friday_transcript.models.transcript import (
     ContextLogEntry,
     ToolCall,
@@ -23,6 +43,18 @@ from friday_transcript.models.transcript import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+class TranscriptRecoveryError(RuntimeError):
+    """Base exception for transcript recovery invariant failures."""
+
+
+class TranscriptPathError(TranscriptRecoveryError):
+    """Raised when recovery paths alias or overlap live transcript state."""
+
+
+class TranscriptQuiescenceError(TranscriptRecoveryError):
+    """Raised when restore lacks the store-owned writer-gate token."""
 
 
 class SQLiteTranscriptStore:
@@ -45,13 +77,35 @@ class SQLiteTranscriptStore:
         self._db_path = Path(db_path)
         self._db_path.parent.mkdir(parents=True, exist_ok=True)
         self._initialized = False
+        self._initialize_lock = asyncio.Lock()
+        self._write_gate = asyncio.Lock()
+        self._recovery_issuer_id = uuid4().hex
+        self._active_restore_token: TranscriptRestoreQuiescenceToken | None = None
+
+    @property
+    def database_path(self) -> Path:
+        """Return the configured SQLite database path."""
+        return self._db_path
+
+    @asynccontextmanager
+    async def _writer_connection(self) -> AsyncIterator[aiosqlite.Connection]:
+        """Open a writer connection while holding the store-owned write gate."""
+        async with self._write_gate, aiosqlite.connect(self._db_path) as db:
+            yield db
 
     async def _ensure_initialized(self) -> None:
         """Create tables if they don't exist."""
         if self._initialized:
             return
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._initialize_lock:
+            if self._initialized:
+                return
+            await self._initialize_database()
+
+    async def _initialize_database(self) -> None:
+        """Initialize schema while holding the same gate as ordinary writes."""
+        async with self._writer_connection() as db:
             # ACID compliance pragmas
             await db.execute("PRAGMA foreign_keys = ON")
             await db.execute("PRAGMA journal_mode = WAL")
@@ -189,13 +243,520 @@ class SQLiteTranscriptStore:
             await db.commit()
             self._initialized = True
 
+    @staticmethod
+    def _sha256(path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as stream:
+            for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+
+    @staticmethod
+    def _path_contains(parent: Path, child: Path) -> bool:
+        return parent == child or parent in child.parents
+
+    def _validate_snapshot_destination(self, destination_directory: Path) -> Path:
+        source = self._db_path.resolve(strict=False)
+        destination = destination_directory.resolve(strict=False)
+        if self._path_contains(destination, source) or self._path_contains(
+            source, destination
+        ):
+            raise TranscriptPathError(
+                "Transcript recovery destination overlaps the live database path"
+            )
+        if destination.exists():
+            raise TranscriptPathError(
+                "Transcript recovery destination must not already exist"
+            )
+        return destination
+
+    @staticmethod
+    def _set_directory_permissions(path: Path) -> None:
+        path.mkdir(parents=True, exist_ok=False, mode=0o700)
+        if os.name == "posix":
+            path.chmod(0o700)
+            SQLiteTranscriptStore._fsync_directory(path.parent)
+
+    @staticmethod
+    def _set_file_permissions(path: Path) -> None:
+        if os.name == "posix":
+            path.chmod(0o600)
+
+    @staticmethod
+    def _write_manifest(path: Path, manifest: TranscriptSnapshotManifest) -> None:
+        payload = manifest.model_dump_json(indent=2).encode("utf-8")
+        temp_path = path.with_name(f".{path.name}.tmp")
+        descriptor = os.open(temp_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        try:
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temp_path, path)
+            SQLiteTranscriptStore._set_file_permissions(path)
+            SQLiteTranscriptStore._fsync_directory(path.parent)
+        except Exception:
+            temp_path.unlink(missing_ok=True)
+            raise
+
+    @staticmethod
+    def _online_backup(source: Path, destination: Path) -> None:
+        source_uri = f"file:{source.resolve(strict=True)}?mode=ro"
+        with (
+            sqlite3.connect(source_uri, uri=True) as source_db,
+            sqlite3.connect(destination) as destination_db,
+        ):
+            source_db.backup(destination_db)
+            destination_db.commit()
+        SQLiteTranscriptStore._set_file_permissions(destination)
+        with destination.open("rb") as stream:
+            os.fsync(stream.fileno())
+        SQLiteTranscriptStore._fsync_directory(destination.parent)
+
+    @staticmethod
+    def _schema_fingerprint(connection: sqlite3.Connection) -> str:
+        rows = connection.execute(
+            """
+            SELECT type, name, tbl_name, COALESCE(sql, '')
+            FROM sqlite_schema
+            WHERE name NOT LIKE 'sqlite_%'
+            ORDER BY type, name, tbl_name, sql
+            """
+        ).fetchall()
+        encoded = json.dumps(rows, separators=(",", ":"), ensure_ascii=True).encode()
+        return hashlib.sha256(encoded).hexdigest()
+
+    @classmethod
+    def _inspect_database(cls, database_path: Path) -> TranscriptIntegrityResult:
+        database_uri = f"file:{database_path.resolve(strict=True)}?mode=ro"
+        with sqlite3.connect(database_uri, uri=True) as connection:
+            integrity_rows = connection.execute("PRAGMA integrity_check").fetchall()
+            foreign_key_rows = connection.execute("PRAGMA foreign_key_check").fetchall()
+            page_count_row = connection.execute("PRAGMA page_count").fetchone()
+            page_count = int(page_count_row[0]) if page_count_row else 0
+            return TranscriptIntegrityResult(
+                integrity_ok=integrity_rows == [("ok",)],
+                foreign_keys_ok=not foreign_key_rows,
+                schema_fingerprint=cls._schema_fingerprint(connection),
+                page_count=page_count,
+            )
+
+    @staticmethod
+    def _failed_result(
+        code: TranscriptRecoveryErrorCode,
+        message: str,
+        *,
+        manifest_path: Path | None = None,
+        integrity: TranscriptIntegrityResult | None = None,
+    ) -> TranscriptSnapshotResult:
+        return TranscriptSnapshotResult(
+            status=TranscriptSnapshotStatus.FAILED,
+            manifest_path=manifest_path,
+            integrity=integrity,
+            verified=False,
+            errors=[TranscriptRecoveryErrorDetail(code=code, message=message)],
+        )
+
+    async def inspect_live(self) -> TranscriptSnapshotResult:
+        """Inspect live SQLite integrity without initializing or writing state."""
+        try:
+            database_path = self._db_path.resolve(strict=True)
+            if not database_path.is_file():
+                raise FileNotFoundError
+            integrity = await asyncio.to_thread(
+                self._inspect_database,
+                database_path,
+            )
+        except FileNotFoundError:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SOURCE_ABSENT,
+                "Live transcript database is absent",
+            )
+        except (OSError, sqlite3.Error):
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Live transcript is not a readable SQLite database",
+            )
+        if not integrity.verified:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Live transcript integrity verification failed",
+                integrity=integrity,
+            )
+        return TranscriptSnapshotResult(
+            status=TranscriptSnapshotStatus.COMPLETED,
+            integrity=integrity,
+            verified=True,
+        )
+
+    async def create_snapshot(
+        self, destination_directory: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Create and verify a WAL-safe SQLite online backup."""
+        try:
+            await self._ensure_initialized()
+        except (OSError, sqlite3.Error) as exc:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SOURCE_ABSENT,
+                f"Live transcript initialization failed: {type(exc).__name__}",
+            )
+        destination = self._validate_snapshot_destination(Path(destination_directory))
+        artifact_path = destination / "transcript.sqlite3"
+        manifest_path = destination / "manifest.json"
+
+        try:
+            self._set_directory_permissions(destination)
+            await asyncio.to_thread(
+                self._online_backup,
+                self._db_path.resolve(strict=True),
+                artifact_path,
+            )
+            integrity = await asyncio.to_thread(self._inspect_database, artifact_path)
+            if not integrity.verified:
+                return self._failed_result(
+                    TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                    "SQLite snapshot integrity verification failed",
+                    manifest_path=manifest_path,
+                    integrity=integrity,
+                )
+            manifest = TranscriptSnapshotManifest(
+                created_at=datetime.now(),
+                source_path=str(self._db_path.resolve(strict=True)),
+                artifact_filename=artifact_path.name,
+                artifact_sha256=await asyncio.to_thread(self._sha256, artifact_path),
+                artifact_size_bytes=artifact_path.stat().st_size,
+                schema_fingerprint=integrity.schema_fingerprint,
+                page_count=integrity.page_count,
+                verified=True,
+            )
+            await asyncio.to_thread(self._write_manifest, manifest_path, manifest)
+        except (OSError, sqlite3.Error) as exc:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                f"SQLite online snapshot failed: {type(exc).__name__}",
+                manifest_path=manifest_path,
+            )
+
+        return await self.verify_snapshot(manifest_path)
+
+    async def verify_snapshot(
+        self, manifest_path: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Verify checksum, schema, and SQLite integrity for a snapshot."""
+        normalized_manifest = Path(manifest_path).resolve(strict=False)
+        try:
+            manifest = TranscriptSnapshotManifest.model_validate_json(
+                normalized_manifest.read_text()
+            )
+        except FileNotFoundError:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SNAPSHOT_INCOMPLETE,
+                "Transcript snapshot manifest is absent",
+                manifest_path=normalized_manifest,
+            )
+        except (OSError, ValidationError, ValueError):
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SCHEMA_MISMATCH,
+                "Transcript snapshot manifest is invalid",
+                manifest_path=normalized_manifest,
+            )
+
+        if Path(manifest.artifact_filename).name != manifest.artifact_filename:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INVALID_PATH,
+                "Transcript artifact filename is not a local bundle filename",
+                manifest_path=normalized_manifest,
+            )
+        if not manifest.verified:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SNAPSHOT_INCOMPLETE,
+                "Transcript snapshot manifest is not marked verified",
+                manifest_path=normalized_manifest,
+            )
+        artifact_path = normalized_manifest.parent / manifest.artifact_filename
+        if not artifact_path.is_file():
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SNAPSHOT_INCOMPLETE,
+                "Transcript snapshot artifact is absent",
+                manifest_path=normalized_manifest,
+            )
+        try:
+            with TemporaryDirectory(
+                prefix="friday-transcript-verify-"
+            ) as temporary_directory:
+                verification_directory = Path(temporary_directory)
+                if os.name == "posix":
+                    verification_directory.chmod(0o700)
+                staged_artifact = verification_directory / "transcript.sqlite3"
+                await asyncio.to_thread(
+                    self._copy_owner_only, artifact_path, staged_artifact
+                )
+                artifact_checksum = await asyncio.to_thread(
+                    self._sha256, staged_artifact
+                )
+                if artifact_checksum != manifest.artifact_sha256:
+                    return self._failed_result(
+                        TranscriptRecoveryErrorCode.CHECKSUM_MISMATCH,
+                        "Transcript snapshot checksum does not match its manifest",
+                        manifest_path=normalized_manifest,
+                    )
+                integrity = await asyncio.to_thread(
+                    self._inspect_database, staged_artifact
+                )
+                artifact_size = staged_artifact.stat().st_size
+        except OSError:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SNAPSHOT_INCOMPLETE,
+                "Transcript snapshot artifact became unavailable",
+                manifest_path=normalized_manifest,
+            )
+        except sqlite3.Error:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Transcript snapshot is not a readable SQLite database",
+                manifest_path=normalized_manifest,
+            )
+        if not integrity.verified:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Transcript snapshot integrity verification failed",
+                manifest_path=normalized_manifest,
+                integrity=integrity,
+            )
+        if (
+            integrity.schema_fingerprint != manifest.schema_fingerprint
+            or integrity.page_count != manifest.page_count
+            or artifact_size != manifest.artifact_size_bytes
+        ):
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SCHEMA_MISMATCH,
+                "Transcript snapshot metadata does not match its manifest",
+                manifest_path=normalized_manifest,
+                integrity=integrity,
+            )
+        return TranscriptSnapshotResult(
+            status=TranscriptSnapshotStatus.COMPLETED,
+            manifest_path=normalized_manifest,
+            integrity=integrity,
+            verified=True,
+        )
+
+    @asynccontextmanager
+    async def restore_quiescence(
+        self,
+    ) -> AsyncIterator[TranscriptRestoreQuiescenceToken]:
+        """Hold the store writer gate and issue an identity-bound restore token."""
+        await self._ensure_initialized()
+        if self._active_restore_token is not None:
+            raise TranscriptQuiescenceError("Transcript restore quiescence is active")
+        await self._write_gate.acquire()
+        token = TranscriptRestoreQuiescenceToken(
+            self._recovery_issuer_id,
+            hashlib.sha256(
+                str(self._db_path.resolve(strict=False)).encode("utf-8")
+            ).hexdigest(),
+            uuid4().hex,
+        )
+        self._active_restore_token = token
+        try:
+            yield token
+        finally:
+            self._active_restore_token = None
+            self._write_gate.release()
+
+    def _validate_restore_token(
+        self, token: TranscriptRestoreQuiescenceToken
+    ) -> None:
+        if token is not self._active_restore_token or not self._write_gate.locked():
+            raise TranscriptQuiescenceError(
+                "Restore requires the active store-issued quiescence token"
+            )
+
+    def _load_manifest_for_apply(
+        self, manifest_path: Path
+    ) -> TranscriptSnapshotManifest:
+        """Revalidate the exact manifest instance selecting the restored artifact."""
+        try:
+            manifest = TranscriptSnapshotManifest.model_validate_json(
+                manifest_path.read_bytes()
+            )
+        except (OSError, ValidationError, ValueError) as exc:
+            raise TranscriptRecoveryError(
+                "Transcript snapshot manifest became unavailable or invalid"
+            ) from exc
+        if not manifest.verified:
+            raise TranscriptRecoveryError(
+                "Transcript snapshot manifest is not verified"
+            )
+        if (
+            Path(manifest.artifact_filename).name != manifest.artifact_filename
+            or Path(manifest.source_path).resolve(strict=False)
+            != self._db_path.resolve(strict=False)
+        ):
+            raise TranscriptPathError(
+                "Transcript snapshot manifest is not valid for this database path"
+            )
+        return manifest
+
+    @staticmethod
+    def _checkpoint_database(database_path: Path) -> None:
+        with sqlite3.connect(database_path) as connection:
+            checkpoint = connection.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchone()
+            if checkpoint is None or int(checkpoint[0]) != 0:
+                raise sqlite3.OperationalError("WAL checkpoint did not complete")
+
+    @staticmethod
+    def _copy_owner_only(source: Path, destination: Path) -> None:
+        shutil.copyfile(source, destination)
+        SQLiteTranscriptStore._set_file_permissions(destination)
+        with destination.open("rb") as stream:
+            os.fsync(stream.fileno())
+
+    @staticmethod
+    def _fsync_directory(directory: Path) -> None:
+        if os.name != "posix":
+            return
+        descriptor = os.open(directory, os.O_RDONLY)
+        try:
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+
+    async def restore_snapshot(
+        self,
+        manifest_path: str | Path,
+        token: TranscriptRestoreQuiescenceToken,
+    ) -> TranscriptSnapshotResult:
+        """Restore a verified snapshot only under store-owned quiescence."""
+        self._validate_restore_token(token)
+        verification = await self.verify_snapshot(manifest_path)
+        if not verification.verified or verification.manifest_path is None:
+            raise TranscriptRecoveryError("Transcript snapshot verification failed")
+
+        manifest = self._load_manifest_for_apply(verification.manifest_path)
+
+        artifact_path = verification.manifest_path.parent / manifest.artifact_filename
+        staging_path = self._db_path.with_name(f".{self._db_path.name}.{uuid4().hex}.restore")
+        try:
+            live_mode = (
+                stat.S_IMODE(self._db_path.stat().st_mode)
+                if self._db_path.exists()
+                else 0o600
+            )
+            await asyncio.to_thread(self._copy_owner_only, artifact_path, staging_path)
+            staging_checksum = await asyncio.to_thread(self._sha256, staging_path)
+            if (
+                staging_checksum != manifest.artifact_sha256
+                or staging_path.stat().st_size != manifest.artifact_size_bytes
+            ):
+                raise TranscriptRecoveryError(
+                    "Staged transcript recovery artifact checksum mismatch"
+                )
+            staging_integrity = await asyncio.to_thread(
+                self._inspect_database, staging_path
+            )
+            if (
+                not staging_integrity.verified
+                or staging_integrity.schema_fingerprint != manifest.schema_fingerprint
+            ):
+                raise TranscriptRecoveryError(
+                    "Staged transcript recovery artifact failed integrity verification"
+                )
+            await asyncio.to_thread(self._checkpoint_database, self._db_path)
+            self._db_path.with_name(f"{self._db_path.name}-wal").unlink(missing_ok=True)
+            self._db_path.with_name(f"{self._db_path.name}-shm").unlink(missing_ok=True)
+            os.replace(staging_path, self._db_path)
+            if os.name == "posix":
+                self._db_path.chmod(live_mode)
+            await asyncio.to_thread(self._fsync_directory, self._db_path.parent)
+        except TranscriptRecoveryError:
+            staging_path.unlink(missing_ok=True)
+            raise
+        except (OSError, sqlite3.Error) as exc:
+            staging_path.unlink(missing_ok=True)
+            raise TranscriptRecoveryError(
+                f"Transcript restore failed: {type(exc).__name__}"
+            ) from exc
+
+        live_result = await self.verify_live(verification.manifest_path)
+        if not live_result.verified:
+            raise TranscriptRecoveryError(
+                "Restored transcript failed live integrity verification"
+            )
+        try:
+            live_checksum = await asyncio.to_thread(self._sha256, self._db_path)
+        except OSError as exc:
+            raise TranscriptRecoveryError(
+                "Restored transcript cannot be checksummed"
+            ) from exc
+        if live_checksum != manifest.artifact_sha256:
+            raise TranscriptRecoveryError(
+                "Restored transcript does not match the verified snapshot"
+            )
+        self._initialized = True
+        return live_result
+
+    async def verify_live(
+        self, manifest_path: str | Path
+    ) -> TranscriptSnapshotResult:
+        """Verify live SQLite integrity and snapshot schema compatibility."""
+        snapshot_result = await self.verify_snapshot(manifest_path)
+        if not snapshot_result.verified or snapshot_result.manifest_path is None:
+            return snapshot_result
+        try:
+            manifest = self._load_manifest_for_apply(
+                snapshot_result.manifest_path
+            )
+        except TranscriptPathError:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INVALID_PATH,
+                "Transcript snapshot manifest is not valid for the live database",
+                manifest_path=snapshot_result.manifest_path,
+            )
+        except TranscriptRecoveryError:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SCHEMA_MISMATCH,
+                "Transcript snapshot manifest became unavailable",
+                manifest_path=snapshot_result.manifest_path,
+            )
+        try:
+            integrity = await asyncio.to_thread(
+                self._inspect_database, self._db_path.resolve(strict=True)
+            )
+        except (OSError, sqlite3.Error):
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Live transcript is not a readable SQLite database",
+                manifest_path=snapshot_result.manifest_path,
+            )
+        if not integrity.verified:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.INTEGRITY_FAILED,
+                "Live transcript integrity verification failed",
+                manifest_path=snapshot_result.manifest_path,
+                integrity=integrity,
+            )
+        if integrity.schema_fingerprint != manifest.schema_fingerprint:
+            return self._failed_result(
+                TranscriptRecoveryErrorCode.SCHEMA_MISMATCH,
+                "Live transcript schema is incompatible with the snapshot",
+                manifest_path=snapshot_result.manifest_path,
+                integrity=integrity,
+            )
+        return TranscriptSnapshotResult(
+            status=TranscriptSnapshotStatus.COMPLETED,
+            manifest_path=snapshot_result.manifest_path,
+            integrity=integrity,
+            verified=True,
+        )
+
     # --- Session Management ---
 
     async def create_session(self, session: TranscriptSession) -> bool:
         """Create a new transcript session."""
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             try:
                 await db.execute(
@@ -241,7 +802,7 @@ class SQLiteTranscriptStore:
         """Mark a session as ended."""
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 """
@@ -268,7 +829,7 @@ class SQLiteTranscriptStore:
         """
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 "UPDATE sessions SET archived = 1 WHERE session_id = ?",
@@ -292,7 +853,7 @@ class SQLiteTranscriptStore:
         """
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             cursor = await db.execute(
                 "UPDATE sessions SET archived = 1 WHERE archived = 0 OR archived IS NULL"  # noqa: E501
@@ -396,7 +957,7 @@ class SQLiteTranscriptStore:
         """Append a transcript entry."""
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             try:
                 # Insert entry
@@ -540,7 +1101,7 @@ class SQLiteTranscriptStore:
             return 0
 
         placeholders = ",".join("?" * len(entry_ids))
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             try:
                 cursor = await db.execute(
@@ -572,7 +1133,7 @@ class SQLiteTranscriptStore:
             return 0
 
         placeholders = ",".join("?" * len(entry_ids))
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             try:
                 cursor = await db.execute(
@@ -778,7 +1339,7 @@ class SQLiteTranscriptStore:
         """
         await self._ensure_initialized()
 
-        async with aiosqlite.connect(self._db_path) as db:
+        async with self._writer_connection() as db:
             await db.execute("PRAGMA foreign_keys = ON")
             try:
                 await db.execute(

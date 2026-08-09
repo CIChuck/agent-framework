@@ -230,6 +230,21 @@ Required behavior:
 - Finalize transcript sessions on normal exit and exceptional exit.
 - Shutdown must await or cancel tracked background tasks intentionally.
 
+### Runtime Session Identity
+
+- A production invocation owns one immutable `SessionIdentity`, generated once
+  as `session_<unique-id>` unless a caller injects an explicit identity for a
+  deterministic test or replay.
+- The same identity is propagated through runtime construction, memory and
+  transcript adapters, maintenance services, the app `FridaySession`, command
+  handlers, and replay. It is not regenerated at any of those boundaries.
+- Supplying both a typed identity and a string session id is allowed only when
+  their values match. Identity disagreement fails explicitly instead of
+  silently splitting persisted state.
+- Transcript creation remains lazy, but the eventual persisted transcript id
+  is the invocation identity. Existing transcript rows retain their original
+  ids and remain independently queryable.
+
 Required tests:
 
 - EOF and keyboard interrupt exit cleanly.
@@ -338,7 +353,9 @@ Contracts:
 - `/clear`: clear `turn_ids`, pending extraction turns, `last_payload`, and
   session turn count if state exists. It does not clear persistent stores.
 - `/cls`, `/clearscreen`: clear terminal through display abstraction and return
-  an empty response.
+  an empty response. The app applies that typed effect exactly once. If no
+  display boundary is configured, or the boundary fails, return a sanitized,
+  honest unavailable/failure response instead of claiming success.
 - `/help`: list commands grouped by category using the legacy verbose layout,
   including aliases, description, usage, and argument details.
 - `/help <command>`: show category, usage, description, aliases, and structured
@@ -348,7 +365,9 @@ Required tests:
 
 - Clear resets only in-session state.
 - Help includes every registered command and alias.
-- Clear-screen does not require a real terminal.
+- Clear-screen recording coverage does not require a real terminal; supported
+  platform coverage also proves the production display writes terminal clear
+  and home control sequences through a real PTY.
 
 ## Memory And Context Commands
 
@@ -360,8 +379,11 @@ Contracts:
 - `/history`: merge prior history from the last context payload with current
   session turns from episodic storage, prior turns first. Show counts for prior
   and current turns. Empty history returns a no-history message.
-- `/memory`: report available memory statistics across episodic, vector, graph,
-  transcript, lifecycle, priming, and context metrics where configured.
+- `/memory`: report typed statistics across episodic, vector, graph,
+  transcript, lifecycle, priming, session, and last-context metrics. A numeric
+  zero is rendered only when the backing source returned zero. Unsupported,
+  unconfigured, and failed sources retain honest typed availability or warning
+  states and are never collapsed into fabricated zeroes.
 - `/context`: show the last assembled context payload. If no payload exists,
   assemble or report that no context is available according to the final
   FridayV2 command design.
@@ -383,8 +405,12 @@ Contracts:
 - `/entities`: list graph entities and relationship summaries.
 - `/entities nodes`: show node-only detail.
 - `/entities <name>`: show matching entity detail.
-- `/insights`, `/summaries`, `/meta`: list typed vector records with structured
-  metadata and useful empty-state messages.
+- `/insights`, `/summaries`, `/meta`: query public memory APIs and list typed
+  records with structured metadata, provenance, and useful empty-state
+  guidance. `/meta` merges active short-term and long-term meta insights,
+  excludes decayed records, preserves source/derivation provenance, and does
+  not synthesize, reorganize, or otherwise mutate memory. A partial store
+  failure returns the available records plus a typed warning.
 - `/vars`: show scoped variables or report none set.
 - `/set <key> <value>`: require initialized session state, set the scoped var,
   and return confirmation.
@@ -405,15 +431,18 @@ Reference: `friday.py:2810`, `friday.py:2870`, `friday.py:2947`,
 
 Contracts:
 
-- `/sessions`: require transcript store. List up to 1000 sessions, mark current
-  session, and mark sessions included in primed context based on
+- `/sessions`: require the public transcript query boundary. List up to 1000
+  persisted sessions in deterministic order, mark the current invocation
+  identity, and mark sessions included in primed context based on
   `memory.priming.previous_sessions`.
-- `/transcript`: show current session entries.
-- `/transcript <session_id>`: show selected session entries or no-entries
-  message.
+- `/transcript`: query and show the persisted current-session entries.
+- `/transcript <session_id>`: treat the supplied id as an untrusted bound query,
+  then show the persisted selected-session entries or an honest no-entries
+  message. The current and selected session identities remain distinguishable.
 - `/transcript export`: export all transcript sessions to a timestamped
-  subdirectory containing `sessions.csv` and `entries.csv`.
-- `/export`: default to Markdown for current session.
+  subdirectory containing `sessions.csv` and `entries.csv`; archived sessions
+  omitted by the public all-session query remain omitted from the export.
+- `/export`: default to Markdown for persisted current-session entries.
 - `/export csv`: write all-quoted CSV and report entry count.
 - `/export jsonl`: write JSONL and report entry count.
 - `/export markdown` or `/export md`: write Markdown using configured user and
@@ -422,6 +451,10 @@ Contracts:
 - `/export-prompts [session_id]`: export context-log raw prompt/response data to
   JSON for current or selected session. If no context logs exist, tell the user
   to enable `transcript.capture_raw_prompts`.
+- Transcript commands use public typed query/export APIs rather than copying or
+  opening SQLite storage directly. Every export resolves beneath the configured
+  export root, uses deterministic record ordering/counts, and rejects unsafe
+  path escape.
 
 Required tests:
 
@@ -459,43 +492,149 @@ Required tests:
 
 Required behavior:
 
-- Require `persist_dir`; otherwise return an error.
-- Default mode is dry-run. `--execute` switches to execution.
-- Default is `backup_first=True`. `--no-backup` disables backup before mutating
-  operations.
-- `--skip-synthesis`, `--skip-verify`, `--skip-lifecycle`, and
-  `--force-reembed` alter the full reorganize call.
-- Single-step modes take precedence in this order: `--backup`, `--dedupe`,
-  `--analyze`, `--prune`, `--synthesize`, `--verify`, otherwise full
-  reorganization.
-- `--backup` creates only a backup and does not care about dry-run mode.
-- `--dedupe` runs insight deduplication, backs up first only when executing and
-  backup is enabled, and reports scanned, clusters, superseded, sample clusters,
-  and errors.
-- `--analyze` is read-only and reports graph, vector, episodic, issue severity,
-  and duplicate group summary.
-- `--prune`, `--synthesize`, and `--verify` run only their respective steps and
-  report step-specific counts.
-- Full reorganization calls `reorganize()` with backup, dry-run,
-  skip-synthesis, skip-verify, skip-lifecycle, and force-reembed flags.
-- Maintenance LLM roles fall back to main chat LLM when not configured and
-  should be reported.
-- Maintenance embedding uses configured maintenance embedding unless setup
-  fails, then falls back to session embedding.
+- Require a configured vector persistence directory; otherwise return an error.
+- Default to a side-effect-free dry run. Only the exact `--execute` flag may
+  authorize mutation; plain `execute`, `--no-backup`, duplicate, unknown, and
+  incompatible flags are rejected.
+- Route `--backup`, `--analyze`, `--dedupe`, `--prune`, `--synthesize`, and
+  `--verify` to exactly that operation. With no mode flag, run the full typed
+  pipeline. Full-only skip and re-embedding flags are invalid for single-step
+  modes, and analyze rejects execute authorization.
+- Use the app-owned coordinator for both manual and shutdown requests. Every
+  mutating request must first create and verify one aggregate Friday Memory and
+  Friday Transcript recovery bundle; there is no backup bypass.
+- Authorize execution from one typed coordinator capability and the actual
+  request. Backup and explicit recovery require Memory and Transcript recovery
+  participants plus runtime quiescence hooks; mutating modes and configured
+  exit full/fast/deep additionally require the mutation adapter. Explicit
+  recovery remains available when mutation providers or adapters are absent.
+  Legacy direct maintenance and standalone Friday Memory mutation/restore paths
+  remain fail-closed.
+- Include Transcript only in snapshot, rollback, and recovery. Transcript
+  content is never analyzed, classified, pruned, synthesized, verified, or
+  otherwise reorganized.
+- Use only explicitly configured `maintenance.llm.<role>` and
+  `maintenance.embedding` providers. The primary chat LLM, primary embedding,
+  and DGX availability are never implicit maintenance fallbacks. Preflight only
+  capabilities required by the selected mode and flags.
+- Every maintenance LLM request includes the exact strict JSON Schema for its
+  typed response. Parse the first valid JSON object from normal or reasoning
+  content, reject schema violations with content-safe categorical errors, and
+  prove synthesis sources and output counts remain bound to the fresh plan
+  before embedding or mutation.
+- Build synthesis candidates only from active, verified insight records. Group
+  sources by vector collection and normalized topic, honor the configured
+  minimum cluster size, and issue at most one bounded provider request per
+  eligible group. Treat memory text in that request as untrusted data.
+- Bound synthesis exposure before the provider call: no more than 128 topic
+  groups and 512 source records per plan, 64 visible source records per group,
+  6,000 characters per visible document, and 120,000 characters in one request
+  payload. Report deferred or ineligible sources only through content-safe
+  counts and warnings.
+- Bind each synthesis group to a deterministic, versioned fingerprint of its
+  collection, normalized topic, ordered source identifiers, and normalized
+  source-document hashes. An existing fingerprint suppresses provider work;
+  an unchanged second execute run must report synthesis `changed=0` and must
+  not call the synthesis LLM or embedding provider.
+- Permit the synthesis provider to abstain. Empty output, output below the
+  configured confidence threshold, and an exact duplicate of an existing
+  document are successful no-ops that do not invoke embeddings or mutation.
+- Persist synthesized vector records as `meta_insight` with bounded canonical
+  `source_memories` JSON, `source_count`, and
+  `provenance_source_type=synthesis`, topic, confidence, reasoning, creation
+  time, synthesis version, and fingerprint; verify that exact lineage and
+  metadata as live-store postconditions without copying memory content into
+  logs. Generate its stable record identifier from the fingerprint.
+- Keep maintenance-generated synthesis out of normal retrieval until its
+  verification status is `verified`; rejected, uncertain, and not-yet-verified
+  synthesis remains available to explicit diagnostics and maintenance. A full
+  run may synthesize and then verify in the same pipeline.
+- Preserve legacy maintenance-generated `meta_insight` records. When bounded
+  source lineage maps one unambiguously to a current group, backfill its topic,
+  fingerprint, and synthesis version instead of creating another vector; the
+  following unchanged plan must be a no-op.
+- Report typed per-store and per-step outcomes. Preserve unavailable counts as
+  unavailable, never as zero, and never convert nested failure evidence into a
+  successful terminal state.
+- Acknowledge accepted work before awaiting the coordinator and emit bounded,
+  content-safe progress. Cancellation during an atomic section is reported as
+  pending and takes effect at the next safe boundary.
+- For active-session manual execution, register exclusive intent before
+  cancelling supervised background writers. Distinguish turns that were merely
+  buffered under the configured interval from unfinished turns restored by an
+  actively preempted extractor. Flush committed memory state without a
+  synchronous extraction-model retry. After the exclusive gate is released,
+  resume an extractor preempted by that maintenance run exactly once on every
+  terminal result, including verified rollback and preflight failure. Do not
+  force normally buffered turns ahead of their configured trigger. Report the
+  buffered, preempted, and unscheduled-resume states categorically without turn
+  content.
+- Show retained recovery-manifest, journal, and categorical owner-only log paths
+  when they exist. Normal output and logs contain no memory or Transcript
+  content, credentials, prompts, or raw provider responses.
+- Support exact recovery inspection with `/reorganize --recover <run-id>` and
+  exact restoration with `/reorganize --recover <run-id> --execute`. Restore the
+  recorded verified bundle; never replace it with a snapshot of partially
+  mutated state.
 
 Error behavior:
 
-- Embedding/vector errors include embedding-service guidance.
-- Timeout errors suggest increasing `timeout_seconds`.
-- Connection errors suggest checking reachable LLM/embedding services.
+- Coordinator results expose typed, content-safe error categories. Exceptions
+  escaping an ordinary or recovery coordinator call render only a bounded
+  exception type and generic recovery guidance; raw paths, provider responses,
+  and exception messages are not printed in the REPL.
 
 Required tests:
 
-- Mode precedence for combinations of single-step flags.
-- Dry-run default and execute behavior.
-- Backup behavior for mutating single-step modes.
-- LLM and embedding fallback reporting.
-- Error classification.
+- Strict syntax and the complete mode/flag capability matrix.
+- Dry-run idempotence and execute containment/authorization behavior.
+- Mode-specific provider readiness, omission when unused, timeout, and sanitized
+  failure without a live provider dependency.
+- Real participant full execute, automatic rollback, rollback failure, restart
+  detection, and explicit recovery against disposable stores.
+- Provider-free PTY acknowledgement, bounded progress, cancellation-pending
+  reporting, nullable metrics, and content-safe terminal output.
+- Verified-source and collection/topic isolation, configured cluster and
+  confidence thresholds, prompt guidance, bounded provider payloads, empty and
+  low-confidence abstention, exact-duplicate suppression, and retrieval
+  quarantine.
+- Legacy-lineage metadata migration followed by an unchanged no-op plan, plus a
+  disposable full execute repeated against the same stores that proves the
+  second synthesis step reports `changed=0` with no additional vector, LLM, or
+  embedding call.
+
+Recovery and operator contract:
+
+- Resolve vector, graph, optional access-buffer WAL, Transcript, recovery, and
+  log paths once against the process working directory. Reject source/recovery/
+  log overlap, symlink traversal, hard-link identity substitution, permission
+  failure, inadequate capacity, unsupported lease semantics, and unfinished
+  journals before mutation.
+- Persist a schema-versioned owner-only journal before snapshot creation. Do not
+  cross the mutation boundary until the checksum-bound aggregate bundle contains
+  complete, verified Friday Memory and Friday Transcript participant manifests.
+- Treat Chroma's recognized legacy `hnsw:*` collection metadata as configuration
+  already represented by the exported schema, not as user metadata. Recovery
+  canonicalizes those duplicate keys before public-API reconstruction while
+  preserving every ordinary collection metadata field; newly created Friday
+  collections use Chroma's modern configuration boundary.
+- On post-mutation error or cancellation, restore and verify the exact retained
+  bundle. Return `failed_rolled_back` only after verification. If restoration or
+  verification fails, return `recovery_required`, retain the unfinished journal
+  and bundle, and block ordinary mutation.
+- On restart, surface unfinished run IDs. Inspection is read-only. Explicit
+  recovery drains conflicting runtime state and restores only the bundle already
+  bound into that journal.
+- Recovery directories are owner-only (`0700`) and artifacts are owner-only
+  (`0600`) on the verified POSIX platform. The reorganization log is a separate
+  schema-versioned categorical envelope with the same restrictive permissions;
+  operators follow its journal path for terminal details.
+- Bundles, journals, and failed-run evidence are retained. This remediation does
+  not automate retention or remove legacy/nested logs. Existing vector-only
+  backups remain incomplete Friday Chat recovery artifacts and cannot be used as
+  aggregate recovery bundles.
+- Relative configuration retains its existing process-working-directory base;
+  this remediation does not relocate or migrate on-disk state.
 
 ### `/lifecycle ...`
 
@@ -612,16 +751,27 @@ Required behavior:
 - `/run-tool` sanitizes output, updates security stats, and returns sanitized
   result.
 - `/inject-tools`: accept whitespace-separated names for prototype
-  compatibility. If comma-separated support is added, it must be tested as a
-  compatibility extension. Inject matching schemas into the assembler, report
-  missing names, and show category for injected tools.
-- `/clear-tools`: clear active tools from assembler.
+  compatibility, with tested comma-separated support. Resolve every requested
+  name before mutation and atomically set manual selection only when the exact
+  canonical schema set fits both configured count and token-budget bounds.
+  Unknown, duplicate, or over-budget requests leave the prior selection intact.
+- `/clear-tools`: clear pending manual selection and restore automatic
+  per-turn selection. It does not disable configured tools.
 - `/recommend-tools`: require query, call assembler recommendation against all
   schemas with `top_k=5`, and show score, confidence, category, reason, and
   suggested parameters.
-- `/tool-budget`: when no active tools, show no-tools guidance; otherwise show
-  active tool count, estimated tokens, max allowed, budget limit, usage percent,
-  and injected tool names/categories.
+- `/tool-budget`: report authoritative selection state, including mode,
+  configured limits, pending manual selection, latest successful automatic
+  selection, last completed selection, executed-tool count, canonical schema
+  token estimate, and names/categories. It distinguishes zero-budget,
+  no-registered-tools, no-match, and cleared/manual states without claiming
+  that a previous schema set will be sent on the next turn.
+- Automatic selection is query-aware and computed for each turn from the
+  registered tool definitions. The immutable resulting budget snapshot is used
+  unchanged for context budgeting and the exact model tool-schema payload.
+- Manual selection persists across turns until `/clear-tools`; automatic
+  selection resumes immediately after clear. A zero tool budget yields an empty
+  schema set without invoking or disabling the registry.
 
 Required tests:
 
@@ -864,6 +1014,19 @@ Required behavior:
   interval rule is evaluated.
 - Positive interval `N` extracts all buffered turns when the interval triggers,
   not only the trigger turn.
+- A foreground chat prompt preempts in-flight background extraction before
+  retrieval or chat-model inference begins. Cancellation restores unfinished
+  turns to the extraction buffer, leaves unrelated background work running, and
+  resumes the deferred extraction batch after the foreground turn finishes.
+- Assign each buffered extraction turn one stable work identifier and retain it
+  across cancellation, provider failure, and retry. LLM analysis remains
+  cancellable, but after memory mutation begins the current turn must reach a
+  safe commit boundary before cancellation is observed by the batch. A
+  committed turn is never requeued solely because cancellation was requested.
+- Store extracted insights and summaries under deterministic per-turn record
+  identifiers through idempotent vector upserts. Repeating the same turn must
+  not increase the vector count or inflate an existing graph node's access
+  evidence.
 - Extraction batches count entities, facts, and relationships and log failures
   per turn without failing the user turn.
 - Real runtime mode must wire real extraction, summarization, lifecycle, and
@@ -891,33 +1054,42 @@ Required behavior:
 - Compaction completion must be marked in a cleanup path on success or failure.
 - Before processing the next chat prompt, the interactive loop must await any
   in-flight compaction task and surface progress feedback.
-- Exit maintenance order:
-  0. extract buffered turns,
-  1. flush access buffer when enabled,
-  2. run lifecycle cycle when enabled,
-  3. run reorganization when enabled.
-- Exit maintenance must run before transcript finalization and resource cleanup.
+- Exit maintenance drains buffered extraction/access state and closes conflicting
+  background work before coordinated reorganization.
+- Lifecycle age and decay calculations accept both timezone-aware UTC metadata
+  and legacy timezone-naive local metadata. Compatibility normalization occurs
+  in memory without rewriting existing records. A lifecycle result containing
+  errors is a failed shutdown substep and must not be recorded as successful.
+- When coordinated exit reorganization is enabled, finalize the Transcript before
+  taking its recovery snapshot, then run the same typed coordinator used by the
+  manual command. Final resource cleanup follows the coordinator.
 - `session.flush_on_exit`, `session.lifecycle_on_exit`,
   `session.reorganize_on_exit`, and `session.reorganize_mode` control exit
   behavior.
-- When `session.reorganize_on_exit` is enabled and a persistence directory exists,
-  real runtime mode must construct and run the framework `MemoryReorganizer` or
-  log a framework-upgrade gap if frozen framework package constraints prevent it.
-- Exit reorganization must pass maintenance config, maintenance LLM roles,
-  embedding function, collection manager, access buffer, lifecycle scoring/decay
-  collaborators, and graph store where those services are available.
-- Exit reorganization must run with `backup_first=True`, `dry_run=False`, and
-  `skip_lifecycle=True` because lifecycle already runs earlier in the exit order.
-- `reorganize_mode: fast` skips synthesis and verification LLM work; full/deep
-  modes use configured maintenance LLM roles where available.
-- Exit reorganization errors are warning-level exit-maintenance failures and must
-  not prevent transcript finalization.
+- `session.reorganize_on_exit` remains configurable and defaults to `false`.
+  Enabling it requests execute through the same coordinator and mandatory
+  aggregate recovery policy as the manual command.
+- `reorganize_mode: fast` maps to full mode with synthesis and verification
+  skipped. `full` and `deep` map to the complete pipeline. Unknown enabled values
+  fail closed.
+- Exit provider selection uses only explicit maintenance roles and embedding;
+  it does not inherit the primary chat or embedding provider.
+- Exit reorganization errors remain visible as maintenance warnings and must not
+  prevent final resource cleanup. Post-mutation failure must first complete
+  verified rollback or retain `recovery_required` evidence.
 
 Required tests:
 
 - Extraction interval matrix.
 - Extraction interval matrix proves buffered turns are not dropped between
   interval triggers.
+- Manual maintenance tests distinguish an idle configured buffer from a running
+  extractor, prove resume occurs only after exclusive admission is released,
+  and cover success, preflight failure, cancellation/rollback, and categorical
+  scheduling failure.
+- Extraction cancellation tests prove analysis remains interruptible, an
+  in-progress commit reaches its safe boundary, only unfinished later turns are
+  requeued, and repeating one stable turn leaves vector cardinality unchanged.
 - Flush-before-compaction success and failure.
 - Real-runtime maintenance wiring test proves required services are not silently
   replaced with fake implementations.
@@ -930,7 +1102,8 @@ Required tests:
 - Completion marking on compaction success and failure.
 - Next-prompt gating while compaction is in flight.
 - Exit maintenance order and config flags.
-- Real exit reorganization cleanup runs before transcript finalization.
+- Exit closes and drains tracked work before transcript finalization, and any
+  coordinated recovery snapshot or execution decision follows finalization.
 - Reorganization mode tests cover fast skip behavior and full/deep maintenance
   LLM role wiring.
 - Reorganization failure tests prove transcript finalization still runs.

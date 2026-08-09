@@ -3,7 +3,7 @@
 """Tests for PromotionScorer and MemoryPromotionService."""
 
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pytest
 from friday_memory.lifecycle.decay import DecayConfig
@@ -132,6 +132,20 @@ class TestPromotionScorer:
         created_at = now - timedelta(hours=25)  # 25 hours old
 
         assert scorer.is_eligible_for_promotion(MemoryStage.SHORT_TERM, created_at, now)
+
+    def test_aware_synthesis_timestamp_is_eligible_with_naive_now(
+        self,
+        scorer,
+        now,
+    ) -> None:
+        aware_now = now.astimezone()
+        created_at = (aware_now - timedelta(hours=25)).astimezone(timezone.utc)
+
+        assert scorer.is_eligible_for_promotion(
+            MemoryStage.SHORT_TERM,
+            created_at,
+            now,
+        )
 
     def test_should_promote_above_threshold(self, scorer) -> None:
         """Score >= 0.7 (default threshold) should promote."""
@@ -341,6 +355,34 @@ class TestMemoryPromotionService:
 
         result = await service.run_promotion_cycle(dry_run=True, now=now)
         assert result.promoted_to_long_term == 0
+
+    @pytest.mark.asyncio
+    async def test_run_promotion_cycle_accepts_aware_synthesis_created_at(
+        self,
+        service,
+        collection_manager,
+    ) -> None:
+        now = datetime(2024, 1, 15, 12, 0, 0)
+        created_at = (now.astimezone() - timedelta(hours=48)).astimezone(timezone.utc)
+        await collection_manager.add_to_short_term(
+            texts=["Timezone-aware synthesized memory"],
+            metadatas=[
+                {
+                    "type": "meta_insight",
+                    "created_at": created_at.isoformat(),
+                    "access_count": 5,
+                    "confidence": 0.9,
+                    "maintenance_generated": True,
+                    "verification_status": "verified",
+                }
+            ],
+            ids=["aware-synthesis"],
+        )
+
+        result = await service.run_promotion_cycle(dry_run=True, now=now)
+
+        assert result.errors == []
+        assert result.promoted_to_long_term == 1
 
     @pytest.mark.asyncio
     async def test_run_promotion_cycle_decays_long_term(

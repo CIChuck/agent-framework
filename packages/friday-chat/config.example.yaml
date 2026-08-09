@@ -26,7 +26,7 @@ extraction:
   model: openai/qwen3.6-35b-a3b-mlx
   api_base: http://127.0.0.1:1234/v1
   api_key: lm-studio
-  temperature: 0.1
+  temperature: 0.6
   max_tokens: 8000
   timeout_seconds: 300.0
   interval: 3
@@ -357,7 +357,7 @@ chat:
     \ to search the web, use the web search tool. \n\nYou have been given the ability to SPEAK using voice\
     \ synthesis. When voice synthesis is on, it's important for you to be brief and to the point. \n"
 maintenance:
-  backup_directory: null
+  backup_directory: .friday/backups
   pruning:
     stale_threshold_days: 30
     min_hit_count: 1
@@ -385,7 +385,7 @@ maintenance:
       api_key: ${FRIDAY_MAINTENANCE_RESEARCHER_API_KEY}
       temperature: 0.2
     judge:
-      model: openrouter/google/gemini-3-pro-preview
+      model: openrouter/google/gemini-3.6-flash
       api_base: https://openrouter.ai/api/v1
       api_key: ${FRIDAY_MAINTENANCE_JUDGE_API_KEY}
       temperature: 0.1
@@ -683,7 +683,7 @@ security:
 session:
   flush_on_exit: true
   lifecycle_on_exit: true
-  reorganize_on_exit: true
+  reorganize_on_exit: false
   reorganize_mode: fast
 speech:
   enabled: false
