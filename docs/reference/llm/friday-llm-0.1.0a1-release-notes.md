@@ -24,6 +24,9 @@ or the root meta-package.
   usage, finish, and safe errors.
 - Canonical immutable retry call specs, strict preflight, stream cleanup on
   timeout/cancellation, and final real-HTTP wire tests.
+- A bounded LM Studio named-tool translation that narrows the exposed tool
+  schema and emits `required` because LM Studio 0.4.x rejects OpenAI's
+  object-form named choice.
 
 ## Changed
 
@@ -76,8 +79,10 @@ Telemetry `0.1.0a0` dependencies.
 
 - Deterministic translation, final HTTP wire shape, response normalization, and
   streaming invariants are tested.
-- The local live LM Studio/Qwen target was unavailable during implementation;
-  acceptance and behavioral-effect claims remain pending.
+- The live LM Studio/Qwen acceptance, reasoning-profile, tool-call, and stream
+  matrix passed. No behavioral-effect claim is made because the server does not
+  acknowledge the reasoning fields and no controlled behavioral comparison was
+  required for this acceptance lane.
 - LiteLLM warnings, if observed in deterministic wire tests, are recorded and
   are not hidden by Friday global settings.
 - TestPyPI/PyPI upload and tagging require separate authorization and are not

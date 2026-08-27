@@ -44,6 +44,16 @@ class GenerationTranslation:
 
 
 @dataclass(frozen=True, slots=True)
+class _ToolSelectionTranslation:
+    """Provider-specific tool selection with normalized semantics preserved."""
+
+    tools: list[dict[str, Any]] | tuple[dict[str, Any], ...] | None
+    tool_choice: str | dict[str, Any] | None
+    requested_fields: tuple[str, ...] = ()
+    emitted_fields: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True, slots=True)
 class LiteLLMCallSpec:
     """Frozen canonical per-request call specification reused by every retry."""
 
@@ -185,14 +195,65 @@ def translate_generation(
     adapter: GenerationAdapter
     if (
         target is not None
-        and target.transport.dialect == "openai_chat_completions"
-        and target.transport.serving_engine == "lm_studio"
+        and _is_lm_studio_openai_chat(target)
         and target.model.family == "qwen3_8"
     ):
         adapter = _LMStudioQwenAdapter()
     else:
         adapter = _StrictUnknownAdapter()
     return adapter.translate(target, config, capabilities, provider_options)
+
+
+def _translate_tool_selection(
+    target: ExecutionTarget | None,
+    tools: list[dict[str, Any]] | tuple[dict[str, Any], ...] | None,
+    tool_choice: str | dict[str, Any] | None,
+) -> _ToolSelectionTranslation:
+    """Translate named OpenAI tool choice for LM Studio's bounded dialect."""
+
+    if not _is_lm_studio_openai_chat(target) or not isinstance(tool_choice, dict):
+        return _ToolSelectionTranslation(tools=tools, tool_choice=tool_choice)
+
+    function = tool_choice.get("function")
+    name = function.get("name") if isinstance(function, dict) else None
+    if tool_choice.get("type") != "function" or not isinstance(name, str):
+        raise TranslationConflictError("invalid named function tool choice")
+    if not tools:
+        raise TranslationConflictError(
+            f"named tool choice {name!r} requires a matching tool definition"
+        )
+
+    matches: list[dict[str, Any]] = []
+    for tool in tools:
+        tool_function = tool.get("function")
+        if (
+            tool.get("type") == "function"
+            and isinstance(tool_function, dict)
+            and tool_function.get("name") == name
+        ):
+            matches.append(tool)
+    if len(matches) != 1:
+        raise TranslationConflictError(
+            f"named tool choice {name!r} matched {len(matches)} tool definitions"
+        )
+
+    # LM Studio 0.4.x rejects OpenAI's object-form named choice. Restricting the
+    # exposed schema to the selected function and emitting `required` preserves
+    # the normalized exact-function intent without leaking this dialect quirk.
+    return _ToolSelectionTranslation(
+        tools=tuple(matches),
+        tool_choice="required",
+        requested_fields=("tool_choice.function.name",),
+        emitted_fields=("tools", "tool_choice.required"),
+    )
+
+
+def _is_lm_studio_openai_chat(target: ExecutionTarget | None) -> bool:
+    return bool(
+        target is not None
+        and target.transport.dialect == "openai_chat_completions"
+        and target.transport.serving_engine == "lm_studio"
+    )
 
 
 def translate_with_adapter(

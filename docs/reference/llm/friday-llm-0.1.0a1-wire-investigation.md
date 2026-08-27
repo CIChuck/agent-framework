@@ -100,7 +100,17 @@ modified in this component release.
 
 ## Live Gate
 
-The readiness probe to `http://127.0.0.1:1234/v1/models` returned connection
-refused. The opt-in matrix exists in `test_live_lmstudio.py`, but no live model,
-LM Studio fingerprint, accepted-control result, tool result, or behavioral
-comparison was fabricated. Live completion remains a release blocker.
+The initial readiness probe to `http://127.0.0.1:1234/v1/models` returned
+connection refused because the installed LM Studio server was stopped. After
+starting the local server, the exact target was available and the first live
+run produced six passes and two tool-choice failures. LM Studio rejected
+OpenAI's object-form named choice with HTTP 400 and documented the accepted
+string values as `none`, `auto`, and `required`.
+
+The private LM Studio adapter now preserves a normalized named-function choice
+by exposing only the uniquely matching tool schema and emitting `required`.
+A deterministic final-wire regression covers that transformation, and missing
+or duplicate matches fail before I/O. The final live matrix passed all eight
+reasoning-profile, stream, and tool tests. The server did not acknowledge the
+reasoning controls, so `acknowledged_fields` and
+`behaviorally_observed_fields` remain empty and no effectiveness claim is made.

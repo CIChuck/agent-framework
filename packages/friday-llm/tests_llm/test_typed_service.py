@@ -14,10 +14,13 @@ from friday_llm import (
     GenerationOverrides,
     LiteLLMService,
     ModelTarget,
+    NamedToolChoice,
+    NamedToolChoiceFunction,
     ReasoningConfig,
     ReasoningMode,
     ResilienceConfig,
     SamplingConfig,
+    TranslationConflictError,
     TransportTarget,
     UnsupportedControlError,
 )
@@ -109,6 +112,26 @@ async def test_preflight_failure_never_invokes_transport() -> None:
     with patch("litellm.acompletion", new_callable=AsyncMock) as completion:
         with pytest.raises(UnsupportedControlError):
             await service.chat_completion_request(request)
+        completion.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_missing_named_tool_fails_before_transport() -> None:
+    request = ChatCompletionRequest(
+        messages=({"role": "user", "content": "test"},),
+        tools=(
+            {
+                "type": "function",
+                "function": {"name": "available", "parameters": {"type": "object"}},
+            },
+        ),
+        tool_choice=NamedToolChoice(
+            function=NamedToolChoiceFunction(name="missing")
+        ),
+    )
+    with patch("litellm.acompletion", new_callable=AsyncMock) as completion:
+        with pytest.raises(TranslationConflictError):
+            await _service().chat_completion_request(request)
         completion.assert_not_called()
 
 

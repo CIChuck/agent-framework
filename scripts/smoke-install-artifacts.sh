@@ -121,16 +121,27 @@ if distribution == "friday-framework-llm":
         GenerationOverrides,
         LiteLLMService,
         ModelTarget,
+        NamedToolChoice,
+        NamedToolChoiceFunction,
         ReasoningConfig,
         ReasoningMode,
         TransportTarget,
     )
 
     async def fake_completion(**kwargs):
-        expected = {"enable_thinking": False}
-        actual = kwargs.get("extra_body", {}).get("chat_template_kwargs")
-        if actual != expected:
-            raise RuntimeError(f"unexpected translated reasoning fields: {actual!r}")
+        if kwargs.get("tools"):
+            if kwargs.get("tool_choice") != "required":
+                raise RuntimeError("LM Studio named tool choice was not translated")
+            tool_names = [tool["function"]["name"] for tool in kwargs["tools"]]
+            if tool_names != ["selected"]:
+                raise RuntimeError(f"unexpected selected tool schemas: {tool_names!r}")
+        else:
+            expected = {"enable_thinking": False}
+            actual = kwargs.get("extra_body", {}).get("chat_template_kwargs")
+            if actual != expected:
+                raise RuntimeError(
+                    f"unexpected translated reasoning fields: {actual!r}"
+                )
         message = SimpleNamespace(content="ok", reasoning_content=None, tool_calls=[])
         return SimpleNamespace(
             choices=[SimpleNamespace(message=message, finish_reason="stop")],
@@ -165,6 +176,30 @@ if distribution == "friday-framework-llm":
             )
             if response.content != "ok":
                 raise RuntimeError("typed fake-transport smoke returned wrong content")
+            await service.chat_completion_request(
+                ChatCompletionRequest(
+                    messages=({"role": "user", "content": "fixed"},),
+                    tools=(
+                        {
+                            "type": "function",
+                            "function": {
+                                "name": "other",
+                                "parameters": {"type": "object"},
+                            },
+                        },
+                        {
+                            "type": "function",
+                            "function": {
+                                "name": "selected",
+                                "parameters": {"type": "object"},
+                            },
+                        },
+                    ),
+                    tool_choice=NamedToolChoice(
+                        function=NamedToolChoiceFunction(name="selected")
+                    ),
+                )
+            )
         finally:
             litellm.acompletion = original
 

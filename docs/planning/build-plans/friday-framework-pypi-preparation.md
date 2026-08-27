@@ -352,9 +352,9 @@ Component-upgrade exception for Friday LLM:
   freeze exception. TestPyPI and PyPI publication still require their own
   explicit approvals.
 - Package implementation, deterministic tests, Python-version validation,
-  artifact checks, and clean-install smokes completed on 2026-08-27. Release is
-  held pending the mandatory live LM Studio/Qwen evidence lane and separate
-  TestPyPI/PyPI authorization; see the
+  live LM Studio/Qwen validation, artifact checks, and clean-install smokes
+  completed on 2026-08-27. Release is held pending separate TestPyPI/PyPI
+  authorization; see the
   [release evidence](../../reference/llm/friday-llm-0.1.0a1-release-evidence.md).
 
 First alpha release order:

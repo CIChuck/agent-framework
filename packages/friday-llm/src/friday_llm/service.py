@@ -68,6 +68,7 @@ from friday_llm.telemetry_models import ConversationContext, TokenUsage
 from friday_llm.translation import (
     LiteLLMCallSpec,
     TranslationSummary,
+    _translate_tool_selection,
     translate_generation,
 )
 
@@ -302,6 +303,28 @@ class LiteLLMService:
             if legacy:
                 kwargs["modify_params"] = True
             summary = translated.summary
+
+        tool_selection = _translate_tool_selection(
+            self.execution_target,
+            tools,
+            tool_choice,
+        )
+        tools = tool_selection.tools
+        tool_choice = tool_selection.tool_choice
+        if tool_selection.requested_fields:
+            summary = TranslationSummary(
+                requested_fields=(
+                    *summary.requested_fields,
+                    *tool_selection.requested_fields,
+                ),
+                emitted_fields=(
+                    *summary.emitted_fields,
+                    *tool_selection.emitted_fields,
+                ),
+                capability_sources=summary.capability_sources,
+                target_profile=summary.target_profile,
+                litellm_version=summary.litellm_version,
+            )
 
         return LiteLLMCallSpec.from_parts(
             model=self.model,

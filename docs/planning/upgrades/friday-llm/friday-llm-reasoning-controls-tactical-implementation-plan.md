@@ -1,7 +1,7 @@
 # Friday LLM Reasoning Controls Tactical Implementation And Release Plan
 
-- Status: Implementation complete; release held at the live-provider and
-  publication gates
+- Status: Implementation and live-provider gate complete; publication not
+  authorized
 - Date: 2026-08-27
 - Approval date: 2026-08-27
 - Implementation completion date: 2026-08-27
@@ -43,11 +43,10 @@ editing it.
 Publication is a separate irreversible action. Completing implementation and
 tests does not authorize TestPyPI or PyPI upload.
 
-Implementation, deterministic validation, packaging, and clean-install smoke
-testing are complete. The exact results and artifact identities are recorded in
+Implementation, deterministic validation, live-provider validation, packaging,
+and clean-install smoke testing are complete. The exact results and artifact identities are recorded in
 [Friday LLM 0.1.0a1 release evidence](../../../reference/llm/friday-llm-0.1.0a1-release-evidence.md).
-The release remains stopped because no LM Studio/Qwen target was listening on
-the approved loopback endpoint, and neither TestPyPI nor PyPI upload has been
+The release remains stopped because neither TestPyPI nor PyPI upload has been
 authorized. No tag has been created.
 
 ## Implementation Objective

@@ -14,6 +14,8 @@ from friday_llm import (
     GenerationOverrides,
     LiteLLMService,
     ModelTarget,
+    NamedToolChoice,
+    NamedToolChoiceFunction,
     ReasoningConfig,
     ReasoningMode,
     SamplingConfig,
@@ -264,3 +266,36 @@ async def test_disabled_reasoning_reaches_final_http_json(
     await _service(api_base).chat_completion_request(request)
 
     assert payloads[0]["chat_template_kwargs"] == {"enable_thinking": False}
+
+
+@pytest.mark.asyncio
+async def test_named_tool_choice_uses_lm_studio_bounded_wire_form(
+    capture_server: tuple[str, list[dict[str, Any]]],
+) -> None:
+    api_base, payloads = capture_server
+    request = ChatCompletionRequest(
+        messages=({"role": "user", "content": "fixed synthetic prompt"},),
+        tools=(
+            {
+                "type": "function",
+                "function": {"name": "other", "parameters": {"type": "object"}},
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "selected",
+                    "parameters": {"type": "object"},
+                },
+            },
+        ),
+        tool_choice=NamedToolChoice(
+            function=NamedToolChoiceFunction(name="selected")
+        ),
+    )
+
+    await _service(api_base).chat_completion_request(request)
+
+    assert payloads[0]["tool_choice"] == "required"
+    assert [tool["function"]["name"] for tool in payloads[0]["tools"]] == [
+        "selected"
+    ]

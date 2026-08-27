@@ -135,6 +135,12 @@ Importing `friday_llm` no longer changes LiteLLM's process-global
 `drop_params` or `modify_params` policy. Compatibility settings are scoped to
 individual legacy calls; typed calls use strict preflight validation.
 
+LM Studio 0.4.x accepts only string-form tool-choice values. For a normalized
+named function choice, the private LM Studio adapter exposes only the selected
+function schema and emits `required`, preserving exact-function semantics
+without adding an LM Studio field to the public request model. A missing or
+ambiguous selected schema fails before external I/O.
+
 ## Live LM Studio Evidence Lane
 
 The default tests never contact LM Studio. To opt in, load the exact model,
