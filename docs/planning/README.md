@@ -9,6 +9,7 @@ Contents:
 - `features/` - Feature proposals.
 - `prds/` - Product requirement documents and exploratory PRDs.
 - `security/` - Security implementation plans.
+- `upgrades/` - Source requirements for separately governed package upgrades.
 
 ## Active Planning Packets
 
@@ -48,3 +49,13 @@ during FridayV2 work must be recorded in the framework upgrade log for a
 separate follow-up pass.
 
 Move completed or superseded planning material to `../archive/`.
+
+## Active Framework Upgrade Packets
+
+The Friday LLM reasoning-controls upgrade was approved for implementation on
+2026-08-27. The FridayV2 framework-package freeze is released only for its
+documented implementation scope; TestPyPI and PyPI publication remain
+separately gated:
+
+- [Friday LLM reasoning and sampling controls requirement](upgrades/friday-llm/friday-llm-reasoning-and-sampling-controls-requirement.md)
+- [Friday LLM tactical implementation and release plan](upgrades/friday-llm/friday-llm-reasoning-controls-tactical-implementation-plan.md)

@@ -326,6 +326,32 @@ Current Task 3 decisions and actions:
 - Current package metadata and `uv.lock` have been updated for exact
   `0.1.0` internal pins.
 
+Component-upgrade exception for Friday LLM:
+
+- The reasoning-and-sampling-controls upgrade is planned as the first
+  independently versioned component update after the `0.1.0a0` name-reservation
+  release.
+- Its approved target is `friday-framework-llm==0.1.0a1` while its published
+  dependencies on `friday-framework-core==0.1.0a0` and
+  `friday-framework-telemetry==0.1.0a0` remain unchanged unless implementation
+  proves that either dependency contract must change.
+- The root `friday-framework==0.1.0a0` meta-package and other `0.1.0a0`
+  distributions do not automatically consume this component update. A later
+  coordinated framework release may update their exact pins after downstream
+  compatibility validation.
+- This exception does not establish unrestricted independent versioning for all
+  packages. Each later component-only release must document dependency impact,
+  downstream validation, and whether a coordinated meta-package release is
+  required.
+- Release helpers must accept an explicit target version and package subset;
+  hard-coded `0.1.0a0` whole-workspace validation is reservation evidence, not
+  a valid release gate for this component update.
+- The authoritative scope and gates for this exception are in
+  [friday-llm-reasoning-controls-tactical-implementation-plan.md](../upgrades/friday-llm/friday-llm-reasoning-controls-tactical-implementation-plan.md).
+- Implementation was approved on 2026-08-27 under the plan's scoped FridayV2
+  freeze exception. TestPyPI and PyPI publication still require their own
+  explicit approvals.
+
 First alpha release order:
 
 1. `friday-framework-telemetry`
