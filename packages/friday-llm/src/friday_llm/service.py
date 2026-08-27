@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 LiteLLM Chat Completion Service.
 
@@ -29,15 +28,48 @@ from tenacity import (
     wait_exponential,
 )
 
+from friday_llm.capabilities import OperatorCapabilityDeclaration
 from friday_llm.circuit_breaker import CircuitBreaker
 from friday_llm.config import ResilienceConfig
 from friday_llm.exceptions import (
+    LLMConfigurationError,
     LLMRetryExhaustedError,
     LLMTimeoutError,
+    TargetIdentityError,
+)
+from friday_llm.generation import (
+    GenerationConfig,
+    ReasoningConfig,
+    ReasoningMode,
+    SamplingConfig,
+    resolve_generation,
 )
 from friday_llm.pricing import CostCalculator, PricingConfig
+from friday_llm.provider_options import ProviderOptions
+from friday_llm.requests import (
+    ChatCompletionRequest,
+    CompletionAssurance,
+    CompletionToolCall,
+    CompletionUsage,
+    TypedChatCompletionResponse,
+)
+from friday_llm.streaming import (
+    FinishEvent,
+    ReasoningDeltaEvent,
+    StreamEvent,
+    TextDeltaEvent,
+    ToolCallAssembler,
+    ToolCallDeltaEvent,
+    UsageEvent,
+)
+from friday_llm.targets import ExecutionTarget, ModelTarget, TransportTarget
 from friday_llm.telemetry_helper import LLMTelemetryHelper
 from friday_llm.telemetry_models import ConversationContext, TokenUsage
+from friday_llm.translation import (
+    LiteLLMCallSpec,
+    TranslationSummary,
+    translate_generation,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +109,11 @@ class LiteLLMService:
         telemetry: Any | None = None,
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
-        thinking_enabled: bool = False,
+        thinking_enabled: bool | None = None,
+        transport_target: TransportTarget | None = None,
+        model_target: ModelTarget | None = None,
+        generation_defaults: GenerationConfig | None = None,
+        capability_declaration: OperatorCapabilityDeclaration | None = None,
     ) -> None:
         """
         Initialize the LiteLLM service.
@@ -101,7 +137,58 @@ class LiteLLMService:
         self.api_key = api_key
         self.api_base = api_base
         self.telemetry = telemetry
-        self.thinking_enabled = thinking_enabled
+        self.thinking_enabled = False if thinking_enabled is None else thinking_enabled
+        self._legacy_thinking_explicit = thinking_enabled is not None
+        self.generation_defaults = generation_defaults
+        self.capability_declaration = capability_declaration
+        if (transport_target is None) != (model_target is None):
+            raise TargetIdentityError(
+                "transport_target and model_target must be supplied together"
+            )
+        self.execution_target = (
+            ExecutionTarget(transport=transport_target, model=model_target)
+            if transport_target is not None and model_target is not None
+            else None
+        )
+        if self.execution_target is not None:
+            model_id = self.execution_target.model.model_id
+            if model_name != model_id and not model_name.endswith(f"/{model_id}"):
+                raise TargetIdentityError(
+                    "model_name routing identity contradicts model_target.model_id"
+                )
+            transport = self.execution_target.transport
+            if (
+                transport.provider == "openai_compatible"
+                and transport.dialect == "openai_chat_completions"
+                and not model_name.startswith("openai/")
+            ):
+                raise TargetIdentityError(
+                    "OpenAI-compatible Chat targets require LiteLLM's openai/ "
+                    "routing prefix"
+                )
+        if thinking_enabled is not None and generation_defaults is not None:
+            configured = generation_defaults.reasoning
+            if configured is not None:
+                expected = (
+                    ReasoningMode.ENABLED
+                    if thinking_enabled
+                    else ReasoningMode.DISABLED
+                )
+                if configured.mode is not expected:
+                    raise LLMConfigurationError(
+                        "thinking_enabled conflicts with generation_defaults.reasoning"
+                    )
+            warnings.warn(
+                "thinking_enabled is deprecated; use generation_defaults.reasoning",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+        elif thinking_enabled is not None:
+            warnings.warn(
+                "thinking_enabled is deprecated; use generation_defaults.reasoning",
+                DeprecationWarning,
+                stacklevel=2,
+            )
 
         # Handle backward compatibility with max_retries
         if max_retries is not None:
@@ -154,6 +241,125 @@ class LiteLLMService:
         """Get current resilience configuration."""
         return self._resilience
 
+    def _legacy_generation_config(
+        self,
+        *,
+        temperature: float,
+        max_tokens: int | None,
+    ) -> GenerationConfig:
+        defaults = self.generation_defaults or GenerationConfig()
+        reasoning = defaults.reasoning or ReasoningConfig(
+            mode=(
+                ReasoningMode.ENABLED
+                if self.thinking_enabled
+                else ReasoningMode.DISABLED
+            )
+        )
+        sampling_values = (
+            defaults.sampling.model_dump() if defaults.sampling is not None else {}
+        )
+        sampling_values["temperature"] = temperature
+        return GenerationConfig(
+            reasoning=reasoning,
+            sampling=SamplingConfig.model_validate(sampling_values),
+            max_tokens=max_tokens if max_tokens is not None else defaults.max_tokens,
+        )
+
+    def _build_call_spec(
+        self,
+        *,
+        messages: list[dict[str, Any]] | tuple[dict[str, Any], ...],
+        tools: list[dict[str, Any]] | tuple[dict[str, Any], ...] | None,
+        tool_choice: str | dict[str, Any] | None,
+        generation: GenerationConfig,
+        provider_options: ProviderOptions | None,
+        metadata: dict[str, Any] | None,
+        legacy: bool,
+    ) -> LiteLLMCallSpec:
+        if legacy and self.execution_target is None:
+            kwargs: dict[str, Any] = {"drop_params": True, "modify_params": True}
+            sampling = generation.sampling
+            if sampling is not None and sampling.temperature is not None:
+                kwargs["temperature"] = sampling.temperature
+            if generation.max_tokens is not None:
+                kwargs["max_tokens"] = generation.max_tokens
+            if not self.thinking_enabled:
+                kwargs["thinking"] = {"type": "disabled"}
+            summary = TranslationSummary(
+                requested_fields=("legacy.thinking_enabled",),
+                emitted_fields=("thinking",) if not self.thinking_enabled else (),
+                capability_sources=("legacy_compatibility@1",),
+            )
+        else:
+            translated = translate_generation(
+                self.execution_target,
+                generation,
+                provider_options,
+                self.capability_declaration,
+            )
+            kwargs = dict(translated.kwargs)
+            kwargs["drop_params"] = bool(legacy)
+            if legacy:
+                kwargs["modify_params"] = True
+            summary = translated.summary
+
+        return LiteLLMCallSpec.from_parts(
+            model=self.model,
+            messages=messages,
+            tools=tools,
+            tool_choice=tool_choice,
+            generation_kwargs=kwargs,
+            api_key=self.api_key,
+            api_base=self.api_base,
+            metadata=metadata,
+            summary=summary,
+        )
+
+    def _validate_legacy_reasoning(self, generation: GenerationConfig) -> None:
+        if not self._legacy_thinking_explicit or generation.reasoning is None:
+            return
+        expected = (
+            ReasoningMode.ENABLED
+            if self.thinking_enabled
+            else ReasoningMode.DISABLED
+        )
+        if generation.reasoning.mode is not expected:
+            raise LLMConfigurationError(
+                "thinking_enabled conflicts with typed request reasoning"
+            )
+
+    async def chat_completion_request(
+        self,
+        request: ChatCompletionRequest,
+    ) -> TypedChatCompletionResponse:
+        """Execute a strict typed completion request."""
+
+        generation = resolve_generation(
+            self.generation_defaults,
+            request.overrides,
+        )
+        self._validate_legacy_reasoning(generation)
+        metadata = self._build_langfuse_metadata(None, "chat_completion_request")
+        spec = self._build_call_spec(
+            messages=request.messages,
+            tools=request.tools,
+            tool_choice=(
+                request.tool_choice.model_dump(mode="json")
+                if isinstance(request.tool_choice, BaseModel)
+                else request.tool_choice
+            ),
+            generation=generation,
+            provider_options=request.provider_options,
+            metadata=metadata,
+            legacy=False,
+        )
+        response = await self._call_with_retry(
+            spec=spec,
+            timeout=request.timeout or self._resilience.timeout_seconds,
+            operation="chat_completion_request",
+        )
+        return self._parse_typed_response(response, spec.summary)
+
     def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
         """Emit telemetry event if configured."""
         if self.telemetry:
@@ -194,6 +400,18 @@ class LiteLLMService:
         langfuse_meta = self._build_langfuse_metadata(
             conversation_context, "chat_completion"
         )
+        spec = self._build_call_spec(
+            messages=messages,
+            tools=tools,
+            tool_choice="auto" if tools else None,
+            generation=self._legacy_generation_config(
+                temperature=temperature,
+                max_tokens=max_tokens,
+            ),
+            provider_options=None,
+            metadata=langfuse_meta,
+            legacy=True,
+        )
 
         with self._telemetry_helper.track_completion(
             model=self.model,
@@ -203,13 +421,9 @@ class LiteLLMService:
         ) as tracker:
             try:
                 response = await self._call_with_retry(
-                    messages=messages,
-                    tools=tools,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
+                    spec=spec,
                     timeout=effective_timeout,
                     operation="chat_completion",
-                    metadata=langfuse_meta,
                 )
 
                 # Parse the response
@@ -299,6 +513,18 @@ class LiteLLMService:
         langfuse_meta = self._build_langfuse_metadata(
             conversation_context, "chat_completion_stream"
         )
+        spec = self._build_call_spec(
+            messages=messages,
+            tools=tools,
+            tool_choice="auto" if tools else None,
+            generation=self._legacy_generation_config(
+                temperature=temperature,
+                max_tokens=max_tokens,
+            ),
+            provider_options=None,
+            metadata=langfuse_meta,
+            legacy=True,
+        )
 
         with self._telemetry_helper.track_completion(
             model=self.model,
@@ -309,12 +535,8 @@ class LiteLLMService:
             try:
                 # Setup stream with retry logic
                 response = await self._call_stream_with_retry(
-                    messages=messages,
-                    tools=tools,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
+                    spec=spec,
                     timeout=effective_timeout,
-                    metadata=langfuse_meta,
                 )
 
                 # Start TTFT tracking after connection established
@@ -322,21 +544,25 @@ class LiteLLMService:
 
                 # Stream chunks with timeout
                 try:
-                    async with asyncio.timeout(effective_timeout):
-                        async for chunk in response:
-                            delta = chunk.choices[0].delta
-                            content = getattr(delta, "content", None)
-                            if content:
-                                # Record chunk for TTFT and throughput tracking
-                                streaming_tracker.record_chunk(len(content.split()))
-                                yield content
+                    async for event in self._events_from_response(
+                        self._iterate_with_timeout(response, effective_timeout)
+                    ):
+                        if isinstance(event, TextDeltaEvent):
+                            streaming_tracker.record_chunk(
+                                len(event.text.split())
+                            )
+                            yield event.text
                 except asyncio.TimeoutError as e:
+                    await self._close_stream(response)
                     raise LLMTimeoutError(
                         "Streaming response timed out",
                         timeout_seconds=effective_timeout,
                         operation="streaming",
                         model=self.model,
                     ) from e
+                except asyncio.CancelledError:
+                    await self._close_stream(response)
+                    raise
 
                 # Record streaming metrics
                 tracker.set_streaming_metrics(streaming_tracker.finish())
@@ -348,6 +574,139 @@ class LiteLLMService:
 
             except LLMTimeoutError:
                 raise
+
+    async def chat_completion_events(
+        self,
+        request: ChatCompletionRequest,
+    ) -> AsyncIterator[StreamEvent]:
+        """Stream typed text, reasoning, tool, usage, and finish events."""
+
+        generation = resolve_generation(
+            self.generation_defaults,
+            request.overrides,
+        )
+        self._validate_legacy_reasoning(generation)
+        spec = self._build_call_spec(
+            messages=request.messages,
+            tools=request.tools,
+            tool_choice=(
+                request.tool_choice.model_dump(mode="json")
+                if isinstance(request.tool_choice, BaseModel)
+                else request.tool_choice
+            ),
+            generation=generation,
+            provider_options=request.provider_options,
+            metadata=self._build_langfuse_metadata(None, "chat_completion_events"),
+            legacy=False,
+        )
+        timeout = request.timeout or self._resilience.stream_timeout_seconds
+        response = await self._call_stream_with_retry(spec=spec, timeout=timeout)
+        try:
+            async for event in self._events_from_response(
+                self._iterate_with_timeout(response, timeout)
+            ):
+                yield event
+        except asyncio.CancelledError:
+            await self._close_stream(response)
+            raise
+        except asyncio.TimeoutError as error:
+            await self._close_stream(response)
+            raise LLMTimeoutError(
+                "Streaming response timed out",
+                timeout_seconds=timeout,
+                operation="streaming",
+                model=self.model,
+            ) from error
+
+    async def _events_from_response(self, response: Any) -> AsyncIterator[StreamEvent]:
+        assembler = ToolCallAssembler()
+        async for chunk in response:
+            usage = getattr(chunk, "usage", None)
+            choices = getattr(chunk, "choices", None) or []
+            if usage is not None:
+                details = getattr(usage, "completion_tokens_details", None)
+                yield UsageEvent(
+                    prompt_tokens=int(getattr(usage, "prompt_tokens", 0) or 0),
+                    completion_tokens=int(
+                        getattr(usage, "completion_tokens", 0) or 0
+                    ),
+                    total_tokens=int(getattr(usage, "total_tokens", 0) or 0),
+                    reasoning_tokens=(
+                        int(getattr(details, "reasoning_tokens", 0))
+                        if details is not None
+                        and getattr(details, "reasoning_tokens", None) is not None
+                        else None
+                    ),
+                )
+            if not choices:
+                continue
+            choice = choices[0]
+            delta = getattr(choice, "delta", None)
+            if delta is not None:
+                content = getattr(delta, "content", None)
+                if content:
+                    yield TextDeltaEvent(text=str(content))
+                reasoning = getattr(delta, "reasoning_content", None) or getattr(
+                    delta, "reasoning", None
+                )
+                if reasoning:
+                    yield ReasoningDeltaEvent(text=str(reasoning))
+                for tool_delta in getattr(delta, "tool_calls", None) or []:
+                    function = getattr(tool_delta, "function", None)
+                    event = ToolCallDeltaEvent(
+                        index=int(getattr(tool_delta, "index", 0) or 0),
+                        call_id=getattr(tool_delta, "id", None),
+                        name=getattr(function, "name", None),
+                        arguments_delta=str(
+                            getattr(function, "arguments", "") or ""
+                        ),
+                    )
+                    assembler.add(event)
+                    yield event
+            finish_reason = getattr(choice, "finish_reason", None)
+            if finish_reason is not None:
+                for completed_event in assembler.finish():
+                    yield completed_event
+                yield FinishEvent(finish_reason=str(finish_reason))
+
+    @staticmethod
+    async def _iterate_with_timeout(
+        response: Any,
+        timeout: float,
+    ) -> AsyncIterator[Any]:
+        iterator = response.__aiter__()
+        while True:
+            try:
+                yield await LiteLLMService._next_with_timeout(iterator, timeout)
+            except StopAsyncIteration:
+                break
+
+    @staticmethod
+    async def _next_with_timeout(iterator: Any, timeout: float) -> Any:
+        """Read one item while preserving cancellation on Python 3.10."""
+
+        pending_read: asyncio.Future[Any] = asyncio.ensure_future(
+            iterator.__anext__()
+        )
+        try:
+            done, _ = await asyncio.wait({pending_read}, timeout=timeout)
+        except asyncio.CancelledError:
+            pending_read.cancel()
+            await asyncio.gather(pending_read, return_exceptions=True)
+            raise
+        if not done:
+            pending_read.cancel()
+            await asyncio.gather(pending_read, return_exceptions=True)
+            raise asyncio.TimeoutError
+        return pending_read.result()
+
+    @staticmethod
+    async def _close_stream(response: Any) -> None:
+        close = getattr(response, "aclose", None)
+        if close is not None:
+            result = close()
+            if asyncio.iscoroutine(result):
+                await result
 
     def _build_langfuse_metadata(
         self,
@@ -393,13 +752,9 @@ class LiteLLMService:
 
     async def _call_with_retry(
         self,
-        messages: list[dict[str, Any]],
-        tools: list[dict[str, Any]] | None,
-        temperature: float,
+        spec: LiteLLMCallSpec,
         timeout: float,
         operation: str,
-        max_tokens: int | None = None,
-        metadata: dict[str, Any] | None = None,
     ) -> Any:
         """Execute LiteLLM call with retry logic, timeout, and circuit breaker."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -418,31 +773,7 @@ class LiteLLMService:
         async def _call() -> Any:
             nonlocal attempts
             attempts += 1
-
-            kwargs: dict[str, Any] = {
-                "model": self.model,
-                "messages": messages,
-                "temperature": temperature,
-            }
-
-            if max_tokens is not None:
-                kwargs["max_tokens"] = max_tokens
-
-            if self.api_key:
-                kwargs["api_key"] = self.api_key
-
-            if self.api_base:
-                kwargs["api_base"] = self.api_base
-
-            if tools:
-                kwargs["tools"] = tools
-                kwargs["tool_choice"] = "auto"
-
-            if metadata:
-                kwargs["metadata"] = metadata
-
-            if not self.thinking_enabled:
-                kwargs["thinking"] = {"type": "disabled"}
+            kwargs = spec.to_kwargs()
 
             logger.debug(
                 "litellm.acompletion: model=%s has_metadata=%s generation_name=%s",
@@ -452,8 +783,10 @@ class LiteLLMService:
             )
 
             try:
-                async with asyncio.timeout(timeout):
-                    return await litellm.acompletion(**kwargs)
+                return await asyncio.wait_for(
+                    litellm.acompletion(**kwargs),
+                    timeout=timeout,
+                )
             except asyncio.TimeoutError as e:
                 raise LLMTimeoutError(
                     f"LLM call timed out after {timeout}s",
@@ -467,7 +800,12 @@ class LiteLLMService:
             return await self._circuit_breaker.call(_call)
         except RetryError as e:
             # Convert tenacity RetryError to our custom exception
-            last_error = e.last_attempt.exception() if e.last_attempt else e
+            candidate = e.last_attempt.exception() if e.last_attempt else e
+            last_error = (
+                candidate
+                if isinstance(candidate, Exception)
+                else RuntimeError("retry failed without an Exception result")
+            )
             raise LLMRetryExhaustedError(
                 f"LLM call failed after {attempts} attempts",
                 attempts=attempts,
@@ -477,12 +815,8 @@ class LiteLLMService:
 
     async def _call_stream_with_retry(
         self,
-        messages: list[dict[str, Any]],
-        tools: list[dict[str, Any]] | None,
-        temperature: float,
+        spec: LiteLLMCallSpec,
         timeout: float,
-        max_tokens: int | None = None,
-        metadata: dict[str, Any] | None = None,
     ) -> Any:
         """Execute streaming call setup with retry on connection errors."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -501,32 +835,7 @@ class LiteLLMService:
         async def _setup_stream() -> Any:
             nonlocal attempts
             attempts += 1
-
-            kwargs: dict[str, Any] = {
-                "model": self.model,
-                "messages": messages,
-                "temperature": temperature,
-                "stream": True,
-            }
-
-            if max_tokens is not None:
-                kwargs["max_tokens"] = max_tokens
-
-            if self.api_key:
-                kwargs["api_key"] = self.api_key
-
-            if self.api_base:
-                kwargs["api_base"] = self.api_base
-
-            if tools:
-                kwargs["tools"] = tools
-                kwargs["tool_choice"] = "auto"
-
-            if metadata:
-                kwargs["metadata"] = metadata
-
-            if not self.thinking_enabled:
-                kwargs["thinking"] = {"type": "disabled"}
+            kwargs = spec.to_kwargs(stream=True)
 
             logger.debug(
                 "litellm.acompletion (stream) kwargs: model=%s "
@@ -537,8 +846,10 @@ class LiteLLMService:
             )
 
             try:
-                async with asyncio.timeout(timeout):
-                    return await litellm.acompletion(**kwargs)
+                return await asyncio.wait_for(
+                    litellm.acompletion(**kwargs),
+                    timeout=timeout,
+                )
             except asyncio.TimeoutError as e:
                 raise LLMTimeoutError(
                     f"Stream setup timed out after {timeout}s",
@@ -550,7 +861,12 @@ class LiteLLMService:
         try:
             return await self._circuit_breaker.call(_setup_stream)
         except RetryError as e:
-            last_error = e.last_attempt.exception() if e.last_attempt else e
+            candidate = e.last_attempt.exception() if e.last_attempt else e
+            last_error = (
+                candidate
+                if isinstance(candidate, Exception)
+                else RuntimeError("stream retry failed without an Exception result")
+            )
             raise LLMRetryExhaustedError(
                 f"Stream setup failed after {attempts} attempts",
                 attempts=attempts,
@@ -600,6 +916,59 @@ class LiteLLMService:
             reasoning_content=reasoning_content,
         )
 
+    def _parse_typed_response(
+        self,
+        response: Any,
+        summary: TranslationSummary,
+    ) -> TypedChatCompletionResponse:
+        """Convert the dynamic LiteLLM response into the typed Friday contract."""
+
+        legacy = self._parse_response(response)
+        choice = response.choices[0]
+        message = choice.message
+        reasoning_content = getattr(message, "reasoning_content", None) or getattr(
+            message, "reasoning", None
+        )
+        usage = getattr(response, "usage", None)
+        details = (
+            getattr(usage, "completion_tokens_details", None)
+            if usage is not None
+            else None
+        )
+        return TypedChatCompletionResponse(
+            content=legacy.content,
+            reasoning_content=reasoning_content,
+            tool_calls=tuple(
+                CompletionToolCall(
+                    id=tool_call.id,
+                    name=tool_call.name,
+                    arguments=tool_call.arguments,
+                )
+                for tool_call in legacy.tool_calls
+            ),
+            model=legacy.model,
+            usage=CompletionUsage(
+                prompt_tokens=legacy.usage.get("prompt_tokens", 0),
+                completion_tokens=legacy.usage.get("completion_tokens", 0),
+                total_tokens=legacy.usage.get("total_tokens", 0),
+                reasoning_tokens=(
+                    int(getattr(details, "reasoning_tokens", 0))
+                    if details is not None
+                    and getattr(details, "reasoning_tokens", None) is not None
+                    else None
+                ),
+            ),
+            finish_reason=getattr(choice, "finish_reason", None),
+            assurance=CompletionAssurance(
+                requested_fields=summary.requested_fields,
+                resolved_fields=summary.requested_fields,
+                emitted_fields=summary.emitted_fields,
+                capability_sources=summary.capability_sources,
+                target_profile=summary.target_profile,
+                litellm_version=summary.litellm_version,
+            ),
+        )
+
     def _parse_tool_arguments(
         self,
         raw_args: str,
@@ -625,7 +994,9 @@ class LiteLLMService:
         """
         # Strategy 1: Direct parse
         try:
-            return json.loads(raw_args)
+            parsed = json.loads(raw_args)
+            if isinstance(parsed, dict):
+                return parsed
         except (json.JSONDecodeError, TypeError):
             pass
 
@@ -634,7 +1005,9 @@ class LiteLLMService:
         # JSON string values instead of \\n / \\t
         try:
             cleaned = self._escape_control_chars(raw_args)
-            return json.loads(cleaned)
+            parsed = json.loads(cleaned)
+            if isinstance(parsed, dict):
+                return parsed
         except (json.JSONDecodeError, TypeError):
             pass
 
@@ -643,18 +1016,18 @@ class LiteLLMService:
         repaired = self._repair_truncated_json(raw_args)
         if repaired is not None:
             try:
-                return json.loads(repaired)
+                parsed = json.loads(repaired)
+                if isinstance(parsed, dict):
+                    return parsed
             except (json.JSONDecodeError, TypeError):
                 pass
 
         # All strategies failed — fall back to raw
         logger.warning(
             "Could not parse tool '%s' arguments "
-            "(len=%d). Falling back to raw wrapper. "
-            "First 200 chars: %s",
+            "(len=%d). Falling back to raw wrapper.",
             tool_name,
             len(raw_args) if raw_args else 0,
-            (raw_args or "")[:200],
         )
         return {"raw": raw_args}
 

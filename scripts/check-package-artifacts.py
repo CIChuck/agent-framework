@@ -5,12 +5,13 @@ from __future__ import annotations
 
 import argparse
 import email
+import re
 import sys
 import tarfile
 import zipfile
 from pathlib import Path
 
-EXPECTED_VERSION = "0.1.0a0"
+DEFAULT_VERSION = "0.1.0a0"
 EXPECTED_WHEELS = {
     "friday_chat": "friday_chat",
     "friday_framework": None,
@@ -50,6 +51,18 @@ EXPECTED_WHEEL_PATHS = {
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
+        "--version",
+        default=DEFAULT_VERSION,
+        help="Expected distribution version.",
+    )
+    parser.add_argument(
+        "--package",
+        action="append",
+        default=[],
+        choices=sorted(EXPECTED_WHEELS),
+        help="Artifact basename to validate. Repeat for multiple packages.",
+    )
+    parser.add_argument(
         "artifact_dir",
         nargs="?",
         default="dist/pypi-reservation-0.1.0a0",
@@ -87,13 +100,20 @@ def archive_names(artifact: Path) -> list[str]:
     return []
 
 
-def validate_wheel(base: str, import_package: str | None, artifact_dir: Path) -> list[str]:
+def validate_wheel(
+    base: str,
+    import_package: str | None,
+    artifact_dir: Path,
+    expected_version: str,
+) -> list[str]:
     errors: list[str] = []
-    wheels = sorted(artifact_dir.glob(f"{base}-{EXPECTED_VERSION}-*.whl"))
+    wheels = sorted(artifact_dir.glob(f"{base}-{expected_version}-*.whl"))
     if len(wheels) != 1:
         return [f"{base}: expected one wheel, found {len(wheels)}"]
 
     wheel = wheels[0]
+    if not wheel.name.endswith("-py3-none-any.whl"):
+        errors.append(f"{wheel.name}: expected a universal py3-none-any wheel")
     names = archive_names(wheel)
     if import_package and not any(name.startswith(f"{import_package}/") for name in names):
         errors.append(f"{wheel.name}: missing import package {import_package}")
@@ -112,7 +132,7 @@ def validate_wheel(base: str, import_package: str | None, artifact_dir: Path) ->
             errors.append(f"{wheel.name}: metadata-only wheel contains code paths")
 
     metadata = read_wheel_metadata(wheel)
-    if metadata.get("Version") != EXPECTED_VERSION:
+    if metadata.get("Version") != expected_version:
         errors.append(f"{wheel.name}: unexpected Version {metadata.get('Version')!r}")
     if metadata.get("License-Expression") != "MIT" and metadata.get("License") != "MIT":
         errors.append(f"{wheel.name}: expected MIT license metadata")
@@ -123,26 +143,83 @@ def validate_wheel(base: str, import_package: str | None, artifact_dir: Path) ->
     project_urls = metadata.get_all("Project-URL", [])
     if not any(value.startswith("Repository, ") for value in project_urls):
         errors.append(f"{wheel.name}: missing Repository project URL")
+    if base == "friday_framework_llm":
+        requirements = set(metadata.get_all("Requires-Dist", []))
+        required_fragments = (
+            "friday-framework-core==0.1.0a0",
+            "friday-framework-telemetry==0.1.0a0",
+            "litellm==1.94.1",
+        )
+        for fragment in required_fragments:
+            if not any(requirement.startswith(fragment) for requirement in requirements):
+                errors.append(f"{wheel.name}: missing exact dependency {fragment}")
 
     return errors
 
 
-def validate_sdist(base: str, artifact_dir: Path) -> list[str]:
-    sdists = sorted(artifact_dir.glob(f"{base}-{EXPECTED_VERSION}.tar.gz"))
+def validate_sdist(
+    base: str,
+    artifact_dir: Path,
+    expected_version: str,
+) -> list[str]:
+    sdists = sorted(artifact_dir.glob(f"{base}-{expected_version}.tar.gz"))
     if len(sdists) != 1:
         return [f"{base}: expected one sdist, found {len(sdists)}"]
-    return []
+    if base != "friday_framework_llm":
+        return []
+    names = archive_names(sdists[0])
+    required_suffixes = (
+        "/pyproject.toml",
+        "/README.md",
+        "/LICENSE",
+        "/src/friday_llm/__init__.py",
+        "/tests_llm/test_generation.py",
+    )
+    return [
+        f"{sdists[0].name}: missing required sdist content {suffix}"
+        for suffix in required_suffixes
+        if not any(name.endswith(suffix) for name in names)
+    ]
 
 
-def validate_suspicious_paths(artifact_dir: Path, skipped_bases: set[str]) -> list[str]:
+def validate_suspicious_paths(artifact_dir: Path, selected_bases: set[str]) -> list[str]:
     errors: list[str] = []
     artifacts = sorted(artifact_dir.glob("*.whl")) + sorted(artifact_dir.glob("*.tar.gz"))
     for artifact in artifacts:
-        if any(artifact.name.startswith(f"{base}-") for base in skipped_bases):
+        if not any(artifact.name.startswith(f"{base}-") for base in selected_bases):
             continue
         for name in archive_names(artifact):
             if any(part in name for part in SUSPICIOUS_PATH_PARTS):
                 errors.append(f"{artifact.name}: suspicious path {name}")
+    return errors
+
+
+def validate_suspicious_content(
+    artifact_dir: Path,
+    selected_bases: set[str],
+) -> list[str]:
+    errors: list[str] = []
+    secret_pattern = re.compile(rb"(?:sk|pypi)-[A-Za-z0-9_-]{20,}")
+    for artifact in sorted(artifact_dir.glob("*.whl")) + sorted(
+        artifact_dir.glob("*.tar.gz")
+    ):
+        if not any(artifact.name.startswith(f"{base}-") for base in selected_bases):
+            continue
+        if artifact.suffix == ".whl":
+            with zipfile.ZipFile(artifact) as archive:
+                members = ((name, archive.read(name)) for name in archive.namelist())
+                for name, content in members:
+                    if secret_pattern.search(content) or b"/Users/" in content:
+                        errors.append(f"{artifact.name}: sensitive content in {name}")
+        else:
+            with tarfile.open(artifact) as archive:
+                for member in archive.getmembers():
+                    extracted = archive.extractfile(member) if member.isfile() else None
+                    content = extracted.read() if extracted is not None else b""
+                    if secret_pattern.search(content) or b"/Users/" in content:
+                        errors.append(
+                            f"{artifact.name}: sensitive content in {member.name}"
+                        )
     return errors
 
 
@@ -156,20 +233,28 @@ def main() -> int:
         return 1
 
     skipped_bases = set(args.skip_base)
-    for base, import_package in EXPECTED_WHEELS.items():
-        if base in skipped_bases:
-            continue
-        errors.extend(validate_wheel(base, import_package, artifact_dir))
-        errors.extend(validate_sdist(base, artifact_dir))
-    errors.extend(validate_suspicious_paths(artifact_dir, skipped_bases))
+    selected_bases = set(args.package) or set(EXPECTED_WHEELS)
+    selected_bases -= skipped_bases
+    for base in sorted(selected_bases):
+        errors.extend(
+            validate_wheel(
+                base,
+                EXPECTED_WHEELS[base],
+                artifact_dir,
+                args.version,
+            )
+        )
+        errors.extend(validate_sdist(base, artifact_dir, args.version))
+    errors.extend(validate_suspicious_paths(artifact_dir, selected_bases))
+    errors.extend(validate_suspicious_content(artifact_dir, selected_bases))
 
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
 
     print(
-        f"Validated {len(EXPECTED_WHEELS) - len(args.skip_base)} wheels and "
-        f"{len(EXPECTED_WHEELS) - len(args.skip_base)} "
+        f"Validated {len(selected_bases)} wheels and "
+        f"{len(selected_bases)} "
         f"sdists in {artifact_dir}"
     )
     return 0

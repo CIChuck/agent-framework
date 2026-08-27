@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 LiteLLM Embedding Service.
 
@@ -363,8 +362,10 @@ class LiteLLMEmbeddingService:
                 kwargs["api_base"] = self.api_base
 
             try:
-                async with asyncio.timeout(timeout):
-                    response = await litellm.aembedding(**kwargs)
+                response = await asyncio.wait_for(
+                    litellm.aembedding(**kwargs),
+                    timeout=timeout,
+                )
             except asyncio.TimeoutError as e:
                 raise LLMTimeoutError(
                     f"Embedding call timed out after {timeout}s",
@@ -390,7 +391,12 @@ class LiteLLMEmbeddingService:
         try:
             return await self._circuit_breaker.call(_call)
         except RetryError as e:
-            last_error = e.last_attempt.exception() if e.last_attempt else e
+            candidate = e.last_attempt.exception() if e.last_attempt else e
+            last_error = (
+                candidate
+                if isinstance(candidate, Exception)
+                else RuntimeError("embedding retry failed without an Exception")
+            )
             raise LLMRetryExhaustedError(
                 f"Embedding call failed after {attempts} attempts",
                 attempts=attempts,

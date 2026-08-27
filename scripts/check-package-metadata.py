@@ -3,13 +3,15 @@
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
-import tomllib
 from pathlib import Path
 
+import tomllib
 
-EXPECTED_VERSION = "0.1.0a0"
+DEFAULT_VERSION = "0.1.0a0"
+DEFAULT_INTERNAL_VERSION = "0.1.0a0"
 EXPECTED_AUTHOR = [{"name": "Friday Team"}]
 EXPECTED_LICENSE = "MIT"
 REPO_URL = "https://github.com/CIChuck/agent-framework"
@@ -36,20 +38,64 @@ REQUIRED_DEPENDENCY_PROJECTS = {
 }
 
 
-def project_paths() -> list[Path]:
-    return [Path("pyproject.toml"), *sorted(Path("packages").glob("*/pyproject.toml"))]
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--version", default=DEFAULT_VERSION)
+    parser.add_argument(
+        "--internal-version",
+        default=DEFAULT_INTERNAL_VERSION,
+        help="Required exact version for internal Friday dependencies.",
+    )
+    parser.add_argument(
+        "--package",
+        action="append",
+        default=[],
+        help="Distribution name to validate. Repeat for multiple packages.",
+    )
+    return parser.parse_args()
+
+
+def project_paths(selected_packages: set[str]) -> list[Path]:
+    paths = [Path("pyproject.toml"), *sorted(Path("packages").glob("*/pyproject.toml"))]
+    if not selected_packages:
+        return paths
+    selected: list[Path] = []
+    found: set[str] = set()
+    for path in paths:
+        data = tomllib.loads(path.read_text())
+        name = data.get("project", {}).get("name")
+        if isinstance(name, str) and name in selected_packages:
+            selected.append(path)
+            found.add(name)
+    missing = selected_packages - found
+    if missing:
+        raise ValueError(f"unknown package selection: {', '.join(sorted(missing))}")
+    return selected
 
 
 def collect_dependencies(project: dict[str, object]) -> list[str]:
-    dependencies = list(project.get("dependencies", []))
+    raw_dependencies = project.get("dependencies", [])
+    dependencies = (
+        [value for value in raw_dependencies if isinstance(value, str)]
+        if isinstance(raw_dependencies, list)
+        else []
+    )
     optional = project.get("optional-dependencies", {})
     if isinstance(optional, dict):
         for extra_dependencies in optional.values():
-            dependencies.extend(extra_dependencies)
+            if isinstance(extra_dependencies, list):
+                dependencies.extend(
+                    value for value in extra_dependencies if isinstance(value, str)
+                )
     return dependencies
 
 
-def validate_project(path: Path) -> list[str]:
+def validate_project(
+    path: Path,
+    *,
+    expected_version: str,
+    internal_version: str,
+) -> list[str]:
     data = tomllib.loads(path.read_text())
     project = data.get("project", {})
     errors: list[str] = []
@@ -57,8 +103,8 @@ def validate_project(path: Path) -> list[str]:
     name = project.get("name")
     version = project.get("version")
 
-    if version != EXPECTED_VERSION:
-        errors.append(f"{path}: expected version {EXPECTED_VERSION}, got {version!r}")
+    if version != expected_version:
+        errors.append(f"{path}: expected version {expected_version}, got {version!r}")
     if project.get("license") != EXPECTED_LICENSE:
         errors.append(f"{path}: expected license {EXPECTED_LICENSE!r}")
     if project.get("authors") != EXPECTED_AUTHOR:
@@ -90,20 +136,34 @@ def validate_project(path: Path) -> list[str]:
         errors.append(f"{path}: wheel package selection is missing")
 
     for dependency in collect_dependencies(project):
-        if INTERNAL_DEP_RE.search(dependency) and f"=={EXPECTED_VERSION}" not in dependency:
+        if (
+            INTERNAL_DEP_RE.search(dependency)
+            and f"=={internal_version}" not in dependency
+        ):
             errors.append(
                 f"{path}: internal dependency is not pinned to "
-                f"{EXPECTED_VERSION}: {dependency!r}"
+                f"{internal_version}: {dependency!r}"
             )
 
     return errors
 
 
 def main() -> int:
+    args = parse_args()
     errors: list[str] = []
-    paths = project_paths()
+    try:
+        paths = project_paths(set(args.package))
+    except ValueError as error:
+        print(str(error), file=sys.stderr)
+        return 2
     for path in paths:
-        errors.extend(validate_project(path))
+        errors.extend(
+            validate_project(
+                path,
+                expected_version=args.version,
+                internal_version=args.internal_version,
+            )
+        )
 
     if errors:
         print("\n".join(errors), file=sys.stderr)

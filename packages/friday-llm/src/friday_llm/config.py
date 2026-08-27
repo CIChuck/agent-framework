@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Resilience configuration for LLM services.
 

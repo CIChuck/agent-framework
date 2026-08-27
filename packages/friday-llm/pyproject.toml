@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-llm"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "LLM inference layer for Friday Framework"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -9,7 +9,7 @@ authors = [{ name = "Friday Team" }]
 dependencies = [
     "friday-framework-core==0.1.0a0",
     "friday-framework-telemetry==0.1.0a0",
-    "litellm>=1.81.0",
+    "litellm==1.94.1",
     "tenacity>=8.2.0",
 ]
 

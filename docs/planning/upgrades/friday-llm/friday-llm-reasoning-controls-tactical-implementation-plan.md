@@ -1,9 +1,10 @@
 # Friday LLM Reasoning Controls Tactical Implementation And Release Plan
 
-- Status: Approved for implementation; TestPyPI and PyPI publication not
-  authorized
+- Status: Implementation complete; release held at the live-provider and
+  publication gates
 - Date: 2026-08-27
 - Approval date: 2026-08-27
+- Implementation completion date: 2026-08-27
 - Target distribution: `friday-framework-llm==0.1.0a1`
 - Release unit: package-scoped component upgrade
 
@@ -42,6 +43,13 @@ editing it.
 Publication is a separate irreversible action. Completing implementation and
 tests does not authorize TestPyPI or PyPI upload.
 
+Implementation, deterministic validation, packaging, and clean-install smoke
+testing are complete. The exact results and artifact identities are recorded in
+[Friday LLM 0.1.0a1 release evidence](../../../reference/llm/friday-llm-0.1.0a1-release-evidence.md).
+The release remains stopped because no LM Studio/Qwen target was listening on
+the approved loopback endpoint, and neither TestPyPI nor PyPI upload has been
+authorized. No tag has been created.
+
 ## Implementation Objective
 
 Publish a backward-compatible Friday LLM alpha that represents reasoning and
@@ -71,12 +79,15 @@ because Friday configured or emitted a field.
 
 ### LiteLLM Baseline
 
-- Investigate and initially target `litellm==1.98.0`.
+- Investigate the initial `litellm==1.98.0` candidate. It was rejected because
+  it imports `typing.NotRequired` on Python 3.10 and fails before Friday can be
+  imported.
+- Use `litellm==1.94.1`, the current stable release that imports on the declared
+  Python 3.10 floor and preserves the deterministic release-one wire contract.
 - Use an exact dependency for this alpha because provider translation is part
   of the tested contract.
-- If `1.98.0` fails a required deterministic or live gate, stop and select a
-  replacement stable version based on recorded evidence. Update this plan,
-  package metadata, lockfile, wire fixtures, and release notes together.
+- The replacement decision and evidence must stay synchronized across this
+  plan, package metadata, lockfile, wire fixtures, and release notes.
 - Do not retain the current unbounded `litellm>=1.81.0` dependency.
 - A future release may widen the range only after lower- and upper-bound
   compatibility testing exists.
@@ -234,8 +245,8 @@ translator behavior are frozen.
 - `LLM-RC-00-03`: Inventory every `LiteLLMService` constructor and completion
   caller across Friday packages. Classify each as legacy-only, potential typed
   API adopter, or validation-only consumer.
-- `LLM-RC-00-04`: Inspect LiteLLM `1.98.0` supported-parameter APIs and source
-  paths used for OpenAI-compatible Chat Completions.
+- `LLM-RC-00-04`: Inspect the rejected LiteLLM `1.98.0` candidate and selected
+  `1.94.1` source paths used for OpenAI-compatible Chat Completions.
 - `LLM-RC-00-05`: Capture sanitized final HTTP JSON for no override, current
   `thinking={"type": "disabled"}`, Qwen
   `chat_template_kwargs.enable_thinking`, each documented Qwen effort tier, and

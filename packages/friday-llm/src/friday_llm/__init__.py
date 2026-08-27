@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Friday LLM - Inference Layer.
 
@@ -14,25 +13,15 @@ Components:
 Ref: Batch 3 Specification, Section 3
 """
 
-import litellm
-
-# Suppress LiteLLM's verbose debug output (e.g., "Give Feedback" messages)
-# Users can re-enable if needed via litellm.suppress_debug_info = False
-litellm.suppress_debug_info = True
-
-# Allow LiteLLM to normalize parameters for provider-specific quirks.
-# Notably, Moonshot thinking models require reasoning_content in assistant
-# tool-call messages; when it's missing LiteLLM drops the thinking param
-# for that turn instead of letting the API reject the request.
-litellm.modify_params = True
-
-# Silently drop parameters that a provider doesn't support (e.g.
-# 'thinking' on providers that lack reasoning mode) instead of
-# raising UnsupportedParamsError.
-litellm.drop_params = True
-
 # Config classes
 # Advanced - circuit breaker for direct use
+from friday_llm.capabilities import (  # noqa: E402
+    CapabilityEntry,
+    CapabilityState,
+    ControlCapability,
+    OperatorCapabilityDeclaration,
+    ProviderCapabilities,
+)
 from friday_llm.circuit_breaker import CircuitBreaker  # noqa: E402
 from friday_llm.config import CircuitBreakerConfig, ResilienceConfig  # noqa: E402
 
@@ -41,10 +30,23 @@ from friday_llm.embeddings import LiteLLMEmbeddingService  # noqa: E402
 
 # Exception classes
 from friday_llm.exceptions import (  # noqa: E402
+    CapabilityConflictError,
     CircuitBreakerOpenError,
+    LLMConfigurationError,
     LLMRetryExhaustedError,
     LLMServiceError,
     LLMTimeoutError,
+    ProviderOptionsError,
+    TargetIdentityError,
+    TranslationConflictError,
+    UnsupportedControlError,
+)
+from friday_llm.generation import (  # noqa: E402
+    GenerationConfig,
+    GenerationOverrides,
+    ReasoningConfig,
+    ReasoningMode,
+    SamplingConfig,
 )
 
 # LangFuse observability
@@ -52,9 +54,31 @@ from friday_llm.langfuse_integration import configure_langfuse  # noqa: E402
 
 # Pricing and cost calculation
 from friday_llm.pricing import CostCalculator, PricingConfig  # noqa: E402
+from friday_llm.provider_options import LMStudioQwenOptions  # noqa: E402
+from friday_llm.requests import (  # noqa: E402
+    ChatCompletionRequest,
+    CompletionAssurance,
+    CompletionToolCall,
+    CompletionUsage,
+    NamedToolChoice,
+    NamedToolChoiceFunction,
+    ToolChoice,
+    TypedChatCompletionResponse,
+)
 
 # Service classes
 from friday_llm.service import LiteLLMService  # noqa: E402
+from friday_llm.streaming import (  # noqa: E402
+    FinishEvent,
+    ReasoningDeltaEvent,
+    StreamErrorEvent,
+    StreamEvent,
+    TextDeltaEvent,
+    ToolCallCompleteEvent,
+    ToolCallDeltaEvent,
+    UsageEvent,
+)
+from friday_llm.targets import ModelTarget, TransportTarget  # noqa: E402
 
 # Telemetry
 from friday_llm.telemetry_helper import LLMTelemetryHelper  # noqa: E402
@@ -74,11 +98,46 @@ __all__ = [
     # Config
     "ResilienceConfig",
     "CircuitBreakerConfig",
+    "ReasoningMode",
+    "ReasoningConfig",
+    "SamplingConfig",
+    "GenerationConfig",
+    "GenerationOverrides",
+    "TransportTarget",
+    "ModelTarget",
+    "LMStudioQwenOptions",
+    "CapabilityState",
+    "ControlCapability",
+    "CapabilityEntry",
+    "ProviderCapabilities",
+    "OperatorCapabilityDeclaration",
+    "ChatCompletionRequest",
+    "TypedChatCompletionResponse",
+    "CompletionToolCall",
+    "CompletionUsage",
+    "CompletionAssurance",
+    "ToolChoice",
+    "NamedToolChoice",
+    "NamedToolChoiceFunction",
+    "StreamEvent",
+    "TextDeltaEvent",
+    "ReasoningDeltaEvent",
+    "ToolCallDeltaEvent",
+    "ToolCallCompleteEvent",
+    "StreamErrorEvent",
+    "UsageEvent",
+    "FinishEvent",
     # Exceptions
     "LLMServiceError",
     "LLMTimeoutError",
     "LLMRetryExhaustedError",
     "CircuitBreakerOpenError",
+    "LLMConfigurationError",
+    "UnsupportedControlError",
+    "CapabilityConflictError",
+    "ProviderOptionsError",
+    "TranslationConflictError",
+    "TargetIdentityError",
     # Pricing
     "PricingConfig",
     "CostCalculator",
