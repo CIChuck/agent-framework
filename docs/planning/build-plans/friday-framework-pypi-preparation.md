@@ -357,6 +357,21 @@ Component-upgrade exception for Friday LLM:
   authorization; see the
   [release evidence](../../reference/llm/friday-llm-0.1.0a1-release-evidence.md).
 
+Coordinated `0.1.0a1` dependency-cohort decision:
+
+- Friday Chat clean installation proved that the component-only exception is
+  not a publishable downstream graph: immutable `0.1.0a0` packages retain exact
+  pins to the old LLM and to packages that transitively require it.
+- On 2026-08-28 the maintainer approved returning every current Friday
+  distribution and every internal exact dependency to lock-step `0.1.0a1`.
+- The coordinated cohort includes optional extras, MCP, Optimization, Friday
+  Chat, and the root meta-package so no supported installation shape can pull a
+  mixed `a0`/`a1` graph.
+- Implementation and local validation are authorized. Registry uploads, live
+  provider calls, tags, and pushes remain separately gated.
+- The authoritative scope and release gates are in the
+  [Friday package cohort plan](../upgrades/friday-packages/friday-package-cohort-0.1.0a1-plan.md).
+
 First alpha release order:
 
 1. `friday-framework-telemetry`
