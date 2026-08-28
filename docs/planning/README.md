@@ -59,3 +59,11 @@ separately gated:
 
 - [Friday LLM reasoning and sampling controls requirement](upgrades/friday-llm/friday-llm-reasoning-and-sampling-controls-requirement.md)
 - [Friday LLM tactical implementation and release plan](upgrades/friday-llm/friday-llm-reasoning-controls-tactical-implementation-plan.md)
+
+The Friday Chat typed-LLM migration was approved for implementation on
+2026-08-28. It adopts the Friday LLM `0.1.0a1` public contracts only for the
+primary Chat model path, preserves legacy flat configuration for one
+deprecation window, and defines independent implementation, live-provider,
+TestPyPI, PyPI, and tagging gates:
+
+- [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
