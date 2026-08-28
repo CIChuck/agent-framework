@@ -4,8 +4,8 @@
 - Branch: `feature/friday-chat-typed-llm-config`
 - Implementation commit: `51a112c`
 - Distribution: `friday-chat==0.1.0a1`
-- Status: final cohort candidate locally validated; package-only candidate below rejected
-- Publication: not authorized and not attempted
+- Status: published and post-publication verified in the final cohort
+- Publication: [production PyPI 0.1.0a1](https://pypi.org/project/friday-chat/0.1.0a1/)
 - Live provider lane: implemented but not authorized or executed
 
 ## Superseding Cohort Decision
@@ -16,6 +16,7 @@ rejected hashes below remain historical evidence; they are not the final release
 state. The final clean artifacts, Python 3.10-3.13 wheel installs, root `all`
 extra, source-only install, and hashes are recorded in the
 [cohort release evidence](../releases/friday-package-cohort-0.1.0a1-release-evidence.md).
+That cohort was subsequently published and revalidated from production PyPI.
 
 ## Scope And Worktree
 

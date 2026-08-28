@@ -4,21 +4,23 @@
 - Branch: `feature/friday-package-cohort-0.1.0a1`
 - Artifact source commit: `fbe6e0e`
 - Artifact directory: `dist/friday-package-cohort-0.1.0a1-fbe6e0e/`
-- Status: local release candidate validated; publication not authorized
-- Publication, tag, push, and PyPI URL: none
+- Status: published to production PyPI and post-publication verified
+- Publication date: 2026-08-28
+- Release tag: not authorized and not created
 
 ## Decision
 
-The complete 17-distribution Friday family is locally ready as one lock-step
+The complete 17-distribution Friday family is published as one lock-step
 `0.1.0a1` cohort. Every project version, internal dependency, optional extra,
 self-reference, and exported runtime version uses `0.1.0a1`. The root
 `friday-framework[all]` extra covers every other cohort distribution, including
 `friday-framework-optimization`.
 
 This evidence supersedes the rejected package-only Friday LLM and Friday Chat
-artifact candidates. Only the files in the artifact directory above are the
-current upload candidates. TestPyPI, PyPI, tags, and remote pushes remain
-separate authority gates.
+artifact candidates. The maintainer explicitly authorized production PyPI on
+2026-08-28. The exact files in the artifact directory above were published in
+dependency order; TestPyPI was not used. A release tag remains a separate
+authority gate.
 
 ## Dependency And Source Gates
 
@@ -104,12 +106,32 @@ or generation request was made. Friday LLM's earlier bounded live LM Studio
 matrix remains the behavioral transport evidence; Friday Chat's separate live
 provider lane was not authorized or run.
 
-## Publication Gate
+## Production Publication Evidence
 
-The local candidate is ready for a separately authorized TestPyPI rehearsal.
-Publish in the dependency order recorded in the cohort plan, verify every layer
-before uploading the next, then repeat clean-install and hash verification from
-the registry. Production PyPI remains a later separate approval.
+All 17 projects were uploaded to production PyPI in the dependency order from
+the cohort plan. Before advancing each layer, the published wheel and sdist
+SHA-256 values were compared with the frozen local files and the exact release
+was installed from the production Simple API. PyPI propagation lag was observed
+once for Friday LLM; publication paused until the Simple and JSON APIs converged.
+
+Final post-publication results:
+
+- all 17 releases and all 34 registry hashes match the manifest below;
+- a fresh PyPI-only `friday-framework[all]==0.1.0a1` install succeeded;
+- all 17 installed distribution versions and all 16 import packages passed;
+- the root environment passed `pip check` and Friday Chat reported `0.1.0a1`;
+- PyPI-only Friday Chat installs passed the typed-config/fake-transport, CLI,
+  and `pip check` smoke on Python 3.10.19, 3.11.14, 3.12.12, and 3.13.10.
+
+Primary release pages:
+
+- [Friday Framework](https://pypi.org/project/friday-framework/0.1.0a1/)
+- [Friday Chat](https://pypi.org/project/friday-chat/0.1.0a1/)
+- [Friday LLM](https://pypi.org/project/friday-framework-llm/0.1.0a1/)
+
+The temporary ignored `.env` credential file was removed after verification.
+Because the PyPI token was disclosed in chat, it must be revoked in PyPI account
+settings even though it is no longer stored in the checkout.
 
 ## SHA-256 Manifest
 

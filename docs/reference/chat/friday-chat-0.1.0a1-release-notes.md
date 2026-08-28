@@ -2,7 +2,7 @@
 
 - Candidate: `friday-chat==0.1.0a1`
 - Required LLM: `friday-framework-llm==0.1.0a1`
-- Status: Implemented and locally validated in lock-step cohort; publication not authorized
+- Status: Published and post-publication verified in lock-step cohort
 - Date: 2026-08-28
 
 ## What Changed
@@ -90,6 +90,6 @@ approved repair brings every current Friday distribution and internal pin to a
 lock-step `0.1.0a1`, then rebuilds and publishes them in dependency order.
 See the [release evidence](friday-chat-0.1.0a1-release-evidence.md).
 
-TestPyPI, PyPI, and release-tag operations require separate authorization. PyPI
-artifacts are immutable; corrections must use a new version rather than
-overwriting `0.1.0a1`.
+Production PyPI publication and registry verification completed on 2026-08-28.
+No TestPyPI release or tag was created. PyPI artifacts are immutable;
+corrections must use a new version rather than overwriting `0.1.0a1`.

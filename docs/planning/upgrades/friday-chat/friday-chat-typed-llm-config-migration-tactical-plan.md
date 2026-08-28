@@ -1,6 +1,6 @@
 # Friday Chat Typed LLM Configuration Migration Tactical Plan
 
-- Status: Implementation and lock-step cohort validation complete; publication not authorized
+- Status: Published and post-publication verified in lock-step cohort
 - Plan date: 2026-08-28
 - Accepted design recommendations: 2026-08-28
 - Implementation approval date: 2026-08-28

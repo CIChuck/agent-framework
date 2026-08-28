@@ -3,11 +3,11 @@
 ## Decision
 
 - Implementation state: complete on 2026-08-27.
-- Artifact state: final lock-step cohort candidate locally validated.
-- Release state: **HOLD FOR PUBLICATION AUTHORIZATION**.
+- Artifact state: final lock-step cohort published and registry-verified.
+- Release state: **PUBLISHED**.
 - Live-provider gate: passed.
-- Hold: TestPyPI/PyPI publication has not been authorized.
-- Publication, tag, and PyPI URL: none.
+- Publication: [production PyPI 0.1.0a1](https://pypi.org/project/friday-framework-llm/0.1.0a1/).
+- Tag: not authorized and not created.
 
 The hashes below identify a superseded diagnostic candidate. Do not upload it.
 On 2026-08-28 the maintainer approved a lock-step `0.1.0a1` release for every

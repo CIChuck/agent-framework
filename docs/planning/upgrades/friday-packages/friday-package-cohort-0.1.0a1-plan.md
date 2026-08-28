@@ -1,6 +1,6 @@
 # Friday Package Cohort 0.1.0a1 Plan
 
-- Status: Implementation and local validation complete; publication not authorized
+- Status: Published to production PyPI and post-publication verified
 - Approval date: 2026-08-28
 - Branch: `feature/friday-package-cohort-0.1.0a1`
 - Trigger: Friday Chat clean installation exposed incompatible exact pins across
@@ -63,8 +63,9 @@ Authorized changes include:
   incompatibility with Friday LLM `0.1.0a1`.
 
 Unrelated local config, runtime state, caches, and documents remain untouched.
-TestPyPI/PyPI upload, live provider execution, tags, and remote pushes remain
-separate authority gates.
+Production PyPI publication was separately authorized and completed on
+2026-08-28. TestPyPI was not used. Live provider execution and release tagging
+remain separate authority gates.
 
 ## Implementation Sequence
 

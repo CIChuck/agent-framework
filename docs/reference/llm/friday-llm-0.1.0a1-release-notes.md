@@ -84,5 +84,5 @@ downstream packages, Friday Chat, and the root meta-package use exact
   required for this acceptance lane.
 - LiteLLM warnings, if observed in deterministic wire tests, are recorded and
   are not hidden by Friday global settings.
-- TestPyPI/PyPI upload and tagging require separate authorization and are not
-  part of implementation approval.
+- Production PyPI publication and post-publication registry verification
+  completed on 2026-08-28. No TestPyPI release or tag was created.

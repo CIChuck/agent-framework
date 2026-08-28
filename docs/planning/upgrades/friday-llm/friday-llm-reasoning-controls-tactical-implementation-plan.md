@@ -1,7 +1,6 @@
 # Friday LLM Reasoning Controls Tactical Implementation And Release Plan
 
-- Status: Implementation, live-provider gate, and local cohort validation
-  complete; publication not authorized
+- Status: Published and post-publication verified; release tag not authorized
 - Date: 2026-08-27
 - Approval date: 2026-08-27
 - Implementation completion date: 2026-08-27
@@ -52,8 +51,9 @@ an upload candidate: the approved
 changes Friday LLM's Core and Telemetry pins to `0.1.0a1`. Friday LLM was
 rebuilt and revalidated as part of that cohort; see the
 [cohort release evidence](../../../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md).
-The release remains stopped because neither TestPyPI nor PyPI upload has been
-authorized. No tag has been created.
+Production PyPI publication and post-publication verification completed on
+2026-08-28 as part of the lock-step cohort. TestPyPI was not used and no tag has
+been created.
 
 ## Implementation Objective
 
