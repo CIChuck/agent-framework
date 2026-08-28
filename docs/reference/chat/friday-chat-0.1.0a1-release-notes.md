@@ -2,7 +2,7 @@
 
 - Candidate: `friday-chat==0.1.0a1`
 - Required LLM: `friday-framework-llm==0.1.0a1`
-- Status: Implemented; lock-step cohort rebuild and validation in progress
+- Status: Implemented and locally validated in lock-step cohort; publication not authorized
 - Date: 2026-08-28
 
 ## What Changed

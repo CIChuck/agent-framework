@@ -1,7 +1,7 @@
 # Friday LLM Reasoning Controls Tactical Implementation And Release Plan
 
-- Status: Implementation and live-provider gate complete; prior package-only
-  artifact superseded by lock-step cohort; publication not authorized
+- Status: Implementation, live-provider gate, and local cohort validation
+  complete; publication not authorized
 - Date: 2026-08-27
 - Approval date: 2026-08-27
 - Implementation completion date: 2026-08-27
@@ -49,10 +49,11 @@ and clean-install smoke testing are complete. The exact results and artifact ide
 The package-only artifact recorded there is now diagnostic evidence rather than
 an upload candidate: the approved
 [lock-step cohort](../friday-packages/friday-package-cohort-0.1.0a1-plan.md)
-changes Friday LLM's Core and Telemetry pins to `0.1.0a1`. Friday LLM must be
-rebuilt and revalidated as part of that cohort. The release also remains stopped
-because neither TestPyPI nor PyPI upload has been authorized. No tag has been
-created.
+changes Friday LLM's Core and Telemetry pins to `0.1.0a1`. Friday LLM was
+rebuilt and revalidated as part of that cohort; see the
+[cohort release evidence](../../../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md).
+The release remains stopped because neither TestPyPI nor PyPI upload has been
+authorized. No tag has been created.
 
 ## Implementation Objective
 

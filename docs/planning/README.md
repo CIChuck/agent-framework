@@ -72,9 +72,10 @@ amendment; the rejected Chat artifact must not be published:
 - [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
 - [Friday Chat typed LLM deferred consumer handoff](upgrades/friday-chat/friday-chat-typed-llm-deferred-consumer-handoff.md)
 
-The clean-install blocker was resolved at the planning level on 2026-08-28 by
-approving a lock-step `0.1.0a1` cohort for every current Friday distribution.
-Implementation and local release validation are authorized; publication and
-remote mutations remain separate gates:
+The clean-install blocker was resolved on 2026-08-28 with a lock-step
+`0.1.0a1` cohort for every current Friday distribution. Implementation and
+local release validation are complete; publication and remote mutations remain
+separate gates:
 
 - [Friday package cohort 0.1.0a1 plan](upgrades/friday-packages/friday-package-cohort-0.1.0a1-plan.md)
+- [Friday package cohort 0.1.0a1 release evidence](../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md)

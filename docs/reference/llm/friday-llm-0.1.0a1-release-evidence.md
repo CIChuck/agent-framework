@@ -3,9 +3,8 @@
 ## Decision
 
 - Implementation state: complete on 2026-08-27.
-- Artifact state: prior package-only files rejected; rebuild in lock-step
-  cohort.
-- Release state: **HOLD FOR COHORT VALIDATION AND PUBLICATION AUTHORIZATION**.
+- Artifact state: final lock-step cohort candidate locally validated.
+- Release state: **HOLD FOR PUBLICATION AUTHORIZATION**.
 - Live-provider gate: passed.
 - Hold: TestPyPI/PyPI publication has not been authorized.
 - Publication, tag, and PyPI URL: none.
@@ -13,9 +12,10 @@
 The hashes below identify a superseded diagnostic candidate. Do not upload it.
 On 2026-08-28 the maintainer approved a lock-step `0.1.0a1` release for every
 Friday distribution. That decision changes Friday LLM's Core and Telemetry pins
-from `0.1.0a0` to `0.1.0a1`, so the wheel and sdist must be rebuilt and all
-artifact/install gates repeated. The implementation and live-provider results
-remain valid.
+from `0.1.0a0` to `0.1.0a1`. That rebuild and all local artifact/install gates
+are complete in the
+[cohort release evidence](../releases/friday-package-cohort-0.1.0a1-release-evidence.md).
+The implementation and live-provider results remain valid.
 
 This distinction is intentional. Deterministic wire capture proves the JSON
 emitted through LiteLLM, while the live lane proves request acceptance and
@@ -28,8 +28,8 @@ response normalization. Neither proves that the loaded model changed behavior.
 - Branch: `feature/friday-llm-reasoning-controls`
 - Python requirement: `>=3.10`
 - LiteLLM: exact `1.94.1`
-- Internal dependencies: exact `friday-framework-core==0.1.0a0` and
-  `friday-framework-telemetry==0.1.0a0`
+- Internal dependencies: exact `friday-framework-core==0.1.0a1` and
+  `friday-framework-telemetry==0.1.0a1`
 - Supported release-one profile: LiteLLM OpenAI-compatible Chat Completions,
   LM Studio serving engine, explicit Qwen3.8 family and model revision.
 

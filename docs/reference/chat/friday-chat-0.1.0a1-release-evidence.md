@@ -4,8 +4,7 @@
 - Branch: `feature/friday-chat-typed-llm-config`
 - Implementation commit: `51a112c`
 - Distribution: `friday-chat==0.1.0a1`
-- Status: implementation validated; artifact candidate rejected as
-  dependency-unsatisfiable
+- Status: final cohort candidate locally validated; package-only candidate below rejected
 - Publication: not authorized and not attempted
 - Live provider lane: implemented but not authorized or executed
 
@@ -14,8 +13,9 @@
 On 2026-08-28 the maintainer approved a full lock-step `0.1.0a1` cohort for
 every current Friday distribution and internal exact pin. The blocker and
 rejected hashes below remain historical evidence; they are not the final release
-state. New cohort artifacts and clean-install evidence must supersede this
-document before publication.
+state. The final clean artifacts, Python 3.10-3.13 wheel installs, root `all`
+extra, source-only install, and hashes are recorded in the
+[cohort release evidence](../releases/friday-package-cohort-0.1.0a1-release-evidence.md).
 
 ## Scope And Worktree
 

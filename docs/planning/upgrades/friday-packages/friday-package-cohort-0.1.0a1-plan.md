@@ -1,10 +1,11 @@
 # Friday Package Cohort 0.1.0a1 Plan
 
-- Status: Approved for implementation; publication not authorized
+- Status: Implementation and local validation complete; publication not authorized
 - Approval date: 2026-08-28
 - Branch: `feature/friday-package-cohort-0.1.0a1`
 - Trigger: Friday Chat clean installation exposed incompatible exact pins across
   the published `0.1.0a0` package graph.
+- Evidence: [cohort release evidence](../../../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md)
 
 ## Objective
 
