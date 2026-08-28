@@ -362,7 +362,15 @@ def _config_derived_from_example(state_root: Path) -> FridayChatConfig:
         raise TypeError("example config must be a mapping")
     raw = cast(dict[str, Any], raw_value)
 
-    _section(raw, "llm").update(
+    llm = _section(raw, "llm")
+    for typed_key in (
+        "generation",
+        "transport_target",
+        "model_target",
+        "provider_options",
+    ):
+        llm.pop(typed_key, None)
+    llm.update(
         {
             "model": "openai/gate-f-provider-prohibited",
             "api_base": "http://provider.invalid/v1",

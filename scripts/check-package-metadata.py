@@ -47,12 +47,38 @@ def parse_args() -> argparse.Namespace:
         help="Required exact version for internal Friday dependencies.",
     )
     parser.add_argument(
+        "--internal-pin",
+        action="append",
+        default=[],
+        metavar="NAME=VERSION",
+        help=(
+            "Override the required exact version for one internal Friday "
+            "dependency. Repeat for mixed-version component releases."
+        ),
+    )
+    parser.add_argument(
         "--package",
         action="append",
         default=[],
         help="Distribution name to validate. Repeat for multiple packages.",
     )
     return parser.parse_args()
+
+
+def parse_internal_pins(values: list[str]) -> dict[str, str]:
+    """Parse explicit mixed-version dependency expectations."""
+    pins: dict[str, str] = {}
+    for value in values:
+        name, separator, version = value.partition("=")
+        if not separator or not name.strip() or not version.strip():
+            raise ValueError(f"invalid --internal-pin {value!r}; expected NAME=VERSION")
+        normalized_name = name.strip().lower().replace("_", "-")
+        if not INTERNAL_DEP_RE.fullmatch(normalized_name):
+            raise ValueError(f"invalid internal Friday dependency name: {name!r}")
+        if normalized_name in pins:
+            raise ValueError(f"duplicate --internal-pin for {normalized_name}")
+        pins[normalized_name] = version.strip()
+    return pins
 
 
 def project_paths(selected_packages: set[str]) -> list[Path]:
@@ -95,6 +121,7 @@ def validate_project(
     *,
     expected_version: str,
     internal_version: str,
+    internal_pins: dict[str, str] | None = None,
 ) -> list[str]:
     data = tomllib.loads(path.read_text())
     project = data.get("project", {})
@@ -135,14 +162,20 @@ def validate_project(
     if name != "friday-framework" and not packages:
         errors.append(f"{path}: wheel package selection is missing")
 
+    expected_pins = internal_pins or {}
     for dependency in collect_dependencies(project):
-        if (
-            INTERNAL_DEP_RE.search(dependency)
-            and f"=={internal_version}" not in dependency
-        ):
+        match = INTERNAL_DEP_RE.search(dependency)
+        if match is not None:
+            dependency_name = match.group(0).lower().replace("_", "-")
+            expected_internal_version = expected_pins.get(
+                dependency_name,
+                internal_version,
+            )
+            if f"=={expected_internal_version}" in dependency:
+                continue
             errors.append(
                 f"{path}: internal dependency is not pinned to "
-                f"{internal_version}: {dependency!r}"
+                f"{expected_internal_version}: {dependency!r}"
             )
 
     return errors
@@ -152,6 +185,7 @@ def main() -> int:
     args = parse_args()
     errors: list[str] = []
     try:
+        internal_pins = parse_internal_pins(args.internal_pin)
         paths = project_paths(set(args.package))
     except ValueError as error:
         print(str(error), file=sys.stderr)
@@ -162,6 +196,7 @@ def main() -> int:
                 path,
                 expected_version=args.version,
                 internal_version=args.internal_version,
+                internal_pins=internal_pins,
             )
         )
 

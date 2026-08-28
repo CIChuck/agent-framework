@@ -7,6 +7,7 @@ import importlib
 import json
 import math
 import os
+import warnings
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -14,7 +15,19 @@ from pathlib import Path
 from typing import Any, TypeGuard, cast
 from uuid import uuid4
 
-from friday_llm import LiteLLMEmbeddingService, LiteLLMService, ResilienceConfig
+from friday_llm import (
+    ChatCompletionRequest,
+    FinishEvent,
+    LiteLLMEmbeddingService,
+    LiteLLMService,
+    ReasoningDeltaEvent,
+    ResilienceConfig,
+    StreamErrorEvent,
+    TextDeltaEvent,
+    ToolCallCompleteEvent,
+    ToolCallDeltaEvent,
+    UsageEvent,
+)
 from friday_memory import (
     AccessBuffer,
     AccessBufferConfig,
@@ -53,7 +66,12 @@ from friday_transcript import (
     TranscriptSession,
 )
 
-from friday_chat.config import FridayChatConfig
+from friday_chat.config import (
+    FridayChatConfig,
+    LegacyLLMExecutionConfig,
+    PrimaryLLMExecutionConfig,
+    TypedLLMExecutionConfig,
+)
 from friday_chat.memory_views import (
     MemoryCollection,
     MemoryDiagnosticReason,
@@ -95,12 +113,17 @@ _MAX_SOURCE_PROVENANCE_BYTES = 32_000
 _MAX_VISIBLE_SOURCE_IDS = 8
 
 
+class FridayChatStreamProtocolError(RuntimeError):
+    """Raised when a typed stream cannot fit Chat's text-only boundary."""
+
+
 @dataclass
 class FrameworkChatModel:
     """Chat adapter backed by ``friday-llm`` LiteLLMService."""
 
     service: LiteLLMService
     config: FridayChatConfig
+    execution: PrimaryLLMExecutionConfig
 
     async def complete(
         self,
@@ -108,13 +131,32 @@ class FrameworkChatModel:
         *,
         tools: Sequence[ToolDefinition] = (),
     ) -> ChatModelResponse:
-        response = await self.service.chat_completion(
-            messages=[dict(message) for message in messages],
-            tools=[_to_openai_tool_schema(tool) for tool in tools] or None,
-            temperature=self.config.llm.temperature,
-            max_tokens=self.config.llm.max_tokens,
-            timeout=self.config.llm.timeout_seconds,
-        )
+        message_values = [dict(message) for message in messages]
+        tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
+        if isinstance(self.execution, LegacyLLMExecutionConfig):
+            response = await self.service.chat_completion(
+                messages=message_values,
+                tools=tool_values,
+                temperature=self.execution.temperature,
+                max_tokens=self.execution.max_tokens,
+                timeout=self.config.llm.timeout_seconds,
+            )
+            usage = dict(response.usage)
+        else:
+            response = await self.service.chat_completion_request(
+                ChatCompletionRequest(
+                    messages=tuple(message_values),
+                    tools=tuple(tool_values) if tool_values is not None else None,
+                    tool_choice="auto" if tool_values else None,
+                    provider_options=self.execution.provider_options,
+                    timeout=self.config.llm.timeout_seconds,
+                )
+            )
+            usage = {
+                key: value
+                for key, value in response.usage.model_dump().items()
+                if value is not None
+            }
         return ChatModelResponse(
             content=response.content or "",
             tool_calls=tuple(
@@ -126,7 +168,7 @@ class FrameworkChatModel:
                 for call in response.tool_calls
             ),
             model=response.model,
-            usage=dict(response.usage),
+            usage=usage,
             reasoning_content=response.reasoning_content,
             raw_response=response,
         )
@@ -137,14 +179,42 @@ class FrameworkChatModel:
         *,
         tools: Sequence[ToolDefinition] = (),
     ) -> AsyncIterator[str]:
-        async for chunk in self.service.chat_completion_stream(
-            messages=[dict(message) for message in messages],
-            tools=[_to_openai_tool_schema(tool) for tool in tools] or None,
-            temperature=self.config.llm.temperature,
-            max_tokens=self.config.llm.max_tokens,
+        message_values = [dict(message) for message in messages]
+        tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
+        if isinstance(self.execution, LegacyLLMExecutionConfig):
+            async for chunk in self.service.chat_completion_stream(
+                messages=message_values,
+                tools=tool_values,
+                temperature=self.execution.temperature,
+                max_tokens=self.execution.max_tokens,
+                timeout=self.config.llm.timeout_seconds,
+            ):
+                yield chunk
+            return
+
+        request = ChatCompletionRequest(
+            messages=tuple(message_values),
+            tools=tuple(tool_values) if tool_values is not None else None,
+            tool_choice="auto" if tool_values else None,
+            provider_options=self.execution.provider_options,
             timeout=self.config.llm.timeout_seconds,
-        ):
-            yield chunk
+        )
+        async for event in self.service.chat_completion_events(request):
+            if isinstance(event, TextDeltaEvent):
+                yield event.text
+            elif isinstance(event, (ReasoningDeltaEvent, UsageEvent, FinishEvent)):
+                continue
+            elif isinstance(
+                event,
+                (ToolCallDeltaEvent, ToolCallCompleteEvent, StreamErrorEvent),
+            ):
+                raise FridayChatStreamProtocolError(
+                    "Friday Chat's text-only stream received a non-text tool event"
+                )
+            else:
+                raise FridayChatStreamProtocolError(
+                    "Friday Chat received an unknown typed stream event"
+                )
 
 
 @dataclass
@@ -1343,17 +1413,64 @@ class FrameworkWorkflowAdapter:
 
 
 def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
-    service = LiteLLMService(
-        model_name=config.llm.model or "unknown",
-        api_key=config.llm.api_key,
-        api_base=config.llm.api_base,
-        resilience=ResilienceConfig(
-            max_retries=config.llm.max_retries,
-            timeout_seconds=config.llm.timeout_seconds or 30.0,
-        ),
-        thinking_enabled=config.llm.thinking,
+    execution = config.llm.resolve_execution()
+    resilience = ResilienceConfig(
+        max_retries=config.llm.max_retries,
+        timeout_seconds=config.llm.timeout_seconds or 30.0,
     )
-    return FrameworkChatModel(service=service, config=config)
+    if isinstance(execution, TypedLLMExecutionConfig):
+        service = LiteLLMService(
+            model_name=config.llm.model or "unknown",
+            api_key=config.llm.api_key,
+            api_base=config.llm.api_base,
+            resilience=resilience,
+            transport_target=execution.transport_target,
+            model_target=execution.model_target,
+            generation_defaults=execution.generation,
+        )
+    else:
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore",
+                message=(
+                    "thinking_enabled is deprecated; use "
+                    "generation_defaults.reasoning"
+                ),
+                category=DeprecationWarning,
+            )
+            service = LiteLLMService(
+                model_name=config.llm.model or "unknown",
+                api_key=config.llm.api_key,
+                api_base=config.llm.api_base,
+                resilience=resilience,
+                thinking_enabled=execution.thinking_enabled,
+            )
+    return FrameworkChatModel(service=service, config=config, execution=execution)
+
+
+def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMService:
+    """Build the unchanged fallback used by non-primary Chat consumers."""
+    thinking_enabled = (
+        config.llm.thinking if "thinking" in config.llm.model_fields_set else None
+    )
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message=(
+                "thinking_enabled is deprecated; use generation_defaults.reasoning"
+            ),
+            category=DeprecationWarning,
+        )
+        return LiteLLMService(
+            model_name=config.llm.model or "unknown",
+            api_key=config.llm.api_key,
+            api_base=config.llm.api_base,
+            resilience=ResilienceConfig(
+                max_retries=config.llm.max_retries,
+                timeout_seconds=config.llm.timeout_seconds or 30.0,
+            ),
+            thinking_enabled=thinking_enabled,
+        )
 
 
 def build_framework_embedding_service(
@@ -1488,12 +1605,12 @@ def build_framework_maintenance_adapter(
     session_id: str,
     memory: FrameworkMemoryAdapter,
     embedding: FrameworkEmbeddingService,
-    chat_llm: FrameworkChatModel,
     llm_models: dict[str, str],
     diagnostics: Any,
     maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FrameworkMaintenanceAdapter:
     """Build real framework maintenance services for FridayV2."""
+    legacy_primary_llm = _build_legacy_primary_llm_service(config)
     llm_services = {
         role: _build_role_llm_service(config, role, model)
         for role, model in llm_models.items()
@@ -1634,7 +1751,7 @@ def build_framework_maintenance_adapter(
             compactor = InSessionCompactor(
                 memory_controller=memory.controller,
                 collection_manager=memory.collection_manager,
-                llm_client=llm_services.get("researcher", chat_llm.service),
+                llm_client=llm_services.get("researcher", legacy_primary_llm),
                 config=compaction_config,
                 token_estimator_config=config.memory.token_estimator,
                 model_name=config.llm.model or "gpt-4",
@@ -1648,7 +1765,7 @@ def build_framework_maintenance_adapter(
     try:
         extractor = MemoryExtractor(
             memory_controller=memory.controller,
-            llm=_build_extraction_llm_service(config, chat_llm.service),
+            llm=_build_extraction_llm_service(config, legacy_primary_llm),
             prompt_template=(
                 config.extraction.prompt
                 if isinstance(config.extraction.prompt, str)
@@ -1671,7 +1788,7 @@ def build_framework_maintenance_adapter(
         session_id=session_id,
         memory=memory,
         embedding=embedding,
-        llm_service=chat_llm.service,
+        llm_service=legacy_primary_llm,
         llm_models=llm_models,
         llm_services=llm_services,
         promotion_service=promotion_service,

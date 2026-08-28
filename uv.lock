@@ -853,7 +853,7 @@ wheels = [
 
 [[package]]
 name = "friday-chat"
-version = "0.1.0a0"
+version = "0.1.0a1"
 source = { editable = "packages/friday-chat" }
 dependencies = [
     { name = "friday-framework-agent" },

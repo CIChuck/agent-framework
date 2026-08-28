@@ -9,16 +9,35 @@ logging:
   extraction_rejections_file: .friday/extraction_rejections.log
   tools_debug: true
 llm:
-  api_base: https://api.moonshot.ai/v1
+  # The route string is used by LiteLLM; target identity remains explicit.
+  model: openai/qwen3.8-27b-mlx
+  api_base: http://127.0.0.1:1234/v1
   api_key: ${FRIDAY_LLM_API_KEY}
-  model: moonshot/kimi-k3
-  temperature: 1
-  top_p: 0.95
-  top_k: 40
-  max_tokens: 20000
   max_retries: 3
   timeout_seconds: 120.0
-  thinking: true
+  generation:
+    reasoning:
+      mode: enabled
+      effort: medium
+      preserve: false
+    sampling:
+      temperature: 0.2
+      top_p: 0.95
+      top_k: 40
+      min_p: 0.0
+      presence_penalty: 0.0
+      frequency_penalty: 0.0
+      repetition_penalty: 1.0
+    max_tokens: 8000
+  transport_target:
+    provider: openai_compatible
+    dialect: openai_chat_completions
+    serving_engine: lm_studio
+  model_target:
+    model_id: qwen3.8-27b-mlx
+    family: qwen3_8
+    # Replace with the exact revision reported by the local server.
+    revision: lmstudio-community/Qwen3.8-27B-MLX-8bit
 extraction:
   model: openai/qwen3.6-35b-a3b-mlx
   api_base: http://127.0.0.1:1234/v1

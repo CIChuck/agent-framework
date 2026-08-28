@@ -206,6 +206,64 @@ if distribution == "friday-framework-llm":
     asyncio.run(smoke_typed_request())
     LiteLLMService(model_name="gpt-4")
     print("typed fake-transport and legacy constructor smokes OK")
+elif distribution == "friday-chat":
+    import importlib.resources
+
+    import litellm
+    import yaml
+    import friday_chat
+    from friday_chat.adapters import build_framework_chat_model
+    from friday_chat.config import FridayChatConfig
+
+    if friday_chat.__version__ != installed_version:
+        raise RuntimeError(
+            "friday_chat.__version__ does not match installed metadata: "
+            f"{friday_chat.__version__!r} != {installed_version!r}"
+        )
+
+    template = importlib.resources.files("friday_chat.config_templates").joinpath(
+        "config.example.yaml"
+    )
+    template_data = yaml.safe_load(template.read_text(encoding="utf-8"))
+    template_config = FridayChatConfig.model_validate(template_data)
+    execution = template_config.llm.resolve_execution()
+    if execution.__class__.__name__ != "TypedLLMExecutionConfig":
+        raise RuntimeError("packaged Friday Chat template did not select typed LLM")
+
+    async def fake_chat_completion(**kwargs):
+        if kwargs.get("top_p") != 0.95:
+            raise RuntimeError(f"unexpected top_p: {kwargs.get('top_p')!r}")
+        if kwargs.get("extra_body", {}).get("top_k") != 40:
+            raise RuntimeError(
+                f"unexpected top_k: {kwargs.get('extra_body', {}).get('top_k')!r}"
+            )
+        message = SimpleNamespace(content="ok", reasoning_content=None, tool_calls=[])
+        usage = SimpleNamespace(
+            prompt_tokens=1,
+            completion_tokens=1,
+            total_tokens=2,
+            completion_tokens_details=None,
+        )
+        return SimpleNamespace(
+            choices=[SimpleNamespace(message=message, finish_reason="stop")],
+            model="qwen3.8-27b-mlx",
+            usage=usage,
+        )
+
+    async def smoke_chat_adapter():
+        original = litellm.acompletion
+        litellm.acompletion = fake_chat_completion
+        try:
+            response = await build_framework_chat_model(template_config).complete(
+                [{"role": "user", "content": "fixed"}]
+            )
+            if response.content != "ok":
+                raise RuntimeError("Friday Chat typed adapter returned wrong content")
+        finally:
+            litellm.acompletion = original
+
+    asyncio.run(smoke_chat_adapter())
+    print("packaged config and typed Friday Chat fake-transport smokes OK")
 PY
 
 "${tmpdir}/venv/bin/python" -m pip check
@@ -213,4 +271,5 @@ PY
 if [[ -n "${console_script}" ]]; then
   "${tmpdir}/venv/bin/${console_script}" --help >"${tmpdir}/console-help.txt"
   head -n 1 "${tmpdir}/console-help.txt"
+  "${tmpdir}/venv/bin/${console_script}" --version
 fi

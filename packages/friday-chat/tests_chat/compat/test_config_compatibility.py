@@ -19,6 +19,9 @@ from friday_chat.config import (
 
 FIXTURE = Path(__file__).parent / "fixtures" / "friday_py_config_sanitized.yaml"
 EXAMPLE_CONFIG = Path("packages/friday-chat/config.example.yaml")
+PACKAGED_EXAMPLE_CONFIG = Path(
+    "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml"
+)
 FRIDAY_PY_CONFIG = Path("tests/integration/memory/config.yaml")
 
 TOP_LEVEL_SECTIONS = set(TOP_LEVEL_CONFIG_SECTIONS)
@@ -79,7 +82,29 @@ def test_example_config_matches_friday_py_option_shape() -> None:
     source = _load_mapping(FRIDAY_PY_CONFIG)
     example = _load_mapping(EXAMPLE_CONFIG)
 
-    assert _config_paths(example) == _config_paths(source)
+    source_paths = {path for path in _config_paths(source) if not path.startswith("llm")}
+    example_paths = {
+        path for path in _config_paths(example) if not path.startswith("llm")
+    }
+    assert example_paths == source_paths
+
+
+def test_repository_and_packaged_examples_share_canonical_llm_shape() -> None:
+    repository = _load_mapping(EXAMPLE_CONFIG)
+    packaged = _load_mapping(PACKAGED_EXAMPLE_CONFIG)
+
+    assert _config_paths({"llm": repository["llm"]}) == _config_paths(
+        {"llm": packaged["llm"]}
+    )
+    llm_paths = _config_paths({"llm": repository["llm"]})
+    assert {
+        "llm.generation.reasoning.mode",
+        "llm.generation.sampling.top_p",
+        "llm.generation.sampling.top_k",
+        "llm.transport_target",
+        "llm.model_target",
+    } <= llm_paths
+    assert "llm.thinking" not in llm_paths
 
 
 def test_sanitized_config_fixture_has_high_value_nested_sections() -> None:
@@ -126,7 +151,8 @@ def test_friday_v2_loads_example_config(
 
     loaded = load_friday_py_config(EXAMPLE_CONFIG)
 
-    assert loaded.llm.model == "moonshot/kimi-k3"
+    assert loaded.llm.model == "openai/qwen3.8-27b-mlx"
+    assert loaded.llm.generation is not None
     assert loaded.memory.priming["previous_sessions"] == 2
     assert loaded.transcript.capture_raw_prompts is True
 
@@ -181,10 +207,12 @@ def test_unknown_top_level_key_reports_diagnostic(tmp_path: Path) -> None:
 
     loaded = load_friday_py_config(config_path)
 
-    assert [diagnostic.path for diagnostic in loaded.diagnostics] == [
-        "unexpected_section"
+    unknown = [
+        diagnostic
+        for diagnostic in loaded.diagnostics
+        if diagnostic.kind == "unknown_key"
     ]
-    assert loaded.diagnostics[0].kind == "unknown_key"
+    assert [diagnostic.path for diagnostic in unknown] == ["unexpected_section"]
 
 
 def test_deprecated_key_reports_diagnostic(

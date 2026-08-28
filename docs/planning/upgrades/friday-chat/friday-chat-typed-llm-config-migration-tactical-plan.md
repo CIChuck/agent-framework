@@ -197,7 +197,8 @@ whether a legacy key was explicitly supplied.
 | Flat and nested values conflict | Reject configuration before service construction or external I/O and identify both paths without disclosing secrets. |
 | Nested generation but missing either target | Reject before service construction; do not infer the missing identity. |
 | Either target is partially specified or malformed | Reject before service construction. |
-| Provider options without compatible explicit targets | Reject before service construction. |
+| Provider options without both explicit targets | Reject before service construction. |
+| Provider options incompatible with the explicit target profile | Delegate to Friday LLM's typed preflight and reject before external I/O; do not duplicate its provider matching in Friday Chat. |
 
 Legacy defaults must remain stable when neither form is explicitly set:
 
@@ -426,8 +427,9 @@ typed configuration without duplicating provider behavior.
 - `CHAT-LLM-01-08`: Reject flat-versus-nested conflicts with an explicit
   `FridayChatConfigError` or another typed configuration exception; do not rely
   on `assert`.
-- `CHAT-LLM-01-09`: Reject unknown LLM keys and partial or mismatched target
-  composition before the service is constructed.
+- `CHAT-LLM-01-09`: Reject unknown LLM keys, partial targets, and route/model
+  identity mismatches before the service is constructed. Delegate capability and
+  provider-option compatibility to Friday LLM's typed preflight before I/O.
 - `CHAT-LLM-01-10`: Produce structured, deduplicated startup diagnostics for
   legacy path usage and each explicitly supplied legacy field.
 - `CHAT-LLM-01-11`: Ensure serialized diagnostics and validation errors redact
@@ -497,9 +499,10 @@ Friday Chat's response and retry contracts.
   parameter, contain it to the legacy path and surface only the Friday Chat
   migration diagnostic during normal startup.
 - `CHAT-LLM-02-04`: Convert Friday Chat messages and tools into a public
-  `ChatCompletionRequest` and call `chat_completion_request()`. Preserve the
-  current omission of explicit `tool_choice`; do not invent `auto` or named
-  selection where the application-owned `ChatModel` protocol has no such input.
+  `ChatCompletionRequest` and call `chat_completion_request()`. Set
+  `tool_choice="auto"` when tools are present because the legacy Friday LLM
+  method currently does so internally; leave it unset without tools. Do not add
+  named selection to the application-owned `ChatModel` protocol.
 - `CHAT-LLM-02-05`: Convert the typed Friday LLM response into Friday Chat's
   `ChatModelResponse`, preserving text, reasoning content when explicitly part
   of the existing response contract, tool calls, usage, and finish reason.
@@ -537,8 +540,9 @@ Friday Chat's response and retry contracts.
   intermediate dictionary when behavioral effectiveness is claimed.
 - Text, reasoning content, tool calls, usage, and finish reason survive typed
   response conversion without provider objects leaking through.
-- Tool schemas and provider-default selection semantics remain stable, with
-  `tool_choice` omitted as it is today.
+- Tool schemas and automatic selection semantics remain stable: typed requests
+  carry `tool_choice="auto"` when tools are present, matching the legacy
+  method's effective wire behavior.
 - Unsupported settings and target mismatches fail before loopback request
   count increments.
 - Retry tests prove a stable request specification across attempts and no retry
@@ -784,7 +788,8 @@ through Friday LLM or a synthetic wire server.
 - `CHAT-LLM-06-04`: Exercise supported `top_p`, `top_k`, and one additional
   provider-specific sampling control through Friday Chat.
 - `CHAT-LLM-06-05`: Exercise one existing Friday Chat tool-enabled turn through
-  the non-streaming path and verify that no explicit `tool_choice` is invented.
+  the non-streaming path and verify automatic selection; named selection remains
+  out of scope because Friday Chat exposes no such input.
 - `CHAT-LLM-06-06`: Run one bounded TurnProcessor or CLI-level flow with safe
   disposable state.
 - `CHAT-LLM-06-07`: Record sanitized command shape, environment facts, counts,
@@ -862,9 +867,10 @@ mixed-version dependency evidence.
   map; a single workspace-wide `--internal-version` is insufficient for this
   mixed-version component release.
 - `CHAT-LLM-07-07`: Enhance `scripts/check-package-artifacts.py` to verify Chat
-  `0.1.0a1`, LLM `0.1.0a1`, every other Friday pin at `0.1.0a0`, the self-extra,
-  console entry point, package resources, license, and absence of forbidden
-  local state.
+  `0.1.0a1`, LLM `0.1.0a1`, every other Friday pin at `0.1.0a0`, the expanded
+  `full` extra metadata, console entry point, package resources, license, and
+  absence of forbidden local state. Validate the self-reference in source
+  metadata because the build backend expands it in wheel metadata.
 - `CHAT-LLM-07-08`: Extend `scripts/smoke-install-artifacts.sh` with a Friday
   Chat mode that checks installed metadata, import/runtime version parity,
   packaged config loading, `friday-chat --version`, `friday-chat --help`,
@@ -896,8 +902,8 @@ mixed-version dependency evidence.
 ### Required Tests And Negative Tests
 
 - Metadata validator accepts the exact mixed-version matrix.
-- Fixtures with the wrong Chat version, LLM pin, other Friday pin, or self-extra
-  each fail for the expected reason.
+- Fixtures with the wrong Chat version, LLM pin, other Friday pin, source
+  self-extra, or expanded wheel `full` extra each fail for the expected reason.
 - Wheel/sdist fixtures missing the console entry point, config resources, or
   license fail.
 - Secret, local-user-path, `.friday`, Chroma, transcript, and cache canaries
@@ -961,8 +967,8 @@ rather than relying on this abbreviated example.
 - Wheel and sdist contain the console entry point and canonical config template
   and contain no forbidden state or secrets.
 - Clean wheel and sdist installs pass on Python 3.10-3.13.
-- The artifact validator detects intentional negative fixtures for wrong LLM,
-  other-package, and self-extra versions.
+- The validators detect intentional negative fixtures for wrong LLM,
+  other-package, source self-extra, and expanded `full` extra versions.
 - No root meta-package version or dependency changes are included.
 - No upload, tag, or push occurs without its specific authority gate.
 

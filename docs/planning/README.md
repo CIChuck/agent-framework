@@ -67,3 +67,4 @@ deprecation window, and defines independent implementation, live-provider,
 TestPyPI, PyPI, and tagging gates:
 
 - [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
+- [Friday Chat typed LLM deferred consumer handoff](upgrades/friday-chat/friday-chat-typed-llm-deferred-consumer-handoff.md)

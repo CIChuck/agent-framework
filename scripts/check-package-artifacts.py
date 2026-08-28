@@ -153,6 +153,58 @@ def validate_wheel(
         for fragment in required_fragments:
             if not any(requirement.startswith(fragment) for requirement in requirements):
                 errors.append(f"{wheel.name}: missing exact dependency {fragment}")
+    if base == "friday_chat":
+        requirements = set(metadata.get_all("Requires-Dist", []))
+        chat_required_fragments = (
+            "friday-framework-core==0.1.0a0",
+            "friday-framework-runtime==0.1.0a0",
+            "friday-framework-memory==0.1.0a0",
+            "friday-framework-llm==0.1.0a1",
+            "friday-framework-agent==0.1.0a0",
+            "friday-framework-tools==0.1.0a0",
+            "friday-framework-transcript==0.1.0a0",
+            "friday-framework-cli==0.1.0a0",
+            "friday-framework-speech==0.1.0a0",
+            "friday-framework-finance==0.1.0a0",
+            "friday-framework-tools[finance]==0.1.0a0",
+            "friday-framework-sandbox==0.1.0a0",
+            "friday-framework-tools[sandbox]==0.1.0a0",
+            "friday-framework-moltbook==0.1.0a0",
+            "friday-framework-tools[moltbook]==0.1.0a0",
+        )
+        for fragment in chat_required_fragments:
+            if not any(requirement.startswith(fragment) for requirement in requirements):
+                errors.append(f"{wheel.name}: missing exact dependency {fragment}")
+        full_extra_fragments = (
+            "friday-framework-finance==0.1.0a0",
+            "friday-framework-moltbook==0.1.0a0",
+            "friday-framework-sandbox==0.1.0a0",
+            "friday-framework-speech==0.1.0a0",
+            "friday-framework-tools[finance]==0.1.0a0",
+            "friday-framework-tools[moltbook]==0.1.0a0",
+            "friday-framework-tools[sandbox]==0.1.0a0",
+        )
+        for fragment in full_extra_fragments:
+            if not any(
+                requirement.startswith(fragment) and "extra == 'full'" in requirement
+                for requirement in requirements
+            ):
+                errors.append(
+                    f"{wheel.name}: full extra missing exact dependency {fragment}"
+                )
+        entry_point_paths = [
+            name for name in names if name.endswith(".dist-info/entry_points.txt")
+        ]
+        if len(entry_point_paths) != 1:
+            errors.append(
+                f"{wheel.name}: expected one entry_points.txt, "
+                f"found {len(entry_point_paths)}"
+            )
+        else:
+            with zipfile.ZipFile(wheel) as archive:
+                entry_points = archive.read(entry_point_paths[0]).decode("utf-8")
+            if "friday-chat = friday_chat.cli:app" not in entry_points:
+                errors.append(f"{wheel.name}: friday-chat console entry point missing")
 
     return errors
 
@@ -165,16 +217,27 @@ def validate_sdist(
     sdists = sorted(artifact_dir.glob(f"{base}-{expected_version}.tar.gz"))
     if len(sdists) != 1:
         return [f"{base}: expected one sdist, found {len(sdists)}"]
-    if base != "friday_framework_llm":
-        return []
     names = archive_names(sdists[0])
-    required_suffixes = (
-        "/pyproject.toml",
-        "/README.md",
-        "/LICENSE",
-        "/src/friday_llm/__init__.py",
-        "/tests_llm/test_generation.py",
-    )
+    required_suffixes: tuple[str, ...] = ()
+    if base == "friday_framework_llm":
+        required_suffixes = (
+            "/pyproject.toml",
+            "/README.md",
+            "/LICENSE",
+            "/src/friday_llm/__init__.py",
+            "/tests_llm/test_generation.py",
+        )
+    elif base == "friday_chat":
+        required_suffixes = (
+            "/pyproject.toml",
+            "/README.md",
+            "/LICENSE",
+            "/src/friday_chat/__init__.py",
+            "/src/friday_chat/config_templates/config.example.yaml",
+            "/src/friday_chat/config_templates/cli-config.example.yaml",
+            "/tests_chat/test_llm_config_migration.py",
+            "/tests_chat/test_llm_adapter_migration.py",
+        )
     return [
         f"{sdists[0].name}: missing required sdist content {suffix}"
         for suffix in required_suffixes

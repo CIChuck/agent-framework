@@ -1,6 +1,6 @@
 [project]
 name = "friday-chat"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "FridayV2 chat application package"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -10,7 +10,7 @@ dependencies = [
     "friday-framework-core==0.1.0a0",
     "friday-framework-runtime==0.1.0a0",
     "friday-framework-memory==0.1.0a0",
-    "friday-framework-llm==0.1.0a0",
+    "friday-framework-llm==0.1.0a1",
     "friday-framework-agent==0.1.0a0",
     "friday-framework-tools==0.1.0a0",
     "friday-framework-transcript==0.1.0a0",
@@ -46,7 +46,7 @@ moltbook = [
     "friday-framework-tools[moltbook]==0.1.0a0",
 ]
 full = [
-    "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a0",
+    "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a1",
 ]
 dev = [
     "pytest>=8.0.0",

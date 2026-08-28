@@ -275,7 +275,7 @@ class FridayChatApp:
         shell_service: ShellService | None = None,
         session: FridaySession | None = None,
         display: DisplayController | None = None,
-        version: str = "0.1.0",
+        version: str = "0.1.0a1",
     ) -> None:
         if runtime is None:
             if config is None:

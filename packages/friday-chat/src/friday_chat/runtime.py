@@ -1326,7 +1326,6 @@ def _build_framework_runtime(
         session_id=session_identity.value,
         memory=memory,
         embedding=embedding,
-        chat_llm=chat_llm,
         llm_models=maintenance_models,
         diagnostics=diagnostics,
         maintenance_layout=maintenance_layout,
