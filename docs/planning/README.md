@@ -9,6 +9,7 @@ Contents:
 - `features/` - Feature proposals.
 - `prds/` - Product requirement documents and exploratory PRDs.
 - `security/` - Security implementation plans.
+- `upgrades/` - Source requirements for separately governed package upgrades.
 
 ## Active Planning Packets
 
@@ -48,3 +49,33 @@ during FridayV2 work must be recorded in the framework upgrade log for a
 separate follow-up pass.
 
 Move completed or superseded planning material to `../archive/`.
+
+## Active Framework Upgrade Packets
+
+The Friday LLM reasoning-controls upgrade was approved for implementation on
+2026-08-27. The FridayV2 framework-package freeze is released only for its
+documented implementation scope; TestPyPI and PyPI publication remain
+separately gated:
+
+- [Friday LLM reasoning and sampling controls requirement](upgrades/friday-llm/friday-llm-reasoning-and-sampling-controls-requirement.md)
+- [Friday LLM tactical implementation and release plan](upgrades/friday-llm/friday-llm-reasoning-controls-tactical-implementation-plan.md)
+
+The Friday Chat typed-LLM migration was approved for implementation on
+2026-08-28. It adopts the Friday LLM `0.1.0a1` public contracts only for the
+primary Chat model path, preserves legacy flat configuration for one
+deprecation window, and defines independent implementation, live-provider,
+TestPyPI, PyPI, and tagging gates. Implementation is complete, but clean
+installation exposed an unsatisfiable published LLM dependency cohort. The
+tactical plan records the required Memory, Runtime, and CLI `0.1.0a1` scope
+amendment; the rejected Chat artifact must not be published:
+
+- [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
+- [Friday Chat typed LLM deferred consumer handoff](upgrades/friday-chat/friday-chat-typed-llm-deferred-consumer-handoff.md)
+
+The clean-install blocker was resolved on 2026-08-28 with a lock-step
+`0.1.0a1` cohort for every current Friday distribution. Implementation, local
+validation, production PyPI publication, and post-publication verification are
+complete. Release tagging remains a separate gate:
+
+- [Friday package cohort 0.1.0a1 plan](upgrades/friday-packages/friday-package-cohort-0.1.0a1-plan.md)
+- [Friday package cohort 0.1.0a1 release evidence](../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md)

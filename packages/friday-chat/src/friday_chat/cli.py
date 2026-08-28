@@ -11,7 +11,11 @@ import typer
 
 from friday_chat import __version__
 from friday_chat.app import FridayChatApp
-from friday_chat.config import FridayChatConfigError, load_friday_py_config
+from friday_chat.config import (
+    FridayChatConfig,
+    FridayChatConfigError,
+    load_friday_py_config,
+)
 from friday_chat.display import (
     FridayChatDisplayConfigError,
     FridayCliDisplay,
@@ -95,6 +99,7 @@ def main(
     if config is not None:
         try:
             loaded_config = load_friday_py_config(config)
+            _emit_config_diagnostics(loaded_config)
             display_result = resolve_display_config(
                 config_path=config,
                 cli_config_path=cli_config,
@@ -131,6 +136,15 @@ def main(
             typer.echo(str(exc))
             raise typer.Exit(code=1) from exc
         raise typer.Exit()
+
+
+def _emit_config_diagnostics(config: FridayChatConfig) -> None:
+    """Surface actionable, content-safe configuration migration diagnostics."""
+    for diagnostic in config.diagnostics:
+        typer.echo(
+            f"Config warning [{diagnostic.path}]: {diagnostic.message}",
+            err=True,
+        )
 
 
 def _resolve_runtime_mode(value: str) -> str:

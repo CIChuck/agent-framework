@@ -1,17 +1,17 @@
 [project]
 name = "friday-framework-cli"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "The Friday Assistant Runtime"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a0",
-    "friday-framework-runtime==0.1.0a0",
-    "friday-framework-memory==0.1.0a0",
-    "friday-framework-llm==0.1.0a0",
-    "friday-framework-agent==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
+    "friday-framework-runtime==0.1.0a1",
+    "friday-framework-memory==0.1.0a1",
+    "friday-framework-llm==0.1.0a1",
+    "friday-framework-agent==0.1.0a1",
     "typer>=0.9.0",
     "fastapi>=0.100.0",
     "uvicorn>=0.23.0",

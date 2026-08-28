@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Exceptions for friday-llm package.
 
@@ -27,6 +26,54 @@ class LLMServiceError(Exception):
     """
 
     pass
+
+
+class LLMConfigurationError(LLMServiceError):
+    """Base error for deterministic preflight failures."""
+
+
+class UnsupportedControlError(LLMConfigurationError):
+    """Raised before I/O when a target does not support an explicit control."""
+
+    def __init__(
+        self,
+        control: str,
+        state: str,
+        sources: tuple[str, ...] = (),
+    ) -> None:
+        source_text = ", ".join(sources) if sources else "no capability record"
+        super().__init__(
+            f"control {control!r} is {state} for the selected target "
+            f"(sources: {source_text})"
+        )
+        self.control = control
+        self.state = state
+        self.sources = sources
+
+
+class CapabilityConflictError(LLMConfigurationError):
+    """Raised when applicable capability records contradict one another."""
+
+    def __init__(self, control: str, sources: tuple[str, ...], reason: str) -> None:
+        super().__init__(
+            f"capability conflict for {control!r}: {reason} "
+            f"(sources: {', '.join(sources)})"
+        )
+        self.control = control
+        self.sources = sources
+        self.reason = reason
+
+
+class ProviderOptionsError(LLMConfigurationError):
+    """Raised when typed provider options do not match the selected target."""
+
+
+class TranslationConflictError(LLMConfigurationError):
+    """Raised when translators attempt an undeclared wire-field collision."""
+
+
+class TargetIdentityError(LLMConfigurationError):
+    """Raised when explicit routing and capability identities conflict."""
 
 
 class LLMTimeoutError(LLMServiceError):

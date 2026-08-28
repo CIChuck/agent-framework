@@ -203,6 +203,49 @@ def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) 
     assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
 
 
+def test_typed_primary_keeps_maintenance_fallback_on_legacy_service(
+    tmp_path: Path,
+) -> None:
+    config = _config(
+        {
+            "llm": {
+                "model": "openai/qwen3.8-27b-mlx",
+                "generation": {
+                    "reasoning": {"mode": "enabled", "effort": "medium"},
+                    "sampling": {"top_p": 0.9, "top_k": 40},
+                },
+                "transport_target": {
+                    "provider": "openai_compatible",
+                    "dialect": "openai_chat_completions",
+                    "serving_engine": "lm_studio",
+                },
+                "model_target": {
+                    "model_id": "qwen3.8-27b-mlx",
+                    "family": "qwen3_8",
+                    "revision": "test-revision",
+                },
+            },
+            "embedding": {"model": "openai/test-embedding-model"},
+            "memory": {"persist_directory": str(tmp_path / "vector")},
+            "transcript": {"export_directory": str(tmp_path / "exports")},
+            "chat": {"workflows_dir": str(tmp_path / "workflows")},
+            "tools": {"registry": []},
+        }
+    )
+
+    runtime = build_runtime(config, fake=False, session_id="typed-primary-test")
+
+    assert isinstance(runtime.chat_llm, FrameworkChatModel)
+    assert runtime.chat_llm.service.execution_target is not None
+    assert isinstance(runtime.maintenance, FrameworkMaintenanceAdapter)
+    assert runtime.maintenance.llm_service is not runtime.chat_llm.service
+    assert runtime.maintenance.llm_service.execution_target is None
+    assert all(
+        service.execution_target is None
+        for service in runtime.maintenance.llm_services.values()
+    )
+
+
 async def test_real_runtime_manual_and_exit_execute_paths_remain_contained(
     tmp_path: Path,
 ) -> None:

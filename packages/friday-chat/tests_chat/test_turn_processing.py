@@ -331,7 +331,7 @@ async def test_file_review_question_sends_file_read_not_file_write() -> None:
     runtime.chat_llm = model
 
     await TurnProcessor(runtime).process(
-        "Evaluate /Users/chuckrussell/Dev/gendev/agent-framework/config.yaml"
+        "Evaluate /workspace/example-project/config.yaml"
     )
 
     assert model.tool_names_by_call[0] == ["file_read"]

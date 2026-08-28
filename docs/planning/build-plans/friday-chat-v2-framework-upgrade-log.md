@@ -287,3 +287,29 @@ Source Evidence: The original exception was reproduced without provider or
 active runtime data. Focused tests prove mixed timestamps produce the expected
 24/25-hour calculations and that lifecycle result errors cross the Friday Chat
 adapter boundary.
+
+## FU-008: Export The Bounded Provider Options Union
+
+Status: proposed
+Discovered During: Friday Chat typed LLM configuration migration
+Framework Package: `packages/friday-llm`
+Requested Change: Export a stable public `ProviderOptions` discriminated union,
+protocol, or parser from the `friday_llm` package root when a second bounded
+provider-options type is introduced.
+Reason: Friday LLM `0.1.0a1` root-exports `LMStudioQwenOptions`, but its
+`ProviderOptions` union is available only from an implementation submodule.
+Downstream configuration packages should not import incidental internals or
+accept `dict[str, Any]` merely to remain extensible.
+Impact If Not Changed: Friday Chat must extend its own closed union each time a
+new root-exported concrete provider-options model is added.
+FridayV2 Workaround: Friday Chat `0.1.0a1` accepts only the root-exported
+`LMStudioQwenOptions | None`. Normalized generation remains provider-independent,
+and arbitrary provider keyword mappings remain prohibited.
+Compatibility Risk: Low for the current single concrete type; medium once
+multiple provider option models exist because downstream union definitions can
+drift.
+Suggested Follow-Up Tests: Add root-export coverage, discriminated parsing for
+each bounded namespace, rejection of unknown namespaces and extra keys, and a
+downstream type-check fixture that imports no internal Friday LLM modules.
+Source Evidence: The Friday Chat configuration migration uses only public root
+exports and records provider options separately from normalized generation.

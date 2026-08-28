@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-finance"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "Financial data provider integration for Friday Agent Framework"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -8,7 +8,7 @@ license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
     "massive",
-    "friday-framework-core==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
 ]
 
 [project.urls]

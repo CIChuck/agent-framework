@@ -1,5 +1,7 @@
 """Import smoke tests for the FridayV2 skeleton."""
 
+from importlib.metadata import version
+
 import friday_chat
 from friday_chat.app import FridayChatApp
 from friday_chat.background import BackgroundTaskManager
@@ -8,7 +10,11 @@ from friday_chat.session import FridaySession
 
 
 def test_package_version_is_defined() -> None:
-    assert friday_chat.__version__ == "0.1.0"
+    assert friday_chat.__version__ == "0.1.0a1"
+
+
+def test_runtime_version_matches_distribution_metadata() -> None:
+    assert friday_chat.__version__ == version("friday-chat")
 
 
 def test_app_starts() -> None:

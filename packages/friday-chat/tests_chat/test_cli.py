@@ -186,3 +186,47 @@ def test_cli_config_validation_error_exits_nonzero(tmp_path: Path) -> None:
     assert result.exit_code == 1
     assert "Config error:" in result.output
     assert "llm" in result.output
+
+
+def test_cli_surfaces_legacy_llm_migration_diagnostic(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text("llm:\n  model: openai/test-chat-model\n")
+    _install_cli_inputs(monkeypatch, ["/q"])
+
+    result = CliRunner().invoke(app, ["--config", str(config_path)])
+
+    assert result.exit_code == 0
+    assert "Config warning [llm]: Legacy primary LLM execution is deprecated" in (
+        result.output
+    )
+
+
+def test_cli_canonical_llm_config_has_no_migration_diagnostic(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        "llm:\n"
+        "  model: openai/qwen3.8-27b-mlx\n"
+        "  generation:\n"
+        "    reasoning:\n"
+        "      mode: disabled\n"
+        "  transport_target:\n"
+        "    provider: openai_compatible\n"
+        "    dialect: openai_chat_completions\n"
+        "    serving_engine: lm_studio\n"
+        "  model_target:\n"
+        "    model_id: qwen3.8-27b-mlx\n"
+        "    family: qwen3_8\n"
+        "    revision: test-revision\n"
+    )
+    _install_cli_inputs(monkeypatch, ["/q"])
+
+    result = CliRunner().invoke(app, ["--config", str(config_path)])
+
+    assert result.exit_code == 0
+    assert "Config warning [llm]" not in result.output

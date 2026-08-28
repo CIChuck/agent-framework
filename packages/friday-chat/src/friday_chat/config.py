@@ -5,11 +5,22 @@ from __future__ import annotations
 import os
 import re
 from collections.abc import Mapping
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal
+from typing import TYPE_CHECKING, Any, Literal
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
+
+if TYPE_CHECKING:
+    from friday_llm import (
+        GenerationConfig,
+        LMStudioQwenOptions,
+        ModelTarget,
+        ReasoningConfig,
+        SamplingConfig,
+        TransportTarget,
+    )
 
 TOP_LEVEL_CONFIG_SECTIONS: tuple[str, ...] = (
     "logging",
@@ -91,7 +102,13 @@ CONFIG_TRACEABILITY: dict[str, str] = {
     "speech.selection": "friday_chat.speech.selection",
 }
 
-DEPRECATED_CONFIG_KEYS: dict[str, str] = {}
+DEPRECATED_CONFIG_KEYS: dict[str, str] = {
+    "llm.temperature": "Use llm.generation.sampling.temperature.",
+    "llm.top_p": "Use llm.generation.sampling.top_p.",
+    "llm.top_k": "Use llm.generation.sampling.top_k.",
+    "llm.max_tokens": "Use llm.generation.max_tokens.",
+    "llm.thinking": "Use llm.generation.reasoning.mode.",
+}
 RENAMED_CONFIG_KEYS: dict[str, str] = {}
 
 ENV_PATTERN = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")
@@ -116,6 +133,119 @@ class ProviderConfig(FlexibleConfigSection):
     timeout_seconds: float | None = None
 
 
+class ReasoningConfigInput(BaseModel):
+    """Strict YAML shape converted lazily to Friday LLM reasoning intent."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    mode: Literal["auto", "enabled", "disabled"] = "auto"
+    effort: str | None = Field(default=None, min_length=1, max_length=32)
+    budget_tokens: int | None = Field(default=None, gt=0)
+    preserve: bool | None = None
+
+    def to_framework(self) -> ReasoningConfig:
+        from friday_llm import ReasoningConfig
+
+        return ReasoningConfig.model_validate(self.model_dump())
+
+
+class SamplingConfigInput(BaseModel):
+    """Strict YAML shape converted lazily to Friday LLM sampling intent."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    temperature: float | None = None
+    top_p: float | None = None
+    top_k: int | None = Field(default=None, gt=0)
+    min_p: float | None = None
+    presence_penalty: float | None = None
+    frequency_penalty: float | None = None
+    repetition_penalty: float | None = None
+
+    def to_framework(self) -> SamplingConfig:
+        from friday_llm import SamplingConfig
+
+        return SamplingConfig.model_validate(self.model_dump())
+
+
+class GenerationConfigInput(BaseModel):
+    """Strict primary-generation YAML independent of provider wire fields."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    reasoning: ReasoningConfigInput | None = None
+    sampling: SamplingConfigInput | None = None
+    max_tokens: int | None = Field(default=None, gt=0)
+
+
+class TransportTargetInput(BaseModel):
+    """Explicit transport identity supplied by the operator."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    provider: str = Field(min_length=1, max_length=64)
+    dialect: str = Field(min_length=1, max_length=64)
+    serving_engine: str | None = Field(default=None, min_length=1, max_length=64)
+
+    def to_framework(self) -> TransportTarget:
+        from friday_llm import TransportTarget
+
+        return TransportTarget.model_validate(self.model_dump())
+
+
+class ModelTargetInput(BaseModel):
+    """Explicit model identity supplied by the operator."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    model_id: str = Field(min_length=1, max_length=256)
+    family: str | None = Field(default=None, min_length=1, max_length=64)
+    revision: str | None = Field(default=None, min_length=1, max_length=128)
+
+    def to_framework(self) -> ModelTarget:
+        from friday_llm import ModelTarget
+
+        return ModelTarget.model_validate(self.model_dump())
+
+
+class LMStudioQwenOptionsInput(BaseModel):
+    """Bounded release-one provider options, separate from normalized intent."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    namespace: Literal["lm_studio.qwen3_8"] = "lm_studio.qwen3_8"
+    enable_thinking: bool | None = None
+    reasoning_effort: Literal["xhigh", "medium", "low"] | None = None
+    preserve_thinking: bool | None = None
+
+    def to_framework(self) -> LMStudioQwenOptions:
+        from friday_llm import LMStudioQwenOptions
+
+        return LMStudioQwenOptions.model_validate(self.model_dump())
+
+
+@dataclass(frozen=True)
+class LegacyLLMExecutionConfig:
+    """Resolved primary configuration for the temporary legacy call path."""
+
+    temperature: float
+    max_tokens: int | None
+    thinking_enabled: bool | None
+
+
+@dataclass(frozen=True)
+class TypedLLMExecutionConfig:
+    """Resolved primary configuration for Friday LLM's typed call path."""
+
+    generation: GenerationConfig
+    transport_target: TransportTarget
+    model_target: ModelTarget
+    provider_options: LMStudioQwenOptions | None
+
+
+PrimaryLLMExecutionConfig = LegacyLLMExecutionConfig | TypedLLMExecutionConfig
+
+
 class LoggingConfig(FlexibleConfigSection):
     """Logging configuration."""
 
@@ -129,12 +259,141 @@ class LoggingConfig(FlexibleConfigSection):
 class LLMConfig(ProviderConfig):
     """Primary chat LLM configuration."""
 
+    model_config = ConfigDict(extra="forbid")
+
     temperature: float = 0.7
     top_p: float | None = None
     top_k: int | None = None
     max_tokens: int | None = None
     max_retries: int = 3
     thinking: bool = False
+    generation: GenerationConfigInput | None = None
+    transport_target: TransportTargetInput | None = None
+    model_target: ModelTargetInput | None = None
+    provider_options: LMStudioQwenOptionsInput | None = None
+
+    @model_validator(mode="after")
+    def validate_typed_configuration(self) -> LLMConfig:
+        has_transport = self.transport_target is not None
+        has_model = self.model_target is not None
+        if has_transport != has_model:
+            raise ValueError(
+                "llm.transport_target and llm.model_target must be supplied together"
+            )
+        if not has_transport:
+            if self.generation is not None:
+                raise ValueError(
+                    "llm.generation requires explicit llm.transport_target and "
+                    "llm.model_target"
+                )
+            if self.provider_options is not None:
+                raise ValueError(
+                    "llm.provider_options requires explicit llm.transport_target and "
+                    "llm.model_target"
+                )
+            return self
+
+        if self.model_target is None:
+            raise ValueError("llm.model_target is required for typed execution")
+        if self.model_target.family is None or self.model_target.revision is None:
+            raise ValueError(
+                "llm.model_target.family and llm.model_target.revision are required"
+            )
+        if self.model is not None:
+            model_id = self.model_target.model_id
+            if self.model != model_id and not self.model.endswith(f"/{model_id}"):
+                raise ValueError(
+                    "llm.model routing identity contradicts llm.model_target.model_id"
+                )
+
+        self.resolve_execution()
+        return self
+
+    def resolve_execution(self) -> PrimaryLLMExecutionConfig:
+        """Resolve legacy compatibility fields into one explicit call path."""
+        if self.transport_target is None or self.model_target is None:
+            return LegacyLLMExecutionConfig(
+                temperature=self.temperature,
+                max_tokens=self.max_tokens,
+                thinking_enabled=(
+                    self.thinking if "thinking" in self.model_fields_set else None
+                ),
+            )
+
+        from friday_llm import (
+            GenerationConfig,
+            ReasoningConfig,
+            ReasoningMode,
+            SamplingConfig,
+        )
+
+        generation = self.generation or GenerationConfigInput()
+        sampling_values = (
+            generation.sampling.model_dump()
+            if generation.sampling is not None
+            else {}
+        )
+        sampling_fields = (
+            generation.sampling.model_fields_set
+            if generation.sampling is not None
+            else set()
+        )
+        for legacy_name in ("temperature", "top_p", "top_k"):
+            legacy_is_set = legacy_name in self.model_fields_set
+            legacy_value = getattr(self, legacy_name)
+            if legacy_is_set and legacy_name in sampling_fields:
+                nested_value = sampling_values[legacy_name]
+                if legacy_value != nested_value:
+                    raise ValueError(
+                        f"llm.{legacy_name} conflicts with "
+                        f"llm.generation.sampling.{legacy_name}"
+                    )
+            if legacy_is_set:
+                sampling_values[legacy_name] = legacy_value
+            elif legacy_name == "temperature" and legacy_name not in sampling_fields:
+                sampling_values[legacy_name] = 0.7
+
+        reasoning = (
+            generation.reasoning.to_framework()
+            if generation.reasoning is not None
+            else None
+        )
+        if "thinking" in self.model_fields_set:
+            legacy_mode = (
+                ReasoningMode.ENABLED if self.thinking else ReasoningMode.DISABLED
+            )
+            if reasoning is not None and reasoning.mode is not legacy_mode:
+                raise ValueError(
+                    "llm.thinking conflicts with llm.generation.reasoning.mode"
+                )
+            if reasoning is None:
+                reasoning = ReasoningConfig(mode=legacy_mode)
+        elif reasoning is None:
+            reasoning = ReasoningConfig(mode=ReasoningMode.DISABLED)
+
+        resolved_max_tokens = generation.max_tokens
+        nested_max_tokens_is_set = "max_tokens" in generation.model_fields_set
+        if "max_tokens" in self.model_fields_set:
+            if nested_max_tokens_is_set and self.max_tokens != resolved_max_tokens:
+                raise ValueError(
+                    "llm.max_tokens conflicts with llm.generation.max_tokens"
+                )
+            resolved_max_tokens = self.max_tokens
+
+        return TypedLLMExecutionConfig(
+            generation=GenerationConfig(
+                reasoning=reasoning,
+                sampling=SamplingConfig.model_validate(sampling_values),
+                max_tokens=resolved_max_tokens,
+            ),
+            transport_target=self.transport_target.to_framework(),
+            model_target=self.model_target.to_framework(),
+            provider_options=(
+                self.provider_options.to_framework()
+                if self.provider_options is not None
+                else None
+            ),
+        )
 
 
 class ExtractionConfig(ProviderConfig):
@@ -346,7 +605,7 @@ def load_friday_py_config(
     try:
         config = FridayChatConfig.model_validate(normalized)
     except ValidationError as exc:
-        raise FridayChatConfigError(str(exc)) from exc
+        raise FridayChatConfigError(_format_validation_error(exc)) from exc
 
     if not config.llm.model:
         raise FridayChatConfigError("Missing required config: llm.model")
@@ -423,7 +682,31 @@ def _collect_diagnostics(data: dict[str, Any]) -> list[ConfigDiagnostic]:
                     message=f"Unknown top-level config section: {key}",
                 )
             )
+    llm = data.get("llm")
+    if isinstance(llm, Mapping) and not (
+        "transport_target" in llm or "model_target" in llm
+    ):
+        diagnostics.append(
+            ConfigDiagnostic(
+                kind="deprecated_key",
+                path="llm",
+                message=(
+                    "Legacy primary LLM execution is deprecated; add explicit "
+                    "llm.transport_target and llm.model_target to use typed Friday "
+                    "LLM controls."
+                ),
+            )
+        )
     return diagnostics
+
+
+def _format_validation_error(error: ValidationError) -> str:
+    """Render validation failures without echoing untrusted config values."""
+    details: list[str] = []
+    for item in error.errors(include_input=False, include_url=False):
+        location = ".".join(str(part) for part in item.get("loc", ())) or "config"
+        details.append(f"{location}: {item.get('msg', 'invalid value')}")
+    return "; ".join(details) or "Invalid Friday Chat configuration."
 
 
 def _iter_config_paths(data: Mapping[str, Any], prefix: str = "") -> list[str]:
@@ -450,18 +733,27 @@ __all__ = [
     "FinanceConfig",
     "FridayChatConfig",
     "FridayChatConfigError",
+    "GenerationConfigInput",
     "LangfuseConfig",
+    "LegacyLLMExecutionConfig",
     "LifecycleConfig",
     "LLMConfig",
+    "LMStudioQwenOptionsInput",
     "LoggingConfig",
     "MaintenanceConfig",
     "MemoryConfig",
+    "ModelTargetInput",
+    "PrimaryLLMExecutionConfig",
+    "ReasoningConfigInput",
+    "SamplingConfigInput",
     "SecurityConfig",
     "SessionConfig",
     "SmartFileConfig",
     "SpeechConfig",
     "ToolsConfig",
     "TranscriptConfig",
+    "TransportTargetInput",
+    "TypedLLMExecutionConfig",
     "WebConfig",
     "get_config_traceability",
     "load_friday_py_config",
