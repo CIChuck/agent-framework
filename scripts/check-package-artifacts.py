@@ -11,7 +11,10 @@ import tarfile
 import zipfile
 from pathlib import Path
 
-DEFAULT_VERSION = "0.1.0a0"
+DEFAULT_VERSION = "0.1.0a1"
+INTERNAL_DEP_RE = re.compile(
+    r"^friday-(?:chat|framework(?:-[A-Za-z0-9_.-]+)?)(?:\[[^]]+\])?"
+)
 EXPECTED_WHEELS = {
     "friday_chat": "friday_chat",
     "friday_framework": None,
@@ -65,7 +68,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "artifact_dir",
         nargs="?",
-        default="dist/pypi-reservation-0.1.0a0",
+        default="dist/friday-package-cohort-0.1.0a1",
         help="Directory containing wheel and sdist artifacts.",
     )
     parser.add_argument(
@@ -98,6 +101,24 @@ def archive_names(artifact: Path) -> list[str]:
         with tarfile.open(artifact) as archive:
             return archive.getnames()
     return []
+
+
+def validate_internal_requirements(
+    wheel_name: str,
+    requirements: set[str],
+    expected_version: str,
+) -> list[str]:
+    """Require one lock-step version for every Friday wheel dependency."""
+    errors: list[str] = []
+    for requirement in sorted(requirements):
+        if INTERNAL_DEP_RE.match(requirement) is None:
+            continue
+        if f"=={expected_version}" not in requirement:
+            errors.append(
+                f"{wheel_name}: internal dependency is not pinned to "
+                f"{expected_version}: {requirement}"
+            )
+    return errors
 
 
 def validate_wheel(
@@ -143,46 +164,52 @@ def validate_wheel(
     project_urls = metadata.get_all("Project-URL", [])
     if not any(value.startswith("Repository, ") for value in project_urls):
         errors.append(f"{wheel.name}: missing Repository project URL")
+    requirements = set(metadata.get_all("Requires-Dist", []))
+    errors.extend(
+        validate_internal_requirements(
+            wheel.name,
+            requirements,
+            expected_version,
+        )
+    )
     if base == "friday_framework_llm":
-        requirements = set(metadata.get_all("Requires-Dist", []))
         required_fragments = (
-            "friday-framework-core==0.1.0a0",
-            "friday-framework-telemetry==0.1.0a0",
+            f"friday-framework-core=={expected_version}",
+            f"friday-framework-telemetry=={expected_version}",
             "litellm==1.94.1",
         )
         for fragment in required_fragments:
             if not any(requirement.startswith(fragment) for requirement in requirements):
                 errors.append(f"{wheel.name}: missing exact dependency {fragment}")
     if base == "friday_chat":
-        requirements = set(metadata.get_all("Requires-Dist", []))
         chat_required_fragments = (
-            "friday-framework-core==0.1.0a0",
-            "friday-framework-runtime==0.1.0a0",
-            "friday-framework-memory==0.1.0a0",
-            "friday-framework-llm==0.1.0a1",
-            "friday-framework-agent==0.1.0a0",
-            "friday-framework-tools==0.1.0a0",
-            "friday-framework-transcript==0.1.0a0",
-            "friday-framework-cli==0.1.0a0",
-            "friday-framework-speech==0.1.0a0",
-            "friday-framework-finance==0.1.0a0",
-            "friday-framework-tools[finance]==0.1.0a0",
-            "friday-framework-sandbox==0.1.0a0",
-            "friday-framework-tools[sandbox]==0.1.0a0",
-            "friday-framework-moltbook==0.1.0a0",
-            "friday-framework-tools[moltbook]==0.1.0a0",
+            f"friday-framework-core=={expected_version}",
+            f"friday-framework-runtime=={expected_version}",
+            f"friday-framework-memory=={expected_version}",
+            f"friday-framework-llm=={expected_version}",
+            f"friday-framework-agent=={expected_version}",
+            f"friday-framework-tools=={expected_version}",
+            f"friday-framework-transcript=={expected_version}",
+            f"friday-framework-cli=={expected_version}",
+            f"friday-framework-speech=={expected_version}",
+            f"friday-framework-finance=={expected_version}",
+            f"friday-framework-tools[finance]=={expected_version}",
+            f"friday-framework-sandbox=={expected_version}",
+            f"friday-framework-tools[sandbox]=={expected_version}",
+            f"friday-framework-moltbook=={expected_version}",
+            f"friday-framework-tools[moltbook]=={expected_version}",
         )
         for fragment in chat_required_fragments:
             if not any(requirement.startswith(fragment) for requirement in requirements):
                 errors.append(f"{wheel.name}: missing exact dependency {fragment}")
         full_extra_fragments = (
-            "friday-framework-finance==0.1.0a0",
-            "friday-framework-moltbook==0.1.0a0",
-            "friday-framework-sandbox==0.1.0a0",
-            "friday-framework-speech==0.1.0a0",
-            "friday-framework-tools[finance]==0.1.0a0",
-            "friday-framework-tools[moltbook]==0.1.0a0",
-            "friday-framework-tools[sandbox]==0.1.0a0",
+            f"friday-framework-finance=={expected_version}",
+            f"friday-framework-moltbook=={expected_version}",
+            f"friday-framework-sandbox=={expected_version}",
+            f"friday-framework-speech=={expected_version}",
+            f"friday-framework-tools[finance]=={expected_version}",
+            f"friday-framework-tools[moltbook]=={expected_version}",
+            f"friday-framework-tools[sandbox]=={expected_version}",
         )
         for fragment in full_extra_fragments:
             if not any(

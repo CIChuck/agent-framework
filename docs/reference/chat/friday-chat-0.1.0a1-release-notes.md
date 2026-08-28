@@ -2,8 +2,7 @@
 
 - Candidate: `friday-chat==0.1.0a1`
 - Required LLM: `friday-framework-llm==0.1.0a1`
-- Status: Implemented; release blocked by an unsatisfiable published dependency
-  cohort
+- Status: Implemented; lock-step cohort rebuild and validation in progress
 - Date: 2026-08-28
 
 ## What Changed
@@ -81,14 +80,14 @@ consumers accidentally. Their migration sequence is recorded in the
 - The initially accepted matrix kept every other direct and optional Friday
   package at `0.1.0a0`, but clean installation proved that matrix invalid.
 - The `full` self-extra points to `friday-chat==0.1.0a1`.
-- The root `friday-framework==0.1.0a0` meta-package is unchanged and is not part
-  of this component release.
+- Every current Friday distribution, optional extra, and internal dependency is
+  now part of the exact `0.1.0a1` cohort.
+- The root `friday-framework==0.1.0a1` meta-package is published last.
 
-The published Friday Memory, Runtime, and CLI `0.1.0a0` wheels each pin Friday
-LLM exactly to `0.1.0a0`. They therefore conflict with this release's required
-LLM `0.1.0a1`. The current Chat artifacts are rejected and must not be uploaded.
-A compatible `0.1.0a1` cohort for Memory, Runtime, and CLI must be approved,
-built, published in dependency order, and pinned by a rebuilt Chat candidate.
+The published `0.1.0a0` graph conflicts with this release's required LLM
+`0.1.0a1`. The first Chat artifacts are rejected and must not be uploaded. The
+approved repair brings every current Friday distribution and internal pin to a
+lock-step `0.1.0a1`, then rebuilds and publishes them in dependency order.
 See the [release evidence](friday-chat-0.1.0a1-release-evidence.md).
 
 TestPyPI, PyPI, and release-tag operations require separate authorization. PyPI

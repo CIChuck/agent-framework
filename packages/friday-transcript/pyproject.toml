@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-transcript"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "Persistent, immutable conversation transcript storage for Friday"
 readme = "README.md"
 requires-python = ">=3.10"

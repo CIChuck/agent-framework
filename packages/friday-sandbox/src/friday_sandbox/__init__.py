@@ -77,4 +77,4 @@ __all__ = [
     "get_mock_sandbox_builder",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.1.0a1"

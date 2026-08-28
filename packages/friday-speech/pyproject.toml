@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-speech"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "Speech services (TTS, wake word) for Friday"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -10,7 +10,7 @@ keywords = ["speech", "tts", "wakeword", "audio", "assistant"]
 
 dependencies = [
     "pydantic>=2.0.0",
-    "friday-framework-core==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
     "pyyaml>=6.0.0",
 ]
 

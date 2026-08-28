@@ -7,14 +7,14 @@ requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a0",
-    "friday-framework-runtime==0.1.0a0",
-    "friday-framework-memory==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
+    "friday-framework-runtime==0.1.0a1",
+    "friday-framework-memory==0.1.0a1",
     "friday-framework-llm==0.1.0a1",
-    "friday-framework-agent==0.1.0a0",
-    "friday-framework-tools==0.1.0a0",
-    "friday-framework-transcript==0.1.0a0",
-    "friday-framework-cli==0.1.0a0",
+    "friday-framework-agent==0.1.0a1",
+    "friday-framework-tools==0.1.0a1",
+    "friday-framework-transcript==0.1.0a1",
+    "friday-framework-cli==0.1.0a1",
     "pydantic>=2.0",
     "pyyaml>=6.0.0",
     "typer>=0.9.0",
@@ -31,19 +31,19 @@ Source = "https://github.com/CIChuck/agent-framework/tree/main/packages/friday-c
 
 [project.optional-dependencies]
 speech = [
-    "friday-framework-speech==0.1.0a0",
+    "friday-framework-speech==0.1.0a1",
 ]
 finance = [
-    "friday-framework-finance==0.1.0a0",
-    "friday-framework-tools[finance]==0.1.0a0",
+    "friday-framework-finance==0.1.0a1",
+    "friday-framework-tools[finance]==0.1.0a1",
 ]
 sandbox = [
-    "friday-framework-sandbox==0.1.0a0",
-    "friday-framework-tools[sandbox]==0.1.0a0",
+    "friday-framework-sandbox==0.1.0a1",
+    "friday-framework-tools[sandbox]==0.1.0a1",
 ]
 moltbook = [
-    "friday-framework-moltbook==0.1.0a0",
-    "friday-framework-tools[moltbook]==0.1.0a0",
+    "friday-framework-moltbook==0.1.0a1",
+    "friday-framework-tools[moltbook]==0.1.0a1",
 ]
 full = [
     "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a1",

@@ -1,18 +1,18 @@
 [project]
 name = "friday-framework-runtime"
-version = "0.1.0a0"
+version = "0.1.0a1"
 description = "Headless runtime kernel for the Friday Agent Framework"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a0",
-    "friday-framework-memory==0.1.0a0",
-    "friday-framework-llm==0.1.0a0",
-    "friday-framework-telemetry==0.1.0a0",
-    "friday-framework-agent==0.1.0a0",
-    "friday-framework-transcript==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
+    "friday-framework-memory==0.1.0a1",
+    "friday-framework-llm==0.1.0a1",
+    "friday-framework-telemetry==0.1.0a1",
+    "friday-framework-agent==0.1.0a1",
+    "friday-framework-transcript==0.1.0a1",
 ]
 
 [project.urls]

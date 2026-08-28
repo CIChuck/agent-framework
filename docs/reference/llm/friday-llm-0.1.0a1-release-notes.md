@@ -2,9 +2,9 @@
 
 ## Summary
 
-This component alpha adds model-independent reasoning and sampling intent with
+This alpha adds model-independent reasoning and sampling intent with
 registered provider/engine/model translation. It keeps existing Friday callers
-on the legacy API and does not change Friday Core, Runtime, Agent, Memory, Chat,
+on the legacy API. The original package-only plan did not change Friday Core, Runtime, Agent, Memory, Chat,
 or the root meta-package.
 
 ## Added
@@ -69,11 +69,10 @@ Studio native REST, and other provider-native normalized profiles are deferred.
 The provider-neutral models do not need to change when a future private adapter
 is added.
 
-`friday-framework==0.1.0a0` continues to select its exact
-`friday-framework-llm==0.1.0a0` dependency until a coordinated meta-package
-release. Consumers that want this component alpha must request
-`friday-framework-llm==0.1.0a1` directly and resolve its published Core and
-Telemetry `0.1.0a0` dependencies.
+The original package-only dependency guidance is superseded. Friday LLM now
+ships as part of the approved lock-step `0.1.0a1` cohort: Core, Telemetry, all
+downstream packages, Friday Chat, and the root meta-package use exact
+`0.1.0a1` pins. The prior package-only artifacts must not be uploaded.
 
 ## Known Evidence Limits
 

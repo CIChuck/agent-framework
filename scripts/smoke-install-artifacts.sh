@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-artifact_dir="${ARTIFACT_DIR:-dist/pypi-reservation-0.1.0a0}"
-version="${FRIDAY_RESERVATION_VERSION:-0.1.0a0}"
+artifact_dir="${ARTIFACT_DIR:-dist/friday-package-cohort-0.1.0a1}"
+version="${FRIDAY_RESERVATION_VERSION:-0.1.0a1}"
 distribution="${FRIDAY_SMOKE_DISTRIBUTION:-friday-chat}"
 import_package="${FRIDAY_SMOKE_IMPORT:-friday_chat}"
 console_script="${FRIDAY_SMOKE_CONSOLE:-friday-chat}"

@@ -3,11 +3,19 @@
 ## Decision
 
 - Implementation state: complete on 2026-08-27.
-- Artifact state: built and validated locally; do not rebuild for upload.
-- Release state: **HOLD FOR PUBLICATION AUTHORIZATION**.
+- Artifact state: prior package-only files rejected; rebuild in lock-step
+  cohort.
+- Release state: **HOLD FOR COHORT VALIDATION AND PUBLICATION AUTHORIZATION**.
 - Live-provider gate: passed.
 - Hold: TestPyPI/PyPI publication has not been authorized.
 - Publication, tag, and PyPI URL: none.
+
+The hashes below identify a superseded diagnostic candidate. Do not upload it.
+On 2026-08-28 the maintainer approved a lock-step `0.1.0a1` release for every
+Friday distribution. That decision changes Friday LLM's Core and Telemetry pins
+from `0.1.0a0` to `0.1.0a1`, so the wheel and sdist must be rebuilt and all
+artifact/install gates repeated. The implementation and live-provider results
+remain valid.
 
 This distinction is intentional. Deterministic wire capture proves the JSON
 emitted through LiteLLM, while the live lane proves request acceptance and

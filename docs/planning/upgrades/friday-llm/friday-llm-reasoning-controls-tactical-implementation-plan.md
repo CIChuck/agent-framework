@@ -1,7 +1,7 @@
 # Friday LLM Reasoning Controls Tactical Implementation And Release Plan
 
-- Status: Implementation and live-provider gate complete; publication not
-  authorized
+- Status: Implementation and live-provider gate complete; prior package-only
+  artifact superseded by lock-step cohort; publication not authorized
 - Date: 2026-08-27
 - Approval date: 2026-08-27
 - Implementation completion date: 2026-08-27
@@ -46,8 +46,13 @@ tests does not authorize TestPyPI or PyPI upload.
 Implementation, deterministic validation, live-provider validation, packaging,
 and clean-install smoke testing are complete. The exact results and artifact identities are recorded in
 [Friday LLM 0.1.0a1 release evidence](../../../reference/llm/friday-llm-0.1.0a1-release-evidence.md).
-The release remains stopped because neither TestPyPI nor PyPI upload has been
-authorized. No tag has been created.
+The package-only artifact recorded there is now diagnostic evidence rather than
+an upload candidate: the approved
+[lock-step cohort](../friday-packages/friday-package-cohort-0.1.0a1-plan.md)
+changes Friday LLM's Core and Telemetry pins to `0.1.0a1`. Friday LLM must be
+rebuilt and revalidated as part of that cohort. The release also remains stopped
+because neither TestPyPI nor PyPI upload has been authorized. No tag has been
+created.
 
 ## Implementation Objective
 
@@ -75,6 +80,12 @@ because Friday configured or emitted a field.
 - Record that `friday-framework==0.1.0a0` will continue selecting its exact
   `friday-framework-llm==0.1.0a0` dependency until a later coordinated release.
 - Do not reuse or overwrite the immutable PyPI `0.1.0a0` artifacts.
+
+These package-only dependency decisions are historical. The 2026-08-28
+coordinated release supersedes them with `0.1.0a1` for every current Friday
+distribution and internal exact pin. The typed Friday LLM implementation and
+live evidence remain valid; only the package graph and artifacts require new
+cohort evidence.
 
 ### LiteLLM Baseline
 

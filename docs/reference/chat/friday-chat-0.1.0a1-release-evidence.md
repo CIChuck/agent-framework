@@ -9,6 +9,14 @@
 - Publication: not authorized and not attempted
 - Live provider lane: implemented but not authorized or executed
 
+## Superseding Cohort Decision
+
+On 2026-08-28 the maintainer approved a full lock-step `0.1.0a1` cohort for
+every current Friday distribution and internal exact pin. The blocker and
+rejected hashes below remain historical evidence; they are not the final release
+state. New cohort artifacts and clean-install evidence must supersede this
+document before publication.
+
 ## Scope And Worktree
 
 The implementation commit contains Friday Chat source, tests, package metadata,

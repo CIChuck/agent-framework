@@ -1,4 +1,4 @@
-"""Regression coverage for mixed-version Friday Chat release helpers."""
+"""Regression coverage for lock-step Friday release helpers."""
 
 from __future__ import annotations
 
@@ -14,28 +14,28 @@ ARTIFACT_HELPER = REPOSITORY_ROOT / "scripts" / "check-package-artifacts.py"
 CHAT_PYPROJECT = REPOSITORY_ROOT / "packages" / "friday-chat" / "pyproject.toml"
 
 CHAT_REQUIREMENTS = (
-    "friday-framework-core==0.1.0a0",
-    "friday-framework-runtime==0.1.0a0",
-    "friday-framework-memory==0.1.0a0",
+    "friday-framework-core==0.1.0a1",
+    "friday-framework-runtime==0.1.0a1",
+    "friday-framework-memory==0.1.0a1",
     "friday-framework-llm==0.1.0a1",
-    "friday-framework-agent==0.1.0a0",
-    "friday-framework-tools==0.1.0a0",
-    "friday-framework-transcript==0.1.0a0",
-    "friday-framework-cli==0.1.0a0",
-    "friday-framework-speech==0.1.0a0; extra == 'speech'",
-    "friday-framework-finance==0.1.0a0; extra == 'finance'",
-    "friday-framework-tools[finance]==0.1.0a0; extra == 'finance'",
-    "friday-framework-sandbox==0.1.0a0; extra == 'sandbox'",
-    "friday-framework-tools[sandbox]==0.1.0a0; extra == 'sandbox'",
-    "friday-framework-moltbook==0.1.0a0; extra == 'moltbook'",
-    "friday-framework-tools[moltbook]==0.1.0a0; extra == 'moltbook'",
-    "friday-framework-finance==0.1.0a0; extra == 'full'",
-    "friday-framework-moltbook==0.1.0a0; extra == 'full'",
-    "friday-framework-sandbox==0.1.0a0; extra == 'full'",
-    "friday-framework-speech==0.1.0a0; extra == 'full'",
-    "friday-framework-tools[finance]==0.1.0a0; extra == 'full'",
-    "friday-framework-tools[moltbook]==0.1.0a0; extra == 'full'",
-    "friday-framework-tools[sandbox]==0.1.0a0; extra == 'full'",
+    "friday-framework-agent==0.1.0a1",
+    "friday-framework-tools==0.1.0a1",
+    "friday-framework-transcript==0.1.0a1",
+    "friday-framework-cli==0.1.0a1",
+    "friday-framework-speech==0.1.0a1; extra == 'speech'",
+    "friday-framework-finance==0.1.0a1; extra == 'finance'",
+    "friday-framework-tools[finance]==0.1.0a1; extra == 'finance'",
+    "friday-framework-sandbox==0.1.0a1; extra == 'sandbox'",
+    "friday-framework-tools[sandbox]==0.1.0a1; extra == 'sandbox'",
+    "friday-framework-moltbook==0.1.0a1; extra == 'moltbook'",
+    "friday-framework-tools[moltbook]==0.1.0a1; extra == 'moltbook'",
+    "friday-framework-finance==0.1.0a1; extra == 'full'",
+    "friday-framework-moltbook==0.1.0a1; extra == 'full'",
+    "friday-framework-sandbox==0.1.0a1; extra == 'full'",
+    "friday-framework-speech==0.1.0a1; extra == 'full'",
+    "friday-framework-tools[finance]==0.1.0a1; extra == 'full'",
+    "friday-framework-tools[moltbook]==0.1.0a1; extra == 'full'",
+    "friday-framework-tools[sandbox]==0.1.0a1; extra == 'full'",
 )
 
 
@@ -49,19 +49,20 @@ def _artifact_validator() -> Callable[..., list[str]]:
     return cast(Callable[..., list[str]], module["validate_wheel"])
 
 
-def _internal_pins() -> dict[str, str]:
-    return {
-        "friday-framework-llm": "0.1.0a1",
-        "friday-chat": "0.1.0a1",
-    }
+def _internal_requirement_validator() -> Callable[..., list[str]]:
+    module = runpy.run_path(str(ARTIFACT_HELPER), run_name="release_helper_test")
+    return cast(
+        Callable[..., list[str]],
+        module["validate_internal_requirements"],
+    )
 
 
-def test_metadata_helper_accepts_chat_mixed_version_matrix() -> None:
+def test_metadata_helper_accepts_chat_lockstep_matrix() -> None:
     errors = _metadata_validator()(
         CHAT_PYPROJECT,
         expected_version="0.1.0a1",
-        internal_version="0.1.0a0",
-        internal_pins=_internal_pins(),
+        internal_version="0.1.0a1",
+        internal_pins={},
     )
 
     assert errors == []
@@ -84,8 +85,8 @@ def test_metadata_helper_rejects_wrong_llm_and_self_pins(tmp_path: Path) -> None
     errors = _metadata_validator()(
         candidate,
         expected_version="0.1.0a1",
-        internal_version="0.1.0a0",
-        internal_pins=_internal_pins(),
+        internal_version="0.1.0a1",
+        internal_pins={},
     )
 
     assert any("friday-framework-llm==0.1.0a0" in error for error in errors)
@@ -161,3 +162,20 @@ def test_artifact_helper_rejects_wrong_llm_pin_and_entry_point(
 
     assert any("friday-framework-llm==0.1.0a1" in error for error in errors)
     assert any("console entry point missing" in error for error in errors)
+
+
+def test_artifact_helper_rejects_stale_pin_for_any_internal_requirement() -> None:
+    errors = _internal_requirement_validator()(
+        "synthetic.whl",
+        {
+            "friday-framework-memory==0.1.0a0",
+            "friday-framework-tools[finance]==0.1.0a1; extra == 'finance'",
+            "pydantic>=2.0",
+        },
+        "0.1.0a1",
+    )
+
+    assert errors == [
+        "synthetic.whl: internal dependency is not pinned to 0.1.0a1: "
+        "friday-framework-memory==0.1.0a0"
+    ]

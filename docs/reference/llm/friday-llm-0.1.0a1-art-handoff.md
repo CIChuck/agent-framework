@@ -7,8 +7,12 @@ not evidence that ART has been changed or validated.
 
 - Install only the published `friday-framework-llm==0.1.0a1` artifact; a local
   Friday checkout is not integration evidence.
-- Retain published `friday-framework-core==0.1.0a0` and
+- Historical package-only direction: retain published
+  `friday-framework-core==0.1.0a0` and
   `friday-framework-telemetry==0.1.0a0`.
+- Superseding 2026-08-28 direction: rebuild Friday LLM inside the approved
+  lock-step cohort with Core and Telemetry exactly at `0.1.0a1`; do not use the
+  earlier package-only artifact hashes.
 - Set transport provider `openai_compatible`, dialect
   `openai_chat_completions`, serving engine `lm_studio`.
 - Set model ID/alias `qwen3.8-27b-mlx`, family `qwen3_8`, and the exact captured

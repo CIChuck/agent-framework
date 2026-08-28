@@ -1,6 +1,6 @@
 # Friday Chat Typed LLM Configuration Migration Tactical Plan
 
-- Status: Implementation complete; release blocked by dependency-cohort conflict
+- Status: Implementation complete; lock-step cohort remediation in progress
 - Plan date: 2026-08-28
 - Accepted design recommendations: 2026-08-28
 - Implementation approval date: 2026-08-28
@@ -41,7 +41,12 @@ The three design recommendations recorded in this plan are accepted:
 - use canonical nested generation and explicit target identity, while keeping
   legacy flat controls for one deprecation window and rejecting conflicts;
 - release Friday Chat as `0.1.0a1`, pin Friday LLM exactly to `0.1.0a1`, and
-  leave every other Friday dependency at `0.1.0a0`.
+  initially leave every other Friday dependency at `0.1.0a0`.
+
+The final recommendation was superseded after clean-install evidence proved the
+mixed graph unsatisfiable. On 2026-08-28 the maintainer approved the
+[lock-step Friday package cohort](../friday-packages/friday-package-cohort-0.1.0a1-plan.md),
+which moves every current Friday distribution and internal pin to `0.1.0a1`.
 
 The maintainer approved this tactical plan on 2026-08-28. The FridayV2
 framework freeze is released only for the Friday Chat, test, planning, minimal
@@ -88,14 +93,14 @@ validated and, after separate authorization, published to PyPI.
 | `friday_chat.__version__` | `0.1.0a1` |
 | Friday Chat `full` self-extra | `friday-chat[finance,moltbook,sandbox,speech]==0.1.0a1` |
 | `friday-framework-llm` | exactly `0.1.0a1` |
-| Other direct and optional Friday dependencies | remain exactly `0.1.0a0` |
-| Root `friday-framework` project | remain `0.1.0a0` |
-| Root references to Friday Chat and Friday LLM | remain `0.1.0a0` pending a coordinated root release |
+| Other direct and optional Friday dependencies | exactly `0.1.0a1` under the approved cohort |
+| Root `friday-framework` project | `0.1.0a1` |
+| Root references to Friday Chat and Friday LLM | exactly `0.1.0a1` |
 
-The mixed component versions are intentional. Release validation must check
-the matrix explicitly instead of accepting one workspace-wide expected
-version. The root meta-package is not part of this release and must not be used
-to test-install the Chat candidate.
+The mixed component matrix was the original decision and is retained below as
+failure evidence. It is not the current release contract. Final release
+validation must use the lock-step cohort and must test both Friday Chat and the
+root meta-package without workspace sources.
 
 ### Release Blocker Discovered During Clean Installation
 
@@ -115,23 +120,13 @@ The rejected `51a112c` candidate passed source metadata, archive, secret, and
 Twine checks, then failed the first clean-install gate with pip
 `ResolutionImpossible`. It must not be uploaded.
 
-The recommended repair is a separately approved dependency-cohort release:
-
-1. publish the already validated `friday-framework-llm==0.1.0a1` candidate;
-2. release `friday-framework-memory==0.1.0a1` pinned to LLM `0.1.0a1`;
-3. release `friday-framework-runtime==0.1.0a1` pinned to memory and LLM
-   `0.1.0a1`;
-4. release `friday-framework-cli==0.1.0a1` pinned to runtime, memory, and LLM
-   `0.1.0a1`;
-5. update Friday Chat `0.1.0a1` to pin that compatible `a1` cohort, rebuild,
-   and repeat every artifact and Python-matrix gate.
-
-All other Friday packages can remain at `0.1.0a0`, and the root meta-package
-can remain outside this component release. Relaxing exact pins, installing with
-`--no-deps`, or publishing the currently rejected Chat artifacts would hide an
-invalid distribution rather than repair the contract. Steps 2 through 5 expand
-the approved FridayV2 freeze boundary and therefore require a maintainer scope
-amendment before implementation.
+The initial four-package repair was also incomplete because exact pins continue
+through Agent, Optimization, MCP extras, optional packages, and the root
+meta-package. The approved repair is therefore a full 17-distribution
+`0.1.0a1` lock-step release. Relaxing exact pins, installing with `--no-deps`,
+or publishing the rejected artifacts would hide an invalid distribution rather
+than repair the contract. The cohort plan is now the authority for metadata,
+artifact, clean-install, release-order, and publication readiness.
 
 ### Branch Strategy
 
@@ -1180,8 +1175,8 @@ Implementation is complete only when all applicable items are true:
   `0.1.0a1`.
 - Tactical implementation approval: granted 2026-08-28.
 - Live-provider execution approval: pending when the opt-in gate is reached.
-- Dependency-cohort scope amendment: pending for Friday Memory, Runtime, and
-  CLI `0.1.0a1` metadata/release work.
+- Dependency-cohort scope amendment: granted 2026-08-28 for every current
+  Friday distribution at `0.1.0a1`.
 - TestPyPI upload approval: pending and separate.
 - PyPI upload approval: pending and separate.
 - Tag/push approval: pending and separate.
