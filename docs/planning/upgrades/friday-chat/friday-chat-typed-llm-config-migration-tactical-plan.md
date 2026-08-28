@@ -1,6 +1,6 @@
 # Friday Chat Typed LLM Configuration Migration Tactical Plan
 
-- Status: Approved for implementation; publication not authorized
+- Status: Implementation complete; release blocked by dependency-cohort conflict
 - Plan date: 2026-08-28
 - Accepted design recommendations: 2026-08-28
 - Implementation approval date: 2026-08-28
@@ -96,6 +96,42 @@ The mixed component versions are intentional. Release validation must check
 the matrix explicitly instead of accepting one workspace-wide expected
 version. The root meta-package is not part of this release and must not be used
 to test-install the Chat candidate.
+
+### Release Blocker Discovered During Clean Installation
+
+The accepted matrix above is not installable from the published artifacts.
+Clean pip resolution found that each of these immutable PyPI releases requires
+`friday-framework-llm==0.1.0a0`:
+
+- `friday-framework-memory==0.1.0a0`;
+- `friday-framework-runtime==0.1.0a0`;
+- `friday-framework-cli==0.1.0a0`.
+
+Friday Chat requires Friday LLM `0.1.0a1` for the public typed request and
+generation contracts, so no environment can satisfy the direct Chat pin and
+those transitive exact pins simultaneously. Workspace resolution concealed the
+problem because workspace sources replace the published wheel dependency graph.
+The rejected `51a112c` candidate passed source metadata, archive, secret, and
+Twine checks, then failed the first clean-install gate with pip
+`ResolutionImpossible`. It must not be uploaded.
+
+The recommended repair is a separately approved dependency-cohort release:
+
+1. publish the already validated `friday-framework-llm==0.1.0a1` candidate;
+2. release `friday-framework-memory==0.1.0a1` pinned to LLM `0.1.0a1`;
+3. release `friday-framework-runtime==0.1.0a1` pinned to memory and LLM
+   `0.1.0a1`;
+4. release `friday-framework-cli==0.1.0a1` pinned to runtime, memory, and LLM
+   `0.1.0a1`;
+5. update Friday Chat `0.1.0a1` to pin that compatible `a1` cohort, rebuild,
+   and repeat every artifact and Python-matrix gate.
+
+All other Friday packages can remain at `0.1.0a0`, and the root meta-package
+can remain outside this component release. Relaxing exact pins, installing with
+`--no-deps`, or publishing the currently rejected Chat artifacts would hide an
+invalid distribution rather than repair the contract. Steps 2 through 5 expand
+the approved FridayV2 freeze boundary and therefore require a maintainer scope
+amendment before implementation.
 
 ### Branch Strategy
 
@@ -1144,6 +1180,8 @@ Implementation is complete only when all applicable items are true:
   `0.1.0a1`.
 - Tactical implementation approval: granted 2026-08-28.
 - Live-provider execution approval: pending when the opt-in gate is reached.
+- Dependency-cohort scope amendment: pending for Friday Memory, Runtime, and
+  CLI `0.1.0a1` metadata/release work.
 - TestPyPI upload approval: pending and separate.
 - PyPI upload approval: pending and separate.
 - Tag/push approval: pending and separate.

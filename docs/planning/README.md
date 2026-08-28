@@ -64,7 +64,10 @@ The Friday Chat typed-LLM migration was approved for implementation on
 2026-08-28. It adopts the Friday LLM `0.1.0a1` public contracts only for the
 primary Chat model path, preserves legacy flat configuration for one
 deprecation window, and defines independent implementation, live-provider,
-TestPyPI, PyPI, and tagging gates:
+TestPyPI, PyPI, and tagging gates. Implementation is complete, but clean
+installation exposed an unsatisfiable published LLM dependency cohort. The
+tactical plan records the required Memory, Runtime, and CLI `0.1.0a1` scope
+amendment; the rejected Chat artifact must not be published:
 
 - [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
 - [Friday Chat typed LLM deferred consumer handoff](upgrades/friday-chat/friday-chat-typed-llm-deferred-consumer-handoff.md)
