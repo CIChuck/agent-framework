@@ -953,6 +953,7 @@ all = [
     { name = "friday-framework-llm", extra = ["langfuse"] },
     { name = "friday-framework-mcp" },
     { name = "friday-framework-moltbook" },
+    { name = "friday-framework-optimization" },
     { name = "friday-framework-sandbox" },
     { name = "friday-framework-speech", extra = ["elevenlabs", "picovoice"] },
     { name = "friday-framework-tools", extra = ["all-adapters", "all-formats", "finance", "moltbook", "sandbox"] },
@@ -983,6 +984,9 @@ moltbook = [
     { name = "friday-chat", extra = ["moltbook"] },
     { name = "friday-framework-moltbook" },
     { name = "friday-framework-tools", extra = ["moltbook"] },
+]
+optimization = [
+    { name = "friday-framework-optimization" },
 ]
 sandbox = [
     { name = "friday-chat", extra = ["sandbox"] },
@@ -1026,6 +1030,8 @@ requires-dist = [
     { name = "friday-framework-memory", editable = "packages/friday-memory" },
     { name = "friday-framework-moltbook", marker = "extra == 'all'", editable = "packages/friday-moltbook" },
     { name = "friday-framework-moltbook", marker = "extra == 'moltbook'", editable = "packages/friday-moltbook" },
+    { name = "friday-framework-optimization", marker = "extra == 'all'", editable = "packages/friday-optimization" },
+    { name = "friday-framework-optimization", marker = "extra == 'optimization'", editable = "packages/friday-optimization" },
     { name = "friday-framework-runtime", editable = "packages/friday-runtime" },
     { name = "friday-framework-sandbox", marker = "extra == 'all'", editable = "packages/friday-sandbox" },
     { name = "friday-framework-sandbox", marker = "extra == 'sandbox'", editable = "packages/friday-sandbox" },
@@ -1047,7 +1053,7 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.4.0" },
     { name = "types-pyyaml", marker = "extra == 'dev'", specifier = ">=6.0.12" },
 ]
-provides-extras = ["speech", "finance", "sandbox", "moltbook", "mcp", "documents", "spreadsheets", "langfuse", "all", "dev"]
+provides-extras = ["speech", "finance", "sandbox", "moltbook", "mcp", "optimization", "documents", "spreadsheets", "langfuse", "all", "dev"]
 
 [package.metadata.requires-dev]
 dev = [

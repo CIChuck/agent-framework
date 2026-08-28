@@ -7,9 +7,29 @@ import re
 from pathlib import Path
 
 import tomllib
+from packaging.requirements import Requirement
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 COHORT_VERSION = "0.1.0a1"
+COHORT_DISTRIBUTIONS = {
+    "friday-chat",
+    "friday-framework",
+    "friday-framework-agent",
+    "friday-framework-cli",
+    "friday-framework-core",
+    "friday-framework-finance",
+    "friday-framework-llm",
+    "friday-framework-mcp",
+    "friday-framework-memory",
+    "friday-framework-moltbook",
+    "friday-framework-optimization",
+    "friday-framework-runtime",
+    "friday-framework-sandbox",
+    "friday-framework-speech",
+    "friday-framework-telemetry",
+    "friday-framework-tools",
+    "friday-framework-transcript",
+}
 INTERNAL_DEPENDENCY = re.compile(
     r"friday-(?:chat|framework(?:-[A-Za-z0-9_.-]+)?)(?:\[[^]]+\])?"
 )
@@ -59,12 +79,34 @@ def test_all_friday_projects_and_internal_pins_are_lockstep() -> None:
     paths = _project_paths()
 
     assert len(paths) == 17
+    project_names = {
+        tomllib.loads(path.read_text(encoding="utf-8"))["project"]["name"]
+        for path in paths
+    }
+    assert project_names == COHORT_DISTRIBUTIONS
     for path in paths:
         project = tomllib.loads(path.read_text(encoding="utf-8"))["project"]
         assert project["version"] == COHORT_VERSION, path
         for dependency in _dependencies(project):
             if INTERNAL_DEPENDENCY.search(dependency):
                 assert f"=={COHORT_VERSION}" in dependency, (path, dependency)
+
+
+def test_root_all_extra_covers_every_package_distribution() -> None:
+    root_project = tomllib.loads(
+        (REPOSITORY_ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    )["project"]
+    requirements = [
+        *root_project["dependencies"],
+        *root_project["optional-dependencies"]["all"],
+    ]
+    included_distributions = {
+        Requirement(requirement).name
+        for requirement in requirements
+        if INTERNAL_DEPENDENCY.search(requirement)
+    }
+
+    assert included_distributions == COHORT_DISTRIBUTIONS - {"friday-framework"}
 
 
 def test_exported_runtime_versions_match_source_metadata() -> None:

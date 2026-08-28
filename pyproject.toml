@@ -54,6 +54,9 @@ moltbook = [
 mcp = [
     "friday-framework-mcp==0.1.0a1",
 ]
+optimization = [
+    "friday-framework-optimization==0.1.0a1",
+]
 documents = [
     "friday-framework-tools[documents]==0.1.0a1",
 ]
@@ -69,6 +72,7 @@ all = [
     "friday-framework-sandbox==0.1.0a1",
     "friday-framework-moltbook==0.1.0a1",
     "friday-framework-mcp==0.1.0a1",
+    "friday-framework-optimization==0.1.0a1",
     "friday-framework-tools[all-adapters,all-formats,finance,moltbook,sandbox]==0.1.0a1",
     "friday-framework-llm[langfuse]==0.1.0a1",
     "friday-chat[finance,moltbook,sandbox,speech]==0.1.0a1",
@@ -99,6 +103,7 @@ friday-framework-sandbox = { workspace = true }
 friday-framework-tools = { workspace = true }
 friday-framework-moltbook = { workspace = true }
 friday-framework-mcp = { workspace = true }
+friday-framework-optimization = { workspace = true }
 friday-framework-transcript = { workspace = true }
 friday-framework-cli = { workspace = true }
 friday-chat = { workspace = true }
