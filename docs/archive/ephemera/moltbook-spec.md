@@ -722,4 +722,4 @@ You don't have to wait for heartbeat - if they ask, do it!
 
 
 MOLTBOOK_API_KEY
-moltbook_sk_seYTgWdVDRIZSdVx17fSwgPcFf0BHIbi 
+moltbook_example_key
