@@ -1,6 +1,6 @@
 # Friday Framework Typed LLM Execution Log
 
-- Status: Implementation complete; local release candidate validated
+- Status: Implementation complete; release candidate committed and under review
 - Approval date: 2026-08-28
 - Branch: `feature/friday-framework-typed-llm-adoption`
 - Candidate cohort: `0.1.0a2`
@@ -150,8 +150,17 @@ fallback constructors used only by examples remain separately classified.
 - The verified candidate checksums are recorded in
   [friday-package-cohort-0.1.0a2-artifact-sha256.txt](friday-package-cohort-0.1.0a2-artifact-sha256.txt).
 
+## Repository Handoff
+
+- Candidate commit: `2f71778` (`Adopt typed LLM configuration across Friday
+  packages`).
+- Remote branch: `origin/feature/friday-framework-typed-llm-adoption`.
+- Pull request: [#4](https://github.com/CIChuck/agent-framework/pull/4), opened
+  against `master` on 2026-09-02.
+- The unrelated Friday Chat handoff edit, reference documents, and local
+  pre-migration config backup were not included in the candidate commit.
+
 ## Remaining Authority Gates
 
-Implementation and local release preparation are complete. No git commit,
-push, pull request, tag, live-provider execution, or PyPI upload was performed.
-Those actions require separate user authorization under the parent plan.
+Merge, tag creation, live-provider execution, and PyPI upload have not been
+performed. They remain separate authority gates under the parent plan.
