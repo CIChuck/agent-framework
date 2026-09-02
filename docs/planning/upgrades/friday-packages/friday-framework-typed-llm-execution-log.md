@@ -122,6 +122,21 @@ fallback constructors used only by examples remain separately classified.
   between Friday Chat and Friday CLI modules both named `test_display.py`;
   package suites were therefore run in isolated pytest processes.
 
+### Live-provider validation
+
+- On 2026-09-02, the opt-in Friday LLM and Friday Chat live suites ran against
+  LM Studio at the allowlisted loopback endpoint using `qwen3.8-27b-mlx` with
+  revision `lmstudio-community/Qwen3.8-27B-MLX-8bit`.
+- Result: `17 passed, 21 warnings` in 60.16 seconds. Coverage included provider
+  default, disabled, and enabled reasoning profiles; non-streaming and
+  streaming completion; forced and streamed tool calls; Friday Chat controls;
+  and a bounded turn-processing flow.
+- A separate live smoke loaded `models-config.example.yaml`, resolved the
+  `qwen38_chat_local` profile, and completed successfully with `finish=stop`.
+- A second catalog-resolved live smoke used `nomic_embedding_local` and returned
+  a 768-dimensional embedding.
+- No cloud-provider request was made and no provider credential was persisted.
+
 ### Reproduced baseline debt
 
 - Two Friday Tools tests named `*_missing_dependency` create malformed DOCX/XLSX
@@ -133,8 +148,7 @@ fallback constructors used only by examples remain separately classified.
   progress subprocess produces no PTY output before its fixed deadline. Their
   non-PTY command and configuration assertions pass; the failures were
   reproduced individually outside the sandbox.
-- Third-party LiteLLM/Pydantic and asynchronous logging warnings remain. No new
-  provider calls or live-provider tests were performed.
+- Third-party LiteLLM/Pydantic and asynchronous logging warnings remain.
 
 ### Artifacts
 
@@ -162,5 +176,5 @@ fallback constructors used only by examples remain separately classified.
 
 ## Remaining Authority Gates
 
-Merge, tag creation, live-provider execution, and PyPI upload have not been
-performed. They remain separate authority gates under the parent plan.
+Merge, tag creation, and PyPI upload have not been performed. They remain
+separate authority gates under the parent plan.
