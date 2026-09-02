@@ -855,7 +855,7 @@ wheels = [
 
 [[package]]
 name = "friday-chat"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-chat" }
 dependencies = [
     { name = "friday-framework-agent" },
@@ -933,7 +933,7 @@ provides-extras = ["speech", "finance", "sandbox", "moltbook", "full", "dev"]
 
 [[package]]
 name = "friday-framework"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "." }
 dependencies = [
     { name = "friday-chat" },
@@ -1067,10 +1067,11 @@ dev = [
 
 [[package]]
 name = "friday-framework-agent"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-agent" }
 dependencies = [
     { name = "friday-framework-core" },
+    { name = "friday-framework-llm" },
     { name = "friday-framework-memory" },
 ]
 
@@ -1083,6 +1084,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "friday-framework-core", editable = "packages/friday-core" },
+    { name = "friday-framework-llm", editable = "packages/friday-llm" },
     { name = "friday-framework-memory", editable = "packages/friday-memory" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },
@@ -1091,7 +1093,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-cli"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-cli" }
 dependencies = [
     { name = "fastapi" },
@@ -1135,7 +1137,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-core"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-core" }
 dependencies = [
     { name = "friday-framework-telemetry" },
@@ -1171,7 +1173,7 @@ provides-extras = ["telemetry", "dev"]
 
 [[package]]
 name = "friday-framework-finance"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-finance" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1186,7 +1188,7 @@ requires-dist = [
 
 [[package]]
 name = "friday-framework-llm"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-llm" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1218,7 +1220,7 @@ provides-extras = ["langfuse", "dev"]
 
 [[package]]
 name = "friday-framework-mcp"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-mcp" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1261,7 +1263,7 @@ provides-extras = ["dev", "server", "full"]
 
 [[package]]
 name = "friday-framework-memory"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-memory" }
 dependencies = [
     { name = "chromadb" },
@@ -1296,7 +1298,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-moltbook"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-moltbook" }
 dependencies = [
     { name = "httpx" },
@@ -1322,7 +1324,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-optimization"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-optimization" }
 dependencies = [
     { name = "dspy-ai" },
@@ -1346,12 +1348,13 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-runtime"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-runtime" }
 dependencies = [
     { name = "friday-framework-agent" },
     { name = "friday-framework-core" },
     { name = "friday-framework-llm" },
+    { name = "friday-framework-mcp" },
     { name = "friday-framework-memory" },
     { name = "friday-framework-telemetry" },
     { name = "friday-framework-transcript" },
@@ -1368,6 +1371,7 @@ requires-dist = [
     { name = "friday-framework-agent", editable = "packages/friday-agent" },
     { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "friday-framework-llm", editable = "packages/friday-llm" },
+    { name = "friday-framework-mcp", editable = "packages/friday-mcp" },
     { name = "friday-framework-memory", editable = "packages/friday-memory" },
     { name = "friday-framework-telemetry", editable = "packages/friday-telemetry" },
     { name = "friday-framework-transcript", editable = "packages/friday-transcript" },
@@ -1378,7 +1382,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-sandbox"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-sandbox" }
 dependencies = [
     { name = "docker" },
@@ -1404,7 +1408,7 @@ provides-extras = ["dev"]
 
 [[package]]
 name = "friday-framework-speech"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-speech" }
 dependencies = [
     { name = "friday-framework-core" },
@@ -1450,7 +1454,7 @@ provides-extras = ["elevenlabs", "picovoice", "dev"]
 
 [[package]]
 name = "friday-framework-telemetry"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-telemetry" }
 dependencies = [
     { name = "pydantic" },
@@ -1480,7 +1484,7 @@ provides-extras = ["otel", "dev"]
 
 [[package]]
 name = "friday-framework-tools"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-tools" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -1527,6 +1531,9 @@ finance = [
 langchain = [
     { name = "langchain-core" },
 ]
+llm = [
+    { name = "friday-framework-llm" },
+]
 moltbook = [
     { name = "friday-framework-moltbook" },
 ]
@@ -1547,6 +1554,7 @@ requires-dist = [
     { name = "charset-normalizer", specifier = ">=3.3.0" },
     { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "friday-framework-finance", marker = "extra == 'finance'", editable = "packages/friday-finance" },
+    { name = "friday-framework-llm", marker = "extra == 'llm'", editable = "packages/friday-llm" },
     { name = "friday-framework-moltbook", marker = "extra == 'moltbook'", editable = "packages/friday-moltbook" },
     { name = "friday-framework-sandbox", marker = "extra == 'sandbox'", editable = "packages/friday-sandbox" },
     { name = "friday-framework-tools", extras = ["anthropic"], marker = "extra == 'all-adapters'", editable = "packages/friday-tools" },
@@ -1573,11 +1581,11 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6.0.0" },
     { name = "respx", marker = "extra == 'dev'", specifier = ">=0.20.0" },
 ]
-provides-extras = ["sandbox", "finance", "moltbook", "dev", "langchain", "anthropic", "openai", "all-adapters", "documents", "spreadsheets", "all-formats"]
+provides-extras = ["sandbox", "finance", "moltbook", "dev", "llm", "langchain", "anthropic", "openai", "all-adapters", "documents", "spreadsheets", "all-formats"]
 
 [[package]]
 name = "friday-framework-transcript"
-version = "0.1.0a1"
+version = "0.1.0a2"
 source = { editable = "packages/friday-transcript" }
 dependencies = [
     { name = "aiosqlite" },

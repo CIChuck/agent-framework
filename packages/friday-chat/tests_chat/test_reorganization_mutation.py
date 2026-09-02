@@ -24,6 +24,7 @@ from friday_chat.reorganization.mutation import (
     MaintenanceLlmProvider,
     MaintenanceLlmRole,
     MaintenanceProviderConfig,
+    MaintenanceResponseParseError,
     MaintenanceResponseValidationError,
     ProviderProbeResponse,
     StrictProviderModel,
@@ -376,7 +377,7 @@ async def test_litellm_provider_supplies_schema_and_parses_noisy_json() -> None:
 
 
 @pytest.mark.asyncio
-async def test_litellm_provider_uses_reasoning_json_and_sanitizes_validation() -> None:
+async def test_litellm_provider_rejects_reasoning_json_and_sanitizes_validation() -> None:
     reasoning_service = RecordingChatService(
         ChatCompletionResponse(
             content=None,
@@ -389,13 +390,12 @@ async def test_litellm_provider_uses_reasoning_json_and_sanitizes_validation() -
         config=MaintenanceProviderConfig(model="test-synthesizer"),
     )
 
-    probe_response = await provider.complete_model(
-        ProviderProbeResponse,
-        system_prompt="Return readiness.",
-        user_payload='{"ready":true}',
-    )
-
-    assert probe_response.ready
+    with pytest.raises(MaintenanceResponseParseError):
+        await provider.complete_model(
+            ProviderProbeResponse,
+            system_prompt="Return readiness.",
+            user_payload='{"ready":true}',
+        )
 
     invalid_service = RecordingChatService(
         ChatCompletionResponse(

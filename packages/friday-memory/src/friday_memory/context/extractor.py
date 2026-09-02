@@ -34,6 +34,10 @@ from friday_memory.json_response import (
     parse_json_object_from_text,
     strip_llm_reasoning,
 )
+from friday_memory.llm_completion import (
+    MemoryLLMClient,
+    complete_memory_request,
+)
 from friday_memory.models import (
     GraphEdge,
     GraphNode,
@@ -42,7 +46,7 @@ from friday_memory.models import (
 )
 
 if TYPE_CHECKING:
-    from friday_core.interfaces import EmbeddingModel, LLMClient
+    from friday_core.interfaces import EmbeddingModel
 
 
 logger = logging.getLogger(__name__)
@@ -155,12 +159,13 @@ class MemoryExtractor:
     def __init__(
         self,
         memory_controller: MemoryController,
-        llm: "LLMClient",
+        llm: MemoryLLMClient,
         telemetry: TelemetryInterface | None = None,
         prompt_template: str | None = None,
         user_name: str = "User",
         assistant_name: str = "Assistant",
         embedding_model: "EmbeddingModel | None" = None,
+        temperature: float | None = 0.0,
         max_tokens: int | None = None,
         ontology_config: OntologyConfig | None = None,
         rejection_log_path: str | None = None,
@@ -181,6 +186,7 @@ class MemoryExtractor:
             embedding_model: Optional EmbeddingModel for pre-computing edge embeddings.
                             If provided, edge embeddings are computed during extraction
                             for fast graph path scoring at retrieval time.
+            temperature: Optional request override; None uses service defaults.
             max_tokens: Optional maximum tokens for extraction response (limits output length)
             ontology_config: Ontology defining allowed node types and edge relations.
                             If None, uses OntologyConfig.default().
@@ -196,6 +202,7 @@ class MemoryExtractor:
         self._user_name = user_name
         self._assistant_name = assistant_name
         self._embedding_model = embedding_model
+        self._temperature = temperature
         self._max_tokens = max_tokens
         self._ontology = ontology_config or OntologyConfig.default()
         self._filter = ExtractionFilter(self._ontology)
@@ -221,7 +228,7 @@ class MemoryExtractor:
         Local LLMs often wrap JSON in markdown code blocks or add extra text.
         This method tries multiple strategies to extract valid JSON.
         """
-        parse_content = content if content.strip() else reasoning_content or ""
+        parse_content = content
         parsed = parse_json_object_from_text(parse_content)
         if parsed is not None:
             return parsed
@@ -375,7 +382,8 @@ class MemoryExtractor:
             # Call LLM for extraction using injected client
             start_time = time.time()
             logger.debug("Calling LLM for extraction...")
-            response = await self._llm.chat_completion(
+            response = await complete_memory_request(
+                self._llm,
                 messages=[
                     {
                         "role": "system",
@@ -383,14 +391,15 @@ class MemoryExtractor:
                     },
                     {"role": "user", "content": prompt},
                 ],
-                temperature=0.0,  # Deterministic extraction
+                temperature=self._temperature,
                 max_tokens=self._max_tokens,
             )
             elapsed = time.time() - start_time
             logger.info(f"Extraction LLM call took {elapsed:.2f}s")
-            logger.debug(f"Extraction response object: {response}")
-            logger.debug(f"Extraction response type: {type(response)}")
-            logger.debug(f"Extraction response.content: {response.content!r}")
+            logger.debug(
+                "Extraction response received (content_chars=%d)",
+                len(response.content or ""),
+            )
             reasoning_content = getattr(response, "reasoning_content", None)
             if reasoning_content:
                 logger.debug(
@@ -718,7 +727,8 @@ class MemoryExtractor:
             List of entity names
         """
         try:
-            response = await self._llm.chat_completion(
+            response = await complete_memory_request(
+                self._llm,
                 messages=[
                     {
                         "role": "system",
@@ -726,7 +736,7 @@ class MemoryExtractor:
                     },
                     {"role": "user", "content": text},
                 ],
-                temperature=0.0,
+                temperature=self._temperature,
                 max_tokens=self._max_tokens,
             )
             result = parse_json_object_from_text(json_response_text(response)) or {}

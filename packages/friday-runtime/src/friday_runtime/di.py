@@ -42,7 +42,11 @@ from friday_memory import (
 )
 from friday_transcript import SQLiteTranscriptStore
 
-from friday_runtime.config import RuntimeConfig
+from friday_runtime.config import (
+    EmbeddingServiceConfig,
+    LLMServiceConfig,
+    RuntimeConfig,
+)
 from friday_runtime.tool_loading import register_runtime_tools
 
 logger = logging.getLogger(__name__)
@@ -136,49 +140,78 @@ class DIContainer:
         """Create LLM and embedding services."""
         self.llm_pool = {}
         for service_name, service_config in self._config.llm_pool.services.items():
-            self.llm_pool[service_name] = LiteLLMService(
-                model_name=service_config.model,
-                api_key=service_config.api_key,
-                api_base=service_config.api_base,
-                telemetry=self.telemetry,
-                resilience=ResilienceConfig(
-                    max_retries=service_config.resilience.max_retries,
-                    timeout_seconds=float(service_config.resilience.timeout_seconds),
-                ),
-            )
+            chat_spec = self._config.llm_service_specs.get(service_name)
+            if chat_spec is not None:
+                self.llm_pool[service_name] = LiteLLMService.from_spec(
+                    chat_spec,
+                    telemetry=self.telemetry,
+                )
+            else:
+                if not isinstance(service_config, LLMServiceConfig):
+                    raise RuntimeError(
+                        f"LLM service {service_name!r} has no resolved specification"
+                    )
+                self.llm_pool[service_name] = LiteLLMService(
+                    model_name=service_config.model,
+                    api_key=service_config.api_key,
+                    api_base=service_config.api_base,
+                    telemetry=self.telemetry,
+                    resilience=ResilienceConfig(
+                        max_retries=service_config.resilience.max_retries,
+                        timeout_seconds=float(
+                            service_config.resilience.timeout_seconds
+                        ),
+                    ),
+                )
 
         self.llm = self.llm_pool[self._config.llm_pool.default_service]
-        default_service = self._config.get_llm_service_config()
 
         self.embedding_pool = {}
         for (
             service_name,
             embedding_service_config,
         ) in self._config.embedding_pool.services.items():
-            self.embedding_pool[service_name] = LiteLLMEmbeddingService(
-                model_name=embedding_service_config.model,
-                api_key=embedding_service_config.api_key,
-                api_base=embedding_service_config.api_base,
-                telemetry=self.telemetry,
-                resilience=ResilienceConfig(
-                    max_retries=embedding_service_config.resilience.max_retries,
-                    timeout_seconds=float(
-                        embedding_service_config.resilience.timeout_seconds
+            embedding_spec = self._config.embedding_service_specs.get(service_name)
+            if embedding_spec is not None:
+                self.embedding_pool[service_name] = (
+                    LiteLLMEmbeddingService.from_spec(
+                        embedding_spec,
+                        telemetry=self.telemetry,
+                    )
+                )
+            else:
+                if not isinstance(
+                    embedding_service_config,
+                    EmbeddingServiceConfig,
+                ):
+                    raise RuntimeError(
+                        f"Embedding service {service_name!r} has no resolved "
+                        "specification"
+                    )
+                self.embedding_pool[service_name] = LiteLLMEmbeddingService(
+                    model_name=embedding_service_config.model,
+                    api_key=embedding_service_config.api_key,
+                    api_base=embedding_service_config.api_base,
+                    telemetry=self.telemetry,
+                    resilience=ResilienceConfig(
+                        max_retries=(
+                            embedding_service_config.resilience.max_retries
+                        ),
+                        timeout_seconds=float(
+                            embedding_service_config.resilience.timeout_seconds
+                        ),
                     ),
-                ),
-            )
+                )
 
         self.embeddings = self.embedding_pool[self._config.embedding_pool.default_service]
-        default_embedding_service = self._config.get_embedding_service_config()
-
         logger.info(
             "LLM pool configured with default service '%s' (%s) across %d services; "
             "embedding pool default '%s' (%s) across %d services",
             self._config.llm_pool.default_service,
-            default_service.model,
+            self.llm.model,
             len(self.llm_pool),
             self._config.embedding_pool.default_service,
-            default_embedding_service.model,
+            self.embeddings.model,
             len(self.embedding_pool),
         )
 

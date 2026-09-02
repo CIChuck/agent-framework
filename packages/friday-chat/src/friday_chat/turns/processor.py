@@ -735,7 +735,6 @@ def _serialize_response(response: ChatModelResponse) -> str:
             ],
             "model": response.model,
             "usage": response.usage,
-            "reasoning_content": response.reasoning_content,
         },
         sort_keys=True,
     )

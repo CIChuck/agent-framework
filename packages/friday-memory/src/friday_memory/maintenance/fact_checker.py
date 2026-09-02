@@ -22,6 +22,7 @@ from friday_memory.json_response import (
     json_parse_warning_detail,
     parse_json_object_from_text,
 )
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 from friday_memory.maintenance.models import (
     ClaimType,
     ClassifiedFact,
@@ -33,8 +34,6 @@ from friday_memory.maintenance.models import (
 )
 
 if TYPE_CHECKING:
-    from friday_llm import LiteLLMService
-
     from friday_memory.maintenance.logger import ReorganizationLogger
 
 logger = logging.getLogger(__name__)
@@ -70,9 +69,9 @@ class FactChecker:
     def __init__(
         self,
         memory_dir: str | Path,
-        classifier_llm: LiteLLMService | None = None,
-        researcher_llm: LiteLLMService | None = None,
-        judge_llm: LiteLLMService | None = None,
+        classifier_llm: MemoryLLMClient | None = None,
+        researcher_llm: MemoryLLMClient | None = None,
+        judge_llm: MemoryLLMClient | None = None,
         config: FactCheckConfig | None = None,
         prompts: PromptsConfig | None = None,
         reorg_logger: ReorganizationLogger | None = None,
@@ -115,8 +114,7 @@ class FactChecker:
         Returns:
             Parsed JSON as dict, or empty dict if parsing fails
         """
-        parse_content = content if content.strip() else reasoning_content or ""
-        parsed = parse_json_object_from_text(parse_content)
+        parsed = parse_json_object_from_text(content)
         if parsed is not None:
             return parsed
 
@@ -252,7 +250,8 @@ class FactChecker:
 
         prompt = self._prompts.classification.format(statement=fact_text)
 
-        response = await self._classifier.chat_completion(
+        response = await complete_memory_request(
+            self._classifier,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1,
         )
@@ -277,7 +276,8 @@ class FactChecker:
 
         prompt = self._prompts.research.format(claim=claim_text)
 
-        response = await self._researcher.chat_completion(
+        response = await complete_memory_request(
+            self._researcher,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
         )
@@ -308,7 +308,8 @@ class FactChecker:
         evidence_text = json.dumps(evidence, indent=2)
         prompt = self._prompts.judge.format(claim=claim_text, evidence=evidence_text)
 
-        response = await self._judge.chat_completion(
+        response = await complete_memory_request(
+            self._judge,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.1,
         )

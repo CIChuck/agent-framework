@@ -1,6 +1,6 @@
 [project]
 name = "friday-framework-mcp"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "MCP (Model Context Protocol) integration for Friday Framework"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -10,7 +10,7 @@ keywords = ["ai", "agents", "mcp", "model-context-protocol", "llm"]
 
 dependencies = [
     # Core protocols
-    "friday-framework-core==0.1.0a1",
+    "friday-framework-core==0.1.0a2",
 
     # HTTP client for SSE transport
     "httpx>=0.25.0",
@@ -41,9 +41,9 @@ server = [
 
 # Full integration with Friday packages
 full = [
-    "friday-framework-mcp[server]==0.1.0a1",
-    "friday-framework-tools==0.1.0a1",
-    "friday-framework-agent==0.1.0a1",
+    "friday-framework-mcp[server]==0.1.0a2",
+    "friday-framework-tools==0.1.0a2",
+    "friday-framework-agent==0.1.0a2",
 ]
 
 [build-system]

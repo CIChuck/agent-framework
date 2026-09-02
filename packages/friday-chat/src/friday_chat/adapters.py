@@ -1413,6 +1413,21 @@ class FrameworkWorkflowAdapter:
 
 
 def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
+    if config.llm_pool is not None:
+        spec = config.llm_service_specs[config.llm_pool.default_service]
+        service = LiteLLMService.from_spec(spec)
+        canonical_execution = TypedLLMExecutionConfig(
+            generation=spec.generation_defaults,
+            transport_target=spec.execution_target.transport,
+            model_target=spec.execution_target.model,
+            provider_options=spec.provider_options_defaults,
+        )
+        return FrameworkChatModel(
+            service=service,
+            config=config,
+            execution=canonical_execution,
+        )
+
     execution = config.llm.resolve_execution()
     resilience = ResilienceConfig(
         max_retries=config.llm.max_retries,
@@ -1450,6 +1465,10 @@ def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
 
 def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMService:
     """Build the unchanged fallback used by non-primary Chat consumers."""
+    if config.llm_pool is not None:
+        return LiteLLMService.from_spec(
+            config.llm_service_specs[config.llm_pool.default_service]
+        )
     thinking_enabled = (
         config.llm.thinking if "thinking" in config.llm.model_fields_set else None
     )
@@ -1476,6 +1495,14 @@ def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMServic
 def build_framework_embedding_service(
     config: FridayChatConfig,
 ) -> FrameworkEmbeddingService:
+    if config.embedding_pool is not None:
+        spec = config.embedding_service_specs[
+            config.embedding_pool.default_service
+        ]
+        return FrameworkEmbeddingService(
+            service=LiteLLMEmbeddingService.from_spec(spec)
+        )
+
     service = LiteLLMEmbeddingService(
         model_name=config.embedding.model or "text-embedding-3-small",
         api_key=config.embedding.api_key or config.llm.api_key,
@@ -1746,15 +1773,38 @@ def build_framework_maintenance_adapter(
     compaction_config_data = config.memory.compaction
     if compaction_config_data.get("enabled") is True:
         try:
-            compaction_config = CompactionConfig(**compaction_config_data)
+            compaction_config = CompactionConfig(
+                **{
+                    key: value
+                    for key, value in compaction_config_data.items()
+                    if key != "llm_service"
+                }
+            )
             budget_monitor = ContextBudgetMonitor(config=compaction_config)
+            if config.llm_pool is not None:
+                compaction_service_name = _optional_string(
+                    compaction_config_data.get("llm_service")
+                ) or "compaction"
+                compaction_llm = _canonical_chat_service(
+                    config,
+                    compaction_service_name,
+                )
+                compaction_model_name = config.llm_service_specs[
+                    compaction_service_name
+                ].model
+            else:
+                compaction_llm = llm_services.get(
+                    "researcher",
+                    legacy_primary_llm,
+                )
+                compaction_model_name = config.llm.model or "gpt-4"
             compactor = InSessionCompactor(
                 memory_controller=memory.controller,
                 collection_manager=memory.collection_manager,
-                llm_client=llm_services.get("researcher", legacy_primary_llm),
+                llm_client=compaction_llm,
                 config=compaction_config,
                 token_estimator_config=config.memory.token_estimator,
-                model_name=config.llm.model or "gpt-4",
+                model_name=compaction_model_name,
             )
         except Exception as exc:
             diagnostics.framework_upgrade_gaps.append(
@@ -1774,7 +1824,16 @@ def build_framework_maintenance_adapter(
             user_name=config.chat.user_name,
             assistant_name=config.chat.assistant_name,
             embedding_model=embedding,
-            max_tokens=config.extraction.max_tokens,
+            temperature=(
+                None
+                if config.llm_pool is not None
+                else config.extraction.temperature
+            ),
+            max_tokens=(
+                None
+                if config.llm_pool is not None
+                else config.extraction.max_tokens
+            ),
             rejection_log_path=config.extraction.rejection_log,
         )
     except Exception as exc:
@@ -1822,13 +1881,18 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
     router_config = config.memory.passage_router
     if router_config.get("enabled") is not True:
         return None
+    canonical_service = _canonical_chat_service_from_mapping(
+        config,
+        router_config,
+        default_name="passage_router",
+    )
     router_model = (
         router_config.get("model")
         or config.extraction.model
         or config.llm.model
         or "unknown"
     )
-    router_llm = LiteLLMService(
+    router_llm = canonical_service or LiteLLMService(
         model_name=str(router_model),
         api_key=(
             _optional_string(router_config.get("api_key"))
@@ -1859,6 +1923,12 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
         "min_keep_on_empty",
     )
     router_kwargs = {key: router_config[key] for key in fields if key in router_config}
+    if canonical_service is not None:
+        router_kwargs.update(
+            temperature=None,
+            max_tokens=None,
+            timeout_seconds=None,
+        )
     router_kwargs["enabled"] = True
     return PassageRouter(
         llm=router_llm,
@@ -1873,6 +1943,13 @@ def _build_role_llm_service(
 ) -> LiteLLMService:
     role_config = config.maintenance.llm.get(role)
     role_data = role_config if isinstance(role_config, Mapping) else {}
+    canonical_service = _canonical_chat_service_from_mapping(
+        config,
+        role_data,
+        default_name=role,
+    )
+    if canonical_service is not None:
+        return canonical_service
     return LiteLLMService(
         model_name=model,
         api_key=_optional_string(role_data.get("api_key")) or config.llm.api_key,
@@ -1892,6 +1969,9 @@ def _build_extraction_llm_service(
     config: FridayChatConfig,
     default_service: LiteLLMService,
 ) -> LiteLLMService:
+    if config.llm_pool is not None:
+        service_name = config.extraction.llm_service or "extraction"
+        return _canonical_chat_service(config, service_name)
     if not config.extraction.model:
         return default_service
     return LiteLLMService(
@@ -2021,35 +2101,85 @@ def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig) -> Any:
     if module_name == "friday_tools.web":
         kwargs.setdefault("config", config.web.model_dump(mode="python"))
     if class_name == "SmartFileReadTool":
-        kwargs.setdefault("fallback_llm", _build_smart_file_llm_service(config))
+        summarizer_llm = _build_smart_file_llm_service(
+            config,
+            role="summarizer",
+            default_name="smart_file_summarizer",
+        )
+        synthesizer_llm = _build_smart_file_llm_service(
+            config,
+            role="synthesizer",
+            default_name="smart_file_synthesizer",
+        )
+        kwargs.setdefault("fallback_llm", summarizer_llm)
+        kwargs.setdefault("summarizer_llm", summarizer_llm)
+        kwargs.setdefault("synthesizer_llm", synthesizer_llm)
         kwargs.setdefault("config", _build_smart_file_processor_config(config))
     return tool_class(**kwargs)
 
 
-def _build_smart_file_llm_service(config: FridayChatConfig) -> LiteLLMService:
+def _build_smart_file_llm_service(
+    config: FridayChatConfig,
+    *,
+    role: str = "summarizer",
+    default_name: str = "smart_file_summarizer",
+) -> LiteLLMService:
     llm_config = config.smart_file.llm
-    summarizer = llm_config.get("summarizer") if isinstance(llm_config, Mapping) else {}
-    summarizer_data = summarizer if isinstance(summarizer, Mapping) else {}
+    role_config = llm_config.get(role) if isinstance(llm_config, Mapping) else {}
+    role_data = role_config if isinstance(role_config, Mapping) else {}
+    canonical_service = _canonical_chat_service_from_mapping(
+        config,
+        role_data,
+        default_name=default_name,
+    )
+    if canonical_service is not None:
+        return canonical_service
     return LiteLLMService(
-        model_name=_optional_string(summarizer_data.get("model"))
+        model_name=_optional_string(role_data.get("model"))
         or config.llm.model
         or "unknown",
-        api_key=_optional_string(summarizer_data.get("api_key")) or config.llm.api_key,
-        api_base=_optional_string(summarizer_data.get("api_base"))
+        api_key=_optional_string(role_data.get("api_key")) or config.llm.api_key,
+        api_base=_optional_string(role_data.get("api_base"))
         or config.llm.api_base,
         resilience=ResilienceConfig(
             max_retries=_int_from_mapping(
-                summarizer_data,
+                role_data,
                 "max_retries",
                 config.llm.max_retries,
             ),
             timeout_seconds=float(
-                summarizer_data.get("timeout_seconds")
+                role_data.get("timeout_seconds")
                 or config.llm.timeout_seconds
                 or 30.0
             ),
         ),
     )
+
+
+def _canonical_chat_service(
+    config: FridayChatConfig,
+    service_name: str,
+) -> LiteLLMService:
+    try:
+        spec = config.llm_service_specs[service_name]
+    except KeyError as error:
+        raise ValueError(
+            f"Unknown canonical LLM service {service_name!r}"
+        ) from error
+    return LiteLLMService.from_spec(spec)
+
+
+def _canonical_chat_service_from_mapping(
+    config: FridayChatConfig,
+    role_data: Mapping[str, Any],
+    *,
+    default_name: str,
+) -> LiteLLMService | None:
+    if config.llm_pool is None:
+        return None
+    configured_name = _optional_string(role_data.get("llm_service"))
+    service_name = configured_name or default_name
+    return _canonical_chat_service(config, service_name)
 
 
 def _build_smart_file_processor_config(config: FridayChatConfig) -> Any:

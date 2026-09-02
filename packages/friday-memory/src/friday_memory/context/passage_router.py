@@ -11,10 +11,11 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import Any, Literal, cast
+from typing import Literal
 
-from friday_core.interfaces.llm import LLMClient
 from pydantic import BaseModel, Field
+
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 
 logger = logging.getLogger(__name__)
 
@@ -31,8 +32,8 @@ class PassageRouterConfig(BaseModel):
     """Configuration for passage routing behavior."""
 
     enabled: bool = Field(default=True)
-    temperature: float = Field(default=0.0, ge=0.0, le=1.0)
-    max_tokens: int = Field(default=80, ge=20)
+    temperature: float | None = Field(default=0.0, ge=0.0, le=1.0)
+    max_tokens: int | None = Field(default=80, ge=20)
     timeout_seconds: float | None = Field(default=4.0, ge=0.5)
     min_confidence: float = Field(default=0.6, ge=0.0, le=1.0)
     include_on_empty_query: bool = Field(default=False)
@@ -86,7 +87,7 @@ class PassageRouter:
     )
 
     def __init__(
-        self, llm: LLMClient, config: PassageRouterConfig | None = None
+        self, llm: MemoryLLMClient, config: PassageRouterConfig | None = None
     ) -> None:
         self._llm = llm
         self._config = config or PassageRouterConfig()
@@ -118,8 +119,8 @@ class PassageRouter:
         ]
 
         try:
-            llm = cast(Any, self._llm)
-            response = await llm.chat_completion(
+            response = await complete_memory_request(
+                self._llm,
                 messages=messages,
                 temperature=self._config.temperature,
                 max_tokens=self._config.max_tokens,

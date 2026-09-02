@@ -13,7 +13,7 @@ import os
 from typing import TYPE_CHECKING
 
 import litellm
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 if TYPE_CHECKING:
     pass
@@ -43,6 +43,8 @@ class CircuitBreakerConfig(BaseModel):
             recovery_timeout=60.0,
         )
     """
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
 
     enabled: bool = Field(
         default=False,
@@ -90,6 +92,12 @@ class ResilienceConfig(BaseModel):
         service = LiteLLMService(model_name="gpt-4", resilience=config)
     """
 
+    model_config = ConfigDict(
+        arbitrary_types_allowed=True,
+        frozen=True,
+        extra="forbid",
+    )
+
     # Retry Configuration
     max_retries: int = Field(
         default=3,
@@ -136,8 +144,6 @@ class ResilienceConfig(BaseModel):
     circuit_breaker: CircuitBreakerConfig = Field(
         default_factory=CircuitBreakerConfig,
     )
-
-    model_config = {"arbitrary_types_allowed": True}
 
     def get_retry_exceptions(self) -> tuple[type[Exception], ...]:
         """Get the exceptions that should trigger retries."""

@@ -336,7 +336,7 @@ class ReorganizationCoordinator:
         mutation_adapter: MaintenanceMutationAdapter | None = None,
         lease_registry: DarwinLayoutLeaseRegistry | None = None,
         application_id: str = "friday-chat",
-        application_version: str = "0.1.0a1",
+        application_version: str = "0.1.0a2",
         fault_injector: FaultInjector | None = None,
         environment_preflight: MaintenanceEnvironmentPreflight | None = None,
     ) -> None:

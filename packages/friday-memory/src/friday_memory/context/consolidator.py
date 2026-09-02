@@ -12,22 +12,22 @@ Consolidation Logic:
 """
 
 import logging
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from friday_core import TelemetryInterface
 
 from friday_memory.context.token_estimator import build_token_estimator
 from friday_memory.controller import MemoryController
+from friday_memory.llm_completion import (
+    MemoryLLMClient,
+    complete_structured_memory_request,
+)
 from friday_memory.models import (
     ConflictResolutionResponse,
     ConsolidationReport,
     ProvenanceMetadata,
     SummarizationResponse,
 )
-
-if TYPE_CHECKING:
-    from friday_core.interfaces import LLMClient
-
 
 logger = logging.getLogger(__name__)
 
@@ -93,7 +93,7 @@ class MemoryConsolidator:
     def __init__(
         self,
         memory_controller: MemoryController,
-        llm_client: "LLMClient",
+        llm_client: MemoryLLMClient,
         min_turns_to_consolidate: int = 5,
         max_turns_per_summary: int = 10,
         telemetry: TelemetryInterface | None = None,
@@ -322,7 +322,8 @@ class MemoryConsolidator:
 
             try:
                 # Call LLM for summarization
-                response = await self._llm_client.chat_completion(
+                result = await complete_structured_memory_request(
+                    self._llm_client,
                     messages=[
                         {
                             "role": "system",
@@ -337,8 +338,6 @@ class MemoryConsolidator:
                     temperature=0.0,
                 )
 
-                # Get the parsed Pydantic model
-                result = response._parsed_model
                 if result is None:
                     logger.error("Failed to parse summarization response")
                     continue
@@ -407,7 +406,8 @@ class MemoryConsolidator:
                 for f in facts
             )
 
-            response = await self._llm_client.chat_completion(
+            result = await complete_structured_memory_request(
+                self._llm_client,
                 messages=[
                     {
                         "role": "system",
@@ -422,8 +422,6 @@ class MemoryConsolidator:
                 temperature=0.0,
             )
 
-            # Get the parsed Pydantic model
-            result = response._parsed_model
             if result is None:
                 raise ValueError("Failed to parse conflict resolution response")
 

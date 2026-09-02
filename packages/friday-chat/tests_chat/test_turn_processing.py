@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from collections.abc import AsyncIterator, Sequence
 
 import pytest
@@ -24,11 +25,26 @@ from friday_chat.turns.processor import (
     TurnProcessor,
     TurnRetryExhaustedError,
     TurnTimeoutError,
+    _serialize_response,
 )
 
 
 def _config(data: dict[str, object]) -> FridayChatConfig:
     return FridayChatConfig.model_validate(data)
+
+
+def test_persisted_raw_response_excludes_reasoning_content() -> None:
+    payload = json.loads(
+        _serialize_response(
+            ChatModelResponse(
+                content="final answer",
+                reasoning_content="private chain of thought",
+            )
+        )
+    )
+
+    assert payload["content"] == "final answer"
+    assert "reasoning_content" not in payload
 
 
 class FailingTranscriptStore(FakeTranscriptStore):

@@ -64,12 +64,12 @@ def test_json_parse_warning_detail_reports_empty_content() -> None:
     )
 
 
-def test_json_response_text_falls_back_to_reasoning_content() -> None:
+def test_json_response_text_never_promotes_reasoning_to_final_content() -> None:
     class Response:
         content = ""
         reasoning_content = '{"entities": []}'
 
-    assert json_response_text(Response()) == '{"entities": []}'
+    assert json_response_text(Response()) == ""
 
 
 def test_json_parse_warning_detail_suppresses_reasoning_preview() -> None:

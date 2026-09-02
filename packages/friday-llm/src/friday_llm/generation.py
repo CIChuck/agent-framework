@@ -136,6 +136,13 @@ def _merge_reasoning(
         )
         for field_name in ("mode", "effort", "budget_tokens", "preserve")
     }
+    if (
+        "mode" in overrides.model_fields_set
+        and overrides.mode is not ReasoningMode.ENABLED
+    ):
+        for dependent_field in ("effort", "budget_tokens", "preserve"):
+            if dependent_field not in overrides.model_fields_set:
+                values[dependent_field] = None
     return ReasoningConfig.model_validate(values)
 
 

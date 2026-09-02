@@ -9,9 +9,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Protocol, TypeVar, cast
+from typing import Protocol, TypeVar, cast
 
-from friday_core.interfaces.llm import ChatCompletionResponse
 from friday_llm import LiteLLMEmbeddingService, LiteLLMService, ResilienceConfig
 from friday_memory import (
     GraphEmbeddingUpdate,
@@ -30,6 +29,7 @@ from friday_memory.json_response import (
     json_response_text,
     parse_json_object_from_text,
 )
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from friday_chat.config import FridayChatConfig
@@ -76,10 +76,16 @@ class MaintenanceProviderConfig(StrictProviderModel):
 
     model: str = Field(min_length=1, max_length=256)
     api_base: str | None = Field(default=None, min_length=1, max_length=2048)
-    api_key: str | None = Field(default=None, min_length=1, max_length=4096)
+    api_key: str | None = Field(
+        default=None,
+        min_length=1,
+        max_length=4096,
+        repr=False,
+    )
     timeout_seconds: float = Field(default=30.0, gt=0.0, le=600.0)
     max_retries: int = Field(default=0, ge=0, le=10)
     temperature: float = Field(default=0.0, ge=0.0, le=2.0)
+    max_tokens: int = Field(default=8_000, gt=0, le=100_000)
 
     @model_validator(mode="after")
     def reject_unresolved_values(self) -> MaintenanceProviderConfig:
@@ -156,19 +162,6 @@ class LifecycleStepReport(StrictProviderModel):
 ProviderResponseT = TypeVar("ProviderResponseT", bound=StrictProviderModel)
 
 
-class MaintenanceChatService(Protocol):
-    """Narrow chat-completion boundary for maintenance providers."""
-
-    async def chat_completion(
-        self,
-        messages: list[dict[str, Any]],
-        *,
-        temperature: float,
-        max_tokens: int,
-        timeout: float,
-    ) -> ChatCompletionResponse: ...
-
-
 class MaintenanceLlmProvider(Protocol):
     """Narrow deterministic/testable maintenance LLM boundary."""
 
@@ -217,7 +210,7 @@ class LiteLlmMaintenanceProvider:
     """Production provider constructed only from explicit maintenance config."""
 
     role: MaintenanceLlmRole
-    service: MaintenanceChatService
+    service: MemoryLLMClient
     config: MaintenanceProviderConfig
 
     async def probe(self) -> None:
@@ -247,13 +240,14 @@ class LiteLlmMaintenanceProvider:
             "The object must validate against this JSON Schema:\n"
             f"{schema}"
         )
-        response: ChatCompletionResponse = await self.service.chat_completion(
+        response = await complete_memory_request(
+            self.service,
             messages=[
                 {"role": "system", "content": structured_system_prompt},
                 {"role": "user", "content": user_payload},
             ],
             temperature=self.config.temperature,
-            max_tokens=8_000,
+            max_tokens=self.config.max_tokens,
             timeout=self.config.timeout_seconds,
         )
         parsed = parse_json_object_from_text(json_response_text(response))
@@ -310,6 +304,41 @@ def _provider_config(
     return MaintenanceProviderConfig.model_validate(dict(raw))
 
 
+def _canonical_provider_config(
+    config: FridayChatConfig,
+    service_name: str,
+) -> MaintenanceProviderConfig:
+    """Derive non-secret execution controls from one resolved chat service."""
+    try:
+        spec = config.llm_service_specs[service_name]
+    except KeyError as exc:
+        raise ValueError(
+            f"unknown canonical maintenance LLM service {service_name!r}"
+        ) from exc
+    sampling = spec.generation_defaults.sampling
+    temperature = (
+        sampling.temperature
+        if sampling is not None and sampling.temperature is not None
+        else 0.0
+    )
+    return MaintenanceProviderConfig(
+        model=spec.model,
+        timeout_seconds=spec.resilience.timeout_seconds,
+        max_retries=spec.resilience.max_retries,
+        temperature=temperature,
+        max_tokens=spec.generation_defaults.max_tokens or 8_000,
+    )
+
+
+def _required_service_name(raw: object, *, key: str) -> str:
+    if not isinstance(raw, Mapping):
+        raise ValueError("canonical maintenance role must be a mapping")
+    value = raw.get(key)
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"canonical maintenance role requires {key}")
+    return value
+
+
 def build_explicit_maintenance_provider_registry(
     config: FridayChatConfig,
 ) -> ExplicitMaintenanceProviderRegistry:
@@ -321,10 +350,15 @@ def build_explicit_maintenance_provider_registry(
         if raw is None:
             continue
         try:
-            provider_config = _provider_config(raw)
-            llms[role] = LiteLlmMaintenanceProvider(
-                role=role,
-                service=LiteLLMService(
+            if config.llm_pool is not None:
+                service_name = _required_service_name(raw, key="llm_service")
+                provider_config = _canonical_provider_config(config, service_name)
+                service = LiteLLMService.from_spec(
+                    config.llm_service_specs[service_name]
+                )
+            else:
+                provider_config = _provider_config(raw)
+                service = LiteLLMService(
                     model_name=provider_config.model,
                     api_key=provider_config.api_key,
                     api_base=provider_config.api_base,
@@ -332,19 +366,40 @@ def build_explicit_maintenance_provider_registry(
                         max_retries=provider_config.max_retries,
                         timeout_seconds=provider_config.timeout_seconds,
                     ),
-                ),
+                )
+            llms[role] = LiteLlmMaintenanceProvider(
+                role=role,
+                service=service,
                 config=provider_config,
             )
-        except (TypeError, ValueError) as exc:
+        except (KeyError, TypeError, ValueError) as exc:
             errors[role.value] = (
                 f"maintenance provider configuration is invalid ({type(exc).__name__})"
             )
     embedding: MaintenanceEmbeddingProvider | None = None
     if config.maintenance.embedding is not None:
         try:
-            embedding_config = _provider_config(config.maintenance.embedding)
-            embedding = LiteLlmMaintenanceEmbeddingProvider(
-                service=LiteLLMEmbeddingService(
+            if config.embedding_pool is not None:
+                service_name = _required_service_name(
+                    config.maintenance.embedding,
+                    key="embedding_service",
+                )
+                try:
+                    spec = config.embedding_service_specs[service_name]
+                except KeyError as exc:
+                    raise ValueError(
+                        "unknown canonical maintenance embedding service "
+                        f"{service_name!r}"
+                    ) from exc
+                embedding_config = MaintenanceProviderConfig(
+                    model=spec.model,
+                    timeout_seconds=spec.resilience.timeout_seconds,
+                    max_retries=spec.resilience.max_retries,
+                )
+                embedding_service = LiteLLMEmbeddingService.from_spec(spec)
+            else:
+                embedding_config = _provider_config(config.maintenance.embedding)
+                embedding_service = LiteLLMEmbeddingService(
                     model_name=embedding_config.model,
                     api_key=embedding_config.api_key,
                     api_base=embedding_config.api_base,
@@ -352,10 +407,12 @@ def build_explicit_maintenance_provider_registry(
                         max_retries=embedding_config.max_retries,
                         timeout_seconds=embedding_config.timeout_seconds,
                     ),
-                ),
+                )
+            embedding = LiteLlmMaintenanceEmbeddingProvider(
+                service=embedding_service,
                 config=embedding_config,
             )
-        except (TypeError, ValueError) as exc:
+        except (KeyError, TypeError, ValueError) as exc:
             errors["embedding"] = (
                 f"maintenance embedding configuration is invalid ({type(exc).__name__})"
             )
@@ -1012,7 +1069,6 @@ __all__ = [
     "LiteLlmMaintenanceEmbeddingProvider",
     "LiteLlmMaintenanceProvider",
     "MaintenanceEmbeddingProvider",
-    "MaintenanceChatService",
     "MaintenanceLlmProvider",
     "MaintenanceLlmRole",
     "MaintenanceProviderConfig",

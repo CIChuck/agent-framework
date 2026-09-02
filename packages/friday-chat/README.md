@@ -8,7 +8,7 @@ Friday runtime, memory, agent, LLM, transcript, and tools packages.
 ## Install
 
 ```bash
-pip install friday-chat==0.1.0a1
+pip install friday-chat==0.1.0a2
 ```
 
 ## Run
@@ -23,48 +23,75 @@ friday-chat --help
 import friday_chat
 ```
 
-## Primary LLM Configuration
+## Model Library Configuration
 
-Friday Chat `0.1.0a1` uses Friday LLM's typed, provider-independent generation
-configuration on the primary chat path. Target identity is explicit so Friday
-does not infer provider capabilities from a model name or endpoint URL.
+Friday Chat `0.1.0a2` uses one provider-independent model library for primary
+chat, extraction, passage routing, compaction, maintenance, embeddings, and
+smart-file processing. Copy both packaged examples into the same directory,
+rename the model library if desired, and keep its path relative to the runtime
+configuration file.
 
 ```yaml
-llm:
-  model: openai/qwen3.8-27b-mlx
-  api_base: http://127.0.0.1:1234/v1
-  api_key: ${FRIDAY_LLM_API_KEY}
-  max_retries: 3
-  timeout_seconds: 120.0
-  generation:
-    reasoning:
-      mode: enabled
-      effort: medium
-      preserve: false
-    sampling:
-      temperature: 0.2
-      top_p: 0.95
-      top_k: 40
-      min_p: 0.0
-      presence_penalty: 0.0
-      frequency_penalty: 0.0
-      repetition_penalty: 1.0
-    max_tokens: 8000
-  transport_target:
-    provider: openai_compatible
-    dialect: openai_chat_completions
-    serving_engine: lm_studio
-  model_target:
-    model_id: qwen3.8-27b-mlx
-    family: qwen3_8
-    revision: lmstudio-community/Qwen3.8-27B-MLX-8bit
+model_library:
+  path: ./models-config.yaml
+llm_pool:
+  default_service: chat
+  services:
+    chat:
+      profile: qwen38_chat_local
+    extraction:
+      profile: qwen36_chat_local
+      generation_overrides:
+        reasoning: {mode: disabled}
+        sampling: {temperature: 0.0}
+        max_tokens: 8000
+embedding_pool:
+  default_service: memory
+  services:
+    memory:
+      profile: nomic_embedding_local
+extraction:
+  llm_service: extraction
+embedding:
+  embedding_service: memory
 ```
 
-Replace the revision with the exact artifact served by your local endpoint.
-Friday LLM `0.1.0a1` provides the built-in normalized reasoning profile for
-LM Studio, OpenAI-compatible Chat Completions, and Qwen3.8. Other transports
-continue to work through the legacy path but are not automatically assigned
-this capability profile.
+The referenced `models-config.yaml` stores reusable endpoint and model identity,
+but never a secret value:
+
+```yaml
+schema: friday.model-library/v1
+credentials:
+  local_lmstudio:
+    env: FRIDAY_LLM_API_KEY
+endpoints:
+  local_lmstudio:
+    api_base: http://127.0.0.1:1234/v1
+    provider: openai_compatible
+    serving_engine: lm_studio
+    default_credential: local_lmstudio
+profiles:
+  qwen38_chat_local:
+    kind: chat
+    endpoint: local_lmstudio
+    dialect: openai_chat_completions
+    model: openai/qwen3.8-27b-mlx
+    model_target:
+      model_id: qwen3.8-27b-mlx
+      family: qwen3_8
+      revision: replace-with-exact-served-revision
+```
+
+Export `FRIDAY_LLM_API_KEY` in the shell before startup. If you maintain a local
+`.env`, source it first; Friday Chat does not load `.env` files implicitly. For
+providers such as OpenRouter, define a credential entry whose `env` names the
+provider key and select that credential from each least-privilege service
+binding. Never put the key itself in either YAML file.
+
+Friday LLM provides the built-in normalized reasoning profile for LM Studio,
+OpenAI-compatible Chat Completions, and Qwen3.8. Other transports continue to
+work through compatibility behavior but are not automatically assigned that
+capability profile.
 
 Provider-specific controls, when needed, use a bounded `provider_options`
 object with an explicit namespace. Arbitrary provider keyword dictionaries are

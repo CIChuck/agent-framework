@@ -1,14 +1,15 @@
 [project]
 name = "friday-framework-agent"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Agent orchestration layer for Friday Framework"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
-    "friday-framework-core==0.1.0a1",
-    "friday-framework-memory==0.1.0a1",
+    "friday-framework-core==0.1.0a2",
+    "friday-framework-memory==0.1.0a2",
+    "friday-framework-llm==0.1.0a2",
 ]
 
 [project.urls]
@@ -39,3 +40,4 @@ asyncio_default_fixture_loop_scope = "function"
 [tool.uv.sources]
 friday-framework-core = { workspace = true }
 friday-framework-memory = { workspace = true }
+friday-framework-llm = { workspace = true }

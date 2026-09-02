@@ -10,7 +10,7 @@ from friday_chat.session import FridaySession
 
 
 def test_package_version_is_defined() -> None:
-    assert friday_chat.__version__ == "0.1.0a1"
+    assert friday_chat.__version__ == "0.1.0a2"
 
 
 def test_runtime_version_matches_distribution_metadata() -> None:

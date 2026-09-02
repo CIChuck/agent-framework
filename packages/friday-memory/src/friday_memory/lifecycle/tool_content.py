@@ -14,11 +14,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from friday_core.interfaces.llm import LLMClient
-
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 
 logger = logging.getLogger(__name__)
 
@@ -103,7 +100,7 @@ class ToolContentManager:
     def __init__(
         self,
         config: ToolContentConfig | None = None,
-        llm_client: LLMClient | None = None,
+        llm_client: MemoryLLMClient | None = None,
     ):
         """
         Initialize the ToolContentManager.
@@ -307,8 +304,9 @@ Content:
 Summary:"""
 
         try:
-            response = await self._llm.chat_completion(
-                [{"role": "user", "content": prompt}]
+            response = await complete_memory_request(
+                self._llm,
+                messages=[{"role": "user", "content": prompt}],
             )
             return response.content.strip()
         except Exception as e:

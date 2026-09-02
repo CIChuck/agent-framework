@@ -35,6 +35,10 @@ from typing import TYPE_CHECKING, Any
 from friday_memory.context.token_estimator import (
     build_token_estimator,
 )
+from friday_memory.llm_completion import (
+    MemoryLLMClient,
+    complete_structured_memory_request,
+)
 from friday_memory.models.budget import (
     CompactionConfig,
     CompactionResult,
@@ -42,7 +46,6 @@ from friday_memory.models.budget import (
 
 if TYPE_CHECKING:
     from friday_core import TelemetryInterface
-    from friday_core.interfaces import LLMClient
 
     from friday_memory.controller import MemoryController
     from friday_memory.retrieval import CollectionManager
@@ -92,7 +95,7 @@ class InSessionCompactor:
         self,
         memory_controller: MemoryController,
         collection_manager: CollectionManager,
-        llm_client: LLMClient,
+        llm_client: MemoryLLMClient,
         config: CompactionConfig | None = None,
         telemetry: TelemetryInterface | None = None,
         token_estimator_config: dict[str, Any] | None = None,
@@ -397,7 +400,8 @@ class InSessionCompactor:
                 turns_text = self._format_turns(batch)
                 original_tokens = self._count_tokens(turns_text)
 
-                response = await self._llm_client.chat_completion(
+                parsed = await complete_structured_memory_request(
+                    self._llm_client,
                     messages=[
                         {
                             "role": "system",
@@ -412,7 +416,6 @@ class InSessionCompactor:
                     temperature=0.0,
                 )
 
-                parsed = response._parsed_model
                 if parsed is None:
                     logger.warning(
                         "Failed to parse summarization response for batch %d",

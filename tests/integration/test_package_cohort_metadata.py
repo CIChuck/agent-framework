@@ -10,7 +10,7 @@ import tomllib
 from packaging.requirements import Requirement
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-COHORT_VERSION = "0.1.0a1"
+COHORT_VERSION = "0.1.0a2"
 COHORT_DISTRIBUTIONS = {
     "friday-chat",
     "friday-framework",

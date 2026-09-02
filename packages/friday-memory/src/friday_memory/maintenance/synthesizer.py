@@ -25,6 +25,7 @@ from friday_memory.json_response import (
     json_parse_warning_detail,
     parse_json_object_from_text,
 )
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 from friday_memory.maintenance.models import (
     KnowledgeGap,
     PromptsConfig,
@@ -36,8 +37,6 @@ from friday_memory.maintenance.models import (
 
 if TYPE_CHECKING:
     from collections.abc import Callable
-
-    from friday_llm import LiteLLMService
 
     from friday_memory.maintenance.logger import ReorganizationLogger
 
@@ -80,7 +79,7 @@ class MemorySynthesizer:
     def __init__(
         self,
         memory_dir: str | Path,
-        llm_service: LiteLLMService | None = None,
+        llm_service: MemoryLLMClient | None = None,
         config: SynthesisConfig | None = None,
         prompts: PromptsConfig | None = None,
         reorg_logger: ReorganizationLogger | None = None,
@@ -158,8 +157,7 @@ class MemorySynthesizer:
         Returns:
             Parsed JSON as dict, or empty dict if parsing fails
         """
-        parse_content = content if content.strip() else reasoning_content or ""
-        parsed = parse_json_object_from_text(parse_content)
+        parsed = parse_json_object_from_text(content)
         if parsed is not None:
             return parsed
 
@@ -425,7 +423,8 @@ class MemorySynthesizer:
             )
 
             try:
-                response = await self._llm.chat_completion(
+                response = await complete_memory_request(
+                    self._llm,
                     messages=[
                         {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
                         {"role": "user", "content": prompt},
@@ -550,7 +549,8 @@ class MemorySynthesizer:
                     or "No insights",
                 )
 
-                response = await self._llm.chat_completion(
+                response = await complete_memory_request(
+                    self._llm,
                     messages=[
                         {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
                         {"role": "user", "content": prompt},
@@ -639,7 +639,8 @@ class MemorySynthesizer:
                 relationships="\n".join(relationship_summaries),
             )
 
-            response = await self._llm.chat_completion(
+            response = await complete_memory_request(
+                self._llm,
                 messages=[
                     {"role": "system", "content": _SYNTHESIS_SYSTEM_PROMPT},
                     {"role": "user", "content": prompt},

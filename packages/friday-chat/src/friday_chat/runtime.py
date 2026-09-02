@@ -1263,6 +1263,24 @@ def _resolve_maintenance_llms(
     role_configs = config.maintenance.llm
 
     for role in MAINTENANCE_LLM_ROLES:
+        if config.llm_pool is not None:
+            role_config = role_configs.get(role)
+            role_data = role_config if isinstance(role_config, Mapping) else {}
+            configured_service = role_data.get("llm_service")
+            service_name = (
+                configured_service
+                if isinstance(configured_service, str) and configured_service
+                else role
+            )
+            try:
+                models[role] = config.llm_service_specs[service_name].model
+            except KeyError as error:
+                raise ValueError(
+                    f"Maintenance role {role!r} references unknown canonical "
+                    f"LLM service {service_name!r}"
+                ) from error
+            continue
+
         model = None
         role_config = role_configs.get(role)
         if isinstance(role_config, Mapping):

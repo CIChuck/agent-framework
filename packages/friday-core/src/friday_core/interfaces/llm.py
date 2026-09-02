@@ -62,9 +62,11 @@ class ChatCompletionResponse:
 
 class LLMClient(Protocol):
     """
-    Abstract interface for LLM inference.
+    Compatibility interface for legacy flat-parameter LLM inference.
 
-    Implementations should handle:
+    New consumers that require reasoning, sampling, target assurance, or typed
+    streaming should use Friday LLM's typed-client protocol. Implementations
+    of this compatibility interface should handle:
     - Provider-specific API formatting
     - Retry logic for transient errors
     - Tool call parsing from responses

@@ -1,0 +1,86 @@
+schema: friday.model-library/v1
+
+credentials:
+  local_lmstudio:
+    env: FRIDAY_LLM_API_KEY
+  openrouter:
+    env: FRIDAY_OPENROUTER_API_KEY
+
+endpoints:
+  local_lmstudio:
+    api_base: http://127.0.0.1:1234/v1
+    provider: openai_compatible
+    serving_engine: lm_studio
+    default_credential: local_lmstudio
+    resilience:
+      max_retries: 3
+      timeout_seconds: 120
+  openrouter:
+    api_base: https://openrouter.ai/api/v1
+    provider: openrouter
+    serving_engine: openrouter
+    default_credential: openrouter
+    resilience:
+      max_retries: 2
+      timeout_seconds: 90
+
+profiles:
+  qwen38_chat_local:
+    kind: chat
+    endpoint: local_lmstudio
+    dialect: openai_chat_completions
+    model: openai/qwen3.8-27b-mlx
+    model_target:
+      model_id: qwen3.8-27b-mlx
+      family: qwen3_8
+      revision: lmstudio-community/Qwen3.8-27B-MLX-8bit
+    generation:
+      reasoning:
+        mode: enabled
+        effort: medium
+        preserve: false
+      sampling:
+        temperature: 0.2
+        top_p: 0.95
+        top_k: 40
+        min_p: 0.0
+        presence_penalty: 0.0
+        frequency_penalty: 0.0
+        repetition_penalty: 1.0
+      max_tokens: 8000
+  qwen36_chat_local:
+    kind: chat
+    endpoint: local_lmstudio
+    dialect: openai_chat_completions
+    model: openai/qwen3.6-35b-a3b-mlx
+    model_target:
+      model_id: qwen3.6-35b-a3b-mlx
+      family: qwen3_6
+      revision: replace-with-exact-lm-studio-revision
+  nomic_embedding_local:
+    kind: embedding
+    endpoint: local_lmstudio
+    dialect: openai_embeddings
+    model: openai/nomic-embed-text-v1.5
+    model_target:
+      model_id: nomic-embed-text-v1.5
+      family: nomic_embed
+      revision: replace-with-exact-lm-studio-revision
+  gemini25_flash_openrouter:
+    kind: chat
+    endpoint: openrouter
+    dialect: openai_chat_completions
+    model: openrouter/google/gemini-2.5-flash
+    model_target:
+      model_id: google/gemini-2.5-flash
+      family: gemini_2_5_flash
+      revision: openrouter-route-google-gemini-2.5-flash-2026-08-28
+  gemini36_flash_openrouter:
+    kind: chat
+    endpoint: openrouter
+    dialect: openai_chat_completions
+    model: openrouter/google/gemini-3.6-flash
+    model_target:
+      model_id: google/gemini-3.6-flash
+      family: gemini_3_6_flash
+      revision: openrouter-route-google-gemini-3.6-flash-2026-08-28

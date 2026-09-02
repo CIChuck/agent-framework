@@ -47,7 +47,7 @@ from friday_mcp.protocols import (
     ToolDefinition,
 )
 
-__version__ = "0.1.0a1"
+__version__ = "0.1.0a2"
 
 __all__ = [
     # Protocols

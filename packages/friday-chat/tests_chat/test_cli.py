@@ -12,11 +12,22 @@ from typer.testing import CliRunner
 
 PACKAGE_PYPROJECT = Path("packages/friday-chat/pyproject.toml")
 EXAMPLE_CONFIG = Path("packages/friday-chat/config.example.yaml")
+EXAMPLE_MODEL_LIBRARY = Path("packages/friday-chat/models-config.example.yaml")
 CONFIG_TEMPLATE_PACKAGE = "friday_chat.config_templates"
 
 
 def _set_placeholder_env(path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     for env_name in sorted(set(re.findall(r"\$\{([A-Z0-9_]+)\}", path.read_text()))):
+        monkeypatch.setenv(env_name, f"test-{env_name.lower()}")
+
+
+def _set_model_library_credentials(
+    path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    for env_name in sorted(
+        set(re.findall(r"^\s+env:\s+([A-Z][A-Z0-9_]*)\s*$", path.read_text(), re.M))
+    ):
         monkeypatch.setenv(env_name, f"test-{env_name.lower()}")
 
 
@@ -60,13 +71,18 @@ def test_package_declares_console_script() -> None:
 
 def test_package_includes_config_templates() -> None:
     config_template = files(CONFIG_TEMPLATE_PACKAGE).joinpath("config.example.yaml")
+    models_template = files(CONFIG_TEMPLATE_PACKAGE).joinpath(
+        "models-config.example.yaml"
+    )
     cli_config_template = files(CONFIG_TEMPLATE_PACKAGE).joinpath(
         "cli-config.example.yaml"
     )
 
     assert config_template.is_file()
+    assert models_template.is_file()
     assert cli_config_template.is_file()
-    assert "llm:" in config_template.read_text(encoding="utf-8")
+    assert "model_library:" in config_template.read_text(encoding="utf-8")
+    assert "friday.model-library/v1" in models_template.read_text(encoding="utf-8")
     assert "banner:" in cli_config_template.read_text(encoding="utf-8")
 
 
@@ -135,6 +151,7 @@ def test_cli_config_starts_with_full_example_config(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _set_placeholder_env(EXAMPLE_CONFIG, monkeypatch)
+    _set_model_library_credentials(EXAMPLE_MODEL_LIBRARY, monkeypatch)
     _install_cli_inputs(monkeypatch, ["/q"])
     runner = CliRunner()
 

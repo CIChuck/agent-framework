@@ -13,7 +13,7 @@ import asyncio
 import hashlib
 import logging
 from collections import OrderedDict
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import litellm
 from tenacity import (
@@ -29,12 +29,17 @@ from friday_llm.config import ResilienceConfig
 from friday_llm.exceptions import (
     LLMRetryExhaustedError,
     LLMTimeoutError,
+    TargetIdentityError,
 )
 from friday_llm.pricing import CostCalculator, PricingConfig
+from friday_llm.targets import ExecutionTarget, ModelTarget, TransportTarget
 from friday_llm.telemetry_helper import LLMTelemetryHelper
 from friday_llm.telemetry_models import TokenUsage
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from friday_llm.model_library import EmbeddingServiceSpec
 
 
 class LiteLLMEmbeddingService:
@@ -73,6 +78,8 @@ class LiteLLMEmbeddingService:
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
         cache_size: int = 100,
+        transport_target: TransportTarget | None = None,
+        model_target: ModelTarget | None = None,
     ) -> None:
         """
         Initialize the embedding service.
@@ -93,6 +100,31 @@ class LiteLLMEmbeddingService:
         self.api_base = api_base
         self.batch_size = batch_size
         self.telemetry = telemetry
+        if (transport_target is None) != (model_target is None):
+            raise TargetIdentityError(
+                "transport_target and model_target must be supplied together"
+            )
+        self.execution_target = (
+            ExecutionTarget(transport=transport_target, model=model_target)
+            if transport_target is not None and model_target is not None
+            else None
+        )
+        if self.execution_target is not None:
+            model_id = self.execution_target.model.model_id
+            if model_name != model_id and not model_name.endswith(f"/{model_id}"):
+                raise TargetIdentityError(
+                    "model_name routing identity contradicts model_target.model_id"
+                )
+            transport = self.execution_target.transport
+            if (
+                transport.provider == "openai_compatible"
+                and transport.dialect == "openai_embeddings"
+                and not model_name.startswith("openai/")
+            ):
+                raise TargetIdentityError(
+                    "OpenAI-compatible embedding targets require LiteLLM's "
+                    "openai/ routing prefix"
+                )
 
         # Use defaults if no config provided
         self._resilience = resilience or ResilienceConfig()
@@ -117,6 +149,32 @@ class LiteLLMEmbeddingService:
         self._embedding_cache: OrderedDict[str, list[float]] = OrderedDict()
         self._cache_hits = 0
         self._cache_misses = 0
+
+    @classmethod
+    def from_spec(
+        cls,
+        spec: EmbeddingServiceSpec,
+        *,
+        telemetry: Any | None = None,
+        pricing_config: PricingConfig | None = None,
+    ) -> LiteLLMEmbeddingService:
+        """Construct an embedding service from a resolved catalog spec."""
+
+        api_key = (
+            spec.api_key.get_secret_value() if spec.api_key is not None else None
+        )
+        return cls(
+            model_name=spec.model,
+            api_key=api_key,
+            api_base=spec.api_base,
+            batch_size=spec.batch_size,
+            telemetry=telemetry,
+            resilience=spec.resilience,
+            pricing_config=pricing_config,
+            cache_size=spec.cache_size,
+            transport_target=spec.execution_target.transport,
+            model_target=spec.execution_target.model,
+        )
 
     def _get_cache_key(self, text: str) -> str:
         """Generate cache key from text using MD5 hash."""

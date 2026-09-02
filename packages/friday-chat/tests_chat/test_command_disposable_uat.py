@@ -362,6 +362,10 @@ def _config_derived_from_example(state_root: Path) -> FridayChatConfig:
         raise TypeError("example config must be a mapping")
     raw = cast(dict[str, Any], raw_value)
 
+    raw.pop("model_library", None)
+    raw.pop("llm_pool", None)
+    raw.pop("embedding_pool", None)
+    raw["llm"] = {}
     llm = _section(raw, "llm")
     for typed_key in (
         "generation",
@@ -378,7 +382,9 @@ def _config_derived_from_example(state_root: Path) -> FridayChatConfig:
             "max_retries": 0,
         }
     )
-    _section(raw, "embedding").update(
+    embedding = _section(raw, "embedding")
+    embedding.pop("embedding_service", None)
+    embedding.update(
         {
             "model": "openai/gate-f-deterministic-embedding",
             "api_base": "http://provider.invalid/v1",
@@ -386,6 +392,7 @@ def _config_derived_from_example(state_root: Path) -> FridayChatConfig:
         }
     )
     extraction = _section(raw, "extraction")
+    extraction.pop("llm_service", None)
     extraction.update(
         {
             "interval": -1,

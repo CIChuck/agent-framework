@@ -36,12 +36,9 @@ def parse_json_object_from_text(content: str | None) -> dict[str, Any] | None:
 
 
 def json_response_text(response: Any) -> str:
-    """Return the text field most likely to contain provider JSON output."""
+    """Return final response text without exposing model reasoning."""
     content = getattr(response, "content", None) or ""
-    if content.strip():
-        return content
-    reasoning_content = getattr(response, "reasoning_content", None) or ""
-    return reasoning_content
+    return content
 
 
 def json_parse_warning_detail(
