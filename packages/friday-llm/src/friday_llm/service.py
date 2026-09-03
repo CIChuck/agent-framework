@@ -14,7 +14,7 @@ import json
 import logging
 import re
 import warnings
-from collections.abc import AsyncIterator
+from collections.abc import AsyncIterator, Mapping
 from typing import TYPE_CHECKING, Any
 
 import litellm
@@ -974,7 +974,7 @@ class LiteLLMService:
         # Preserve reasoning_content for thinking models (e.g. Moonshot
         # Kimi K2.5).  Must be replayed in assistant tool-call messages
         # or the provider will reject the next request.
-        reasoning_content = getattr(message, "reasoning_content", None)
+        reasoning_content = self._extract_reasoning_content(message)
 
         return ChatCompletionResponse(
             content=message.content,
@@ -994,9 +994,7 @@ class LiteLLMService:
         legacy = self._parse_response(response)
         choice = response.choices[0]
         message = choice.message
-        reasoning_content = getattr(message, "reasoning_content", None) or getattr(
-            message, "reasoning", None
-        )
+        reasoning_content = self._extract_reasoning_content(message)
         usage = getattr(response, "usage", None)
         details = (
             getattr(usage, "completion_tokens_details", None)
@@ -1036,6 +1034,22 @@ class LiteLLMService:
                 litellm_version=summary.litellm_version,
             ),
         )
+
+    @staticmethod
+    def _extract_reasoning_content(message: Any) -> str | None:
+        """Normalize provider reasoning without exposing it to persistence."""
+
+        for attribute in ("reasoning_content", "reasoning"):
+            value = getattr(message, attribute, None)
+            if isinstance(value, str) and value:
+                return value
+
+        provider_fields = getattr(message, "provider_specific_fields", None)
+        if isinstance(provider_fields, Mapping):
+            value = provider_fields.get("reasoning_content")
+            if isinstance(value, str) and value:
+                return value
+        return None
 
     def _parse_tool_arguments(
         self,

@@ -64,6 +64,26 @@ def _response() -> SimpleNamespace:
     )
 
 
+def _provider_specific_reasoning_response() -> SimpleNamespace:
+    message = SimpleNamespace(
+        content="",
+        reasoning_content=None,
+        reasoning=None,
+        provider_specific_fields={"reasoning_content": "private provider reasoning"},
+        tool_calls=[
+            SimpleNamespace(
+                id="call-1",
+                function=SimpleNamespace(name="echo", arguments='{"text":"hello"}'),
+            )
+        ],
+    )
+    return SimpleNamespace(
+        choices=[SimpleNamespace(message=message, finish_reason="tool_calls")],
+        model="qwen3.8-27b-mlx",
+        usage=None,
+    )
+
+
 def test_import_does_not_mutate_litellm_parameter_policy() -> None:
     litellm.drop_params = False
     litellm.modify_params = False
@@ -98,6 +118,19 @@ async def test_typed_request_uses_strict_frozen_call_spec() -> None:
     assert response.usage.reasoning_tokens == 7
     assert response.assurance.acknowledged_fields == ()
     assert response.assurance.behaviorally_observed_fields == ()
+
+
+@pytest.mark.asyncio
+async def test_typed_response_promotes_provider_specific_reasoning() -> None:
+    request = ChatCompletionRequest(
+        messages=({"role": "user", "content": "fixed synthetic prompt"},),
+    )
+    with patch("litellm.acompletion", new_callable=AsyncMock) as completion:
+        completion.return_value = _provider_specific_reasoning_response()
+        response = await _service().chat_completion_request(request)
+
+    assert response.reasoning_content == "private provider reasoning"
+    assert response.tool_calls[0].id == "call-1"
 
 
 @pytest.mark.asyncio
