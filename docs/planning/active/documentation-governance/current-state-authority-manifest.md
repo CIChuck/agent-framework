@@ -49,7 +49,7 @@ of unfinished package implementation.
 | Friday Chat V2 parity implementation | Completed historical packet with a newly corrected directory spelling | Friday Chat V2 behavioral contracts, parity matrix, task list, and compatibility protocol | Preserve as historical contract/evidence; repair backlinks and archive the packet |
 | Reorganization Remediation 1 | Implemented and validated | `docs/archive/completed/2026/reorganization-remediation-1/`; implementation commit `baed8f2` | No implementation action |
 | Friday Chat Command Remediation 1 | Implemented; Gates A-F passed | `docs/archive/completed/2026/friday-chat-command-remediation/`; completion commit `dbd840f` | No implementation action |
-| Documentation information architecture | Active on isolated branch | `docs/planning/active/documentation-governance/README.md` | Complete DG-01 inventory and classification |
+| Documentation information architecture | Active on isolated branch | `docs/planning/active/documentation-governance/README.md` | Complete DG-08 maintainer final review before any push |
 
 ## Authority Rules During Migration
 

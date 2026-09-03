@@ -74,8 +74,9 @@ Included:
 - Package source behavior is out of scope.
 - Local runtime state, `.friday/`, Chroma data, transcripts, caches, and provider
   credentials are out of scope.
-- Untracked review documents and configuration backups are preserved and remain
-  unstaged until the maintainer confirms whether they belong in this branch.
+- The two maintainer-approved review documents are included in their queued
+  initiative packets. The unrelated Friday Chat configuration backup remains
+  preserved and unstaged.
 - Ignored credential and recovery-code material must not be opened, copied,
   staged, or committed. Its removal or relocation requires explicit maintainer
   authorization.
