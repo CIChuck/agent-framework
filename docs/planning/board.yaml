@@ -5,10 +5,10 @@ tasks:
   title: Development Kanban governance
   priority: 1
   work_state: started
-  condition: blocked
-  implementation_authority: closed
-  packet: docs/planning/blocked/development-kanban-governance/
-  next_gate: maintainer authorization for REM-002 source/test remediation
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/development-kanban-governance/
+  next_gate: freeze the REM-002 candidate and dispatch VAL-003
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:
@@ -379,3 +379,10 @@ events:
   action: condition normal -> blocked
   note: VAL-002 requested source/test remediation outside the approved documentation-only scope
   evidence: VAL-002-F01; proposed REM-002 not authorized
+- task: development-kanban-governance
+  at: '2026-09-03T22:18:00+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer approved REM-002 bounded source and test remediation
+  evidence: Explicit maintainer authorization in active conversation on 2026-09-03

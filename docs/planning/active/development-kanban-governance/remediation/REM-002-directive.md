@@ -1,12 +1,12 @@
 # REM-002 Delivery-State Preservation Construction Directive
 
-Status: proposed; not authorized
+Status: implemented; independent validation pending
 
 ## Authority Required
 
-The current maintainer authority is documentation/process-only and explicitly
-forbids source and test changes. Do not execute this directive until the
-maintainer explicitly authorizes its bounded source/test scope.
+The repository maintainer explicitly approved this directive and its bounded
+source/test scope on 2026-09-03. No authority is granted beyond the allowed
+scope, verification, and closeout artifacts below.
 
 ## Source Finding
 

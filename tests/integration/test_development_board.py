@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 from typing import cast
 
+import pytest
 import yaml
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
@@ -316,3 +317,103 @@ def test_started_and_completed_transitions_enforce_gates(tmp_path: Path) -> None
     )
     assert merged.returncode == 0, merged.stdout + merged.stderr
     assert _load_task(tmp_path)["delivery_state"] == "merged"
+
+
+@pytest.mark.parametrize(
+    "delivery_state",
+    ["local", "pushed", "merged", "released", "unknown"],
+)
+def test_reopening_completed_work_preserves_delivery_state(
+    tmp_path: Path,
+    delivery_state: str,
+) -> None:
+    _write_minimal_board(tmp_path)
+    approval = _run(
+        tmp_path,
+        "transition",
+        "example-task",
+        "approved",
+        "--actor",
+        "Maintainer",
+        "--actor-role",
+        "maintainer",
+        "--note",
+        "Approved bounded implementation",
+        "--next-gate",
+        "start approved work",
+    )
+    assert approval.returncode == 0, approval.stdout + approval.stderr
+
+    queued = tmp_path / "docs" / "planning" / "queued" / "example-task"
+    active = tmp_path / "docs" / "planning" / "active" / "example-task"
+    queued.rename(active)
+    started = _run(
+        tmp_path,
+        "transition",
+        "example-task",
+        "started",
+        "--packet",
+        "docs/planning/active/example-task/",
+        "--branch",
+        "feature/example-task",
+        "--actor",
+        "Codex",
+        "--actor-role",
+        "agent",
+        "--note",
+        "Started approved work",
+        "--next-gate",
+        "complete implementation",
+    )
+    assert started.returncode == 0, started.stdout + started.stderr
+    assert _load_task(tmp_path)["delivery_state"] == "local"
+
+    review = tmp_path / "docs" / "planning" / "review" / "example-task"
+    active.rename(review)
+    completed = _run(
+        tmp_path,
+        "transition",
+        "example-task",
+        "completed",
+        "--packet",
+        "docs/planning/review/example-task/",
+        "--evidence",
+        "focused tests passed",
+        "--actor",
+        "Codex",
+        "--actor-role",
+        "agent",
+        "--note",
+        "Ready for maintainer review",
+        "--next-gate",
+        "maintainer acceptance",
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+
+    board_path = tmp_path / "docs" / "planning" / "board.yaml"
+    board = yaml.safe_load(board_path.read_text(encoding="utf-8"))
+    board["tasks"][0]["delivery_state"] = delivery_state
+    board_path.write_text(yaml.safe_dump(board, sort_keys=False), encoding="utf-8")
+    rendered = _run(tmp_path, "render")
+    assert rendered.returncode == 0, rendered.stdout + rendered.stderr
+
+    review.rename(active)
+    reopened = _run(
+        tmp_path,
+        "transition",
+        "example-task",
+        "started",
+        "--packet",
+        "docs/planning/active/example-task/",
+        "--actor",
+        "Codex",
+        "--actor-role",
+        "agent",
+        "--note",
+        "Reopened completed work",
+        "--next-gate",
+        "complete remediation",
+    )
+
+    assert reopened.returncode == 0, reopened.stdout + reopened.stderr
+    assert _load_task(tmp_path)["delivery_state"] == delivery_state

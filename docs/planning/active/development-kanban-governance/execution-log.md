@@ -131,3 +131,31 @@
 - Set `execution_phase: remediation`,
   `validation_state: changes_requested`, and condition `blocked` at the
   maintainer-authorization gate.
+
+## 2026-09-03 — REM-002 Authorized
+
+- The maintainer explicitly approved REM-002 and its bounded source/test
+  remediation.
+- Moved the packet from `blocked` to `active`, restored condition `normal`, and
+  granted implementation authority only for the board script, focused test
+  file, and validation closeout artifacts named in REM-002.
+- The initiative remains `started` with
+  `validation_state: changes_requested` until the remediated candidate receives
+  a fresh aggregate review.
+
+## 2026-09-03 — REM-002 Implemented
+
+- Changed the board transition command so only an initial `not_started` delivery
+  state is promoted to `local`; reopening now preserves all existing delivery
+  facts.
+- Added parameterized regression coverage for preserving `local`, `pushed`,
+  `merged`, `released`, and `unknown`, while also confirming initial promotion
+  to `local`.
+- Focused board tests passed: 10 tests.
+- Focused Ruff passed for the board script and test.
+- Mypy passed for the board script under the repository Python 3.10 target and
+  for both changed files under the active Python 3.13 interpreter. Combined
+  checking under the Python 3.10 target encountered pre-existing NumPy-stub
+  syntax requiring Python 3.12 or newer.
+- Set `execution_phase: validation` and `validation_state: pending` before
+  freezing the candidate for VAL-003.

@@ -4,16 +4,16 @@
 title: Development Kanban Governance
 initiative: development-kanban-governance
 document_type: initiative-index
-status: started; blocked on source-change authority
+status: started; REM-002 validation pending
 work_state: started
-condition: blocked
+condition: normal
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/development-kanban-governance
-next_gate: maintainer authorization for REM-002 source/test remediation
-implementation_authority: closed
-execution_phase: remediation
-validation_state: changes_requested
+next_gate: freeze the REM-002 candidate and dispatch VAL-003
+implementation_authority: granted
+execution_phase: validation
+validation_state: pending
 construction_directive: exempt
 ---
 
@@ -80,5 +80,10 @@ while the corrected candidate awaits a fresh aggregate review.
 `VAL-002` resolved both prior findings and passed every required command, but
 returned `CHANGES_REQUESTED` for a delivery-history defect in previously
 generated board automation. The current documentation-only authority forbids
-the required source and test changes. `REM-002` is proposed but not authorized;
-the packet is blocked pending an explicit maintainer decision.
+the required source and test changes. At that review gate, `REM-002` was proposed
+but not authorized and the packet was blocked pending a maintainer decision.
+
+The maintainer approved REM-002 on 2026-09-03. Implementation authority is
+limited to the two files and validation artifacts named by that directive.
+The bounded change and focused regression coverage are implemented; the work
+remains `started` pending a fresh aggregate review.

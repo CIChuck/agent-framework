@@ -617,7 +617,8 @@ def _command_transition(
             task["branch"] = args.branch
         if not task.get("branch"):
             raise BoardError("started work requires --branch or an existing branch")
-        task["delivery_state"] = "local"
+        if task["delivery_state"] == "not_started":
+            task["delivery_state"] = "local"
         task["implementation_authority"] = "granted"
     if new_state == "completed":
         if not args.evidence:
