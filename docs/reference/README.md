@@ -4,7 +4,8 @@ Durable technical and governance material for the Friday Agent Framework.
 
 ## Current Reference Collections
 
-- [policies](policies/) — canonical repository policy and explicit policy debt.
+- [policies](policies/) — canonical repository policy, development task lifecycle,
+  and explicit policy debt.
 - [llm](llm/) — implemented LLM configuration and model-library contracts.
 - [releases](releases/) — package publication evidence, release notes, handoffs,
   and artifact manifests.

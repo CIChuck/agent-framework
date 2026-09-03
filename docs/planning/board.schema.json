@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://friday-framework.dev/schemas/development-board-v1.json",
+  "title": "Friday development board",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "updated", "tasks", "events"],
+  "properties": {
+    "version": {"const": 1},
+    "updated": {"type": "string", "format": "date"},
+    "tasks": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/task"}
+    },
+    "events": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/event"}
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "priority",
+        "work_state",
+        "condition",
+        "implementation_authority",
+        "packet",
+        "next_gate",
+        "delivery_state",
+        "branch",
+        "depends_on",
+        "validation"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "title": {"type": "string", "minLength": 1},
+        "priority": {"type": "integer", "minimum": 1},
+        "work_state": {
+          "enum": ["queued", "approved", "started", "completed", "accepted"]
+        },
+        "condition": {"enum": ["normal", "blocked", "deferred", "backlog"]},
+        "implementation_authority": {
+          "enum": ["not_granted", "design_only", "granted", "closed"]
+        },
+        "packet": {"type": "string", "pattern": "^docs/(planning|archive)/.+/$"},
+        "next_gate": {"type": "string", "minLength": 1},
+        "delivery_state": {
+          "enum": ["not_started", "local", "pushed", "merged", "released", "unknown"]
+        },
+        "branch": {"type": ["string", "null"]},
+        "depends_on": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "validation": {"type": "array", "items": {"type": "string"}},
+        "legacy_import": {"type": "boolean"},
+        "approved_by": {"type": "string"},
+        "approved_at": {"type": "string", "format": "date"},
+        "accepted_by": {"type": "string"},
+        "accepted_at": {"type": "string", "format": "date"}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task", "at", "actor", "actor_role", "action", "note"],
+      "properties": {
+        "task": {"type": "string"},
+        "at": {"type": "string"},
+        "actor": {"type": "string"},
+        "actor_role": {"enum": ["maintainer", "agent"]},
+        "action": {"type": "string"},
+        "note": {"type": "string"},
+        "evidence": {"type": "string"}
+      }
+    }
+  }
+}

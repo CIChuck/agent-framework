@@ -2,6 +2,7 @@
 
 ## Repository Policy
 - The canonical engineering policy for this repository is [docs/reference/policies/repository-engineering-policy.md](docs/reference/policies/repository-engineering-policy.md).
+- Development work state and authorization are tracked by [docs/planning/board.yaml](docs/planning/board.yaml) under [docs/reference/policies/development-task-lifecycle.md](docs/reference/policies/development-task-lifecycle.md).
 - All code changes must comply with that policy.
 
 Priority operational rules for agents:
@@ -11,6 +12,7 @@ Priority operational rules for agents:
 - Cross-package contracts should use typed models or declared interfaces, not incidental implementation details.
 - If a requested change conflicts with repository policy, stop and explain the conflict.
 - Preserve unrelated local changes and generated state. Do not clean caches, `.friday/`, Chroma/transcript state, or dirty worktree files unless explicitly asked.
+- Do not implement a queued task or infer approval or acceptance from a branch, push, merge, release, or stale plan label.
 
 ## Project Structure & Module Organization
 - `packages/` contains the workspace libraries. The current package set includes `friday-core`, `friday-telemetry`, `friday-llm`, `friday-transcript`, `friday-memory`, `friday-agent`, `friday-runtime`, `friday-cli`, `friday-tools`, `friday-sandbox`, `friday-mcp`, `friday-speech`, `friday-finance`, `friday-moltbook`, and `friday-optimization`.

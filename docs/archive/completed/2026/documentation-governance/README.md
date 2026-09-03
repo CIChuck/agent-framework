@@ -4,14 +4,18 @@
 title: Documentation Information Architecture Remediation
 initiative: documentation-governance
 document_type: remediation-plan
-status: active
+status: accepted
+work_state: accepted
 created: 2026-09-03
 updated: 2026-09-03
 owner: repository maintainer
 branch: feature/docs-information-architecture-remediation
 baseline_commit: 482b857507409fb73556e273f96acdce1c398480
 release_baseline: v0.1.0a2
-next_gate: DG-08 maintainer final review
+next_gate: none; accepted and merged
+delivery_state: merged
+pull_request: 5
+merge_commit: 63cb579
 ---
 
 ## Authorization
@@ -39,7 +43,7 @@ state unambiguous by:
 ## Source Authority And Precedence
 
 1. Explicit maintainer instructions in the active task.
-2. [Repository engineering policy](../../../reference/policies/repository-engineering-policy.md).
+2. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md).
 3. This remediation plan and its approved amendments.
 4. The [current-state authority manifest](current-state-authority-manifest.md).
 5. Initiative-specific requirements, architecture, build plans, tactical plans,
@@ -109,6 +113,7 @@ docs/
     README.md                     # current-work dashboard
     active/<initiative>/
     queued/<initiative>/
+    review/<initiative>/
     blocked/<initiative>/
     deferred/<initiative>/
     backlog/<initiative>/
@@ -303,7 +308,7 @@ Acceptance:
 
 ### DG-08: Validation And Closeout
 
-Status: in progress; maintainer final review remains
+Status: complete
 
 - Run link, lifecycle, path-reference, Markdown, and whitespace checks.
 - Run affected package tests for any path-based fixtures.
@@ -390,5 +395,9 @@ receive an index. This default can be revisited during final review.
 - `git diff --check`: passed after whitespace cleanup.
 - `git diff --quiet 482b857 -- docs/guides`: passed.
 
-The branch remains local pending maintainer final review and explicit push
-authorization.
+### Acceptance and merge
+
+- The maintainer accepted the refactor after final review.
+- Pull request 5 merged into `master` at `63cb579`.
+- The remote and local remediation branches were deleted after merge.
+- This packet moved to the completed archive as the retained execution record.

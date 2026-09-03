@@ -4,7 +4,7 @@
 title: Documentation Classification And Path Migration Ledger
 initiative: documentation-governance
 document_type: migration-ledger
-status: active
+status: archived
 created: 2026-09-03
 updated: 2026-09-03
 baseline_commit: 482b857507409fb73556e273f96acdce1c398480

@@ -17,6 +17,8 @@ packet and maintainer approval.
 - `migration-refactor-analyst.md`
 - `remediation-closeout.md`
 - `traceability-matrix.md`
+- [`friday-dev-board/SKILL.md`](friday-dev-board/SKILL.md) — operate current
+  development tasks from the canonical board without inferring authorization.
 - `subagent-directives-template.md`
 - `subagets=worktrees-template.md` — retained with its historical filename until
   backlink-safe spelling correction is performed.

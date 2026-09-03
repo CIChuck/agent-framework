@@ -1,78 +1,71 @@
 # Planning Dashboard
 
-This directory contains current or potentially actionable work. Directory lanes
-describe lifecycle; they do not grant implementation authority.
+This dashboard is generated from [`board.yaml`](board.yaml), the canonical
+current-state registry. Do not edit task state in this file directly.
 
-## Current Development Sequence
-
-| Priority | Initiative | State | Controlling packet | Next gate |
-| --- | --- | --- | --- | --- |
-| 1 | Documentation information architecture | Active | [documentation-governance](active/documentation-governance/) | Complete migration, validation, and maintainer review |
-| 2 | Friday Chat client-session shutdown | Draft remediation candidate | [friday-chat-client-lifecycle](queued/friday-chat-client-lifecycle/) | Reproduce and approve bounded remediation |
-| 3 | Friday MCP client enhancement | Draft, not authorized | [friday-mcp](queued/friday-mcp/) | Review packet and approve `MCP-WS-00` |
-
-The published typed-LLM `0.1.0a2` cohort is complete. Its planning records are
-archived, while release evidence remains under
-[reference/releases](../reference/releases/).
-
-## Active
-
-- [Documentation governance](active/documentation-governance/) — reorganizing
-  documentation without changing product behavior or end-user guides.
+The governing workflow is the
+[development task lifecycle policy](../reference/policies/development-task-lifecycle.md).
+Directory placement does not grant implementation authority.
 
 ## Queued
 
-- [Friday Chat client lifecycle](queued/friday-chat-client-lifecycle/) — live
-  shutdown resource warning awaiting bounded remediation authority.
-- [Friday MCP](queued/friday-mcp/) — draft MCP client integration packet.
-- [Memory V2](queued/memory-v2/) — completed package review and locked clean-state
-  boundary; design and implementation are not authorized.
-- [Tool governance](queued/tool-governance/) — security reviews and draft unified
-  authorization plan.
-- [Framework validation and contracts](queued/framework-validation-and-contracts/)
-  — planned repository-gate and framework-contract cleanup.
-- [Prompt-injection mitigation](queued/prompt-injection-mitigation/) — marked
-  ready for implementation in its source plan but without an execution record.
-- [Claude Agent SDK tools](queued/claude-agent-sdk-tools/) — approved historical
-  tool plan awaiting current-scope confirmation.
-- [Friday startup context](queued/friday-startup-context/) — draft `friday.md`
-  behavior.
-- [Friday Web Chat](queued/friday-web-chat/) — draft browser application plan.
-- [Friday API](queued/friday-api/) and [Friday TUI](queued/friday-tui/) — product
-  proposals, not current implementation authority.
-- [Friday Speech](queued/friday-speech/) — unapproved draft.
-- [Self-Evolving Knowledge Graph](queued/self-evolving-knowledge-graph/) —
-  approved for design, not implementation.
+| Priority | Initiative | Condition | Authority | Delivery | Next gate |
+| ---: | --- | --- | --- | --- | --- |
+| 2 | [Friday Chat client-session shutdown](queued/friday-chat-client-lifecycle/) | normal | not_granted | not_started | reproduce and approve bounded remediation |
+| 3 | [Friday MCP client enhancement](queued/friday-mcp/) | normal | not_granted | not_started | review the packet and approve MCP-WS-00 |
+| 4 | [Friday Memory V2](queued/memory-v2/) | normal | not_granted | not_started | choose and approve the next design artifact |
+| 5 | [Tool governance](queued/tool-governance/) | normal | not_granted | not_started | reconcile reviews into an approved contract plan |
+| 6 | [Framework validation and contracts](queued/framework-validation-and-contracts/) | normal | not_granted | not_started | revalidate scope and obtain implementation approval |
+| 7 | [Prompt-injection mitigation](queued/prompt-injection-mitigation/) | normal | not_granted | not_started | reconcile the historical plan with current tool-governance authority |
+| 8 | [Claude Agent SDK tools](queued/claude-agent-sdk-tools/) | normal | not_granted | not_started | confirm plan currency and authorize implementation |
+| 9 | [Friday startup context](queued/friday-startup-context/) | normal | not_granted | not_started | review and approve the draft feature plan |
+| 10 | [Friday Web Chat](queued/friday-web-chat/) | normal | not_granted | not_started | review and approve the draft product plan |
+| 11 | [Friday API](queued/friday-api/) | normal | not_granted | not_started | review architecture and approve a bounded phase |
+| 12 | [Friday TUI](queued/friday-tui/) | normal | not_granted | not_started | review and approve the draft product plan |
+| 13 | [Friday Speech](queued/friday-speech/) | normal | not_granted | not_started | review provider security and approve the draft plan |
+| 16 | [Human in the Loop](blocked/human-in-the-loop/) | blocked | not_granted | not_started | resolve the high-priority architecture contradictions |
+| 17 | [Model-aware reasoning control](deferred/model-aware-reasoning-control/) | deferred | not_granted | not_started | explicit maintainer decision to reopen design |
+| 18 | [Agent-scoped memory context](backlog/agent-scoped-memory-context/) | backlog | not_granted | not_started | promote into a bounded design packet |
+| 19 | [Friday Chat framework follow-ups](backlog/friday-chat-framework-followups/) | backlog | not_granted | not_started | reconcile proposed entries against current source |
+| 20 | [Strategic roadmap notes](backlog/strategic-roadmap/) | backlog | not_granted | not_started | promote one bounded initiative into planning |
+| 21 | [Tool capability notes](backlog/tool-capabilities/) | backlog | not_granted | not_started | reconcile requirements with tool governance |
 
-## Blocked
+## Approved
 
-- [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) — implementation
-  is complete, but one provider-backed real-runtime acceptance criterion remains
-  unverified.
-- [Human in the Loop](blocked/human-in-the-loop/) — design packet retains open
-  high-priority architecture contradictions.
+| Priority | Initiative | Condition | Authority | Delivery | Next gate |
+| ---: | --- | --- | --- | --- | --- |
+| 14 | [Self-Evolving Knowledge Graph](queued/self-evolving-knowledge-graph/) | normal | design_only | not_started | produce and approve the target design |
 
-## Deferred
+## Started
 
-- [Model-aware reasoning control](deferred/model-aware-reasoning-control/) — no
-  active design or implementation authority.
+| Priority | Initiative | Condition | Authority | Delivery | Next gate |
+| ---: | --- | --- | --- | --- | --- |
+| — | _None_ | — | — | — | — |
 
-## Backlog
+## Completed
 
-- [Agent-scoped memory context](backlog/agent-scoped-memory-context/)
-- [Friday Chat framework follow-ups](backlog/friday-chat-framework-followups/)
-- [Strategic roadmap notes](backlog/strategic-roadmap/)
-- [Tool capability notes](backlog/tool-capabilities/)
+| Priority | Initiative | Condition | Authority | Delivery | Next gate |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | [Development Kanban governance](review/development-kanban-governance/) | normal | closed | local | maintainer review and acceptance |
+| 15 | [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) | blocked | closed | unknown | complete or waive provider-backed idle-maintenance validation |
 
-## Lifecycle Rules
+## Accepted
 
-- `active`: execution is in progress under explicit authority.
-- `queued`: proposed, draft, or approved work that is not currently executing.
-- `blocked`: started or otherwise actionable work awaiting a recorded condition.
-- `deferred`: deliberately postponed work with no current action.
-- `backlog`: ideas and inventories that have not become an active plan.
-- completed and superseded packets belong in [the archive](../archive/).
+| Priority | Initiative | Condition | Authority | Delivery | Next gate |
+| ---: | --- | --- | --- | --- | --- |
+| 22 | [Documentation information architecture](../archive/completed/2026/documentation-governance/) | normal | closed | merged | none; accepted and merged |
 
-Every initiative should have one packet `README.md` identifying its status,
-authority, and next gate. A draft document never authorizes implementation merely
-because it appears in `queued/`.
+## Operating Rules
+
+- Work progresses through `queued -> approved -> started -> completed -> accepted`.
+- `blocked`, `deferred`, and `backlog` are conditions, not authorization.
+- Only the maintainer may approve or accept work.
+- Delivery state is tracked independently from work state.
+- Each current initiative has one packet `README.md` containing its detailed gate.
+- Completed and superseded history remains in [the archive](../archive/).
+
+## Board Commands
+
+Run `uv run python scripts/friday-dev-board.py <command>`.
+Use `next`, `list`, `show`, and `validate` for read-only review. Mutation commands
+record state, condition, or delivery transitions and regenerate this dashboard.

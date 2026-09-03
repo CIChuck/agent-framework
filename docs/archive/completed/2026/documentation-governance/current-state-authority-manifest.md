@@ -4,7 +4,7 @@
 title: Current Development State And Authority Manifest
 initiative: documentation-governance
 document_type: authority-manifest
-status: active
+status: archived
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/docs-information-architecture-remediation
@@ -78,6 +78,10 @@ of unfinished package implementation.
    dependent workstream.
 
 This ordering must remain visible in the planning dashboard after all path moves.
+
+The documentation remediation was subsequently accepted and merged through pull
+request 5 at `63cb579`. This manifest remains the pre-migration baseline record;
+the canonical current task state now lives in `docs/planning/board.yaml`.
 
 ## Baseline Validation Evidence
 

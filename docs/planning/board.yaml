@@ -1,0 +1,335 @@
+version: 1
+updated: '2026-09-03'
+tasks:
+- id: development-kanban-governance
+  title: Development Kanban governance
+  priority: 1
+  work_state: completed
+  condition: normal
+  implementation_authority: closed
+  packet: docs/planning/review/development-kanban-governance/
+  next_gate: maintainer review and acceptance
+  delivery_state: local
+  branch: feature/development-kanban-governance
+  depends_on:
+  - documentation-governance
+  validation:
+  - 'tests/integration: 17 passed'
+  - focused mypy and Ruff passed
+  - 'documentation lifecycle: 289 Markdown files passed'
+  - friday-dev-board skill validation passed
+  - docs/guides unchanged from 63cb579
+  approved_by: repository maintainer
+  approved_at: '2026-09-03'
+- id: friday-chat-client-lifecycle
+  title: Friday Chat client-session shutdown
+  priority: 2
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-chat-client-lifecycle/
+  next_gate: reproduce and approve bounded remediation
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-mcp
+  title: Friday MCP client enhancement
+  priority: 3
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-mcp/
+  next_gate: review the packet and approve MCP-WS-00
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: memory-v2
+  title: Friday Memory V2
+  priority: 4
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/memory-v2/
+  next_gate: choose and approve the next design artifact
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: tool-governance
+  title: Tool governance
+  priority: 5
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/tool-governance/
+  next_gate: reconcile reviews into an approved contract plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: framework-validation-and-contracts
+  title: Framework validation and contracts
+  priority: 6
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/framework-validation-and-contracts/
+  next_gate: revalidate scope and obtain implementation approval
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: prompt-injection-mitigation
+  title: Prompt-injection mitigation
+  priority: 7
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/prompt-injection-mitigation/
+  next_gate: reconcile the historical plan with current tool-governance authority
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: claude-agent-sdk-tools
+  title: Claude Agent SDK tools
+  priority: 8
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/claude-agent-sdk-tools/
+  next_gate: confirm plan currency and authorize implementation
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: friday-startup-context
+  title: Friday startup context
+  priority: 9
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-startup-context/
+  next_gate: review and approve the draft feature plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-web-chat
+  title: Friday Web Chat
+  priority: 10
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-web-chat/
+  next_gate: review and approve the draft product plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-api
+  title: Friday API
+  priority: 11
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-api/
+  next_gate: review architecture and approve a bounded phase
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-tui
+  title: Friday TUI
+  priority: 12
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-tui/
+  next_gate: review and approve the draft product plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-speech
+  title: Friday Speech
+  priority: 13
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-speech/
+  next_gate: review provider security and approve the draft plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: self-evolving-knowledge-graph
+  title: Self-Evolving Knowledge Graph
+  priority: 14
+  work_state: approved
+  condition: normal
+  implementation_authority: design_only
+  packet: docs/planning/queued/self-evolving-knowledge-graph/
+  next_gate: produce and approve the target design
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: nonblocking-chat-input
+  title: Nonblocking Friday Chat input
+  priority: 15
+  work_state: completed
+  condition: blocked
+  implementation_authority: closed
+  packet: docs/planning/blocked/nonblocking-chat-input/
+  next_gate: complete or waive provider-backed idle-maintenance validation
+  delivery_state: unknown
+  branch: null
+  depends_on: []
+  validation:
+  - deterministic implementation validation completed before board import
+  legacy_import: true
+- id: human-in-the-loop
+  title: Human in the Loop
+  priority: 16
+  work_state: queued
+  condition: blocked
+  implementation_authority: not_granted
+  packet: docs/planning/blocked/human-in-the-loop/
+  next_gate: resolve the high-priority architecture contradictions
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: model-aware-reasoning-control
+  title: Model-aware reasoning control
+  priority: 17
+  work_state: queued
+  condition: deferred
+  implementation_authority: not_granted
+  packet: docs/planning/deferred/model-aware-reasoning-control/
+  next_gate: explicit maintainer decision to reopen design
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: agent-scoped-memory-context
+  title: Agent-scoped memory context
+  priority: 18
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/agent-scoped-memory-context/
+  next_gate: promote into a bounded design packet
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - memory-v2
+  validation: []
+  legacy_import: true
+- id: friday-chat-framework-followups
+  title: Friday Chat framework follow-ups
+  priority: 19
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/friday-chat-framework-followups/
+  next_gate: reconcile proposed entries against current source
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: strategic-roadmap
+  title: Strategic roadmap notes
+  priority: 20
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/strategic-roadmap/
+  next_gate: promote one bounded initiative into planning
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: tool-capabilities
+  title: Tool capability notes
+  priority: 21
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/tool-capabilities/
+  next_gate: reconcile requirements with tool governance
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: documentation-governance
+  title: Documentation information architecture
+  priority: 22
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/documentation-governance/
+  next_gate: none; accepted and merged
+  delivery_state: merged
+  branch: feature/docs-information-architecture-remediation
+  depends_on: []
+  validation:
+  - documentation lifecycle validation passed for 282 Markdown files
+  - focused tests passed
+  - protected guides remained unchanged
+  approved_by: repository maintainer
+  approved_at: '2026-09-03'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-03'
+events:
+- task: documentation-governance
+  at: '2026-09-03'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted
+  note: Documentation refactor accepted and merged through pull request 5.
+  evidence: merge commit 63cb579
+- task: development-kanban-governance
+  at: '2026-09-03'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved
+  note: Approved the repository-visible digital Kanban approach.
+- task: development-kanban-governance
+  at: '2026-09-03'
+  actor: Codex
+  actor_role: agent
+  action: started
+  note: Created the isolated Kanban governance feature branch.
+  evidence: feature/development-kanban-governance
+- task: development-kanban-governance
+  at: '2026-09-03T20:41:15+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Implementation and validation completed for maintainer review
+  evidence: 'tests/integration: 17 passed; focused mypy and Ruff passed; documentation lifecycle: 289 Markdown files passed; friday-dev-board skill validation passed; docs/guides unchanged from 63cb579'

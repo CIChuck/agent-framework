@@ -17,6 +17,11 @@ architecture document explicitly incorporates it.
 - `analysis/`, `design-notes/`, `ephemera/`, `recovery/`, and `obsidian/` —
   retained legacy collections awaiting only indexing, not flattening.
 
+Recent governance closeout:
+
+- [Documentation information architecture](completed/2026/documentation-governance/)
+  — accepted and merged through pull request 5.
+
 ## Archive Contract
 
 - Completed packets identify implementation, validation, or release evidence.

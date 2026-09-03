@@ -13,6 +13,10 @@ It exists to preserve:
 
 This document is the canonical repository engineering policy for the codebase.
 
+Development task state, authorization, and acceptance are governed by the
+[development task lifecycle policy](development-task-lifecycle.md). That policy
+cannot waive the engineering requirements in this document.
+
 Known legacy violations and phased remediation are tracked in [legacy-policy-debt.md](/Users/chuckrussell/Dev/gendev/agent-framework/docs/reference/policies/legacy-policy-debt.md).
 
 ## Scope
