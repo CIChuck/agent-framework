@@ -143,4 +143,3 @@ construction directive `REM-002`, but do not execute it without explicit
 maintainer authority to modify the board script and its tests. After authorized
 remediation, commit a new stable candidate and dispatch a fresh aggregate
 validator.
-

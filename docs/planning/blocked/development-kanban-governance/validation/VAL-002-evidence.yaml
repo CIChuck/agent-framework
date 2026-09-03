@@ -75,4 +75,3 @@ baseline:
 candidate_regressions:
   - VAL-002-F01
 next_gate: maintainer authorization for REM-002 source/test remediation
-
