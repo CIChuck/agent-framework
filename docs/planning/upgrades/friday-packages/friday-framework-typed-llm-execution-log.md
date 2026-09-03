@@ -219,4 +219,7 @@ fallback constructors used only by examples remain separately classified.
   imports succeeded, and Friday Chat `--version` and `--help` succeeded.
 - The complete publication record is
   [Friday package cohort 0.1.0a2 release evidence](../../../reference/releases/friday-package-cohort-0.1.0a2-release-evidence.md).
-- Release tag creation remains a separate authority gate and is not authorized.
+- The separately authorized annotated tag `v0.1.0a2` was created at `fc8ea18`
+  and pushed to `origin` on 2026-09-03.
+- GitHub Releases are intentionally deferred until Friday 1.0. Pre-1.0 release
+  records use Git tags, PyPI project releases, and checked-in evidence.

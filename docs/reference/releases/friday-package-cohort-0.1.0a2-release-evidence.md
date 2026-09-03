@@ -7,7 +7,8 @@
 - Status: published to production PyPI and post-publication verified
 - Publication date: 2026-09-03
 - TestPyPI: not used
-- Release tag: not authorized and not created
+- Release tag: `v0.1.0a2`, annotated and pushed to `origin`
+- GitHub Release: intentionally deferred until Friday 1.0
 
 ## Decision
 
@@ -87,7 +88,9 @@ The temporary ignored `.env` upload credential was removed after verification.
 Because the PyPI token was disclosed in chat, it should be revoked in PyPI
 account settings even though it is no longer stored in the checkout.
 
-## Remaining Gate
+## Source Tag And GitHub Release Policy
 
-Release tag creation remains separately gated and was not authorized by the
-publication approval.
+The annotated `v0.1.0a2` tag resolves to publication-evidence commit `fc8ea18`
+and is present on `origin`. GitHub Releases will not be created for pre-1.0
+Friday versions; during alpha development, Git tags, PyPI releases, and checked-
+in release evidence are the release record.
