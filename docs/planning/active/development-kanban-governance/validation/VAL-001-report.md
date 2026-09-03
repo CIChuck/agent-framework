@@ -107,4 +107,3 @@ traceability input was incomplete.
 Keep the initiative `started`. Apply only `VAL-001-B01` and `VAL-001-F02` under
 `REM-001`, create a new stable candidate and validation request, and dispatch a
 fresh aggregate review.
-

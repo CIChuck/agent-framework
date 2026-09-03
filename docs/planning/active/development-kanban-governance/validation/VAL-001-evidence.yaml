@@ -38,4 +38,3 @@ baseline:
   untracked:
     - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
 next_gate: REM-001 then new candidate and fresh aggregate review
-
