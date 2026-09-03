@@ -24,6 +24,7 @@ from friday_chat.session import (
     SessionIdentity,
     SessionIdentityMismatchError,
 )
+from friday_chat.tools.schemas import ToolCallRecord
 from friday_chat.turns.models import InteractionTurn, TurnMetrics
 from friday_llm import LiteLLMEmbeddingService, LiteLLMService
 
@@ -201,6 +202,14 @@ async def test_framework_identity_reaches_adapters_and_lazy_persistence(
                 persistence_seconds=0.0,
                 total_seconds=0.0,
             ),
+            tool_calls=(
+                ToolCallRecord(
+                    name="echo",
+                    arguments={"text": "hello"},
+                    result="hello",
+                    call_id="identity-tool-call",
+                ),
+            ),
         )
     )
 
@@ -208,3 +217,8 @@ async def test_framework_identity_reaches_adapters_and_lazy_persistence(
     assert persisted is not None
     assert persisted.session_id == identity.value
     assert await runtime.transcript.store.count_entries(identity.value) == 1
+    entries = await runtime.transcript.store.get_entries(identity.value)
+    assert entries[0].tool_calls[0].id == "identity-tool-call"
+    assert entries[0].tool_calls[0].arguments == {"text": "hello"}
+    assert entries[0].tool_results[0].tool_call_id == "identity-tool-call"
+    assert entries[0].tool_results[0].output == "hello"

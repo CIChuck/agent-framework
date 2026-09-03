@@ -62,6 +62,8 @@ from friday_memory.models.budget import CompactionConfig
 from friday_transcript import (
     ContextLogEntry,
     SQLiteTranscriptStore,
+    ToolCall,
+    ToolResult,
     TranscriptEntry,
     TranscriptSession,
 )
@@ -1096,12 +1098,31 @@ class FrameworkTranscriptAdapter:
     async def record_interaction(self, turn: ChatInteractionTurn) -> None:
         await self._ensure_session()
         turn_number = await self._next_turn_number()
+        tool_call_ids = [
+            call.call_id or f"{turn.turn_id}:{index}:{call.name}"
+            for index, call in enumerate(turn.tool_calls)
+        ]
         entry = TranscriptEntry(
             id=turn.turn_id,
             session_id=self.session_id,
             turn_number=turn_number,
             user_message=turn.user_message,
             assistant_message=turn.assistant_message,
+            tool_calls=[
+                ToolCall(
+                    id=tool_call_ids[index],
+                    name=call.name,
+                    arguments=dict(call.arguments),
+                )
+                for index, call in enumerate(turn.tool_calls)
+            ],
+            tool_results=[
+                ToolResult(
+                    tool_call_id=tool_call_ids[index],
+                    output=call.result,
+                )
+                for index, call in enumerate(turn.tool_calls)
+            ],
             timestamp=datetime.now(),
             model_name=self.config.llm.model,
             temperature=self.config.llm.temperature,
