@@ -11,7 +11,7 @@ owner: repository maintainer
 branch: feature/docs-information-architecture-remediation
 baseline_commit: 482b857507409fb73556e273f96acdce1c398480
 release_baseline: v0.1.0a2
-next_gate: DG-01 inventory and classification
+next_gate: DG-08 maintainer final review
 ---
 
 ## Authorization
@@ -187,7 +187,7 @@ Acceptance:
 
 ### DG-01: Inventory And Classification
 
-Status: in_progress
+Status: complete
 
 - Build a complete tracked-document inventory excluding `docs/guides/` content.
 - Assign each document a role, lifecycle state, initiative, current authority,
@@ -204,7 +204,7 @@ Acceptance:
 
 ### DG-02: Navigation And Lifecycle Foundation
 
-Status: pending
+Status: complete
 
 - Replace the stale planning index with a current-work dashboard.
 - Expand the root, architecture, reference, and archive indexes.
@@ -219,7 +219,7 @@ Acceptance:
 
 ### DG-03: Existing Friday Chat Archive Rename
 
-Status: pending
+Status: complete
 
 - Record the maintainer's spelling correction from
   `friday-chat-v2-aechive` to `friday-chat-v2-archive` as a Git rename.
@@ -236,7 +236,7 @@ Acceptance:
 
 ### DG-04: Completed And Superseded Packets
 
-Status: pending
+Status: complete
 
 - Move completed typed-LLM, package-release, Friday Chat remediation, and other
   verified packets into `archive/completed/<year>/<initiative>/`.
@@ -253,7 +253,7 @@ Acceptance:
 
 ### DG-05: Active, Queued, Blocked, Deferred, And Backlog Packets
 
-Status: pending
+Status: complete
 
 - Group remaining documents by initiative.
 - Place each packet in exactly one lifecycle lane.
@@ -270,7 +270,7 @@ Acceptance:
 
 ### DG-06: Architecture And Reference Authority Review
 
-Status: pending
+Status: complete with an explicit hold on the mixed `reference/specs` collection
 
 - Identify the canonical architecture and specification documents.
 - Move historical drafts, source collections, and presentation artifacts to the
@@ -286,7 +286,7 @@ Acceptance:
 
 ### DG-07: Automated Integrity Checks
 
-Status: pending
+Status: complete
 
 - Add a local documentation-lifecycle and link-integrity checker.
 - Reject missing or invalid lifecycle metadata for current planning packets.
@@ -302,7 +302,7 @@ Acceptance:
 
 ### DG-08: Validation And Closeout
 
-Status: pending
+Status: in progress; maintainer final review remains
 
 - Run link, lifecycle, path-reference, Markdown, and whitespace checks.
 - Run affected package tests for any path-based fixtures.
@@ -343,16 +343,51 @@ Stop before moving or staging a document when:
 - a move would silently change a plan's approval or implementation status; or
 - the requested change conflicts with repository engineering policy.
 
-## Open Maintainer Decisions
+## Maintainer Decisions
 
-These questions do not block DG-00 or the tracked-document inventory:
+On 2026-09-03, the maintainer decided:
 
-1. Should the currently untracked memory and security review documents be
-   included and classified in this branch, or remain outside its commits?
-2. Should the ignored PyPI recovery-code export under `docs/reference/` be
-   removed from the working tree after the maintainer confirms it is safely
-   stored elsewhere?
-3. Should historical `docs/dev-skills/` remain a top-level contributor resource,
-   or move under `reference/development/`? The default is to keep it top-level
-   and only add an index.
+1. Include and classify the previously untracked Memory and tool-security review
+   documents in this branch.
+2. Remove the ignored PyPI recovery-code export after confirming that it is
+   safely stored elsewhere. The file was removed without being opened or staged.
+3. Keep this feature branch local until the maintainer completes final review.
 
+Historical `docs/dev-skills/` remains a top-level contributor resource and will
+receive an index. This default can be revisited during final review.
+
+## Execution Record
+
+### Baseline checkpoint
+
+- Branch created from synchronized `master` and `origin/master` at `482b857`.
+- Release baseline `v0.1.0a2` retained at `fc8ea18`.
+- Authority and migration documents committed in `18ab7d1` and `5622481`.
+
+### Structural migration
+
+- Completed plans moved under `docs/archive/completed/2026/`.
+- Deprecated and overtaken plans moved under `docs/archive/superseded/`.
+- Current planning grouped under `active`, `queued`, `blocked`, `deferred`, and
+  `backlog` initiative packets.
+- Durable release records consolidated under `docs/reference/releases/`.
+- The implemented model-library specification promoted to `docs/reference/llm/`.
+- Raw Massive provider inputs moved to archive source material.
+- Friday Chat V2 spelling correction recorded as Git renames, then moved to the
+  completed archive.
+- Approved Memory and tool-security reviews added to their queued initiative
+  packets.
+- Mixed `docs/reference/specs/` material left in place with an explicit
+  classification warning; no wholesale authority assumption was made.
+- `docs/guides/` remained unchanged.
+
+### Validation evidence
+
+- `python3 scripts/check-documentation-lifecycle.py`: passed, 282 Markdown files.
+- Focused lifecycle and Friday Chat contract coverage: `3 passed`.
+- Ruff for the checker, its test, and touched Python path consumers: passed.
+- `git diff --check`: passed after whitespace cleanup.
+- `git diff --quiet 482b857 -- docs/guides`: passed.
+
+The branch remains local pending maintainer final review and explicit push
+authorization.

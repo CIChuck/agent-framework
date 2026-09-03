@@ -1,0 +1,644 @@
+the following chat-client commands are not working:
+
+/sessions does not list sessions
+/transcript -> prints nothing even though sqllite seems to be recording session turns accurately.
+/tool-budget behavior seems wonky - only operates on injected tools?
+/cls or /clearscreen - does nothing
+/memory - not working
+/meta - not workin/wired
+
+the chat client can be run using this dhell script : scripts/run-friday-chat-example.sh
+
+
+# Friday Chat Command Remediation Plan
+
+Status: construction executed through Gate F on 2026-08-08; Gates A-F are
+`PASS` under delegated independent supervisor approval. No merge, publication,
+or optional active-state smoke has occurred.
+
+Planning checkpoint: `31bbcf1` on
+`feature/friday-chat-command-remediation-1`
+Required implementation branch: `feature/friday-chat-command-remediation-1`
+Committed baseline ancestor: `baed8f2` on `feature/reorg-remediation-1`
+Construction directive:
+[`friday-chat-command-remediation-1-construction-directive.md`](construction-directive.md)
+
+## Objective
+
+Make the listed commands operate against the real Friday Chat runtime rather
+than test-only state, while preserving the existing command names and the
+behavioral contracts already documented for FridayV2:
+
+- `/sessions` lists persisted SQLite transcript sessions;
+- `/transcript` reads the current persisted session, and `/transcript
+  <session_id>` reads the requested persisted session;
+- `/tool-budget` reports and enforces the same tool selection and schema budget
+  used by the next or most recent model turn;
+- `/cls` and `/clearscreen` clear the terminal through a testable display
+  boundary and do not print a replacement message;
+- `/memory` reports honest, available statistics from real stores and app
+  session state;
+- `/meta` exposes synthesized `meta_insight` records with useful provenance and
+  an actionable empty state.
+
+The remediation must not require a chat-model, embedding-model, Kimi, DGX, or
+other external-provider call. All mandatory tests and UAT use disposable
+SQLite, Chroma, graph, and export paths.
+
+## Authority And Implementation Boundary
+
+This plan is intentionally scoped to Friday Chat:
+
+- allowed source: `packages/friday-chat/src/friday_chat/`;
+- allowed tests: `packages/friday-chat/tests_chat/` and a narrowly named
+  disposable integration test under `tests/integration/` if package-local
+  coverage cannot prove the real adapters together;
+- allowed documentation: this plan, FridayV2 behavioral contracts, parity
+  matrix, and framework upgrade log;
+- no changes to Friday Memory, Friday Transcript, Friday CLI, or other
+  framework package source or tests are planned. Their existing public APIs are
+  sufficient for the diagnosed transcript, graph, vector, episodic, and
+  terminal operations;
+- if implementation discovers that a required operation is unavailable through
+  a public typed API, record the gap in
+  `docs/planning/backlog/friday-chat-framework-followups/upgrade-log.md`
+  and stop that workstream instead of accessing a private attribute or changing
+  a frozen package;
+- do not read, copy, mutate, clean, or test against active `.friday` state;
+- do not contact configured live endpoints during automated validation;
+- preserve all unrelated tracked and untracked worktree state.
+
+The reorganization remediation is checkpointed separately at `baed8f2` on
+`feature/reorg-remediation-1`. This command-remediation branch was created from
+that commit, so the reorganization implementation is inherited history rather
+than uncommitted or intermingled command-remediation work. At construction
+start, verify that `baed8f2` remains an ancestor, identify every change above
+that baseline, and preserve unrelated tracked and untracked state.
+
+Integration order is mandatory: merge `feature/reorg-remediation-1` first,
+then update the base of `feature/friday-chat-command-remediation-1` if needed
+and merge it second. Do not merge the command-remediation branch first because
+its ancestry contains the reorganization implementation.
+
+## Analysis Evidence
+
+Analysis was performed against the current worktree on 2026-08-07. No active
+runtime data or provider was used.
+
+### Existing tests
+
+The current focused command tests pass:
+
+```text
+23 passed in 0.72s
+```
+
+Command:
+
+```bash
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest -q \
+  packages/friday-chat/tests_chat/test_transcript_export_commands.py \
+  packages/friday-chat/tests_chat/test_session_memory_commands.py \
+  packages/friday-chat/tests_chat/test_tool_commands.py
+```
+
+This is false confidence for the reported production behavior: the transcript,
+memory, meta, and tool-budget assertions primarily use `FakeTranscriptStore`,
+`FakeMemoryController`, and command-local injected-tool state.
+
+### Disposable real-adapter reproduction
+
+A provider-free probe built `fake=False` against a unique repository-local
+temporary directory, inserted one SQLite session/entry and one Chroma
+`meta_insight`, ran the commands, and removed the temporary directory. It
+reported:
+
+```text
+/sessions: Transcript sessions: current-session (0 turns)
+/transcript: No transcript turns recorded.
+/transcript seeded-session: Transcript session not found: seeded-session
+/memory: stored_turns: 0; retrievals: 0
+/meta: Synthetic meta insight
+/cls: Screen cleared.
+turn tool_schema_tokens: 65
+/tool-budget after selected-tool turn: No active tools injected.
+```
+
+This proves that `/sessions`, `/transcript`, `/memory`, `/cls`, and
+`/tool-budget` reproduce against production-shaped adapters without any
+provider dependency. It also proves that `/meta` is currently dispatched and
+can read a real lifecycle collection; its reported failure is not, on present
+evidence, a missing registry handler.
+
+## Findings And Root Causes
+
+| Area | As-built evidence | Root cause | Disposition |
+|---|---|---|---|
+| Command organization | `commands/session.py`, `memory.py`, `transcript.py`, and `tools.py` contain only module docstrings, while the handlers and helper functions live in the roughly 2,600-line `commands/registry.py`. The parity matrix nevertheless names the empty category modules as implementations. | Documentation, ownership, and tests do not match the actual dispatch architecture. | Move only the affected handlers and their typed formatting helpers into the intended category modules; keep metadata and canonical dispatch in the registry. |
+| Session identity | `build_runtime()` defaults to `session_id="friday-v2"`, and `FridayChatApp` independently constructs another hard-coded `FridaySession(session_id="friday-v2")`. The legacy client creates a fresh `session_<uuid>` per invocation. | Repeated CLI launches collapse into one logical transcript session, and app/runtime identity can drift. | Introduce one generated, injectable session identity and propagate it through runtime, adapters, app state, and command queries. |
+| `/sessions` | `_sessions_handler()` calls `_read_transcript_turns()` and fabricates one `current-session` row. | It never calls SQLite `list_sessions()` and cannot see persisted sessions. | Query a typed Friday Chat transcript-read contract backed by the public SQLite store API; mark current and primed sessions. |
+| `/transcript` | `_read_transcript_turns()` reads `runtime.transcript.turns`, which exists only on the fake. The handler also rejects every argument other than `current-session` or `export`, despite the behavioral contract requiring arbitrary session IDs. | The command is coupled to a fake implementation detail instead of the transcript protocol. | Add typed session/entry query methods to Friday Chat's transcript boundary and use them for current, selected, and export paths. |
+| Transcript exports | `/transcript export`, `/export`, and `/export-prompts` reuse fake-only `.turns` or `.context_logs` helpers and hard-code `current-session`. | All transcript read/export commands have the same missing production read boundary. | Repair the shared read/export path together so another command is not left silently broken. |
+| `/cls`, `/clearscreen` | `_cls_handler()` returns `"Screen cleared."`; the app prints it. No display or output boundary exposes a clear operation. | The handler acknowledges an effect it never requests. | Return a typed clear-screen UI intent, have the app invoke a clear-capable terminal boundary, and return no replacement text. |
+| `/memory` | `_memory_handler()` checks `hasattr(..., "stored_turns")` and `hasattr(..., "retrievals")`; only `FakeMemoryController` has those fields. The real adapter therefore reports misleading zeros. | Fake counters were treated as a runtime contract, and zero conflates unavailable with empty. | Add an adapter-owned typed statistics snapshot using public episodic, collection-manager, graph, transcript, lifecycle, priming, session, and last-context data. Render unavailable/not configured honestly. |
+| `/meta` | The registry maps `meta` to `_meta_handler()`, `MemoryController` declares `list_meta_insights()`, and `FrameworkMemoryAdapter` queries `type="meta_insight"` across short- and long-term collections. A synthetic real-adapter record is displayed successfully. | Dispatch is present. Likely causes are no synthesized records, an older running process, reorganization not reaching synthesis, or an unhelpful empty response. Production coverage and structured metadata rendering are missing. | Begin with a discovery regression using a synthetic `meta_insight`. Preserve the working query, type the returned record, improve metadata and empty-state output, and verify compatibility with the reorganization synthesis result. Do not invent a second generation path. |
+| `/tool-budget` | The handler reads only `CommandContext.injected_tools`, estimates from tool names, hard-codes `max_allowed=1000`, and reads the undocumented key `max_schema_budget_percent`. The example configuration uses `max_budget_ratio`. | Command-local injection state is disconnected from `TurnProcessor`, which independently auto-selects schemas and calculates the tokens actually sent to the model. The configured ratio is not enforced by selection. | Create one shared tool-selection/budget service used by injection commands, automatic selection, prompt preparation, `TurnResult`, and `/tool-budget`. Use one estimator and the documented configuration keys. |
+| Test and documentation status | Fake-only tests pass while the real-adapter probe fails. The parity matrix labels the affected commands `tested`, and behavioral contracts describe behavior that is not implemented. | Tests assert command strings instead of the production contract and docs were closed prematurely. | Add production-adapter and app-level tests, then update docs from evidence. |
+
+## Target Friday Chat Contracts
+
+Use explicit typed models or dataclasses. Do not add new `dict[str, Any]`
+boundaries, repeated casts, or `getattr`/`hasattr` probes to emulate an
+interface.
+
+### 1. Session identity
+
+Add one immutable `SessionIdentity` or equivalent value created once per CLI
+invocation:
+
+- default production value: `session_<unique-id>`;
+- injectable deterministic value for tests and replay;
+- stored on `FridayRuntime`;
+- passed to `FrameworkMemoryAdapter`, `FrameworkTranscriptAdapter`, maintenance,
+  `FridaySession`, and transcript commands;
+- validated so app state and runtime state cannot disagree;
+- never generated separately inside two composition layers.
+
+Creating the runtime must remain side-effect-aware. A transcript session may be
+created lazily on the first persisted turn, but `/sessions` must still identify
+the in-process current identity honestly. Two CLI invocations using the same
+database must create two distinct persisted sessions after each records a turn.
+
+### 2. Transcript read and export boundary
+
+Define Friday Chat-owned views such as:
+
+- `TranscriptSessionView`;
+- `TranscriptEntryView`;
+- `TranscriptContextLogView`;
+- `TranscriptExportResult`.
+
+Extend Friday Chat's `TranscriptStore` protocol with the narrow asynchronous
+queries required by commands. `FrameworkTranscriptAdapter` maps the public
+Friday Transcript models returned by `list_sessions()`, `get_session()`,
+`get_entries()`, and context-log queries into these views. The fake implements
+the same methods rather than exposing special `.turns` and `.context_logs`
+read paths.
+
+Export requirements:
+
+- `/transcript export` exports every non-archived session to a timestamped,
+  safely contained directory with `sessions.csv` and `entries.csv`;
+- current-session `/export` formats query the same persisted entry views;
+- CSV quoting, ordering, entry counts, configured display names, and empty
+  results are deterministic;
+- exports never copy the live SQLite database file and never include secrets
+  from config snapshots;
+- selected session IDs are treated as untrusted input and used only as bound
+  store query parameters and sanitized file metadata, never as path segments.
+
+### 3. Memory diagnostics and record views
+
+Define a `MemoryStatisticsSnapshot` with optional typed counts rather than
+magic zeros. It should cover, where configured and available:
+
+- current session ID, in-process turn count, tracked turn IDs, and scoped
+  variable count;
+- episodic current-session turns;
+- vector short-term, long-term, decayed, active-total, and total counts;
+- graph node and relationship counts;
+- current transcript entry count;
+- lifecycle/access-buffer status;
+- priming enabled and previous-session count;
+- last context total, message, tool-schema, available-budget, utilization, and
+  severity values.
+
+The production adapter may aggregate these values only through public methods.
+An unavailable component must render `unavailable` or `not configured`, with a
+sanitized reason category where useful; it must not render `0` unless a store
+actually returned zero.
+
+Define a `MemoryRecordView` and query result for `/insights`, `/summaries`, and
+`/meta`. At minimum retain record ID, kind, text, lifecycle collection/stage,
+creation time, confidence, source count, and verification state when present.
+`/meta` should render source counts from the scalar-safe synthesis metadata and
+provide this actionable empty state:
+
+```text
+No meta insights found. Run /reorganize --full --execute with synthesis enabled,
+or use /help reorganize to inspect available modes.
+```
+
+Do not make `/meta` invoke synthesis, reorganization, or a provider.
+
+### 4. Tool selection and budget state
+
+Create one runtime-owned `ToolSelectionState` and immutable
+`ToolBudgetSnapshot` (names are illustrative) shared by commands and
+`TurnProcessor`.
+
+Required semantics:
+
+- with no manually injected tools, each turn uses automatic relevance
+  selection;
+- `/inject-tools` switches to manual mode and the injected set is exactly the
+  schema set offered on subsequent turns until `/clear-tools` returns to
+  automatic mode;
+- unknown names remain actionable errors and never enter state;
+- additions that would exceed `max_tools` or the schema-token budget are
+  rejected before changing the authoritative set;
+- selection honors `tools.context.max_tools`,
+  `tools.context.max_budget_ratio`, `memory.context_window`, and
+  `memory.output_buffer`;
+- selected schemas must fit both the count limit and the token limit;
+- one canonical schema estimator is used for selection, dynamic context
+  budgeting, `BudgetStatus.tool_tokens`, `TurnResult`, and `/tool-budget`;
+- the snapshot records selection mode, selected names and categories, rejected
+  names with categorical reasons, estimated schema tokens, maximum schema
+  tokens, maximum tools, ratio, and utilization;
+- `/tool-budget` shows the pending manual selection when one exists; otherwise
+  it shows the most recent automatic selection, or a useful pre-turn state;
+- command output must distinguish registered, manually injected, selected for
+  the last turn, and executed tools.
+
+Remove the dead `max_schema_budget_percent` lookup unless a documented migration
+requirement is found. Do not silently support two configuration keys with
+different units.
+
+### 5. Clear-screen UI intent
+
+Extend `CommandResult` with an explicit UI effect, or add an equivalent narrow
+typed effect model. The handler requests clear-screen and returns empty text.
+The app owns effect dispatch and calls a clear-capable display/output protocol.
+The production Friday Chat terminal adapter delegates to Rich's console clear;
+test doubles record the request without requiring a real terminal. Failure to
+clear should return a sanitized, visible error rather than falsely reporting
+success.
+
+## Work Packages
+
+### `CCR-00`: Baseline, branch isolation, and executable reproductions
+
+1. Verify the completed branch-isolation prerequisite: the current branch is
+   `feature/friday-chat-command-remediation-1`, `baed8f2` is its committed
+   baseline ancestor, and the reorganization branch remains a separate merge
+   unit.
+2. Record `git status --short --branch`, baseline ancestor, all inherited
+   changes, and all unrelated tracked or untracked state.
+3. Retain the current 23-test focused result as the fake baseline.
+4. Convert the disposable real-adapter probe into regression tests that prove:
+   persisted sessions are omitted; persisted entries are invisible; memory
+   stats are fake-only; screen clear has no effect; and selected turn schemas
+   are absent from `/tool-budget`.
+5. Add a positive synthetic `/meta` reproduction before changing its handler.
+6. Confirm every fixture path is under `tmp_path`; fail the test if a resolved
+   path reaches repository `.friday`.
+
+Deliverable: documented failing reproductions and a `PASS`, `FAIL`, or
+`BLOCKED` Gate A disposition. Do not begin behavior changes until Gate A passes.
+
+### `CCR-01`: Shared command contracts and session identity
+
+1. Move shared command arguments/results/effects needed by category modules to
+   a cycle-free typed module.
+2. Move only the affected handlers and helpers into `commands/session.py`,
+   `commands/memory.py`, `commands/transcript.py`, and `commands/tools.py`.
+3. Keep command metadata, alias resolution, generated help, and handler
+   registration centralized in `CommandRegistry`.
+4. Add the single session identity described above and remove hard-coded
+   production `friday-v2` identities.
+5. Ensure replay and tests can inject deterministic identities.
+6. Add invariant checks that reject mismatched runtime/app session identities.
+
+Deliverable: typed foundations with unchanged safe command behavior and a
+`PASS`, `FAIL`, or `BLOCKED` Gate B disposition.
+
+### `CCR-02`: Persistent transcript commands
+
+1. Implement the typed transcript query views in fake and framework adapters.
+2. Rebuild `/sessions` from `list_sessions(limit=1000)`, newest first.
+3. Mark the current identity and the configured number of prior primed sessions.
+4. Rebuild `/transcript` and `/transcript <session_id>` from persisted entry
+   queries, including session metadata and deterministic truncation for
+   terminal display.
+5. Update command usage to `/transcript [session_id|export]`; do not constrain
+   the argument metadata to the literal `current-session` token.
+6. Rebuild `/transcript export`, `/export`, and `/export-prompts` on the same
+   typed query path and safe export root.
+7. Preserve chronological entry ordering and report exact session/entry counts.
+8. Convert SQLite failures to sanitized command errors without raw SQL, paths,
+   transcript content, or config snapshots.
+
+Deliverable: real SQLite session/transcript/export coverage and a `PASS`,
+`FAIL`, or `BLOCKED` Gate C disposition.
+
+### `CCR-03`: Terminal clear behavior
+
+1. Implement the clear-screen effect and app dispatch.
+2. Add production terminal delegation and a recording test double.
+3. Verify both `/cls` and `/clearscreen` resolve to one handler.
+4. Verify clearing writes no `Screen cleared.` response after the operation.
+5. Add a provider-free PTY smoke on supported platforms; use the recording
+   boundary as the platform-neutral required test.
+
+Deliverable: observable clear behavior and a `PASS`, `FAIL`, or `BLOCKED` Gate
+C disposition. `CCR-02` and `CCR-03` may be implemented in either order but
+both must pass before Gate C closes.
+
+### `CCR-04`: Honest memory statistics and meta visibility
+
+1. Implement `MemoryStatisticsSnapshot` and adapter aggregation from public
+   APIs.
+2. Capture the most recent typed budget status in app command state rather than
+   reducing it to selected strings in `last_debug`.
+3. Render store sections consistently and distinguish zero, unavailable, and
+   not configured.
+4. Replace dynamic record method lookup with typed calls returning
+   `MemoryRecordView` query results.
+5. Preserve the proven `/meta` collection query and add structured provenance,
+   lifecycle-stage, confidence, source-count, creation, and verification
+   formatting.
+6. Verify a meta insight produced by the reorganization mutation contract is
+   visible without running a provider.
+7. Add useful partial-failure and empty-state tests.
+
+Deliverable: real-store memory/meta diagnostics and a `PASS`, `FAIL`, or
+`BLOCKED` Gate D disposition.
+
+### `CCR-05`: Unified tool selection and budget enforcement
+
+1. Implement the runtime-owned selection state and canonical budget calculator.
+2. Route `/inject-tools`, `/clear-tools`, automatic selection, prompt tool
+   schemas, context hints, and `/tool-budget` through that state.
+3. Enforce both maximum tool count and schema-token ratio before model dispatch.
+4. Include the actual selected tool names and budget snapshot in `TurnResult`.
+5. Have the app retain that snapshot for command inspection.
+6. Test manual mode, automatic mode, clearing, unknown tools, count overflow,
+   token overflow, exact-boundary acceptance, deterministic order, and no-tool
+   state.
+7. Prove that the schema set shown by `/tool-budget` is byte-for-byte the set
+   passed to the chat model for the recorded turn.
+8. Prove that provider/tool execution results do not affect the schema budget
+   calculation.
+
+Deliverable: one enforceable tool budget and a `PASS`, `FAIL`, or `BLOCKED`
+Gate E disposition.
+
+### `CCR-06`: Documentation, full validation, and UAT
+
+1. Update help metadata and descriptions for every affected command.
+2. Correct the parity matrix: do not retain `tested` until a real-adapter or
+   app-level production-path test exists.
+3. Update behavioral contracts with the final session identity, transcript
+   export, memory unavailable-state, tool selection, and screen-clear semantics.
+4. Record any deferred cross-package gap in the framework upgrade log.
+5. Run focused, package, static, integration, and root validation below.
+6. Run provider-free disposable CLI UAT.
+7. Offer the configured script smoke separately; run it only with explicit
+   authority to read active local state.
+
+Deliverable: final evidence report and a `PASS`, `FAIL`, or `BLOCKED` Gate F
+disposition.
+
+## Gate Sequence And Acceptance Criteria
+
+| Gate | Required PASS evidence |
+|---|---|
+| A: reproduction | Every reported defect except `/meta` fails against a disposable production-shaped path; `/meta` positive wiring is proven; no provider or `.friday` access. |
+| B: foundations | One session identity reaches runtime, adapters, app, and commands; affected category modules own handlers; registry remains canonical; focused legacy tests still pass. |
+| C: transcript and display | Two disposable app invocations create distinct sessions; sessions/current/selected/export behavior passes; both clear aliases request one real UI effect and emit no replacement text. |
+| D: memory and meta | Seeded real stores report accurate counts; unavailable values are not zero; synthesized meta records and their provenance render; empty state is actionable. |
+| E: tools | Manual and automatic selections use the same state and estimator as the turn; count and token limits are enforced; `/tool-budget` matches the actual schema set. |
+| F: close-out | All required focused/package/static/integration gates pass; root attempt is reported; docs match evidence; disposable UAT passes; no stop condition remains. |
+
+A failed criterion is `FAIL`, not partial `PASS`. A missing dependency or
+authority is `BLOCKED`. Do not progress past a failed or blocked gate.
+
+## Required Test Matrix
+
+### Transcript and identity
+
+- fake and real adapters satisfy the same transcript query contract;
+- two runtime invocations against one disposable database have distinct IDs;
+- current session marking and `previous_sessions` marking are correct;
+- archived-session behavior is explicit;
+- selected session IDs with separators, Unicode, and SQL-like text are safe
+  bound query values;
+- current, selected, missing, and empty transcripts render correctly;
+- all-session export creates safely contained, timestamped CSV files with exact
+  counts and deterministic ordering;
+- SQLite WAL-backed committed entries are visible through commands;
+- read and export failures expose no transcript content or raw database path.
+
+### Display
+
+- `/cls` and `/clearscreen` dispatch the same clear effect;
+- app invokes the clear boundary once;
+- no normal command output follows a successful clear;
+- absent/noninteractive clear capability fails honestly or uses an explicit
+  no-op test adapter, never a false success string;
+- supported-platform PTY observes terminal clear behavior without provider use.
+
+### Memory and meta
+
+- real episodic, lifecycle collections, graph, transcript, and app session
+  counts match seeded data;
+- optional components report unavailable/not configured;
+- no private cross-package fields are read;
+- meta queries cover short-term and long-term records and document whether
+  decayed records are excluded;
+- a reorganization-compatible `meta_insight` displays source count and
+  verification state;
+- empty meta output gives generation guidance but performs no mutation;
+- partial store failure returns a typed warning and does not fabricate success.
+
+### Tool selection and budget
+
+- manual injection changes the next turn's offered schemas;
+- clear returns the next turn to automatic relevance selection;
+- automatic selected tools and schema tokens appear in `/tool-budget`;
+- configured `max_tools` and `max_budget_ratio` are both enforced;
+- exact-budget selection passes and one-token-over selection fails or excludes
+  the overflowing candidate deterministically according to the documented
+  policy;
+- command output distinguishes selected from executed tools;
+- disabled tools produce a clear zero/unavailable state;
+- no test executes network, shell, filesystem mutation, or external web tools.
+
+## Validation Commands
+
+Run focused tests first:
+
+```bash
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest -q \
+  packages/friday-chat/tests_chat/test_command_registry.py \
+  packages/friday-chat/tests_chat/test_session_memory_commands.py \
+  packages/friday-chat/tests_chat/test_transcript_export_commands.py \
+  packages/friday-chat/tests_chat/test_tool_commands.py \
+  packages/friday-chat/tests_chat/test_app_lifecycle.py \
+  packages/friday-chat/tests_chat/test_runtime.py \
+  packages/friday-chat/tests_chat/test_display.py \
+  packages/friday-chat/tests_chat/test_turn_processing.py
+```
+
+Run the new disposable production-path module explicitly, followed by package
+gates:
+
+```bash
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest -q \
+  packages/friday-chat/tests_chat/test_command_production_adapters.py
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest -q packages/friday-chat/tests_chat
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/ruff check packages/friday-chat
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/mypy packages/friday-chat
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/python -c \
+  "from friday_runtime import RuntimeKernel; from friday_agent import InteractiveAgent; print('Friday imports OK')"
+git diff --check
+```
+
+Attempt the repository gate without deleting caches:
+
+```bash
+PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest
+```
+
+The current repository has a known collection collision between Friday Chat
+and Friday CLI files both named `test_display.py`. If it remains, report the
+exact root failure and the narrower passing evidence; do not clean user or
+generated state to hide it.
+
+## Provider-Free UAT
+
+Mandatory UAT uses a disposable real runtime configuration derived from the
+example but with every persistence, export, log, and recovery path under one
+new temporary root. Seed two transcript sessions, entries, graph nodes/edges,
+lifecycle records, and one `meta_insight` through public store operations. Then
+run the real CLI in a PTY and exercise:
+
+```text
+/sessions
+/transcript
+/transcript <seeded-session-id>
+/memory
+/meta
+/tools
+/tool-budget
+/inject-tools echo
+/tool-budget
+/clear-tools
+/cls
+/clearscreen
+/q
+```
+
+No ordinary chat turn is required for transcript, memory, meta, or clear
+validation. Tool selection validation uses a deterministic in-process chat
+model test double, not the configured Kimi endpoint.
+
+After every automated gate passes, `scripts/run-friday-chat-example.sh` may be
+used for an optional read-only operator smoke. Because it resolves the real
+example config and active local stores, obtain explicit user authority before
+running it. Enter slash commands only; do not send a normal chat turn, invoke a
+tool, execute reorganization, or call Kimi. The optional smoke cannot replace
+the disposable UAT.
+
+## Stop Conditions
+
+Stop and request direction if:
+
+- a required fix needs Friday Memory, Friday Transcript, Friday CLI, or another
+  frozen framework package change;
+- session identity migration would require rewriting existing transcript rows;
+- real statistics require private cross-package access;
+- a transcript export would need to copy an active SQLite file instead of query
+  the store;
+- the desired injected-versus-automatic tool precedence differs from the
+  explicit policy in this plan;
+- a mandatory test would require active `.friday` data, a live provider, or an
+  external tool call;
+- the implementation branch no longer descends from `baed8f2`, or unexpected
+  reorganization divergence cannot be isolated safely;
+- a repository-policy waiver or broad typing suppression appears necessary.
+
+## Definition Of Done
+
+This remediation is complete only when:
+
+- all six reported command areas have an evidence-backed disposition;
+- the five reproduced failures pass against production-shaped disposable
+  adapters;
+- `/meta` is proven through both seeded visibility and the reorganization
+  synthesis contract, without adding a duplicate generation path;
+- session identity is unique per production invocation and consistent across
+  runtime components;
+- all transcript commands use persisted typed queries;
+- memory output contains no fake-only counters or fabricated zeros;
+- tool selection, enforcement, turn telemetry, and `/tool-budget` share one
+  authoritative snapshot;
+- both clear aliases visibly clear through the UI boundary and return no false
+  acknowledgment;
+- fake tests, production-adapter tests, package tests, Ruff, mypy, import smoke,
+  whitespace check, and disposable UAT pass;
+- root validation is attempted and any baseline failure is reported exactly;
+- behavioral contracts and parity status match the implementation;
+- active user state and external providers were untouched;
+- no unrelated changes, commits, pushes, PRs, or merges are included without
+  separate authority.
+
+## Construction Evidence — Gate F PASS (2026-08-08)
+
+All six reported areas now have production-path evidence:
+
+- `/sessions` lists persisted transcript sessions with current and primed
+  identity markers;
+- `/transcript` and transcript exports query persisted current, selected, and
+  all-session data without copying SQLite or rewriting historical identities;
+- `/tool-budget`, with `/inject-tools` and `/clear-tools` support, shares one
+  canonical immutable selection snapshot across count/token enforcement,
+  context/model schemas, and turn telemetry;
+- `/cls` and `/clearscreen` return the same typed effect, invoke the app display
+  boundary once, produce no success substitute, and emit real terminal clear
+  and home sequences through supported-platform PTY coverage;
+- `/memory` reports typed real-store/session/context statistics and preserves
+  unavailable or unconfigured states instead of fabricating zeroes;
+- `/meta` lists active short- and long-term synthesized records with provenance,
+  excludes decayed records, and does not generate or reorganize memory.
+
+Cross-cutting remediation evidence proves that one immutable per-invocation
+session identity reaches runtime, memory, transcript, maintenance, app,
+command, and replay boundaries; session identity is not a seventh reported
+command area.
+
+The retained provider-free UAT derives configuration from
+`packages/friday-chat/config.example.yaml`, places every declared
+persistence/export/log/recovery path below one temporary root, seeds two
+transcripts plus episodic/vector/graph/access/meta state through public
+operations, uses deterministic chat and embedding doubles, and runs the exact
+required slash-command sequence through production CLI input, output, display,
+and PTY boundaries. Provider/network tripwires remain armed, the tool registry
+records no execution, and the UAT passes.
+
+Validation at this checkpoint:
+
+- prescribed focused modules: `109 passed in 1.54s`;
+- repository-example disposable UAT: `1 passed in 1.23s`;
+- retained disposable production module plus UAT: `9 passed in 1.38s`;
+- registry metadata plus UAT: `17 passed in 1.14s`;
+- full Friday Chat package: `356 passed in 8.80s`;
+- Ruff: clean; mypy: clean across `87` source files;
+- runtime/agent import smoke, `git diff --check`, baseline ancestry, and scoped
+  worktree inspection: pass;
+- repository root: expected exit `2`, `2009` items collected, with the sole
+  documented Friday Chat/Friday CLI `test_display.py` import-file mismatch.
+
+No Gate F framework upgrade gap was discovered. Existing `FU-004` remains the
+Gate C Friday Transcript archived-session row-mapping/public-API limitation;
+no frozen package, schema, example, dependency, workspace metadata, database
+layout, migration, recovery format, or default data root changed. The optional
+configured-script smoke remains deferred because it requires separate
+authority to read active local state and cannot replace the disposable UAT.
+
+Exact integration order: merge
+`feature/reorg-remediation-1` first, then merge
+`feature/friday-chat-command-remediation-1`. The authorized pre-implementation
+checkpoint is the only implementation-session commit/push; no post-checkpoint
+staging, commit, push, PR, or merge has occurred.

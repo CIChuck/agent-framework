@@ -41,14 +41,14 @@ of unfinished package implementation.
 
 | Initiative | State at baseline | Controlling authority | Next action |
 | --- | --- | --- | --- |
-| Friday package cohort `0.1.0a2` | Completed, merged, published, verified, and tagged | `docs/reference/releases/friday-package-cohort-0.1.0a2-release-evidence.md`; `docs/planning/upgrades/friday-packages/friday-framework-typed-llm-execution-log.md` | Archive completed planning material while retaining release evidence as reference |
-| Typed LLM adoption across Friday packages | Completed | `docs/planning/upgrades/friday-packages/friday-framework-typed-llm-adoption-plan.md`; execution log above | No implementation action |
-| Model-aware reasoning control | Deferred | `docs/planning/upgrades/friday-llm/friday-llm-model-aware-reasoning-control-deferred-feature.md` | Revisit only through separate approval |
+| Friday package cohort `0.1.0a2` | Completed, merged, published, verified, and tagged | `docs/reference/releases/friday-package-cohort-0.1.0a2-release-evidence.md`; `docs/archive/completed/2026/typed-llm-0.1.0a2/framework/execution-log.md` | Completed planning material is archived while release evidence remains reference |
+| Typed LLM adoption across Friday packages | Completed | `docs/archive/completed/2026/typed-llm-0.1.0a2/framework/adoption-plan.md`; execution log above | No implementation action |
+| Model-aware reasoning control | Deferred | `docs/planning/deferred/model-aware-reasoning-control/README.md` | Revisit only through separate approval |
 | Friday Chat client-session shutdown | Live defect observed after release; not yet planned or implemented | Friday Chat behavioral contracts, especially clean shutdown and final resource cleanup requirements | Reproduce, identify resource ownership, create bounded remediation authority, test, and repair before another release |
-| Friday MCP client enhancement | Draft and not authorized for implementation | `docs/planning/build-plans/friday-framework-mcp-enhancements.md`; draft tactical plan and construction directives | Review and approve the plan; then begin `MCP-WS-00` contract and policy foundation |
+| Friday MCP client enhancement | Draft and not authorized for implementation | `docs/planning/queued/friday-mcp/`; draft build plan, tactical plan, and construction directives | Review and approve the plan; then begin `MCP-WS-00` contract and policy foundation |
 | Friday Chat V2 parity implementation | Completed historical packet with a newly corrected directory spelling | Friday Chat V2 behavioral contracts, parity matrix, task list, and compatibility protocol | Preserve as historical contract/evidence; repair backlinks and archive the packet |
-| Reorganization Remediation 1 | Implemented and validated | `docs/planning/build-plans/construction-directives/reorg-remediation-1-construction-directive.md`; implementation commit `baed8f2` | Archive packet after separating any surviving follow-up |
-| Friday Chat Command Remediation 1 | Implemented; Gates A-F passed | `docs/planning/build-plans/construction-directives/friday-chat-command-remediation-1-construction-directive.md`; completion commit `dbd840f` | Archive packet after preserving deferred and blocked items |
+| Reorganization Remediation 1 | Implemented and validated | `docs/archive/completed/2026/reorganization-remediation-1/`; implementation commit `baed8f2` | No implementation action |
+| Friday Chat Command Remediation 1 | Implemented; Gates A-F passed | `docs/archive/completed/2026/friday-chat-command-remediation/`; completion commit `dbd840f` | No implementation action |
 | Documentation information architecture | Active on isolated branch | `docs/planning/active/documentation-governance/README.md` | Complete DG-01 inventory and classification |
 
 ## Authority Rules During Migration
@@ -91,4 +91,3 @@ created:
 - the production release evidence reports all 17 distributions published and
   post-publication verified; and
 - all Friday MCP implementation documents inspected were still marked Draft.
-

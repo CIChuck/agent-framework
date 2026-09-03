@@ -40,14 +40,14 @@ Final packet: `docs/archive/completed/2026/friday-chat-v2/`
 
 | Existing file | Final file |
 | --- | --- |
-| `friday-chat-v2-behavioral-contracts.md` | `behavioral-contracts.md` |
-| `friday-chat-v2-build-plan.md` | `build-plan.md` |
-| `friday-chat-v2-code-generation-task-list.md` | `code-generation-task-list.md` |
-| `friday-chat-v2-compatibility-testing-protocol.md` | `compatibility-testing-protocol.md` |
-| `friday-chat-v2-parity-matrix.md` | `parity-matrix.md` |
-| `friday-chat-v2-startup-config-remediation-plan.md` | `startup-config-remediation-plan.md` |
-| `friday-chat-v2-turn-integration-remediation-plan.md` | `turn-integration-remediation-plan.md` |
-| `docs/planning/build-plans/deprecated/friday-v2-feature-inventory.md` | `feature-inventory.md` |
+| `friday-chat-v2-behavioral-contracts.md` | `friday-chat-v2-behavioral-contracts.md` |
+| `friday-chat-v2-build-plan.md` | `friday-chat-v2-build-plan.md` |
+| `friday-chat-v2-code-generation-task-list.md` | `friday-chat-v2-code-generation-task-list.md` |
+| `friday-chat-v2-compatibility-testing-protocol.md` | `friday-chat-v2-compatibility-testing-protocol.md` |
+| `friday-chat-v2-parity-matrix.md` | `friday-chat-v2-parity-matrix.md` |
+| `friday-chat-v2-startup-config-remediation-plan.md` | `friday-chat-v2-startup-config-remediation-plan.md` |
+| `friday-chat-v2-turn-integration-remediation-plan.md` | `friday-chat-v2-turn-integration-remediation-plan.md` |
+| `docs/planning/build-plans/deprecated/friday-v2-feature-inventory.md` | `friday-v2-feature-inventory.md` |
 
 The packet needs an archive `README.md` identifying it as historical contract
 and closeout evidence. The behavioral contract remains evidence of required
@@ -173,22 +173,29 @@ implementation authority from this documentation-only branch.
 Archive packet indexes will name the known successor or state that no current
 successor has been identified.
 
-## Authority Holds
+## Architecture And Reference Classification
 
-These documents will not move until their current role is confirmed:
+As-built source and current package layout resolved the following classifications:
+
+| Existing path or group | Classification | Destination |
+| --- | --- | --- |
+| `docs/planning/prds/friday-os-prd-v1.md`, `friday-os-prd-v2.md`, and `friday-engine-prd-v4.md` | earlier product concepts using a package model that does not match the published workspace | `docs/archive/superseded/friday-os-product-concepts/` |
+| `docs/architecture/SEKG/` | approved for design, not implementation | `docs/planning/queued/self-evolving-knowledge-graph/` |
+| `docs/architecture/agents/HIL/` | design packet with open critical blockers | `docs/planning/blocked/human-in-the-loop/` |
+| `docs/architecture/agents/phase-5-*.md` | implemented historical phase designs; corresponding runtime and experiment surfaces exist | `docs/archive/completed/2026/runtime-phase-5/` |
+| `docs/reference/providers/massive/` | raw provider and design source inputs, including empty placeholders | `docs/archive/source-materials/providers/massive/` |
+| `docs/reference/specs/friday-api-prd.md` | unimplemented product proposal | `docs/planning/queued/friday-api/README.md` |
+| `docs/reference/specs/friday-tui-prd.md` | unimplemented product proposal | `docs/planning/queued/friday-tui/README.md` |
+| `docs/reference/specs/Friday Lab Environment.md` | testing and evaluation reference | `docs/reference/testing/friday-lab-environment.md` |
+
+## Authority Hold
+
+The following collection will not move until each remaining document's current
+role is confirmed:
 
 | Existing path or group | Reason for hold |
 | --- | --- |
-| `docs/planning/prds/friday-os-prd-v1.md` | No status or explicit successor; likely historical but product authority is unclear |
-| `docs/planning/prds/friday-os-prd-v2.md` | No status or explicit successor; version ordering suggests supersession but does not prove it |
-| `docs/planning/prds/friday-engine-prd-v4.md` | Newest numbered PRD but describes an older package architecture and does not declare current authority |
-| `docs/architecture/SEKG/` | Contains product requirements and informal notes mixed with architecture |
-| `docs/architecture/agents/HIL/` | Contains a build plan, patch list, and test plan mixed with architecture; implementation status must be established |
-| `docs/architecture/agents/phase-5-*.md` | May be implemented historical phase artifacts rather than current architecture |
 | `docs/reference/specs/` | Mixes potentially durable specifications with old batches, draft images, and presentations |
-| `docs/reference/providers/massive/` | Mixes provider reference, source material, research, and product/design documents |
-| untracked `docs/reference/memory/` and `docs/reference/security/review-8-10.md` | User-owned files need an explicit inclusion decision |
-| ignored recovery-code export under `docs/reference/` | Sensitive material; must not be opened or moved without explicit authorization |
 
 ## Existing Archive
 
@@ -197,3 +204,16 @@ an index and classify its top-level collections. Large historical collections
 will not be flattened merely for cosmetic uniformity because their directory
 structure carries provenance.
 
+## Maintainer-Approved Review Documents
+
+The maintainer authorized both previously untracked reviews for inclusion and
+classification on 2026-09-03.
+
+| Existing path | Classification | Proposed destination |
+| --- | --- | --- |
+| `docs/reference/memory/review-pass-1.md` | completed as-built review and normative input to a future Memory V2 plan; implementation not authorized | `docs/planning/queued/memory-v2/package-review-pass-1.md` |
+| `docs/reference/security/review-8-10.md` | completed as-built security review and remediation input to tool governance | `docs/planning/queued/tool-governance/as-built-security-review.md` |
+
+The ignored recovery-code export was removed without being opened after the
+maintainer confirmed that removal was authorized. It was never tracked and has
+no migration destination.

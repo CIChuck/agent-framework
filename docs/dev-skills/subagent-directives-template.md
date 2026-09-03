@@ -1,5 +1,5 @@
 Approve and execute
-docs/planning/build-plans/construction-directives/friday-chat-command-remediation-1-construction-directive.md
+docs/archive/completed/2026/friday-chat-command-remediation/construction-directive.md
 
 First, commit only the construction directive and push the current branch as the pre-implementation
 checkpoint.
