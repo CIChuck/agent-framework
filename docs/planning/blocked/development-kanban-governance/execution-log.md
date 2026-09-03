@@ -159,3 +159,23 @@
   syntax requiring Python 3.12 or newer.
 - Set `execution_phase: validation` and `validation_state: pending` before
   freezing the candidate for VAL-003.
+
+## 2026-09-03 — VAL-003 Changes Requested
+
+- A third fresh-context, read-only subagent reviewed aggregate candidate
+  `190e39e` after REM-002.
+- All fourteen authority and remediation hashes matched and all eight required
+  commands passed: 22-task board validation, 296-file documentation validation,
+  10 focused tests, 23 integration tests, Ruff, both required mypy profiles, and
+  the aggregate diff check.
+- VAL-003 confirmed that delivery-state reopening behavior is fixed and the
+  remediation stayed within authorized scope.
+- `VAL-003-F01` found that REM-002's mandatory backward-delivery negative test is
+  absent and the implementation report overstates that evidence.
+- Stored the VAL-003 request, report, and evidence and drafted proposed REM-003
+  for the missing test and report correction only.
+- Stopped after the second unsuccessful remediation cycle as required by policy.
+  No REM-003 implementation is authorized.
+- Set condition `blocked`, `implementation_authority: closed`,
+  `execution_phase: remediation`, and
+  `validation_state: changes_requested` pending maintainer disposition.

@@ -1,0 +1,124 @@
+version: 1
+review_id: VAL-003
+initiative: development-kanban-governance
+work_unit: delivery-state-preservation
+requested_on: '2026-09-03'
+review_mode: aggregate
+reviewer_context: fresh
+reviewer_write_policy: read_only
+remediation_cycle: 2
+outcomes:
+  - VERIFIED
+  - CHANGES_REQUESTED
+  - BLOCKED
+revisions:
+  repository_base: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5
+  documentation_amendment_base: 3553901849362137a7c1d1e14bfcd51915d1567d
+  remediation_base: 67d468cc90d5e62de4050e542c8d81e79b332490
+  prior_candidate: 7eea978b598025b9920c34c5b80a4d543e0dfb42
+  candidate: 190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+diffs:
+  aggregate: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+  remediation: 67d468cc90d5e62de4050e542c8d81e79b332490..190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/development-kanban-governance/README.md
+    sha256: f2fedb25bde698b9dce9718516457702eb82123065c2e89faa33b59c2ed709b3
+  - path: docs/planning/active/development-kanban-governance/build-plan.md
+    sha256: 4abd8a6294cda9029c31c9d224ed341764ce54f25a8a52d5ff0d407ea1503ce3
+  - path: docs/planning/active/development-kanban-governance/tactical-plan.md
+    sha256: 68a482f48c803eb737761108c0dc491fd22b75453f7464909962c124c3870ac3
+  - path: docs/dev-skills/ai-construction-directive-builder.md
+    sha256: 1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259
+  - path: docs/dev-skills/independent-code-validator.md
+    sha256: 578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508
+  - path: docs/dev-skills/remediation-closeout.md
+    sha256: 1a12b3fcaaed1cce2bd8eb73c2e04baa008452948560442a6191f69b4cbb8608
+  - path: docs/dev-skills/subagent-directives-template.md
+    sha256: e70716896d6131c752be8f52670915a7ab471f8fd5bff650120f408698db25f3
+remediation_authority:
+  prior_report: docs/planning/active/development-kanban-governance/validation/VAL-002-report.md
+  prior_report_sha256: 80055cec33933089de281b3f6eab64ca64434794e463947715e19e6010267965
+  directive: docs/planning/active/development-kanban-governance/remediation/REM-002-directive.md
+  directive_sha256: f081bb78dd5c8c658d01850479d04170bec3d6eb891a15c33c8665b216edd3b5
+  implementation_report: docs/planning/active/development-kanban-governance/execution/REM-002-implementation-report.md
+  implementation_report_sha256: c9b78d3e90519414f17ddfb275fcf663755530ed60e937a280f405d703796a81
+  finding:
+    - VAL-002-F01
+acceptance_authority:
+  acceptance_criteria:
+    - AC-01
+    - AC-02
+    - AC-03
+    - AC-04
+    - AC-05
+    - AC-06
+    - AC-07
+    - AC-08
+    - AC-09
+    - AC-10
+    - AC-11
+    - AC-12
+    - AC-13
+  tactical_tasks:
+    - TP-01
+    - TP-02
+    - TP-03
+    - TP-04
+    - TP-05
+    - TP-06
+    - TP-07
+    - TP-08
+    - TP-09
+    - TP-10
+    - TP-11
+    - TP-12
+    - TP-13
+    - TP-14
+    - TP-15
+required_checks:
+  - uv run python scripts/friday-dev-board.py validate
+  - uv run python scripts/check-documentation-lifecycle.py
+  - uv run pytest tests/integration/test_development_board.py -q
+  - uv run pytest tests/integration -q
+  - uv run ruff check scripts/friday-dev-board.py tests/integration/test_development_board.py
+  - uv run mypy scripts/friday-dev-board.py
+  - uv run mypy --python-version 3.13 scripts/friday-dev-board.py tests/integration/test_development_board.py
+  - git diff --check 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+required_review:
+  - Re-evaluate VAL-002-F01 against the implementation, tests, and delivery-state policy.
+  - Verify initial not_started delivery becomes local on approved to started.
+  - Verify completed to started preserves local, pushed, merged, released, and unknown.
+  - Verify backward delivery movement and maintainer-only gates remain enforced.
+  - Verify the remediation diff stays within the directive's allowed scope.
+  - Re-evaluate every AC and TP ID against the aggregate candidate.
+  - Separate environment or baseline failures from candidate regressions.
+known_baseline_state:
+  - .DS_Store is modified and is not part of the candidate.
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak is untracked and is not part of the candidate.
+  - >-
+    Combined mypy for the script and test under repository python_version 3.10
+    encounters a NumPy stub using Python 3.12 type-statement syntax; board-script
+    mypy under the repository target and combined mypy under Python 3.13 pass.
+external_effects:
+  network: forbidden
+  credentials: forbidden
+  paid_services: forbidden
+  persistent_runtime_state: forbidden
+  push_merge_release_deploy: forbidden
+report:
+  path: docs/planning/active/development-kanban-governance/validation/VAL-003-report.md
+  evidence_path: docs/planning/active/development-kanban-governance/validation/VAL-003-evidence.yaml
+allowed_post_review_closeout:
+  - Add VAL-003 report and evidence artifacts.
+  - Append review disposition to the execution log.
+  - Update packet status, execution_phase, validation_state, and next_gate.
+  - Transition the board and generated dashboard from started to completed after VERIFIED.
+  - Do not alter governed policy, AGENTS.md, dev-skill, source, test, script, guide, or package content without a fresh review.

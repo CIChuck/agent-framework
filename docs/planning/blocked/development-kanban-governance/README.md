@@ -4,16 +4,16 @@
 title: Development Kanban Governance
 initiative: development-kanban-governance
 document_type: initiative-index
-status: started; REM-002 validation pending
+status: started; blocked after VAL-003
 work_state: started
-condition: normal
+condition: blocked
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/development-kanban-governance
-next_gate: freeze the REM-002 candidate and dispatch VAL-003
-implementation_authority: granted
-execution_phase: validation
-validation_state: pending
+next_gate: maintainer decision on proposed REM-003 after second remediation cycle
+implementation_authority: closed
+execution_phase: remediation
+validation_state: changes_requested
 construction_directive: exempt
 ---
 
@@ -87,3 +87,8 @@ The maintainer approved REM-002 on 2026-09-03. Implementation authority is
 limited to the two files and validation artifacts named by that directive.
 The bounded change and focused regression coverage are implemented; the work
 remains `started` pending a fresh aggregate review.
+
+`VAL-003` confirmed the behavioral fix and all deterministic gates but found the
+required backward-delivery negative regression absent. Because VAL-003 follows
+the second remediation cycle, proposed REM-003 is not authorized and the packet
+is blocked for maintainer disposition.
