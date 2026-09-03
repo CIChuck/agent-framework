@@ -23,6 +23,9 @@ PACKAGED_EXAMPLE_CONFIG = Path(
     "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml"
 )
 EXAMPLE_MODEL_LIBRARY = Path("packages/friday-chat/models-config.example.yaml")
+PACKAGED_EXAMPLE_MODEL_LIBRARY = Path(
+    "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml"
+)
 FRIDAY_PY_CONFIG = Path("tests/integration/memory/config.yaml")
 
 TOP_LEVEL_SECTIONS = set(TOP_LEVEL_CONFIG_SECTIONS)
@@ -112,6 +115,26 @@ def test_repository_and_packaged_examples_share_canonical_llm_shape() -> None:
     assert "llm" not in repository
 
 
+def test_repository_and_packaged_examples_share_model_bindings() -> None:
+    repository = _load_mapping(EXAMPLE_CONFIG)
+    packaged = _load_mapping(PACKAGED_EXAMPLE_CONFIG)
+    repository_library = _load_mapping(EXAMPLE_MODEL_LIBRARY)
+    packaged_library = _load_mapping(PACKAGED_EXAMPLE_MODEL_LIBRARY)
+
+    assert repository_library == packaged_library
+    for pool_name in ("llm_pool", "embedding_pool"):
+        repository_profiles = {
+            name: service["profile"]
+            for name, service in repository[pool_name]["services"].items()
+        }
+        packaged_profiles = {
+            name: service["profile"]
+            for name, service in packaged[pool_name]["services"].items()
+        }
+        assert repository_profiles == packaged_profiles
+        assert set(repository_profiles.values()) <= set(repository_library["profiles"])
+
+
 def test_sanitized_config_fixture_has_high_value_nested_sections() -> None:
     data = _load_fixture()
 
@@ -160,7 +183,7 @@ def test_friday_v2_loads_example_config(
 
     loaded = load_friday_py_config(EXAMPLE_CONFIG)
 
-    assert loaded.llm_service_specs["chat"].model == "openai/qwen3.8-27b-mlx"
+    assert loaded.llm_service_specs["chat"].model == "moonshot/kimi-k3"
     assert loaded.llm_service_specs["extraction"].generation_defaults.max_tokens == 8000
     assert loaded.diagnostics == []
     assert loaded.memory.priming["previous_sessions"] == 2

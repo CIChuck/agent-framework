@@ -14,16 +14,16 @@ llm_pool:
   default_service: chat
   services:
     chat:
-      profile: qwen38_chat_local
+      profile: kimi-k3
     extraction:
-      profile: qwen36_chat_local
+      profile: qwen25_7b_local
       resilience_overrides: {timeout_seconds: 90}
       generation_overrides:
         reasoning: {mode: disabled}
         sampling: {temperature: 0.0}
         max_tokens: 4000
     passage_router:
-      profile: qwen36_chat_local
+      profile: qwen25_7b_local
       resilience_overrides: {max_retries: 2, timeout_seconds: 20}
       generation_overrides:
         reasoning: {mode: disabled}

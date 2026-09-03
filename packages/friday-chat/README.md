@@ -82,11 +82,13 @@ profiles:
       revision: replace-with-exact-served-revision
 ```
 
-Export `FRIDAY_LLM_API_KEY` in the shell before startup. If you maintain a local
-`.env`, source it first; Friday Chat does not load `.env` files implicitly. For
-providers such as OpenRouter, define a credential entry whose `env` names the
-provider key and select that credential from each least-privilege service
-binding. Never put the key itself in either YAML file.
+Export every credential selected by an enabled service before startup. The
+packaged example uses `FRIDAY_LLM_API_KEY`, `FRIDAY_OPENROUTER_API_KEY`, and
+`FRIDAY_MOONSHOT_API_KEY`. If you maintain a local `.env`, source it first;
+Friday Chat does not load `.env` files implicitly. For hosted providers, define
+a credential entry whose `env` names the provider key and select that credential
+from each least-privilege service binding. Never put the key itself in either
+YAML file.
 
 Friday LLM provides the built-in normalized reasoning profile for LM Studio,
 OpenAI-compatible Chat Completions, and Qwen3.8. Other transports continue to

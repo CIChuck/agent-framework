@@ -14,9 +14,9 @@ llm_pool:
   default_service: chat
   services:
     chat:
-      profile: qwen38_chat_local
+      profile: kimi-k3
     extraction:
-      profile: qwen36_chat_local
+      profile: qwen25_7b_local
       resilience_overrides:
         timeout_seconds: 300
       generation_overrides:
@@ -26,7 +26,7 @@ llm_pool:
           temperature: 0.0
         max_tokens: 8000
     passage_router:
-      profile: qwen36_chat_local
+      profile: qwen25_7b_local
       resilience_overrides:
         max_retries: 2
         timeout_seconds: 90
@@ -639,7 +639,7 @@ web:
     http: null
     https: null
     no_proxy:
-    - doing
+    - localhost
     - 127.0.0.1
   security:
     allow_private_ips: false

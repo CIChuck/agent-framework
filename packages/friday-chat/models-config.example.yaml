@@ -5,6 +5,8 @@ credentials:
     env: FRIDAY_LLM_API_KEY
   openrouter:
     env: FRIDAY_OPENROUTER_API_KEY
+  moonshot:
+    env: FRIDAY_MOONSHOT_API_KEY
 
 endpoints:
   local_lmstudio:
@@ -23,8 +25,25 @@ endpoints:
     resilience:
       max_retries: 2
       timeout_seconds: 90
+  moonshot:
+    api_base: https://api.moonshot.ai/v1
+    provider: moonshot
+    serving_engine: moonshot
+    default_credential: moonshot
+    resilience:
+      max_retries: 2
+      timeout_seconds: 90
 
 profiles:
+  kimi-k3:
+    kind: chat
+    endpoint: moonshot
+    dialect: openai_chat_completions
+    model: moonshot/kimi-k3
+    model_target:
+      model_id: kimi-k3
+      family: kimi
+      revision: moonshot-api/kimi-k3
   qwen38_chat_local:
     kind: chat
     endpoint: local_lmstudio
@@ -57,6 +76,15 @@ profiles:
       model_id: qwen3.6-35b-a3b-mlx
       family: qwen3_6
       revision: replace-with-exact-lm-studio-revision
+  qwen25_7b_local:
+    kind: chat
+    endpoint: local_lmstudio
+    dialect: openai_chat_completions
+    model: openai/qwen2.5-7b-instruct-mlx
+    model_target:
+      model_id: qwen2.5-7b-instruct-mlx
+      family: qwen2_5
+      revision: lmstudio-community/Qwen2.5-7B-Instruct-MLX-8bit
   nomic_embedding_local:
     kind: embedding
     endpoint: local_lmstudio
