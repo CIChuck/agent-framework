@@ -1,14 +1,22 @@
-# Reference
+# Technical Reference
 
-Stable technical reference for the Friday Agent Framework.
+Durable technical and governance material for the Friday Agent Framework.
 
-Contents:
+## Current Reference Collections
 
-- `policies/` - Repository policy and known policy debt.
-- `specs/` - Component specifications, PRDs, diagrams, and protocol references.
-- `security/` - Security audits and durable security reference material.
-- `testing/` - Testing strategy and test-plan reference.
-- `providers/` - Provider-specific reference material.
+- [policies](policies/) — canonical repository policy and explicit policy debt.
+- [llm](llm/) — implemented LLM configuration and model-library contracts.
+- [releases](releases/) — package publication evidence, release notes, handoffs,
+  and artifact manifests.
+- [testing](testing/) — current testing references.
 
-Documents here should be treated as closer to authority than historical plans in
-`archive/`.
+## Classification Pending
+
+`specs/` is a mixed historical collection containing implementation-era
+specifications, product proposals, diagrams, and presentation artifacts. Its
+placement does not make every file current authority. The collection remains in
+place until each document can be reconciled against current package behavior.
+
+Durable security findings have been moved into their actionable planning packet
+under `planning/queued/tool-governance/`. Raw Massive provider inputs have moved
+to `archive/source-materials/providers/massive/`.

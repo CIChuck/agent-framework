@@ -7,5 +7,5 @@ accepted_differences:
       FridayV2 does not parse model-output text tool calls during the initial
       parity pass. Tool execution is driven by provider function-call records
       or direct /run-tool invocation.
-    evidence: docs/planning/build-plans/friday-chat-v2-behavioral-contracts.md
+    evidence: docs/archive/completed/2026/friday-chat-v2/friday-chat-v2-behavioral-contracts.md
 simple_command_exemptions: []

@@ -9,7 +9,7 @@ When an LLM calls a tool (e.g., read_file), the content flows through
 context but is eventually summarized and lost. This ingester persists
 tool outputs to vector memory, enabling future recall.
 
-Ref: docs/planning/build-plans/copilot-promotion-build-plan.md, Issue 2
+Ref: docs/archive/superseded/copilot-promotion/build-plan.md, Issue 2
 """
 
 from __future__ import annotations

@@ -1,81 +1,78 @@
-# Planning
+# Planning Dashboard
 
-Active and proposed work for the Friday Agent Framework.
+This directory contains current or potentially actionable work. Directory lanes
+describe lifecycle; they do not grant implementation authority.
 
-Contents:
+## Current Development Sequence
 
-- `build-plans/` - Active or proposed implementation plans.
-- `backlog/` - Backlog notes.
-- `features/` - Feature proposals.
-- `prds/` - Product requirement documents and exploratory PRDs.
-- `security/` - Security implementation plans.
-- `upgrades/` - Source requirements for separately governed package upgrades.
+| Priority | Initiative | State | Controlling packet | Next gate |
+| --- | --- | --- | --- | --- |
+| 1 | Documentation information architecture | Active | [documentation-governance](active/documentation-governance/) | Complete migration, validation, and maintainer review |
+| 2 | Friday Chat client-session shutdown | Draft remediation candidate | [friday-chat-client-lifecycle](queued/friday-chat-client-lifecycle/) | Reproduce and approve bounded remediation |
+| 3 | Friday MCP client enhancement | Draft, not authorized | [friday-mcp](queued/friday-mcp/) | Review packet and approve `MCP-WS-00` |
 
-## Active Planning Packets
+The published typed-LLM `0.1.0a2` cohort is complete. Its planning records are
+archived, while release evidence remains under
+[reference/releases](../reference/releases/).
 
-FridayV2 is planned through an active planning packet:
+## Active
 
-- [FridayV2 feature inventory](features/friday-v2-feature-inventory.md)
-- [Friday Chat V2 build plan](build-plans/friday-chat-v2-build-plan.md)
-- [FridayV2 parity matrix](build-plans/friday-chat-v2-parity-matrix.md)
-- [FridayV2 behavioral contracts](build-plans/friday-chat-v2-behavioral-contracts.md)
-- [FridayV2 compatibility testing protocol](build-plans/friday-chat-v2-compatibility-testing-protocol.md)
-- [FridayV2 framework upgrade log](build-plans/friday-chat-v2-framework-upgrade-log.md)
-- [FridayV2 code generation task list](build-plans/friday-chat-v2-code-generation-task-list.md)
-- [FridayV2 startup config remediation plan](build-plans/friday-chat-v2-startup-config-remediation-plan.md)
-- [FridayV2 turn integration remediation plan](build-plans/friday-chat-v2-turn-integration-remediation-plan.md)
+- [Documentation governance](active/documentation-governance/) — reorganizing
+  documentation without changing product behavior or end-user guides.
 
-Use the feature inventory as the feature source map, the parity matrix as the
-feature-loss guardrail, the behavioral contracts as the command and subsystem
-rule source, the build plan as the implementation sequence, the code generation
-task list as the step-by-step execution checklist, the compatibility testing
-protocol as the release gate, and the startup config remediation plan as the
-open repair plan for client config, banner/greeting, heartbeat, and effective
-system-prompt startup parity. Use the turn integration remediation plan for
-tool-call execution, prompt/context delivery, current-session history, and
-background memory-work parity. The matrix should be updated as implementation
-proceeds.
+## Queued
 
-Configuration compatibility is a first-class FridayV2 migration requirement.
-The current `tests/integration/memory/config.yaml` shape should be preserved as
-the primary user-facing format unless a change is explicitly documented with a
-compatibility adapter and tests.
+- [Friday Chat client lifecycle](queued/friday-chat-client-lifecycle/) — live
+  shutdown resource warning awaiting bounded remediation authority.
+- [Friday MCP](queued/friday-mcp/) — draft MCP client integration packet.
+- [Memory V2](queued/memory-v2/) — completed package review and locked clean-state
+  boundary; design and implementation are not authorized.
+- [Tool governance](queued/tool-governance/) — security reviews and draft unified
+  authorization plan.
+- [Framework validation and contracts](queued/framework-validation-and-contracts/)
+  — planned repository-gate and framework-contract cleanup.
+- [Prompt-injection mitigation](queued/prompt-injection-mitigation/) — marked
+  ready for implementation in its source plan but without an execution record.
+- [Claude Agent SDK tools](queued/claude-agent-sdk-tools/) — approved historical
+  tool plan awaiting current-scope confirmation.
+- [Friday startup context](queued/friday-startup-context/) — draft `friday.md`
+  behavior.
+- [Friday Web Chat](queued/friday-web-chat/) — draft browser application plan.
+- [Friday API](queued/friday-api/) and [Friday TUI](queued/friday-tui/) — product
+  proposals, not current implementation authority.
+- [Friday Speech](queued/friday-speech/) — unapproved draft.
+- [Self-Evolving Knowledge Graph](queued/self-evolving-knowledge-graph/) —
+  approved for design, not implementation.
 
-Framework package stability is also a first-class FridayV2 implementation
-requirement. Existing `packages/friday-*` framework packages are frozen during
-the FridayV2 parity pass, except for the new `packages/friday-chat` app package
-and minimal workspace metadata needed to run it. Framework changes discovered
-during FridayV2 work must be recorded in the framework upgrade log for a
-separate follow-up pass.
+## Blocked
 
-Move completed or superseded planning material to `../archive/`.
+- [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) — implementation
+  is complete, but one provider-backed real-runtime acceptance criterion remains
+  unverified.
+- [Human in the Loop](blocked/human-in-the-loop/) — design packet retains open
+  high-priority architecture contradictions.
 
-## Active Framework Upgrade Packets
+## Deferred
 
-The Friday LLM reasoning-controls upgrade was approved for implementation on
-2026-08-27. The FridayV2 framework-package freeze is released only for its
-documented implementation scope; TestPyPI and PyPI publication remain
-separately gated:
+- [Model-aware reasoning control](deferred/model-aware-reasoning-control/) — no
+  active design or implementation authority.
 
-- [Friday LLM reasoning and sampling controls requirement](upgrades/friday-llm/friday-llm-reasoning-and-sampling-controls-requirement.md)
-- [Friday LLM tactical implementation and release plan](upgrades/friday-llm/friday-llm-reasoning-controls-tactical-implementation-plan.md)
+## Backlog
 
-The Friday Chat typed-LLM migration was approved for implementation on
-2026-08-28. It adopts the Friday LLM `0.1.0a1` public contracts only for the
-primary Chat model path, preserves legacy flat configuration for one
-deprecation window, and defines independent implementation, live-provider,
-TestPyPI, PyPI, and tagging gates. Implementation is complete, but clean
-installation exposed an unsatisfiable published LLM dependency cohort. The
-tactical plan records the required Memory, Runtime, and CLI `0.1.0a1` scope
-amendment; the rejected Chat artifact must not be published:
+- [Agent-scoped memory context](backlog/agent-scoped-memory-context/)
+- [Friday Chat framework follow-ups](backlog/friday-chat-framework-followups/)
+- [Strategic roadmap notes](backlog/strategic-roadmap/)
+- [Tool capability notes](backlog/tool-capabilities/)
 
-- [Friday Chat typed LLM configuration migration tactical plan](upgrades/friday-chat/friday-chat-typed-llm-config-migration-tactical-plan.md)
-- [Friday Chat typed LLM deferred consumer handoff](upgrades/friday-chat/friday-chat-typed-llm-deferred-consumer-handoff.md)
+## Lifecycle Rules
 
-The clean-install blocker was resolved on 2026-08-28 with a lock-step
-`0.1.0a1` cohort for every current Friday distribution. Implementation, local
-validation, production PyPI publication, and post-publication verification are
-complete. Release tagging remains a separate gate:
+- `active`: execution is in progress under explicit authority.
+- `queued`: proposed, draft, or approved work that is not currently executing.
+- `blocked`: started or otherwise actionable work awaiting a recorded condition.
+- `deferred`: deliberately postponed work with no current action.
+- `backlog`: ideas and inventories that have not become an active plan.
+- completed and superseded packets belong in [the archive](../archive/).
 
-- [Friday package cohort 0.1.0a1 plan](upgrades/friday-packages/friday-package-cohort-0.1.0a1-plan.md)
-- [Friday package cohort 0.1.0a1 release evidence](../reference/releases/friday-package-cohort-0.1.0a1-release-evidence.md)
+Every initiative should have one packet `README.md` identifying its status,
+authority, and next gate. A draft document never authorizes implementation merely
+because it appears in `queued/`.

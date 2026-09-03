@@ -8,10 +8,7 @@ from typing import Any
 
 import yaml
 
-PLANNING_ROOT = Path("docs/planning")
-COMPATIBILITY_PLAN_ROOT = (
-    PLANNING_ROOT / "build-plans" / "friday-chat-v2-aechive"
-)
+COMPATIBILITY_PLAN_ROOT = Path("docs/archive/completed/2026/friday-chat-v2")
 # These archived plans remain the pinned authority for FridayV2 parity coverage.
 PARITY_MATRIX = COMPATIBILITY_PLAN_ROOT / "friday-chat-v2-parity-matrix.md"
 CONTRACTS = COMPATIBILITY_PLAN_ROOT / "friday-chat-v2-behavioral-contracts.md"

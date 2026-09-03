@@ -27,7 +27,7 @@ compatibility-test concerns.
 
 The detailed implementation, package-test, baseline-debt, clean-artifact, and
 live-provider results are recorded in the
-[typed LLM execution log](../../planning/upgrades/friday-packages/friday-framework-typed-llm-execution-log.md).
+[typed LLM execution log](../../archive/completed/2026/typed-llm-0.1.0a2/framework/execution-log.md).
 
 Final artifact gates:
 
@@ -35,7 +35,7 @@ Final artifact gates:
 - The custom artifact validator passed all 34 files.
 - `twine check` passed all 34 files immediately before publication.
 - Every local SHA-256 value matched the frozen
-  [artifact manifest](../../planning/upgrades/friday-packages/friday-package-cohort-0.1.0a2-artifact-sha256.txt).
+  [artifact manifest](friday-package-cohort-0.1.0a2-artifact-sha256.txt).
 - Candidate clean-install, import, CLI, typed fake-transport, and bounded live
   provider-compatibility gates passed before publication.
 

@@ -11,7 +11,7 @@ Strategies:
 - PARAGRAPH: Split at paragraph boundaries
 - RECURSIVE: Try paragraph → sentence → fixed (recommended)
 
-Ref: docs/planning/build-plans/copilot-promotion-build-plan.md, Issue 3
+Ref: docs/archive/superseded/copilot-promotion/build-plan.md, Issue 3
 """
 
 from __future__ import annotations

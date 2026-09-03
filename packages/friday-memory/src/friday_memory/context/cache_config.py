@@ -5,7 +5,7 @@ Prompt Caching Configuration.
 Controls cache-optimized prompt layout for LLM providers that support
 prefix caching (Anthropic, OpenAI, etc.).
 
-Ref: docs/planning/build-plans/copilot-promotion-build-plan.md
+Ref: docs/archive/superseded/copilot-promotion/build-plan.md
 """
 
 from __future__ import annotations

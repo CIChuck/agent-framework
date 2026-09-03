@@ -11,7 +11,7 @@ Operations:
 - Orphan edge cleanup (remove dangling references)
 - Hebbian consolidation (batch flush access events)
 
-Ref: docs/planning/build-plans/copilot-promotion-build-plan.md, Issue 4
+Ref: docs/archive/superseded/copilot-promotion/build-plan.md, Issue 4
 """
 
 from __future__ import annotations
