@@ -1,6 +1,6 @@
 # Friday Framework Typed LLM Adoption Plan
 
-- Status: Implemented; local `0.1.0a2` candidate validated
+- Status: Published to production PyPI and post-publication verified
 - Date: 2026-08-28
 - Approval date: 2026-08-28
 - Implementation completion date: 2026-08-28

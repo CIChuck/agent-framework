@@ -1,6 +1,6 @@
 # Friday Framework Typed LLM Execution Log
 
-- Status: Merged and validated; production PyPI publication authorized
+- Status: Published to production PyPI and post-publication verified
 - Approval date: 2026-08-28
 - Branch: `feature/friday-framework-typed-llm-adoption`
 - Candidate cohort: `0.1.0a2`
@@ -58,7 +58,7 @@ fallback constructors used only by examples remain separately classified.
 | FW-LLM-09 compatibility-only audit | Complete | AST-based checked allowlists prevent new direct constructors or legacy completion calls outside named compatibility paths. |
 | FW-LLM-10 documentation/compatibility | Complete | Repository and packaged examples, model catalog, README guidance, `.env.example`, diagnostics, and release helpers are synchronized. |
 | FW-LLM-11 deterministic validation | Complete | Package, wire, type, lint, metadata, artifact, checksum, and clean-install evidence is recorded below. |
-| FW-LLM-12 candidate/release | Publication approved | Refreshed artifacts are validated, PR #4 is merged, and production PyPI publication was authorized on 2026-09-03. Upload and registry verification remain pending; release tagging remains separately gated. |
+| FW-LLM-12 candidate/release | Complete | Refreshed artifacts were validated, merged through PR #4, published to production PyPI, and verified from the registry on 2026-09-03. Release tagging remains separately gated. |
 
 ## Implemented Contract
 
@@ -202,11 +202,21 @@ fallback constructors used only by examples remain separately classified.
 - The unrelated reference documents and local pre-migration config backup were
   not included in the candidate commits.
 
-## Remaining Release Actions
+## Production Publication
 
 - The maintainer authorized production PyPI publication on 2026-09-03.
-- Upload the immutable candidate artifacts in the parent plan's dependency
-  order and verify every layer from production PyPI before continuing.
-- Record published URLs, registry hashes, and clean PyPI-only install evidence.
-- Release tag creation remains a separate authority gate and is not authorized
-  by the publication approval.
+- All 17 projects and all 34 immutable artifacts were uploaded in the parent
+  plan's dependency order. Each layer's PyPI filenames and SHA-256 values were
+  compared with the frozen local candidates before the next layer began.
+- PyPI Simple API propagation was briefly uneven after upload. Early strict
+  install attempts stopped when the resolver could not yet see Friday Chat,
+  Agent, and then CLI. A pip-based readiness probe subsequently confirmed that
+  all 17 versions were visible before the final verification run.
+- A fresh Python 3.13.10 environment installed
+  `friday-framework[all]==0.1.0a2` and `friday-chat==0.1.0a2` exclusively from
+  production PyPI with cache use disabled. All 17 installed versions matched,
+  `pip check` reported no broken requirements, framework/runtime/agent/chat
+  imports succeeded, and Friday Chat `--version` and `--help` succeeded.
+- The complete publication record is
+  [Friday package cohort 0.1.0a2 release evidence](../../../reference/releases/friday-package-cohort-0.1.0a2-release-evidence.md).
+- Release tag creation remains a separate authority gate and is not authorized.
