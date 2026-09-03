@@ -1,6 +1,6 @@
 # Friday Framework Typed LLM Execution Log
 
-- Status: Implementation complete; refreshed release candidate under review
+- Status: Merged and validated; production PyPI publication authorized
 - Approval date: 2026-08-28
 - Branch: `feature/friday-framework-typed-llm-adoption`
 - Candidate cohort: `0.1.0a2`
@@ -58,7 +58,7 @@ fallback constructors used only by examples remain separately classified.
 | FW-LLM-09 compatibility-only audit | Complete | AST-based checked allowlists prevent new direct constructors or legacy completion calls outside named compatibility paths. |
 | FW-LLM-10 documentation/compatibility | Complete | Repository and packaged examples, model catalog, README guidance, `.env.example`, diagnostics, and release helpers are synchronized. |
 | FW-LLM-11 deterministic validation | Complete | Package, wire, type, lint, metadata, artifact, checksum, and clean-install evidence is recorded below. |
-| FW-LLM-12 candidate/release | Candidate complete | Refreshed artifacts are validated and pushed to PR #4. Merge, tag, and PyPI upload remain separate authority gates. |
+| FW-LLM-12 candidate/release | Publication approved | Refreshed artifacts are validated, PR #4 is merged, and production PyPI publication was authorized on 2026-09-03. Upload and registry verification remain pending; release tagging remains separately gated. |
 
 ## Implemented Contract
 
@@ -137,9 +137,18 @@ fallback constructors used only by examples remain separately classified.
 - A second catalog-resolved live smoke used `nomic_embedding_local` and returned
   a 768-dimensional embedding.
 - On 2026-09-03, the operator ran an interactive Friday Chat tool-loop smoke
-  against Moonshot Kimi K3 after the provider-specific reasoning normalization
-  change and reported successful multi-step behavior. This was an operator
+  through the selected Moonshot/Kimi profile after the provider-response
+  reasoning normalization change and reported successful multi-step behavior.
+  The workflow and tool orchestration remained provider and model independent;
+  the selected profile was only the compatibility target. This was an operator
   smoke rather than a retained automated test artifact.
+- On 2026-09-03, a clean Python 3.13.10 environment installed the exact built
+  `friday-chat==0.1.0a2` and `friday-framework-llm==0.1.0a2` wheels and ran a
+  live, provider-independent two-tool turn through the selected compatibility
+  profile. The model completed three calls, invoked both tools, replayed three
+  reasoning-bearing assistant messages required by the provider protocol,
+  emitted no missing-reasoning warnings, persisted one interaction, and did
+  not persist reasoning content.
 - No provider credential was persisted in repository configuration or release
   artifacts.
 
@@ -185,13 +194,19 @@ fallback constructors used only by examples remain separately classified.
   transcripts`), and `ef978f1` (`Add Kimi to Friday Chat model examples`).
 - Refreshed release-evidence commit: `129d3ff` (`Refresh typed LLM release
   evidence`).
-- Remote branch: `origin/feature/friday-framework-typed-llm-adoption`.
-- Pull request: [#4](https://github.com/CIChuck/agent-framework/pull/4), opened
-  against `master` on 2026-09-02 and refreshed on 2026-09-03.
+- Pull request: [#4](https://github.com/CIChuck/agent-framework/pull/4), merged
+  into `master` as `a422c68` on 2026-09-03.
+- The local and remote `feature/friday-framework-typed-llm-adoption` branches
+  were deleted after the merge. `master` and `origin/master` resolve to the
+  same merge commit.
 - The unrelated reference documents and local pre-migration config backup were
   not included in the candidate commits.
 
-## Remaining Authority Gates
+## Remaining Release Actions
 
-Merge, tag creation, and PyPI upload have not been performed. They remain
-separate authority gates under the parent plan.
+- The maintainer authorized production PyPI publication on 2026-09-03.
+- Upload the immutable candidate artifacts in the parent plan's dependency
+  order and verify every layer from production PyPI before continuing.
+- Record published URLs, registry hashes, and clean PyPI-only install evidence.
+- Release tag creation remains a separate authority gate and is not authorized
+  by the publication approval.
