@@ -40,7 +40,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | [Development Kanban governance](active/development-kanban-governance/) | normal | granted | local | independently validate the REM-001 candidate |
+| 1 | [Development Kanban governance](blocked/development-kanban-governance/) | blocked | closed | local | maintainer authorization for REM-002 source/test remediation |
 
 ## Completed
 

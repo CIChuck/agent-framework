@@ -110,3 +110,24 @@
 - Confirmed every new ID resolves exactly once in its controlling plan.
 - Set `execution_phase: validation` and `validation_state: pending` for a new
   stable candidate and fresh aggregate review.
+
+## 2026-09-03 — VAL-002 Changes Requested
+
+- A different fresh-context, read-only subagent reviewed aggregate candidate
+  `7eea978`.
+- All eleven authority hashes and both prior-review hashes matched; every
+  acceptance and tactical ID resolved exactly once.
+- Both VAL-001 findings were independently confirmed resolved.
+- Board validation passed for 22 tasks, documentation validation passed for 293
+  Markdown files, all 18 integration tests passed, the aggregate diff check was
+  clean, and the documentation amendment touched no protected path.
+- `VAL-002-F01` found that reopening `completed -> started` can silently
+  downgrade `delivery_state` from an advanced delivery fact to `local`.
+- Stored the VAL-002 request, report, and evidence and created proposed
+  construction directive `REM-002`.
+- Did not execute REM-002 because the maintainer limited this amendment to
+  documentation and process updates. The required board-script and regression
+  test changes need fresh authority.
+- Set `execution_phase: remediation`,
+  `validation_state: changes_requested`, and condition `blocked` at the
+  maintainer-authorization gate.

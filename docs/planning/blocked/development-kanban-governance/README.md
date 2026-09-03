@@ -4,16 +4,16 @@
 title: Development Kanban Governance
 initiative: development-kanban-governance
 document_type: initiative-index
-status: started
+status: started; blocked on source-change authority
 work_state: started
-condition: normal
+condition: blocked
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/development-kanban-governance
-next_gate: independently validate the REM-001 candidate
-implementation_authority: granted
-execution_phase: validation
-validation_state: pending
+next_gate: maintainer authorization for REM-002 source/test remediation
+implementation_authority: closed
+execution_phase: remediation
+validation_state: changes_requested
 construction_directive: exempt
 ---
 
@@ -76,3 +76,9 @@ review.
 aggregate diff check found one documentation whitespace defect. `REM-001` is
 limited to those findings and is complete. The initiative remains `started`
 while the corrected candidate awaits a fresh aggregate review.
+
+`VAL-002` resolved both prior findings and passed every required command, but
+returned `CHANGES_REQUESTED` for a delivery-history defect in previously
+generated board automation. The current documentation-only authority forbids
+the required source and test changes. `REM-002` is proposed but not authorized;
+the packet is blocked pending an explicit maintainer decision.
