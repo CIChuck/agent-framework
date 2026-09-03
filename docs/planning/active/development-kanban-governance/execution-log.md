@@ -83,3 +83,20 @@
   before acceptance.
 - Set `execution_phase: validation` and `validation_state: pending` before
   freezing the candidate commit.
+
+## 2026-09-03 — VAL-001 Blocked
+
+- A fresh-context, read-only subagent reviewed aggregate candidate `12c1e9e`.
+- All eleven authority hashes matched; board validation passed for 22 tasks,
+  documentation validation passed for 291 Markdown files, and all 18 integration
+  tests passed.
+- `VAL-001-B01` blocked a formal result because the build and tactical plans
+  lacked stable acceptance-criterion and tactical-task IDs required by the new
+  request contract.
+- `VAL-001-F02` identified one trailing blank line that caused aggregate
+  `git diff --check` to fail.
+- Stored the request, report, and evidence and opened bounded documentation-only
+  remediation directive `REM-001`.
+- Set `execution_phase: remediation` and
+  `validation_state: changes_requested`; no source or automation change is
+  authorized.

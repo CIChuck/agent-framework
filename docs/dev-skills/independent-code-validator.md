@@ -136,4 +136,3 @@ against the new stable candidate. Do not transfer the old conclusion.
 Return the report to the controller. The controller verifies that the report is
 complete, stores the durable artifacts, and decides whether to dispatch bounded
 remediation or propose completion to the maintainer.
-

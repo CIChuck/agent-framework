@@ -10,10 +10,10 @@ condition: normal
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/development-kanban-governance
-next_gate: freeze and independently validate the documentation candidate
+next_gate: complete REM-001 and dispatch a fresh aggregate review
 implementation_authority: granted
-execution_phase: validation
-validation_state: pending
+execution_phase: remediation
+validation_state: changes_requested
 construction_directive: exempt
 ---
 
@@ -71,3 +71,7 @@ maintainer reopened the packet before acceptance to add the independent
 validation policy and post-generation workflow. This amendment remains in
 progress until the frozen documentation candidate receives an independent cold
 review.
+
+`VAL-001` returned `BLOCKED` because stable plan IDs were absent and the
+aggregate diff check found one documentation whitespace defect. `REM-001` is
+limited to those findings; the initiative remains `started`.
