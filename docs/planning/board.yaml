@@ -8,7 +8,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/development-kanban-governance/
-  next_gate: complete REM-001 and dispatch a fresh aggregate review
+  next_gate: independently validate the REM-001 candidate
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:

@@ -100,3 +100,13 @@
 - Set `execution_phase: remediation` and
   `validation_state: changes_requested`; no source or automation change is
   authorized.
+
+## 2026-09-03 — REM-001 Completed
+
+- Added unique `AC-01` through `AC-13` acceptance-criterion IDs and `TP-01`
+  through `TP-15` tactical-task IDs without changing plan meaning.
+- Removed the reported EOF whitespace defect and normalized the stored VAL-001
+  evidence formatting.
+- Confirmed every new ID resolves exactly once in its controlling plan.
+- Set `execution_phase: validation` and `validation_state: pending` for a new
+  stable candidate and fresh aggregate review.

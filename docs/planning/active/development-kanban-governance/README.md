@@ -10,10 +10,10 @@ condition: normal
 created: 2026-09-03
 updated: 2026-09-03
 branch: feature/development-kanban-governance
-next_gate: complete REM-001 and dispatch a fresh aggregate review
+next_gate: independently validate the REM-001 candidate
 implementation_authority: granted
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 construction_directive: exempt
 ---
 
@@ -74,4 +74,5 @@ review.
 
 `VAL-001` returned `BLOCKED` because stable plan IDs were absent and the
 aggregate diff check found one documentation whitespace defect. `REM-001` is
-limited to those findings; the initiative remains `started`.
+limited to those findings and is complete. The initiative remains `started`
+while the corrected candidate awaits a fresh aggregate review.
