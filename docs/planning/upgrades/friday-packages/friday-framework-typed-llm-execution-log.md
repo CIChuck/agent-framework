@@ -1,6 +1,6 @@
 # Friday Framework Typed LLM Execution Log
 
-- Status: Implementation complete; release candidate committed and under review
+- Status: Implementation complete; refreshed release candidate under review
 - Approval date: 2026-08-28
 - Branch: `feature/friday-framework-typed-llm-adoption`
 - Candidate cohort: `0.1.0a2`
@@ -76,9 +76,10 @@ fallback constructors used only by examples remain separately classified.
   secrets use `SecretStr`; validation errors and model representations do not
   echo secret values.
 - The repository and packaged Friday Chat examples share one provider key per
-  endpoint (`FRIDAY_LLM_API_KEY` and `FRIDAY_OPENROUTER_API_KEY`) and bind all
-  LLM roles by name. Per-role credentials remain available for deployments
-  that require least-privilege provider keys.
+  endpoint (`FRIDAY_LLM_API_KEY`, `FRIDAY_OPENROUTER_API_KEY`, and
+  `FRIDAY_MOONSHOT_API_KEY`) and bind all LLM roles by name. Per-role
+  credentials remain available for deployments that require least-privilege
+  provider keys.
 - Operation-owned overrides retain highest precedence. Canonical extraction,
   passage routing, and smart-file composition no longer overwrite role-profile
   temperature, token, or timeout defaults with hidden legacy defaults.
@@ -107,17 +108,17 @@ fallback constructors used only by examples remain separately classified.
 
 ### Deterministic tests
 
-- Friday LLM: `182 passed, 8 skipped`; skips are opt-in live-provider tests.
+- Friday LLM: `183 passed, 8 skipped`; skips are opt-in live-provider tests.
 - Friday Runtime: `50 passed`.
 - Friday Memory: `680 passed, 1 skipped`.
 - Friday Agent: `209 passed`.
 - Friday Tools: `233 passed, 2 deselected`; see baseline debt below.
-- Friday Chat: `423 passed, 5 skipped, 3 deselected`; see baseline debt below.
+- Friday Chat: `424 passed, 5 skipped, 3 deselected`; see baseline debt below.
 - Remaining package suites: Friday CLI `155`, Core `107`, MCP `31`, Moltbook
   `4`, Sandbox `38`, Speech `15`, and Telemetry `53` passed.
 - Experiment suites: `18 passed` across agent quality, prompt/transcript audit,
   provider-memory smoke, and workflow-artifact smoke.
-- Total independently executed green tests: `2198 passed, 14 skipped`.
+- Total independently executed green tests: `2200 passed, 14 skipped`.
 - The root one-shot pytest command has a pre-existing collection collision
   between Friday Chat and Friday CLI modules both named `test_display.py`;
   package suites were therefore run in isolated pytest processes.
@@ -135,7 +136,12 @@ fallback constructors used only by examples remain separately classified.
   `qwen38_chat_local` profile, and completed successfully with `finish=stop`.
 - A second catalog-resolved live smoke used `nomic_embedding_local` and returned
   a 768-dimensional embedding.
-- No cloud-provider request was made and no provider credential was persisted.
+- On 2026-09-03, the operator ran an interactive Friday Chat tool-loop smoke
+  against Moonshot Kimi K3 after the provider-specific reasoning normalization
+  change and reported successful multi-step behavior. This was an operator
+  smoke rather than a retained automated test artifact.
+- No provider credential was persisted in repository configuration or release
+  artifacts.
 
 ### Reproduced baseline debt
 
@@ -160,7 +166,13 @@ fallback constructors used only by examples remain separately classified.
 - A clean temporary-environment install of `friday-chat==0.1.0a2` from the
   candidate directory passed imports, `pip check`, console `--help`/`--version`,
   packaged catalog loading with zero diagnostics, and the typed fake-transport
-  smoke without provider I/O.
+  smoke without provider I/O. The smoke confirms that Kimi remains free of
+  `top_p` and `top_k` when its profile omits sampling controls and that
+  provider-specific reasoning metadata is normalized.
+- A separate clean temporary-environment install of
+  `friday-framework-llm==0.1.0a2` passed imports, `pip check`, typed
+  fake-transport execution, named tool selection, and legacy-constructor
+  compatibility.
 - The verified candidate checksums are recorded in
   [friday-package-cohort-0.1.0a2-artifact-sha256.txt](friday-package-cohort-0.1.0a2-artifact-sha256.txt).
 
@@ -168,11 +180,14 @@ fallback constructors used only by examples remain separately classified.
 
 - Candidate commit: `2f71778` (`Adopt typed LLM configuration across Friday
   packages`).
+- Provider/tool-loop remediation commits: `6d34f56` (`Preserve provider
+  reasoning across tool calls`), `a2d985d` (`Record tool calls in Friday Chat
+  transcripts`), and `ef978f1` (`Add Kimi to Friday Chat model examples`).
 - Remote branch: `origin/feature/friday-framework-typed-llm-adoption`.
 - Pull request: [#4](https://github.com/CIChuck/agent-framework/pull/4), opened
   against `master` on 2026-09-02.
-- The unrelated Friday Chat handoff edit, reference documents, and local
-  pre-migration config backup were not included in the candidate commit.
+- The unrelated reference documents and local pre-migration config backup were
+  not included in the candidate commits.
 
 ## Remaining Authority Gates
 

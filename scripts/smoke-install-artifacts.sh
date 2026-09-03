@@ -250,13 +250,22 @@ elif distribution == "friday-chat":
         raise RuntimeError("packaged Friday Chat template emitted config diagnostics")
 
     async def fake_chat_completion(**kwargs):
-        if kwargs.get("top_p") != 0.95:
+        if kwargs.get("model") != "moonshot/kimi-k3":
+            raise RuntimeError(f"unexpected model: {kwargs.get('model')!r}")
+        if "top_p" in kwargs:
             raise RuntimeError(f"unexpected top_p: {kwargs.get('top_p')!r}")
-        if kwargs.get("extra_body", {}).get("top_k") != 40:
+        if "top_k" in kwargs.get("extra_body", {}):
             raise RuntimeError(
                 f"unexpected top_k: {kwargs.get('extra_body', {}).get('top_k')!r}"
             )
-        message = SimpleNamespace(content="ok", reasoning_content=None, tool_calls=[])
+        message = SimpleNamespace(
+            content="ok",
+            reasoning_content=None,
+            provider_specific_fields={
+                "reasoning_content": "private artifact-smoke reasoning"
+            },
+            tool_calls=[],
+        )
         usage = SimpleNamespace(
             prompt_tokens=1,
             completion_tokens=1,
@@ -265,7 +274,7 @@ elif distribution == "friday-chat":
         )
         return SimpleNamespace(
             choices=[SimpleNamespace(message=message, finish_reason="stop")],
-            model="qwen3.8-27b-mlx",
+            model="kimi-k3",
             usage=usage,
         )
 
@@ -278,6 +287,8 @@ elif distribution == "friday-chat":
             )
             if response.content != "ok":
                 raise RuntimeError("Friday Chat typed adapter returned wrong content")
+            if response.reasoning_content != "private artifact-smoke reasoning":
+                raise RuntimeError("provider reasoning metadata was not normalized")
         finally:
             litellm.acompletion = original
 

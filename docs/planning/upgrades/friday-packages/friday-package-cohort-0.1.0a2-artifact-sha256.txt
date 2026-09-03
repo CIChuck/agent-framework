@@ -1,5 +1,5 @@
-de2ec187b69dc23fdafcf11d9920ed0d3ef696e0c66f528ad0bda05f7db17390  friday_chat-0.1.0a2-py3-none-any.whl
-84b085d3d788284fb956ce039b3d36c0f3c80e44742444840b6f691b9ea18edd  friday_chat-0.1.0a2.tar.gz
+7477bce7b9698568ac1fa4ec3836ff8aa7ce5a9ee6c7e5016a28654cc1288659  friday_chat-0.1.0a2-py3-none-any.whl
+5e7dae370bb95355866f5e65d36d10bd3cb9412c3abc20d256cc47628bb1e8b2  friday_chat-0.1.0a2.tar.gz
 79e8b187135d5477263a3ebcb6a330c8cf3a28c848b0fc6adbbe2ce5f6bda2a0  friday_framework-0.1.0a2-py3-none-any.whl
 4eb960897900e142162ae640a67eec28e6fad36d1f2994613cf2b9a9101404b5  friday_framework-0.1.0a2.tar.gz
 4ffcf54372bfa6a40aa4a0e69ad569ccb1b7b7ae1c6e98cce020a6242a855789  friday_framework_agent-0.1.0a2-py3-none-any.whl
@@ -10,8 +10,8 @@ b602f36c3ab8c70b6f1c05a95784c7f35552a309312704cab22d43da5ef87db1  friday_framewo
 839c55924e0d3e8c6262b71fc8f321bd11ad6b7f534c55f89b2f20f14c2fba1f  friday_framework_core-0.1.0a2.tar.gz
 16078bb343212677fde7e03f8c4ed22dc4337d7fccdbd70cf519494537ee2faf  friday_framework_finance-0.1.0a2-py3-none-any.whl
 93372374e91c271942e70284162da8057447b1fa5919a8aabe13e24aa3b82a04  friday_framework_finance-0.1.0a2.tar.gz
-205d4187e444cb8a9fc20f64fab2137b3b82282e5694a8a9fc90f2ae5ba98603  friday_framework_llm-0.1.0a2-py3-none-any.whl
-3cf964d873f615a1e63d805581a9103fdb5c15f4b9f517c23190e0da9ec0a367  friday_framework_llm-0.1.0a2.tar.gz
+980b0a98a59064d51782177397831ed3ff52c965a18513537a1a91090090a4fe  friday_framework_llm-0.1.0a2-py3-none-any.whl
+7f2d76e031e3d45d112d523cf2e30192d1ed50bdc1fac24a76f3a2df8671a038  friday_framework_llm-0.1.0a2.tar.gz
 2c0c084c2de01a8f6f9901b35255734df1b3222e204960e026c3dbff317efb6e  friday_framework_mcp-0.1.0a2-py3-none-any.whl
 c89171ab69ad58d6846bd771225806cb1a45b0652fb3e4a5f814efffac25a2ce  friday_framework_mcp-0.1.0a2.tar.gz
 c924e2f7726417aaef4b6891861f5ff665f7645336618ff0ffa3e3172fe1b4bf  friday_framework_memory-0.1.0a2-py3-none-any.whl
