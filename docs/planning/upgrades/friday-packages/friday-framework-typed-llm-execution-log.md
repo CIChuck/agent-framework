@@ -58,7 +58,7 @@ fallback constructors used only by examples remain separately classified.
 | FW-LLM-09 compatibility-only audit | Complete | AST-based checked allowlists prevent new direct constructors or legacy completion calls outside named compatibility paths. |
 | FW-LLM-10 documentation/compatibility | Complete | Repository and packaged examples, model catalog, README guidance, `.env.example`, diagnostics, and release helpers are synchronized. |
 | FW-LLM-11 deterministic validation | Complete | Package, wire, type, lint, metadata, artifact, checksum, and clean-install evidence is recorded below. |
-| FW-LLM-12 candidate/release | Candidate complete | Local artifacts are built and validated. Push, PR, tag, PyPI upload, and live-provider testing remain separate authority gates. |
+| FW-LLM-12 candidate/release | Candidate complete | Refreshed artifacts are validated and pushed to PR #4. Merge, tag, and PyPI upload remain separate authority gates. |
 
 ## Implemented Contract
 
@@ -183,9 +183,11 @@ fallback constructors used only by examples remain separately classified.
 - Provider/tool-loop remediation commits: `6d34f56` (`Preserve provider
   reasoning across tool calls`), `a2d985d` (`Record tool calls in Friday Chat
   transcripts`), and `ef978f1` (`Add Kimi to Friday Chat model examples`).
+- Refreshed release-evidence commit: `129d3ff` (`Refresh typed LLM release
+  evidence`).
 - Remote branch: `origin/feature/friday-framework-typed-llm-adoption`.
 - Pull request: [#4](https://github.com/CIChuck/agent-framework/pull/4), opened
-  against `master` on 2026-09-02.
+  against `master` on 2026-09-02 and refreshed on 2026-09-03.
 - The unrelated reference documents and local pre-migration config backup were
   not included in the candidate commits.
 
