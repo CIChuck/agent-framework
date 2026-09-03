@@ -49,3 +49,34 @@
 - Full `tests/integration` validation passed: 18 tests.
 - Repeated board, documentation, mypy, Ruff, skill, diff, and protected-guide
   validation successfully.
+
+## 2026-09-03 — Independent Validation Governance Reopened
+
+- The maintainer accepted all recommended producer-reviewer-remediator policy
+  decisions and authorized implementation on the current governance branch.
+- The maintainer limited this amendment to documentation and process updates;
+  package source, tests, runtime behavior, and automation scripts are forbidden.
+- Recorded a lightweight-change construction-directive exemption for this
+  documentation-only amendment. The maintainer, date, reason, exact scope, and
+  validation requirements appear in the packet index.
+- Moved the packet from `review` to `active` and recorded the
+  `completed -> started` transition.
+- Set `execution_phase: implementation` and `validation_state: not_ready` until
+  the documentation candidate is frozen for independent cold review.
+
+## 2026-09-03 — Documentation Candidate Prepared
+
+- Added the canonical independent-validation policy and connected it to the
+  repository engineering policy, task lifecycle, `AGENTS.md`, and documentation
+  navigation.
+- Made construction directives mandatory for code-generating work and replaced
+  the prior optional wording with a recorded lightweight-change exemption.
+- Added a fresh-context, read-only validator workflow, updated remediation
+  guidance, and replaced the older single-purpose subagent prompt with a
+  reusable builder-to-validator handoff template.
+- Deferred machine-enforced board fields because the maintainer prohibited
+  source and automation changes. Packet metadata and the board `next_gate`
+  enforce the documentation-only process until that automation is separately
+  authorized.
+- Set `execution_phase: validation` and `validation_state: pending` before
+  freezing the candidate commit.

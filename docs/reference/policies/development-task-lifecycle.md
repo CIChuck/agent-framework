@@ -5,6 +5,9 @@
 This policy defines the repository-visible development board used by maintainers
 and agents to select, authorize, execute, review, and close Friday engineering
 work. It supplements the repository engineering policy; it does not replace it.
+Applicable implementation must also satisfy the
+[independent validation policy](independent-validation-policy.md) before it can
+be recorded as completed.
 
 The canonical current-state registry is
 [`docs/planning/board.yaml`](../../planning/board.yaml). The rendered
@@ -80,11 +83,19 @@ when the work requires them:
 - `tactical-plan.md`: implementation ordering and validation strategy;
 - `directives/`: bounded execution instructions;
 - `execution-log.md`: append-only checkpoints, decisions, evidence, and stops;
+- `validation/`: frozen review requests, independent reports, and reproducible
+  evidence;
+- `remediation/`: bounded directives derived from numbered review findings;
 - `closeout.md`: completed validation and maintainer acceptance evidence.
 
 The board owns current state, priority, authority, delivery state, and next
 gate. Packet documents own the detailed rationale and evidence. Historical text
 inside an imported packet does not override the board.
+
+Active packets record `execution_phase` and `validation_state` in their index
+and execution log until separately approved board automation supports those
+fields. The board `next_gate` must agree with that packet metadata. These process
+fields do not grant authority or create additional work states.
 
 ## Transition Gates
 
@@ -96,13 +107,19 @@ criteria, and identification of affected package boundaries.
 ### Approved to started
 
 Requires a dedicated branch, recorded baseline, satisfied dependencies, and a
-tactical plan or explicit waiver.
+tactical plan or explicit waiver. Every code-generating work unit also requires
+an approved construction directive. Only the lightweight-change exemption in
+the independent validation policy may waive that directive, and its maintainer,
+date, reason, scope, and validation must be recorded in the packet.
 
 ### Started to completed
 
-Requires implementation to be finished, focused validation evidence, broader
-validation proportional to risk, updated documentation, and no hidden known
-blocker. Completion is a proposal for review, not self-acceptance.
+Requires implementation to be finished, a stable candidate commit, an
+independent `VERIFIED` result when the validation policy applies, focused test
+evidence, broader validation proportional to risk, updated documentation, and
+no hidden known blocker. Work remains `started` through validation and
+remediation. Completion is a proposal for maintainer review, not
+self-acceptance.
 
 ### Completed to accepted
 

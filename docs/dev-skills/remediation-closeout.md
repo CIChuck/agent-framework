@@ -11,6 +11,11 @@ Use this skill after code review finds issues or after implementation is ready f
 
 The goal is to fix precisely what was found and make documentation match the as-built system.
 
+When findings come from formal independent validation, follow
+`docs/reference/policies/independent-validation-policy.md`. The validator remains
+read-only; the controller creates the remediation directive and dispatches an
+authorized remediator.
+
 ## Governing Standard
 
 Follow `docs/methodology/constitution/gendev.md` when available.
@@ -27,6 +32,8 @@ Use:
 - PRD;
 - test results;
 - implementation summary.
+- frozen candidate revision and superseded validation report;
+- approved remediation-cycle number.
 
 ## Remediation Plan Structure
 
@@ -53,6 +60,9 @@ Instruct the AI builder to:
 - run relevant verification;
 - report skipped verification;
 - map each fix back to finding IDs.
+- commit a new stable candidate before revalidation;
+- stop after two unsuccessful remediation cycles and return unresolved findings
+  to the maintainer.
 
 ## Documentation Close-Out
 
@@ -80,6 +90,10 @@ Update or identify needed updates to:
 ## Completion Standard
 
 Close-out is complete when findings are remediated or accepted, tests are evidenced, and docs match the implemented system.
+
+Remediation does not restore a previous `VERIFIED` decision. A fresh-context
+validator must review the new stable candidate. Use a delta review for the
+findings and retain the required aggregate branch review before merge.
 
 ## Operational Coherence Requirements
 

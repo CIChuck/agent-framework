@@ -17,6 +17,11 @@ Development task state, authorization, and acceptance are governed by the
 [development task lifecycle policy](development-task-lifecycle.md). That policy
 cannot waive the engineering requirements in this document.
 
+Independent post-generation review, remediation, and verification are governed
+by the [independent validation policy](independent-validation-policy.md). A
+passing automated check or agent review cannot waive this policy or substitute
+for maintainer acceptance.
+
 Known legacy violations and phased remediation are tracked in [legacy-policy-debt.md](/Users/chuckrussell/Dev/gendev/agent-framework/docs/reference/policies/legacy-policy-debt.md).
 
 ## Scope
@@ -207,6 +212,8 @@ AI coding agents working in this repository must:
 3. stop and report when a requested change conflicts with policy
 4. identify any waiver-like behavior explicitly in the final summary
 5. avoid hiding source typing failures with blanket ignores
+6. submit applicable frozen candidates to an independent, fresh-context review
+   before proposing completion
 
 AI agents must not assume that passing CI alone is sufficient if the change violates an explicit policy rule.
 

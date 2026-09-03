@@ -26,9 +26,15 @@ For an authorized task:
 2. Create the named feature branch and record the baseline.
 3. Move the packet to the lane required by the target state and repair links.
 4. Record the transition with the board command and update the execution log.
-5. Implement only the approved scope and preserve unrelated worktree state.
-6. Record focused and proportionate validation evidence before completion.
-7. Stop at `completed` for maintainer review unless acceptance is explicit.
+5. Confirm code-generating work has an approved construction directive or a
+   maintainer-recorded lightweight-change exemption.
+6. Implement only the approved scope and preserve unrelated worktree state.
+7. Keep the task `started` while a stable candidate receives fresh-context,
+   read-only validation under the independent validation policy.
+8. Dispatch bounded remediation for `CHANGES_REQUESTED` only within recorded
+   authority, then require a fresh review of the new candidate.
+9. Move work to `completed` only after applicable validation is `VERIFIED`, and
+   stop there for maintainer review unless acceptance is explicit.
 
 Track `local`, `pushed`, `merged`, and `released` as delivery facts separate from
 work state. Never push, merge, release, delete a branch, or change an external

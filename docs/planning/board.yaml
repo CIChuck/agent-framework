@@ -4,11 +4,11 @@ tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
   priority: 1
-  work_state: completed
+  work_state: started
   condition: normal
-  implementation_authority: closed
-  packet: docs/planning/review/development-kanban-governance/
-  next_gate: maintainer review and acceptance
+  implementation_authority: granted
+  packet: docs/planning/active/development-kanban-governance/
+  next_gate: freeze and independently validate the documentation candidate
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:
@@ -365,3 +365,10 @@ events:
   action: transitioned started -> completed
   note: Final state-independent regression and validation snapshot completed
   evidence: 'tests/integration final: 18 passed; board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed'
+- task: development-kanban-governance
+  at: '2026-09-03T21:16:59+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened after maintainer approval to add documentation-only independent-validation governance
+  evidence: Maintainer accepted all recommended independent-validation policy decisions and authorized documentation/process work only

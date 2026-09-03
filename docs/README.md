@@ -24,10 +24,13 @@ hand.
    govern implementation.
 2. The [planning dashboard](planning/) identifies current work and its next gate.
 3. Initiative packet indexes identify their controlling documents.
-4. Release evidence establishes publication state.
-5. Archive placement means a document is historical unless a current authority
+4. Applicable generated code must pass the
+   [independent validation policy](reference/policies/independent-validation-policy.md)
+   before completion is proposed.
+5. Release evidence establishes publication state.
+6. Archive placement means a document is historical unless a current authority
    explicitly incorporates it.
-6. Moving a document never changes its approval state.
+7. Moving a document never changes its approval state.
 
 When a plan becomes an implemented durable contract, promote the contract to
 `reference/` or `architecture/` and archive the implementation packet with its

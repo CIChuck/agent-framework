@@ -40,13 +40,12 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| — | _None_ | — | — | — | — |
+| 1 | [Development Kanban governance](active/development-kanban-governance/) | normal | granted | local | freeze and independently validate the documentation candidate |
 
 ## Completed
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | [Development Kanban governance](review/development-kanban-governance/) | normal | closed | local | maintainer review and acceptance |
 | 15 | [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) | blocked | closed | unknown | complete or waive provider-backed idle-maintenance validation |
 
 ## Accepted
