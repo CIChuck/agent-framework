@@ -26,11 +26,10 @@ from friday_memory.ingestion.chunker import (
     SemanticChunker,
     SemanticChunkerConfig,
 )
+from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
 from friday_memory.models import ProvenanceMetadata
 
 if TYPE_CHECKING:
-    from friday_llm.service import LiteLLMService
-
     from friday_memory.controller.memory_controller import MemoryController
 
 logger = logging.getLogger(__name__)
@@ -283,9 +282,11 @@ class LargeFileProcessor:
 
     def __init__(
         self,
-        fallback_llm: LiteLLMService,
+        fallback_llm: MemoryLLMClient,
         config: LargeFileProcessorConfig | None = None,
         memory_controller: MemoryController | None = None,
+        summarizer_llm: MemoryLLMClient | None = None,
+        synthesizer_llm: MemoryLLMClient | None = None,
     ) -> None:
         """
         Initialize the processor.
@@ -294,6 +295,8 @@ class LargeFileProcessor:
             fallback_llm: LLM service to use when stage-specific LLM not configured
             config: Processing configuration
             memory_controller: Optional memory controller for storage
+            summarizer_llm: Explicit summarization service from composition
+            synthesizer_llm: Explicit synthesis service from composition
         """
         self._fallback_llm = fallback_llm
         self._config = config or LargeFileProcessorConfig()
@@ -304,13 +307,56 @@ class LargeFileProcessor:
 
         # Create specialized LLM services if configured
         self._summarizer_llm = (
-            self._create_llm(self._config.summarizer_llm) or fallback_llm
+            summarizer_llm
+            or self._create_llm(self._config.summarizer_llm)
+            or fallback_llm
         )
         self._synthesizer_llm = (
-            self._create_llm(self._config.synthesizer_llm) or fallback_llm
+            synthesizer_llm
+            or self._create_llm(self._config.synthesizer_llm)
+            or fallback_llm
+        )
+        self._summarizer_temperature = (
+            None
+            if summarizer_llm is not None
+            else (
+                self._config.summarizer_llm.temperature
+                if self._config.summarizer_llm
+                else 0.3
+            )
+        )
+        self._summarizer_max_tokens = (
+            None
+            if summarizer_llm is not None
+            else (
+                self._config.summarizer_llm.max_tokens
+                if self._config.summarizer_llm
+                else 500
+            )
+        )
+        self._synthesizer_temperature = (
+            None
+            if synthesizer_llm is not None
+            else (
+                self._config.synthesizer_llm.temperature
+                if self._config.synthesizer_llm
+                else 0.3
+            )
+        )
+        self._synthesizer_max_tokens = (
+            None
+            if synthesizer_llm is not None
+            else (
+                self._config.synthesizer_llm.max_tokens
+                if self._config.synthesizer_llm
+                else 1000
+            )
         )
 
-    def _create_llm(self, config: SmartFileLLMConfig | None) -> LiteLLMService | None:
+    def _create_llm(
+        self,
+        config: SmartFileLLMConfig | None,
+    ) -> MemoryLLMClient | None:
         """Create an LLM service from config, or None if not configured."""
         if not config:
             return None
@@ -584,14 +630,11 @@ class LargeFileProcessor:
             )
 
             try:
-                response = await self._summarizer_llm.chat_completion(
+                response = await complete_memory_request(
+                    self._summarizer_llm,
                     messages=[{"role": "user", "content": prompt}],
-                    temperature=self._config.summarizer_llm.temperature
-                    if self._config.summarizer_llm
-                    else 0.3,
-                    max_tokens=self._config.summarizer_llm.max_tokens
-                    if self._config.summarizer_llm
-                    else 500,
+                    temperature=self._summarizer_temperature,
+                    max_tokens=self._summarizer_max_tokens,
                 )
 
                 parsed = self._parse_json_response(response.content)
@@ -645,14 +688,11 @@ class LargeFileProcessor:
             )
 
             try:
-                response = await self._summarizer_llm.chat_completion(
+                response = await complete_memory_request(
+                    self._summarizer_llm,
                     messages=[{"role": "user", "content": prompt}],
-                    temperature=self._config.summarizer_llm.temperature
-                    if self._config.summarizer_llm
-                    else 0.3,
-                    max_tokens=self._config.summarizer_llm.max_tokens
-                    if self._config.summarizer_llm
-                    else 500,
+                    temperature=self._summarizer_temperature,
+                    max_tokens=self._summarizer_max_tokens,
                 )
 
                 parsed = self._parse_json_response(response.content)
@@ -703,14 +743,11 @@ class LargeFileProcessor:
         )
 
         try:
-            response = await self._synthesizer_llm.chat_completion(
+            response = await complete_memory_request(
+                self._synthesizer_llm,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=self._config.synthesizer_llm.temperature
-                if self._config.synthesizer_llm
-                else 0.3,
-                max_tokens=self._config.synthesizer_llm.max_tokens
-                if self._config.synthesizer_llm
-                else 1000,
+                temperature=self._synthesizer_temperature,
+                max_tokens=self._synthesizer_max_tokens,
             )
 
             return self._parse_json_response(response.content)
@@ -753,14 +790,11 @@ class LargeFileProcessor:
         )
 
         try:
-            response = await self._synthesizer_llm.chat_completion(
+            response = await complete_memory_request(
+                self._synthesizer_llm,
                 messages=[{"role": "user", "content": prompt}],
-                temperature=self._config.synthesizer_llm.temperature
-                if self._config.synthesizer_llm
-                else 0.3,
-                max_tokens=self._config.synthesizer_llm.max_tokens
-                if self._config.synthesizer_llm
-                else 1000,
+                temperature=self._synthesizer_temperature,
+                max_tokens=self._synthesizer_max_tokens,
             )
 
             return self._parse_json_response(response.content)

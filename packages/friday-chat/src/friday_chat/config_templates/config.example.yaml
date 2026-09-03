@@ -8,43 +8,65 @@ logging:
   extraction_rejections: true
   extraction_rejections_file: .friday/extraction_rejections.log
   tools_debug: true
-llm:
-  # The route string is used by LiteLLM; target identity remains explicit.
-  model: openai/qwen3.8-27b-mlx
-  api_base: http://127.0.0.1:1234/v1
-  api_key: ${FRIDAY_LLM_API_KEY}
-  max_retries: 3
-  timeout_seconds: 120.0
-  generation:
-    reasoning:
-      mode: enabled
-      effort: medium
-      preserve: false
-    sampling:
-      temperature: 0.2
-      top_p: 0.95
-      top_k: 40
-      min_p: 0.0
-      presence_penalty: 0.0
-      frequency_penalty: 0.0
-      repetition_penalty: 1.0
-    max_tokens: 8000
-  transport_target:
-    provider: openai_compatible
-    dialect: openai_chat_completions
-    serving_engine: lm_studio
-  model_target:
-    model_id: qwen3.8-27b-mlx
-    family: qwen3_8
-    # Replace with the exact revision reported by the local server.
-    revision: lmstudio-community/Qwen3.8-27B-MLX-8bit
+model_library:
+  path: ./models-config.example.yaml
+llm_pool:
+  default_service: chat
+  services:
+    chat:
+      profile: kimi-k3
+    extraction:
+      profile: qwen25_7b_local
+      resilience_overrides: {timeout_seconds: 90}
+      generation_overrides:
+        reasoning: {mode: disabled}
+        sampling: {temperature: 0.0}
+        max_tokens: 4000
+    passage_router:
+      profile: qwen25_7b_local
+      resilience_overrides: {max_retries: 2, timeout_seconds: 20}
+      generation_overrides:
+        reasoning: {mode: disabled}
+        sampling: {temperature: 0.1}
+        max_tokens: 80
+    synthesizer:
+      profile: gemini25_flash_openrouter
+      generation_overrides: {sampling: {temperature: 0.3}}
+    classifier:
+      profile: gemini25_flash_openrouter
+      generation_overrides: {sampling: {temperature: 0.1}}
+    researcher:
+      profile: gemini25_flash_openrouter
+      generation_overrides: {sampling: {temperature: 0.2}}
+    judge:
+      profile: gemini36_flash_openrouter
+      generation_overrides: {sampling: {temperature: 0.1}}
+    compaction:
+      profile: gemini25_flash_openrouter
+      generation_overrides: {sampling: {temperature: 0.0}}
+    smart_file_summarizer:
+      profile: gemini25_flash_openrouter
+      resilience_overrides: {timeout_seconds: 30}
+      generation_overrides:
+        sampling: {temperature: 0.1}
+        max_tokens: 500
+    smart_file_synthesizer:
+      profile: gemini25_flash_openrouter
+      resilience_overrides: {timeout_seconds: 60}
+      generation_overrides:
+        sampling: {temperature: 0.3}
+        max_tokens: 1000
+embedding_pool:
+  default_service: memory
+  services:
+    memory:
+      profile: nomic_embedding_local
+      resilience_overrides: {timeout_seconds: 60}
+    maintenance:
+      profile: nomic_embedding_local
+      resilience_overrides: {timeout_seconds: 60}
 extraction:
-  model: openai/qwen3.6-35b-a3b-mlx
-  api_base: http://127.0.0.1:1234/v1
-  api_key: lm-studio
-  temperature: 0.0
-  max_tokens: 4000
-  timeout_seconds: 90.0
+  llm_service: extraction
   interval: 3
   rejection_log: .friday/vector/extraction_rejections.log
   ontology:
@@ -208,10 +230,7 @@ extraction:
     \ for summary. Quality over quantity \u2014 fewer accurate extractions are better than many noisy\
     \ ones.\n"
 embedding:
-  model: openai/nomic-embed-text-v1.5
-  api_base: http://127.0.0.1:1234/v1
-  api_key: lm-studio
-  timeout_seconds: 60.0
+  embedding_service: memory
 memory:
   collection_name: memories_long_term
   persist_directory: .friday/vector
@@ -241,6 +260,7 @@ memory:
   consolidate_after_turns: 15
   compaction:
     enabled: true
+    llm_service: compaction
     compaction_threshold: 0.85
     critical_threshold: 0.95
     target_utilization: 0.7
@@ -272,13 +292,7 @@ memory:
       tools: 10
   passage_router:
     enabled: true
-    model: openai/qwen3.6-35b-a3b-mlx
-    api_base: http://127.0.0.1:1234/v1
-    api_key: lm-studio
-    max_retries: 2
-    timeout_seconds: 20
-    temperature: 0.1
-    max_tokens: 80
+    llm_service: passage_router
     min_confidence: 0.6
     include_on_empty_query: false
     fallback_mode: heuristic
@@ -386,30 +400,15 @@ maintenance:
     verification_timeout: 60
   llm:
     synthesizer:
-      model: openrouter/google/gemini-2.5-flash
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_MAINTENANCE_SYNTHESIZER_API_KEY}
-      temperature: 0.3
+      llm_service: synthesizer
     classifier:
-      model: openrouter/google/gemini-2.5-flash
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_MAINTENANCE_CLASSIFIER_API_KEY}
-      temperature: 0.1
+      llm_service: classifier
     researcher:
-      model: openrouter/google/gemini-2.5-flash
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_MAINTENANCE_RESEARCHER_API_KEY}
-      temperature: 0.2
+      llm_service: researcher
     judge:
-      model: openrouter/google/gemini-3-pro-preview
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_MAINTENANCE_JUDGE_API_KEY}
-      temperature: 0.1
+      llm_service: judge
   embedding:
-    model: openai/nomic-embed-text-v1.5
-    api_base: http://127.0.0.1:1234/v1
-    api_key: lm-studio
-    timeout_seconds: 60.0
+    embedding_service: maintenance
   defaults:
     backup_first: true
     dry_run: false
@@ -506,19 +505,9 @@ smart_file:
     - go
   llm:
     summarizer:
-      model: openrouter/google/gemini-2.5-flash
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_SMART_FILE_SUMMARIZER_API_KEY}
-      temperature: 0.1
-      max_tokens: 500
-      timeout_seconds: 30
+      llm_service: smart_file_summarizer
     synthesizer:
-      model: openrouter/google/gemini-2.5-flash
-      api_base: https://openrouter.ai/api/v1
-      api_key: ${FRIDAY_SMART_FILE_SYNTHESIZER_API_KEY}
-      temperature: 0.3
-      max_tokens: 1000
-      timeout_seconds: 60
+      llm_service: smart_file_synthesizer
   prompts:
     prose_summarization: "Summarize this section of a larger document. Extract key points and entities.\n\
       \nFile: {file_path}\nContext: {description}\nPrevious context: {running_summary}\n\nSECTION {index}/{total}:\n\

@@ -22,9 +22,18 @@ EXAMPLE_CONFIG = Path("packages/friday-chat/config.example.yaml")
 PACKAGED_EXAMPLE_CONFIG = Path(
     "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml"
 )
+EXAMPLE_MODEL_LIBRARY = Path("packages/friday-chat/models-config.example.yaml")
+PACKAGED_EXAMPLE_MODEL_LIBRARY = Path(
+    "packages/friday-chat/src/friday_chat/config_templates/models-config.example.yaml"
+)
 FRIDAY_PY_CONFIG = Path("tests/integration/memory/config.yaml")
 
 TOP_LEVEL_SECTIONS = set(TOP_LEVEL_CONFIG_SECTIONS)
+LEGACY_TOP_LEVEL_SECTIONS = TOP_LEVEL_SECTIONS - {
+    "model_library",
+    "llm_pool",
+    "embedding_pool",
+}
 HIGH_VALUE_NESTED_SECTIONS = {
     tuple(section.split(".", maxsplit=1))
     for section in HIGH_VALUE_NESTED_CONFIG_SECTIONS
@@ -68,7 +77,7 @@ def config_env(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_sanitized_config_fixture_has_required_top_level_sections() -> None:
     data = _load_fixture()
 
-    assert TOP_LEVEL_SECTIONS - set(data) == set()
+    assert LEGACY_TOP_LEVEL_SECTIONS - set(data) == set()
 
 
 def test_sanitized_config_fixture_matches_friday_py_option_shape() -> None:
@@ -82,29 +91,48 @@ def test_example_config_matches_friday_py_option_shape() -> None:
     source = _load_mapping(FRIDAY_PY_CONFIG)
     example = _load_mapping(EXAMPLE_CONFIG)
 
-    source_paths = {path for path in _config_paths(source) if not path.startswith("llm")}
-    example_paths = {
-        path for path in _config_paths(example) if not path.startswith("llm")
-    }
-    assert example_paths == source_paths
+    behavior_sections = set(source) - {"llm", "extraction", "embedding"}
+    assert behavior_sections <= set(example)
 
 
 def test_repository_and_packaged_examples_share_canonical_llm_shape() -> None:
     repository = _load_mapping(EXAMPLE_CONFIG)
     packaged = _load_mapping(PACKAGED_EXAMPLE_CONFIG)
 
-    assert _config_paths({"llm": repository["llm"]}) == _config_paths(
-        {"llm": packaged["llm"]}
-    )
-    llm_paths = _config_paths({"llm": repository["llm"]})
+    canonical_sections = {"model_library", "llm_pool", "embedding_pool"}
+    repository_canonical = {
+        key: repository[key] for key in canonical_sections
+    }
+    packaged_canonical = {key: packaged[key] for key in canonical_sections}
+    assert _config_paths(repository_canonical) == _config_paths(packaged_canonical)
+    llm_paths = _config_paths(repository_canonical)
     assert {
-        "llm.generation.reasoning.mode",
-        "llm.generation.sampling.top_p",
-        "llm.generation.sampling.top_k",
-        "llm.transport_target",
-        "llm.model_target",
+        "model_library.path",
+        "llm_pool.services.chat.profile",
+        "llm_pool.services.extraction.generation_overrides.reasoning.mode",
+        "embedding_pool.services.memory.profile",
     } <= llm_paths
-    assert "llm.thinking" not in llm_paths
+    assert "llm" not in repository
+
+
+def test_repository_and_packaged_examples_share_model_bindings() -> None:
+    repository = _load_mapping(EXAMPLE_CONFIG)
+    packaged = _load_mapping(PACKAGED_EXAMPLE_CONFIG)
+    repository_library = _load_mapping(EXAMPLE_MODEL_LIBRARY)
+    packaged_library = _load_mapping(PACKAGED_EXAMPLE_MODEL_LIBRARY)
+
+    assert repository_library == packaged_library
+    for pool_name in ("llm_pool", "embedding_pool"):
+        repository_profiles = {
+            name: service["profile"]
+            for name, service in repository[pool_name]["services"].items()
+        }
+        packaged_profiles = {
+            name: service["profile"]
+            for name, service in packaged[pool_name]["services"].items()
+        }
+        assert repository_profiles == packaged_profiles
+        assert set(repository_profiles.values()) <= set(repository_library["profiles"])
 
 
 def test_sanitized_config_fixture_has_high_value_nested_sections() -> None:
@@ -148,11 +176,16 @@ def test_friday_v2_loads_example_config(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     _set_placeholder_env(EXAMPLE_CONFIG, monkeypatch)
+    model_library = _load_mapping(EXAMPLE_MODEL_LIBRARY)
+    for credential in model_library.get("credentials", {}).values():
+        if isinstance(credential, dict) and isinstance(credential.get("env"), str):
+            monkeypatch.setenv(credential["env"], "test-provider-key")
 
     loaded = load_friday_py_config(EXAMPLE_CONFIG)
 
-    assert loaded.llm.model == "openai/qwen3.8-27b-mlx"
-    assert loaded.llm.generation is not None
+    assert loaded.llm_service_specs["chat"].model == "moonshot/kimi-k3"
+    assert loaded.llm_service_specs["extraction"].generation_defaults.max_tokens == 8000
+    assert loaded.diagnostics == []
     assert loaded.memory.priming["previous_sessions"] == 2
     assert loaded.transcript.capture_raw_prompts is True
 

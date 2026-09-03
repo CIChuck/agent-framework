@@ -4,6 +4,7 @@
 - Date: 2026-08-28
 - Primary migration release: `friday-chat==0.1.0a1`
 - Upstream dependency: `friday-framework-llm==0.1.0a1`
+- Framework-wide successor: [Friday Framework typed LLM adoption plan](../friday-packages/friday-framework-typed-llm-adoption-plan.md)
 
 ## Boundary
 

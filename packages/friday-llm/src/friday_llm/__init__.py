@@ -32,10 +32,12 @@ from friday_llm.embeddings import LiteLLMEmbeddingService  # noqa: E402
 from friday_llm.exceptions import (  # noqa: E402
     CapabilityConflictError,
     CircuitBreakerOpenError,
+    CredentialResolutionError,
     LLMConfigurationError,
     LLMRetryExhaustedError,
     LLMServiceError,
     LLMTimeoutError,
+    ModelLibraryError,
     ProviderOptionsError,
     TargetIdentityError,
     TranslationConflictError,
@@ -51,9 +53,27 @@ from friday_llm.generation import (  # noqa: E402
 
 # LangFuse observability
 from friday_llm.langfuse_integration import configure_langfuse  # noqa: E402
+from friday_llm.model_library import (  # noqa: E402
+    MODEL_LIBRARY_SCHEMA,
+    ChatModelProfile,
+    ChatServiceBinding,
+    CircuitBreakerOverrides,
+    CredentialDefinition,
+    EmbeddingModelProfile,
+    EmbeddingOptions,
+    EmbeddingServiceBinding,
+    EmbeddingServiceSpec,
+    EndpointDefinition,
+    LLMServiceSpec,
+    ModelLibrary,
+    ResilienceOverrides,
+    resolve_chat_service,
+    resolve_embedding_service,
+)
 
 # Pricing and cost calculation
 from friday_llm.pricing import CostCalculator, PricingConfig  # noqa: E402
+from friday_llm.protocols import TypedLLMClient  # noqa: E402
 from friday_llm.provider_options import LMStudioQwenOptions  # noqa: E402
 from friday_llm.requests import (  # noqa: E402
     ChatCompletionRequest,
@@ -78,7 +98,11 @@ from friday_llm.streaming import (  # noqa: E402
     ToolCallDeltaEvent,
     UsageEvent,
 )
-from friday_llm.targets import ModelTarget, TransportTarget  # noqa: E402
+from friday_llm.targets import (  # noqa: E402
+    ExecutionTarget,
+    ModelTarget,
+    TransportTarget,
+)
 
 # Telemetry
 from friday_llm.telemetry_helper import LLMTelemetryHelper  # noqa: E402
@@ -105,6 +129,22 @@ __all__ = [
     "GenerationOverrides",
     "TransportTarget",
     "ModelTarget",
+    "ExecutionTarget",
+    "MODEL_LIBRARY_SCHEMA",
+    "CredentialDefinition",
+    "EndpointDefinition",
+    "ChatModelProfile",
+    "EmbeddingModelProfile",
+    "EmbeddingOptions",
+    "ModelLibrary",
+    "CircuitBreakerOverrides",
+    "ResilienceOverrides",
+    "ChatServiceBinding",
+    "EmbeddingServiceBinding",
+    "LLMServiceSpec",
+    "EmbeddingServiceSpec",
+    "resolve_chat_service",
+    "resolve_embedding_service",
     "LMStudioQwenOptions",
     "CapabilityState",
     "ControlCapability",
@@ -113,6 +153,7 @@ __all__ = [
     "OperatorCapabilityDeclaration",
     "ChatCompletionRequest",
     "TypedChatCompletionResponse",
+    "TypedLLMClient",
     "CompletionToolCall",
     "CompletionUsage",
     "CompletionAssurance",
@@ -133,6 +174,8 @@ __all__ = [
     "LLMRetryExhaustedError",
     "CircuitBreakerOpenError",
     "LLMConfigurationError",
+    "ModelLibraryError",
+    "CredentialResolutionError",
     "UnsupportedControlError",
     "CapabilityConflictError",
     "ProviderOptionsError",

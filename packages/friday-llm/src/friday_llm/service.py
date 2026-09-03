@@ -14,8 +14,8 @@ import json
 import logging
 import re
 import warnings
-from collections.abc import AsyncIterator
-from typing import Any
+from collections.abc import AsyncIterator, Mapping
+from typing import TYPE_CHECKING, Any
 
 import litellm
 from friday_core.interfaces.llm import ChatCompletionResponse, ToolCall
@@ -35,6 +35,7 @@ from friday_llm.exceptions import (
     LLMConfigurationError,
     LLMRetryExhaustedError,
     LLMTimeoutError,
+    ProviderOptionsError,
     TargetIdentityError,
 )
 from friday_llm.generation import (
@@ -73,6 +74,9 @@ from friday_llm.translation import (
 )
 
 logger = logging.getLogger(__name__)
+
+if TYPE_CHECKING:
+    from friday_llm.model_library import LLMServiceSpec
 
 
 class LiteLLMService:
@@ -114,6 +118,7 @@ class LiteLLMService:
         transport_target: TransportTarget | None = None,
         model_target: ModelTarget | None = None,
         generation_defaults: GenerationConfig | None = None,
+        provider_options_defaults: ProviderOptions | None = None,
         capability_declaration: OperatorCapabilityDeclaration | None = None,
     ) -> None:
         """
@@ -141,6 +146,7 @@ class LiteLLMService:
         self.thinking_enabled = False if thinking_enabled is None else thinking_enabled
         self._legacy_thinking_explicit = thinking_enabled is not None
         self.generation_defaults = generation_defaults
+        self.provider_options_defaults = provider_options_defaults
         self.capability_declaration = capability_declaration
         if (transport_target is None) != (model_target is None):
             raise TargetIdentityError(
@@ -220,6 +226,32 @@ class LiteLLMService:
             provider_name=self._detect_provider(model_name),
         )
 
+    @classmethod
+    def from_spec(
+        cls,
+        spec: LLMServiceSpec,
+        *,
+        telemetry: Any | None = None,
+        pricing_config: PricingConfig | None = None,
+    ) -> LiteLLMService:
+        """Construct a service from a resolved model-library specification."""
+
+        api_key = (
+            spec.api_key.get_secret_value() if spec.api_key is not None else None
+        )
+        return cls(
+            model_name=spec.model,
+            api_key=api_key,
+            api_base=spec.api_base,
+            telemetry=telemetry,
+            resilience=spec.resilience,
+            pricing_config=pricing_config,
+            transport_target=spec.execution_target.transport,
+            model_target=spec.execution_target.model,
+            generation_defaults=spec.generation_defaults,
+            provider_options_defaults=spec.provider_options_defaults,
+        )
+
     def _detect_provider(self, model: str) -> str:
         """Detect provider from model name."""
         model_lower = model.lower()
@@ -295,7 +327,7 @@ class LiteLLMService:
             translated = translate_generation(
                 self.execution_target,
                 generation,
-                provider_options,
+                self._resolve_provider_options(provider_options),
                 self.capability_declaration,
             )
             kwargs = dict(translated.kwargs)
@@ -336,6 +368,19 @@ class LiteLLMService:
             api_base=self.api_base,
             metadata=metadata,
             summary=summary,
+        )
+
+    def _resolve_provider_options(
+        self,
+        request_options: ProviderOptions | None,
+    ) -> ProviderOptions | None:
+        defaults = self.provider_options_defaults
+        if defaults is None:
+            return request_options
+        if request_options is None or request_options == defaults:
+            return defaults
+        raise ProviderOptionsError(
+            "request provider options conflict with service profile defaults"
         )
 
     def _validate_legacy_reasoning(self, generation: GenerationConfig) -> None:
@@ -929,7 +974,7 @@ class LiteLLMService:
         # Preserve reasoning_content for thinking models (e.g. Moonshot
         # Kimi K2.5).  Must be replayed in assistant tool-call messages
         # or the provider will reject the next request.
-        reasoning_content = getattr(message, "reasoning_content", None)
+        reasoning_content = self._extract_reasoning_content(message)
 
         return ChatCompletionResponse(
             content=message.content,
@@ -949,9 +994,7 @@ class LiteLLMService:
         legacy = self._parse_response(response)
         choice = response.choices[0]
         message = choice.message
-        reasoning_content = getattr(message, "reasoning_content", None) or getattr(
-            message, "reasoning", None
-        )
+        reasoning_content = self._extract_reasoning_content(message)
         usage = getattr(response, "usage", None)
         details = (
             getattr(usage, "completion_tokens_details", None)
@@ -991,6 +1034,22 @@ class LiteLLMService:
                 litellm_version=summary.litellm_version,
             ),
         )
+
+    @staticmethod
+    def _extract_reasoning_content(message: Any) -> str | None:
+        """Normalize provider reasoning without exposing it to persistence."""
+
+        for attribute in ("reasoning_content", "reasoning"):
+            value = getattr(message, attribute, None)
+            if isinstance(value, str) and value:
+                return value
+
+        provider_fields = getattr(message, "provider_specific_fields", None)
+        if isinstance(provider_fields, Mapping):
+            value = provider_fields.get("reasoning_content")
+            if isinstance(value, str) and value:
+                return value
+        return None
 
     def _parse_tool_arguments(
         self,

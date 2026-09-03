@@ -10,6 +10,16 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
 
 import yaml
+from friday_llm import (
+    ChatServiceBinding,
+    EmbeddingServiceBinding,
+    EmbeddingServiceSpec,
+    LLMServiceSpec,
+    ModelLibraryError,
+    resolve_chat_service,
+    resolve_embedding_service,
+)
+from friday_runtime.model_library import load_model_library
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 if TYPE_CHECKING:
@@ -23,6 +33,9 @@ if TYPE_CHECKING:
     )
 
 TOP_LEVEL_CONFIG_SECTIONS: tuple[str, ...] = (
+    "model_library",
+    "llm_pool",
+    "embedding_pool",
     "logging",
     "llm",
     "extraction",
@@ -67,6 +80,9 @@ TRACEABILITY_KEYS: tuple[str, ...] = (
 )
 
 CONFIG_TRACEABILITY: dict[str, str] = {
+    "model_library": "friday_runtime.model_library",
+    "llm_pool": "friday_llm.resolve_chat_service",
+    "embedding_pool": "friday_llm.resolve_embedding_service",
     "logging": "friday_chat.config, friday_chat.runtime.logging",
     "llm": "friday_chat.runtime.chat_llm",
     "extraction": "friday_chat.runtime.extraction",
@@ -256,6 +272,46 @@ class LoggingConfig(FlexibleConfigSection):
     tools_debug: bool = False
 
 
+class ModelLibraryReference(BaseModel):
+    """Local canonical model-library reference."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    path: str = Field(min_length=1)
+
+
+class ChatServicePoolConfig(BaseModel):
+    """Named canonical chat-service bindings."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    default_service: str = Field(min_length=1, max_length=64)
+    services: dict[str, ChatServiceBinding] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def validate_default(self) -> ChatServicePoolConfig:
+        if self.default_service not in self.services:
+            raise ValueError("llm_pool.default_service must reference a service")
+        return self
+
+
+class EmbeddingServicePoolConfig(BaseModel):
+    """Named canonical embedding-service bindings."""
+
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    default_service: str = Field(min_length=1, max_length=64)
+    services: dict[str, EmbeddingServiceBinding] = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def validate_default(self) -> EmbeddingServicePoolConfig:
+        if self.default_service not in self.services:
+            raise ValueError(
+                "embedding_pool.default_service must reference a service"
+            )
+        return self
+
+
 class LLMConfig(ProviderConfig):
     """Primary chat LLM configuration."""
 
@@ -406,10 +462,13 @@ class ExtractionConfig(ProviderConfig):
     rejection_log: str | None = None
     ontology: dict[str, Any] = Field(default_factory=dict)
     prompt: dict[str, Any] | str | None = None
+    llm_service: str | None = None
 
 
 class EmbeddingConfig(ProviderConfig):
     """Embedding provider configuration."""
+
+    embedding_service: str | None = None
 
 
 class MemoryConfig(FlexibleConfigSection):
@@ -560,8 +619,11 @@ class FridayChatConfig(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
+    model_library: ModelLibraryReference | None = None
+    llm_pool: ChatServicePoolConfig | None = None
+    embedding_pool: EmbeddingServicePoolConfig | None = None
     logging: LoggingConfig = Field(default_factory=LoggingConfig)
-    llm: LLMConfig
+    llm: LLMConfig = Field(default_factory=LLMConfig)
     extraction: ExtractionConfig = Field(default_factory=ExtractionConfig)
     embedding: EmbeddingConfig = Field(default_factory=EmbeddingConfig)
     memory: MemoryConfig = Field(default_factory=MemoryConfig)
@@ -578,6 +640,16 @@ class FridayChatConfig(BaseModel):
     session: SessionConfig = Field(default_factory=SessionConfig)
     speech: SpeechConfig = Field(default_factory=SpeechConfig)
     diagnostics: list[ConfigDiagnostic] = Field(default_factory=list)
+    llm_service_specs: dict[str, LLMServiceSpec] = Field(
+        default_factory=dict,
+        exclude=True,
+        repr=False,
+    )
+    embedding_service_specs: dict[str, EmbeddingServiceSpec] = Field(
+        default_factory=dict,
+        exclude=True,
+        repr=False,
+    )
 
 
 def get_config_traceability() -> dict[str, str]:
@@ -592,8 +664,9 @@ def load_friday_py_config(
 ) -> FridayChatConfig:
     """Load Friday-py-style YAML into typed FridayV2 config models."""
     config_path = Path(path)
+    environment = env if env is not None else os.environ
     data = _load_yaml_mapping(config_path)
-    interpolated = _interpolate_env(data, env or os.environ)
+    interpolated = _interpolate_env(data, environment)
     if not isinstance(interpolated, dict):
         raise FridayChatConfigError("Config root must be a mapping.")
 
@@ -607,7 +680,45 @@ def load_friday_py_config(
     except ValidationError as exc:
         raise FridayChatConfigError(_format_validation_error(exc)) from exc
 
-    if not config.llm.model:
+    canonical_sections = (
+        config.model_library,
+        config.llm_pool,
+        config.embedding_pool,
+    )
+    if any(section is not None for section in canonical_sections):
+        if not all(section is not None for section in canonical_sections):
+            raise FridayChatConfigError(
+                "model_library, llm_pool, and embedding_pool are required together"
+            )
+        if config.model_library is None or config.llm_pool is None:
+            raise FridayChatConfigError("Incomplete canonical LLM configuration")
+        if config.embedding_pool is None:
+            raise FridayChatConfigError("Incomplete canonical embedding configuration")
+        try:
+            loaded = load_model_library(
+                config.model_library.path,
+                runtime_config_path=config_path,
+                environment=environment,
+                allow_env_override=False,
+            )
+            config.llm_service_specs = {
+                name: resolve_chat_service(loaded.library, binding, environment)
+                for name, binding in config.llm_pool.services.items()
+            }
+            config.embedding_service_specs = {
+                name: resolve_embedding_service(
+                    loaded.library,
+                    binding,
+                    environment,
+                )
+                for name, binding in config.embedding_pool.services.items()
+            }
+        except (ModelLibraryError, ValueError) as exc:
+            raise FridayChatConfigError(
+                "Unable to resolve canonical model-library services: "
+                f"{exc}"
+            ) from exc
+    elif not config.llm.model:
         raise FridayChatConfigError("Missing required config: llm.model")
 
     return config
@@ -685,7 +796,7 @@ def _collect_diagnostics(data: dict[str, Any]) -> list[ConfigDiagnostic]:
     llm = data.get("llm")
     if isinstance(llm, Mapping) and not (
         "transport_target" in llm or "model_target" in llm
-    ):
+    ) and "model_library" not in data:
         diagnostics.append(
             ConfigDiagnostic(
                 kind="deprecated_key",
@@ -697,7 +808,61 @@ def _collect_diagnostics(data: dict[str, Any]) -> list[ConfigDiagnostic]:
                 ),
             )
         )
+    if "model_library" not in data:
+        diagnostics.extend(_legacy_auxiliary_provider_diagnostics(data))
     return diagnostics
+
+
+def _legacy_auxiliary_provider_diagnostics(
+    data: Mapping[str, Any],
+) -> list[ConfigDiagnostic]:
+    """Report inline auxiliary providers that should become named services."""
+    candidates: list[tuple[str, object]] = [
+        ("extraction", data.get("extraction")),
+        ("embedding", data.get("embedding")),
+    ]
+    memory = data.get("memory")
+    if isinstance(memory, Mapping):
+        candidates.append(("memory.passage_router", memory.get("passage_router")))
+    maintenance = data.get("maintenance")
+    if isinstance(maintenance, Mapping):
+        maintenance_llms = maintenance.get("llm")
+        if isinstance(maintenance_llms, Mapping):
+            candidates.extend(
+                (f"maintenance.llm.{role}", role_config)
+                for role, role_config in maintenance_llms.items()
+            )
+        candidates.append(("maintenance.embedding", maintenance.get("embedding")))
+    smart_file = data.get("smart_file")
+    if isinstance(smart_file, Mapping):
+        smart_file_llms = smart_file.get("llm")
+        if isinstance(smart_file_llms, Mapping):
+            candidates.extend(
+                (f"smart_file.llm.{role}", role_config)
+                for role, role_config in smart_file_llms.items()
+            )
+
+    provider_fields = {
+        "model",
+        "api_base",
+        "api_key",
+        "temperature",
+        "max_tokens",
+        "timeout_seconds",
+        "max_retries",
+    }
+    return [
+        ConfigDiagnostic(
+            kind="deprecated_key",
+            path=path,
+            message=(
+                f"Inline provider settings at {path} are deprecated; use a "
+                "model-library profile and named service binding."
+            ),
+        )
+        for path, value in candidates
+        if isinstance(value, Mapping) and provider_fields.intersection(value)
+    ]
 
 
 def _format_validation_error(error: ValidationError) -> str:

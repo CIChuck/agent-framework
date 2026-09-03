@@ -211,6 +211,46 @@ def test_loader_reports_legacy_path_and_field_diagnostics(tmp_path: Path) -> Non
     assert paths == {"llm", "llm.top_p", "llm.top_k"}
 
 
+def test_loader_reports_all_inline_auxiliary_provider_paths(tmp_path: Path) -> None:
+    path = tmp_path / "config.yaml"
+    path.write_text(
+        """
+llm:
+  model: openai/primary
+extraction:
+  model: openai/extractor
+embedding:
+  model: openai/embed
+memory:
+  passage_router:
+    model: openai/router
+maintenance:
+  llm:
+    synthesizer:
+      model: openai/synthesizer
+  embedding:
+    model: openai/maintenance-embed
+smart_file:
+  llm:
+    summarizer:
+      model: openai/summarizer
+""".strip(),
+        encoding="utf-8",
+    )
+
+    config = load_friday_py_config(path)
+
+    paths = {diagnostic.path for diagnostic in config.diagnostics}
+    assert {
+        "extraction",
+        "embedding",
+        "memory.passage_router",
+        "maintenance.llm.synthesizer",
+        "maintenance.embedding",
+        "smart_file.llm.summarizer",
+    }.issubset(paths)
+
+
 def test_canonical_loader_has_no_legacy_diagnostics(tmp_path: Path) -> None:
     path = tmp_path / "config.yaml"
     path.write_text(
@@ -250,3 +290,135 @@ def test_loader_validation_error_does_not_echo_unknown_secret(tmp_path: Path) ->
 
     assert secret not in str(captured.value)
     assert "llm.unexpected_secret" in str(captured.value)
+
+
+def test_loader_resolves_canonical_model_library_without_warnings(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "models-config.yaml").write_text(
+        """
+schema: friday.model-library/v1
+credentials:
+  local:
+    env: FRIDAY_TEST_LLM_KEY
+endpoints:
+  local:
+    api_base: http://127.0.0.1:1234/v1
+    provider: openai_compatible
+    serving_engine: lm_studio
+    default_credential: local
+profiles:
+  chat:
+    kind: chat
+    endpoint: local
+    dialect: openai_chat_completions
+    model: openai/qwen3.8
+    model_target:
+      model_id: qwen3.8
+      family: qwen3_8
+      revision: exact
+    generation:
+      reasoning:
+        mode: disabled
+      sampling:
+        temperature: 0.2
+  embedding:
+    kind: embedding
+    endpoint: local
+    dialect: openai_embeddings
+    model: openai/nomic-embed
+    model_target:
+      model_id: nomic-embed
+      family: nomic_embed
+      revision: exact
+""".strip()
+    )
+    path = tmp_path / "config.yaml"
+    path.write_text(
+        """
+model_library:
+  path: ./models-config.yaml
+llm_pool:
+  default_service: chat
+  services:
+    chat:
+      profile: chat
+embedding_pool:
+  default_service: memory
+  services:
+    memory:
+      profile: embedding
+""".strip()
+    )
+
+    config = load_friday_py_config(
+        path,
+        env={"FRIDAY_TEST_LLM_KEY": "redacted-test-key"},
+    )
+
+    assert config.diagnostics == []
+    assert config.llm_service_specs["chat"].model == "openai/qwen3.8"
+    assert config.embedding_service_specs["memory"].model == "openai/nomic-embed"
+    assert "redacted-test-key" not in repr(config)
+
+
+def test_loader_names_missing_selected_credential_without_echoing_secrets(
+    tmp_path: Path,
+) -> None:
+    (tmp_path / "models-config.yaml").write_text(
+        """
+schema: friday.model-library/v1
+credentials:
+  selected:
+    env: FRIDAY_SELECTED_PROVIDER_KEY
+endpoints:
+  local:
+    api_base: http://127.0.0.1:1234/v1
+    provider: openai_compatible
+    serving_engine: lm_studio
+    default_credential: selected
+profiles:
+  chat:
+    kind: chat
+    endpoint: local
+    dialect: openai_chat_completions
+    model: openai/test
+    model_target:
+      model_id: test
+      family: test
+      revision: exact
+  embedding:
+    kind: embedding
+    endpoint: local
+    dialect: openai_embeddings
+    model: openai/embed
+    model_target:
+      model_id: embed
+      family: test_embed
+      revision: exact
+""".strip()
+    )
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        """
+model_library:
+  path: ./models-config.yaml
+llm_pool:
+  default_service: chat
+  services:
+    chat:
+      profile: chat
+embedding_pool:
+  default_service: memory
+  services:
+    memory:
+      profile: embedding
+""".strip()
+    )
+
+    with pytest.raises(FridayChatConfigError) as captured:
+        load_friday_py_config(config_path, env={})
+
+    message = str(captured.value)
+    assert "FRIDAY_SELECTED_PROVIDER_KEY" in message
+    assert "credential environment variable" in message

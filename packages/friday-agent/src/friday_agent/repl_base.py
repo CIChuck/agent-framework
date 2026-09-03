@@ -10,10 +10,10 @@ import json
 import logging
 from typing import Any, cast
 
-from friday_core.interfaces import ChatCompletionResponse
 from friday_memory.context.assembler import ContextAssembler
 
 from friday_agent.base import AgentBase
+from friday_agent.llm_completion import AgentCompletion, complete_agent_request
 from friday_agent.prompting import compose_system_prompt
 
 logger = logging.getLogger(__name__)
@@ -91,8 +91,9 @@ class ReplAgentBase(AgentBase):
                     {"iteration": iteration, "message_count": len(messages)},
                 )
 
-                prompt_snapshot = [dict(message) for message in messages]
-                response: ChatCompletionResponse = await self.llm.chat_completion(
+                prompt_snapshot = self._sanitize_prompt_messages(messages)
+                response = await complete_agent_request(
+                    self.llm,
                     messages=messages,
                     tools=tool_schemas if tool_schemas else None,
                     temperature=self.profile.temperature,
@@ -223,7 +224,7 @@ class ReplAgentBase(AgentBase):
                 self.telemetry.end_span(span_id)
 
     @staticmethod
-    def _serialize_chat_response(response: ChatCompletionResponse) -> dict[str, Any]:
+    def _serialize_chat_response(response: AgentCompletion) -> dict[str, Any]:
         return {
             "content": response.content,
             "tool_calls": [
@@ -236,5 +237,14 @@ class ReplAgentBase(AgentBase):
             ],
             "model": response.model,
             "usage": dict(response.usage),
-            "reasoning_content": response.reasoning_content,
         }
+
+    @staticmethod
+    def _sanitize_prompt_messages(
+        messages: list[dict[str, Any]],
+    ) -> list[dict[str, Any]]:
+        """Copy a provider prompt without persisting private reasoning fields."""
+        return [
+            {key: value for key, value in message.items() if key != "reasoning_content"}
+            for message in messages
+        ]

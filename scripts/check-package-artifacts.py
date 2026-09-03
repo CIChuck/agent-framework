@@ -11,7 +11,7 @@ import tarfile
 import zipfile
 from pathlib import Path
 
-DEFAULT_VERSION = "0.1.0a1"
+DEFAULT_VERSION = "0.1.0a2"
 INTERNAL_DEP_RE = re.compile(
     r"^friday-(?:chat|framework(?:-[A-Za-z0-9_.-]+)?)(?:\[[^]]+\])?"
 )
@@ -46,6 +46,7 @@ SUSPICIOUS_PATH_PARTS = (
 EXPECTED_WHEEL_PATHS = {
     "friday_chat": (
         "friday_chat/config_templates/config.example.yaml",
+        "friday_chat/config_templates/models-config.example.yaml",
         "friday_chat/config_templates/cli-config.example.yaml",
     ),
 }
@@ -68,7 +69,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "artifact_dir",
         nargs="?",
-        default="dist/friday-package-cohort-0.1.0a1",
+        default="dist/friday-package-cohort-0.1.0a2",
         help="Directory containing wheel and sdist artifacts.",
     )
     parser.add_argument(
@@ -261,6 +262,7 @@ def validate_sdist(
             "/LICENSE",
             "/src/friday_chat/__init__.py",
             "/src/friday_chat/config_templates/config.example.yaml",
+            "/src/friday_chat/config_templates/models-config.example.yaml",
             "/src/friday_chat/config_templates/cli-config.example.yaml",
             "/tests_chat/test_llm_config_migration.py",
             "/tests_chat/test_llm_adapter_migration.py",

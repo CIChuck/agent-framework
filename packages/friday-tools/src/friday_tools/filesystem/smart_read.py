@@ -181,6 +181,8 @@ class SmartFileReadTool(FridayTool):
         memory_controller: MemoryController | None = None,
         config: LargeFileProcessorConfig | None = None,
         sandbox: FilesystemSandbox | None = None,
+        summarizer_llm: LiteLLMService | None = None,
+        synthesizer_llm: LiteLLMService | None = None,
     ) -> None:
         """
         Initialize the smart file read tool.
@@ -190,11 +192,15 @@ class SmartFileReadTool(FridayTool):
             memory_controller: Memory controller for storage (optional)
             config: Processing configuration (optional, uses defaults)
             sandbox: Filesystem sandbox for path validation (optional)
+            summarizer_llm: Explicit summarization-stage service
+            synthesizer_llm: Explicit synthesis-stage service
         """
         self._fallback_llm = fallback_llm
         self._memory = memory_controller
         self._config = config
         self._sandbox = sandbox or FilesystemSandbox()
+        self._summarizer_llm = summarizer_llm
+        self._synthesizer_llm = synthesizer_llm
         self._processor = None  # Lazy initialization
 
         # Layer 1: Session cache - {file_path: CachedFileEntry}
@@ -218,6 +224,8 @@ class SmartFileReadTool(FridayTool):
                 fallback_llm=self._fallback_llm,
                 config=self._config or LargeFileProcessorConfig(),
                 memory_controller=self._memory,
+                summarizer_llm=self._summarizer_llm,
+                synthesizer_llm=self._synthesizer_llm,
             )
 
         return self._processor

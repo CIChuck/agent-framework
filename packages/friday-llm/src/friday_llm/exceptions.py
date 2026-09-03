@@ -32,6 +32,14 @@ class LLMConfigurationError(LLMServiceError):
     """Base error for deterministic preflight failures."""
 
 
+class ModelLibraryError(LLMConfigurationError):
+    """Raised when a catalog or service binding cannot be resolved."""
+
+
+class CredentialResolutionError(ModelLibraryError):
+    """Raised when a selected credential cannot be resolved safely."""
+
+
 class UnsupportedControlError(LLMConfigurationError):
     """Raised before I/O when a target does not support an explicit control."""
 

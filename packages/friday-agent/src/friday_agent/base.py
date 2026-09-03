@@ -24,16 +24,16 @@ from typing import Any
 from friday_core import TelemetryInterface, get_logger
 from friday_core.interfaces import (
     ContextEngineeringInterface,
-    LLMClient,
     ToolRegistry,
 )
 from friday_core.security import SanitizationConfig
 from friday_memory import InteractionTurn, MemoryController, SessionState
 
+from friday_agent.llm_completion import AgentLLMClient
 from friday_agent.security import AgentOutputProcessor
 
-from .prompting import PromptComposition
 from .profile import AgentProfile
+from .prompting import PromptComposition
 
 logger = get_logger(__name__)
 
@@ -64,7 +64,7 @@ class AgentBase(ABC):
         profile: AgentProfile,
         memory: MemoryController,
         context_engine: ContextEngineeringInterface,
-        llm: LLMClient,
+        llm: AgentLLMClient,
         tool_registry: ToolRegistry,
         telemetry: TelemetryInterface | None = None,
         sanitization_config: SanitizationConfig | None = None,
@@ -441,6 +441,11 @@ class AgentBase(ABC):
             ToolResult as MemoryToolResult,
         )
 
+        candidate_model_name = getattr(self.llm, "model", None)
+        model_name = (
+            candidate_model_name if isinstance(candidate_model_name, str) else None
+        )
+
         # Create turn record with agent_id for provenance tracking
         turn = InteractionTurn(
             id=str(uuid.uuid4()),
@@ -452,7 +457,7 @@ class AgentBase(ABC):
             provider_name=self.resolved_provider_name,
             tool_calls=[MemoryToolCall(**tc) for tc in (tool_calls or [])],
             tool_results=[MemoryToolResult(**tr) for tr in (tool_results or [])],
-            model_name=getattr(self.llm, "model", None),
+            model_name=model_name,
             temperature=self.profile.temperature,
             raw_prompt=(
                 json.dumps(raw_prompt_messages)

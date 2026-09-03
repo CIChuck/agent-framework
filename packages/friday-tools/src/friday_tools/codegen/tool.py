@@ -11,6 +11,7 @@ Ref: Code Generation Tool specification
 from __future__ import annotations
 
 import re
+import warnings
 from typing import TYPE_CHECKING, Any
 
 from ..definition import BaseTool
@@ -19,6 +20,11 @@ from .prompts import SYSTEM_PROMPT, build_user_prompt
 
 if TYPE_CHECKING:
     from friday_core.interfaces.llm import LLMClient
+    from friday_llm import TypedLLMClient
+
+    CodegenLLMClient = LLMClient | TypedLLMClient
+else:
+    CodegenLLMClient = Any
 
 
 class CodeGenerationTool(BaseTool):
@@ -47,7 +53,7 @@ class CodeGenerationTool(BaseTool):
 
     def __init__(
         self,
-        llm: LLMClient,
+        llm: CodegenLLMClient,
         manifest: ToolManifest,
         temperature: float = 0.2,
     ):
@@ -120,13 +126,11 @@ class CodeGenerationTool(BaseTool):
         user_prompt = build_user_prompt(task, context, tool_context)
 
         # 2. Call LLM to generate code
-        response = await self._llm.chat_completion(
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt},
-            ],
-            temperature=self._temperature,
-        )
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt},
+        ]
+        response = await self._complete_code_request(messages)
 
         if response.content is None:
             return "Error: LLM returned no content"
@@ -145,6 +149,43 @@ class CodeGenerationTool(BaseTool):
 
         # 5. Format and return result
         return self._format_result(code, result)
+
+    async def _complete_code_request(
+        self,
+        messages: list[dict[str, Any]],
+    ) -> Any:
+        """Prefer Friday LLM's typed path when the optional extra is present."""
+
+        try:
+            from friday_llm import (
+                ChatCompletionRequest,
+                GenerationOverrides,
+                SamplingConfig,
+                TypedLLMClient,
+            )
+        except ImportError:
+            pass
+        else:
+            if isinstance(self._llm, TypedLLMClient):
+                return await self._llm.chat_completion_request(
+                    ChatCompletionRequest(
+                        messages=tuple(messages),
+                        overrides=GenerationOverrides(
+                            sampling=SamplingConfig(temperature=self._temperature)
+                        ),
+                    )
+                )
+
+        warnings.warn(
+            "Legacy code-generation LLM injection is deprecated; install "
+            "friday-framework-tools[llm] and provide a TypedLLMClient",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        return await self._llm.chat_completion(
+            messages=messages,
+            temperature=self._temperature,
+        )
 
     def _extract_code(self, content: str) -> str | None:
         """

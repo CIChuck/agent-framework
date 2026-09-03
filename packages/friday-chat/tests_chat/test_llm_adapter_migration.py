@@ -7,6 +7,7 @@ import threading
 import warnings
 from collections.abc import AsyncIterator, Iterator
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -102,6 +103,52 @@ def test_typed_builder_sets_targets_and_generation_without_deprecation() -> None
     assert model.service.execution_target is not None
     assert model.service.generation_defaults == model.execution.generation
     assert not [warning for warning in captured if warning.category is DeprecationWarning]
+
+
+def test_canonical_builder_uses_resolved_service_factory(tmp_path: Path) -> None:
+    from friday_chat.config import load_friday_py_config
+
+    models_path = tmp_path / "models.yaml"
+    models_path.write_text(
+        """
+schema: friday.model-library/v1
+endpoints:
+  local:
+    api_base: http://127.0.0.1:1234/v1
+    provider: openai_compatible
+    serving_engine: lm_studio
+profiles:
+  chat:
+    kind: chat
+    endpoint: local
+    dialect: openai_chat_completions
+    model: openai/qwen3.8
+    model_target: {model_id: qwen3.8, family: qwen3_8, revision: exact}
+  embedding:
+    kind: embedding
+    endpoint: local
+    dialect: openai_embeddings
+    model: openai/nomic
+    model_target: {model_id: nomic, family: nomic_embed, revision: exact}
+""".strip()
+    )
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(
+        """
+model_library: {path: ./models.yaml}
+llm_pool:
+  default_service: chat
+  services: {chat: {profile: chat}}
+embedding_pool:
+  default_service: memory
+  services: {memory: {profile: embedding}}
+""".strip()
+    )
+
+    model = build_framework_chat_model(load_friday_py_config(config_path, env={}))
+
+    assert model.service.model == "openai/qwen3.8"
+    assert model.service.execution_target is not None
 
 
 @pytest.mark.parametrize("thinking", [None, True, False])

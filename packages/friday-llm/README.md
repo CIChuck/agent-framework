@@ -1,17 +1,32 @@
 # Friday Framework LLM
 
 `friday-framework-llm` is Friday's LiteLLM-backed chat and embedding package.
-Version `0.1.0a1` adds provider-neutral reasoning and sampling contracts while
+Version `0.1.0a2` adds provider-neutral reasoning and sampling contracts while
 keeping the `0.1.0a0` completion APIs compatible for one deprecation window.
 
 ## Install
 
 ```bash
-pip install friday-framework-llm==0.1.0a1
+pip install friday-framework-llm==0.1.0a2
 ```
 
 The import package is `friday_llm`. This alpha pins `litellm==1.94.1` because
 the observed provider translation is part of the tested contract.
+
+## Reusable Model Library
+
+`ModelLibrary` separates credential environment-variable names, reusable
+endpoints, and deployable chat or embedding profiles. Applications bind roles
+with `ChatServiceBinding` or `EmbeddingServiceBinding`, resolve them with an
+explicit environment mapping, and construct services through
+`LiteLLMService.from_spec(...)` or `LiteLLMEmbeddingService.from_spec(...)`.
+Friday LLM owns the strict schema and pure resolution; Runtime and applications
+own local-file loading and decide which role bindings are active.
+
+Credentials are represented with `SecretStr` in resolved service specs and are
+redacted from representations and serialized model dumps. Unknown references,
+kind mismatches, incomplete targets, unsupported controls, and missing selected
+credential variables fail before provider I/O.
 
 ## Typed Completion
 
@@ -124,7 +139,7 @@ grant Friday permission to persist or log reasoning.
 current signatures and return shapes. The legacy default still disables
 thinking and still supplies `temperature=0.7`.
 
-| Old input | `0.1.0a1` behavior | Migration |
+| Old input | `0.1.0a2` behavior | Migration |
 | --- | --- | --- |
 | `thinking_enabled` omitted | legacy disabled behavior | move new callers to `ReasoningMode.AUTO` or an explicit mode |
 | `thinking_enabled=False` | disabled plus `DeprecationWarning` | use `ReasoningConfig(mode="disabled")` |

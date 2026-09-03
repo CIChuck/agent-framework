@@ -14,8 +14,19 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal, cast
 
-import yaml  # type: ignore[import-untyped]
+import yaml
+from friday_llm import (
+    ChatServiceBinding,
+    EmbeddingServiceBinding,
+    EmbeddingServiceSpec,
+    LLMServiceSpec,
+    ModelLibrary,
+    resolve_chat_service,
+    resolve_embedding_service,
+)
 from friday_mcp.config import MCPConfig
+
+from friday_runtime.model_library import load_model_library
 
 
 def _coerce_bool(value: str) -> bool:
@@ -265,7 +276,7 @@ class LLMServiceConfig:
 @dataclass(frozen=True)
 class LLMPoolConfig:
     default_service: str
-    services: dict[str, LLMServiceConfig]
+    services: dict[str, LLMServiceConfig | ChatServiceBinding]
 
 
 @dataclass(frozen=True)
@@ -307,7 +318,7 @@ class EmbeddingServiceConfig:
 @dataclass(frozen=True)
 class EmbeddingPoolConfig:
     default_service: str
-    services: dict[str, EmbeddingServiceConfig]
+    services: dict[str, EmbeddingServiceConfig | EmbeddingServiceBinding]
 
 
 @dataclass(frozen=True)
@@ -373,14 +384,25 @@ class RuntimeConfig:
     llm_api_key: str | None = None
     llm_api_base: str | None = None
     llm_pool_default_service: str = "default"
-    llm_pool_services: dict[str, LLMServiceConfig] = field(default_factory=dict)
+    llm_pool_services: dict[str, LLMServiceConfig | ChatServiceBinding] = field(
+        default_factory=dict
+    )
+    llm_service_specs: dict[str, LLMServiceSpec] = field(default_factory=dict)
 
     # Embedding Configuration
     embedding_model: str = "text-embedding-3-small"
     embedding_pool_default_service: str = "default"
-    embedding_pool_services: dict[str, EmbeddingServiceConfig] = field(
+    embedding_pool_services: dict[
+        str,
+        EmbeddingServiceConfig | EmbeddingServiceBinding,
+    ] = field(default_factory=dict)
+    embedding_service_specs: dict[str, EmbeddingServiceSpec] = field(
         default_factory=dict
     )
+
+    # Canonical model-library configuration
+    model_library_path: str | None = None
+    model_library: ModelLibrary | None = None
 
     # Prompting Configuration
     prompting_base_system_prompt: str | None = None
@@ -482,28 +504,54 @@ class RuntimeConfig:
 
         if self.llm_pool_default_service not in self.llm_pool_services:
             raise ValueError("llm_pool.default_service must reference a configured service")
+        for name, service in self.llm_pool_services.items():
+            if isinstance(service, ChatServiceBinding) and name not in self.llm_service_specs:
+                raise ValueError(
+                    f"canonical llm service {name!r} has no resolved service spec"
+                )
 
         self.embedding_pool_services = {
             name: self._coerce_embedding_service_config(service)
             for name, service in self.embedding_pool_services.items()
         }
         if not self.embedding_pool_services:
-            default_llm_service = self.get_llm_service_config()
-            self.embedding_pool_services = {
-                self.embedding_pool_default_service: EmbeddingServiceConfig(
-                    provider=default_llm_service.provider,
-                    model=self.embedding_model,
-                    api_key=default_llm_service.api_key,
-                    api_base=default_llm_service.api_base,
+            default_llm_service = self.llm_pool_services[
+                self.llm_pool_default_service
+            ]
+            if isinstance(default_llm_service, LLMServiceConfig):
+                self.embedding_pool_services = {
+                    self.embedding_pool_default_service: EmbeddingServiceConfig(
+                        provider=default_llm_service.provider,
+                        model=self.embedding_model,
+                        api_key=default_llm_service.api_key,
+                        api_base=default_llm_service.api_base,
+                    )
+                }
+            else:
+                raise ValueError(
+                    "canonical model-library configuration requires an explicit "
+                    "embedding_pool service"
                 )
-            }
 
         if self.embedding_pool_default_service not in self.embedding_pool_services:
             raise ValueError(
                 "embedding_pool.default_service must reference a configured service"
             )
 
-        self.embedding_model = self.get_embedding_service_config().model
+        default_embedding = self.embedding_pool_services[
+            self.embedding_pool_default_service
+        ]
+        if isinstance(default_embedding, EmbeddingServiceConfig):
+            self.embedding_model = default_embedding.model
+        else:
+            try:
+                self.embedding_model = self.embedding_service_specs[
+                    self.embedding_pool_default_service
+                ].model
+            except KeyError as error:
+                raise ValueError(
+                    "canonical default embedding service has no resolved service spec"
+                ) from error
 
         if self.memory_extraction_llm_service is None:
             self.memory_extraction_llm_service = self.llm_pool_default_service
@@ -530,20 +578,32 @@ class RuntimeConfig:
         self.validate_transcript_path()
 
     @staticmethod
-    def _coerce_service_config(value: LLMServiceConfig | Mapping[str, Any]) -> LLMServiceConfig:
+    def _coerce_service_config(
+        value: LLMServiceConfig | ChatServiceBinding | Mapping[str, Any],
+    ) -> LLMServiceConfig | ChatServiceBinding:
         if isinstance(value, LLMServiceConfig):
             return value
+        if isinstance(value, ChatServiceBinding):
+            return value
         if isinstance(value, Mapping):
+            if "profile" in value:
+                return ChatServiceBinding.model_validate(value)
             return LLMServiceConfig.from_dict(value)
         raise ValueError("llm_pool.services entries must be objects")
 
     @staticmethod
     def _coerce_embedding_service_config(
-        value: EmbeddingServiceConfig | Mapping[str, Any]
-    ) -> EmbeddingServiceConfig:
+        value: EmbeddingServiceConfig
+        | EmbeddingServiceBinding
+        | Mapping[str, Any],
+    ) -> EmbeddingServiceConfig | EmbeddingServiceBinding:
         if isinstance(value, EmbeddingServiceConfig):
             return value
+        if isinstance(value, EmbeddingServiceBinding):
+            return value
         if isinstance(value, Mapping):
+            if "profile" in value:
+                return EmbeddingServiceBinding.model_validate(value)
             return EmbeddingServiceConfig.from_dict(value)
         raise ValueError("embedding_pool.services entries must be objects")
 
@@ -648,9 +708,12 @@ class RuntimeConfig:
     def get_llm_service_config(self, service_name: str | None = None) -> LLMServiceConfig:
         selected = service_name or self.llm_pool_default_service
         try:
-            return self.llm_pool_services[selected]
+            service = self.llm_pool_services[selected]
         except KeyError as exc:
             raise ValueError(f"Unknown llm service: {selected}") from exc
+        if not isinstance(service, LLMServiceConfig):
+            raise ValueError(f"LLM service {selected!r} uses a canonical profile")
+        return service
 
     def get_embedding_service_config(
         self,
@@ -658,9 +721,14 @@ class RuntimeConfig:
     ) -> EmbeddingServiceConfig:
         selected = service_name or self.embedding_pool_default_service
         try:
-            return self.embedding_pool_services[selected]
+            service = self.embedding_pool_services[selected]
         except KeyError as exc:
             raise ValueError(f"Unknown embedding service: {selected}") from exc
+        if not isinstance(service, EmbeddingServiceConfig):
+            raise ValueError(
+                f"Embedding service {selected!r} uses a canonical profile"
+            )
+        return service
 
     def validate_runtime_roots(self) -> None:
         """
@@ -808,6 +876,12 @@ class RuntimeConfig:
         if yaml_path is not None:
             yaml_data = cls._load_yaml(pathlib_path=Path(yaml_path))
             cls._deep_merge(merged, yaml_data)
+            for pool_name in ("llm_pool", "embedding_pool"):
+                yaml_pool = yaml_data.get(pool_name)
+                if isinstance(yaml_pool, Mapping) and "services" in yaml_pool:
+                    cast(dict[str, Any], merged[pool_name])["services"] = dict(
+                        cast(Mapping[str, Any], yaml_pool["services"])
+                    )
 
         allow_env = yaml_path is None or bool(
             merged["config_policy"]["allow_env_override"]
@@ -818,7 +892,63 @@ class RuntimeConfig:
         if overrides:
             cls._apply_flat_overrides(merged, overrides)
 
-        return cls(**cls._nested_to_flat_kwargs(merged))
+        flat = cls._nested_to_flat_kwargs(merged)
+        canonical_llm = {
+            name: service
+            for name, service in cast(
+                dict[str, LLMServiceConfig | ChatServiceBinding],
+                flat["llm_pool_services"],
+            ).items()
+            if isinstance(service, ChatServiceBinding)
+        }
+        canonical_embeddings = {
+            name: service
+            for name, service in cast(
+                dict[str, EmbeddingServiceConfig | EmbeddingServiceBinding],
+                flat["embedding_pool_services"],
+            ).items()
+            if isinstance(service, EmbeddingServiceBinding)
+        }
+        model_library_section = cast(
+            Mapping[str, Any],
+            merged.get("model_library", {}),
+        )
+        configured_catalog_path = model_library_section.get("path")
+        if canonical_llm or canonical_embeddings:
+            if yaml_path is None or not isinstance(configured_catalog_path, str):
+                raise ValueError(
+                    "canonical service bindings require model_library.path in a "
+                    "Runtime YAML file"
+                )
+            loaded = load_model_library(
+                configured_catalog_path,
+                runtime_config_path=yaml_path,
+                environment=env_map,
+                allow_env_override=allow_env,
+            )
+            flat["model_library_path"] = str(loaded.path)
+            flat["model_library"] = loaded.library
+            flat["llm_service_specs"] = {
+                name: resolve_chat_service(loaded.library, binding, env_map)
+                for name, binding in canonical_llm.items()
+            }
+            flat["embedding_service_specs"] = {
+                name: resolve_embedding_service(loaded.library, binding, env_map)
+                for name, binding in canonical_embeddings.items()
+            }
+        elif configured_catalog_path is not None:
+            if yaml_path is None or not isinstance(configured_catalog_path, str):
+                raise ValueError("model_library.path must be a string in Runtime YAML")
+            loaded = load_model_library(
+                configured_catalog_path,
+                runtime_config_path=yaml_path,
+                environment=env_map,
+                allow_env_override=allow_env,
+            )
+            flat["model_library_path"] = str(loaded.path)
+            flat["model_library"] = loaded.library
+
+        return cls(**flat)
 
     @classmethod
     def _default_source_data(cls) -> dict[str, Any]:
@@ -832,6 +962,7 @@ class RuntimeConfig:
                 "workflow_mode": "canonical",
                 "unknown_key_policy": "fail",
             },
+            "model_library": {"path": None},
             "llm": {
                 "provider": "openai",
                 "model": "gpt-4",
@@ -1122,6 +1253,7 @@ class RuntimeConfig:
     @classmethod
     def _validate_yaml_keys(cls, payload: Mapping[str, Any]) -> None:
         allowed_top_level = {
+            "model_library",
             "llm_pool",
             "llm",
             "embedding_pool",
@@ -1143,6 +1275,7 @@ class RuntimeConfig:
             raise ValueError(f"Unknown runtime config keys: {sorted(unknown_top)}")
 
         section_keys: dict[str, set[str]] = {
+            "model_library": {"path"},
             "llm": {"provider", "model", "api_key", "api_base"},
             "embedding": {"model"},
             "prompting": {"base_system_prompt"},
@@ -1198,6 +1331,12 @@ class RuntimeConfig:
             role_bindings = agents["role_bindings"]
             if not isinstance(role_bindings, dict):
                 raise ValueError("agents.role_bindings must be an object")
+
+        model_library = payload.get("model_library", {})
+        if isinstance(model_library, dict):
+            path_value = model_library.get("path")
+            if path_value is not None and not isinstance(path_value, str):
+                raise ValueError("model_library.path must be a string")
 
         tools = payload.get("tools", {})
         if isinstance(tools, dict):
@@ -1269,11 +1408,28 @@ class RuntimeConfig:
             services = llm_pool["services"]
             if not isinstance(services, dict):
                 raise ValueError("llm_pool.services must be an object")
-            allowed_service_keys = {"provider", "model", "api_key", "api_base", "resilience"}
+            allowed_legacy_service_keys = {
+                "provider",
+                "model",
+                "api_key",
+                "api_base",
+                "resilience",
+            }
+            allowed_profile_service_keys = {
+                "profile",
+                "credential",
+                "resilience_overrides",
+                "generation_overrides",
+            }
             allowed_resilience_keys = {"timeout_seconds", "max_retries"}
             for service_name, config in services.items():
                 if not isinstance(config, dict):
                     raise ValueError(f"llm_pool.services.{service_name} must be an object")
+                allowed_service_keys = (
+                    allowed_profile_service_keys
+                    if "profile" in config
+                    else allowed_legacy_service_keys
+                )
                 unknown_service = set(config) - allowed_service_keys
                 if unknown_service:
                     raise ValueError(
@@ -1298,13 +1454,29 @@ class RuntimeConfig:
             services = embedding_pool["services"]
             if not isinstance(services, dict):
                 raise ValueError("embedding_pool.services must be an object")
-            allowed_service_keys = {"provider", "model", "api_key", "api_base", "resilience"}
+            allowed_legacy_service_keys = {
+                "provider",
+                "model",
+                "api_key",
+                "api_base",
+                "resilience",
+            }
+            allowed_profile_service_keys = {
+                "profile",
+                "credential",
+                "resilience_overrides",
+            }
             allowed_resilience_keys = {"timeout_seconds", "max_retries"}
             for service_name, config in services.items():
                 if not isinstance(config, dict):
                     raise ValueError(
                         f"embedding_pool.services.{service_name} must be an object"
                     )
+                allowed_service_keys = (
+                    allowed_profile_service_keys
+                    if "profile" in config
+                    else allowed_legacy_service_keys
+                )
                 unknown_service = set(config) - allowed_service_keys
                 if unknown_service:
                     raise ValueError(
@@ -1545,14 +1717,18 @@ class RuntimeConfig:
             "llm_api_base": data["llm"].get("api_base"),
             "llm_pool_default_service": default_service_name,
             "llm_pool_services": {
-                name: LLMServiceConfig.from_dict(cast(Mapping[str, Any], config))
+                name: cls._coerce_service_config(
+                    cast(Mapping[str, Any], config)
+                )
                 for name, config in llm_services.items()
             },
             "embedding_pool_default_service": embedding_pool_data.get(
                 "default_service", "default"
             ),
             "embedding_pool_services": {
-                name: EmbeddingServiceConfig.from_dict(cast(Mapping[str, Any], config))
+                name: cls._coerce_embedding_service_config(
+                    cast(Mapping[str, Any], config)
+                )
                 for name, config in embedding_services.items()
             },
             "embedding_model": data["embedding"]["model"],

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from collections.abc import AsyncIterator, Sequence
 
 import pytest
@@ -24,11 +25,26 @@ from friday_chat.turns.processor import (
     TurnProcessor,
     TurnRetryExhaustedError,
     TurnTimeoutError,
+    _serialize_response,
 )
 
 
 def _config(data: dict[str, object]) -> FridayChatConfig:
     return FridayChatConfig.model_validate(data)
+
+
+def test_persisted_raw_response_excludes_reasoning_content() -> None:
+    payload = json.loads(
+        _serialize_response(
+            ChatModelResponse(
+                content="final answer",
+                reasoning_content="private chain of thought",
+            )
+        )
+    )
+
+    assert payload["content"] == "final answer"
+    assert "reasoning_content" not in payload
 
 
 class FailingTranscriptStore(FakeTranscriptStore):
@@ -217,6 +233,7 @@ async def test_tool_call_only_response_executes_tool_and_returns_final_content()
     assert isinstance(runtime.chat_llm, FakeChatModel)
     runtime.chat_llm.responses = [
         ChatModelResponse(
+            reasoning_content="private tool reasoning",
             tool_calls=(
                 ToolCallRequest(
                     name="get_current_datetime",
@@ -236,8 +253,11 @@ async def test_tool_call_only_response_executes_tool_and_returns_final_content()
     assert isinstance(runtime.tools, FakeToolRegistry)
     assert runtime.tools.calls[0].name == "get_current_datetime"
     second_call_messages = runtime.chat_llm.calls[1]
+    assert second_call_messages[-2]["role"] == "assistant"
+    assert second_call_messages[-2]["reasoning_content"] == "private tool reasoning"
     assert second_call_messages[-1]["role"] == "tool"
     assert second_call_messages[-1]["tool_call_id"] == "call-date"
+    assert "private tool reasoning" not in result.raw_response
 
 
 async def test_fake_date_question_uses_datetime_tool() -> None:

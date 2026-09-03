@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-artifact_dir="${ARTIFACT_DIR:-dist/friday-package-cohort-0.1.0a1}"
-version="${FRIDAY_RESERVATION_VERSION:-0.1.0a1}"
+artifact_dir="${ARTIFACT_DIR:-dist/friday-package-cohort-0.1.0a2}"
+version="${FRIDAY_RESERVATION_VERSION:-0.1.0a2}"
 distribution="${FRIDAY_SMOKE_DISTRIBUTION:-friday-chat}"
 import_package="${FRIDAY_SMOKE_IMPORT:-friday_chat}"
 console_script="${FRIDAY_SMOKE_CONSOLE:-friday-chat}"
@@ -106,6 +106,9 @@ import asyncio
 import importlib
 import importlib.metadata
 import os
+import re
+import tempfile
+from pathlib import Path
 from types import SimpleNamespace
 
 distribution = os.environ["FRIDAY_SMOKE_DISTRIBUTION"]
@@ -213,7 +216,7 @@ elif distribution == "friday-chat":
     import yaml
     import friday_chat
     from friday_chat.adapters import build_framework_chat_model
-    from friday_chat.config import FridayChatConfig
+    from friday_chat.config import load_friday_py_config
 
     if friday_chat.__version__ != installed_version:
         raise RuntimeError(
@@ -224,20 +227,45 @@ elif distribution == "friday-chat":
     template = importlib.resources.files("friday_chat.config_templates").joinpath(
         "config.example.yaml"
     )
-    template_data = yaml.safe_load(template.read_text(encoding="utf-8"))
-    template_config = FridayChatConfig.model_validate(template_data)
-    execution = template_config.llm.resolve_execution()
-    if execution.__class__.__name__ != "TypedLLMExecutionConfig":
-        raise RuntimeError("packaged Friday Chat template did not select typed LLM")
+    models_template = importlib.resources.files(
+        "friday_chat.config_templates"
+    ).joinpath("models-config.example.yaml")
+    model_data = yaml.safe_load(models_template.read_text(encoding="utf-8"))
+    for credential in model_data.get("credentials", {}).values():
+        os.environ.setdefault(credential["env"], "artifact-smoke-secret")
+    config_text = template.read_text(encoding="utf-8")
+    for env_name in set(re.findall(r"\$\{([A-Z][A-Z0-9_]*)\}", config_text)):
+        os.environ.setdefault(env_name, "artifact-smoke-value")
+    with tempfile.TemporaryDirectory() as directory:
+        template_directory = Path(directory)
+        config_path = template_directory / "config.example.yaml"
+        models_path = template_directory / "models-config.example.yaml"
+        config_path.write_text(config_text, encoding="utf-8")
+        models_path.write_text(
+            models_template.read_text(encoding="utf-8"),
+            encoding="utf-8",
+        )
+        template_config = load_friday_py_config(config_path)
+    if template_config.diagnostics:
+        raise RuntimeError("packaged Friday Chat template emitted config diagnostics")
 
     async def fake_chat_completion(**kwargs):
-        if kwargs.get("top_p") != 0.95:
+        if kwargs.get("model") != "moonshot/kimi-k3":
+            raise RuntimeError(f"unexpected model: {kwargs.get('model')!r}")
+        if "top_p" in kwargs:
             raise RuntimeError(f"unexpected top_p: {kwargs.get('top_p')!r}")
-        if kwargs.get("extra_body", {}).get("top_k") != 40:
+        if "top_k" in kwargs.get("extra_body", {}):
             raise RuntimeError(
                 f"unexpected top_k: {kwargs.get('extra_body', {}).get('top_k')!r}"
             )
-        message = SimpleNamespace(content="ok", reasoning_content=None, tool_calls=[])
+        message = SimpleNamespace(
+            content="ok",
+            reasoning_content=None,
+            provider_specific_fields={
+                "reasoning_content": "private artifact-smoke reasoning"
+            },
+            tool_calls=[],
+        )
         usage = SimpleNamespace(
             prompt_tokens=1,
             completion_tokens=1,
@@ -246,7 +274,7 @@ elif distribution == "friday-chat":
         )
         return SimpleNamespace(
             choices=[SimpleNamespace(message=message, finish_reason="stop")],
-            model="qwen3.8-27b-mlx",
+            model="kimi-k3",
             usage=usage,
         )
 
@@ -259,6 +287,8 @@ elif distribution == "friday-chat":
             )
             if response.content != "ok":
                 raise RuntimeError("Friday Chat typed adapter returned wrong content")
+            if response.reasoning_content != "private artifact-smoke reasoning":
+                raise RuntimeError("provider reasoning metadata was not normalized")
         finally:
             litellm.acompletion = original
 
