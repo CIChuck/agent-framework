@@ -23,6 +23,15 @@ Independent validation is required before qualifying applicable work as
 `completed`. A validation result is not maintainer acceptance and does not grant
 merge, push, release, deployment, credential, or external-system authority.
 
+### Adoption Boundary
+
+The construction-directive gate applies prospectively to code generation that
+starts after this policy is adopted. Work generated before adoption does not
+require a retroactive directive when the packet records its controlling build
+and tactical plans, implementation history, and maintainer-approved adoption
+exception. Such work must still receive an aggregate independent review before
+acceptance if it remains on an unaccepted feature branch.
+
 ## Roles And Separation
 
 The workflow separates five responsibilities:

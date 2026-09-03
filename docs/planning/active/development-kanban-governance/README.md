@@ -45,6 +45,12 @@ automation scripts. Documentation validation, board validation, protected-guide
 comparison, changed-file scope inspection, and an independent cold review are
 required.
 
+The board automation on this branch predates adoption of the mandatory
+construction-directive gate. Its build plan, tactical plan, and execution log
+remain the recorded implementation authority under the policy's adoption
+exception. The complete branch must receive an aggregate independent review
+before maintainer acceptance.
+
 ## Boundaries
 
 - Preserve the lifecycle-oriented documentation structure.

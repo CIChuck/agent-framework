@@ -78,5 +78,8 @@
   source and automation changes. Packet metadata and the board `next_gate`
   enforce the documentation-only process until that automation is separately
   authorized.
+- Recorded the adoption exception for board automation generated before the
+  mandatory construction-directive gate and required an aggregate branch review
+  before acceptance.
 - Set `execution_phase: validation` and `validation_state: pending` before
   freezing the candidate commit.
