@@ -19,6 +19,12 @@ tasks:
   - 'documentation lifecycle: 289 Markdown files passed'
   - friday-dev-board skill validation passed
   - docs/guides unchanged from 63cb579
+  - AGENTS.md canonical code-generation authority assertions passed
+  - 'tests/integration: 17 passed after authority update'
+  - focused mypy and Ruff passed after authority update
+  - documentation lifecycle and guide-boundary checks passed
+  - 'tests/integration final: 18 passed'
+  - board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed
   approved_by: repository maintainer
   approved_at: '2026-09-03'
 - id: friday-chat-client-lifecycle
@@ -333,3 +339,29 @@ events:
   action: transitioned started -> completed
   note: Implementation and validation completed for maintainer review
   evidence: 'tests/integration: 17 passed; focused mypy and Ruff passed; documentation lifecycle: 289 Markdown files passed; friday-dev-board skill validation passed; docs/guides unchanged from 63cb579'
+- task: development-kanban-governance
+  at: '2026-09-03T20:57:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened before acceptance to add canonical code-generation authority to AGENTS.md
+- task: development-kanban-governance
+  at: '2026-09-03T20:59:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Canonical AGENTS.md planning and code-generation authority completed and validated
+  evidence: 'AGENTS.md canonical code-generation authority assertions passed; tests/integration: 17 passed after authority update; focused mypy and Ruff passed after authority update; documentation lifecycle and guide-boundary checks passed'
+- task: development-kanban-governance
+  at: '2026-09-03T21:00:41+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened to stabilize the next-task regression independently of current board state
+- task: development-kanban-governance
+  at: '2026-09-03T21:00:56+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Final state-independent regression and validation snapshot completed
+  evidence: 'tests/integration final: 18 passed; board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed'

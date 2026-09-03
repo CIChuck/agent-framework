@@ -11,6 +11,8 @@ Status: completed; awaiting maintainer acceptance
 4. Add validation and guarded mutation commands.
 5. Add a repository-local skill that operates from the board and policy.
 6. Add regression tests and integrate board checks with documentation validation.
+7. Make `AGENTS.md` the canonical operational entry point for code-generation
+   authority and connect it to the board and planning artifact hierarchy.
 
 ## Acceptance Criteria
 

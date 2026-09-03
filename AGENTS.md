@@ -14,6 +14,47 @@ Priority operational rules for agents:
 - Preserve unrelated local changes and generated state. Do not clean caches, `.friday/`, Chroma/transcript state, or dirty worktree files unless explicitly asked.
 - Do not implement a queued task or infer approval or acceptance from a branch, push, merge, release, or stale plan label.
 
+## Development Planning & Code-Generation Authority
+
+This `AGENTS.md` is the canonical operational entry point for repository code
+generation. It delegates engineering constraints to the repository engineering
+policy and delegates current task state, priority, and implementation authority
+to the development board. It does not override either policy.
+
+Before generating or modifying product code, an agent must:
+
+1. Run `uv run python scripts/friday-dev-board.py validate`.
+2. Run `uv run python scripts/friday-dev-board.py next` and inspect the selected
+   task with `show <initiative>`.
+3. Confirm the task is `started`, has `implementation_authority: granted`, and
+   names the current feature branch. `approved` permits branch and execution
+   preparation, but code generation begins only after the `started` transition.
+4. Read the initiative packet. Its build plan defines authorized scope and
+   acceptance criteria; its tactical plan defines implementation ordering and
+   validation; construction directives, when present, bound individual work
+   units; and its execution log records progress and stop points.
+5. Stop and reconcile the board, packet, branch, source, and tests when they
+   disagree. Directory placement or an old status label never supplies missing
+   authority.
+
+The planning architecture is:
+
+- `docs/planning/board.yaml`: canonical current task registry;
+- `docs/planning/README.md`: generated human-readable Kanban view;
+- `docs/planning/queued/`: proposed or approved work not yet executing;
+- `docs/planning/active/`: started work with implementation authority;
+- `docs/planning/review/`: completed work awaiting maintainer acceptance;
+- `docs/planning/blocked/`, `deferred/`, and `backlog/`: work carrying those
+  non-authorizing conditions; and
+- `docs/archive/completed/`: accepted historical packets and closeout evidence.
+
+Work progresses through `queued -> approved -> started -> completed -> accepted`.
+Only the maintainer may approve or accept work. Agents may record a start after
+authorization and may propose completion with validation evidence. Delivery
+state (`local`, `pushed`, `merged`, or `released`) is recorded separately and
+never substitutes for approval or acceptance. The complete transition contract
+is [docs/reference/policies/development-task-lifecycle.md](docs/reference/policies/development-task-lifecycle.md).
+
 ## Project Structure & Module Organization
 - `packages/` contains the workspace libraries. The current package set includes `friday-core`, `friday-telemetry`, `friday-llm`, `friday-transcript`, `friday-memory`, `friday-agent`, `friday-runtime`, `friday-cli`, `friday-tools`, `friday-sandbox`, `friday-mcp`, `friday-speech`, `friday-finance`, `friday-moltbook`, and `friday-optimization`.
 - `friday-runtime` is the current headless assembly layer. Prefer `RuntimeKernel` and `RuntimeConfig` for full-stack composition work.

@@ -73,9 +73,20 @@ def test_repository_development_board_is_valid_and_rendered() -> None:
     assert result.returncode == 0, result.stdout + result.stderr
     assert "22 tasks" in result.stdout
 
-    next_task = _run(REPOSITORY_ROOT, "next")
-    assert next_task.returncode == 0, next_task.stdout + next_task.stderr
-    assert "AWAITING_ACCEPTANCE development-kanban-governance" in next_task.stdout
+    agent_instructions = (REPOSITORY_ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    assert "canonical operational entry point" in agent_instructions
+    assert "scripts/friday-dev-board.py validate" in agent_instructions
+    assert "queued -> approved -> started -> completed -> accepted" in agent_instructions
+    assert "docs/planning/review/" in agent_instructions
+
+
+def test_next_reports_the_highest_priority_gate(tmp_path: Path) -> None:
+    _write_minimal_board(tmp_path)
+
+    result = _run(tmp_path, "next")
+
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert result.stdout.startswith("AWAITING_APPROVAL example-task:")
 
 
 def test_agent_cannot_approve_work(tmp_path: Path) -> None:

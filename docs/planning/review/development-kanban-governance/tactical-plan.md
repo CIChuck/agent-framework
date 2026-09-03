@@ -15,3 +15,5 @@ Status: completed
    checks, and diff checks.
 8. Mark the work completed for maintainer review; do not self-accept or push
    without explicit authority.
+9. Before final acceptance, add and validate the explicit `AGENTS.md`
+   code-generation authority chain requested by the maintainer.

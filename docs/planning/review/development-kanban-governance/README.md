@@ -42,5 +42,6 @@ to proceed after the documentation information-architecture refactor merged.
 ## Completion
 
 The canonical board, rendered dashboard, transition controls, integration checks,
-and repository-local skill are implemented and validated. The work is awaiting
-maintainer review and acceptance; it has not been self-accepted.
+and repository-local skill are implemented and validated. `AGENTS.md` now defines
+the canonical operational authority chain for code generation. The work is
+awaiting maintainer review and acceptance; it has not been self-accepted.
