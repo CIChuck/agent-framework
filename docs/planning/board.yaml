@@ -4,11 +4,11 @@ tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
   priority: 1
-  work_state: started
+  work_state: completed
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/development-kanban-governance/
-  next_gate: freeze the REM-003 candidate and dispatch VAL-004
+  implementation_authority: closed
+  packet: docs/planning/review/development-kanban-governance/
+  next_gate: maintainer review and acceptance
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:
@@ -25,6 +25,10 @@ tasks:
   - documentation lifecycle and guide-boundary checks passed
   - 'tests/integration final: 18 passed'
   - board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed
+  - VAL-004 VERIFIED aggregate candidate c185c4e
+  - 'tests/integration: 24 passed; focused board tests: 11 passed'
+  - 'board validation: 22 tasks; documentation lifecycle: 298 Markdown files'
+  - focused Ruff and Python 3.13 mypy passed
   approved_by: repository maintainer
   approved_at: '2026-09-03'
 - id: friday-chat-client-lifecycle
@@ -400,3 +404,10 @@ events:
   action: condition blocked -> normal
   note: Maintainer authorized REM-003 as an explicit exception to the two-cycle limit
   evidence: Explicit maintainer authorization in active conversation on 2026-09-04
+- task: development-kanban-governance
+  at: '2026-09-04T18:27:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Independent aggregate validation verified the completed governance implementation
+  evidence: 'VAL-004 VERIFIED aggregate candidate c185c4e; tests/integration: 24 passed; focused board tests: 11 passed; board validation: 22 tasks; documentation lifecycle: 298 Markdown files; focused Ruff and Python 3.13 mypy passed'

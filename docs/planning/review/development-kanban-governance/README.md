@@ -4,16 +4,16 @@
 title: Development Kanban Governance
 initiative: development-kanban-governance
 document_type: initiative-index
-status: started; REM-003 validation pending
-work_state: started
+status: completed; awaiting maintainer acceptance
+work_state: completed
 condition: normal
 created: 2026-09-03
 updated: 2026-09-04
 branch: feature/development-kanban-governance
-next_gate: freeze the REM-003 candidate and dispatch VAL-004
-implementation_authority: granted
-execution_phase: validation
-validation_state: pending
+next_gate: maintainer review and acceptance
+implementation_authority: closed
+execution_phase: closeout
+validation_state: verified
 construction_directive: exempt
 ---
 
@@ -98,3 +98,9 @@ the two-cycle limit. Authority is limited to the focused test, the inaccurate
 implementation-report statement, and validation closeout artifacts.
 The test and report correction are implemented; the work remains `started`
 pending a fresh aggregate review.
+
+`VAL-004` independently reviewed aggregate candidate `c185c4e` in a fresh,
+read-only context and returned `VERIFIED`. All thirteen acceptance criteria, all
+fifteen tactical tasks, and every required deterministic check passed. The
+initiative is therefore `completed` and awaits maintainer review; it is not
+accepted, pushed, merged, released, deployed, or published by this transition.
