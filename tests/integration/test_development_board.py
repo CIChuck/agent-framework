@@ -417,3 +417,40 @@ def test_reopening_completed_work_preserves_delivery_state(
 
     assert reopened.returncode == 0, reopened.stdout + reopened.stderr
     assert _load_task(tmp_path)["delivery_state"] == delivery_state
+
+
+def test_delivery_state_cannot_move_backward(tmp_path: Path) -> None:
+    _write_minimal_board(tmp_path)
+    merged = _run(
+        tmp_path,
+        "set-delivery",
+        "example-task",
+        "merged",
+        "--actor",
+        "Codex",
+        "--actor-role",
+        "agent",
+        "--note",
+        "Observed merge",
+        "--evidence",
+        "merge commit abc123",
+    )
+    assert merged.returncode == 0, merged.stdout + merged.stderr
+    assert _load_task(tmp_path)["delivery_state"] == "merged"
+
+    backward = _run(
+        tmp_path,
+        "set-delivery",
+        "example-task",
+        "pushed",
+        "--actor",
+        "Codex",
+        "--actor-role",
+        "agent",
+        "--note",
+        "Attempted delivery downgrade",
+    )
+
+    assert backward.returncode == 1
+    assert "delivery cannot move backward: merged -> pushed" in backward.stderr
+    assert _load_task(tmp_path)["delivery_state"] == "merged"

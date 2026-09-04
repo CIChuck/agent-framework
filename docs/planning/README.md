@@ -40,7 +40,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | [Development Kanban governance](blocked/development-kanban-governance/) | blocked | closed | local | maintainer decision on proposed REM-003 after second remediation cycle |
+| 1 | [Development Kanban governance](active/development-kanban-governance/) | normal | granted | local | freeze the REM-003 candidate and dispatch VAL-004 |
 
 ## Completed
 

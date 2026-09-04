@@ -1,14 +1,14 @@
 version: 1
-updated: '2026-09-03'
+updated: '2026-09-04'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
   priority: 1
   work_state: started
-  condition: blocked
-  implementation_authority: closed
-  packet: docs/planning/blocked/development-kanban-governance/
-  next_gate: maintainer decision on proposed REM-003 after second remediation cycle
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/development-kanban-governance/
+  next_gate: freeze the REM-003 candidate and dispatch VAL-004
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:
@@ -393,3 +393,10 @@ events:
   action: condition normal -> blocked
   note: VAL-003 requested a missing negative regression after the second remediation cycle
   evidence: VAL-003-F01; proposed REM-003 not authorized
+- task: development-kanban-governance
+  at: '2026-09-04T18:16:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer authorized REM-003 as an explicit exception to the two-cycle limit
+  evidence: Explicit maintainer authorization in active conversation on 2026-09-04

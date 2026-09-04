@@ -1,6 +1,6 @@
 # REM-002 Implementation Report
 
-Status: candidate preparation complete; independent validation pending
+Status: REM-003 evidence correction implemented; independent validation pending
 
 ## Candidate Scope
 
@@ -24,11 +24,13 @@ Focused regression coverage verifies:
 - initial `approved -> started` promotion to `local`;
 - `completed -> started` preservation of all five existing non-`not_started`
   delivery values; and
-- existing transition and backward-delivery tests remain passing.
+- a negative regression proving `merged -> pushed` is rejected and the persisted
+  delivery state remains `merged`.
 
 ## Verification Evidence
 
-- Focused board tests: 10 passed
+- Focused board tests: 11 passed, including explicit backward-delivery rejection
+- Full integration tests: 24 passed
 - Focused Ruff for the script and test: passed
 - Mypy for the board script under repository Python 3.10 configuration: passed
 - Mypy for the script and test under the active Python 3.13 interpreter: passed
@@ -36,8 +38,10 @@ Focused regression coverage verifies:
   a pre-existing NumPy stub using Python 3.12 type-statement syntax; no changed
   file error was reported before that dependency parse failure
 
-The full integration, board, documentation, aggregate diff, and protected-scope
-checks must be rerun against the frozen candidate before VAL-003 dispatch.
+Board validation passed for 22 tasks, documentation validation passed for 298
+Markdown files, and the working-tree diff check passed before freezing the
+REM-003 candidate. Aggregate and protected-scope checks must be repeated against
+the frozen revision before VAL-004 dispatch.
 
 ## Residual Risk
 

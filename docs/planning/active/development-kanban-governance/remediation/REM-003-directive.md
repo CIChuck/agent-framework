@@ -1,11 +1,12 @@
 # REM-003 Backward-Delivery Regression Construction Directive
 
-Status: proposed; not authorized
+Status: implemented; independent validation pending
 
 ## Authority Required
 
-This would be a third remediation cycle. Do not execute it without an explicit
-maintainer exception to the independent-validation policy's two-cycle stop.
+This is a third remediation cycle. The repository maintainer explicitly
+authorized the exception to the independent-validation policy's two-cycle stop
+on 2026-09-04. No authority is granted beyond the allowed scope below.
 
 ## Source Finding
 

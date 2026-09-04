@@ -179,3 +179,27 @@
 - Set condition `blocked`, `implementation_authority: closed`,
   `execution_phase: remediation`, and
   `validation_state: changes_requested` pending maintainer disposition.
+
+## 2026-09-04 — REM-003 Exception Authorized
+
+- The maintainer explicitly authorized REM-003 as an exception to the
+  independent-validation policy's two-cycle limit.
+- Moved the packet from `blocked` to `active`, restored condition `normal`, and
+  granted implementation authority only for the focused negative regression,
+  REM-002 implementation-report correction, and validation closeout artifacts.
+- No board-script or package-source change is authorized in this cycle.
+
+## 2026-09-04 — REM-003 Implemented
+
+- Added a focused negative regression that records `merged`, attempts
+  `merged -> pushed`, requires the backward-movement error, and confirms the
+  persisted delivery state remains `merged`.
+- Corrected the REM-002 implementation report so its coverage claim matches the
+  actual test suite.
+- Focused board tests passed: 11 tests.
+- Full integration tests passed: 24 tests.
+- Focused Ruff and Python 3.13 mypy passed for the test file.
+- Board validation passed for 22 tasks, documentation validation passed for 298
+  Markdown files, and the working-tree diff check passed.
+- Set `execution_phase: validation` and `validation_state: pending` before
+  freezing the candidate for VAL-004.
