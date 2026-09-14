@@ -39,13 +39,14 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 2 | [Friday Chat client-session shutdown](active/friday-chat-client-lifecycle/) | normal | granted | local | dispatch VAL-002 delta and aggregate review of REM-001 |
+| — | _None_ | — | — | — | — |
 
 ## Completed
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
 | 1 | [Development Kanban governance](review/development-kanban-governance/) | normal | closed | local | maintainer review and acceptance |
+| 2 | [Friday Chat client-session shutdown](review/friday-chat-client-lifecycle/) | normal | closed | local | maintainer acceptance review |
 | 15 | [Nonblocking Friday Chat input](blocked/nonblocking-chat-input/) | blocked | closed | unknown | complete or waive provider-backed idle-maintenance validation |
 
 ## Accepted

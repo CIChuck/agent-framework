@@ -34,15 +34,18 @@ tasks:
 - id: friday-chat-client-lifecycle
   title: Friday Chat client-session shutdown
   priority: 2
-  work_state: started
+  work_state: completed
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-chat-client-lifecycle/
-  next_gate: dispatch VAL-002 delta and aggregate review of REM-001
+  implementation_authority: closed
+  packet: docs/planning/review/friday-chat-client-lifecycle/
+  next_gate: maintainer acceptance review
   delivery_state: local
   branch: feature/friday-chat-client-lifecycle
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-report.md
+  - docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml
+  - docs/planning/review/friday-chat-client-lifecycle/closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-14'
 - id: friday-mcp
@@ -447,3 +450,10 @@ events:
   action: condition normal -> normal
   note: REM-001 is implemented and deterministically validated; freeze the remediated candidate for fresh review.
   evidence: docs/planning/active/friday-chat-client-lifecycle/execution/REM-001-implementation-report.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T20:05:55+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: CD-001 and REM-001 are implemented; fresh VAL-002 delta and aggregate validation returned VERIFIED.
+  evidence: docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-report.md; docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml; docs/planning/review/friday-chat-client-lifecycle/closeout.md

@@ -107,3 +107,15 @@
   LLM and `434 passed, 5 skipped` plus the same three declared PTY baseline
   failures for Friday Chat.
 - Prepared a new stable candidate for fresh delta and aggregate validation.
+
+## 2026-09-14 — VAL-002 Verified
+
+- Fresh read-only validator `/root/friday_chat_client_lifecycle_val_002`
+  reviewed the REM-001 delta and complete feature diff at candidate `a5ed1bc`.
+- VAL-002 returned `VERIFIED`; VAL-001-F01 is resolved and all AC-01 through
+  AC-12 and TP-01 through TP-13 passed.
+- Recorded `55 passed` focused tests, `186 passed, 8 skipped` Friday LLM tests,
+  and `434 passed, 5 skipped` Friday Chat tests with only the three declared PTY
+  baselines.
+- Prepared closeout and proposed the initiative as `completed` for maintainer
+  review. No acceptance or delivery action was inferred.

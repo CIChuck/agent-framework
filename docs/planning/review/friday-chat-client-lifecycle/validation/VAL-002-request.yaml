@@ -1,0 +1,97 @@
+version: 1
+review_id: VAL-002
+initiative: friday-chat-client-lifecycle
+work_unit: REM-001-final-cleanup-ordering
+requested_on: '2026-09-14'
+review_mode: aggregate_with_remediation_delta
+reviewer_context: fresh
+reviewer_write_policy: read_only
+remediation_cycle: 1
+outcomes:
+  - VERIFIED
+  - CHANGES_REQUESTED
+  - BLOCKED
+revisions:
+  repository_base: fe15552cc83caa2590be2e73158091dd15826d1e
+  prior_candidate: ad65ec05974656c580bd928840b44b5c9a87902c
+  candidate: a5ed1bce59470cc599ee971d29642b4bb91ef576
+diffs:
+  aggregate: fe15552cc83caa2590be2e73158091dd15826d1e..a5ed1bce59470cc599ee971d29642b4bb91ef576
+  remediation: ad65ec05974656c580bd928840b44b5c9a87902c..a5ed1bce59470cc599ee971d29642b4bb91ef576
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/dev-skills/independent-code-validator.md
+    sha256: 578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508
+  - path: docs/archive/completed/2026/friday-chat-v2/friday-chat-v2-behavioral-contracts.md
+    sha256: cc773399fb212515ceb5fc883eaa2fa7b9ba0d47c44c6881158b9f262bcab29c
+  - path: docs/planning/active/friday-chat-client-lifecycle/README.md
+    sha256: fb3a17914e3e9faeab0c96a5e3227752ad10d2e9956d5349c713452cf519dfc3
+  - path: docs/planning/active/friday-chat-client-lifecycle/build-plan.md
+    sha256: 7f2e6d7745654422e82f91e065311e274e3a857b6ec177d7b417dfbd001bb082
+  - path: docs/planning/active/friday-chat-client-lifecycle/tactical-plan.md
+    sha256: bddfee4d349fe3ea39f2b0a30c5a56c43a3dfb879b281fc3fd0cd6e2ebf29561
+  - path: docs/planning/active/friday-chat-client-lifecycle/directives/CD-001-client-lifecycle.md
+    sha256: 829b80b4711e37980cca2ca4e7141ee5318f841f74592c5cb547f5a98680d408
+remediation_authority:
+  prior_request: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-request.yaml
+  prior_request_sha256: fcd3ccf9f7c07ffc847986181dafde8cb38aca34de47261f414ce0f8dc8f6087
+  prior_report: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-report.md
+  prior_report_sha256: 1ab12558c061ba4f9cd43734be00b93a40d8f505986e29d88551fc3c55a21c7c
+  prior_evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-evidence.yaml
+  prior_evidence_sha256: f100bc26c15353d0b9d2ee8097ab61cbe0b5b08bd06afa904fdfcd89453b770d
+  directive: docs/planning/active/friday-chat-client-lifecycle/remediation/REM-001-directive.md
+  directive_sha256: b80fbb70201ccf7f314594760bdfe4dbc5fbc3dc7e30d77ea7b4d30147a2bf69
+  implementation_report: docs/planning/active/friday-chat-client-lifecycle/execution/REM-001-implementation-report.md
+  implementation_report_sha256: a0ff9b0169cdbb48e75bd5e72767919891c88f2d754c7cddbef7cda3c7978a71
+  findings:
+    - VAL-001-F01
+acceptance_authority:
+  acceptance_criteria: [AC-01, AC-02, AC-03, AC-04, AC-05, AC-06, AC-07, AC-08, AC-09, AC-10, AC-11, AC-12]
+  tactical_tasks: [TP-01, TP-02, TP-03, TP-04, TP-05, TP-06, TP-07, TP-08, TP-09, TP-10, TP-11, TP-12, TP-13]
+required_checks:
+  - LITELLM_LOCAL_MODEL_COST_MAP=True UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-llm/tests_llm/test_lifecycle.py packages/friday-chat/tests_chat/test_input_sources.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/test_runtime.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=True UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-llm/tests_llm -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=True UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-chat/tests_chat -q
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run ruff check packages/friday-llm/src/friday_llm/lifecycle.py packages/friday-llm/src/friday_llm/__init__.py packages/friday-llm/tests_llm/test_lifecycle.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/app.py packages/friday-chat/src/friday_chat/input_sources.py packages/friday-chat/tests_chat/test_runtime.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/test_input_sources.py
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run mypy --follow-imports=skip packages/friday-llm/src/friday_llm/lifecycle.py packages/friday-chat/src/friday_chat/input_sources.py packages/friday-chat/src/friday_chat/app.py packages/friday-chat/src/friday_chat/runtime.py
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run python scripts/friday-dev-board.py validate
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run python scripts/check-documentation-lifecycle.py
+  - git diff --check ad65ec05974656c580bd928840b44b5c9a87902c..a5ed1bce59470cc599ee971d29642b4bb91ef576
+  - git diff --check fe15552cc83caa2590be2e73158091dd15826d1e..a5ed1bce59470cc599ee971d29642b4bb91ef576
+required_review:
+  - Re-evaluate VAL-001-F01 against the exact remediation delta.
+  - Verify cleanup occurs exactly once after successful and failed execution-capable exit reorganization termination and before run returns.
+  - Verify no rollback, recovery, provider, embedding, or maintenance work can occur after final cleanup.
+  - Verify cleanup failure remains content-safe and preserves snapshot-sensitive shutdown accounting.
+  - Verify REM-001 changed no coordinator, mutation, provider/model, Friday LLM, dependency, lock, config, version, or unrelated test behavior.
+  - Re-evaluate every AC and TP identifier against the aggregate candidate.
+  - Inspect the aggregate diff for scope drift, protected state, secrets, and package-boundary violations.
+known_baseline_state:
+  - The default root pytest command has a duplicate unnamespaced test_display module collection conflict. Do not delete caches or protected state to bypass it.
+  - Friday Chat package validation has three unchanged PTY failures in test_command_disposable_uat.py, test_display.py, and test_reorganization_terminal.py.
+  - Representative screen-clear and early-acknowledgement PTY failures reproduce with temporary LiteLLM 1.94.1 and are not candidate regressions.
+  - Broader mypy is blocked by the Python 3.10 configuration parsing Python 3.12-only NumPy stub syntax; adapters.py has a pre-existing no-any-return error outside the aggregate diff.
+  - .DS_Store and family-tree.md are unrelated dirty tracked files excluded from the candidate.
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak and packages/friday-sandbox/docker/Dockerfile.audit are unrelated untracked files excluded from the candidate.
+external_effects:
+  network: localhost_only_for_deterministic_wire_capture
+  credentials: forbidden
+  paid_services: forbidden
+  persistent_runtime_state: forbidden
+  push_merge_release_deploy: forbidden
+report:
+  path: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-002-report.md
+  evidence_path: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml
+allowed_post_review_closeout:
+  - Add VAL-002 report and evidence artifacts supplied by the validator.
+  - Append review disposition and create closeout.md after VERIFIED.
+  - Update packet status, execution_phase, validation_state, and next_gate.
+  - Move the packet and transition the board from started to completed after VERIFIED.
+  - Do not alter governed source, tests, package metadata, lock data, directives, remediation, or authority without a fresh review.
