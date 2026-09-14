@@ -53,6 +53,7 @@ from friday_llm.generation import (  # noqa: E402
 
 # LangFuse observability
 from friday_llm.langfuse_integration import configure_langfuse  # noqa: E402
+from friday_llm.lifecycle import close_litellm_async_clients  # noqa: E402
 from friday_llm.model_library import (  # noqa: E402
     MODEL_LIBRARY_SCHEMA,
     ChatModelProfile,
@@ -119,6 +120,7 @@ __all__ = [
     # Services
     "LiteLLMService",
     "LiteLLMEmbeddingService",
+    "close_litellm_async_clients",
     # Config
     "ResilienceConfig",
     "CircuitBreakerConfig",

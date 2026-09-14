@@ -111,6 +111,13 @@ class EmbeddingService(Protocol):
         """Embed one text value."""
 
 
+class AsyncClientLifecycle(Protocol):
+    """Process-scoped async client cleanup required at runtime shutdown."""
+
+    async def close(self) -> None:
+        """Close owned async clients after dependent work is quiescent."""
+
+
 class ToolRegistry(Protocol):
     """Narrow tool registry contract needed by commands and turns."""
 
@@ -337,6 +344,7 @@ class FridayRuntime:
     config: FridayChatConfig
     chat_llm: ChatModel
     embedding: EmbeddingService
+    async_clients: AsyncClientLifecycle
     memory: MemoryController
     transcript: TranscriptStore
     tools: ToolRegistry
@@ -426,6 +434,17 @@ class FakeEmbeddingService:
         checksum = sum(ord(character) for character in text) % 997
         values = [float(len(text)), float(len(text.split())), float(checksum)]
         return values[: self.dimensions]
+
+
+@dataclass
+class FakeAsyncClientLifecycle:
+    """Deterministic provider-free client lifecycle for fake runtimes."""
+
+    close_calls: int = 0
+
+    async def close(self) -> None:
+        """Record one process-client cleanup request."""
+        self.close_calls += 1
 
 
 @dataclass
@@ -1224,6 +1243,7 @@ def build_runtime(
         config=config,
         chat_llm=FakeChatModel(model=config.llm.model or "unknown"),
         embedding=FakeEmbeddingService(),
+        async_clients=FakeAsyncClientLifecycle(),
         memory=memory,
         transcript=FakeTranscriptStore(
             session_id=resolved_session_identity.value,
@@ -1304,6 +1324,7 @@ def _build_framework_runtime(
     maintenance_layout: FridayChatMaintenanceLayout,
 ) -> FridayRuntime:
     from friday_chat.adapters import (
+        build_framework_async_client_lifecycle,
         build_framework_chat_model,
         build_framework_embedding_service,
         build_framework_maintenance_adapter,
@@ -1314,6 +1335,7 @@ def _build_framework_runtime(
     )
 
     diagnostics = RuntimeDiagnostics()
+    async_clients = build_framework_async_client_lifecycle()
     chat_llm = build_framework_chat_model(config)
     embedding = build_framework_embedding_service(config)
     memory = build_framework_memory_adapter(
@@ -1410,6 +1432,7 @@ def _build_framework_runtime(
         config=config,
         chat_llm=chat_llm,
         embedding=embedding,
+        async_clients=async_clients,
         memory=memory,
         transcript=transcript,
         tools=tools,

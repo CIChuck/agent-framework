@@ -27,6 +27,7 @@ from friday_llm import (
     ToolCallCompleteEvent,
     ToolCallDeltaEvent,
     UsageEvent,
+    close_litellm_async_clients,
 )
 from friday_memory import (
     AccessBuffer,
@@ -117,6 +118,15 @@ _MAX_VISIBLE_SOURCE_IDS = 8
 
 class FridayChatStreamProtocolError(RuntimeError):
     """Raised when a typed stream cannot fit Chat's text-only boundary."""
+
+
+@dataclass(frozen=True)
+class FrameworkAsyncClientLifecycle:
+    """Friday Chat adapter for Friday LLM's process-client lifecycle."""
+
+    async def close(self) -> None:
+        """Close process-scoped LiteLLM clients after runtime quiescence."""
+        await close_litellm_async_clients()
 
 
 @dataclass
@@ -1482,6 +1492,11 @@ def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
                 thinking_enabled=execution.thinking_enabled,
             )
     return FrameworkChatModel(service=service, config=config, execution=execution)
+
+
+def build_framework_async_client_lifecycle() -> FrameworkAsyncClientLifecycle:
+    """Build the real process-client lifecycle adapter."""
+    return FrameworkAsyncClientLifecycle()
 
 
 def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMService:

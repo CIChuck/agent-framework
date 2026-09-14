@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-04'
+updated: '2026-09-14'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -34,16 +34,17 @@ tasks:
 - id: friday-chat-client-lifecycle
   title: Friday Chat client-session shutdown
   priority: 2
-  work_state: queued
+  work_state: started
   condition: normal
-  implementation_authority: not_granted
-  packet: docs/planning/queued/friday-chat-client-lifecycle/
-  next_gate: reproduce and approve bounded remediation
-  delivery_state: not_started
-  branch: null
+  implementation_authority: granted
+  packet: docs/planning/active/friday-chat-client-lifecycle/
+  next_gate: dispatch VAL-001 against the frozen CD-001 candidate
+  delivery_state: local
+  branch: feature/friday-chat-client-lifecycle
   depends_on: []
   validation: []
-  legacy_import: true
+  approved_by: repository maintainer
+  approved_at: '2026-09-14'
 - id: friday-mcp
   title: Friday MCP client enhancement
   priority: 3
@@ -411,3 +412,24 @@ events:
   action: transitioned started -> completed
   note: Independent aggregate validation verified the completed governance implementation
   evidence: 'VAL-004 VERIFIED aggregate candidate c185c4e; tests/integration: 24 passed; focused board tests: 11 passed; board validation: 22 tasks; documentation lifecycle: 298 Markdown files; focused Ruff and Python 3.13 mypy passed'
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:15:40+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Maintainer directed Codex to proceed with the bounded client-lifecycle remediation on 2026-09-14.
+  evidence: docs/planning/queued/friday-chat-client-lifecycle/directives/CD-001-client-lifecycle.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:16:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Started approved CD-001 from baseline fe15552 on the dedicated feature branch.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/execution-log.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:29:34+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Deterministic validation completed; preparing the stable candidate for fresh read-only review.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-request.yaml

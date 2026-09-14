@@ -24,7 +24,11 @@ class AsyncPromptReader:
                 return await self._prompt_fn(prompt)
             if self._session is None:
                 self._session = PromptSession()
-            return await self._session.prompt_async(prompt)
+            response = await self._session.prompt_async(
+                prompt,
+                set_exception_handler=False,
+            )
+            return str(response)
 
 
 __all__ = ["AsyncPromptCallable", "AsyncPromptReader"]

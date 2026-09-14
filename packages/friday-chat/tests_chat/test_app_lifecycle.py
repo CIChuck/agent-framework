@@ -14,7 +14,11 @@ from friday_chat.app import (
 )
 from friday_chat.background import BackgroundTaskManager
 from friday_chat.config import FridayChatConfig
-from friday_chat.runtime import FakeTranscriptStore, build_runtime
+from friday_chat.runtime import (
+    FakeAsyncClientLifecycle,
+    FakeTranscriptStore,
+    build_runtime,
+)
 from friday_chat.turns.processor import (
     TurnResult,
     TurnRetryExhaustedError,
@@ -96,6 +100,54 @@ async def test_app_exits_cleanly_on_eof() -> None:
     assert app.started is False
     assert app.background.closed is True
     assert app.background.pending_count == 0
+    assert isinstance(runtime.async_clients, FakeAsyncClientLifecycle)
+    assert runtime.async_clients.close_calls == 1
+    assert isinstance(runtime.transcript, FakeTranscriptStore)
+    assert runtime.transcript.finalized is True
+
+
+async def test_async_clients_close_after_background_and_llm_maintenance() -> None:
+    runtime = build_runtime(_config({"llm": {"model": "openai/test-chat-model"}}))
+    app = FridayChatApp(runtime=runtime, input_source=ListInputSource([]))
+
+    class RecordingLifecycle:
+        def __init__(self) -> None:
+            self.background_closed = False
+            self.maintenance_actions: tuple[str, ...] = ()
+
+        async def close(self) -> None:
+            self.background_closed = app.background.closed
+            self.maintenance_actions = tuple(runtime.maintenance.actions)
+
+    lifecycle = RecordingLifecycle()
+    runtime.async_clients = lifecycle
+
+    await app.run()
+
+    assert lifecycle.background_closed is True
+    assert lifecycle.maintenance_actions == (
+        "flush_pending_extraction",
+        "flush_memory",
+        "run_lifecycle",
+    )
+
+
+async def test_async_client_cleanup_failure_is_bounded_and_contained() -> None:
+    runtime = build_runtime(_config({"llm": {"model": "openai/test-chat-model"}}))
+
+    class FailingLifecycle:
+        async def close(self) -> None:
+            raise RuntimeError("provider payload must not be rendered")
+
+    runtime.async_clients = FailingLifecycle()
+    app = FridayChatApp(runtime=runtime, input_source=ListInputSource([]))
+
+    result = await app.run()
+
+    assert result.exit_reason == "eof"
+    assert runtime.diagnostics.maintenance_warnings == [
+        "close_async_clients: RuntimeError"
+    ]
     assert isinstance(runtime.transcript, FakeTranscriptStore)
     assert runtime.transcript.finalized is True
 

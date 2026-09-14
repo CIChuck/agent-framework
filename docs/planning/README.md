@@ -11,7 +11,6 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 2 | [Friday Chat client-session shutdown](queued/friday-chat-client-lifecycle/) | normal | not_granted | not_started | reproduce and approve bounded remediation |
 | 3 | [Friday MCP client enhancement](queued/friday-mcp/) | normal | not_granted | not_started | review the packet and approve MCP-WS-00 |
 | 4 | [Friday Memory V2](queued/memory-v2/) | normal | not_granted | not_started | choose and approve the next design artifact |
 | 5 | [Tool governance](queued/tool-governance/) | normal | not_granted | not_started | reconcile reviews into an approved contract plan |
@@ -40,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| — | _None_ | — | — | — | — |
+| 2 | [Friday Chat client-session shutdown](active/friday-chat-client-lifecycle/) | normal | granted | local | dispatch VAL-001 against the frozen CD-001 candidate |
 
 ## Completed
 

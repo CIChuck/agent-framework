@@ -234,6 +234,10 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
                 "run_lifecycle",
                 self.runtime.maintenance.run_lifecycle(),
             )
+        failures += not await self._run_step(
+            "close_async_clients",
+            self.runtime.async_clients.close(),
+        )
         if snapshot_requested and failures:
             raise RuntimeError("shutdown maintenance drain failed")
 
