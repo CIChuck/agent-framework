@@ -14,6 +14,8 @@ from friday_chat.app import (
 )
 from friday_chat.background import BackgroundTaskManager
 from friday_chat.config import FridayChatConfig
+from friday_chat.reorganization.contracts import ReorganizationRequest
+from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.runtime import (
     FakeAsyncClientLifecycle,
     FakeTranscriptStore,
@@ -76,6 +78,35 @@ class ChunkRecordingOutputSink(ListOutputSink):
 
     async def write_chunk(self, text: str) -> None:
         self.values.append(f"chunk:{text}")
+
+
+class AvailableExecutionCapability:
+    """Execution capability test double for app-owned shutdown ordering."""
+
+    def available_for(self, request: ReorganizationRequest) -> bool:
+        return request.execute
+
+    def reason_for(self, request: ReorganizationRequest) -> str:
+        raise AssertionError(f"available request unexpectedly rejected: {request.mode}")
+
+
+class RecordingShutdownCoordinator:
+    """Coordinator test double that terminates at a named shutdown stage."""
+
+    recovery_inspection_configured = False
+    execution_capability = AvailableExecutionCapability()
+
+    def __init__(self, events: list[str], termination: str) -> None:
+        self.gate = MaintenanceAdmissionGate()
+        self._events = events
+        self._termination = termination
+
+    async def shutdown(self, request: ReorganizationRequest | None) -> None:
+        if request is None or not request.execute:
+            raise AssertionError("test coordinator requires an executing exit request")
+        self._events.append(f"reorganization:{self._termination}")
+        if self._termination != "success":
+            raise RuntimeError(f"private {self._termination} detail")
 
 
 async def test_app_exits_cleanly_on_eof() -> None:
@@ -150,6 +181,98 @@ async def test_async_client_cleanup_failure_is_bounded_and_contained() -> None:
     ]
     assert isinstance(runtime.transcript, FakeTranscriptStore)
     assert runtime.transcript.finalized is True
+
+
+@pytest.mark.parametrize(
+    "termination",
+    [
+        "success",
+        "preflight_failure",
+        "mutation_failure",
+        "rollback_or_recovery_failure",
+    ],
+)
+async def test_executing_exit_cleanup_follows_coordinator_termination_exactly_once(
+    termination: str,
+) -> None:
+    runtime = build_runtime(
+        _config(
+            {
+                "llm": {"model": "openai/test-chat-model"},
+                "session": {
+                    "reorganize_on_exit": True,
+                    "reorganize_mode": "full",
+                },
+            }
+        )
+    )
+    events: list[str] = []
+
+    class RecordingLifecycle:
+        async def close(self) -> None:
+            events.append("cleanup")
+
+    runtime.async_clients = RecordingLifecycle()
+    coordinator = RecordingShutdownCoordinator(events, termination)
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource([]),
+        reorganization_coordinator=coordinator,  # type: ignore[arg-type]
+    )
+
+    result = await app.run()
+
+    assert result.exit_reason == "eof"
+    assert events == [f"reorganization:{termination}", "cleanup"]
+    if termination == "success":
+        assert runtime.diagnostics.maintenance_warnings == []
+    else:
+        assert runtime.diagnostics.maintenance_warnings == [
+            "shutdown coordinator: RuntimeError"
+        ]
+
+
+async def test_executing_exit_cleanup_failure_uses_shutdown_failure_accounting() -> (
+    None
+):
+    runtime = build_runtime(
+        _config(
+            {
+                "llm": {"model": "openai/test-chat-model"},
+                "session": {
+                    "reorganize_on_exit": True,
+                    "reorganize_mode": "full",
+                },
+            }
+        )
+    )
+    events: list[str] = []
+
+    class FailingLifecycle:
+        async def close(self) -> None:
+            events.append("cleanup")
+            raise RuntimeError("provider payload must not be rendered")
+
+    runtime.async_clients = FailingLifecycle()
+    coordinator = RecordingShutdownCoordinator(events, "success")
+    app = FridayChatApp(
+        runtime=runtime,
+        input_source=ListInputSource([]),
+        reorganization_coordinator=coordinator,  # type: ignore[arg-type]
+    )
+
+    result = await app.run()
+
+    assert result.exit_reason == "eof"
+    assert events == ["reorganization:success", "cleanup"]
+    assert runtime.diagnostics.maintenance_warnings == [
+        "close_async_clients: RuntimeError",
+        "shutdown coordinator: RuntimeError",
+    ]
+    assert not any(
+        "provider payload" in warning
+        for warning in runtime.diagnostics.maintenance_warnings
+    )
 
 
 async def test_app_injects_one_gate_and_chat_turn_waits_for_exclusive() -> None:
@@ -372,6 +495,32 @@ async def test_exit_maintenance_follows_session_config() -> None:
     assert "reorganize_memory:deep: execute disabled:" in (
         runtime.diagnostics.maintenance_warnings[0]
     )
+    assert isinstance(runtime.async_clients, FakeAsyncClientLifecycle)
+    assert runtime.async_clients.close_calls == 1
+
+
+async def test_invalid_exit_request_still_closes_async_clients_exactly_once() -> None:
+    runtime = build_runtime(
+        _config(
+            {
+                "llm": {"model": "openai/test-chat-model"},
+                "session": {
+                    "reorganize_on_exit": True,
+                    "reorganize_mode": "invalid",
+                },
+            }
+        )
+    )
+    app = FridayChatApp(runtime=runtime, input_source=ListInputSource([]))
+
+    result = await app.run()
+
+    assert result.exit_reason == "eof"
+    assert isinstance(runtime.async_clients, FakeAsyncClientLifecycle)
+    assert runtime.async_clients.close_calls == 1
+    assert runtime.diagnostics.maintenance_warnings == [
+        "session.reorganize_mode must be exactly 'fast', 'full', or 'deep'"
+    ]
 
 
 async def test_exit_containment_precedes_service_errors_and_finalizes_transcript() -> None:

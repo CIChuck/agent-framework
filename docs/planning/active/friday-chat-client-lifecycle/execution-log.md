@@ -80,3 +80,30 @@
   are pinned in the VAL-001 request.
 - Prepared VAL-001 as a fresh-context, full, read-only review. No governed file
   will change after dispatch without making the review stale.
+
+## 2026-09-14 — VAL-001 Changes Requested
+
+- Fresh read-only validator `/root/friday_chat_client_lifecycle_val_001`
+  returned `CHANGES_REQUESTED` for candidate `ad65ec0`.
+- Recorded one high-severity finding, VAL-001-F01: process clients close inside
+  the pre-reorganization drain hook, before configured exit reorganization can
+  perform LLM or embedding work.
+- Stored the report and evidence, marked the validation state
+  `changes_requested`, and created REM-001 mapping that finding exactly once.
+- No candidate source was changed before the finding and remediation boundary
+  were made durable.
+
+## 2026-09-14 — REM-001 Implemented
+
+- Separate bounded remediator `/root/friday_chat_client_lifecycle_rem_001`
+  moved process-client cleanup to the app's true final asynchronous boundary.
+- Cleanup now follows coordinator-owned exit reorganization and its contained
+  failure paths, while remaining exact-once and before `run()` returns.
+- Added ordering and content-safe failure regression coverage for success,
+  preflight failure, mutation failure, rollback or recovery failure, and
+  invalid or unavailable exit requests.
+- Focused remediation validation passed with `55 passed`; Ruff and focused
+  mypy passed. Full package results remained `186 passed, 8 skipped` for Friday
+  LLM and `434 passed, 5 skipped` plus the same three declared PTY baseline
+  failures for Friday Chat.
+- Prepared a new stable candidate for fresh delta and aggregate validation.

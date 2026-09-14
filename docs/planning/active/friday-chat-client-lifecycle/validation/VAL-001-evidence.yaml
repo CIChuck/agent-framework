@@ -1,0 +1,58 @@
+version: 1
+review_id: VAL-001
+outcome: CHANGES_REQUESTED
+initiative: friday-chat-client-lifecycle
+work_unit: CD-001-client-lifecycle
+review_mode: full
+reviewer:
+  identity: /root/friday_chat_client_lifecycle_val_001
+  model_family: GPT-5
+  fresh_context: true
+  implementer_context_shared: false
+  evidence_closed_at: '2026-09-14T15:38:48-04:00'
+  write_policy: read_only
+candidate:
+  base: fe15552cc83caa2590be2e73158091dd15826d1e
+  revision: ad65ec05974656c580bd928840b44b5c9a87902c
+  diff: fe15552cc83caa2590be2e73158091dd15826d1e..ad65ec05974656c580bd928840b44b5c9a87902c
+  request_sha256: fcd3ccf9f7c07ffc847986181dafde8cb38aca34de47261f414ce0f8dc8f6087
+  head_and_authority_stable: true
+findings:
+  - id: VAL-001-F01
+    severity: high
+    title: Provider clients close before configured exit reorganization
+    requirements: [AC-05, AC-09, TP-07, CD-001-5]
+    observed_order:
+      - clients_close
+      - transcript_finalize
+      - reorganization_execute
+    mitigation: exact-once final cleanup after reorganization and rollback or recovery termination
+requirements:
+  AC-01: pass
+  AC-02: pass
+  AC-03: pass
+  AC-04: pass
+  AC-05: fail
+  AC-06: pass
+  AC-07: pass
+  AC-08: pass
+  AC-09: fail
+  AC-10: pass_with_declared_baselines
+  AC-11: pass
+  AC-12: not_satisfied
+checks:
+  focused_friday_llm: 'pass: 3'
+  focused_friday_chat: 'pass: 46'
+  friday_llm_package: 'pass: 186 passed, 8 skipped'
+  friday_chat_package: 'declared baseline only: 428 passed, 5 skipped, 3 failed'
+  ruff: pass
+  mypy: pass
+  board: 'pass: 22 tasks'
+  diff_check: pass
+  shutdown_order: 'fail: clients_close before reorganization_execute'
+external_effects:
+  credentials_used: false
+  paid_or_live_provider_used: false
+  persistent_runtime_state_used: false
+  push_merge_release_deploy: false
+next_gate: bounded REM-001 remediation and fresh validation

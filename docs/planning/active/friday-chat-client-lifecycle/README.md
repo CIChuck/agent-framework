@@ -9,7 +9,7 @@ created: 2026-09-03
 updated: 2026-09-14
 execution_phase: validation
 validation_state: pending
-next_gate: dispatch VAL-001 against the frozen CD-001 candidate
+next_gate: dispatch VAL-002 delta and aggregate review of REM-001
 implementation_authority: granted
 ---
 
@@ -56,5 +56,6 @@ No provider- or model-specific workflow behavior is authorized.
 
 ## Next Gate
 
-Dispatch VAL-001 against the frozen CD-001 candidate and retain the initiative
-in `started` until a fresh, read-only validator returns a formal disposition.
+Dispatch VAL-002 as a fresh delta and aggregate review of
+[REM-001](remediation/REM-001-directive.md). The initiative remains `started`
+until the independent gate returns `VERIFIED`.

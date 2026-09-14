@@ -38,7 +38,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-chat-client-lifecycle/
-  next_gate: dispatch VAL-001 against the frozen CD-001 candidate
+  next_gate: dispatch VAL-002 delta and aggregate review of REM-001
   delivery_state: local
   branch: feature/friday-chat-client-lifecycle
   depends_on: []
@@ -433,3 +433,17 @@ events:
   action: condition normal -> normal
   note: Deterministic validation completed; preparing the stable candidate for fresh read-only review.
   evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-request.yaml
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:45:03+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: VAL-001 requested one bounded shutdown-order remediation; REM-001 records the exact mitigation and tests.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-report.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:52:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: REM-001 is implemented and deterministically validated; freeze the remediated candidate for fresh review.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/execution/REM-001-implementation-report.md

@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 2 | [Friday Chat client-session shutdown](active/friday-chat-client-lifecycle/) | normal | granted | local | dispatch VAL-001 against the frozen CD-001 candidate |
+| 2 | [Friday Chat client-session shutdown](active/friday-chat-client-lifecycle/) | normal | granted | local | dispatch VAL-002 delta and aggregate review of REM-001 |
 
 ## Completed
 
