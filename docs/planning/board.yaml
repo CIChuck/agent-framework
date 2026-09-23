@@ -1,14 +1,14 @@
 version: 1
-updated: '2026-09-14'
+updated: '2026-09-22'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
   priority: 1
-  work_state: completed
+  work_state: accepted
   condition: normal
   implementation_authority: closed
-  packet: docs/planning/review/development-kanban-governance/
-  next_gate: maintainer review and acceptance
+  packet: docs/archive/completed/2026/development-kanban-governance/
+  next_gate: none; accepted, delivery remains local
   delivery_state: local
   branch: feature/development-kanban-governance
   depends_on:
@@ -31,6 +31,8 @@ tasks:
   - focused Ruff and Python 3.13 mypy passed
   approved_by: repository maintainer
   approved_at: '2026-09-03'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-22'
 - id: friday-chat-client-lifecycle
   title: Friday Chat client-session shutdown
   priority: 2
@@ -457,3 +459,10 @@ events:
   action: transitioned started -> completed
   note: CD-001 and REM-001 are implemented; fresh VAL-002 delta and aggregate validation returned VERIFIED.
   evidence: docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-report.md; docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml; docs/planning/review/friday-chat-client-lifecycle/closeout.md
+- task: development-kanban-governance
+  at: '2026-09-23T01:17:03+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Repository maintainer explicitly accepted the verified development governance result on 2026-09-22.
+  evidence: docs/archive/completed/2026/development-kanban-governance/closeout.md

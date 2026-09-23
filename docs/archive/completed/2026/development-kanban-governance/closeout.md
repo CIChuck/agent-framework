@@ -1,6 +1,6 @@
 # Development Kanban Governance Closeout
 
-Status: `completed`; awaiting maintainer acceptance
+Status: `accepted` by the repository maintainer on 2026-09-22
 
 ## Delivered Outcome
 
@@ -48,8 +48,9 @@ The shared-checkout review risk was mitigated with repeated candidate, hash,
 status, and protected-scope checks. `execution_phase` and `validation_state`
 remain documentation-enforced, as deliberately deferred by the build plan.
 
-## Remaining Human Gate
+## Maintainer Acceptance
 
-The work is ready for maintainer review and acceptance. `completed` is not
-`accepted`; this closeout does not authorize push, merge, release, deployment,
-or publication.
+The repository maintainer explicitly accepted the verified governance result on
+2026-09-22. This acceptance closes the work-state gate. Delivery remains `local`;
+no push, merge, release, deployment, or publication was authorized by this
+decision.

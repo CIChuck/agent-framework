@@ -4,13 +4,13 @@
 title: Development Kanban Governance
 initiative: development-kanban-governance
 document_type: initiative-index
-status: completed; awaiting maintainer acceptance
-work_state: completed
+status: accepted
+work_state: accepted
 condition: normal
 created: 2026-09-03
-updated: 2026-09-04
+updated: 2026-09-22
 branch: feature/development-kanban-governance
-next_gate: maintainer review and acceptance
+next_gate: none; accepted, delivery remains local
 implementation_authority: closed
 execution_phase: closeout
 validation_state: verified
@@ -31,9 +31,9 @@ to proceed after the documentation information-architecture refactor merged.
 - [Build plan](build-plan.md)
 - [Tactical plan](tactical-plan.md)
 - [Execution log](execution-log.md)
-- [Development task lifecycle policy](../../../reference/policies/development-task-lifecycle.md)
-- [Independent validation policy](../../../reference/policies/independent-validation-policy.md)
-- [Canonical board](../../board.yaml)
+- [Development task lifecycle policy](../../../../reference/policies/development-task-lifecycle.md)
+- [Independent validation policy](../../../../reference/policies/independent-validation-policy.md)
+- [Canonical board](../../../../planning/board.yaml)
 
 ## Lightweight-Change Exemption
 
@@ -102,5 +102,10 @@ pending a fresh aggregate review.
 `VAL-004` independently reviewed aggregate candidate `c185c4e` in a fresh,
 read-only context and returned `VERIFIED`. All thirteen acceptance criteria, all
 fifteen tactical tasks, and every required deterministic check passed. The
-initiative is therefore `completed` and awaits maintainer review; it is not
-accepted, pushed, merged, released, deployed, or published by this transition.
+initiative was then recorded as `completed` for maintainer review.
+
+## Acceptance
+
+The repository maintainer explicitly accepted this initiative on 2026-09-22.
+The acceptance is recorded in the archived closeout and board. Delivery remains
+`local` pending any separately authorized push or merge.
