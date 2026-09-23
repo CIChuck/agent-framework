@@ -4,12 +4,13 @@
 title: Friday Chat Client Lifecycle Remediation
 initiative: friday-chat-client-lifecycle
 document_type: initiative-index
-status: completed
+status: accepted
+work_state: accepted
 created: 2026-09-03
-updated: 2026-09-14
+updated: 2026-09-22
 execution_phase: closeout
 validation_state: verified
-next_gate: maintainer acceptance review
+next_gate: none; accepted, delivery remains local
 implementation_authority: closed
 ---
 
@@ -32,10 +33,10 @@ authorize a push, merge, release, publication, or paid live-provider test.
 
 ## Authority
 
-- [Repository engineering policy](../../../reference/policies/repository-engineering-policy.md)
-- [Development task lifecycle](../../../reference/policies/development-task-lifecycle.md)
-- [Independent validation policy](../../../reference/policies/independent-validation-policy.md)
-- [Friday Chat behavioral contract](../../../archive/completed/2026/friday-chat-v2/friday-chat-v2-behavioral-contracts.md)
+- [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md)
+- [Development task lifecycle](../../../../reference/policies/development-task-lifecycle.md)
+- [Independent validation policy](../../../../reference/policies/independent-validation-policy.md)
+- [Friday Chat behavioral contract](../friday-chat-v2/friday-chat-v2-behavioral-contracts.md)
 - [Build plan](build-plan.md)
 - [Tactical plan](tactical-plan.md)
 - [CD-001 construction directive](directives/CD-001-client-lifecycle.md)
@@ -54,7 +55,7 @@ pass. The approved boundary is limited to:
 
 No provider- or model-specific workflow behavior is authorized.
 
-## Next Gate
+## Acceptance
 
-Review the [verified closeout](closeout.md) and decide whether to accept the
-completed initiative. No delivery action is implied by completion.
+The repository maintainer explicitly accepted the [verified closeout](closeout.md)
+on 2026-09-22. Delivery remains `local`; any push or merge is a separate action.

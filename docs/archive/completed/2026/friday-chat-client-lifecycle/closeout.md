@@ -1,6 +1,6 @@
 # Friday Chat Client Lifecycle Closeout
 
-## Completion Proposal
+## Accepted Outcome
 
 CD-001 and REM-001 are implemented on
 `feature/friday-chat-client-lifecycle`. The stable product candidate is
@@ -31,8 +31,9 @@ was remediated. Every AC-01 through AC-12 and TP-01 through TP-13 passed.
   and diff checks passed.
 - Independent outcome: `VERIFIED`.
 
-## Remaining Gates
+## Maintainer Acceptance
 
-The initiative is proposed as `completed`, not `accepted`. Maintainer acceptance
-is still required. Push, pull request, merge, package-version changes, release,
-PyPI publication, and live-provider validation remain separately unauthorized.
+The repository maintainer explicitly accepted the verified client lifecycle
+result on 2026-09-22. Delivery remains `local`. This decision did not authorize
+push, pull request, merge, package-version changes, release, PyPI publication,
+or live-provider validation.

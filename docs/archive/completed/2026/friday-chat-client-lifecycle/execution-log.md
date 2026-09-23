@@ -119,3 +119,10 @@
   baselines.
 - Prepared closeout and proposed the initiative as `completed` for maintainer
   review. No acceptance or delivery action was inferred.
+
+## 2026-09-22 — Maintainer Acceptance
+
+- The repository maintainer explicitly accepted the verified client lifecycle
+  result.
+- Moved the packet to the completed archive and recorded the accepted state in
+  the canonical board. Delivery remains `local`.
