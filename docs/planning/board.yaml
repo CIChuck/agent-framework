@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer decision on REM-002 F-002 test location
+  next_gate: revised REM-002 candidate and fresh delta plus aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -602,3 +602,10 @@ events:
   action: recorded REM-002 dependency stop condition
   note: Separate remediator stopped before edits because the required runtime-package test would import downstream Friday Chat across an undeclared reverse dependency; maintainer test-location decision required.
   evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md; docs/planning/active/friday-mcp/execution-log.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved REM-002 test-location revision
+  note: Maintainer directed revision to allow only the F-002 config-compatibility test in Friday Chat's test package, with no source or dependency change; separate remediation may resume.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md

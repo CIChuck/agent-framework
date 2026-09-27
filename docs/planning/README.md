@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | maintainer decision on REM-002 F-002 test location |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | revised REM-002 candidate and fresh delta plus aggregate review |
 
 ## Completed
 

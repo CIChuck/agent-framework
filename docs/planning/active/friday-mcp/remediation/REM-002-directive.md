@@ -1,6 +1,6 @@
 # REM-002 — MCP-WS-01 Default And Chat Compatibility Remediation
 
-**Status:** Authorized; stopped at F-002 dependency boundary pending maintainer scope decision
+**Status:** Authorized; revised F-002 test location approved by the maintainer on 2026-09-27
 
 **Date:** 2026-09-27
 
@@ -11,10 +11,12 @@ The original candidate and review remain immutable historical evidence.
 
 - `packages/friday-runtime/src/friday_runtime/config.py`
 - `packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py`
+- `packages/friday-chat/tests_chat/test_mcp_config_compatibility.py` — new
+  config-only F-002 test; no other Friday Chat edit is authorized.
 - Small WS-01 execution/report or config-example updates needed to describe
   the corrected default or cross-package test result.
 
-Do not edit Friday Chat source or tests, the protocol-local `friday-mcp`
+Do not edit Friday Chat source or other tests, the protocol-local `friday-mcp`
 implementation, WS-00 contracts, unrelated tests, or any later workstream.
 If the compatibility test cannot be written without changing Chat source or
 the declared dependency boundary, stop and report the smallest authority
@@ -33,14 +35,15 @@ or report claims affected by the default.
 
 ### F-002 — Friday Chat config compatibility evidence
 
-Add a config-only test in the allowed runtime test file that proves one
+Add a config-only test in the explicitly allowed Friday Chat test file that proves one
 canonical `tools.providers.mcp` stanza can be retained by Friday Chat's
 existing config parser and validated by `MCPToolProviderConfig.from_dict()`
 without an alternative MCP field schema. The test must exercise the real
 Friday Chat config type and the canonical runtime model. It must not claim
-Chat runtime loading or tool selection works. If importing Friday Chat in a
-runtime package test reveals an undeclared dependency or cycle, stop and
-report that boundary rather than adding an incidental production dependency.
+Chat runtime loading or tool selection works. The downstream Friday Chat test
+may import runtime through Chat's already declared dependency; runtime tests
+must not import Friday Chat. If the test requires a source change, dependency
+change, or cycle, stop and report instead of broadening scope.
 
 ## Acceptance And Verification
 
@@ -50,6 +53,9 @@ report that boundary rather than adding an incidental production dependency.
 - Re-run core/MCP/runtime tests, affected Ruff, Python 3.13 mypy, board and
   documentation checks, and diff whitespace check. Report the known default
   mypy/board-integration baselines separately.
+- Run the new Friday Chat compatibility test and existing config tests:
+  `pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py`.
+  Include the new Chat test file in Ruff and Python 3.13 mypy checks.
 - Commit a new stable candidate. A fresh independent reviewer must inspect
   both `de8db57..new_candidate` remediation delta and
   `22a5643..new_candidate` complete WS-01 aggregate before any `VERIFIED`
@@ -71,7 +77,16 @@ runtime's package test would create an undeclared reverse test dependency; a
 production reverse dependency would be circular. The directive's explicit
 stop condition therefore applies. F-001 also remains open.
 
-Recommended smallest scope decision: permit the F-002 config-only test under
+The proposed smallest scope decision was to permit the F-002 config-only test under
 `packages/friday-chat/tests_chat/`, which is the downstream consumer and
 already depends on runtime. Keep Friday Chat source, aliases, tool selection,
-and turn behavior unchanged. This recommendation is not yet authorized.
+and turn behavior unchanged.
+
+## 2026-09-27 Approved Test-Location Revision
+
+The maintainer replied "revise" to the explicit request to move only the
+F-002 config-compatibility test to Friday Chat's test package. The allowed
+scope now names one new Chat test file, without Chat source, production
+dependency, alias, selection, or turn changes. This resolves the test-location
+hold and authorizes the separate remediator to resume F-001/F-002. A new
+candidate and fresh delta plus aggregate validation remain required.

@@ -223,3 +223,15 @@
   under `packages/friday-chat/tests_chat/`, with no Chat source or turn
   behavior change. The next gate is maintainer approval of that test-only
   scope adjustment before any remediation resumes.
+
+## 2026-09-27 — REM-002 Test-Location Revision Approved
+
+- The maintainer replied "revise" to the explicit request to move only the
+  F-002 config-compatibility test into Friday Chat's downstream test package.
+- [REM-002](remediation/REM-002-directive.md) now allows exactly
+  `packages/friday-chat/tests_chat/test_mcp_config_compatibility.py`, alongside
+  the existing F-001 runtime files and narrow execution reports. No Friday
+  Chat source or production dependency change is approved.
+- The separate remediator may resume both findings. A new candidate requires
+  fresh delta and complete WS-01 aggregate review; no verification or WS-02
+  authority is inferred from this scope correction.
