@@ -10,14 +10,19 @@ from __future__ import annotations
 
 import re
 from collections.abc import Iterable, Mapping
+from datetime import datetime
+from hashlib import sha256
 from types import MappingProxyType
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
 MAX_MCP_TOOL_NAME_LENGTH = 64
 _CANONICAL_TOOL_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
 _NON_ASCII_IDENTIFIER = re.compile(r"[^a-z0-9]+")
+MCPSafeIdentifier = Annotated[
+    str, StringConstraints(strict=True, min_length=1, max_length=64, pattern=r"^[A-Za-z0-9][A-Za-z0-9_.-]*$")
+]
 
 MCPDiagnosticCode = Literal[
     "connection_failed",
@@ -58,10 +63,16 @@ class MCPClientSecurityPolicy(_MCPContract):
 
     Existing programmatic SSE clients are unaffected. A later workstream must
     obtain separate authority before exposing SSE or argument hashes through
-    the integrated runtime configuration.
+    the integrated runtime configuration. ``allowed_workspace_ids`` holds
+    bounded logical identifiers, never filesystem paths; an empty tuple means
+    the current workspace scope without additional named selections. WS-01/02
+    own configuration and enforcement.
     """
 
     integrated_transport: Literal["stdio_only"] = "stdio_only"
+    trust_posture: Literal["local_stdio_only"] = "local_stdio_only"
+    path_scope: Literal["workspace_only"] = "workspace_only"
+    allowed_workspace_ids: tuple[MCPSafeIdentifier, ...] = ()
     require_explicit_stdio_command: bool = True
     redact_environment: bool = True
     redact_headers: bool = True
@@ -83,16 +94,28 @@ class MCPClientSecurityPolicy(_MCPContract):
 
 
 class MCPIngestionPolicy(_MCPContract):
-    """Long-term ingestion remains opt-in and requires sanitized content."""
+    """Long-term ingestion needs explicit safe server/tool IDs and sanitation.
+
+    Tool IDs are canonical Friday tool names. Selection is only a policy shape;
+    WS-06 owns matching, ingestion, and persistence.
+    """
 
     long_term_memory_enabled: bool = False
     require_sanitized_content: bool = True
     max_ingested_bytes: int = Field(default=65536, gt=0)
+    opted_in_servers: tuple[MCPSafeIdentifier, ...] = ()
+    opted_in_tools: tuple[MCPSafeIdentifier, ...] = ()
 
     @model_validator(mode="after")
     def _require_sanitization(self) -> MCPIngestionPolicy:
         if not self.require_sanitized_content:
             raise ValueError("MCP ingestion requires sanitized content")
+        if any(not _CANONICAL_TOOL_NAME.fullmatch(name) for name in self.opted_in_tools):
+            raise ValueError("MCP tool opt-ins require canonical tool names")
+        if self.long_term_memory_enabled and not (
+            self.opted_in_servers or self.opted_in_tools
+        ):
+            raise ValueError("MCP ingestion requires a server or tool opt-in")
         return self
 
 
@@ -116,7 +139,12 @@ class MCPServerRuntimePolicy(_MCPContract):
 
 
 class MCPToolMetadata(_MCPContract):
-    """Content-minimal metadata for a registry sidecar keyed by tool name."""
+    """Content-minimal metadata for a registry sidecar keyed by tool name.
+
+    A missing token estimate means unmeasured, and ``not_checked`` means no
+    sanitizer/filter decision has been recorded. Reason codes never contain
+    descriptions, schemas, or raw exception text. WS-03/04 own population.
+    """
 
     canonical_name: str
     server_name: str = Field(min_length=1, max_length=256)
@@ -125,6 +153,12 @@ class MCPToolMetadata(_MCPContract):
     transport: Literal["stdio", "sse"]
     trust_level: Literal["local", "remote"]
     provider: Literal["mcp"] = "mcp"
+    schema_token_estimate: int | None = Field(default=None, ge=0)
+    schema_sanitization_state: Literal[
+        "not_checked", "unchanged", "sanitized", "rejected"
+    ] = "not_checked"
+    filter_state: Literal["not_evaluated", "included", "excluded"] = "not_evaluated"
+    filter_diagnostic_codes: tuple[MCPDiagnosticCode, ...] = ()
 
     @model_validator(mode="after")
     def _validate_canonical_name(self) -> MCPToolMetadata:
@@ -139,18 +173,58 @@ class MCPToolMetadata(_MCPContract):
 
 
 class MCPToolCallProvenance(_MCPContract):
-    """A call record that cannot carry raw arguments, results, or hashes."""
+    """A call record that cannot carry raw arguments, results, or hashes.
+
+    Optional IDs are absent until assigned by WS-05/06. ``not_checked`` is not
+    a claim of safe output; downstream consumers must sanitize before re-entry
+    or persistence. The ingestion decision and boolean must agree.
+    """
 
     tool: MCPToolMetadata
+    call_id: MCPSafeIdentifier | None = None
     status: Literal["succeeded", "failed", "blocked"]
     arguments_redacted: bool = True
     result_truncated: bool = False
     memory_ingested: bool = False
+    output_sanitization_state: Literal[
+        "not_checked", "unchanged", "sanitized", "rejected"
+    ] = "not_checked"
+    ingestion_decision: Literal["disabled", "skipped", "ingested"] = "disabled"
+    transcript_correlation_id: MCPSafeIdentifier | None = None
+    memory_correlation_id: MCPSafeIdentifier | None = None
 
     @model_validator(mode="after")
     def _require_redacted_arguments(self) -> MCPToolCallProvenance:
         if not self.arguments_redacted:
             raise ValueError("MCP call provenance requires redacted arguments")
+        if self.memory_ingested != (self.ingestion_decision == "ingested"):
+            raise ValueError("MCP ingestion decision must match ingestion state")
+        return self
+
+
+class MCPServerDiscoveryState(_MCPContract):
+    """Safe per-server discovery facts; identifiers are not raw server content.
+
+    Catalog versions are bounded labels, timestamps are timezone-aware, and
+    refresh eligibility is descriptive; WS-02/03 own discovery and WS-00's
+    startup-only policy does not schedule refreshes.
+    """
+
+    server_id: MCPSafeIdentifier
+    connection_state: Literal[
+        "not_started", "connecting", "connected", "failed", "disconnected"
+    ] = "not_started"
+    catalog_version: MCPSafeIdentifier | None = None
+    cache_timestamp: datetime | None = None
+    rejected_tools: int = Field(default=0, ge=0)
+    filtered_tools: int = Field(default=0, ge=0)
+    diagnostic_codes: tuple[MCPDiagnosticCode, ...] = ()
+    refresh_eligible: bool = False
+
+    @model_validator(mode="after")
+    def _require_aware_cache_timestamp(self) -> MCPServerDiscoveryState:
+        if self.cache_timestamp is not None and self.cache_timestamp.utcoffset() is None:
+            raise ValueError("MCP cache timestamp must include a timezone")
         return self
 
 
@@ -162,11 +236,15 @@ class MCPDiscoveryState(_MCPContract):
     failed_servers: int = Field(default=0, ge=0)
     discovered_tools: int = Field(default=0, ge=0)
     selected_tools: int = Field(default=0, ge=0)
+    servers: tuple[MCPServerDiscoveryState, ...] = ()
 
     @model_validator(mode="after")
     def _validate_counts(self) -> MCPDiscoveryState:
         if self.selected_tools > self.discovered_tools:
             raise ValueError("selected MCP tool count cannot exceed discovered count")
+        server_ids = [server.server_id for server in self.servers]
+        if len(server_ids) != len(set(server_ids)):
+            raise ValueError("duplicate MCP discovery server identifier")
         return self
 
 
@@ -217,9 +295,30 @@ def normalize_mcp_tool_names(
             server_name, tool_name, tool_name_prefix=tool_name_prefix
         )
         if canonical in normalized:
-            raise ValueError(f"normalized MCP tool name collision: {canonical}")
+            previous_server, previous_tool = normalized[canonical]
+            raise ValueError(
+                "normalized MCP tool name collision: "
+                f"{canonical}; first=({_safe_source_label(previous_server)}, "
+                f"{_safe_source_label(previous_tool)}); "
+                f"second=({_safe_source_label(server_name)}, "
+                f"{_safe_source_label(tool_name)})"
+            )
         normalized[canonical] = (server_name, tool_name)
     return MappingProxyType(normalized)
+
+
+def _safe_source_label(value: str) -> str:
+    """Identify an untrusted name by bounded shape/fingerprint, without echoing it."""
+
+    shape = "".join(
+        "a" if char.isascii() and char.isalpha() else
+        "0" if char.isascii() and char.isdigit() else
+        char if char in "-_." else "?"
+        for char in value[:24]
+    )
+    fingerprint = sha256(value.encode("utf-8")).hexdigest()[:12]
+    length_label = str(len(value)) if len(value) <= 9999 else "9999+"
+    return f"len={length_label},shape={shape},id={fingerprint}"
 
 
 def build_mcp_metadata_index(
@@ -245,8 +344,10 @@ __all__ = [
     "MCPToolMetadata",
     "MCPToolCallProvenance",
     "MCPDiscoveryState",
+    "MCPServerDiscoveryState",
     "MCPProviderDiagnostics",
     "MCPDiagnosticCode",
+    "MCPSafeIdentifier",
     "normalize_mcp_tool_name",
     "normalize_mcp_tool_names",
     "build_mcp_metadata_index",

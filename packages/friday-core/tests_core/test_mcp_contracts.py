@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from types import MappingProxyType
 
 import pytest
@@ -12,6 +13,7 @@ from friday_core.mcp import (
     MCPDiscoveryState,
     MCPIngestionPolicy,
     MCPProviderDiagnostics,
+    MCPServerDiscoveryState,
     MCPServerRuntimePolicy,
     MCPToolCallProvenance,
     MCPToolMetadata,
@@ -84,6 +86,9 @@ def test_contracts_are_strict_and_immutable() -> None:
 def test_security_defaults_are_stdio_only_and_content_safe() -> None:
     policy = MCPClientSecurityPolicy()
     assert policy.integrated_transport == "stdio_only"
+    assert policy.trust_posture == "local_stdio_only"
+    assert policy.path_scope == "workspace_only"
+    assert policy.allowed_workspace_ids == ()
     assert policy.require_explicit_stdio_command
     assert policy.redact_environment
     assert policy.redact_headers
@@ -91,12 +96,20 @@ def test_security_defaults_are_stdio_only_and_content_safe() -> None:
     assert not policy.store_raw_tool_results
     assert not policy.store_argument_hashes
     assert policy.model_dump()["store_argument_hashes"] is False
+    scoped = MCPClientSecurityPolicy(allowed_workspace_ids=("project-1",))
+    assert MCPClientSecurityPolicy.model_validate_json(
+        scoped.model_dump_json()
+    ) == scoped
 
 
 @pytest.mark.parametrize(
     "unsafe_policy",
     [
         {"integrated_transport": "sse"},
+        {"trust_posture": "remote"},
+        {"path_scope": "unrestricted"},
+        {"allowed_workspace_ids": ("/private/workspace",)},
+        {"allowed_workspace_ids": ("x" * 65,)},
         {"require_explicit_stdio_command": False},
         {"redact_environment": False},
         {"redact_headers": False},
@@ -113,13 +126,31 @@ def test_security_policy_rejects_unsafe_first_pass(
 
 
 def test_ingestion_discovery_and_server_policy_defaults() -> None:
-    assert not MCPIngestionPolicy().long_term_memory_enabled
-    assert MCPIngestionPolicy().require_sanitized_content
+    ingestion = MCPIngestionPolicy()
+    assert not ingestion.long_term_memory_enabled
+    assert ingestion.require_sanitized_content
+    assert ingestion.opted_in_servers == ()
+    assert ingestion.opted_in_tools == ()
     assert MCPDiscoveryPolicy().refresh_mode == "startup_only"
     assert MCPServerRuntimePolicy().transport == "stdio"
     assert not MCPServerRuntimePolicy().required
     with pytest.raises(ValidationError):
         MCPIngestionPolicy(require_sanitized_content=False)
+    with pytest.raises(ValidationError):
+        MCPIngestionPolicy(long_term_memory_enabled=True)
+    with pytest.raises(ValidationError):
+        MCPIngestionPolicy(opted_in_servers=("server/secret",))
+    with pytest.raises(ValidationError):
+        MCPIngestionPolicy(opted_in_tools=("read.file",))
+    assert MCPIngestionPolicy(
+        long_term_memory_enabled=True, opted_in_tools=("mcp_server_read",)
+    ).model_dump()["opted_in_tools"] == ("mcp_server_read",)
+    server_opt_in = MCPIngestionPolicy(
+        long_term_memory_enabled=True, opted_in_servers=("filesystem",)
+    )
+    assert MCPIngestionPolicy.model_validate_json(
+        server_opt_in.model_dump_json()
+    ) == server_opt_in
     with pytest.raises(ValidationError):
         MCPDiscoveryPolicy.model_validate({"refresh_mode": "live"})
     with pytest.raises(ValidationError):
@@ -135,6 +166,7 @@ def test_ingestion_discovery_and_server_policy_defaults() -> None:
         MCPDiscoveryPolicy(),
         MCPServerRuntimePolicy(),
         MCPDiscoveryState(),
+        MCPServerDiscoveryState(server_id="filesystem"),
         MCPProviderDiagnostics(),
         _metadata(),
         MCPToolCallProvenance(tool=_metadata(), status="succeeded"),
@@ -184,10 +216,24 @@ def test_normalization_rejects_unusable_prefix() -> None:
 
 
 def test_normalization_rejects_collisions_and_returns_read_only_index() -> None:
-    with pytest.raises(ValueError, match="collision"):
+    with pytest.raises(ValueError, match="collision") as collision:
         normalize_mcp_tool_names(
             [("file-system", "read.file"), ("file_system", "read_file")]
         )
+    message = str(collision.value)
+    assert "mcp_file_system_read_file" in message
+    assert "first=(len=11,shape=aaaa-aaaaaa" in message
+    assert "second=(len=11,shape=aaaa_aaaaaa" in message
+    assert "shape=aaaa.aaaa" in message
+    assert "shape=aaaa_aaaa" in message
+    assert "file-system" not in message
+    assert "read.file" not in message
+    with pytest.raises(ValueError, match="collision") as long_collision:
+        normalize_mcp_tool_names(
+            [("file-system", "read"), ("file" + "-" * 10_000 + "system", "read")]
+        )
+    assert "len=9999+" in str(long_collision.value)
+    assert len(str(long_collision.value)) < 250
     names = normalize_mcp_tool_names([("filesystem", "read_file")])
     assert isinstance(names, MappingProxyType)
     assert names["mcp_filesystem_read_file"] == ("filesystem", "read_file")
@@ -208,6 +254,19 @@ def test_metadata_sidecar_is_typed_and_collision_safe() -> None:
         trust_level="local",
     )
     assert custom.canonical_name == "federated_filesystem_read_file"
+    enriched = MCPToolMetadata.model_validate(
+        {
+            **item.model_dump(),
+            "schema_token_estimate": 42,
+            "schema_sanitization_state": "sanitized",
+            "filter_state": "excluded",
+            "filter_diagnostic_codes": ("filter_excluded",),
+        }
+    )
+    assert MCPToolMetadata.model_validate_json(enriched.model_dump_json()) == enriched
+    assert item.schema_token_estimate is None
+    assert item.schema_sanitization_state == "not_checked"
+    assert item.filter_state == "not_evaluated"
     with pytest.raises(ValueError, match="duplicate"):
         build_mcp_metadata_index([item, item])
     with pytest.raises(ValidationError):
@@ -218,6 +277,14 @@ def test_metadata_sidecar_is_typed_and_collision_safe() -> None:
         MCPToolMetadata.model_validate(
             {**item.model_dump(), "canonical_name": "mcp_other_read_file"}
         )
+    for invalid in (
+        {"schema_token_estimate": -1},
+        {"schema_sanitization_state": "raw secret"},
+        {"filter_state": "unknown"},
+        {"filter_diagnostic_codes": ["raw exception text"]},
+    ):
+        with pytest.raises(ValidationError):
+            MCPToolMetadata.model_validate({**item.model_dump(), **invalid})
 
 
 def test_provenance_and_diagnostics_cannot_carry_raw_payloads() -> None:
@@ -226,6 +293,24 @@ def test_provenance_and_diagnostics_cannot_carry_raw_payloads() -> None:
     assert "arguments" not in provenance.model_dump()
     assert "result" not in provenance.model_dump()
     assert "argument_hash" not in provenance.model_dump()
+    assert provenance.call_id is None
+    assert provenance.transcript_correlation_id is None
+    assert provenance.memory_correlation_id is None
+    assert provenance.output_sanitization_state == "not_checked"
+    assert provenance.ingestion_decision == "disabled"
+    correlated = MCPToolCallProvenance(
+        tool=_metadata(),
+        status="succeeded",
+        call_id="call-1",
+        output_sanitization_state="sanitized",
+        ingestion_decision="ingested",
+        memory_ingested=True,
+        transcript_correlation_id="turn-1",
+        memory_correlation_id="memory-1",
+    )
+    assert MCPToolCallProvenance.model_validate_json(
+        correlated.model_dump_json()
+    ) == correlated
     with pytest.raises(ValidationError):
         MCPToolCallProvenance.model_validate(
             {"tool": _metadata(), "status": "succeeded", "arguments": {"key": "secret"}}
@@ -234,6 +319,16 @@ def test_provenance_and_diagnostics_cannot_carry_raw_payloads() -> None:
         MCPToolCallProvenance(
             tool=_metadata(), status="failed", arguments_redacted=False
         )
+    for invalid in (
+        {"call_id": "/secret"},
+        {"transcript_correlation_id": "x" * 65},
+        {"output_sanitization_state": "raw"},
+        {"ingestion_decision": "ingested"},
+    ):
+        with pytest.raises(ValidationError):
+            MCPToolCallProvenance.model_validate(
+                {"tool": _metadata(), "status": "succeeded", **invalid}
+            )
     diagnostics = MCPProviderDiagnostics(codes=("connection_failed",))
     assert diagnostics.model_dump()["codes"] == ("connection_failed",)
     with pytest.raises(ValidationError):
@@ -247,3 +342,37 @@ def test_discovery_counts_are_consistent() -> None:
     assert state.model_dump()["selected_tools"] == 1
     with pytest.raises(ValidationError):
         MCPDiscoveryState(discovered_tools=1, selected_tools=2)
+
+
+def test_discovery_tracks_bounded_per_server_state() -> None:
+    server = MCPServerDiscoveryState(
+        server_id="filesystem",
+        connection_state="connected",
+        catalog_version="v1.2",
+        cache_timestamp=datetime(2026, 9, 27, tzinfo=timezone.utc),
+        rejected_tools=1,
+        filtered_tools=2,
+        diagnostic_codes=("invalid_schema", "filter_excluded"),
+        refresh_eligible=False,
+    )
+    state = MCPDiscoveryState(
+        status="completed",
+        connected_servers=1,
+        discovered_tools=3,
+        selected_tools=1,
+        servers=(server,),
+    )
+    assert MCPDiscoveryState.model_validate_json(state.model_dump_json()) == state
+    assert MCPDiscoveryState().servers == ()
+    for invalid in (
+        {"server_id": "/private/path"},
+        {"connection_state": "raw exception"},
+        {"catalog_version": "x" * 65},
+        {"cache_timestamp": datetime(2026, 9, 27)},
+        {"rejected_tools": -1},
+        {"diagnostic_codes": ("raw exception",)},
+    ):
+        with pytest.raises(ValidationError):
+            MCPServerDiscoveryState.model_validate({"server_id": "safe", **invalid})
+    with pytest.raises(ValidationError):
+        MCPDiscoveryState(servers=(server, server))
