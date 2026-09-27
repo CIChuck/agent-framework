@@ -1,6 +1,6 @@
 # REM-002 — MCP-WS-01 Default And Chat Compatibility Remediation
 
-**Status:** Prepared; separate-remediator authorization pending
+**Status:** Authorized for a separate remediator by the repository maintainer on 2026-09-27
 
 **Date:** 2026-09-27
 
@@ -55,6 +55,7 @@ report that boundary rather than adding an incidental production dependency.
   `22a5643..new_candidate` complete WS-01 aggregate before any `VERIFIED`
   claim. `VAL-003` is superseded for decision purposes only after that review.
 
-This directive does not grant automatic remediation. A separate remediator is
-required for F-002's cross-package boundary, and maintainer authorization is
-the next gate.
+The maintainer explicitly authorized this bounded separate-remediator pass in
+the active conversation on 2026-09-27. That authorization covers F-001 and
+F-002 only; it does not broaden file scope or authorize WS-02 work. The next
+gate is a committed new candidate and fresh delta plus aggregate review.

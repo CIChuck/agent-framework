@@ -197,3 +197,15 @@
   F-001/F-002. Because F-002 crosses the Friday Chat package boundary, the
   next gate is maintainer authorization of a separate remediator. No product
   code is edited under this planning checkpoint.
+
+## 2026-09-27 — REM-002 Delegation Authorized
+
+- The repository maintainer explicitly replied "authorized go for rem-002"
+  to the request for a separate remediator on the bounded F-001/F-002
+  [directive](remediation/REM-002-directive.md).
+- Authorization is limited to the directive's files and corrective tests.
+  Candidate `de8db57` and VAL-003 remain historical evidence. No WS-02,
+  Friday Chat source, or other product behavior is approved.
+- The next gate is a committed REM-002 candidate for fresh independent delta
+  and complete WS-01 aggregate review. The initiative remains `started` and
+  the packet remains in `remediation` / `changes_requested` meanwhile.

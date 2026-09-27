@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer authorization for separate REM-002 remediator
+  next_gate: separate REM-002 candidate and fresh delta plus aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -588,3 +588,10 @@ events:
   action: validation changes requested for WS-01
   note: Independent VAL-003 found the MCP default mode and Friday Chat compatibility evidence incomplete; REM-002 awaits separate-remediator authorization.
   evidence: docs/planning/active/friday-mcp/validation/VAL-003-report.md; docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-002 remediator
+  note: Maintainer explicitly authorized the bounded F-001/F-002 remediation pass; no wider MCP workstream or Friday Chat source change was approved.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md

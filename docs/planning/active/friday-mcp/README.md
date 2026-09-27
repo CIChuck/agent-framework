@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: maintainer authorization for separate REM-002 remediator
+next_gate: separate REM-002 candidate and fresh delta plus aggregate review
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
 execution_phase: remediation
 validation_state: changes_requested
@@ -56,5 +56,6 @@ Independent [VAL-003](validation/VAL-003-report.md) returned
 `CHANGES_REQUESTED` for the MCP default mode and missing Friday Chat
 config-consumption evidence. [REM-002](remediation/REM-002-directive.md)
 bounds the needed fixes. A separate remediator and fresh delta plus aggregate
-review are required before a WS-01 verdict; authorization for that remediator
-is the next gate. No WS-02 behavior is authorized yet.
+review are required before a WS-01 verdict. The maintainer authorized the
+separate REM-002 remediator on 2026-09-27; the next gate is a committed new
+candidate and fresh review. No WS-02 behavior is authorized yet.
