@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: fresh delta and aggregate validation of REM-001 candidate
+next_gate: maintainer review and explicit approval of bounded WS-01 scope
 implementation_authority: granted for MCP-WS-00 only
-execution_phase: validation
-validation_state: pending
+execution_phase: closeout
+validation_state: verified
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -41,6 +41,10 @@ contract findings. [REM-001](remediation/REM-001-directive.md) bounds the
 required corrections. The maintainer authorized a separate remediator for the
 cross-package architecture finding on 2026-09-27. REM-001 produced candidate
 `b79754f`; [the report](execution/REM-001-implementation-report.md) records
-its checks. The next gate is fresh independent delta and aggregate validation.
-Runtime loading remains a later dependent workstream and is not authorized
-here.
+its checks. Fresh independent [VAL-002](validation/VAL-002-report.md) verified
+both the remediation delta and complete WS-00 candidate. The
+[WS-00 work-unit closeout](execution/WS-00-closeout.md) records the result and
+remaining boundaries. The wider `friday-mcp` initiative remains `started`:
+WS-01 through WS-08 are draft, and runtime loading is not authorized by this
+work-unit verdict. The next gate is maintainer review and explicit approval
+of bounded WS-01 scope.

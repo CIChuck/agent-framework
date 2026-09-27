@@ -125,3 +125,19 @@
   VAL-001 is superseded for decision purposes but retained as historical
   evidence. The next independent review must inspect both the REM-001 delta
   and the full WS-00 aggregate candidate before any completion proposal.
+
+## 2026-09-27 — Independent VAL-002 And WS-00 Work-Unit Closeout
+
+- A fresh-context, read-only validator reviewed the pinned REM-001 delta and
+  full WS-00 aggregate at candidate `b79754f`; all ten authority hashes
+  matched. Both reviews returned `VERIFIED` with no numbered findings. The
+  [VAL-002 report](validation/VAL-002-report.md) records exact ranges,
+  evidence, baseline failures, and residual risks.
+- The [WS-00 closeout](execution/WS-00-closeout.md) records work-unit delivery
+  and boundaries. Execution phase is `closeout`; validation state is
+  `verified`. No reviewed code, tests, configuration, or authority changed
+  after candidate freeze.
+- The board initiative remains `started`, not `completed` or `accepted`.
+  WS-01 through WS-08 are draft; new product code requires a separately
+  approved bounded directive. The next gate is maintainer review and
+  explicit approval of WS-01 scope.
