@@ -1,6 +1,6 @@
 # Build Plan: Friday Framework MCP Enhancements
 
-**Status:** Draft, remediated after initial architecture review
+**Status:** WS-00 scope approved 2026-09-27; later phases remain draft
 **Target:** MCP client capability across Friday runtime, tools, memory, and app
 layers
 **Objective:** Add configurable MCP client support to the Friday framework while

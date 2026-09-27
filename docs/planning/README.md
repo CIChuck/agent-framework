@@ -11,7 +11,6 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](queued/friday-mcp/) | normal | not_granted | not_started | approve rebaselined MCP-WS-00 and security defaults |
 | 4 | [Friday Memory V2](queued/memory-v2/) | normal | not_granted | not_started | choose and approve the next design artifact |
 | 5 | [Tool governance](queued/tool-governance/) | normal | not_granted | not_started | reconcile reviews into an approved contract plan |
 | 6 | [Framework validation and contracts](queued/framework-validation-and-contracts/) | normal | not_granted | not_started | revalidate scope and obtain implementation approval |
@@ -40,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| — | _None_ | — | — | — | — |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | independent validation of frozen MCP-WS-00 candidate |
 
 ## Completed
 

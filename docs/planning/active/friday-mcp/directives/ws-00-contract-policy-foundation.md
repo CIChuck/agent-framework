@@ -1,9 +1,17 @@
 # Construction Directive: MCP-WS-00 Contract And Policy Foundation
 
-Status: Rebaselined draft construction directive; not approved
+Status: Approved by repository maintainer for MCP-WS-00 on 2026-09-27
 Date: 2026-09-27
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-00`
+
+Approval evidence: explicit maintainer statement "approved and continue" in
+the active conversation, responding to the bounded WS-00 scope and two
+security defaults in the 2026-09-27 rebaseline. This approval excludes all
+later workstreams. Stdio is the only transport in the first integrated runtime
+pass; existing programmatic SSE APIs are unchanged. Raw tool arguments and
+argument hashes are not stored by default. WS-00 defines policies but does
+not yet enforce runtime, transcript, or telemetry behavior.
 
 The [2026-09-27 rebaseline](../rebaseline-2026-09-27.md) is the current source
 inventory. The existing manager, transports, adapters, server code, and basic

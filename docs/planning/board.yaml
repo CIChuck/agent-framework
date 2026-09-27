@@ -55,16 +55,17 @@ tasks:
 - id: friday-mcp
   title: Friday MCP client enhancement
   priority: 3
-  work_state: queued
+  work_state: started
   condition: normal
-  implementation_authority: not_granted
-  packet: docs/planning/queued/friday-mcp/
-  next_gate: approve rebaselined MCP-WS-00 and security defaults
-  delivery_state: not_started
-  branch: null
+  implementation_authority: granted
+  packet: docs/planning/active/friday-mcp/
+  next_gate: independent validation of frozen MCP-WS-00 candidate
+  delivery_state: local
+  branch: feature/friday-mcp-ws00-contracts
   depends_on: []
   validation: []
-  legacy_import: true
+  approved_by: repository maintainer
+  approved_at: '2026-09-27'
 - id: memory-v2
   title: Friday Memory V2
   priority: 4
@@ -501,3 +502,24 @@ events:
   action: rebaselined queued packet
   note: Audited existing standalone MCP package and narrowed the pending WS-00 gate to contracts, defaults, and explicit security decisions without changing work state or authority.
   evidence: docs/planning/queued/friday-mcp/rebaseline-2026-09-27.md
+- task: friday-mcp
+  at: '2026-09-27T19:57:57+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Maintainer approved rebaselined WS-00 contracts/defaults-only scope, first-pass stdio-only runtime posture, and no stored argument hashes by default on 2026-09-27.
+  evidence: Explicit maintainer approval in active conversation on 2026-09-27
+- task: friday-mcp
+  at: '2026-09-27T19:58:30+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Started approved contracts/defaults-only WS-00 from baseline 20c70dd on dedicated feature branch; runtime, Chat, memory, transcript, telemetry, and CLI remain excluded.
+  evidence: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-00 candidate for validation
+  note: Implemented scoped shared contracts and focused tests; recorded passing checks and separable baseline failures before independent review.
+  evidence: docs/planning/active/friday-mcp/execution/WS-00-implementation-report.md

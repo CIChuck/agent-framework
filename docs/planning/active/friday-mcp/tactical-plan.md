@@ -1,6 +1,7 @@
 # Friday Framework MCP Tactical Implementation Plan
 
-Status: Draft tactical implementation plan  
+Status: WS-00 approved 2026-09-27; later workstreams draft
+
 Date: 2026-07-24  
 Source build plan: [friday-framework-mcp-enhancements.md](build-plan.md)
 
