@@ -28,6 +28,7 @@ Directory placement does not grant implementation authority.
 | 19 | [Friday Chat framework follow-ups](backlog/friday-chat-framework-followups/) | backlog | not_granted | not_started | reconcile proposed entries against current source |
 | 20 | [Strategic roadmap notes](backlog/strategic-roadmap/) | backlog | not_granted | not_started | promote one bounded initiative into planning |
 | 21 | [Tool capability notes](backlog/tool-capabilities/) | backlog | not_granted | not_started | reconcile requirements with tool governance |
+| 23 | [Friday runtime skills](backlog/friday-runtime-skills/) | backlog | not_granted | not_started | review the draft definition and promote a bounded first phase |
 
 ## Approved
 

@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-22'
+updated: '2026-09-27'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -323,6 +323,18 @@ tasks:
   approved_at: '2026-09-03'
   accepted_by: repository maintainer
   accepted_at: '2026-09-03'
+- id: friday-runtime-skills
+  title: Friday runtime skills
+  priority: 23
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/friday-runtime-skills/
+  next_gate: review the draft definition and promote a bounded first phase
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -475,3 +487,10 @@ events:
   action: transitioned completed -> accepted
   note: Repository maintainer explicitly accepted the verified Friday Chat client lifecycle result on 2026-09-22.
   evidence: docs/archive/completed/2026/friday-chat-client-lifecycle/closeout.md
+- task: friday-runtime-skills
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded backlog definition
+  note: Maintainer requested a comprehensive definition of runtime-configured skills and possible enhancements.
+  evidence: docs/planning/backlog/friday-runtime-skills/build-plan.md
