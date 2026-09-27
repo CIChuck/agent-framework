@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: implement and validate bounded MCP-WS-01 configuration slice
+next_gate: fresh independent validation of frozen MCP-WS-01 candidate
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -50,3 +50,7 @@ work-unit verdict. The maintainer accepted the WS-00 work-unit result and
 approved the bounded [WS-01 directive](directives/ws-01-configuration-model-validation.md)
 on 2026-09-27. WS-01 implementation is now in progress on
 `feature/friday-mcp-ws01-config`.
+The [WS-01 implementation report](execution/WS-01-implementation-report.md)
+records the typed configuration model, tests, and known baseline failures.
+The next gate is a fresh independent review of the frozen WS-01 candidate;
+no WS-02 behavior is authorized yet.

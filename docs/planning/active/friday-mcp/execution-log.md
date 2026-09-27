@@ -156,3 +156,18 @@
 - Dedicated branch: `feature/friday-mcp-ws01-config`, based on WS-00 closeout
   commit `ab49ba5`. Execution phase is `implementation`; validation state is
   `not_ready`. Existing unrelated dirty paths remain excluded from staging.
+
+## 2026-09-27 — WS-01 Candidate Preparation
+
+- Added strict runtime-facing MCP config models, workspace-scoped path
+  validation, and compatibility for unambiguous protocol-local client config;
+  no runtime connection or Chat behavior changed. The
+  [implementation report](execution/WS-01-implementation-report.md) records
+  the exact contract and test evidence.
+- Builder checks: 257 core/MCP/runtime tests passed; affected-package Ruff
+  passed; Python 3.13 mypy passed on 37 files. The default mypy NumPy-stub
+  syntax failure and the unchanged integration board-count failure remain
+  documented baseline issues.
+- Execution phase advances to `validation`; validation state is `pending`.
+  The scoped candidate must be committed and its exact diff pinned before
+  fresh independent validation. No WS-02 authority is inferred.

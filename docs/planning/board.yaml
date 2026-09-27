@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: implement and validate bounded MCP-WS-01 configuration slice
+  next_gate: fresh independent validation of frozen MCP-WS-01 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -567,3 +567,10 @@ events:
   action: started bounded WS-01 implementation
   note: Started approved configuration slice on feature/friday-mcp-ws01-config from WS-00 closeout ab49ba5; initiative remains started and delivery remains local.
   evidence: docs/planning/active/friday-mcp/execution-log.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-01 candidate for validation
+  note: Scoped strict runtime MCP configuration and tests are ready for candidate freeze; no connection or Chat behavior changed.
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-implementation-report.md
