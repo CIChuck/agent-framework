@@ -101,3 +101,12 @@
   [REM-001](remediation/REM-001-directive.md) binds F-001 and F-002. A separate
   remediator is required for the architecture finding before a new candidate
   and fresh review.
+
+## 2026-09-27 — REM-001 Delegation Authorized
+
+- The repository maintainer replied "continue" to the explicit request to
+  delegate [REM-001](remediation/REM-001-directive.md) to a separate remediator.
+- Authorization is limited to F-001/F-002 and the directive's allowed files.
+  No runtime integration or later MCP workstream was approved.
+- The existing candidate and VAL-001 verdict remain historical. The remediator
+  must commit a new candidate for fresh independent review.

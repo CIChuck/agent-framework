@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: authorize separate REM-001 remediator for contract findings
+next_gate: perform REM-001 and request fresh independent validation
 implementation_authority: granted for MCP-WS-00 only
 execution_phase: remediation
 validation_state: changes_requested
@@ -38,6 +38,7 @@ implementation and focused checks are recorded in the
 [WS-00 report](execution/WS-00-implementation-report.md). Independent
 [VAL-001](validation/VAL-001-report.md) returned `CHANGES_REQUESTED` for two
 contract findings. [REM-001](remediation/REM-001-directive.md) bounds the
-required corrections; a separate remediator is required for the cross-package
-architecture finding. Runtime loading remains a later dependent workstream
-and is not authorized here.
+required corrections. The maintainer authorized a separate remediator for the
+cross-package architecture finding on 2026-09-27. The next gate is a new
+candidate and fresh independent validation. Runtime loading remains a later
+dependent workstream and is not authorized here.

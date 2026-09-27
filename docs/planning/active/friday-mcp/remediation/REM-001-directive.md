@@ -1,10 +1,14 @@
 # REM-001 — MCP Shared Contract Completeness
 
-**Status:** Prepared from VAL-001; separate remediator authorization pending
+**Status:** Authorized for separate remediator on 2026-09-27
 
 **Date:** 2026-09-27
 
 **Candidate being remediated:** `e3ae808da73c2ec93f76109d41f3b70c750ede3f`
+
+**Authorization:** The repository maintainer replied "continue" to the
+controller's explicit request to delegate this bounded REM-001 work to a
+separate remediator. This is not approval for a later MCP workstream.
 
 **Authority:** [VAL-001 findings](../validation/VAL-001-report.md), approved
 [MCP-WS-00 directive](../directives/ws-00-contract-policy-foundation.md),

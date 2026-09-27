@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: authorize separate REM-001 remediator for contract findings
+  next_gate: perform REM-001 and request fresh independent validation
   delivery_state: local
   branch: feature/friday-mcp-ws00-contracts
   depends_on: []
@@ -530,3 +530,10 @@ events:
   action: validation changes requested
   note: Independent VAL-001 identified incomplete cross-package contract fields and insufficient collision diagnostics; REM-001 is prepared for a separate remediator.
   evidence: docs/planning/active/friday-mcp/validation/VAL-001-report.md; docs/planning/active/friday-mcp/remediation/REM-001-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-001 remediator
+  note: Maintainer directed continuation after an explicit request to delegate bounded architectural remediation of F-001 and F-002.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-001-directive.md
