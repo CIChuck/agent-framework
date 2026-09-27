@@ -574,3 +574,10 @@ events:
   action: prepared WS-01 candidate for validation
   note: Scoped strict runtime MCP configuration and tests are ready for candidate freeze; no connection or Chat behavior changed.
   evidence: docs/planning/active/friday-mcp/execution/WS-01-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested independent WS-01 validation
+  note: Candidate de8db57 and exact work-unit diff are frozen for fresh-context read-only review.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-request.yaml

@@ -171,3 +171,12 @@
 - Execution phase advances to `validation`; validation state is `pending`.
   The scoped candidate must be committed and its exact diff pinned before
   fresh independent validation. No WS-02 authority is inferred.
+
+## 2026-09-27 — WS-01 Candidate Freeze And Review Request
+
+- Candidate `de8db57b565968fa02e429e16a481e00c6a92024` is frozen against
+  work-unit base `22a5643943da06043515494e23b3dfe549052c55`.
+- [VAL-003](validation/VAL-003-request.yaml) pins the candidate, exact diff,
+  ten authority hashes, acceptance criteria, checks, exclusions, and baseline
+  failures. The request and this checkpoint are planning-only metadata added
+  after the candidate; source, tests, and directive remain unchanged.
