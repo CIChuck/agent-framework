@@ -65,7 +65,7 @@ The first implementation pass is tools-only. MCP resources, prompts, subscriptio
 
 ### Purpose
 
-Define the shared typed contracts and final defaults needed before touching runtime loading, Friday Chat turns, transcript recording, or memory ingestion.
+Define the shared typed contracts and final defaults needed before touching runtime loading, Friday Chat turns, transcript recording, or memory ingestion. The [current-code rebaseline](rebaseline-2026-09-27.md) credits the existing standalone package and limits this workstream to contract/default changes.
 
 ### Implementation Tasks
 
@@ -83,10 +83,10 @@ Define the shared typed contracts and final defaults needed before touching runt
 - `packages/friday-core/src/friday_core/interfaces/`
 - `packages/friday-core/src/friday_core/`
 - `packages/friday-mcp/src/friday_mcp/`
-- `packages/friday-runtime/src/friday_runtime/config.py`
-- `packages/friday-chat/src/friday_chat/tools/schemas.py`
-- `packages/friday-memory/src/friday_memory/`
-- `packages/friday-transcript/src/friday_transcript/models/transcript.py`
+- Focused tests in `packages/friday-core/tests_core/` and
+  `packages/friday-mcp/tests_mcp/`.
+- Runtime, Friday Chat, memory, and transcript are **later consumers**, not
+  WS-00 edit targets.
 
 ### Required Tests
 

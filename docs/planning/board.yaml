@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: not_granted
   packet: docs/planning/queued/friday-mcp/
-  next_gate: review the packet and approve MCP-WS-00
+  next_gate: approve rebaselined MCP-WS-00 and security defaults
   delivery_state: not_started
   branch: null
   depends_on: []
@@ -494,3 +494,10 @@ events:
   action: recorded backlog definition
   note: Maintainer requested a comprehensive definition of runtime-configured skills and possible enhancements.
   evidence: docs/planning/backlog/friday-runtime-skills/build-plan.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: rebaselined queued packet
+  note: Audited existing standalone MCP package and narrowed the pending WS-00 gate to contracts, defaults, and explicit security decisions without changing work state or authority.
+  evidence: docs/planning/queued/friday-mcp/rebaseline-2026-09-27.md

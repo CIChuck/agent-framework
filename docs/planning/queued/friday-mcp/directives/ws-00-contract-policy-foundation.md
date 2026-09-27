@@ -1,9 +1,15 @@
 # Construction Directive: MCP-WS-00 Contract And Policy Foundation
 
-Status: Draft construction directive
-Date: 2026-07-24
+Status: Rebaselined draft construction directive; not approved
+Date: 2026-09-27
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-00`
+
+The [2026-09-27 rebaseline](../rebaseline-2026-09-27.md) is the current source
+inventory. The existing manager, transports, adapters, server code, and basic
+tests are baseline assets, not deliverables to recreate or evidence that this
+directive has been executed. The narrow allowed scope below controls over the
+broader historical Phase 0 list.
 
 ## AI Builder Role
 

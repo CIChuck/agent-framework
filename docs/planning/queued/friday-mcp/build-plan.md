@@ -7,6 +7,10 @@ layers
 preserving existing tool-calling, memory, context-management, security,
 telemetry, and runtime-boundary contracts.
 
+The [2026-09-27 current-code rebaseline](rebaseline-2026-09-27.md) is the
+current status assessment. It credits the existing standalone package and
+separates its tested primitives from the unimplemented cross-package feature.
+
 ---
 
 ## 1. Conversation Snapshot
@@ -607,17 +611,24 @@ Required behavior:
 
 ## 5. Candidate Implementation Phases
 
+These are coarse feature phases, not one-to-one workstream identifiers. The
+[tactical plan](tactical-plan.md) supplies the narrower WS-00 through WS-09
+order: WS-01 strict configuration precedes WS-02 runtime loading and WS-03
+registry integration, even though all contribute to the coarse Phase 1 below.
+The tactical construction directive controls the allowed files for each slice.
+
 ### Phase 0: Contracts, Defaults, And Policy Cleanup
 
 Goal:
 
-- Make the MCP implementation contract precise before changing runtime behavior.
+- Make the MCP implementation contract precise before changing runtime
+  behavior. This phase is bounded to `MCP-WS-00` in `friday-core` and
+  `friday-mcp`; later workstreams own config parsing and consumer behavior.
 
 Work:
 
-- Define typed config additions for MCP limits, security, ingestion, and required
-  server behavior.
-- Define concrete DTO names and package ownership for:
+- Define typed *contracts and defaults*, without wiring them into runtime or
+  Friday Chat config. The named DTO candidates are:
   - `MCPClientLimits`
   - `MCPClientSecurityPolicy`
   - `MCPIngestionPolicy`
@@ -627,55 +638,38 @@ Work:
   - `MCPToolCallProvenance`
   - `MCPDiscoveryPolicy`
   - `MCPDiscoveryState`
-- Decide whether these contracts live in `friday-mcp`, `friday-core`, or
-  `friday-runtime`, based on which packages need to consume them.
-- Define how MCP tool metadata is exposed through the registry despite the
-  current `ToolDefinition` protocol lacking a metadata property.
-- Define an MCP provenance DTO or typed metadata contract for runtime, Friday
-  Chat, transcript, and memory handoff.
-- Define how Friday Chat direct-run config normalizes into canonical runtime MCP
-  config.
-- Define an MCP budget policy covering schema size, tool count, result size, and
-  reserved tool-result tokens.
-- Define the minimum memory retrieval floor and the fallback behavior when MCP
-  schema selection would consume it.
-- Define the exact budget enforcement order from config validation through
-  memory retrieval and tool-result feedback.
+- Choose package ownership in `friday-core` or `friday-mcp` without creating a
+  dependency cycle. Choose a typed tool-metadata representation; do not change
+  registry or consumer behavior in this phase.
+- Set first-pass default limits for server/tool counts, schema and result size,
+  timeouts, and a minimum memory retrieval floor. Enforcement belongs to later
+  workstreams.
 - Define deterministic name normalization and collision behavior.
-- Define unknown-key validation behavior for `tools.providers.mcp`.
-- Add tests that prove `config_file` is rejected until Phase 5 implements it.
-- Audit Friday Chat command surfaces for `/tools`, `/inject-tools`,
-  `/recommend-tools`, `/tool-budget`, and any MCP-specific health/reload command
-  before promising MCP behavior in those commands.
-- Define startup-only tool discovery cache semantics and explicitly defer
-  automatic or command-triggered refresh.
-- Define concurrency limits for server startup and tool execution.
-- Define tool-call argument redaction, hashing, and storage policy.
+- Define startup-only discovery and concurrency *policy defaults*; implementation
+  and enforcement belong to WS-02/03.
+- Decide tool-call argument redaction and hash policy, and first-pass SSE trust
+  posture, before code generation.
 - Identify touched `# mypy: ignore-errors` files and either remediate them or
   record explicit legacy-policy debt before expanding their public surface.
-- Document selected-mode defaults, provisional numeric budget defaults, and
-  no-long-term-ingestion defaults.
+- Document selected-mode and no-long-term-ingestion defaults.
+
+Explicit deferrals: WS-01 owns strict `tools.providers.mcp` parsing,
+`config_file` rejection, and Friday Chat config mapping. WS-04/06 own budget
+enforcement and the memory-floor fallback. WS-04/07 own command-surface audits.
+WS-05/07 own redaction enforcement and persistence/telemetry behavior. The
+rebaseline records each boundary and prevents a Phase 0 acceptance check from
+silently expanding the narrow WS-00 construction directive.
 
 Acceptance:
 
-- The implementation has a typed contract for config, budget, provenance,
-  security, and failure behavior.
-- MCP tool metadata has a defined cross-package representation.
-- Friday Chat has a documented bridge to the canonical runtime MCP config.
-- Budget enforcement order is explicit and covered by tests.
-- Minimum memory retrieval floor behavior is explicit and covered by tests.
-- Name normalization and collision behavior are deterministic and covered by
-  tests.
-- Friday Chat command behavior is audited before command-specific acceptance
-  criteria are finalized.
-- Tool discovery is startup-only in the first pass; refresh is explicitly
-  deferred.
-- Argument redaction/storage behavior is documented before transcript or memory
-  persistence changes are implemented.
-- MCP provider config rejects unsupported keys rather than ignoring them.
-- The first implementation cannot accidentally register an unbounded MCP tool
-  catalog.
-- Any existing typing-policy debt touched by the change is remediated or tracked.
+- Shared contract ownership and imports are stable, typed, and free of circular
+  dependencies; old programmatic MCP APIs remain compatible.
+- DTO defaults, invalid values, metadata representation, name normalization,
+  duplicate-name rejection, and security defaults have focused tests.
+- The policy records conservative numeric limits, a minimum memory retrieval
+  floor, SSE posture, argument redaction/hash behavior, and deferred enforcement.
+- No runtime, Chat, memory, transcript, telemetry, registry, or CLI behavior is
+  changed in WS-00. Touched typing debt is remediated or explicitly tracked.
 
 ### Phase 1: Runtime MCP Tool Provider
 
