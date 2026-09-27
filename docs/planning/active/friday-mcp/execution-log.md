@@ -83,3 +83,21 @@
   records files, decisions, checks, and known baseline failures. The candidate
   commit and exact diff will be pinned in the validation request after the
   scoped source and planning changes are committed.
+
+## 2026-09-27 — Independent VAL-001 Review
+
+- Candidate `e3ae808` was frozen and reviewed against base `20c70dd` by a
+  fresh-context, read-only validation subagent. The request was committed as
+  `b80770b` without changing reviewed source or tests.
+- Verdict: `CHANGES_REQUESTED`, recorded in
+  [VAL-001](validation/VAL-001-report.md). F-001 finds incomplete typed
+  cross-package metadata/provenance/discovery shapes; F-002 finds insufficient
+  collision diagnostic detail. Neither finding authorizes later runtime or
+  Friday Chat work.
+- Baseline mypy and board-integration failures were distinguished from this
+  candidate's changes. No candidate completion or maintainer acceptance is
+  claimed.
+- Execution phase is `remediation`; validation state is `changes_requested`.
+  [REM-001](remediation/REM-001-directive.md) binds F-001 and F-002. A separate
+  remediator is required for the architecture finding before a new candidate
+  and fresh review.

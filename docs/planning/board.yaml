@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: independent validation of frozen MCP-WS-00 candidate
+  next_gate: authorize separate REM-001 remediator for contract findings
   delivery_state: local
   branch: feature/friday-mcp-ws00-contracts
   depends_on: []
@@ -523,3 +523,10 @@ events:
   action: prepared WS-00 candidate for validation
   note: Implemented scoped shared contracts and focused tests; recorded passing checks and separable baseline failures before independent review.
   evidence: docs/planning/active/friday-mcp/execution/WS-00-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: validation changes requested
+  note: Independent VAL-001 identified incomplete cross-package contract fields and insufficient collision diagnostics; REM-001 is prepared for a separate remediator.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-001-report.md; docs/planning/active/friday-mcp/remediation/REM-001-directive.md

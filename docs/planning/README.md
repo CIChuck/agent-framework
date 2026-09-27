@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | independent validation of frozen MCP-WS-00 candidate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | authorize separate REM-001 remediator for contract findings |
 
 ## Completed
 
