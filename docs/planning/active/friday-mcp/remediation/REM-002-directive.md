@@ -1,6 +1,6 @@
 # REM-002 — MCP-WS-01 Default And Chat Compatibility Remediation
 
-**Status:** Authorized for a separate remediator by the repository maintainer on 2026-09-27
+**Status:** Authorized; stopped at F-002 dependency boundary pending maintainer scope decision
 
 **Date:** 2026-09-27
 
@@ -58,4 +58,20 @@ report that boundary rather than adding an incidental production dependency.
 The maintainer explicitly authorized this bounded separate-remediator pass in
 the active conversation on 2026-09-27. That authorization covers F-001 and
 F-002 only; it does not broaden file scope or authorize WS-02 work. The next
-gate is a committed new candidate and fresh delta plus aggregate review.
+gate was a committed new candidate and fresh delta plus aggregate review.
+
+## 2026-09-27 Stop-Condition Result
+
+The separate remediator stopped before editing or committing. The required
+F-002 test location under `friday-runtime/tests_runtime` would import
+`friday_chat.config`, but `friday-runtime` does not declare Friday Chat as a
+dependency. Friday Chat already declares `friday-framework-runtime` and
+imports `friday_runtime.model_library`. Importing that downstream package in
+runtime's package test would create an undeclared reverse test dependency; a
+production reverse dependency would be circular. The directive's explicit
+stop condition therefore applies. F-001 also remains open.
+
+Recommended smallest scope decision: permit the F-002 config-only test under
+`packages/friday-chat/tests_chat/`, which is the downstream consumer and
+already depends on runtime. Keep Friday Chat source, aliases, tool selection,
+and turn behavior unchanged. This recommendation is not yet authorized.

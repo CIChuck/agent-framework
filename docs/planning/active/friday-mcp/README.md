@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: separate REM-002 candidate and fresh delta plus aggregate review
+next_gate: maintainer decision on REM-002 F-002 test location
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
 execution_phase: remediation
 validation_state: changes_requested
@@ -57,5 +57,8 @@ Independent [VAL-003](validation/VAL-003-report.md) returned
 config-consumption evidence. [REM-002](remediation/REM-002-directive.md)
 bounds the needed fixes. A separate remediator and fresh delta plus aggregate
 review are required before a WS-01 verdict. The maintainer authorized the
-separate REM-002 remediator on 2026-09-27; the next gate is a committed new
-candidate and fresh review. No WS-02 behavior is authorized yet.
+separate REM-002 remediator on 2026-09-27. The remediator encountered the
+directive's F-002 dependency stop condition before editing: a runtime-package test
+cannot import downstream Friday Chat without an undeclared reverse
+dependency. The next gate is a maintainer decision on a test-only scope
+adjustment. No WS-02 behavior is authorized yet.

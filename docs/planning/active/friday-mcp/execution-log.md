@@ -209,3 +209,17 @@
 - The next gate is a committed REM-002 candidate for fresh independent delta
   and complete WS-01 aggregate review. The initiative remains `started` and
   the packet remains in `remediation` / `changes_requested` meanwhile.
+
+## 2026-09-27 — REM-002 Stop Condition: Test Ownership
+
+- The separate remediator stopped before any edit or commit. The required
+  F-002 test in `friday-runtime/tests_runtime` would import downstream
+  `friday_chat.config`; runtime does not declare Chat, while Chat declares
+  runtime and imports `friday_runtime.model_library`. This is the directive's
+  explicit undeclared-dependency stop condition.
+- F-001 and F-002 remain unresolved; candidate `de8db57` and VAL-003 stand.
+  Unrelated dirty files and product source/tests were untouched.
+- Recommended narrow decision: allow only the F-002 config-compatibility test
+  under `packages/friday-chat/tests_chat/`, with no Chat source or turn
+  behavior change. The next gate is maintainer approval of that test-only
+  scope adjustment before any remediation resumes.
