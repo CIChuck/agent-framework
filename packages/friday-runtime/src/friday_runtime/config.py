@@ -311,7 +311,7 @@ class ToolProviderConfig:
 @dataclass(frozen=True)
 class MCPToolProviderConfig:
     enabled: bool = False
-    mode: Literal["all", "selected"] = "all"
+    mode: Literal["all", "selected"] = "selected"
     include_categories: tuple[str, ...] = ()
     exclude_categories: tuple[str, ...] = ()
     include_tools: tuple[str, ...] = ()
@@ -376,7 +376,7 @@ class MCPToolProviderConfig:
         enabled = data.get("enabled", False)
         if not isinstance(enabled, bool):
             raise ValueError("tools.providers.mcp.enabled must be a boolean")
-        mode = data.get("mode", "all")
+        mode = data.get("mode", "selected")
         if mode not in {"all", "selected"}:
             raise ValueError("tools.providers.mcp.mode must be 'all' or 'selected'")
 
@@ -1288,7 +1288,7 @@ class RuntimeConfig:
                     },
                     "mcp": {
                         "enabled": False,
-                        "mode": "all",
+                        "mode": "selected",
                         "include_categories": [],
                         "exclude_categories": [],
                         "include_tools": [],

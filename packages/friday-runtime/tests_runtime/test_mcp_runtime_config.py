@@ -12,6 +12,7 @@ from friday_runtime.config import (
     MCPRuntimeClientConfig,
     MCPToolProviderConfig,
     RuntimeConfig,
+    ToolProviderConfig,
     ToolsConfig,
 )
 
@@ -30,6 +31,54 @@ def test_default_and_disabled_provider_are_safe_and_typed() -> None:
     assert provider.config.security.integrated_transport == "stdio_only"
     assert provider.config.security.store_argument_hashes is False
     assert provider.config.ingestion.long_term_memory_enabled is False
+
+
+def test_direct_mcp_constructor_defaults_to_selected() -> None:
+    assert MCPToolProviderConfig().mode == "selected"
+    assert ToolProviderConfig().mode == "all"
+
+
+def test_omitted_mcp_mode_parses_as_selected() -> None:
+    assert MCPToolProviderConfig.from_dict({}).mode == "selected"
+    assert ToolProviderConfig.from_dict({}).mode == "all"
+
+
+def test_runtime_source_default_selects_mcp_only(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    providers = RuntimeConfig.from_sources(
+        env={},
+        overrides={
+            "install_root": str(tmp_path),
+            "runtime_data_root": str(tmp_path / "data"),
+            "workspace_root": str(workspace),
+        },
+    ).tools.providers
+    assert providers.mcp.mode == "selected"
+    assert providers.builtin.mode == "all"
+    assert providers.friday_tools.mode == "all"
+
+
+def test_explicit_all_mcp_mode_remains_valid(tmp_path: Path) -> None:
+    assert MCPToolProviderConfig(mode="all").mode == "all"
+    assert MCPToolProviderConfig.from_dict({"mode": "all"}).mode == "all"
+    workspace = tmp_path / "workspace"
+    workspace.mkdir()
+    runtime = RuntimeConfig.from_sources(
+        env={},
+        overrides={
+            "install_root": str(tmp_path),
+            "runtime_data_root": str(tmp_path / "data"),
+            "workspace_root": str(workspace),
+            "tools_config": {"providers": {"mcp": {"mode": "all"}}},
+        },
+    )
+    assert runtime.tools.providers.mcp.mode == "all"
+
+
+def test_invalid_mcp_mode_still_fails() -> None:
+    with pytest.raises(ValueError, match="mode must be 'all' or 'selected'"):
+        MCPToolProviderConfig.from_dict({"mode": "automatic"})
 
 
 def test_valid_stdio_optional_and_required_servers_round_trip(tmp_path: Path) -> None:

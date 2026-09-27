@@ -8,7 +8,7 @@ defaults → YAML → permitted environment overrides → explicit construction
 overrides precedence; WS-01 adds no MCP-specific environment variable or
 Friday Chat alias.
 
-Disabled MCP (safe default):
+Disabled MCP (safe default, with omitted `mode` defaulting to `selected`):
 
 ```yaml
 tools:
