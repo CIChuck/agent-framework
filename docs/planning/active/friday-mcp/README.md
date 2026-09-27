@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: fresh independent validation of frozen MCP-WS-01 candidate
+next_gate: maintainer authorization for separate REM-002 remediator
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
-execution_phase: validation
-validation_state: pending
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -52,5 +52,9 @@ on 2026-09-27. WS-01 implementation is now in progress on
 `feature/friday-mcp-ws01-config`.
 The [WS-01 implementation report](execution/WS-01-implementation-report.md)
 records the typed configuration model, tests, and known baseline failures.
-The next gate is a fresh independent review of the frozen WS-01 candidate;
-no WS-02 behavior is authorized yet.
+Independent [VAL-003](validation/VAL-003-report.md) returned
+`CHANGES_REQUESTED` for the MCP default mode and missing Friday Chat
+config-consumption evidence. [REM-002](remediation/REM-002-directive.md)
+bounds the needed fixes. A separate remediator and fresh delta plus aggregate
+review are required before a WS-01 verdict; authorization for that remediator
+is the next gate. No WS-02 behavior is authorized yet.

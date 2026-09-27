@@ -180,3 +180,20 @@
   ten authority hashes, acceptance criteria, checks, exclusions, and baseline
   failures. The request and this checkpoint are planning-only metadata added
   after the candidate; source, tests, and directive remain unchanged.
+
+## 2026-09-27 — Independent VAL-003 Review
+
+- Fresh-context, read-only [VAL-003](validation/VAL-003-report.md) returned
+  `CHANGES_REQUESTED` on candidate `de8db57`; all ten authority hashes
+  matched. F-001 finds the inherited but mandatory MCP `mode: selected`
+  default unmet. F-002 finds no test proving Friday Chat can consume the
+  canonical MCP config without another shape.
+- Deterministic core/MCP/runtime tests, Ruff, Python 3.13 mypy, board,
+  dashboard, documentation, and diff checks passed. The default-target mypy
+  NumPy-stub issue and 22-versus-23-task integration assertion remain separate
+  baseline failures, not WS-01 regressions.
+- Execution phase is `remediation`; validation state is
+  `changes_requested`. [REM-002](remediation/REM-002-directive.md) binds
+  F-001/F-002. Because F-002 crosses the Friday Chat package boundary, the
+  next gate is maintainer authorization of a separate remediator. No product
+  code is edited under this planning checkpoint.

@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh independent validation of frozen MCP-WS-01 candidate
+  next_gate: maintainer authorization for separate REM-002 remediator
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -581,3 +581,10 @@ events:
   action: requested independent WS-01 validation
   note: Candidate de8db57 and exact work-unit diff are frozen for fresh-context read-only review.
   evidence: docs/planning/active/friday-mcp/validation/VAL-003-request.yaml
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: validation changes requested for WS-01
+  note: Independent VAL-003 found the MCP default mode and Friday Chat compatibility evidence incomplete; REM-002 awaits separate-remediator authorization.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-report.md; docs/planning/active/friday-mcp/remediation/REM-002-directive.md
