@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | maintainer review and explicit approval of bounded WS-01 scope |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | implement and validate bounded MCP-WS-01 configuration slice |
 
 ## Completed
 

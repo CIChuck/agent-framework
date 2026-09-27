@@ -1,9 +1,29 @@
 # Construction Directive: MCP-WS-01 Configuration Model And Validation
 
-Status: Draft construction directive
+Status: Approved for the bounded WS-01 configuration slice by the repository maintainer on 2026-09-27
 Date: 2026-07-24
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-01`
+
+## Approval Boundary And Reconciliation
+
+The maintainer approved proceeding with this bounded configuration slice after
+reviewing the independently verified WS-00 closeout. This approval covers
+strict, typed parsing and validation of the canonical runtime
+`tools.providers.mcp` surface only. It does not approve connections, tool
+registration, Friday Chat turn behavior, or external config includes.
+
+The existing `friday_mcp.config.MCPConfig` is a protocol-local public API that
+also serves server-exposure and programmatic SSE use cases. Preserve it rather
+than making its legacy shape the canonical runtime model. The runtime-facing
+model may be separate, but must reuse WS-00 policy DTOs and avoid a second
+configuration *authority*. The integrated runtime surface accepts stdio only;
+programmatic SSE APIs remain unchanged. Validate `cwd` relative to the
+configured runtime `workspace_root` and reject paths outside it. No new MCP
+environment override or Friday Chat alias mapping is authorized in WS-01;
+the existing RuntimeConfig source precedence remains in force, and direct-run
+Friday Chat bridging is reserved for WS-04. Test that the canonical model can
+be imported and consumed without a new Chat-specific config shape.
 
 ## AI Builder Role
 

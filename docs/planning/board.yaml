@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer review and explicit approval of bounded WS-01 scope
+  next_gate: implement and validate bounded MCP-WS-01 configuration slice
   delivery_state: local
-  branch: feature/friday-mcp-ws00-contracts
+  branch: feature/friday-mcp-ws01-config
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
@@ -553,3 +553,17 @@ events:
   action: recorded verified WS-00 work unit
   note: Fresh independent VAL-002 verified both the REM-001 delta and complete WS-00 aggregate. The initiative remains started; later workstreams require separate approval.
   evidence: docs/planning/active/friday-mcp/validation/VAL-002-report.md; docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted WS-00 work unit and approved bounded WS-01 directive
+  note: Maintainer replied accepted to the explicit next-gate request for strict MCP configuration parsing and validation without connection or runtime loading authority.
+  evidence: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md; docs/planning/active/friday-mcp/validation/VAL-002-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: started bounded WS-01 implementation
+  note: Started approved configuration slice on feature/friday-mcp-ws01-config from WS-00 closeout ab49ba5; initiative remains started and delivery remains local.
+  evidence: docs/planning/active/friday-mcp/execution-log.md

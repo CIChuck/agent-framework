@@ -141,3 +141,18 @@
   WS-01 through WS-08 are draft; new product code requires a separately
   approved bounded directive. The next gate is maintainer review and
   explicit approval of WS-01 scope.
+
+## 2026-09-27 — WS-01 Approval And Start
+
+- The maintainer replied "accepted" to the explicit next-gate request for a
+  bounded WS-01 strict-configuration directive, after reviewing the WS-00
+  independent-verification closeout. This records WS-00 work-unit acceptance
+  and WS-01 approval, not completion or acceptance of the wider initiative.
+- The approved [WS-01 directive](directives/ws-01-configuration-model-validation.md)
+  reconciles the older draft against the current code and WS-00 decisions:
+  runtime-facing canonical parsing is separate from protocol-local
+  `MCPConfig`; integrated transport is stdio-only; `cwd` is workspace-scoped;
+  no connection, registration, Chat turn/alias behavior, or external includes.
+- Dedicated branch: `feature/friday-mcp-ws01-config`, based on WS-00 closeout
+  commit `ab49ba5`. Execution phase is `implementation`; validation state is
+  `not_ready`. Existing unrelated dirty paths remain excluded from staging.

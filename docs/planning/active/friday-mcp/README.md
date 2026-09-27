@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: maintainer review and explicit approval of bounded WS-01 scope
-implementation_authority: granted for MCP-WS-00 only
-execution_phase: closeout
-validation_state: verified
+next_gate: implement and validate bounded MCP-WS-01 configuration slice
+implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
+execution_phase: implementation
+validation_state: not_ready
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -45,6 +45,8 @@ its checks. Fresh independent [VAL-002](validation/VAL-002-report.md) verified
 both the remediation delta and complete WS-00 candidate. The
 [WS-00 work-unit closeout](execution/WS-00-closeout.md) records the result and
 remaining boundaries. The wider `friday-mcp` initiative remains `started`:
-WS-01 through WS-08 are draft, and runtime loading is not authorized by this
-work-unit verdict. The next gate is maintainer review and explicit approval
-of bounded WS-01 scope.
+WS-02 through WS-08 are draft, and runtime loading is not authorized by this
+work-unit verdict. The maintainer accepted the WS-00 work-unit result and
+approved the bounded [WS-01 directive](directives/ws-01-configuration-model-validation.md)
+on 2026-09-27. WS-01 implementation is now in progress on
+`feature/friday-mcp-ws01-config`.
