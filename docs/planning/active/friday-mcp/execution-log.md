@@ -110,3 +110,18 @@
   No runtime integration or later MCP workstream was approved.
 - The existing candidate and VAL-001 verdict remain historical. The remediator
   must commit a new candidate for fresh independent review.
+
+## 2026-09-27 — REM-001 Candidate And Fresh Review Gate
+
+- Separate remediator committed candidate
+  `b79754f23aeee69ea3618b711c78f2c3e51edb71` from authorization baseline
+  `3ad7454954b7a415a99a914ba0197a3a7d88be23`. Only the bounded contract
+  module, focused tests, and [REM-001 implementation report](execution/REM-001-implementation-report.md)
+  changed.
+- Controller reconfirmed 232 core/MCP/runtime tests, Ruff, targeted mypy,
+  board validation, and delta diff check. The previously recorded package-wide
+  mypy and board-integration baseline failures remain separate.
+- Execution phase returns to `validation`; validation state is `pending`.
+  VAL-001 is superseded for decision purposes but retained as historical
+  evidence. The next independent review must inspect both the REM-001 delta
+  and the full WS-00 aggregate candidate before any completion proposal.

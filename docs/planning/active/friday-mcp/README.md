@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: perform REM-001 and request fresh independent validation
+next_gate: fresh delta and aggregate validation of REM-001 candidate
 implementation_authority: granted for MCP-WS-00 only
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -39,6 +39,8 @@ implementation and focused checks are recorded in the
 [VAL-001](validation/VAL-001-report.md) returned `CHANGES_REQUESTED` for two
 contract findings. [REM-001](remediation/REM-001-directive.md) bounds the
 required corrections. The maintainer authorized a separate remediator for the
-cross-package architecture finding on 2026-09-27. The next gate is a new
-candidate and fresh independent validation. Runtime loading remains a later
-dependent workstream and is not authorized here.
+cross-package architecture finding on 2026-09-27. REM-001 produced candidate
+`b79754f`; [the report](execution/REM-001-implementation-report.md) records
+its checks. The next gate is fresh independent delta and aggregate validation.
+Runtime loading remains a later dependent workstream and is not authorized
+here.

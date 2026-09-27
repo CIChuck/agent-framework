@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: perform REM-001 and request fresh independent validation
+  next_gate: fresh delta and aggregate validation of REM-001 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws00-contracts
   depends_on: []
@@ -537,3 +537,10 @@ events:
   action: authorized separate REM-001 remediator
   note: Maintainer directed continuation after an explicit request to delegate bounded architectural remediation of F-001 and F-002.
   evidence: docs/planning/active/friday-mcp/remediation/REM-001-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested fresh REM-001 validation
+  note: Separate remediator committed candidate b79754f for F-001 and F-002; pending fresh delta and aggregate review.
+  evidence: docs/planning/active/friday-mcp/execution/REM-001-implementation-report.md
