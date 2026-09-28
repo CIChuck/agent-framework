@@ -1142,3 +1142,30 @@ unrelated work is preserved. Task 7 independent review is in progress.
   Original five unrelated path fingerprints remain unchanged. Only nine
   evidence/closeout/controller paths staged; no product tests repeated for
   this evidence/process-only handoff after independent checks completed.
+
+## 2026-09-28 — WS-04 Explicitly Accepted
+
+- Maintainer explicitly said "accepted" after the independently VERIFIED
+  WS-04 result, full review/closeout links and explicit acceptance gate.
+  Record acceptance by repository maintainer on 2026-09-28 for frozen candidate
+  `53d76d45cedea16122436e53b178de074c5bc322` and complete fresh VAL-010,
+  all eight criteria passing with no findings.
+- [Closeout](execution/WS-04-closeout.md) records that decision. Queue task 7
+  complete; WS-00 through WS-04 accepted. Wider initiative stays started/
+  granted/normal/local with active packet intact. No initiative acceptance,
+  archive, later-slice implementation or delivery transition.
+- Next gate WS-05 directive/readiness reconciliation before bounded approval.
+  Current phase planning/state not_ready describes next-slice preparation;
+  accepted WS-04's independently VERIFIED result is unchanged. This turn records
+  acceptance only and does not perform WS-05 reconciliation.
+- Stage only six acceptance/controller paths. Frozen source/tests/config, all
+  29 authority/report inputs, request, complete independent report and 56-artifact
+  evidence archive remain unchanged. Preserve all five unrelated path roots
+  and their contents, including the existing deletion. No product tests repeat
+  for this process-only record; board/dashboard/docs/whitespace and frozen-input/
+  evidence/preservation checks verify the changed scope.
+- Acceptance-record checks pass: board 23 tasks, dashboard current, documentation
+  lifecycle 348 Markdown files and scoped whitespace clean. Exact candidate
+  product/report comparison, request hash, all 29 pinned input/971 product hashes,
+  all 56 evidence member lengths/hashes and five unrelated path fingerprints
+  match the verified closeout, including the preserved deletion.

@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: explicit maintainer WS-04 acceptance after verified VAL-010 closeout
+next_gate: reconcile WS-05 directive and readiness before requesting approval
 implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
-execution_phase: closeout
-validation_state: verified
+execution_phase: planning
+validation_state: not_ready
 ---
 
 Current checkpoint: new fresh-context read-only [VAL-010](validation/VAL-010-report.md)
@@ -18,9 +18,12 @@ frozen `53d76d4`. All eight criteria and fifteen required checks are recorded,
 with independently reproduced predecessor failures separated. The complete
 byte-exact report and all original artifacts are archived in
 [lossless evidence](validation/VAL-010-evidence.yaml).
-[WS-04 closeout](execution/WS-04-closeout.md) is prepared; explicit maintainer
-WS-04 acceptance is the next gate. Current phase closeout/state verified;
-wider initiative remains started/granted/normal/local. WS-05+ remains draft.
+[WS-04 closeout](execution/WS-04-closeout.md) records explicit maintainer
+acceptance on 2026-09-28 with "accepted". WS-00 through WS-04 are accepted
+work units; the wider initiative remains started/granted/normal/local. Next
+is WS-05 directive/readiness reconciliation before bounded approval. Current
+phase planning/state not_ready describes that next-slice preparation, not a
+change to accepted WS-04 verification. WS-05+ remains draft and unapproved.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with
@@ -43,7 +46,7 @@ and [readiness checkpoint](execution/WS-04-readiness-checkpoint.md) bind exact
 paths, public Chat provider wiring, budget/required-tool semantics and eight
 criteria. Execution started on `feature/friday-mcp-ws04-chat-budget` from accepted
 WS-03 `acd1fd1` and produced independently verified candidate `53d76d4`.
-Current phase closeout/state verified; explicit WS-04 acceptance is next.
+WS-04 verification and explicit acceptance are recorded; WS-05 preparation is next.
 Accepted predecessors remain intact.
 
 Historical [VAL-008](validation/VAL-008-report.md) remains unchanged: it returned
@@ -72,8 +75,8 @@ initiative remains started and local.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
-WS-00 through WS-03 are accepted; WS-04 is independently verified and awaiting
-acceptance. WS-05 and later workstreams remain Draft. The
+WS-00 through WS-04 are independently verified and explicitly accepted.
+WS-05 and later workstreams remain Draft. The
 [2026-09-27 rebaseline](rebaseline-2026-09-27.md) distinguishes the existing
 package from this integration initiative and narrows the first slice.
 
@@ -213,7 +216,7 @@ candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379` and its complete VAL-007
 review. Queue tasks 1–4 are complete. Next is bounded WS-03 directive/readiness
 reconciliation, followed by an explicit approval request; no WS-03 code is
 authorized. Current process fields now describe that next-slice preparation:
-`execution_phase: planning`, `validation_state: verified`, not a reversal of
+`execution_phase: planning`, `validation_state: not_ready`, not a reversal of
 accepted WS-02's independently verified result. The wider initiative remains
 `started` and local, with no packet archive or delivery transition.
 
@@ -290,3 +293,14 @@ authority/report/request and product hashes remain stable; unrelated local work
 is preserved. Phase closeout/state verified. Next gate explicit WS-04 acceptance;
 no acceptance, WS-05 implementation or delivery is inferred. Earlier pending/
 in-review passages above are historical execution checkpoints.
+
+## 2026-09-28 — WS-04 Explicitly Accepted
+
+The maintainer explicitly said "accepted" after the independently verified
+WS-04 result, full review/closeout links and explicit acceptance gate. The
+closeout records that decision for frozen `53d76d4` and complete fresh VAL-010.
+WS-00 through WS-04 are accepted; wider initiative remains started/local.
+Next is WS-05 directive/readiness reconciliation before separate approval.
+This turn records acceptance only; no WS-05 reconciliation or implementation.
+Current phase planning/state not_ready describes the next preparation gate;
+accepted WS-04's VERIFIED result and all frozen review inputs remain unchanged.

@@ -1,14 +1,17 @@
 # MCP-WS-04 Work-Unit Closeout
 
 Date: 2026-09-28
-Status: Independently verified; explicit maintainer acceptance pending
+Status: Independently verified and explicitly accepted
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-04`
 Branch: `feature/friday-mcp-ws04-chat-budget`
 Candidate: `53d76d45cedea16122436e53b178de074c5bc322`
 Work-unit base: `acd1fd1e736a38134fac40d7fdb35cd1f32cf683`
 Approval/start: `ac4530ac8063f299776c807cfa22140e3cff184a`
-Acceptance: Not recorded
+Accepted by: repository maintainer
+Accepted at: 2026-09-28
+Acceptance evidence: Explicit maintainer message "accepted" after the verified
+WS-04 closeout and acceptance gate were presented
 Delivery: Local
 
 ## Scope And Independent Result
@@ -77,10 +80,23 @@ actual results or account for every future history/user/tool-result token.
 Known schema checks do not promise universal injection prevention. Cleanup
 evidence is not a hard real-time SLA or process-tree sandbox.
 
-Next gate is explicit maintainer WS-04 acceptance of this candidate and complete
-VAL-010 review. The wider initiative remains started/granted/normal/local;
-WS-00 through WS-03 remain accepted. WS-05 output/provenance, WS-06 long-term
+The maintainer explicitly accepted this candidate and complete VAL-010 review
+on 2026-09-28. The wider initiative remains started/granted/normal/local;
+WS-00 through WS-04 are accepted work units. WS-05 output/provenance, WS-06 long-term
 memory policy, WS-07 telemetry/health, WS-08 user docs/UAT, complete feature-branch
 pre-merge aggregate and any delivery/live-provider effects retain separate gates.
 This work-unit closeout does not accept/archive the wider initiative or approve
-later workstreams. No maintainer acceptance is inferred from VERIFIED.
+later workstreams. Acceptance is the explicit maintainer decision recorded below.
+
+## Maintainer Acceptance
+
+The repository maintainer explicitly said "accepted" after receiving the
+independently VERIFIED WS-04 result, full review/closeout links and explicit
+acceptance gate. Record acceptance on 2026-09-28 for frozen candidate
+`53d76d45cedea16122436e53b178de074c5bc322` and complete fresh VAL-010,
+all eight criteria passing with no findings.
+
+Next gate: reconcile the WS-05 directive and readiness before requesting bounded
+approval. This acceptance-recording turn does not perform that reconciliation
+or approve WS-05 implementation. Wider initiative acceptance/archive and all
+delivery/live-validation effects remain separate.
