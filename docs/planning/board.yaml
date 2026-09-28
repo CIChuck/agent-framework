@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer approval of WS-02 startup-cleanup and stdio-redaction scope amendment
+  next_gate: committed WS-02 lifecycle candidate for fresh independent validation
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -646,3 +646,10 @@ events:
   action: recorded WS-02 readiness scope stop
   note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside the directive. No product code changed; narrow amendment awaits maintainer approval.
   evidence: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved WS-02 cleanup amendment
+  note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external effects or delivery are approved.
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md

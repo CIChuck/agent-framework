@@ -306,3 +306,18 @@
 - Execution phase is `planning`; validation state is `not_ready` for WS-02.
   Existing WS-00/01 validation and acceptance remain intact. Unrelated dirty
   paths were preserved; no candidate or independent WS-02 verdict exists.
+
+## 2026-09-27 — WS-02 Cleanup Amendment Approved; Implementation Resumed
+
+- After the two-file amendment request and explanation, the maintainer said
+  "continue next steps". This approves the proposed narrow cleanup/redaction
+  changes in MCP `client/base.py` and `client/stdio.py`, with related tests.
+- The directive and tactical plan now explicitly defer registry insertion,
+  canonical naming/collisions, final filters, and prompt-visible schema
+  sanitization to WS-03. WS-02 preserves a bounded untrusted discovery handoff;
+  binding validation still rejects names absent from the real registry.
+- Public runtime startup signatures remain unchanged. Local fake servers only;
+  no paid/provider/remote effects or delivery operation is authorized.
+- Execution phase is `implementation`; validation state is `not_ready` until
+  a stable candidate is committed. Fresh-context independent validation is
+  required before any WS-02 completion or acceptance proposal.

@@ -1,6 +1,6 @@
 # Friday Framework MCP Tactical Implementation Plan
 
-Status: WS-00 approved 2026-09-27; later workstreams draft
+Status: WS-00 through WS-02 approved 2026-09-27; later workstreams draft
 
 Date: 2026-07-24  
 Source build plan: [friday-framework-mcp-enhancements.md](build-plan.md)
@@ -169,7 +169,7 @@ Integrate MCP client discovery into runtime startup and shutdown while preservin
 
 - `MCP-02-01`: Replace or augment synchronous `register_runtime_tools` behavior so MCP providers can be loaded through the async runtime boot lifecycle.
 - `MCP-02-02`: Add an MCP provider loader that creates and owns an `MCPClientManager` for the runtime lifetime.
-- `MCP-02-03`: Implement startup order: configure services, connect enabled MCP servers, list tools, apply discovery caps, register accepted tools, validate agent tool bindings.
+- `MCP-02-03`: Implement startup order: configure services, connect enabled MCP servers, list tools, apply discovery caps, preserve an untrusted bounded handoff for WS-03, validate agent tool bindings. Registry insertion, final filters, naming/collisions, and prompt-visible schema sanitization belong to WS-03 under the approved WS-02 amendment.
 - `MCP-02-04`: Implement shutdown order that disconnects MCP clients even when startup partially fails.
 - `MCP-02-05`: Implement optional versus required server behavior.
 - `MCP-02-06`: Add connection and discovery timeout handling.
@@ -184,6 +184,8 @@ Integrate MCP client discovery into runtime startup and shutdown while preservin
 - `packages/friday-runtime/src/friday_runtime/tools.py`
 - `packages/friday-mcp/src/friday_mcp/client/manager.py`
 - `packages/friday-mcp/src/friday_mcp/client/adapter.py`
+- `packages/friday-mcp/src/friday_mcp/client/base.py` (bounded partial-startup cleanup and safe lifecycle logging)
+- `packages/friday-mcp/src/friday_mcp/client/stdio.py` (bounded subprocess/stderr cleanup and redaction)
 
 ### Required Tests
 

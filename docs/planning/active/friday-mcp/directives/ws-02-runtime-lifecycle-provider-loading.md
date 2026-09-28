@@ -1,17 +1,17 @@
 # Construction Directive: MCP-WS-02 Runtime Lifecycle And MCP Provider Loading
 
-Status: Approved construction directive; execution stopped at scope gate
+Status: Approved construction directive with bounded startup-cleanup amendment
 Date: 2026-07-24
 Approved: 2026-09-27 by repository maintainer
 Approval evidence: "ws-02 approved"
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-02`
 
-Approval covers the existing bounded directive only. The startup-cleanup and
-transport-redaction blockers found during readiness inspection are recorded in
-the [WS-02 readiness checkpoint](../execution/WS-02-readiness-checkpoint.md).
-Its proposed two-file scope amendment is not approved by this decision. Product
-code generation is stopped until that amendment is decided.
+Amendment approved: 2026-09-27 by repository maintainer, "continue next steps",
+following the two-file amendment request and explanation. This incorporates
+the startup-cleanup and transport-redaction scope in the
+[WS-02 readiness checkpoint](../execution/WS-02-readiness-checkpoint.md).
+It does not authorize later workstreams or external service effects.
 
 ## AI Builder Role
 
@@ -42,6 +42,10 @@ You may edit:
 - new runtime modules if needed for MCP provider loading
 - `packages/friday-mcp/src/friday_mcp/client/manager.py`
 - `packages/friday-mcp/src/friday_mcp/client/adapter.py`
+- `packages/friday-mcp/src/friday_mcp/client/base.py` only for partial-startup,
+  cancellation, receiver/request cleanup, and safe lifecycle/error logging
+- `packages/friday-mcp/src/friday_mcp/client/stdio.py` only for subprocess/stderr
+  cleanup, idempotence, and removal of raw command/argument/stderr logging
 - `packages/friday-runtime/tests_runtime/`
 - `packages/friday-mcp/tests_mcp/`
 - `tests/integration/` only for a fake-server runtime integration test
@@ -87,6 +91,13 @@ Implement this startup order:
 7. validate agent tool bindings after MCP discovery has completed.
 
 If registry registration is deferred to `MCP-WS-03`, preserve enough discovered state and diagnostics for that phase.
+
+For this approved slice, registration is deferred to WS-03. WS-02 preserves a
+bounded, explicitly untrusted discovery handoff and typed redacted diagnostics;
+it does not insert MCP tools into the registry or expose their schemas to turn
+context. WS-03 owns canonical names, collision checks, final filters,
+schema/description sanitization, and executable registry entries. Binding
+validation runs after discovery but continues to reject unregistered names.
 
 ### `MCP-02-04`: Shutdown Order
 
@@ -158,6 +169,14 @@ Add tests for:
 - shutdown after partial startup failure;
 - native tool loading unaffected;
 - agent tool binding validation after discovery.
+- failed, timed-out, and canceled handshake cleanup;
+- receiver/request cleanup, EOF handling, and already-exited subprocess cleanup;
+- repeated disconnect and sentinel-secret absence from captured debug logs.
+
+Only local fake servers and in-process test doubles are permitted. No remote
+MCP/provider connection, credential use, paid model, or external effects are
+authorized. Touched source must retain meaningful typing; no new or extended
+broad source suppression is allowed.
 
 Negative tests must prove failed optional servers do not register tools and required failures fail startup.
 
