@@ -437,3 +437,37 @@
 - Execution phase remains `validation`; validation state is `in_review`.
   Candidate `26f4d7d` source/tests/config and all pinned authority remain
   frozen; this dispatch changes only the index and append-only execution log.
+
+## 2026-09-27 — VAL-006 Delta Verified; Aggregate Cleanup Changes Requested
+
+- Fresh-context read-only [VAL-006](validation/VAL-006-report.md) verifies
+  REM-003's bounded delta at `26f4d7d`: original provider/manager ownership
+  remains reachable across failed startup/cleanup retry, successful peers
+  drain, public cleanup/recovery succeeds, and diagnostics remain redacted.
+  All fifteen authority hashes and governed candidate files matched at start
+  and closeout; controller dispatch metadata was the only later difference.
+- The complete WS-02 aggregate and overall gate are `CHANGES_REQUESTED`.
+  High VAL-006 F-001 uses the real stdio transport and a local synthetic peer
+  to reproduce shutdown hanging after forced kill when unread oversized stdout
+  prevents pipe closure. The transport's post-kill wait has no bound. Public
+  kernel ownership is retained, but shutdown cannot complete without caller
+  pipe intervention. Reviewer explicitly cleaned every probe resource.
+- The deliberately perpetual synthetic kernel retry-cleanup pause was not
+  counted as a separate finding; production direct/public-kernel evidence
+  independently establishes F-001. Do not introduce a two-second shutdown SLA
+  from that diagnostic observation.
+- Independent checks: 32 focused tests, 321 affected package/local-stdio tests,
+  46 Chat config tests, Ruff, Python 3.13 mypy on 42 files, board/dashboard/docs,
+  and all three exact diff checks passed. Broad integration reproduced 38
+  passes and one unchanged board-count baseline; default mypy reproduced the
+  unchanged NumPy syntax baseline. Neither baseline is the cleanup finding.
+- [Draft REM-004](remediation/REM-004-directive.md) covers F-001 exactly once,
+  proposing only stdio source, three existing local test/fixture files, and
+  two implementation reports. Separate remediator authorization is required;
+  REM-003 explicitly excludes MCP source. No product fix or new remediation
+  dispatch occurred. If the proposed second WS-02 correction cycle fails,
+  return unresolved findings to the maintainer rather than automatically loop.
+- Execution phase is `remediation`; validation state is `changes_requested`.
+  Next gate is explicit maintainer authorization of REM-004 and its separate
+  remediator. Initiative remains `started`, delivery local; no WS-02 acceptance,
+  WS-03 authority, live effect, or delivery operation is implied.

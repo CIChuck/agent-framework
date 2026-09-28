@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh VAL-006 delta and complete WS-02 aggregate verdict
+  next_gate: maintainer authorization of separate REM-004 transport cleanup remediation
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -69,6 +69,7 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-004-report.md
   - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-005-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-006-report.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -682,3 +683,10 @@ events:
   action: froze REM-003 candidate for fresh review
   note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative remains started and local.
   evidence: docs/planning/active/friday-mcp/validation/VAL-006-request.yaml
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified ownership delta and WS-02 aggregate cleanup finding
+  note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate maintainer authorization; no corrective product changes or new remediator dispatch occurred.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-report.md; docs/planning/active/friday-mcp/remediation/REM-004-directive.md

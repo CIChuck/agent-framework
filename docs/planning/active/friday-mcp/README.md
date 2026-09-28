@@ -6,15 +6,16 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: fresh VAL-006 delta and complete WS-02 aggregate verdict
+next_gate: maintainer authorization of separate REM-004 transport cleanup remediation
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
-candidate with independent changes requested for startup-retry ownership.
+candidate. Startup-retry ownership is independently verified, but the full
+WS-02 review requests changes for a noisy-subprocess shutdown hang.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
@@ -92,8 +93,15 @@ authorization of a separate remediator under the bounded
 remediator. The separate remediator committed `26f4d7d`; its
 [implementation report](execution/REM-003-implementation-report.md) records
 the bounded correction and regressions. Fresh
-[VAL-006](validation/VAL-006-request.yaml) pins the corrected candidate for
-delta and complete WS-02 aggregate review. The next gate is that independent
-verdict, not acceptance. Current
+[VAL-006](validation/VAL-006-request.yaml) pinned the corrected candidate for
+delta and complete WS-02 aggregate review. Its
+[report](validation/VAL-006-report.md) verifies REM-003's delta but returns
+aggregate `CHANGES_REQUESTED`: production stdio shutdown can hang after a child
+is killed while unread stdout prevents pipe closure. This is one separate
+high-severity finding, not renewed ownership loss. The
+[draft REM-004 directive](remediation/REM-004-directive.md) limits the proposed
+correction to stdio transport cleanup, local regressions, and documentation.
+The next gate is explicit maintainer authorization of that scope and a separate
+remediator. No new corrective product edits or dispatch are authorized. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.
