@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 accepted; approved WS-03 candidate frozen for fresh independent review
+Status: WS-02 accepted; WS-03 candidate frozen; fresh review blocked by agent thread capacity
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws03-registry`
@@ -51,6 +51,13 @@ Current task 6 checkpoint: builder implementation/check/commit complete at
 and pinned [VAL-008 request](validation/VAL-008-request.yaml) are recorded.
 Fresh independent full WS-03 review is pending dispatch, not waived. Task 6
 remains in progress through review/closeout/acceptance; no WS-04 authority.
+
+VAL-008 dispatch attempt returned `agent thread limit reached`; no fresh reviewer
+or verdict exists. Resume the already-pinned request in a session with fresh
+agent capacity. Existing completed reviewers will not be reused or called fresh.
+Current phase validation/state blocked; board condition blocked, work remains
+started/granted/local. Candidate `397caa9` and all twenty authority hashes are
+unchanged. New scope approval is not required to run the approved review.
 
 ## Immediate Queue
 

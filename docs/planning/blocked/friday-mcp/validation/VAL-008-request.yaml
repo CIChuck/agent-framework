@@ -12,6 +12,16 @@ candidate_commit: 397caa9898612cd989f6404951b3e1f5005dfac2
 aggregate_diff_range: 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641..397caa9898612cd989f6404951b3e1f5005dfac2
 implementation_diff_range: b54069654bb3e21a6265fbabcd23f6991e286ab0..397caa9898612cd989f6404951b3e1f5005dfac2
 authority_revision: 397caa9898612cd989f6404951b3e1f5005dfac2
+working_packet_prefix: docs/planning/blocked/friday-mcp/
+pinned_packet_prefix: docs/planning/active/friday-mcp/
+relocation_note: >-
+  After fresh dispatch failed on thread capacity, development lifecycle policy
+  requires the blocked packet under docs/planning/blocked/friday-mcp/. Candidate
+  and authority revisions retain the original active paths. For working-content
+  hash/stability checks only, replace pinned_packet_prefix with working_packet_prefix;
+  use original paths for git show at pinned revisions. All twenty authority
+  document contents/hashes and frozen source/tests/configuration are unchanged.
+  Request gains only this controller relocation mapping, not new review scope.
 required_outcome: VERIFIED | CHANGES_REQUESTED | BLOCKED
 approval_evidence: >-
   Maintainer explicitly said "ws-03 approved" on 2026-09-28 after the complete
@@ -120,4 +130,3 @@ preserved_unrelated_paths:
   - docker-bench-security/
   - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
   - packages/friday-sandbox/docker/Dockerfile.audit
-

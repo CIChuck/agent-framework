@@ -785,3 +785,41 @@
   No WS-03 closeout/acceptance, WS-04 code, full-initiative completion or delivery
   operation is inferred. Frozen product and controlling authority will remain
   unchanged while review proceeds.
+
+## 2026-09-28 — VAL-008 Fresh Dispatch Capacity Stop
+
+- Committed request checkpoint `1070cc2` pins stable candidate
+  `397caa9898612cd989f6404951b3e1f5005dfac2` and the complete authority/check
+  manifest. Requested `/root/mcp_ws03_val008` with `fork_turns: none`, read-only
+  role and the committed request, without builder private conclusions.
+- Spawn returned exactly `agent thread limit reached`. No reviewer was created,
+  no dispatch occurred and no independent verdict/report exists. Live-agent
+  inventory shows completed historical contexts; no supported close/reset
+  operation is available. Existing contexts cannot satisfy fresh independence
+  and are not reassigned as validators. No repeated futile spawn/reset attempt.
+- Stop at the required validation gate. Board condition blocked, initiative
+  still started/granted/local; execution phase validation, validation state
+  blocked. This workflow blocker is NOT an independent BLOCKED verdict and
+  does not downgrade accepted WS-00/01/02 or revoke approved WS-03 scope.
+- Resume pinned VAL-008 in a fresh session with agent capacity. No product
+  regeneration or redundant implementation approval is needed. Do not proceed
+  to closeout/acceptance/WS-04 or delivery without the missing verdict/gates.
+- Frozen source/tests/configuration/authority and unrelated five-path manifest
+  are preserved. Controller records only capacity/status metadata; candidate
+  implementation report and pinned request remain byte-identical.
+
+### Policy-required blocked packet relocation
+
+- Board validation correctly rejected condition blocked with an active packet.
+  Relocated exactly the fifty-file MCP packet mechanically to
+  `docs/planning/blocked/friday-mcp/` under lifecycle policy and repaired board
+  evidence/backlinks. Source/tests/config and twenty authority contents remain
+  byte-identical. Historical reports are not substantively amended.
+- VAL-008 request gains a controller-only original-pinned to current-working
+  prefix mapping. At pinned Git revisions use original active paths; for current
+  working-file hashes use blocked paths. This supersedes the preceding request
+  byte-identity sentence solely for that disclosed mapping; review scope,
+  candidate/base/authority hashes and criteria remain unchanged. No reviewer
+  existed or issued a verdict before this relocation.
+- Run fresh VAL-008 from the current blocked request, resolving its latest
+  request/mapping commit. Do not change product code or declare verification.

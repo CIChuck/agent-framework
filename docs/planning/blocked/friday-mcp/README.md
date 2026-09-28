@@ -4,12 +4,12 @@
 title: Friday MCP Client Enhancement
 initiative: friday-mcp
 document_type: initiative-index
-status: active
+status: blocked
 updated: 2026-09-28
-next_gate: fresh read-only VAL-008 complete WS-03 aggregate review
+next_gate: restore fresh-validator capacity and execute pinned VAL-008 review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
 execution_phase: validation
-validation_state: pending
+validation_state: blocked
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -194,3 +194,19 @@ sixteen approved implementation paths, public contracts, checks and baselines.
 twenty controlling authority hashes, all ten criteria and independent checks.
 Current phase validation, state pending; request preparation is not dispatch,
 verification or acceptance. Accepted predecessors remain intact.
+
+Attempted fresh `/root/mcp_ws03_val008` creation with `fork_turns: none` returned
+`agent thread limit reached`. No reviewer was created or dispatched, and no
+independent verdict exists. Existing contexts are completed historical workers,
+not fresh reviewers; no supported close/reset action is exposed. Current
+validation workflow is blocked on fresh-context capacity, distinct from a
+validator's BLOCKED verdict. Board remains started/granted/local with condition
+blocked. Resume the pinned request in a session with fresh-agent capacity;
+do not rebuild the candidate or require redundant scope approval. Source/tests/
+configuration and controlling authority remain frozen at `397caa9`.
+
+Lifecycle policy requires the packet relocation to
+`docs/planning/blocked/friday-mcp/`. Board/backlinks follow the new working
+location. The request's relocation mapping preserves original candidate/authority
+Git paths and byte hashes; no controlling document or product contents change.
+Resolve the request-adding/mapping revision before starting fresh review.
