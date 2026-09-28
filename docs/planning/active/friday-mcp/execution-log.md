@@ -962,3 +962,20 @@
   Request preparation is not dispatch, independent verification or acceptance.
   Only a new fresh context may perform VAL-009. Wider initiative remains
   started/normal/local, accepted predecessors intact; no WS-04/delivery authority.
+
+## 2026-09-28 — Fresh VAL-009 Successfully Dispatched
+
+- Committed request checkpoint `34a457a540ca5e092c332431c824a537dcf7a8b0`,
+  request SHA256
+  `15d4ca5ebbacd828b3b918ca2e6b409e42cd2862042a09062dce07ff23b6e715`.
+  Newly spawned `/root/mcp_ws03_val009` uses `fork_turns: none`, no inherited
+  controller/builder/remediator context, and the exact read-only request.
+- Reviewer reads request/authority while controller records this actual
+  dispatch; formal start snapshot/checks wait for controller GO after the
+  stable dispatch checkpoint. No candidate, request, twenty-two authorities,
+  implementation reports or source/tests/configuration will change during
+  formal review. No builder/remediator conclusions are supplied as evidence.
+- Phase validation/state in_review, queue 6d in progress. No verdict exists
+  yet. Fresh delta and entire WS-03 aggregate review are both mandatory;
+  no acceptance, later-slice authority or delivery inferred. Original five
+  unrelated dirty-path fingerprints still match the controller start snapshot.

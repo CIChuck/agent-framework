@@ -735,3 +735,10 @@ events:
   action: condition normal -> normal
   note: Separate approved REM-005 remediator committed exact eight-path candidate d395acd. Pin fresh VAL-009 delta/full work-unit review and retain historical VAL-008 unchanged; request preparation is not dispatch or verification.
   evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml
+- task: friday-mcp
+  at: '2026-09-28T16:04:35+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: New fresh-context read-only mcp_ws03_val009 successfully spawned with fork_turns none. Formal review starts after stable dispatch metadata and controller GO; candidate/request/22 authorities/reports remain frozen. No verdict or acceptance exists.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml

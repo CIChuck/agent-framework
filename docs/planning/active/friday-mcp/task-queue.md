@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 accepted; REM-005 candidate frozen; fresh VAL-009 delta/aggregate review pending
+Status: WS-02 accepted; REM-005 candidate frozen; fresh VAL-009 delta/aggregate review in progress
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws03-registry`
@@ -62,7 +62,7 @@ report is archived byte-for-byte with [evidence](validation/VAL-008-evidence.yam
 The maintainer explicitly approved bounded REM-005 and its separate remediator
 with "That's approved. Proceed." Separate remediation is complete at `d395acd`;
 next is the pinned fresh VAL-009 delta and complete WS-03 aggregate review.
-Current phase `validation`, validation state `pending`, condition normal;
+Current phase `validation`, validation state `in_review`, condition normal;
 work remains started/granted/local. Eight approved product/test/report paths
 changed from approval checkpoint `215e54d`; twenty original authorities and
 historical request/report/evidence remain unchanged. New review pins approved
@@ -83,7 +83,7 @@ closeout and explicit acceptance; no WS-04 authority.
 | 6a / MCP-NEXT-06A | Record full independent VAL-008 and convert F-001 into bounded REM-005. | Complete: unchanged report/evidence archived and directive drafted. | One medium finding appears exactly once; exact eight-path remediation boundary, six criteria, checks and non-goals are reviewable. |
 | 6b / MCP-NEXT-06B | Approve REM-005 and its separate remediator. | Complete: maintainer said "That's approved. Proceed." | Complete bounded directive and separate remediation explicitly authorized. |
 | 6c / MCP-NEXT-06C | Dispatch separate remediator; correct only F-001, add regressions, run checks and freeze a new candidate. | Complete: separate remediator committed exact eight-path candidate `d395acd`. | 173 focused / 459 aggregate / 46 Chat pass; baseline failures retained, source/report/authority/preservation checks complete; no independent verdict inferred. |
-| 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | Current: request pinned; fresh dispatch pending. | Candidate/authority/report hashes and seventeen checks frozen; all six REM-005 and ten WS-03 criteria must be independently evaluated. Keep VAL-008 unchanged as historical evidence. |
+| 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | In progress: new `/root/mcp_ws03_val009`, `fork_turns: none`, successfully dispatched. | Candidate/authority/report hashes and seventeen checks frozen; all six REM-005 and ten WS-03 criteria must be independently evaluated. Keep VAL-008 unchanged as historical evidence. |
 | 6e / MCP-NEXT-06E | Record verified WS-03 closeout and request explicit work-unit acceptance. | Not ready; depends on independent VERIFIED. | Maintainer acceptance is separate from verification; only after acceptance reconcile/request WS-04 approval. |
 
 Tasks 1–4 are complete, with fresh independent verification and a subsequent

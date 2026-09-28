@@ -9,7 +9,7 @@ updated: 2026-09-28
 next_gate: execute pinned fresh VAL-009 delta and complete WS-03 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: fresh-context [VAL-008](validation/VAL-008-report.md)
@@ -38,6 +38,11 @@ six remediation/ten work-unit criteria and seventeen independent commands.
 Request preparation is not dispatch or verification. Historical VAL-008 remains
 byte-exact; [separate status](validation/VAL-008-status.yaml) supersedes it only
 for decisions on this changed candidate.
+
+New `/root/mcp_ws03_val009` was successfully created with `fork_turns: none`
+for the pinned request. Formal checks begin after this dispatch checkpoint;
+candidate, request, authority and both implementation reports remain frozen.
+Current validation state is `in_review`, with no independent verdict yet.
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
