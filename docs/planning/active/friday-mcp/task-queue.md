@@ -235,3 +235,24 @@ parent/private reasoning or inherited builder context was supplied. Phase
 validation/state in_review; no verdict or acceptance exists yet. Candidate
 source/tests/config, 30 authority documents and four reports remain frozen,
 with 978 tracked product-file hashes and five unrelated fingerprints checked.
+
+## 2026-09-28 — WS-05 VAL-011 Changes Requested; REM-006 Approval Gate
+
+Fresh read-only `/root/mcp_ws05_val011` completed full original WS-05 aggregate
+at frozen `2388e747ba1bf8157881230ad36ae3ef3272b807`, **CHANGES_REQUESTED**,
+with two High findings: F-001 unsafe MCP session snapshot/JSONL/all-session CSV
+env capture; F-002 across-iteration native ID collision with new production
+persistence failure. Complete report and all 182 original evidence members are
+archived byte-for-byte; 149 report links and every artifact hash verify. All 17
+required checks ran; independent matrix 22 passed/five failed. Baselines, package
+resolver limit/successful isolated wheel imports and resource/freeze evidence
+remain explicit. Candidate, 30 authorities/four reports/978 product files and
+five unrelated fingerprints remain unchanged.
+
+Task 8 cannot close or advance to acceptance. The concrete eight-path
+[REM-006 draft](remediation/REM-006-directive.md) converts both findings exactly
+once, with six criteria, regressions, separate-remediator requirement and new
+fresh delta plus complete-aggregate VAL-012. Next gate explicit maintainer approval
+of that draft and separate remediator. Phase remediation/state changes_requested
+is a proposed correction gate, not authority to execute. No fixes or remediator
+dispatch occurred. Accepted predecessors, later-phase and delivery boundaries hold.

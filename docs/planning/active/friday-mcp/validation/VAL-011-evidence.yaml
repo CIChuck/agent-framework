@@ -1,0 +1,50 @@
+id: VAL-011-evidence
+date: '2026-09-28'
+reviewer: /root/mcp_ws05_val011
+fresh_context: true
+governed_workspace_read_only: true
+candidate: 2388e747ba1bf8157881230ad36ae3ef3272b807
+base: a609f948fe2d869ac29d0cce29d22d9334cd7d08
+request_commit: d9d86853c1a68b9473678e468228d5fb37923279
+request_sha256: e8d66cb27cd564ca0ac8b063c86b84481b906eebf535174effd758fff09542e3
+review_modes:
+  work_unit_aggregate: CHANGES_REQUESTED
+overall_outcome: CHANGES_REQUESTED
+findings:
+- id: VAL-011-F-001
+  severity: High
+- id: VAL-011-F-002
+  severity: High
+report: docs/planning/active/friday-mcp/validation/VAL-011-report.md
+report_sha256: 0e79c26a3cb90557228c06db7b7d8cc2de68410b19843c789a8b9f18cf9f3266
+archive: docs/planning/active/friday-mcp/validation/VAL-011-evidence.tar.gz
+archive_sha256: e7c457abf84ba8de84ca87b04ee8a50fa906101157b8682bad980986b69d62c4
+archive_bytes: 1301840
+artifact_count: 182
+archive_format: Original independent deterministic archive copied byte-for-byte; all original members
+  verified
+artifact_manifest: docs/planning/active/friday-mcp/validation/VAL-011-artifact-manifest.json
+artifact_manifest_sha256: 00d765ad4fb93a81f3c20df4e94b8a1322ed193ed19c3ee8b41ea064accbae2d
+delivery_manifest: docs/planning/active/friday-mcp/validation/VAL-011-delivery.json
+delivery_manifest_sha256: b210ea8ee6cc92aeed08df7fcd8c11f76e972e1e5e631268494cb0c897bb8b0c
+portable_report_links_verified: 149
+independent_required_commands: 17
+independent_public_probe_groups: 13
+independent_matrix:
+  passed: 22
+  failed: 5
+  exit_code: 1
+pinned_authorities: 30
+pinned_implementation_reports: 4
+tracked_product_files_preserved: 978
+unrelated_fingerprints_preserved: 5
+restore_command: mkdir -p /private/tmp/val011-restored && tar -xzf docs/planning/active/friday-mcp/validation/VAL-011-evidence.tar.gz
+  -C /private/tmp/val011-restored
+excluded_scratch:
+- runtime databases
+- cache/venv trees
+- extracted source trees
+- temporary export state
+- unrelated artifacts
+acceptance: not supplied
+remediation: not authorized by report; proposed REM-006 needs explicit maintainer approval

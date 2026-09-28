@@ -6,23 +6,28 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: fresh read-only VAL-011 complete WS-05 aggregate review
+next_gate: approve REM-006 and separate remediation of VAL-011 F-001/F-002
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
-Current checkpoint: approved WS-05 produced frozen candidate `2388e747ba1bf8157881230ad36ae3ef3272b807`
-from base `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. The [implementation report](execution/WS-05-implementation-report.md)
-and [lossless builder evidence](execution/WS-05-builder-evidence.yaml) record
-the 23 approved deliverables, required checks, local synthetic-peer UAT,
-package/import checks, baseline reproduction and preservation. The pinned
-[VAL-011 request](validation/VAL-011-request.yaml) requires a new fresh-context,
-read-only complete WS-05 aggregate review; new `/root/mcp_ws05_val011` with `fork_turns: none` is now reviewing the frozen request.
-Phase validation/state in_review. WS-00 through WS-04 remain accepted, including
-complete fresh [VAL-010](validation/VAL-010-report.md) and explicit
-[WS-04 acceptance](execution/WS-04-closeout.md). The wider initiative remains
-started/granted/normal/local. No WS-05 acceptance or later-slice/delivery authority.
+Current checkpoint: fresh `/root/mcp_ws05_val011`, `fork_turns: none`, returned
+complete WS-05 aggregate **CHANGES_REQUESTED** for frozen `2388e74`, with two
+High findings. The [complete independent report](validation/VAL-011-report.md)
+and [all 182 original evidence members](validation/VAL-011-evidence.yaml) are
+preserved byte-for-byte. F-001 concerns MCP env values in session snapshots,
+JSONL and all-session CSV; F-002 concerns later native ID reuse and new production
+persistence failure. All 17 required commands, 22 passing/five failing independent
+probes, baseline reproduction, offline wheel/import checks and frozen preservation
+are recorded in the [review checkpoint](execution/WS-05-closeout.md).
+
+Next is explicit approval of the eight-path [REM-006 proposal](remediation/REM-006-directive.md)
+and separate remediator. Phase remediation/state changes_requested; no fixes or
+remediator dispatch are authorized by the draft. WS-00 through WS-04 remain
+accepted. The wider initiative remains started/granted/normal/local. WS-05
+acceptance, later phases and delivery remain gated. Earlier checkpoints below
+are historical and do not override this current review result.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with

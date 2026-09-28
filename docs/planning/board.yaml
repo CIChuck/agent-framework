@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh read-only VAL-011 complete WS-05 aggregate review
+  next_gate: approve REM-006 and separate remediation of VAL-011 F-001/F-002
   delivery_state: local
   branch: feature/friday-mcp-ws05-execution
   depends_on: []
@@ -77,6 +77,9 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-03-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-010-report.md
   - docs/planning/active/friday-mcp/execution/WS-04-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-011-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-011-evidence.yaml
+  - docs/planning/active/friday-mcp/execution/WS-05-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
