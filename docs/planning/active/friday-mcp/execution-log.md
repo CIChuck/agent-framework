@@ -345,3 +345,14 @@
 - Execution phase is `validation`; validation state is `pending` until a
   fresh-context read-only validator reviews the frozen candidate and exact
   authority. Initiative remains `started`; delivery remains local.
+
+## 2026-09-27 — WS-02 Candidate Frozen And Independent Review Requested
+
+- Stable candidate `5a2856dea0f57208906fbd6eae5419d716bbf55a` is frozen
+  against authorization `5c31f7c19f93d8b461dd90936e459ba9e28a4a5d` and
+  accepted predecessor `a64e423cffca6162c43b8cfa193792508cf87fd6`.
+- [VAL-005](validation/VAL-005-request.yaml) pins thirteen authority hashes,
+  both exact diffs, acceptance criteria, checks, exclusions, and known
+  baselines. The fresh-context validator operates read-only against that
+  candidate. Request/process metadata do not change reviewed source/tests or
+  controlling authority; no completion or acceptance is implied.
