@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh VAL-007 delta and complete WS-02 aggregate review of frozen candidate
+  next_gate: receive fresh VAL-007 delta and complete WS-02 aggregate verdict
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []

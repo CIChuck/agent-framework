@@ -598,3 +598,20 @@
   VAL-007 dispatch and complete review. New-agent capacity must be checked;
   no current context may be relabeled fresh. No WS-02 acceptance, later-slice
   implementation, push, merge, release or external effect is authorized here.
+
+## 2026-09-28 — Fresh VAL-007 Successfully Dispatched
+
+- Following the final remediator completion, fresh agent creation succeeded:
+  `/root/mcp_ws02_val007`, `fork_turns: none`. The earlier thread-capacity stop
+  is historical and has not been waived by reusing a reviewer context.
+- The reviewer received only the repository-visible pinned request, exact
+  candidate/ranges/authority requirements, read-only/local-only constraints,
+  explicit probe cleanup and reporting contract; no builder private reasoning
+  or conclusions. It may not remediate or accept its candidate.
+- The request-adding commit is `201f4d1`; full revision must be resolved by the
+  reviewer. Candidate remains `a257f041d1d68f8aea2f5b9773df1b88acd82379`.
+  This dispatch update affects only board/dashboard/index/queue/log metadata,
+  not request, authority hashes, product source/tests/config or findings.
+- Execution phase `validation`, validation state `in_review`; board next gate
+  is receipt of delta and complete WS-02 aggregate verdict. No outcome,
+  acceptance, later-workstream approval or delivery is inferred.

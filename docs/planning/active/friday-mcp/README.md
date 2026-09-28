@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: dispatch fresh VAL-007 delta and complete WS-02 aggregate review of frozen candidate
+next_gate: receive fresh VAL-007 delta and complete WS-02 aggregate verdict
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -139,3 +139,8 @@ decision purposes without changing its findings. The pinned
 delta and entire WS-02 aggregate review; request preparation is not dispatch
 or verification. Execution phase is `validation`, validation state `pending`.
 No WS-02 acceptance, later-workstream approval or delivery is inferred.
+
+Fresh `/root/mcp_ws02_val007` was successfully created with `fork_turns: none`
+after the remediator completed. It is performing the pinned read-only review;
+the earlier capacity stop is historical, not a current blocker. Execution phase
+remains `validation`, validation state is now `in_review`. No verdict exists yet.

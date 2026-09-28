@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: REM-004 committed; fresh VAL-007 independent review pending dispatch
+Status: REM-004 committed; fresh VAL-007 independent review in progress
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws02-lifecycle`
@@ -29,7 +29,7 @@ each handoff. An approved future step is not a claim that it has started.
   been reassigned/dispatched as the separate remediator; it was not a WS-02
   builder/remediator and will not validate its new work. Correction, required
   checks and exact six-path commit are complete at `a257f04`; fresh-validator
-  capacity remains unresolved. [VAL-007](validation/VAL-007-request.yaml) pins
+  creation succeeded after remediation completion. [VAL-007](validation/VAL-007-request.yaml) pins
   the candidate, authority manifest, full scope and all required checks.
 - WS-03 through WS-08: draft, not approved for implementation. WS-09: deferred
   optional scope. Initiative remains `started`; delivery remains `local`.
@@ -40,7 +40,7 @@ each handoff. An approved future step is not a claim that it has started.
 | --- | --- | --- | --- |
 | 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | Complete: reassigned separate remediator executed the approved scope. | No MCP base/manager/runtime product changes or private boundary reach-through; exact six-path correction committed. |
 | 2 / MCP-NEXT-02 | Add direct/public-kernel noisy-peer regressions, retained-owner and cancellation coverage; run required checks and commit evidence. | Complete: frozen candidate `a257f04`, [implementation report](execution/REM-004-implementation-report.md). | 39 focused, 333 aggregate, 32 loading and 46 Chat tests pass; integration 44 pass plus declared board-count baseline; Ruff and prescribed typing pass. No independent verdict inferred. |
-| 3 / MCP-NEXT-03 | Freeze the new candidate and request fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Current: candidate frozen, historical status note retained and pinned request prepared; fresh dispatch pending capacity. | Independent production retry/cleanup probes, every criterion, baseline separation and one overall review outcome; existing contexts cannot be relabeled fresh. |
+| 3 / MCP-NEXT-03 | Freeze the new candidate and request fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | In progress: new `/root/mcp_ws02_val007` created with `fork_turns: none`; candidate/request frozen. | Independent production retry/cleanup probes, every criterion, baseline separation and one overall review outcome; existing contexts cannot be relabeled fresh. |
 | 4 / MCP-NEXT-04 | Record WS-02 closeout and request explicit maintainer acceptance. | Only after task 3 returns overall VERIFIED. | Independent report and work-unit closeout recorded; maintainer acceptance recorded separately. If this second WS-02 remediation cycle fails, stop and return unresolved findings to the maintainer rather than auto-remediate again. |
 | 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Waits for WS-02 acceptance. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
 
@@ -49,10 +49,11 @@ The controller may not self-repair or
 relabel that agent or another existing reviewer as fresh validation. If new
 validator creation still fails after candidate freeze, stop at task 3 and
 resume review in a session with fresh-agent capacity; do not waive the gate.
-No new remediation scope approval is needed. Task 3 has a frozen request but
-no reviewer verdict; task 4 and later gates remain unstarted. Fresh dispatch
-must be attempted and recorded separately; passing implementation checks
-cannot waive that gate.
+No new remediation scope approval is needed. Fresh VAL-007 creation succeeded
+after the remediator completed; the earlier capacity stop is historical.
+Task 3 has a frozen request and active independent reviewer but no verdict;
+task 4 and later gates remain unstarted. Passing implementation checks cannot
+waive independent review.
 
 Required implementation checks are listed in REM-004. Keep the unchanged
 integration test expecting 22 rather than 23 board tasks and the default-target
