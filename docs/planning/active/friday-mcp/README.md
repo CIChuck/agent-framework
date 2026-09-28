@@ -9,7 +9,7 @@ updated: 2026-09-28
 next_gate: fresh read-only VAL-011 complete WS-05 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: approved WS-05 produced frozen candidate `2388e747ba1bf8157881230ad36ae3ef3272b807`
@@ -18,8 +18,8 @@ and [lossless builder evidence](execution/WS-05-builder-evidence.yaml) record
 the 23 approved deliverables, required checks, local synthetic-peer UAT,
 package/import checks, baseline reproduction and preservation. The pinned
 [VAL-011 request](validation/VAL-011-request.yaml) requires a new fresh-context,
-read-only complete WS-05 aggregate review; preparation does not supply a verdict.
-Phase validation/state pending. WS-00 through WS-04 remain accepted, including
+read-only complete WS-05 aggregate review; new `/root/mcp_ws05_val011` with `fork_turns: none` is now reviewing the frozen request.
+Phase validation/state in_review. WS-00 through WS-04 remain accepted, including
 complete fresh [VAL-010](validation/VAL-010-report.md) and explicit
 [WS-04 acceptance](execution/WS-04-closeout.md). The wider initiative remains
 started/granted/normal/local. No WS-05 acceptance or later-slice/delivery authority.

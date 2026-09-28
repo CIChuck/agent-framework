@@ -1216,3 +1216,13 @@ wheel/import proof and preservation are recorded. Phase validation/state pending
 next gate fresh read-only complete-aggregate [VAL-011](validation/VAL-011-request.yaml).
 Request preparation is not dispatch, verification or acceptance. Accepted WS-00
 through WS-04 and five unrelated dirty paths remain intact. No later phase or delivery.
+
+## 2026-09-28 — Fresh VAL-011 Dispatched
+
+New `/root/mcp_ws05_val011` was created with `fork_turns: none` after request
+commit `d9d8685`. It received only the pinned request, frozen candidate/base,
+read-only restrictions and required complete independent report/evidence. No
+parent/private reasoning or inherited builder context was supplied. Phase
+validation/state in_review; no verdict or acceptance exists yet. Candidate
+source/tests/config, 30 authority documents and four reports remain frozen,
+with 978 tracked product-file hashes and five unrelated fingerprints checked.
