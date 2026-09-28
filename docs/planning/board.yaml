@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: implement approved WS-04 and freeze candidate for fresh VAL-010
+  next_gate: obtain fresh read-only VAL-010 complete WS-04 aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws04-chat-budget
   depends_on: []
@@ -765,3 +765,10 @@ events:
   action: condition normal -> normal
   note: Maintainer explicitly approved reviewed WS-04 scope with proceed - lets build it; exact directive/readiness reconciled and dedicated branch created before product edits.
   evidence: docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: WS-04 stable candidate 53d76d45cedea16122436e53b178de074c5bc322 frozen; exact VAL-010 request pins 26 authorities and three reports. Fresh review pending, not verified or accepted.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml

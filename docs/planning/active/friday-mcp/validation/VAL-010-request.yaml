@@ -1,0 +1,208 @@
+id: VAL-010
+initiative: friday-mcp
+work_unit: MCP-WS-04
+date: '2026-09-28'
+status: requested
+branch: feature/friday-mcp-ws04-chat-budget
+review_modes:
+- work_unit_aggregate
+base_commit: acd1fd1e736a38134fac40d7fdb35cd1f32cf683
+work_unit_base_commit: acd1fd1e736a38134fac40d7fdb35cd1f32cf683
+candidate_commit: 53d76d45cedea16122436e53b178de074c5bc322
+diff_range: acd1fd1e736a38134fac40d7fdb35cd1f32cf683..53d76d45cedea16122436e53b178de074c5bc322
+work_unit_authorization_commit: ac4530ac8063f299776c807cfa22140e3cff184a
+accepted_predecessor_product: d395acdba9e233cb226f54e6258575f480157cf1
+authority_revision: 53d76d45cedea16122436e53b178de074c5bc322
+approval_evidence: Maintainer explicitly said "proceed - lets build it" after reviewing the complete eight-feature
+  WS-04 scope. Exact directive/readiness and branch/start recorded before product edits. No later-slice
+  or delivery authority.
+acceptance_criteria:
+- 'MCP-04-AC-01: canonical strict config bridge, compatible disabled/native/fake startup and no duplicate
+  MCP authority.'
+- 'MCP-04-AC-02: real direct Chat public registry discovery/metadata/exact original routing, lifecycle
+  owner retained across failed cleanup/retry and app exit; commands coherent without manager internals
+  or changed runtime budgets.'
+- 'MCP-04-AC-03: per-turn total/MCP counts, aggregate/per-tool costs, defensive schema/metadata validation
+  and independent model-bound schema snapshots.'
+- 'MCP-04-AC-04: output/system/schema/result reservation calculated before memory retrieval; exact remaining
+  limit passed to retrieval, same streaming behavior.'
+- 'MCP-04-AC-05: floor preserved through deterministic optional reduction, including empty/native/MCP/mixed
+  tools and impossible-base-budget failure.'
+- 'MCP-04-AC-06: explicit required/complete manual sets never silently omitted; unavailable/invalid/over-budget
+  requirements fail before memory/model calls.'
+- 'MCP-04-AC-07: injectable typed estimator with pinned compatible native behavior and conservative MCP
+  cost; no broad suppressions/dependency/config drift.'
+- 'MCP-04-AC-08: safe typed selection/budget reasons and command diagnostics with no peer secrets/unsafe
+  schemas in errors/logs/repr; accurate migration/report and frozen local-only validation with all required
+  checks and residual gates.'
+authority:
+- path: AGENTS.md
+  sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+- path: docs/reference/policies/repository-engineering-policy.md
+  sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+- path: docs/reference/policies/development-task-lifecycle.md
+  sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+- path: docs/reference/policies/independent-validation-policy.md
+  sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+- path: docs/planning/active/friday-mcp/build-plan.md
+  sha256: 17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00
+- path: docs/planning/active/friday-mcp/tactical-plan.md
+  sha256: ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba
+- path: docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md
+  sha256: c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd
+- path: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
+  sha256: ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac
+- path: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md
+  sha256: 96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319
+- path: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+  sha256: a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d
+- path: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+  sha256: b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680
+- path: docs/planning/active/friday-mcp/remediation/REM-004-directive.md
+  sha256: 1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b
+- path: docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+  sha256: 434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486
+- path: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+  sha256: 8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b
+- path: docs/planning/active/friday-mcp/execution/WS-02-closeout.md
+  sha256: df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3
+- path: docs/planning/active/friday-mcp/validation/VAL-002-report.md
+  sha256: cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566
+- path: docs/planning/active/friday-mcp/validation/VAL-004-report.md
+  sha256: d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f
+- path: docs/planning/active/friday-mcp/validation/VAL-007-report.md
+  sha256: 649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6
+- path: docs/planning/active/friday-mcp/rebaseline-2026-09-27.md
+  sha256: ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a
+- path: docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md
+  sha256: 2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521
+- path: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
+  sha256: 5bff5b4b043d504384219d85af958bfffc4da584e057d910d35da3cb0a4c3ecb
+- path: docs/planning/active/friday-mcp/validation/VAL-008-report.md
+  sha256: 1bf0b019e0ba69f75eb638e1aa68f89a3d90088e2471dea11ce7ee76c1b46d0c
+- path: docs/planning/active/friday-mcp/execution/WS-03-closeout.md
+  sha256: 07f635f7f58f498227ab86175584da9ce6a19cba6a8af0edaa7dd04ca0e8c250
+- path: docs/planning/active/friday-mcp/validation/VAL-009-report.md
+  sha256: 69fc9a1355e1de082396fc5259064f9c88976d25f57dd518126bac414dece05a
+- path: docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md
+  sha256: f84b5fb3e91b58f6105e1ee803d402ae902ea937af1dc146ba41274c8e99646a
+- path: docs/planning/active/friday-mcp/execution/WS-04-readiness-checkpoint.md
+  sha256: db9892cfe82e16af3635e283bcae3563ab8e07e5cbe72bb43b8deb8b65ed2f8b
+candidate_report_hashes:
+- path: docs/planning/active/friday-mcp/execution/REM-005-implementation-report.md
+  sha256: df3207f11d0beab740599346ffa9b9a9ec76eb1b9aca6861093956014cafebd1
+- path: docs/planning/active/friday-mcp/execution/WS-03-implementation-report.md
+  sha256: 836cbe11243da78ba34f739f808b97ee52dda264b3448c51d3763caae1d31965
+- path: docs/planning/active/friday-mcp/execution/WS-04-implementation-report.md
+  sha256: e643b6249c85ad77e976b635d7bc9fd974319dd9741479f1062385f619132f8d
+allowed_product_paths:
+- packages/friday-chat/src/friday_chat/config.py
+- packages/friday-chat/src/friday_chat/tools/selection.py
+- packages/friday-chat/src/friday_chat/tools/mcp.py
+- packages/friday-chat/src/friday_chat/turns/processor.py
+- packages/friday-chat/src/friday_chat/commands/tools.py
+- packages/friday-chat/src/friday_chat/runtime.py
+- packages/friday-chat/src/friday_chat/app.py
+allowed_test_paths:
+- packages/friday-chat/tests_chat/test_mcp_config_compatibility.py
+- packages/friday-chat/tests_chat/test_mcp_turn_budget.py
+- packages/friday-chat/tests_chat/test_mcp_chat_bridge.py
+allowed_implementation_report: docs/planning/active/friday-mcp/execution/WS-04-implementation-report.md
+controller_artifact_scope: Readiness/approval, builder evidence archive/manifest, request/review/evidence/closeout,
+  queue/index/log/board/dashboard only; not product behavior.
+required_checks:
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat
+  -q --tb=short
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-runtime/tests_runtime
+  -q
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-memory/tests_memory
+  -q
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core
+  packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime tests/integration/test_mcp_registry.py
+  tests/integration/test_mcp_runtime_lifecycle.py -q
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest tests/integration
+  -q --tb=short
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-chat
+  packages/friday-runtime packages/friday-memory
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-chat
+  packages/friday-runtime packages/friday-memory
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version
+  3.13 packages/friday-chat/src/friday_chat/config.py packages/friday-chat/src/friday_chat/tools/selection.py
+  packages/friday-chat/src/friday_chat/tools/mcp.py packages/friday-chat/src/friday_chat/turns/processor.py
+  packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/app.py packages/friday-chat/src/friday_chat/commands/tools.py
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py
+  validate
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py
+  render --check
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py
+- LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py
+  packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-chat/tests_chat/test_mcp_chat_bridge.py
+  packages/friday-chat/tests_chat/test_tool_selection_budget.py packages/friday-chat/tests_chat/test_turn_processing.py
+  -q
+- git diff --check acd1fd1e736a38134fac40d7fdb35cd1f32cf683..53d76d45cedea16122436e53b178de074c5bc322
+- git diff --exit-code 53d76d45cedea16122436e53b178de074c5bc322 -- packages tests pyproject.toml uv.lock
+- git diff --exit-code 53d76d45cedea16122436e53b178de074c5bc322 -- docs/planning/active/friday-mcp/execution/WS-04-implementation-report.md
+known_baselines_to_verify:
+- 'Before WS-04 edits, full Chat suite: 436 passed, 5 skipped, one unchanged provider-free PTY acknowledgement
+  failure and three local HTTP fixture PermissionError socket-bind errors in this restricted sandbox.
+  Independently establish predecessor reproduction and separate environment from source regressions.'
+- Integration test_development_board.py line 75 expects 22 tasks while the canonical board has 23; independently
+  verify accepted predecessor and unchanged assertion.
+- 'Required default mypy: installed NumPy __init__.pyi line 737 type-statement syntax under default Python
+  3.10 target stops project checking; run required command and independent predecessor reproduction. Seven
+  changed-source Python 3.13 typing must pass; broad ignore additions prohibited.'
+reviewer_instructions:
+- Use a newly spawned fresh context with fork_turns none. Do not read parent/builder/remediator sessions
+  or private reasoning; do not adopt builder conclusions or rely solely on candidate tests.
+- Read AGENTS.md, all 26 pinned authority documents and the exact complete candidate diff; assess all
+  eight criteria. Prior reports/closeouts are frozen accepted contract evidence, not a verdict on new
+  WS-04 behavior.
+- 'Read-only governed workspace: no source/report/process edits, staging, commits, board changes, remediation,
+  cleanup or delivery. Scratch scripts/logs under /private/tmp allowed. Return full independent report
+  to controller.'
+- Verify candidate/request/authority/report hashes and all tracked product/config bytes at start and closeout.
+  Controller will not change candidate source/tests/configuration, pinned authority or implementation
+  reports during formal review. Separately excluded process metadata may record dispatch/status.
+- Run every required command independently and establish baseline failures at accepted predecessor; record
+  exact exits/results rather than silently filtering or waiving failures.
+- 'Add independent public Chat construction/start/turn/commands probes with local fake peers: exact original
+  routing, native collision preservation, metadata sidecar, idempotency, EOF/start failure/cancellation,
+  incomplete-stop retained owner and retry. Do not reach into manager internals to implement or excuse
+  consumer behavior.'
+- Probe empty/native/MCP/mixed schemas, total/subset/aggregate/per-tool caps, accepted cost overhead/current-export
+  mutation, metadata eligibility, annotation/shape attacks and independent prompt copies.
+- Probe exact memory formula and retrieval limit, streaming parity, impossible base floor, optional MCP
+  reduction before optional native loss, explicit required/manual full sets and no memory/model calls
+  on required failure.
+- Probe diagnostics for selected/skipped/cost/result/floor/before-after values and safe error/log/repr
+  output, estimator injection/native compatibility, disabled/fake/native legacy paths and exact scope/typing/dependency
+  boundaries.
+- Native registry exports remain mutable for trusted in-process callers; consumer MCP schemas must be
+  copied/revalidated. Do not invent exact tokenizer parity, universal injection prevention, actual result
+  truncation/sanitation, complete future-history accounting or later-slice output/provenance/storage requirements.
+- Maintain accepted production transport cleanup budgets. Independent fixtures/probes must settle tasks
+  and kill/drain/reap subprocesses in finally, including assertion failure; distinguish asserted public
+  cleanup from defensive teardown.
+- Record reviewer identity/date/model availability, fresh/no shared context, exact revisions/hashes/diff,
+  complete criterion evidence, every command/exit/result, numbered findings with severity/authority/reproduction/mitigation,
+  documentation/config impact and residual gates.
+- Return exactly one overall outcome VERIFIED, CHANGES_REQUESTED or BLOCKED; full work_unit_aggregate
+  outcome. VERIFIED is not acceptance. Any changed input requires fresh review.
+- Write report/evidence only in scratch and provide exact artifact manifest to controller. Use archive-member
+  links VAL-010-evidence.tar.gz#member-name for command/probe evidence so the complete byte-exact report
+  can be archived without navigation changes. Use valid contiguous Markdown tables and record that model/version
+  is unavailable if not exposed.
+permitted_validation:
+- Deterministic local doubles and bounded local stdio fake peers only; no live MCP/model/provider/network/credentials/costs/delivery.
+- Use LITELLM_LOCAL_MODEL_COST_MAP=true, UV_CACHE_DIR=/private/tmp/friday-uv-cache, UV_OFFLINE=true and
+  PYTHONDONTWRITEBYTECODE=1 as appropriate; do not inspect secret values. Existing blocked localhost fixtures
+  must be reported, not repaired or replaced by external services.
+preserved_unrelated_paths:
+- .DS_Store
+- family-tree.md
+- docker-bench-security/
+- packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+- packages/friday-sandbox/docker/Dockerfile.audit
+metadata_note: The aggregate includes approved controller preparation and two builder-evidence artifacts
+  alongside exactly eleven implementation paths. Complete initiative pre-merge aggregate, WS-04 acceptance,
+  WS-05+ implementation and delivery remain separate gates.

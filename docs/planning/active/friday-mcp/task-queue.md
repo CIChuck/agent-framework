@@ -153,3 +153,12 @@ required checks, freeze a candidate, obtain fresh read-only VAL-010, then propos
 closeout for explicit acceptance. WS-05 and later implementation remains draft.
 Current phase implementation/state not_ready; accepted WS-00 through WS-03
 remain intact. Later execution/delivery retains separate approval gates.
+
+## 2026-09-28 — WS-04 Candidate And VAL-010 Request
+
+Task 7 implementation/check/commit complete at `53d76d45cedea16122436e53b178de074c5bc322`.
+Next is new fresh-context read-only VAL-010, complete WS-04 aggregate from
+`acd1fd1e736a38134fac40d7fdb35cd1f32cf683`, all eight criteria and independent required checks/probes.
+Request pins 26 authorities and three reports. Current phase validation/state
+pending; no verdict, acceptance, WS-05 authority or delivery is inferred.
+All five unrelated path fingerprints and predecessor contracts remain unchanged.

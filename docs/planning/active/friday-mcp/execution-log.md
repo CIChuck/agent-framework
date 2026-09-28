@@ -1073,3 +1073,30 @@
 - Original five dirty-path fingerprints match. No cleanup/broad staging, live
   MCP/network/model/provider/credentials or delivery. Baseline commands run in
   scratch and remain separate from implementation verification. WS-05+ unapproved.
+
+## 2026-09-28 — WS-04 Implementation Frozen; Fresh VAL-010 Pending
+
+- Stable candidate `53d76d45cedea16122436e53b178de074c5bc322` from accepted base `acd1fd1e736a38134fac40d7fdb35cd1f32cf683` and approval/start
+  `ac4530a`, exactly seven source/three test/one report paths plus two controller
+  builder-evidence artifacts. No accepted framework/transport/native source,
+  dependency/config example, transcript/ingestion/telemetry or later-slice edits.
+- Public Chat provider/registry owner and exact callable routing; canonical
+  config, metadata/schema copy checks, count/cost/reservation/floor policy,
+  optional MCP reduction, required/manual failure and safe budget diagnostics.
+- Independent verdict remains pending. Builder evidence records 84 focused,
+  190 Runtime, 680 Memory/1 skip and 440 accepted MCP passes. Full Chat: 479
+  passes/5 skips plus unchanged PTY failure and three blocked localhost fixture
+  errors independently baselined before edits; integration 69 passes/unchanged
+  board-count failure, reproduced from extracted accepted predecessor. Default
+  NumPy typing fails unchanged; all seven changed sources pass meaningful
+  Python 3.13 typing. Ruff, board/dashboard and docs/whitespace checks pass.
+- Complete [report](execution/WS-04-implementation-report.md) and lossless
+  [builder evidence](execution/WS-04-builder-evidence.yaml) retain commands,
+  failures/development iterations and exact preservation hashes. Twenty-four
+  prior pinned inputs, 961 prior product files outside scope, and all five
+  unrelated roots remain unchanged; only named paths staged.
+- [VAL-010 request](validation/VAL-010-request.yaml) freezes exact complete
+  work-unit diff, 26 authority/three report hashes and all eight criteria.
+  Fresh context/read-only required; do not pass private builder reasoning or
+  rely on builder conclusions. Phase validation/state pending; not dispatched,
+  verified, accepted or delivered. No product/report/authority edits during review.

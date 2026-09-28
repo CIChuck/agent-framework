@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: implement approved WS-04 and freeze candidate for fresh VAL-010
+next_gate: obtain fresh read-only VAL-010 complete WS-04 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 Current checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
@@ -201,7 +201,7 @@ candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379` and its complete VAL-007
 review. Queue tasks 1–4 are complete. Next is bounded WS-03 directive/readiness
 reconciliation, followed by an explicit approval request; no WS-03 code is
 authorized. Current process fields now describe that next-slice preparation:
-`execution_phase: planning`, `validation_state: not_ready`, not a reversal of
+`execution_phase: planning`, `validation_state: pending`, not a reversal of
 accepted WS-02's independently verified result. The wider initiative remains
 `started` and local, with no packet archive or delivery transition.
 
@@ -250,3 +250,17 @@ The fresh reviewer resolved the request/mapping revision as `b8e1f04`, matched
 all twenty authority hashes at start and closeout, and completed the review
 without inherited parent/builder context. The original request and frozen
 authority remain unchanged. Current result and next gate are recorded above.
+
+## 2026-09-28 — WS-04 Candidate Frozen
+
+Candidate `53d76d45cedea16122436e53b178de074c5bc322` implements the eleven approved source/test/report
+paths; two controller builder-evidence artifacts preserve exact logs.
+[Implementation report](execution/WS-04-implementation-report.md) records
+84 focused, 190 Runtime, 680 Memory and 440 accepted MCP passes, plus explicit
+unchanged Chat sandbox/PTY, board-count and default NumPy typing baselines.
+Seven-source meaningful typing and Ruff pass.
+[VAL-010 request](validation/VAL-010-request.yaml) pins complete WS-04
+`acd1fd1e736a38134fac40d7fdb35cd1f32cf683..53d76d45cedea16122436e53b178de074c5bc322`, 26 authority and three report hashes, all eight criteria,
+required checks and fresh independent probes. Phase validation/state pending;
+request preparation is not dispatch, verification or acceptance. Accepted
+predecessors and all unrelated local work remain intact.
