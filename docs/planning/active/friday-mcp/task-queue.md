@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: REM-004 and complete WS-02 independently verified; maintainer acceptance pending
+Status: WS-02 explicitly accepted; bounded WS-03 preparation is the next gate
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws02-lifecycle`
@@ -16,14 +16,16 @@ each handoff. An approved future step is not a claim that it has started.
 
 ## Current Checkpoint
 
-- WS-00 contracts/defaults and WS-01 strict configuration: independently
-  verified and explicitly accepted.
-- WS-02 runtime lifecycle: implemented but not accepted. Historical VAL-006
+- WS-00 contracts/defaults, WS-01 strict configuration and WS-02 runtime
+  lifecycle: independently verified and explicitly accepted.
+- WS-02: the maintainer explicitly said "WS-02 accepted" on 2026-09-28.
+  [Closeout](execution/WS-02-closeout.md) records that decision for candidate
+  `a257f04`. Historical VAL-006
   verified REM-003's delta but requested aggregate changes for a production
   stdio shutdown hang. That report is superseded for current-candidate decisions,
   with its full verdict/findings retained. Fresh [VAL-007](validation/VAL-007-report.md)
   verifies both remediation delta and complete current WS-02 aggregate with no
-  findings. [WS-02 closeout](execution/WS-02-closeout.md) is ready for acceptance.
+  findings. Acceptance is for this work unit only, not the wider initiative.
 - REM-004: explicitly approved by the maintainer on 2026-09-28, including a
   separate remediator. The subsequent "proceed" execution attempt
   hit `agent thread limit reached` for both new dispatch and prior-remediator
@@ -43,8 +45,8 @@ each handoff. An approved future step is not a claim that it has started.
 | 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | Complete: reassigned separate remediator executed the approved scope. | No MCP base/manager/runtime product changes or private boundary reach-through; exact six-path correction committed. |
 | 2 / MCP-NEXT-02 | Add direct/public-kernel noisy-peer regressions, retained-owner and cancellation coverage; run required checks and commit evidence. | Complete: frozen candidate `a257f04`, [implementation report](execution/REM-004-implementation-report.md). | 39 focused, 333 aggregate, 32 loading and 46 Chat tests pass; integration 44 pass plus declared board-count baseline; Ruff and prescribed typing pass. No independent verdict inferred. |
 | 3 / MCP-NEXT-03 | Freeze candidate and obtain fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Complete: fresh context returned delta, aggregate and overall VERIFIED, no findings. | Full report preserves pinned authority, exact scope, required checks, independent production/resource-integrity probes, baselines and residual risks. |
-| 4 / MCP-NEXT-04 | Record WS-02 closeout and request explicit maintainer acceptance. | Current: report and [closeout](execution/WS-02-closeout.md) recorded; waiting for explicit acceptance. | Only maintainer accepts this work unit; no wider initiative completion or later-workstream authority inferred. |
-| 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Waits for WS-02 acceptance. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
+| 4 / MCP-NEXT-04 | Record WS-02 closeout and explicit maintainer acceptance. | Complete: maintainer said "WS-02 accepted" on 2026-09-28; decision recorded in [closeout](execution/WS-02-closeout.md). | Work-unit acceptance only; no wider initiative completion or later-workstream authority inferred. |
+| 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Next: WS-02 dependency satisfied; preparation has not started. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
 
 Tasks 1–2 are complete as implementation/check/commit steps, not validation or acceptance.
 The controller may not self-repair or
@@ -53,10 +55,11 @@ validator creation still fails after candidate freeze, stop at task 3 and
 resume review in a session with fresh-agent capacity; do not waive the gate.
 No new remediation scope approval is needed. Fresh VAL-007 creation succeeded
 after the remediator completed; the earlier capacity stop is historical.
-Task 3 is complete with the fresh independent report. Task 4 is at its explicit
-maintainer acceptance gate; task 5 and later remain unstarted. The report's
-VERIFIED result does not substitute for acceptance. Current execution phase
-is `closeout`; validation state is `verified`.
+Tasks 1–4 are complete, with fresh independent verification and a subsequent
+explicit maintainer acceptance decision. Task 5 is the next planning/readiness
+gate; it and later tasks remain unstarted. Current process fields describe
+WS-03 preparation: execution phase `planning`, validation state `not_ready`.
+They do not invalidate the accepted WS-02 verification or authorize WS-03 code.
 
 Required implementation checks are listed in REM-004. Keep the unchanged
 integration test expecting 22 rather than 23 board tasks and the default-target

@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer acceptance of independently verified WS-02 work-unit closeout
+  next_gate: reconcile bounded WS-03 directive and request explicit maintainer approval
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []

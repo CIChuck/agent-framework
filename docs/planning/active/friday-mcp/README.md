@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: explicit maintainer acceptance of independently verified WS-02 work-unit closeout
+next_gate: reconcile bounded WS-03 directive and request explicit maintainer approval
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
-execution_phase: closeout
-validation_state: verified
+execution_phase: planning
+validation_state: not_ready
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -18,7 +18,9 @@ candidate. REM-004 corrects the noisy-subprocess shutdown hang in frozen
 candidate `a257f04`; fresh independent [VAL-007](validation/VAL-007-report.md)
 verified both the delta and complete WS-02 aggregate with no findings,
 including the prior startup-retry ownership correction. The
-[WS-02 closeout](execution/WS-02-closeout.md) awaits explicit maintainer acceptance.
+[WS-02 closeout](execution/WS-02-closeout.md) records explicit maintainer acceptance
+on 2026-09-28. WS-00, WS-01 and WS-02 are accepted work units; the wider
+initiative remains started and local.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
@@ -155,3 +157,13 @@ records the verified work unit, not wider initiative completion. Current
 execution phase is `closeout`, validation state `verified`; next gate is
 explicit maintainer WS-02 acceptance. No acceptance or WS-03 authority has
 been inferred. The wider initiative remains `started` and local.
+
+The maintainer subsequently explicitly said "WS-02 accepted" on 2026-09-28.
+That acceptance is recorded in the closeout and execution log for frozen
+candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379` and its complete VAL-007
+review. Queue tasks 1–4 are complete. Next is bounded WS-03 directive/readiness
+reconciliation, followed by an explicit approval request; no WS-03 code is
+authorized. Current process fields now describe that next-slice preparation:
+`execution_phase: planning`, `validation_state: not_ready`, not a reversal of
+accepted WS-02's independently verified result. The wider initiative remains
+`started` and local, with no packet archive or delivery transition.

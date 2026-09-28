@@ -1,13 +1,16 @@
 # MCP-WS-02 Work-Unit Closeout
 
 Date: 2026-09-28
-Status: Independently verified; awaiting explicit maintainer acceptance
+Status: Independently verified and explicitly accepted
 Work unit: Runtime-owned stdio startup, bounded discovery and shutdown only
 Candidate: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
 Accepted predecessor / full work-unit base: `a64e423cffca6162c43b8cfa193792508cf87fd6`
 Validation: Fresh independent REM-004 delta and complete WS-02 aggregate
 `VERIFIED`, no findings, in [VAL-007](../validation/VAL-007-report.md)
-Acceptance: Not recorded; no maintainer acceptance decision yet
+Accepted by: repository maintainer
+Accepted at: 2026-09-28
+Acceptance evidence: Explicit maintainer message "WS-02 accepted" after review
+of the independently verified closeout in the active conversation
 Delivery: Local; no push, merge or release
 
 WS-02 makes runtime startup own an explicit MCP provider/manager, connect
@@ -50,8 +53,11 @@ the obstruction clears. No process-tree control or broader lifecycle redesign
 is claimed. Cwd confinement is not an executable sandbox. Evidence uses only
 local synthetic peers/doubles, not live MCP/provider/SSE or complete app UAT.
 
-Next gate is explicit maintainer acceptance of this WS-02 work unit. The wider
-`friday-mcp` initiative remains `started` and local. WS-03 and later remain
-draft/unapproved; executable registry naming/filtering/sanitization is not
-implemented by WS-02. Acceptance does not itself authorize those workstreams
-or push, merge, release, deployment, credentials or paid/live external effects.
+The maintainer accepted this WS-02 work unit only. The wider `friday-mcp`
+initiative remains `started` and local; its active packet is not archived or
+marked accepted as a whole. Next gate is planning/readiness reconciliation of
+the draft WS-03 directive and a separate bounded approval request. WS-03 and
+later remain draft/unapproved; executable registry naming/filtering/sanitization
+is not implemented by WS-02. This acceptance does not authorize those
+workstreams or push, merge, release, deployment, credentials or paid/live
+external effects.

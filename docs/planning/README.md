@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | explicit maintainer acceptance of independently verified WS-02 work-unit closeout |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | reconcile bounded WS-03 directive and request explicit maintainer approval |
 
 ## Completed
 

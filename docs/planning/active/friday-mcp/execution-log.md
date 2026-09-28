@@ -655,3 +655,34 @@
   dashboard, documentation lifecycle (337 Markdown files), diff whitespace and
   frozen product/configuration comparison. Request and all three independent
   scratch-probe hashes match the returned report.
+
+## 2026-09-28 — Maintainer Explicitly Accepted WS-02
+
+- The maintainer said "WS-02 accepted" in the active conversation after the
+  verified closeout and next-gate review. Record that deliberate decision,
+  rather than inferring acceptance from VAL-007's verdict.
+- Acceptance applies only to MCP-WS-02 candidate
+  `a257f041d1d68f8aea2f5b9773df1b88acd82379`, independently verified by
+  fresh VAL-007 delta and complete WS-02 aggregate review. The
+  [WS-02 closeout](execution/WS-02-closeout.md) records accepting maintainer,
+  date and exact conversation evidence. Historical reviewer evidence and
+  candidate source/tests/configuration are unchanged.
+- Queue tasks 1–4 are complete. Next gate is reconciliation of the draft
+  WS-03 directive against the accepted discovery handoff, current contracts
+  and registry, then an explicit bounded maintainer approval request. This
+  acceptance-recording turn performs no WS-03 reconciliation or product work.
+- Index fields now describe next-slice preparation: execution phase `planning`,
+  validation state `not_ready`. Accepted WS-00/01/02 results remain intact;
+  the current fields do not downgrade them or grant new implementation scope.
+- Wider initiative remains `started`, condition `normal`, delivery `local`,
+  on `feature/friday-mcp-ws02-lifecycle`. No entire-packet acceptance/archive,
+  branch change, push, merge, release, live/provider use or external effect is
+  authorized or performed. Preserve the unrelated manifest: modified
+  `.DS_Store`; deleted `family-tree.md`; untracked `docker-bench-security/`,
+  `packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak` and
+  `packages/friday-sandbox/docker/Dockerfile.audit`. Stage only scoped
+  acceptance/process metadata.
+- Acceptance metadata checks passed: board validation (23 tasks), rendered
+  dashboard, documentation lifecycle (337 Markdown files), diff whitespace and
+  full frozen product/configuration comparison. No product checks were rerun
+  because this turn changes only acceptance/process records, not behavior.
