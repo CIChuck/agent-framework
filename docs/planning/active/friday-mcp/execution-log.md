@@ -494,3 +494,52 @@
   `changes_requested`. Next gate is dispatch of the authorized separate
   remediator and a committed scoped candidate. Initiative remains `started`
   and local; prior candidate `26f4d7d` and VAL-006 remain historical evidence.
+
+## 2026-09-28 — REM-004 Execution Requested; Agent Dispatch Capacity Stop
+
+- The maintainer said "proceed" after the read-only readiness audit, instructing
+  execution of the already-approved REM-004 pass, not WS-03 or later work.
+- Verified branch `feature/friday-mcp-ws02-lifecycle`, HEAD
+  `cdd808ed653f2f5fe4ccc4a695782d97c39c2ce8`, board validation with 23 tasks,
+  current task `started` with granted authority, approved REM-004, queue, and
+  unchanged unrelated dirty manifest before attempting dispatch.
+- `collaboration.spawn_agent` for fresh `/root/mcp_ws02_rem004`, with
+  `fork_turns: none` and the exact six-path directive, returned
+  `agent thread limit reached`. No agent was created. The live registry lists
+  root plus completed WS-01/WS-02 validator contexts only; a readiness-only
+  `followup_task` to prior `/root/mcp_ws02_rem003` returned the same capacity
+  error. No prior remediator resumed and no product edit was delegated.
+- Inspected available operations: no supported thread close/reset operation
+  is exposed. Interrupt does not remove an agent thread. An existing reviewer
+  context cannot be relabeled as the mandated fresh validator; no self-repair
+  or freshness waiver was inferred. Separately checking whether an existing
+  agent can be reassigned to remediation without validating its own candidate.
+- `git diff --exit-code cdd808e -- packages tests pyproject.toml uv.lock`
+  passed. No source/test/config/dependency changes, subprocess probe, candidate,
+  fresh review, acceptance, or delivery operation occurred. All unrelated
+  dirty paths remain preserved and excluded from staging.
+- REM-004 remains approved. Execution phase remains `remediation`; validation
+  state remains `changes_requested` for the existing WS-02 defect. The process
+  stopped at dispatch, before implementation. Next gate is an execution
+  session with available capacity for the separate remediator and fresh
+  validator; resume from the approved directive/queue without new scope
+  approval. Initiative remains `started` and local; later gates are unchanged.
+
+## 2026-09-28 — Existing Separate Remediator Available; Bounded Recovery
+
+- A readiness-only followup to existing `/root/mcp_ws01_val004` succeeded.
+  That agent independently reread the approved REM-004 and role policy,
+  confirmed branch/board/authority alignment and 23-task board validation,
+  and reported no source edits, staging, commits, spawning, or implementation.
+- It previously reviewed accepted WS-01; it was not the WS-02 builder, REM-003
+  remediator, or VAL-006 reviewer. Repository policy permits reassignment to
+  separate remediation, but it must not validate its resulting candidate.
+  This is not a fresh reviewer context and no such claim will be made.
+- Prepare that existing thread for the approved REM-004 execution instruction.
+  This avoids a new remediator thread; fresh VAL-007 creation must still be
+  attempted after a stable candidate. If thread capacity remains unavailable,
+  stop at independent-review dispatch and hand off the exact frozen candidate,
+  manifest, and checks to a session with fresh-agent capacity.
+- Execution phase remains `remediation`; validation state remains
+  `changes_requested`. Next gate is the approved scoped correction and stable
+  candidate. No scope, review-freshness, acceptance, or delivery waiver is given.

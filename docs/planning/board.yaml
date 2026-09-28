@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch authorized REM-004 remediator and commit scoped candidate
+  next_gate: execute approved REM-004 with separate remediator and commit scoped candidate
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -697,3 +697,17 @@ events:
   action: approved bounded REM-004 and separate remediator
   note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn records approval and the queue without product edits or remediator dispatch.
   evidence: docs/planning/active/friday-mcp/remediation/REM-004-directive.md; docs/planning/active/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 agent dispatch capacity stop
+  note: Maintainer said proceed after readiness audit. New separate-remediator dispatch and prior-remediator resumption both failed with agent thread limit reached. No product edits or agent dispatch occurred; approval remains valid, and execution needs available separate-remediator and fresh-validator capacity.
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: Codex
+  actor_role: agent
+  action: prepared existing agent for separate REM-004 remediation
+  note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate its resulting work. Fresh independent review remains required and its capacity is not yet established.
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
