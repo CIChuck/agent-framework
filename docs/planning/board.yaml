@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: reconcile WS-04 directive and readiness before requesting approval
+  next_gate: implement approved WS-04 and freeze candidate for fresh VAL-010
   delivery_state: local
-  branch: feature/friday-mcp-ws03-registry
+  branch: feature/friday-mcp-ws04-chat-budget
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
@@ -758,3 +758,10 @@ events:
   action: condition normal -> normal
   note: 'Record explicit maintainer WS-03 acceptance: accepted - Summarize WS-03.; candidate d395acd and fresh VAL-009 verified. Wider initiative remains started; next is WS-04 planning before separate approval.'
   evidence: docs/planning/active/friday-mcp/execution/WS-03-closeout.md
+- task: friday-mcp
+  at: '2026-09-28T17:34:10+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Maintainer explicitly approved reviewed WS-04 scope with proceed - lets build it; exact directive/readiness reconciled and dedicated branch created before product edits.
+  evidence: docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md

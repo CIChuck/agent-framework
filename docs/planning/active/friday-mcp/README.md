@@ -6,9 +6,9 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: reconcile WS-04 directive and readiness before requesting approval
-implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: planning
+next_gate: implement approved WS-04 and freeze candidate for fresh VAL-010
+implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
+execution_phase: implementation
 validation_state: not_ready
 ---
 
@@ -27,10 +27,13 @@ The maintainer explicitly accepted [WS-03](execution/WS-03-closeout.md) on
 complete fresh VAL-009 review. WS-00 through WS-03 are accepted work units;
 the wider initiative remains started/normal/local on the named branch.
 
-Next gate is reconciliation of WS-04's directive and readiness before requesting
-bounded approval. Current phase `planning` and validation state `not_ready`
-describe that next-slice preparation, not a reversal of accepted WS-03's
-independent verification. No WS-04 implementation or delivery is authorized.
+The maintainer explicitly approved building the reviewed WS-04 scope with
+"proceed - lets build it". The [reconciled directive](directives/ws-04-friday-chat-context-budget.md)
+and [readiness checkpoint](execution/WS-04-readiness-checkpoint.md) bind exact
+paths, public Chat provider wiring, budget/required-tool semantics and eight
+criteria. Execution starts on `feature/friday-mcp-ws04-chat-budget` from accepted
+WS-03 `acd1fd1`. Current phase implementation/state not_ready; next gate is a
+stable candidate and fresh VAL-010. Accepted predecessors remain intact.
 
 Historical [VAL-008](validation/VAL-008-report.md) remains unchanged: it returned
 `CHANGES_REQUESTED` for medium F-001 at candidate `397caa9`. The maintainer

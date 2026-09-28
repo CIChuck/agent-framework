@@ -1,9 +1,13 @@
 # Construction Directive: MCP-WS-04 Friday Chat Tool Context And Budget Management
 
-Status: Draft construction directive
-Date: 2026-07-24
+Status: Approved construction directive
+Date: 2026-09-28
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-04`
+Approval: Maintainer explicitly said "proceed - lets build it" after reviewing
+all eight proposed WS-04 features, non-goals and the approval boundary.
+Work-unit base: `acd1fd1e736a38134fac40d7fdb35cd1f32cf683`
+Branch: `feature/friday-mcp-ws04-chat-budget`
 
 ## AI Builder Role
 
@@ -23,17 +27,39 @@ Friday Chat must be able to include MCP tools without blindly injecting all disc
 
 ## Allowed Scope
 
-You may edit:
+Exact product paths:
 
 - `packages/friday-chat/src/friday_chat/config.py`
+- `packages/friday-chat/src/friday_chat/tools/selection.py`
+- `packages/friday-chat/src/friday_chat/tools/mcp.py` (new public Chat bridge)
 - `packages/friday-chat/src/friday_chat/turns/processor.py`
-- `packages/friday-chat/src/friday_chat/tools/`
-- `packages/friday-chat/src/friday_chat/memory/`
-- `packages/friday-chat/tests_chat/`
-- `packages/friday-runtime/src/friday_runtime/config.py` only for config normalization needed by Friday Chat
-- package exports needed for chat-visible budget types
+- `packages/friday-chat/src/friday_chat/commands/tools.py`
+- `packages/friday-chat/src/friday_chat/runtime.py`
+- `packages/friday-chat/src/friday_chat/app.py`
 
-Avoid changes to runtime lifecycle, registry internals, transcript model, memory ingestion, and telemetry unless a narrow type import is required.
+Exact tests:
+
+- `packages/friday-chat/tests_chat/test_mcp_config_compatibility.py`
+- `packages/friday-chat/tests_chat/test_mcp_turn_budget.py` (new)
+- `packages/friday-chat/tests_chat/test_mcp_chat_bridge.py` (new local peer/UAT)
+
+Exact report: `execution/WS-04-implementation-report.md`.
+Controller-owned readiness, request, review/evidence, closeout, queue, index,
+execution-log and board/dashboard artifacts are separate process scope.
+
+No runtime/core/MCP/native registry/transport source, dependency/config example,
+transcript, ingestion or telemetry change. The Chat `memory/` directory named in
+the old draft does not exist; existing memory retrieval already accepts exact
+`token_limit`. Runtime config normalization is already available and unchanged.
+
+Direct Chat has its own synchronous registry and does not construct RuntimeKernel.
+The two Chat wiring paths above are necessary for the approved registry/config
+feature: assemble an explicit Chat bridge around the accepted public
+`RuntimeMCPProvider` and `DefaultToolRegistry`, start before commands/turns and
+stop through the same retained owner at app exit/failure/cancellation. This is
+consumer wiring; no accepted runtime/transport lifecycle semantics or budgets
+change. Fake runtime construction does not connect configured external peers;
+local peer tests explicitly install the bridge with fake model/storage services.
 
 ## Explicit Non-Goals
 
@@ -108,6 +134,66 @@ Expose diagnostics for:
 
 Diagnostics must not include raw unsafe schemas or secrets.
 
+## Reconciled Contracts And Compatibility
+
+- Retain canonical `tools.providers.mcp` stanza and validate with the existing
+  typed `MCPToolProviderConfig`; no parallel public server/provider config.
+  Invalid MCP config fails safely during Chat parsing, including when disabled.
+- MCP tools use the accepted provider, public registry callable and read-only
+  metadata; direct Chat's existing native tool calls stay through their adapter.
+  Provider owner remains publicly reachable after incomplete startup/stop;
+  repeated public cleanup retries recover before owner replacement.
+- Selection inspects the sidecar, rejects missing/unmeasured/unsafe/not-registered
+  metadata before prompt assembly, copies/revalidates current schemas through
+  accepted public sanitation, and bounds complete current model exports.
+  Unsafe annotation changes are rejected, not silently resanitized for export.
+- With MCP disabled, preserve native-only/manual/disabled selection and existing
+  context arithmetic. Existing Chat tool commands retain their meanings.
+- Canonical MCP client limits supply result reservation and memory floor when
+  Chat tools and MCP are enabled. Reserve result tokens when any tool is selected;
+  empty selection reserves zero. Floor applies even with no fitting tools.
+  Impossible base budgets fail before memory/model calls.
+- Existing max-tools and schema-ratio limits remain authoritative. Optional
+  `tools.context.max_mcp_tools` is a nonnegative per-turn MCP subset cap; no new
+  global registry cap. MCP selected schemas also obey canonical aggregate and
+  per-tool caps. MCP cost must never be below accepted complete-export cost;
+  native estimation remains compatible behind an injectable typed interface.
+- Optional `tools.context.required_tools` is a unique explicit list of registered
+  native/canonical MCP names. In automatic mode these are selected before optional
+  candidates. Exact manual selections are required for that turn; union them with
+  configured required tools. Provider include filters and required servers do not
+  implicitly mark every eligible tool required for every turn.
+- Required unavailable/invalid/count/schema/floor-exceeding tools fail clearly;
+  no silent dropping. Optional selection retains deterministic relevance/registry
+  ordering; reduce optional MCP tools before sacrificing optional native tools
+  to preserve the floor. Do not mutate the persistent manual set on failed turns.
+- Typed immutable budget evidence records selected/skipped names and static
+  reasons, schema costs, result reservation, floor and memory allowance before/
+  after selection. Exclude raw schema bytes from diagnostic repr; commands bound
+  display text. Ordinary model schemas and MCP results remain subject to the
+  explicitly deferred output/security contracts, not a universal safety promise.
+
+## Acceptance Criteria
+
+- MCP-04-AC-01: canonical strict config bridge, compatible disabled/native/fake
+  startup and no duplicate MCP authority.
+- MCP-04-AC-02: real direct Chat public registry discovery/metadata/exact original
+  routing, lifecycle owner retained across failed cleanup/retry and app exit;
+  commands coherent without manager internals or changed runtime budgets.
+- MCP-04-AC-03: per-turn total/MCP counts, aggregate/per-tool costs, defensive
+  schema/metadata validation and independent model-bound schema snapshots.
+- MCP-04-AC-04: output/system/schema/result reservation calculated before memory
+  retrieval; exact remaining limit passed to retrieval, same streaming behavior.
+- MCP-04-AC-05: floor preserved through deterministic optional reduction, including
+  empty/native/MCP/mixed tools and impossible-base-budget failure.
+- MCP-04-AC-06: explicit required/complete manual sets never silently omitted;
+  unavailable/invalid/over-budget requirements fail before memory/model calls.
+- MCP-04-AC-07: injectable typed estimator with pinned compatible native behavior
+  and conservative MCP cost; no broad suppressions/dependency/config drift.
+- MCP-04-AC-08: safe typed selection/budget reasons and command diagnostics with
+  no peer secrets/unsafe schemas in errors/logs/repr; accurate migration/report
+  and frozen local-only validation with all required checks and residual gates.
+
 ## Migration And Removal Instructions
 
 Preserve existing non-MCP Friday Chat behavior. Existing config keys should continue to work unless a compatibility adapter explicitly translates them.
@@ -146,7 +232,8 @@ Negative tests are mandatory for memory-floor exhaustion, required over-budget t
 
 ## Verification Commands
 
-Run:
+Run with `LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache`
+for tests and `UV_CACHE_DIR=/private/tmp/friday-uv-cache` for tooling:
 
 ```bash
 uv run pytest packages/friday-chat/tests_chat
@@ -156,10 +243,12 @@ uv run ruff check packages/friday-chat packages/friday-runtime packages/friday-m
 uv run mypy packages/friday-chat packages/friday-runtime packages/friday-memory
 ```
 
-Run integration tests if the turn processor touches cross-package runtime boot:
+Also run integration and accepted runtime/MCP regressions because Chat consumes
+the public runtime provider:
 
 ```bash
 uv run pytest tests/integration
+uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py
 ```
 
 ## CLI, API, And UAT Requirements
@@ -209,3 +298,13 @@ Stop if:
 - selected tool schemas cannot be budgeted before memory retrieval;
 - preserving memory floor is impossible with current turn architecture;
 - implementation requires long-term memory ingestion, transcript model changes, telemetry event emission, live refresh, or external config includes.
+
+## Independent Review And Delivery Gate
+
+Commit a stable product/test/report candidate. New fresh-context read-only
+VAL-010 evaluates the complete WS-04 aggregate from the work-unit base,
+all eight criteria, exact authority hashes, all required commands and its own
+local probes. No inherited controller/builder/remediator sessions. A changed
+candidate requires a new fresh review. Controller records VERIFIED closeout
+before explicit maintainer work-unit acceptance. Local fake peers only; no
+live service, credentials, model/provider/network UAT or delivery authority.

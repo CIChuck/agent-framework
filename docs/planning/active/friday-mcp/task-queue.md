@@ -1,9 +1,9 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-03 verified and accepted; next gate is WS-04 directive/readiness reconciliation
+Status: WS-03 accepted; WS-04 explicitly approved and implementation started
 Updated: 2026-09-28
 Initiative: `friday-mcp`
-Branch: `feature/friday-mcp-ws03-registry`
+Branch: `feature/friday-mcp-ws04-chat-budget`
 WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
@@ -40,7 +40,7 @@ each handoff. An approved future step is not a claim that it has started.
 - WS-03: independently verified and explicitly accepted on 2026-09-28 with
   "accepted - Summarize WS-03."; task 6 is complete on the named branch.
   [Closeout](execution/WS-03-closeout.md) records acceptance of frozen `d395acd`
-  and complete fresh VAL-009. WS-04 through WS-08: draft, not approved for
+  and complete fresh VAL-009. WS-04: explicitly approved and started; WS-05 through WS-08: draft, not approved for
   implementation. WS-09: deferred
   optional scope. Initiative remains `started`; delivery remains `local`.
 - WS-03 readiness reconciliation is complete in the
@@ -73,12 +73,11 @@ unrelated local work remained unchanged.
 
 The maintainer explicitly accepted the verified WS-03 work unit with
 "accepted - Summarize WS-03." on 2026-09-28; [closeout](execution/WS-03-closeout.md)
-records candidate, review and decision. Tasks 6a–6e are complete. Next is WS-04
-directive/readiness reconciliation before requesting approval. Current phase
-`planning`, validation state `not_ready` describe that next-slice preparation;
+records candidate, review and decision. Tasks 6a–6e are complete. WS-04 is now approved after directive/readiness reconciliation. Current phase
+`implementation`, validation state `not_ready` describe this work unit;
 accepted WS-03's VERIFIED result remains unchanged. Condition normal; wider
 initiative remains started/granted/local. Historical VAL-008 is unchanged and
-superseded only for decisions on the corrected candidate. WS-04 implementation
+superseded only for decisions on the corrected candidate. WS-05 and later implementation
 and delivery retain separate approval gates.
 
 ## Immediate Queue
@@ -100,8 +99,8 @@ Tasks 1–4 are complete, with fresh independent verification and a subsequent
 explicit maintainer acceptance decision. Task 5's planning/readiness work is
 complete and its explicit approval gate is satisfied. Task 6a records the
 completed VAL-008 review and bounded correction. Tasks 6b–6e are complete;
-WS-03 is independently verified and explicitly accepted. Next is WS-04 planning
-reconciliation before approval; later implementation remains unstarted.
+WS-03 is independently verified and explicitly accepted. WS-04 is approved
+and implementation is current; subsequent workstreams remain unstarted.
 Accepted work-unit verification and acceptance are unchanged. Do not reuse the remediator as its
 fresh validator or waive a missing independent-review capacity gate.
 
@@ -144,3 +143,13 @@ is authorized by the REM-004 approval.
 - Push, merge, release, deployment, credentials, paid/provider calls and other
   externally visible actions require separate authority. Acceptance and local
   deterministic evidence do not grant those permissions.
+
+## 2026-09-28 — WS-04 Approved Execution Checkpoint
+
+Maintainer said "proceed - lets build it" after the eight-feature scope review.
+Reconciled directive and readiness checkpoint are complete within that scope.
+Task 7 is current: implement exact Chat paths, add local regressions/UAT, run
+required checks, freeze a candidate, obtain fresh read-only VAL-010, then propose
+closeout for explicit acceptance. WS-05 and later implementation remains draft.
+Current phase implementation/state not_ready; accepted WS-00 through WS-03
+remain intact. Later execution/delivery retains separate approval gates.

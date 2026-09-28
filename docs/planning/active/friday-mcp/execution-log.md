@@ -1055,3 +1055,21 @@
   comparison, all 24 pinned input hashes and all 73 archived evidence hashes.
   All 968 tracked product-file hashes and five unrelated path fingerprints
   match the prior controller snapshot, including preserved deletion.
+
+## 2026-09-28 — WS-04 Explicitly Approved And Started
+
+- Maintainer said "proceed - lets build it" after the eight-feature WS-04 scope,
+  compatibility/non-goals and approval boundary were presented. This explicitly
+  authorizes that work; no redundant approval is requested for necessary narrow
+  Chat config/registry/turn/budget wiring.
+- Reconciled exact [directive](directives/ws-04-friday-chat-context-budget.md)
+  and [readiness](execution/WS-04-readiness-checkpoint.md) before product edits.
+  Chat already has selection/schema subtraction and exact retrieval limits;
+  add MCP metadata, result reservation, floor/required tools and public provider
+  wiring without changing accepted runtime/transport contracts or budgets.
+- Base `acd1fd1e736a38134fac40d7fdb35cd1f32cf683`; dedicated branch
+  `feature/friday-mcp-ws04-chat-budget`. Wider initiative started/granted/normal/
+  local. Phase implementation/state not_ready; new fresh VAL-010 required.
+- Original five dirty-path fingerprints match. No cleanup/broad staging, live
+  MCP/network/model/provider/credentials or delivery. Baseline commands run in
+  scratch and remain separate from implementation verification. WS-05+ unapproved.
