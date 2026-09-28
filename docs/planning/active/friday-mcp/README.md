@@ -5,9 +5,9 @@ title: Friday MCP Client Enhancement
 initiative: friday-mcp
 document_type: initiative-index
 status: active
-updated: 2026-09-27
-next_gate: maintainer authorization of separate REM-004 transport cleanup remediation
-implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
+updated: 2026-09-28
+next_gate: dispatch authorized REM-004 remediator and commit scoped candidate
+implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
 execution_phase: remediation
 validation_state: changes_requested
 ---
@@ -32,6 +32,7 @@ Controlling packet:
 - [Design notes](design-notes.md) — historical input, not controlling authority.
 - [Construction directives](directives/) — approved WS-00/01/02 and draft later slices.
 - [Execution log](execution-log.md) — approval, baseline, and work-unit progress.
+- [Ordered task queue](task-queue.md) — approved next action and dependency/approval gates for subsequent work.
 
 The maintainer approved the rebaselined `MCP-WS-00` contracts/defaults-only
 scope, stdio-only first-pass runtime posture, and no stored argument hashes by
@@ -99,9 +100,13 @@ delta and complete WS-02 aggregate review. Its
 aggregate `CHANGES_REQUESTED`: production stdio shutdown can hang after a child
 is killed while unread stdout prevents pipe closure. This is one separate
 high-severity finding, not renewed ownership loss. The
-[draft REM-004 directive](remediation/REM-004-directive.md) limits the proposed
+[REM-004 directive](remediation/REM-004-directive.md) limits the
 correction to stdio transport cleanup, local regressions, and documentation.
-The next gate is explicit maintainer authorization of that scope and a separate
-remediator. No new corrective product edits or dispatch are authorized. Current
+The maintainer explicitly approved that scope and a separate remediator on
+2026-09-28 with "aproved... make a list of next steps in our task queue".
+The [task queue](task-queue.md) records the ordered next steps. Next is dispatch
+of the authorized separate remediator and a committed scoped candidate;
+this approval-recording turn made no product edits and dispatched no agent.
+WS-03 and later still require their own approvals. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.

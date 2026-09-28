@@ -1,7 +1,10 @@
 # REM-004 — MCP-WS-02 Bounded Stdio Pipe And Process Cleanup
 
-Status: Draft; maintainer authorization required
+Status: Approved; separate remediator authorized, dispatch pending
 Date: 2026-09-27
+Approved at: 2026-09-28
+Approved by: repository maintainer
+Approval evidence: "aproved... make a list of next steps in our task queue"
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-02`
 Finding: [VAL-006 F-001](../validation/VAL-006-report.md#val-006-f-001--high-stdio-shutdown-can-hang-after-killing-a-child-with-paused-stdout)
@@ -12,9 +15,12 @@ Reviewed candidate: `26f4d7d4bfd0514b6eb76bed71cb4797da91a067`
 Repository engineering and independent-validation policies, the approved
 [WS-02 directive](../directives/ws-02-runtime-lifecycle-provider-loading.md),
 its incorporated cleanup amendment, and the complete
-[VAL-006 report](../validation/VAL-006-report.md) control this proposed correction.
-The maintainer must explicitly approve this directive and a separate remediator
-before any product edits. This draft grants no implementation authority.
+[VAL-006 report](../validation/VAL-006-report.md) control this bounded correction.
+The maintainer explicitly approved this directive and its separate remediator
+on 2026-09-28. Approval covers only the stated finding, exact allowed files,
+regressions, checks, and fresh independent review. The approval-recording turn
+updates planning and the task queue only; no remediator is dispatched and no
+product edits are made in that turn.
 
 VAL-006 independently verifies REM-003's retained-owner correction, but the
 complete WS-02 aggregate remains `CHANGES_REQUESTED`. Resource integrity and
@@ -23,10 +29,10 @@ by the original builder or reviewer. Preserve REM-003's working ownership
 behavior; do not undo it or count the deliberately perpetual synthetic kernel
 disconnect observation as a second finding.
 
-After approval: implement only the single numbered finding below, commit a
+Authorized sequence: implement only the single numbered finding below, commit a
 stable bounded candidate, and obtain fresh independent delta followed by
 complete WS-02 aggregate review against accepted WS-01 checkpoint `a64e423`.
-This is the proposed second WS-02 remediation cycle. If its aggregate review
+This is the second WS-02 remediation cycle. If its aggregate review
 is unsuccessful, stop and return unresolved findings to the maintainer under
 the policy's two-cycle rule; do not automatically launch another correction.
 
@@ -157,4 +163,4 @@ approved, the candidate/authority is unstable, or the correction requires more
 source/test files, public signature/schema changes, private boundary access,
 global ownership, or broader lifecycle redesign. Report the exact authority
 decision required. Initiative remains `started` and local; no acceptance or
-delivery follows from this proposed correction.
+delivery follows from this correction.

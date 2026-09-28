@@ -471,3 +471,26 @@
   Next gate is explicit maintainer authorization of REM-004 and its separate
   remediator. Initiative remains `started`, delivery local; no WS-02 acceptance,
   WS-03 authority, live effect, or delivery operation is implied.
+
+## 2026-09-28 — REM-004 Approved; Ordered Task Queue Recorded
+
+- The maintainer replied "aproved... make a list of next steps in our task
+  queue" to the REM-004 authorization request. This explicitly approves the
+  bounded [REM-004 directive](remediation/REM-004-directive.md) and separate
+  remediator, including its exact files, regressions, checks, and fresh review.
+  It does not accept WS-02 or approve WS-03/later workstreams or delivery.
+- Added the [ordered task queue](task-queue.md): separate REM-004 dispatch;
+  fix/regressions/checks and stable candidate; fresh VAL-007 delta plus full
+  WS-02 aggregate; verified closeout and explicit WS-02 acceptance; then draft
+  WS-03 readiness/approval and the existing later workstream sequence.
+- The queue distinguishes approved, dependency-gated, unapproved, and deferred
+  steps. Runtime skills remains in its separate backlog; existing board
+  initiative priorities and count are unchanged. If the second WS-02 correction
+  cycle fails, return unresolved findings to the maintainer under policy.
+- This turn is planning/approval recording only: no REM-004 remediator was
+  dispatched, no product source or tests changed, and no fresh candidate or
+  verdict was claimed. Unrelated dirty work remains preserved.
+- Execution phase remains `remediation`; validation state remains
+  `changes_requested`. Next gate is dispatch of the authorized separate
+  remediator and a committed scoped candidate. Initiative remains `started`
+  and local; prior candidate `26f4d7d` and VAL-006 remain historical evidence.

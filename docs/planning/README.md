@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | maintainer authorization of separate REM-004 transport cleanup remediation |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | dispatch authorized REM-004 remediator and commit scoped candidate |
 
 ## Completed
 

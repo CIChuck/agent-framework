@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-27'
+updated: '2026-09-28'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer authorization of separate REM-004 transport cleanup remediation
+  next_gate: dispatch authorized REM-004 remediator and commit scoped candidate
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -690,3 +690,10 @@ events:
   action: recorded verified ownership delta and WS-02 aggregate cleanup finding
   note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate maintainer authorization; no corrective product changes or new remediator dispatch occurred.
   evidence: docs/planning/active/friday-mcp/validation/VAL-006-report.md; docs/planning/active/friday-mcp/remediation/REM-004-directive.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved bounded REM-004 and separate remediator
+  note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn records approval and the queue without product edits or remediator dispatch.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-004-directive.md; docs/planning/active/friday-mcp/task-queue.md
