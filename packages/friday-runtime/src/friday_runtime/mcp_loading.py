@@ -84,7 +84,13 @@ class MCPRegistrationRegistry(Protocol):
 
 
 class RuntimeMCPProvider:
-    """Explicit lifetime owner, reachable even after failed runtime startup."""
+    """Explicit lifetime owner, reachable even after failed runtime startup.
+
+    registration_decisions retains safe last-attempt history, including both
+    collision sources, across stop/failed-startup cleanup. A new discovery
+    attempt clears it only after prior-owner cleanup and workspace validation;
+    no-op start/stop and obstructed cleanup retries do not erase that evidence.
+    """
 
     def __init__(self, config: MCPToolProviderConfig, workspace_root: str) -> None:
         self._config = config
@@ -317,6 +323,7 @@ class RuntimeMCPProvider:
         except ValueError:
             raise ToolProviderLoadError("MCP workspace validation failed") from None
         servers = [server for server in config.servers if server.enabled]
+        self.registration_decisions = ()
         self.manager = MCPClientManager(
             MCPConfig(
                 servers=[self._protocol_config(server) for server in servers],

@@ -80,6 +80,29 @@ def main() -> None:
                         {"name": name, "inputSchema": {"type": "object"}}
                         for name in ("Read.File", "Read-File")
                     ]
+                elif mode in {
+                    "registry_collision_cross",
+                    "registry_collision_long",
+                    "registry_collision_control",
+                    "registry_collision_encoded",
+                }:
+                    names = {
+                        "registry_collision_cross": ("one.Read-File",),
+                        "registry_collision_long": (
+                            "-" * 20000 + "Read.File",
+                            "." * 20000 + "Read-File",
+                        ),
+                        "registry_collision_control": ("Read.\x00\u200bFile", "Read-File"),
+                        "registry_collision_encoded": ("&#83;", "83"),
+                    }[mode]
+                    tools = [
+                        {
+                            "name": name,
+                            "description": "SENTINEL-CATALOG-SECRET",
+                            "inputSchema": {"type": "object"},
+                        }
+                        for name in names
+                    ]
                 elif mode == "registry_unsafe":
                     tools = [
                         {

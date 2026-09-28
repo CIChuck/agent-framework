@@ -854,3 +854,79 @@ async def test_discovery_and_registration_rejections_count_once(tmp_path, fake_c
         assert provider.discovery.servers[0].filtered_tools == 1
     finally:
         await provider.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("native", [False, True])
+async def test_collision_evidence_retained_until_new_discovery_and_retry(
+    tmp_path, fake_clients, native, caplog
+):
+    clients, modes, catalogs, tracker = fake_clients
+    catalogs["fake"] = [
+        {"name": name, "inputSchema": {"type": "object"}}
+        for name in (["Read.File"] if native else ["Read.File", "Read-File"])
+    ]
+    provider = RuntimeMCPProvider(provider_config([server()]), str(tmp_path))
+    registry = DefaultToolRegistry()
+    registry.register(name="native", func=lambda: "native", category="native")
+    if native:
+        registry.register(name="mcp_fake_read_file", func=lambda: "native", category="native")
+    snapshot = {name: registry.get(name) for name in registry.list_names()}
+    try:
+        with caplog.at_level(logging.DEBUG):
+            await provider.start()
+            with pytest.raises(ToolProviderLoadError, match="name_collision"):
+                await provider.register_tools(registry)
+            retained = provider.registration_decisions
+            collision = retained[-1].collision
+            assert collision is not None
+            assert collision.first.provider == ("native" if native else "mcp")
+            assert collision.second.provider == "mcp"
+            assert provider.diagnostics.rejected_tools == 1
+            assert provider.discovery.discovered_tools == (1 if native else 2)
+            assert provider.discovery.selected_tools == 0
+            assert provider.diagnostics.registered_tools == provider.diagnostics.filtered_tools == 0
+            assert {name: registry.get(name) for name in snapshot} == snapshot
+            assert all(registry.get(name) is value for name, value in snapshot.items())
+            assert registry.list_names() == list(snapshot)
+            assert not provider.prepared_tools and not provider.tool_metadata
+            assert provider.registration_registry is None and not provider.owned_tool_names
+            assert provider.manager is not None and not provider.manager.connected_servers
+            assert all(not client.transport.is_connected for client in clients)
+            await provider.stop()
+            await provider.stop()
+            assert provider.registration_decisions == retained
+
+            # Obstructed prior cleanup does not erase history or replace its owner.
+            manager = provider.manager
+            disconnect = manager.disconnect_all
+            manager.disconnect_all = AsyncMock(side_effect=RuntimeError("SENTINEL-RETRY"))
+            try:
+                with pytest.raises(ToolProviderLoadError, match="shutdown incomplete"):
+                    await provider.start()
+                assert provider.manager is manager
+                assert provider.registration_decisions == retained
+            finally:
+                manager.disconnect_all = disconnect
+
+            # A new optional discovery failure clears the old collision history.
+            modes["fake"] = "connection_failed"
+            await provider.start()
+            assert not provider.registration_decisions
+            assert provider.diagnostics.failed_servers == 1
+            await provider.stop()
+            modes["fake"] = "good"
+            catalogs["fake"] = [{"name": "probe", "inputSchema": {"type": "object"}}]
+            await provider.start()
+            await provider.register_tools(registry)
+            assert all(decision.collision is None for decision in provider.registration_decisions)
+            assert provider.diagnostics.registered_tools == 0  # default selected mode
+            assert tracker["list_calls"] == 2
+            await provider.stop()
+            assert all(not client.transport.is_connected for client in clients)
+        assert "SENTINEL" not in caplog.text + repr(provider.registration_decisions)
+    finally:
+        # Public assertions precede this defensive synthetic-client settlement.
+        for client in clients:
+            client.transport.fail_cleanup = client.transport.pause_cleanup = False
+        await provider.stop()

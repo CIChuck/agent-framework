@@ -6,6 +6,7 @@ import asyncio
 import contextlib
 import json
 import logging
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
 from unittest.mock import AsyncMock
@@ -14,6 +15,7 @@ import pytest
 from friday_core.profiles import MemoryProfile
 from friday_runtime.config import RuntimeConfig, ToolsConfig
 from friday_runtime.kernel import RuntimeKernel
+from friday_runtime.mcp_loading import RuntimeMCPProvider
 from friday_runtime.tool_loading import ToolProviderLoadError
 
 from tests.integration import test_mcp_runtime_lifecycle as lifecycle
@@ -22,6 +24,35 @@ from tests.integration.test_mcp_runtime_lifecycle import server
 # Reuse the settled-process fixture; assignments (not imports) allow ordinary
 # pytest fixture argument names without unused-import/shadowing suppressions.
 processes = lifecycle.processes
+
+
+def assert_collision_public_cleanup(
+    provider: RuntimeMCPProvider, observed: Any
+) -> None:
+    """Public cleanup must succeed before any defensive fixture intervention."""
+    assert not provider.prepared_tools and not provider.tool_metadata
+    assert not provider.owned_tool_names and provider.registration_registry is None
+    assert provider.manager is not None and not provider.manager.connected_servers
+    assert observed
+    for process in observed:
+        assert process.returncode is not None
+        assert process.stdout is not None and process.stdout.at_eof()
+        assert process.stderr is not None and process.stderr.at_eof()
+        assert process.stdin is not None and process.stdin.is_closing()
+
+
+async def settle_collision_fixture(
+    kernel: RuntimeKernel, initial_tasks: set[asyncio.Task[Any]]
+) -> None:
+    try:
+        await asyncio.wait_for(kernel.stop(), lifecycle.CLEANUP_TEST_BOUND)
+    finally:
+        # Includes failed assertions; fixture then kills/drains/reaps tracked peers.
+        tasks = [task for task in asyncio.all_tasks() - initial_tasks if not task.done()]
+        for task in tasks:
+            task.cancel()
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
 
 
 def kernel_for(
@@ -332,3 +363,158 @@ async def test_real_profile_binding_after_publication_or_safe_failure(
         assert all(process.returncode is not None for process in processes)
     finally:
         await kernel.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("native", [False, True])
+@pytest.mark.parametrize(
+    "options",
+    [
+        {"mode": "selected"},
+        {"mode": "selected", "include_categories": ["mcp"]},
+        {"mode": "all", "exclude_tools": ["mcp_peer_read_file"]},
+        {"mode": "selected", "exclude_categories": ["mcp"]},
+    ],
+)
+async def test_public_collision_both_sources_retained_native_identity_and_retry(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    processes: Any,
+    caplog: pytest.LogCaptureFixture,
+    native: bool,
+    options: dict[str, Any],
+) -> None:
+    kernel = kernel_for(tmp_path, monkeypatch, [server(
+        "peer", "registry_a" if native else "registry_collision"
+    )], **options)
+    bootstrap = kernel._di._create_tool_registry
+    snapshots = []
+
+    def capture_native_registry() -> None:
+        bootstrap()
+        registry = kernel._di.tool_registry
+        if registry is None:
+            raise RuntimeError("Test registry missing")
+        if native:
+            registry.register(name="mcp_peer_read_file", func=lambda: "native", category="native")
+        snapshots.append((registry, {name: registry.get(name) for name in registry.list_names()}))
+
+    monkeypatch.setattr(kernel._di, "_create_tool_registry", capture_native_registry)
+    initial_tasks = asyncio.all_tasks()
+    try:
+        with caplog.at_level(logging.DEBUG):
+            for attempt in range(2):
+                with pytest.raises(ToolProviderLoadError, match="name_collision") as failure:
+                    await kernel.start()
+                provider = kernel.mcp_provider
+                assert provider is not None
+                collision = provider.registration_decisions[-1].collision
+                assert collision is not None
+                assert collision.canonical_name == "mcp_peer_read_file"
+                assert collision.first.provider == ("native" if native else "mcp")
+                assert collision.first.server_id == (None if native else "peer")
+                assert collision.second.provider == "mcp" and collision.second.server_id == "peer"
+                summary = collision.second.original_name_summary
+                assert summary is not None
+                assert summary.fingerprint == sha256(
+                    ("Read.File" if native else "Read-File").encode()
+                ).hexdigest()[:12]
+                if native:
+                    assert collision.first.original_name_summary is None
+                else:
+                    assert collision.first.original_name_summary is not None
+                    assert collision.first.original_name_summary != summary
+                assert provider.diagnostics.rejected_tools == 1
+                assert provider.discovery.discovered_tools == (1 if native else 2)
+                assert provider.discovery.selected_tools == 0
+                assert provider.diagnostics.registered_tools == provider.diagnostics.filtered_tools == 0
+                registry, snapshot = snapshots[attempt]
+                assert registry.list_names() == list(snapshot)
+                assert all(registry.get(name) is tool for name, tool in snapshot.items())
+                assert_collision_public_cleanup(provider, processes)
+                retained = provider.registration_decisions
+                await kernel.stop()
+                await kernel.stop()
+                assert kernel.mcp_provider is provider
+                assert provider.registration_decisions == retained
+                await asyncio.sleep(0)
+                assert not (asyncio.all_tasks() - initial_tasks)
+                evidence = str(failure.value) + repr(retained)
+                assert "Read.File" not in evidence and "Read-File" not in evidence
+                assert "SENTINEL" not in evidence
+        assert "SENTINEL" not in caplog.text
+        assert "Read.File" not in caplog.text and "Read-File" not in caplog.text
+    finally:
+        await settle_collision_fixture(kernel, initial_tasks)
+
+
+@pytest.mark.asyncio
+async def test_public_cross_peer_normalization_ambiguity_retains_both_safe_ids(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, processes: Any,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    kernel = kernel_for(tmp_path, monkeypatch, [
+        server("peer_one", "registry_a"), server("peer", "registry_collision_cross")
+    ], mode="selected")
+    initial_tasks = asyncio.all_tasks()
+    try:
+        with caplog.at_level(logging.DEBUG):
+            with pytest.raises(ToolProviderLoadError, match="name_collision"):
+                await kernel.start()
+            provider = kernel.mcp_provider
+            assert provider is not None
+            collision = provider.registration_decisions[-1].collision
+            assert collision is not None
+            assert collision.canonical_name == "mcp_peer_one_read_file"
+            assert (collision.first.provider, collision.second.provider) == ("mcp", "mcp")
+            assert (collision.first.server_id, collision.second.server_id) == ("peer_one", "peer")
+            assert collision.first.original_name_summary != collision.second.original_name_summary
+            assert_collision_public_cleanup(provider, processes)
+            assert "Read.File" not in repr(collision) and "one.Read-File" not in repr(collision)
+            await asyncio.sleep(0)
+            assert not (asyncio.all_tasks() - initial_tasks)
+        assert "SENTINEL" not in caplog.text
+        assert "Read.File" not in caplog.text and "one.Read-File" not in caplog.text
+    finally:
+        await settle_collision_fixture(kernel, initial_tasks)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("mode,length,shape", [
+    ("registry_collision_long", "9999+", "-" * 24),
+    ("registry_collision_control", "11", "aaaa.??aaaa"),
+    ("registry_collision_encoded", "5", "??00?"),
+])
+async def test_public_hostile_name_collision_evidence_is_bounded_and_private(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, processes: Any,
+    caplog: pytest.LogCaptureFixture, mode: str, length: str, shape: str,
+) -> None:
+    peers = [server("peer", mode)]
+    kernel = kernel_for(tmp_path, monkeypatch, peers, mode="selected", config={
+        "servers": peers,
+        "limits": {"max_schema_bytes_per_tool": 30000, "max_schema_tokens": 80000},
+    })
+    initial_tasks = asyncio.all_tasks()
+    try:
+        with caplog.at_level(logging.DEBUG):
+            with pytest.raises(ToolProviderLoadError, match="name_collision") as failure:
+                await kernel.start()
+            provider = kernel.mcp_provider
+            assert provider is not None
+            collision = provider.registration_decisions[-1].collision
+            assert collision is not None
+            summary = collision.first.original_name_summary
+            assert summary is not None
+            assert (summary.length, summary.shape) == (length, shape)
+            assert summary != collision.second.original_name_summary
+            evidence = str(failure.value) + repr(provider.registration_decisions)
+            assert len(evidence) < 1100
+            assert "SENTINEL" not in evidence and "Read.File" not in evidence
+            assert "&#83;" not in evidence and "\x00" not in evidence and "\u200b" not in evidence
+            assert_collision_public_cleanup(provider, processes)
+            await asyncio.sleep(0)
+            assert not (asyncio.all_tasks() - initial_tasks)
+        assert "SENTINEL" not in caplog.text
+        assert "Read.File" not in caplog.text and "&#83;" not in caplog.text
+    finally:
+        await settle_collision_fixture(kernel, initial_tasks)

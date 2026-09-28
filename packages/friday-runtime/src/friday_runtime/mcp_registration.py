@@ -24,6 +24,7 @@ import re
 import unicodedata
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
+from hashlib import sha256
 from typing import Any, Literal, Protocol
 
 from friday_core.mcp import MCPDiagnosticCode, MCPToolMetadata, normalize_mcp_tool_name
@@ -93,13 +94,103 @@ class MCPDiscoveryEntry(Protocol):
 
 
 @dataclass(frozen=True)
+class MCPOriginalNameSummary:
+    """Bounded, lossy diagnostic only; never stores the original name.
+
+    Length is decimal through 9999, then ``9999+``. Shape masks at most the
+    first 24 characters: ASCII letters -> a, digits -> 0, -_. unchanged,
+    everything else -> ?. Fingerprint is the first 12 lowercase hex digits
+    of SHA-256 of the complete UTF-8 original within the handoff byte cap
+    (surrogatepass for JSON-escaped lone surrogates; not export admission).
+    This is neither routing provenance nor a secrecy/collision-proof hash.
+    """
+
+    length: str
+    shape: str
+    fingerprint: str
+
+    def __post_init__(self) -> None:
+        if (
+            re.fullmatch(r"(?:0|[1-9][0-9]{0,3}|9999\+)", self.length) is None
+            or re.fullmatch(r"[a0_.?\-]{0,24}", self.shape) is None
+            or re.fullmatch(r"[0-9a-f]{12}", self.fingerprint) is None
+        ):
+            raise ValueError("Invalid MCP original-name summary")
+
+
+@dataclass(frozen=True)
+class MCPCollisionSource:
+    """Safe configured MCP identity or explicit native registry identity."""
+
+    provider: Literal["mcp", "native"]
+    server_id: str | None = None
+    original_name_summary: MCPOriginalNameSummary | None = None
+
+    def __post_init__(self) -> None:
+        if self.provider == "native":
+            valid = self.server_id is None and self.original_name_summary is None
+        elif self.provider == "mcp":
+            valid = (
+                self.server_id is not None
+                and len(self.server_id) <= 64
+                and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", self.server_id)
+                is not None
+                and self.original_name_summary is not None
+            )
+        else:
+            valid = False
+        if not valid:
+            raise ValueError("Invalid MCP collision source")
+
+
+@dataclass(frozen=True)
+class MCPNameCollision:
+    """First conflict only, in native-registry / discovery encounter order.
+
+    The shared canonical name identifies the native entry without inspecting
+    its internals. Sources never contain catalog/exception/configuration data.
+    """
+
+    canonical_name: str
+    first: MCPCollisionSource
+    second: MCPCollisionSource
+
+    def __post_init__(self) -> None:
+        if (
+            len(self.canonical_name) > 64
+            or re.fullmatch(r"[a-z][a-z0-9_]*", self.canonical_name) is None
+        ):
+            raise ValueError("Invalid MCP collision canonical name")
+
+
+def _mcp_collision_source(server_id: str, original: str) -> MCPCollisionSource:
+    # Called only after complete handoff size/JSON/normalization admission.
+    shape = "".join(
+        "a" if char.isascii() and char.isalpha() else
+        "0" if char.isascii() and char.isdigit() else
+        char if char in "-_." else "?"
+        for char in original[:24]
+    )
+    return MCPCollisionSource(
+        "mcp",
+        server_id,
+        MCPOriginalNameSummary(
+            str(len(original)) if len(original) <= 9999 else "9999+",
+            shape,
+            sha256(original.encode("utf-8", errors="surrogatepass")).hexdigest()[:12],
+        ),
+    )
+
+
+@dataclass(frozen=True)
 class MCPRegistrationDecision:
-    """Safe IDs and fixed decisions only; never source names or peer content."""
+    """Safe IDs, fixed reasons and optional bounded both-source evidence."""
 
     canonical_name: str | None
     server_id: str | None
     reason: MCPRegistrationReason
     code: MCPDiagnosticCode | None = None
+    collision: MCPNameCollision | None = None
 
 
 @dataclass(frozen=True)
@@ -374,7 +465,7 @@ def prepare_registration(
     native = set(native_names)
     contenders: list[tuple[str, str, dict[str, Any]]] = []
     decisions: list[MCPRegistrationDecision] = []
-    seen: set[str] = set()
+    seen: dict[str, MCPCollisionSource] = {}
     for entry in entries:
         try:
             if (
@@ -396,13 +487,16 @@ def prepare_registration(
             )
             continue
         if name in seen or name in native:
+            source = _mcp_collision_source(entry.server_id, raw["name"])
+            first = seen[name] if name in seen else MCPCollisionSource("native")
             decisions.append(
                 MCPRegistrationDecision(
-                    name, entry.server_id, "rejected", "name_collision"
+                    name, entry.server_id, "rejected", "name_collision",
+                    MCPNameCollision(name, first, source),
                 )
             )
             raise MCPRegistrationError("name_collision", decisions) from None
-        seen.add(name)
+        seen[name] = _mcp_collision_source(entry.server_id, raw["name"])
         contenders.append((entry.server_id, name, raw))
 
     wrappers: list[MCPToolWrapper] = []

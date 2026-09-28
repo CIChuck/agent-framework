@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from hashlib import sha256
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -12,6 +13,9 @@ from friday_runtime.config import MCPToolProviderConfig
 from friday_runtime.mcp_loading import MCPDiscoveredTool
 from friday_runtime.mcp_registration import (
     MCPBindingContext,
+    MCPCollisionSource,
+    MCPOriginalNameSummary,
+    MCPRegistrationDecision,
     MCPRegistrationError,
     MCPRegistrationPlan,
     exported_definition_size,
@@ -143,6 +147,142 @@ def test_collisions_precede_exclusions_and_validation(native: bool) -> None:
         )
     assert "Read.File" not in str(failure.value)
     assert "Read-File" not in repr(failure.value.decisions)
+
+
+@pytest.mark.parametrize("native", [False, True])
+@pytest.mark.parametrize(
+    "options",
+    [
+        {"mode": "selected"},
+        {"mode": "all", "exclude_tools": ["mcp_peer_read_file"]},
+        {"mode": "selected", "exclude_categories": ["mcp"]},
+        {"mode": "selected", "include_tools": ["mcp_peer_read_file"]},
+    ],
+)
+def test_collision_sources_are_typed_bounded_and_pre_filter(
+    native: bool, options: dict[str, Any]
+) -> None:
+    originals = ["Read.File"] if native else ["Read.File", "Read-File"]
+    with pytest.raises(MCPRegistrationError) as failure:
+        prepare_registration(
+            config(**options),
+            [entry(raw(name)) for name in originals],
+            {},
+            ["mcp_peer_read_file"] if native else [],
+        )
+    decision = failure.value.decisions[-1]
+    assert decision.reason == "rejected" and decision.code == "name_collision"
+    collision = decision.collision
+    assert collision is not None
+    assert collision.canonical_name == decision.canonical_name == "mcp_peer_read_file"
+    assert collision.first.provider == ("native" if native else "mcp")
+    assert collision.first.server_id == (None if native else "peer")
+    assert collision.second.provider == "mcp" and collision.second.server_id == "peer"
+    summary = collision.second.original_name_summary
+    assert summary is not None
+    assert (summary.length, summary.shape) == ("9", "aaaa.aaaa" if native else "aaaa-aaaa")
+    assert summary.fingerprint == sha256(originals[-1].encode()).hexdigest()[:12]
+    if native:
+        assert collision.first.original_name_summary is None
+    else:
+        assert collision.first.original_name_summary is not None
+        assert collision.first.original_name_summary != summary
+    assert all(original not in repr(failure.value.decisions) for original in originals)
+    assert str(failure.value) == (
+        "MCP registration failed (name_collision); inspect mcp_provider.registration_decisions"
+    )
+
+
+def test_cross_peer_collision_preserves_configured_safe_ids() -> None:
+    settings = config(config={"servers": [
+        {"name": "peer_one", "command": "fake"},
+        {"name": "peer", "command": "fake"},
+    ]})
+    with pytest.raises(MCPRegistrationError) as failure:
+        prepare_registration(
+            settings,
+            [entry(raw("Read.File"), "peer_one"), entry(raw("one.Read-File"), "peer")],
+            {},
+            (),
+        )
+    collision = failure.value.decisions[-1].collision
+    assert collision is not None
+    assert collision.canonical_name == "mcp_peer_one_read_file"
+    assert (collision.first.server_id, collision.second.server_id) == ("peer_one", "peer")
+    assert collision.first.original_name_summary != collision.second.original_name_summary
+
+
+@pytest.mark.parametrize(
+    "originals,length,shape",
+    [
+        (("-" * 20000 + "Read.File", "." * 20000 + "Read-File"), "9999+", "-" * 24),
+        (("Read.\x00File", "Read-File"), "10", "aaaa.?aaaa"),
+        (("Read.\u200bFile", "Read-File"), "10", "aaaa.?aaaa"),
+        (("&#83;", "83"), "5", "??00?"),
+    ],
+)
+def test_collision_summary_masks_complete_oversized_encoded_control_names(
+    originals: tuple[str, str], length: str, shape: str
+) -> None:
+    settings = config(config={
+        "servers": [{"name": "peer", "command": "fake"}],
+        "limits": {"max_schema_bytes_per_tool": 30000, "max_schema_tokens": 80000},
+    })
+    with pytest.raises(MCPRegistrationError) as failure:
+        prepare_registration(
+            settings,
+            [entry(raw(name, description="SENTINEL-CATALOG-SECRET")) for name in originals],
+            {}, (),
+        )
+    collision = failure.value.decisions[-1].collision
+    assert collision is not None
+    summary = collision.first.original_name_summary
+    assert summary is not None
+    assert (summary.length, summary.shape) == (length, shape)
+    assert summary.fingerprint == sha256(originals[0].encode()).hexdigest()[:12]
+    assert summary != collision.second.original_name_summary
+    assert len(repr(failure.value.decisions)) < 1000
+    assert "SENTINEL" not in repr(failure.value.decisions) + str(failure.value)
+    # These collide before the unchanged >256/control-name sanitizer rejects.
+    for original in originals:
+        if len(original) > 256 or "\x00" in original or "\u200b" in original:
+            with pytest.raises(ValueError):
+                sanitize_definition(raw(original), 30000)
+
+
+def test_summary_bounds_decision_defaults_and_binding_compatibility() -> None:
+    old = MCPRegistrationDecision("mcp_peer_probe", "peer", "filtered", "filter_excluded")
+    assert old.collision is None
+    assert MCPBindingContext((old,)).reason_for("mcp_peer_probe") == "filtered"
+    with pytest.raises(ValueError, match="Invalid MCP original-name summary"):
+        MCPOriginalNameSummary("10000", "a" * 25, "SECRET")
+    with pytest.raises(ValueError, match="Invalid MCP collision source"):
+        MCPCollisionSource("native", "invented-peer")
+    with pytest.raises(ValueError, match="Invalid MCP collision source"):
+        MCPCollisionSource("mcp", "peer")
+    # Existing handoff cap rejects before summary construction; no weaker admission.
+    settings = config(config={"limits": {"max_schema_bytes_per_tool": 100}})
+    result = prepare_registration(settings, [entry(raw("-" * 200 + "Read.File"))], {}, ())
+    assert result.decisions[0].code == "invalid_schema"
+    assert result.decisions[0].collision is None
+
+
+def test_escaped_lone_surrogate_preflight_diagnostic_does_not_weaken_rejection() -> None:
+    original = "Read.\ud800File"
+    # JSON may carry a lone surrogate as ASCII escapes; the unchanged discovery
+    # encoder rejects it, but pure preflight must still safely identify a collision.
+    escaped = MCPDiscoveredTool("peer", json.dumps(raw(original), ensure_ascii=True))
+    with pytest.raises(MCPRegistrationError, match="name_collision") as failure:
+        prepare_registration(config(), [escaped, entry(raw("Read-File"))], {}, ())
+    collision = failure.value.decisions[-1].collision
+    assert collision is not None
+    summary = collision.first.original_name_summary
+    assert summary is not None
+    assert (summary.length, summary.shape) == ("10", "aaaa.?aaaa")
+    assert summary.fingerprint == sha256(original.encode("utf-8", errors="surrogatepass")).hexdigest()[:12]
+    assert "Read" not in repr(collision) and "\\ud800" not in repr(collision)
+    result = prepare_registration(config(), [escaped], {}, ())
+    assert result.decisions[0].code == "invalid_schema" and not result.wrappers
 
 
 @pytest.mark.parametrize(

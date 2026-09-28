@@ -1,7 +1,7 @@
 # MCP WS-03 Implementation Report
 
 Date: 2026-09-28
-Status: Builder candidate; independent verification and maintainer acceptance pending
+Status: REM-005 remediation candidate; fresh VAL-009 and maintainer acceptance pending
 Branch: `feature/friday-mcp-ws03-registry`
 Work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 Approval/start authority commit: `b54069654bb3e21a6265fbabcd23f6991e286ab0`
@@ -9,9 +9,12 @@ Accepted predecessor product: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
 Authority: [approved WS-03 directive](../directives/ws-03-tool-naming-metadata-registry.md)
 Maintainer evidence: "ws-03 approved" on 2026-09-28
 
-This report is builder evidence, not an independent VERIFIED verdict. Candidate
-hash is pinned by the controller's subsequent VAL-008 request (not self-referential
-text in this commit). Wider initiative remains started and local. No later slice,
+This report is implementation evidence, not an independent VERIFIED verdict.
+VAL-008 reviewed original candidate `397caa9898612cd989f6404951b3e1f5005dfac2`
+and requested the safe collision-source correction in F-001. The approved
+[REM-005 report](REM-005-implementation-report.md) records the bounded correction
+from baseline `215e54de71eda08067d22695d0062f7bed35e9d0`; the controller pins its
+new candidate in fresh VAL-009. Wider initiative remains started and local. No later slice,
 acceptance, push, merge, release, deployment, credentials or live/network effects.
 
 ## Exact Implementation Manifest
@@ -136,10 +139,41 @@ from public cleanup assertions. The old seven-second detector is not an SLA.
 
 ## Acceptance-Criterion Evidence Map
 
+REM-005 adds frozen typed `MCPOriginalNameSummary`, `MCPCollisionSource` and
+`MCPNameCollision` in the public runtime registration module, and the optional
+`MCPRegistrationDecision.collision` field with default `None`. Existing three/
+four-position decision constructors, fixed reason/code values and binding
+context behavior remain compatible. Consumers serializing dataclasses must
+allow the new optional nested field; older strict readers need migration.
+No persisted diagnostic format, native mandatory protocol or config changes.
+
+Collision records retain the shared canonical name and first/second provider
+kind. MCP sources carry the configured safe server ID and a bounded original
+summary: decimal character length through 9999 then `9999+`, masked first-24
+shape (ASCII letters `a`, digits `0`, `-_.` preserved, all other characters `?`),
+and first 12 lowercase hex digits of full-original UTF-8 SHA-256 (surrogatepass for JSON-escaped lone surrogates, without changing export rejection). Native source
+has provider `native`, no invented MCP server ID or original summary; the shared
+canonical name identifies its registry entry. No raw original, catalog, peer
+error, argument or environment value is retained in these records. Hashing
+occurs only within the existing handoff byte cap and is not a secrecy or
+collision-proof guarantee. Existing admission/sanitizer limits remain intact.
+
+The first fatal collision attaches both sources to the existing rejected
+decision before filters or insertion. Static errors and counters are unchanged:
+the two-source peer collision has discovered=2/rejected=1 and native collision
+discovered=1/rejected=1, with selected/filtered/registered=0. Rejected counts
+decisions reached before fatal preflight, not all colliding contenders.
+Public stop/failure clears handoff/registrations/clients while retaining this
+last-attempt evidence via `RuntimeKernel.mcp_provider.registration_decisions`.
+Repeated stop/no-op start and obstructed prior cleanup preserve it. A new
+discovery attempt clears history after prior-owner cleanup/workspace validation;
+its next registration result replaces it. Safe snapshots held by callers remain
+immutable. See the REM-005 report for exact before/after and all six criteria.
+
 | Criterion | Builder coverage |
 | --- | --- |
 | AC-01 | Normalizer compatibility, prefix/length rejection, independent exact original-name routing to two real peers. |
-| AC-02 | Peer/native collisions before exclusions/schema validation; no overwrite or partial insertion; safe failures. |
+| AC-02 | REM-005 unit and real public-runtime both-source peer/native diagnostics, same-peer lossy originals, cross-peer concatenation ambiguity, zero selected/includes/exclusions, bounded hostile originals, retention/retry, native identity and cleanup before defensive teardown. |
 | AC-03 | Additive DTO/default tests, immutable sidecar/native absence, final costs/states, discovered/selected/registered/rejected/filtered counts without double counting. |
 | AC-04 | Pure and real selected/all/category/include/exclude matrices, default zero, strict optional/unavailable/rejected/capped missing includes. |
 | AC-05 | Whole export overhead caps, aggregate/count deterministic admission, upstream-capped include rejection; real callable reports exactly one tools/list. |
@@ -150,6 +184,11 @@ from public cleanup assertions. The old seven-second detector is not an SLA.
 | AC-10 | Exact source/test manifest, meaningful adapter/runtime typing, no new broad ignores/dependencies/config changes, explicit report/residual gates. |
 
 ## Required Checks And Baseline Separation
+
+The table below records the original `397caa9` builder execution historically.
+Current REM-005 exact commands/results, baseline reproductions and resource
+assertions are in the [REM-005 report](REM-005-implementation-report.md); the
+original VAL-008 report/evidence remain unchanged historical review inputs.
 
 Every uv check uses `UV_CACHE_DIR=/private/tmp/friday-uv-cache`; tests/imports
 also use `LITELLM_LOCAL_MODEL_COST_MAP=true`. Exact commands are in the directive.
@@ -207,8 +246,9 @@ services. Fake tools/call results prove routing only, not WS-05 output safety.
 
 ## Remaining Gates
 
-Fresh-context read-only VAL-008 must inspect the full WS-03 work-unit diff and
-accepted WS-00/01/02 interactions, independently reproduce required checks and
+Fresh-context read-only VAL-009 must inspect the REM-005 delta and full WS-03
+work-unit diff, all six remediation and ten WS-03 criteria, and accepted
+WS-00/01/02 interactions, independently reproduce required checks and
 adversarial public cleanup/routing/safety/cap probes, and return exactly VERIFIED,
 CHANGES_REQUESTED or BLOCKED. Builder cannot approve this candidate. Only after
 VERIFIED may controller propose closeout; explicit maintainer acceptance is
