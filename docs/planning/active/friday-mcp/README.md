@@ -9,7 +9,7 @@ updated: 2026-09-28
 next_gate: obtain fresh read-only VAL-010 complete WS-04 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
@@ -201,7 +201,7 @@ candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379` and its complete VAL-007
 review. Queue tasks 1–4 are complete. Next is bounded WS-03 directive/readiness
 reconciliation, followed by an explicit approval request; no WS-03 code is
 authorized. Current process fields now describe that next-slice preparation:
-`execution_phase: planning`, `validation_state: pending`, not a reversal of
+`execution_phase: planning`, `validation_state: in_review`, not a reversal of
 accepted WS-02's independently verified result. The wider initiative remains
 `started` and local, with no packet archive or delivery transition.
 
@@ -264,3 +264,8 @@ Seven-source meaningful typing and Ruff pass.
 required checks and fresh independent probes. Phase validation/state pending;
 request preparation is not dispatch, verification or acceptance. Accepted
 predecessors and all unrelated local work remain intact.
+
+Fresh `/root/mcp_ws04_val010` was created with `fork_turns: none` and dispatched
+the pinned read-only review after request commit `62a5c50`. No inherited
+controller/builder/remediator context. Phase validation/state in_review;
+no verdict or acceptance exists. Frozen inputs remain unchanged.

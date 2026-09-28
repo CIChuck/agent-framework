@@ -772,3 +772,10 @@ events:
   action: note
   note: WS-04 stable candidate 53d76d45cedea16122436e53b178de074c5bc322 frozen; exact VAL-010 request pins 26 authorities and three reports. Fresh review pending, not verified or accepted.
   evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: New fresh-context /root/mcp_ws04_val010 dispatched read-only with fork_turns none after stable request 62a5c50; validation in_review, no verdict or acceptance.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml

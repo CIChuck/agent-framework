@@ -162,3 +162,13 @@ Next is new fresh-context read-only VAL-010, complete WS-04 aggregate from
 Request pins 26 authorities and three reports. Current phase validation/state
 pending; no verdict, acceptance, WS-05 authority or delivery is inferred.
 All five unrelated path fingerprints and predecessor contracts remain unchanged.
+
+## 2026-09-28 — Fresh VAL-010 Dispatched
+
+New `/root/mcp_ws04_val010`, `fork_turns: none`, received the frozen request
+after local request commit `62a5c50`. It independently reviews complete WS-04
+aggregate, all eight criteria and required commands/probes, read-only. No
+parent/private builder reasoning is supplied. Phase validation/state in_review;
+no verdict/acceptance or later-slice/delivery authority. Candidate source/tests/
+config, 26 authorities and three implementation reports remain frozen; all
+unrelated work is preserved. Task 7 independent review is in progress.
