@@ -268,3 +268,15 @@
   WS-01 maintainer acceptance and bounded WS-02 approval are separate next
   decisions. Runtime loading/connection and later workstreams remain
   unapproved, and delivery remains local.
+
+## 2026-09-27 — Maintainer Accepted WS-01 Work Unit
+
+- The repository maintainer explicitly said "accept ws-01" after the
+  independently verified work-unit closeout. The
+  [WS-01 closeout](execution/WS-01-closeout.md) records the accepting
+  maintainer, date, candidate, validation, and conversation evidence.
+- This acceptance applies only to WS-01. The wider `friday-mcp` initiative
+  remains `started`; its packet stays active and delivery stays local.
+  No initiative-level acceptance, archive move, or delivery event is implied.
+- The next gate is explicit approval of bounded WS-02 runtime lifecycle
+  scope. Its directive remains Draft; no WS-02 product code is authorized.

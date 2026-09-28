@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: maintainer review of WS-01 and explicit approval of bounded WS-02 scope
+next_gate: maintainer approval of bounded WS-02 runtime lifecycle scope
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
 execution_phase: closeout
 validation_state: verified
@@ -66,6 +66,7 @@ candidate `dd6c65b` passed fresh delta and complete WS-01 aggregate review in
 [VAL-004](validation/VAL-004-report.md). The
 [REM-002 report](execution/REM-002-implementation-report.md) and
 [WS-01 work-unit closeout](execution/WS-01-closeout.md) record the bounded
-fixes, checks, and remaining gates. WS-01 is independently verified, not
-maintainer-accepted. The next gate is maintainer review and explicit approval
-of bounded WS-02 scope; no WS-02 behavior is authorized yet.
+fixes, checks, and remaining gates. The maintainer explicitly accepted WS-01
+on 2026-09-27. This is work-unit acceptance only; the wider initiative remains
+`started` and delivery remains local. The next gate is explicit approval of
+bounded WS-02 runtime lifecycle scope; no WS-02 behavior is authorized yet.

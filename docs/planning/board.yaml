@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer review of WS-01 and explicit approval of bounded WS-02 scope
+  next_gate: maintainer approval of bounded WS-02 runtime lifecycle scope
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -625,3 +625,10 @@ events:
   action: recorded verified WS-01 work unit
   note: Fresh independent VAL-004 verified both the REM-002 delta and complete WS-01 aggregate; initiative remains started, WS-01 acceptance and WS-02 approval remain maintainer decisions.
   evidence: docs/planning/active/friday-mcp/validation/VAL-004-report.md; docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted WS-01 work unit
+  note: Maintainer explicitly said accept ws-01 after verified closeout. Acceptance applies only to WS-01; the initiative remains started and local, and WS-02 requires separate approval.
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
