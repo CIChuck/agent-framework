@@ -6,16 +6,18 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: execute approved REM-004 with separate remediator and commit scoped candidate
+next_gate: dispatch fresh VAL-007 delta and complete WS-02 aggregate review of frozen candidate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
-candidate. Startup-retry ownership is independently verified, but the full
-WS-02 review requests changes for a noisy-subprocess shutdown hang.
+candidate. REM-004 corrects the noisy-subprocess shutdown hang in frozen
+candidate `a257f04`; fresh independent delta and complete WS-02 aggregate
+review remain pending. Startup-retry ownership was independently verified on
+the preceding candidate; it must be reassessed with the complete current unit.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
@@ -124,3 +126,16 @@ mandatory and its capacity is unresolved; an existing reviewer will not be
 relabeled fresh. The [queue](task-queue.md) and
 [execution log](execution-log.md) record the capacity stop and bounded recovery
 without granting later-workstream authority.
+
+The separate remediator completed REM-004 in stable candidate
+`a257f041d1d68f8aea2f5b9773df1b88acd82379`, with exactly the six approved
+source/test/report paths. The [REM-004 report](execution/REM-004-implementation-report.md)
+records bounded incremental pipe discard, finite process/task cleanup,
+retained-owner retries, real direct/public-kernel noisy-peer regressions, and
+all required checks. The controller checked scope, unchanged authority and
+preserved unrelated work. Historical VAL-006 is superseded for current
+decision purposes without changing its findings. The pinned
+[VAL-007 request](validation/VAL-007-request.yaml) requires fresh read-only
+delta and entire WS-02 aggregate review; request preparation is not dispatch
+or verification. Execution phase is `validation`, validation state `pending`.
+No WS-02 acceptance, later-workstream approval or delivery is inferred.

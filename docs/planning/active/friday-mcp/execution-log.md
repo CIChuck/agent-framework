@@ -559,3 +559,42 @@
 - Queue tasks 1–2 are in progress. Execution phase remains `remediation`;
   validation state remains `changes_requested` until candidate freeze and a
   fresh review request. Later workstreams, acceptance, and delivery are gated.
+
+## 2026-09-28 — REM-004 Frozen Candidate And VAL-007 Request
+
+- Separate remediator `/root/mcp_ws01_val004` delivered final frozen candidate
+  `a257f041d1d68f8aea2f5b9773df1b88acd82379` against correction base
+  `097bbd9eced5e5ba2ffcc97fbe60273285bf605e`. Its provisional local commit
+  `eb960785` was amended before freeze to strengthen assertion-failure fixture
+  cleanup. It will not independently review its own remediation.
+- Exactly six authorized source/test/report paths changed. Source correction
+  is confined to MCP stdio transport: owned shielded cleanup, single-reader
+  handoff, 4096-byte stdout/stderr discard, bounded graceful/forced process
+  waits and task settlement, static incomplete-cleanup error and retryable
+  retained ownership. Public signatures, configuration, runtime/DI/provider
+  source and accepted predecessor contracts are unchanged.
+- The [REM-004 report](execution/REM-004-implementation-report.md) records
+  before-fix direct reproduction, real direct/public-kernel noisy-peer cleanup,
+  required/optional partial-start variants, finite 11-second asynchronous
+  attempt budget, cancellation/retry limits and explicit synthetic teardown.
+- Final remediator checks: 39 focused lifecycle, 333 Core/MCP/runtime aggregate,
+  32 loading and 46 Chat tests passed. Broad integration: 44 passed and only
+  the declared board-count baseline failed. Ruff and prescribed Python 3.13
+  mypy passed (42 files); default mypy reproduced only installed NumPy syntax
+  baseline. Board validate (23)/render, docs (335) and diff checks passed.
+- Controller checked exact bounded path manifest, product worktree/candidate
+  match, no runtime/core/Chat/dependency correction, authority hashes and
+  unchanged unrelated dirty manifest. Implementation checks are not a formal
+  independent verdict. Controller reran the focused direct/public-kernel suite:
+  39 passed in 40.98s. Board validate/render and docs lifecycle also passed
+  after request/process metadata preparation.
+- Historical VAL-006 retains its complete verdict/findings, with only a
+  superseded decision-status note added. [VAL-007](validation/VAL-007-request.yaml)
+  pins eighteen authority documents, the exact candidate/delta/correction/full
+  WS-02 aggregate ranges, every criterion and required command, baseline and
+  local-only validation boundaries. Full branch/merge review remains later.
+- Queue tasks 1–2 are complete as implementation steps. Execution phase is
+  `validation`; validation state is `pending`. Next gate is fresh read-only
+  VAL-007 dispatch and complete review. New-agent capacity must be checked;
+  no current context may be relabeled fresh. No WS-02 acceptance, later-slice
+  implementation, push, merge, release or external effect is authorized here.

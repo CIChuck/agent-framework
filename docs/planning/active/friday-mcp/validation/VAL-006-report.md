@@ -1,5 +1,11 @@
 # VAL-006 — Independent REM-003 Delta and MCP-WS-02 Aggregate Review
 
+Decision status (2026-09-28): superseded for decisions on corrected candidate
+`a257f041d1d68f8aea2f5b9773df1b88acd82379`; fresh VAL-007 delta and complete
+WS-02 aggregate review are required. The historical verdicts, finding, evidence,
+and residual risks below remain unchanged. This note is not a new reviewer
+verdict or a claim that F-001 is independently verified as resolved.
+
 **Remediation delta: VERIFIED**
 **Complete WS-02 aggregate: CHANGES_REQUESTED**
 **Overall WS-02 validation gate: CHANGES_REQUESTED**
