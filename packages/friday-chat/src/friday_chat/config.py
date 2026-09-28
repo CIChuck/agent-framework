@@ -19,6 +19,7 @@ from friday_llm import (
     resolve_chat_service,
     resolve_embedding_service,
 )
+from friday_runtime.config import MCPToolProviderConfig
 from friday_runtime.model_library import load_model_library
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
@@ -306,9 +307,7 @@ class EmbeddingServicePoolConfig(BaseModel):
     @model_validator(mode="after")
     def validate_default(self) -> EmbeddingServicePoolConfig:
         if self.default_service not in self.services:
-            raise ValueError(
-                "embedding_pool.default_service must reference a service"
-            )
+            raise ValueError("embedding_pool.default_service must reference a service")
         return self
 
 
@@ -385,9 +384,7 @@ class LLMConfig(ProviderConfig):
 
         generation = self.generation or GenerationConfigInput()
         sampling_values = (
-            generation.sampling.model_dump()
-            if generation.sampling is not None
-            else {}
+            generation.sampling.model_dump() if generation.sampling is not None else {}
         )
         sampling_fields = (
             generation.sampling.model_fields_set
@@ -548,6 +545,37 @@ class ToolsConfig(FlexibleConfigSection):
     loop: dict[str, Any] = Field(default_factory=dict)
     registry: Any = Field(default_factory=dict)
     context: dict[str, Any] = Field(default_factory=dict)
+    providers: dict[str, Any] = Field(default_factory=dict, repr=False)
+
+    @property
+    def mcp_provider(self) -> MCPToolProviderConfig:
+        """Normalize the retained canonical provider stanza through runtime types."""
+        raw = self.providers.get("mcp", {})
+        if not isinstance(raw, Mapping):
+            raise ValueError("tools.providers.mcp must be an object")
+        return MCPToolProviderConfig.from_dict(raw)
+
+    @model_validator(mode="after")
+    def validate_turn_policy(self) -> ToolsConfig:
+        """Validate new budget keys without weakening the canonical MCP parser."""
+        _ = self.mcp_provider
+        maximum = self.context.get("max_mcp_tools")
+        if maximum is not None and (
+            isinstance(maximum, bool) or not isinstance(maximum, int) or maximum < 0
+        ):
+            raise ValueError(
+                "tools.context.max_mcp_tools must be a nonnegative integer"
+            )
+        required = self.context.get("required_tools", [])
+        if not isinstance(required, (list, tuple)) or any(
+            not isinstance(name, str) or not name for name in required
+        ):
+            raise ValueError(
+                "tools.context.required_tools must be a list of tool names"
+            )
+        if len(set(required)) != len(required):
+            raise ValueError("tools.context.required_tools must contain unique names")
+        return self
 
 
 class WebConfig(FlexibleConfigSection):
@@ -617,7 +645,7 @@ class ConfigDiagnostic(BaseModel):
 class FridayChatConfig(BaseModel):
     """Typed FridayV2 configuration compatible with Friday-py YAML shape."""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", hide_input_in_errors=True)
 
     model_library: ModelLibraryReference | None = None
     llm_pool: ChatServicePoolConfig | None = None
@@ -715,8 +743,7 @@ def load_friday_py_config(
             }
         except (ModelLibraryError, ValueError) as exc:
             raise FridayChatConfigError(
-                "Unable to resolve canonical model-library services: "
-                f"{exc}"
+                f"Unable to resolve canonical model-library services: {exc}"
             ) from exc
     elif not config.llm.model:
         raise FridayChatConfigError("Missing required config: llm.model")
@@ -794,9 +821,11 @@ def _collect_diagnostics(data: dict[str, Any]) -> list[ConfigDiagnostic]:
                 )
             )
     llm = data.get("llm")
-    if isinstance(llm, Mapping) and not (
-        "transport_target" in llm or "model_target" in llm
-    ) and "model_library" not in data:
+    if (
+        isinstance(llm, Mapping)
+        and not ("transport_target" in llm or "model_target" in llm)
+        and "model_library" not in data
+    ):
         diagnostics.append(
             ConfigDiagnostic(
                 kind="deprecated_key",

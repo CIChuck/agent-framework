@@ -25,6 +25,7 @@ from friday_chat.memory_views import (
 )
 from friday_chat.session import SessionIdentity, resolve_session_identity
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
+from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolDefinition
 from friday_chat.tools.selection import ToolSelectionState
@@ -362,6 +363,18 @@ class FridayRuntime:
     budget_monitor: Any | None = None
     compactor: Any | None = None
     compaction_task: asyncio.Task[Any] | None = None
+    mcp_tools: MCPChatRegistry | None = None
+
+    async def start_mcp_tools(self) -> None:
+        if self.mcp_tools is not None:
+            await self.mcp_tools.start()
+            self.tool_selection.synchronize_registered_tools(
+                self.tools.list_tools(), mcp_metadata=self.mcp_tools.tool_metadata
+            )
+
+    async def stop_mcp_tools(self) -> None:
+        if self.mcp_tools is not None:
+            await self.mcp_tools.stop()
 
 
 @dataclass
@@ -546,7 +559,9 @@ class FakeMemoryController:
         self.summaries.append({"text": text, "metadata": dict(metadata)})
 
     async def query_memory_statistics(self) -> MemoryStoreStatistics:
-        vector_count = len(self.insights) + len(self.summaries) + len(self.meta_insights)
+        vector_count = (
+            len(self.insights) + len(self.summaries) + len(self.meta_insights)
+        )
         graph_nodes = (
             MemoryMetric.available(len(self.entities))
             if self.graph_configured
@@ -1222,9 +1237,7 @@ def build_runtime(
             config.lifecycle.enabled
             and access_buffer_config.get("enabled", True) is not False
         ),
-        priming_enabled=_configured_bool(
-            config.memory.priming.get("enabled", True)
-        ),
+        priming_enabled=_configured_bool(config.memory.priming.get("enabled", True)),
         priming_previous_sessions=(
             0
             if "previous_sessions" not in config.memory.priming
@@ -1349,7 +1362,17 @@ def _build_framework_runtime(
         session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
     )
-    tools = build_framework_tool_registry(config)
+    native_tools = build_framework_tool_registry(config)
+    mcp_tools = (
+        MCPChatRegistry(
+            native_tools,
+            config.tools.mcp_provider,
+            str(maintenance_layout.captured_process_cwd),
+        )
+        if config.tools.enabled and config.tools.mcp_provider.enabled
+        else None
+    )
+    tools: ToolRegistry = mcp_tools if mcp_tools is not None else native_tools
     tool_definitions = tuple(tools.list_tools())
     tool_context = None
     if config.tools.enabled and config.tools.context.get("include_in_context") is True:
@@ -1436,6 +1459,7 @@ def _build_framework_runtime(
         memory=memory,
         transcript=transcript,
         tools=tools,
+        mcp_tools=mcp_tools,
         speech=FakeSpeechAdapter(enabled=config.speech.enabled),
         orchestrator=orchestrator,
         workflow=workflow,

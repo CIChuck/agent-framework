@@ -1,0 +1,155 @@
+id: WS-04-builder-evidence
+date: '2026-09-28'
+role: builder/controller evidence; independent review pending
+base: acd1fd1e736a38134fac40d7fdb35cd1f32cf683
+approval_commit: ac4530ac8063f299776c807cfa22140e3cff184a
+archive: docs/planning/active/friday-mcp/execution/WS-04-builder-evidence.tar.gz
+archive_sha256: c302ff23828d6466d6d4e1c7770cc4444388ee4176e0d2b17e03416e9a36209c
+archive_bytes: 17829
+artifact_count: 47
+format: deterministic gzip/tar; original log and script bytes retained
+scope: baseline, final required checks, development iterations and preservation; caches/predecessor extraction
+  excluded as reproducible inputs
+final_required_check_count: 11
+members:
+  predecessor-board-result.json:
+    bytes: 482
+    sha256: ab702c4c47580ffece0fbee7b93d1507a85a89a4856aee5c0ac116992cf83b99
+  ws04-baseline.py:
+    bytes: 1552
+    sha256: ad1e4c48c8f3fd865fef31c7bca6f24b26764164d782464497287d3528024662
+  ws04-baseline/chat.json:
+    bytes: 168
+    sha256: 12d04027667e7b3fab732f8dda316524a6e8dc80a9a267f5bdbd113bbc729c16
+  ws04-baseline/chat.log:
+    bytes: 10579
+    sha256: b4faa353c74521c40de16c570f1dc24f786e55d60d5443f31217a58d31970df9
+  ws04-baseline/focused-typing.json:
+    bytes: 478
+    sha256: 9d9eb80042249fccc4ea8567f4308d9913c08a4882ac01e2fc59b999888dc60c
+  ws04-baseline/focused-typing.log:
+    bytes: 43
+    sha256: ab35ee42183d4d6d3ba483825ab037d18a5a15622d03be01d82220b1564851ff
+  ws04-baseline/memory.json:
+    bytes: 176
+    sha256: ddb860996e7a9cbeef4163bc7780a554e1bdf1559469be73448ae2f3c995aa22
+  ws04-baseline/memory.log:
+    bytes: 1364
+    sha256: 362e08424ea957e5119e787052ec62d57f57d3b9092f84a6c3b7d39d1b531c20
+  ws04-baseline/mypy.json:
+    bytes: 198
+    sha256: 8277eec9a46a5e1cc7a3be77e3fb9c3d1774e0fca754e1c979ed9fdb16faeb82
+  ws04-baseline/mypy.log:
+    bytes: 196
+    sha256: effd574d0f3dce1bae2f2f84461f1ee76aa91621be4940353fd358845ea85207
+  ws04-baseline/results.json:
+    bytes: 1302
+    sha256: 9a316fd94b5958a084c78563ebdad1d6ba2cce94934f9e5a065ed788cde4829d
+  ws04-baseline/ruff.json:
+    bytes: 204
+    sha256: 4948a1676774276737fcb52fa1f6526b90096ce6e4a414e7841c7383a097466b
+  ws04-baseline/ruff.log:
+    bytes: 19
+    sha256: 82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18
+  ws04-checks.py:
+    bytes: 2353
+    sha256: a97613426dd4472254b4b3a29d88a30ff11900065b21619369ad08639af5b184
+  ws04-checks/accepted-mcp-collection.log:
+    bytes: 51034
+    sha256: a7b7b931b36336ea4030e9d696a829d71786977f34002effa5be019b322459e1
+  ws04-checks/accepted-mcp.json:
+    bytes: 337
+    sha256: 5916252fa36d35bb923d90edb6feeb0a69cc59f4f30c0c149eda399dca82f296
+  ws04-checks/accepted-mcp.log:
+    bytes: 581
+    sha256: d89ae8480c34dca9e748dd9c287c5c7f31c19f680b765240edcb48291844baf0
+  ws04-checks/board.json:
+    bytes: 169
+    sha256: 67aed8ea2148190326644cdcbb7761fe1f7c400c75c12682e1323d25add81308
+  ws04-checks/board.log:
+    bytes: 46
+    sha256: eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93
+  ws04-checks/chat.json:
+    bytes: 177
+    sha256: c7cc30bc5deebc391de023db34b6d8a79c8c702f40ca92db3393081882a1db26
+  ws04-checks/chat.log:
+    bytes: 4727
+    sha256: 3cfb58b5cb966f78bfb0c98732c84d22ab5527db077e64043fd6a9b9f0e39448
+  ws04-checks/dashboard.json:
+    bytes: 183
+    sha256: afadb3ae639f0d45c2397bc25e03f45a8ed452fdd6cf4c0fb9cc686a0433d438
+  ws04-checks/dashboard.log:
+    bytes: 30
+    sha256: a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33
+  ws04-checks/docs.json:
+    bytes: 171
+    sha256: 7eb54f63d977ad4254b71fd2aae0ab9677c97162ea5b57835086b9c7c744a354
+  ws04-checks/docs.log:
+    bytes: 70
+    sha256: 799066c408976586ad46e93d088722f8fe962993091800936ccb4c9371e76c63
+  ws04-checks/focused-typing.json:
+    bytes: 526
+    sha256: a1b87daa34e92b05cfeaecb1c1a1c83a0aa6a8834f5e4b123de24a2515135a44
+  ws04-checks/focused-typing.log:
+    bytes: 43
+    sha256: 050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033
+  ws04-checks/integration.json:
+    bytes: 177
+    sha256: 25b07a99769c7884211f6421f3df9bd24d6b6ffab2ba77f778eecfe83ab5c0c5
+  ws04-checks/integration.log:
+    bytes: 1012
+    sha256: 18451532d5979aab5f921e11d45f61513277bf61936baccf08b6b790292c79c5
+  ws04-checks/memory.json:
+    bytes: 174
+    sha256: 9dc81118afbefe879521ed7349b11895b711b8f0fccbe262a457c0d9c8403646
+  ws04-checks/memory.log:
+    bytes: 1363
+    sha256: eb34a6da9ebd29a504fc53a69b09820309f269c748afedf5668d99f3b441200a
+  ws04-checks/mypy.json:
+    bytes: 196
+    sha256: 767ecdf0d124d15d693de2d021e09c551c241d31ce80fbde31686e92bedd6b55
+  ws04-checks/mypy.log:
+    bytes: 196
+    sha256: effd574d0f3dce1bae2f2f84461f1ee76aa91621be4940353fd358845ea85207
+  ws04-checks/predecessor-board.log:
+    bytes: 1000
+    sha256: 4709f7adc6dbea210f309469761c57684bafe78502a7812de21c5a5c6c5c5b6c
+  ws04-checks/preservation.json:
+    bytes: 948
+    sha256: c10282c834109084753e6596e4cdf39ec58b0b7d5b44ed6beedcaa489b0f64b1
+  ws04-checks/results.json:
+    bytes: 2657
+    sha256: 3abc17e73b5fcd739e33bd76c2fed0ef46e5d4ca967777cb214320c0fab0cd52
+  ws04-checks/ruff.json:
+    bytes: 202
+    sha256: b20cbe856a16a17266fd90315273460b10485ee04005d5fe7ecb952f3a10e9c4
+  ws04-checks/ruff.log:
+    bytes: 19
+    sha256: 82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18
+  ws04-checks/runtime.json:
+    bytes: 177
+    sha256: 49349a88c7a197340291739483715afbb018f6538c4bbefd61763bfaaf36cc93
+  ws04-checks/runtime.log:
+    bytes: 260
+    sha256: 5c1c2c04422b93e1ee605854337042580361bb36b99909a4397bb7067fad9591
+  ws04-existing-focused.log:
+    bytes: 2998
+    sha256: c58b567d475cf187485895583bcf263b3aeda9868003e283c22d208389bf1a7d
+  ws04-final-focused-result.json:
+    bytes: 532
+    sha256: e782993ef6ab84899870e8b6f24717920fa4c672c13c3d9272a54cb6c7a4e6f5
+  ws04-focused2.log:
+    bytes: 8594
+    sha256: 5ed9739b11618d9c6873e1d2da2b25f017a4e7027a8403de2948e0ad4eb2fdb7
+  ws04-focused3.log:
+    bytes: 179
+    sha256: bc7d853dd6897f845b5c6a690cfa77694c960830383ec9b44203e7153f8f0d13
+  ws04-new-focused.log:
+    bytes: 4452
+    sha256: bf6bdb0a8736df296ffbd340686a4165ed382b7b2b3703eb93e08a72819bd423
+  ws04-preservation.py:
+    bytes: 2621
+    sha256: 554bfa92ffe812f1e59c0ee46040e16fc2c0017cc5ba0265697e4234d102dcb6
+  ws04-typing.log:
+    bytes: 194
+    sha256: 58794a9e29680d9c8ef7a724d6ccf2ff95ae2bca30f007380060326daf3a315f

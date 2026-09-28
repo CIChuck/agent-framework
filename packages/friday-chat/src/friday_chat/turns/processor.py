@@ -17,7 +17,11 @@ from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFa
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
-from friday_chat.tools.selection import ToolBudgetSnapshot
+from friday_chat.tools.selection import (
+    ToolBudgetSnapshot,
+    ToolRejectionReason,
+    ToolSelectionError,
+)
 from friday_chat.turns.metrics import elapsed_seconds, now_seconds
 from friday_chat.turns.models import (
     ChatModelResponse,
@@ -67,6 +71,16 @@ class PreparedTurn:
 
 class TurnProcessingError(RuntimeError):
     """Base class for FridayV2 turn-processing failures."""
+
+
+class TurnBudgetError(TurnProcessingError):
+    """Required tools or the memory floor cannot fit before retrieval/model calls."""
+
+    def __init__(self, reason: ToolRejectionReason) -> None:
+        self.reason = reason
+        super().__init__(
+            f"Tool selection failed ({reason.value}); check required tools and turn budget policy."
+        )
 
 
 class TurnTimeoutError(TurnProcessingError):
@@ -276,10 +290,19 @@ class TurnProcessor:
 
     async def _prepare_turn(self, user_message: str) -> PreparedTurn:
         total_start = now_seconds()
-        self._runtime.tool_selection.synchronize_registered_tools(
-            self._runtime.tools.list_tools()
-        )
-        selection = self._runtime.tool_selection.select_for_turn(user_message)
+        await self._runtime.start_mcp_tools()
+        try:
+            self._runtime.tool_selection.synchronize_registered_tools(
+                self._runtime.tools.list_tools(),
+                mcp_metadata=(
+                    self._runtime.mcp_tools.tool_metadata
+                    if self._runtime.mcp_tools is not None
+                    else None
+                ),
+            )
+            selection = self._runtime.tool_selection.select_for_turn(user_message)
+        except ToolSelectionError as exc:
+            raise TurnBudgetError(exc.reason) from None
         tool_definitions = selection.definitions
         context_budget_tokens = _calculate_dynamic_context_budget(
             self._runtime.config,
@@ -580,7 +603,8 @@ def _calculate_dynamic_context_budget(
             0,
             tool_budget.available_context_tokens
             - system_prompt_tokens
-            - tool_budget.schema_tokens,
+            - tool_budget.schema_tokens
+            - tool_budget.reserved_result_tokens,
         ),
     )
 

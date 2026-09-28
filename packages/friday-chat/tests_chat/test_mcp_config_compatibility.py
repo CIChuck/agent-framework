@@ -10,7 +10,9 @@ from friday_chat.config import FridayChatConfig, load_friday_py_config
 from friday_runtime.config import MCPRuntimeClientConfig, MCPToolProviderConfig
 
 
-def test_chat_retains_canonical_mcp_stanza_for_runtime_validation(tmp_path: Path) -> None:
+def test_chat_retains_canonical_mcp_stanza_for_runtime_validation(
+    tmp_path: Path,
+) -> None:
     stanza = {
         "enabled": True,
         "mode": "selected",
@@ -75,9 +77,5 @@ def test_chat_retains_canonical_mcp_stanza_for_runtime_validation(tmp_path: Path
 def test_chat_retention_does_not_bypass_canonical_mcp_validation(
     stanza: dict[str, object], match: str
 ) -> None:
-    chat = FridayChatConfig.model_validate({"tools": {"providers": {"mcp": stanza}}})
-    retained = chat.tools.model_dump()["providers"]["mcp"]
-
-    assert retained == stanza
     with pytest.raises(ValueError, match=match):
-        MCPToolProviderConfig.from_dict(retained)
+        FridayChatConfig.model_validate({"tools": {"providers": {"mcp": stanza}}})

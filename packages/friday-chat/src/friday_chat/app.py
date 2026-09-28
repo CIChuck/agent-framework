@@ -180,16 +180,13 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
     async def prepare_for_manual_maintenance(self) -> None:
         """Cancel supervised writers after exclusive intent blocks new work."""
         self._extraction_preempted = bool(
-            self.background_work is not None
-            and self.background_work.extraction_running
+            self.background_work is not None and self.background_work.extraction_running
         )
         await self.background.cancel_pending()
 
     async def drain_for_manual_maintenance(self) -> ManualMaintenanceDrainResult:
         """Flush committed stores while retaining extraction as future work."""
-        buffered_extraction_count = len(
-            self.runtime.maintenance.pending_extraction
-        )
+        buffered_extraction_count = len(self.runtime.maintenance.pending_extraction)
         succeeded = await self._run_step(
             "flush_memory",
             self.runtime.maintenance.flush_memory(),
@@ -399,6 +396,7 @@ class FridayChatApp:
         turns_processed = 0
         exit_reason: Literal["eof", "keyboard_interrupt", "command_exit"] = "eof"
         try:
+            await self.runtime.start_mcp_tools()
             while True:
                 try:
                     user_message = await self.input_source.read()
@@ -474,8 +472,13 @@ class FridayChatApp:
                     if extraction_preempted:
                         self.background_work.resume_preempted_extraction()
         finally:
-            await self._shutdown_through_coordinator()
-            self._started = False
+            try:
+                await self.runtime.stop_mcp_tools()
+            finally:
+                try:
+                    await self._shutdown_through_coordinator()
+                finally:
+                    self._started = False
 
         return AppRunResult(
             exit_reason=exit_reason,

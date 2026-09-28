@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import json
 import re
-from collections.abc import Sequence
-from dataclasses import dataclass
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass, field
 from decimal import ROUND_FLOOR, Decimal, InvalidOperation
 from enum import Enum
-from typing import Any
+from typing import Any, Protocol
+
+from friday_core.mcp import MCPToolMetadata
+from friday_runtime.mcp_registration import sanitize_definition
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.tools.schemas import ToolDefinition
@@ -33,6 +36,14 @@ class ToolRejectionReason(str, Enum):
     COUNT_LIMIT = "count_limit"
     TOKEN_LIMIT = "token_limit"
     TOOLS_DISABLED = "tools_disabled"
+    MCP_COUNT_LIMIT = "mcp_count_limit"
+    MEMORY_FLOOR = "memory_floor"
+    MISSING_METADATA = "missing_metadata"
+    UNSAFE_SCHEMA = "unsafe_schema"
+    SCHEMA_LIMIT = "schema_limit"
+    NOT_REGISTERED = "not_registered"
+    NOT_RELEVANT = "not_relevant"
+    NOT_REQUESTED = "not_requested"
 
 
 @dataclass(frozen=True)
@@ -59,7 +70,12 @@ class ToolBudgetSnapshot:
     max_budget_ratio: float
     available_context_tokens: int
     utilization_pct: float
-    schema_bytes: bytes
+    schema_bytes: bytes = field(repr=False)
+    reserved_result_tokens: int = 0
+    minimum_memory_tokens: int = 0
+    memory_tokens_before_selection: int = 0
+    memory_tokens_after_selection: int = 0
+    selected_mcp_count: int = 0
 
 
 @dataclass(frozen=True)
@@ -84,6 +100,20 @@ class ToolSelectionError(ValueError):
         self.names = tuple(names)
 
 
+class SchemaTokenEstimator(Protocol):
+    """Replaceable estimator boundary over the exact serialized model schema."""
+
+    def estimate(self, schema_bytes: bytes) -> int: ...
+
+
+@dataclass(frozen=True)
+class UTF8SchemaTokenEstimator:
+    """Compatible native estimate; not a claim of tokenizer parity."""
+
+    def estimate(self, schema_bytes: bytes) -> int:
+        return (len(schema_bytes) + 3) // 4 if schema_bytes else 0
+
+
 @dataclass(frozen=True)
 class ToolBudgetCalculator:
     """Canonical schema serialization, estimation, and configured limits."""
@@ -92,6 +122,10 @@ class ToolBudgetCalculator:
     max_budget_ratio: Decimal
     context_window: int
     output_buffer: int
+    estimator: SchemaTokenEstimator = field(default_factory=UTF8SchemaTokenEstimator)
+    mcp_metadata: Mapping[str, MCPToolMetadata] = field(
+        default_factory=dict, repr=False
+    )
 
     @classmethod
     def from_config(
@@ -99,6 +133,8 @@ class ToolBudgetCalculator:
         config: FridayChatConfig,
         *,
         registered_count: int,
+        mcp_metadata: Mapping[str, MCPToolMetadata] | None = None,
+        estimator: SchemaTokenEstimator | None = None,
     ) -> ToolBudgetCalculator:
         """Build one calculator from the four authoritative config values."""
         context = config.tools.context
@@ -116,6 +152,8 @@ class ToolBudgetCalculator:
                 config.memory.output_buffer,
                 default=_DEFAULT_OUTPUT_BUFFER,
             ),
+            mcp_metadata=mcp_metadata or {},
+            estimator=estimator or UTF8SchemaTokenEstimator(),
         )
 
     @property
@@ -146,7 +184,34 @@ class ToolBudgetCalculator:
         schema_bytes = self.schema_bytes(tools)
         if not schema_bytes:
             return 0
-        return (len(schema_bytes) + 3) // 4
+        estimate = self.estimator.estimate(schema_bytes)
+        if isinstance(estimate, bool) or not isinstance(estimate, int) or estimate < 0:
+            raise ValueError("Schema estimator must return a nonnegative integer")
+        mcp_tools = [tool for tool in tools if tool.name in self.mcp_metadata]
+        if not mcp_tools:
+            return estimate
+        native = [tool for tool in tools if tool.name not in self.mcp_metadata]
+        native_estimate = self.estimator.estimate(self.schema_bytes(native))
+        if (
+            isinstance(native_estimate, bool)
+            or not isinstance(native_estimate, int)
+            or native_estimate < 0
+        ):
+            raise ValueError("Schema estimator must return a nonnegative integer")
+        # Retain WS-03's conservative complete-export costs; never divide them
+        # by four or confuse registry costs with approximate native estimates.
+        mcp_cost = sum(
+            max(
+                self.mcp_metadata[tool.name].schema_token_estimate or 0,
+                len(
+                    json.dumps(
+                        _model_schema(tool), ensure_ascii=False, separators=(",", ":")
+                    ).encode("utf-8")
+                ),
+            )
+            for tool in mcp_tools
+        )
+        return max(estimate, native_estimate + mcp_cost + 2)
 
     def fits(self, tools: Sequence[ToolDefinition]) -> bool:
         """Return whether definitions satisfy both configured hard limits."""
@@ -163,8 +228,13 @@ class ToolSelectionState:
         self,
         config: FridayChatConfig,
         tools: Sequence[ToolDefinition],
+        *,
+        mcp_metadata: Mapping[str, MCPToolMetadata] | None = None,
+        estimator: SchemaTokenEstimator | None = None,
     ) -> None:
         self._config = config
+        self._mcp_metadata = dict(mcp_metadata or {})
+        self._estimator = estimator or UTF8SchemaTokenEstimator()
         self._tools = _validated_registered_tools(tools)
         self._manual_names: tuple[str, ...] | None = None
         self._last_turn_snapshot: ToolBudgetSnapshot | None = None
@@ -216,14 +286,20 @@ class ToolSelectionState:
         return ToolBudgetCalculator.from_config(
             self._config,
             registered_count=len(self._tools),
+            mcp_metadata=self._mcp_metadata if self._mcp_enabled else {},
+            estimator=self._estimator,
         )
 
     def synchronize_registered_tools(
         self,
         tools: Sequence[ToolDefinition],
+        *,
+        mcp_metadata: Mapping[str, MCPToolMetadata] | None = None,
     ) -> None:
         """Synchronize an explicitly replaced runtime registry before selection."""
         definitions = _validated_registered_tools(tools)
+        if mcp_metadata is not None:
+            self._mcp_metadata = dict(mcp_metadata)
         if definitions == self._tools:
             return
         new_names = {tool.name for tool in definitions}
@@ -239,7 +315,21 @@ class ToolSelectionState:
 
     def inject_manual(self, names: Sequence[str]) -> ToolBudgetSnapshot:
         """Validate an exact manual set, then switch modes in one mutation."""
+        if not self._config.tools.enabled:
+            raise ToolSelectionError(
+                ToolRejectionReason.TOOLS_DISABLED,
+                (),
+                "Tool selection is disabled by configuration.",
+            )
         requested_names = _unique_names(names)
+        if self._mcp_enabled or self._config.tools.context.get("required_tools"):
+            selection = self._select_policy("", requested_names)
+            self._manual_names = requested_names
+            return self._snapshot(
+                ToolSelectionMode.MANUAL,
+                selection.definitions,
+                rejections=selection.budget.rejections,
+            )
         selected = self._validated_manual_tools(requested_names)
         self._manual_names = requested_names
         return self._snapshot(
@@ -303,6 +393,8 @@ class ToolSelectionState:
         """Return current manual budget evidence without recording a turn."""
         if self._manual_names is None or not self._config.tools.enabled:
             return None
+        if self._mcp_enabled or self._config.tools.context.get("required_tools"):
+            return self._select_policy("", self._manual_names).budget
         selected = self._validated_manual_tools(self._manual_names)
         return self._snapshot(ToolSelectionMode.MANUAL, selected, rejections=())
 
@@ -323,6 +415,9 @@ class ToolSelectionState:
                     ),
                 ),
             )
+
+        if self._mcp_enabled or self._config.tools.context.get("required_tools"):
+            return self._select_policy(user_message, self._manual_names)
 
         if self._manual_names is not None:
             selected = self._validated_manual_tools(self._manual_names)
@@ -415,11 +510,20 @@ class ToolSelectionState:
         definitions = tuple(selected)
         calculator = self.calculator
         schema_tokens = calculator.estimate_schema_tokens(definitions)
-        maximum = calculator.maximum_schema_tokens
+        maximum = self.maximum_schema_tokens
+        reservation = self.configured_result_reservation if definitions else 0
+        before = max(0, calculator.available_context_tokens - self._system_tokens)
+        after = max(0, before - schema_tokens - reservation)
         utilization_pct = (schema_tokens / maximum) * 100 if maximum else 0.0
         return ToolBudgetSnapshot(
             mode=mode,
-            registered_names=self.registered_names,
+            registered_names=tuple(
+                tool.name
+                if tool.category != "mcp"
+                or re.fullmatch(r"[a-z][a-z0-9_]{0,63}", tool.name)
+                else "mcp_invalid_tool"
+                for tool in self._tools
+            ),
             manual_names=self.manual_names,
             selected_names=tuple(tool.name for tool in definitions),
             selected_categories=tuple(tool.category for tool in definitions),
@@ -431,6 +535,254 @@ class ToolSelectionState:
             available_context_tokens=calculator.available_context_tokens,
             utilization_pct=utilization_pct,
             schema_bytes=calculator.schema_bytes(definitions),
+            reserved_result_tokens=reservation,
+            minimum_memory_tokens=self.minimum_memory_tokens,
+            memory_tokens_before_selection=before,
+            memory_tokens_after_selection=after,
+            selected_mcp_count=sum(
+                tool.name in self._mcp_metadata for tool in definitions
+            ),
+        )
+
+    @property
+    def _mcp_enabled(self) -> bool:
+        return self._config.tools.enabled and self._config.tools.mcp_provider.enabled
+
+    @property
+    def _system_tokens(self) -> int:
+        return max(1, len(self._config.chat.system_prompt) // 4)
+
+    @property
+    def configured_result_reservation(self) -> int:
+        return (
+            self._config.tools.mcp_provider.config.limits.reserved_tool_result_tokens
+            if self._mcp_enabled
+            else 0
+        )
+
+    @property
+    def minimum_memory_tokens(self) -> int:
+        return (
+            self._config.tools.mcp_provider.config.limits.min_memory_retrieval_tokens
+            if self._mcp_enabled
+            else 0
+        )
+
+    @property
+    def maximum_schema_tokens(self) -> int:
+        ceiling = self.calculator.maximum_schema_tokens
+        if self._mcp_enabled:
+            ceiling = min(
+                ceiling, self._config.tools.mcp_provider.config.limits.max_schema_tokens
+            )
+        return ceiling
+
+    def _checked_mcp(self, tool: ToolDefinition) -> ToolDefinition:
+        metadata = self._mcp_metadata.get(tool.name)
+        if metadata is None:
+            raise ToolSelectionError(
+                ToolRejectionReason.MISSING_METADATA,
+                (),
+                "MCP tool metadata is missing.",
+            )
+        if (
+            metadata.canonical_name != tool.name
+            or metadata.discovery_state != "discovered"
+            or metadata.filter_state != "included"
+            or metadata.schema_sanitization_state not in {"unchanged", "sanitized"}
+            or metadata.schema_token_estimate is None
+            or metadata.schema_byte_size is None
+        ):
+            raise ToolSelectionError(
+                ToolRejectionReason.NOT_REGISTERED,
+                (),
+                "MCP tool metadata is not eligible.",
+            )
+        limits = self._config.tools.mcp_provider.config.limits
+        try:
+            clean, state = sanitize_definition(
+                {
+                    "name": tool.name,
+                    "description": tool.description,
+                    "inputSchema": tool.input_schema,
+                },
+                limits.max_schema_bytes_per_tool,
+            )
+            parameters = clean.parameters()
+            model_bytes = len(
+                json.dumps(
+                    _model_schema(tool),
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                    allow_nan=False,
+                ).encode("utf-8")
+            )
+        except (ValueError, TypeError, OverflowError, RecursionError):
+            raise ToolSelectionError(
+                ToolRejectionReason.UNSAFE_SCHEMA, (), "MCP schema verification failed."
+            ) from None
+        if state != "unchanged" or tool.category != "mcp":
+            raise ToolSelectionError(
+                ToolRejectionReason.UNSAFE_SCHEMA, (), "MCP schema verification failed."
+            )
+        if (
+            model_bytes > limits.max_schema_bytes_per_tool
+            or model_bytes > metadata.schema_byte_size
+        ):
+            raise ToolSelectionError(
+                ToolRejectionReason.SCHEMA_LIMIT,
+                (),
+                "MCP schema exceeds its verified export bound.",
+            )
+        return ToolDefinition(tool.name, clean.description, parameters, tool.category)
+
+    def _policy_reason(
+        self, tools: Sequence[ToolDefinition]
+    ) -> ToolRejectionReason | None:
+        calculator = self.calculator
+        if len(tools) > calculator.max_tools:
+            return ToolRejectionReason.COUNT_LIMIT
+        maximum_mcp = self._config.tools.context.get("max_mcp_tools")
+        if (
+            maximum_mcp is not None
+            and sum(t.name in self._mcp_metadata for t in tools) > maximum_mcp
+        ):
+            return ToolRejectionReason.MCP_COUNT_LIMIT
+        cost = calculator.estimate_schema_tokens(tools)
+        if cost > self.maximum_schema_tokens:
+            return ToolRejectionReason.TOKEN_LIMIT
+        memory = (
+            calculator.available_context_tokens
+            - self._system_tokens
+            - cost
+            - (self.configured_result_reservation if tools else 0)
+        )
+        if memory < self.minimum_memory_tokens:
+            return ToolRejectionReason.MEMORY_FLOOR
+        return None
+
+    def _select_policy(
+        self, user_message: str, manual: tuple[str, ...] | None
+    ) -> ToolSelection:
+        required = _unique_names(
+            (*self._config.tools.context.get("required_tools", ()), *(manual or ()))
+        )
+        by_name = {tool.name: tool for tool in self._tools}
+        if any(name not in by_name for name in required):
+            raise ToolSelectionError(
+                ToolRejectionReason.UNKNOWN_TOOL,
+                (),
+                "Required selected tool is unavailable.",
+            )
+        base_reason = self._policy_reason(())
+        if base_reason is not None:
+            raise ToolSelectionError(
+                base_reason,
+                (),
+                "Context budget cannot preserve the memory retrieval floor.",
+            )
+        checked: dict[str, ToolDefinition] = {}
+        rejected: list[ToolSelectionRejection] = []
+        for tool in self._tools:
+            if tool.category == "mcp" or tool.name in self._mcp_metadata:
+                try:
+                    if not self._mcp_enabled:
+                        raise ToolSelectionError(
+                            ToolRejectionReason.TOOLS_DISABLED,
+                            (),
+                            "MCP selection is disabled.",
+                        )
+                    checked[tool.name] = self._checked_mcp(tool)
+                except ToolSelectionError as exc:
+                    if tool.name in required:
+                        raise ToolSelectionError(
+                            exc.reason,
+                            (),
+                            "Required MCP tool failed schema/metadata verification.",
+                        ) from None
+                    # Peer-controlled malformed names never enter diagnostic text.
+                    safe = (
+                        tool.name
+                        if re.fullmatch(r"[a-z][a-z0-9_]{0,63}", tool.name)
+                        else "mcp_invalid_tool"
+                    )
+                    rejected.append(ToolSelectionRejection(safe, exc.reason))
+            else:
+                checked[tool.name] = tool
+        selected = [checked[name] for name in required]
+        reason = self._policy_reason(selected)
+        if reason is not None:
+            raise ToolSelectionError(
+                reason,
+                (),
+                "Required selected tools cannot fit the configured turn budget.",
+            )
+        mode = (
+            ToolSelectionMode.MANUAL
+            if manual is not None
+            else ToolSelectionMode.AUTOMATIC
+        )
+        if manual is None:
+            threshold = _configured_float(
+                self._config.tools.context.get("recommendation_threshold"), default=0.5
+            )
+            scored = [
+                (tool_relevance_score(user_message, t), i, t)
+                for i, t in enumerate(checked.values())
+                if t.name not in required
+            ]
+            relevant = [row for row in scored if row[0] >= threshold]
+            candidates = (
+                sorted(relevant, key=lambda row: (-row[0], row[1]))
+                if relevant
+                else scored
+            )
+            if relevant:
+                rejected.extend(
+                    ToolSelectionRejection(t.name, ToolRejectionReason.NOT_RELEVANT)
+                    for score, _index, t in scored
+                    if score < threshold
+                )
+            # Native optional candidates win memory-floor ties over MCP candidates.
+            # Other limits retain existing relevance order.
+            for _score, _index, tool in candidates:
+                reason = self._policy_reason((*selected, tool))
+                if (
+                    reason is ToolRejectionReason.MEMORY_FLOOR
+                    and tool.name not in self._mcp_metadata
+                ):
+                    optional_mcp = [
+                        t
+                        for t in selected
+                        if t.name in self._mcp_metadata and t.name not in required
+                    ]
+                    tentative = list(selected)
+                    removed: list[ToolDefinition] = []
+                    for old in reversed(optional_mcp):
+                        tentative.remove(old)
+                        removed.append(old)
+                        if self._policy_reason((*tentative, tool)) is None:
+                            selected = tentative
+                            rejected.extend(
+                                ToolSelectionRejection(
+                                    t.name, ToolRejectionReason.MEMORY_FLOOR
+                                )
+                                for t in removed
+                            )
+                            reason = None
+                            break
+                if reason is None:
+                    selected.append(tool)
+                else:
+                    rejected.append(ToolSelectionRejection(tool.name, reason))
+        else:
+            rejected.extend(
+                ToolSelectionRejection(t.name, ToolRejectionReason.NOT_REQUESTED)
+                for t in checked.values()
+                if t.name not in required
+            )
+        return ToolSelection(
+            tuple(selected), self._snapshot(mode, selected, rejections=tuple(rejected))
         )
 
 
