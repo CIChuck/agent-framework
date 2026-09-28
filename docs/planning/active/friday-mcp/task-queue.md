@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 accepted; VAL-008 changes requested; bounded REM-005 awaits approval
+Status: WS-02 accepted; VAL-008 changes requested; bounded REM-005 approved for separate remediation
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws03-registry`
@@ -10,7 +10,7 @@ Current frozen WS-03 product candidate: `397caa9898612cd989f6404951b3e1f5005dfac
 
 The [development board](../../board.yaml) remains the canonical initiative
 registry. This queue makes the existing [tactical sequence](tactical-plan.md)
-and current [REM-005 draft](remediation/REM-005-directive.md) actionable;
+and current [approved REM-005](remediation/REM-005-directive.md) actionable;
 it does not approve later workstreams, create new board states, or change
 construction scope. Execute one gate at a time and update queue evidence at
 each handoff. An approved future step is not a claim that it has started.
@@ -58,10 +58,11 @@ The failing public collision-source requirement is retained as F-001; passing
 collision prevention/cleanup is not diagnostic conformance. The complete
 report is archived byte-for-byte with [evidence](validation/VAL-008-evidence.yaml).
 
-Next is explicit approval of bounded REM-005 and its separate remediator.
+The maintainer explicitly approved bounded REM-005 and its separate remediator
+with "That's approved. Proceed." Next is the authorized separate remediation.
 Current phase `remediation`, validation state `changes_requested`, condition
-blocked pending that approval; work remains started/granted/local. Drafting the
-directive does not authorize product edits. Candidate `397caa9`, pinned request,
+normal; work remains started/granted/local. Approved execution may now correct
+only F-001. Candidate `397caa9`, historical pinned request,
 twenty authority contents and unrelated local paths remain unchanged. Task 6
 continues through remediation, new freeze, fresh delta/aggregate review,
 closeout and explicit acceptance; no WS-04 authority.
@@ -76,20 +77,20 @@ closeout and explicit acceptance; no WS-04 authority.
 | 4 / MCP-NEXT-04 | Record WS-02 closeout and explicit maintainer acceptance. | Complete: maintainer said "WS-02 accepted" on 2026-09-28; decision recorded in [closeout](execution/WS-02-closeout.md). | Work-unit acceptance only; no wider initiative completion or later-workstream authority inferred. |
 | 5 / MCP-NEXT-05 | Reconcile the WS-03 directive and request bounded approval. | Complete: maintainer explicitly approved the full reconciled directive on 2026-09-28. | Exact paths, handoff/sidecar, strict includes, transactional registry ownership, conservative sanitation/caps, tests and stop conditions approved. |
 | 6a / MCP-NEXT-06A | Record full independent VAL-008 and convert F-001 into bounded REM-005. | Complete: unchanged report/evidence archived and directive drafted. | One medium finding appears exactly once; exact eight-path remediation boundary, six criteria, checks and non-goals are reviewable. |
-| 6b / MCP-NEXT-06B | Approve REM-005 and its separate remediator. | Awaiting explicit maintainer approval. | Approve the complete bounded directive; original WS-03 approval and a validation verdict do not supply this new gate. |
-| 6c / MCP-NEXT-06C | Dispatch separate remediator; correct only F-001, add regressions, run checks and freeze a new candidate. | Not started; depends on 6b. | Safe typed both-source diagnostics retained after public cleanup, exact scope, native preservation and all required check results. |
+| 6b / MCP-NEXT-06B | Approve REM-005 and its separate remediator. | Complete: maintainer said "That's approved. Proceed." | Complete bounded directive and separate remediation explicitly authorized. |
+| 6c / MCP-NEXT-06C | Dispatch separate remediator; correct only F-001, add regressions, run checks and freeze a new candidate. | Authorized; preparation/dispatch next. | Safe typed both-source diagnostics retained after public cleanup, exact scope, native preservation and all required check results. |
 | 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | Reserved only; no request or dispatch yet. | Pin new candidate/approved authority; all six REM-005 and ten WS-03 criteria independently evaluated. Keep VAL-008 unchanged as historical evidence. |
 | 6e / MCP-NEXT-06E | Record verified WS-03 closeout and request explicit work-unit acceptance. | Not ready; depends on independent VERIFIED. | Maintainer acceptance is separate from verification; only after acceptance reconcile/request WS-04 approval. |
 
 Tasks 1–4 are complete, with fresh independent verification and a subsequent
 explicit maintainer acceptance decision. Task 5's planning/readiness work is
 complete and its explicit approval gate is satisfied. Task 6a records the
-completed VAL-008 review and draft correction. Task 6b is the single current
-gate; tasks 6c–6e and later workstreams remain unstarted. Accepted predecessor
+completed VAL-008 review and draft correction. Task 6b is approved; task 6c is
+current, and tasks 6d–6e and later workstreams remain unstarted. Accepted predecessor
 verification and acceptance are unchanged. Do not reuse the remediator as its
 fresh validator or waive a missing independent-review capacity gate.
 
-Required remediation checks are listed in draft REM-005 and the approved WS-03
+Required remediation checks are listed in approved REM-005 and the approved WS-03
 directive. Keep unchanged native invalid-zip fixtures, integration board count,
 default NumPy syntax and four core profiles.py typing failures separate from
 regressions; none is authorized for repair or waived. Meaningful affected-scope

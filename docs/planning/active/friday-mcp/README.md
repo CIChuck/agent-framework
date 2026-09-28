@@ -4,9 +4,9 @@
 title: Friday MCP Client Enhancement
 initiative: friday-mcp
 document_type: initiative-index
-status: blocked
+status: active
 updated: 2026-09-28
-next_gate: approve bounded REM-005 and separate remediator for VAL-008 F-001 collision diagnostics
+next_gate: execute approved REM-005 F-001 correction and freeze candidate for fresh VAL-009 delta and WS-03 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
 execution_phase: remediation
 validation_state: changes_requested
@@ -19,12 +19,13 @@ both source identities, provider labels and bounded original-name summaries.
 All required checks, predecessor baselines, ten criterion assessments,
 independent probes and freeze checks are preserved in the unchanged report and
 [archived evidence](validation/VAL-008-evidence.yaml). Fresh-agent capacity is
-resolved; the approval gate now concerns the bounded
-[REM-005 draft](remediation/REM-005-directive.md) and separate remediator.
-This controller step records the review and prepares that directive only.
-No fixes, remediator dispatch, new candidate, WS-03 acceptance or later-slice
-authority is inferred. The initiative remains started/local and blocked
-pending explicit remediation approval; accepted WS-00/01/02 remain intact.
+resolved. The maintainer explicitly approved the complete bounded
+[REM-005 directive](remediation/REM-005-directive.md) and separate remediator
+with "That's approved. Proceed." Approved execution may now correct only F-001,
+add its regressions and reports, run required checks and freeze a replacement
+candidate for fresh VAL-009 delta and full WS-03 aggregate review. Initiative
+remains started/normal/local; accepted WS-00/01/02 remain intact. No WS-03
+verification/acceptance, later-slice approval or delivery is inferred.
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02

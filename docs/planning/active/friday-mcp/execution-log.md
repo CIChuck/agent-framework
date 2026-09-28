@@ -894,3 +894,31 @@
   the evidence manifest records original/decompressed and compressed hashes.
   No reviewer output or finding was edited, normalized or dropped. No source
   or policy waiver is introduced by this evidence packaging.
+
+## 2026-09-28 — REM-005 Explicitly Approved; Separate Execution Authorized
+
+- Maintainer explicitly said "That's approved. Proceed." after the concrete
+  complete REM-005 directive and separate-remediator approval request. Record
+  this as approval of the single F-001 correction, exact eight paths, six
+  criteria, required checks and fresh delta plus full WS-03 aggregate review.
+  It does not approve later workstreams or delivery.
+- Restore condition normal and the packet to `docs/planning/active/friday-mcp/`
+  under lifecycle policy. Repair board/controller evidence paths; preserve
+  all historical independent report/request/executable/log/snapshot bytes.
+  Historical VAL-008's blocked mapping remains pinned to its reviewed request
+  revision. REM-005's approved two report targets map to active without source/
+  test scope expansion; new VAL-009 will pin current active authority paths.
+- Separate remediator dispatch follows the stable controller approval commit.
+  Original builder and VAL-008 reviewer do not implement this correction.
+  Remediator owns only the approved product/test/report paths and must not
+  validate its own work. Current phase remediation/state changes_requested;
+  queue 6b complete, 6c authorized, new candidate/review not yet produced.
+- Initiative remains started/granted/local on
+  `feature/friday-mcp-ws03-registry`. Preserve the existing five unrelated dirty
+  paths and their contents; no cleanup, broad staging, live service, credential,
+  provider, push, merge, release or other external effect.
+- Approval/relocation checks passed: board (23 tasks), rendered dashboard,
+  documentation lifecycle (341 Markdown files), full frozen product/config
+  comparison, all twenty original authority hashes and byte-exact historical
+  request/report/executable/snapshot evidence, including lossless log hashes.
+  Record approval/relocation in a scoped local commit before product edits.

@@ -1,7 +1,10 @@
 # REM-005 — MCP-WS-03 Safe Collision Source Diagnostics
 
-Status: Draft; awaiting explicit maintainer approval before product edits or remediator dispatch
+Status: Approved; separate remediator authorized for bounded execution
 Date: 2026-09-28
+Approved at: 2026-09-28
+Approved by: repository maintainer
+Approval evidence: "That's approved. Proceed." after the complete REM-005 directive and separate-remediator approval request
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-03`
 Finding: [VAL-008 F-001](../validation/VAL-008-report.md#f-001--medium-collision-diagnostics-do-not-identify-the-colliding-sources)
@@ -19,22 +22,26 @@ its accepted predecessor authority, and the complete
 [VAL-008 report](../validation/VAL-008-report.md) control this correction.
 The unchanged [request](../validation/VAL-008-request.yaml) pins the twenty
 authority hashes at the reviewed candidate. The original active paths remain
-the Git paths at that revision; the blocked prefix identifies current working
-content only.
+the Git paths at that revision. The blocked working prefix in historical
+VAL-008 identifies the completed review's location; this packet returns to
+active for approved remediation. Historical reviewer/request bytes are unchanged.
 
 VAL-008 is a completed fresh-context, read-only aggregate review with overall
 `CHANGES_REQUESTED`, not a capacity block or an acceptance decision. Its sole
 finding is the missing safe source information for fatal runtime collisions.
-This draft converts that finding into one bounded remediation scope. The
+This directive converts that finding into one bounded remediation scope. The
 maintainer's "Proceed to the next step" authorizes recording the result and
 preparing this directive; it does not approve an as-yet-unreviewed directive
-or waive the original review-only no-fixes boundary.
+or waive the original review-only no-fixes boundary. The maintainer subsequently
+explicitly approved the complete directive and separate remediator with
+"That's approved. Proceed." Approval now authorizes only the correction,
+regressions, reports, checks and new independent review described here.
 
 Use a separate remediator under the independent-validation policy because this
 correction changes a public typed diagnostic contract at an untrusted-content
 boundary. The original builder and VAL-008 reviewer must not silently repair
 the candidate. A remediator must not validate its resulting work. No remediator
-is dispatched by preparation of this draft.
+was dispatched by preparation of the draft; approved dispatch may now proceed.
 
 After approval, record authorization and start, clear the approval condition
 and reconcile packet location/backlinks through controller metadata, then
@@ -104,12 +111,12 @@ The remediator's product/test/report edits are limited to these eight paths:
 5. `tests/integration/test_mcp_registry.py`
 6. `tests/integration/mcp_fake_server.py` — bounded collision catalog variants
    only; preserve all existing noisy/lifecycle modes.
-7. `docs/planning/blocked/friday-mcp/execution/REM-005-implementation-report.md`
-8. `docs/planning/blocked/friday-mcp/execution/WS-03-implementation-report.md`
+7. `docs/planning/active/friday-mcp/execution/REM-005-implementation-report.md`
+8. `docs/planning/active/friday-mcp/execution/WS-03-implementation-report.md`
    — a bounded diagnostic/API and criterion-evidence correction.
 
-If the controller relocates the packet after approval, only the two report
-prefixes above map to the new active packet. This does not broaden source/test
+The controller's policy-required blocked-to-active relocation changes only the
+two report prefixes from the approved draft; it does not broaden source/test
 scope. The controller owns board/dashboard/index/log/queue, approval records,
 review requests, unchanged historical reports and their evidence/status notes.
 No core DTO/normalizer/native registry, adapter, DI/kernel/tool-loader, manager,
@@ -191,7 +198,7 @@ four `profiles.py` Python 3.13 errors, board count 22 versus 23, and the native
 DOCX/XLSX invalid-zip assertions on accepted predecessor inputs. Retain exact
 failures and meaningful narrow typing evidence; do not repair/waive them,
 change dependencies/import paths to conceal them, or classify a new touched-file
-failure as legacy. No favorable result or acceptance is promised by this draft.
+failure as legacy. No favorable result or acceptance is promised by this directive.
 
 ## Non-Goals And Stops
 

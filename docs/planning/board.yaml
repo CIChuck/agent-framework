@@ -56,23 +56,23 @@ tasks:
   title: Friday MCP client enhancement
   priority: 3
   work_state: started
-  condition: blocked
+  condition: normal
   implementation_authority: granted
-  packet: docs/planning/blocked/friday-mcp/
-  next_gate: approve bounded REM-005 and separate remediator for VAL-008 F-001 collision diagnostics
+  packet: docs/planning/active/friday-mcp/
+  next_gate: execute approved REM-005 F-001 correction and freeze candidate for fresh VAL-009 delta and WS-03 aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws03-registry
   depends_on: []
   validation:
-  - docs/planning/blocked/friday-mcp/validation/VAL-002-report.md
-  - docs/planning/blocked/friday-mcp/execution/WS-00-closeout.md
-  - docs/planning/blocked/friday-mcp/validation/VAL-004-report.md
-  - docs/planning/blocked/friday-mcp/execution/WS-01-closeout.md
-  - docs/planning/blocked/friday-mcp/validation/VAL-005-report.md
-  - docs/planning/blocked/friday-mcp/validation/VAL-006-report.md
-  - docs/planning/blocked/friday-mcp/validation/VAL-007-report.md
-  - docs/planning/blocked/friday-mcp/execution/WS-02-closeout.md
-  - docs/planning/blocked/friday-mcp/validation/VAL-008-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-002-report.md
+  - docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-004-report.md
+  - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-005-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-006-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-007-report.md
+  - docs/planning/active/friday-mcp/execution/WS-02-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-008-report.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -524,200 +524,207 @@ events:
   actor_role: agent
   action: transitioned approved -> started
   note: Started approved contracts/defaults-only WS-00 from baseline 20c70dd on dedicated feature branch; runtime, Chat, memory, transcript, telemetry, and CLI remain excluded.
-  evidence: docs/planning/blocked/friday-mcp/directives/ws-00-contract-policy-foundation.md
+  evidence: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: prepared WS-00 candidate for validation
   note: Implemented scoped shared contracts and focused tests; recorded passing checks and separable baseline failures before independent review.
-  evidence: docs/planning/blocked/friday-mcp/execution/WS-00-implementation-report.md
+  evidence: docs/planning/active/friday-mcp/execution/WS-00-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: validation changes requested
   note: Independent VAL-001 identified incomplete cross-package contract fields and insufficient collision diagnostics; REM-001 is prepared for a separate remediator.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-001-report.md; docs/planning/blocked/friday-mcp/remediation/REM-001-directive.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-001-report.md; docs/planning/active/friday-mcp/remediation/REM-001-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: authorized separate REM-001 remediator
   note: Maintainer directed continuation after an explicit request to delegate bounded architectural remediation of F-001 and F-002.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-001-directive.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-001-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: requested fresh REM-001 validation
   note: Separate remediator committed candidate b79754f for F-001 and F-002; pending fresh delta and aggregate review.
-  evidence: docs/planning/blocked/friday-mcp/execution/REM-001-implementation-report.md
+  evidence: docs/planning/active/friday-mcp/execution/REM-001-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded verified WS-00 work unit
   note: Fresh independent VAL-002 verified both the REM-001 delta and complete WS-00 aggregate. The initiative remains started; later workstreams require separate approval.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-002-report.md; docs/planning/blocked/friday-mcp/execution/WS-00-closeout.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-002-report.md; docs/planning/active/friday-mcp/execution/WS-00-closeout.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: accepted WS-00 work unit and approved bounded WS-01 directive
   note: Maintainer replied accepted to the explicit next-gate request for strict MCP configuration parsing and validation without connection or runtime loading authority.
-  evidence: docs/planning/blocked/friday-mcp/directives/ws-01-configuration-model-validation.md; docs/planning/blocked/friday-mcp/validation/VAL-002-report.md
+  evidence: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md; docs/planning/active/friday-mcp/validation/VAL-002-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: started bounded WS-01 implementation
   note: Started approved configuration slice on feature/friday-mcp-ws01-config from WS-00 closeout ab49ba5; initiative remains started and delivery remains local.
-  evidence: docs/planning/blocked/friday-mcp/execution-log.md
+  evidence: docs/planning/active/friday-mcp/execution-log.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: prepared WS-01 candidate for validation
   note: Scoped strict runtime MCP configuration and tests are ready for candidate freeze; no connection or Chat behavior changed.
-  evidence: docs/planning/blocked/friday-mcp/execution/WS-01-implementation-report.md
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: requested independent WS-01 validation
   note: Candidate de8db57 and exact work-unit diff are frozen for fresh-context read-only review.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-003-request.yaml
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-request.yaml
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: validation changes requested for WS-01
   note: Independent VAL-003 found the MCP default mode and Friday Chat compatibility evidence incomplete; REM-002 awaits separate-remediator authorization.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-003-report.md; docs/planning/blocked/friday-mcp/remediation/REM-002-directive.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-report.md; docs/planning/active/friday-mcp/remediation/REM-002-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: authorized separate REM-002 remediator
   note: Maintainer explicitly authorized the bounded F-001/F-002 remediation pass; no wider MCP workstream or Friday Chat source change was approved.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-002-directive.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded REM-002 dependency stop condition
   note: Separate remediator stopped before edits because the required runtime-package test would import downstream Friday Chat across an undeclared reverse dependency; maintainer test-location decision required.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-002-directive.md; docs/planning/blocked/friday-mcp/execution-log.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md; docs/planning/active/friday-mcp/execution-log.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: approved REM-002 test-location revision
   note: Maintainer directed revision to allow only the F-002 config-compatibility test in Friday Chat's test package, with no source or dependency change; separate remediation may resume.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-002-directive.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: requested fresh REM-002 validation
   note: Separate remediator committed candidate dd6c65b within the revised test scope; fresh delta and full WS-01 aggregate validation remain required.
-  evidence: docs/planning/blocked/friday-mcp/execution/REM-002-implementation-report.md
+  evidence: docs/planning/active/friday-mcp/execution/REM-002-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded verified WS-01 work unit
   note: Fresh independent VAL-004 verified both the REM-002 delta and complete WS-01 aggregate; initiative remains started, WS-01 acceptance and WS-02 approval remain maintainer decisions.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-004-report.md; docs/planning/blocked/friday-mcp/execution/WS-01-closeout.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-004-report.md; docs/planning/active/friday-mcp/execution/WS-01-closeout.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: accepted WS-01 work unit
   note: Maintainer explicitly said accept ws-01 after verified closeout. Acceptance applies only to WS-01; the initiative remains started and local, and WS-02 requires separate approval.
-  evidence: docs/planning/blocked/friday-mcp/execution/WS-01-closeout.md
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: approved bounded WS-02 runtime lifecycle
   note: Maintainer explicitly said ws-02 approved; approval covers the existing directive, not additional source files, later workstreams, or delivery effects.
-  evidence: docs/planning/blocked/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded WS-02 readiness scope stop
   note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside the directive. No product code changed; narrow amendment awaits maintainer approval.
-  evidence: docs/planning/blocked/friday-mcp/execution/WS-02-readiness-checkpoint.md
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: approved WS-02 cleanup amendment
   note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external effects or delivery are approved.
-  evidence: docs/planning/blocked/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: prepared WS-02 lifecycle candidate
   note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent validation is pending.
-  evidence: docs/planning/blocked/friday-mcp/execution/WS-02-implementation-report.md
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded WS-02 validation changes requested
   note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains frozen and no corrective source edits occurred.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-005-report.md; docs/planning/blocked/friday-mcp/remediation/REM-003-directive.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-005-report.md; docs/planning/active/friday-mcp/remediation/REM-003-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: repository maintainer
   actor_role: maintainer
   action: authorized separate REM-003 remediator
   note: Maintainer explicitly said proceed after the separate REM-003 authorization request; authority is limited to the bounded F-001 correction and fresh review, not WS-03 or delivery effects.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-003-directive.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: froze REM-003 candidate for fresh review
   note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative remains started and local.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-006-request.yaml
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-request.yaml
 - task: friday-mcp
   at: '2026-09-27'
   actor: Codex
   actor_role: agent
   action: recorded verified ownership delta and WS-02 aggregate cleanup finding
   note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate maintainer authorization; no corrective product changes or new remediator dispatch occurred.
-  evidence: docs/planning/blocked/friday-mcp/validation/VAL-006-report.md; docs/planning/blocked/friday-mcp/remediation/REM-004-directive.md
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-report.md; docs/planning/active/friday-mcp/remediation/REM-004-directive.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: repository maintainer
   actor_role: maintainer
   action: approved bounded REM-004 and separate remediator
   note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn records approval and the queue without product edits or remediator dispatch.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-004-directive.md; docs/planning/blocked/friday-mcp/task-queue.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-004-directive.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: Codex
   actor_role: agent
   action: recorded REM-004 agent dispatch capacity stop
   note: Maintainer said proceed after readiness audit. New separate-remediator dispatch and prior-remediator resumption both failed with agent thread limit reached. No product edits or agent dispatch occurred; approval remains valid, and execution needs available separate-remediator and fresh-validator capacity.
-  evidence: docs/planning/blocked/friday-mcp/execution-log.md; docs/planning/blocked/friday-mcp/task-queue.md
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28'
   actor: Codex
   actor_role: agent
   action: prepared existing agent for separate REM-004 remediation
   note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate its resulting work. Fresh independent review remains required and its capacity is not yet established.
-  evidence: docs/planning/blocked/friday-mcp/execution-log.md; docs/planning/blocked/friday-mcp/task-queue.md
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
 - task: friday-mcp
   at: '2026-09-28T14:24:07+00:00'
   actor: Codex
   actor_role: agent
   action: condition blocked -> blocked
   note: Fresh-context VAL-008 completed with CHANGES_REQUESTED for one medium collision diagnostic finding. Archive unchanged review evidence and prepare bounded REM-005; the old capacity stop is resolved, and explicit remediation approval is the current gate. No product fixes or remediator dispatch.
-  evidence: docs/planning/blocked/friday-mcp/remediation/REM-005-directive.md
+  evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
+- task: friday-mcp
+  at: '2026-09-28T15:38:09+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer explicitly approved REM-005 and its separate remediator with Thats approved. Proceed. Clear the resolved approval condition, restore active packet and authorize only bounded F-001 execution and fresh review; no later-slice or delivery authority.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
