@@ -426,3 +426,14 @@
 - Execution phase is `validation`; validation state is `pending` until fresh
   reviewer dispatch. Initiative remains `started` and local. No successful
   independent verdict, acceptance, WS-03 authority, or delivery is inferred.
+
+## 2026-09-27 — Fresh VAL-006 Dispatched
+
+- Dispatched `/root/mcp_ws02_val006` with `fork_turns: none` under the
+  repository's mandatory fresh independent-review rule. Request revision is
+  `c137e7b9a6b97c3383ea52c1b5991ec25fbf1c13`; it supplies the fifteen pinned
+  authority hashes, exact candidate/diffs, criteria, checks, baselines, and
+  exclusions without builder or remediator session reasoning.
+- Execution phase remains `validation`; validation state is `in_review`.
+  Candidate `26f4d7d` source/tests/config and all pinned authority remain
+  frozen; this dispatch changes only the index and append-only execution log.
