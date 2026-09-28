@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: record explicit maintainer WS-03 acceptance of verified candidate d395acd
+next_gate: reconcile WS-04 directive and readiness before requesting approval
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: closeout
-validation_state: verified
+execution_phase: planning
+validation_state: not_ready
 ---
 
 Current checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
@@ -22,11 +22,15 @@ baselines, six remediation/ten work-unit criterion assessments, twenty-six
 passing probe groups and start/closeout freeze checks in
 [lossless evidence](validation/VAL-009-evidence.yaml).
 
-[WS-03 closeout](execution/WS-03-closeout.md) is prepared for explicit maintainer
-work-unit acceptance. Current phase is `closeout`, validation state `verified`;
+The maintainer explicitly accepted [WS-03](execution/WS-03-closeout.md) on
+2026-09-28 with "accepted - Summarize WS-03." for the verified candidate and
+complete fresh VAL-009 review. WS-00 through WS-03 are accepted work units;
 the wider initiative remains started/normal/local on the named branch.
-Accepted WS-00/01/02 remain intact. Next gate is explicit maintainer WS-03
-acceptance; later slices and delivery retain their separate authority gates.
+
+Next gate is reconciliation of WS-04's directive and readiness before requesting
+bounded approval. Current phase `planning` and validation state `not_ready`
+describe that next-slice preparation, not a reversal of accepted WS-03's
+independent verification. No WS-04 implementation or delivery is authorized.
 
 Historical [VAL-008](validation/VAL-008-report.md) remains unchanged: it returned
 `CHANGES_REQUESTED` for medium F-001 at candidate `397caa9`. The maintainer
@@ -49,7 +53,7 @@ candidate `a257f04`; fresh independent [VAL-007](validation/VAL-007-report.md)
 verified both the delta and complete WS-02 aggregate with no findings,
 including the prior startup-retry ownership correction. The
 [WS-02 closeout](execution/WS-02-closeout.md) records explicit maintainer acceptance
-on 2026-09-28. WS-00, WS-01 and WS-02 are accepted work units; the wider
+on 2026-09-28. WS-00 through WS-03 are accepted work units; the wider
 initiative remains started and local.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its

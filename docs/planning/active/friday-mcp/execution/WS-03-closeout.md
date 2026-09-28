@@ -1,7 +1,7 @@
 # MCP-WS-03 Work-Unit Closeout
 
 Date: 2026-09-28
-Status: Independently verified; awaiting explicit maintainer work-unit acceptance
+Status: Independently verified and explicitly accepted
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-03`
 Branch: `feature/friday-mcp-ws03-registry`
@@ -10,6 +10,11 @@ Work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 approval/start: `b54069654bb3e21a6265fbabcd23f6991e286ab0`
 REM-005 authorization/bounded base: `215e54de71eda08067d22695d0062f7bed35e9d0`
 Accepted WS-02 product predecessor: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
+Accepted by: repository maintainer
+Accepted at: 2026-09-28
+Acceptance evidence: Explicit maintainer message "accepted - Summarize WS-03."
+after review of the independently verified closeout in the active conversation
+Delivery: Local
 
 ## Scope And Result
 
@@ -89,14 +94,19 @@ integration board-count assertion and native invalid-zip fixtures remain
 explicit unresolved baseline debt; no repair or waiver is made by this closeout.
 New candidate failures cannot be relabeled baseline debt.
 
-Wider initiative remains started/normal/local. WS-04 and later workstreams,
-full feature-branch aggregate pre-merge review, live interoperability/app UAT
-and every delivery action remain separate gates. The favorable independent
-result permits this proposed WS-03 closeout; only an explicit maintainer decision
-records WS-03 acceptance. This closeout does not supply that acceptance.
+The maintainer accepted this verified WS-03 work unit on 2026-09-28. The wider
+initiative remains started/normal/local. WS-04 and later workstreams, complete
+feature-branch aggregate pre-merge review, live interoperability/app UAT and
+delivery actions remain separate gates. The active initiative packet remains
+in place because this is work-unit acceptance, not initiative completion.
 
 ## Maintainer Acceptance
 
-Acceptance: not yet recorded.
-Next gate: explicit maintainer WS-03
-work-unit acceptance. Reconcile and request WS-04 approval only afterward.
+Acceptance: explicitly recorded for candidate
+`d395acdba9e233cb226f54e6258575f480157cf1` and complete fresh VAL-009 verification.
+The maintainer said "accepted - Summarize WS-03." after the verified closeout
+and explicit acceptance gate were presented. This decision accepts WS-03 only.
+
+Next gate: reconcile the WS-04 directive and readiness before requesting bounded
+approval. WS-04 implementation remains unapproved; no later-slice or delivery
+authority is inferred from this acceptance.

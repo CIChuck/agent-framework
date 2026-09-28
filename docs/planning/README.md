@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | record explicit maintainer WS-03 acceptance of verified candidate d395acd |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | reconcile WS-04 directive and readiness before requesting approval |
 
 ## Completed
 
