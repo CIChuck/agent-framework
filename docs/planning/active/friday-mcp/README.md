@@ -6,18 +6,19 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: receive fresh VAL-007 delta and complete WS-02 aggregate verdict
+next_gate: explicit maintainer acceptance of independently verified WS-02 work-unit closeout
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
-execution_phase: validation
-validation_state: in_review
+execution_phase: closeout
+validation_state: verified
 ---
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
 candidate. REM-004 corrects the noisy-subprocess shutdown hang in frozen
-candidate `a257f04`; fresh independent delta and complete WS-02 aggregate
-review remain pending. Startup-retry ownership was independently verified on
-the preceding candidate; it must be reassessed with the complete current unit.
+candidate `a257f04`; fresh independent [VAL-007](validation/VAL-007-report.md)
+verified both the delta and complete WS-02 aggregate with no findings,
+including the prior startup-retry ownership correction. The
+[WS-02 closeout](execution/WS-02-closeout.md) awaits explicit maintainer acceptance.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
@@ -144,3 +145,13 @@ Fresh `/root/mcp_ws02_val007` was successfully created with `fork_turns: none`
 after the remediator completed. It is performing the pinned read-only review;
 the earlier capacity stop is historical, not a current blocker. Execution phase
 remains `validation`, validation state is now `in_review`. No verdict exists yet.
+
+VAL-007 subsequently returned delta, complete WS-02 aggregate and overall
+`VERIFIED` on 2026-09-28 with no findings. Its complete report is preserved,
+including all eighteen authority hashes, exact ranges, independent required
+checks, production noisy-peer and incomplete-cleanup/retry probes, baseline
+separation and residual limits. [WS-02 closeout](execution/WS-02-closeout.md)
+records the verified work unit, not wider initiative completion. Current
+execution phase is `closeout`, validation state `verified`; next gate is
+explicit maintainer WS-02 acceptance. No acceptance or WS-03 authority has
+been inferred. The wider initiative remains `started` and local.

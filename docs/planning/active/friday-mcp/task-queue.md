@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: REM-004 committed; fresh VAL-007 independent review in progress
+Status: REM-004 and complete WS-02 independently verified; maintainer acceptance pending
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws02-lifecycle`
@@ -21,7 +21,9 @@ each handoff. An approved future step is not a claim that it has started.
 - WS-02 runtime lifecycle: implemented but not accepted. Historical VAL-006
   verified REM-003's delta but requested aggregate changes for a production
   stdio shutdown hang. That report is superseded for current-candidate decisions,
-  with its full verdict/findings retained. Current overall result is pending.
+  with its full verdict/findings retained. Fresh [VAL-007](validation/VAL-007-report.md)
+  verifies both remediation delta and complete current WS-02 aggregate with no
+  findings. [WS-02 closeout](execution/WS-02-closeout.md) is ready for acceptance.
 - REM-004: explicitly approved by the maintainer on 2026-09-28, including a
   separate remediator. The subsequent "proceed" execution attempt
   hit `agent thread limit reached` for both new dispatch and prior-remediator
@@ -40,8 +42,8 @@ each handoff. An approved future step is not a claim that it has started.
 | --- | --- | --- | --- |
 | 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | Complete: reassigned separate remediator executed the approved scope. | No MCP base/manager/runtime product changes or private boundary reach-through; exact six-path correction committed. |
 | 2 / MCP-NEXT-02 | Add direct/public-kernel noisy-peer regressions, retained-owner and cancellation coverage; run required checks and commit evidence. | Complete: frozen candidate `a257f04`, [implementation report](execution/REM-004-implementation-report.md). | 39 focused, 333 aggregate, 32 loading and 46 Chat tests pass; integration 44 pass plus declared board-count baseline; Ruff and prescribed typing pass. No independent verdict inferred. |
-| 3 / MCP-NEXT-03 | Freeze the new candidate and request fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | In progress: new `/root/mcp_ws02_val007` created with `fork_turns: none`; candidate/request frozen. | Independent production retry/cleanup probes, every criterion, baseline separation and one overall review outcome; existing contexts cannot be relabeled fresh. |
-| 4 / MCP-NEXT-04 | Record WS-02 closeout and request explicit maintainer acceptance. | Only after task 3 returns overall VERIFIED. | Independent report and work-unit closeout recorded; maintainer acceptance recorded separately. If this second WS-02 remediation cycle fails, stop and return unresolved findings to the maintainer rather than auto-remediate again. |
+| 3 / MCP-NEXT-03 | Freeze candidate and obtain fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Complete: fresh context returned delta, aggregate and overall VERIFIED, no findings. | Full report preserves pinned authority, exact scope, required checks, independent production/resource-integrity probes, baselines and residual risks. |
+| 4 / MCP-NEXT-04 | Record WS-02 closeout and request explicit maintainer acceptance. | Current: report and [closeout](execution/WS-02-closeout.md) recorded; waiting for explicit acceptance. | Only maintainer accepts this work unit; no wider initiative completion or later-workstream authority inferred. |
 | 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Waits for WS-02 acceptance. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
 
 Tasks 1–2 are complete as implementation/check/commit steps, not validation or acceptance.
@@ -51,9 +53,10 @@ validator creation still fails after candidate freeze, stop at task 3 and
 resume review in a session with fresh-agent capacity; do not waive the gate.
 No new remediation scope approval is needed. Fresh VAL-007 creation succeeded
 after the remediator completed; the earlier capacity stop is historical.
-Task 3 has a frozen request and active independent reviewer but no verdict;
-task 4 and later gates remain unstarted. Passing implementation checks cannot
-waive independent review.
+Task 3 is complete with the fresh independent report. Task 4 is at its explicit
+maintainer acceptance gate; task 5 and later remain unstarted. The report's
+VERIFIED result does not substitute for acceptance. Current execution phase
+is `closeout`; validation state is `verified`.
 
 Required implementation checks are listed in REM-004. Keep the unchanged
 integration test expecting 22 rather than 23 board tasks and the default-target

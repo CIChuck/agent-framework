@@ -615,3 +615,43 @@
 - Execution phase `validation`, validation state `in_review`; board next gate
   is receipt of delta and complete WS-02 aggregate verdict. No outcome,
   acceptance, later-workstream approval or delivery is inferred.
+
+## 2026-09-28 — VAL-007 Verified; WS-02 Closeout Awaiting Acceptance
+
+- Fresh read-only `/root/mcp_ws02_val007` returned REM-004 delta `VERIFIED`,
+  complete WS-02 aggregate `VERIFIED`, and overall `VERIFIED`, with no findings.
+  Its full [report](validation/VAL-007-report.md) is preserved without substantive
+  changes; only trailing Markdown whitespace was normalized.
+- Reviewed candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379`, request
+  `201f4d19de5ce2d007a5f6a33ef750db6c2a0376`, and disclosed dispatch metadata
+  `a4b71d09be731a919b13350c2148b4d2af2b7b56`. All eighteen pinned authority
+  documents and full candidate product bytes matched at start/closeout.
+- Independent checks reproduced 39 focused, 32 loading, 333 aggregate and
+  46 Chat passes; broad integration 44 passes plus only declared board-count
+  baseline. Ruff, prescribed Python 3.13 typing (42 files), board/dashboard,
+  docs (335), exact diff checks and product stability passed. Default typing
+  reproduced only installed NumPy baseline. No required check was skipped.
+- Independently constructed production peers verified direct and public kernel
+  noisy-child teardown, canceled stop/public retry, and optional/required
+  noisy handshake/list failures, typically around five seconds with existing
+  graceful policy. Assertions confirmed reaped children, pipe EOF, closed stdin,
+  no owned tasks, empty public manager/handoff and redaction before defensive
+  cleanup. Independent retained-owner/retry doubles and all eight provider/
+  kernel ownership variants passed. Deliberate scratch assertion failure proved
+  fixture cleanup; this is not a product regression.
+- Controller reviewed completeness against all six REM-004 criteria, eight
+  WS-02 criteria, amendment/REM-003 regression controls and required checks.
+  No unresolved mandatory finding remains. [WS-02 closeout](execution/WS-02-closeout.md)
+  records the verified candidate, capability/non-goal boundaries and residual
+  cooperative-budget/process-tree/cwd/live-interoperability limits.
+- This closeout adds evidence/process metadata only. No candidate product,
+  configuration or authority was changed after review; unrelated dirty work
+  remains preserved. Queue tasks 1–3 are complete; task 4 awaits explicit
+  maintainer WS-02 acceptance. Execution phase `closeout`, validation state
+  `verified`; board next gate is that acceptance. Wider initiative remains
+  `started` and local. WS-03 and later require separate approvals; no delivery
+  or external-effect authority follows from validation.
+- Controller post-report/closeout checks passed: board validation (23), rendered
+  dashboard, documentation lifecycle (337 Markdown files), diff whitespace and
+  frozen product/configuration comparison. Request and all three independent
+  scratch-probe hashes match the returned report.

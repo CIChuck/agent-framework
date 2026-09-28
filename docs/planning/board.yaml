@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: receive fresh VAL-007 delta and complete WS-02 aggregate verdict
+  next_gate: explicit maintainer acceptance of independently verified WS-02 work-unit closeout
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -70,6 +70,8 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-005-report.md
   - docs/planning/active/friday-mcp/validation/VAL-006-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-007-report.md
+  - docs/planning/active/friday-mcp/execution/WS-02-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
