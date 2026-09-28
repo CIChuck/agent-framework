@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh independent WS-02 candidate validation
+  next_gate: maintainer authorization of separate REM-003 ownership remediation
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -68,6 +68,7 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-00-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-004-report.md
   - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-005-report.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -660,3 +661,10 @@ events:
   action: prepared WS-02 lifecycle candidate
   note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent validation is pending.
   evidence: docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded WS-02 validation changes requested
+  note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains frozen and no corrective source edits occurred.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-005-report.md; docs/planning/active/friday-mcp/remediation/REM-003-directive.md

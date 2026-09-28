@@ -6,15 +6,16 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: fresh independent WS-02 candidate validation
+next_gate: maintainer authorization of separate REM-003 ownership remediation
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
-candidate awaiting independent validation. WS-00 contracts and WS-01 strict
+candidate with independent changes requested for startup-retry ownership.
+WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
 WS-03 and later remain Draft. The
@@ -81,7 +82,12 @@ maintainer subsequently authorized the narrow amendment for MCP
 `client/base.py` and `client/stdio.py` with "continue next steps", after the
 scope request and defect explanation. The
 [WS-02 implementation report](execution/WS-02-implementation-report.md)
-records the lifecycle candidate and bounded verification. The next gate is
-fresh independent candidate validation. Current
+records the lifecycle candidate and bounded verification. Fresh independent
+[VAL-005](validation/VAL-005-report.md) returned `CHANGES_REQUESTED`: F-001
+finds that failed-start retries can discard the retained provider/manager and
+strand a live client after cleanup failure. The next gate is maintainer
+authorization of a separate remediator under the bounded
+[REM-003 directive](remediation/REM-003-directive.md). No corrective source
+edits or delegation have been performed. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.

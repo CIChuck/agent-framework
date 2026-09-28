@@ -365,3 +365,26 @@
 - Execution phase remains `validation`; validation state is `in_review`.
   Source/tests and thirteen pinned authority documents remain frozen at the
   candidate. Only process metadata changes after freeze.
+
+## 2026-09-27 — Independent VAL-005 Changes Requested; REM-003 Gate
+
+- Fresh-context read-only [VAL-005](validation/VAL-005-report.md) returned
+  `CHANGES_REQUESTED` against candidate `5a2856d` and both exact diffs. All
+  thirteen authority hashes matched at start and closeout; governed source,
+  tests, configuration, and authority remained frozen.
+- The reviewer independently confirmed 316 affected package/local-stdio tests,
+  46 Chat config tests, Ruff, Python 3.13 mypy on 42 files, board/dashboard/docs,
+  and diff checks. Broad integration was 38 passed with the one declared board
+  baseline failure; default mypy reproduced the declared NumPy syntax baseline.
+- High F-001 reproduces discarded ownership after a failed cleanup followed
+  by startup retry, at both provider-manager and DI-provider layers. Once cleanup
+  was allowed, public kernel shutdown reached only the replacement owner, not
+  the first retained client. The reviewer explicitly cleaned every probe
+  resource. This is a candidate defect, separate from the two baseline issues.
+- [REM-003](remediation/REM-003-directive.md) bounds the single finding, allowed
+  runtime files, regression/acceptance criteria, checks, and stop conditions.
+  It remains Draft. A separate remediator is required for lifecycle ownership
+  and resource integrity; the next gate is explicit maintainer authorization.
+- Execution phase is `remediation`; validation state is `changes_requested`.
+  No corrective product edits or new delegation occurred. Initiative remains
+  `started`, not completed/accepted; WS-03 and delivery remain separate gates.
