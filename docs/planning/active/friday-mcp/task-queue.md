@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 accepted; REM-005 candidate frozen; fresh VAL-009 delta/aggregate review in progress
+Status: WS-03 independently verified; closeout prepared; awaiting explicit work-unit acceptance
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws03-registry`
@@ -60,16 +60,21 @@ collision prevention/cleanup is not diagnostic conformance. The complete
 report is archived byte-for-byte with [evidence](validation/VAL-008-evidence.yaml).
 
 The maintainer explicitly approved bounded REM-005 and its separate remediator
-with "That's approved. Proceed." Separate remediation is complete at `d395acd`;
-next is the pinned fresh VAL-009 delta and complete WS-03 aggregate review.
-Current phase `validation`, validation state `in_review`, condition normal;
-work remains started/granted/local. Eight approved product/test/report paths
-changed from approval checkpoint `215e54d`; twenty original authorities and
-historical request/report/evidence remain unchanged. New review pins approved
-REM-005 plus historical VAL-008 for twenty-two authority hashes and both current
-implementation report hashes. No new verdict exists; task 6
-continues through remediation, new freeze, fresh delta/aggregate review,
-closeout and explicit acceptance; no WS-04 authority.
+with "That's approved. Proceed." Separate remediation is complete at `d395acd`.
+Fresh [VAL-009](validation/VAL-009-report.md) returned delta, full WS-03 aggregate
+and overall `VERIFIED`, no findings. All seventeen independent commands ran;
+predecessor baselines were reproduced and twenty-six independent groups passed.
+The complete byte-exact report and [evidence](validation/VAL-009-evidence.yaml)
+are archived. Six REM-005 and ten WS-03 criteria passed. Frozen candidate,
+request, twenty-two authorities and both implementation reports remained stable;
+unrelated local work remained unchanged.
+
+Current phase `closeout`, validation state `verified`, condition normal; wider
+initiative remains started/granted/local. Task 6d is complete; task 6e has its
+[closeout](execution/WS-03-closeout.md) prepared and awaits explicit maintainer
+WS-03 acceptance. Historical VAL-008 remains unchanged and is superseded only
+for decisions on this corrected candidate. Acceptance and WS-04 authority are
+separate gates.
 
 ## Immediate Queue
 
@@ -83,14 +88,15 @@ closeout and explicit acceptance; no WS-04 authority.
 | 6a / MCP-NEXT-06A | Record full independent VAL-008 and convert F-001 into bounded REM-005. | Complete: unchanged report/evidence archived and directive drafted. | One medium finding appears exactly once; exact eight-path remediation boundary, six criteria, checks and non-goals are reviewable. |
 | 6b / MCP-NEXT-06B | Approve REM-005 and its separate remediator. | Complete: maintainer said "That's approved. Proceed." | Complete bounded directive and separate remediation explicitly authorized. |
 | 6c / MCP-NEXT-06C | Dispatch separate remediator; correct only F-001, add regressions, run checks and freeze a new candidate. | Complete: separate remediator committed exact eight-path candidate `d395acd`. | 173 focused / 459 aggregate / 46 Chat pass; baseline failures retained, source/report/authority/preservation checks complete; no independent verdict inferred. |
-| 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | In progress: new `/root/mcp_ws03_val009`, `fork_turns: none`, successfully dispatched. | Candidate/authority/report hashes and seventeen checks frozen; all six REM-005 and ten WS-03 criteria must be independently evaluated. Keep VAL-008 unchanged as historical evidence. |
-| 6e / MCP-NEXT-06E | Record verified WS-03 closeout and request explicit work-unit acceptance. | Not ready; depends on independent VERIFIED. | Maintainer acceptance is separate from verification; only after acceptance reconcile/request WS-04 approval. |
+| 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | Complete: new `/root/mcp_ws03_val009`, `fork_turns: none`, returned delta, aggregate and overall VERIFIED, no findings. | All seventeen checks executed, independent baselines reproduced, twenty-six groups passed and all six REM-005/ten WS-03 criteria satisfied. Complete byte-exact report/evidence archived; historical VAL-008 unchanged. |
+| 6e / MCP-NEXT-06E | Record verified WS-03 closeout and request explicit work-unit acceptance. | In progress: [verified closeout](execution/WS-03-closeout.md) prepared; explicit maintainer acceptance pending. | Maintainer acceptance is separate from verification; only after acceptance reconcile/request WS-04 approval. |
 
 Tasks 1–4 are complete, with fresh independent verification and a subsequent
 explicit maintainer acceptance decision. Task 5's planning/readiness work is
 complete and its explicit approval gate is satisfied. Task 6a records the
-completed VAL-008 review and draft correction. Tasks 6b–6c are complete; task
-6d is current, and task 6e/later workstreams remain unstarted. Accepted predecessor
+completed VAL-008 review and draft correction. Tasks 6b–6d are complete; task
+6e is current, with closeout prepared and explicit acceptance pending. Later
+workstreams remain unstarted. Accepted predecessor
 verification and acceptance are unchanged. Do not reuse the remediator as its
 fresh validator or waive a missing independent-review capacity gate.
 

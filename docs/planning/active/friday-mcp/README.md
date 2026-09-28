@@ -6,43 +6,41 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: execute pinned fresh VAL-009 delta and complete WS-03 aggregate review
+next_gate: record explicit maintainer WS-03 acceptance of verified candidate d395acd
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: validation
-validation_state: in_review
+execution_phase: closeout
+validation_state: verified
 ---
 
-Current checkpoint: fresh-context [VAL-008](validation/VAL-008-report.md)
-completed the full frozen WS-03 aggregate review and returned
-`CHANGES_REQUESTED` for one medium finding, F-001: collision diagnostics omit
-both source identities, provider labels and bounded original-name summaries.
-All required checks, predecessor baselines, ten criterion assessments,
-independent probes and freeze checks are preserved in the unchanged report and
-[archived evidence](validation/VAL-008-evidence.yaml). Fresh-agent capacity is
-resolved. The maintainer explicitly approved the complete bounded
-[REM-005 directive](remediation/REM-005-directive.md) and separate remediator
-with "That's approved. Proceed." Approved execution may now correct only F-001,
-add its regressions and reports, run required checks and freeze a replacement
-candidate for fresh VAL-009 delta and full WS-03 aggregate review. Initiative
-remains started/normal/local; accepted WS-00/01/02 remain intact. No WS-03
-verification/acceptance, later-slice approval or delivery is inferred.
+Current checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
+returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with
+no findings, for frozen candidate `d395acdba9e233cb226f54e6258575f480157cf1`.
+The separate remediator implemented only the approved REM-005 eight-path
+collision-diagnostic correction. The complete independent report is archived
+byte-for-byte, with all seventeen commands, independently reproduced predecessor
+baselines, six remediation/ten work-unit criterion assessments, twenty-six
+passing probe groups and start/closeout freeze checks in
+[lossless evidence](validation/VAL-009-evidence.yaml).
 
-Separate remediator `/root/mcp_ws03_rem005` completed the exact eight-path
-correction in candidate `d395acdba9e233cb226f54e6258575f480157cf1` from approval
-checkpoint `215e54d`. The [REM-005 report](execution/REM-005-implementation-report.md)
-records typed bounded both-source diagnostics, retained public history, privacy/
-cleanup regressions and all required checks/baselines. The pinned
-[VAL-009 request](validation/VAL-009-request.yaml) freezes the delta, complete
-original WS-03 aggregate, twenty-two authority hashes, both report hashes,
-six remediation/ten work-unit criteria and seventeen independent commands.
-Request preparation is not dispatch or verification. Historical VAL-008 remains
-byte-exact; [separate status](validation/VAL-008-status.yaml) supersedes it only
-for decisions on this changed candidate.
+[WS-03 closeout](execution/WS-03-closeout.md) is prepared for explicit maintainer
+work-unit acceptance. Current phase is `closeout`, validation state `verified`;
+the wider initiative remains started/normal/local on the named branch.
+Accepted WS-00/01/02 remain intact. Next gate is explicit maintainer WS-03
+acceptance; later slices and delivery retain their separate authority gates.
 
-New `/root/mcp_ws03_val009` was successfully created with `fork_turns: none`
-for the pinned request. Formal checks begin after this dispatch checkpoint;
-candidate, request, authority and both implementation reports remain frozen.
-Current validation state is `in_review`, with no independent verdict yet.
+Historical [VAL-008](validation/VAL-008-report.md) remains unchanged: it returned
+`CHANGES_REQUESTED` for medium F-001 at candidate `397caa9`. The maintainer
+explicitly approved [REM-005](remediation/REM-005-directive.md) and a separate
+remediator with "That's approved. Proceed." The
+[REM-005 report](execution/REM-005-implementation-report.md) records typed,
+bounded both-source diagnostics, retained public history and regressions.
+The pinned [VAL-009 request](validation/VAL-009-request.yaml) and twenty-two
+authority/two implementation-report hashes remained unchanged throughout review.
+New `/root/mcp_ws03_val009` used `fork_turns: none`, no inherited controller,
+builder or remediator context, and read-only repository access. Historical
+VAL-008 is superseded only for decisions on this changed candidate in
+[separate status](validation/VAL-008-status.yaml); its original report, findings
+and execution evidence remain byte-exact. Fresh VAL-009 confirms F-001 closed.
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02

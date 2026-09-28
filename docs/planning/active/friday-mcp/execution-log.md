@@ -979,3 +979,52 @@
   yet. Fresh delta and entire WS-03 aggregate review are both mandatory;
   no acceptance, later-slice authority or delivery inferred. Original five
   unrelated dirty-path fingerprints still match the controller start snapshot.
+
+## 2026-09-28 — Fresh VAL-009 Verified; WS-03 Closeout Prepared
+
+- New read-only `/root/mcp_ws03_val009`, `fork_turns: none`, reviewed frozen
+  `d395acdba9e233cb226f54e6258575f480157cf1` after stable dispatch `9d6df34`.
+  Delta, complete original WS-03 aggregate and overall outcome are `VERIFIED`,
+  with no findings. Six REM-005 and ten WS-03 criteria all passed; both public
+  F-001 variants retain distinct safe source diagnostics after cleanup.
+- All seventeen required commands ran independently. 173 focused/459 affected
+  aggregate/46 Chat passes; native 233 plus two unchanged invalid-ZIP failures;
+  integration 69 plus unchanged board-count failure. Ruff and meaningful
+  affected 45-file typing pass. Required default/core-inclusive typing failures
+  remain explicit; five fresh accepted-predecessor reproductions establish the
+  unchanged NumPy/profile/native/board baseline classifications without waiver.
+- Twenty-six independent probe groups passed: actual public routing/registration,
+  collision privacy/history/reset, schema/filter/export costs, transactions,
+  binding order, retained public owners/cancellation and noisy process/pipe/task
+  settlement. Public cleanup assertions precede defensive fixture cleanup;
+  deliberately injected scratch assertion separately proves fixture settlement.
+- Archive the complete [report](validation/VAL-009-report.md) byte-for-byte,
+  SHA256 `69fc9a1355e1de082396fc5259064f9c88976d25f57dd518126bac414dece05a`.
+  [Evidence](validation/VAL-009-evidence.yaml) packages all 73 original reviewer
+  artifacts losslessly in deterministic gzip/tar, including the original report,
+  manifests, exact logs/diffs, executable probes and snapshots. All member
+  lengths/hashes are checked against originals; predecessor extraction/caches
+  are reproducible scratch inputs, not omitted review evidence. Restore sibling
+  layout to inspect the exact artifacts named in the report links. This packaging retains
+  generated-log whitespace without changing reviewer evidence or waiving policy.
+- Reviewer finalized output-only identity/date/model availability, Markdown
+  tables and archive-member navigation before archival; no finding/evidence/candidate input changed.
+  Final freeze matches request, 22 authorities, both reports, 968 tracked product
+  files and five unrelated dirty paths/60 existing files/preserved deletion.
+  Historical VAL-008 remains unchanged; separate status marks its single F-001
+  closed only for current-candidate decisions using fresh VAL-009.
+- [WS-03 closeout](execution/WS-03-closeout.md) is prepared. Phase closeout/state
+  verified, queue 6d complete and 6e awaiting explicit maintainer WS-03 acceptance.
+  Wider initiative remains started/granted/normal/local, accepted predecessors
+  intact. This records no acceptance, WS-04 scope or delivery authority.
+- Controller closeout checks passed: board validation (23 tasks), dashboard
+  freshness, documentation lifecycle (344 Markdown files), scoped whitespace,
+  complete frozen product/config and both report comparisons. All 24 pinned
+  authority/report hashes, unchanged request, 968 product-file hashes and all
+  73 archived member lengths/hashes match; five unrelated path fingerprints
+  match the original controller snapshot, including the preserved deletion.
+  Initial scratch-relative report links failed archival lifecycle checking;
+  the independent reviewer supplied archive-member navigation in its final
+  output, then the controller regenerated and checked the lossless archive.
+  No frozen review input or policy was altered. Product tests were not repeated
+  for this evidence/process-only handoff after independent checks completed.
