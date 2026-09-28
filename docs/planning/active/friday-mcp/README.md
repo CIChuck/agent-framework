@@ -6,9 +6,9 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: explicit approval of reconciled WS-05 construction directive
-implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
-execution_phase: planning
+next_gate: implement approved WS-05 then freeze candidate for fresh VAL-011
+implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments
+execution_phase: implementation
 validation_state: not_ready
 ---
 
@@ -21,9 +21,9 @@ byte-exact report and all original artifacts are archived in
 [WS-04 closeout](execution/WS-04-closeout.md) records explicit maintainer
 acceptance on 2026-09-28 with "accepted". WS-00 through WS-04 are accepted
 work units; the wider initiative remains started/granted/normal/local. Next
-is explicit approval of the reconciled WS-05 directive. Current
-phase planning/state not_ready describes that next-slice preparation, not a
-change to accepted WS-04 verification. WS-05 is reconciled and unapproved; later slices remain draft.
+is implementation of the approved WS-05 directive. Current
+phase implementation/state not_ready describes WS-05 construction, not a
+change to accepted WS-04 verification. WS-05 is approved; later slices remain draft.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with
@@ -216,7 +216,7 @@ candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379` and its complete VAL-007
 review. Queue tasks 1–4 are complete. Next is bounded WS-03 directive/readiness
 reconciliation, followed by an explicit approval request; no WS-03 code is
 authorized. Current process fields now describe that next-slice preparation:
-`execution_phase: planning`, `validation_state: not_ready`, not a reversal of
+`execution_phase: implementation`, `validation_state: not_ready`, not a reversal of
 accepted WS-02's independently verified result. The wider initiative remains
 `started` and local, with no packet archive or delivery transition.
 
@@ -317,3 +317,13 @@ handling, the declared typed Transcript/Core dependency and compatible exporters
 Next gate is explicit directive approval. No WS-05 product edit, branch or agent
 dispatch occurred. Phase planning/state not_ready; accepted predecessors and
 all frozen VAL-010 inputs remain unchanged. Wider initiative remains started/local.
+
+## 2026-09-28 — WS-05 Approved And Started
+
+Maintainer said "ws-05 is approved. proceed", approving the complete bounded
+23-path directive at planning checkpoint `a609f948fe2d869ac29d0cce29d22d9334cd7d08`.
+Execution starts on `feature/friday-mcp-ws05-execution` from that work-unit base.
+Phase implementation/state not_ready; next implement/test, freeze a stable
+candidate and obtain fresh read-only complete-aggregate VAL-011. Accepted
+predecessors and unrelated local work remain intact. No later-slice, acceptance
+or delivery authority is inferred. Earlier pending-approval text is historical.

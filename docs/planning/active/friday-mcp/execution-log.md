@@ -1194,3 +1194,15 @@ approval of reconciled WS-05 construction directive. This is planning only,
 not WS-05 implementation/validation/acceptance. No feature branch, product edits
 or subagent dispatch. Board remains started/granted/normal/local with authority
 through WS-04 only. No later-slice, delivery or external-effect authority.
+
+## 2026-09-28 — WS-05 Explicit Approval And Start
+
+Maintainer explicitly said "ws-05 is approved. proceed" after complete bounded
+directive/readiness review. Approved scope: exactly 23 implementation paths,
+eight tactical tasks and ten criteria at `a609f948fe2d869ac29d0cce29d22d9334cd7d08`.
+Dedicated branch created: `feature/friday-mcp-ws05-execution`. Board names that
+branch and implementation gate before code generation. Phase implementation,
+validation state not_ready. Stable candidate, full required checks and fresh
+read-only complete-aggregate VAL-011 precede proposed work-unit acceptance.
+No later-slice, push/merge/release or live-provider authority. Five unrelated
+path fingerprints are retained from the accepted predecessor audit.

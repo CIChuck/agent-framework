@@ -1,11 +1,11 @@
 # Construction Directive: MCP-WS-05 Tool Execution Security, Provenance, And Transcript Recording
 
-Status: Reconciled draft; explicit maintainer approval pending
+Status: Approved construction directive
 Date: 2026-09-28
 Workstream: `MCP-WS-05`
 Readiness: [WS-05 checkpoint](../execution/WS-05-readiness-checkpoint.md)
 Preparation base: `1e845001f6b6c48e7cc255ac76460a058f026f70`
-Execution base: the committed approved planning checkpoint, to be pinned before implementation
+Execution base: `a609f948fe2d869ac29d0cce29d22d9334cd7d08`
 
 ## Authority And Approval Boundary
 
@@ -18,12 +18,14 @@ Then apply accepted WS-00 through WS-04 contracts, directives, amendments and
 closeouts; the [build plan](../build-plan.md), [tactical plan](../tactical-plan.md)
 and [rebaseline](../rebaseline-2026-09-27.md); this directive binds the new slice.
 
-The maintainer's latest "proceed" follows the WS-04 acceptance closeout's stated
-WS-05 directive/readiness gate. It authorizes this planning reconciliation;
-WS-05 product code remains unapproved. WS-00 through WS-04 stay accepted, and
-VAL-010's frozen inputs remain unchanged. After explicit approval, record the
-approval, pin the full work-unit base, create `feature/friday-mcp-ws05-execution`,
-and reconcile board/packet/start before code generation.
+The maintainer explicitly approved this complete bounded directive on
+2026-09-28 with "ws-05 is approved. proceed" after the planning checkpoint
+`a609f94`. WS-00 through WS-04 stay accepted. Execution starts on
+`feature/friday-mcp-ws05-execution` from the full base above; the board and
+packet record that start before product generation. Approval covers exactly
+this WS-05 slice and its required fresh independent review, not later workstreams
+or delivery. Historical VAL-010 reviewed product remains the accepted predecessor;
+only the new WS-05 approved paths may change.
 
 The original generic plans mention argument hashing and `export/`. Accepted
 WS-00 rejects raw arguments, results and argument hashes in shared provenance:

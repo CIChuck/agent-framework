@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit approval of reconciled WS-05 construction directive
+  next_gate: implement approved WS-05 then freeze candidate for fresh VAL-011
   delivery_state: local
-  branch: feature/friday-mcp-ws04-chat-budget
+  branch: feature/friday-mcp-ws05-execution
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
@@ -802,3 +802,10 @@ events:
   action: condition normal -> normal
   note: 'WS-05 planning reconciliation complete after proceed: exact 23-path draft, eight tasks/ten criteria and reproducible local readiness evidence. Explicit directive approval pending; no product edit or WS-05 branch/agent dispatch.'
   evidence: docs/planning/active/friday-mcp/execution/WS-05-readiness-checkpoint.md
+- task: friday-mcp
+  at: '2026-09-28T22:06:28.963975+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: note
+  note: 'Explicit WS-05 approval: ws-05 is approved. proceed; complete reconciled 23-path directive at a609f94. Dedicated execution branch started; no later-slice or delivery authority.'
+  evidence: docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md

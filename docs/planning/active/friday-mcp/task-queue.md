@@ -1,9 +1,9 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-04 accepted; WS-05 planning reconciled, explicit directive approval pending
+Status: WS-04 accepted; WS-05 explicitly approved, implementation started
 Updated: 2026-09-28
 Initiative: `friday-mcp`
-Branch: `feature/friday-mcp-ws04-chat-budget`
+Branch: `feature/friday-mcp-ws05-execution`
 WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
@@ -124,7 +124,7 @@ is authorized by the REM-004 approval.
 | --- | --- | --- |
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
-| 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Planning reconciled in [checkpoint](execution/WS-05-readiness-checkpoint.md); explicit approval of the complete bounded directive is pending. |
+| 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Approved with "ws-05 is approved. proceed"; implementation started from `a609f94`, stable candidate and fresh VAL-011 required. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Prior contracts/execution/budget behavior ready and WS-06 explicitly approved. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Relevant lifecycle/registry/execution/budget signals ready and WS-07 explicitly approved. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | WS-01 through WS-07 ready and WS-08 explicitly approved. Live/paid/provider UAT requires its own external-effects authority. |
@@ -206,3 +206,12 @@ Next is explicit maintainer approval, then recorded start/base/branch, implement
 stable candidate, fresh read-only complete-aggregate VAL-011 and explicit acceptance.
 Current phase planning/state not_ready; no product/branch/reviewer action or
 later-slice/delivery authority is inferred from the planning "proceed".
+
+## 2026-09-28 — WS-05 Approved Execution
+
+Explicit maintainer approval: "ws-05 is approved. proceed". Task 8 is current:
+implement the exact approved 23 paths, perform required checks/UAT, freeze a
+candidate, obtain new fresh read-only complete-aggregate VAL-011, then propose
+closeout for explicit acceptance. Work-unit base `a609f94`; branch
+`feature/friday-mcp-ws05-execution`; phase implementation/state not_ready.
+Accepted WS-00 through WS-04 remain intact. Later slices and delivery remain gated.
