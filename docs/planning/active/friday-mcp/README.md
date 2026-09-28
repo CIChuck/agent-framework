@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: maintainer authorization of separate REM-003 ownership remediation
+next_gate: committed REM-003 candidate for fresh delta and WS-02 aggregate validation
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
 execution_phase: remediation
 validation_state: changes_requested
@@ -87,7 +87,9 @@ records the lifecycle candidate and bounded verification. Fresh independent
 finds that failed-start retries can discard the retained provider/manager and
 strand a live client after cleanup failure. The next gate is maintainer
 authorization of a separate remediator under the bounded
-[REM-003 directive](remediation/REM-003-directive.md). No corrective source
-edits or delegation have been performed. Current
+[REM-003 directive](remediation/REM-003-directive.md). The maintainer replied
+"proceed" on 2026-09-27, explicitly authorizing that correction and separate
+remediator. The next gate is a committed REM-003 candidate for fresh delta and
+complete WS-02 aggregate validation. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.

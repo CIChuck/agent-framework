@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer authorization of separate REM-003 ownership remediation
+  next_gate: committed REM-003 candidate for fresh delta and WS-02 aggregate validation
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -668,3 +668,10 @@ events:
   action: recorded WS-02 validation changes requested
   note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains frozen and no corrective source edits occurred.
   evidence: docs/planning/active/friday-mcp/validation/VAL-005-report.md; docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-003 remediator
+  note: Maintainer explicitly said proceed after the separate REM-003 authorization request; authority is limited to the bounded F-001 correction and fresh review, not WS-03 or delivery effects.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-003-directive.md

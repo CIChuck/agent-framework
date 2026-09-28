@@ -1,7 +1,9 @@
 # REM-003 — MCP-WS-02 Retained Ownership Across Startup Retry
 
-Status: Draft; awaiting maintainer authorization of separate remediator
+Status: Approved; separate remediator authorized
 Date: 2026-09-27
+Approved by: repository maintainer
+Approval evidence: "proceed" following the separate REM-003 remediation request
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-02`
 Finding: [VAL-005 F-001](../validation/VAL-005-report.md#f-001--high-startup-retry-discards-ownership-after-cleanup-failure)
@@ -12,8 +14,8 @@ Failed candidate: `5a2856dea0f57208906fbd6eae5419d716bbf55a`
 Repository engineering and independent-validation policies, the approved
 [WS-02 directive](../directives/ws-02-runtime-lifecycle-provider-loading.md),
 and the complete [VAL-005 report](../validation/VAL-005-report.md) control this
-bounded correction. This draft does not itself authorize product changes or
-delegation. A separate remediator is required because the finding concerns
+bounded correction. The maintainer explicitly authorized this bounded product
+correction and separate remediator on 2026-09-27. A separate remediator is required because the finding concerns
 lifecycle ownership and resource integrity; the original builder must not
 silently repair the failed candidate.
 

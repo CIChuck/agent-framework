@@ -388,3 +388,17 @@
 - Execution phase is `remediation`; validation state is `changes_requested`.
   No corrective product edits or new delegation occurred. Initiative remains
   `started`, not completed/accepted; WS-03 and delivery remain separate gates.
+
+## 2026-09-27 — Separate REM-003 Remediator Authorized
+
+- The maintainer replied "proceed" to the explicit request to authorize the
+  separate [REM-003 pass](remediation/REM-003-directive.md). This approves
+  only F-001's retained-owner correction, the directive's allowed files and
+  tests, and separate remediation followed by fresh independent validation.
+- The remediator may commit a stable scoped correction on
+  `feature/friday-mcp-ws02-lifecycle`. Failed candidate `5a2856d` and
+  VAL-005 remain historical evidence; no passing verdict is inferred.
+- Execution phase remains `remediation`; validation state remains
+  `changes_requested`. Next gate is a committed candidate for fresh delta and
+  complete WS-02 aggregate review. Initiative remains `started` and local;
+  no WS-03, external-service, or delivery authority is granted.
