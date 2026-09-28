@@ -6,9 +6,9 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: explicit maintainer approval of reconciled WS-03 registry directive
-implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
-execution_phase: planning
+next_gate: implement approved WS-03 registry slice and freeze candidate for fresh VAL-008
+implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
+execution_phase: implementation
 validation_state: not_ready
 ---
 
@@ -24,7 +24,7 @@ initiative remains started and local.
 WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
-WS-03 and later remain Draft. The
+WS-03 is now approved; later workstreams remain Draft. The
 [2026-09-27 rebaseline](rebaseline-2026-09-27.md) distinguishes the existing
 package from this integration initiative and narrows the first slice.
 
@@ -35,7 +35,7 @@ Controlling packet:
 - [Current-code rebaseline](rebaseline-2026-09-27.md) — baseline evidence,
   workstream status, and outstanding decisions.
 - [Design notes](design-notes.md) — historical input, not controlling authority.
-- [Construction directives](directives/) — approved WS-00/01/02 and draft later slices.
+- [Construction directives](directives/) — approved WS-00/01/02/03 and draft later slices.
 - [Execution log](execution-log.md) — approval, baseline, and work-unit progress.
 - [Ordered task queue](task-queue.md) — approved next action and dependency/approval gates for subsequent work.
 
@@ -177,3 +177,11 @@ export caps, with ten criteria and fresh review requirements. It remains
 unapproved. Next gate is explicit approval of that complete bounded directive;
 no WS-03 branch, product edit or validator dispatch occurred. Current phase is
 `planning`, validation state `not_ready`; accepted predecessors remain intact.
+
+The maintainer subsequently said "ws-03 approved" on 2026-09-28, approving the
+complete reconciled directive at checkpoint `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`.
+Execution starts on `feature/friday-mcp-ws03-registry` from that frozen work-unit
+base. Current phase is `implementation`, validation state `not_ready`.
+Queue task 5 is complete and task 6 is in progress. A stable candidate and
+fresh read-only VAL-008 are required before proposed closeout. No later-slice
+authority, verification, acceptance, or delivery is inferred.

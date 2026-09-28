@@ -1,6 +1,6 @@
 # Build Plan: Friday Framework MCP Enhancements
 
-**Status:** WS-00 through WS-02 bounded directives approved 2026-09-27; later workstreams remain draft
+**Status:** WS-00 through WS-02 approved 2026-09-27; reconciled bounded WS-03 approved 2026-09-28; later workstreams remain draft
 **Target:** MCP client capability across Friday runtime, tools, memory, and app
 layers
 **Objective:** Add configurable MCP client support to the Friday framework while

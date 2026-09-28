@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer approval of reconciled WS-03 registry directive
+  next_gate: implement approved WS-03 registry slice and freeze candidate for fresh VAL-008
   delivery_state: local
-  branch: feature/friday-mcp-ws02-lifecycle
+  branch: feature/friday-mcp-ws03-registry
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md

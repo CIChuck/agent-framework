@@ -1,6 +1,9 @@
 # Construction Directive: MCP-WS-03 Tool Naming, Metadata, Filtering, And Registry Integration
 
-Status: Reconciled draft; awaiting explicit maintainer approval
+Status: Approved by repository maintainer on 2026-09-28
+Approval evidence: "ws-03 approved" in the active conversation
+Implementation branch: `feature/friday-mcp-ws03-registry`
+Frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 Prepared: 2026-09-28
 Original draft date: 2026-07-24
 Initiative: `friday-mcp`
@@ -10,10 +13,10 @@ Accepted WS-02 product candidate: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
 Readiness evidence: [WS-03 readiness checkpoint](../execution/WS-03-readiness-checkpoint.md)
 Tactical tasks: `MCP-03-01` through `MCP-03-08`
 
-This is a proposal, not implementation authority. The maintainer's "continue"
-authorizes preparation of this draft and the approval request only. Do not
-generate product code, create the WS-03 implementation branch, or infer approval
-from accepted predecessors or the wider initiative's started/granted state.
+The maintainer explicitly approved this complete reconciled directive with
+"ws-03 approved" on 2026-09-28. That decision grants this bounded slice only;
+later workstreams remain draft. Record started branch/board evidence before
+product edits. Acceptance and delivery remain separate gates.
 
 ## Authority And Dependencies
 

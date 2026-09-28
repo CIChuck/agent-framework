@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | explicit maintainer approval of reconciled WS-03 registry directive |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | implement approved WS-03 registry slice and freeze candidate for fresh VAL-008 |
 
 ## Completed
 

@@ -731,3 +731,23 @@
   dashboard freshness, documentation lifecycle (338 Markdown files), diff
   whitespace and frozen source/test/config comparison to accepted WS-02.
   No accepted authority, historical validation or closeout changed.
+
+## 2026-09-28 — WS-03 Explicitly Approved And Started
+
+- Maintainer evidence: "ws-03 approved" in the active conversation. This grants
+  the full reconciled WS-03 directive, not later workstreams or delivery.
+- Created local branch `feature/friday-mcp-ws03-registry` from frozen work-unit
+  base `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`. That checkpoint stacks on
+  accepted WS-02 product candidate `a257f041d1d68f8aea2f5b9773df1b88acd82379`.
+  Approval/start records precede product edits; board branch and packet agree.
+- Queue task 5 is complete, task 6 implementation is in progress. Initiative
+  remains started/granted/normal/local, current phase implementation and
+  validation not_ready. Stable candidate and fresh read-only VAL-008 are next;
+  no review request, dispatch, verdict, or WS-03 acceptance exists yet.
+- Exact approved boundary is seven source paths, nine tests/fixtures and one
+  implementation report. Main controller builds; mandatory fresh validator
+  will not receive builder private reasoning. No native registry, transport,
+  manager, security package, dependency or config schema changes authorized.
+- Preserve unrelated modified `.DS_Store`, deleted `family-tree.md`, untracked
+  `docker-bench-security/`, Friday Chat config backup and sandbox Dockerfile
+  audit. Explicit scoped staging only; no cleanup or external actions.
