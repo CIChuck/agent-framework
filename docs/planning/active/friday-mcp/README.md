@@ -116,7 +116,8 @@ attempt to dispatch `/root/mcp_ws02_rem004` returned `agent thread limit reached
 attempting to resume the prior separate remediator returned the same error.
 No supported close/reset operation is exposed. A readiness-only check confirmed
 that existing `/root/mcp_ws01_val004` can be reassigned as the separate REM-004
-remediator: it previously reviewed WS-01, did not build/remediate WS-02, and
+remediator. It has now received the execution instruction: it previously
+reviewed WS-01, did not build/remediate WS-02, and
 will not validate its own new work. Remediation can proceed under the existing
 approval without creating another thread. Fresh independent VAL-007 remains
 mandatory and its capacity is unresolved; an existing reviewer will not be

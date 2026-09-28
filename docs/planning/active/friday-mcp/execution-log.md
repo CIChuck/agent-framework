@@ -543,3 +543,19 @@
 - Execution phase remains `remediation`; validation state remains
   `changes_requested`. Next gate is the approved scoped correction and stable
   candidate. No scope, review-freshness, acceptance, or delivery waiver is given.
+
+## 2026-09-28 — Reassigned Separate REM-004 Remediator Dispatched
+
+- Following readiness confirmation, sent `/root/mcp_ws01_val004` the bounded
+  REM-004 execution instruction against approved revision `cdd808e` and
+  execution baseline `bd10656fed43083ff1d81ef2232205b50f58ac99`.
+  The agent is reassigned to remediation only; its historical WS-01 review
+  remains historical and it must not review its new code. No claim of fresh
+  remediator context is made or required; fresh independent VAL-007 is required.
+- Instruction binds the exact six allowed files, all six criteria, checks,
+  local-only fake peers, explicit fixture cleanup, typing/redaction/ownership
+  constraints, scoped local commit, and scope stop conditions. Controller
+  owns these process metadata; source and approved authority are untouched.
+- Queue tasks 1–2 are in progress. Execution phase remains `remediation`;
+  validation state remains `changes_requested` until candidate freeze and a
+  fresh review request. Later workstreams, acceptance, and delivery are gated.

@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: Active execution queue; REM-004 approved, existing separate remediator prepared
+Status: Active execution queue; REM-004 separate remediation in progress
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws02-lifecycle`
@@ -22,12 +22,12 @@ each handoff. An approved future step is not a claim that it has started.
   REM-003 ownership correction; its full WS-02 aggregate is
   `CHANGES_REQUESTED` for one production stdio shutdown hang.
 - REM-004: explicitly approved by the maintainer on 2026-09-28, including a
-  separate remediator. No remediator has been dispatched and no REM-004
-  product changes have been made. The subsequent "proceed" execution attempt
+  separate remediator. The subsequent "proceed" execution attempt
   hit `agent thread limit reached` for both new dispatch and prior-remediator
-  resumption. Existing `/root/mcp_ws01_val004` then confirmed it can be reassigned
-  as the separate remediator; it was not a WS-02 builder/remediator and will not
-  validate its new work. Fresh-validator capacity remains unresolved.
+  resumption. Existing `/root/mcp_ws01_val004` confirmed availability and has
+  been reassigned/dispatched as the separate remediator; it was not a WS-02
+  builder/remediator and will not validate its new work. Correction/checks/
+  commit are in progress; fresh-validator capacity remains unresolved.
 - WS-03 through WS-08: draft, not approved for implementation. WS-09: deferred
   optional scope. Initiative remains `started`; delivery remains `local`.
 
@@ -35,14 +35,14 @@ each handoff. An approved future step is not a claim that it has started.
 
 | Order / ID | Next task | Readiness | Exit gate / evidence |
 | --- | --- | --- | --- |
-| 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | Approved; existing separate agent prepared for reassignment after new-thread dispatch failed. | Obey the exact six-path directive; no MCP base/manager or runtime source edits, no private boundary reach-through. Stop and request direction if scope is insufficient. |
+| 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | In progress: reassigned existing separate remediator dispatched after new-thread creation failed. | Obey the exact six-path directive; no MCP base/manager or runtime source edits, no private boundary reach-through. Stop and request direction if scope is insufficient. |
 | 2 / MCP-NEXT-02 | Add direct-transport and public-kernel noisy-peer regressions, including successful discovery, partial startup, cancellation, stdout/stderr redaction, released resources, and retained ownership on genuinely incomplete cleanup. Run required checks and commit a stable candidate with implementation evidence. | Waits for task 1. | Reproduce F-001 before correction, demonstrate bounded real teardown afterward, rerun all directive checks, preserve existing REM-003 behavior, and record full candidate hash and exact path manifest. |
 | 3 / MCP-NEXT-03 | Controller freezes the new candidate, retains historical review evidence with a superseded decision-status note, and requests fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Waits for committed candidate from task 2. | Pinned authority/revisions/hashes, exact correction and aggregate diffs, every criterion, independent production retry/cleanup probes, baseline separation, and one overall review outcome. |
 | 4 / MCP-NEXT-04 | Record WS-02 closeout and request explicit maintainer acceptance. | Only after task 3 returns overall VERIFIED. | Independent report and work-unit closeout recorded; maintainer acceptance recorded separately. If this second WS-02 remediation cycle fails, stop and return unresolved findings to the maintainer rather than auto-remediate again. |
 | 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Waits for WS-02 acceptance. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
 
-Task 1 remains the next authorized action and can use the prepared existing
-agent in a separate remediation role. The controller may not self-repair or
+Tasks 1–2 are executing under the approved separate remediation instruction.
+The controller may not self-repair or
 relabel that agent or another existing reviewer as fresh validation. If new
 validator creation still fails after candidate freeze, stop at task 3 and
 resume review in a session with fresh-agent capacity; do not waive the gate.
