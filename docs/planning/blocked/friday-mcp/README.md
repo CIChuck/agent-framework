@@ -6,11 +6,25 @@ initiative: friday-mcp
 document_type: initiative-index
 status: blocked
 updated: 2026-09-28
-next_gate: restore fresh-validator capacity and execute pinned VAL-008 review
+next_gate: approve bounded REM-005 and separate remediator for VAL-008 F-001 collision diagnostics
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: validation
-validation_state: blocked
+execution_phase: remediation
+validation_state: changes_requested
 ---
+
+Current checkpoint: fresh-context [VAL-008](validation/VAL-008-report.md)
+completed the full frozen WS-03 aggregate review and returned
+`CHANGES_REQUESTED` for one medium finding, F-001: collision diagnostics omit
+both source identities, provider labels and bounded original-name summaries.
+All required checks, predecessor baselines, ten criterion assessments,
+independent probes and freeze checks are preserved in the unchanged report and
+[archived evidence](validation/VAL-008-evidence.yaml). Fresh-agent capacity is
+resolved; the approval gate now concerns the bounded
+[REM-005 draft](remediation/REM-005-directive.md) and separate remediator.
+This controller step records the review and prepares that directive only.
+No fixes, remediator dispatch, new candidate, WS-03 acceptance or later-slice
+authority is inferred. The initiative remains started/local and blocked
+pending explicit remediation approval; accepted WS-00/01/02 remain intact.
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
@@ -209,4 +223,7 @@ Lifecycle policy requires the packet relocation to
 `docs/planning/blocked/friday-mcp/`. Board/backlinks follow the new working
 location. The request's relocation mapping preserves original candidate/authority
 Git paths and byte hashes; no controlling document or product contents change.
-Resolve the request-adding/mapping revision before starting fresh review.
+The fresh reviewer resolved the request/mapping revision as `b8e1f04`, matched
+all twenty authority hashes at start and closeout, and completed the review
+without inherited parent/builder context. The original request and frozen
+authority remain unchanged. Current result and next gate are recorded above.

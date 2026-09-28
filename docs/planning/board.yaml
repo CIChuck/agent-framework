@@ -59,7 +59,7 @@ tasks:
   condition: blocked
   implementation_authority: granted
   packet: docs/planning/blocked/friday-mcp/
-  next_gate: restore fresh-validator capacity and execute pinned VAL-008 review
+  next_gate: approve bounded REM-005 and separate remediator for VAL-008 F-001 collision diagnostics
   delivery_state: local
   branch: feature/friday-mcp-ws03-registry
   depends_on: []
@@ -72,6 +72,7 @@ tasks:
   - docs/planning/blocked/friday-mcp/validation/VAL-006-report.md
   - docs/planning/blocked/friday-mcp/validation/VAL-007-report.md
   - docs/planning/blocked/friday-mcp/execution/WS-02-closeout.md
+  - docs/planning/blocked/friday-mcp/validation/VAL-008-report.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -713,3 +714,10 @@ events:
   action: prepared existing agent for separate REM-004 remediation
   note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate its resulting work. Fresh independent review remains required and its capacity is not yet established.
   evidence: docs/planning/blocked/friday-mcp/execution-log.md; docs/planning/blocked/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28T14:24:07+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> blocked
+  note: Fresh-context VAL-008 completed with CHANGES_REQUESTED for one medium collision diagnostic finding. Archive unchanged review evidence and prepare bounded REM-005; the old capacity stop is resolved, and explicit remediation approval is the current gate. No product fixes or remediator dispatch.
+  evidence: docs/planning/blocked/friday-mcp/remediation/REM-005-directive.md

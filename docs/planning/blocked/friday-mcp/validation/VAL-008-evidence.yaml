@@ -1,0 +1,255 @@
+id: VAL-008-evidence
+initiative: friday-mcp
+work_unit: MCP-WS-03
+outcome: CHANGES_REQUESTED
+recorded_at: '2026-09-28'
+reviewer: /root/val_008_independent_review
+context: fresh conversation; fork_turns none; no inherited parent/builder session
+review_mode: work_unit_aggregate
+candidate_commit: 397caa9898612cd989f6404951b3e1f5005dfac2
+authority_revision: 397caa9898612cd989f6404951b3e1f5005dfac2
+request_revision: b8e1f041695b94303517617362f590ef3272e0cc
+request_path: docs/planning/blocked/friday-mcp/validation/VAL-008-request.yaml
+request_sha256: 43fb708815e569dbe3d8b0a443ec28bf782e5b5ff2db75fb0be5d4dd2d139cfc
+aggregate_diff_range: 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641..397caa9898612cd989f6404951b3e1f5005dfac2
+implementation_diff_range: b54069654bb3e21a6265fbabcd23f6991e286ab0..397caa9898612cd989f6404951b3e1f5005dfac2
+report:
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-report.md
+  sha256: 1bf0b019e0ba69f75eb638e1aa68f89a3d90088e2471dea11ce7ee76c1b46d0c
+  byte_exact_original: true
+finding_ids:
+- F-001
+finding_severities:
+  F-001: medium
+required_checks_executed: 15
+independent_probe_groups_passed: 16
+baseline_failures: Unchanged accepted predecessor reproduces native invalid-zip fixtures,
+  board count assertion, default NumPy syntax and four core profiles.py errors. No
+  repair or waiver.
+stability: Request, all twenty authority hashes, candidate source/tests/config and
+  unrelated work remained unchanged during independent review.
+controller_recording_note: This later metadata-only recording adds report/evidence
+  and draft REM-005; it changes index/log/queue/board, not frozen behavioral authority
+  or candidate product. It does not claim the twenty-document working freeze extends
+  across later controller metadata edits. Raw logs are compressed losslessly to retain
+  original output whitespace without treating generated pytest whitespace as authored
+  changes; original_sha256 validates each decompressed original.
+remediation:
+  directive: docs/planning/blocked/friday-mcp/remediation/REM-005-directive.md
+  status: draft; awaiting explicit maintainer approval
+  source_edits_made: false
+  remediator_dispatched: false
+artifacts:
+- source: /private/tmp/val008-checks/01.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/01.log.gz
+  sha256: f304d292e74d60163a9e05ebda3298c70e1f06a475c21e51253964e5f34d8b64
+  bytes: 69
+  encoding: gzip
+  original_sha256: a988e973f443cd4224cf266299de442aad6b4fe327967d8f2a1f03b33846e981
+  original_bytes: 260
+- source: /private/tmp/val008-checks/02.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/02.log.gz
+  sha256: fdd056cb13feafe8e4af1ade74e0f5e4d77cdbbfc72505aaf18dad708e1b003e
+  bytes: 81
+  encoding: gzip
+  original_sha256: bc4e1348bb207356129b25e25cb5badc388fc07e08320e8a22543ff9bf170f5d
+  original_bytes: 501
+- source: /private/tmp/val008-checks/03.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/03.log.gz
+  sha256: a96220c11289ebba291e2472227df19710a244ac89e2ac30a465e98287999c4a
+  bytes: 1234
+  encoding: gzip
+  original_sha256: 602ef8367f81e65632ed12931e24b81d65c084c21cfbd2b3b024e020ec51b89e
+  original_bytes: 5351
+- source: /private/tmp/val008-checks/04.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/04.log.gz
+  sha256: 3376dc251cce6f60de201ed0653a66983ce3c61574f05a8a95c71d26e8eb376b
+  bytes: 52
+  encoding: gzip
+  original_sha256: 67040d3a135fb208dae578f4187d87ea0454f57ccb146f32ba8440380f8a433d
+  original_bytes: 99
+- source: /private/tmp/val008-checks/05.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/05.log.gz
+  sha256: d4bcd6c49637a4aa4ce4867501ef2f1b92c865606a3a16199f8d9b56b41d34f6
+  bytes: 389
+  encoding: gzip
+  original_sha256: d0b5b6122c5219df2b2697fe3487d5e1c8d422aa2600ad82120f1c6922b02d68
+  original_bytes: 1012
+- source: /private/tmp/val008-checks/06.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/06.log.gz
+  sha256: f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53
+  bytes: 39
+  encoding: gzip
+  original_sha256: 82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18
+  original_bytes: 19
+- source: /private/tmp/val008-checks/07.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/07.log.gz
+  sha256: 4917e388d9560a47704495b6305db472808d0f97d033bca86a5a8fb21c282409
+  bytes: 173
+  encoding: gzip
+  original_sha256: effd574d0f3dce1bae2f2f84461f1ee76aa91621be4940353fd358845ea85207
+  original_bytes: 196
+- source: /private/tmp/val008-checks/08.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/08.log.gz
+  sha256: 82c6ae61ac49c6b0357aa62441ac1cd198c2179ee8136d0a47e4d3b339cd314a
+  bytes: 198
+  encoding: gzip
+  original_sha256: 17ecf08ca2e1208edcdfa5c2abef8cc9641a2e2de5840beef3fb6eca76c57166
+  original_bytes: 629
+- source: /private/tmp/val008-checks/09.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/09.log.gz
+  sha256: 8c6e571c02ae028fffd517da44b649b36674dbd7507be6fb47bdcdf7d2903f78
+  bytes: 64
+  encoding: gzip
+  original_sha256: fdba5b4e396441aaf1ba0d4aee9a2b6de7229057c665772ec81bd032ce1cc3f5
+  original_bytes: 44
+- source: /private/tmp/val008-checks/10.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/10.log.gz
+  sha256: 2f7d94e3f67e0fa7d0f53a8cf07653cf56f88ed12b68aa40a54b9b353dcbc086
+  bytes: 198
+  encoding: gzip
+  original_sha256: c1d133ea5f7d75e41841b5eefb5891bc10d73641fea33df42661c85567aa31aa
+  original_bytes: 631
+- source: /private/tmp/val008-checks/11.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/11.log.gz
+  sha256: 8ef0a79b87814e61d9c65d815f6802f4dcaf1ab65e9a722049f0957b6115cde2
+  bytes: 66
+  encoding: gzip
+  original_sha256: eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93
+  original_bytes: 46
+- source: /private/tmp/val008-checks/12.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/12.log.gz
+  sha256: e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd
+  bytes: 50
+  encoding: gzip
+  original_sha256: a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33
+  original_bytes: 30
+- source: /private/tmp/val008-checks/13.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/13.log.gz
+  sha256: f36a9813398604146e34c008555fe21115366b6eb7f84462a2445595d502c3ad
+  bytes: 86
+  encoding: gzip
+  original_sha256: ad5c320279297a4b1f2b9ace7cad3db643317ee44829da59278e6cb5c0e26490
+  original_bytes: 70
+- source: /private/tmp/val008-checks/14.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/14.log.gz
+  sha256: 9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64
+  bytes: 20
+  encoding: gzip
+  original_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  original_bytes: 0
+- source: /private/tmp/val008-checks/15.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/15.log.gz
+  sha256: 9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64
+  bytes: 20
+  encoding: gzip
+  original_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  original_bytes: 0
+- source: /private/tmp/val008-checks/baseline-1.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-1.log.gz
+  sha256: 5fb22a53891bf28a5e976d2aa011415e6ea185b06ac39e8a8b208496d017ba92
+  bytes: 1225
+  encoding: gzip
+  original_sha256: aca4d4e85d068368a1e86cf0c1e6e535f51375ebbfe249977ab76fb6ee4189e9
+  original_bytes: 5336
+- source: /private/tmp/val008-checks/baseline-2.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-2.log.gz
+  sha256: 805da00ff0197377f4c6c8ba5a76961b0c8ce69ac047dc66ab6b042c6d6df68e
+  bytes: 401
+  encoding: gzip
+  original_sha256: c414635da23fdf0fb01d3da970df514d154f90e50b90fe54fe1ee62c936e9e0d
+  original_bytes: 1000
+- source: /private/tmp/val008-checks/baseline-3.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-3.log.gz
+  sha256: 2f7b9c4111c2ba775333e2ea54f81225e3637b13e8892df5aa0eb59733a00fcd
+  bytes: 62
+  encoding: gzip
+  original_sha256: 5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e
+  original_bytes: 42
+- source: /private/tmp/val008-checks/baseline-4.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-4.log.gz
+  sha256: 763d0af95808f3ca6c6fdcf330d00637357781aff4193dcf8c049f002e14bebb
+  bytes: 206
+  encoding: gzip
+  original_sha256: 89a85911b6f14f0f5203f89d0e3eeaaa9033a283810004580b6ec30e07a1c993
+  original_bytes: 243
+- source: /private/tmp/val008-checks/baseline-5.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-5.log.gz
+  sha256: 69f6199dee77a7b1926b4de119fdaa7695b441c717b15b61922ca6fd6ef5cfde
+  bytes: 64
+  encoding: gzip
+  original_sha256: 103f10fdbb5ad2b6ee08833a3e2b634aa94d13009cb96f89236e9d80e79aac15
+  original_bytes: 44
+- source: /private/tmp/val008-checks/baseline-6.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-6.log.gz
+  sha256: 2f7b9c4111c2ba775333e2ea54f81225e3637b13e8892df5aa0eb59733a00fcd
+  bytes: 62
+  encoding: gzip
+  original_sha256: 5d4b6d285b77932e3d08212c3b4974d0a803f98ec60408ac6ccf6a063fa6c19e
+  original_bytes: 42
+- source: /private/tmp/val008-checks/baseline-7.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-7.log.gz
+  sha256: b0894f3e8235f270561d9ef5c8aab3aeff92ccf2167915e70ce3557917c396cf
+  bytes: 198
+  encoding: gzip
+  original_sha256: 0cb282390248b3f3e1e14a477c364b848e70c32be7e2b2846333dbbd4a012b25
+  original_bytes: 631
+- source: /private/tmp/val008-checks/baseline-8.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/baseline-8.log.gz
+  sha256: 82c6ae61ac49c6b0357aa62441ac1cd198c2179ee8136d0a47e4d3b339cd314a
+  bytes: 198
+  encoding: gzip
+  original_sha256: 17ecf08ca2e1208edcdfa5c2abef8cc9641a2e2de5840beef3fb6eca76c57166
+  original_bytes: 629
+- source: /private/tmp/val008-checks/collision-repro.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/collision-repro.log.gz
+  sha256: d35386b3223a564e3a3d95b9981d0bf2ca1d353d8c5cc89c5096e31cc4b45ad1
+  bytes: 712
+  encoding: gzip
+  original_sha256: fc31967686fce3af09bfa3ffb71d56c96e4e024ca051574ac6d530df5462038f
+  original_bytes: 2210
+- source: /private/tmp/val008-checks/independent-probes.log
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/independent-probes.log.gz
+  sha256: 577539614b32eccdfda37ba05cf17c6a5ac06039a34e7c4668cb6dec7dbc88f2
+  bytes: 859
+  encoding: gzip
+  original_sha256: 004467a2222477289b0df0188a0fca622a986d788a962a5433f955e441d83490
+  original_bytes: 4174
+- source: /private/tmp/val008-checks/results.json
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/checks/results.json
+  sha256: 82303a6fe445268f262de602d8d33b838689c2c5d5f482bc451e61d146142120
+  bytes: 4725
+- source: /private/tmp/val008-probes.py
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py
+  sha256: 5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532
+  bytes: 26226
+- source: /private/tmp/val008-peer.py
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py
+  sha256: 000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd
+  bytes: 1374
+- source: /private/tmp/val008-collision-repro.py
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py
+  sha256: 3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e
+  bytes: 863
+- source: /private/tmp/val008_probes.py
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py
+  sha256: 5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532
+  bytes: 26226
+- source: /private/tmp/val008-probe-results.json
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-probe-results.json
+  sha256: 269b8459a92a1f77e8fd2e19b473a714c94116e2e4770108572d7eff133fd27a
+  bytes: 4445
+- source: /private/tmp/val008-start.json
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-start.json
+  sha256: b9deff561e8cb759a0b5985793bbe3d3c46b484a0d92e8dbfea7b0f90563e15a
+  bytes: 8816
+- source: /private/tmp/val008-closeout.json
+  path: docs/planning/blocked/friday-mcp/validation/VAL-008-evidence/probes/val008-closeout.json
+  sha256: b2fceb07eb03f0f5590ffdcd46ec5db675bfb915b0f07c19cbbed12b6728b7c0
+  bytes: 4926
+reproduction: The independent report and all executable/JSON evidence retain exact
+  original bytes; raw log bytes are preserved in deterministic lossless gzip envelopes.
+  Decompress checks/*.log.gz to the original /private/tmp/val008-checks basenames
+  and restore probes files to /private/tmp under their original basenames before running
+  the exact commands in the unchanged report. Recreate predecessor inputs with git
+  archive at the pinned accepted predecessor; do not copy its environment or credentials.

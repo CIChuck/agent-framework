@@ -823,3 +823,74 @@
   existed or issued a verdict before this relocation.
 - Run fresh VAL-008 from the current blocked request, resolving its latest
   request/mapping commit. Do not change product code or declare verification.
+
+## 2026-09-28 — Fresh VAL-008 Completed; Bounded REM-005 Prepared
+
+- Maintainer explicitly requested a new-conversation, fresh-context read-only
+  subagent for the frozen blocked VAL-008 request. Created
+  `/root/val_008_independent_review` with `fork_turns: none`, no inherited parent
+  context or builder conclusions. It read all twenty pinned authorities and
+  complete requested diffs, independently executed all fifteen required checks
+  and adversarial local probes, and returned overall `CHANGES_REQUESTED`.
+- Frozen candidate/authority `397caa9898612cd989f6404951b3e1f5005dfac2`,
+  work-unit base `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`, approval/start
+  `b54069654bb3e21a6265fbabcd23f6991e286ab0`, request/mapping/working HEAD
+  `b8e1f041695b94303517617362f590ef3272e0cc`. Request SHA256 remained
+  `43fb708815e569dbe3d8b0a443ec28bf782e5b5ff2db75fb0be5d4dd2d139cfc`.
+  All twenty authority hashes and frozen source/tests/config matched at review
+  start and closeout. Capacity block is historical; this reviewer encountered
+  no independence or infrastructure blocker.
+- Sole medium F-001: public runtime collisions omit first-contender identity,
+  provider kinds and bounded original-name summaries. Real public kernel
+  MCP/MCP and MCP/native probes returned identical one-entry decisions; abort,
+  no overwrite, native preservation and cleanup passed. The missing required
+  diagnostic contract, not declared baseline debt, drives the result.
+- Complete [report](validation/VAL-008-report.md) archived byte-for-byte from
+  the independent reviewer, SHA256
+  `1bf0b019e0ba69f75eb638e1aa68f89a3d90088e2471dea11ce7ee76c1b46d0c`.
+  [Evidence manifest](validation/VAL-008-evidence.yaml) records hashes and
+  paths for all required command logs, predecessor logs, independent harness/
+  peer, collision reproduction and freeze snapshots. The thirty-three scratch
+  evidence artifacts are copied unchanged; the report's original paths remain
+  historical and the manifest documents restoration for reproduction.
+- Independent evidence: 146 focused, 430 affected aggregate and 46 Chat tests
+  passed; Ruff and runtime/MCP/integration Python 3.13 typing passed. Full
+  integration 57 passed plus unchanged board-count assertion. Native tools
+  233 passed plus two invalid-zip fixture assertions; exact accepted predecessor
+  reproduces these and the board mismatch. Default NumPy syntax and four core
+  profiles.py errors also reproduce. Failures remain failures, not reviewer
+  waivers. Sixteen probe groups passed; F-001's explicit source-diagnostic
+  assertion separately failed. Synthetic resources settled in finally with
+  successful public cleanup distinguished from defensive fixture cleanup.
+- Maintainer subsequently said "Proceed to the next step." Controller records
+  the complete result and prepares [REM-005](remediation/REM-005-directive.md)
+  for the single finding. Exact proposed scope: two runtime source paths, three
+  test paths, one bounded fake fixture, two reports; six acceptance criteria,
+  complete required checks and fresh delta/aggregate review. No product fix,
+  remediator dispatch, changed candidate or new authority approval is inferred
+  from this draft-preparation step. Separate remediator is required for the
+  public typed diagnostic/untrusted-content boundary; reviewer will not repair
+  or validate its own correction.
+- Current execution phase `remediation`, validation state `changes_requested`.
+  Initiative remains started/granted/local on the same branch; condition blocked
+  now names pending explicit REM-005/separate-remediator approval, not capacity.
+  Queue 6a complete, 6b current, 6c–6e unstarted. WS-00/01/02 acceptance intact;
+  no WS-03 verification/acceptance, WS-04 approval or delivery is inferred.
+- Preserve modified `.DS_Store`, deleted `family-tree.md`, untracked
+  `docker-bench-security/`, Friday Chat config backup and sandbox Dockerfile
+  audit. Controller start/closeout byte fingerprints independently confirmed
+  preservation during review. Only explicit report/evidence/directive/process
+  paths are eligible for staging; no broad-stage or cleanup operation.
+- Controller closeout checks passed: board validation (23 tasks), dashboard
+  freshness, documentation lifecycle (341 Markdown files), whitespace and full
+  frozen product/config comparison. All twenty original authority hashes and
+  unchanged request match again; all thirty-four archived report/evidence hashes
+  match the independent originals. Unrelated five-path byte fingerprints match
+  the pre-dispatch controller snapshot. Product tests were not rerun because
+  this handoff changes only review evidence, draft planning and process metadata.
+- Full staged whitespace checking initially detected generated trailing spaces
+  in the native pytest failure log and its predecessor reproduction. Preserve
+  those exact original bytes in deterministic lossless `.log.gz` envelopes;
+  the evidence manifest records original/decompressed and compressed hashes.
+  No reviewer output or finding was edited, normalized or dropped. No source
+  or policy waiver is introduced by this evidence packaging.

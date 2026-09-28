@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](blocked/friday-mcp/) | blocked | granted | local | restore fresh-validator capacity and execute pinned VAL-008 review |
+| 3 | [Friday MCP client enhancement](blocked/friday-mcp/) | blocked | granted | local | approve bounded REM-005 and separate remediator for VAL-008 F-001 collision diagnostics |
 
 ## Completed
 
