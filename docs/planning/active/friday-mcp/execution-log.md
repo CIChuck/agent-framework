@@ -356,3 +356,12 @@
   baselines. The fresh-context validator operates read-only against that
   candidate. Request/process metadata do not change reviewed source/tests or
   controlling authority; no completion or acceptance is implied.
+
+## 2026-09-27 — Fresh VAL-005 Dispatched
+
+- Dispatched `/root/mcp_ws02_val005` with `fork_turns: none` under the
+  repository's mandatory independent-review rule. It receives only the
+  pinned request and repository authority, not builder session reasoning.
+- Execution phase remains `validation`; validation state is `in_review`.
+  Source/tests and thirteen pinned authority documents remain frozen at the
+  candidate. Only process metadata changes after freeze.
