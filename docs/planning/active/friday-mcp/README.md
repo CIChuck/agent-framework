@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: committed REM-003 candidate for fresh delta and WS-02 aggregate validation
+next_gate: fresh VAL-006 delta and complete WS-02 aggregate verdict
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -85,11 +85,15 @@ scope request and defect explanation. The
 records the lifecycle candidate and bounded verification. Fresh independent
 [VAL-005](validation/VAL-005-report.md) returned `CHANGES_REQUESTED`: F-001
 finds that failed-start retries can discard the retained provider/manager and
-strand a live client after cleanup failure. The next gate is maintainer
+strand a live client after cleanup failure. That review required maintainer
 authorization of a separate remediator under the bounded
 [REM-003 directive](remediation/REM-003-directive.md). The maintainer replied
 "proceed" on 2026-09-27, explicitly authorizing that correction and separate
-remediator. The next gate is a committed REM-003 candidate for fresh delta and
-complete WS-02 aggregate validation. Current
+remediator. The separate remediator committed `26f4d7d`; its
+[implementation report](execution/REM-003-implementation-report.md) records
+the bounded correction and regressions. Fresh
+[VAL-006](validation/VAL-006-request.yaml) pins the corrected candidate for
+delta and complete WS-02 aggregate review. The next gate is that independent
+verdict, not acceptance. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.

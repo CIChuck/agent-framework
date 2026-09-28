@@ -402,3 +402,27 @@
   `changes_requested`. Next gate is a committed candidate for fresh delta and
   complete WS-02 aggregate review. Initiative remains `started` and local;
   no WS-03, external-service, or delivery authority is granted.
+
+## 2026-09-27 — REM-003 Candidate Frozen; Fresh VAL-006 Requested
+
+- Separate remediator `/root/mcp_ws02_rem003` committed
+  `26f4d7d4bfd0514b6eb76bed71cb4797da91a067` against authorization
+  `0ab969275561b1c239d54c786074fdc8e900766c`, changing only the three
+  allowed runtime source/test files and two implementation reports.
+- Provider retry completes cleanup before replacing its manager; DI retains
+  its provider. Failed/cancelled shutdown clears the handoff while retaining
+  ownership. The [REM-003 report](execution/REM-003-implementation-report.md)
+  records five new regression cases, 32 focused tests, 321 affected package/
+  local-stdio tests, 46 Chat configuration tests, Ruff, Python 3.13 mypy,
+  board/dashboard/docs, and whitespace checks. Declared NumPy typing and
+  board-count integration baselines remain separate and unchanged.
+- Controller confirmed the exact five-path bounded diff, governed working
+  files match the commit, and unrelated dirty paths remain excluded.
+  VAL-005 is retained with only a superseded decision-status note.
+- [VAL-006](validation/VAL-006-request.yaml) freezes REM-003 delta and complete
+  WS-02 aggregate review against the accepted WS-01 checkpoint. Candidate
+  source, tests, configuration, and authority cannot change during review.
+  Only disclosed controller process metadata may follow candidate freeze.
+- Execution phase is `validation`; validation state is `pending` until fresh
+  reviewer dispatch. Initiative remains `started` and local. No successful
+  independent verdict, acceptance, WS-03 authority, or delivery is inferred.

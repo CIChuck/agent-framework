@@ -2,6 +2,11 @@
 
 **Overall outcome: CHANGES_REQUESTED**
 
+**Decision status:** Superseded for the current candidate by REM-003 commit
+`26f4d7d4bfd0514b6eb76bed71cb4797da91a067`; retained as historical findings.
+Fresh VAL-006 delta and complete WS-02 aggregate validation is pending; no
+verification or acceptance of the corrected candidate is claimed by this report.
+
 Reviewer: fresh-context Codex validation agent `/root/mcp_ws02_val005`, GPT-6 family; exact deployment version unavailable.
 Date: 2026-09-27.
 Modes: full review and complete WS-02 work-unit aggregate review.

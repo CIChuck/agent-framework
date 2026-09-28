@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: committed REM-003 candidate for fresh delta and WS-02 aggregate validation
+  next_gate: fresh VAL-006 delta and complete WS-02 aggregate verdict
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -675,3 +675,10 @@ events:
   action: authorized separate REM-003 remediator
   note: Maintainer explicitly said proceed after the separate REM-003 authorization request; authority is limited to the bounded F-001 correction and fresh review, not WS-03 or delivery effects.
   evidence: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: froze REM-003 candidate for fresh review
+  note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative remains started and local.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-request.yaml
