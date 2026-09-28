@@ -196,6 +196,18 @@ class MCPToolCallProvenance(_MCPContract):
     ingestion_decision: Literal["disabled", "skipped", "ingested"] = "disabled"
     transcript_correlation_id: MCPSafeIdentifier | None = None
     memory_correlation_id: MCPSafeIdentifier | None = None
+    result_size_bytes: int | None = Field(default=None, ge=0)
+    model_result_size_bytes: int | None = Field(default=None, ge=0)
+    failure_code: (
+        Literal[
+            "tool_error",
+            "invalid_result",
+            "execution_error",
+            "timeout",
+            "output_rejected",
+        ]
+        | None
+    ) = None
 
     @model_validator(mode="after")
     def _require_redacted_arguments(self) -> MCPToolCallProvenance:
@@ -203,6 +215,19 @@ class MCPToolCallProvenance(_MCPContract):
             raise ValueError("MCP call provenance requires redacted arguments")
         if self.memory_ingested != (self.ingestion_decision == "ingested"):
             raise ValueError("MCP ingestion decision must match ingestion state")
+        if self.status == "succeeded" and self.failure_code is not None:
+            raise ValueError("Successful MCP calls cannot have a failure code")
+        if self.output_sanitization_state == "rejected" and self.status != "blocked":
+            raise ValueError("Rejected MCP output requires blocked provenance")
+        if self.failure_code == "output_rejected" and (
+            self.status != "blocked" or self.output_sanitization_state != "rejected"
+        ):
+            raise ValueError("Rejected MCP output must have blocked provenance")
+        if (
+            self.failure_code not in {None, "output_rejected"}
+            and self.status != "failed"
+        ):
+            raise ValueError("MCP execution failure codes require failed provenance")
         return self
 
 

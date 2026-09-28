@@ -6,7 +6,7 @@ import asyncio
 import json
 import re
 from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any
 from uuid import uuid4
 
@@ -16,6 +16,11 @@ from friday_chat.config import FridayChatConfig
 from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFactory
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
+from friday_chat.tools.output import (
+    MCPResultLimitError,
+    redact_tool_request_message,
+    safe_mcp_call_id,
+)
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import (
     ToolBudgetSnapshot,
@@ -67,6 +72,7 @@ class PreparedTurn:
     prompt_text: str
     messages: list[dict[str, Any]]
     budget_status: BudgetStatus
+    mcp_tool_names: frozenset[str] = frozenset()
 
 
 class TurnProcessingError(RuntimeError):
@@ -147,6 +153,7 @@ class TurnProcessor:
             prepared.user_message,
             prepared.messages,
             prepared.tool_definitions,
+            mcp_names=prepared.mcp_tool_names,
         )
         raw_response = _serialize_response(model_response)
 
@@ -220,6 +227,7 @@ class TurnProcessor:
                 prepared.user_message,
                 prepared.messages,
                 prepared.tool_definitions,
+                mcp_names=prepared.mcp_tool_names,
             )
             await on_chunk(assistant_message)
         else:
@@ -309,6 +317,7 @@ class TurnProcessor:
             tool_budget=selection.budget,
         )
 
+        mcp_tool_names = frozenset(self._mcp_names())
         retrieval_start = now_seconds()
         memories = await self._runtime.memory.retrieve(
             user_message,
@@ -353,6 +362,7 @@ class TurnProcessor:
             prompt_text=prompt_text,
             messages=messages,
             budget_status=budget_status,
+            mcp_tool_names=mcp_tool_names,
         )
 
     async def _complete_model_turn(
@@ -360,6 +370,8 @@ class TurnProcessor:
         user_message: str,
         messages: list[dict[str, Any]],
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        mcp_names: frozenset[str] | None = None,
     ) -> tuple[
         str,
         ChatModelResponse,
@@ -367,6 +379,7 @@ class TurnProcessor:
         float,
     ]:
         llm_start = now_seconds()
+        mcp_names = mcp_names if mcp_names is not None else frozenset(self._mcp_names())
         model_response = await self._complete_with_retries(
             messages,
             tools=tool_definitions,
@@ -378,7 +391,9 @@ class TurnProcessor:
                 messages,
                 model_response,
                 tool_definitions,
+                mcp_names=mcp_names,
             )
+        model_response = self._safe_model_response(model_response, mcp_names)
         assistant_message = model_response.content
         if not assistant_message and tool_calls:
             assistant_message = _tool_fallback_message(tool_calls)
@@ -431,16 +446,28 @@ class TurnProcessor:
         messages: list[dict[str, Any]],
         initial_response: ChatModelResponse,
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        mcp_names: frozenset[str],
     ) -> tuple[ChatModelResponse, tuple[ToolCallRecord, ...]]:
         loop_config = self._runtime.config.tools.loop
         max_iterations = _int_from_mapping(loop_config, "max_iterations", 3)
         all_tool_calls: list[ToolCallRecord] = []
         response = initial_response
+        used_call_ids: set[str] = set()
         for _iteration in range(max_iterations):
             if not response.has_tool_calls:
                 return response, tuple(all_tool_calls)
-            assistant_message = _assistant_message_from_response(response)
-            tool_calls = await self._execute_tool_calls(response, tool_definitions)
+            tool_calls = await self._execute_tool_calls(
+                response,
+                tool_definitions,
+                used_call_ids=used_call_ids,
+                mcp_names=mcp_names,
+            )
+            assistant_message = redact_tool_request_message(
+                _assistant_message_from_response(response),
+                tool_calls,
+                set(mcp_names),
+            )
             all_tool_calls.extend(tool_calls)
             messages.append(assistant_message)
             messages.extend(_tool_result_messages(tool_calls))
@@ -454,10 +481,44 @@ class TurnProcessor:
             response = _with_text_tool_calls(response, tool_definitions)
         return response, tuple(all_tool_calls)
 
+    def _mcp_names(self) -> set[str]:
+        bridge = self._runtime.mcp_tools
+        return set(bridge.tool_metadata) if bridge is not None else set()
+
+    def _safe_model_response(
+        self,
+        response: ChatModelResponse,
+        mcp_names: frozenset[str],
+    ) -> ChatModelResponse:
+        """Drop any remaining MCP request prose/raw copies before return/capture."""
+        if not any(call.name in mcp_names for call in response.tool_calls):
+            return response
+        used = {
+            call.call_id
+            for call in response.tool_calls
+            if call.name not in mcp_names and call.call_id is not None
+        }
+        calls = tuple(
+            replace(call, arguments={}, call_id=safe_mcp_call_id(call.call_id, used))
+            if call.name in mcp_names
+            else call
+            for call in response.tool_calls
+        )
+        return replace(
+            response,
+            content="",
+            tool_calls=calls,
+            reasoning_content=None,
+            raw_response=None,
+        )
+
     async def _execute_tool_calls(
         self,
         response: ChatModelResponse,
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        used_call_ids: set[str] | None = None,
+        mcp_names: frozenset[str] = frozenset(),
     ) -> tuple[ToolCallRecord, ...]:
         loop_config = self._runtime.config.tools.loop
         max_iterations = _int_from_mapping(loop_config, "max_iterations", 3)
@@ -466,10 +527,22 @@ class TurnProcessor:
             max_iterations=max_iterations,
             heartbeat_factory=self._heartbeat_factory,
         )
-        tool_result = await tool_loop.run(
-            [_assistant_message_from_response(response)],
-            tool_definitions,
-        )
+        try:
+            tool_result = await tool_loop.run(
+                [_assistant_message_from_response(response)],
+                tool_definitions,
+                used_call_ids=used_call_ids,
+                mcp_tool_names=mcp_names,
+            )
+        except MCPResultLimitError:
+            raise TurnProcessingError(
+                "MCP result limit is too small for safe execution."
+            ) from None
+        if any(
+            call.name in mcp_names and call.mcp_provenance is None
+            for call in tool_result.tool_calls
+        ):
+            raise TurnProcessingError("MCP execution requires per-call provenance")
         return tuple(tool_result.tool_calls)
 
     async def _persist_turn(

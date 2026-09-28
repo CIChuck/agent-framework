@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, TypeGuard, cast
 from uuid import uuid4
 
+from friday_core.mcp import MCPToolCallProvenance
 from friday_llm import (
     ChatCompletionRequest,
     FinishEvent,
@@ -1106,6 +1107,35 @@ class FrameworkTranscriptAdapter:
         return None
 
     async def record_interaction(self, turn: ChatInteractionTurn) -> None:
+        provenance: list[MCPToolCallProvenance | None] = []
+        for call in turn.tool_calls:
+            facts = call.mcp_provenance
+            if facts is None:
+                provenance.append(None)
+                continue
+            if (
+                call.arguments
+                or call.call_id != facts.call_id
+                or call.name != facts.tool.canonical_name
+                or facts.output_sanitization_state == "not_checked"
+                or facts.model_result_size_bytes != len(call.result.encode("utf-8"))
+                or len(call.result.encode("utf-8"))
+                > self.config.tools.mcp_provider.config.limits.max_result_bytes
+                or facts.transcript_correlation_id not in {None, turn.turn_id}
+            ):
+                raise ValueError(
+                    "MCP transcript requires safe, bounded, correlated records"
+                )
+            try:
+                correlated = MCPToolCallProvenance.model_validate(
+                    {
+                        **facts.model_dump(),
+                        "transcript_correlation_id": turn.turn_id,
+                    }
+                )
+            except ValueError:
+                raise ValueError("Invalid MCP transcript correlation") from None
+            provenance.append(correlated)
         await self._ensure_session()
         turn_number = await self._next_turn_number()
         tool_call_ids = [
@@ -1123,6 +1153,7 @@ class FrameworkTranscriptAdapter:
                     id=tool_call_ids[index],
                     name=call.name,
                     arguments=dict(call.arguments),
+                    mcp_provenance=provenance[index],
                 )
                 for index, call in enumerate(turn.tool_calls)
             ],
@@ -1130,6 +1161,12 @@ class FrameworkTranscriptAdapter:
                 ToolResult(
                     tool_call_id=tool_call_ids[index],
                     output=call.result,
+                    error=(
+                        facts.failure_code
+                        if (facts := provenance[index]) is not None
+                        else None
+                    ),
+                    mcp_provenance=provenance[index],
                 )
                 for index, call in enumerate(turn.tool_calls)
             ],

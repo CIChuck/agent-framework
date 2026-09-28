@@ -1617,6 +1617,7 @@ version = "0.1.0a2"
 source = { editable = "packages/friday-transcript" }
 dependencies = [
     { name = "aiosqlite" },
+    { name = "friday-framework-core" },
     { name = "pydantic" },
 ]
 
@@ -1629,6 +1630,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "aiosqlite", specifier = ">=0.19.0" },
+    { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "pydantic", specifier = ">=2.0" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23.0" },

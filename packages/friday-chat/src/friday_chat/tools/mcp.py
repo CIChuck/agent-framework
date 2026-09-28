@@ -11,7 +11,8 @@ from friday_core.mcp import MCPToolMetadata
 from friday_runtime.config import MCPToolProviderConfig
 from friday_runtime.mcp_loading import RuntimeMCPProvider
 
-from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.output import MCPOutputPolicy, safe_mcp_call_id
+from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 
 
 class NativeChatRegistry(Protocol):
@@ -33,6 +34,7 @@ class MCPChatRegistry:
     ) -> None:
         self.native = native
         self.provider = RuntimeMCPProvider(config, workspace_root)
+        self.output_policy = MCPOutputPolicy(config.config.limits.max_result_bytes)
         self.registry = DefaultToolRegistry()
         for definition in native.list_tools():
             self.registry.register(
@@ -89,8 +91,58 @@ class MCPChatRegistry:
         )
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
-        if name not in self.tool_metadata:
-            return await self.native.call_tool(name, arguments)
-        # The callable retains exact original-name/server routing from WS-03.
-        result = await self.registry.get_callable(name)(**arguments)
-        return str(result)
+        return (await self.call_tool_record(name, arguments)).result
+
+    def is_mcp_tool(self, name: str) -> bool:
+        """Identify owned MCP calls without inspecting a private registry."""
+        return name in self.tool_metadata
+
+    async def call_tool_record(
+        self,
+        name: str,
+        arguments: dict[str, Any],
+        *,
+        call_id: str | None = None,
+        used_call_ids: set[str] | None = None,
+    ) -> ToolCallRecord:
+        """Execute once; return only the checked output and atomic provenance."""
+        metadata = self.tool_metadata.get(name)
+        if metadata is None:
+            result = await self.native.call_tool(name, arguments)
+            return ToolCallRecord(name, arguments, result, call_id)
+        self.output_policy.require_usable_limit()
+        identifier = safe_mcp_call_id(
+            call_id, used_call_ids if used_call_ids is not None else set()
+        )
+        try:
+            # Exact original-name routing remains owned by the WS-03 callable.
+            result = await self.registry.get_callable(name)(**arguments)
+        except TimeoutError:
+            return self.output_policy.failed_record(metadata, identifier, "timeout")
+        except Exception as exc:
+            # Optional public failure classification is validated locally. Chat
+            # does not need an undeclared dependency on the protocol package.
+            code = getattr(exc, "failure_code", None)
+            if code == "tool_error":
+                return self.output_policy.failed_record(
+                    metadata, identifier, "tool_error"
+                )
+            if code == "invalid_result":
+                return self.output_policy.failed_record(
+                    metadata, identifier, "invalid_result"
+                )
+            return self.output_policy.failed_record(
+                metadata, identifier, "execution_error"
+            )
+        if not isinstance(result, str):
+            return self.output_policy.failed_record(
+                metadata, identifier, "invalid_result"
+            )
+        try:
+            return self.output_policy.checked_record(
+                metadata, identifier, result, arguments
+            )
+        except Exception:
+            return self.output_policy.failed_record(
+                metadata, identifier, "output_rejected"
+            )

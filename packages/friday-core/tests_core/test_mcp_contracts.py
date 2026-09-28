@@ -403,3 +403,39 @@ def test_discovery_tracks_bounded_per_server_state() -> None:
             MCPServerDiscoveryState.model_validate({"server_id": "safe", **invalid})
     with pytest.raises(ValidationError):
         MCPDiscoveryState(servers=(server, server))
+
+
+def test_execution_provenance_optional_sizes_and_fixed_failure_roundtrip() -> None:
+    old = MCPToolCallProvenance(tool=_metadata(), status='succeeded')
+    assert old.result_size_bytes is None and old.model_result_size_bytes is None
+    assert old.failure_code is None
+    for status, code, state in [
+        ('succeeded', None, 'sanitized'), ('failed', 'tool_error', 'sanitized'),
+        ('failed', 'invalid_result', 'sanitized'), ('failed', 'execution_error', 'sanitized'),
+        ('failed', 'timeout', 'sanitized'), ('blocked', 'output_rejected', 'rejected'),
+    ]:
+        facts = MCPToolCallProvenance.model_validate({
+            'tool': _metadata(), 'status': status, 'failure_code': code,
+            'output_sanitization_state': state, 'result_size_bytes': 42,
+            'model_result_size_bytes': 64,
+        })
+        assert MCPToolCallProvenance.model_validate_json(facts.model_dump_json()) == facts
+        assert facts.ingestion_decision == 'disabled' and not facts.memory_ingested
+
+
+@pytest.mark.parametrize('invalid', [
+    {'result_size_bytes': -1}, {'model_result_size_bytes': -1},
+    {'result_size_bytes': True}, {'failure_code': 'raw secret exception'},
+    {'failure_code': 'tool_error'},
+    {'status': 'failed', 'failure_code': 'output_rejected'},
+    {'status': 'blocked', 'failure_code': 'output_rejected', 'output_sanitization_state': 'sanitized'},
+    {'status': 'blocked', 'failure_code': 'timeout'}, {'arguments_hash': 'hash'},
+])
+def test_execution_provenance_rejects_bad_sizes_status_codes_and_hashes(invalid) -> None:
+    with pytest.raises(ValidationError):
+        MCPToolCallProvenance.model_validate({'tool': _metadata(), 'status': 'succeeded', **invalid})
+
+
+def test_rejected_output_cannot_claim_success_without_failure_code():
+    with pytest.raises(ValidationError):
+        MCPToolCallProvenance(tool=_metadata(), status="succeeded", output_sanitization_state="rejected")

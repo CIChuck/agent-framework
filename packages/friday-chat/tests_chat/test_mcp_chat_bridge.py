@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
-import json
 import sys
 from pathlib import Path
 
@@ -116,14 +115,22 @@ async def test_real_stdio_chat_turn_routes_exact_name_and_stops(
                 ChatModelResponse.from_text("done"),
             ],
         )
+        client = bridge.provider.manager.get_client("peer")
+        original = client.call_tool
+        routed = []
+
+        async def record_route(name, arguments):
+            routed.append((name, arguments))
+            return await original(name, arguments)
+
+        client.call_tool = record_route
         result = await TurnProcessor(runtime).process("read fixture")
-        payload = json.loads(result.tool_calls[0].result)
-        assert payload == {
-            "peer": "registry_a",
-            "name": "Read.File",
-            "arguments": {"path": "a/b"},
-            "list_calls": 1,
-        }
+        assert routed == [("Read.File", {"path": "a/b"})]
+        call = result.tool_calls[0]
+        assert call.arguments == {} and "a/b" not in call.result
+        assert call.mcp_provenance.status == "succeeded"
+        assert call.mcp_provenance.tool.original_name == "Read.File"
+        assert call.mcp_provenance.failure_code is None
         registry = build_default_registry()
         context = RegistryCommandContext(runtime=runtime, registry=registry)
         for command in ("/tools", "/tool-budget", "/recommend-tools read fixture"):

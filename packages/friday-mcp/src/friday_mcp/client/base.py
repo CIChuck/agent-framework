@@ -13,7 +13,7 @@ import logging
 import uuid
 from abc import ABC, abstractmethod
 from types import TracebackType
-from typing import Any
+from typing import Any, Literal
 
 from friday_mcp.protocols import MCPTransport
 from friday_mcp.utils.schema import extract_text_content
@@ -28,6 +28,17 @@ class MCPError(Exception):
         self.code = code
         self.message = message
         super().__init__(f"MCP Error {code}: {message}")
+
+
+class MCPToolExecutionError(MCPError):
+    """Fixed, safe tools/call failure; never carries peer error content."""
+
+    def __init__(self, failure_code: Literal["tool_error", "invalid_result"]) -> None:
+        self.failure_code = failure_code
+        if failure_code == "tool_error":
+            super().__init__(-32020, "MCP tool execution failed")
+        else:
+            super().__init__(-32021, "Invalid MCP tool result")
 
 
 class MCPClientBase(ABC):
@@ -264,6 +275,21 @@ class MCPClientBase(ABC):
             },
         )
 
+        error = response.get("isError", False)
+        if not isinstance(error, bool):
+            raise MCPToolExecutionError("invalid_result")
+        if error:
+            raise MCPToolExecutionError("tool_error")
+        content = response.get("content")
+        if not isinstance(content, list):
+            raise MCPToolExecutionError("invalid_result")
+        for block in content:
+            if isinstance(block, str):
+                continue  # Preserve existing string-block extraction compatibility.
+            if not isinstance(block, dict) or not isinstance(block.get("type"), str):
+                raise MCPToolExecutionError("invalid_result")
+            if block["type"] == "text" and not isinstance(block.get("text"), str):
+                raise MCPToolExecutionError("invalid_result")
         return extract_text_content(response)
 
     async def list_prompts(self) -> list[dict[str, Any]]:
