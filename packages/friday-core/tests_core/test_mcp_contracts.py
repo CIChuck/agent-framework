@@ -34,6 +34,31 @@ def _metadata() -> MCPToolMetadata:
     )
 
 
+def test_registration_metadata_is_additive_content_minimal_and_repr_safe() -> None:
+    old = _metadata().model_dump(exclude={"schema_byte_size", "discovery_state"})
+    restored = MCPToolMetadata.model_validate(old)
+    assert restored.schema_byte_size is None
+    assert restored.discovery_state == "not_checked"
+    populated = restored.model_copy(
+        update={
+            "schema_byte_size": 240,
+            "schema_token_estimate": 240,
+            "discovery_state": "discovered",
+        }
+    )
+    assert MCPToolMetadata.model_validate_json(populated.model_dump_json()) == populated
+    assert "original_name=" not in repr(populated)
+    assert set(populated.model_dump()) - set(old) == {
+        "schema_byte_size",
+        "discovery_state",
+    }
+    with pytest.raises(ValidationError):
+        MCPToolMetadata.model_validate({**old, "schema_byte_size": -1})
+    assert MCPProviderDiagnostics(
+        codes=("missing_include", "registration_failed")
+    ).codes == ("missing_include", "registration_failed")
+
+
 def test_limits_have_bounded_defaults_for_small_and_large_profiles() -> None:
     limits = MCPClientLimits()
     assert limits.max_servers == 8
@@ -97,9 +122,9 @@ def test_security_defaults_are_stdio_only_and_content_safe() -> None:
     assert not policy.store_argument_hashes
     assert policy.model_dump()["store_argument_hashes"] is False
     scoped = MCPClientSecurityPolicy(allowed_workspace_ids=("project-1",))
-    assert MCPClientSecurityPolicy.model_validate_json(
-        scoped.model_dump_json()
-    ) == scoped
+    assert (
+        MCPClientSecurityPolicy.model_validate_json(scoped.model_dump_json()) == scoped
+    )
 
 
 @pytest.mark.parametrize(
@@ -148,9 +173,10 @@ def test_ingestion_discovery_and_server_policy_defaults() -> None:
     server_opt_in = MCPIngestionPolicy(
         long_term_memory_enabled=True, opted_in_servers=("filesystem",)
     )
-    assert MCPIngestionPolicy.model_validate_json(
-        server_opt_in.model_dump_json()
-    ) == server_opt_in
+    assert (
+        MCPIngestionPolicy.model_validate_json(server_opt_in.model_dump_json())
+        == server_opt_in
+    )
     with pytest.raises(ValidationError):
         MCPDiscoveryPolicy.model_validate({"refresh_mode": "live"})
     with pytest.raises(ValidationError):
@@ -308,9 +334,10 @@ def test_provenance_and_diagnostics_cannot_carry_raw_payloads() -> None:
         transcript_correlation_id="turn-1",
         memory_correlation_id="memory-1",
     )
-    assert MCPToolCallProvenance.model_validate_json(
-        correlated.model_dump_json()
-    ) == correlated
+    assert (
+        MCPToolCallProvenance.model_validate_json(correlated.model_dump_json())
+        == correlated
+    )
     with pytest.raises(ValidationError):
         MCPToolCallProvenance.model_validate(
             {"tool": _metadata(), "status": "succeeded", "arguments": {"key": "secret"}}

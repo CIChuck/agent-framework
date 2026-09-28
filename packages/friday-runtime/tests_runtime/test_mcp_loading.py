@@ -1,11 +1,12 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
-"""Runtime MCP lifecycle, deterministic caps, and deferred registry boundary."""
+"""Runtime MCP lifecycle, deterministic caps and owned registry publication."""
 
 import asyncio
 import logging
 from unittest.mock import AsyncMock
 
 import pytest
+from friday_agent import DefaultToolRegistry
 from friday_core.profiles import MemoryProfile
 from friday_mcp.client.base import MCPClientBase
 from friday_mcp.client.manager import MCPClientManager
@@ -73,6 +74,7 @@ class TestClient(MCPClientBase):
             self.tracker["active"] -= 1
 
     async def list_tools(self):
+        self.tracker["list_calls"] = self.tracker.get("list_calls", 0) + 1
         self.tracker["discovery_active"] += 1
         self.tracker["discovery_peak"] = max(
             self.tracker["discovery_peak"], self.tracker["discovery_active"]
@@ -448,6 +450,153 @@ async def test_real_agent_binding_validation_runs_after_discovery_and_cleans_on_
 
 
 @pytest.mark.asyncio
+async def test_registry_metadata_public_cleanup_and_restart(tmp_path, fake_clients):
+    _, _, _, tracker = fake_clients
+    config = MCPToolProviderConfig.from_dict(
+        {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+    )
+    provider = RuntimeMCPProvider(config, str(tmp_path))
+    registry = DefaultToolRegistry()
+    registry.register(name="native", func=lambda: "native", category="native")
+    try:
+        await provider.start()
+        await provider.register_tools(registry)
+        await provider.register_tools(registry)
+        assert tracker["list_calls"] == 1
+        assert set(provider.tool_metadata) == {"mcp_fake_probe"}
+        assert provider.tool_metadata.get("native") is None
+        assert provider.diagnostics.registered_tools == 1
+        assert provider.discovery.selected_tools == 1
+        assert provider.owned_tool_names == ("mcp_fake_probe",)
+        with pytest.raises(TypeError):
+            provider.tool_metadata["new"] = provider.tool_metadata["mcp_fake_probe"]
+        await provider.stop()
+        assert registry.list_names() == ["native"]
+        assert not provider.tool_metadata
+        assert provider.registration_registry is None
+        await provider.stop()
+        await provider.start()
+        await provider.register_tools(registry)
+        assert tracker["list_calls"] == 2
+        assert registry.list_names() == ["native", "mcp_fake_probe"]
+    finally:
+        await provider.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("insert_then_raise", [False, True])
+async def test_transactional_insert_failure_removes_only_owned_tools(
+    tmp_path, fake_clients, insert_then_raise
+):
+    _, _, catalogs, _ = fake_clients
+    catalogs["fake"] = [
+        {"name": name, "inputSchema": {"type": "object"}}
+        for name in ("first", "second")
+    ]
+
+    class FailingRegistry(DefaultToolRegistry):
+        def register(self, tool=None, **kwargs):
+            if tool is not None and tool.name == "mcp_fake_second":
+                if insert_then_raise:
+                    super().register(tool)
+                raise RuntimeError("SENTINEL-INSERT-SECRET")
+            super().register(tool, **kwargs)
+
+    registry = FailingRegistry()
+    registry.register(name="native", func=lambda: "native", category="native")
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+        ),
+        str(tmp_path),
+    )
+    try:
+        await provider.start()
+        with pytest.raises(
+            ToolProviderLoadError, match="MCP registration failed"
+        ) as failure:
+            await provider.register_tools(registry)
+        assert registry.list_names() == ["native"]
+        assert not provider.tool_metadata
+        assert not provider.owned_tool_names
+        assert not provider.manager.connected_servers
+        assert "registration_failed" in provider.diagnostics.codes
+        assert "SENTINEL" not in str(failure.value)
+    finally:
+        await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_registry_rollback_failure_retains_public_owner_for_retry(
+    tmp_path, fake_clients
+):
+    class RefusingRegistry(DefaultToolRegistry):
+        refusing = True
+
+        def unregister(self, name):
+            if self.refusing:
+                raise RuntimeError("SENTINEL-REMOVE-SECRET")
+            return super().unregister(name)
+
+    registry = RefusingRegistry()
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+        ),
+        str(tmp_path),
+    )
+    try:
+        await provider.start()
+        await provider.register_tools(registry)
+        with pytest.raises(ToolProviderLoadError, match="registry cleanup incomplete"):
+            await provider.stop()
+        assert provider.registration_registry is registry
+        assert provider.owned_tool_names == ("mcp_fake_probe",)
+        assert set(provider.tool_metadata) == set(registry.list_names())
+        registry.refusing = False
+        await provider.stop()
+        assert not registry.list_names()
+        assert not provider.tool_metadata
+        assert not provider.manager.connected_servers
+        assert provider.registration_registry is None
+    finally:
+        registry.refusing = False
+        await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_public_stop_unpublishes_before_failed_client_cleanup(
+    tmp_path, fake_clients
+):
+    clients, _, _, _ = fake_clients
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+        ),
+        str(tmp_path),
+    )
+    registry = DefaultToolRegistry()
+    try:
+        await provider.start()
+        await provider.register_tools(registry)
+        clients[0].transport.fail_cleanup = True
+        with pytest.raises(ToolProviderLoadError, match="shutdown incomplete"):
+            await provider.stop()
+        assert not registry.list_names()
+        assert not provider.tool_metadata
+        assert provider.diagnostics.registered_tools == 0
+        assert provider.manager.connected_servers
+        clients[0].transport.fail_cleanup = False
+        await provider.start()
+        await provider.register_tools(registry)
+        assert registry.list_names() == ["mcp_fake_probe"]
+    finally:
+        for client in clients:
+            client.transport.fail_cleanup = False
+        await provider.stop()
+
+
+@pytest.mark.asyncio
 async def test_connection_retries_do_not_leak_failed_attempt(tmp_path, fake_clients):
     clients, modes, _, _ = fake_clients
     modes["fake"] = ["connection_failed", "good"]
@@ -581,7 +730,9 @@ async def test_public_kernel_retry_retains_provider_and_stop_releases_every_clie
     assert kernel.mcp_provider is owner
     assert kernel.mcp_provider.manager is recovered_manager
     assert len(clients) == 2 * len(servers)
-    assert not any(name.startswith("mcp_") for name in kernel.tool_registry.list_names())
+    assert not any(
+        name.startswith("mcp_") for name in kernel.tool_registry.list_names()
+    )
     await kernel.stop()
     await kernel.stop()
     assert all(not client.transport.is_connected for client in clients)
@@ -620,3 +771,86 @@ async def test_cancellation_during_retry_cleanup_preserves_owner_for_public_stop
         await provider.stop()
     assert not client.transport.is_connected
     assert not manager.connected_servers
+
+
+@pytest.mark.asyncio
+async def test_failed_commit_with_failed_rollback_retains_exact_public_owner(
+    tmp_path, fake_clients
+):
+    _, _, catalogs, _ = fake_clients
+    catalogs["fake"] = [
+        {"name": name, "inputSchema": {"type": "object"}}
+        for name in ("first", "second")
+    ]
+
+    class RefusingRegistry(DefaultToolRegistry):
+        refusing = True
+
+        def register(self, tool=None, **kwargs):
+            if tool is not None and tool.name == "mcp_fake_second":
+                raise RuntimeError("SENTINEL-INSERT")
+            super().register(tool, **kwargs)
+
+        def unregister(self, name):
+            if self.refusing:
+                raise RuntimeError("SENTINEL-ROLLBACK")
+            return super().unregister(name)
+
+    registry = RefusingRegistry()
+    registry.register(name="native", func=lambda: "native", category="native")
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {"enabled": True, "mode": "all", "config": {"servers": [server()]}}
+        ),
+        str(tmp_path),
+    )
+    try:
+        await provider.start()
+        with pytest.raises(ToolProviderLoadError, match="registry cleanup incomplete"):
+            await provider.register_tools(registry)
+        assert provider.registration_registry is registry
+        assert provider.owned_tool_names == ("mcp_fake_first",)
+        assert set(provider.tool_metadata) == {"mcp_fake_first"}
+        assert provider.diagnostics.registered_tools == 1
+        assert registry.list_names() == ["native", "mcp_fake_first"]
+        registry.refusing = False
+        await provider.stop()
+        assert registry.list_names() == ["native"]
+        assert not provider.tool_metadata
+        assert not provider.manager.connected_servers
+    finally:
+        registry.refusing = False
+        await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_discovery_and_registration_rejections_count_once(tmp_path, fake_clients):
+    _, _, catalogs, _ = fake_clients
+    catalogs["fake"] = [
+        {"name": "good", "inputSchema": {"type": "object"}},
+        {"name": False, "inputSchema": {"type": "object"}},
+        {"name": "unsafe", "inputSchema": {"type": "object", "$ref": "SENTINEL"}},
+        {"name": "excluded", "inputSchema": {"type": "object"}},
+    ]
+    config = MCPToolProviderConfig.from_dict(
+        {
+            "enabled": True,
+            "mode": "all",
+            "exclude_tools": ["mcp_fake_excluded"],
+            "config": {"servers": [server()]},
+        }
+    )
+    provider = RuntimeMCPProvider(config, str(tmp_path))
+    try:
+        await provider.start()
+        assert provider.diagnostics.rejected_tools == 1
+        await provider.register_tools(DefaultToolRegistry())
+        assert provider.discovery.discovered_tools == 4
+        assert provider.discovery.selected_tools == 1
+        assert provider.diagnostics.registered_tools == 1
+        assert provider.diagnostics.rejected_tools == 2
+        assert provider.diagnostics.filtered_tools == 1
+        assert provider.discovery.servers[0].rejected_tools == 2
+        assert provider.discovery.servers[0].filtered_tools == 1
+    finally:
+        await provider.stop()

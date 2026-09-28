@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 MCP Tool Adapter.
 
@@ -8,18 +7,36 @@ Follows the pattern from friday-tools/adapters/.
 
 from __future__ import annotations
 
+import json
 import logging
-from typing import TYPE_CHECKING, Any
+from dataclasses import dataclass, field
+from typing import Any
 
 from friday_core.interfaces.tools import SchemaFormat
+from friday_core.mcp import MCPToolMetadata
 
 from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
 
-if TYPE_CHECKING:
-    from friday_mcp.client.base import MCPClientBase
-
 logger = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class MCPValidatedDefinition:
+    """Immutable registration input; caller must validate/sanitize before use.
+
+    JSON is the explicit dynamic boundary. Each export is independently decoded.
+    This value does not assert universal prompt-injection resistance.
+    """
+
+    description: str = field(repr=False)
+    parameters_json: str = field(repr=False)
+
+    def parameters(self) -> dict[str, Any]:
+        value: Any = json.loads(self.parameters_json)
+        if not isinstance(value, dict):
+            raise ValueError("MCP validated parameters must be an object")
+        return value
 
 
 class MCPToolWrapper:
@@ -35,7 +52,7 @@ class MCPToolWrapper:
         client: MCPClient,
         tool_def: dict[str, Any],
         name_prefix: str = "",
-    ):
+    ) -> None:
         """
         Initialize MCP tool wrapper.
 
@@ -45,13 +62,46 @@ class MCPToolWrapper:
             name_prefix: Optional prefix for tool name
         """
         self._client = client
-        self._tool_def = tool_def
+        self._tool_def = json.loads(json.dumps(tool_def, allow_nan=False))
         self._name_prefix = name_prefix
-        self._original_name = tool_def.get("name", "unknown")
+        original = tool_def.get("name", "unknown")
+        if not isinstance(original, str):
+            raise ValueError("MCP tool name must be a string")
+        self._original_name = original
+        self._canonical_name: str | None = None
+        self._validated: MCPValidatedDefinition | None = None
+
+    @classmethod
+    def from_validated(
+        cls,
+        client: MCPClient,
+        metadata: MCPToolMetadata,
+        definition: MCPValidatedDefinition,
+    ) -> MCPToolWrapper:
+        """Use canonical metadata directly; never concatenate another prefix."""
+        if metadata.schema_sanitization_state not in {"unchanged", "sanitized"}:
+            raise ValueError("MCP registration requires checked metadata")
+        if (
+            metadata.filter_state != "included"
+            or metadata.discovery_state != "discovered"
+        ):
+            raise ValueError("MCP registration requires admitted metadata")
+        definition.parameters()
+        wrapper = cls(client, {"name": metadata.original_name})
+        wrapper._canonical_name = metadata.canonical_name
+        wrapper._validated = definition
+        return wrapper
+
+    @property
+    def original_name(self) -> str:
+        """Exact routing name; external provenance, not a logging label."""
+        return self._original_name
 
     @property
     def name(self) -> str:
         """Tool name with optional prefix."""
+        if self._canonical_name is not None:
+            return self._canonical_name
         if self._name_prefix:
             return f"{self._name_prefix}{self._original_name}"
         return self._original_name
@@ -59,13 +109,34 @@ class MCPToolWrapper:
     @property
     def description(self) -> str:
         """Tool description."""
-        return self._tool_def.get("description", f"MCP tool: {self._original_name}")
+        if self._validated is not None:
+            return self._validated.description
+        value = self._tool_def.get("description", f"MCP tool: {self._original_name}")
+        if not isinstance(value, str):
+            raise ValueError("MCP tool description must be a string")
+        return value
 
     @property
     def parameters_schema(self) -> dict[str, Any]:
         """Convert MCP inputSchema to Friday parameters_schema."""
+        if self._validated is not None:
+            return self._validated.parameters()
         input_schema = self._tool_def.get("inputSchema", {})
-        return mcp_to_friday_schema(input_schema)
+        value: Any = mcp_to_friday_schema(input_schema)
+        if not isinstance(value, dict):
+            raise ValueError("MCP tool parameters must be an object")
+        snapshot: Any = json.loads(json.dumps(value, allow_nan=False))
+        if not isinstance(snapshot, dict):
+            raise ValueError("MCP tool parameters must be an object")
+        return snapshot
+
+    @property
+    def category(self) -> str:
+        return "mcp"
+
+    @property
+    def tags(self) -> list[str]:
+        return ["mcp"]
 
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool via MCP client."""
@@ -85,6 +156,8 @@ class MCPToolWrapper:
             "name": self.name,
             "description": self.description,
             "parameters": self.parameters_schema,
+            "category": self.category,
+            "tags": self.tags,
         }
 
         if format == SchemaFormat.OPENAI or format == "openai":
@@ -96,7 +169,8 @@ class MCPToolWrapper:
         return plain_schema
 
     def __repr__(self) -> str:
-        return f"MCPToolWrapper(name={self.name!r})"
+        # Standalone names may contain peer text. Never implicitly print it.
+        return "MCPToolWrapper(provider='mcp')"
 
 
 class MCPToolAdapter:
@@ -117,9 +191,9 @@ class MCPToolAdapter:
 
     def __init__(
         self,
-        client: MCPClientBase,
+        client: MCPClient,
         prefix: str = "",
-    ):
+    ) -> None:
         """
         Initialize adapter.
 
@@ -150,7 +224,7 @@ class MCPToolAdapter:
             for tool_def in mcp_tools
         ]
 
-        logger.debug(f"Adapted {len(self._tools_cache)} tools from {self._client.name}")
+        logger.debug("Adapted %d MCP tools", len(self._tools_cache))
 
         return list(self._tools_cache)
 
@@ -173,7 +247,7 @@ class MCPToolAdapter:
 
         # Try matching original name (without prefix)
         for tool in tools:
-            if isinstance(tool, MCPToolWrapper) and tool._original_name == name:
+            if isinstance(tool, MCPToolWrapper) and tool.original_name == name:
                 return tool
 
         return None
@@ -205,7 +279,10 @@ class MCPToolAdapter:
     @property
     def client_name(self) -> str:
         """Get the name of the underlying client."""
-        return self._client.name
+        value = getattr(self._client, "name", "mcp")
+        if not isinstance(value, str):
+            raise ValueError("MCP client name must be a string")
+        return value
 
     def clear_cache(self) -> None:
         """Clear the tools cache."""

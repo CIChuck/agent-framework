@@ -32,6 +32,8 @@ MCPDiagnosticCode = Literal[
     "schema_limit",
     "name_collision",
     "filter_excluded",
+    "missing_include",
+    "registration_failed",
 ]
 
 
@@ -148,12 +150,14 @@ class MCPToolMetadata(_MCPContract):
 
     canonical_name: str
     server_name: str = Field(min_length=1, max_length=256)
-    original_name: str = Field(min_length=1, max_length=256)
+    original_name: str = Field(min_length=1, max_length=256, repr=False)
     tool_name_prefix: str = "mcp_"
     transport: Literal["stdio", "sse"]
     trust_level: Literal["local", "remote"]
     provider: Literal["mcp"] = "mcp"
     schema_token_estimate: int | None = Field(default=None, ge=0)
+    schema_byte_size: int | None = Field(default=None, ge=0)
+    discovery_state: Literal["not_checked", "discovered"] = "not_checked"
     schema_sanitization_state: Literal[
         "not_checked", "unchanged", "sanitized", "rejected"
     ] = "not_checked"

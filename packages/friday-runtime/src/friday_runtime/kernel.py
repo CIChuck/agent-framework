@@ -532,6 +532,7 @@ class RuntimeKernel(SystemRuntime):
                 agent_name=profile.name,
                 declared_tools=collect_profile_tool_references(profile),
                 available_tool_names=available_tool_names,
+                mcp_context=self._di.mcp_provider.binding_context if self._di.mcp_provider is not None else None,
             )
             logger.debug(
                 "Validated agent '%s' LLM binding to service '%s' (agent_type=%s)",

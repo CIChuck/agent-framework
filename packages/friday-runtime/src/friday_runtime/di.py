@@ -121,6 +121,13 @@ class DIContainer:
                     self._config.tools.providers.mcp, self._config.workspace_root,
                 )
             await self.mcp_provider.start()
+            if self.tool_registry is None:
+                raise RuntimeError("Runtime tool registry not initialized")
+            try:
+                await self.mcp_provider.register_tools(self.tool_registry)
+            except BaseException:
+                await self.mcp_provider.stop()
+                raise
         self._booted = True
         logger.info("DI container boot complete")
 

@@ -1,6 +1,5 @@
-"""Runtime-owned MCP lifecycle and bounded, untrusted WS-03 discovery handoff.
+"""Runtime-owned MCP lifecycle, bounded discovery and transactional registration.
 
-Nothing in this module registers tools or exposes peer content to model context.
 Raw JSON exists only in the explicitly untrusted, non-repr handoff, not in
 diagnostics, logs, memory, or transcript storage.
 """
@@ -9,21 +8,32 @@ from __future__ import annotations
 
 import asyncio
 import json
-from dataclasses import dataclass, field
+from collections.abc import Mapping
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any, Literal, Protocol
 
+from friday_core.interfaces import ToolDefinition
 from friday_core.mcp import (
     MCPDiagnosticCode,
     MCPDiscoveryState,
     MCPProviderDiagnostics,
     MCPServerDiscoveryState,
+    MCPToolMetadata,
+    build_mcp_metadata_index,
 )
 from friday_mcp.client.manager import MCPClientManager
 from friday_mcp.config import MCPConfig, MCPServerConfig
+from friday_mcp.protocols import MCPClient
 
 from friday_runtime.config import MCPRuntimeServerConfig, MCPToolProviderConfig
+from friday_runtime.mcp_registration import (
+    MCPBindingContext,
+    MCPRegistrationDecision,
+    MCPRegistrationError,
+    prepare_registration,
+)
 from friday_runtime.tool_loading import ToolProviderLoadError
 
 MCPLifecycleOutcome = Literal[
@@ -64,6 +74,15 @@ class _ServerResult:
     tools: list[dict[str, Any]] = field(default_factory=list, repr=False)
 
 
+class MCPRegistrationRegistry(Protocol):
+    """Public registry operations used by the explicit registration owner."""
+
+    def register(self, tool: ToolDefinition) -> None: ...
+    def list_names(self) -> list[str]: ...
+    def get(self, name: str) -> ToolDefinition | None: ...
+    def unregister(self, name: str) -> bool: ...
+
+
 class RuntimeMCPProvider:
     """Explicit lifetime owner, reachable even after failed runtime startup."""
 
@@ -76,11 +95,218 @@ class RuntimeMCPProvider:
         self.lifecycle: tuple[MCPServerLifecycleDiagnostic, ...] = ()
         self.prepared_tools: tuple[MCPDiscoveredTool, ...] = ()
         self._started = False
+        self._registry: MCPRegistrationRegistry | None = None
+        self._owned: dict[str, ToolDefinition] = {}
+        self._tool_metadata: Mapping[str, MCPToolMetadata] = build_mcp_metadata_index(
+            ()
+        )
+        self.registration_decisions: tuple[MCPRegistrationDecision, ...] = ()
+
+    @property
+    def tool_metadata(self) -> Mapping[str, MCPToolMetadata]:
+        return self._tool_metadata
+
+    @property
+    def registration_registry(self) -> MCPRegistrationRegistry | None:
+        """Inspectable retained owner when rollback/shutdown is incomplete."""
+        return self._registry
+
+    @property
+    def owned_tool_names(self) -> tuple[str, ...]:
+        return tuple(self._owned)
+
+    @property
+    def binding_context(self) -> MCPBindingContext:
+        return MCPBindingContext(
+            self.registration_decisions,
+            self._config.config.tool_name_prefix,
+            tuple(
+                state.server_id
+                for state in self.discovery.servers
+                if state.connection_state == "failed"
+            ),
+        )
+
+    async def register_tools(self, registry: MCPRegistrationRegistry) -> None:
+        """Publish once after discovery, rolling back only this owner's entries."""
+        if self._registry is registry:
+            return
+        if self._registry is not None or self._owned:
+            raise ToolProviderLoadError(
+                "MCP registrations still owned; stop before retry"
+            )
+        manager = self.manager
+        clients: dict[str, MCPClient] = {}
+        if manager is not None:
+            for state in self.discovery.servers:
+                if state.connection_state == "connected":
+                    clients[state.server_id] = manager.get_client(state.server_id)
+        try:
+            plan = prepare_registration(
+                self._config, self.prepared_tools, clients, registry.list_names()
+            )
+        except MCPRegistrationError as exc:
+            self.registration_decisions = exc.decisions
+            self._publish_registration_counts(exc.decisions, exc.code, committed=False)
+            await self.stop()
+            raise ToolProviderLoadError(str(exc)) from None
+        self.registration_decisions = plan.decisions
+        self._registry = registry
+        try:
+            for wrapper, metadata in zip(plan.wrappers, plan.metadata, strict=True):
+                try:
+                    registry.register(wrapper)
+                except BaseException:
+                    # Public register can insert then raise: retain any newly
+                    # inserted object before unwinding, without private access.
+                    inserted = registry.get(wrapper.name)
+                    if inserted is not None:
+                        self._owned[wrapper.name] = inserted
+                    raise
+                inserted = registry.get(wrapper.name)
+                if inserted is None:
+                    raise RuntimeError("MCP registration not visible")
+                self._owned[wrapper.name] = inserted
+                # Recheck the actual native-rewrapped export, not just input.
+                actual_size = max(
+                    len(
+                        json.dumps(
+                            inserted.to_schema(format),
+                            ensure_ascii=False,
+                            allow_nan=False,
+                            separators=(",", ":"),
+                        ).encode("utf-8")
+                    )
+                    for format in ("plain", "openai")
+                )
+                if actual_size != metadata.schema_byte_size or any(
+                    inserted.to_schema(format) != wrapper.to_schema(format)
+                    for format in ("plain", "openai")
+                ):
+                    raise RuntimeError("MCP registered export mismatch")
+            self._tool_metadata = build_mcp_metadata_index(plan.metadata)
+            self.registration_decisions = tuple(
+                replace(decision, reason="registered")
+                if decision.reason == "selected"
+                else decision
+                for decision in plan.decisions
+            )
+            self._publish_registration_counts(plan.decisions, committed=True)
+        except BaseException as exc:
+            self._tool_metadata = build_mcp_metadata_index(
+                item for item in plan.metadata if item.canonical_name in self._owned
+            )
+            self._publish_registration_counts(
+                plan.decisions, "registration_failed", committed=False
+            )
+            await self.stop()
+            if isinstance(exc, asyncio.CancelledError):
+                raise
+            raise ToolProviderLoadError(
+                "MCP registration failed; inspect mcp_provider.diagnostics"
+            ) from None
+
+    def _publish_registration_counts(
+        self,
+        decisions: tuple[MCPRegistrationDecision, ...],
+        code: MCPDiagnosticCode | None = None,
+        *,
+        committed: bool,
+    ) -> None:
+        rejected = sum(
+            decision.reason in {"rejected", "capped"} for decision in decisions
+        )
+        filtered = sum(decision.reason == "filtered" for decision in decisions)
+        selected = sum(
+            decision.reason in {"selected", "registered"} for decision in decisions
+        )
+        codes = set(self.diagnostics.codes)
+        codes.update(
+            decision.code for decision in decisions if decision.code is not None
+        )
+        if code is not None:
+            codes.add(code)
+        self.diagnostics = self.diagnostics.model_copy(
+            update={
+                "registered_tools": selected if committed else 0,
+                "rejected_tools": self.diagnostics.rejected_tools + rejected,
+                "filtered_tools": filtered,
+                "codes": tuple(sorted(codes)),
+            }
+        )
+        self.discovery = self.discovery.model_copy(
+            update={
+                "selected_tools": selected,
+                "servers": tuple(
+                    state.model_copy(
+                        update={
+                            "rejected_tools": state.rejected_tools
+                            + sum(
+                                d.server_id == state.server_id
+                                and d.reason in {"rejected", "capped"}
+                                for d in decisions
+                            ),
+                            "filtered_tools": sum(
+                                d.server_id == state.server_id
+                                and d.reason == "filtered"
+                                for d in decisions
+                            ),
+                            "diagnostic_codes": tuple(
+                                sorted(
+                                    set(state.diagnostic_codes)
+                                    | {
+                                        d.code
+                                        for d in decisions
+                                        if d.server_id == state.server_id
+                                        and d.code is not None
+                                    }
+                                )
+                            ),
+                        }
+                    )
+                    for state in self.discovery.servers
+                ),
+            }
+        )
+
+    def _remove_registrations(self) -> None:
+        registry = self._registry
+        incomplete = False
+        if registry is not None:
+            for name, owned in tuple(self._owned.items()):
+                try:
+                    current = registry.get(name)
+                    if current is owned:
+                        registry.unregister(name)
+                        if registry.get(name) is owned:
+                            incomplete = True
+                            continue
+                    self._owned.pop(name)
+                except Exception:
+                    incomplete = True
+        self._tool_metadata = build_mcp_metadata_index(
+            value for name, value in self._tool_metadata.items() if name in self._owned
+        )
+        self.diagnostics = self.diagnostics.model_copy(
+            update={"registered_tools": len(self._owned)}
+        )
+        self.registration_decisions = tuple(
+            replace(decision, reason="unavailable")
+            if decision.reason == "registered"
+            and decision.canonical_name not in self._owned
+            else decision
+            for decision in self.registration_decisions
+        )
+        if incomplete:
+            raise ToolProviderLoadError(
+                "MCP registry cleanup incomplete; inspect mcp_provider.owned_tool_names"
+            ) from None
+        self._registry = None
 
     async def start(self) -> None:
         if self._started or not self._config.enabled:
             return
-        if self.manager is not None:
+        if self.manager is not None or self._registry is not None:
             # Failed startup can retain transports even with false lifecycle
             # flags. Release them through their owner before replacing it.
             await self.stop()
@@ -326,10 +552,11 @@ class RuntimeMCPProvider:
         )
 
     async def stop(self) -> None:
-        """Release clients and untrusted handoff while retaining safe history."""
+        """Remove owned model-accessible tools before clients; retain safe history."""
         # A failed or canceled cleanup must not leave a startup handoff usable.
         self.prepared_tools = ()
         self._started = False
+        self._remove_registrations()
         if self.manager is not None:
             try:
                 await self.manager.disconnect_all()

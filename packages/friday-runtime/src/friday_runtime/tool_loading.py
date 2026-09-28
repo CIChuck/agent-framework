@@ -6,12 +6,15 @@ import importlib
 import inspect
 import pkgutil
 from functools import lru_cache
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from friday_agent import DefaultToolRegistry
 from friday_core.interfaces import ToolDefinition
 
 from friday_runtime.config import ToolProviderConfig, ToolsConfig
+
+if TYPE_CHECKING:
+    from friday_runtime.mcp_registration import MCPBindingContext
 
 
 class ToolProviderLoadError(RuntimeError):
@@ -28,6 +31,7 @@ def register_runtime_tools(
 
     for tool in _select_friday_tools(config.providers.friday_tools):
         registry.register(tool)
+
 
 def _select_builtin_tools(provider: ToolProviderConfig) -> list[ToolDefinition]:
     if not provider.enabled:
@@ -143,10 +147,27 @@ def validate_agent_tool_bindings(
     agent_name: str,
     declared_tools: list[str],
     available_tool_names: set[str],
+    mcp_context: MCPBindingContext | None = None,
 ) -> None:
     """Fail hard when an agent references tools unavailable in the runtime."""
-    missing = sorted({tool_name for tool_name in declared_tools if tool_name not in available_tool_names})
+    missing = sorted(
+        {
+            tool_name
+            for tool_name in declared_tools
+            if tool_name not in available_tool_names
+        }
+    )
     if missing:
+        reasons = {
+            name: reason
+            for name in missing
+            if mcp_context is not None
+            and (reason := mcp_context.reason_for(name)) is not None
+        }
+        if reasons:
+            raise ValueError(
+                f"Agent '{agent_name}' references unavailable tool(s): {missing}; MCP reasons: {reasons}"
+            )
         raise ValueError(
             f"Agent '{agent_name}' references unavailable tool(s): {missing}"
         )
