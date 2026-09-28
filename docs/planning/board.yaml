@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: reconcile bounded WS-03 directive and request explicit maintainer approval
+  next_gate: explicit maintainer approval of reconciled WS-03 registry directive
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []

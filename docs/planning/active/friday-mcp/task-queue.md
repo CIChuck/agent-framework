@@ -1,10 +1,10 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 explicitly accepted; bounded WS-03 preparation is the next gate
+Status: WS-02 accepted; WS-03 directive reconciled and awaiting explicit approval
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws02-lifecycle`
-Planning checkpoint before this update: `5200819b79ec10dee541800505994ab3fcf140ee`
+WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen product candidate: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
 
 The [development board](../../board.yaml) remains the canonical initiative
@@ -37,6 +37,10 @@ each handoff. An approved future step is not a claim that it has started.
   the candidate, authority manifest, full scope and all required checks.
 - WS-03 through WS-08: draft, not approved for implementation. WS-09: deferred
   optional scope. Initiative remains `started`; delivery remains `local`.
+- WS-03 readiness reconciliation is complete in the
+  [checkpoint](execution/WS-03-readiness-checkpoint.md) and
+  [revised bounded draft](directives/ws-03-tool-naming-metadata-registry.md).
+  Explicit maintainer approval is the current gate; no implementation started.
 
 ## Immediate Queue
 
@@ -46,7 +50,7 @@ each handoff. An approved future step is not a claim that it has started.
 | 2 / MCP-NEXT-02 | Add direct/public-kernel noisy-peer regressions, retained-owner and cancellation coverage; run required checks and commit evidence. | Complete: frozen candidate `a257f04`, [implementation report](execution/REM-004-implementation-report.md). | 39 focused, 333 aggregate, 32 loading and 46 Chat tests pass; integration 44 pass plus declared board-count baseline; Ruff and prescribed typing pass. No independent verdict inferred. |
 | 3 / MCP-NEXT-03 | Freeze candidate and obtain fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Complete: fresh context returned delta, aggregate and overall VERIFIED, no findings. | Full report preserves pinned authority, exact scope, required checks, independent production/resource-integrity probes, baselines and residual risks. |
 | 4 / MCP-NEXT-04 | Record WS-02 closeout and explicit maintainer acceptance. | Complete: maintainer said "WS-02 accepted" on 2026-09-28; decision recorded in [closeout](execution/WS-02-closeout.md). | Work-unit acceptance only; no wider initiative completion or later-workstream authority inferred. |
-| 5 / MCP-NEXT-05 | Reconcile the draft WS-03 directive with the accepted WS-02 handoff and current registry/contracts, then request bounded WS-03 approval. | Next: WS-02 dependency satisfied; preparation has not started. Planning/readiness only until approval. | Exact files, immutable untrusted discovery handoff consumption, typed metadata, naming/filter/security rules, tests and stop conditions reconciled; maintainer explicitly approves WS-03 before code generation. |
+| 5 / MCP-NEXT-05 | Reconcile the WS-03 directive and request bounded approval. | Ready for approval: [checkpoint](execution/WS-03-readiness-checkpoint.md) and complete revised draft recorded; no code. | Explicit approval covers exact paths, handoff/sidecar, strict includes, transactional registry ownership, conservative schema sanitation/caps, tests and stop conditions. |
 
 Tasks 1–2 are complete as implementation/check/commit steps, not validation or acceptance.
 The controller may not self-repair or
@@ -56,9 +60,10 @@ resume review in a session with fresh-agent capacity; do not waive the gate.
 No new remediation scope approval is needed. Fresh VAL-007 creation succeeded
 after the remediator completed; the earlier capacity stop is historical.
 Tasks 1–4 are complete, with fresh independent verification and a subsequent
-explicit maintainer acceptance decision. Task 5 is the next planning/readiness
-gate; it and later tasks remain unstarted. Current process fields describe
-WS-03 preparation: execution phase `planning`, validation state `not_ready`.
+explicit maintainer acceptance decision. Task 5's planning/readiness work is
+complete and its explicit approval gate is pending. Task 6/WS-03 implementation
+and later tasks remain unstarted. Current process fields describe WS-03
+preparation: execution phase `planning`, validation state `not_ready`.
 They do not invalidate the accepted WS-02 verification or authorize WS-03 code.
 
 Required implementation checks are listed in REM-004. Keep the unchanged

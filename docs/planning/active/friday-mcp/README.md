@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: reconcile bounded WS-03 directive and request explicit maintainer approval
+next_gate: explicit maintainer approval of reconciled WS-03 registry directive
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with cleanup amendment and REM-004
 execution_phase: planning
 validation_state: not_ready
@@ -167,3 +167,13 @@ authorized. Current process fields now describe that next-slice preparation:
 `execution_phase: planning`, `validation_state: not_ready`, not a reversal of
 accepted WS-02's independently verified result. The wider initiative remains
 `started` and local, with no packet archive or delivery transition.
+
+Following the maintainer's "continue", WS-03 planning/readiness reconciliation
+is complete at [the checkpoint](execution/WS-03-readiness-checkpoint.md).
+The [revised WS-03 draft](directives/ws-03-tool-naming-metadata-registry.md)
+uses the accepted handoff/normalizer/sidecar, exact edit paths, guarded registry
+ownership, strict explicit includes, schema-specific sanitization and final
+export caps, with ten criteria and fresh review requirements. It remains
+unapproved. Next gate is explicit approval of that complete bounded directive;
+no WS-03 branch, product edit or validator dispatch occurred. Current phase is
+`planning`, validation state `not_ready`; accepted predecessors remain intact.

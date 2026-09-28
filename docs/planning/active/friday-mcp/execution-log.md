@@ -686,3 +686,48 @@
   dashboard, documentation lifecycle (337 Markdown files), diff whitespace and
   full frozen product/configuration comparison. No product checks were rerun
   because this turn changes only acceptance/process records, not behavior.
+
+## 2026-09-28 — WS-03 Directive Reconciled; Approval Requested
+
+- Maintainer said "continue" after WS-02 acceptance. Current board next gate
+  is WS-03 directive/readiness preparation, not code generation. Verified
+  branch `feature/friday-mcp-ws02-lifecycle`, base
+  `56251144345888f721c9fc9235ad8a54bbbb23db`, started/granted predecessor
+  authority, local delivery and unchanged unrelated dirty manifest.
+- Read policies, build/tactical authority, accepted predecessor evidence and
+  actual contract/config/provider/adapter/native registry implementation.
+  [WS-03 readiness checkpoint](execution/WS-03-readiness-checkpoint.md) records
+  concrete probes, scope discrepancies, commands/results and residual limits.
+- Reconciled only the draft [WS-03 directive](directives/ws-03-tool-naming-metadata-registry.md),
+  not approved predecessor authority. Proposed scope is seven source paths,
+  nine exact test/fixture paths and one implementation report. Missing runtime
+  tools.py and broad native source/protocol edits are removed. No manager,
+  transport, dependency/config schema or native registry source edits proposed.
+- Decisions for approval: reuse immutable untrusted discovery handoff without
+  rediscovery/backfill; accepted canonical normalizer and typed sidecar; additive
+  metadata completeness; category mcp and exact filters; fatal explicit missing
+  includes; collision preflight and owned rollback; bounded inline-schema
+  sanitation and final exported-definition byte/cost checks; guarded publication
+  before binding validation and public shutdown/retry ownership. Preserve
+  existing trusted-caller mutable native schema semantics, documenting their
+  boundary rather than promising whole-registry immutability.
+- Read-only baseline: 88 compatibility tests passed, Ruff passed, existing
+  runtime/MCP Python 3.13 typing passed on 42 files. Unfiltered core checks
+  reproduce exactly four historical profiles.py errors; default mypy reproduces
+  NumPy syntax baseline. Supplemental import-silent core check is advisory only.
+  First test command referenced a nonexistent legacy target and ran no tests;
+  corrected actual targets passed. No future/new WS-03 test or broad integration
+  completion is inferred from preparation. Full details remain in checkpoint.
+- No product source/test/config changes, implementation branch, subagent,
+  candidate, review request/verdict, credentials/live calls or delivery action.
+  Accepted candidate comparison passed. Preserved unrelated five-path manifest
+  is unchanged; only seven explicit planning files will be staged.
+- Queue task 5 reconciliation is complete, awaiting explicit approval of the
+  full revised directive. Board/index next gate is that approval. Execution
+  phase `planning`, validation state `not_ready`; wider initiative remains
+  `started`, normal and local. Future fresh VAL-008 is reserved only, not
+  dispatched or verified. No approval or later-slice scope is inferred.
+- Planning closeout checks passed: board validation (23 tasks), generated
+  dashboard freshness, documentation lifecycle (338 Markdown files), diff
+  whitespace and frozen source/test/config comparison to accepted WS-02.
+  No accepted authority, historical validation or closeout changed.
