@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: reconcile WS-05 directive and readiness before requesting approval
+next_gate: explicit approval of reconciled WS-05 construction directive
 implementation_authority: granted for MCP-WS-00 through MCP-WS-04 with approved predecessor amendments
 execution_phase: planning
 validation_state: not_ready
@@ -21,9 +21,9 @@ byte-exact report and all original artifacts are archived in
 [WS-04 closeout](execution/WS-04-closeout.md) records explicit maintainer
 acceptance on 2026-09-28 with "accepted". WS-00 through WS-04 are accepted
 work units; the wider initiative remains started/granted/normal/local. Next
-is WS-05 directive/readiness reconciliation before bounded approval. Current
+is explicit approval of the reconciled WS-05 directive. Current
 phase planning/state not_ready describes that next-slice preparation, not a
-change to accepted WS-04 verification. WS-05+ remains draft and unapproved.
+change to accepted WS-04 verification. WS-05 is reconciled and unapproved; later slices remain draft.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with
@@ -304,3 +304,16 @@ Next is WS-05 directive/readiness reconciliation before separate approval.
 This turn records acceptance only; no WS-05 reconciliation or implementation.
 Current phase planning/state not_ready describes the next preparation gate;
 accepted WS-04's VERIFIED result and all frozen review inputs remain unchanged.
+
+## 2026-09-28 — WS-05 Planning Reconciled
+
+Following "proceed", WS-05 directive/readiness reconciliation is complete in the
+[bounded draft](directives/ws-05-execution-provenance-transcript.md) and
+[checkpoint](execution/WS-05-readiness-checkpoint.md), with reproducible local
+[readiness evidence](execution/WS-05-readiness-evidence.yaml). It binds exactly
+23 implementation paths, eight tasks and ten criteria; resolves full argument
+redaction/no hashes, final byte limits, strict sanitizer use, protocol failure
+handling, the declared typed Transcript/Core dependency and compatible exporters.
+Next gate is explicit directive approval. No WS-05 product edit, branch or agent
+dispatch occurred. Phase planning/state not_ready; accepted predecessors and
+all frozen VAL-010 inputs remain unchanged. Wider initiative remains started/local.

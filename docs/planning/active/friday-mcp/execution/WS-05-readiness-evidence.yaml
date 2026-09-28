@@ -1,0 +1,53 @@
+work_unit: MCP-WS-05
+date: '2026-09-28'
+mode: controller read-only product readiness; not independent candidate validation
+base: 1e845001f6b6c48e7cc255ac76460a058f026f70
+command: LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache
+  uv run python /private/tmp/ws05-readiness-probe.py
+final_exit_code: 0
+prior_harness_attempts:
+- exit_code: 1
+  reason: request double lacked abstract _create_transport; scratch finally called
+    nonexistent SQLite close; no product finding
+- exit_code: 1
+  reason: reused scratch database entry-1 collided; retained state and switched to
+    unique database; no product finding
+archive: docs/planning/active/friday-mcp/execution/WS-05-readiness-evidence.tar.gz
+archive_sha256: 98ba262e0531dfccbde2d4913613fa19b3bf0a81f8bcf64c5d9c0a103738bd54
+archive_bytes: 2753
+original_artifacts:
+  ws05-readiness-probe-initial.py:
+    bytes: 3764
+    sha256: 709298181f150463126055c0039188c34c344be3343fb616300a7ad545580143
+  ws05-readiness-probe-initial.log:
+    bytes: 1579
+    sha256: 2350bd10f3038948deee70a4cd3be28189dead636bd09eda9fb1781e6b5b6e4d
+  ws05-readiness-probe-second.py:
+    bytes: 3871
+    sha256: 1c5c27cf757d683d19c61b4c24e7c59e342fc1f0189bd3d33a853be2c30d9025
+  ws05-readiness-probe-second.log:
+    bytes: 1398
+    sha256: cd76f429333b476e4de54a84aa3f75d8d25c7f26554814c4453078081f0498ab
+  ws05-readiness-probe.py:
+    bytes: 3901
+    sha256: 44a27b78b4f49146f4f4353a9720859bb522729fc8f54f1ada787cef98ff546d
+  ws05-readiness-probe.log:
+    bytes: 708
+    sha256: 999ed4ff1d45fd12339209ae551297e9a1ea9156ef36c7eef954bf9703fe283b
+  facts.json:
+    bytes: 426
+    sha256: ba5d0dc7769b87d13aa3ceabb2f8221806910fe92ae9fc9286ed3d0016cf771a
+exclusions:
+- scratch SQLite databases
+- credentials and unrelated local state
+facts:
+  exact_original_routing: true
+  current_result_bytes: 119
+  configured_result_cap: 64
+  result_cap_not_yet_enforced: true
+  arguments_retained_in_record: true
+  arguments_retained_in_jsonl: true
+  mcp_per_call_provenance_absent: true
+  default_sanitizer_retains_detected_content: true
+  default_sanitizer_wrap_increases_bytes: true
+  current_client_isError_returns_text_without_failure: true

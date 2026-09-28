@@ -1169,3 +1169,28 @@ unrelated work is preserved. Task 7 independent review is in progress.
   product/report comparison, request hash, all 29 pinned input/971 product hashes,
   all 56 evidence member lengths/hashes and five unrelated path fingerprints
   match the verified closeout, including the preserved deletion.
+
+## 2026-09-28 — WS-05 Directive And Readiness Reconciliation
+
+Maintainer said "proceed" after explicit WS-04 acceptance and the stated WS-05
+planning gate. From `1e845001f6b6c48e7cc255ac76460a058f026f70` on the WS-04 branch,
+the controller performed read-only product inspection/local synthetic stdio,
+SQLite/JSONL and protocol request-double probes. The final probe exited 0 and
+confirms missing final byte enforcement, raw argument capture, missing per-call
+provenance, sanitizer warning retention/wrapper growth and dropped isError status.
+Two disclosed scratch-harness errors preceded the successful unique-database run;
+all original scripts/logs/facts are archived, with no runtime databases committed.
+
+The [reconciled draft](directives/ws-05-execution-provenance-transcript.md) and
+[readiness checkpoint](execution/WS-05-readiness-checkpoint.md) bind 23 exact
+implementation paths, eight tactical tasks and ten criteria. Decisions: full
+argument redaction/no hashes; explicit checked bounded untrusted output; static
+protocol failure handling; one typed Core DTO; declared Transcript dependency;
+compatible per-call persistence and JSONL/full versus human-summary exports.
+Shared security/Agent/Runtime/Memory source and all accepted authorities stay frozen.
+
+Execution phase `planning`, validation state `not_ready`; next gate explicit
+approval of reconciled WS-05 construction directive. This is planning only,
+not WS-05 implementation/validation/acceptance. No feature branch, product edits
+or subagent dispatch. Board remains started/granted/normal/local with authority
+through WS-04 only. No later-slice, delivery or external-effect authority.
