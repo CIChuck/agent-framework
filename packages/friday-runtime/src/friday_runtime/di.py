@@ -114,9 +114,12 @@ class DIContainer:
         if self._config.tools.providers.mcp.enabled:
             if self._config.workspace_root is None:
                 raise RuntimeError("Runtime workspace root not initialized")
-            self.mcp_provider = RuntimeMCPProvider(
-                self._config.tools.providers.mcp, self._config.workspace_root,
-            )
+            # Failed boot may leave cleanup pending. Reuse its explicit owner
+            # so provider startup and public shutdown can reach every client.
+            if self.mcp_provider is None:
+                self.mcp_provider = RuntimeMCPProvider(
+                    self._config.tools.providers.mcp, self._config.workspace_root,
+                )
             await self.mcp_provider.start()
         self._booted = True
         logger.info("DI container boot complete")

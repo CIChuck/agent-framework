@@ -1,6 +1,6 @@
 # MCP-WS-02 Implementation Report
 
-Status: Implementation candidate prepared; independent validation pending
+Status: VAL-005 changes requested; REM-003 correction prepared for fresh validation
 Date: 2026-09-27
 Branch: `feature/friday-mcp-ws02-lifecycle`
 Authorization revision: `5c31f7c`
@@ -15,8 +15,10 @@ Directive: [Approved WS-02 with cleanup amendment](../directives/ws-02-runtime-l
   successful DI boot does not replace a live owner.
 - New public runtime module `friday_runtime.mcp_loading` owns one explicit
   `MCPClientManager`. `RuntimeKernel.mcp_provider` exposes the owner and typed
-  diagnostics even after failed startup. There is no global manager or new
-  package dependency.
+  diagnostics even after failed startup. REM-003 corrects failed-start retry:
+  DI reuses its provider, and provider startup completes cleanup through its
+  existing manager before replacement. Cleanup failure retains the owner and
+  propagates. There is no global manager or new package dependency.
 - Only server-specific stdio inputs reach protocol-local config, never the
   full Friday config. Cwd is revalidated at startup and defaults to the
   configured workspace. This scopes cwd, not arbitrary executable behavior
@@ -60,7 +62,9 @@ messages terminate the receiver instead of busy-looping or logging peer
 exceptions. Stdio drains stderr without logging/storing it, handles exited
 processes, and reaps children when cancellation races subprocess creation.
 Worker cancellation is drained before manager shutdown. Shutdown is
-idempotent, clears the untrusted handoff, and retains safe diagnostic history.
+idempotent and retains safe diagnostic history. REM-003 clears the untrusted
+handoff and started flag before cleanup, including failed or cancelled cleanup;
+the retained manager remains reachable for another shutdown attempt.
 
 Manager adds `connect_or_raise` while preserving legacy boolean `connect` and
 unknown-server `KeyError`. Repeated connects do not replace live clients.
@@ -106,7 +110,10 @@ remediation.
 
 ## Remaining Gates
 
-Commit a stable candidate, then obtain fresh-context read-only independent
-WS-02 review of the exact diff and approved authority. Builder checks do not
+VAL-005 found startup-retry ownership loss in the original candidate. The bounded
+[REM-003 report](REM-003-implementation-report.md) records the correction and
+new provider/public-kernel regressions. Freeze the correction candidate, then
+obtain fresh-context read-only independent delta and complete WS-02 aggregate
+review of the exact diff and approved authority. Implementation checks do not
 establish independent `VERIFIED`, maintainer acceptance, wider initiative
 completion, or delivery authority. WS-03 and later remain Draft.

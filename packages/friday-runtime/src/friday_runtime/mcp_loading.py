@@ -80,6 +80,10 @@ class RuntimeMCPProvider:
     async def start(self) -> None:
         if self._started or not self._config.enabled:
             return
+        if self.manager is not None:
+            # Failed startup can retain transports even with false lifecycle
+            # flags. Release them through their owner before replacing it.
+            await self.stop()
         config = self._config.config
         # Recheck paths at execution time; do not inherit ambient process cwd.
         try:
@@ -323,13 +327,14 @@ class RuntimeMCPProvider:
 
     async def stop(self) -> None:
         """Release clients and untrusted handoff while retaining safe history."""
+        # A failed or canceled cleanup must not leave a startup handoff usable.
+        self.prepared_tools = ()
+        self._started = False
         if self.manager is not None:
             try:
                 await self.manager.disconnect_all()
             except Exception:
                 raise ToolProviderLoadError("MCP shutdown incomplete") from None
-        self.prepared_tools = ()
-        self._started = False
         self.discovery = self.discovery.model_copy(
             update={
                 "connected_servers": 0,

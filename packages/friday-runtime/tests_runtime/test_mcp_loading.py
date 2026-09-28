@@ -21,13 +21,21 @@ class TestTransport:
     def __init__(self):
         self.is_connected = False
         self.disconnect_calls = 0
+        self.fail_cleanup = False
+        self.pause_cleanup = False
+        self.cleanup_entered = asyncio.Event()
 
     async def connect(self):
         self.is_connected = True
 
     async def disconnect(self):
-        self.is_connected = False
         self.disconnect_calls += 1
+        self.cleanup_entered.set()
+        if self.pause_cleanup:
+            await asyncio.Future()
+        if self.fail_cleanup:
+            raise RuntimeError("SENTINEL-CLEANUP-SECRET")
+        self.is_connected = False
 
     async def send(self, message):
         pass
@@ -42,6 +50,7 @@ class TestClient(MCPClientBase):
     def __init__(self, name, mode, tracker, tools):
         super().__init__(name)
         self.transport = TestTransport()
+        self.transport.fail_cleanup = mode == "discovery_cleanup_failed"
         self.mode = mode
         self.tracker = tracker
         self.tools = tools
@@ -69,7 +78,7 @@ class TestClient(MCPClientBase):
             self.tracker["discovery_peak"], self.tracker["discovery_active"]
         )
         try:
-            if self.mode == "discovery_failed":
+            if self.mode in ("discovery_failed", "discovery_cleanup_failed"):
                 raise ValueError("SENTINEL-SECRET")
             if self.mode == "discovery_timeout":
                 await asyncio.Future()
@@ -93,7 +102,7 @@ def server(name="fake", **values):
 
 
 @pytest.fixture
-def fake_clients(monkeypatch):
+async def fake_clients(monkeypatch):
     clients = []
     modes = {}
     catalogs = {}
@@ -115,7 +124,14 @@ def fake_clients(monkeypatch):
         return client
 
     monkeypatch.setattr(MCPClientManager, "_create_client", create)
-    return clients, modes, catalogs, tracker
+    try:
+        yield clients, modes, catalogs, tracker
+    finally:
+        # Release synthetic transports even when a regression assertion fails.
+        for client in clients:
+            client.transport.fail_cleanup = False
+            client.transport.pause_cleanup = False
+            await client.disconnect()
 
 
 @pytest.mark.asyncio
@@ -459,3 +475,148 @@ async def test_global_connection_timeout_caps_server_timeout(tmp_path, fake_clie
     await asyncio.wait_for(provider.start(), timeout=2)
     assert provider.lifecycle[0].outcome == "connection_timeout"
     await provider.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("with_peer", [False, True])
+async def test_provider_retry_retains_manager_until_cleanup_and_recovers(
+    tmp_path, fake_clients, caplog, with_peer
+):
+    clients, modes, _, _ = fake_clients
+    modes["bad"] = "discovery_cleanup_failed"
+    servers = [server("good"), server("bad")] if with_peer else [server("bad")]
+    provider = RuntimeMCPProvider(provider_config(servers), str(tmp_path))
+    with caplog.at_level(logging.DEBUG):
+        with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+            await provider.start()
+        manager = provider.manager
+        original_clients = tuple(clients)
+        with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+            await provider.start()
+    assert provider.manager is manager
+    assert tuple(clients) == original_clients
+    assert manager.connected_servers == ["bad"]
+    assert not manager.get_client("bad").is_connected
+    assert manager.get_client("bad").transport.is_connected
+    assert not provider.prepared_tools
+    assert provider.discovery.status == "failed"
+    assert provider.lifecycle[-1].outcome == "cleanup_failed"
+    assert provider.diagnostics.registered_tools == 0
+    assert "SENTINEL" not in caplog.text
+    assert "SENTINEL" not in repr(provider.lifecycle)
+    assert "SENTINEL" not in str(provider.discovery.model_dump())
+    assert "SENTINEL" not in str(provider.diagnostics.model_dump())
+    if with_peer:
+        good = next(client for client in clients if client.name == "good")
+        assert not good.transport.is_connected
+        assert good.transport.disconnect_calls == 1
+        assert provider.lifecycle[0].outcome == "connected"
+    for client in clients:
+        client.transport.fail_cleanup = False
+    modes["bad"] = "good"
+    await provider.start()
+    assert all(not client.transport.is_connected for client in original_clients)
+    assert not manager.connected_servers
+    assert provider.manager is not manager
+    assert provider.discovery.status == "completed"
+    assert len(provider.prepared_tools) == len(servers)
+    recovered_manager = provider.manager
+    await provider.start()
+    assert provider.manager is recovered_manager
+    assert len(clients) == 2 * len(servers)
+    await provider.stop()
+    await provider.stop()
+    assert not provider.manager.connected_servers
+    assert not provider.prepared_tools
+    assert all(not client.transport.is_connected for client in clients)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("with_peer", [False, True])
+async def test_public_kernel_retry_retains_provider_and_stop_releases_every_client(
+    tmp_path, monkeypatch, fake_clients, with_peer
+):
+    clients, modes, _, _ = fake_clients
+    modes["bad"] = "discovery_cleanup_failed"
+    servers = [server("good"), server("bad")] if with_peer else [server("bad")]
+    kernel = lightweight_kernel(
+        tmp_path, monkeypatch, {"enabled": True, "config": {"servers": servers}}
+    )
+    with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+        await kernel.start()
+    owner = kernel.mcp_provider
+    manager = owner.manager
+    original_clients = tuple(clients)
+    with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+        await kernel.start()
+    assert kernel.mcp_provider is owner
+    assert kernel.mcp_provider.manager is manager
+    assert tuple(clients) == original_clients
+    assert manager.connected_servers == ["bad"]
+    assert not owner.prepared_tools
+    assert owner.lifecycle[-1].outcome == "cleanup_failed"
+    registry = kernel._di.tool_registry
+    assert "recall_memory" in registry.list_names()
+    assert not any(name.startswith("mcp_") for name in registry.list_names())
+    if with_peer:
+        assert not next(
+            client for client in clients if client.name == "good"
+        ).transport.is_connected
+    for client in clients:
+        client.transport.fail_cleanup = False
+    # Cleanup is reached solely through the current public kernel owner.
+    await kernel.stop()
+    await kernel.stop()
+    assert all(not client.transport.is_connected for client in clients)
+    assert not kernel.mcp_provider.manager.connected_servers
+    assert not kernel.mcp_provider.prepared_tools
+    modes["bad"] = "good"
+    await kernel.start()
+    assert kernel.mcp_provider is owner
+    assert kernel.mcp_provider.discovery.status == "completed"
+    assert len(kernel.mcp_provider.prepared_tools) == len(servers)
+    recovered_manager = kernel.mcp_provider.manager
+    await kernel.start()
+    await kernel._di.boot()
+    assert kernel.mcp_provider is owner
+    assert kernel.mcp_provider.manager is recovered_manager
+    assert len(clients) == 2 * len(servers)
+    assert not any(name.startswith("mcp_") for name in kernel.tool_registry.list_names())
+    await kernel.stop()
+    await kernel.stop()
+    assert all(not client.transport.is_connected for client in clients)
+
+
+@pytest.mark.asyncio
+async def test_cancellation_during_retry_cleanup_preserves_owner_for_public_stop(
+    tmp_path, fake_clients
+):
+    clients, modes, _, _ = fake_clients
+    modes["fake"] = "discovery_cleanup_failed"
+    provider = RuntimeMCPProvider(provider_config([server()]), str(tmp_path))
+    with pytest.raises(ToolProviderLoadError, match="MCP shutdown incomplete"):
+        await provider.start()
+    manager = provider.manager
+    client = manager.get_client("fake")
+    client.transport.fail_cleanup = False
+    client.transport.pause_cleanup = True
+    client.transport.cleanup_entered.clear()
+    task = asyncio.create_task(provider.start())
+    try:
+        await asyncio.wait_for(client.transport.cleanup_entered.wait(), timeout=2)
+        task.cancel()
+        with pytest.raises(asyncio.CancelledError):
+            await asyncio.wait_for(task, timeout=2)
+        assert provider.manager is manager
+        assert clients == [client]
+        assert manager.connected_servers == ["fake"]
+        assert client.transport.is_connected
+        assert not provider.prepared_tools
+    finally:
+        if not task.done():
+            task.cancel()
+        await asyncio.gather(task, return_exceptions=True)
+        client.transport.pause_cleanup = False
+        await provider.stop()
+    assert not client.transport.is_connected
+    assert not manager.connected_servers
