@@ -6,17 +6,18 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: maintainer approval of bounded WS-02 runtime lifecycle scope
-implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
-execution_phase: closeout
-validation_state: verified
+next_gate: maintainer approval of WS-02 startup-cleanup and stdio-redaction scope amendment
+implementation_authority: granted for MCP-WS-00 through MCP-WS-02; WS-02 stopped at scope gate
+execution_phase: planning
+validation_state: not_ready
 ---
 
 The repository contains substantial standalone MCP client and server code.
 Runtime client connection/loading remains unimplemented; enabling the MCP
 provider still raises an explicit error. WS-00 contracts and WS-01 strict
-configuration are implemented and independently verified. Only those two
-construction directives are approved; WS-02 and later remain Draft. The
+configuration are implemented and independently verified. WS-02 is approved,
+but product-code generation is stopped pending a narrow scope amendment;
+WS-03 and later remain Draft. The
 [2026-09-27 rebaseline](rebaseline-2026-09-27.md) distinguishes the existing
 package from this integration initiative and narrows the first slice.
 
@@ -27,7 +28,7 @@ Controlling packet:
 - [Current-code rebaseline](rebaseline-2026-09-27.md) — baseline evidence,
   workstream status, and outstanding decisions.
 - [Design notes](design-notes.md) — historical input, not controlling authority.
-- [Construction directives](directives/) — approved WS-00/01 and draft later slices.
+- [Construction directives](directives/) — approved WS-00/01/02 and draft later slices.
 - [Execution log](execution-log.md) — approval, baseline, and work-unit progress.
 
 The maintainer approved the rebaselined `MCP-WS-00` contracts/defaults-only
@@ -44,9 +45,9 @@ cross-package architecture finding on 2026-09-27. REM-001 produced candidate
 its checks. Fresh independent [VAL-002](validation/VAL-002-report.md) verified
 both the remediation delta and complete WS-00 candidate. The
 [WS-00 work-unit closeout](execution/WS-00-closeout.md) records the result and
-remaining boundaries. The wider `friday-mcp` initiative remains `started`:
-WS-02 through WS-08 are draft, and runtime loading is not authorized by this
-work-unit verdict. The maintainer accepted the WS-00 work-unit result and
+remaining boundaries. The wider `friday-mcp` initiative remains `started`.
+At that closeout, WS-02 through WS-08 were draft, and runtime loading was not
+authorized by that work-unit verdict. The maintainer accepted the WS-00 work-unit result and
 approved the bounded [WS-01 directive](directives/ws-01-configuration-model-validation.md)
 on 2026-09-27. WS-01 was implemented on
 `feature/friday-mcp-ws01-config`.
@@ -68,5 +69,15 @@ candidate `dd6c65b` passed fresh delta and complete WS-01 aggregate review in
 [WS-01 work-unit closeout](execution/WS-01-closeout.md) record the bounded
 fixes, checks, and remaining gates. The maintainer explicitly accepted WS-01
 on 2026-09-27. This is work-unit acceptance only; the wider initiative remains
-`started` and delivery remains local. The next gate is explicit approval of
-bounded WS-02 runtime lifecycle scope; no WS-02 behavior is authorized yet.
+`started` and delivery remains local.
+
+The maintainer explicitly approved bounded WS-02 on 2026-09-27 with
+"ws-02 approved". Execution preparation is on
+`feature/friday-mcp-ws02-lifecycle` from accepted WS-01 checkpoint `a64e423`.
+The [readiness checkpoint](execution/WS-02-readiness-checkpoint.md) reproduces
+failed-handshake cleanup loss and identifies raw stdio logging below the
+directive's allowed files. No WS-02 source or tests have been changed. The
+next gate is approval of the proposed narrow amendment for MCP
+`client/base.py` and `client/stdio.py`; approval of the original directive
+does not authorize that expansion. Current process fields describe WS-02,
+not a change to the independently verified and accepted WS-00/01 results.

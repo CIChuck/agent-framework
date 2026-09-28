@@ -1,9 +1,17 @@
 # Construction Directive: MCP-WS-02 Runtime Lifecycle And MCP Provider Loading
 
-Status: Draft construction directive
+Status: Approved construction directive; execution stopped at scope gate
 Date: 2026-07-24
+Approved: 2026-09-27 by repository maintainer
+Approval evidence: "ws-02 approved"
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-02`
+
+Approval covers the existing bounded directive only. The startup-cleanup and
+transport-redaction blockers found during readiness inspection are recorded in
+the [WS-02 readiness checkpoint](../execution/WS-02-readiness-checkpoint.md).
+Its proposed two-file scope amendment is not approved by this decision. Product
+code generation is stopped until that amendment is decided.
 
 ## AI Builder Role
 

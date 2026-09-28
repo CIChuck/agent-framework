@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: maintainer approval of bounded WS-02 runtime lifecycle scope
+  next_gate: maintainer approval of WS-02 startup-cleanup and stdio-redaction scope amendment
   delivery_state: local
-  branch: feature/friday-mcp-ws01-config
+  branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
@@ -632,3 +632,17 @@ events:
   action: accepted WS-01 work unit
   note: Maintainer explicitly said accept ws-01 after verified closeout. Acceptance applies only to WS-01; the initiative remains started and local, and WS-02 requires separate approval.
   evidence: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved bounded WS-02 runtime lifecycle
+  note: Maintainer explicitly said ws-02 approved; approval covers the existing directive, not additional source files, later workstreams, or delivery effects.
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded WS-02 readiness scope stop
+  note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside the directive. No product code changed; narrow amendment awaits maintainer approval.
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md

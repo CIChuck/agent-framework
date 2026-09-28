@@ -280,3 +280,29 @@
   No initiative-level acceptance, archive move, or delivery event is implied.
 - The next gate is explicit approval of bounded WS-02 runtime lifecycle
   scope. Its directive remains Draft; no WS-02 product code is authorized.
+
+## 2026-09-27 — Maintainer Approved WS-02; Readiness Scope Stop
+
+- The repository maintainer explicitly said "ws-02 approved". This approves
+  the existing bounded runtime lifecycle directive, not later workstreams,
+  delivery, live-provider effects, or new source files outside that directive.
+- Created `feature/friday-mcp-ws02-lifecycle` from accepted WS-01 checkpoint
+  `a64e423cffca6162c43b8cfa193792508cf87fd6`. The initiative remains
+  `started` and delivery remains local.
+- Readiness inspection found that `MCPClientBase.disconnect()` returns
+  without cleanup after a failed handshake. An in-process fake-transport
+  probe reproduced a still-connected transport, zero disconnect calls, and
+  a retained receiver task; the probe then explicitly cleaned up its fake
+  resources. No external service or subprocess was used.
+- The stdio transport also logs raw command arguments and server stderr.
+  The original directive allows manager/adapter changes but not the two
+  modules owning these behaviors. Accessing their private state from runtime
+  or manager would violate the public package-boundary policy.
+- Product code generation stopped before any source or test edit under the
+  directive's partial-startup-cleanup stop condition. The
+  [readiness checkpoint](execution/WS-02-readiness-checkpoint.md) proposes a
+  bounded amendment for `client/base.py` and `client/stdio.py` plus related
+  regression tests. The amendment awaits maintainer approval.
+- Execution phase is `planning`; validation state is `not_ready` for WS-02.
+  Existing WS-00/01 validation and acceptance remain intact. Unrelated dirty
+  paths were preserved; no candidate or independent WS-02 verdict exists.
