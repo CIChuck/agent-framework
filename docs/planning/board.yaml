@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: obtain fresh read-only VAL-010 complete WS-04 aggregate review
+  next_gate: explicit maintainer WS-04 acceptance after verified VAL-010 closeout
   delivery_state: local
   branch: feature/friday-mcp-ws04-chat-budget
   depends_on: []
@@ -75,6 +75,8 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-008-report.md
   - docs/planning/active/friday-mcp/validation/VAL-009-report.md
   - docs/planning/active/friday-mcp/execution/WS-03-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-010-report.md
+  - docs/planning/active/friday-mcp/execution/WS-04-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -779,3 +781,10 @@ events:
   action: note
   note: New fresh-context /root/mcp_ws04_val010 dispatched read-only with fork_turns none after stable request 62a5c50; validation in_review, no verdict or acceptance.
   evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: Fresh read-only VAL-010 verified complete WS-04 aggregate with no findings; full independent report/evidence archived and work-unit closeout prepared. Explicit acceptance pending, initiative remains started/local.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-report.md; docs/planning/active/friday-mcp/execution/WS-04-closeout.md

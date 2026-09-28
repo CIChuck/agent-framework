@@ -1,0 +1,200 @@
+id: VAL-010-evidence
+date: '2026-09-28'
+reviewer: /root/mcp_ws04_val010
+fresh_context: true
+governed_workspace_read_only: true
+candidate: 53d76d45cedea16122436e53b178de074c5bc322
+request_commit: 62a5c503d7a9135a0c3f68764af8735ade40f849
+request_sha256: 40c433c983a8bae17da543ee11accbf975b1ea7f63d3c718610eddedf08cb8f9
+review_modes:
+  work_unit_aggregate: VERIFIED
+overall_outcome: VERIFIED
+findings: []
+report: docs/planning/active/friday-mcp/validation/VAL-010-report.md
+report_sha256: 21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9
+archive: docs/planning/active/friday-mcp/validation/VAL-010-evidence.tar.gz
+archive_sha256: b85a841233dc6b00c07cec72c12cc3725551c96921100ca830d4498ae5f2fd9b
+archive_bytes: 358434
+artifact_count: 56
+archive_format: deterministic gzip/tar; original reviewer artifacts preserved byte-for-byte
+independent_required_commands: 15
+independent_probe_groups: 16
+pinned_authorities: 26
+pinned_implementation_reports: 3
+restore_command: mkdir -p /private/tmp/val010-restored && tar -xzf docs/planning/active/friday-mcp/validation/VAL-010-evidence.tar.gz
+  -C /private/tmp/val010-restored
+report_navigation: Canonical report is byte-exact; archive-member links name the original artifacts. Restore
+  sibling layout to inspect executable probes, exact logs and manifests.
+excluded_scratch:
+- predecessor
+- real-exports
+- real-vector
+original_artifacts:
+  all-probe-results.json:
+    bytes: 5641
+    sha256: 4892f4d5d6336b7b6b8b1fc1089e303842897c2b59dc09840ae52128543d90e6
+  authority-full.txt:
+    bytes: 378541
+    sha256: 47f7ebffcd4b09bbfc6a05f6b33106f36e4da6508b55054945a7a5122e23631d
+  baseline-board.log:
+    bytes: 1011
+    sha256: 192d678864de74b9f59334857531d1f6995f879842a040310de4b936e362a276
+  baseline-chat.log:
+    bytes: 4833
+    sha256: a6b54a6739cbf52ce83f48be7b36477803bd677b22f997f39e8fcf662e94b191
+  baseline-mypy.log:
+    bytes: 243
+    sha256: 89a85911b6f14f0f5203f89d0e3eeaaa9033a283810004580b6ec30e07a1c993
+  baseline-results.json:
+    bytes: 3870
+    sha256: 0844ed417b815e3efaf815253477547fe5ddbfef45a774f6fb3f04062b07b93c
+  candidate.diff:
+    bytes: 108934
+    sha256: 49aa1de09a46361cff558452ef532bbb90cc2bf0281628fa5fec8a1e96bc6b05
+  check-01.log:
+    bytes: 4727
+    sha256: 390af82582dab4001aaf8c9df689a85b8251033574a1e051dc21d52eadf8a6bd
+  check-02.log:
+    bytes: 260
+    sha256: 5c8667dc29502f2c6f698483b7232bbe86b1f92bbcdad3b8f01c54926dafe965
+  check-03.log:
+    bytes: 1363
+    sha256: a06a0d733782138c805cec94ab295e8a5c00c4aa460b15b8554c798325d03f6a
+  check-04.log:
+    bytes: 581
+    sha256: 3611e37b913552b474b0acb009ed059884cbd4855c0fecddca9fb726e7d0bd6c
+  check-05.log:
+    bytes: 1012
+    sha256: 2bb30d39c39d17d61f5d67bdc1a03275d7cb6dd4867cb6444a219a995dd314e5
+  check-06.log:
+    bytes: 19
+    sha256: 82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18
+  check-07.log:
+    bytes: 196
+    sha256: effd574d0f3dce1bae2f2f84461f1ee76aa91621be4940353fd358845ea85207
+  check-08.log:
+    bytes: 43
+    sha256: 050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033
+  check-09.log:
+    bytes: 46
+    sha256: eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93
+  check-10.log:
+    bytes: 30
+    sha256: a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33
+  check-11.log:
+    bytes: 70
+    sha256: cc7f97c2f8c45bcdd4afeb10438798c37f8304ae1ae5a4545aed2941d6a6ead4
+  check-12.log:
+    bytes: 179
+    sha256: 77598c2794e0791f1b6c262f7dbbeb77268535ae361fb33c3b4cf94b191a8cb2
+  check-13.log:
+    bytes: 0
+    sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  check-14.log:
+    bytes: 0
+    sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  check-15.log:
+    bytes: 0
+    sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  debug.log:
+    bytes: 29440
+    sha256: 361bc93713bdfe92149ed2da42391de03acf0767a054301a3be810c37de71149
+  diff-archive-integrity.json:
+    bytes: 10711
+    sha256: de9e63185ae54beca4f8c6734e19be8923ebd2d02738ffa85b82ce815b14d9df
+  evidence.json:
+    bytes: 13231
+    sha256: 1645045ad97923f1543b4c8f6f02e3aa614702728d43e1227254be7b1ba23047
+  freeze-closeout.json:
+    bytes: 155238
+    sha256: 54119aa27e85933ddddd2112b23011b8dc20be80b15d10b0ddc5e106c38c2f75
+  freeze-closeout.log:
+    bytes: 2835
+    sha256: 352c535a70987d72d51b1eed077fd6e263dc37f05f8af2e9202ca9919e165cd5
+  freeze-interim.json:
+    bytes: 155238
+    sha256: ddcb73974c943845d69f6f98ed4fa2c3ba4663fcfd713ed140256334decf0fa7
+  freeze-interim.log:
+    bytes: 2835
+    sha256: 0481ca79f30d65e956cc2e194f0c00252b3c64f8720aec1b0ca9beb750256089
+  freeze-start.json:
+    bytes: 142389
+    sha256: c1abc7ea2de757e0bce5aa24ead9758593b17d368934bac90e91bc9020d40347
+  freeze.py:
+    bytes: 3612
+    sha256: dd473cfe6c53e64eaf35d2393604b4b4d534d3b2f4816bb7623354322825a2ae
+  main-probe-results.json:
+    bytes: 4287
+    sha256: 0634250a9d781f717c173900251d400de9d520b79e9648aa1ce58e9c85990179
+  make_report.py:
+    bytes: 28687
+    sha256: dc8650c5870d8dd5e98ee636b5b38d939a83def94e3f5bf874d9d2e202149b41
+  peer.py:
+    bytes: 1380
+    sha256: 4d73a7879252e3660ba851ea75f26b62a2de190c5288368d969947145d7f5aac
+  postcandidate.diff:
+    bytes: 26134
+    sha256: a557e9bf6fa7c53a48a1f79203a102d2f0039efaf96a5f9708b8e0d836569a2c
+  probe-results-initial.json:
+    bytes: 4257
+    sha256: 1b4d830c1df24187539f6741fd518c4a0dd50548ae3c7301a450bf9f7c0289f2
+  probe-results.json:
+    bytes: 1356
+    sha256: 525809b8f1f4c39892b405b0f67dd1b0649dee983d89157b47ae36b318c680ac
+  probes-initial.log:
+    bytes: 5866
+    sha256: b200f75205aaa8a0972a6306ba3b5d37a82937cd6dc85ecd0010efb450718858
+  probes-initial.py:
+    bytes: 22044
+    sha256: a84b55c58935575a766dc1ac759f6e9a2c44b583f9f61e20b3ca16e326046146
+  probes.log:
+    bytes: 2572
+    sha256: d2c3d3c7b23a6b507b36c99ca694fad67df4b3a7589122c39a6f71bdb1b73e42
+  probes.py:
+    bytes: 22227
+    sha256: d16e61b589ec1c0baea0b0f734b0985816a0df439610b137782f3d4a05e42e19
+  report.md:
+    bytes: 41922
+    sha256: 21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9
+  request.yaml:
+    bytes: 15543
+    sha256: 40c433c983a8bae17da543ee11accbf975b1ea7f63d3c718610eddedf08cb8f9
+  required-checks.json:
+    bytes: 4315
+    sha256: 4d5cdfd572aa876f33b9beebb08aa57944d62794a6a4c0197b6ca8174e60c166
+  run_baselines.py:
+    bytes: 1881
+    sha256: 3d09cbc279d0b32e9b52bfbeb93817eccf6749af373227f6f93d678b25a24845
+  run_checks.py:
+    bytes: 1165
+    sha256: cbfd2087cb93390f7c4144af9b1901d89e280efed7dab0fa7ca9c32543e735dc
+  supplement-debug.log:
+    bytes: 3290
+    sha256: 6883251e470140db2ee7b730c6990316dd3bf36daf73970adf5a513ac1ec7176
+  supplement-initial.log:
+    bytes: 2919
+    sha256: bc664bc529bb8afc59479b50ac436d0900416b04b184fbd1ac0a851137a2f562
+  supplement-initial.py:
+    bytes: 8929
+    sha256: bb890703ba45f3268fceca2da976c49a37c64c314b76b92148d6ef5d8fa80d65
+  supplement-results-initial.json:
+    bytes: 1228
+    sha256: bb8fd3825ebc2023f2c5ff1a7cbb6bb00ea2fce764394385e4a8eb94f763ee60
+  supplement-results-second.json:
+    bytes: 1228
+    sha256: bb8fd3825ebc2023f2c5ff1a7cbb6bb00ea2fce764394385e4a8eb94f763ee60
+  supplement-results.json:
+    bytes: 1356
+    sha256: 525809b8f1f4c39892b405b0f67dd1b0649dee983d89157b47ae36b318c680ac
+  supplement-second.log:
+    bytes: 3126
+    sha256: f1174194af35f2a3f450bd0479f9acf034dc717b23dcbdcd85f91f422adc2a9c
+  supplement-second.py:
+    bytes: 8995
+    sha256: 0880e688a8d64df9f8fbf237169a85b28572786dec4c4f5fed2a551c9233b4d0
+  supplement.log:
+    bytes: 1112
+    sha256: e7df2893737096a968f82f62f74444fdbce3f9f00ad4d2b6c39258309a5f80ae
+  supplement.py:
+    bytes: 9031
+    sha256: 1f81d4333208dca92e975a381d0325de9887c0269a28b937c62e08127f584f4f

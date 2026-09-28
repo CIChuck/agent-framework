@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-03 accepted; WS-04 explicitly approved and implementation started
+Status: WS-04 independently verified; explicit maintainer acceptance pending
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws04-chat-budget`
@@ -40,7 +40,8 @@ each handoff. An approved future step is not a claim that it has started.
 - WS-03: independently verified and explicitly accepted on 2026-09-28 with
   "accepted - Summarize WS-03."; task 6 is complete on the named branch.
   [Closeout](execution/WS-03-closeout.md) records acceptance of frozen `d395acd`
-  and complete fresh VAL-009. WS-04: explicitly approved and started; WS-05 through WS-08: draft, not approved for
+  and complete fresh VAL-009. WS-04: independently verified by fresh VAL-010,
+  with explicit acceptance pending; WS-05 through WS-08: draft, not approved for
   implementation. WS-09: deferred
   optional scope. Initiative remains `started`; delivery remains `local`.
 - WS-03 readiness reconciliation is complete in the
@@ -99,8 +100,8 @@ Tasks 1–4 are complete, with fresh independent verification and a subsequent
 explicit maintainer acceptance decision. Task 5's planning/readiness work is
 complete and its explicit approval gate is satisfied. Task 6a records the
 completed VAL-008 review and bounded correction. Tasks 6b–6e are complete;
-WS-03 is independently verified and explicitly accepted. WS-04 is approved
-and implementation is current; subsequent workstreams remain unstarted.
+WS-03 is independently verified and explicitly accepted. WS-04 is independently
+verified and awaiting explicit acceptance; subsequent workstreams remain unstarted.
 Accepted work-unit verification and acceptance are unchanged. Do not reuse the remediator as its
 fresh validator or waive a missing independent-review capacity gate.
 
@@ -122,7 +123,7 @@ is authorized by the REM-004 approval.
 | Order / work unit | Scope | Entry gate |
 | --- | --- | --- |
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
-| 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Predecessor workstreams verified/accepted and WS-04 explicitly approved. |
+| 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Implementation and fresh complete VAL-010 aggregate VERIFIED; explicit WS-04 acceptance pending. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Budget/registry integration ready; WS-05 directive reconciled with accepted policies and explicitly approved. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Prior contracts/execution/budget behavior ready and WS-06 explicitly approved. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Relevant lifecycle/registry/execution/budget signals ready and WS-07 explicitly approved. |
@@ -172,3 +173,13 @@ parent/private builder reasoning is supplied. Phase validation/state in_review;
 no verdict/acceptance or later-slice/delivery authority. Candidate source/tests/
 config, 26 authorities and three implementation reports remain frozen; all
 unrelated work is preserved. Task 7 independent review is in progress.
+
+## 2026-09-28 — WS-04 Verified Closeout And Acceptance Gate
+
+Task 7 implementation/check/commit and fresh VAL-010 aggregate review are
+complete at frozen `53d76d4`, VERIFIED with no findings. Complete report and
+lossless evidence are archived. [Closeout](execution/WS-04-closeout.md) records
+all eight criteria, independent checks/probes, baseline debt and frozen inputs.
+Current phase closeout/state verified; next is explicit maintainer WS-04
+acceptance. Task 7 acceptance is pending. WS-05 remains draft/unstarted; no
+later-slice implementation or delivery authority is supplied by verification.

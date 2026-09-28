@@ -1110,3 +1110,35 @@ parent/private builder reasoning is supplied. Phase validation/state in_review;
 no verdict/acceptance or later-slice/delivery authority. Candidate source/tests/
 config, 26 authorities and three implementation reports remain frozen; all
 unrelated work is preserved. Task 7 independent review is in progress.
+
+## 2026-09-28 — Fresh VAL-010 Verified; WS-04 Closeout Prepared
+
+- New read-only `/root/mcp_ws04_val010`, `fork_turns: none`, reviewed candidate
+  `53d76d45cedea16122436e53b178de074c5bc322`, complete work-unit aggregate from `acd1fd1`. All eight criteria
+  pass; aggregate and overall VERIFIED with no findings. No inherited private
+  context or governed writes. Fifteen independent required commands executed.
+- 84 focused, 190 Runtime, 680 Memory/one skip and 440 accepted MCP passes;
+  Ruff/seven-source typing/board/dashboard/docs/freeze checks pass. Full Chat
+  479 passes/five skips plus identical predecessor PTY/socket-fixture failures;
+  integration 69 passes/unchanged board-count failure; default NumPy typing
+  failure independently reproduced. No failed check relabeled passing or waived.
+- Complete report SHA256 `21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9` archived byte-exact;
+  all 56 original reviewer artifacts losslessly preserved and each member
+  length/hash checked. 16 independent probe groups recorded with exact
+  reproduction logs and public cleanup separated from defensive settlement.
+- Frozen request, 26 authorities, three reports and all 971 product/config files
+  remain unchanged. Five unrelated local roots preserved, including deletion.
+  Controller changes only evidence/closeout/board/dashboard/index/queue/log.
+- Phase closeout/state verified; [closeout](execution/WS-04-closeout.md) prepared.
+  Next gate explicit maintainer WS-04 acceptance. Wider initiative remains
+  started/granted/normal/local; accepted WS-00–03 intact. No acceptance, WS-05+
+  product implementation, initiative archive or delivery is inferred.
+- Controller closeout checks pass: board 23 tasks, dashboard current,
+  documentation lifecycle 348 Markdown files, scoped/aggregate whitespace,
+  exact candidate product/report comparison, unchanged request and all 29
+  pinned input/971 product hashes. All 56 archived member lengths/hashes match
+  original independent artifacts; report remains byte-exact at SHA256
+  `21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9`.
+  Original five unrelated path fingerprints remain unchanged. Only nine
+  evidence/closeout/controller paths staged; no product tests repeated for
+  this evidence/process-only handoff after independent checks completed.
