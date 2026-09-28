@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: revised REM-002 candidate and fresh delta plus aggregate review
+  next_gate: fresh delta and aggregate validation of REM-002 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
@@ -609,3 +609,10 @@ events:
   action: approved REM-002 test-location revision
   note: Maintainer directed revision to allow only the F-002 config-compatibility test in Friday Chat's test package, with no source or dependency change; separate remediation may resume.
   evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested fresh REM-002 validation
+  note: Separate remediator committed candidate dd6c65b within the revised test scope; fresh delta and full WS-01 aggregate validation remain required.
+  evidence: docs/planning/active/friday-mcp/execution/REM-002-implementation-report.md

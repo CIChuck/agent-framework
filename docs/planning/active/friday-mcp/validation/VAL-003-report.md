@@ -2,6 +2,10 @@
 
 **Verdict:** `CHANGES_REQUESTED`
 
+**Decision status:** Superseded for the current candidate by REM-002 commit
+`dd6c65b`; retained as historical findings. Fresh VAL-004 delta and aggregate
+validation is pending, so no WS-01 verification is claimed.
+
 **Reviewer:** Fresh-context Codex validation subagent, independent of the
 builder (model/version not exposed).
 

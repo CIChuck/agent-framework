@@ -235,3 +235,20 @@
 - The separate remediator may resume both findings. A new candidate requires
   fresh delta and complete WS-01 aggregate review; no verification or WS-02
   authority is inferred from this scope correction.
+
+## 2026-09-27 — REM-002 Candidate And Fresh Validation Gate
+
+- Separate remediator committed `dd6c65bce0035682bbc688953aff8e2011d9d3b7`
+  against authorization revision `84c9841`. The three MCP defaults now use
+  `selected`, and the authorized downstream Chat test proves config retention
+  through the real YAML loader followed by canonical runtime validation.
+  Source, test, and example changes remain inside the revised directive.
+- The [REM-002 report](execution/REM-002-implementation-report.md) records
+  262 core/MCP/runtime tests and 46 Chat config tests passing. The controller
+  reconfirmed the combined 308 tests, affected Ruff, Python 3.13 mypy on 38
+  files, and both candidate diff whitespace checks. Known default-mypy and
+  board-integration baselines remain separately documented.
+- VAL-003 is retained historically and superseded for the current candidate's
+  decision. Execution phase is `validation`; validation state is `pending`.
+  Fresh delta `de8db57..dd6c65b` and full WS-01 aggregate
+  `22a5643..dd6c65b` must both pass before work-unit closeout.

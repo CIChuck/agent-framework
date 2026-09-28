@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: revised REM-002 candidate and fresh delta plus aggregate review
+next_gate: fresh delta and aggregate validation of REM-002 candidate
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -62,5 +62,6 @@ directive's F-002 dependency stop condition before editing: a runtime-package te
 cannot import downstream Friday Chat without an undeclared reverse
 dependency. The maintainer approved moving only the F-002 compatibility test
 to Friday Chat's test package. REM-002 is revised and may resume; the next
-gate is a new candidate and fresh delta plus aggregate review. No WS-02
-behavior is authorized yet.
+gate is fresh delta plus aggregate validation of candidate `dd6c65b`.
+The [REM-002 report](execution/REM-002-implementation-report.md) records its
+bounded fixes and passing checks. No WS-02 behavior is authorized yet.
