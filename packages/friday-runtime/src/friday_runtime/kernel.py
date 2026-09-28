@@ -35,6 +35,7 @@ from friday_core.security import SanitizationConfig
 
 from friday_runtime.config import RuntimeConfig
 from friday_runtime.di import DIContainer
+from friday_runtime.mcp_loading import RuntimeMCPProvider
 from friday_runtime.tool_loading import (
     collect_profile_tool_references,
     validate_agent_tool_bindings,
@@ -107,10 +108,10 @@ class RuntimeKernel(SystemRuntime):
             return
 
         logger.info("Starting RuntimeKernel...")
-        await self._di.boot()
         try:
+            await self._di.boot()
             self._agent_registry = self._build_agent_registry()
-        except Exception:
+        except BaseException:
             await self._di.shutdown()
             raise
         self._initialized = True
@@ -259,6 +260,11 @@ class RuntimeKernel(SystemRuntime):
         )
 
     # --- Eager Service Accessors ---
+
+    @property
+    def mcp_provider(self) -> RuntimeMCPProvider | None:
+        """Inspect MCP lifetime and redacted diagnostics, including failed boot."""
+        return self._di.mcp_provider
 
     @property
     def config(self) -> RuntimeConfig:

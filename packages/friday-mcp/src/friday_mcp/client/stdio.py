@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Stdio MCP Client.
 
@@ -30,7 +29,7 @@ class StdioTransport:
         args: list[str] | None = None,
         env: dict[str, str] | None = None,
         cwd: Path | None = None,
-    ):
+    ) -> None:
         """
         Initialize stdio transport.
 
@@ -50,21 +49,35 @@ class StdioTransport:
 
     async def connect(self) -> None:
         """Start the subprocess."""
+        if self.is_connected:
+            return
+        if self._process is not None:
+            await self.disconnect()
         env = os.environ.copy()
         if self.env:
             env.update(self.env)
 
-        logger.debug(f"Starting subprocess: {self.command} {' '.join(self.args)}")
+        logger.debug("Starting MCP stdio subprocess")
 
-        self._process = await asyncio.create_subprocess_exec(
-            self.command,
-            *self.args,
-            stdin=asyncio.subprocess.PIPE,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            env=env,
-            cwd=self.cwd,
+        spawn = asyncio.create_task(
+            asyncio.create_subprocess_exec(
+                self.command,
+                *self.args,
+                stdin=asyncio.subprocess.PIPE,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                env=env,
+                cwd=self.cwd,
+            )
         )
+        try:
+            self._process = await asyncio.shield(spawn)
+        except asyncio.CancelledError:
+            # If cancellation races process creation, acquire ownership before
+            # re-raising so the public cleanup path can reap the child.
+            self._process = await spawn
+            await self.disconnect()
+            raise
         self._connected = True
 
         # Start stderr logging task
@@ -76,13 +89,17 @@ class StdioTransport:
             self._stderr_task.cancel()
             with contextlib.suppress(asyncio.CancelledError):
                 await self._stderr_task
+            self._stderr_task = None
 
         if self._process:
-            self._process.terminate()
+            if self._process.returncode is None:
+                with contextlib.suppress(ProcessLookupError):
+                    self._process.terminate()
             try:
                 await asyncio.wait_for(self._process.wait(), timeout=5.0)
             except asyncio.TimeoutError:
-                self._process.kill()
+                with contextlib.suppress(ProcessLookupError):
+                    self._process.kill()
                 await self._process.wait()
             self._process = None
 
@@ -106,26 +123,32 @@ class StdioTransport:
         if not line:
             raise EOFError("Process closed stdout")
 
-        return json.loads(line.decode())
+        message = json.loads(line.decode())
+        if not isinstance(message, dict):
+            raise ValueError("Invalid MCP message object")
+        return message
 
     async def _log_stderr(self) -> None:
-        """Log stderr output from the subprocess."""
+        """Drain stderr without logging or persisting untrusted content."""
         if not self._process or not self._process.stderr:
             return
 
         while True:
             try:
-                line = await self._process.stderr.readline()
-                if not line:
+                chunk = await self._process.stderr.read(4096)
+                if not chunk:
                     break
-                logger.debug(f"MCP server stderr: {line.decode().strip()}")
             except asyncio.CancelledError:
                 break
 
     @property
     def is_connected(self) -> bool:
         """Check if connected."""
-        return self._connected and self._process is not None
+        return (
+            self._connected
+            and self._process is not None
+            and self._process.returncode is None
+        )
 
 
 class StdioMCPClient(MCPClientBase):
@@ -157,7 +180,7 @@ class StdioMCPClient(MCPClientBase):
         args: list[str] | None = None,
         env: dict[str, str] | None = None,
         cwd: Path | None = None,
-    ):
+    ) -> None:
         """
         Initialize stdio MCP client.
 
@@ -188,13 +211,15 @@ class StdioMCPClient(MCPClientBase):
         if not config.command:
             raise ValueError("stdio transport requires command")
 
-        return cls(
+        client = cls(
             name=config.name,
             command=config.command,
             args=config.args,
             env=config.env if config.env else None,
             cwd=config.cwd,
         )
+        client.request_timeout_seconds = float(config.timeout_seconds)
+        return client
 
     async def _create_transport(self) -> StdioTransport:
         """Create stdio transport."""

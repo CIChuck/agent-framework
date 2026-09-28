@@ -22,19 +22,12 @@ def register_runtime_tools(
     registry: DefaultToolRegistry,
     config: ToolsConfig,
 ) -> None:
-    """Register tools from configured providers into the runtime registry."""
+    """Register synchronous native providers; DI owns async MCP discovery."""
     for tool in _select_builtin_tools(config.providers.builtin):
         registry.register(tool)
 
     for tool in _select_friday_tools(config.providers.friday_tools):
         registry.register(tool)
-
-    if config.providers.mcp.enabled:
-        raise ToolProviderLoadError(
-            "tools.providers.mcp is configured, but MCP runtime loading "
-            "is not implemented in Phase 5-B."
-        )
-
 
 def _select_builtin_tools(provider: ToolProviderConfig) -> list[ToolDefinition]:
     if not provider.enabled:

@@ -6,15 +6,15 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: committed WS-02 lifecycle candidate for fresh independent validation
+next_gate: fresh independent WS-02 candidate validation
 implementation_authority: granted for MCP-WS-00 through MCP-WS-02 with bounded cleanup amendment
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
-Runtime client connection/loading remains unimplemented; enabling the MCP
-provider still raises an explicit error. WS-00 contracts and WS-01 strict
+Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
+candidate awaiting independent validation. WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
 WS-03 and later remain Draft. The
@@ -76,10 +76,12 @@ The maintainer explicitly approved bounded WS-02 on 2026-09-27 with
 `feature/friday-mcp-ws02-lifecycle` from accepted WS-01 checkpoint `a64e423`.
 The [readiness checkpoint](execution/WS-02-readiness-checkpoint.md) reproduces
 failed-handshake cleanup loss and identifies raw stdio logging below the
-directive's allowed files. No WS-02 source or tests have been changed. The
+directive's allowed files. That inspection changed no source or tests. The
 maintainer subsequently authorized the narrow amendment for MCP
 `client/base.py` and `client/stdio.py` with "continue next steps", after the
-scope request and defect explanation. WS-02 implementation may resume; the
-next gate is a committed candidate for fresh independent validation. Current
+scope request and defect explanation. The
+[WS-02 implementation report](execution/WS-02-implementation-report.md)
+records the lifecycle candidate and bounded verification. The next gate is
+fresh independent candidate validation. Current
 process fields describe WS-02, not a change to the independently verified and
 accepted WS-00/01 results.

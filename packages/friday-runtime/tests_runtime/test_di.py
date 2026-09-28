@@ -249,7 +249,7 @@ def test_di_loads_friday_tools_provider_with_category_filter(tmp_path: Path):
     assert "file_write" in names
 
 
-def test_di_rejects_unimplemented_mcp_tool_provider(tmp_path: Path):
+def test_di_native_registration_defers_mcp_to_async_boot(tmp_path: Path):
     config = _config(tmp_path, "single_agent")
     config.tools_config = ToolsConfig(
         providers=ToolProvidersConfig(
@@ -271,5 +271,7 @@ def test_di_rejects_unimplemented_mcp_tool_provider(tmp_path: Path):
     di = DIContainer(config, MemoryProfile.FULL)
     di.memory = MagicMock()
 
-    with pytest.raises(RuntimeError, match="MCP runtime loading is not implemented"):
-        di._create_tool_registry()
+    di._create_tool_registry()
+    assert di.tool_registry is not None
+    assert "recall_memory" in di.tool_registry.list_names()
+    assert di.mcp_provider is None

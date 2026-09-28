@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: committed WS-02 lifecycle candidate for fresh independent validation
+  next_gate: fresh independent WS-02 candidate validation
   delivery_state: local
   branch: feature/friday-mcp-ws02-lifecycle
   depends_on: []
@@ -653,3 +653,10 @@ events:
   action: approved WS-02 cleanup amendment
   note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external effects or delivery are approved.
   evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-02 lifecycle candidate
+  note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent validation is pending.
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md

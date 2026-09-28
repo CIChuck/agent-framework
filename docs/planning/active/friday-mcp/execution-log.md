@@ -321,3 +321,27 @@
 - Execution phase is `implementation`; validation state is `not_ready` until
   a stable candidate is committed. Fresh-context independent validation is
   required before any WS-02 completion or acceptance proposal.
+
+## 2026-09-27 — WS-02 Lifecycle Candidate Prepared
+
+- Implemented the amended [WS-02 directive](directives/ws-02-runtime-lifecycle-provider-loading.md)
+  on `feature/friday-mcp-ws02-lifecycle` against authorization `5c31f7c`.
+  The [implementation report](execution/WS-02-implementation-report.md)
+  records explicit runtime ownership, bounded startup/discovery, typed safe
+  diagnostics, cleanup, and the untrusted WS-03 handoff. No MCP registry entry
+  or agent/Chat execution integration is claimed.
+- Core/MCP/runtime plus local fake-server integration: **316 passed**;
+  existing Chat config compatibility/migration tests: **46 passed**. Affected
+  Ruff passed. Python 3.13 mypy passed on 42 files, including the three
+  touched MCP source modules whose broad ignores were removed.
+- Final broad integration recheck: **38 passed, 1 known baseline failure**
+  for the unchanged 22-versus-23-task board assertion. Default-target mypy
+  still stops on installed NumPy's Python 3.12+ type-statement syntax; the
+  repository targets 3.10. Neither unrelated issue was modified or hidden.
+- Board validation passed with 23 tasks, dashboard check passed,
+  documentation lifecycle passed with 328 Markdown files, and diff whitespace
+  passed. All scoped source/tests will be committed as a stable candidate;
+  unrelated worktree paths remain excluded from staging.
+- Execution phase is `validation`; validation state is `pending` until a
+  fresh-context read-only validator reviews the frozen candidate and exact
+  authority. Initiative remains `started`; delivery remains local.
