@@ -1,6 +1,6 @@
 # MCP-WS-02 Implementation Report
 
-Status: VAL-005 changes requested; REM-003 correction prepared for fresh validation
+Status: VAL-006 aggregate changes requested; REM-004 bounded correction pending fresh independent validation
 Date: 2026-09-27
 Branch: `feature/friday-mcp-ws02-lifecycle`
 Authorization revision: `5c31f7c`
@@ -59,8 +59,16 @@ telemetry, CLI, or server-exposure implementation changed.
 Partial startup and cancellation now use public cleanup regardless of the
 success flag. Receiver tasks and pending requests are cleared. EOF/malformed
 messages terminate the receiver instead of busy-looping or logging peer
-exceptions. Stdio drains stderr without logging/storing it, handles exited
-processes, and reaps children when cancellation races subprocess creation.
+exceptions. The original stdio cleanup drained stderr but could hang after
+killing a child whose oversized stdout stopped the receiver (VAL-006 F-001).
+REM-004 takes over stdout only after its protocol reader settles, keeps stderr
+draining through termination, discards both in 4096-byte chunks, and bounds each
+cleanup attempt to 11 seconds of asynchronous phase budgets. The existing
+five-second graceful wait remains. Success requires process exit, output EOFs,
+and settled owned tasks; incomplete cleanup raises a static error and retains
+process/task ownership for public retry. Caller cancellation propagates while
+an explicitly owned bounded cleanup task continues. Exited-process and
+spawn-cancellation cleanup remain covered.
 Worker cancellation is drained before manager shutdown. Shutdown is
 idempotent and retains safe diagnostic history. REM-003 clears the untrusted
 handoff and started flag before cleanup, including failed or cancelled cleanup;
@@ -112,7 +120,12 @@ remediation.
 
 VAL-005 found startup-retry ownership loss in the original candidate. The bounded
 [REM-003 report](REM-003-implementation-report.md) records the correction and
-new provider/public-kernel regressions. Freeze the correction candidate, then
+new provider/public-kernel regressions. VAL-006 verified that correction but
+requested changes for the aggregate's paused-output shutdown defect. The bounded
+[REM-004 report](REM-004-implementation-report.md) records its correction,
+before/after regressions, required check reruns, and retained-cleanup limits.
+The verification counts above are historical builder-stage evidence, not the
+REM-004 check results. Freeze the new correction candidate, then
 obtain fresh-context read-only independent delta and complete WS-02 aggregate
 review of the exact diff and approved authority. Implementation checks do not
 establish independent `VERIFIED`, maintainer acceptance, wider initiative

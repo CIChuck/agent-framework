@@ -16,6 +16,9 @@ from friday_runtime.kernel import RuntimeKernel
 from friday_runtime.tool_loading import ToolProviderLoadError
 
 FAKE_SERVER = Path(__file__).with_name("mcp_fake_server.py").resolve()
+# Production attempt budget is 11 seconds (including failed task settlement).
+# Two seconds of scheduling slack, not a replacement RPC or shutdown SLA.
+CLEANUP_TEST_BOUND = 13
 
 
 def kernel_for(tmp_path, monkeypatch, servers, enabled=True):
@@ -69,7 +72,9 @@ def server(name, mode="good", required=False):
 @pytest.fixture
 async def processes(monkeypatch):
     observed = []
+    transports = []
     original = asyncio.create_subprocess_exec
+    connect = StdioTransport.connect
 
     async def spawn(*args, **kwargs):
         process = await original(*args, **kwargs)
@@ -77,13 +82,33 @@ async def processes(monkeypatch):
         return process
 
     monkeypatch.setattr(asyncio, "create_subprocess_exec", spawn)
-    yield observed
-    # Reap only processes created by this fixture even if an assertion fails.
-    for process in observed:
-        if process.returncode is None:
-            with contextlib.suppress(ProcessLookupError):
-                process.terminate()
-            await asyncio.wait_for(process.wait(), timeout=5)
+
+    async def track_connect(transport):
+        transports.append(transport)
+        await connect(transport)
+
+    async def discard(stream):
+        if stream is not None:
+            while await stream.read(4096):
+                pass
+
+    monkeypatch.setattr(StdioTransport, "connect", track_connect)
+    try:
+        yield observed
+    finally:
+        # Defensive fixture work occurs AFTER public-cleanup assertions. It
+        # cannot make those assertions pass, including when an assertion fails.
+        for transport in transports:
+            with contextlib.suppress(Exception):
+                await asyncio.wait_for(transport.disconnect(), CLEANUP_TEST_BOUND)
+        for process in observed:
+            if process.returncode is None:
+                with contextlib.suppress(ProcessLookupError):
+                    process.kill()
+            await asyncio.wait_for(
+                asyncio.gather(discard(process.stdout), discard(process.stderr)), 2
+            )
+            await asyncio.wait_for(process.wait(), 2)
 
 
 @pytest.mark.asyncio
@@ -169,7 +194,7 @@ async def test_real_partial_success_and_disabled_provider(
 
 
 @pytest.mark.asyncio
-async def test_real_process_already_exited_disconnect_is_idempotent():
+async def test_real_process_already_exited_disconnect_is_idempotent(processes):
     transport = StdioTransport(sys.executable, ["-c", "pass"])
     await transport.connect()
     process = transport._process
@@ -200,3 +225,116 @@ async def test_real_cancel_startup_reaps_child(tmp_path, monkeypatch, processes,
     assert kernel.mcp_provider.discovery.status == "failed"
     assert all(process.returncode is not None for process in processes)
     await kernel.stop()
+
+
+def assert_public_resources_released(processes):
+    assert processes
+    for process in processes:
+        assert process.returncode is not None
+        assert process.stdout.at_eof()
+        assert process.stderr.at_eof()
+        assert process.stdin.is_closing()
+    assert not any(
+        task.get_name().startswith("mcp-stdio-")
+        or task.get_coro().__qualname__ == "MCPClientBase._receive_loop"
+        or task.get_coro().__qualname__ == "RuntimeMCPProvider._discover"
+        for task in asyncio.all_tasks()
+        if task is not asyncio.current_task()
+    )
+
+
+async def receiver_failure_seen(caplog):
+    while "MCP receive failed" not in caplog.text:
+        await asyncio.sleep(0)
+
+
+@pytest.mark.asyncio
+async def test_real_direct_transport_noisy_forced_kill_is_bounded(processes, caplog):
+    transport = StdioTransport(
+        sys.executable,
+        ["-u", str(FAKE_SERVER), "noisy_success", "SENTINEL-ARG"],
+        {"KEY": "SENTINEL-ENV"},
+    )
+    with caplog.at_level(logging.DEBUG):
+        await transport.connect()
+        await transport.send({"id": 1, "method": "initialize"})
+        assert (await transport.receive())["id"] == 1
+        await transport.send({"id": 2, "method": "tools/list"})
+        assert (await transport.receive())["id"] == 2
+        # Observed oversized unterminated line proves the protocol reader has
+        # stopped, rather than assuming that a sleep means the peer is ready.
+        with pytest.raises(ValueError):
+            await asyncio.wait_for(transport.receive(), 2)
+        await asyncio.wait_for(transport.disconnect(), CLEANUP_TEST_BOUND)
+        await transport.disconnect()
+    assert processes[0].returncode == -9
+    assert not transport.is_connected
+    assert_public_resources_released(processes)
+    assert "SENTINEL" not in caplog.text
+
+
+@pytest.mark.asyncio
+async def test_real_public_kernel_noisy_success_stop_and_restart(
+    tmp_path, monkeypatch, processes, caplog
+):
+    kernel = kernel_for(tmp_path, monkeypatch, [server("fake", "noisy_success")])
+    with caplog.at_level(logging.DEBUG):
+        for _ in range(2):
+            caplog.clear()
+            await kernel.start()
+            assert kernel.mcp_provider.discovery.status == "completed"
+            assert len(kernel.mcp_provider.prepared_tools) == 1
+            assert "SENTINEL" not in repr(kernel.mcp_provider.discovery)
+            assert "SENTINEL" not in repr(kernel.mcp_provider.lifecycle)
+            await asyncio.wait_for(receiver_failure_seen(caplog), 2)
+            await asyncio.wait_for(kernel.stop(), CLEANUP_TEST_BOUND)
+            await kernel.stop()
+            assert not kernel.mcp_provider.manager.connected_servers
+            assert not kernel.mcp_provider.prepared_tools
+            assert_public_resources_released(processes)
+            assert "SENTINEL" not in caplog.text
+    assert all(process.returncode == -9 for process in processes)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "mode,outcome",
+    [
+        ("noisy_handshake", "connection_timeout"),
+        ("noisy_list_fail", "discovery_failed"),
+    ],
+)
+@pytest.mark.parametrize("required", [False, True])
+async def test_real_public_kernel_noisy_partial_start_cleanup(
+    tmp_path, monkeypatch, processes, caplog, mode, outcome, required
+):
+    kernel = kernel_for(
+        tmp_path, monkeypatch, [server("fake", mode, required), server("good")]
+    )
+    with caplog.at_level(logging.DEBUG):
+        if required:
+            with pytest.raises(
+                ToolProviderLoadError, match="Required MCP server unavailable"
+            ):
+                await asyncio.wait_for(kernel.start(), CLEANUP_TEST_BOUND + 2)
+            assert not kernel.mcp_provider.manager.connected_servers
+            assert not kernel.mcp_provider.prepared_tools
+        else:
+            await asyncio.wait_for(kernel.start(), CLEANUP_TEST_BOUND + 2)
+            assert kernel.mcp_provider.manager.connected_servers == ["good"]
+            assert [tool.server_id for tool in kernel.mcp_provider.prepared_tools] == [
+                "good"
+            ]
+            assert not any(
+                name.startswith("mcp_") for name in kernel.tool_registry.list_names()
+            )
+        assert kernel.mcp_provider.lifecycle[0].outcome == outcome
+        assert kernel.mcp_provider.diagnostics.registered_tools == 0
+        assert "SENTINEL" not in repr(kernel.mcp_provider.discovery)
+        assert "SENTINEL" not in repr(kernel.mcp_provider.lifecycle)
+        await asyncio.wait_for(kernel.stop(), CLEANUP_TEST_BOUND)
+    assert not kernel.mcp_provider.manager.connected_servers
+    assert not kernel.mcp_provider.prepared_tools
+    assert any(process.returncode == -9 for process in processes)
+    assert_public_resources_released(processes)
+    assert "SENTINEL" not in caplog.text
