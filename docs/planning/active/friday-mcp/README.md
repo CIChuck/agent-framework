@@ -6,24 +6,23 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: implement approved WS-05 then freeze candidate for fresh VAL-011
+next_gate: fresh read-only VAL-011 complete WS-05 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
-Current checkpoint: new fresh-context read-only [VAL-010](validation/VAL-010-report.md)
-returned complete WS-04 aggregate and overall **VERIFIED**, no findings, for
-frozen `53d76d4`. All eight criteria and fifteen required checks are recorded,
-with independently reproduced predecessor failures separated. The complete
-byte-exact report and all original artifacts are archived in
-[lossless evidence](validation/VAL-010-evidence.yaml).
-[WS-04 closeout](execution/WS-04-closeout.md) records explicit maintainer
-acceptance on 2026-09-28 with "accepted". WS-00 through WS-04 are accepted
-work units; the wider initiative remains started/granted/normal/local. Next
-is implementation of the approved WS-05 directive. Current
-phase implementation/state not_ready describes WS-05 construction, not a
-change to accepted WS-04 verification. WS-05 is approved; later slices remain draft.
+Current checkpoint: approved WS-05 produced frozen candidate `2388e747ba1bf8157881230ad36ae3ef3272b807`
+from base `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. The [implementation report](execution/WS-05-implementation-report.md)
+and [lossless builder evidence](execution/WS-05-builder-evidence.yaml) record
+the 23 approved deliverables, required checks, local synthetic-peer UAT,
+package/import checks, baseline reproduction and preservation. The pinned
+[VAL-011 request](validation/VAL-011-request.yaml) requires a new fresh-context,
+read-only complete WS-05 aggregate review; preparation does not supply a verdict.
+Phase validation/state pending. WS-00 through WS-04 remain accepted, including
+complete fresh [VAL-010](validation/VAL-010-report.md) and explicit
+[WS-04 acceptance](execution/WS-04-closeout.md). The wider initiative remains
+started/granted/normal/local. No WS-05 acceptance or later-slice/delivery authority.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with

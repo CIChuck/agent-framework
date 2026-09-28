@@ -1206,3 +1206,13 @@ validation state not_ready. Stable candidate, full required checks and fresh
 read-only complete-aggregate VAL-011 precede proposed work-unit acceptance.
 No later-slice, push/merge/release or live-provider authority. Five unrelated
 path fingerprints are retained from the accepted predecessor audit.
+
+## 2026-09-28 — WS-05 Candidate Frozen For VAL-011
+
+Approved task 8 implementation and builder checks are complete at `2388e747ba1bf8157881230ad36ae3ef3272b807`
+from full work-unit base `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. Exactly 23 deliverables plus two builder-evidence
+artifacts are committed. Full logs, unchanged baseline reproduction, offline
+wheel/import proof and preservation are recorded. Phase validation/state pending;
+next gate fresh read-only complete-aggregate [VAL-011](validation/VAL-011-request.yaml).
+Request preparation is not dispatch, verification or acceptance. Accepted WS-00
+through WS-04 and five unrelated dirty paths remain intact. No later phase or delivery.
