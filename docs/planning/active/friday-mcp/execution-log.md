@@ -252,3 +252,19 @@
   decision. Execution phase is `validation`; validation state is `pending`.
   Fresh delta `de8db57..dd6c65b` and full WS-01 aggregate
   `22a5643..dd6c65b` must both pass before work-unit closeout.
+
+## 2026-09-27 — Independent VAL-004 And WS-01 Work-Unit Closeout
+
+- A fresh-context, read-only validator inspected candidate `dd6c65b` against
+  both exact diffs and all twelve pinned authority hashes, matching them at
+  start and closeout. Delta and complete WS-01 aggregate both returned
+  `VERIFIED`, with no findings. [VAL-004](validation/VAL-004-report.md)
+  records independent commands, baselines, and residual risks.
+- The [WS-01 closeout](execution/WS-01-closeout.md) records the verified
+  configuration-only result. Execution phase is `closeout`; validation state
+  is `verified`. Reviewed source/tests/directive stayed frozen; subsequent
+  additions are closeout evidence and process metadata only.
+- The wider initiative remains `started`, not `completed` or `accepted`.
+  WS-01 maintainer acceptance and bounded WS-02 approval are separate next
+  decisions. Runtime loading/connection and later workstreams remain
+  unapproved, and delivery remains local.

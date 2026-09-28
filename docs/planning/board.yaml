@@ -59,13 +59,15 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh delta and aggregate validation of REM-002 candidate
+  next_gate: maintainer review of WS-01 and explicit approval of bounded WS-02 scope
   delivery_state: local
   branch: feature/friday-mcp-ws01-config
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
   - docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-004-report.md
+  - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
@@ -616,3 +618,10 @@ events:
   action: requested fresh REM-002 validation
   note: Separate remediator committed candidate dd6c65b within the revised test scope; fresh delta and full WS-01 aggregate validation remain required.
   evidence: docs/planning/active/friday-mcp/execution/REM-002-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified WS-01 work unit
+  note: Fresh independent VAL-004 verified both the REM-002 delta and complete WS-01 aggregate; initiative remains started, WS-01 acceptance and WS-02 approval remain maintainer decisions.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-004-report.md; docs/planning/active/friday-mcp/execution/WS-01-closeout.md

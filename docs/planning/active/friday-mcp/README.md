@@ -6,17 +6,17 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-27
-next_gate: fresh delta and aggregate validation of REM-002 candidate
+next_gate: maintainer review of WS-01 and explicit approval of bounded WS-02 scope
 implementation_authority: granted for MCP-WS-00 and MCP-WS-01 only
-execution_phase: validation
-validation_state: pending
+execution_phase: closeout
+validation_state: verified
 ---
 
 The repository contains substantial standalone MCP client and server code.
-The cross-package runtime client integration described here has not been
-implemented; enabling the runtime MCP provider still raises an explicit error.
-Only the `MCP-WS-00` construction directive is approved. All later directives
-remain Draft. The
+Runtime client connection/loading remains unimplemented; enabling the MCP
+provider still raises an explicit error. WS-00 contracts and WS-01 strict
+configuration are implemented and independently verified. Only those two
+construction directives are approved; WS-02 and later remain Draft. The
 [2026-09-27 rebaseline](rebaseline-2026-09-27.md) distinguishes the existing
 package from this integration initiative and narrows the first slice.
 
@@ -27,7 +27,7 @@ Controlling packet:
 - [Current-code rebaseline](rebaseline-2026-09-27.md) — baseline evidence,
   workstream status, and outstanding decisions.
 - [Design notes](design-notes.md) — historical input, not controlling authority.
-- [Construction directives](directives/) — approved WS-00 and draft later slices.
+- [Construction directives](directives/) — approved WS-00/01 and draft later slices.
 - [Execution log](execution-log.md) — approval, baseline, and work-unit progress.
 
 The maintainer approved the rebaselined `MCP-WS-00` contracts/defaults-only
@@ -48,20 +48,24 @@ remaining boundaries. The wider `friday-mcp` initiative remains `started`:
 WS-02 through WS-08 are draft, and runtime loading is not authorized by this
 work-unit verdict. The maintainer accepted the WS-00 work-unit result and
 approved the bounded [WS-01 directive](directives/ws-01-configuration-model-validation.md)
-on 2026-09-27. WS-01 implementation is now in progress on
+on 2026-09-27. WS-01 was implemented on
 `feature/friday-mcp-ws01-config`.
 The [WS-01 implementation report](execution/WS-01-implementation-report.md)
 records the typed configuration model, tests, and known baseline failures.
 Independent [VAL-003](validation/VAL-003-report.md) returned
 `CHANGES_REQUESTED` for the MCP default mode and missing Friday Chat
 config-consumption evidence. [REM-002](remediation/REM-002-directive.md)
-bounds the needed fixes. A separate remediator and fresh delta plus aggregate
-review are required before a WS-01 verdict. The maintainer authorized the
+bounds the fixes. A separate remediator and fresh delta plus aggregate
+review were required for the corrected WS-01 verdict. The maintainer authorized the
 separate REM-002 remediator on 2026-09-27. The remediator encountered the
 directive's F-002 dependency stop condition before editing: a runtime-package test
 cannot import downstream Friday Chat without an undeclared reverse
 dependency. The maintainer approved moving only the F-002 compatibility test
-to Friday Chat's test package. REM-002 is revised and may resume; the next
-gate is fresh delta plus aggregate validation of candidate `dd6c65b`.
-The [REM-002 report](execution/REM-002-implementation-report.md) records its
-bounded fixes and passing checks. No WS-02 behavior is authorized yet.
+to Friday Chat's test package. Revised REM-002 resumed within that scope;
+candidate `dd6c65b` passed fresh delta and complete WS-01 aggregate review in
+[VAL-004](validation/VAL-004-report.md). The
+[REM-002 report](execution/REM-002-implementation-report.md) and
+[WS-01 work-unit closeout](execution/WS-01-closeout.md) record the bounded
+fixes, checks, and remaining gates. WS-01 is independently verified, not
+maintainer-accepted. The next gate is maintainer review and explicit approval
+of bounded WS-02 scope; no WS-02 behavior is authorized yet.
