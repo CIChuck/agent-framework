@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: implement approved WS-03 registry slice and freeze candidate for fresh VAL-008
+next_gate: fresh read-only VAL-008 complete WS-03 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 The repository contains substantial standalone MCP client and server code.
@@ -185,3 +185,12 @@ base. Current phase is `implementation`, validation state `not_ready`.
 Queue task 5 is complete and task 6 is in progress. A stable candidate and
 fresh read-only VAL-008 are required before proposed closeout. No later-slice
 authority, verification, acceptance, or delivery is inferred.
+
+WS-03 builder candidate is frozen at
+`397caa9898612cd989f6404951b3e1f5005dfac2`. The
+[implementation report](execution/WS-03-implementation-report.md) records the
+sixteen approved implementation paths, public contracts, checks and baselines.
+[VAL-008 request](validation/VAL-008-request.yaml) pins exact candidate/base,
+twenty controlling authority hashes, all ten criteria and independent checks.
+Current phase validation, state pending; request preparation is not dispatch,
+verification or acceptance. Accepted predecessors remain intact.

@@ -751,3 +751,37 @@
 - Preserve unrelated modified `.DS_Store`, deleted `family-tree.md`, untracked
   `docker-bench-security/`, Friday Chat config backup and sandbox Dockerfile
   audit. Explicit scoped staging only; no cleanup or external actions.
+
+## 2026-09-28 — WS-03 Stable Candidate And Fresh Review Request
+
+- Main builder committed `397caa9898612cd989f6404951b3e1f5005dfac2` on
+  `feature/friday-mcp-ws03-registry`: exactly sixteen approved implementation
+  paths, within the seventeen-path allowlist. Seven source paths, eight test/
+  fixture paths and [implementation report](execution/WS-03-implementation-report.md).
+  WS-02 lifecycle integration tests remain unchanged; no transport/manager,
+  native registry/config/security/dependency source edits.
+- Approved work-unit base `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`,
+  approval/start commit `b54069654bb3e21a6265fbabcd23f6991e286ab0`.
+  Implemented canonical naming, full typed adapter, bounded schema sanitation,
+  exact filters/strict includes/final export costs, transactional registry
+  ownership/metadata/counters, pre-binding publication and owned public cleanup.
+- Builder evidence: 146 focused, 430 affected aggregate, 46 Chat compatibility
+  pass; full integration 57 pass plus declared board-count baseline. Native
+  tools 233 pass / two invalid-zip dependency-only fixture failures, both
+  independently reproduced by main on the exact unchanged predecessor archive;
+  not repaired or waived. Ruff and meaningful runtime/MCP/integration Python
+  3.13 typing pass. Default mypy NumPy syntax and four core profiles.py errors
+  are retained as declared baselines, with exact output in the report.
+- Board (23 tasks), dashboard, documentation (339 Markdown files), whitespace,
+  stable candidate range and frozen source/tests/config comparison pass.
+  Unrelated five-path manifest is unchanged; stage only named metadata files.
+- [VAL-008 request](validation/VAL-008-request.yaml) pins candidate/base/ranges,
+  twenty authority SHA256 hashes, all criteria/required commands, baseline
+  reproduction obligations and independent adversarial public-interface probes.
+  Request preparation is not reviewer dispatch or verdict. Current phase
+  validation/state pending; task 6 remains in progress. Fresh reviewer creation
+  is mandatory; no existing context will be relabeled fresh if capacity fails.
+- Wider initiative remains started/normal/local; predecessor acceptance intact.
+  No WS-03 closeout/acceptance, WS-04 code, full-initiative completion or delivery
+  operation is inferred. Frozen product and controlling authority will remain
+  unchanged while review proceeds.

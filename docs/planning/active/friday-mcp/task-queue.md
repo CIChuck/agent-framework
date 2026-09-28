@@ -1,12 +1,12 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-02 accepted; WS-03 explicitly approved and implementation started
+Status: WS-02 accepted; approved WS-03 candidate frozen for fresh independent review
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws03-registry`
 WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
-Current frozen product candidate: `a257f041d1d68f8aea2f5b9773df1b88acd82379`
+Current frozen WS-03 product candidate: `397caa9898612cd989f6404951b3e1f5005dfac2`
 
 The [development board](../../board.yaml) remains the canonical initiative
 registry. This queue makes the existing [tactical sequence](tactical-plan.md)
@@ -43,8 +43,14 @@ each handoff. An approved future step is not a claim that it has started.
 - WS-03 readiness reconciliation is complete in the
   [checkpoint](execution/WS-03-readiness-checkpoint.md) and
   [revised bounded draft](directives/ws-03-tool-naming-metadata-registry.md).
-  Explicit approval is recorded; next is the bounded implementation candidate
-  followed by fresh independent VAL-008. No candidate or verdict exists yet.
+  Explicit approval is recorded; bounded candidate `397caa9` is committed.
+  Fresh independent VAL-008 is next; no verdict exists yet.
+
+Current task 6 checkpoint: builder implementation/check/commit complete at
+`397caa9`, sixteen approved implementation paths. [Report](execution/WS-03-implementation-report.md)
+and pinned [VAL-008 request](validation/VAL-008-request.yaml) are recorded.
+Fresh independent full WS-03 review is pending dispatch, not waived. Task 6
+remains in progress through review/closeout/acceptance; no WS-04 authority.
 
 ## Immediate Queue
 

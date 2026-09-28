@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: implement approved WS-03 registry slice and freeze candidate for fresh VAL-008
+  next_gate: fresh read-only VAL-008 complete WS-03 aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws03-registry
   depends_on: []
