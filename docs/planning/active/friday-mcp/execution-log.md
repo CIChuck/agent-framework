@@ -922,3 +922,43 @@
   comparison, all twenty original authority hashes and byte-exact historical
   request/report/executable/snapshot evidence, including lossless log hashes.
   Record approval/relocation in a scoped local commit before product edits.
+
+## 2026-09-28 — Separate REM-005 Candidate Frozen; Fresh VAL-009 Requested
+
+- Approval/start checkpoint `215e54de71eda08067d22695d0062f7bed35e9d0`
+  recorded explicit maintainer approval and policy-required active relocation.
+  Dispatched new separate `/root/mcp_ws03_rem005` with `fork_turns: none`,
+  exact approved directive and no inherited builder/reviewer context. It did
+  not modify controller/authority paths, inspect sessions or delegate further.
+- Separate remediator committed stable candidate
+  `d395acdba9e233cb226f54e6258575f480157cf1`: exactly two source, three test,
+  one fixture and two report paths, all eight authorized targets. Typed frozen
+  both-source diagnostic records distinguish MCP/MCP and MCP/native; static
+  errors, ordinary constructors/defaults, counters and existing behavior remain.
+  Public collision history survives cleanup and is replaced at a new discovery
+  attempt after prior-owner cleanup. Bounded length/shape/fingerprints handle
+  long/control/encoded/escaped-surrogate originals without raw peer exposure.
+- [REM-005 report](execution/REM-005-implementation-report.md) documents public
+  contract/compatibility/lifetime/counters, before/after evidence, all six
+  criteria, final fourteen exact commands/exits/times, baseline reproductions,
+  initial harness/setup corrections and explicit synthetic-resource settlement.
+  Final 173 focused, 459 affected aggregate and 46 Chat tests pass; integration
+  69 plus known board failure; native 233 plus known two invalid-zip failures.
+  Required Ruff and affected 45-file typing pass; default NumPy and four core
+  profiles.py errors remain unchanged. No repair or waiver of baseline debt.
+- Controller checks exact eight-path committed delta, all twenty-two authority
+  hashes against candidate/working/approved inputs, frozen source/tests/config,
+  both implementation report hashes, unchanged historical VAL-008 and preserved
+  unrelated work. Candidate report hashes:
+  REM-005 `df3207f11d0beab740599346ffa9b9a9ec76eb1b9aca6861093956014cafebd1`;
+  WS-03 `836cbe11243da78ba34f739f808b97ee52dda264b3448c51d3763caae1d31965`.
+- Historical VAL-008 is superseded only for decisions on the changed candidate
+  in [separate status](validation/VAL-008-status.yaml); its original report,
+  findings and evidence remain byte-exact. [VAL-009 request](validation/VAL-009-request.yaml)
+  pins previous/full delta, bounded correction and original work-unit aggregate,
+  approved authority hashes, report hashes, six remediation/ten WS-03 criteria,
+  seventeen commands and independent public/probe/baseline obligations.
+- Current phase validation/state pending; queue 6c complete, 6d current.
+  Request preparation is not dispatch, independent verification or acceptance.
+  Only a new fresh context may perform VAL-009. Wider initiative remains
+  started/normal/local, accepted predecessors intact; no WS-04/delivery authority.

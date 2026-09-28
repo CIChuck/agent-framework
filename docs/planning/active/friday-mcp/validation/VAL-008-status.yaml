@@ -1,0 +1,15 @@
+id: VAL-008-status
+report: docs/planning/active/friday-mcp/validation/VAL-008-report.md
+report_sha256: 1bf0b019e0ba69f75eb638e1aa68f89a3d90088e2471dea11ce7ee76c1b46d0c
+reviewed_candidate: 397caa9898612cd989f6404951b3e1f5005dfac2
+historical_outcome: CHANGES_REQUESTED
+historical_report_unchanged: true
+superseded_for_current_candidate_decisions: true
+replacement_candidate: d395acdba9e233cb226f54e6258575f480157cf1
+replacement_review: VAL-009
+replacement_review_state: requested; no verdict yet
+finding_status: F-001 correction implemented; requires fresh independent delta and
+  full WS-03 aggregate review
+note: Supersession applies only to decisions on the changed candidate. Preserve all
+  original findings, authority, command results and residual gates. No verification,
+  acceptance or external authority inferred.

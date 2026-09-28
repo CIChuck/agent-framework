@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: execute approved REM-005 F-001 correction and freeze candidate for fresh VAL-009 delta and WS-03 aggregate review
+next_gate: execute pinned fresh VAL-009 delta and complete WS-03 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-03 with approved predecessor amendments
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 Current checkpoint: fresh-context [VAL-008](validation/VAL-008-report.md)
@@ -26,6 +26,18 @@ add its regressions and reports, run required checks and freeze a replacement
 candidate for fresh VAL-009 delta and full WS-03 aggregate review. Initiative
 remains started/normal/local; accepted WS-00/01/02 remain intact. No WS-03
 verification/acceptance, later-slice approval or delivery is inferred.
+
+Separate remediator `/root/mcp_ws03_rem005` completed the exact eight-path
+correction in candidate `d395acdba9e233cb226f54e6258575f480157cf1` from approval
+checkpoint `215e54d`. The [REM-005 report](execution/REM-005-implementation-report.md)
+records typed bounded both-source diagnostics, retained public history, privacy/
+cleanup regressions and all required checks/baselines. The pinned
+[VAL-009 request](validation/VAL-009-request.yaml) freezes the delta, complete
+original WS-03 aggregate, twenty-two authority hashes, both report hashes,
+six remediation/ten work-unit criteria and seventeen independent commands.
+Request preparation is not dispatch or verification. Historical VAL-008 remains
+byte-exact; [separate status](validation/VAL-008-status.yaml) supersedes it only
+for decisions on this changed candidate.
 
 The repository contains substantial standalone MCP client and server code.
 Runtime-owned stdio startup/discovery/shutdown is implemented in a WS-02
