@@ -8,8 +8,8 @@
     "VAL014-F01"
   ],
   "proposed_remediation": "REM-008",
-  "remediation_approval": "pending",
-  "remediation_started": false,
-  "replacement_review": "VAL-015 required only after approved new stable candidate",
+  "remediation_approval": "approved by maintainer 2026-09-29 for exact REM-008 with separate remediator",
+  "remediation_started": true,
+  "replacement_review": "maintainer reserved validation after new stable candidate; no validation verdict yet",
   "report_and_evidence": "Original independent report and all evidence bytes retained unchanged; no superseding candidate exists"
 }

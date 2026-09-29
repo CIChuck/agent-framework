@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: approve REM-008 owned-retry correction and separate remediator after VAL-014
+next_gate: execute approved REM-008 owned-retry correction; hand frozen candidate to maintainer for validation
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
 execution_phase: remediation
 validation_state: changes_requested
@@ -21,12 +21,14 @@ base/freeze evidence are complete; no additional candidate finding. The complete
 report and all 870 original artifacts are archived byte-exact in
 [lossless evidence](validation/VAL-014-evidence.yaml).
 
-The proposed [REM-008 directive](remediation/REM-008-directive.md) converts that
+The approved [REM-008 directive](remediation/REM-008-directive.md) converts that
 finding once into exactly nine implementation/report paths, five criteria,
-public retry/partial-failure/conflict/concurrency regressions and fresh VAL-015
-remediation delta plus original WS-06 aggregate review. Next gate: explicit bounded
-approval and a separate remediator. Phase remediation/state changes_requested
-records this pending gate; no remediation has started or been dispatched. Product,
+public retry/partial-failure/conflict/concurrency regressions. The maintainer
+explicitly said "Fix the retry behavior. i will Validate afterwards." This
+approves the exact correction and separate remediator, and reserves subsequent
+validation. Next gate: execute the approved correction, freeze a new candidate,
+and hand it to the maintainer. Phase remediation/state changes_requested
+records the open finding; execution starts before remediator dispatch. Product,
 40 authorities, six candidate reports, two builder artifacts, 19 historical inputs,
 985 product bytes and all five unrelated fingerprints remain unchanged.
 The reviewed [implementation report](execution/WS-06-implementation-report.md) and

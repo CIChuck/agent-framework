@@ -1,42 +1,47 @@
 # REM-008 — Reuse Owned MCP Memory Records And Immutable Receipts On Retry
 
-Status: Proposed; explicit bounded approval and separate remediator required
+Status: Approved for bounded execution; separate remediator authorized
 Date: 2026-09-29
+Approved by: repository maintainer
+Approval evidence: "Fix the retry behavior. i will Validate afterwards." after the exact nine-path REM-008 proposal and separate-remediator request
+Remediation base: `486f3cf585799cc46bc8a6c4f6cf4925734f7188`
+Execution start: 2026-09-29 on the named current branch; controller records before remediator dispatch
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-06`
 Branch: `feature/friday-mcp-ws06-memory`
 Reviewed candidate: `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`
 Original work-unit base: `99bde5148ee21f47d4734d2a026fb198a3d19cbd`
 Finding: `VAL014-F01`, complete independent [VAL-014 report](../validation/VAL-014-report.md)
-Approval: Pending; no remediation execution or acceptance inferred
+Approval: Granted for this nine-path correction and separate remediator; maintainer reserves validation of the resulting candidate
 
 ## Authority And Approval Boundary
 
 Explicit maintainer direction, repository engineering/lifecycle/independent-validation
 policies, accepted WS-00 through WS-05, the approved
 [WS-06 directive](../directives/ws-06-memory-compatibility-ingestion.md), and the
-complete frozen VAL-014 review control this proposed correction. The original
+complete frozen VAL-014 review control this bounded correction. The original
 request, report, archives, authority and reviewed candidate remain unchanged.
 The original WS-06 approval authorized its construction scope and independent
-review; no numbered post-review remediation was preauthorized.
+review; the separate maintainer message above now authorizes this numbered
+correction and separate remediator. It does not accept the resulting candidate.
 
 The [independent-validation policy](../../../../reference/policies/independent-validation-policy.md)
 requires: "Use a separate remediator for security, architecture, data integrity,
 package boundaries, or a repeated failure." It also states: "Automated remediation
 may proceed only for bounded, non-destructive findings that the maintainer
 preauthorized." This finding concerns persistent record identity and append-only
-receipt integrity. Obtain explicit approval of this exact directive and a separate
-remediator before product edits. The builder and validator must not silently repair
-the frozen candidate. Record approval, exact remediation base and execution start
-before dispatch. A new fresh validator must review the changed candidate.
+receipt integrity. This directive records the maintainer's explicit approval.
+The builder and validator must not silently repair the frozen candidate. Record
+the execution start before dispatch. The maintainer reserved validation; no
+validation result is inferred from remediation checks.
 
 This is the first WS-06 remediation cycle. After two unsuccessful remediation
 cycles, return unresolved findings to the maintainer. No later workstream, delivery,
-historical migration or unrelated repair is authorized by this proposal.
+historical migration or unrelated repair is authorized by this approval.
 
 ## Exact Allowed Implementation Manifest
 
-Exactly nine paths are proposed: four existing source files, four existing tests
+Exactly nine paths are approved: four existing source files, four existing tests
 and one new remediation implementation report.
 
 - `packages/friday-memory/src/friday_memory/ingestion/mcp.py`
@@ -105,7 +110,7 @@ expansion is a stop condition requiring reconciliation.
 | REM008-AC02 | False append, ambiguous post-append/readback failure, publication failure and cancellation retries remain truthful, preserve owned IDs and immutable data, and cannot publish unreceipted records or delete another retry's ownership. |
 | REM008-AC03 | Conflicting same-entry/call payload/provenance/policy and unrelated/native-ID collisions fail closed without overwrite, new retrievable data or unsafe diagnostics; concurrent matching retries settle safely. |
 | REM008-AC04 | Original WS-06 ten criteria, accepted predecessors/defaults/native behavior and exact nine-path scope remain intact; meaningful typing, full checks, distribution proof, cleanup and frozen/unrelated preservation are complete. |
-| REM008-AC05 | A newly frozen candidate receives fresh read-only VAL-015 remediation delta followed by complete original WS-06 aggregate review; the numbered finding closes and no mandatory violation remains. |
+| REM008-AC05 | A newly frozen candidate is handed to the maintainer with reproducible remediation-delta and original WS-06 aggregate evidence; only subsequent validation can close the finding. |
 
 ## Verification And Reporting
 
@@ -128,9 +133,14 @@ Independently rebuild current declared framework distributions offline and repea
 the original checkout and fresh isolated declared-distribution retry proofs, plus
 production Chroma/SQLite/provenance/export and public safety/budget/cleanup probes.
 No editable source or source-PYTHONPATH masking in the isolated proof. Retain clean
-resolver/cache limitations separately. New fresh VAL-015 independently establishes
-unchanged-base failures and frozen product/authority/historical/unrelated bytes.
+resolver/cache limitations separately. The maintainer-reserved validation gate
+later establishes its own independent base/freeze conclusions.
 No providers, paid calls, external MCP endpoints, real credentials or delivery.
+
+Do not dispatch a formal independent validator in this execution turn: the
+maintainer explicitly reserved validation. The implementation report and handoff
+must distinguish remediator checks from a validation verdict. A fresh VAL-015
+remains a separate potential review gate if the maintainer directs it later.
 
 The new remediation report records the exact source/test candidate/base, finding
 and five remediation/ten original criterion mappings, all commands/outputs/exits,
@@ -140,12 +150,12 @@ leave that reviewed historical report byte-exact. Archive original new evidence
 losslessly as separate controller metadata. Do not describe helper-only reuse as
 production idempotency or silently omit failed harness/build attempts.
 
-After a stable approved candidate, mark VAL-014 superseded only for decisions on
-that changed candidate, retain its complete historical bytes, and prepare VAL-015
-with the full exact authority/finding/criterion/check manifests. Dispatch a new
-read-only context with `fork_turns: none`; neither remediator nor original validator
-validates the new work. VERIFIED permits a WS-06 closeout proposal, followed by
-explicit maintainer acceptance. The wider initiative remains started and local.
+After a stable candidate, mark VAL-014 superseded only for decisions on that
+changed candidate and retain its complete historical bytes. Hand the exact
+remediation delta and original WS-06 aggregate, full checks and freeze evidence
+to the maintainer for validation. The remediator does not validate its own work.
+A VERIFIED outcome permits a WS-06 closeout proposal, followed by explicit
+maintainer acceptance. The wider initiative remains started and local.
 
 Stop for missing bounded approval/start/separate assignment, authority conflict,
 outside-path requirements, lost ownership, unsafe publication, changed-source

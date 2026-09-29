@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: approve REM-008 owned-retry correction and separate remediator after VAL-014
+  next_gate: execute approved REM-008 owned-retry correction; hand frozen candidate to maintainer for validation
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []

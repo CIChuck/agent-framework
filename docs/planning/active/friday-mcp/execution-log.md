@@ -1484,3 +1484,17 @@ WS-06 aggregate. Phase remediation/state changes_requested; board stays
 started/granted/normal/local on WS-06 branch. No dispatch, acceptance, later scope,
 initiative completion or delivery. Original VAL-014 remains the current decision,
 not superseded until a changed candidate exists.
+
+## 2026-09-29 — REM-008 Explicitly Approved And Started
+
+Maintainer instructed "Fix the retry behavior. i will Validate afterwards." after
+review of the exact nine-path REM-008 proposal and separate-remediator question.
+The instruction approves only VAL014-F01 owned retry correction, tests/report,
+public/partial/concurrency/ownership checks and a separate remediator. Execution
+starts from 486f3cf585799cc46bc8a6c4f6cf4925734f7188 on
+feature/friday-mcp-ws06-memory. Board remains started/granted/normal/local;
+packet phase remediation/state changes_requested records the still-open finding.
+Preserve frozen VAL-014 report/authority, unrelated work and outside-scope product.
+After stable candidate, hand exact delta, original WS-06 aggregate, complete
+checks and preservation to the maintainer for their validation; no validation
+agent is dispatched by this instruction. No acceptance/later scope/delivery.

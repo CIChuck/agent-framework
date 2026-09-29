@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | approve REM-008 owned-retry correction and separate remediator after VAL-014 |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | execute approved REM-008 owned-retry correction; hand frozen candidate to maintainer for validation |
 
 ## Completed
 
