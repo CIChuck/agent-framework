@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: remediate VAL-017 findings within REM-009 and freeze a new WS-08 candidate
+next_gate: fresh read-only VAL-018 review of REM-009 delta and complete WS-08 aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -46,8 +46,12 @@ and [VAL-017 request](validation/VAL-017-request.yaml) received a fresh-context,
 read-only [CHANGES_REQUESTED review](validation/VAL-017-report.md). Its complete
 [evidence](validation/VAL-017-evidence.yaml) is archived byte-exact. The
 [REM-009 directive](remediation/REM-009-directive.md) binds two documentation
-findings to four existing document paths; the next gate is a corrected stable
-candidate and a **new** independent review. No acceptance is inferred.
+findings to four existing document paths. The corrected candidate `08141407`
+and [REM-009 report](execution/REM-009-implementation-report.md) are frozen;
+the [VAL-018 request](validation/VAL-018-request.yaml) pins a fresh delta and
+complete original WS-08 aggregate review. Historical VAL-017 is
+[superseded for this changed candidate only](validation/VAL-017-status.yaml).
+No acceptance is inferred.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

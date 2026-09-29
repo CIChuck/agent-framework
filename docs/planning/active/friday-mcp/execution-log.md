@@ -1725,3 +1725,19 @@ scope; no product code or configuration schema change is allowed. Phase
 remediation/state changes_requested; next is a new stable candidate and fresh
 delta/full-aggregate independent review. The historical VAL-017 conclusion
 remains valid for `f897031` and is not amended.
+
+## 2026-09-29 — REM-009 Corrected Candidate Frozen; VAL-018 Prepared
+
+The four approved documentation corrections are committed at `08141407`.
+The [REM-009 implementation report](execution/REM-009-implementation-report.md)
+records good-peer strict/category registration, optional missing-peer strict
+`missing_include` versus category continuation, required failure, four guide
+YAML snippets and two templates parsed through Runtime and Chat, 92 focused
+tests, documentation lifecycle and board checks. The
+[corrected product manifest](execution/REM-009-product-manifest.json) pins
+11 original WS-08 deliverables and the five preserved unrelated paths.
+[VAL-018](validation/VAL-018-request.yaml) requests a new fresh-context,
+read-only review of both findings and the complete original aggregate;
+[VAL-017 status](validation/VAL-017-status.yaml) preserves its historical
+CHANGES_REQUESTED outcome for the old candidate. Phase validation/state
+pending; neither validation, maintainer acceptance nor delivery is inferred.

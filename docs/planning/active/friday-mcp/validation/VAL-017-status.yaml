@@ -1,0 +1,15 @@
+{
+  "id": "VAL-017-status",
+  "date": "2026-09-29",
+  "reviewed_candidate": "f8970313655e6e18b39d14dc1f151b5a7b5aaa33",
+  "historical_outcome": "CHANGES_REQUESTED",
+  "decision_status": "superseded_for_changed_candidate_only",
+  "findings": [
+    "VAL-017-F01",
+    "VAL-017-F02"
+  ],
+  "remediation": "REM-009",
+  "new_candidate": "08141407f7a7c3ca37174c8950bf552180df47c8",
+  "replacement_review": "docs/planning/active/friday-mcp/validation/VAL-018-request.yaml",
+  "report_and_evidence": "VAL-017 report and evidence remain unchanged and authoritative for the old candidate"
+}

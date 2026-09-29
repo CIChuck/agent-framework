@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-07 accepted; WS-08 VAL-017 findings under bounded remediation
+Status: WS-00 through WS-07 accepted; corrected WS-08 candidate pending fresh VAL-018 review
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -603,3 +603,14 @@ four exact existing documentation paths and local parser/lifecycle probes.
 Phase remediation/state changes_requested; next freeze a corrected candidate
 and dispatch a new fresh delta/full-aggregate reviewer. No validator verdict
 is converted into acceptance or delivery.
+
+## 2026-09-29 — REM-009 Corrected Candidate Frozen; Fresh VAL-018 Prepared
+
+Exact four-path documentation correction `08141407` addresses both VAL-017
+findings. The [REM-009 implementation report](execution/REM-009-implementation-report.md)
+records local parser/lifecycle and focused test evidence. The corrected
+[manifest](execution/REM-009-product-manifest.json) pins all 11 WS-08
+deliverables and five preserved unrelated paths; [VAL-018](validation/VAL-018-request.yaml)
+pins a fresh read-only delta plus complete original aggregate review. Historical
+VAL-017 is [superseded only for this changed candidate](validation/VAL-017-status.yaml).
+Phase validation/state pending; no new verdict or acceptance exists.

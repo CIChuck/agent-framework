@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: remediate VAL-017 findings within REM-009 and freeze a new WS-08 candidate
+  next_gate: fresh read-only VAL-018 review of REM-009 delta and complete WS-08 aggregate
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
