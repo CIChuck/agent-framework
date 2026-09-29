@@ -1271,3 +1271,15 @@ the seven allowed existing product/test files, and five unrelated fingerprints.
 Phase remediation/state changes_requested; candidate and fresh VAL-012 remain
 pending. Historical VAL-011 report/request/evidence and accepted predecessors
 remain byte-exact. Controller work is process metadata only.
+
+## 2026-09-28 — REM-006 Candidate Frozen; VAL-012 Prepared
+
+Separate approved remediator committed corrected candidate `f24ed20f82eac0cbce17e4b86615497cc9993921`
+from remediation base `dd6a337eb2928ab4050ea70fb41dc77072210e34`. Original WS-05
+aggregate base remains `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. Historical VAL-011
+report/evidence stays byte-exact, superseded only for changed-candidate decisions.
+Pinned VAL-012 requires new fresh read-only remediation delta plus full original
+aggregate, six remediation and ten original criteria, all required checks and
+independent public/privacy/correlation/package/cleanup probes. Phase validation/
+state pending; preparation supplies no verdict or acceptance. Unrelated dirty
+work and frozen authorities/reports are preserved. Next dispatch fresh validator.

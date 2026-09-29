@@ -6,29 +6,22 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: implement approved REM-006 then freeze corrected WS-05 for fresh VAL-012
+next_gate: fresh VAL-012 remediation delta and full WS-05 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
-Current checkpoint: fresh `/root/mcp_ws05_val011`, `fork_turns: none`, returned
-complete WS-05 aggregate **CHANGES_REQUESTED** for frozen `2388e74`, with two
-High findings. The [complete independent report](validation/VAL-011-report.md)
-and [all 182 original evidence members](validation/VAL-011-evidence.yaml) are
-preserved byte-for-byte. F-001 concerns MCP env values in session snapshots,
-JSONL and all-session CSV; F-002 concerns later native ID reuse and new production
-persistence failure. All 17 required commands, 22 passing/five failing independent
-probes, baseline reproduction, offline wheel/import checks and frozen preservation
-are recorded in the [review checkpoint](execution/WS-05-closeout.md).
-
-The maintainer explicitly said "fix them - proceed", approving the complete
-eight-path [REM-006 directive](remediation/REM-006-directive.md) and separate
-remediator. Phase remediation/state changes_requested; approved execution starts
-from `dd6a337` on the named branch, before a corrected candidate and fresh VAL-012. WS-00 through WS-04 remain
-accepted. The wider initiative remains started/granted/normal/local. WS-05
-acceptance, later phases and delivery remain gated. Earlier checkpoints below
-are historical and do not override this current review result.
+Current checkpoint: the approved separate REM-006 remediator produced frozen
+corrected candidate `f24ed20f82eac0cbce17e4b86615497cc9993921`. The [remediation report](execution/REM-006-implementation-report.md)
+records both findings, bounded source changes, regressions and required checks.
+The pinned [VAL-012 request](validation/VAL-012-request.yaml) requires a new
+fresh-context read-only remediation delta plus complete original WS-05 aggregate.
+Phase validation/state pending; request preparation is not dispatch or a verdict.
+Historical [VAL-011](validation/VAL-011-report.md) remains byte-exact and is
+[superseded only for this changed candidate](validation/VAL-011-status.yaml).
+WS-00 through WS-04 remain accepted; wider initiative started/granted/normal/local.
+No WS-05 acceptance or later-phase/delivery authority.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with
