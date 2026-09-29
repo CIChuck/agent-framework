@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-import asyncio
 import html
-from contextlib import suppress
 from datetime import datetime, timezone
-from typing import Literal
+from typing import Literal, Protocol, runtime_checkable
 from uuid import uuid4
 
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
@@ -16,8 +14,21 @@ from friday_memory.models.mcp import (
     MCPMemoryPreparation,
     MCPMemorySnapshot,
     MCPMemoryStorage,
+    MCPStoredSnapshot,
 )
 from friday_memory.retrieval.mcp import snapshot_label
+
+
+@runtime_checkable
+class _OwnedMCPStorage(MCPMemoryStorage, Protocol):
+    async def find_mcp_snapshot(
+        self, entry_id: str, call_id: str
+    ) -> MCPStoredSnapshot | None: ...
+
+
+class MCPMemoryOwnershipError(RuntimeError):
+    def __init__(self) -> None:
+        super().__init__("Owned MCP memory record does not match this call.")
 
 
 class MCPMemoryIngester:
@@ -32,6 +43,7 @@ class MCPMemoryIngester:
         policy: MCPIngestionPolicy,
         *,
         record_id: str | None = None,
+        stage_missing: bool = True,
     ) -> MCPMemoryPreparation:
         if not policy.long_term_memory_enabled:
             return MCPMemoryPreparation("disabled")
@@ -86,8 +98,20 @@ class MCPMemoryIngester:
             del checked
             if rejected:
                 return MCPMemoryPreparation("unsafe")
-            identifier = (
-                record_id if record_id is not None else "mcp-memory-" + uuid4().hex
+            previous: MCPStoredSnapshot | None = None
+            if record_id is None and isinstance(self._storage, _OwnedMCPStorage):
+                try:
+                    previous = await self._storage.find_mcp_snapshot(
+                        entry_id, facts.call_id
+                    )
+                except ValueError:
+                    raise MCPMemoryOwnershipError() from None
+                except Exception:
+                    return MCPMemoryPreparation("storage_failed")
+            identifier = record_id or (
+                previous.snapshot.record_id
+                if previous is not None
+                else "mcp-memory-" + uuid4().hex
             )
             correlated = MCPToolCallProvenance.model_validate(
                 {
@@ -128,18 +152,28 @@ class MCPMemoryIngester:
         except (ValueError, UnicodeError):
             return MCPMemoryPreparation("ineligible")
         try:
-            previous = await self._storage.get_mcp_snapshot(snapshot.record_id)
+            previous = previous or await self._storage.get_mcp_snapshot(
+                snapshot.record_id
+            )
             if previous is not None:
-                if (
-                    previous.snapshot.call == snapshot.call
-                    and previous.snapshot.policy == snapshot.policy
-                    and previous.snapshot.matched_grant == snapshot.matched_grant
-                    and previous.text == stored
-                ):
+                if self._matching(previous, snapshot, stored):
                     return MCPMemoryPreparation("prepared", previous.snapshot)
+                if record_id is None:
+                    raise MCPMemoryOwnershipError()
+                return MCPMemoryPreparation("storage_failed")
+            if not stage_missing:
                 return MCPMemoryPreparation("storage_failed")
             if not await self._storage.stage_mcp_snapshot(snapshot, stored):
-                await self._discard(snapshot)
+                # A concurrent preparation may have won this ownership. Reuse
+                # only its exact durable content; never discard its record.
+                if record_id is None and isinstance(self._storage, _OwnedMCPStorage):
+                    previous = await self._storage.find_mcp_snapshot(
+                        entry_id, facts.call_id
+                    )
+                    if previous is not None and self._matching(previous, snapshot, stored):
+                        return MCPMemoryPreparation("prepared", previous.snapshot)
+                    if previous is not None:
+                        raise MCPMemoryOwnershipError()
                 return MCPMemoryPreparation("storage_failed")
             durable = await self._storage.get_mcp_snapshot(snapshot.record_id)
             if (
@@ -147,17 +181,26 @@ class MCPMemoryIngester:
                 or durable.snapshot != snapshot
                 or durable.text != stored
             ):
-                await self._discard(snapshot)
                 return MCPMemoryPreparation("storage_failed")
-        except asyncio.CancelledError:
-            await self._discard(snapshot)
+        except MCPMemoryOwnershipError:
             raise
         except Exception:
-            await self._discard(snapshot)
             return MCPMemoryPreparation("storage_failed")
         return MCPMemoryPreparation("prepared", snapshot)
 
-    async def _discard(self, snapshot: MCPMemorySnapshot) -> None:
-        # An incomplete cleanup remains pending and cannot enter retrieval.
-        with suppress(Exception):
-            await self._storage.discard_mcp_snapshot(snapshot)
+    @staticmethod
+    def _matching(
+        previous: MCPStoredSnapshot, candidate: MCPMemorySnapshot, text: str
+    ) -> bool:
+        old = previous.snapshot
+        return (
+            old.transcript_entry_id == candidate.transcript_entry_id
+            and old.call == candidate.call.model_copy(
+                update={"memory_correlation_id": old.record_id}
+            )
+            and old.policy == candidate.policy
+            and old.matched_grant == candidate.matched_grant
+            and old.memory_sanitization == candidate.memory_sanitization
+            and old.stored_size_bytes == candidate.stored_size_bytes
+            and previous.text == text
+        )

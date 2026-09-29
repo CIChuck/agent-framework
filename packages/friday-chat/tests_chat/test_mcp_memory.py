@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import io
 import json
+from dataclasses import replace
 from types import SimpleNamespace
 
 import pytest
@@ -44,7 +45,11 @@ processes = execution.processes
 
 
 class Embeddings:
+    def __init__(self):
+        self.writes = 0
+
     async def embed_documents(self, texts):
+        self.writes += len(texts)
         return [[1.0, 0.0, 0.0, 0.0] for _ in texts]
 
     async def embed_query(self, text):
@@ -86,6 +91,172 @@ def make_turn(identifier, *, calls):
         TurnMetrics(0, 0, 0, 0),
         tool_calls=calls,
     )
+
+
+@pytest.mark.asyncio
+async def test_public_owned_retry_reuses_full_mixed_receipt_without_embedding(tmp_path):
+    runtime, memory, manager, store = setup(tmp_path)
+    checked = MCPOutputPolicy(256)
+    first = checked.checked_record(execution.metadata(), "first", "benign", {})
+    second = checked.checked_record(execution.metadata(), "second", "benign", {})
+    native = ToolCallRecord("native", {"value": "safe"}, "native result", "native")
+    turn = make_turn("same-entry", calls=(first, native, second))
+    policy = runtime.config.tools.mcp_provider.config.ingestion
+    original = await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    entry_before = (await store.get_entry(turn.turn_id)).model_dump()
+    writes_before = manager._embedding_function.writes
+    repeated = await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    assert repeated == original
+    assert repeated[0].mcp_provenance.memory_correlation_id != repeated[2].mcp_provenance.memory_correlation_id
+    assert repeated[1] == native
+    assert manager._embedding_function.writes == writes_before == 2
+    assert await manager.short_term.count() == 2
+    assert await store.count_entries("memory-session") == 1
+    assert (await store.get_entry(turn.turn_id)).model_dump() == entry_before
+    for call in (repeated[0], repeated[2]):
+        stored = await manager.get_mcp_snapshot(call.mcp_provenance.memory_correlation_id)
+        assert stored.state == "committed" and stored.snapshot.call == call.mcp_provenance
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("failure", ["false_append", "ambiguous", "readback", "publish", "cancel"])
+async def test_public_retry_after_partial_outcome_preserves_owned_id(
+    tmp_path, monkeypatch, failure
+):
+    runtime, memory, manager, store = setup(tmp_path)
+    checked = MCPOutputPolicy(256).checked_record(
+        execution.metadata(), "call", "benign", {}
+    )
+    turn = make_turn("same-entry", calls=(checked,))
+    policy = runtime.config.tools.mcp_provider.config.ingestion
+    original_record = runtime.transcript.record_mcp_interaction
+    original_append = store.append_entry
+    original_read = store.get_entry
+    original_publish = memory.publish_mcp_memory
+    if failure == "false_append":
+        async def false_append(entry):
+            return False
+        monkeypatch.setattr(store, "append_entry", false_append)
+    elif failure == "ambiguous":
+        async def ambiguous(value):
+            await original_record(value)
+            raise RuntimeError("RAW_SYNTHETIC_FAILURE")
+        monkeypatch.setattr(runtime.transcript, "record_mcp_interaction", ambiguous)
+    elif failure == "readback":
+        appended = False
+        async def append_then_fail(entry):
+            nonlocal appended
+            result = await original_append(entry)
+            appended = True
+            return result
+        async def failed_read(entry_id):
+            if appended:
+                raise RuntimeError("RAW_SYNTHETIC_FAILURE")
+            return await original_read(entry_id)
+        monkeypatch.setattr(store, "append_entry", append_then_fail)
+        monkeypatch.setattr(store, "get_entry", failed_read)
+    elif failure == "publish":
+        async def false_publish(snapshot):
+            return False
+        monkeypatch.setattr(memory, "publish_mcp_memory", false_publish)
+    else:
+        async def cancelled(value):
+            await original_record(value)
+            raise asyncio.CancelledError()
+        monkeypatch.setattr(runtime.transcript, "record_mcp_interaction", cancelled)
+    if failure in {"false_append", "readback", "cancel"}:
+        with pytest.raises((RuntimeError, asyncio.CancelledError)):
+            await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    else:
+        first_calls = await persist_mcp_interaction(
+            memory, runtime.transcript, policy, turn
+        )
+        assert first_calls[0].mcp_provenance.memory_ingested
+    rows = await manager.get_all()
+    assert len(rows) == 1
+    owned_id = rows[0]["id"]
+    writes = manager._embedding_function.writes
+    if failure == "false_append":
+        assert await store.get_entry(turn.turn_id) is None
+    elif failure != "readback":
+        assert (await store.get_entry(turn.turn_id)) is not None
+    if failure == "publish":
+        assert (await manager.get_mcp_snapshot(owned_id)).state == "pending"
+    monkeypatch.setattr(store, "append_entry", original_append)
+    monkeypatch.setattr(store, "get_entry", original_read)
+    monkeypatch.setattr(runtime.transcript, "record_mcp_interaction", original_record)
+    monkeypatch.setattr(memory, "publish_mcp_memory", original_publish)
+    retried = await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    assert retried[0].mcp_provenance.memory_correlation_id == owned_id
+    assert manager._embedding_function.writes == writes
+    assert await manager.short_term.count() == 1
+    assert await store.count_entries("memory-session") == 1
+    assert (await manager.get_mcp_snapshot(owned_id)).state == "committed"
+
+
+@pytest.mark.asyncio
+async def test_conflicting_public_retry_and_concurrent_matching_retry(tmp_path):
+    runtime, memory, manager, store = setup(tmp_path)
+    checked = MCPOutputPolicy(256)
+    call = checked.checked_record(execution.metadata(), "call", "benign", {})
+    turn = make_turn("same-entry", calls=(call,))
+    policy = runtime.config.tools.mcp_provider.config.ingestion
+    results = await asyncio.gather(
+        persist_mcp_interaction(memory, runtime.transcript, policy, turn),
+        persist_mcp_interaction(memory, runtime.transcript, policy, turn),
+    )
+    assert results[0] == results[1]
+    entry_before = (await store.get_entry(turn.turn_id)).model_dump()
+    writes = manager._embedding_function.writes
+    conflicting = checked.checked_record(execution.metadata(), "call", "different", {})
+    with pytest.raises(RuntimeError, match="MCP memory transcript receipt"):
+        await persist_mcp_interaction(
+            memory, runtime.transcript, policy,
+            make_turn("same-entry", calls=(conflicting,)),
+        )
+    changed_facts = replace(
+        call,
+        mcp_provenance=call.mcp_provenance.model_copy(
+            update={"result_truncated": not call.mcp_provenance.result_truncated}
+        ),
+    )
+    with pytest.raises(RuntimeError, match="MCP memory transcript receipt"):
+        await persist_mcp_interaction(
+            memory, runtime.transcript, policy,
+            make_turn("same-entry", calls=(changed_facts,)),
+        )
+    with pytest.raises(RuntimeError, match="MCP memory transcript receipt"):
+        await persist_mcp_interaction(
+            memory, runtime.transcript,
+            policy.model_copy(update={"max_ingested_bytes": 32768}), turn,
+        )
+    assert manager._embedding_function.writes == writes == 1
+    assert await manager.short_term.count() == 1
+    assert await store.count_entries("memory-session") == 1
+    assert (await store.get_entry(turn.turn_id)).model_dump() == entry_before
+
+
+@pytest.mark.asyncio
+async def test_competing_pending_conflict_cannot_claim_or_delete_owner(tmp_path):
+    runtime, memory, manager, store = setup(tmp_path)
+    checked = MCPOutputPolicy(256)
+    call = checked.checked_record(execution.metadata(), "call", "benign", {})
+    turn = make_turn("same-entry", calls=(call,))
+    policy = runtime.config.tools.mcp_provider.config.ingestion
+    prepared = await memory.prepare_mcp_memory(call, turn.turn_id, policy)
+    assert prepared.snapshot is not None
+    conflict = checked.checked_record(execution.metadata(), "call", "changed", {})
+    with pytest.raises(RuntimeError, match="MCP memory transcript receipt"):
+        await persist_mcp_interaction(
+            memory, runtime.transcript, policy,
+            make_turn("same-entry", calls=(conflict,)),
+        )
+    assert await store.get_entry(turn.turn_id) is None
+    assert await manager.short_term.count() == 1
+    assert (await manager.get_mcp_snapshot(prepared.snapshot.record_id)).state == "pending"
+    completed = await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    assert completed[0].mcp_provenance.memory_correlation_id == prepared.snapshot.record_id
+    assert await manager.short_term.count() == 1
 
 
 @pytest.mark.asyncio

@@ -449,11 +449,36 @@ class CollectionManager:
             found = decoded
         return found
 
+    async def find_mcp_snapshot(
+        self, entry_id: str, call_id: str
+    ) -> MCPStoredSnapshot | None:
+        """Find the one owned record for an actual transcript entry and call."""
+        found: MCPStoredSnapshot | None = None
+        for store in (self.short_term, self.long_term, self.decayed):
+            for record in await store.get_all(
+                limit=None, where={"type": "mcp_tool_snapshot"}
+            ):
+                decoded = decode_mcp_snapshot(record)
+                if decoded is None or (
+                    decoded.snapshot.transcript_entry_id != entry_id
+                    or decoded.snapshot.call.call_id != call_id
+                ):
+                    continue
+                if found is not None and found.snapshot.record_id != decoded.snapshot.record_id:
+                    raise ValueError("Conflicting owned MCP memory records")
+                found = decoded
+        return found
+
     async def stage_mcp_snapshot(self, snapshot: MCPMemorySnapshot, text: str) -> bool:
         """Never overwrite an existing native or different-source record."""
         if len(text.encode("utf-8")) != snapshot.stored_size_bytes:
             return False
         async with self._mcp_lock:
+            owned = await self.find_mcp_snapshot(
+                snapshot.transcript_entry_id, snapshot.call.call_id
+            )
+            if owned is not None and owned.snapshot.record_id != snapshot.record_id:
+                return False
             for store in (self.short_term, self.long_term, self.decayed):
                 existing = await store.get_by_id(snapshot.record_id)
                 if existing is not None:

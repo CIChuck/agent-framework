@@ -5,15 +5,18 @@ import contextlib
 import io
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
 from friday_chat.adapters import FrameworkMemoryAdapter, FrameworkTranscriptAdapter
 from friday_chat.config import FridayChatConfig
+from friday_chat.memory_mcp import persist_mcp_interaction
 from friday_chat.runtime import FakeChatModel, build_runtime
 from friday_chat.tools.mcp import MCPChatRegistry
-from friday_chat.turns.models import ChatModelResponse, ToolCallRequest
+from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCallRequest
 from friday_chat.turns.processor import TurnProcessor
+from friday_core.mcp import MCPToolCallProvenance
 from friday_memory import (
     CollectionManager,
     InMemoryEpisodicStore,
@@ -29,7 +32,11 @@ PEER = (
 
 
 class Embeddings:
+    def __init__(self):
+        self.writes = 0
+
     async def embed_documents(self, texts):
+        self.writes += len(texts)
         return [[1.0, 0.0, 0.0, 0.0] for _ in texts]
 
     async def embed_query(self, text):
@@ -137,6 +144,38 @@ async def test_real_mixed_turn_only_exact_canonical_tool_is_ingested(
             and result.tool_calls[1].result == "native"
         )
         entry = (await store.get_entries("integration"))[0]
+        safe_calls = tuple(
+            replace(
+                call,
+                mcp_provenance=MCPToolCallProvenance.model_validate({
+                    **call.mcp_provenance.model_dump(),
+                    "ingestion_decision": "disabled",
+                    "memory_ingested": False,
+                    "memory_correlation_id": None,
+                    "transcript_correlation_id": None,
+                }),
+            ) if call.mcp_provenance is not None else call
+            for call in result.tool_calls
+        )
+        retry_turn = InteractionTurn(
+            turn_id=entry.id,
+            user_message=result.user_message,
+            assistant_message=result.assistant_message,
+            prompt=result.prompt,
+            context=result.context,
+            memory_snippets=tuple(entry.metadata["memory_snippets"]),
+            metrics=result.metrics,
+            raw_prompt_captured=entry.metadata["raw_prompt_captured"],
+            tool_calls=safe_calls,
+        )
+        writes_before = manager._embedding_function.writes
+        retried = await persist_mcp_interaction(
+            runtime.memory, runtime.transcript,
+            cfg.tools.mcp_provider.config.ingestion, retry_turn,
+        )
+        assert retried == result.tool_calls
+        assert manager._embedding_function.writes == writes_before
+        assert await store.count_entries("integration") == 1
         assert entry.tool_calls[0].mcp_provenance.memory_ingested
         assert entry.tool_calls[2].mcp_provenance.ingestion_decision == "skipped"
         stored = await manager.get_mcp_snapshot(

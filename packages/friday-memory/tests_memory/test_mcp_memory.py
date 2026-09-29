@@ -190,6 +190,11 @@ async def test_retry_reuses_owned_id_and_never_overwrites_native(manager):
     first = await service.prepare(facts(), TEXT, "entry", policy(), record_id="owned")
     second = await service.prepare(facts(), TEXT, "entry", policy(), record_id="owned")
     assert second.snapshot == first.snapshot and await manager.short_term.count() == 1
+    competing = await service.prepare(
+        facts(), TEXT, "entry", policy(), record_id="different-owned-id"
+    )
+    assert competing.decision == "storage_failed"
+    assert await manager.short_term.count() == 1
     await manager.add_to_short_term(["native"], [{"type": "insight"}], ["native"])
     denied = await service.prepare(facts(), TEXT, "entry", policy(), record_id="native")
     assert denied.decision == "storage_failed"
@@ -212,14 +217,20 @@ async def test_false_write_and_partial_exception_are_not_success(manager, monkey
     monkeypatch.setattr(manager, "stage_mcp_snapshot", partial)
     result = await MCPMemoryIngester(manager).prepare(facts(), TEXT, "entry", policy())
     assert result.decision == "storage_failed"
-    assert await manager.short_term.count() == 0
+    assert await manager.short_term.count() == 1
+    assert not (await manager.query("result"))["short_term"]
     assert "SYNTHETIC_RAW_EXCEPTION" not in repr(result)
+
+    monkeypatch.setattr(manager, "stage_mcp_snapshot", original)
+    reused = await MCPMemoryIngester(manager).prepare(facts(), TEXT, "entry", policy())
+    assert reused.snapshot is not None
+    assert await manager.short_term.count() == 1
 
     async def false(snapshot, text):
         return False
 
     monkeypatch.setattr(manager, "stage_mcp_snapshot", false)
-    result = await MCPMemoryIngester(manager).prepare(facts(), TEXT, "entry", policy())
+    result = await MCPMemoryIngester(manager).prepare(facts(), TEXT, "other-entry", policy())
     assert result.snapshot is None
 
 
@@ -236,7 +247,11 @@ async def test_cancel_after_partial_stage_cleans_before_transcript(
     monkeypatch.setattr(manager, "stage_mcp_snapshot", interrupted)
     with pytest.raises(asyncio.CancelledError):
         await MCPMemoryIngester(manager).prepare(facts(), TEXT, "entry", policy())
-    assert await manager.short_term.count() == 0
+    assert await manager.short_term.count() == 1
+    assert not (await manager.query("result"))["short_term"]
+    monkeypatch.setattr(manager, "stage_mcp_snapshot", original)
+    reused = await MCPMemoryIngester(manager).prepare(facts(), TEXT, "entry", policy())
+    assert reused.snapshot is not None and await manager.short_term.count() == 1
 
 
 @pytest.mark.asyncio

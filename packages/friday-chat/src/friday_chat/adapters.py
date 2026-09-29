@@ -300,6 +300,24 @@ class FrameworkMemoryAdapter:
             facts, call.result, entry_id, policy
         )
 
+    async def verify_mcp_memory(
+        self,
+        call: ToolCallRecord,
+        entry_id: str,
+        policy: MCPIngestionPolicy,
+        record_id: str,
+    ) -> MCPMemoryPreparation:
+        facts = call.mcp_provenance
+        if (
+            facts is None or call.arguments or call.call_id != facts.call_id
+            or call.name != facts.tool.canonical_name
+        ):
+            return MCPMemoryPreparation("ineligible")
+        return await MCPMemoryIngester(self.collection_manager).prepare(
+            facts, call.result, entry_id, policy,
+            record_id=record_id, stage_missing=False,
+        )
+
     async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:
         return await self.collection_manager.publish_mcp_snapshot(snapshot)
 
@@ -1228,21 +1246,66 @@ class FrameworkTranscriptAdapter:
     async def record_mcp_interaction(self, turn: ChatInteractionTurn) -> MCPTranscriptReceipt:
         """Confirm the real append and matching per-call result facts by readback."""
         await self.record_interaction(turn)
-        entry = await self.store.get_entry(turn.turn_id)
-        if entry is None or entry.session_id != self.session_id:
-            raise RuntimeError("MCP transcript receipt is unavailable.")
+        receipt = await self.read_mcp_interaction(turn)
         expected = tuple(c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None)
-        actual = tuple(c.mcp_provenance for c in entry.tool_calls if c.mcp_provenance is not None)
-        if actual != expected:
+        if receipt is None or receipt.calls != expected:
             raise RuntimeError("MCP transcript receipt is inconsistent.")
-        for call in entry.tool_calls:
-            if call.mcp_provenance is None:
-                continue
-            paired = [r for r in entry.tool_results if r.tool_call_id == call.id]
-            if (len(paired) != 1 or paired[0].mcp_provenance != call.mcp_provenance
-                    or call.mcp_provenance.transcript_correlation_id != entry.id):
+        return receipt
+
+    async def read_mcp_interaction(
+        self, turn: ChatInteractionTurn
+    ) -> MCPTranscriptReceipt | None:
+        """Match the complete safe interaction against an immutable public entry."""
+        entry = await self.store.get_entry(turn.turn_id)
+        if entry is None:
+            return None
+        if (
+            entry.session_id != self.session_id
+            or entry.user_message != turn.user_message
+            or entry.assistant_message != turn.assistant_message
+            or entry.model_name != self.config.llm.model
+            or entry.temperature != self.config.llm.temperature
+            or entry.latency_ms != turn.metrics.total_seconds * 1000
+            or entry.metadata != {
+                "raw_prompt_captured": turn.raw_prompt_captured,
+                "memory_snippets": list(turn.memory_snippets),
+            }
+            or len(entry.tool_calls) != len(turn.tool_calls)
+            or len(entry.tool_results) != len(turn.tool_calls)
+        ):
+            raise RuntimeError("MCP transcript receipt is inconsistent.")
+        actual: list[MCPToolCallProvenance] = []
+        for index, (supplied, call, result) in enumerate(
+            zip(turn.tool_calls, entry.tool_calls, entry.tool_results, strict=True)
+        ):
+            expected_id = supplied.call_id or f"{turn.turn_id}:{index}:{supplied.name}"
+            facts = call.mcp_provenance
+            supplied_facts = supplied.mcp_provenance
+            if (
+                call.id != expected_id
+                or call.name != supplied.name
+                or call.arguments != supplied.arguments
+                or result.tool_call_id != call.id
+                or result.output != supplied.result
+                or (facts is None) != (supplied_facts is None)
+                or result.mcp_provenance != facts
+                or result.error != (facts.failure_code if facts is not None else None)
+            ):
                 raise RuntimeError("MCP transcript receipt is inconsistent.")
-        return MCPTranscriptReceipt(entry.id, actual)
+            if facts is None or supplied_facts is None:
+                continue
+            excluded = {
+                "ingestion_decision", "memory_ingested", "memory_correlation_id",
+                "transcript_correlation_id",
+            }
+            if (
+                facts.transcript_correlation_id != entry.id
+                or facts.model_dump(exclude=excluded)
+                != supplied_facts.model_dump(exclude=excluded)
+            ):
+                raise RuntimeError("MCP transcript receipt is inconsistent.")
+            actual.append(facts)
+        return MCPTranscriptReceipt(entry.id, tuple(actual))
 
     async def record_context_log(self, prompt: str, raw_response: str) -> None:
         self._pending_context_log = (prompt, raw_response)

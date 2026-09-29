@@ -5,6 +5,8 @@
 import uuid
 
 import pytest
+from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance, MCPToolMetadata
+from friday_memory.ingestion.mcp import MCPMemoryIngester
 from friday_memory.lifecycle.stages import MemoryStage, PromotionState
 from friday_memory.retrieval.collection_manager import (
     CollectionConfig,
@@ -337,3 +339,32 @@ def test_mcp_pending_or_malformed_cannot_bypass_collection_eligibility():
                      {"mcp_state": "pending"}, {"mcp_provenance": "{}"}):
         assert not CollectionManager._is_retrieval_eligible({"id": "bad", "text": "raw", "metadata": metadata})
     assert CollectionManager._is_retrieval_eligible({"id": "old", "text": "native", "metadata": {}})
+
+
+@pytest.mark.asyncio
+async def test_owned_mcp_lookup_excludes_native_and_reuses_actual_call(tmp_path):
+    manager = CollectionManager(
+        MockEmbeddingFunction(), config=unique_config(), path=str(tmp_path / "vectors")
+    )
+    await manager.add_to_short_term(["native"], [{"type": "insight"}], ["native-id"])
+    assert await manager.find_mcp_snapshot("entry", "call") is None
+    text = '<untrusted_content source="mcp">\nresult\n</untrusted_content>'
+    facts = MCPToolCallProvenance(
+        tool=MCPToolMetadata(
+            canonical_name="mcp_peer_read", server_name="peer",
+            original_name="read", transport="stdio", trust_level="local",
+        ),
+        call_id="call", status="succeeded",
+        output_sanitization_state="sanitized",
+        model_result_size_bytes=len(text.encode()),
+    )
+    policy = MCPIngestionPolicy(
+        long_term_memory_enabled=True, opted_in_servers=("peer",)
+    )
+    ingester = MCPMemoryIngester(manager)
+    first = await ingester.prepare(facts, text, "entry", policy)
+    owned = await manager.find_mcp_snapshot("entry", "call")
+    assert owned is not None and owned.snapshot == first.snapshot
+    repeated = await ingester.prepare(facts, text, "entry", policy)
+    assert repeated.snapshot == first.snapshot
+    assert await manager.short_term.count() == 2
