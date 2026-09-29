@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval
+  next_gate: explicitly approve bounded WS-07 telemetry and diagnostics directive, including deferral of Chat health command
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []

@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval
+next_gate: explicitly approve bounded WS-07 telemetry and diagnostics directive, including deferral of Chat health command
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006; WS-07 remains draft
 execution_phase: planning
 validation_state: not_ready
@@ -22,9 +22,11 @@ report and 935-member archive remain byte-exact in
 [lossless evidence](validation/VAL-015-evidence.yaml); historical VAL-014 remains
 unchanged for its earlier candidate.
 
-Next gate: reconcile the draft [WS-07 telemetry/diagnostics directive](directives/ws-07-telemetry-diagnostics-health.md)
-and readiness against accepted current source, including the separate optional
-Friday Chat health-command decision, then obtain bounded maintainer scope approval.
+The [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md) and
+[readiness checkpoint](execution/WS-07-readiness-checkpoint.md) now reconcile
+accepted source into an exact proposed telemetry/diagnostics manifest. The
+first-pass decision proposes deferring a new Friday Chat health command;
+explicit bounded maintainer approval of both scope and deferral is next.
 Phase planning/state not_ready records this non-authorizing preparation. The
 wider initiative remains started/granted/normal/local on the WS-06 branch.
 WS-07/08 implementation, aggregate/pre-merge review and delivery are separate.

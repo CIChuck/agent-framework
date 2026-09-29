@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | explicitly approve bounded WS-07 telemetry and diagnostics directive, including deferral of Chat health command |
 
 ## Completed
 

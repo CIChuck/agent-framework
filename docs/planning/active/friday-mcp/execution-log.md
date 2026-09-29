@@ -1581,3 +1581,22 @@ Phase planning/state not_ready; next reconcile the draft WS-07 telemetry,
 diagnostics and optional health-command directive against accepted current source,
 then obtain separate bounded implementation approval. No WS-07 product edits
 are authorized by WS-06 acceptance.
+
+## 2026-09-29 — WS-07 Planning Reconciled; Approval Pending
+
+After the accepted WS-06 closeout, the controller inspected current Telemetry,
+Runtime, MCP client and Chat source plus the draft WS-07 directive. The
+[readiness checkpoint](execution/WS-07-readiness-checkpoint.md) records accepted
+public diagnostics/registration decisions, the shared tool execution boundary,
+existing optional telemetry, Chat budget/provenance/ingestion facts, and the
+absence of a first-pass need for a new Chat health command. The
+[reconciled directive](directives/ws-07-telemetry-diagnostics-health.md) replaces
+directory-wide draft authority with exact source/test paths, closed redacted
+events, diagnostic reuse, negative tests, checks and stop conditions. It
+proposes deferring a new health command as the explicit MCP-07-04/05 decision.
+
+Board validate/next/show select this planning gate. Phase remains
+planning/not_ready and the directive is unapproved. Next is explicit bounded
+maintainer approval of the directive and command deferral; then a dedicated
+WS-07 branch/start may be recorded. No WS-07 product files, historical review
+evidence, unrelated dirty paths or delivery state changed.

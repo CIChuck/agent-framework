@@ -1,223 +1,123 @@
-# Construction Directive: MCP-WS-07 Telemetry, Diagnostics, And Health Surfaces
+# Construction Directive: MCP-WS-07 Telemetry And Diagnostics
 
-Status: Draft construction directive
-Date: 2026-07-24
-Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
+Status: Reconciled proposal; **not approved for implementation**
+Date: 2026-09-29
+Preparation base: `e98411825c2f2275f43d45762a656e8d7b85a9b0`
 Workstream: `MCP-WS-07`
+Tactical authority: [MCP tactical plan](../tactical-plan.md), tasks `MCP-07-01` through `MCP-07-06`
+Readiness: [WS-07 checkpoint](../execution/WS-07-readiness-checkpoint.md)
 
-## AI Builder Role
+## Objective and first-pass decision
 
-You are the implementation agent for MCP operational visibility. Your job is to add redacted telemetry, structured diagnostics, and any approved health surface needed to understand MCP connection, discovery, registration, execution, budget, and ingestion behavior.
+Make MCP connection, discovery, registration, execution, Chat budget and optional
+ingestion decisions observable through typed, redacted events and public
+diagnostics. Preserve accepted WS-02 through WS-06 ownership, safety and
+storage contracts. This proposal **defers a new Friday Chat health command** in
+this pass (`MCP-07-04/05`): the headless provider already exposes safe discovery,
+diagnostics, lifecycle and registration decisions, while Chat retains the
+provider through `MCPChatRegistry`. A new user command requires a separate
+CLI/output contract. Bounded approval must explicitly accept this deferral or
+request a revised command manifest before product work starts.
 
-## Source Authority And Precedence
+## Exact proposed product manifest
 
-1. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md)
-2. [Friday Framework MCP tactical implementation plan](../tactical-plan.md)
-3. [Friday Framework MCP enhancements build plan](../build-plan.md)
-4. Completed `MCP-WS-02` through `MCP-WS-06`
-5. Current telemetry, runtime diagnostics, and Friday Chat command source
+Only these paths may be modified or created. A necessary change outside this
+list stops implementation for scope reconciliation.
 
-## Implementation Objective
+| Package | Source | Focused tests |
+| --- | --- | --- |
+| Telemetry | `packages/friday-telemetry/src/friday_telemetry/models/mcp.py` (new), `packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py` (new), `packages/friday-telemetry/src/friday_telemetry/__init__.py` | `packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py` (new) |
+| Runtime | `packages/friday-runtime/src/friday_runtime/mcp_loading.py`, `packages/friday-runtime/src/friday_runtime/di.py` | `packages/friday-runtime/tests_runtime/test_mcp_loading.py`, `packages/friday-runtime/tests_runtime/test_mcp_registration.py` |
+| MCP client | `packages/friday-mcp/src/friday_mcp/client/adapter.py` | `packages/friday-mcp/tests_mcp/client/test_adapter.py`, `packages/friday-mcp/tests_mcp/client/test_execution.py` |
+| Chat | `packages/friday-chat/src/friday_chat/runtime.py`, `packages/friday-chat/src/friday_chat/tools/mcp.py`, `packages/friday-chat/src/friday_chat/turns/processor.py`, `packages/friday-chat/src/friday_chat/memory_mcp.py` | `packages/friday-chat/tests_chat/test_mcp_chat_bridge.py`, `packages/friday-chat/tests_chat/test_mcp_execution_security.py`, `packages/friday-chat/tests_chat/test_mcp_turn_budget.py`, `packages/friday-chat/tests_chat/test_mcp_memory.py` |
 
-Expose MCP operational state without leaking secrets or unsafe payloads. Operators should be able to determine which servers connected, which tools registered or skipped, why budget/security decisions happened, and what happened during tool execution and optional ingestion.
+An implementation report and WS-07 planning/validation artifacts may be added
+under this initiative packet. No source or test directory wildcard is granted.
+Core models, configuration, dependency metadata, transcript stores, memory
+storage/retrieval, Chat commands and MCP transports are outside this manifest.
 
-## Allowed Scope
+## Contract and implementation order
 
-You may edit:
+1. **`MCP-07-06/02`: schema and redaction first.** Define closed, immutable
+   typed MCP event/diagnostic payloads with fixed event and reason enums,
+   nonnegative counts, bounded safe identifiers and explicit serialization to
+   the existing `TelemetryInterface.capture_event` shape. Only allowlisted
+   fields may serialize. Exclude arbitrary exceptions, catalog entries,
+   descriptions, schemas, arguments, results, environment, headers, command/cwd,
+   full config, transcript text and memory content. If an operator identifier
+   cannot safely cross an exporter, emit a stable bounded opaque identifier and
+   retain its mapping in existing local diagnostics.
+2. **`MCP-07-01`: lifecycle.** Instrument `RuntimeMCPProvider` for connection
+   start/finish/failure, list-tools start/finish/failure, per-tool skip/register
+   decisions and disconnect. Emit final counts/reasons from accepted
+   `discovery`, `diagnostics`, `lifecycle` and `registration_decisions`,
+   including failed startup and cleanup. Do not infer a successful disconnect
+   when cleanup fails. DI passes its existing optional telemetry instance;
+   disabled telemetry cannot become required for MCP operation.
+3. **`MCP-07-01`: calls.** A narrow optional observer on
+   `MCPToolWrapper.execute` covers headless and Chat calls without adding a
+   telemetry dependency to `friday-mcp`. Runtime attaches it to admitted
+   wrappers. It receives safe canonical metadata and categorical
+   start/finish/failure outcomes. Chat may add final checked,
+   truncated/blocked status after output policy, without duplicate RPCs or
+   raw result/arguments. Observer failure cannot alter tool-call behavior.
+4. **`MCP-07-03`: diagnostics.** Reuse public typed runtime discovery,
+   diagnostics, lifecycle and registration decisions, including REM-005's
+   bounded both-source collision evidence and REM-008's retained retry history.
+   Add a typed operational snapshot only where existing values cannot express
+   optional/required failures, cap skips, registered counts or disconnect
+   outcome. Chat emits/retains categorical budget rejections, output truncation
+   and ingestion decisions from existing `ToolBudgetSnapshot`,
+   `MCPToolCallProvenance` and memory preparation/receipt results. No log-text
+   parsing, raw storage or private client introspection.
+5. **`MCP-07-04/05`: no command in this pass.** Keep public Python inspection
+   and injectable telemetry testable. Record the command decision for WS-08.
+   Do not edit `commands/registry.py`, CLI or app command wiring under this
+   directive. A command requires a revised exact manifest and separate approval.
 
-- `packages/friday-telemetry/src/friday_telemetry/`
-- `packages/friday-telemetry/tests_telemetry/`
-- `packages/friday-runtime/src/friday_runtime/`
-- `packages/friday-runtime/tests_runtime/`
-- `packages/friday-chat/src/friday_chat/`
-- `packages/friday-chat/tests_chat/`
-- `packages/friday-mcp/src/friday_mcp/client/`
-- `packages/friday-mcp/tests_mcp/`
+Event cardinality stays bounded: no payload text, raw call ID or per-token
+events. Retried startup, failed cleanup, cancellation and memory receipt reuse
+must have truthful, nonduplicative outcomes. Existing telemetry opt-in and
+default-disabled direct MCP memory ingestion remain intact. No event may imply
+published memory when an immutable receipt exists but its record remains pending.
 
-Only add Friday Chat command behavior if the health command is approved for the first implementation pass.
+## Acceptance and negative checks
 
-## Explicit Non-Goals
+- Working, optional-failing and required-failing synthetic peers yield ordered
+  connection/list-tools/registration/disconnect events and typed states;
+  failed cleanup/retry preserve accepted ownership and last-attempt evidence.
+- Discovery/schema caps, filters, collisions and native-name collisions have
+  accurate bounded reasons/counts. Both collision contenders remain typed and
+  inspectable; telemetry does not dump untrusted source strings.
+- Headless and Chat tool success, timeout, failure, sanitizer block and
+  truncation distinguish RPC completion from post-processing. Chat budget
+  rejection and optional ingestion denied/allowed/pending/published outcomes
+  are represented without changing execution or storage semantics.
+- Planted sentinels in arguments, output, schema, description, exception, env,
+  headers, command/cwd and memory text are absent from event names, payloads,
+  serialized diagnostics and WS-07-added logs. Test debug and production
+  exporter input boundaries.
+- Telemetry disabled, observer error and unrelated native tools preserve
+  behavior. Existing constructor compatibility and import/install package
+  boundaries hold without a new dependency.
 
-- Do not add telemetry endpoints or backend services.
-- Do not expose raw tool schemas.
-- Do not expose raw tool outputs.
-- Do not expose raw arguments, env values, headers, or secrets.
-- Do not implement MCP live refresh.
-- Do not implement resources, prompts, server exposure, or external config includes.
-- Do not change config shape except for diagnostics toggles already planned.
-- Do not enable memory ingestion.
+## Verification and handoff
 
-## Required Workstreams
+Run focused new tests, then package suites for Telemetry, Runtime, MCP and Chat
+and relevant top-level integration tests. Run Ruff on affected packages,
+meaningful affected-source mypy under the installed Python target, board
+validate/next/show/render, documentation/link validation and exact
+diff/whitespace checks. Report pre-existing broad-suite/default-mypy/offline
+resolver failures separately; do not call a nonzero command passing. Prove
+imports and representative events from isolated built distributions if package
+boundaries change. The builder records commands/results, manifest, changed-path
+hashes, candidate/base and unrelated-path fingerprints in a stable report,
+then requests a fresh-context, read-only complete WS-07 aggregate review.
+The validator cannot implement fixes.
 
-### `MCP-07-01`: Telemetry Events
-
-Add redacted telemetry event contracts and emission points for:
-
-- server connection start and finish;
-- server connection failure;
-- list-tools start and finish;
-- list-tools failure;
-- skipped tool;
-- registered tool;
-- tool call start;
-- tool call finish;
-- tool call failure;
-- ingestion decision;
-- server disconnect.
-
-Events must use typed payloads where local telemetry conventions support them.
-
-### `MCP-07-02`: Telemetry Redaction
-
-Prove telemetry excludes:
-
-- secrets;
-- raw arguments;
-- raw outputs;
-- raw environment values;
-- headers;
-- unsanitized schemas;
-- full local config payloads.
-
-### `MCP-07-03`: Runtime Diagnostics
-
-Add diagnostics for:
-
-- optional server failures;
-- required server failures;
-- discovery caps;
-- schema caps;
-- skipped tools;
-- registered tool counts;
-- normalized-name collisions;
-- budget skips;
-- result truncation;
-- ingestion allowed or denied.
-
-Diagnostics must be structured and redacted.
-
-### `MCP-07-04`: Decide Friday Chat Health Command
-
-Before adding a command, confirm whether it is authorized for the first implementation pass. If not authorized, document that structured diagnostics are available through runtime state and defer CLI exposure.
-
-### `MCP-07-05`: Health Command If Approved
-
-If approved, expose a Friday Chat health command that shows:
-
-- server state;
-- registered MCP tool count;
-- skipped MCP tool count;
-- optional failure summaries;
-- required failure summaries from failed startup where available;
-- budget skip summaries;
-- ingestion policy summary.
-
-The command must not display raw schemas, raw outputs, secrets, env values, or headers.
-
-### `MCP-07-06`: Structured Diagnostic Models
-
-Add typed diagnostic models suitable for CLI display, tests, and future web display. Do not make callers parse log text.
-
-## Migration And Removal Instructions
-
-Preserve telemetry opt-in behavior. Do not introduce required telemetry for MCP operation.
-
-If diagnostics replace existing log-only behavior, keep logs useful but make structured diagnostics the testable authority.
-
-## Security And Governance Requirements
-
-- Redaction is mandatory.
-- No raw secrets or unsafe payloads in telemetry, diagnostics, command output, or logs.
-- Treat diagnostics as user-visible.
-- Use explicit exceptions for diagnostic invariant failures.
-- Do not add broad mypy suppressions.
-- Preserve telemetry opt-in semantics.
-
-## Testing Requirements
-
-Add tests for:
-
-- telemetry event shape;
-- telemetry redaction;
-- server connection event sequence;
-- list-tools event sequence;
-- skipped tool events;
-- registered tool events;
-- tool call success events;
-- tool call failure events;
-- ingestion decision events;
-- optional server failure diagnostics;
-- required server failure diagnostics;
-- collision diagnostics;
-- cap skip diagnostics;
-- budget skip diagnostics;
-- health command output if implemented.
-
-Negative tests must prove secrets, headers, raw env values, raw arguments, raw outputs, and unsanitized schemas are not emitted.
-
-## Verification Commands
-
-Run:
-
-```bash
-uv run pytest packages/friday-telemetry/tests_telemetry
-uv run pytest packages/friday-runtime/tests_runtime
-uv run pytest packages/friday-chat/tests_chat
-uv run pytest packages/friday-mcp/tests_mcp
-uv run ruff check packages/friday-telemetry packages/friday-runtime packages/friday-chat packages/friday-mcp
-uv run mypy packages/friday-telemetry packages/friday-runtime packages/friday-chat packages/friday-mcp
-```
-
-If health command behavior affects top-level flows, also run:
-
-```bash
-uv run pytest tests/integration
-```
-
-## CLI, API, And UAT Requirements
-
-CLI:
-
-- Health command is optional and must be explicitly approved before implementation.
-- If implemented, command output must be concise, redacted, and test-covered.
-
-API:
-
-- Runtime diagnostics should be structured.
-- Telemetry payloads should be typed or schema-stable.
-
-UAT:
-
-- Start with one working server and inspect diagnostics.
-- Start with one optional failing server and inspect diagnostics.
-- Trigger a schema cap skip and inspect diagnostics.
-- Execute an MCP tool and verify success/failure events are redacted.
-- If implemented, run the health command and verify no secrets or raw outputs appear.
-
-## Documentation Close-Out
-
-Record operational diagnostics and any health command for `MCP-WS-08`. Do not update the final end-user guide unless this phase is intentionally paired with docs.
-
-## Reporting Requirements
-
-Report:
-
-- files changed;
-- telemetry events added;
-- diagnostics models added;
-- redaction behavior;
-- health command decision;
-- command behavior if implemented;
-- verification commands and results;
-- skipped checks;
-- follow-up required for documentation.
-
-## Stop Conditions
-
-Stop if:
-
-- prior runtime, registry, chat, provenance, and memory phases are incomplete;
-- telemetry cannot be redacted with tests;
-- diagnostics require exposing raw schemas or outputs;
-- health command authorization is unclear;
-- implementation requires new telemetry infrastructure, external services, resources, prompts, live refresh, server exposure, or external config includes.
+Stop on an out-of-manifest edit, unclear redaction, unsafe identifier,
+unbounded cardinality, telemetry required for correctness, new external
+telemetry service, changed memory/receipt semantics, or a request to add the
+Chat health command. No live provider, paid endpoint, merge, push, release,
+historical snapshot cleanup, MCP live refresh, resources/prompts, server
+exposure or external config include is authorized here.
