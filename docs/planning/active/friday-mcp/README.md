@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: dispatch fresh read-only VAL-019 complete feature-branch aggregate review
+next_gate: review and approve bounded REM-010 aggregate typing remediation and separate remediator
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
-execution_phase: validation
-validation_state: pending
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -65,6 +65,13 @@ The [aggregate readiness checkpoint](execution/MCP-aggregate-readiness-checkpoin
 [VAL-019 request](validation/VAL-019-request.yaml) are prepared for a fresh,
 read-only review of the entire first-pass feature branch. No aggregate verdict
 or initiative acceptance exists yet.
+Fresh read-only [VAL-019](validation/VAL-019-report.md) returned
+**CHANGES_REQUESTED** for one aggregate typing finding in the Memory boundary.
+Its [complete evidence](validation/VAL-019-evidence.yaml) is preserved.
+The [draft REM-010 directive](remediation/REM-010-directive.md) limits the
+correction to five Memory source/test paths and an exact joint typing recheck.
+The next gate is explicit maintainer approval of that remediation and separate
+remediator; WS-00 through WS-08 acceptance remains intact.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

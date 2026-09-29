@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh read-only VAL-019 complete feature-branch aggregate review
+  next_gate: review and approve bounded REM-010 aggregate typing remediation and separate remediator
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
@@ -97,6 +97,8 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-018-report.md
   - docs/planning/active/friday-mcp/validation/VAL-018-evidence.yaml
   - docs/planning/active/friday-mcp/execution/WS-08-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-019-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-019-evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2

@@ -1778,3 +1778,25 @@ cross-workstream criteria, current hashes and independent read-only checks.
 Phase validation/state pending; next dispatch a new fresh-context validator.
 No aggregate result, initiative completion/acceptance, WS-09 approval or
 delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-019 Aggregate CHANGES_REQUESTED
+
+Fresh `/root/mcp_val019_aggregate` used `fork_turns: none` and reviewed the
+complete first-pass `20c70dd..847d410` feature-branch diff, not just nine
+work-unit verdicts. The byte-exact [report](validation/VAL-019-report.md)
+returns CHANGES_REQUESTED for Medium F-001: the mandatory joint Python-3.13
+mypy command exits 1 with five errors visible in the changed Memory collection
+manager and four inherited errors in unchanged Memory LLM completion. Current
+Core/MCP/Runtime/Agent, Memory/Transcript/Telemetry, Ruff, lock, docs, board,
+diff and local stdio/opt-in memory probes passed; broad Chat and integration
+remain nonzero for independently reproduced baseline classes. All 36 pinned
+authorities, 75 product hashes, 287 exact paths and five unrelated groups
+held at review start/close. Complete [evidence](validation/VAL-019-evidence.yaml)
+is archived byte-exact.
+
+[REM-010](remediation/REM-010-directive.md) drafts one bounded correction in
+five Memory source/test paths and a fresh joint typing/aggregate review gate.
+Phase remediation/state changes_requested; next explicit maintainer approval
+of the directive and separate remediator. Historical VAL-019 remains valid for
+`847d410`; WS-00 through WS-08 acceptance remains intact. No product edit,
+initiative completion, WS-09 approval or delivery is inferred.

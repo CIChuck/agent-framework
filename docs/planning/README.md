@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | dispatch fresh read-only VAL-019 complete feature-branch aggregate review |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | review and approve bounded REM-010 aggregate typing remediation and separate remediator |
 
 ## Completed
 

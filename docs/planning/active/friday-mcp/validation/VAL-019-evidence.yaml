@@ -1,0 +1,26 @@
+{
+  "id": "VAL-019-evidence",
+  "date": "2026-09-29",
+  "reviewer": "/root/mcp_val019_aggregate",
+  "fresh_context": true,
+  "fork_turns": "none",
+  "governed_workspace_read_only": true,
+  "baseline": "20c70dd70622e5f1b80029076a789fb58c748fb5",
+  "candidate": "847d410934150865395bdcf58beb2a9342cd19f8",
+  "overall_outcome": "CHANGES_REQUESTED",
+  "findings": [
+    "VAL-019-F-001"
+  ],
+  "report": "docs/planning/active/friday-mcp/validation/VAL-019-report.md",
+  "report_sha256": "c0ae1ba155b9abba61e050c518da606e3e5e4b90521ce1bf1d3c65c25f864144",
+  "report_bytes": 13311,
+  "archive": "docs/planning/active/friday-mcp/validation/VAL-019-evidence.tar.gz",
+  "archive_sha256": "a8b3727b33162d622d3ccebfa3e12c411bc440660c31798637bb6a3240790dd5",
+  "archive_bytes": 13266,
+  "archive_members": 23,
+  "artifact_manifest": "docs/planning/active/friday-mcp/validation/VAL-019-artifact-manifest.json",
+  "artifact_manifest_sha256": "20c7b78cb04f08a8dcf14cbfdbf4ced88394346827de63ab71c37c9f9d00fd08",
+  "preservation": "Report copied byte-exact; scratch member hashes verified; five unrelated fingerprints unchanged",
+  "acceptance": "aggregate failed; initiative completion and acceptance not eligible",
+  "delivery": "local only"
+}

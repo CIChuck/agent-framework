@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-08 accepted; complete feature-branch aggregate review next
+Status: WS-00 through WS-08 accepted; VAL-019 aggregate typing finding awaits bounded REM-010 approval
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -646,3 +646,18 @@ fingerprints. [VAL-019](validation/VAL-019-request.yaml) pins 36 authorities,
 ten interaction criteria and read-only checks for the complete first-pass
 aggregate. Phase validation/state pending; next dispatch a new fresh-context
 validator. WS-09 and delivery remain outside this review.
+
+## 2026-09-29 — VAL-019 Aggregate CHANGES_REQUESTED; REM-010 Drafted
+
+Fresh `/root/mcp_val019_aggregate`, `fork_turns: none`, reviewed the complete
+`20c70dd..847d410` feature-branch aggregate read-only and returned
+[CHANGES_REQUESTED](validation/VAL-019-report.md). Medium F-001 is a mandatory
+joint Python-3.13 mypy failure: five errors in changed Memory collection
+manager, including new optional call-ID narrowing, and four separately
+inherited errors in unchanged Memory LLM completion. All other required checks
+and local behavior probes passed or reproduced disclosed inherited nonzero
+Chat/integration classes. The [complete evidence](validation/VAL-019-evidence.yaml)
+is archived byte-exact. [REM-010](remediation/REM-010-directive.md) drafts one
+bounded five-path Memory correction. Phase remediation/state changes_requested;
+next is explicit maintainer approval of its scope and separate remediator.
+No product edit or initiative completion is authorized by this review.
