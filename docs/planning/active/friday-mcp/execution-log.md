@@ -1521,3 +1521,18 @@ its status is superseded for decisions on this changed candidate only. Phase
 validation/state pending; board stays started/granted/normal/local and names
 maintainer validation as the next gate. No validator dispatched, VERIFIED,
 acceptance, later scope or delivery claimed.
+
+## 2026-09-29 — Maintainer Requests Fresh VAL-015 Reviewer
+
+After the frozen REM-008 handoff, the maintainer explicitly asked "Can you
+dispatch a sub-agent to verify this?" This replaces the earlier personal-review
+preference for this candidate; it does not predecide a verdict or acceptance.
+Pinned VAL-015 requests a fresh-context, read-only remediation-delta and complete
+original WS-06 aggregate review of candidate
+820e252c496712264ebf767404c1e054f025d53a. It references the existing
+byte-pinned 41-authority, eight-report, 24-historical, five-builder, 985-product,
+five-unrelated-fingerprint manifest; five remediation and ten original criteria;
+16 required commands, independent public/fault/package/base and freeze probes.
+This preparation changes only process metadata, not reviewed product or authority.
+Phase validation/state pending; next is actual dispatch. No verdict, WS-06
+acceptance, later workstream or delivery is inferred.

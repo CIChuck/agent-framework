@@ -6,7 +6,7 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: await maintainer validation of frozen REM-008 candidate 820e252 and full WS-06 aggregate
+next_gate: dispatch fresh VAL-015 read-only review of frozen REM-008 delta and full WS-06 aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
 execution_phase: validation
 validation_state: pending
@@ -25,9 +25,11 @@ The three nonzero broad command classes are independently reproduced approved-ba
 debt. Lossless [builder evidence](execution/REM-008-builder-evidence.yaml) retains
 all original scripts/logs/observations/wheels and failed attempts.
 
-The maintainer instructed "Fix the retry behavior. i will Validate afterwards."
-Phase validation/state pending records that reserved next gate. No validator was
-dispatched, no VERIFIED or WS-06 acceptance is claimed. Historical fresh
+The maintainer originally reserved validation, then explicitly requested a
+separate sub-agent: "Can you dispatch a sub-agent to verify this?" The pinned
+[fresh VAL-015 request](validation/VAL-015-request.yaml) covers the exact REM-008
+delta and full original WS-06 aggregate. Phase validation/state pending now
+records the dispatch gate. No reviewer verdict or WS-06 acceptance is claimed. Historical fresh
 [VAL-014](validation/VAL-014-report.md) remains byte-exact CHANGES_REQUESTED for
 its old candidate `910508c`; its [status](validation/VAL-014-status.yaml) marks
 only the decision superseded for this changed candidate. Controller confirms

@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-05 accepted; REM-008 candidate frozen; WS-06 maintainer validation pending
+Status: WS-00 through WS-05 accepted; REM-008 candidate frozen; fresh VAL-015 review requested
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws06-memory`
@@ -37,9 +37,10 @@ i will Validate afterwards." The exact nine-path correction is frozen at
 `820e252c496712264ebf767404c1e054f025d53a` with complete builder checks,
 [handoff](execution/REM-008-maintainer-handoff.md) and
 [pinned request](validation/REM-008-maintainer-validation-request.yaml).
-Current phase validation/state pending; next is the maintainer's reserved
-validation of remediation delta and full original WS-06 aggregate. No validator
-was dispatched, and no VERIFIED/acceptance is inferred.
+Current phase validation/state pending; the maintainer has now requested a
+separate reviewer for the remediation delta and original WS-06 aggregate. The
+[pinned VAL-015 request](validation/VAL-015-request.yaml) is prepared for fresh
+read-only dispatch. No reviewer verdict or acceptance is inferred.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-07 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -93,7 +94,7 @@ is authorized by the REM-004 approval.
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
-| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Exact nine-path REM-008 implemented at 820e252; complete remediation-delta/original-aggregate handoff awaits maintainer validation. No VERIFIED/acceptance. |
+| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Exact nine-path REM-008 implemented at 820e252; fresh VAL-015 delta/full-aggregate review requested by maintainer. No VERIFIED/acceptance. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Requires relevant lifecycle/registry/execution/budget readiness and separate explicit WS-07 approval; not yet approved. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
@@ -475,3 +476,18 @@ its status is superseded for decisions on this changed candidate only. Phase
 validation/state pending; board stays started/granted/normal/local and names
 maintainer validation as the next gate. No validator dispatched, VERIFIED,
 acceptance, later scope or delivery claimed.
+
+## 2026-09-29 — Maintainer Requests Fresh VAL-015 Reviewer
+
+After the frozen REM-008 handoff, the maintainer explicitly asked "Can you
+dispatch a sub-agent to verify this?" This replaces the earlier personal-review
+preference for this candidate; it does not predecide a verdict or acceptance.
+Pinned VAL-015 requests a fresh-context, read-only remediation-delta and complete
+original WS-06 aggregate review of candidate
+820e252c496712264ebf767404c1e054f025d53a. It references the existing
+byte-pinned 41-authority, eight-report, 24-historical, five-builder, 985-product,
+five-unrelated-fingerprint manifest; five remediation and ten original criteria;
+16 required commands, independent public/fault/package/base and freeze probes.
+This preparation changes only process metadata, not reviewed product or authority.
+Phase validation/state pending; next is actual dispatch. No verdict, WS-06
+acceptance, later workstream or delivery is inferred.
