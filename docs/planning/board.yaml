@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer acceptance of verified WS-08 candidate and complete VAL-018 review
+  next_gate: prepare fresh read-only aggregate review of WS-00 through WS-08 feature branch
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []

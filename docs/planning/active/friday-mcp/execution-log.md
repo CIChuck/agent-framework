@@ -1755,3 +1755,14 @@ Chat remains nonzero for the recorded PTY/localhost baseline class. The
 [WS-08 closeout proposal](execution/WS-08-closeout.md) makes VERIFIED evidence
 reviewable for explicit maintainer acceptance. Phase closeout/state verified;
 no acceptance, initiative completion or delivery is inferred.
+
+## 2026-09-29 — Maintainer Accepts Verified WS-08
+
+After the complete fresh [VAL-018](validation/VAL-018-report.md), its
+independent closeout audit and the [WS-08 proposal](execution/WS-08-closeout.md)
+were presented, the maintainer explicitly said "accepted ws-08, continue".
+The closeout records acceptance of corrected candidate `08141407` and its
+complete remediation-delta/original work-unit review. WS-00 through WS-08
+are accepted work units. The initiative remains started/granted/normal/local;
+phase planning/state not_ready. Next prepare a fresh read-only complete
+feature-branch aggregate review. Optional WS-09 and delivery are not inferred.

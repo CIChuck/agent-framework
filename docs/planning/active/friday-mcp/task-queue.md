@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-07 accepted; WS-08 VERIFIED, explicit acceptance pending
+Status: WS-00 through WS-08 accepted; complete feature-branch aggregate review next
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -624,3 +624,14 @@ and [WS-08 closeout proposal](execution/WS-08-closeout.md) are recorded.
 Phase closeout/state verified; next is explicit maintainer acceptance of the
 corrected candidate and full review. Initiative-level review, optional WS-09
 and delivery remain separate.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-08
+
+The maintainer said "accepted ws-08, continue" after complete fresh
+[VAL-018](validation/VAL-018-report.md), its independent closeout audit and the
+[WS-08 closeout proposal](execution/WS-08-closeout.md) were presented. The
+closeout records acceptance of corrected candidate `08141407` and its complete
+delta/original work-unit review. WS-00 through WS-08 are accepted. Phase
+planning/state not_ready; next prepare a fresh read-only aggregate review of
+the full MCP feature branch. Optional WS-09, initiative completion and delivery
+are separate gates.

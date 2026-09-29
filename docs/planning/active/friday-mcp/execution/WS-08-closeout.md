@@ -1,13 +1,16 @@
 # MCP-WS-08 Work-Unit Closeout Proposal
 
 - Date: 2026-09-29
-- Status: Independently VERIFIED; explicit maintainer acceptance pending
+- Status: Independently VERIFIED and explicitly accepted
 - Initiative: `friday-mcp`
 - Work unit: `MCP-WS-08`
 - Branch: `feature/friday-mcp-ws08-docs`
 - Original base: `d9eb81d6e67bafc71346e142c1d1fd0c61ced6df`
 - Corrected candidate: `08141407f7a7c3ca37174c8950bf552180df47c8`
 - Delivery: Local
+- Accepted by: repository maintainer
+- Accepted at: 2026-09-29
+- Acceptance evidence: explicit "accepted ws-08, continue" after the complete VAL-018 report and independently audited closeout proposal were presented
 
 Fresh `/root/mcp_ws08_val018`, dispatched with `fork_turns: none`, returned
 **VERIFIED** with no findings for the exact REM-009 documentation correction
@@ -43,7 +46,10 @@ network download; its `UV_NO_SYNC=true` rerun passed 375 Markdown files. No
 live provider, external network UAT, paid endpoint, credential, merge, push
 or release was exercised.
 
-The maintainer's explicit acceptance is the next work-unit gate. A VERIFIED
-review does not itself accept WS-08. The wider initiative remains
-`started`/`granted`/`normal` with local delivery. Initiative aggregate review,
-optional WS-09, and any delivery action require separate authority.
+The maintainer explicitly accepted this verified WS-08 candidate and complete
+VAL-018 result with "accepted ws-08, continue" on 2026-09-29 after the
+independently audited closeout proposal was presented. WS-00 through WS-08
+are independently verified and explicitly accepted work units. The wider
+initiative remains `started`/`granted`/`normal` with local delivery. The next
+gate is a fresh aggregate review of the complete feature-branch diff;
+optional WS-09 and any delivery action require separate authority.
