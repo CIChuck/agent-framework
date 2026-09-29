@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-05 accepted; WS-06 VAL-014 changes requested; REM-008 approved and started
+Status: WS-00 through WS-05 accepted; REM-008 candidate frozen; WS-06 maintainer validation pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws06-memory`
@@ -29,17 +29,17 @@ recorded in its byte-exact [evidence](validation/VAL-013-evidence.yaml).
 
 The maintainer explicitly accepted the verified WS-05 candidate and complete
 VAL-013 closeout with "accepted" on 2026-09-28; the [closeout](execution/WS-05-closeout.md)
-records the decision. WS-00 through WS-05 are accepted work units. WS-06
-[reconciliation/readiness](execution/WS-06-readiness-checkpoint.md) is complete.
-Maintainer explicitly approved its 18-path/seven-task/ten-criterion scope with
-"approved - proceed with speed". The resulting candidate `910508c` received complete
-fresh [VAL-014](validation/VAL-014-report.md): CHANGES_REQUESTED, one medium owned-retry
-finding. The report and 870 original artifacts are archived byte-exact. Current phase
-remediation/state changes_requested; the maintainer approved exact nine-path
-[REM-008](remediation/REM-008-directive.md) and a separate remediator with
-"Fix the retry behavior. i will Validate afterwards." Execute that bounded
-correction, freeze a candidate and hand it to the maintainer. Original
-VAL-014 candidate/authority/evidence remain unchanged.
+records the decision. WS-00 through WS-05 are accepted work units. Approved WS-06
+candidate `910508c` received [VAL-014](validation/VAL-014-report.md)
+CHANGES_REQUESTED for one medium owned-retry finding. The maintainer then
+approved [REM-008](remediation/REM-008-directive.md) with "Fix the retry behavior.
+i will Validate afterwards." The exact nine-path correction is frozen at
+`820e252c496712264ebf767404c1e054f025d53a` with complete builder checks,
+[handoff](execution/REM-008-maintainer-handoff.md) and
+[pinned request](validation/REM-008-maintainer-validation-request.yaml).
+Current phase validation/state pending; next is the maintainer's reserved
+validation of remediation delta and full original WS-06 aggregate. No validator
+was dispatched, and no VERIFIED/acceptance is inferred.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-07 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -93,7 +93,7 @@ is authorized by the REM-004 approval.
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
-| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Exact nine-path REM-008 and separate remediator approved; new frozen candidate and full remediation-delta/original-aggregate evidence go to maintainer for validation. |
+| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Exact nine-path REM-008 implemented at 820e252; complete remediation-delta/original-aggregate handoff awaits maintainer validation. No VERIFIED/acceptance. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Requires relevant lifecycle/registry/execution/budget readiness and separate explicit WS-07 approval; not yet approved. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
@@ -452,3 +452,26 @@ Preserve frozen VAL-014 report/authority, unrelated work and outside-scope produ
 After stable candidate, hand exact delta, original WS-06 aggregate, complete
 checks and preservation to the maintainer for their validation; no validation
 agent is dispatched by this instruction. No acceptance/later scope/delivery.
+
+## 2026-09-29 — REM-008 Candidate Frozen For Maintainer Validation
+
+Separate remediator /root/mcp_ws06_rem008 completed only four approved sources,
+four tests and the new implementation report. Final candidate
+820e252c496712264ebf767404c1e054f025d53a; source/test commit adf59d11d1704355f84ec30e1d7a8959f226c355;
+remediation base 486f3cf585799cc46bc8a6c4f6cf4925734f7188, original WS-06
+base 99bde5148ee21f47d4734d2a026fb198a3d19cbd. Both frozen original
+retry reproducers now exit 0, with one committed memory record, one immutable
+transcript entry, no extra retry embedding or append and no pending task. Fault,
+conflict, concurrent, public/isolated distribution proofs and all 16 required
+commands are recorded in the implementation report and the 1,983-member lossless
+builder archive (SHA256 bac6f7861e0302ec3598fc702b44614ee85b5f25869e06b2dbfb6efeac207389).
+Focused170/Ruff/nine-source meaningful typing pass; three broad nonzero command
+classes reproduce against the approved base. Final original and remediation
+diff whitespace checks pass. Controller separately confirms 68 historical frozen
+rows, 977 outside-scope products and all five unrelated fingerprints unchanged.
+The pinned maintainer validation request/manifests and concise handoff name exact
+inputs, criteria, checks and evidence. Historical VAL-014 remains byte-exact;
+its status is superseded for decisions on this changed candidate only. Phase
+validation/state pending; board stays started/granted/normal/local and names
+maintainer validation as the next gate. No validator dispatched, VERIFIED,
+acceptance, later scope or delivery claimed.

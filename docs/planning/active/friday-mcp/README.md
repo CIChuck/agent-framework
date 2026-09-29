@@ -6,34 +6,34 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: execute approved REM-008 owned-retry correction; hand frozen candidate to maintainer for validation
+next_gate: await maintainer validation of frozen REM-008 candidate 820e252 and full WS-06 aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
-Current checkpoint: fresh read-only [VAL-014](validation/VAL-014-report.md) returns
-**CHANGES_REQUESTED** for frozen WS-06 candidate `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`.
-One medium finding, VAL014-F01, violates owned public retry behavior: the second
-persistence creates a pending UUID and fails the duplicate immutable append.
-All seven tasks/ten criteria/16 required commands and independent public/package/
-base/freeze evidence are complete; no additional candidate finding. The complete
-report and all 870 original artifacts are archived byte-exact in
-[lossless evidence](validation/VAL-014-evidence.yaml).
+Current checkpoint: approved [REM-008](remediation/REM-008-directive.md) is
+implemented in frozen candidate `820e252c496712264ebf767404c1e054f025d53a`.
+The [maintainer handoff](execution/REM-008-maintainer-handoff.md),
+[pinned validation request](validation/REM-008-maintainer-validation-request.yaml)
+and [implementation report](execution/REM-008-implementation-report.md) bind the
+exact nine-path correction, original WS-06 aggregate, seven tasks/ten original
+criteria/five remediation criteria, checks, source/builder evidence and preserved
+inputs. Both original public retry reproducers now exit 0 in checkout and isolated
+built distributions; 170 focused tests, broad Ruff and meaningful typing pass.
+The three nonzero broad command classes are independently reproduced approved-base
+debt. Lossless [builder evidence](execution/REM-008-builder-evidence.yaml) retains
+all original scripts/logs/observations/wheels and failed attempts.
 
-The approved [REM-008 directive](remediation/REM-008-directive.md) converts that
-finding once into exactly nine implementation/report paths, five criteria,
-public retry/partial-failure/conflict/concurrency regressions. The maintainer
-explicitly said "Fix the retry behavior. i will Validate afterwards." This
-approves the exact correction and separate remediator, and reserves subsequent
-validation. Next gate: execute the approved correction, freeze a new candidate,
-and hand it to the maintainer. Phase remediation/state changes_requested
-records the open finding; execution starts before remediator dispatch. Product,
-40 authorities, six candidate reports, two builder artifacts, 19 historical inputs,
-985 product bytes and all five unrelated fingerprints remain unchanged.
-The reviewed [implementation report](execution/WS-06-implementation-report.md) and
-original request stay historical and byte-exact. WS-06 is unaccepted; accepted
-WS-00 through WS-05, later-scope gates and local-only delivery remain intact.
+The maintainer instructed "Fix the retry behavior. i will Validate afterwards."
+Phase validation/state pending records that reserved next gate. No validator was
+dispatched, no VERIFIED or WS-06 acceptance is claimed. Historical fresh
+[VAL-014](validation/VAL-014-report.md) remains byte-exact CHANGES_REQUESTED for
+its old candidate `910508c`; its [status](validation/VAL-014-status.yaml) marks
+only the decision superseded for this changed candidate. Controller confirms
+68 original frozen inputs, 977 outside-scope products and five unrelated
+fingerprints preserved. Accepted WS-00 through WS-05, later scopes and local-only
+delivery remain separate.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)

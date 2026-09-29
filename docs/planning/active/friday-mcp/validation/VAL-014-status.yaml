@@ -3,13 +3,15 @@
   "date": "2026-09-29",
   "reviewed_candidate": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
   "historical_outcome": "CHANGES_REQUESTED",
-  "decision_status": "current_changes_requested",
+  "decision_status": "superseded_for_changed_candidate_only",
   "findings": [
     "VAL014-F01"
   ],
   "proposed_remediation": "REM-008",
   "remediation_approval": "approved by maintainer 2026-09-29 for exact REM-008 with separate remediator",
   "remediation_started": true,
-  "replacement_review": "maintainer reserved validation after new stable candidate; no validation verdict yet",
-  "report_and_evidence": "Original independent report and all evidence bytes retained unchanged; no superseding candidate exists"
+  "replacement_review": "maintainer-reserved validation request at validation/REM-008-maintainer-validation-request.yaml",
+  "report_and_evidence": "Original independent report and all evidence bytes retained unchanged; historical CHANGES_REQUESTED result applies to reviewed candidate 910508c",
+  "new_candidate": "820e252c496712264ebf767404c1e054f025d53a",
+  "remediation_result": "REM-008 implemented and frozen; maintainer validation pending"
 }

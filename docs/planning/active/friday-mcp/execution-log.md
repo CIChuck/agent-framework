@@ -1498,3 +1498,26 @@ Preserve frozen VAL-014 report/authority, unrelated work and outside-scope produ
 After stable candidate, hand exact delta, original WS-06 aggregate, complete
 checks and preservation to the maintainer for their validation; no validation
 agent is dispatched by this instruction. No acceptance/later scope/delivery.
+
+## 2026-09-29 — REM-008 Candidate Frozen For Maintainer Validation
+
+Separate remediator /root/mcp_ws06_rem008 completed only four approved sources,
+four tests and the new implementation report. Final candidate
+820e252c496712264ebf767404c1e054f025d53a; source/test commit adf59d11d1704355f84ec30e1d7a8959f226c355;
+remediation base 486f3cf585799cc46bc8a6c4f6cf4925734f7188, original WS-06
+base 99bde5148ee21f47d4734d2a026fb198a3d19cbd. Both frozen original
+retry reproducers now exit 0, with one committed memory record, one immutable
+transcript entry, no extra retry embedding or append and no pending task. Fault,
+conflict, concurrent, public/isolated distribution proofs and all 16 required
+commands are recorded in the implementation report and the 1,983-member lossless
+builder archive (SHA256 bac6f7861e0302ec3598fc702b44614ee85b5f25869e06b2dbfb6efeac207389).
+Focused170/Ruff/nine-source meaningful typing pass; three broad nonzero command
+classes reproduce against the approved base. Final original and remediation
+diff whitespace checks pass. Controller separately confirms 68 historical frozen
+rows, 977 outside-scope products and all five unrelated fingerprints unchanged.
+The pinned maintainer validation request/manifests and concise handoff name exact
+inputs, criteria, checks and evidence. Historical VAL-014 remains byte-exact;
+its status is superseded for decisions on this changed candidate only. Phase
+validation/state pending; board stays started/granted/normal/local and names
+maintainer validation as the next gate. No validator dispatched, VERIFIED,
+acceptance, later scope or delivery claimed.
