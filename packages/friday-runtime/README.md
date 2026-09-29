@@ -23,7 +23,9 @@ import friday_runtime
 configuration. It is disabled by default. Enabling it connects to explicit
 local stdio servers at startup and registers only tools admitted by the
 provider's selected-mode filters, schema checks and caps. An optional server
-failure remains in typed diagnostics; a required server failure stops startup.
+connection failure remains in typed diagnostics, but a pinned missing
+`include_tools` name still fails registration with `missing_include`; a
+required server failure stops startup.
 The external `config_file` key is reserved and rejected.
 
 `RuntimeKernel.mcp_provider` retains the runtime owner, including after a

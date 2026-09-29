@@ -2156,9 +2156,14 @@ compatibility is `tools.providers.mcp`. Copy the disabled example from the
 Friday Chat runtime template, then use the
 [MCP client guide](17-mcp-client.md) to configure a trusted local stdio peer.
 The provider defaults to `enabled: false` and `mode: selected`; selected mode
-needs explicit canonical `include_tools` names. Server `required: true` makes
-connection/discovery failure fatal at startup, while an optional failure is
-diagnostic. `cwd` must remain under `runtime_paths.workspace_root`.
+can admit canonical names through `include_tools` or a category through
+`include_categories: [mcp]`. Server `required: true` makes
+connection/discovery failure fatal at startup. An optional server failure is
+diagnostic **unless** a pinned `include_tools` name is then missing: that
+separate registration requirement fails startup with `missing_include`.
+Category selection can allow startup to continue without the peer, but admits
+all valid discovered MCP tools when available. `cwd` must remain under
+`runtime_paths.workspace_root`.
 
 `config.limits` controls discovery/registration caps, result bounds and the
 minimum memory retrieval floor. Friday Chat's `tools.context` applies separate

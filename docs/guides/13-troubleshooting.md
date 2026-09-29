@@ -62,9 +62,9 @@ dump of peer output.
 | Symptom | Check and next action |
 | --- | --- |
 | No tools or disabled server | Confirm `tools.providers.mcp.enabled`, `config.servers[].enabled`, startup-only discovery, and that the local stdio command exists. Restart after changing the peer catalog. |
-| Optional server failed | Inspect the lifecycle outcome; fix the command, workspace-confined `cwd`, timeout or peer startup. Other providers can remain usable. |
+| Optional server failed | Inspect the lifecycle outcome; fix the command, workspace-confined `cwd`, timeout or peer startup. Other providers can remain usable **only if** no explicit `include_tools` name from that peer is missing; a missing include stops registration with `missing_include`. |
 | Required server stopped startup | `required: true` makes connection/list-tools failure fatal. Fix the peer or explicitly make it optional; do not mark a disabled server required. |
-| A named tool is missing | Use the normalized canonical name in `include_tools`; check `exclude_tools`, missing include diagnostics, schema/total caps and both contenders in any name collision. |
+| A named tool is missing | Use the normalized canonical name in `include_tools`; check `exclude_tools`, missing include diagnostics, schema/total caps and both contenders in any name collision. For nonfatal optional-peer absence, consider `include_categories: [mcp]` only if admitting all valid discovered MCP tools is acceptable. |
 | Tool appears but Chat skips it | Inspect per-turn selection reasons and `tools.context.max_tools`, `max_mcp_tools`, schema ratio, result reservation and minimum memory floor. |
 | Output is truncated or blocked | Review `config.limits.max_result_bytes` and the peer's result size/content. Friday uses checked output, not raw peer bytes. |
 | MCP memory is absent | Direct ingestion defaults off. Check `config.ingestion` opt-ins and sanitized-content policy, then distinguish pending from published outcomes. A transcript receipt alone does not prove publication. |

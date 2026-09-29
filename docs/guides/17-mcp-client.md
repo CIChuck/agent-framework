@@ -59,8 +59,36 @@ tools:
 
 Set `required: true` on an enabled server only when Friday must fail startup
 if that server cannot connect or list tools. The default `required: false`
-keeps other providers available and records a diagnostic when an optional
-server fails. A required server cannot also be disabled. Discovery is
+records a diagnostic when an optional server fails. The first example also
+pins `include_tools: [mcp_demo_probe]`: that is a separate **required tool**
+selection. If the optional peer is down, registration fails with
+`missing_include` and startup stops despite `required: false`.
+
+If startup must continue when this peer is absent, do not pin one of its tool
+names. For a trusted, small MCP catalog, category selection admits available
+MCP tools without requiring any one name:
+
+```yaml
+tools:
+  providers:
+    mcp:
+      enabled: true
+      mode: selected
+      include_categories: [mcp]
+      config:
+        servers:
+          - name: demo
+            command: python
+            args: [-u, tests/integration/mcp_fake_server.py, good]
+            cwd: .
+            required: false
+            retry_attempts: 0
+```
+
+With this category-based example, a failed optional peer leaves other
+providers available; when it connects, **all** valid discovered MCP tools
+may be registered, so use it only when that broader admission is intended.
+A required server cannot also be disabled. Discovery is
 startup-only; changing a peer's catalog requires a new runtime start. There
 is no live refresh or Chat MCP health command in this pass.
 
