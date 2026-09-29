@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: execute approved REM-010 exact Memory scope with separate remediator and freeze corrected candidate
+  next_gate: dispatch fresh read-only VAL-020 REM-010 delta and complete feature-branch aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []

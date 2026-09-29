@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: execute approved REM-010 exact Memory scope with separate remediator and freeze corrected candidate
+next_gate: dispatch fresh read-only VAL-020 REM-010 delta and complete feature-branch aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 and exact REM-010; Chat health command deferred in WS-07
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: pending
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -73,6 +73,15 @@ correction to five Memory source/test paths and an exact joint typing recheck.
 The maintainer approved that exact remediation and a separate remediator with
 "approved, continue" on 2026-09-29. The next gate is bounded execution and a
 new stable candidate; WS-00 through WS-08 acceptance remains intact.
+Separate REM-010 remediator froze the exact five-path Memory correction at
+`fb371212` and recorded its [implementation report](execution/REM-010-implementation-report.md).
+The exact joint Python-3.13 mypy check passed for 176 source files, as did
+focused and complete affected Memory checks. The corrected
+[aggregate manifest](execution/REM-010-aggregate-manifest.json), historical
+[VAL-019 status](validation/VAL-019-status.yaml), and fresh
+[VAL-020 request](validation/VAL-020-request.yaml) now pin a read-only delta
+plus complete original feature-branch aggregate review. No new independent
+verdict or initiative completion is inferred.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

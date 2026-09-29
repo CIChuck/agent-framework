@@ -1810,3 +1810,21 @@ remediator, the exact joint type-check gate and fresh delta/full aggregate
 review. Phase remediation/state changes_requested; next bounded execution and
 candidate freeze. Accepted WS-00 through WS-08, historical VAL-019, unrelated
 local work and local-only delivery remain intact.
+
+## 2026-09-29 — REM-010 Candidate Frozen; Fresh VAL-020 Prepared
+
+Separate `/root/mcp_rem010_typed_memory`, assigned only the approved
+[REM-010](remediation/REM-010-directive.md), committed the five exact Memory
+source/test paths at `fb371212`; its separate
+[implementation report](execution/REM-010-implementation-report.md) is
+`1233855`. The exact joint Python-3.13 mypy command passed across 176 files,
+focused tests passed 154, complete Memory plus MCP integration passed 722 with
+one skip, and affected Ruff, lock, docs, board and diff checks passed. The
+[corrected aggregate manifest](execution/REM-010-aggregate-manifest.json)
+pins 77 product and 220 planning/evidence changed paths from `20c70dd`.
+Historical VAL-019 remains intact and is
+[superseded only for the changed candidate](validation/VAL-019-status.yaml).
+[VAL-020](validation/VAL-020-request.yaml) requests a new fresh-context,
+read-only five-path delta and complete feature-branch aggregate. Phase
+validation/state pending; no new verdict, initiative completion or delivery
+is inferred.

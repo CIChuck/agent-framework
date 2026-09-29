@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-08 accepted; bounded REM-010 aggregate typing correction approved
+Status: WS-00 through WS-08 accepted; corrected aggregate candidate awaits fresh VAL-020
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -671,3 +671,17 @@ correction and separate remediator. Phase remediation/state changes_requested;
 next execute, run the exact joint mypy and focused/full affected checks, freeze
 a new candidate and request fresh delta plus complete feature-branch aggregate
 review. No initiative acceptance, WS-09 or delivery authority is inferred.
+
+## 2026-09-29 — REM-010 Candidate Frozen; VAL-020 Prepared
+
+The separate remediator committed an exact five-path Memory source/test
+correction at `fb371212` and a separate [implementation report](execution/REM-010-implementation-report.md)
+at `1233855`. The exact joint Python-3.13 mypy check passed across 176 files;
+focused tests passed 154, complete Memory plus MCP integration passed 722 with
+one skip, and affected Ruff/lock/board/docs/diff checks passed. The new
+[aggregate manifest](execution/REM-010-aggregate-manifest.json) pins 77
+product and 220 planning/evidence paths from initiative baseline. Historical
+VAL-019 is [superseded only for this changed candidate](validation/VAL-019-status.yaml).
+[VAL-020](validation/VAL-020-request.yaml) requires a new read-only correction
+delta and complete original feature-branch review. Phase validation/state
+pending; no independent verdict or initiative completion exists yet.

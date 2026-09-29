@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | execute approved REM-010 exact Memory scope with separate remediator and freeze corrected candidate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | dispatch fresh read-only VAL-020 REM-010 delta and complete feature-branch aggregate review |
 
 ## Completed
 
