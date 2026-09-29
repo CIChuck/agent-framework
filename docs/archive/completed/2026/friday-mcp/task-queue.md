@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: first-pass initiative accepted; delivery local; optional WS-09 requires separate authority
+Status: first-pass initiative accepted; PR #6 open; maintainer merge pending; optional WS-09 requires separate authority
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -707,3 +707,13 @@ presented. The [accepted closeout](closeout.md) records the decision for
 WS-00 through WS-08 and the corrected aggregate candidate `fb371212`.
 Work state accepted; implementation authority closed; delivery remains local.
 Optional WS-09, live UAT, push, merge and release require separate authority.
+
+## 2026-09-29 — Accepted Branch Pushed; PR #6 Open
+
+The maintainer requested "lets push Cut the PR, and I will merge." The
+accepted branch was pushed to the configured private origin and
+[PR #6](https://github.com/CIChuck/agent-framework/pull/6) opened against
+`master`. The PR explicitly includes accepted governance and Friday Chat
+lifecycle predecessor commits in this branch's ancestry. Delivery state is
+`pushed`; the maintainer retains the merge action. The five unrelated local
+dirty groups remain outside the pushed branch.
