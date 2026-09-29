@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | dispatch fresh-context read-only VAL-017 for frozen WS-08 candidate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | remediate VAL-017 findings within REM-009 and freeze a new WS-08 candidate |
 
 ## Completed
 

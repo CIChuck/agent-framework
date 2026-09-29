@@ -1,0 +1,27 @@
+{
+  "id": "VAL-017-evidence",
+  "date": "2026-09-29",
+  "reviewer": "/root/mcp_ws08_val017",
+  "fresh_context": true,
+  "fork_turns": "none",
+  "governed_workspace_read_only": true,
+  "base": "d9eb81d",
+  "candidate": "f8970313655e6e18b39d14dc1f151b5a7b5aaa33",
+  "overall_outcome": "CHANGES_REQUESTED",
+  "findings": [
+    "VAL-017-F01",
+    "VAL-017-F02"
+  ],
+  "report": "docs/planning/active/friday-mcp/validation/VAL-017-report.md",
+  "report_sha256": "cd9d033bf5e3cfaf1fef74fb1d483b6ffb4c53e6ad9c69bbf1be3881282001a3",
+  "report_bytes": 10374,
+  "archive": "docs/planning/active/friday-mcp/validation/VAL-017-evidence.tar.gz",
+  "archive_sha256": "85fecb30a23d56340981733b72e77181de4a6929f19b62f290ccd8d40e34a0f7",
+  "archive_bytes": 6549,
+  "archive_members": 3,
+  "artifact_manifest": "docs/planning/active/friday-mcp/validation/VAL-017-artifact-manifest.json",
+  "artifact_manifest_sha256": "86ad15475dea8180f7e910a79b793a4a1398e663c6504b308bf824c53780d691",
+  "preservation": "Report copied byte-exact from independent scratch; three scratch members verified byte-exact; five unrelated fingerprints unchanged",
+  "acceptance": "not eligible until fresh changed-candidate review",
+  "delivery": "local only"
+}

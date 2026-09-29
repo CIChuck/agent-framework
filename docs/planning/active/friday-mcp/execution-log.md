@@ -1702,3 +1702,26 @@ deliverable bytes and five unrelated fingerprints. The
 full diff, claims, commands and fresh read-only review. Phase validation/state
 pending; next dispatch the reviewer. Builder evidence is not a verdict,
 acceptance, WS-09 or delivery authority.
+
+## 2026-09-29 — Fresh VAL-017 CHANGES_REQUESTED; REM-009 Bounded
+
+Fresh `/root/mcp_ws08_val017`, dispatched with `fork_turns: none`, reviewed
+the exact `d9eb81d..f897031` documentation/template aggregate read-only and
+returned [CHANGES_REQUESTED](validation/VAL-017-report.md). High
+VAL-017-F01 found that the primary optional-server example pins an explicit
+tool-name include, which makes a failed peer fatal at registration through
+`missing_include`; its nonfatal prose was false. Low VAL-017-F02 found the
+configuration summary omitted category-based selected-mode admission. The
+complete independent report and [scratch evidence](validation/VAL-017-evidence.yaml)
+are archived byte-exact. Eleven product and authority hashes and five
+unrelated fingerprints matched at review start and close. Package/focused/
+integration checks pass except the disclosed inherited broad Chat nonzero
+class.
+
+[REM-009](remediation/REM-009-directive.md) maps each finding once to exact
+documentation corrections in four approved WS-08 paths. This first bounded
+non-destructive correction remains within the maintainer-authorized WS-08
+scope; no product code or configuration schema change is allowed. Phase
+remediation/state changes_requested; next is a new stable candidate and fresh
+delta/full-aggregate independent review. The historical VAL-017 conclusion
+remains valid for `f897031` and is not amended.

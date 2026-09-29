@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh-context read-only VAL-017 for frozen WS-08 candidate
+  next_gate: remediate VAL-017 findings within REM-009 and freeze a new WS-08 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
@@ -92,6 +92,8 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-016-report.md
   - docs/planning/active/friday-mcp/validation/VAL-016-evidence.yaml
   - docs/planning/active/friday-mcp/execution/WS-07-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-017-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-017-evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
