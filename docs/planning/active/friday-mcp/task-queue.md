@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-08 accepted; corrected aggregate candidate awaits fresh VAL-020
+Status: WS-00 through WS-08 accepted; full aggregate VAL-020 VERIFIED; initiative acceptance pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -685,3 +685,15 @@ VAL-019 is [superseded only for this changed candidate](validation/VAL-019-statu
 [VAL-020](validation/VAL-020-request.yaml) requires a new read-only correction
 delta and complete original feature-branch review. Phase validation/state
 pending; no independent verdict or initiative completion exists yet.
+
+## 2026-09-29 — Full Aggregate VERIFIED; Initiative Closeout Proposed
+
+Fresh-context read-only [VAL-020](validation/VAL-020-report.md) verified the
+exact REM-010 correction and complete `20c70dd..fb371212` feature-branch
+aggregate with no findings. The [23-member evidence archive](validation/VAL-020-evidence.yaml)
+and [first-pass closeout proposal](execution/MCP-first-pass-closeout-proposal.md)
+are ready for explicit maintainer decision. The exact joint mypy check and
+affected package checks passed. Broad Chat and top-level integration remain
+nonzero for reproduced baseline PTY, localhost-bind and stale board-count
+classes; the proposal records those limits. Phase closeout/state verified;
+WS-09 and delivery remain separate gates.

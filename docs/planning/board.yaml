@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh read-only VAL-020 REM-010 delta and complete feature-branch aggregate review
+  next_gate: explicit maintainer decision on first-pass initiative completion and acceptance
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
@@ -99,6 +99,9 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-08-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-019-report.md
   - docs/planning/active/friday-mcp/validation/VAL-019-evidence.yaml
+  - docs/planning/active/friday-mcp/validation/VAL-020-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-020-evidence.yaml
+  - docs/planning/active/friday-mcp/execution/MCP-first-pass-closeout-proposal.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2

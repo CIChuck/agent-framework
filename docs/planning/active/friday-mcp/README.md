@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: dispatch fresh read-only VAL-020 REM-010 delta and complete feature-branch aggregate review
+next_gate: explicit maintainer decision on first-pass initiative completion and acceptance
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 and exact REM-010; Chat health command deferred in WS-07
-execution_phase: validation
-validation_state: pending
+execution_phase: closeout
+validation_state: verified
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -83,6 +83,15 @@ focused and complete affected Memory checks. The corrected
 plus complete original feature-branch aggregate review. No new independent
 verdict or initiative completion is inferred.
 The five unrelated dirty paths remain preserved.
+
+Fresh read-only [VAL-020](validation/VAL-020-report.md) returned **VERIFIED**
+with no findings for the five-path REM-010 correction and complete first-pass
+feature-branch aggregate. The complete report and 23 selected scratch artifacts
+are [archived with byte-checked evidence](validation/VAL-020-evidence.yaml).
+The [initiative closeout proposal](execution/MCP-first-pass-closeout-proposal.md)
+records the exact result, inherited nonzero checks, limits and the separate
+maintainer acceptance gate. WS-00 through WS-08 remain accepted work units;
+initiative acceptance, WS-09 and delivery have not been authorized.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)

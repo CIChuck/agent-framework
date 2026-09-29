@@ -1828,3 +1828,23 @@ Historical VAL-019 remains intact and is
 read-only five-path delta and complete feature-branch aggregate. Phase
 validation/state pending; no new verdict, initiative completion or delivery
 is inferred.
+
+## 2026-09-29 — Fresh VAL-020 VERIFIED; First-Pass Closeout Proposed
+
+Fresh `/root/mcp_val020_aggregate`, `fork_turns: none`, reviewed the exact
+five-path REM-010 correction and complete original first-pass feature branch
+read-only. Its byte-exact [report](validation/VAL-020-report.md) returns
+**VERIFIED**, no findings. The [evidence](validation/VAL-020-evidence.yaml)
+archives 23 byte-checked scratch artifacts. All 44 pinned authorities, 77
+product hashes, 297 changed paths and five unrelated dirty groups matched
+at review start and close. REM010-F001 is closed for candidate `fb371212`;
+the exact joint Python-3.13 mypy check passed 176 files without a waiver.
+Core/MCP/Runtime/Agent, Memory/Transcript/Telemetry, focused Memory/MCP,
+Ruff, lock, docs, board, render and diff checks passed. Broad Chat and
+top-level integration remained nonzero for independently reproduced baseline
+PTY, localhost-bind and stale board-count classes; they are not counted as
+passing. Local fake-stdio public Runtime/Chat success, failure, provenance,
+memory, telemetry and cleanup probes passed. No live-provider or external UAT
+is claimed. The [initiative closeout proposal](execution/MCP-first-pass-closeout-proposal.md)
+is ready for an explicit maintainer decision. Phase closeout/state verified;
+initiative acceptance, WS-09 and delivery are separate.
