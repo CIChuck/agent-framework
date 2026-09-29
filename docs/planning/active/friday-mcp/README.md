@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: implement approved WS-07 telemetry and diagnostics; freeze candidate for fresh independent review
+next_gate: dispatch fresh-context read-only VAL-016 for frozen WS-07 candidate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-07 within approved directives; Chat health command deferred in WS-07
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 Current checkpoint: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -25,8 +25,12 @@ unchanged for its earlier candidate.
 The maintainer explicitly approved the exact [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md)
 and [readiness checkpoint](execution/WS-07-readiness-checkpoint.md) with
 "proceed" on 2026-09-29, including deferral of the Friday Chat health command.
-WS-07 implementation is active on `feature/friday-mcp-ws07-telemetry`.
-The next gate is a stable candidate and fresh independent review; WS-08,
+WS-07 has a stable [builder candidate](execution/WS-07-implementation-report.md)
+`2e36613eae6060a99c1255cce04fcb7a27bc7374` on
+`feature/friday-mcp-ws07-telemetry`. The pinned
+[VAL-016 request](validation/VAL-016-request.yaml) is ready for a fresh-context,
+read-only complete aggregate review. No verdict or acceptance is inferred.
+WS-08,
 aggregate/pre-merge review and delivery remain separate.
 The five unrelated dirty paths remain preserved.
 

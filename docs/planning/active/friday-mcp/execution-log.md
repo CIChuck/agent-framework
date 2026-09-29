@@ -1613,3 +1613,23 @@ conditions, with no command surface. The controller created
 `48030be18853833f3d2c936159c61515b7c2acce` and records WS-07 as
 implementation active. No WS-08, live provider, delivery or historical
 snapshot cleanup is approved. Unrelated local changes remain untouched.
+
+## 2026-09-29 — WS-07 Candidate Frozen; Fresh VAL-016 Prepared
+
+The approved 16-path product/test delta from
+`c05882e45d78dc83ad48ee17b156aa9efff6fff0` is committed as
+`2e36613eae6060a99c1255cce04fcb7a27bc7374`. The
+[implementation report](execution/WS-07-implementation-report.md) records
+typed allowlisted events, owner/call/Chat instrumentation, structured
+diagnostics and the approved no-command decision. Final focused coverage
+passes 294 tests; four package checks, MCP-specific integration, Ruff,
+affected typing, offline wheels and isolated public imports have recorded
+outcomes. Broad Chat and top-level integration commands are nonzero for the
+previously documented PTY/localhost and stale board-count baselines.
+
+The [VAL-016 request](validation/VAL-016-request.yaml) pins authority hashes,
+the full work-unit diff, six criteria, checks, privacy/failure probes,
+candidate/report/manifest and five unchanged unrelated fingerprints.
+Phase validation/state pending; next is actual fresh-context, read-only
+dispatch. No reviewer verdict, WS-07 acceptance, WS-08 or delivery is
+inferred from builder results.

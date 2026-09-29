@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: implement approved WS-07 telemetry and diagnostics; freeze candidate for fresh independent review
+  next_gate: dispatch fresh-context read-only VAL-016 for frozen WS-07 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws07-telemetry
   depends_on: []

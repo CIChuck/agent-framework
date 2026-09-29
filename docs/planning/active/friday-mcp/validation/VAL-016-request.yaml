@@ -1,0 +1,118 @@
+{
+  "id": "VAL-016",
+  "date": "2026-09-29",
+  "status": "requested",
+  "initiative": "friday-mcp",
+  "work_unit": "MCP-WS-07",
+  "branch": "feature/friday-mcp-ws07-telemetry",
+  "review_mode": "full_work_unit_aggregate",
+  "base_commit": "c05882e45d78dc83ad48ee17b156aa9efff6fff0",
+  "candidate_commit": "2e36613eae6060a99c1255cce04fcb7a27bc7374",
+  "diff_range": "c05882e45d78dc83ad48ee17b156aa9efff6fff0..2e36613eae6060a99c1255cce04fcb7a27bc7374",
+  "approval_start_commit": "c05882e45d78dc83ad48ee17b156aa9efff6fff0",
+  "approval_evidence": "Maintainer explicitly answered \"proceed\" to the exact WS-07 directive and the separate proposal to defer a Chat health command.",
+  "accepted_predecessor_candidate": "820e252c496712264ebf767404c1e054f025d53a",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-07-readiness-checkpoint.md",
+      "sha256": "4b1f09752fe924340a7c7790a90bbf2eea46ecbb9322b3795ddc92c5a7fb6686"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-closeout.md",
+      "sha256": "888369d0c6ecfccd11f325ff12e842b247c8cd7684c0bc966757a1efe49046f0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-07-implementation-report.md",
+      "sha256": "e3ac91d4092ca0a7cb65a1ac6e4cbb0d2081a1d00a2e0e5479c996e3a2de0350"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-07-product-manifest.json",
+      "sha256": "ff9326cb1b57b8888d9b6a9f688b5425b924b49ae3779068aeb7ce550c34f0cb"
+    }
+  ],
+  "tactical_tasks": [
+    "MCP-07-01",
+    "MCP-07-02",
+    "MCP-07-03",
+    "MCP-07-04",
+    "MCP-07-05",
+    "MCP-07-06"
+  ],
+  "acceptance_criteria": [
+    "WS07-AC01: Events cover real owner connection/list-tools/skip/register/call/disconnect flows, failures, retries and cleanup truth, without changing one-RPC semantics.",
+    "WS07-AC02: Closed typed scalar events and exported diagnostics exclude secrets, raw arguments/results/env/headers/schema/description/exception/config/memory text; identifiers are bounded opaque refs and skip cardinality is bounded.",
+    "WS07-AC03: Public structured diagnostics retain optional/required server failures, caps, registration counts and both collision contenders, plus Chat budget, truncation and ingestion outcomes.",
+    "WS07-AC04: Default-disabled telemetry and direct MCP memory ingestion, native/custom API compatibility, receipt/pending/retry truth and package dependencies remain intact.",
+    "WS07-AC05: A new Chat health command was explicitly deferred in the approved first pass; no command, config, backend, lock, schema or outside-manifest path changed.",
+    "WS07-AC06: Exact 16-path product manifest, tests, offline wheel/import proof, predecessor and unrelated preservation, and independent complete report."
+  ],
+  "required_checks": [
+    "uv run --no-sync pytest -q packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py packages/friday-runtime/tests_runtime/test_mcp_loading.py packages/friday-runtime/tests_runtime/test_mcp_registration.py packages/friday-mcp/tests_mcp/client/test_adapter.py packages/friday-mcp/tests_mcp/client/test_execution.py packages/friday-chat/tests_chat/test_mcp_chat_bridge.py packages/friday-chat/tests_chat/test_mcp_execution_security.py packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-chat/tests_chat/test_mcp_memory.py",
+    "uv run --no-sync pytest -q packages/friday-telemetry/tests_telemetry",
+    "uv run --no-sync pytest -q packages/friday-runtime/tests_runtime",
+    "uv run --no-sync pytest -q packages/friday-mcp/tests_mcp",
+    "uv run --no-sync pytest -q packages/friday-chat/tests_chat",
+    "uv run --no-sync pytest -q tests/integration",
+    "uv run --no-sync pytest -q tests/integration/test_mcp_execution_provenance.py tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/test_mcp_memory_ingestion.py",
+    "uv run --no-sync ruff check packages/friday-telemetry packages/friday-runtime packages/friday-mcp packages/friday-chat",
+    "uv run --no-sync mypy --python-version 3.13 --follow-imports=silent packages/friday-telemetry/src/friday_telemetry/models/mcp.py packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py packages/friday-runtime/src/friday_runtime/mcp_loading.py packages/friday-runtime/src/friday_runtime/di.py packages/friday-mcp/src/friday_mcp/client/adapter.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/tools/mcp.py packages/friday-chat/src/friday_chat/turns/processor.py packages/friday-chat/src/friday_chat/memory_mcp.py",
+    "uv lock --check --offline",
+    "uv run --no-sync python scripts/friday-dev-board.py validate",
+    "uv run --no-sync python scripts/friday-dev-board.py next",
+    "uv run --no-sync python scripts/friday-dev-board.py show friday-mcp",
+    "uv run --no-sync python scripts/friday-dev-board.py render --check",
+    "uv run --no-sync python scripts/check-documentation-lifecycle.py",
+    "git diff --check c05882e45d78dc83ad48ee17b156aa9efff6fff0..2e36613eae6060a99c1255cce04fcb7a27bc7374",
+    "Rebuild all framework wheels offline and verify changed public imports/events from fresh isolated distributions, without editable/PYTHONPATH masking",
+    "At start and closeout verify candidate product bytes, authority hashes, exact manifest and five unrelated fingerprints"
+  ],
+  "known_builder_nonzero": [
+    "Broad Chat suite: one provider-free PTY timing assertion failure and three localhost fixture bind PermissionErrors, matching prior independently recorded baseline; still nonzero.",
+    "Top-level integration: board fixture expects 22 tasks; validated board has 23, matching prior independently recorded baseline; still nonzero.",
+    "Initial no-build-isolation wheel attempt lacked hatchling; normal offline isolated backend built all 16 wheels.",
+    "Prior clean offline resolver could not fetch uncached litellm==1.100.1; builder's extracted-wheel import proof is not a clean resolver install."
+  ],
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "UV_NO_SYNC": "true",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "local_only": "Synthetic stdio peers and scratch-only files; no live provider, paid endpoint, real credential, network or delivery."
+  },
+  "reviewer_rules": [
+    "Use a new fresh context (fork_turns none), read-only governed repository and independent reasoning. Do not inherit builder/controller private reasoning.",
+    "Read and verify authority hashes, approved directive, candidate/base exact diff, product manifest, source/tests and predecessor WS-06 acceptance; independently evaluate every criterion.",
+    "Run required checks and independent adversarial probes, especially export redaction, large-catalog event bounds, failure/cancellation/cleanup sequence, collision preservation, Chat budget/output/ingestion pending truth and default/native compatibility.",
+    "Do not implement fixes or alter governed source, docs, board, branch or unrelated dirty paths. Scratch work only under /private/tmp; settle owned peers/tasks.",
+    "Reproduce or independently distinguish inherited broad nonzero checks; never report a nonzero command as passing or treat builder evidence as the verdict.",
+    "Return the complete independent Markdown report with exactly one overall VERIFIED, CHANGES_REQUESTED or BLOCKED verdict, numbered findings if any, reproducible commands/results and material limits. Maintainer acceptance and delivery remain separate."
+  ],
+  "report_target": "docs/planning/active/friday-mcp/validation/VAL-016-report.md"
+}
