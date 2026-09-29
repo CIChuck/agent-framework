@@ -1536,3 +1536,15 @@ five-unrelated-fingerprint manifest; five remediation and ten original criteria;
 This preparation changes only process metadata, not reviewed product or authority.
 Phase validation/state pending; next is actual dispatch. No verdict, WS-06
 acceptance, later workstream or delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-015 Dispatched
+
+Fresh /root/mcp_ws06_val015 created with fork_turns none and only the pinned
+VAL-015 request, public authority, candidate and evidence; no inherited builder,
+remediator or controller conversation/private reasoning. Read-only governed repo,
+scratch-only outputs, no fixes or cleanup. Candidate 820e252, exact REM-008 delta
+from 486f3cf and original WS-06 aggregate from 99bde514 remain frozen. Review
+requires five remediation/ten original criteria, seven tasks, all 16 commands,
+independent public/fault/package/base/preservation evidence and complete lossless
+report/archive. Phase validation/state in_review; board next gate fresh verdict.
+No VERIFIED, acceptance, later scope or delivery claimed.

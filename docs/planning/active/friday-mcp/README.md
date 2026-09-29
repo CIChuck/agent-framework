@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: dispatch fresh VAL-015 read-only review of frozen REM-008 delta and full WS-06 aggregate
+next_gate: await fresh VAL-015 verdict on frozen REM-008 delta and full WS-06 aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: approved [REM-008](remediation/REM-008-directive.md) is
@@ -28,8 +28,9 @@ all original scripts/logs/observations/wheels and failed attempts.
 The maintainer originally reserved validation, then explicitly requested a
 separate sub-agent: "Can you dispatch a sub-agent to verify this?" The pinned
 [fresh VAL-015 request](validation/VAL-015-request.yaml) covers the exact REM-008
-delta and full original WS-06 aggregate. Phase validation/state pending now
-records the dispatch gate. No reviewer verdict or WS-06 acceptance is claimed. Historical fresh
+delta and full original WS-06 aggregate. Fresh `/root/mcp_ws06_val015` was dispatched with `fork_turns: none`, no
+inherited builder/remediator/controller context and read-only governed scope.
+Phase validation/state in_review; no verdict or WS-06 acceptance is claimed. Historical fresh
 [VAL-014](validation/VAL-014-report.md) remains byte-exact CHANGES_REQUESTED for
 its old candidate `910508c`; its [status](validation/VAL-014-status.yaml) marks
 only the decision superseded for this changed candidate. Controller confirms

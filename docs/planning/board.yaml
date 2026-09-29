@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh VAL-015 read-only review of frozen REM-008 delta and full WS-06 aggregate
+  next_gate: await fresh VAL-015 verdict on frozen REM-008 delta and full WS-06 aggregate
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []

@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-05 accepted; REM-008 candidate frozen; fresh VAL-015 review requested
+Status: WS-00 through WS-05 accepted; REM-008 candidate frozen; fresh VAL-015 in review
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws06-memory`
@@ -37,10 +37,10 @@ i will Validate afterwards." The exact nine-path correction is frozen at
 `820e252c496712264ebf767404c1e054f025d53a` with complete builder checks,
 [handoff](execution/REM-008-maintainer-handoff.md) and
 [pinned request](validation/REM-008-maintainer-validation-request.yaml).
-Current phase validation/state pending; the maintainer has now requested a
-separate reviewer for the remediation delta and original WS-06 aggregate. The
-[pinned VAL-015 request](validation/VAL-015-request.yaml) is prepared for fresh
-read-only dispatch. No reviewer verdict or acceptance is inferred.
+Current phase validation/state in_review. At the maintainer's request, fresh
+`/root/mcp_ws06_val015` was dispatched with `fork_turns: none` and the
+[pinned VAL-015 request](validation/VAL-015-request.yaml) for read-only delta
+and complete original aggregate review. No reviewer verdict or acceptance is inferred.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-07 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -491,3 +491,15 @@ five-unrelated-fingerprint manifest; five remediation and ten original criteria;
 This preparation changes only process metadata, not reviewed product or authority.
 Phase validation/state pending; next is actual dispatch. No verdict, WS-06
 acceptance, later workstream or delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-015 Dispatched
+
+Fresh /root/mcp_ws06_val015 created with fork_turns none and only the pinned
+VAL-015 request, public authority, candidate and evidence; no inherited builder,
+remediator or controller conversation/private reasoning. Read-only governed repo,
+scratch-only outputs, no fixes or cleanup. Candidate 820e252, exact REM-008 delta
+from 486f3cf and original WS-06 aggregate from 99bde514 remain frozen. Review
+requires five remediation/ten original criteria, seven tasks, all 16 commands,
+independent public/fault/package/base/preservation evidence and complete lossless
+report/archive. Phase validation/state in_review; board next gate fresh verdict.
+No VERIFIED, acceptance, later scope or delivery claimed.
