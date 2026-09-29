@@ -1,0 +1,3782 @@
+{
+  "id": "VAL-016-artifact-manifest",
+  "root": "/private/tmp",
+  "excluded_reproducible_base": "val016_base; reconstruct with git archive c05882e45d78dc83ad48ee17b156aa9efff6fff0",
+  "members": [
+    {
+      "path": "val016_baseline.py",
+      "bytes": 1762,
+      "sha256": "5f6dc2882178af40772dadb2d36bd5d5736b12d10d4bf6cccdc1fb1873db276a"
+    },
+    {
+      "path": "val016_baseline_board_count.log",
+      "bytes": 1170,
+      "sha256": "6bd452a3ecd51db07b6ed885f7db506e02739d91fc6fd46e7ee36eab9c7a9bda"
+    },
+    {
+      "path": "val016_baseline_chat_bind.log",
+      "bytes": 6185,
+      "sha256": "eb0edb5b61302ad2659d0ac8b40ebc1ebe80c8a4202761764d657db4ad5220cb"
+    },
+    {
+      "path": "val016_baseline_chat_pty.log",
+      "bytes": 3637,
+      "sha256": "9eec7dcf4b7b5ce2a4ae5b89a86cdcdcde502dbc1969782e289439712ea9f1ca"
+    },
+    {
+      "path": "val016_baseline_import.log",
+      "bytes": 156,
+      "sha256": "492aa1fa0f8840aad27763e357ba9aba8f4635f192b112057ec773c475558cd9"
+    },
+    {
+      "path": "val016_baseline_results.json",
+      "bytes": 57,
+      "sha256": "061bc0155c489601006ea7a15e9adb4926ad38b234487c15a473e90b133f8533"
+    },
+    {
+      "path": "val016_budget.log",
+      "bytes": 98,
+      "sha256": "77867685350b6877d0d59307683c52e13b4367bc73e0ba811df040b46ae5a6c7"
+    },
+    {
+      "path": "val016_cancel_observer.py",
+      "bytes": 1113,
+      "sha256": "fef63b4865658336230ca12479167c57a72c73a50094cddce0d0cbe6dd254676"
+    },
+    {
+      "path": "val016_checks/board_next.log",
+      "bytes": 92,
+      "sha256": "93b54707297d7d15e7ed857b00bd835161eb482b0b8fab28540bd513984998bd"
+    },
+    {
+      "path": "val016_checks/board_render.log",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "path": "val016_checks/board_show.log",
+      "bytes": 1996,
+      "sha256": "c7f1b3f69485d957dfacad406350ea78467cc1a02f7f5232b09a586d14b2a161"
+    },
+    {
+      "path": "val016_checks/board_validate.log",
+      "bytes": 46,
+      "sha256": "eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93"
+    },
+    {
+      "path": "val016_checks/chat.log",
+      "bytes": 10739,
+      "sha256": "7bf8dbac316f647bea6356348ae0a586fd0f3751dd9b0d132d051a7d0f093a57"
+    },
+    {
+      "path": "val016_checks/diff_check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val016_checks/docs.log",
+      "bytes": 70,
+      "sha256": "829993a83ccd56610d5823b0e6669a55dd2bdb6aa6169005e4c931b13b2d9291"
+    },
+    {
+      "path": "val016_checks/focused.log",
+      "bytes": 421,
+      "sha256": "7264f3be85b73dec3a7409f8cf8e208133cff440ffb0bc3a5cf53f97acd50a78"
+    },
+    {
+      "path": "val016_checks/integration.log",
+      "bytes": 1262,
+      "sha256": "bf737c81d6e27e4be360cb1a573875f8b2775a5ed5c59deebfd187b95e77e962"
+    },
+    {
+      "path": "val016_checks/lock.log",
+      "bytes": 29,
+      "sha256": "6262dd88dec8392596a0c0a28affa9c2a0dffe6df3885aebd21d0cf9d30ce50d"
+    },
+    {
+      "path": "val016_checks/mcp.log",
+      "bytes": 99,
+      "sha256": "2d7cd9eb4ce621d9a23bf08436bcf25106efdc1dbfc0400c9b6dfadb794b398f"
+    },
+    {
+      "path": "val016_checks/mcp_integration.log",
+      "bytes": 100,
+      "sha256": "d0ebebcb688efc3ad032f04c0afc2ddad1741e95dfab4092229e0f22e150bf12"
+    },
+    {
+      "path": "val016_checks/mypy.log",
+      "bytes": 43,
+      "sha256": "46984ca20bf69f7b14ec1fd9bd82101d56a4e109e68f016fd2a04f22481b09b3"
+    },
+    {
+      "path": "val016_checks/results.json",
+      "bytes": 3474,
+      "sha256": "0198eebeccb2db1d8c6621fa44a1831174a35306ab5cbd77537fff6104270357"
+    },
+    {
+      "path": "val016_checks/ruff.log",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "val016_checks/runtime.log",
+      "bytes": 260,
+      "sha256": "47a788ed066e1c1512d6698f3b1380bb3f69168a7a21cfc36374e57ccdd18ac3"
+    },
+    {
+      "path": "val016_checks/telemetry.log",
+      "bytes": 731,
+      "sha256": "7130216ef4beece03ee1cea861abdc66a8076e42ac4ebd31c6422a641fe69123"
+    },
+    {
+      "path": "val016_checks.py",
+      "bytes": 3165,
+      "sha256": "456130a8acb306fce3562f9b8be86f242961a95b38ff9ddb0a9a17a9da30b953"
+    },
+    {
+      "path": "val016_close.json",
+      "bytes": 3559,
+      "sha256": "3676c08610601bb74d1bae3ba36b83b8eefb6a05963e44720fccfb35295d31c7"
+    },
+    {
+      "path": "val016_close.py",
+      "bytes": 2208,
+      "sha256": "d7bc64ad28e98d049acf1a77026b0ffea2a84b20de972cf56c1853a4146637cd"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__init__.py",
+      "bytes": 3100,
+      "sha256": "3f62b6de525e65a7fb98597133076292f92682065b641e04dffd1fde22e42ff8"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2358,
+      "sha256": "f46940bb9fde82273257eb956fcfd3a561d7d980eb2cb282cc645fe015035306"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/config.cpython-313.pyc",
+      "bytes": 43333,
+      "sha256": "89e0f1af79491b1e3f6e0289ad99664e9a6ddb514a0c8162bf939276a6783a49"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/display.cpython-313.pyc",
+      "bytes": 30564,
+      "sha256": "31db81264b6f7cecce40de60b0d07b828d0cc7344306bafb3a139e7cf7a57360"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/input_sources.cpython-313.pyc",
+      "bytes": 1988,
+      "sha256": "46f9986e3b28f873498ead1609a12af89cc96cd956b8dcdb56c68a3fc2d637fa"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/memory_mcp.cpython-313.pyc",
+      "bytes": 11692,
+      "sha256": "a03abc5002753116623e5e9fd97c71e45d30c82f025d3aac575e675d95e60b1e"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/memory_views.cpython-313.pyc",
+      "bytes": 8901,
+      "sha256": "9a49ddf4228cd1d1937c3e2548d703a675488cfdcd159d85f613f506539f820e"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/runtime.cpython-313.pyc",
+      "bytes": 71922,
+      "sha256": "2a32fa84fd2db13dfe524a9ba265e9e95746b6d824a0ac27afbd46d811ff75ff"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/session.cpython-313.pyc",
+      "bytes": 4173,
+      "sha256": "d09fa03ee7e021e2c875423683c7fc78f340bacd21b23e8832f1f663150f8461"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/speech.cpython-313.pyc",
+      "bytes": 5179,
+      "sha256": "c0999a1a045ecb7b2f9ab55604c99a3b3e65afc3f357bf90c6f00cf8ef1f4277"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/__pycache__/transcripts.cpython-313.pyc",
+      "bytes": 4291,
+      "sha256": "cf9ed44ba3c43e67978933b57b8a27f43c7ca043619399c8c518ea8cb840fe00"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/adapters.py",
+      "bytes": 103316,
+      "sha256": "9435f76c9f94e088c7a7176d7f90f78a5a113a000c7f34f18ae3a96edc76e813"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/app.py",
+      "bytes": 27033,
+      "sha256": "61f196fd427a6466776b455e391f5dd778e58587ee05f73544b5642d18acef9a"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/background.py",
+      "bytes": 7991,
+      "sha256": "9091e8c2b9ac199530af0f72593f0bd3dcf88f8f8beb24f7a156dca03d2751fe"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/cli.py",
+      "bytes": 4842,
+      "sha256": "7cefe6d495b390a8de03a41aac6660f4c4d40fe0fdb4f0ffd75e686d311bb91f"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/__init__.py",
+      "bytes": 32,
+      "sha256": "2187558fda44e40d898a2ce711dc1cefe560e248ba29b23a4b02caab81941690"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/contracts.py",
+      "bytes": 3063,
+      "sha256": "5931dac4ba41207710ca706bb5ab2932971da260ec9d2396ce5b62869cd4772d"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/files.py",
+      "bytes": 5797,
+      "sha256": "2c1555ad5ec48c5aab6cf3e14024a5591b86ace2b752f1420f273daf215c9f3c"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/maintenance.py",
+      "bytes": 77,
+      "sha256": "fcaaeaaca0d03786392fb9bddc2afabd5f92ff37e4cc43eaf69c21f6d55ad813"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/memory.py",
+      "bytes": 13079,
+      "sha256": "b089cb7feb03752fc137126aec5db1f2d0f6e5ad265783545817b6d2e8aef705"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/orchestration.py",
+      "bytes": 85,
+      "sha256": "ae62fa59b3505d70557248144bd2a5bf5623b2d88604ea21619e0dc5df1ea1ec"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/registry.py",
+      "bytes": 82748,
+      "sha256": "4ab71df74cc038ab6fc1161f0a1ff53911942315715081582d2a7d3bbc183cd3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/security.py",
+      "bytes": 74,
+      "sha256": "3003c52be09b4d8f4a6ac44547e7b8ccbc8add23b58ec48c46bce5c632eedff3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/session.py",
+      "bytes": 521,
+      "sha256": "f18cbafa158506f3d315edfaa3c232bd33841792ffb32b610c2a9a811e969308"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/speech.py",
+      "bytes": 72,
+      "sha256": "4a4f589259e11cd515ba6b26c29fa42cf78e21f17ad8da19b1310d5a815ef154"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/tools.py",
+      "bytes": 8207,
+      "sha256": "3e5e53c886ff4266a30d3cf14a4438f5392d1a269e7a1f2e31bee9dd994a0956"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/transcript.py",
+      "bytes": 18763,
+      "sha256": "7d161aac62fea14b8ce5ac0aa38d9640215ee84739989139069f2efa06eb55a2"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/commands/workflow.py",
+      "bytes": 74,
+      "sha256": "2d1cee8f13fb1ab87bbba8703feaf4969407c40d35c0fc1387b141a2f4afcc60"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/config.py",
+      "bytes": 33847,
+      "sha256": "aee401f7a27a4eba7837841fb25dfa3c1c56d6692f7e700fb3a71fee30f31897"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/config_templates/__init__.py",
+      "bytes": 52,
+      "sha256": "c9a571210b78e15e2724888e0ace8ab5a8bcc561e7dbc314c174251948fb311a"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/config_templates/cli-config.example.yaml",
+      "bytes": 2790,
+      "sha256": "164d1b28afae6c02334a9a439c36328c270f21d732f4223e4f90572485d512a6"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/config_templates/config.example.yaml",
+      "bytes": 29166,
+      "sha256": "51bd1d59ada6789cca270c2960874211299b282b269cf4e7ee025b841a730c4e"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/config_templates/models-config.example.yaml",
+      "bytes": 3090,
+      "sha256": "57a8d0d047833b6501415e149560d90a0437dc229f5e7891fa408aa3d17744c1"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/display.py",
+      "bytes": 20556,
+      "sha256": "bb463f89ca3300c2fa1a566ce67bb7e30ec15b31c880ccb1987f4581611dcac1"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/exports.py",
+      "bytes": 95,
+      "sha256": "2ddef61dae39fbdfb3999875b5be51885381bb820a7e84edea25d828ef4f5cad"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/input_sources.py",
+      "bytes": 1136,
+      "sha256": "090f07ca17ed22763cfdc39168b5697c3ca0f1a031a267b1c288a4c7e1afa32d"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/memory_mcp.py",
+      "bytes": 8606,
+      "sha256": "62eeb681b0dbb08b154951ee401d77878a1c64053b6a16fee89991d8a547b287"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/memory_views.py",
+      "bytes": 6119,
+      "sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__init__.py",
+      "bytes": 3451,
+      "sha256": "f47d1b1f6eeb4f225224f5fde9f38d2b780bd72b2662cc035f81ddabd4d216c3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2738,
+      "sha256": "ab122866d78921f0d51203569039e1fd582c3dfbe8c7e2743e458dea443e4f70"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/artifacts.cpython-313.pyc",
+      "bytes": 13035,
+      "sha256": "fbff3c4954391d1b894b3f9eec5db925232aca8627e156432066f19c2da175e3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/assembly.cpython-313.pyc",
+      "bytes": 3843,
+      "sha256": "d1dd46587e972ebd657bf8c3b0e8f80e28dc4d983e06959bdc8864ae2ab82dba"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/contracts.cpython-313.pyc",
+      "bytes": 39090,
+      "sha256": "6b379f3747a13fa8c45f88a63034a1b1ef36207fd4604947e9f19c5c48c1817d"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/coordinator.cpython-313.pyc",
+      "bytes": 92911,
+      "sha256": "8f10e9fc8a212b76fae823cc0bf6cce9e6a98d834b5c8666f3adf864e295fe86"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/durability.cpython-313.pyc",
+      "bytes": 25656,
+      "sha256": "4859a39c9ccc786f4085376d1acdc23acaee4c639f632ca6d6c835f3e391c0d5"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/gate.cpython-313.pyc",
+      "bytes": 10762,
+      "sha256": "6f8dbb5cf9e9c2fd2484b00ac8273f62b5ed8a29da8f4ab67c1087eb757b8f71"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/layout.cpython-313.pyc",
+      "bytes": 12604,
+      "sha256": "b5a182fc0e2488318d58b7da1177b6811b4429bb76c2dc3bfa47a7e74c9650f0"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/lease.cpython-313.pyc",
+      "bytes": 64975,
+      "sha256": "75dca6d6d055f80666cc66bb28223833211ef09b8d2379041dab090340d8d470"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/__pycache__/preflight.cpython-313.pyc",
+      "bytes": 13817,
+      "sha256": "940dfb58517cef43f9f2bf55f0e1c11a019607c3fb3e9a16f3d108067fa634c9"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/artifacts.py",
+      "bytes": 9600,
+      "sha256": "3c3256bbf84371a419ca56fcae070e3dea047a82bbb7e28fe21af65873bd5805"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/assembly.py",
+      "bytes": 2860,
+      "sha256": "1c10ea3175792e1092138fd791bc679b9554eb57b7610b3e3441a786a4bc492c"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/contracts.py",
+      "bytes": 28962,
+      "sha256": "d809ca336c394602b235e41860cf175ce74ed96d8852b0a49e01ebaa826efeb9"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/coordinator.py",
+      "bytes": 80907,
+      "sha256": "f8330c1b937ffd7d18a9c88de6d7aa0a249e7ef3a364b2334b565009ceafcba1"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/durability.py",
+      "bytes": 19319,
+      "sha256": "11e92eb6671a96dbb407b6a4aea1f1d221697a9cb41070f2d12b19a984b2e658"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/gate.py",
+      "bytes": 6166,
+      "sha256": "df0913a427cb7660a3a21a7fbb0eead2ab07e27240060cd52a0e91459f1484f1"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/layout.py",
+      "bytes": 9241,
+      "sha256": "61d626242c8160fd86a0e7f287bca0a6b9f123bb8f1ef8d1ed44702b083ea44b"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/lease.py",
+      "bytes": 53513,
+      "sha256": "551e7db3b40e4bc174245a6c8d7205e1c21434ba794bb935bf858059e46adbdf"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/mutation.py",
+      "bytes": 41610,
+      "sha256": "096854c0d8fb7369efbbab95731af6c72d7e6743a22dc818a854e6673b9522bc"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/reorganization/preflight.py",
+      "bytes": 10357,
+      "sha256": "43878c4b681dbb628884f5dcd3be342903a69659675bd624499bd5ab2c68af71"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/replay.py",
+      "bytes": 4092,
+      "sha256": "c96b26b8eb9c5027b11f6f6f7ef09550d16a34b77dc2a82576290c8c6042bd21"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/runtime.py",
+      "bytes": 54847,
+      "sha256": "0a768386a9c89e719940fc36cb453a2ab933568450d44057570a5ebc56fd5063"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/security.py",
+      "bytes": 1978,
+      "sha256": "35d432c47153958c75a5fe00181f4655df5c6a978808f305b4366f76e888b8f3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/session.py",
+      "bytes": 2579,
+      "sha256": "18da2913ddda2e6563151f1a1dbfeef3e53405a2979fe0ef78b454a01efee0a4"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/shell.py",
+      "bytes": 2555,
+      "sha256": "cccfb56f062f871d1ea1f67c49dda4e450009f498ffaff87208e7e9325dcceb1"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/speech.py",
+      "bytes": 3204,
+      "sha256": "46859de69bf87588697cd396e0887d3ba7b166be8905269fcc81c7ea5786df56"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__init__.py",
+      "bytes": 34,
+      "sha256": "7384517198f9b20a20cb71652e8212a22c2eff6fcaa2369a1a5d33b5107d0c9b"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 226,
+      "sha256": "04dcd3fe3ba7163b6ebec5f968d4308feef223cbf4a21966410a2c87d789ebc4"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/loop.cpython-313.pyc",
+      "bytes": 12793,
+      "sha256": "b49d5ebd1b1e3c8d3dcf755c332a86e47a040469b9e57d1153673a34585b70da"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 10447,
+      "sha256": "0837e3e37a51c65fde2035ce0d5190ba1758c47ba72d31582fac01a5e6ce63bf"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/output.cpython-313.pyc",
+      "bytes": 17172,
+      "sha256": "781f89afdcfbdf998d493b997bd2c90bc229a9c90d5cbd9d6d6b68e4a5e6e39a"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/registry.cpython-313.pyc",
+      "bytes": 4516,
+      "sha256": "02d05e2a673d658ad7c59f0c8c7e91d8c97664356553136dbec2772ce18f9d2a"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/schemas.cpython-313.pyc",
+      "bytes": 1521,
+      "sha256": "53543fa16ea6515ab7bc300cfce288a13c405e3f7a075e8cd9d5bed04f81a9b8"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/__pycache__/selection.cpython-313.pyc",
+      "bytes": 49101,
+      "sha256": "d7d833d93370d64472af91e8c33a4cbea8d5fa33b71a2c839b9f8c0015d98ac0"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/loop.py",
+      "bytes": 10099,
+      "sha256": "866e1d095c9db2f6ef89be19b081345f3aa8d8e9e29be1f6522511f9eda015ee"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/mcp.py",
+      "bytes": 7387,
+      "sha256": "2c286a81e1f8354bb46fbeb2dc381043493ab13b11237b63835e4f6dbd1f093d"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/output.py",
+      "bytes": 13831,
+      "sha256": "f57dee6e0d5aec1f5509214244e9225f522d2e99396a96577ca7cf4685ee4c08"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/registry.py",
+      "bytes": 3333,
+      "sha256": "72330b972656ce2e1ecb0abb12e133ceb37c88f22f428a80cee3f2d3129cfff4"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/schemas.py",
+      "bytes": 697,
+      "sha256": "a19c2f62f0578f4784f3d78dd711781b93d9d156f6f27d49583c49ac40a3f73b"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/tools/selection.py",
+      "bytes": 36937,
+      "sha256": "4a72bcddf58a3efd9936c71dfe8497d9ca53d1159faf578fab10d7f253ee8904"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/transcripts.py",
+      "bytes": 2464,
+      "sha256": "dde2f23e4012f39ee0b46b0f913da454e266d03f5bbfe4e63a7b3847e08ec0df"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/__init__.py",
+      "bytes": 40,
+      "sha256": "32afce41fb44aa8f16c95c474ca2bb0a5b7454f2262def663acb97213aef3b68"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 232,
+      "sha256": "432e0da94700396527b0583be85b3e54136dc45e27418e3e066720aafb8d2a28"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/__pycache__/metrics.cpython-313.pyc",
+      "bytes": 843,
+      "sha256": "0d0c1de2f375c36dc44776fc8d01cbee7d1918e062f2c24f6c7ce8aea16f38e9"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/__pycache__/models.cpython-313.pyc",
+      "bytes": 3715,
+      "sha256": "28e124da289bd2e0bc8858c89146219b74e9b8323cd2ea123e2acc81a467e5e3"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/__pycache__/processor.cpython-313.pyc",
+      "bytes": 39568,
+      "sha256": "64b372f9b3f611d56a427704e1b15156fbe1b2688a8bd6a12f095b94ee280c82"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/metrics.py",
+      "bytes": 361,
+      "sha256": "d45fdbc6f585e72d242cc8d747c44df189fe9fdda9b8c5c916d09af333f7b06d"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/models.py",
+      "bytes": 1994,
+      "sha256": "d93f3db1bf42de1e222ea1706f42a000faca199266e9aadce41144fe19305775"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/processor.py",
+      "bytes": 31806,
+      "sha256": "85d1aff6f072582d466a7f10fc79eaea76067aa7c8b1bdd5f175f02661a3b096"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat/turns/streaming.py",
+      "bytes": 464,
+      "sha256": "a3be778570cef7445397a49e76a5af694734ab3bdcc95017c6b5cfa7e30ae3f7"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat-0.1.0a2.dist-info/METADATA",
+      "bytes": 6265,
+      "sha256": "bcd3071d1d03c938ec9acf5b29c32dd601da6659bc55c3879e2ca2496afc503f"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat-0.1.0a2.dist-info/RECORD",
+      "bytes": 5501,
+      "sha256": "19419b7673be9432f9988a20a850d8606bf0471d7677e3680676b1ebffb71365"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat-0.1.0a2.dist-info/entry_points.txt",
+      "bytes": 52,
+      "sha256": "edcd9d2f3dd2081ca0d53a17f9b60b5ebdad770a84b17ac208c86d1bc1517b6f"
+    },
+    {
+      "path": "val016_dist/friday_chat-0.1.0a2-py3-none-any/friday_chat-0.1.0a2.dist-info/licenses/LICENSE",
+      "bytes": 1068,
+      "sha256": "44817a299f524dd01ca19e2ff6f9462199f4d8f4ecb245ced1f5e56d69742847"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__init__.py",
+      "bytes": 2371,
+      "sha256": "60d267b8369a35ef12e7e095f1901ec9a542d3df94c75a3b48d233f86d34fc57"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2288,
+      "sha256": "d7f28dc8a038ccdd63350661f7eab09e651719bba366756898aba7126792c8fd"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/autonomous.cpython-313.pyc",
+      "bytes": 2126,
+      "sha256": "c9f2675541c3e9bd9d5332eb0a8d660cd62cefeb5ccf7a9ec0d84e78a3984c0d"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/base.cpython-313.pyc",
+      "bytes": 21760,
+      "sha256": "292118038b1bd85b5c0961f88aaa0fe235ee8ea0c065a63af9802ac9289123c8"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/copilot.cpython-313.pyc",
+      "bytes": 1338,
+      "sha256": "6443e63462a59fee18555ea055ee5d6a6f9d28c3a197e550de79cc6ee788cad0"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/interactive.cpython-313.pyc",
+      "bytes": 707,
+      "sha256": "1995d4e7bd9b5dc0e5501c1c006e47dc125d4407d0473366fd912cc1bcdf9d17"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/llm_completion.cpython-313.pyc",
+      "bytes": 4719,
+      "sha256": "be9be9aafd3b3355eff280da5edab2ffe395c5f36c01abed0a9dd60f4425a6fb"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/loader.cpython-313.pyc",
+      "bytes": 13892,
+      "sha256": "a5535ec644cfcacc4e211b504dc20ccbc8665c5c332babe76d1b843ed83c6b1f"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/orchestrator.cpython-313.pyc",
+      "bytes": 23141,
+      "sha256": "91b4bac374a24878bc1bf145a80e0ffba93e3056b5b8de434b0f3d29a3e2b216"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/profile.cpython-313.pyc",
+      "bytes": 7884,
+      "sha256": "49737d8d9e024c902c21fa1c9c2b119b2dc059503e91c5a329040a81582d87e6"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/prompting.cpython-313.pyc",
+      "bytes": 1722,
+      "sha256": "865f75d4fd5c8ee44bd997994169e5317b67944779b7e3e0c51f143f8b11a86d"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/registry.cpython-313.pyc",
+      "bytes": 18069,
+      "sha256": "4dbea67a67df97917bcae29d0faeb40806620d8c0ecf6e39d731a7b425875af1"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/repl_base.cpython-313.pyc",
+      "bytes": 8626,
+      "sha256": "8048fa598bf282e363d1b247d0073178e5a9c2d20f9fe74682c46cb407731b69"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/__pycache__/skills.cpython-313.pyc",
+      "bytes": 5032,
+      "sha256": "34856ea61bc8887388cef20fe0d293ecb49850c07e8400ba0d640bd8f188f1ae"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/autonomous.py",
+      "bytes": 1737,
+      "sha256": "0bffb1637fcbbb522a1ee2dcfe99afc9921b3ef8cfbbb6246d376f9fc3312077"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/base.py",
+      "bytes": 20247,
+      "sha256": "506640728f5605ac0d5c1478b052468d498ac352b939627fb0d801e304808e88"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/copilot.py",
+      "bytes": 687,
+      "sha256": "23e6b0fa29c0a35c3ce4ba1cfd21dec97fbe973aa515d6b881f6278cc0e594ef"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/interactive.py",
+      "bytes": 291,
+      "sha256": "fd7e25391d8ec865cf19a4ea939ea0713e183a05794d08f0b7facf30dfcaffca"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/llm_completion.py",
+      "bytes": 3316,
+      "sha256": "678feb65308e3583e3fb93e1644da1bdbf2b6f49a628b89a54a7d76cfd34c4d0"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/loader.py",
+      "bytes": 12151,
+      "sha256": "22a9f45e595d885e410da42b06f3f0db3e8d0dce0ae144e4e4f8468070ae5565"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/orchestrator.py",
+      "bytes": 20396,
+      "sha256": "4064ad8dbddd55aed12891ea3cdbda11015c98072c27a4cd3a8a79f10efdc635"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/profile.py",
+      "bytes": 6600,
+      "sha256": "2517dfeda14c955346fcdd257f4f94d2cc580143b4c55c9b967a6d7b0b4834af"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/prompting.py",
+      "bytes": 926,
+      "sha256": "ba071a686be62801479ac7c6c4d5a0ab0bc6404e510b78b3399febd4458ee1c8"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/registry.py",
+      "bytes": 15313,
+      "sha256": "d683ac3e89d1d2bcfbe41ce4562b3491e1b9e07733b4c3f8d59bc8e6fbe49a4e"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/repl_base.py",
+      "bytes": 9091,
+      "sha256": "6148ca00d2223e886669450746bb168b6d37c502158ba82a5983f6591403625a"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/security/__init__.py",
+      "bytes": 120,
+      "sha256": "408374f0dc3fc256386ff326e80536cda923bc712eee3ca7177b7c071e12cf84"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/security/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 334,
+      "sha256": "c1b97fe0b99168384c20b521eb06ab4a7a5513f02506436a5f1621af2f29d3b1"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/security/__pycache__/output_processor.cpython-313.pyc",
+      "bytes": 4537,
+      "sha256": "04efa38b6abc1526632b214ec84c453662cd91edb70c63a7cacaec04f4f3a03b"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/security/output_processor.py",
+      "bytes": 3641,
+      "sha256": "caf7f945e6db6665046b3380bfa5bc33afa5b0d9e55d8e856447280a3964e960"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/skills.py",
+      "bytes": 3117,
+      "sha256": "fa97a512bf80a95ad3d39cd750dffda510949abcaee022a1eaea9da3fbf5864b"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/__init__.py",
+      "bytes": 716,
+      "sha256": "df438e3e7172b78271801b301d19538721b7eae8cad91765e4430e61ca6101c9"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 873,
+      "sha256": "9661bb5cf11cf4d9191df6940be944827028a3ad00f1053347301c89e15dcb85"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/__pycache__/builtins.cpython-313.pyc",
+      "bytes": 8178,
+      "sha256": "2111ea9bad0b1c0028625466c2c12bd9aad72eeaba7bbf1e12625d9b50925107"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/__pycache__/registry.cpython-313.pyc",
+      "bytes": 22990,
+      "sha256": "662d7e954e4788532f5261c25c1d7ad3a87c16de1e4d21cc7dc8f53c2748316a"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/builtins.py",
+      "bytes": 7054,
+      "sha256": "261d4e4964fb0dfa1682c315abddfc7498793c44ebdcd783c691a04de72b8646"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/tools/registry.py",
+      "bytes": 20934,
+      "sha256": "96a10e3359cfd87d2630b22e2a348157509b21522ed7e5cccb9f73819cb86342"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/__init__.py",
+      "bytes": 2118,
+      "sha256": "2e3a276ab8cce5289d03c78668908aa20eb6ac38977c8bce1ef472f161b371ad"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1874,
+      "sha256": "a6aeda19c6bdc88809aba1abe380ddea38ad2888292a97778710edf252a8f3bd"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/__pycache__/engine.cpython-313.pyc",
+      "bytes": 91147,
+      "sha256": "1c888ddb1285d9b7220ca4d01a19bdb43510b64a679e4b41d8e1bff038d5a143"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/__pycache__/loader.cpython-313.pyc",
+      "bytes": 21055,
+      "sha256": "f0e67759cd7615cc2780a433b9f735422bcedea9456cd35471c706a4cf1d84a2"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/__pycache__/models.cpython-313.pyc",
+      "bytes": 68429,
+      "sha256": "d759453f9641ce9d958f554128734807676ea746c9960fce065b3b891957586a"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/engine.py",
+      "bytes": 89766,
+      "sha256": "006c0ba72de6860b6c4d0bbd7d091a22c6b98dbb9810e15b4e2ec7cfa560105d"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/loader.py",
+      "bytes": 15715,
+      "sha256": "c75e42b31027db771d8e8669c06f94c0c4c77259c696d04c91676ea6a7399a2f"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_agent/workflows/models.py",
+      "bytes": 49422,
+      "sha256": "5b9ae6b73525d0c18fa7b31a396ea92c0803c87e18c6476af6ef33b58c7a8097"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_framework_agent-0.1.0a2.dist-info/METADATA",
+      "bytes": 1302,
+      "sha256": "f50914fbe25f4515fad7a07ac21264290c3d49bf3b610fc2708149c8ab25ec91"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_framework_agent-0.1.0a2.dist-info/RECORD",
+      "bytes": 2127,
+      "sha256": "1d49de59317bf22395e03500790b0fd2bb530881f262491fc5fa2bba109cd03c"
+    },
+    {
+      "path": "val016_dist/friday_framework_agent-0.1.0a2-py3-none-any/friday_framework_agent-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__init__.py",
+      "bytes": 3128,
+      "sha256": "e4cce891afb3b8cfa3032118683e9ad587cee679c5ffe80b468c3ddc5415bf9f"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2343,
+      "sha256": "862cd7a38d38ce6398c63a62498b537192ab685d48a47ad020539ee51cdebcd9"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/cancellation.cpython-313.pyc",
+      "bytes": 11007,
+      "sha256": "981e2ee15abba3de5cdb4b65bafaac661a2f437f06aa87c6edf70fb8f5b26b82"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/cli_config.cpython-313.pyc",
+      "bytes": 12113,
+      "sha256": "33057300ce87eff53c929afb64e348b13d6916018304346f4ba8c174245b97d6"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/commands.cpython-313.pyc",
+      "bytes": 18783,
+      "sha256": "9f00f7b0786cfa6e6a76602b2fa31dbd53c6a7772d8d73b139652f13c334eca9"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/display.cpython-313.pyc",
+      "bytes": 24923,
+      "sha256": "5acee3e014d364d2c44a6421a5f91a2720c3916055755cbd31980c99c6b69dab"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/input.cpython-313.pyc",
+      "bytes": 13229,
+      "sha256": "c83c35ef1583703fbea89af54ac05ba0a4bc4c479bf387f915eadb6621350c7b"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/progress.cpython-313.pyc",
+      "bytes": 13385,
+      "sha256": "ca39ce671521e04a13e66d0ca26a8ed26f709fbdda1152afc17fa695b95ffab6"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/__pycache__/session.cpython-313.pyc",
+      "bytes": 20132,
+      "sha256": "01e49adb15372f83fd60b891019d885335938e64be8b77d201ca37a7cbd8b521"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/cancellation.py",
+      "bytes": 7762,
+      "sha256": "8d4fbea0456a68a0f3259e6fc04407242e8ada347f7ade11b068fe5cd9e77590"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/cli_config.py",
+      "bytes": 9577,
+      "sha256": "59ebd0b41e37c8393ead51e9f9226ee4bf31f74cac4b9b25abb19162a5da0690"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/commands.py",
+      "bytes": 15348,
+      "sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/container.py",
+      "bytes": 10357,
+      "sha256": "e3cdbdeb320f70ec13c3c153fe692a39abfef8ca5e702f33bb301d53a72aa4ee"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/display.py",
+      "bytes": 19502,
+      "sha256": "f29cdd178d285f028340671a9adbb5c560ec861b454c1dad93ffbca5eb940fd5"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/input.py",
+      "bytes": 11648,
+      "sha256": "5fd7bce06896c7c41bdb5c77d64cd7ce6d4050369056af079e0c5e9af4ee4f33"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/main.py",
+      "bytes": 97,
+      "sha256": "9ad308520575e2f677a9b5e86f283182984aa94475f7e481cce0e2c2573b98a5"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/profiles.py",
+      "bytes": 651,
+      "sha256": "949c03310b82b438afaf2bcc8334e7c5989e93f1b6d8776670472ac8230866cf"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/progress.py",
+      "bytes": 10615,
+      "sha256": "7fdbf4123261f4cbcdeae08a3ca3fc6064c836ef8d0c3f5fb16471c4d26851af"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/repl.py",
+      "bytes": 120,
+      "sha256": "a3756fb97c7b597e064cb1d51694434c3c3934575f2ff0baa193750b21f4faae"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/server/api.py",
+      "bytes": 122,
+      "sha256": "d99e5979a4ca3b0cec3cc56ebc906ea29978b0c3db3f915f1bfb8e9d7c0bfb91"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_cli/session.py",
+      "bytes": 15061,
+      "sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_framework_cli-0.1.0a2.dist-info/METADATA",
+      "bytes": 21510,
+      "sha256": "ae971b6bfdb800a6b675cb7b7b19f8e4ad36428d03911647a263c73b152aa40a"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_framework_cli-0.1.0a2.dist-info/RECORD",
+      "bytes": 1386,
+      "sha256": "9ad497fa8e2f6f1f26818e4de4b6990b554b5ed859de8cb9e11397c82afac178"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_framework_cli-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_cli-0.1.0a2-py3-none-any/friday_framework_cli-0.1.0a2.dist-info/entry_points.txt",
+      "bytes": 47,
+      "sha256": "94b633acb54c7418d9175aa85dc7bc76998f84884a4b875d5455fca7ab4aa5fa"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__init__.py",
+      "bytes": 3010,
+      "sha256": "2ac93979e7b2fa0105e4d4734cf5bf1480e6765d4198f41f7e3514e70a46755d"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2375,
+      "sha256": "037f052fb47142885050182b7a510de8beabefe57dcfb9c4c6f14991ce00e43e"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/config.cpython-313.pyc",
+      "bytes": 1488,
+      "sha256": "f81ada4182af0ed38936726fa0b9b6ab18d5ff95829cc3d7d83426a6a5a06e6c"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/exceptions.cpython-313.pyc",
+      "bytes": 1787,
+      "sha256": "22cd36fc98fbc630a70add3f0b646a358b577f087906a39f89aa461bff397417"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/logging.cpython-313.pyc",
+      "bytes": 4969,
+      "sha256": "535218cbd64106d386a865b7f1838252d1560ac8b614944a2198a26863a72ea3"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 20895,
+      "sha256": "5f7e6e0f43e5e62aed0b60e3ef63254272e31fd2abbff3f5af6a08c47daf3881"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/profiles.cpython-313.pyc",
+      "bytes": 3853,
+      "sha256": "aa5bd214befa09880d17b964c88058270fa020afdd8a1bb43adeef3cd8c1ddf3"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/__pycache__/telemetry.cpython-313.pyc",
+      "bytes": 596,
+      "sha256": "57897ad50d965c9f96841df5c9863f9c2c42efdd2c0bfc41df6d5a1f008a53b4"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/config.py",
+      "bytes": 1112,
+      "sha256": "9b5b693a8b2b5b50ebbbf839cb2845afc84404e51e3fd28f035cd648ffb0e0a9"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/exceptions.py",
+      "bytes": 1080,
+      "sha256": "b67b11a09243269ecb7c586987381d446d417e1246f855d4f285e49c5c1b2882"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__init__.py",
+      "bytes": 2768,
+      "sha256": "6d1818b41bc6e5aa959aca80658132c2dac94920f68aeb286221e8819c9e5f7b"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2526,
+      "sha256": "fb9e11691dd07fdeb2c84e00f5d284c6fccc76a37c558583799cac89ee09af16"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/agent.cpython-313.pyc",
+      "bytes": 2509,
+      "sha256": "25e7db857606587ce77e458f9d60cba2b97655afd8e2ef1f6542e9c608a08db0"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/context.cpython-313.pyc",
+      "bytes": 6570,
+      "sha256": "4a4d9a1a74891636f2a5ebf31ce0aa6872a063ff509304ac530b32edce35cf12"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/lab.cpython-313.pyc",
+      "bytes": 2400,
+      "sha256": "cea7f81832a35103cfb4fdf2395a0215d23970b19c8b83c712d72bdc81daae52"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/llm.cpython-313.pyc",
+      "bytes": 5797,
+      "sha256": "55659f77a1f5c51b466082ba498d008b46a24077ad32ba52e644c87343c23111"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/memory.cpython-313.pyc",
+      "bytes": 17600,
+      "sha256": "27e83e74e344f25312c3b7eec00f2f899c4aae81ae48e2c1f2f889bda731fd6a"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/registry.cpython-313.pyc",
+      "bytes": 2672,
+      "sha256": "532141af34a0e38fb11ef088d4a0f385183f07f4583a42ca1911121b7c7512e8"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/runtime.cpython-313.pyc",
+      "bytes": 3262,
+      "sha256": "f5756dc9cdadc7be1fff75396e25b221ab6bc7db12d26cf45ff36c9bfa0e09c3"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/tools.cpython-313.pyc",
+      "bytes": 9304,
+      "sha256": "d94615a0697ac7f00f30b91cdc73b485ad35b2eabcedbb519f86074696747ecc"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/__pycache__/transcript.cpython-313.pyc",
+      "bytes": 17989,
+      "sha256": "969332054d258a2442a8041f0d740de3bf56abf6925db9defded87927cc2d836"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/agent.py",
+      "bytes": 1873,
+      "sha256": "ffdbd18446fded12bce948e7330953ab21bf37fb6cdc59f0599a7f16e0d665da"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/context.py",
+      "bytes": 6430,
+      "sha256": "9714c90cc31450f6f9f642d25a270e0455ca5638704f9e98528b962126dc4b90"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/lab.py",
+      "bytes": 1760,
+      "sha256": "f41fdc146a788d1a08e0f7f4c27fef61f39b9658c38dd03421a8c5c3b1a1cc80"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/llm.py",
+      "bytes": 4317,
+      "sha256": "8074310103ebbea065e1365afad853026bc379a8157127b5bb350211b127402b"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/memory.py",
+      "bytes": 13661,
+      "sha256": "4e6de941a489e50f028af57348c59dc861b61a4ccab2b766d6b1408455357c3d"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/registry.py",
+      "bytes": 2008,
+      "sha256": "16168be4ba0856bc5f7440c73c99bfb625d712d902ee2effb04d77e8997eec7e"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/runtime.py",
+      "bytes": 2514,
+      "sha256": "e5c29481cedfd21e4baf860ceea516a7d6121a8e97f9df54e62b6efd559090cd"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/tools.py",
+      "bytes": 7731,
+      "sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/interfaces/transcript.py",
+      "bytes": 16898,
+      "sha256": "9539582e5c05d4df7c47576ae107cb6f9c7a8543f0da77506452d8f92479fd2e"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/logging.py",
+      "bytes": 3867,
+      "sha256": "aaf93e9349ce8c34040343f80eee5048775be9d84cba2c173bdf7cb5bb29da53"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/mcp.py",
+      "bytes": 15510,
+      "sha256": "78b0065f9c2b27ae7cf7dc52596baf0be5e38a37f7b111c1207d5cdd4585c050"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/profiles.py",
+      "bytes": 3314,
+      "sha256": "8e6bed2bb0d33f9b1fcb18141827e1e8fb9256f0efae88f353f854d8899b6d75"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__init__.py",
+      "bytes": 1380,
+      "sha256": "9e67c960582aa0c4b602e2d13be50caa43e6d67965038a54fe6c4bca05ea10dd"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1315,
+      "sha256": "4580facd3eea6813c6ea675dfe452e80f4f0479d9629e135f56641b00f7739e6"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/config.cpython-313.pyc",
+      "bytes": 7954,
+      "sha256": "7c45ad430ff2900f44022c0092da06fb7a820e3fd56f2d13392e69a118a716ab"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/markers.cpython-313.pyc",
+      "bytes": 5270,
+      "sha256": "6755f7c0dc7fa256919b798eeebf36da34ee85549bbc59818428ea8cd11c6287"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/patterns.cpython-313.pyc",
+      "bytes": 8721,
+      "sha256": "2bf0e626f0e146f1377bc6287224830b62eda702d551bdb1512b623e273567d5"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/quarantine.cpython-313.pyc",
+      "bytes": 3761,
+      "sha256": "d4633657356659bda33602799e87ebccdfaa5e67b08365db9691a0d9bbea87d6"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/__pycache__/sanitizer.cpython-313.pyc",
+      "bytes": 11180,
+      "sha256": "25895795b45208bee297527ea768987c7ddecb960b3093354df2640ae451410c"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/config.py",
+      "bytes": 5530,
+      "sha256": "0d38b554911a5c162712d992b60d89875c692058cd19607d8f9ba1471e28460b"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/markers.py",
+      "bytes": 3939,
+      "sha256": "6e6daf8ead5cf2923bd09728c10676e9c67e66ce66d5a7dcd12889a3f7348165"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/patterns.py",
+      "bytes": 10497,
+      "sha256": "f0bbb570a360399a9e2076bbcc65eb2f845d382c4e45ca97028dd2c2f977b6e7"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/quarantine.py",
+      "bytes": 2465,
+      "sha256": "2946bc2194815967d2b3e4dd18acf76870b22b8818373fed40316e926f8bd5f2"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/security/sanitizer.py",
+      "bytes": 9168,
+      "sha256": "7f03528576476d01542043b0d64d0b7d8ecfecd4c0408d24be548a908a57a2b6"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_core/telemetry.py",
+      "bytes": 522,
+      "sha256": "92c85a318c6b52d8073dc370e1b0d9f62063e54d187805d4712e6e84ac8e97ec"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_framework_core-0.1.0a2.dist-info/METADATA",
+      "bytes": 1493,
+      "sha256": "ee429b5cbb0c3ab366acfa6827816278d1263895e203dfc8104bd39dbbea6bd0"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_framework_core-0.1.0a2.dist-info/RECORD",
+      "bytes": 2238,
+      "sha256": "2298a7868588677761f0eedb1cb8a3cb38aca2cc0f2101ca7888c46af008c6fa"
+    },
+    {
+      "path": "val016_dist/friday_framework_core-0.1.0a2-py3-none-any/friday_framework_core-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/__init__.py",
+      "bytes": 852,
+      "sha256": "f32f9f32f758a1fbd2b456aa69c9894f895fe0e76b007244fac4d3f983b50325"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/demo.py",
+      "bytes": 3686,
+      "sha256": "d80a36434832d3497b34273c8c6653b3af2e764350a3e93829868863fe450ff7"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/__init__.py",
+      "bytes": 49,
+      "sha256": "ad2a460cdff860822846f7907d0e6eecb18643cd19e5d1f0b0ec224a17689f42"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/__init__.py",
+      "bytes": 773,
+      "sha256": "c63ad7613e523c209f6902c744d53e598d2c3de03cec8a5de08b90ecc39c331c"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/client.py",
+      "bytes": 3628,
+      "sha256": "b8b7c032074ffcb05c7fb8c8f0bfb6a75062bca113c263e40db99ca6801e3892"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/exceptions.py",
+      "bytes": 902,
+      "sha256": "f155482ca11016f4eed4f78326e96f77c02f0de05f48b2910aebc3b1ff798ca8"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/governor.py",
+      "bytes": 1739,
+      "sha256": "14277f090d81b1b9893c68b469dbea03482b08f1c1d4e35321502f700039b4ac"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/modules/__init__.py",
+      "bytes": 199,
+      "sha256": "f5742a5c029050300d7e051a0c530f2840ddc5a4dde8c1eb87d5af1afbbaeb19"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/modules/crypto.py",
+      "bytes": 4387,
+      "sha256": "5918dd679b9bdd78df79c1d7d73bb9e5f2e983fbcfa5f2238919b6a238a408e4"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/modules/equities.py",
+      "bytes": 4249,
+      "sha256": "1d8b4df8c200da1e73ac07fdd5bfb255b54d7669e0e86067021d2e38bf01fb88"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/modules/indicators.py",
+      "bytes": 4313,
+      "sha256": "2e7c92fa66cc085d425f067c6d804e283a82fb5c0327088d219143c9f493253d"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_finance/providers/massive/registry.py",
+      "bytes": 1876,
+      "sha256": "6e2bb0b9a48c0995d5303656b60b914a3462558add3a13323a39739740acf05d"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_framework_finance-0.1.0a2.dist-info/METADATA",
+      "bytes": 1275,
+      "sha256": "62e688015315d5ac81003ac51a7ec8023c3afe53a5009f90883021f46716b272"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_framework_finance-0.1.0a2.dist-info/RECORD",
+      "bytes": 1567,
+      "sha256": "a545bde9c993ef19367a73080660b2e6405015ef2f64342c156e2e241d12b8c7"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_framework_finance-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_finance-0.1.0a2-py3-none-any/friday_framework_finance-0.1.0a2.dist-info/entry_points.txt",
+      "bytes": 65,
+      "sha256": "257579b82cab6cf139ff41cd55c5cb8c549a633256f7dfcda11a03c96d80448f"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_framework_llm-0.1.0a2.dist-info/METADATA",
+      "bytes": 7823,
+      "sha256": "03b1ac0fe4b56bb866022d952f268987e475d207fe63e23e09b33dbc8a5583af"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_framework_llm-0.1.0a2.dist-info/RECORD",
+      "bytes": 2001,
+      "sha256": "07d98ec51b00f27b15633a985dfc097e58e9407bac7e6468f747bea1ba11d982"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_framework_llm-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_framework_llm-0.1.0a2.dist-info/licenses/LICENSE",
+      "bytes": 1068,
+      "sha256": "44817a299f524dd01ca19e2ff6f9462199f4d8f4ecb245ced1f5e56d69742847"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__init__.py",
+      "bytes": 5267,
+      "sha256": "df8c538447bb0b1bf2b2d8e2397e4f16b91f9b258088edac4dcddcf33a4403fc"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 3931,
+      "sha256": "8844e9a50a85f70a8398f87431bfac059eff201993c774b7c3fea7c41a4a4d36"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/capabilities.cpython-313.pyc",
+      "bytes": 12767,
+      "sha256": "6fe8e224e0272d1e5673e91d960319ce8abd2cb285031d3dea2879883f076e47"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/circuit_breaker.cpython-313.pyc",
+      "bytes": 9608,
+      "sha256": "ee6aa115c1e2cbdad33b993e5653439cd70d6bfcc24c0c87b4798c9cd42c641c"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/config.cpython-313.pyc",
+      "bytes": 7381,
+      "sha256": "e8c38d1eecb1f849cd35681fc2195728ce3a17d565f5b8a20b2b5da37781ca43"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/embeddings.cpython-313.pyc",
+      "bytes": 18183,
+      "sha256": "138fdc0e62d0930c2729431f54218d9be24d18a1753125e5a23eff1acfcedfc9"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/exceptions.cpython-313.pyc",
+      "bytes": 8779,
+      "sha256": "6ece5154b935ade6527d15095fc41a86af436cad6fbc46673707c545bad648b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/generation.cpython-313.pyc",
+      "bytes": 6980,
+      "sha256": "c5c89563a58b2e7f7e8212daa7e5a91a9f649dd9dc50d2b645277c0ee87dcb73"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/langfuse_integration.cpython-313.pyc",
+      "bytes": 3695,
+      "sha256": "69f88cb8f0fc765cc07d2560847cf3246a8a2c8ae40e650f3c86eccccd83a5aa"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/lifecycle.cpython-313.pyc",
+      "bytes": 836,
+      "sha256": "a714e717620a4474c134c7c921d1f19467e3cdcb0c5860cf674c6df685f4ac5e"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/model_library.cpython-313.pyc",
+      "bytes": 20293,
+      "sha256": "6c472181182cd5392f9aa2d0034498327d44edad1add32f94087fa81066b22b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/pricing.cpython-313.pyc",
+      "bytes": 8801,
+      "sha256": "4a2ab977a9d90ea1b23eb67530cfcb109ee8bf3632a2398ba825ce481476a069"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/protocols.cpython-313.pyc",
+      "bytes": 1489,
+      "sha256": "a8241c0517b3afdfc38c433ec0c0fa866d42795afd54415a0e90398fceeab3b1"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/provider_options.cpython-313.pyc",
+      "bytes": 1245,
+      "sha256": "d757740eb44c8b099f43cd62f69d66a13be02a1b9af627ca3362db95f16fefd9"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/requests.cpython-313.pyc",
+      "bytes": 4703,
+      "sha256": "7414011c5448e57ee44467c8892f9d06d8175b894afd098b7f0a790a37ac42a7"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/service.cpython-313.pyc",
+      "bytes": 45850,
+      "sha256": "c1087660537b01c3443d81cf80ba29a6f491eb4444f9f76f14b599647cbb8064"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/streaming.cpython-313.pyc",
+      "bytes": 6876,
+      "sha256": "559fc72b16062b82b3317c7d10f37af24f9edfbe03e2ae6d6e8dacd7123fb08d"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/targets.cpython-313.pyc",
+      "bytes": 2510,
+      "sha256": "2037601a1c99fa675deaf47c0e46cdec6e5ab34b9978a836dd92b1554583d3d5"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/telemetry_helper.cpython-313.pyc",
+      "bytes": 637,
+      "sha256": "5612239221f0e373d5783e1a2c20aed9472737a72b5baa635082386d15ed88a3"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/telemetry_models.cpython-313.pyc",
+      "bytes": 717,
+      "sha256": "f95e31c3a8b9bc21dc94ee0720e147b9162c2620100cef48a6506bd09724fdca"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/__pycache__/translation.cpython-313.pyc",
+      "bytes": 20492,
+      "sha256": "a173d78df58bdc11e593bd0d65f96f6574fd20a2efd9e932fe9790492eb65682"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/capabilities.py",
+      "bytes": 9211,
+      "sha256": "78f1138a39cad74d56abef6fb20828109ce3f9f8f31a5ea7344559c779872b8f"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/circuit_breaker.py",
+      "bytes": 6558,
+      "sha256": "b42ec5b77721dce9d0e09e1032a79d40e4bf393c26f64a035f5b49ab80fdd501"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/config.py",
+      "bytes": 7084,
+      "sha256": "cd511a2317cd64eb32a5f2ec6f55c33e875016d60bd0cfcb03a9821d2f3e5bff"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/embeddings.py",
+      "bytes": 15956,
+      "sha256": "b4db5f0f50cd9f75a220cff5e8bec1012c82091e69066d03d49632bdd914fe7e"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/exceptions.py",
+      "bytes": 5673,
+      "sha256": "da04aaee08d58d5c83bdfed27e8e3b1cda5866126deb2f3e1853bcd4b4a1aa38"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/generation.py",
+      "bytes": 5342,
+      "sha256": "9d12f4d2353155a3ae928b1d080fcdcba27cf034035095eec9037117acaea034"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/langfuse_integration.py",
+      "bytes": 3224,
+      "sha256": "28f959ad5bd1ef3ae345cc10b04b8e954d4c6cab6df27bf36b745f4322080876"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/lifecycle.py",
+      "bytes": 504,
+      "sha256": "a2dfe03d38d554fd95dd09e908951ce0615a32fa3eb22e290c68abcbf8e699c2"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/model_library.py",
+      "bytes": 14909,
+      "sha256": "754effe6adf32890073866d3192f75bbb7354642c5c32a64df456c22321b6add"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/pricing.py",
+      "bytes": 7640,
+      "sha256": "52fc54a75b2979f78e278b6f155e2d0682f0b3ab0b528a7a2494a70ab7b0316f"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/protocols.py",
+      "bytes": 838,
+      "sha256": "877a497af82f0dd2c7ef7ee38236af9582886577ee45064ad3d886b1fd052935"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/provider_options.py",
+      "bytes": 670,
+      "sha256": "5b5f418e373fce3abafdcc66accd34f1b5060bd45f3bb77529ced4e677e14c55"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/requests.py",
+      "bytes": 2816,
+      "sha256": "b7689098b4021e26872c0b271f2039f6c492f48a761f3d50c7a27c42cdf75aa5"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/service.py",
+      "bytes": 45030,
+      "sha256": "b1274ae2e1b9feebf8ce47b863df0008d84dd2f5c719e1aa8f03fbd17a94d92e"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/streaming.py",
+      "bytes": 4258,
+      "sha256": "1d07c7e9953541d664efe254f4015bc5464e38f6a2f0eaf4f69857e210266399"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/targets.py",
+      "bytes": 1448,
+      "sha256": "9815f1a5ee131230d85e0107a4a7f297c8378748ab4ca828ac8aa8fa4d3087fc"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/telemetry_helper.py",
+      "bytes": 580,
+      "sha256": "bb155f95a203d48a9cc0acef1310346f927c9b566dd93e355bd6617d57dbbd50"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/telemetry_models.py",
+      "bytes": 674,
+      "sha256": "d86399054c2996eb03e504959d845623bbff96301bf7a992c78e351fed198ea9"
+    },
+    {
+      "path": "val016_dist/friday_framework_llm-0.1.0a2-py3-none-any/friday_llm/translation.py",
+      "bytes": 17338,
+      "sha256": "2ca3bfaf1adff703cf74766f58d21a4c01303ae95f42c0a481d7b4b85e7174ef"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_framework_mcp-0.1.0a2.dist-info/METADATA",
+      "bytes": 2731,
+      "sha256": "58239baf7b36f74284e35b6c333c134ecf4c43207a5a9650deb96f8cb0701286"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_framework_mcp-0.1.0a2.dist-info/RECORD",
+      "bytes": 1665,
+      "sha256": "6d34b03c94bf852c6ee6f32f9eee49ca90368422c1b4408e4731beffe60d80c4"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_framework_mcp-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/__init__.py",
+      "bytes": 2533,
+      "sha256": "0402d3f6014d2b295b001f345eb23775838316d293c2a3f3a464353324077f7a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2599,
+      "sha256": "3b3b7d9f73cc5c5bd1d74fd6ec57ea61d94aa1d905c356f0176730fad7aeb3a5"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/__pycache__/config.cpython-313.pyc",
+      "bytes": 6363,
+      "sha256": "91991854e141a6fc56ebc7b6a19a9430047d931f79ee1e9be781a86b9c8b29bb"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/__pycache__/protocols.cpython-313.pyc",
+      "bytes": 6991,
+      "sha256": "81738299d4cad7abaa49b94bf860ea6f9ad47f2129d3a7a6421795135378da6f"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__init__.py",
+      "bytes": 775,
+      "sha256": "d6b3379c2508aab38fa30a75dfaf7aec87440186a753a8b3ab38037bb5a98c6c"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 943,
+      "sha256": "892870e24419f793b2d2d5d20f745577d2f9f080678294adbe67d2a3e4e8dad1"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/adapter.cpython-313.pyc",
+      "bytes": 14016,
+      "sha256": "f26b75eac640030596fa9533e2f9c6813db4af7aaba0d458d64ec516d44a9a2a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/base.cpython-313.pyc",
+      "bytes": 17128,
+      "sha256": "7bddaa6504756d3d734ffd403a8cbaf93d688da7857dbecbdd9ed4c1476f73d5"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/manager.cpython-313.pyc",
+      "bytes": 12494,
+      "sha256": "51dc97751f443559e37595f99fa5b8f8b15ce193e5d6111a81e4afd2b9806183"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/sse.cpython-313.pyc",
+      "bytes": 9745,
+      "sha256": "7e105f2af3ab8a24bd5dd2697d1d36f8bcff6f277386d39aabbb8bea8269e5f1"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/__pycache__/stdio.cpython-313.pyc",
+      "bytes": 16853,
+      "sha256": "611fc843fc552123c24ee4111816d41c89616ca8689e5d6b97b17073a3889309"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/adapter.py",
+      "bytes": 10333,
+      "sha256": "f061af1c437fb73e7eb6823ddc79ccfd4ce8b02b4783d83f90718f4348e8399a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/base.py",
+      "bytes": 12301,
+      "sha256": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/manager.py",
+      "bytes": 8866,
+      "sha256": "335670d905a82a91793675d5c82f5e9b918f7550ed90a1a7cfa01fd74ea9e623"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/sse.py",
+      "bytes": 6493,
+      "sha256": "06a13778406c6b00268be77791e287afe185f151c5b66efc3bbd458fdf91e7e0"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/client/stdio.py",
+      "bytes": 13008,
+      "sha256": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/config.py",
+      "bytes": 5171,
+      "sha256": "7a86bb7dad1f75b0bfa7c2d8101b1366f02d6da6e1c9e0d7d1b36ce42b73cc16"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/protocols.py",
+      "bytes": 4922,
+      "sha256": "00fc02ccd4d694e30fafbee72cbb0944294d275961dc0631967612f30892d394"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/__init__.py",
+      "bytes": 735,
+      "sha256": "c1e061ecc5b08baade3deca638fb9d0d29d4d26a4ef4df42173255e9a2ab1b9a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/agent_mode.py",
+      "bytes": 6662,
+      "sha256": "b59bc4bc1e390889b764d199ecc83ed263362a4d550edd396998ada6320589b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/base.py",
+      "bytes": 9607,
+      "sha256": "b2829bdd1873e5c92d44007b4f0bbd5c7f07e2e8502385f13cc50de8e6d72490"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/sse.py",
+      "bytes": 7020,
+      "sha256": "893e2c97384956888c3c7574d72720df41f0b109df9130f33bdbf5d2faabaf2a"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/stdio.py",
+      "bytes": 3330,
+      "sha256": "fb91fe17317615f7b6b57477fa1619836aa3d37b02b53f33ffebe2c9b8f6b9b8"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/server/tools_mode.py",
+      "bytes": 5192,
+      "sha256": "102b3dc523dd66905e82ac043d7cc3a110c4e8a1fd8fce8c4b385e832577fae5"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/utils/__init__.py",
+      "bytes": 224,
+      "sha256": "d1c157afa14049ccf2f2634b3061df0e93187f1a45a8faa9d985ae2bda365615"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/utils/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 387,
+      "sha256": "209e5e9ae65aa388ab6113a2427ac4a412f688bb2032450951c78c9ccbfbf328"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/utils/__pycache__/schema.cpython-313.pyc",
+      "bytes": 2865,
+      "sha256": "b28a9b4bb9d930a0822124ca583897dbbe9ec76aa202df9dde2e586d83235c5c"
+    },
+    {
+      "path": "val016_dist/friday_framework_mcp-0.1.0a2-py3-none-any/friday_mcp/utils/schema.py",
+      "bytes": 2286,
+      "sha256": "7eee15a2d57274fdfba8f32ea53cf9228df593e252ad47a22cb69dca90924a46"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_framework_memory-0.1.0a2.dist-info/METADATA",
+      "bytes": 1367,
+      "sha256": "950ca585be70d3aad114026dee59cd30f772c4310c4566c65448784ce0fb7165"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_framework_memory-0.1.0a2.dist-info/RECORD",
+      "bytes": 7261,
+      "sha256": "f24e693c447eac51725337dc4b743cbdcc7f8fee568aea369019401eac228fc0"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_framework_memory-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/__init__.py",
+      "bytes": 8440,
+      "sha256": "98d4384b674bdfde65c9c4be2756e8099b2c24f1d3b66bbb5cfa44f84301b34a"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 6040,
+      "sha256": "aee30d1708edbaecdd89c2bc374737b5868069df70c355de87e443265ea3f6d6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/__pycache__/json_response.cpython-313.pyc",
+      "bytes": 5207,
+      "sha256": "fbeb5d9e8efce5fbdd5fdfaddb10f450fbadc82d52af46ed127d241c846eb9ae"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/__pycache__/llm_completion.cpython-313.pyc",
+      "bytes": 5320,
+      "sha256": "34632d28f9d3124c5b14187591f8f71670a445d0c0a5db3558dfd715f94812a9"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/__pycache__/temporal.cpython-313.pyc",
+      "bytes": 1288,
+      "sha256": "995a390da099c1e4565b1f70f951b80fc9c34b0fabf8480cfdd0db2e83131e08"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__init__.py",
+      "bytes": 1038,
+      "sha256": "1049b6afd7c1beb9c481316b55c289d24405fc4d9443d40d44791b1060adea7f"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1192,
+      "sha256": "fa73632304cd788ebb8fd1c8ac41b97effe5f2dd82e2297fa2b9d736c7b4c294"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/episodic.cpython-313.pyc",
+      "bytes": 11335,
+      "sha256": "b714998e41b91a17484e655aefa77dfa22285b18aba38a226ef4152c9c6e5a69"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/graph.cpython-313.pyc",
+      "bytes": 59651,
+      "sha256": "757920a668637f843e314dc183d0aad99e52d91c7ab496fde0c15470144ae4e9"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/null_graph.cpython-313.pyc",
+      "bytes": 7942,
+      "sha256": "41933549a15e73d5c7103aebb3d65e1e9542f774004fbd10596c1b790f4747ee"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/simple_vector.cpython-313.pyc",
+      "bytes": 15898,
+      "sha256": "a992ea64c7a9fed0ff103f264f5758d7b4eb614d259a772ceb3a534a935921d7"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/__pycache__/vector.cpython-313.pyc",
+      "bytes": 20987,
+      "sha256": "1d937d0c057ad4d41b392d007d771d9dc714a70a7d22e7bddba9b78e42ac2036"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/episodic.py",
+      "bytes": 8007,
+      "sha256": "a773ccc75b358dcccb3eedd41093cd1462243aec29ad4a819ecf01d2c2c16b67"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/graph.py",
+      "bytes": 46596,
+      "sha256": "daf6136db190ac10e5b682a486ebf047c2b59f9ff8cb0fd2f7432273e6243dad"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/null_graph.py",
+      "bytes": 6039,
+      "sha256": "da1405d6946c8773354c6e716d91cb555af58a95a4735e149df787bc31508157"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/simple_vector.py",
+      "bytes": 12033,
+      "sha256": "cf7e817caaec151116ec3c53a1fd3b5cd9fcdf534f5a93063f3976025239dbb5"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/adapters/vector.py",
+      "bytes": 17575,
+      "sha256": "6bf75710cdaa384ac2a371dbe214182f07170fd0a9d2dbe46a7b177bf0907833"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__init__.py",
+      "bytes": 1962,
+      "sha256": "907a99812ba1ee6adbe3eab7791df9d93004570ffbaa5d4ec89aacc0625fcd16"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1938,
+      "sha256": "f5edcb5af0415d1ae04b9174f3926d3170e05bb7a85e60a618eac7a5752c894d"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/assembler.cpython-313.pyc",
+      "bytes": 55103,
+      "sha256": "70bda3ee016afc78b862ff0980d97c7b59e2fba64999186d23069bfe87304354"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/budget_monitor.cpython-313.pyc",
+      "bytes": 11457,
+      "sha256": "a5dd7022ab8e7a4406981cda6a67354c196f08afcde684295cbf93e0807e2603"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/cache_config.cpython-313.pyc",
+      "bytes": 4538,
+      "sha256": "62cbd69d8f1dc6d560b2ce8cf71c36b3f558a6f0e7f37becd5a0a15e449ffa32"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/consolidator.cpython-313.pyc",
+      "bytes": 18523,
+      "sha256": "b222bc921855255d4a4aba5d8ae43d4fac14eb7c0a4a948b2896e8e70d9d0e73"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/extraction_filter.cpython-313.pyc",
+      "bytes": 9757,
+      "sha256": "b375ac77f5782f7305a47fb2e9b7ffd6f1573478300d50291b257cc49c560bf6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/extractor.cpython-313.pyc",
+      "bytes": 31201,
+      "sha256": "6b2ad5c8a2a027132fa658f029d9fa22c2d60663b80955bc9ffd3671512b1e9d"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/layout.cpython-313.pyc",
+      "bytes": 62159,
+      "sha256": "6435e0e6983b6b6e8345e718b6964e576882712a44b250b508f9ee7700357c24"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/ontology.cpython-313.pyc",
+      "bytes": 8546,
+      "sha256": "a4b5fd278d3a0c772ac5fc322173905aecb8fef3eef3e24238621024fbda21ca"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/passage_router.cpython-313.pyc",
+      "bytes": 10813,
+      "sha256": "af5325a99c3513e65d4d0a011792335e50ea125e95c9d4d783c141f57225e142"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/token_estimator.cpython-313.pyc",
+      "bytes": 4064,
+      "sha256": "3e33214cd7508db4e9421693c17e3c1ab9bfde4740a2eea02a029c4725a1528a"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/__pycache__/tool_manager.cpython-313.pyc",
+      "bytes": 14348,
+      "sha256": "1380949a888f570bde6573f5b4a4dcd05c0148ea435dc5b39154448b3c997367"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/assembler.py",
+      "bytes": 60946,
+      "sha256": "e3dffd72311de5589ea30bc0c1da9d2e90dd01c0d76d9dd86761329e13d952f2"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/budget_monitor.py",
+      "bytes": 9888,
+      "sha256": "be5ba8f26ba6b628188c62cc00b851a65dfdbd260ef593b02b223a628840364c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/cache_config.py",
+      "bytes": 3859,
+      "sha256": "0189710dcce62dfe637c354987dafb1b7ece7b9d23507f48c2f9a9849abef7ad"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/consolidator.py",
+      "bytes": 16795,
+      "sha256": "d3fe57ce5cc107c29037cb85c6af92fcde2d23c0c47ade2f6575e4f11029e26a"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/extraction_filter.py",
+      "bytes": 9032,
+      "sha256": "2e33d85e098a0f0a97e47d30fa7b3fb150d50cef771cfcd692bbef5604028911"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/extractor.py",
+      "bytes": 30711,
+      "sha256": "62cc6d0a2afc5d61a094d20978ec5e1d130f781136f9c75b6d3f24901174bb33"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/layout.py",
+      "bytes": 64380,
+      "sha256": "d03e59ad60a6f0ee0f520a00ca84c7d329551d089b4c843fcdf8943e3c3b2937"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/ontology.py",
+      "bytes": 8069,
+      "sha256": "ccd0197af9c385cfed7a8a4b4a61fc6d93acdf04b52d01f703732da0d12fc52b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/passage_router.py",
+      "bytes": 8773,
+      "sha256": "ed19904b36e978f1f766dc77893bad379ab726f908b97d5bd02e8d8dac37ae2c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/token_estimator.py",
+      "bytes": 2269,
+      "sha256": "235ec8dee646984d52f6054784138feb8400f8636938c151436c7237dfcb0f09"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/context/tool_manager.py",
+      "bytes": 12413,
+      "sha256": "da58b0ca0e6b8606e93f0ed46e4aab2193793bda6bd856250ada12ad22dd6374"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/controller/__init__.py",
+      "bytes": 323,
+      "sha256": "f95c72e70746d0058114f22f53f7829da72ef77c1d7c5c68ef525f5376bd3279"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/controller/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 529,
+      "sha256": "4b761822569a4db098fd4f4f0f4d33959e03749bf2a16843148041fe1a100dd6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/controller/__pycache__/memory_controller.cpython-313.pyc",
+      "bytes": 78919,
+      "sha256": "a5d2e5de1dfcabeb45219a58bd27567b12109eb92b263a9a8cfe9ab2048b8371"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/controller/memory_controller.py",
+      "bytes": 82814,
+      "sha256": "8a5708f323e0066eb982d49d43b6bb1c6fc9eb13c05b78f20718ea145ffe3712"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__init__.py",
+      "bytes": 1342,
+      "sha256": "f6f5c726f3f19dc9e5e8d671367a2213f17d2e1a93225c793be1dc7898449cee"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1224,
+      "sha256": "12c34b51501f4a0517af823584c2782ec0312b35c459bf1bb2ec72ddcbd2c9f6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__pycache__/chunker.cpython-313.pyc",
+      "bytes": 16370,
+      "sha256": "16342a5f92ed8803ef4d571f14a38faa23df1d9d9e2517d8564ae7eca99fa2c0"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__pycache__/large_file_processor.cpython-313.pyc",
+      "bytes": 37580,
+      "sha256": "4e7c3ff0582936a21947a24278c4373bff6e45d3ab061d40382ef120bc67f7af"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__pycache__/pipeline.cpython-313.pyc",
+      "bytes": 9999,
+      "sha256": "29ff34fe0337a058d2a0e4450c3cbf666a8da248e715d08936dd5c16c7281b75"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/__pycache__/tool_ingester.cpython-313.pyc",
+      "bytes": 12499,
+      "sha256": "0114676b5f8c25889d3118aa422b7223c90f2cb10691e60c3560be79463b77bc"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/chunker.py",
+      "bytes": 14885,
+      "sha256": "3ab2ee869b9706d76b86c4834695fa6948ab10a50685df0566b3f0547c073015"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/large_file_processor.py",
+      "bytes": 35708,
+      "sha256": "a125280d7eeacf842d6420e0030d9a76665196a9fa3e8d47d2115fa01e802e0c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/mcp.py",
+      "bytes": 8669,
+      "sha256": "178edfd91350409c80cc220e5a6a8cae94834ded6b9f1d9d3c8e7c38afe9e2dd"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/pipeline.py",
+      "bytes": 8709,
+      "sha256": "d9d649e4d84485494b5bcffd7ce249f4ec0a51fa776a8e790208e594b346da56"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/ingestion/tool_ingester.py",
+      "bytes": 11405,
+      "sha256": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/json_response.py",
+      "bytes": 3308,
+      "sha256": "71192624c7d20e7dbad53ec90978e8b86e2c5d6978c301284afa75c30c481e27"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__init__.py",
+      "bytes": 1426,
+      "sha256": "ae5d0d05cc25ceb074e5f3c2c5497f414ead7ed2af41611d266e45c592ec275c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1366,
+      "sha256": "de4b1d235c7cdbda9703311c2d09c59b01d30074f5a70a07bae3f18e120da14e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/decay.cpython-313.pyc",
+      "bytes": 9663,
+      "sha256": "88ccb8ec1d133bc581b58a4a4d91662316704d79b1e6ceea533357b5385cb60e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/migration.cpython-313.pyc",
+      "bytes": 27140,
+      "sha256": "3fa57d98bd103f3c10bad316f8d7142be1e429a73280174965856ced6cb7f7cc"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/promotion.cpython-313.pyc",
+      "bytes": 26390,
+      "sha256": "89a4431d8e77f6af930dfe5e1cc37cd1d36b83044fee35436a3b662c6af0ff81"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/stages.cpython-313.pyc",
+      "bytes": 8498,
+      "sha256": "755e5566e9fecd3131fe8f889e522530e5d5856b52c1c4a3924850568cd3f8d7"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/__pycache__/tool_content.cpython-313.pyc",
+      "bytes": 14809,
+      "sha256": "3639d0c877fb2a9494cffb42b322a5fb6b6cc669f43b7667f6e8f77b9779e51f"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/decay.py",
+      "bytes": 8737,
+      "sha256": "f1af3e9c99f4516f30d58d6e37eb37d3968cec253f391e4d50d92d226b84fd49"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/migration.py",
+      "bytes": 22756,
+      "sha256": "d24706f0a25be31fb41b93e9bb2846545c81bf1ecaf0fbcf9f007cf757637a95"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/promotion.py",
+      "bytes": 21627,
+      "sha256": "2c1ab998b1c544767c5873f4c3721a10f66a31d35fc3fa3c585039d95512722c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/stages.py",
+      "bytes": 6981,
+      "sha256": "c2246d528f16bba1c3d8ea72640c33b51807fff4a60f0eb4e5582fd79df99e10"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/lifecycle/tool_content.py",
+      "bytes": 11995,
+      "sha256": "df5251f6a4ab9d8bfd9c6294dbcb694be1945db182976e38dc5f449acbe31439"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/llm_completion.py",
+      "bytes": 4427,
+      "sha256": "ee6f8c2a08707c26464955972dd3fedc299f8a6532df8c68e44e7caf276b9d09"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__init__.py",
+      "bytes": 6494,
+      "sha256": "dafff8abfc96c5200b504b07a4981a4f1041dd7559af95ccf501db87ccbdcbf2"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__main__.py",
+      "bytes": 16137,
+      "sha256": "8ac55c0734a16d6e139bd36af0d334c207c601fc8f0dbec2452dd32d85b3b8cd"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 4962,
+      "sha256": "fceadc19cd09f5b3bfbf186fc3ddaed2aeb0eb5190fe992ebc790d7720499ac8"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/analyzer.cpython-313.pyc",
+      "bytes": 26013,
+      "sha256": "624e0935afb45310e77e88e0f8588e510c44ad08ab0b32aebbf1e9b0828cc748"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/backup.cpython-313.pyc",
+      "bytes": 15117,
+      "sha256": "88e24d805e6f92733f9658c8053fc8cd0e4f3fe982e674d2b3e700e52f9cc238"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/compactor.cpython-313.pyc",
+      "bytes": 23259,
+      "sha256": "638117d5d690c0515feb1c4f81a8abade730fec1d230eed40ab34c873007bf3c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/fact_checker.cpython-313.pyc",
+      "bytes": 25931,
+      "sha256": "bc89c0d00bb55b33ef4db730139fbcc2acfdbefb779fe965a41204e23318accd"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/incremental.cpython-313.pyc",
+      "bytes": 19024,
+      "sha256": "4cbd7acc670711edd66b33aa7c0a8aabd2c3fa77199db88e1be68c296185b5bb"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/logger.cpython-313.pyc",
+      "bytes": 28283,
+      "sha256": "e6ccc70b507e0a8e8f0898c744fafe75b8bb0ee2f54f51dc40b290136e52a7fb"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/models.cpython-313.pyc",
+      "bytes": 39357,
+      "sha256": "222bb723a78ab5b6f682bcc1b5192b56d83db9061f8879550ad776a9ba1e54bc"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/mutation.cpython-313.pyc",
+      "bytes": 75367,
+      "sha256": "e8762577fc101b15e22aad706829077e1d633dcfcb9c3810f26fc6a4a679abf7"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/pruner.cpython-313.pyc",
+      "bytes": 28110,
+      "sha256": "a7dba8389678e388d94d0f6331d7b6d50cbe34886ae98c05b685b65228db26a6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/recovery.cpython-313.pyc",
+      "bytes": 79292,
+      "sha256": "e4585eb1a9d247230655bb35d404d484d8f97713847c22237b14ec9ec3f17d9c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/recovery_models.cpython-313.pyc",
+      "bytes": 14850,
+      "sha256": "748373ba68ee8ec7c1fd4a1a90726d763fdba1bd15f8611916ec9d42733034b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/reorganizer.cpython-313.pyc",
+      "bytes": 58443,
+      "sha256": "af2e3ab1b9c93091ba7f59952df823ba371b26e13cff2a69bf71cdd80debfef1"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/__pycache__/synthesizer.cpython-313.pyc",
+      "bytes": 38554,
+      "sha256": "3f2919046c12d9859b6b9f0adcdcc5a1415b6b15dfdaf23c5f40ac32c1ca1d1b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/analyzer.py",
+      "bytes": 24266,
+      "sha256": "521ba2dead1b363f09d3c8227285a2803110e89caa2ab0a470a86fa4f2daa879"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/backup.py",
+      "bytes": 12742,
+      "sha256": "ddd37aa5bdcedbaf623321828e26e3af7b1ebbcea9ba041dc0e40b1421ad937b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/compactor.py",
+      "bytes": 23024,
+      "sha256": "9a6cfe5f86098288aa4f9e04ccb11364d0008eaff72ede8a5a16481025aba5cf"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/fact_checker.py",
+      "bytes": 24120,
+      "sha256": "6c229c2c2b9c274715a1dd0bd2ac852566e2e73a6a20167ad270cd3b564fada4"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/incremental.py",
+      "bytes": 16251,
+      "sha256": "4d590ae009a5f5aefc11dd8cdc16df7db0e9f6f57a3d79e039cec7ef52ec3c8b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/logger.py",
+      "bytes": 26232,
+      "sha256": "f5c06f5d4ba4e89bae182d59dc6d4e61ce16675a671bfdc142b2eb6c462a7dea"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/models.py",
+      "bytes": 34484,
+      "sha256": "b6dcab86cfaf34fd22cedad185dee2eae35a93c2009dd4fd0cb051d9374bd1be"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/mutation.py",
+      "bytes": 61516,
+      "sha256": "9b7101c60056c5cd71327de336cfb161ecb2f165048458efa18b56e6ee0b79d2"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/pruner.py",
+      "bytes": 27197,
+      "sha256": "a36258551ee3c1d5349ca7579d79f6444b9e48f1817858a2f524563e65d0cf9b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/recovery.py",
+      "bytes": 68156,
+      "sha256": "c8c0b7bff6fac81f2d3146a67915bddcd2aae83a587a8ab19bcd03475cc8f954"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/recovery_models.py",
+      "bytes": 9913,
+      "sha256": "ee8cb0e640aa1fdda464f8c3e9e470a70d72e6f10702261320094c495f46e99f"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/reorganizer.py",
+      "bytes": 55324,
+      "sha256": "98d2ac6db8fd835910c49fcd804ac6bf4d4a02e2534cd2d7f0bde683180e7e2c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/maintenance/synthesizer.py",
+      "bytes": 36475,
+      "sha256": "44235da056162f223a9f5ee1ede27e565fccba1b653bdd2bd81aaaed7f104b38"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__init__.py",
+      "bytes": 2685,
+      "sha256": "46ca096f85c69d63f2fb1a3e79d86ff75a3121052e38e75a7195fbf48da85931"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 2453,
+      "sha256": "29ad8f540957f3bd8ba7c2fb1056e553fe2cab9b7a83273d0dc2280d5547179f"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/budget.cpython-313.pyc",
+      "bytes": 10575,
+      "sha256": "1f6da1f1e96d8de9b301bade6437605a41353b4865a9739da4ad3c0ecca1841e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/graph.cpython-313.pyc",
+      "bytes": 14461,
+      "sha256": "084a7d90dbfd9b0e2f2c04698da909578a6dc37dd385fed1094c0d04ba377155"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/llm_responses.cpython-313.pyc",
+      "bytes": 1489,
+      "sha256": "747ebac1bb55d205d2231cf50e95920f4bc0a37cdc9ad091e1e54cdbdd615a94"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 6098,
+      "sha256": "832377f9e20da68dcdba241941c03df09b8a6ed55b0a8ebf64737870d0d403d1"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/payload.cpython-313.pyc",
+      "bytes": 4405,
+      "sha256": "f0968a1a86b903a7c86c84eb3809fb5f5953024e5d3286389163e92d32781315"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/session.cpython-313.pyc",
+      "bytes": 12681,
+      "sha256": "60e48c482e136f543d182182472fd9446906905c16ef9ff064b6ac01b8d67e72"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/tools.cpython-313.pyc",
+      "bytes": 6730,
+      "sha256": "3be0558462debbc64b1949d05b9708bce087b33a9862f99be70b5d587a558284"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/__pycache__/vector_metadata.cpython-313.pyc",
+      "bytes": 6144,
+      "sha256": "affc37e98208b96f4a70bc448842d0a8778cbd962953ebdf2716805d9e7a5d75"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/budget.py",
+      "bytes": 9642,
+      "sha256": "b10c6fc90d10e57730a22f4542fc706f6152a0cc711336ea814b8d3ee9f5ad16"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/graph.py",
+      "bytes": 12777,
+      "sha256": "a74e9675846ee9013ee6acf4f53508c88beed080cda0ca0cfb2a12916abaa827"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/llm_responses.py",
+      "bytes": 797,
+      "sha256": "fd0761d297db8d690b1f0b10e6387bd98ab753c46b79efb0c019c4066af3d28d"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/mcp.py",
+      "bytes": 3584,
+      "sha256": "ae6f461ff5e59e4348b0edf5b1ecbe41842766c1c68da40d5c45cd7ae050d57e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/payload.py",
+      "bytes": 4408,
+      "sha256": "fdcfabf7002ce040ee8f7e0955329a443b4b90a2172c579bbc25888c42df63c0"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/session.py",
+      "bytes": 11649,
+      "sha256": "1deef053502c6dc031aef598c6ac4c40c8f10fa8268a691247340d6b54f724e6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/tools.py",
+      "bytes": 5316,
+      "sha256": "48e96d1489af7dfe8e5a0bed3ff0cd3a6c9856f2a0b2525b4a2a1fc292ec6b3e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/models/vector_metadata.py",
+      "bytes": 5633,
+      "sha256": "8bf774590c32ed0631f84a799720bf4acae2dd2f9c2654e159de187f4690050f"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__init__.py",
+      "bytes": 1279,
+      "sha256": "aab670f573c293afe9614d03e2ba0569a47f773f722e4842c6159cc9faa9daff"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1250,
+      "sha256": "a88665d9daa5f049ddd5ead96dbf4c09686736d81423aa8661a410a343468193"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/controller.cpython-313.pyc",
+      "bytes": 7961,
+      "sha256": "704d7d20febb52f61ffb8a9301323c37e4914f5ac0f2f6739bef75105505c9a1"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/coordinator.cpython-313.pyc",
+      "bytes": 9123,
+      "sha256": "7e2a0bc6637df51af02af090431bdf5c2b117d9072640793a5fed1db4b6169bf"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/journal.cpython-313.pyc",
+      "bytes": 7929,
+      "sha256": "11a5dd45a24f5c867a533e81df46a3a80e29b6e8ad26f85ec7a825b71c8baad8"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/models.cpython-313.pyc",
+      "bytes": 3659,
+      "sha256": "08c81ed82e6bbf4bae2e4374245ef9c87a3637ae81700a6ede2338057ce1e1d5"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/observability.cpython-313.pyc",
+      "bytes": 3265,
+      "sha256": "6a654efccca18994b796cab2b281e50d9d1dddff8d60e9b7980b7224b94d2462"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/policy.cpython-313.pyc",
+      "bytes": 3299,
+      "sha256": "839db907f42ddeecbc53d8fc85b26b9a1466fda51197a52a81ffaf2f8d461ce6"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/__pycache__/scratchpad.cpython-313.pyc",
+      "bytes": 8171,
+      "sha256": "39fe1979dfc003b7a09d4d291f3df7a88dc93342df5983e716153bf98e872925"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/controller.py",
+      "bytes": 5745,
+      "sha256": "9b6f80a7cacf8d96b20c39cf9f1c28ade878b6a071731d6084d85d3966d3dcfe"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/coordinator.py",
+      "bytes": 6989,
+      "sha256": "034a4cb3d681be31434038c32387349fcceacb45dba735f7bc7000ea0d222e66"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/journal.py",
+      "bytes": 4659,
+      "sha256": "f4dfe8c9da8a0a8aaf330c9160531a70ee0f59dfed8aa2b21523a855a741488c"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/models.py",
+      "bytes": 1881,
+      "sha256": "65ef7f089e5709e0af627c463849c004f5378aa5f42748badc459e2e47d20f99"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/observability.py",
+      "bytes": 3008,
+      "sha256": "37a4a70acbffbe5ce26f27faefc616be9b521b9e36de1fb786fae5d4776f954a"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/policy.py",
+      "bytes": 2119,
+      "sha256": "59f3bdd1485d0c2405e4b9c15ab1de68e0072f86a6838a434a761a4b900bb142"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/multi_agent/scratchpad.py",
+      "bytes": 5169,
+      "sha256": "a5f14f2caa81c8ee6e02d3d2f2bbdc84b1495bec23a011fe1747a6b065115a21"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__init__.py",
+      "bytes": 2159,
+      "sha256": "3fbc7afa8499f6395aa8e31b6734b8c95bc12c7ba7673fba2df6adf52291d7c0"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1874,
+      "sha256": "f9c6bca993c618805babf6d9d6f79299b119849d21e77fbcbf55be8521d4d477"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/access_buffer.cpython-313.pyc",
+      "bytes": 54607,
+      "sha256": "398968aa0940c227348a3878444e182fb0a52649c4aa6fc1ef2f8dd7d45754c9"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/collection_manager.cpython-313.pyc",
+      "bytes": 36633,
+      "sha256": "009904c98047c286ff4f87d57a441e9f11fba53e3340c806fa51547724ef7f3a"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/factor_computer.cpython-313.pyc",
+      "bytes": 10798,
+      "sha256": "7544c233f65757b66b26d9e27b0b9b65c55fe5dae8dd0ea6d6012aec0a594567"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/graph_scorer.cpython-313.pyc",
+      "bytes": 15449,
+      "sha256": "87fa056b49678a6499889b19b15652a905dc9f2f3c6e518e18c447bbcaa3c0aa"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/inclusion_scorer.cpython-313.pyc",
+      "bytes": 9056,
+      "sha256": "f8e17f02075947e17e6f54606b85ba2808d94817a03da7e151142db885bd0ef9"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 4667,
+      "sha256": "1aaa3f9ab1f87f8f405e588abfcbc903e5f4fbc4a85e3c0e4086be6ee63ebe68"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/access_buffer.py",
+      "bytes": 41726,
+      "sha256": "145a41177fc2656102fe6aa91f924a71a5822b60543189ae3f399bedc08915d8"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/collection_manager.py",
+      "bytes": 32560,
+      "sha256": "65b5be356fdcf20d2b69d6f198fc8ef9fb375fc9204abad1781dc2d7c24a914b"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/factor_computer.py",
+      "bytes": 8684,
+      "sha256": "36b51c84c4fda54e845ff3bc59620322196907dfe6bb2f57ea118e7113f6357e"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/graph_scorer.py",
+      "bytes": 13937,
+      "sha256": "339b9c6859af7c2548e470e36f1ed407cd05837e8d78f0a9fe2656275edac1c3"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/inclusion_scorer.py",
+      "bytes": 7811,
+      "sha256": "9ec4f20bdc67fe6fda97bc654054ea880db6c35eb12b580789ce49422dad1053"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/retrieval/mcp.py",
+      "bytes": 3033,
+      "sha256": "b499217a670359139b0065bff2f5625e7fd5182256e67079d6d34869a1c6ce36"
+    },
+    {
+      "path": "val016_dist/friday_framework_memory-0.1.0a2-py3-none-any/friday_memory/temporal.py",
+      "bytes": 719,
+      "sha256": "ca7bf7b9e1666a6daac94fc9fe23a774f7175f185388c5febfae03ac7497ac24"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_framework_moltbook-0.1.0a2.dist-info/METADATA",
+      "bytes": 1216,
+      "sha256": "a728fc19b5cb3afc59cb1fadc54afdf443b1ec4b6c4a8475b34232b559842d6c"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_framework_moltbook-0.1.0a2.dist-info/RECORD",
+      "bytes": 1559,
+      "sha256": "826a22ea353fd4513d5b5de1fbc55c1c1ba21cd3f7df08d073c1363f77370557"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_framework_moltbook-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/__init__.py",
+      "bytes": 1335,
+      "sha256": "c39f400673a52b3e39b13c8eba53fd3e4518aa8db7245e72e6c515baace4d8be"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/client.py",
+      "bytes": 22746,
+      "sha256": "9945290b72829e4ce8aca94cc96d5683813389687a4c9f98d46ef26e81771385"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/config.py",
+      "bytes": 1100,
+      "sha256": "4094a0e95ad9b581d4c58bb1efe0e4c4777b7048b65ac78819b22a23643ce97e"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/constants.py",
+      "bytes": 489,
+      "sha256": "9192eecfe5449adde7e21ddd15e3190aeba89a80a460d2492fa51bb82deee2f0"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/errors.py",
+      "bytes": 1255,
+      "sha256": "7b2299af0962e654325e3c90ce62c6bc05498bc817e86fa5b58fab5681a7b5c2"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/__init__.py",
+      "bytes": 868,
+      "sha256": "42932d52fe30575877f97a923b63deea96a84f5cf1dde9e60d96529cddaf0d53"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/agent.py",
+      "bytes": 1128,
+      "sha256": "28727e2937fe7542668ff63c806b96743d2304b66af087cccc295578bb43c80d"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/comment.py",
+      "bytes": 457,
+      "sha256": "3de2338f571e09588b17c8146f7c32e513581b1fa1c6e2caaa6c6e504608d639"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/moderation.py",
+      "bytes": 226,
+      "sha256": "1b3ef6eb036956fe3b0e5d394a1fb3a3c32be57c1cee34423e05b74a8dca47fd"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/post.py",
+      "bytes": 551,
+      "sha256": "f751d470b5b1930ff706c64587975133731cf5f2cc021829a0658406c30cdc27"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/results.py",
+      "bytes": 1331,
+      "sha256": "a199553d6548afefcae58563b75fff21ef6ef2dd103563bca5378654676a571c"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/search.py",
+      "bytes": 840,
+      "sha256": "38f10f30c16c6f7922bd8ea6f8365add6298ea359165453938b0a0ecdfd5fd35"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/models/submolt.py",
+      "bytes": 502,
+      "sha256": "e1220993352d1d9e20509c7e18a4ff5c6ad9210f340c88667cddbd5b6c4546f8"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/responses.py",
+      "bytes": 6478,
+      "sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da"
+    },
+    {
+      "path": "val016_dist/friday_framework_moltbook-0.1.0a2-py3-none-any/friday_moltbook/utils.py",
+      "bytes": 1358,
+      "sha256": "7e9d7d16ce2fc62aa8d66eb9961b3a1e87c28af9c3d4b56a71d010edc353bfe1"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_framework_optimization-0.1.0a2.dist-info/METADATA",
+      "bytes": 1190,
+      "sha256": "78240959b849d67425908e7bb8b6673db934a2b7d8ddf5b3e2107438bffe0c69"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_framework_optimization-0.1.0a2.dist-info/RECORD",
+      "bytes": 633,
+      "sha256": "435c14cf3f36d4950532438a3c181c4f99a83ab98aa53414616629c08cc4a1f4"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_framework_optimization-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_opt/__init__.py",
+      "bytes": 127,
+      "sha256": "1953222ae0b45a15521417142314cf87eb1cc7ebc2508dd94adedd0974e414fd"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_opt/compilers/optimize_context.py",
+      "bytes": 94,
+      "sha256": "2ebd7c5a96553b9a446c6f3390f878790b72d0603aa78271e273685f3975bf0e"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_opt/signatures/query_gen.py",
+      "bytes": 95,
+      "sha256": "dfeb8a70ecd16624a3c9d4ababefc6fae9d064e935db1ba5beb6fd3f7b54e9dd"
+    },
+    {
+      "path": "val016_dist/friday_framework_optimization-0.1.0a2-py3-none-any/friday_opt/signatures/summarization.py",
+      "bytes": 76,
+      "sha256": "e0b0b36988887da37259b70a07e61ed764b7a0702301e8411fa3b8b243c1b8ff"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_framework_runtime-0.1.0a2.dist-info/METADATA",
+      "bytes": 1461,
+      "sha256": "0380829f20055d53149e17cd5139f6ba2102729faa94f7bdacc04796c01eaabb"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_framework_runtime-0.1.0a2.dist-info/RECORD",
+      "bytes": 941,
+      "sha256": "c8aa62902f393a04d2f58353b160c8601bb045919da8d40ecd39828df63c5e25"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_framework_runtime-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__init__.py",
+      "bytes": 418,
+      "sha256": "c23916995661fcaee3e947cae1a4c6ee508b2692157b4380f671ef526efcd1ab"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 640,
+      "sha256": "df3a3147724ed32d42b93789c999336cc1a6e0edd49b1c022f28680e628340d8"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/config.cpython-313.pyc",
+      "bytes": 87167,
+      "sha256": "06d4553b4655e81c0b0ebd0775a2376b53fe1e36c851cf564b8ca2ce803865eb"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/di.cpython-313.pyc",
+      "bytes": 18298,
+      "sha256": "c7a10bc4ab73fbf1dcfebd02d055996c7935e36200454961347ba200b02ecce5"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/kernel.cpython-313.pyc",
+      "bytes": 28104,
+      "sha256": "51b06a8de0a87cfb809a76d83300fac2cfbe53a5992023a15a33d4bec2ddeb46"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/mcp_loading.cpython-313.pyc",
+      "bytes": 37264,
+      "sha256": "d48f81342da71b575ad161e914abdaf3c41946bf6bfa848d98aa4ba9e29c40f4"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/mcp_registration.cpython-313.pyc",
+      "bytes": 29095,
+      "sha256": "53b91f94aa67ac6365f25eb0c97061541d756276f1438ce941a1f094724a1ad9"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/model_library.cpython-313.pyc",
+      "bytes": 8415,
+      "sha256": "0da710bad81787c8464b35b25a6d7daf6980d470d17c165290d371bcdcb33514"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/__pycache__/tool_loading.cpython-313.pyc",
+      "bytes": 8950,
+      "sha256": "0be895cd30370f4991db0610032a6f23f3542840f475f09a57ef9498fd6115bc"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/config.py",
+      "bytes": 85456,
+      "sha256": "fe3f2af96196e801bffd6543fb259933c33ff05bd0a54ada41401d2606ab0a45"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/di.py",
+      "bytes": 16036,
+      "sha256": "8085b142495376bab4ad38465bb7bdb267f598c443e4ed2375329ed8fb670f9c"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/kernel.py",
+      "bytes": 23403,
+      "sha256": "e208f5736c933cb3ad4eb01edfa8aa050fd6551e8d4406eff8b76dbff18ad6f3"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/mcp_loading.py",
+      "bytes": 30548,
+      "sha256": "757044165d07829a04b2fd2416fb4e69f73907906daf85f2947f19a8177ef8c2"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/mcp_registration.py",
+      "bytes": 21044,
+      "sha256": "60667d1410bc4a35d91a68e2e5036f48e1883ab36715ccbe8390c9b0f94523c7"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/model_library.py",
+      "bytes": 6020,
+      "sha256": "702db06d2ffada560d279ba217bf8ac720f6392aecd0f4a78ec56a0c450f3837"
+    },
+    {
+      "path": "val016_dist/friday_framework_runtime-0.1.0a2-py3-none-any/friday_runtime/tool_loading.py",
+      "bytes": 6232,
+      "sha256": "4abcddc568aec149db96a78666b92ec2ed2962a87aa11cc9084950f19f26c2db"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_framework_sandbox-0.1.0a2.dist-info/METADATA",
+      "bytes": 1277,
+      "sha256": "ab0cbc8d0d9e0a39a675e07ea30ce35e42f38a5bf75c4c602c09fcbd3afebc39"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_framework_sandbox-0.1.0a2.dist-info/RECORD",
+      "bytes": 1011,
+      "sha256": "065cad53b13fdd3914e627dd6a003d460ca2e080fb065eea130dee91c287ceb4"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_framework_sandbox-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/__init__.py",
+      "bytes": 1809,
+      "sha256": "1867b6de93d8951f2185baef5c97a69a1b3c63c4970044f4aaf59eb3c52a8d5e"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/config.py",
+      "bytes": 7768,
+      "sha256": "6eafa06bb036b5a3d9631f5a3a360605a42c31ec9e6ee74740e25762f2fdea13"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/docker.py",
+      "bytes": 10781,
+      "sha256": "bf109d1e0fc23ca480ee57a57558ce575a53e7e6a1960391186534b64ce7962d"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/mock.py",
+      "bytes": 8943,
+      "sha256": "f709dfb63691c66e1ef712737e7b0e0b6b1cc9d3b3c952cc9968ef5c8aac05e6"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/models.py",
+      "bytes": 4983,
+      "sha256": "99536696b0cced1f51197c0025edb5059feb35bc11d107fa10ffd53c2af8fd3f"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/protocols.py",
+      "bytes": 3289,
+      "sha256": "3d67bc683f019763226816eefa48c9ca96f046b8c95e2d2c062369b86aa0c52d"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/serialization.py",
+      "bytes": 5650,
+      "sha256": "60de52cc253caa8ad75fd7a1a7d16805d634e3aa7b8a85a9f7870d17540838d0"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/subprocess.py",
+      "bytes": 7354,
+      "sha256": "4edff473204e6ca365204c154f3daea5a8e81b894f5a7fb903d746e073f6786e"
+    },
+    {
+      "path": "val016_dist/friday_framework_sandbox-0.1.0a2-py3-none-any/friday_sandbox/workspace.py",
+      "bytes": 12048,
+      "sha256": "5cdc165337c848b1b5244334e5dc66bb648dda2ff179379aab5187b3b87d49f9"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_framework_speech-0.1.0a2.dist-info/METADATA",
+      "bytes": 1822,
+      "sha256": "b717a247d98238b0d0d31f3ed855841ea76fab83c33c0aa5e85c5a88f994f418"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_framework_speech-0.1.0a2.dist-info/RECORD",
+      "bytes": 1270,
+      "sha256": "e9a6b21c6febe569a910610a0ed4e8acca076dafa006e58d40befd1581c81434"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_framework_speech-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/__init__.py",
+      "bytes": 830,
+      "sha256": "05ff19fa5cb67da499076ce948db5e16a7e555f7c70ee30dbc9a5fe0d61c6fd7"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/adapters/__init__.py",
+      "bytes": 1644,
+      "sha256": "2046ce589d385d1e57a5195b7983618b807930c3ec45126fe7c291be61ff21ab"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/adapters/elevenlabs.py",
+      "bytes": 6315,
+      "sha256": "58f1b97df74ec95f13809777236a9c3e2deac099d8d30e4cd8a09c812472c918"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/adapters/picovoice.py",
+      "bytes": 9166,
+      "sha256": "76814276bbad55c1b36931ce1629368e9dd0a782596c7209c34ad406be0b5bf2"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/chunking.py",
+      "bytes": 2041,
+      "sha256": "9607f6265bd5fe5d3447a277d53f863ef279180e547ebc0230880ee6287ff046"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/config.py",
+      "bytes": 11064,
+      "sha256": "db2afb271ac29ac02377f78bf7cbfdce5d12128bc5ce6336d543340e35ed04dc"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/errors.py",
+      "bytes": 778,
+      "sha256": "f36b3aa582c9e776ff7ff5643ce918ff5df183ade15ee083cf20a28388ef1600"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/harness.py",
+      "bytes": 3055,
+      "sha256": "2b924f1815dfda63db211ec315ba2858c25f0af7ed3875896f13bfffb5866986"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/interfaces.py",
+      "bytes": 1700,
+      "sha256": "32a1a2066c5888f221286281848b2b3d1a6fe9b729eb672500eb8ac6cd756cc8"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/playback.py",
+      "bytes": 8167,
+      "sha256": "47bd764b0c0d00734875fc83203e7784298c359223ffb5f600f8a03babdb006d"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/selection.py",
+      "bytes": 4562,
+      "sha256": "997da4bf1458f3e3be8e965ba961f90cb5a0e21b7df89bb77e391a6f7d76e7ea"
+    },
+    {
+      "path": "val016_dist/friday_framework_speech-0.1.0a2-py3-none-any/friday_speech/service.py",
+      "bytes": 4456,
+      "sha256": "f7f44faa4dbe8cdde2240dfe23892b0c925c3ba27326bcb615c053b3206d135b"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_framework_telemetry-0.1.0a2.dist-info/METADATA",
+      "bytes": 1344,
+      "sha256": "ab960006f425524dc0036f79a80d59113e9caf3e26e91d32fb890bf92f63c9bd"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_framework_telemetry-0.1.0a2.dist-info/RECORD",
+      "bytes": 1872,
+      "sha256": "60801459259734a0a4df684cec5b987b09250bc7c22ea508be1f53ca99db66f3"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_framework_telemetry-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__init__.py",
+      "bytes": 3790,
+      "sha256": "cda7168dde9044ba475f58977ca0be624518d9d636ae0a2c012a46455bb98438"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 3280,
+      "sha256": "58993ce707e8a3f5c2d5ca0a2149ef3a6588d56ee7fb80242884e2aab8ccad48"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__pycache__/attributes.cpython-313.pyc",
+      "bytes": 4377,
+      "sha256": "3573569c95eba00ce503b6097529a267a846ee02005c94d7d93d3eb0e3ddb07d"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__pycache__/config.cpython-313.pyc",
+      "bytes": 2434,
+      "sha256": "06093ca1860895cd5fb51ac627a29a41d4ba6fc88672705b5ce27386d2fc5708"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__pycache__/interface.cpython-313.pyc",
+      "bytes": 2447,
+      "sha256": "61cca76f9f5b25ec72fe0fc1e836ae252ed6f2827f2cfab4eb7234f32893b5f4"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/__pycache__/records.cpython-313.pyc",
+      "bytes": 1848,
+      "sha256": "df8cb6187245f7439511a29dc336179c67bf7467350f9425a9d847bf20447a9e"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/attributes.py",
+      "bytes": 3614,
+      "sha256": "de0dac7411277bcd8459d510f94f17e0114fd960c3a9a2cfcb8b439e0c1522ba"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/config.py",
+      "bytes": 2017,
+      "sha256": "dc0d17ff6b3d8b0a07d15473130c3689c105680ef685bcb2e52bcdd7f3b350e5"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/__init__.py",
+      "bytes": 672,
+      "sha256": "2c17d0fb7ed8d86b9d8fd63dc1ad8913a37700bc44962d2b11d64419821ef0b5"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 735,
+      "sha256": "0aab5fb2b0bb27859515151501ea4993248f053503d12e15aa660fa5e599f5c0"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/__pycache__/llm.cpython-313.pyc",
+      "bytes": 32088,
+      "sha256": "484415c6b25a4f5913a62ea035d719614826a65fb96eeb1fab7de1abf33fad51"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 2551,
+      "sha256": "fdccb0be967dce7c27e8c089d891b9a6d436527749a27ed51fd06262af8cf10d"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/__pycache__/memory.cpython-313.pyc",
+      "bytes": 26357,
+      "sha256": "9ee46976363ac79cd1f2a7a5971374820bc679407280c274caba710b52067185"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/llm.py",
+      "bytes": 25592,
+      "sha256": "36bcb3e43d45025344fd57702eaac53e0aa99e52f6bdec8f3f5870dd5a59dc0a"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/mcp.py",
+      "bytes": 1729,
+      "sha256": "50bc3cefd7434eec706718e4baa1f168164f434f524bc52f48a9607eaf0f6c42"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/helpers/memory.py",
+      "bytes": 21657,
+      "sha256": "990e41e2ed3f99f3f583e658d414a778da2183be47134b09973bfe938a75dd1b"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/interface.py",
+      "bytes": 1778,
+      "sha256": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__init__.py",
+      "bytes": 853,
+      "sha256": "271d24dfd76a46ca72d60b31ae33322f77885ef57dcde28d81ccd3fc78bb1973"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 889,
+      "sha256": "534d05109bd4b1bfab92b272fb4b704f9a643f000eab6dc2f10048696f403930"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__pycache__/common.cpython-313.pyc",
+      "bytes": 1302,
+      "sha256": "7babe19c487d6b9449873727530efafab4cb08733ea7d2142de92e359595135b"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__pycache__/llm.cpython-313.pyc",
+      "bytes": 11658,
+      "sha256": "e8229c56ce1d5109926db6dd4822d84253f4ee7a080a7f3aa3272303834ecf23"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__pycache__/mcp.cpython-313.pyc",
+      "bytes": 2652,
+      "sha256": "450dcce68e0140ffc6bbc26a1037c6b693a7086a6a21f05eee9ce4aa7a70aa4f"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/__pycache__/memory.cpython-313.pyc",
+      "bytes": 7001,
+      "sha256": "fb3315a647bec9bf2b6296bf2bb858577d18dcf1d9529d56d0e91a1d0dd0c266"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/common.py",
+      "bytes": 784,
+      "sha256": "ed7709385f80e783b5cae4a17ba716794493ccceb269b2607e0de3bfc87ac218"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/llm.py",
+      "bytes": 10980,
+      "sha256": "3aa9dd81de2975cfecec8d39eaed08161ed2303fabbb67d915203967cccbbb5c"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/mcp.py",
+      "bytes": 2303,
+      "sha256": "53f7a172f6a5ec7ed31f72a4fe260e2e4e97c932151a43958b8a4dc6e7641fda"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/models/memory.py",
+      "bytes": 5773,
+      "sha256": "7431bc2d9a9c6d26e8a73ac4cb4d9fd405749560c5932675228a21e65e51ccc8"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/__init__.py",
+      "bytes": 379,
+      "sha256": "76f14cc2ed262bcae5382952182ed149f4d25c801487cdf356d820640865f2aa"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 582,
+      "sha256": "38e48cc5847f4abe083cd443c276d832dac8957af3b26f1f43325d7cb3b372d4"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/__pycache__/composite.cpython-313.pyc",
+      "bytes": 4117,
+      "sha256": "ce7239ab87bc0260d3957e6d618b1beff4aa39891298ef7fc367ae0eb81eab55"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/__pycache__/debug.cpython-313.pyc",
+      "bytes": 5740,
+      "sha256": "df507f1df82f8837b392b461268013c804fdb9be2501f5d1e333b0e36352509a"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/__pycache__/otel.cpython-313.pyc",
+      "bytes": 5461,
+      "sha256": "7df3197740bb607925f69fc0256e83f8f644e4c4c023a2bf8c17b614043005c4"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/composite.py",
+      "bytes": 3181,
+      "sha256": "5204bd1f69a7eb7e8a09294c4dd410909a7955093d3a28fa00c2c6ab3b54a516"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/debug.py",
+      "bytes": 3786,
+      "sha256": "3b8921c89eb99292fd89808ebbfcf77e011d65b24cf3245e867bbdc5018145bb"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/providers/otel.py",
+      "bytes": 4695,
+      "sha256": "dbbf24380c6ff6d3f3d3e9ed6f9a426f5ed12a9629bb4d1031f318bb139151f5"
+    },
+    {
+      "path": "val016_dist/friday_framework_telemetry-0.1.0a2-py3-none-any/friday_telemetry/records.py",
+      "bytes": 866,
+      "sha256": "59d5dc09c60e467430836857206199fe18813b8b7506c6c424f1d0f79ecb5bc8"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_framework_tools-0.1.0a2.dist-info/METADATA",
+      "bytes": 2983,
+      "sha256": "37bcc393face6763f47e2c2b66cd52b9700b393db2bb9522532fd92efb0170f5"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_framework_tools-0.1.0a2.dist-info/RECORD",
+      "bytes": 7956,
+      "sha256": "3eea38f3b585fb1c0291e913c05d586126ab51c8cc6a84bdf9dee3234051403d"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_framework_tools-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/__init__.py",
+      "bytes": 1717,
+      "sha256": "03dfb57f7380284a6dc31196b966f841c8e9f6ccce8b49679004eb4c34acda9e"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/adapters/__init__.py",
+      "bytes": 907,
+      "sha256": "2c2083b40306640aa58c686b613d3f94dbbc1360b00b074bf98da59dbc1f89bc"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/adapters/anthropic.py",
+      "bytes": 5513,
+      "sha256": "835f8c2fe0fe01a56f211674badf8e1b598ab27255457ba2d82033180e7abc99"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/adapters/langchain.py",
+      "bytes": 4432,
+      "sha256": "721c48827a4d68614d1ab37032561750067a560581c1870ddc8e9cd66a214d29"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/adapters/openai.py",
+      "bytes": 6505,
+      "sha256": "4f8ff3e4073fb692c8cfa87775e34469841b3eb7a03a28a99e3f112cd0843372"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/archive/__init__.py",
+      "bytes": 176,
+      "sha256": "166739c08b79b5af9be9d7d6adea3e6f814a3a060222944df63b99cf52d6f8a5"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/archive/archive.py",
+      "bytes": 3953,
+      "sha256": "4e3d1017ae7c335964372d583e60053c9c0f00cbb1c4a1e4b559d6f24e946eb1"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/base.py",
+      "bytes": 7010,
+      "sha256": "de2e67387d56161b824b577d8e6e4113302beee4f51fc233bdd84db1a4b01254"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/code/__init__.py",
+      "bytes": 339,
+      "sha256": "e7a9ef11c309a7ea7fe6ae5fa3fc65474638e7071e354d3a783acfe04e7a5f38"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/code/analyze.py",
+      "bytes": 3119,
+      "sha256": "2891f09cf58ebd9e73b8fda22635aea00067d81f48f83e6535142187a1aec6b4"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/code/format.py",
+      "bytes": 4683,
+      "sha256": "c2ed6d0b76d46579fb8f97a41ef2428dbdcbafcc34074b3494d5b110af59014d"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/codegen/__init__.py",
+      "bytes": 368,
+      "sha256": "b3493c15bd56588bd5c97c114984722ca395ff9018fa9c3ddc2ad2e148cfdd79"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/codegen/prompts.py",
+      "bytes": 3201,
+      "sha256": "380b2e61fc9b1ebf0dbf61a21e43ce621bfdb5458ebe4b3d5e8d513c661e67b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/codegen/tool.py",
+      "bytes": 7796,
+      "sha256": "7ba18b8edf33ee017c9b49f58440b20e19bae9c30f2ff36ca5ab53dd67475894"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/__init__.py",
+      "bytes": 732,
+      "sha256": "ad9d0c1e2ce84542a03bbd3e6ab54c1b53f29233e9491d6d8bfefe8155a5c551"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/csv_tools.py",
+      "bytes": 4891,
+      "sha256": "a107721e0d56c3f64ee9bd3535f95914fa4048b8ae84f2544d58e6b90012d777"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/json_tools.py",
+      "bytes": 5064,
+      "sha256": "6b0db7c53d4cb431b5c091f1b0bbd2343e7ee355cbfcddb6cabba3f30c6c03b1"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/toml_tools.py",
+      "bytes": 3169,
+      "sha256": "7e60abace9af8738c69f895e35a9bec913633d0cc83931faeb875bee64559792"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/xml_tools.py",
+      "bytes": 3817,
+      "sha256": "2f41e864c218306c4d42478df9db3f1c00f2d9c1d6d11c369808be6e3b3d0761"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/data/yaml_tools.py",
+      "bytes": 2948,
+      "sha256": "635894e3a9127051fdbc18a1c9679975d8783a1448bf812045368d3c4e3a2fde"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/definition.py",
+      "bytes": 9040,
+      "sha256": "70da10db7cdb7a434443b66d8ec353f0236606aad40df4372fed306c9e0764da"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/encoding/__init__.py",
+      "bytes": 319,
+      "sha256": "0f434c5e71723360e5df266404a12bf0f23c17b6ecc9357a805101c423b483ad"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/encoding/encoding.py",
+      "bytes": 3909,
+      "sha256": "4f3ee42cc17e873094a60adfeeb64c869923effc43ff6a497536e740e6491533"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/execution/__init__.py",
+      "bytes": 223,
+      "sha256": "64986d84a0ed31937045b7b7f2091ab00b16ecf461dd59e03f358ed084522733"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/execution/python.py",
+      "bytes": 1950,
+      "sha256": "55dce26f051073ff1043efde0916360575b8c397df1adbc2d4edaf87beb75d1e"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/execution/unsandboxed_python.py",
+      "bytes": 4232,
+      "sha256": "b25cd42cbea4afc582b958c1781d5c83e94276466690775dcb10786028c11338"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/__init__.py",
+      "bytes": 2257,
+      "sha256": "1cc93ccca56f2c64da64e3939a3786f72820b242ffe5070e2bd3336dbb7ee1c8"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/code_chunker.py",
+      "bytes": 17403,
+      "sha256": "9a9ff39087a001fb5a7a1243cffed3d05b0f749b1029471e14ae3ed157905442"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/directory.py",
+      "bytes": 15775,
+      "sha256": "167204df195dda5a20d23b6c8d33706053e504de8eccb5829ab36ade39b5acd7"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/operations.py",
+      "bytes": 8823,
+      "sha256": "cf77d02035b1238fdba17c22ec8e1996d7ccaf55bf4a5ed09eb3473a22e47c16"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/read.py",
+      "bytes": 13632,
+      "sha256": "a3766afe593fd7ac2a8c5032f9fb7a7a4904066c07f4c2a7213803ae31549fc8"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/__init__.py",
+      "bytes": 1430,
+      "sha256": "3af68ec199e8e94b946b0608ae7b10c2ee9c73b487ef24908bd8961a857d03f1"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/base.py",
+      "bytes": 2572,
+      "sha256": "26a3d094a16b867f59fe0c8b945a892786b5f51e44c3b9b396ec6e0ed3ce319c"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/csv_reader.py",
+      "bytes": 8369,
+      "sha256": "ddbe7faf870712c53fb923eeb526b2e165323c59b7daa5672e3e9962e95d766f"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/docx_reader.py",
+      "bytes": 5868,
+      "sha256": "8dd5b1e2261e6118e001d6fac92f83419f6edb0f5f78856a1bc34ce1f14f4319"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/encoding.py",
+      "bytes": 8332,
+      "sha256": "f03c968e3fcd5ea3b06a51ef7a18aa69d86ff7d8ed72b5795daf97c10cb04b0d"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/factory.py",
+      "bytes": 10785,
+      "sha256": "2497a525483847299571c8fbfc930eaf3953b2f2dbf9f21f4eafe84487e97db9"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/pdf_reader.py",
+      "bytes": 6346,
+      "sha256": "1ad72889ac10bfdb6714f341513d3756af924db9ab7d9f8926b128a476915960"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/readers/xlsx_reader.py",
+      "bytes": 9941,
+      "sha256": "4c951a4f372cee9abc33b79221ac32d83908c97b99888ad4bc58712599050fca"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/smart_read.py",
+      "bytes": 23625,
+      "sha256": "23f514859df4ec0b228e0667187c28650982f3b2e6133d64de898dcfc54e6399"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/filesystem/write.py",
+      "bytes": 20637,
+      "sha256": "1b99324fcccbf690a92527197c437c99bc0981dde2c41b076dab2ce5817f44f3"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/finance/__init__.py",
+      "bytes": 428,
+      "sha256": "e2eed68278332d5687db5e2ca5bc622b283ca8d3e1537f653daa24f64fe736e6"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/finance/massive.py",
+      "bytes": 10589,
+      "sha256": "9cff6dcc83a2d883b548cfed5bffb35bf997ddab6d01c49907fa16bb011643eb"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/git/__init__.py",
+      "bytes": 600,
+      "sha256": "d36d1d8acb24de951d6230da9e68eecb3b10cfc4277887064e553e46bf43c72c"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/git/branches.py",
+      "bytes": 4906,
+      "sha256": "95e8dfbaf69636b57f52524401bce4bb14a3635414151f7e12328d2f90c509be"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/git/staging.py",
+      "bytes": 5195,
+      "sha256": "51b0d919b7111b0685438cbd3e7e28d6c1f9f664ab393e2926b65fa303672b1d"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/git/status.py",
+      "bytes": 5920,
+      "sha256": "199f84803d5fbcb9dd1296d2fdc187d91074cc8f805cea354b5d1b966e01752e"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/__init__.py",
+      "bytes": 2657,
+      "sha256": "1b611fe6a8ed5cd31be8d423dd730c1d4f346b7ee094d675fed9430b41082bb3"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/calendar.py",
+      "bytes": 1507,
+      "sha256": "167f21f9c5400341cd703b9acec6d0654271de986410df5c9582bc8e562a0882"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/database.py",
+      "bytes": 797,
+      "sha256": "4598c4646aaa848a98158db257b13d19409d1537d11ad7a13fd8df93993b7d02"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/email.py",
+      "bytes": 822,
+      "sha256": "5890c51a92859ce7e3913fe79d4956d08a89f5c29f8969a20cc955d218303729"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/moltbook.py",
+      "bytes": 17382,
+      "sha256": "fe1aae36f3b446f0800ddf172590f9db3ca142cd676a878bf44998b1930d4cbb"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/slack.py",
+      "bytes": 787,
+      "sha256": "38ba3ed28fd0d45a297a9f147295a3dab2d070d21d17338b5e20e8e690764b73"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/integrations/webhook.py",
+      "bytes": 727,
+      "sha256": "b69f8523d1989552344d19cdfc8671f2a2d25aa2d635eb43a975fe591fd04d05"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/manifest.py",
+      "bytes": 7705,
+      "sha256": "ec20bfc1ac5a38cf8c627cb6fa70df1d4ef2ddf679481f8df08f6b5b536f1de8"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/math/__init__.py",
+      "bytes": 214,
+      "sha256": "a01b7af4c0c34a4f27a2014a77e41fe12a0d43f07c5492665c964e32b3ea03bc"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/math/math.py",
+      "bytes": 5290,
+      "sha256": "eef144045911726d5fdd011f3eb2c2c85665fda74ffd9e592694e9971e0290c6"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/memory/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/memory/inspection.py",
+      "bytes": 5426,
+      "sha256": "3aa5a2ae70a830492017de3dde74d8a554b58a62e364c0e28740528fb512676c"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/memory/lifecycle.py",
+      "bytes": 1994,
+      "sha256": "a76045c4be63b3dce1aba3720a046ba459c39090b47cc7dea5e5374eed0120c7"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/memory/maintenance.py",
+      "bytes": 4202,
+      "sha256": "37ec8d951272621afa74d03613f36afeeac1bb67c49a001e99df86e46829fe81"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/protocols.py",
+      "bytes": 505,
+      "sha256": "616ee0597a1a92c4f6178f8244286c2bc973e03b3433e4a3511f448f62924596"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/registry.py",
+      "bytes": 8691,
+      "sha256": "f782d7caa62c44371d8f8f56dc9c1576d967e9590b64aefa67ef2ee822e7ed30"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/sandbox.py",
+      "bytes": 9835,
+      "sha256": "f9c5a77f74703bafb7981e7a76c4214e0a2bc9d2dfa9bcfd642859586bb98237"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/shell/__init__.py",
+      "bytes": 876,
+      "sha256": "61312bad92802b246b2fb6ebc61fa30c98a0864fb594c9fb67d88035194eb688"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/shell/command.py",
+      "bytes": 13953,
+      "sha256": "69f522bf6940f32b114974df0c46ea3f06c7271d12cb979478d356ace1277c92"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/shell/execute.py",
+      "bytes": 6869,
+      "sha256": "594045a97e4246e10751b99e3fbac57e51b6a6ebecaf1dd22e1f2c792908ed17"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/shell/system.py",
+      "bytes": 9662,
+      "sha256": "f4e1472cd96fd26d2eb7e29a37bb74e8ad8e02dd6ee90dbfc29835a3cf6ef21b"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/system/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/system/health.py",
+      "bytes": 1748,
+      "sha256": "db59f177fe32ba9195bf3f75e152e83b9d83f07e83bab9be6286526b1e9ff7bf"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/system/transcript.py",
+      "bytes": 2778,
+      "sha256": "633c16f2181ef52eaaa97d5d6108450240809ac14d3fe7e742da4efb86b9a4ee"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/text/__init__.py",
+      "bytes": 552,
+      "sha256": "1e599524e90a3547d52a5b90f0a68d9ae1b6696bd02257c2e8c58cb682c75dc3"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/text/convert.py",
+      "bytes": 3253,
+      "sha256": "9ab73a0b8d04a9d41bd0668c3a8eb59c759b1738f199413bf05ec532ac478e51"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/text/search.py",
+      "bytes": 2681,
+      "sha256": "a248448cfc6454a7dbbce2a9b436fcf38e4a56093c45c336dba61954802b34b7"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/text/transform.py",
+      "bytes": 4143,
+      "sha256": "402b71c8a168a5da688296e0a86311de1fe02e12eab7729342e797d6eb341292"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/utility/__init__.py",
+      "bytes": 388,
+      "sha256": "df293e58a0b52fc959d6230a41a5d056ff7022c0f56b84eecabca38d63846ecd"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/utility/datetime.py",
+      "bytes": 5210,
+      "sha256": "6753e7fda2dea57ab6a17c5fb16bfe623adab375230536cb0df98406723a9c73"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/utility/echo.py",
+      "bytes": 1222,
+      "sha256": "d521faa205542595223bf295f06eef98c1f8fe3c6b8e2f727aad78e29f4de3ac"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/__init__.py",
+      "bytes": 2262,
+      "sha256": "53ccf1bea57cc0d41e3a251418ad5c80c54aed9bc256ee7034d0497829528f7f"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/client.py",
+      "bytes": 5955,
+      "sha256": "a22af14a9d5b7d19aaca4ed938e74290a4359baed86702f8e5c1a75c474bd897"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/config.py",
+      "bytes": 4995,
+      "sha256": "c28e69fb2a16a1f60995a6cd758a7d522389646b751638bd83ce190cd684247e"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/fetch.py",
+      "bytes": 11499,
+      "sha256": "64a510e33957e27dbc215814a003c53feab6a7505dc3023a319cfd134b719f0e"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/http.py",
+      "bytes": 20810,
+      "sha256": "a56c3643e13adea083fb8fa6bea69795aa16a859414294496e1e2a1f1478b92b"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/reader.py",
+      "bytes": 13266,
+      "sha256": "3be2e72097d9305f81bf9891f8bb2b31954d8cfa404a6cc3282f43dd4eb0314a"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/search.py",
+      "bytes": 13908,
+      "sha256": "a8ab4e54587346cdcb272ae3d4a2b203fab31d59906d2a89871db649f20113b0"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/serper.py",
+      "bytes": 15332,
+      "sha256": "c6807968c7166c12cad1168f6044b5cc7b4da2901f03e6fc09b8635f15837549"
+    },
+    {
+      "path": "val016_dist/friday_framework_tools-0.1.0a2-py3-none-any/friday_tools/web/validators.py",
+      "bytes": 4969,
+      "sha256": "77dfb725804d4435c641ebba155714e3e064c6463cda2fc342346588c7f9cd46"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_framework_transcript-0.1.0a2.dist-info/METADATA",
+      "bytes": 1284,
+      "sha256": "c72881bc57465410db9f862ba1fe863b229bc8b4e858dad039ff5a011731d9ae"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_framework_transcript-0.1.0a2.dist-info/RECORD",
+      "bytes": 1472,
+      "sha256": "6e02a63e28884f7071b98b062fb4682dd86924dad6d6a918d263c1ec36b76f7f"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_framework_transcript-0.1.0a2.dist-info/WHEEL",
+      "bytes": 87,
+      "sha256": "5b77e4a649bbfb07fdbc123967eeecd1e5a478cfaca6eefc23c35e6fdf037848"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/__init__.py",
+      "bytes": 2305,
+      "sha256": "1eb5adcf7525a4f2ac67b991397bff40d76a04bcac7c0f24b2696ced2a2544bf"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 1949,
+      "sha256": "9f0776eb1e716b3ff3a43100743ccca9c5f04671a77f3274f0c8eb242393b7f1"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/__pycache__/correlation.cpython-313.pyc",
+      "bytes": 3501,
+      "sha256": "f3acb389230d300acc9b0d244a24fb8e079bb6c40283c6a0b8256d0a69ac33ca"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/correlation.py",
+      "bytes": 2657,
+      "sha256": "9081f55e0bb7e8e16957a82a8a1f7e00d4dfd06c1bf25c8592d03dbb6bb627f1"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/__init__.py",
+      "bytes": 390,
+      "sha256": "48b871c07701f3c6b4586e89396f056edb6bf7d82dbc45edb44ed970f9c2a28b"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 592,
+      "sha256": "c8e74b3df7ec5a16150d2d2a3317bac01eca84a59b550844121ac111b05d27da"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/__pycache__/csv.cpython-313.pyc",
+      "bytes": 14052,
+      "sha256": "7688a170c8d68fd1c9a8efa2c8e039446a7ba52efda1d23eb9c1d4c9a067034d"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/__pycache__/jsonl.cpython-313.pyc",
+      "bytes": 8564,
+      "sha256": "f2506f10953f1d6cc3a847d4861c77d4dc98b6ff0d6750875eed6eec341ab589"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/__pycache__/markdown.cpython-313.pyc",
+      "bytes": 10769,
+      "sha256": "9c45c9386be7280f54472f6a1816b177b0b184b358ebdb1cf904e47bc61ed939"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/csv.py",
+      "bytes": 11703,
+      "sha256": "523f4d3c67b6390c327595139a7349be91c6d7fe323eccca1400dcf882f5c4f1"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/jsonl.py",
+      "bytes": 7335,
+      "sha256": "8f8782c70c746ebc2b516ab8fee453929566b24be4a4ff5fb6bdd0625e66edd2"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/exporters/markdown.py",
+      "bytes": 8078,
+      "sha256": "fd7c95dee50d5a5e95b68fcd8739d7cd0cd6add9222087d0bf6e17cfbdfa9ce2"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/__init__.py",
+      "bytes": 864,
+      "sha256": "1a9196aa0266f583bfe65dbdd45661dc69a58f4cef75477095b29aa273ca60a5"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 848,
+      "sha256": "df1b4332fb3ad472fcd604381c8169336dd731c72ef7404c92fecb908fa34a03"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/__pycache__/snapshot.cpython-313.pyc",
+      "bytes": 5256,
+      "sha256": "57a073684cb10e998945ab296e36cd6d9448d552de3a9fd4d43ee6e21dfeb311"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/__pycache__/transcript.cpython-313.pyc",
+      "bytes": 17913,
+      "sha256": "6bec504bc53a80c88e277a292c5fbb2ed1ce4b5de913a717aa3b9a11b3dbfbb5"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/snapshot.py",
+      "bytes": 2964,
+      "sha256": "bd7ac7fc28cbfe2394084b143d56310afa0fc65a4230e54bebf58b12683ca5ef"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/models/transcript.py",
+      "bytes": 15048,
+      "sha256": "43ad71cb39c2b7d5d07b3e5d47c2ca63589d6852f4f0ea8f6b412dce3054f864"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/__init__.py",
+      "bytes": 611,
+      "sha256": "c66edf61043694627b6a3d751d885199b200ed500487a903bc4c13e2e60906e3"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/__pycache__/__init__.cpython-313.pyc",
+      "bytes": 693,
+      "sha256": "ce0fc552714ecc5bea3f0e7a8f8f5ef67736e53bf3caf5969f78d421d6535922"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/__pycache__/jsonl.cpython-313.pyc",
+      "bytes": 19341,
+      "sha256": "4c19b5e862a8985e512e096dbd9fa768e1ec2766f9ce52febcc86567db311152"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/__pycache__/protocol.cpython-313.pyc",
+      "bytes": 7524,
+      "sha256": "780035fa7afa1bc6fa67676e8f3d4fec1b7998f6ab3a1ff4a14b19a1d7277618"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/__pycache__/sqlite.cpython-313.pyc",
+      "bytes": 80904,
+      "sha256": "650298d355dfcb565719693064559fb21b209fbb6b0e8dac923584c5cba9f52e"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/jsonl.py",
+      "bytes": 13573,
+      "sha256": "b6401745ea350f38e30a2140046c69785c9852467042615b99d8b678fd67eb61"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/protocol.py",
+      "bytes": 6155,
+      "sha256": "aa3a251bb5df3db00a714f9b29f56279ed2aabb6727b94ae9657b76da89e6b43"
+    },
+    {
+      "path": "val016_dist/friday_framework_transcript-0.1.0a2-py3-none-any/friday_transcript/stores/sqlite.py",
+      "bytes": 59209,
+      "sha256": "17532a3717dc78e81fb17567821c8abbc583814dce417b8c0f00fcc3cab326be"
+    },
+    {
+      "path": "val016_imports.log",
+      "bytes": 1499,
+      "sha256": "87259cacb313e5c7d721bbf479000cd5796b6eb5c9f1e1e2d92415ddae3b854b"
+    },
+    {
+      "path": "val016_imports.py",
+      "bytes": 1319,
+      "sha256": "cff5566ba7f734377a8c9654585d3c19924be7d867ca241467abed8e726c63c8"
+    },
+    {
+      "path": "val016_imports_offline.log",
+      "bytes": 1212,
+      "sha256": "3d977ad2389cd1a1ef42f69b39557185c52d800d546dd44f17815f2d61672edd"
+    },
+    {
+      "path": "val016_probe.log",
+      "bytes": 98,
+      "sha256": "6080cdba0a1c2f55a0136c9148dc44a677e16296cfaf3c58d9cab2edf17d35a2"
+    },
+    {
+      "path": "val016_probe.py",
+      "bytes": 9941,
+      "sha256": "b778e61ed0599f01d646d3331c945a322b2bfb976ecd09251d807c4e257cee59"
+    },
+    {
+      "path": "val016_scope_start.json",
+      "bytes": 9333,
+      "sha256": "bb4cac83e872e6f32b447ac6163e76abee1e3c71637590d5fc8eb8da100f2f74"
+    },
+    {
+      "path": "val016_wheel_logs/friday-agent.log",
+      "bytes": 112,
+      "sha256": "bd72d303236250f4ff546ab54ad0bb34c9436af15d5c695e59d006cdb51e878e"
+    },
+    {
+      "path": "val016_wheel_logs/friday-chat.log",
+      "bytes": 101,
+      "sha256": "697c77ab7070ff818495d3a90ac53b3b1990b08c0a9df3a9bd0198f0a15600ef"
+    },
+    {
+      "path": "val016_wheel_logs/friday-cli.log",
+      "bytes": 110,
+      "sha256": "3774cde59880c4a24f1d6e3a81636abd3fc9fdfe33d833b752d5d9ee409bb819"
+    },
+    {
+      "path": "val016_wheel_logs/friday-core.log",
+      "bytes": 111,
+      "sha256": "2a8dd94974dfe0f1fb6573b34ceb701ff049862375bddd70fc709126cb0b5242"
+    },
+    {
+      "path": "val016_wheel_logs/friday-finance.log",
+      "bytes": 114,
+      "sha256": "37e7894d332b2dad1e928bc8ea2bd0d434759b5b8ebe887f6d7c38dc9a345226"
+    },
+    {
+      "path": "val016_wheel_logs/friday-llm.log",
+      "bytes": 110,
+      "sha256": "aa4fd8b116c255fd7db58ebad9a73ab4e824bdd432eb3f8a4c8e9ddbf9130855"
+    },
+    {
+      "path": "val016_wheel_logs/friday-mcp.log",
+      "bytes": 110,
+      "sha256": "69014b4d012c9cf0c79e14f72b48213bec6797e6587102dc7ed7c61ed9ffaa5c"
+    },
+    {
+      "path": "val016_wheel_logs/friday-memory.log",
+      "bytes": 113,
+      "sha256": "29778125d5650806f65a25f823e490966eccebb1addeec7ff8d0749861dbfb19"
+    },
+    {
+      "path": "val016_wheel_logs/friday-moltbook.log",
+      "bytes": 115,
+      "sha256": "b6471333269cc3dfe15a0b95ba4dc7d86a4ad696f277cf28b89a0f3d60ef868e"
+    },
+    {
+      "path": "val016_wheel_logs/friday-optimization.log",
+      "bytes": 119,
+      "sha256": "57bc5fcdf0da35d5f7d57dbff446e8f46e0e60edfacbdeabac867d2db2e10698"
+    },
+    {
+      "path": "val016_wheel_logs/friday-runtime.log",
+      "bytes": 114,
+      "sha256": "2bfb6cf8efc206debc1487214878d8bd83f6fac48e92dc7cb4d123f32778f90f"
+    },
+    {
+      "path": "val016_wheel_logs/friday-sandbox.log",
+      "bytes": 114,
+      "sha256": "92389d7d8399179b89605f13c764ae03f363fc7a76d76e1487f53327eb1c5dcf"
+    },
+    {
+      "path": "val016_wheel_logs/friday-speech.log",
+      "bytes": 113,
+      "sha256": "7d60a726b229e5e69238c616ca03db5bc74489481a569681869af80c0feb9b59"
+    },
+    {
+      "path": "val016_wheel_logs/friday-telemetry.log",
+      "bytes": 116,
+      "sha256": "c808d48ff6ef966495267724edbc8659d58bdc5d5d2803352ab372d8a941d0de"
+    },
+    {
+      "path": "val016_wheel_logs/friday-tools.log",
+      "bytes": 112,
+      "sha256": "cfc36fa4cbe800374d89331d95be8c175e8a79e7cdff68a8d793e99d8cfe84dc"
+    },
+    {
+      "path": "val016_wheel_logs/friday-transcript.log",
+      "bytes": 117,
+      "sha256": "c73e8cecd2be8024139dd8d71ca7f85577690f5469ba089d10ba6aa35e75626d"
+    },
+    {
+      "path": "val016_wheel_logs/results.json",
+      "bytes": 1205,
+      "sha256": "847fba8570b4a139026dc62e1d679859863ff0cb4e04a8e042dc9b50ed063bd2"
+    },
+    {
+      "path": "val016_wheels/.gitignore",
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    {
+      "path": "val016_wheels/friday_chat-0.1.0a2-py3-none-any.whl",
+      "bytes": 196123,
+      "sha256": "f40a60726ff2ac427ddc35fba64afdb681b6289a31fc43677f09d4bff8955a7a"
+    },
+    {
+      "path": "val016_wheels/friday_framework_agent-0.1.0a2-py3-none-any.whl",
+      "bytes": 68266,
+      "sha256": "c4b1d18c04dfd313578434de77eda004b8f8ab5dea8af9bb2c06fe9dadd3971a"
+    },
+    {
+      "path": "val016_wheels/friday_framework_cli-0.1.0a2-py3-none-any.whl",
+      "bytes": 38567,
+      "sha256": "be70ae1103ab0d3c023f3b9b6450b4271655f327417fa75b290e07d7e5daae15"
+    },
+    {
+      "path": "val016_wheels/friday_framework_core-0.1.0a2-py3-none-any.whl",
+      "bytes": 41975,
+      "sha256": "5292bcad1d6f3cde3dc49d01138dc3875813019b673567057d7ad5bff784e6bf"
+    },
+    {
+      "path": "val016_wheels/friday_framework_finance-0.1.0a2-py3-none-any.whl",
+      "bytes": 14042,
+      "sha256": "1a5e2e9adbe1a60879f05e7e32dc4ccc3d23b3d7ce7f0786de8b98b47789593d"
+    },
+    {
+      "path": "val016_wheels/friday_framework_llm-0.1.0a2-py3-none-any.whl",
+      "bytes": 47664,
+      "sha256": "7389bcee9c9fd8f73350662ab04fc8c073e67e8b81c1e9d47b383c24476bda48"
+    },
+    {
+      "path": "val016_wheels/friday_framework_mcp-0.1.0a2-py3-none-any.whl",
+      "bytes": 32237,
+      "sha256": "64a2381adca525d054fb5ab78f75c161b3df27ea6f6f890ba6e9ef81194b70d0"
+    },
+    {
+      "path": "val016_wheels/friday_framework_memory-0.1.0a2-py3-none-any.whl",
+      "bytes": 298121,
+      "sha256": "08c4f37c00c0699ab9cc60f67f88c91757e5272a57b45a1ea452caebe355cad3"
+    },
+    {
+      "path": "val016_wheels/friday_framework_moltbook-0.1.0a2-py3-none-any.whl",
+      "bytes": 13104,
+      "sha256": "9a64502fb211d5015f0e0b896d788136eb5eec8cb8d7bb376cea253a5f61fae6"
+    },
+    {
+      "path": "val016_wheels/friday_framework_optimization-0.1.0a2-py3-none-any.whl",
+      "bytes": 2509,
+      "sha256": "dac90f907a67f1fbf4333eadc9a8f71ad898d651c55d1ac8858bfa357fb0c8cc"
+    },
+    {
+      "path": "val016_wheels/friday_framework_runtime-0.1.0a2-py3-none-any.whl",
+      "bytes": 42199,
+      "sha256": "d47ef86589deccc6b3cc43a08770f205250d33a5bed0728e4b30d2f453cde69c"
+    },
+    {
+      "path": "val016_wheels/friday_framework_sandbox-0.1.0a2-py3-none-any.whl",
+      "bytes": 20890,
+      "sha256": "82b55acbe923b0166b4c02575ff2e83193d26f9cf2cb6dbe16115b2fdd16cd5b"
+    },
+    {
+      "path": "val016_wheels/friday_framework_speech-0.1.0a2-py3-none-any.whl",
+      "bytes": 18233,
+      "sha256": "4aeed4283c4026b30c9c1b4dd9297bb5bb667335368edb92bdae59cf9f18fb4b"
+    },
+    {
+      "path": "val016_wheels/friday_framework_telemetry-0.1.0a2-py3-none-any.whl",
+      "bytes": 27318,
+      "sha256": "25235c3c0b46c1adff02ac2014c6537599ea54c6f552613bbb3a2c3df2d95714"
+    },
+    {
+      "path": "val016_wheels/friday_framework_tools-0.1.0a2-py3-none-any.whl",
+      "bytes": 143429,
+      "sha256": "ffa38b848c3426c41d226e75b239fd952764dbc69f6844d3a847d147e5ddaacf"
+    },
+    {
+      "path": "val016_wheels/friday_framework_transcript-0.1.0a2-py3-none-any.whl",
+      "bytes": 32625,
+      "sha256": "c7535d8176f6bebf60fb1220cdbd9e1405af05e8444354a8718279668662ab33"
+    },
+    {
+      "path": "val016_wheels.py",
+      "bytes": 906,
+      "sha256": "5ee22e42b61212c54aa795196f1811b8318f49e8379cd27f3c091898e23efaff"
+    }
+  ]
+}

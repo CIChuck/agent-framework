@@ -1633,3 +1633,24 @@ candidate/report/manifest and five unchanged unrelated fingerprints.
 Phase validation/state pending; next is actual fresh-context, read-only
 dispatch. No reviewer verdict, WS-07 acceptance, WS-08 or delivery is
 inferred from builder results.
+
+## 2026-09-29 — Fresh VAL-016 VERIFIED; WS-07 Closeout Proposed
+
+Fresh `/root/mcp_ws07_val016` with `fork_turns: none` reviewed the frozen
+`c05882e..2e36613` WS-07 aggregate read-only and returned overall VERIFIED
+with no numbered finding. All 11 authority hashes, 16 product hashes and five
+unrelated path fingerprints matched at start and close. The complete
+[independent report](validation/VAL-016-report.md) and 755-member
+[byte-checked evidence](validation/VAL-016-evidence.yaml) are recorded without
+changing reviewed product or authority. Required focused, package, MCP
+integration, Ruff, typing, lock, board, docs, offline wheel and isolated import
+checks passed. Broad Chat and top-level integration remain nonzero; the
+reviewer reproduced their PTY/localhost and stale board-count classes on the
+byte-checked frozen base. No live-provider or clean offline resolver claim is
+made.
+
+The [WS-07 closeout proposal](execution/WS-07-closeout.md) records the exact
+candidate and residual limits. Phase closeout/state verified; next gate is
+explicit maintainer WS-07 acceptance. Initiative remains
+started/granted/normal/local. WS-08, initiative aggregate review and delivery
+are separate; no acceptance is inferred from the reviewer verdict.

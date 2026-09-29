@@ -1,9 +1,9 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-06 accepted; WS-07 reconciliation and separate approval next
+Status: WS-00 through WS-06 accepted; WS-07 independently verified, acceptance pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
-Branch: `feature/friday-mcp-ws06-memory`
+Branch: `feature/friday-mcp-ws07-telemetry`
 WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
@@ -33,15 +33,17 @@ The maintainer explicitly accepted WS-00 through WS-05, then said
 [WS-06 closeout](execution/WS-06-closeout.md) were presented. WS-06 candidate
 `820e252c496712264ebf767404c1e054f025d53a` is independently VERIFIED and
 explicitly accepted; VAL014-F01 is closed on that candidate. Complete report and
-lossless evidence remain archived byte-exact. Current phase planning/state
-not_ready; the WS-07 directive/readiness were reconciled against source.
+lossless evidence remain archived byte-exact. The WS-07 directive/readiness
+were then reconciled against source.
 The maintainer then explicitly approved the exact telemetry/diagnostics
 manifest and health-command deferral with "proceed" on 2026-09-29. WS-07
-implementation produced stable candidate `2e36613`; next is fresh-context
-read-only [VAL-016](validation/VAL-016-request.yaml). No review verdict or
-acceptance is inferred.
+implementation produced stable candidate `2e36613`. Fresh-context, read-only
+[VAL-016](validation/VAL-016-report.md) returned full-aggregate VERIFIED with
+no findings. Its report and [byte-checked evidence](validation/VAL-016-evidence.yaml)
+are recorded in the [WS-07 closeout proposal](execution/WS-07-closeout.md).
+Explicit maintainer WS-07 acceptance is the next gate.
 The wider initiative remains started/granted/normal/local on the named branch.
-WS-07 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
+WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
 VAL-011 and VAL-012 stay byte-exact, superseded only for changed candidates.
 Accepted predecessor records and all five unrelated fingerprints are preserved.
@@ -94,7 +96,7 @@ is authorized by the REM-004 approval.
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Complete: nine-path REM-008 candidate 820e252 received fresh VAL-015 delta/full-aggregate VERIFIED; maintainer explicitly accepted WS-06 on 2026-09-29. |
-| 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Approved scope built at candidate `2e36613`; [VAL-016 request](validation/VAL-016-request.yaml) pins fresh read-only aggregate review, verdict pending. |
+| 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; [closeout](execution/WS-07-closeout.md) proposes explicit maintainer acceptance. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
 | Deferred / [WS-09](directives/ws-09-optional-external-config-include.md) | Optional external MCP config includes parsed into the canonical typed runtime model, with path confinement and precedence. | Tools-only inline integration stable and a separate maintainer decision to activate the phase. Not required automatically by this queue. |
@@ -535,3 +537,16 @@ Phase planning/state not_ready; next reconcile the draft WS-07 telemetry,
 diagnostics and optional health-command directive against accepted current source,
 then obtain separate bounded implementation approval. No WS-07 product edits
 are authorized by WS-06 acceptance.
+
+## 2026-09-29 — Fresh VAL-016 VERIFIED; WS-07 Closeout Proposed
+
+Fresh `/root/mcp_ws07_val016`, `fork_turns: none`, returned full WS-07 aggregate
+VERIFIED with no findings for `c05882e..2e36613`. All pinned authority and
+product hashes, exact 16-path scope, and five unrelated fingerprints held at
+start and close. The [complete report](validation/VAL-016-report.md) and
+[byte-checked scratch evidence](validation/VAL-016-evidence.yaml) are recorded.
+Current broad Chat and integration commands are nonzero for inherited PTY,
+localhost bind and stale board-count classes independently reproduced on the
+frozen base. The [WS-07 closeout](execution/WS-07-closeout.md) proposes
+explicit maintainer acceptance. Phase closeout/state verified; board remains
+started/granted/normal/local. WS-08 and delivery remain separate gates.

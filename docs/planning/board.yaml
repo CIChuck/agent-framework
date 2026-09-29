@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh-context read-only VAL-016 for frozen WS-07 candidate
+  next_gate: obtain explicit maintainer WS-07 acceptance of verified candidate
   delivery_state: local
   branch: feature/friday-mcp-ws07-telemetry
   depends_on: []
@@ -89,6 +89,9 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-015-report.md
   - docs/planning/active/friday-mcp/validation/VAL-015-evidence.yaml
   - docs/planning/active/friday-mcp/execution/WS-06-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-016-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-016-evidence.yaml
+  - docs/planning/active/friday-mcp/execution/WS-07-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2

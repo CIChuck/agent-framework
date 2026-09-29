@@ -1,0 +1,8 @@
+{
+  "archive": "VAL-016-evidence.tar.gz",
+  "archive_sha256": "8b2d11af644e7d3c027257969eb9a61976319d78f72dd04801d8f55765c52cb0",
+  "checked_members": 755,
+  "byte_mismatches": [],
+  "all_match": true,
+  "excluded_base_reconstruction": "git archive c05882e45d78dc83ad48ee17b156aa9efff6fff0"
+}

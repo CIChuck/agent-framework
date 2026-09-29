@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: dispatch fresh-context read-only VAL-016 for frozen WS-07 candidate
+next_gate: obtain explicit maintainer WS-07 acceptance of verified candidate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-07 within approved directives; Chat health command deferred in WS-07
-execution_phase: validation
-validation_state: pending
+execution_phase: closeout
+validation_state: verified
 ---
 
 Current checkpoint: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -27,11 +27,13 @@ and [readiness checkpoint](execution/WS-07-readiness-checkpoint.md) with
 "proceed" on 2026-09-29, including deferral of the Friday Chat health command.
 WS-07 has a stable [builder candidate](execution/WS-07-implementation-report.md)
 `2e36613eae6060a99c1255cce04fcb7a27bc7374` on
-`feature/friday-mcp-ws07-telemetry`. The pinned
-[VAL-016 request](validation/VAL-016-request.yaml) is ready for a fresh-context,
-read-only complete aggregate review. No verdict or acceptance is inferred.
-WS-08,
-aggregate/pre-merge review and delivery remain separate.
+`feature/friday-mcp-ws07-telemetry`. Fresh-context, read-only
+[VAL-016](validation/VAL-016-report.md) returned **VERIFIED** for the complete
+work-unit aggregate with no findings. Its complete report and 755 selected
+scratch artifacts are preserved in [byte-checked evidence](validation/VAL-016-evidence.yaml).
+The [WS-07 closeout](execution/WS-07-closeout.md) proposes explicit maintainer
+acceptance; none is inferred from the review. WS-08, initiative aggregate review
+and delivery remain separate.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
