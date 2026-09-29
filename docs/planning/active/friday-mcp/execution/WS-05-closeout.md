@@ -65,3 +65,12 @@ freeze a new candidate and obtain a new fresh read-only delta plus complete
 WS-05 aggregate review. Explicit WS-05 acceptance and all later-phase/initiative
 aggregate/delivery approvals remain separate. No historical database cleanup
 or wider security redesign is authorized by this checkpoint.
+
+## REM-006 Approval And Execution Gate
+
+The maintainer subsequently said "fix them - proceed", explicitly approving
+the complete bounded REM-006 directive and separate remediator. Execution starts
+from `dd6a337eb2928ab4050ea70fb41dc77072210e34` on the existing WS-05 branch.
+Next implement the approved corrections/regressions, freeze a new candidate and
+obtain fresh read-only VAL-012 delta plus complete original WS-05 aggregate.
+No new verdict or acceptance exists; the original VAL-011 report remains unchanged.

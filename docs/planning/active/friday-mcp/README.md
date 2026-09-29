@@ -6,8 +6,8 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: approve REM-006 and separate remediation of VAL-011 F-001/F-002
-implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments
+next_gate: implement approved REM-006 then freeze corrected WS-05 for fresh VAL-012
+implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
 execution_phase: remediation
 validation_state: changes_requested
 ---
@@ -22,9 +22,10 @@ persistence failure. All 17 required commands, 22 passing/five failing independe
 probes, baseline reproduction, offline wheel/import checks and frozen preservation
 are recorded in the [review checkpoint](execution/WS-05-closeout.md).
 
-Next is explicit approval of the eight-path [REM-006 proposal](remediation/REM-006-directive.md)
-and separate remediator. Phase remediation/state changes_requested; no fixes or
-remediator dispatch are authorized by the draft. WS-00 through WS-04 remain
+The maintainer explicitly said "fix them - proceed", approving the complete
+eight-path [REM-006 directive](remediation/REM-006-directive.md) and separate
+remediator. Phase remediation/state changes_requested; approved execution starts
+from `dd6a337` on the named branch, before a corrected candidate and fresh VAL-012. WS-00 through WS-04 remain
 accepted. The wider initiative remains started/granted/normal/local. WS-05
 acceptance, later phases and delivery remain gated. Earlier checkpoints below
 are historical and do not override this current review result.

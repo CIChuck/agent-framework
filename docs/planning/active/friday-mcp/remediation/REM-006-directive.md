@@ -1,7 +1,11 @@
 # REM-006 — MCP-WS-05 Transcript Privacy And Cross-Iteration Correlation
 
-Status: Draft; explicit maintainer approval and separate remediator required
+Status: Approved; separate remediator authorized for bounded execution
 Date: 2026-09-28
+Approved by: repository maintainer
+Approved at: 2026-09-28
+Approval evidence: "fix them - proceed" after the complete REM-006 proposal and separate-remediator request
+Remediation base: `dd6a337eb2928ab4050ea70fb41dc77072210e34`
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-05`
 Reviewed candidate: `2388e747ba1bf8157881230ad36ae3ef3272b807`
@@ -16,15 +20,17 @@ policies, accepted WS-00 through WS-04 contracts, the approved
 [WS-05 directive](../directives/ws-05-execution-provenance-transcript.md), and
 [VAL-011](../validation/VAL-011-report.md) control this proposed correction.
 The original request and reviewed report stay byte-exact historical evidence.
-This draft converts each finding exactly once into bounded proposed work. It does
-not authorize source edits, remediator dispatch or delivery. The approved WS-05
+This directive converts each finding exactly once into bounded approved work.
+The maintainer explicitly said "fix them - proceed", authorizing this complete
+eight-path proposal and a separate remediator. Approval covers only both findings,
+required regressions/report/checks and new independent review; no delivery. The approved WS-05
 directive says: "No automatic security/package remediation is approved by this
-directive." Explicit approval is therefore required before execution.
+directive." The explicit approval above now supplies that bounded remediation
+authority; it does not grant later scope or acceptance.
 
 Use a separate remediator because these findings concern security and data
 integrity; the independent-validation policy explicitly requires that separation.
-The builder and validator must not silently repair this candidate. After approval,
-record authorization/start and the exact remediation base, dispatch a separate
+The builder and validator must not silently repair this candidate. Authorization/start and the exact remediation base are now recorded; dispatch a separate
 remediator, freeze a new stable candidate and obtain a new fresh read-only VAL-012
 with remediation delta followed by the complete original WS-05 aggregate. The
 remediator must not validate its own work. This is the first WS-05 remediation
@@ -32,7 +38,7 @@ cycle; after two unsuccessful cycles return unresolved findings to the maintaine
 
 ## Exact Allowed Implementation Manifest
 
-Exactly eight paths are proposed: four Chat source files, three existing tests,
+Exactly eight paths are allowed: four Chat source files, three existing tests,
 and one new remediation implementation report:
 
 - `packages/friday-chat/src/friday_chat/adapters.py`
@@ -153,7 +159,7 @@ Preserve the five unrelated dirty paths and accepted authorities.
 Stop before source work without explicit approval/start/separate-remediator
 assignment, or for scope/authority drift. Stop before closeout for missing
 required evidence, new failures, unsettled cleanup or no fresh validator.
-Candidate/authority changes invalidate prior results. Neither this proposal,
+Candidate/authority changes invalidate prior results. Neither this approval,
 CHANGES_REQUESTED nor a future VERIFIED result supplies maintainer acceptance
 or later-phase/push/merge/release authorization. After VERIFIED, return the
 complete independent report and request explicit WS-05 acceptance.

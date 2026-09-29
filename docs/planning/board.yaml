@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: approve REM-006 and separate remediation of VAL-011 F-001/F-002
+  next_gate: implement approved REM-006 then freeze corrected WS-05 for fresh VAL-012
   delivery_state: local
   branch: feature/friday-mcp-ws05-execution
   depends_on: []

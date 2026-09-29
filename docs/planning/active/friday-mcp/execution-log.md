@@ -1247,3 +1247,15 @@ fresh delta plus complete-aggregate VAL-012. Next gate explicit maintainer appro
 of that draft and separate remediator. Phase remediation/state changes_requested
 is a proposed correction gate, not authority to execute. No fixes or remediator
 dispatch occurred. Accepted predecessors, later-phase and delivery boundaries hold.
+
+## 2026-09-28 — REM-006 Approved And Started
+
+Maintainer explicitly said "fix them - proceed" after the complete eight-path
+REM-006 proposal and separate-remediator request. Both High VAL-011 findings,
+regressions/report/checks and new fresh read-only delta plus original WS-05
+aggregate VAL-012 are authorized. Remediation base `dd6a337eb2928ab4050ea70fb41dc77072210e34`;
+branch `feature/friday-mcp-ws05-execution`; phase remediation/state changes_requested.
+Next dispatch the separate remediator, execute only the approved manifest and
+freeze a corrected candidate. Historical reports/evidence and accepted predecessors
+remain byte-exact; five unrelated dirty fingerprints are preserved. No acceptance,
+later-phase, delivery or historical database cleanup authority is inferred.
