@@ -1,0 +1,15 @@
+{
+  "id": "VAL-014-status",
+  "date": "2026-09-29",
+  "reviewed_candidate": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+  "historical_outcome": "CHANGES_REQUESTED",
+  "decision_status": "current_changes_requested",
+  "findings": [
+    "VAL014-F01"
+  ],
+  "proposed_remediation": "REM-008",
+  "remediation_approval": "pending",
+  "remediation_started": false,
+  "replacement_review": "VAL-015 required only after approved new stable candidate",
+  "report_and_evidence": "Original independent report and all evidence bytes retained unchanged; no superseding candidate exists"
+}

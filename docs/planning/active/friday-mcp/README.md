@@ -6,21 +6,32 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: await fresh VAL-014 report on frozen WS-06 full aggregate
+next_gate: approve REM-008 owned-retry correction and separate remediator after VAL-014
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
-Current checkpoint: approved WS-06 implementation is frozen at `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`.
-[Implementation report](execution/WS-06-implementation-report.md) and lossless
-builder evidence record all seven tasks/ten criteria/checks and unchanged baselines.
-The pinned [VAL-014 request](validation/VAL-014-request.yaml) requires a new fresh
-read-only full aggregate review from `99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase validation/state in_review;
-new `/root/mcp_ws06_val014` dispatched with fork_turns none from preparation
-commit `548da4e`; no verdict/acceptance claimed.
-All 18 authorized paths and outside-scope/user preservation checks pass. Accepted
-WS-00 through WS-05 remain intact; later scopes and delivery remain separate.
+Current checkpoint: fresh read-only [VAL-014](validation/VAL-014-report.md) returns
+**CHANGES_REQUESTED** for frozen WS-06 candidate `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`.
+One medium finding, VAL014-F01, violates owned public retry behavior: the second
+persistence creates a pending UUID and fails the duplicate immutable append.
+All seven tasks/ten criteria/16 required commands and independent public/package/
+base/freeze evidence are complete; no additional candidate finding. The complete
+report and all 870 original artifacts are archived byte-exact in
+[lossless evidence](validation/VAL-014-evidence.yaml).
+
+The proposed [REM-008 directive](remediation/REM-008-directive.md) converts that
+finding once into exactly nine implementation/report paths, five criteria,
+public retry/partial-failure/conflict/concurrency regressions and fresh VAL-015
+remediation delta plus original WS-06 aggregate review. Next gate: explicit bounded
+approval and a separate remediator. Phase remediation/state changes_requested
+records this pending gate; no remediation has started or been dispatched. Product,
+40 authorities, six candidate reports, two builder artifacts, 19 historical inputs,
+985 product bytes and all five unrelated fingerprints remain unchanged.
+The reviewed [implementation report](execution/WS-06-implementation-report.md) and
+original request stay historical and byte-exact. WS-06 is unaccepted; accepted
+WS-00 through WS-05, later-scope gates and local-only delivery remain intact.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)

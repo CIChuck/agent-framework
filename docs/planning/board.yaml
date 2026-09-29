@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: await fresh VAL-014 report on frozen WS-06 full aggregate
+  next_gate: approve REM-008 owned-retry correction and separate remediator after VAL-014
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []
@@ -84,6 +84,8 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-013-report.md
   - docs/planning/active/friday-mcp/validation/VAL-013-evidence.yaml
   - docs/planning/active/friday-mcp/execution/WS-05-closeout.md
+  - docs/planning/active/friday-mcp/validation/VAL-014-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-014-evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2

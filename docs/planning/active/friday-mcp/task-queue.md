@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-05 accepted; approved WS-06 implementation started
+Status: WS-00 through WS-05 accepted; WS-06 VAL-014 changes requested; REM-008 approval pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws06-memory`
@@ -32,8 +32,12 @@ VAL-013 closeout with "accepted" on 2026-09-28; the [closeout](execution/WS-05-c
 records the decision. WS-00 through WS-05 are accepted work units. WS-06
 [reconciliation/readiness](execution/WS-06-readiness-checkpoint.md) is complete.
 Maintainer explicitly approved its 18-path/seven-task/ten-criterion scope with
-"approved - proceed with speed". Current phase implementation/state not_ready;
-next implement, check, freeze and obtain fresh read-only VAL-014.
+"approved - proceed with speed". The resulting candidate `910508c` received complete
+fresh [VAL-014](validation/VAL-014-report.md): CHANGES_REQUESTED, one medium owned-retry
+finding. The report and 870 original artifacts are archived byte-exact. Current phase
+remediation/state changes_requested; next approve exact nine-path
+[REM-008](remediation/REM-008-directive.md) and a separate remediator before edits.
+No remediation is started; original candidate/authority/evidence remain unchanged.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-07 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -87,7 +91,7 @@ is authorized by the REM-004 approval.
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
-| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Explicitly approved 2026-09-29; execution started from 99bde51 on feature/friday-mcp-ws06-memory; implementation/checks/candidate/fresh VAL-014 next. |
+| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Exact nine-path REM-008 and separate remediator await approval; fresh VAL-015 delta/original aggregate follows correction. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Requires relevant lifecycle/registry/execution/budget readiness and separate explicit WS-07 approval; not yet approved. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
@@ -402,3 +406,33 @@ public/package/baseline/preservation evidence. Governed workspace read-only, no
 fixes or inherited builder/controller conversation. Phase validation/in_review;
 no verdict, acceptance, later scope or delivery. Product/40authorities/sixreports/
 two builder artifacts remain frozen; unrelated work preserved.
+
+## 2026-09-29 — Complete VAL-014 Archived; Bounded REM-008 Approval Gate
+
+Fresh /root/mcp_ws06_val014 returned CHANGES_REQUESTED for candidate
+910508cd40c49c30ddfbd6a779aec5fda3ac2a67, complete WS-06 base
+99bde5148ee21f47d4734d2a026fb198a3d19cbd. One medium finding VAL014-F01:
+public retries create another pending memory UUID and fail immutable duplicate
+append instead of reusing owned identity/receipt. Confirmed in checkout and isolated
+distributions; original committed record/receipt stay truthful, pending is excluded.
+All seven tasks/ten criteria/16 commands and independent public/package/base/freeze
+work completed. No other candidate finding; broad inherited failures remain nonzero.
+
+Complete report copied byte-exact (SHA256
+339644bc16bbf7a30a89181337432ad38cfa58848c18e22d5a5a482b0e1b2c65).
+Archive SHA256 6d83d2f3c22985d9c761c35f4dd16125270d9e18f0cabf25b2c9b1b6ca68e2c8;
+all 870 members/hash/size/original bytes and 44 report links verified. Original
+selection/manifest/archive verification also preserved. Controller and validator
+verify 40 authorities, six reports, two builder artifacts, 19 historical inputs,
+985 products and five unrelated fingerprints unchanged. No source edits or cleanup.
+
+REM-008 is proposed, not approved: exactly four existing sources, four tests and
+one new report, five criteria, owned identity/immutable receipt reuse and public
+false/ambiguous append/publication/cancel/conflict/concurrency regressions. Policy
+requires separate remediation for data integrity and preauthorization of automated
+fixes. Next approve this exact directive and a separate remediator, record execution
+base/start, then new stable candidate and fresh VAL-015 delta plus full original
+WS-06 aggregate. Phase remediation/state changes_requested; board stays
+started/granted/normal/local on WS-06 branch. No dispatch, acceptance, later scope,
+initiative completion or delivery. Original VAL-014 remains the current decision,
+not superseded until a changed candidate exists.

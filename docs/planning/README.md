@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | await fresh VAL-014 report on frozen WS-06 full aggregate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | approve REM-008 owned-retry correction and separate remediator after VAL-014 |
 
 ## Completed
 

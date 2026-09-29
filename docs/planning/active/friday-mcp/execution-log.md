@@ -1454,3 +1454,33 @@ public/package/baseline/preservation evidence. Governed workspace read-only, no
 fixes or inherited builder/controller conversation. Phase validation/in_review;
 no verdict, acceptance, later scope or delivery. Product/40authorities/sixreports/
 two builder artifacts remain frozen; unrelated work preserved.
+
+## 2026-09-29 — Complete VAL-014 Archived; Bounded REM-008 Approval Gate
+
+Fresh /root/mcp_ws06_val014 returned CHANGES_REQUESTED for candidate
+910508cd40c49c30ddfbd6a779aec5fda3ac2a67, complete WS-06 base
+99bde5148ee21f47d4734d2a026fb198a3d19cbd. One medium finding VAL014-F01:
+public retries create another pending memory UUID and fail immutable duplicate
+append instead of reusing owned identity/receipt. Confirmed in checkout and isolated
+distributions; original committed record/receipt stay truthful, pending is excluded.
+All seven tasks/ten criteria/16 commands and independent public/package/base/freeze
+work completed. No other candidate finding; broad inherited failures remain nonzero.
+
+Complete report copied byte-exact (SHA256
+339644bc16bbf7a30a89181337432ad38cfa58848c18e22d5a5a482b0e1b2c65).
+Archive SHA256 6d83d2f3c22985d9c761c35f4dd16125270d9e18f0cabf25b2c9b1b6ca68e2c8;
+all 870 members/hash/size/original bytes and 44 report links verified. Original
+selection/manifest/archive verification also preserved. Controller and validator
+verify 40 authorities, six reports, two builder artifacts, 19 historical inputs,
+985 products and five unrelated fingerprints unchanged. No source edits or cleanup.
+
+REM-008 is proposed, not approved: exactly four existing sources, four tests and
+one new report, five criteria, owned identity/immutable receipt reuse and public
+false/ambiguous append/publication/cancel/conflict/concurrency regressions. Policy
+requires separate remediation for data integrity and preauthorization of automated
+fixes. Next approve this exact directive and a separate remediator, record execution
+base/start, then new stable candidate and fresh VAL-015 delta plus full original
+WS-06 aggregate. Phase remediation/state changes_requested; board stays
+started/granted/normal/local on WS-06 branch. No dispatch, acceptance, later scope,
+initiative completion or delivery. Original VAL-014 remains the current decision,
+not superseded until a changed candidate exists.
