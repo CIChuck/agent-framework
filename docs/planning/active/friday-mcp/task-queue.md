@@ -292,3 +292,14 @@ aggregate, six remediation and ten original criteria, all required checks and
 independent public/privacy/correlation/package/cleanup probes. Phase validation/
 state pending; preparation supplies no verdict or acceptance. Unrelated dirty
 work and frozen authorities/reports are preserved. Next dispatch fresh validator.
+
+## 2026-09-28 — Fresh Read-Only VAL-012 Dispatched
+
+New `/root/mcp_ws05_val012`, `fork_turns: none`, received the frozen request
+after process/evidence commit `e0b3395`. It independently reviews REM-006 delta
+then complete original WS-05 aggregate at `f24ed20f82eac0cbce17e4b86615497cc9993921`,
+all six remediation/ten original criteria and eighteen commands plus own public
+probes/package/baseline checks. No parent/builder/remediator context or private
+reasoning was supplied. Phase validation/state in_review; no verdict/acceptance.
+Product/config/test bytes, 32 authorities/five reports and all hash-pinned
+historical/builder evidence remain frozen; five unrelated paths preserved.

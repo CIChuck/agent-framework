@@ -9,7 +9,7 @@ updated: 2026-09-28
 next_gate: fresh VAL-012 remediation delta and full WS-05 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: the approved separate REM-006 remediator produced frozen
@@ -17,7 +17,8 @@ corrected candidate `f24ed20f82eac0cbce17e4b86615497cc9993921`. The [remediation
 records both findings, bounded source changes, regressions and required checks.
 The pinned [VAL-012 request](validation/VAL-012-request.yaml) requires a new
 fresh-context read-only remediation delta plus complete original WS-05 aggregate.
-Phase validation/state pending; request preparation is not dispatch or a verdict.
+Phase validation/state in_review; new `/root/mcp_ws05_val012` with
+`fork_turns: none` is performing the frozen request. No verdict exists yet.
 Historical [VAL-011](validation/VAL-011-report.md) remains byte-exact and is
 [superseded only for this changed candidate](validation/VAL-011-status.yaml).
 WS-00 through WS-04 remain accepted; wider initiative started/granted/normal/local.
