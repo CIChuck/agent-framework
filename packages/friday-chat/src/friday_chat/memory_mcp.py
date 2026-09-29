@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Callable
 from contextlib import suppress
 from dataclasses import replace
-from typing import Protocol, runtime_checkable
+from typing import Literal, Protocol, runtime_checkable
 
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
@@ -23,6 +24,23 @@ from friday_chat.turns.models import InteractionTurn
 class MCPMemoryPersistenceError(RuntimeError):
     def __init__(self) -> None:
         super().__init__("MCP memory transcript receipt could not be verified.")
+
+
+MCPIngestionOutcome = Literal[
+    "ingestion_disabled", "skipped", "pending", "published"
+]
+MCPIngestionObserver = Callable[[str, MCPIngestionOutcome], None]
+
+
+def _observe(
+    observer: MCPIngestionObserver | None,
+    call: ToolCallRecord,
+    outcome: MCPIngestionOutcome,
+) -> None:
+    if observer is not None:
+        # Optional observation cannot change receipt or publication truth.
+        with suppress(Exception):
+            observer(call.name, outcome)
 
 
 @runtime_checkable
@@ -70,6 +88,7 @@ async def _reuse_receipt(
     policy: MCPIngestionPolicy,
     turn: InteractionTurn,
     receipt: MCPTranscriptReceipt,
+    observe: MCPIngestionObserver | None = None,
 ) -> tuple[ToolCallRecord, ...]:
     if receipt.entry_id != turn.turn_id:
         raise MCPMemoryPersistenceError()
@@ -90,10 +109,14 @@ async def _reuse_receipt(
             )
             if prepared.snapshot is None or prepared.snapshot.call != facts:
                 raise MCPMemoryPersistenceError()
+            published = False
             with suppress(Exception):
-                await memory.publish_mcp_memory(prepared.snapshot)
+                published = bool(await memory.publish_mcp_memory(prepared.snapshot))
+            _observe(observe, call, "published" if published else "pending")
         elif facts.memory_correlation_id is not None:
             raise MCPMemoryPersistenceError()
+        else:
+            _observe(observe, call, "skipped")
         result.append(replace(call, mcp_provenance=facts))
     if next(facts_iter, None) is not None:
         raise MCPMemoryPersistenceError()
@@ -105,21 +128,29 @@ async def persist_mcp_interaction(
     transcript: TranscriptStore,
     policy: MCPIngestionPolicy,
     turn: InteractionTurn,
+    *,
+    observe: MCPIngestionObserver | None = None,
 ) -> tuple[ToolCallRecord, ...]:
     if not policy.long_term_memory_enabled or not any(
         c.mcp_provenance for c in turn.tool_calls
     ):
         await transcript.record_interaction(turn)
+        for call in turn.tool_calls:
+            if call.mcp_provenance is not None:
+                _observe(observe, call, "ingestion_disabled")
         return turn.tool_calls
     if not isinstance(memory, MCPMemoryCapability) or not isinstance(
         transcript, MCPTranscriptCapability
     ):
         calls = tuple(_skipped(c) for c in turn.tool_calls)
         await transcript.record_interaction(replace(turn, tool_calls=calls))
+        for call in calls:
+            if call.mcp_provenance is not None:
+                _observe(observe, call, "skipped")
         return calls
     existing = await _read_receipt(transcript, turn)
     if existing is not None:
-        return await _reuse_receipt(memory, policy, turn, existing)
+        return await _reuse_receipt(memory, policy, turn, existing, observe)
     pending: list[MCPMemorySnapshot] = []
     calls_list: list[ToolCallRecord] = []
     try:
@@ -178,11 +209,24 @@ async def persist_mcp_interaction(
         )
         if receipt is None or receipt.entry_id != turn.turn_id or receipt.calls != expected:
             raise MCPMemoryPersistenceError()
+        published_ids: set[str] = set()
         for snapshot in pending:
             with suppress(Exception):
                 # A durable ingested receipt stays truthful even if publication
                 # fails. It remains pending, rather than deleting the receipt's record.
-                await memory.publish_mcp_memory(snapshot)
+                if await memory.publish_mcp_memory(snapshot):
+                    published_ids.add(snapshot.call.call_id or "")
+        for call in calls:
+            facts = call.mcp_provenance
+            if facts is None:
+                continue
+            if facts.memory_ingested:
+                _observe(
+                    observe, call,
+                    "published" if facts.call_id in published_ids else "pending"
+                )
+            else:
+                _observe(observe, call, "skipped")
         return calls
     except asyncio.CancelledError:
         raise

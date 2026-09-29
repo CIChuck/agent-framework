@@ -7,10 +7,13 @@ Follows the pattern from friday-tools/adapters/.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
+from collections.abc import Callable
+from contextlib import suppress
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Literal
 
 from friday_core.interfaces.tools import SchemaFormat
 from friday_core.mcp import MCPToolMetadata
@@ -19,6 +22,10 @@ from friday_mcp.protocols import MCPClient, ToolDefinition
 from friday_mcp.utils.schema import mcp_to_friday_schema
 
 logger = logging.getLogger(__name__)
+
+MCPCallPhase = Literal["start", "finish", "failure"]
+MCPCallOutcome = Literal["success", "timeout", "cancelled", "execution_error"]
+MCPCallObserver = Callable[[MCPCallPhase, str, MCPCallOutcome | None], None]
 
 
 @dataclass(frozen=True)
@@ -70,6 +77,20 @@ class MCPToolWrapper:
         self._original_name = original
         self._canonical_name: str | None = None
         self._validated: MCPValidatedDefinition | None = None
+        self._call_observer: MCPCallObserver | None = None
+
+    def set_call_observer(self, observer: MCPCallObserver | None) -> None:
+        """Attach optional metadata-only instrumentation to this wrapper."""
+        if observer is not None and self._canonical_name is None:
+            raise ValueError("MCP call observation requires checked metadata")
+        self._call_observer = observer
+
+    def _observe(self, phase: MCPCallPhase, outcome: MCPCallOutcome | None) -> None:
+        observer = self._call_observer
+        if observer is not None:
+            # Optional observation cannot change an MCP call result.
+            with suppress(Exception):
+                observer(phase, self.name, outcome)
 
     @classmethod
     def from_validated(
@@ -140,7 +161,20 @@ class MCPToolWrapper:
 
     async def execute(self, **kwargs: Any) -> str:
         """Execute the tool via MCP client."""
-        return await self._client.call_tool(self._original_name, kwargs)
+        self._observe("start", None)
+        try:
+            result = await self._client.call_tool(self._original_name, kwargs)
+        except asyncio.CancelledError:
+            self._observe("failure", "cancelled")
+            raise
+        except TimeoutError:
+            self._observe("failure", "timeout")
+            raise
+        except Exception:
+            self._observe("failure", "execution_error")
+            raise
+        self._observe("finish", "success")
+        return result
 
     def to_schema(self, format: str = "plain") -> dict[str, Any]:
         """

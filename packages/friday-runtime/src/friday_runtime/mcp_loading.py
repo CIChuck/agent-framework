@@ -26,6 +26,12 @@ from friday_core.mcp import (
 from friday_mcp.client.manager import MCPClientManager
 from friday_mcp.config import MCPConfig, MCPServerConfig
 from friday_mcp.protocols import MCPClient
+from friday_telemetry import (
+    MCPEventName,
+    MCPEventReason,
+    MCPTelemetryHelper,
+    TelemetryInterface,
+)
 
 from friday_runtime.config import MCPRuntimeServerConfig, MCPToolProviderConfig
 from friday_runtime.mcp_registration import (
@@ -56,6 +62,19 @@ class MCPServerLifecycleDiagnostic:
     server_id: str
     required: bool
     outcome: MCPLifecycleOutcome
+
+
+@dataclass(frozen=True)
+class MCPOperationalDiagnostics:
+    """Public local state assembled from accepted typed owner decisions."""
+
+    discovery: MCPDiscoveryState
+    provider: MCPProviderDiagnostics
+    lifecycle: tuple[MCPServerLifecycleDiagnostic, ...]
+    registration_decisions: tuple[MCPRegistrationDecision, ...]
+    budget_skips: int
+    truncated_results: int
+    ingestion_decisions: tuple[tuple[str, int], ...]
 
 
 @dataclass(frozen=True)
@@ -92,8 +111,17 @@ class RuntimeMCPProvider:
     no-op start/stop and obstructed cleanup retries do not erase that evidence.
     """
 
-    def __init__(self, config: MCPToolProviderConfig, workspace_root: str) -> None:
+    def __init__(
+        self,
+        config: MCPToolProviderConfig,
+        workspace_root: str,
+        telemetry: TelemetryInterface | None = None,
+    ) -> None:
         self._config = config
+        self._telemetry = MCPTelemetryHelper(telemetry)
+        self._budget_skips = 0
+        self._truncated_results = 0
+        self._ingestion_counts: dict[str, int] = {}
         self._workspace_root = Path(workspace_root).expanduser().resolve()
         self.manager: MCPClientManager | None = None
         self.discovery = MCPDiscoveryState()
@@ -111,6 +139,63 @@ class RuntimeMCPProvider:
     @property
     def tool_metadata(self) -> Mapping[str, MCPToolMetadata]:
         return self._tool_metadata
+
+    @property
+    def operational_diagnostics(self) -> MCPOperationalDiagnostics:
+        return MCPOperationalDiagnostics(
+            self.discovery,
+            self.diagnostics,
+            self.lifecycle,
+            self.registration_decisions,
+            self._budget_skips,
+            self._truncated_results,
+            tuple(sorted(self._ingestion_counts.items())),
+        )
+
+    def emit_event(
+        self,
+        name: MCPEventName,
+        *,
+        server_id: str | None = None,
+        tool_name: str | None = None,
+        reason: MCPEventReason | None = None,
+        count: int | None = None,
+        required: bool | None = None,
+    ) -> None:
+        """Capture safe counters even when export telemetry is disabled."""
+        if name == "budget_skip":
+            self._budget_skips += 1
+        elif name == "tool_output_decision" and reason == "truncated":
+            self._truncated_results += 1
+        elif name == "ingestion_decision" and reason is not None:
+            self._ingestion_counts[reason] = self._ingestion_counts.get(reason, 0) + 1
+        self._telemetry.emit(
+            name,
+            server_id=server_id,
+            tool_name=tool_name,
+            reason=reason,
+            count=count,
+            required=required,
+        )
+
+    def _observe_call(
+        self, phase: str, canonical_name: str, outcome: str | None
+    ) -> None:
+        if phase == "start":
+            self.emit_event("tool_call_start", tool_name=canonical_name)
+        elif phase == "finish":
+            self.emit_event(
+                "tool_call_finish", tool_name=canonical_name, reason="success"
+            )
+        else:
+            reason: MCPEventReason = (
+                "timeout" if outcome == "timeout"
+                else "cancelled" if outcome == "cancelled"
+                else "execution_error"
+            )
+            self.emit_event(
+                "tool_call_failure", tool_name=canonical_name, reason=reason
+            )
 
     @property
     def registration_registry(self) -> MCPRegistrationRegistry | None:
@@ -160,6 +245,7 @@ class RuntimeMCPProvider:
         self._registry = registry
         try:
             for wrapper, metadata in zip(plan.wrappers, plan.metadata, strict=True):
+                wrapper.set_call_observer(self._observe_call)
                 try:
                     registry.register(wrapper)
                 except BaseException:
@@ -274,6 +360,21 @@ class RuntimeMCPProvider:
                 ),
             }
         )
+        for decision in self.registration_decisions:
+            reason: MCPEventReason = (
+                decision.code
+                if decision.code is not None
+                else "registration_failed"
+                if not committed and decision.reason in {"selected", "registered"}
+                else decision.reason
+            )
+            self.emit_event(
+                "tool_registered" if committed and decision.reason == "registered"
+                else "tool_skipped",
+                server_id=decision.server_id,
+                tool_name=decision.canonical_name,
+                reason=reason,
+            )
 
     def _remove_registrations(self) -> None:
         registry = self._registry
@@ -336,6 +437,7 @@ class RuntimeMCPProvider:
             for server in config.servers
             if not server.enabled
         }
+        published = False
         try:
             if not config.auto_connect:
                 results.update(
@@ -352,6 +454,7 @@ class RuntimeMCPProvider:
                     batch = await self._batch(servers[offset : offset + width])
                     results.update({result.server.name: result for result in batch})
             self._publish(results)
+            published = True
             if any(result.outcome == "cleanup_failed" for result in results.values()):
                 raise ToolProviderLoadError(
                     "MCP client cleanup incomplete; inspect mcp_provider.lifecycle"
@@ -369,7 +472,8 @@ class RuntimeMCPProvider:
             # owner tears down the remaining successful/partial connections.
             for server in servers:
                 results.setdefault(server.name, _ServerResult(server, "cancelled"))
-            self._publish(results)
+            if not published:
+                self._publish(results)
             self.discovery = self.discovery.model_copy(update={"status": "failed"})
             await self.stop()
             raise
@@ -431,28 +535,76 @@ class RuntimeMCPProvider:
             self._config.config.limits.connection_timeout_seconds,
         )
         outcome: MCPLifecycleOutcome
+        self.emit_event(
+            "connection_start", server_id=server.name, required=server.required
+        )
         try:
             await asyncio.wait_for(self._connect(server), timeout=timeout)
+        except asyncio.CancelledError:
+            self.emit_event(
+                "connection_failure",
+                server_id=server.name,
+                reason="cancelled",
+                required=server.required,
+            )
+            raise
         except asyncio.TimeoutError:
             outcome = "connection_timeout"
         except Exception:
             outcome = "connection_failed"
         else:
+            self.emit_event(
+                "connection_finish",
+                server_id=server.name,
+                reason="connected",
+                required=server.required,
+            )
+            self.emit_event("list_tools_start", server_id=server.name)
             try:
                 tools = await asyncio.wait_for(
                     manager.get_client(server.name).list_tools(), timeout=timeout
                 )
                 if not isinstance(tools, list):
                     raise ValueError("Invalid MCP catalog")
+                self.emit_event(
+                    "list_tools_finish",
+                    server_id=server.name,
+                    reason="success",
+                    count=min(len(tools), 1_000_000),
+                )
                 return _ServerResult(server, "connected", tools)
+            except asyncio.CancelledError:
+                self.emit_event(
+                    "list_tools_failure",
+                    server_id=server.name,
+                    reason="cancelled",
+                )
+                raise
             except asyncio.TimeoutError:
                 outcome = "discovery_timeout"
             except Exception:
                 outcome = "discovery_failed"
+            self.emit_event(
+                "list_tools_failure", server_id=server.name, reason=outcome
+            )
+        if outcome in ("connection_failed", "connection_timeout"):
+            self.emit_event(
+                "connection_failure",
+                server_id=server.name,
+                reason=outcome,
+                required=server.required,
+            )
         try:
             await manager.disconnect(server.name)
         except Exception:
             outcome = "cleanup_failed"
+            self.emit_event(
+                "disconnect", server_id=server.name, reason="cleanup_failed"
+            )
+        else:
+            self.emit_event(
+                "disconnect", server_id=server.name, reason="success"
+            )
         return _ServerResult(server, outcome)
 
     def _publish(self, results: dict[str, _ServerResult]) -> None:
@@ -472,6 +624,7 @@ class RuntimeMCPProvider:
             )
             codes: set[MCPDiagnosticCode] = set()
             server_rejected = 0
+            skip_counts: dict[MCPEventReason, int] = {}
             if result.outcome == "connected":
                 connected += 1
                 discovered += len(result.tools)
@@ -482,6 +635,7 @@ class RuntimeMCPProvider:
                     ):
                         codes.add("tool_limit")
                         server_rejected += 1
+                        skip_counts["tool_limit"] = skip_counts.get("tool_limit", 0) + 1
                         continue
                     try:
                         if (
@@ -502,6 +656,9 @@ class RuntimeMCPProvider:
                     except (ValueError, TypeError, RecursionError, UnicodeError):
                         codes.add("invalid_schema")
                         server_rejected += 1
+                        skip_counts["invalid_schema"] = (
+                            skip_counts.get("invalid_schema", 0) + 1
+                        )
                         continue
                     # One token per encoded byte is a conservative pre-registry
                     # upper bound. WS-03 owns final schema/token accounting.
@@ -511,6 +668,9 @@ class RuntimeMCPProvider:
                     ):
                         codes.add("schema_limit")
                         server_rejected += 1
+                        skip_counts["schema_limit"] = (
+                            skip_counts.get("schema_limit", 0) + 1
+                        )
                         continue
                     prepared.append(MCPDiscoveredTool(server.name, encoded))
                     schema_cost += size
@@ -524,6 +684,13 @@ class RuntimeMCPProvider:
             if server.required and result.outcome != "connected":
                 required_failure = True
                 codes.add("required_server_unavailable")
+            for reason, count in skip_counts.items():
+                self.emit_event(
+                    "tool_skipped",
+                    server_id=server.name,
+                    reason=reason,
+                    count=min(count, 1_000_000),
+                )
             rejected += server_rejected
             aggregate_codes.update(codes)
             states.append(
@@ -565,10 +732,23 @@ class RuntimeMCPProvider:
         self._started = False
         self._remove_registrations()
         if self.manager is not None:
+            connected_before = tuple(self.manager.connected_servers)
             try:
                 await self.manager.disconnect_all()
             except Exception:
+                still_connected = set(self.manager.connected_servers)
+                for server_id in connected_before:
+                    self.emit_event(
+                        "disconnect",
+                        server_id=server_id,
+                        reason="cleanup_failed"
+                        if server_id in still_connected else "success",
+                    )
                 raise ToolProviderLoadError("MCP shutdown incomplete") from None
+            for server_id in connected_before:
+                self.emit_event(
+                    "disconnect", server_id=server_id, reason="success"
+                )
         self.discovery = self.discovery.model_copy(
             update={
                 "connected_servers": 0,

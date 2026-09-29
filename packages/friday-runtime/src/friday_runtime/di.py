@@ -119,6 +119,7 @@ class DIContainer:
             if self.mcp_provider is None:
                 self.mcp_provider = RuntimeMCPProvider(
                     self._config.tools.providers.mcp, self._config.workspace_root,
+                    telemetry=self.telemetry,
                 )
             await self.mcp_provider.start()
             if self.tool_registry is None:

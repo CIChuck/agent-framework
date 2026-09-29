@@ -19,6 +19,7 @@ from friday_chat.tools.output import MCPOutputPolicy, MCPResultLimitError
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolCallRecord
 from friday_core.mcp import MCPToolMetadata
+from friday_telemetry import DebugTelemetryRecorder
 
 PEER = Path(__file__).parent / "fixtures/mcp_execution_peer.py"
 ARGUMENT = "WS05_ARGUMENT_SECRET"
@@ -59,9 +60,10 @@ def config(cap=256):
     )
 
 
-def install(runtime, tmp_path):
+def install(runtime, tmp_path, telemetry=None):
     bridge = MCPChatRegistry(
-        runtime.tools, runtime.config.tools.mcp_provider, str(tmp_path)
+        runtime.tools, runtime.config.tools.mcp_provider, str(tmp_path),
+        telemetry=telemetry,
     )
     runtime.tools = bridge
     runtime.mcp_tools = bridge
@@ -215,7 +217,8 @@ async def test_real_peer_failure_success_truncation_and_direct_boundary(
     tmp_path, processes, caplog, case, status, code
 ):
     runtime = build_runtime(config())
-    bridge = install(runtime, tmp_path)
+    recorder = DebugTelemetryRecorder()
+    bridge = install(runtime, tmp_path, telemetry=recorder)
     before = set(asyncio.all_tasks())
     try:
         await bridge.start()
@@ -235,6 +238,12 @@ async def test_real_peer_failure_success_truncation_and_direct_boundary(
             and UNSAFE not in repr(record)
         )
         assert all(s not in caplog.text for s in (ARGUMENT, ERROR, UNSAFE))
+        expected_reason = code or ("truncated" if case == "large" else "checked")
+        assert recorder.get_event("mcp.tool_output_decision")["reason"] == expected_reason
+        assert all(
+            value not in repr(recorder.events)
+            for value in (ARGUMENT, ERROR, UNSAFE, "WS05_OMITTED_TAIL")
+        )
         if case == "large":
             assert (
                 record.mcp_provenance.result_truncated

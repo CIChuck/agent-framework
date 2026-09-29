@@ -312,7 +312,25 @@ class TurnProcessor:
             )
             selection = self._runtime.tool_selection.select_for_turn(user_message)
         except ToolSelectionError as exc:
+            bridge = self._runtime.mcp_tools
+            if bridge is not None:
+                for name in exc.names:
+                    if bridge.is_mcp_tool(name):
+                        bridge.provider.emit_event(
+                            "budget_skip",
+                            tool_name=name,
+                            reason=exc.reason.value,
+                        )
             raise TurnBudgetError(exc.reason) from None
+        bridge = self._runtime.mcp_tools
+        if bridge is not None:
+            for rejection in selection.budget.rejections:
+                if bridge.is_mcp_tool(rejection.name):
+                    bridge.provider.emit_event(
+                        "budget_skip",
+                        tool_name=rejection.name,
+                        reason=rejection.reason.value,
+                    )
         tool_definitions = selection.definitions
         context_budget_tokens = _calculate_dynamic_context_budget(
             self._runtime.config,
@@ -613,7 +631,14 @@ class TurnProcessor:
                         self._runtime.config.transcript.capture_raw_prompts
                     ),
                     tool_calls=tool_calls,
-                )
+                ),
+                observe=(
+                    lambda name, reason: self._runtime.mcp_tools.provider.emit_event(
+                        "ingestion_decision", tool_name=name, reason=reason
+                    )
+                    if self._runtime.mcp_tools is not None
+                    else None
+                ),
             )
         except Exception as exc:
             _rollback_fake_memory_turn(

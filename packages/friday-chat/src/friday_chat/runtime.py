@@ -11,6 +11,7 @@ from tempfile import gettempdir
 from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 from uuid import uuid4
 
+from friday_core import TelemetryInterface
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
 
@@ -1207,6 +1208,7 @@ def build_runtime(
     fake: bool = True,
     session_identity: SessionIdentity | None = None,
     session_id: str | None = None,
+    telemetry: TelemetryInterface | None = None,
 ) -> FridayRuntime:
     """Build a FridayV2 runtime bundle from typed config."""
     resolved_session_identity = resolve_session_identity(
@@ -1226,6 +1228,7 @@ def build_runtime(
             config,
             session_identity=resolved_session_identity,
             maintenance_layout=maintenance_layout,
+            telemetry=telemetry,
         )
 
     from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
@@ -1360,6 +1363,7 @@ def _build_framework_runtime(
     *,
     session_identity: SessionIdentity,
     maintenance_layout: FridayChatMaintenanceLayout,
+    telemetry: TelemetryInterface | None = None,
 ) -> FridayRuntime:
     from friday_chat.adapters import (
         build_framework_async_client_lifecycle,
@@ -1393,6 +1397,7 @@ def _build_framework_runtime(
             native_tools,
             config.tools.mcp_provider,
             str(maintenance_layout.captured_process_cwd),
+            telemetry=telemetry,
         )
         if config.tools.enabled and config.tools.mcp_provider.enabled
         else None

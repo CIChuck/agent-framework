@@ -15,6 +15,7 @@ from friday_chat.runtime import FakeChatModel, build_runtime
 from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.turns.models import ChatModelResponse, ToolCallRequest
 from friday_chat.turns.processor import TurnProcessor
+from friday_telemetry import DebugTelemetryRecorder
 
 PEER = Path(__file__).resolve().parents[3] / "tests/integration/mcp_fake_server.py"
 
@@ -88,6 +89,64 @@ def install(runtime, tmp_path: Path) -> MCPChatRegistry:
     runtime.tools = bridge
     runtime.mcp_tools = bridge
     return bridge
+
+
+@pytest.mark.asyncio
+async def test_chat_emits_checked_call_and_budget_decisions_without_payloads(
+    tmp_path, processes
+) -> None:
+    recorder = DebugTelemetryRecorder()
+    runtime = build_runtime(cfg())
+    bridge = MCPChatRegistry(
+        runtime.tools,
+        runtime.config.tools.mcp_provider,
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    runtime.tools = bridge
+    runtime.mcp_tools = bridge
+    try:
+        await runtime.start_mcp_tools()
+        call = await bridge.call_tool_record(
+            "mcp_peer_read_file", {"path": "SENTINEL-ARGUMENT-SECRET"}
+        )
+        assert call.mcp_provenance.status == "succeeded"
+        names = [event.name for event in recorder.events]
+        assert "mcp.tool_call_start" in names
+        assert "mcp.tool_call_finish" in names
+        assert "mcp.tool_output_decision" in names
+        assert recorder.get_event("mcp.tool_output_decision")["reason"] == "checked"
+        assert "SENTINEL-ARGUMENT-SECRET" not in repr(recorder.events)
+    finally:
+        await runtime.stop_mcp_tools()
+
+
+@pytest.mark.asyncio
+async def test_chat_budget_skip_is_structured_without_model_call(
+    tmp_path, processes
+) -> None:
+    values = cfg().model_dump()
+    values["tools"]["context"]["max_mcp_tools"] = 0
+    runtime = build_runtime(FridayChatConfig.model_validate(values))
+    recorder = DebugTelemetryRecorder()
+    bridge = MCPChatRegistry(
+        runtime.tools,
+        runtime.config.tools.mcp_provider,
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    runtime.tools = bridge
+    runtime.mcp_tools = bridge
+    runtime.chat_llm = FakeChatModel(
+        "fake", responses=[ChatModelResponse.from_text("done")]
+    )
+    try:
+        await TurnProcessor(runtime).process("read fixture")
+        events = recorder.get_all_events("mcp.budget_skip")
+        assert events and events[0]["reason"] == "mcp_count_limit"
+        assert bridge.provider.operational_diagnostics.budget_skips >= 1
+    finally:
+        await runtime.stop_mcp_tools()
 
 
 async def test_real_stdio_chat_turn_routes_exact_name_and_stops(

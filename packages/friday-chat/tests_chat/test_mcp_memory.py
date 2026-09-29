@@ -34,6 +34,7 @@ from friday_memory import (
     NullGraphStore,
 )
 from friday_memory.retrieval.mcp import estimated_snippet_tokens
+from friday_telemetry import DebugTelemetryRecorder
 from friday_transcript import (
     CSVExporter,
     JSONLExporter,
@@ -133,6 +134,7 @@ async def test_public_retry_after_partial_outcome_preserves_owned_id(
     original_append = store.append_entry
     original_read = store.get_entry
     original_publish = memory.publish_mcp_memory
+    observed = []
     if failure == "false_append":
         async def false_append(entry):
             return False
@@ -169,7 +171,8 @@ async def test_public_retry_after_partial_outcome_preserves_owned_id(
             await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
     else:
         first_calls = await persist_mcp_interaction(
-            memory, runtime.transcript, policy, turn
+            memory, runtime.transcript, policy, turn,
+            observe=lambda name, outcome: observed.append((name, outcome)),
         )
         assert first_calls[0].mcp_provenance.memory_ingested
     rows = await manager.get_all()
@@ -182,16 +185,40 @@ async def test_public_retry_after_partial_outcome_preserves_owned_id(
         assert (await store.get_entry(turn.turn_id)) is not None
     if failure == "publish":
         assert (await manager.get_mcp_snapshot(owned_id)).state == "pending"
+        assert observed == [("mcp_peer_read_file", "pending")]
     monkeypatch.setattr(store, "append_entry", original_append)
     monkeypatch.setattr(store, "get_entry", original_read)
     monkeypatch.setattr(runtime.transcript, "record_mcp_interaction", original_record)
     monkeypatch.setattr(memory, "publish_mcp_memory", original_publish)
-    retried = await persist_mcp_interaction(memory, runtime.transcript, policy, turn)
+    retried = await persist_mcp_interaction(
+        memory, runtime.transcript, policy, turn,
+        observe=lambda name, outcome: observed.append((name, outcome)),
+    )
     assert retried[0].mcp_provenance.memory_correlation_id == owned_id
     assert manager._embedding_function.writes == writes
     assert await manager.short_term.count() == 1
     assert await store.count_entries("memory-session") == 1
     assert (await manager.get_mcp_snapshot(owned_id)).state == "committed"
+    assert observed[-1] == ("mcp_peer_read_file", "published")
+
+
+@pytest.mark.asyncio
+async def test_disabled_ingestion_emits_decision_without_snapshot(tmp_path):
+    runtime, memory, manager, store = setup(tmp_path, enabled=False)
+    call = MCPOutputPolicy(256).checked_record(
+        execution.metadata(), "call", "benign", {}
+    )
+    events = []
+    await persist_mcp_interaction(
+        memory,
+        runtime.transcript,
+        runtime.config.tools.mcp_provider.config.ingestion,
+        make_turn("disabled-entry", calls=(call,)),
+        observe=lambda name, outcome: events.append((name, outcome)),
+    )
+    assert events == [("mcp_peer_read_file", "ingestion_disabled")]
+    assert await manager.short_term.count() == 0
+    assert await store.count_entries("memory-session") == 1
 
 
 @pytest.mark.asyncio
@@ -266,7 +293,8 @@ async def test_real_peer_default_or_optin_truthful_receipts_and_exports(
     tmp_path, processes, streaming, enabled, caplog
 ):
     runtime, memory, manager, store = setup(tmp_path, enabled=enabled)
-    bridge = execution.install(runtime, tmp_path)
+    recorder = DebugTelemetryRecorder()
+    bridge = execution.install(runtime, tmp_path, telemetry=recorder)
     runtime.chat_llm = FakeChatModel(
         "fake",
         responses=[
@@ -302,6 +330,13 @@ async def test_real_peer_default_or_optin_truthful_receipts_and_exports(
         assert len(entries) == 1 and len(entries[0].tool_calls) == 2
         entry = entries[0]
         assert await manager.short_term.count() == (2 if enabled else 0)
+        ingestion = recorder.get_all_events("mcp.ingestion_decision")
+        expected = "published" if enabled else "ingestion_disabled"
+        assert len(ingestion) == 2
+        assert all(event["reason"] == expected for event in ingestion)
+        assert bridge.provider.operational_diagnostics.ingestion_decisions == (
+            (expected, 2),
+        )
         assert len(await memory.episodic_store.get_turns("memory-session")) == 1
         for returned, call, response in zip(
             result.tool_calls, entry.tool_calls, entry.tool_results, strict=True

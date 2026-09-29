@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from collections.abc import Awaitable, Callable, Mapping, Sequence
 from copy import deepcopy
-from typing import Any, Protocol
+from typing import Any, Literal, Protocol
 
 from friday_agent import DefaultToolRegistry
+from friday_core import TelemetryInterface
 from friday_core.mcp import MCPToolMetadata
 from friday_runtime.config import MCPToolProviderConfig
 from friday_runtime.mcp_loading import RuntimeMCPProvider
@@ -31,9 +32,10 @@ class MCPChatRegistry:
         native: NativeChatRegistry,
         config: MCPToolProviderConfig,
         workspace_root: str,
+        telemetry: TelemetryInterface | None = None,
     ) -> None:
         self.native = native
-        self.provider = RuntimeMCPProvider(config, workspace_root)
+        self.provider = RuntimeMCPProvider(config, workspace_root, telemetry=telemetry)
         self.output_policy = MCPOutputPolicy(config.config.limits.max_result_bytes)
         self.registry = DefaultToolRegistry()
         for definition in native.list_tools():
@@ -97,6 +99,32 @@ class MCPChatRegistry:
         """Identify owned MCP calls without inspecting a private registry."""
         return name in self.tool_metadata
 
+    def _observed(self, record: ToolCallRecord) -> ToolCallRecord:
+        facts = record.mcp_provenance
+        if facts is not None:
+            reason: Literal[
+                "tool_error", "invalid_result", "execution_error", "timeout",
+                "output_rejected", "truncated", "checked"
+            ]
+            if facts.failure_code == "tool_error":
+                reason = "tool_error"
+            elif facts.failure_code == "invalid_result":
+                reason = "invalid_result"
+            elif facts.failure_code == "execution_error":
+                reason = "execution_error"
+            elif facts.failure_code == "timeout":
+                reason = "timeout"
+            elif facts.failure_code == "output_rejected":
+                reason = "output_rejected"
+            elif facts.result_truncated:
+                reason = "truncated"
+            else:
+                reason = "checked"
+            self.provider.emit_event(
+                "tool_output_decision", tool_name=record.name, reason=reason
+            )
+        return record
+
     async def call_tool_record(
         self,
         name: str,
@@ -118,31 +146,45 @@ class MCPChatRegistry:
             # Exact original-name routing remains owned by the WS-03 callable.
             result = await self.registry.get_callable(name)(**arguments)
         except TimeoutError:
-            return self.output_policy.failed_record(metadata, identifier, "timeout")
+            return self._observed(
+                self.output_policy.failed_record(metadata, identifier, "timeout")
+            )
         except Exception as exc:
             # Optional public failure classification is validated locally. Chat
             # does not need an undeclared dependency on the protocol package.
             code = getattr(exc, "failure_code", None)
             if code == "tool_error":
-                return self.output_policy.failed_record(
-                    metadata, identifier, "tool_error"
+                return self._observed(
+                    self.output_policy.failed_record(
+                        metadata, identifier, "tool_error"
+                    )
                 )
             if code == "invalid_result":
-                return self.output_policy.failed_record(
-                    metadata, identifier, "invalid_result"
+                return self._observed(
+                    self.output_policy.failed_record(
+                        metadata, identifier, "invalid_result"
+                    )
                 )
-            return self.output_policy.failed_record(
-                metadata, identifier, "execution_error"
+            return self._observed(
+                self.output_policy.failed_record(
+                    metadata, identifier, "execution_error"
+                )
             )
         if not isinstance(result, str):
-            return self.output_policy.failed_record(
-                metadata, identifier, "invalid_result"
+            return self._observed(
+                self.output_policy.failed_record(
+                    metadata, identifier, "invalid_result"
+                )
             )
         try:
-            return self.output_policy.checked_record(
-                metadata, identifier, result, arguments
+            return self._observed(
+                self.output_policy.checked_record(
+                    metadata, identifier, result, arguments
+                )
             )
         except Exception:
-            return self.output_policy.failed_record(
-                metadata, identifier, "output_rejected"
+            return self._observed(
+                self.output_policy.failed_record(
+                    metadata, identifier, "output_rejected"
+                )
             )

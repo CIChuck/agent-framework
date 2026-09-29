@@ -14,6 +14,7 @@ from friday_runtime.config import MCPToolProviderConfig, RuntimeConfig, ToolsCon
 from friday_runtime.kernel import RuntimeKernel
 from friday_runtime.mcp_loading import RuntimeMCPProvider
 from friday_runtime.tool_loading import ToolProviderLoadError
+from friday_telemetry import DebugTelemetryRecorder
 
 
 class TestTransport:
@@ -147,6 +148,202 @@ async def test_no_servers_and_disabled_are_lightweight(tmp_path, fake_clients, e
     assert (provider.manager is not None) == enabled
     await provider.stop()
     await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_typed_lifecycle_registration_and_cap_events_are_redacted(
+    tmp_path, fake_clients
+):
+    _, _, catalogs, _ = fake_clients
+    secret = "SENTINEL-PEER-SECRET"
+    catalogs["fake"] = [
+        {"name": "probe", "inputSchema": {"type": "object"}},
+        {
+            "name": "ignored",
+            "description": secret,
+            "inputSchema": {"type": "object", "description": secret},
+        },
+    ] + [
+        {"name": f"ignored_{index}", "inputSchema": {"type": "object"}}
+        for index in range(98)
+    ]
+    recorder = DebugTelemetryRecorder()
+    config = MCPToolProviderConfig.from_dict(
+        {
+            "enabled": True,
+            "mode": "all",
+            "config": {
+                "servers": [server(env={"TOKEN": secret})],
+                "limits": {"max_tools_per_server": 1},
+            },
+        }
+    )
+    provider = RuntimeMCPProvider(config, str(tmp_path), telemetry=recorder)
+    registry = DefaultToolRegistry()
+    try:
+        await provider.start()
+        await provider.register_tools(registry)
+        client = provider.manager.get_client("fake")
+        client.call_tool = AsyncMock(return_value=secret)
+        assert await registry.get_callable("mcp_fake_probe")(token=secret) == secret
+        assert provider.operational_diagnostics.provider.registered_tools == 1
+        assert provider.operational_diagnostics.provider.rejected_tools == 99
+        names = [event.name for event in recorder.events]
+        assert names[:3] == [
+            "mcp.connection_start",
+            "mcp.connection_finish",
+            "mcp.list_tools_start",
+        ]
+        assert "mcp.list_tools_finish" in names
+        assert "mcp.tool_skipped" in names
+        skipped = recorder.get_all_events("mcp.tool_skipped")
+        assert skipped == [
+            {
+                "server_ref": skipped[0]["server_ref"],
+                "reason": "tool_limit",
+                "count": 99,
+            }
+        ]
+        assert "mcp.tool_registered" in names
+        assert "mcp.tool_call_start" in names
+        assert "mcp.tool_call_finish" in names
+    finally:
+        await provider.stop()
+    assert recorder.events[-1].name == "mcp.disconnect"
+    assert recorder.events[-1].data["reason"] == "success"
+    assert secret not in repr(recorder.events)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("required", [False, True])
+async def test_failure_events_and_diagnostics_survive_cleanup(
+    tmp_path, fake_clients, required
+):
+    _, modes, _, _ = fake_clients
+    modes["fake"] = "connection_failed"
+    recorder = DebugTelemetryRecorder()
+    provider = RuntimeMCPProvider(
+        provider_config([server(required=required)]),
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    if required:
+        with pytest.raises(ToolProviderLoadError):
+            await provider.start()
+    else:
+        await provider.start()
+    state = provider.operational_diagnostics
+    assert state.lifecycle[0].required is required
+    assert state.lifecycle[0].outcome == "connection_failed"
+    assert [event.name for event in recorder.events].count(
+        "mcp.connection_failure"
+    ) == 1
+    assert "SENTINEL-SECRET" not in repr(recorder.events)
+    await provider.stop()
+
+
+@pytest.mark.asyncio
+async def test_registration_collision_and_schema_cap_keep_typed_reasons(
+    tmp_path, fake_clients
+) -> None:
+    _, _, catalogs, _ = fake_clients
+    catalogs["fake"] = [
+        {"name": "probe", "inputSchema": {"type": "object"}}
+    ]
+    recorder = DebugTelemetryRecorder()
+    collision = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {
+                "enabled": True,
+                "mode": "all",
+                "config": {"servers": [server()]},
+            }
+        ),
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    registry = DefaultToolRegistry()
+    registry.register(
+        name="mcp_fake_probe", func=lambda: "native", category="native"
+    )
+    await collision.start()
+    with pytest.raises(ToolProviderLoadError, match="name_collision"):
+        await collision.register_tools(registry)
+    decisions = collision.operational_diagnostics.registration_decisions
+    assert decisions[0].collision is not None
+    assert decisions[0].collision.first.provider == "native"
+    assert decisions[0].collision.second.provider == "mcp"
+    assert any(
+        event.name == "mcp.tool_skipped"
+        and event.data.get("reason") == "name_collision"
+        for event in recorder.events
+    )
+    await collision.stop()
+
+    recorder.clear()
+    capped = RuntimeMCPProvider(
+        provider_config(
+            [server()],
+            limits={"max_schema_bytes_per_tool": 1},
+        ),
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    try:
+        await capped.start()
+        assert "schema_limit" in capped.operational_diagnostics.provider.codes
+        assert any(
+            event.name == "mcp.tool_skipped"
+            and event.data.get("reason") == "schema_limit"
+            for event in recorder.events
+        )
+    finally:
+        await capped.stop()
+
+
+@pytest.mark.asyncio
+async def test_registration_failure_never_emits_success_for_rolled_back_tool(
+    tmp_path, fake_clients
+) -> None:
+    _, _, catalogs, _ = fake_clients
+    catalogs["fake"] = [
+        {"name": name, "inputSchema": {"type": "object"}}
+        for name in ("first", "second")
+    ]
+
+    class FailingRegistry(DefaultToolRegistry):
+        def register(self, tool=None, **kwargs):
+            if tool is not None and tool.name == "mcp_fake_second":
+                raise RuntimeError("SENTINEL-REGISTRY-SECRET")
+            return super().register(tool, **kwargs)
+
+    recorder = DebugTelemetryRecorder()
+    provider = RuntimeMCPProvider(
+        MCPToolProviderConfig.from_dict(
+            {
+                "enabled": True,
+                "mode": "all",
+                "config": {"servers": [server()]},
+            }
+        ),
+        str(tmp_path),
+        telemetry=recorder,
+    )
+    registry = FailingRegistry()
+    try:
+        await provider.start()
+        with pytest.raises(ToolProviderLoadError):
+            await provider.register_tools(registry)
+        assert not any(
+            event.name == "mcp.tool_registered" for event in recorder.events
+        )
+        skipped = recorder.get_all_events("mcp.tool_skipped")
+        assert len(skipped) == 2
+        assert all(event["reason"] == "registration_failed" for event in skipped)
+        assert "SENTINEL-REGISTRY-SECRET" not in repr(recorder.events)
+        assert provider.owned_tool_names == ()
+    finally:
+        await provider.stop()
 
 
 @pytest.mark.asyncio
