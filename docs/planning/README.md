@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | reconcile WS-06 directive/readiness and obtain explicit bounded approval |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | obtain explicit bounded approval of reconciled WS-06 directive |
 
 ## Completed
 

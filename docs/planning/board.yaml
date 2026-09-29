@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-28'
+updated: '2026-09-29'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: reconcile WS-06 directive/readiness and obtain explicit bounded approval
+  next_gate: obtain explicit bounded approval of reconciled WS-06 directive
   delivery_state: local
   branch: feature/friday-mcp-ws05-execution
   depends_on: []

@@ -5,22 +5,30 @@ title: Friday MCP Client Enhancement
 initiative: friday-mcp
 document_type: initiative-index
 status: active
-updated: 2026-09-28
-next_gate: reconcile WS-06 directive/readiness and obtain explicit bounded approval
+updated: 2026-09-29
+next_gate: obtain explicit bounded approval of reconciled WS-06 directive
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
-execution_phase: closeout
-validation_state: verified
+execution_phase: planning
+validation_state: not_ready
 ---
 
-Current checkpoint: the maintainer explicitly accepted verified WS-05 with
+Current checkpoint: WS-06 planning/readiness reconciliation is complete. The
+[reconciled draft](directives/ws-06-memory-compatibility-ingestion.md) binds 18
+paths, seven tasks and ten criteria; the [readiness checkpoint](execution/WS-06-readiness-checkpoint.md)
+records actual adapter/store/budget interfaces and preserved inputs. Next is
+explicit bounded directive approval before WS-06 product work. Phase planning/
+state not_ready describe WS-06 only; accepted WS-00 through WS-05 and VERIFIED
+VAL-013 remain unchanged. No new branch or product changes were made.
+
+Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)
 review and closeout. Candidate `cca86b51105666d12c2e7ed571f8f9a05d2085f9` is
 accepted with delta, full original aggregate and overall VERIFIED; both High
 findings and the native compatibility regression close. The [WS-05 closeout](execution/WS-05-closeout.md)
 records the maintainer, date, exact decision and complete byte-exact evidence.
-WS-00 through WS-05 are accepted. Phase closeout/state verified records this
-completed work-unit gate; the wider initiative remains started/granted/normal/local.
-Next is WS-06 directive/readiness reconciliation and separate bounded approval.
+WS-00 through WS-05 are accepted. The historical closeout/state verified records
+that completed work-unit gate; the wider initiative remains started/granted/normal/local.
+WS-06 reconciliation is now complete; separate bounded approval is pending.
 WS-06 and later implementation remain unapproved. Historical review evidence and
 unrelated work remain preserved; historical stored snapshot cleanup is outside scope.
 
@@ -75,7 +83,7 @@ WS-00 contracts and WS-01 strict
 configuration are implemented and independently verified. WS-02 and its
 bounded startup-cleanup/stdio-redaction amendment are approved;
 WS-00 through WS-04 are independently verified and explicitly accepted.
-WS-05 and later workstreams remain Draft. The
+At that historical checkpoint WS-05 and later workstreams remained Draft. The
 [2026-09-27 rebaseline](rebaseline-2026-09-27.md) distinguishes the existing
 package from this integration initiative and narrows the first slice.
 

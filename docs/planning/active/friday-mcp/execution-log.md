@@ -1386,3 +1386,35 @@ directive/readiness and obtain separate bounded scope approval. No WS-06
 implementation begins here. Wider initiative stays started/granted/normal/local;
 its active packet remains until full initiative acceptance. No delivery,
 historical storage cleanup or later-phase authority is inferred.
+
+## 2026-09-29 — WS-06 Planning Reconciled; Bounded Approval Pending
+
+Maintainer said "proceed" at the recorded WS-06 planning/readiness gate after
+explicit WS-05 acceptance. Controller performed focused read-only source/authority
+inspection and rewrote only the unapproved WS-06 draft plus planning metadata.
+Preparation HEAD `6890771127e405f3299ed783296174366c67f995`; branch remains
+`feature/friday-mcp-ws05-execution`. No product changes, new branch, agent dispatch
+or implementation approval. Accepted `cca86b5`, VAL-013 and predecessors intact.
+
+The draft now binds 18 paths, seven tasks and ten criteria. Existing Core policy
+remains authoritative; server OR canonical-tool grants are exact explicit union.
+Default direct ingestion is off, ordinary conversation memory preserved. Add typed
+sanitary bounded snapshots with stage/verify/append-readback/publish sequencing;
+immutable transcript receipts remain truthful even if publication fails. Pending
+records cannot enter retrieval/promotion; labels/filtering respect WS-04's supplied
+budget once. Snapshot/no-revocation assumptions and narrow maintenance eligibility
+guard prevent provenance loss. No schema/config/dependency/Core/store edits.
+
+Readiness source hashes, original draft, preservation and environment limits are
+recorded in execution/WS-06-readiness-evidence.yaml. Ordinary uv run tried a
+Transcript rebuild and failed resolving hatchling through unavailable PyPI DNS;
+installed-environment --no-sync board validate/next/show passed (23 tasks). Final
+metadata/document/freeze checks are recorded separately in readiness evidence.
+All 978 product bytes, 34 authority inputs, five reports, 19 historical artifacts
+and five unrelated fingerprints remain unchanged. No runtime-state cleanup.
+
+Current phase planning/state not_ready for WS-06; WS-05 remains accepted/VERIFIED.
+Next explicit bounded directive approval. After approval, pin planning checkpoint,
+create feature/friday-mcp-ws06-memory and record started execution before code.
+Fresh read-only aggregate VAL-014 and later maintainer acceptance remain required.
+The wider initiative remains started/granted/normal/local; no WS-07/08 or delivery.
