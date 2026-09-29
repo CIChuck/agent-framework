@@ -1654,3 +1654,19 @@ candidate and residual limits. Phase closeout/state verified; next gate is
 explicit maintainer WS-07 acceptance. Initiative remains
 started/granted/normal/local. WS-08, initiative aggregate review and delivery
 are separate; no acceptance is inferred from the reviewer verdict.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-07
+
+After the complete fresh VAL-016 VERIFIED report and WS-07 closeout proposal
+were presented, the repository maintainer answered "accepted". The
+[WS-07 closeout](execution/WS-07-closeout.md) records that explicit decision
+for candidate `2e36613eae6060a99c1255cce04fcb7a27bc7374` and its complete
+independent aggregate review. WS-00 through WS-07 are independently verified
+and explicitly accepted work units. The wider Friday MCP initiative remains
+started/granted/normal/local on `feature/friday-mcp-ws07-telemetry`.
+
+Phase planning/state not_ready; next reconcile the draft WS-08 documentation
+directive against accepted source, guides and distributed configuration and
+request separate bounded approval. WS-08 product/documentation implementation,
+initiative aggregate review, live-provider UAT and delivery are not authorized
+by this acceptance.

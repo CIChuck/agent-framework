@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-06 accepted; WS-07 independently verified, acceptance pending
+Status: WS-00 through WS-07 independently verified and explicitly accepted; WS-08 reconciliation next
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws07-telemetry`
@@ -40,8 +40,9 @@ manifest and health-command deferral with "proceed" on 2026-09-29. WS-07
 implementation produced stable candidate `2e36613`. Fresh-context, read-only
 [VAL-016](validation/VAL-016-report.md) returned full-aggregate VERIFIED with
 no findings. Its report and [byte-checked evidence](validation/VAL-016-evidence.yaml)
-are recorded in the [WS-07 closeout proposal](execution/WS-07-closeout.md).
-Explicit maintainer WS-07 acceptance is the next gate.
+are recorded in the [WS-07 closeout](execution/WS-07-closeout.md). The maintainer
+explicitly accepted WS-07 with "accepted" on 2026-09-29. Next is reconciling
+the draft WS-08 directive and requesting separate bounded approval.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -96,7 +97,7 @@ is authorized by the REM-004 approval.
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Complete: nine-path REM-008 candidate 820e252 received fresh VAL-015 delta/full-aggregate VERIFIED; maintainer explicitly accepted WS-06 on 2026-09-29. |
-| 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; [closeout](execution/WS-07-closeout.md) proposes explicit maintainer acceptance. |
+| 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; the maintainer explicitly accepted it in the [closeout](execution/WS-07-closeout.md). |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
 | Deferred / [WS-09](directives/ws-09-optional-external-config-include.md) | Optional external MCP config includes parsed into the canonical typed runtime model, with path confinement and precedence. | Tools-only inline integration stable and a separate maintainer decision to activate the phase. Not required automatically by this queue. |
@@ -550,3 +551,14 @@ localhost bind and stale board-count classes independently reproduced on the
 frozen base. The [WS-07 closeout](execution/WS-07-closeout.md) proposes
 explicit maintainer acceptance. Phase closeout/state verified; board remains
 started/granted/normal/local. WS-08 and delivery remain separate gates.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-07
+
+The maintainer answered "accepted" after receiving the complete independent
+VAL-016 VERIFIED report and WS-07 closeout proposal. The
+[closeout](execution/WS-07-closeout.md) records acceptance for frozen candidate
+`2e36613eae6060a99c1255cce04fcb7a27bc7374` and its full aggregate
+review. WS-00 through WS-07 are accepted. Current phase planning/state
+not_ready; next reconcile the draft WS-08 directive and request separate
+bounded approval. The initiative remains started/granted/normal/local, with no
+WS-08 implementation, external UAT or delivery authority inferred.

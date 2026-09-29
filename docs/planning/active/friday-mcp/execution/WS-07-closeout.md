@@ -1,13 +1,16 @@
-# MCP-WS-07 Work-Unit Closeout Proposal
+# MCP-WS-07 Work-Unit Closeout
 
 - Date: 2026-09-29
-- Status: Independently VERIFIED; explicit maintainer acceptance pending
+- Status: Independently VERIFIED and explicitly accepted
 - Initiative: `friday-mcp`
 - Work unit: `MCP-WS-07`
 - Branch: `feature/friday-mcp-ws07-telemetry`
 - Base: `c05882e45d78dc83ad48ee17b156aa9efff6fff0`
 - Candidate: `2e36613eae6060a99c1255cce04fcb7a27bc7374`
 - Delivery: Local
+- Accepted by: repository maintainer
+- Accepted at: 2026-09-29
+- Acceptance evidence: explicit "accepted" after the complete VAL-016 report and closeout proposal were presented
 
 Fresh `/root/mcp_ws07_val016`, dispatched with `fork_turns: none`, performed a
 read-only complete WS-07 aggregate review of the frozen 16-path candidate. The
@@ -44,7 +47,17 @@ byte-checked frozen-base source; these results are disclosed as nonzero,
 inherited test/environment debt. The distribution proof is not a clean offline
 resolver install or live-provider UAT.
 
-This work-unit proposal does not mark the initiative completed or accepted.
-The board remains `started`/`granted`/`normal` with local delivery. Next gate:
-explicit maintainer WS-07 acceptance of this candidate and review. WS-08,
-initiative-level aggregate review and merge/push/release are separate decisions.
+## Acceptance And Remaining Gates
+
+The maintainer explicitly accepted this verified WS-07 candidate and complete
+VAL-016 result with "accepted" on 2026-09-29, after the independent report and
+closeout proposal were presented. WS-00 through WS-07 are now independently
+verified and explicitly accepted work units. This decision applies to candidate
+`2e36613eae6060a99c1255cce04fcb7a27bc7374` and its full WS-07 aggregate
+review; it grants no WS-08 implementation or external-effects authority.
+
+Next gate: reconcile the draft WS-08 documentation directive against accepted
+source, guides and distributed configuration, then request separate bounded
+approval. The wider initiative remains `started`/`granted`/`normal` with local
+delivery on its named branch. Initiative-level aggregate review and
+merge/push/release remain separate decisions.

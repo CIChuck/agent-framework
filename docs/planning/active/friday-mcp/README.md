@@ -6,13 +6,13 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: obtain explicit maintainer WS-07 acceptance of verified candidate
+next_gate: reconcile WS-08 documentation directive and request bounded approval
 implementation_authority: granted for MCP-WS-00 through MCP-WS-07 within approved directives; Chat health command deferred in WS-07
-execution_phase: closeout
-validation_state: verified
+execution_phase: planning
+validation_state: not_ready
 ---
 
-Current checkpoint: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
+Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
 with "i accept - continue" on 2026-09-29 after fresh
 [VAL-015](validation/VAL-015-report.md) verified the exact REM-008 delta and
 complete original WS-06 aggregate at candidate
@@ -22,7 +22,7 @@ report and 935-member archive remain byte-exact in
 [lossless evidence](validation/VAL-015-evidence.yaml); historical VAL-014 remains
 unchanged for its earlier candidate.
 
-The maintainer explicitly approved the exact [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md)
+Current checkpoint: the maintainer explicitly approved the exact [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md)
 and [readiness checkpoint](execution/WS-07-readiness-checkpoint.md) with
 "proceed" on 2026-09-29, including deferral of the Friday Chat health command.
 WS-07 has a stable [builder candidate](execution/WS-07-implementation-report.md)
@@ -31,9 +31,12 @@ WS-07 has a stable [builder candidate](execution/WS-07-implementation-report.md)
 [VAL-016](validation/VAL-016-report.md) returned **VERIFIED** for the complete
 work-unit aggregate with no findings. Its complete report and 755 selected
 scratch artifacts are preserved in [byte-checked evidence](validation/VAL-016-evidence.yaml).
-The [WS-07 closeout](execution/WS-07-closeout.md) proposes explicit maintainer
-acceptance; none is inferred from the review. WS-08, initiative aggregate review
-and delivery remain separate.
+The maintainer explicitly accepted the verified WS-07 candidate and review with
+"accepted" on 2026-09-29. The [WS-07 closeout](execution/WS-07-closeout.md)
+records that decision. WS-00 through WS-07 are now independently verified and
+explicitly accepted work units. Next is reconciliation of the draft WS-08
+documentation directive and a separate bounded approval decision. Initiative
+aggregate review and delivery remain separate.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
