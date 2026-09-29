@@ -80,9 +80,9 @@ def reconcile_mcp_call_ids(
     for message in messages:
         if message.get("role") == "tool":
             name = message.get("name")
-            identifier = message.get("tool_call_id")
-            if isinstance(name, str) and isinstance(identifier, str):
-                replacement = replacements.get((name, identifier))
+            message_id = message.get("tool_call_id")
+            if isinstance(name, str) and isinstance(message_id, str):
+                replacement = replacements.get((name, message_id))
                 if replacement is not None:
                     message["tool_call_id"] = replacement
         elif message.get("role") == "assistant":
@@ -98,9 +98,9 @@ def reconcile_mcp_call_ids(
                     if isinstance(function, Mapping)
                     else call.get("name")
                 )
-                identifier = call.get("id")
-                if isinstance(name, str) and isinstance(identifier, str):
-                    replacement = replacements.get((name, identifier))
+                request_id = call.get("id")
+                if isinstance(name, str) and isinstance(request_id, str):
+                    replacement = replacements.get((name, request_id))
                     if replacement is not None:
                         call["id"] = replacement
 
