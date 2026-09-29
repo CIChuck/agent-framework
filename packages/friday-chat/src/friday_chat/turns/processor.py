@@ -18,6 +18,7 @@ from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
 from friday_chat.tools.output import (
     MCPResultLimitError,
+    reconcile_mcp_call_ids,
     redact_tool_request_message,
     safe_mcp_call_id,
 )
@@ -393,7 +394,13 @@ class TurnProcessor:
                 tool_definitions,
                 mcp_names=mcp_names,
             )
-        model_response = self._safe_model_response(model_response, mcp_names)
+        model_response = self._safe_model_response(
+            model_response,
+            mcp_names,
+            used_call_ids={
+                call.call_id for call in tool_calls if call.call_id is not None
+            },
+        )
         assistant_message = model_response.content
         if not assistant_message and tool_calls:
             assistant_message = _tool_fallback_message(tool_calls)
@@ -479,6 +486,19 @@ class TurnProcessor:
                 heartbeat_kind="tool",
             )
             response = _with_text_tool_calls(response, tool_definitions)
+            # New native IDs may claim an ID belonging to an earlier MCP call.
+            # Repair the retained pair and atomic facts even on the last/pending
+            # fallback response, before another invocation or turn capture.
+            reconcile_mcp_call_ids(
+                all_tool_calls,
+                messages,
+                {
+                    call.call_id
+                    for call in response.tool_calls
+                    if call.name not in mcp_names and call.call_id is not None
+                },
+                used_call_ids,
+            )
         return response, tuple(all_tool_calls)
 
     def _mcp_names(self) -> set[str]:
@@ -489,6 +509,8 @@ class TurnProcessor:
         self,
         response: ChatModelResponse,
         mcp_names: frozenset[str],
+        *,
+        used_call_ids: set[str] | None = None,
     ) -> ChatModelResponse:
         """Drop any remaining MCP request prose/raw copies before return/capture."""
         if not any(call.name in mcp_names for call in response.tool_calls):
@@ -498,6 +520,7 @@ class TurnProcessor:
             for call in response.tool_calls
             if call.name not in mcp_names and call.call_id is not None
         }
+        used.update(used_call_ids or ())
         calls = tuple(
             replace(call, arguments={}, call_id=safe_mcp_call_id(call.call_id, used))
             if call.name in mcp_names

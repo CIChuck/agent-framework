@@ -5,11 +5,13 @@ from __future__ import annotations
 import csv
 import io
 import json
+import sys
 from dataclasses import replace
 
 import pytest
 import test_mcp_execution_security as execution_security
 from friday_chat.adapters import FrameworkTranscriptAdapter
+from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import FakeChatModel, build_runtime
 from friday_chat.tools.output import MCPOutputPolicy
 from friday_chat.tools.schemas import ToolCallRecord
@@ -37,6 +39,366 @@ from test_mcp_execution_security import (
 )
 
 processes = execution_security.processes
+
+ENVIRONMENT = "REM006_ENV_SENTINEL"
+HEADER = "REM006_HEADER_SENTINEL"
+LAUNCH = "REM006_LAUNCH_SENTINEL"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("streaming", [False, True])
+@pytest.mark.parametrize("fallback", [False, True])
+async def test_new_session_omits_mcp_launch_material_from_every_export(
+    tmp_path, processes, caplog, streaming, fallback
+):
+    # Headers are forbidden by the accepted stdio config. Exercise header/URL
+    # copies in supported launch arguments without introducing HTTP authority.
+    peer = tmp_path / (LAUNCH + ".py")
+    audit = tmp_path / "launch-audit.json"
+    peer.write_text(
+        "import json, os, runpy, sys\n"
+        f"with open(sys.argv[1], 'w') as out: json.dump({{"
+        f"'env_exact': os.environ.get('REM006_ENV') == {ENVIRONMENT!r}, "
+        f"'args_exact': sys.argv[2:] == {[LAUNCH, 'Authorization: ' + HEADER, 'https://synthetic.invalid/?token=' + HEADER]!r}"
+        "}, out)\n"
+        f"runpy.run_path({str(execution_security.PEER.resolve())!r}, run_name='__main__')\n"
+    )
+    values = config().model_dump()
+    server = values["tools"]["providers"]["mcp"]["config"]["servers"][0]
+    server.update(
+        command=sys.executable,
+        args=[
+            str(peer),
+            str(audit),
+            LAUNCH,
+            "Authorization: " + HEADER,
+            "https://synthetic.invalid/?token=" + HEADER,
+        ],
+        env={"REM006_ENV": ENVIRONMENT},
+    )
+    values["tools"]["providers"]["native_example"] = {"shape": "preserved"}
+    if fallback:
+        values["tools"]["loop"] = {"max_iterations": 1}
+    configuration = FridayChatConfig.model_validate(values)
+    original = configuration.model_dump(mode="json")
+    runtime = build_runtime(configuration)
+    bridge = install(runtime, tmp_path)
+    store = SQLiteTranscriptStore(tmp_path / "private.sqlite")
+    runtime.transcript = FrameworkTranscriptAdapter(store, configuration, "private")
+    runtime.chat_llm = FakeChatModel(
+        "fake",
+        responses=[
+            ChatModelResponse(
+                tool_calls=(
+                    ToolCallRequest("mcp_peer_read_file", {"case": "success"}, "call1"),
+                )
+            ),
+            ChatModelResponse(
+                tool_calls=(ToolCallRequest("mcp_peer_read_file", {}, "pending"),)
+            )
+            if fallback
+            else ChatModelResponse.from_text("done"),
+        ],
+    )
+    chunks = []
+
+    async def capture(text):
+        chunks.append(text)
+
+    try:
+        await runtime.start_mcp_tools()
+        runtime.tool_selection.inject_manual(("mcp_peer_read_file",))
+        processor = TurnProcessor(runtime)
+        result = (
+            await processor.process_streaming("synthetic", on_chunk=capture)
+            if streaming
+            else await processor.process("synthetic")
+        )
+        assert json.loads(audit.read_text()) == {
+            "env_exact": True,
+            "args_exact": True,
+        }
+        assert configuration.model_dump(mode="json") == original
+        assert "Read.File" in result.tool_calls[0].result
+        assert result.tool_calls[0].mcp_provenance.tool.original_name == "Read.File"
+        session = await store.get_session("private")
+        expected = configuration.model_dump(
+            mode="json", exclude={"tools": {"providers": {"mcp"}}}
+        )
+        assert session.config_snapshot == expected
+        assert session.config_snapshot["tools"]["providers"] == {
+            "native_example": {"shape": "preserved"}
+        }
+        entry = (await store.get_entries("private"))[0]
+        assert entry.tool_calls[0].mcp_provenance.transcript_correlation_id == entry.id
+        captured = repr(session) + repr(entry) + repr(result) + repr(chunks)
+        captured += repr(runtime.chat_llm.calls) + caplog.text
+        captured += repr(await store.get_context_log_for_session("private"))
+        for exporter, options in [
+            (JSONLExporter(store), {"include_metadata": True}),
+            (JSONLExporter(store), {"include_metadata": False}),
+            (MarkdownExporter(store), {}),
+            (MarkdownExporter(store), {"include_tool_calls": True}),
+            (CSVExporter(store), {}),
+        ]:
+            output = io.StringIO()
+            await exporter.export_session("private", output, **options)
+            captured += output.getvalue()
+            if isinstance(exporter, JSONLExporter):
+                payloads = [json.loads(line) for line in output.getvalue().splitlines()]
+                assert payloads[0]["config_snapshot"] == expected
+                assert ("tool_calls" in payloads[-1]) == options["include_metadata"]
+        folder = tmp_path / "all-csv"
+        assert await CSVExporter(store).export_all_sessions(folder) == {
+            "sessions": 1,
+            "entries": 1,
+        }
+        for path in folder.glob("*.csv"):
+            captured += path.read_text()
+        session_row = next(
+            csv.DictReader(io.StringIO((folder / "sessions.csv").read_text()))
+        )
+        assert json.loads(session_row["config_snapshot"]) == expected
+        assert all(s not in captured for s in (ENVIRONMENT, HEADER, LAUNCH))
+        assert (
+            result.assistant_message.startswith("Tool results:")
+            if fallback
+            else (result.assistant_message == "done")
+        )
+        await bridge.stop()
+        assert_stopped(bridge, processes)
+    finally:
+        await bridge.stop()
+
+
+@pytest.mark.asyncio
+async def test_native_session_snapshot_shape_and_historical_snapshot_are_preserved(
+    tmp_path,
+):
+    from friday_transcript import TranscriptSession
+
+    configuration = FridayChatConfig.model_validate(
+        {"tools": {"providers": {"native_example": {"shape": "preserved"}}}}
+    )
+    store = SQLiteTranscriptStore(tmp_path / "native-session.sqlite")
+    adapter = FrameworkTranscriptAdapter(store, configuration, "new-native")
+    turn = InteractionTurn(
+        "entry1", "user", "assistant", "p", "c", (), TurnMetrics(0, 0, 0, 0)
+    )
+    await adapter.record_interaction(turn)
+    assert (
+        await store.get_session("new-native")
+    ).config_snapshot == configuration.model_dump(mode="json")
+    historical = TranscriptSession(
+        session_id="historical",
+        model_name="fake",
+        config_snapshot={"tools": {"providers": {"mcp": {"env": ENVIRONMENT}}}},
+    )
+    await store.create_session(historical)
+    await FrameworkTranscriptAdapter(
+        store, configuration, "historical"
+    ).record_interaction(replace(turn, turn_id="entry2"))
+    assert (
+        await store.get_session("historical")
+    ).config_snapshot == historical.config_snapshot
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("production", [False, True])
+@pytest.mark.parametrize("streaming", [False, True])
+@pytest.mark.parametrize("fallback", [False, True])
+async def test_later_native_claims_rebind_complete_mcp_pairs_across_iterations(
+    tmp_path, processes, production, streaming, fallback
+):
+    runtime = build_runtime(config())
+    runtime.config.tools.loop["max_iterations"] = 3
+    bridge = install(runtime, tmp_path)
+    store = SQLiteTranscriptStore(tmp_path / "collision.sqlite")
+    if production:
+        runtime.transcript = FrameworkTranscriptAdapter(store, runtime.config, "pairs")
+
+    class LaterNativeModel(FakeChatModel):
+        async def complete(self, messages, *, tools=()):
+            number = len(self.calls)
+            if number == 0:
+                response = ChatModelResponse(
+                    tool_calls=(
+                        ToolCallRequest("mcp_peer_read_file", {}, "shared"),
+                        ToolCallRequest("mcp_peer_read_file", {}, "stable"),
+                    )
+                )
+            elif number == 1:
+                response = ChatModelResponse(
+                    tool_calls=(
+                        ToolCallRequest("echo", {"text": "native one"}, "shared"),
+                        ToolCallRequest("mcp_peer_read_file", {}, "shared"),
+                        ToolCallRequest("mcp_peer_read_file", {}, None),
+                        ToolCallRequest("mcp_peer_other_tool", {}, "bad/" + ARGUMENT),
+                    )
+                )
+            elif number == 2:
+                # Claim the replacement itself, exercising a second rebind of
+                # the same completed call and repeated tool names by identity.
+                identifier = messages[2]["tool_calls"][0]["id"]
+                self.claimed_id = identifier
+                response = ChatModelResponse(
+                    tool_calls=(
+                        ToolCallRequest("echo", {"text": "native two"}, identifier),
+                        ToolCallRequest("mcp_peer_read_file", {}, "stable"),
+                    )
+                )
+            elif fallback:
+                response = ChatModelResponse(
+                    tool_calls=(
+                        ToolCallRequest("echo", {"text": "unexecuted"}, "stable"),
+                        ToolCallRequest(
+                            "mcp_peer_read_file", {"value": ARGUMENT}, "shared"
+                        ),
+                    )
+                )
+            else:
+                response = ChatModelResponse.from_text("done")
+            self.responses = [response]
+            return await super().complete(messages, tools=tools)
+
+    model = LaterNativeModel("fake")
+    runtime.chat_llm = model
+    chunks = []
+
+    async def capture(text):
+        chunks.append(text)
+
+    try:
+        await runtime.start_mcp_tools()
+        runtime.tool_selection.inject_manual(
+            ("echo", "mcp_peer_read_file", "mcp_peer_other_tool")
+        )
+        processor = TurnProcessor(runtime)
+        result = (
+            await processor.process_streaming("synthetic", on_chunk=capture)
+            if streaming
+            else await processor.process("synthetic")
+        )
+        records = result.tool_calls
+        assert len(records) == 8 and len({r.call_id for r in records}) == 8
+        native = [r for r in records if r.mcp_provenance is None]
+        assert native[0].call_id == "shared" and native[0].result == "native one"
+        assert native[1].call_id == model.claimed_id and native[1].call_id != "shared"
+        assert native[1].result == "native two"
+        assert (
+            records[1].call_id != "stable"
+            if fallback
+            else records[1].call_id == "stable"
+        )
+        retained = model.calls[-1]
+        requests = [
+            c
+            for m in retained
+            if m.get("role") == "assistant"
+            for c in m.get("tool_calls", [])
+        ]
+        outputs = [m for m in retained if m.get("role") == "tool"]
+        assert [c["id"] for c in requests] == [r.call_id for r in records]
+        assert [m["tool_call_id"] for m in outputs] == [r.call_id for r in records]
+        assert [m["content"] for m in outputs] == [r.result for r in records]
+        for r in records:
+            if r.mcp_provenance is not None:
+                assert r.call_id == r.mcp_provenance.call_id
+                assert r.arguments == {} and r.mcp_provenance.status == "succeeded"
+        assert ARGUMENT not in repr(result) + repr(model.calls) + repr(chunks)
+        if production:
+            entry = (await store.get_entries("pairs"))[0]
+            assert [c.id for c in entry.tool_calls] == [r.call_id for r in records]
+            for call, output in zip(entry.tool_calls, entry.tool_results, strict=True):
+                if call.mcp_provenance is not None:
+                    assert call.mcp_provenance == output.mcp_provenance
+                    assert call.mcp_provenance.transcript_correlation_id == entry.id
+            output = io.StringIO()
+            await JSONLExporter(store).export_session("pairs", output)
+            exported = json.loads(output.getvalue().splitlines()[-1])
+            assert exported["tool_calls"] == [
+                c.model_dump(mode="json") for c in entry.tool_calls
+            ]
+        else:
+            assert runtime.transcript.interactions[0].tool_calls == records
+        if fallback:
+            assert result.assistant_message.startswith("Tool results:")
+            assert json.loads(result.raw_response)["tool_calls"][0]["id"] == "stable"
+        else:
+            assert result.assistant_message == "done"
+        await bridge.stop()
+        assert_stopped(bridge, processes)
+    finally:
+        await bridge.stop()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("production", [False, True])
+@pytest.mark.parametrize("streaming", [False, True])
+async def test_pending_mcp_reuse_gets_distinct_capture_id_without_execution(
+    tmp_path, processes, production, streaming
+):
+    runtime = build_runtime(config())
+    runtime.config.tools.loop["max_iterations"] = 1
+    bridge = install(runtime, tmp_path)
+    store = SQLiteTranscriptStore(tmp_path / "pending.sqlite")
+    if production:
+        runtime.transcript = FrameworkTranscriptAdapter(
+            store, runtime.config, "pending"
+        )
+    runtime.chat_llm = FakeChatModel(
+        "fake",
+        responses=[
+            ChatModelResponse(
+                tool_calls=(ToolCallRequest("mcp_peer_read_file", {}, "shared"),)
+            ),
+            ChatModelResponse(
+                content=ARGUMENT,
+                tool_calls=(
+                    ToolCallRequest(
+                        "mcp_peer_read_file", {"value": ARGUMENT}, "shared"
+                    ),
+                    ToolCallRequest(
+                        "mcp_peer_read_file", {"value": ARGUMENT}, "shared"
+                    ),
+                    ToolCallRequest("mcp_peer_read_file", {}, "valid-pending"),
+                ),
+            ),
+        ],
+    )
+    chunks = []
+
+    async def capture(text):
+        chunks.append(text)
+
+    try:
+        await runtime.start_mcp_tools()
+        runtime.tool_selection.inject_manual(("mcp_peer_read_file",))
+        processor = TurnProcessor(runtime)
+        result = (
+            await processor.process_streaming("synthetic", on_chunk=capture)
+            if streaming
+            else await processor.process("synthetic")
+        )
+        assert len(result.tool_calls) == 1 and result.tool_calls[0].call_id == "shared"
+        captured = json.loads(result.raw_response)["tool_calls"]
+        assert len({c["id"] for c in captured} | {"shared"}) == 4
+        assert captured[-1]["id"] == "valid-pending"
+        assert all(c["arguments"] == {} for c in captured)
+        assert len(runtime.chat_llm.calls) == 2
+        assert result.assistant_message.startswith("Tool results:")
+        assert ARGUMENT not in repr(result) + repr(chunks) + repr(
+            runtime.chat_llm.calls
+        )
+        if production:
+            entry = (await store.get_entries("pending"))[0]
+            assert len(entry.tool_calls) == 1 and entry.tool_calls[0].id == "shared"
+        else:
+            assert runtime.transcript.interactions[0].tool_calls == result.tool_calls
+        await bridge.stop()
+        assert_stopped(bridge, processes)
+    finally:
+        await bridge.stop()
 
 
 @pytest.mark.asyncio

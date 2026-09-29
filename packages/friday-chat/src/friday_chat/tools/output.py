@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import json
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 from typing import Any, Literal
 from uuid import uuid4
 
@@ -39,10 +40,69 @@ def safe_mcp_call_id(call_id: str | None, used: set[str]) -> str:
         candidate = _ID.validate_python(call_id)
     except ValidationError:
         candidate = ""
-    if not candidate or candidate in used:
+    while not candidate or candidate in used:
         candidate = "mcp-" + uuid4().hex
     used.add(candidate)
     return candidate
+
+
+def reconcile_mcp_call_ids(
+    records: list[ToolCallRecord],
+    messages: list[dict[str, Any]],
+    native_ids: set[str],
+    used: set[str],
+) -> None:
+    """Rebind completed MCP facts when a later native request claims their ID.
+
+    Only turn-owned safe history is changed; completed tools are never rerun.
+    Native IDs are retained, and records plus request/result copies move together
+    before the next model invocation or persistence. Prior wire requests were
+    paired at submission time and cannot be retroactively changed.
+    """
+    used.update(native_ids)
+    used.update(record.call_id for record in records if record.call_id is not None)
+    replacements: dict[tuple[str, str], str] = {}
+    for index, record in enumerate(records):
+        facts = record.mcp_provenance
+        if facts is None or facts.call_id not in native_ids:
+            continue
+        identifier = safe_mcp_call_id(None, used)
+        replacements[(record.name, facts.call_id)] = identifier
+        records[index] = replace(
+            record,
+            call_id=identifier,
+            mcp_provenance=MCPToolCallProvenance.model_validate(
+                {**facts.model_dump(), "call_id": identifier}
+            ),
+        )
+    if not replacements:
+        return
+    for message in messages:
+        if message.get("role") == "tool":
+            name = message.get("name")
+            identifier = message.get("tool_call_id")
+            if isinstance(name, str) and isinstance(identifier, str):
+                replacement = replacements.get((name, identifier))
+                if replacement is not None:
+                    message["tool_call_id"] = replacement
+        elif message.get("role") == "assistant":
+            calls = message.get("tool_calls")
+            if not isinstance(calls, list):
+                continue
+            for call in calls:
+                if not isinstance(call, dict):
+                    continue
+                function = call.get("function")
+                name = (
+                    function.get("name")
+                    if isinstance(function, Mapping)
+                    else call.get("name")
+                )
+                identifier = call.get("id")
+                if isinstance(name, str) and isinstance(identifier, str):
+                    replacement = replacements.get((name, identifier))
+                    if replacement is not None:
+                        call["id"] = replacement
 
 
 class MCPOutputPolicy:

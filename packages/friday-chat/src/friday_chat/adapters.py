@@ -1320,7 +1320,12 @@ class FrameworkTranscriptAdapter:
                 user_id=self.config.chat.user_name,
                 model_name=self.config.llm.model or "unknown",
                 system_prompt=self.config.chat.system_prompt,
-                config_snapshot=self.config.model_dump(mode="json"),
+                # MCP launch/connection material is runtime-only. Exclude the
+                # whole stanza from this new diagnostic copy, preserving the
+                # original config and all native provider snapshot behavior.
+                config_snapshot=self.config.model_dump(
+                    mode="json", exclude={"tools": {"providers": {"mcp"}}}
+                ),
             )
         )
 

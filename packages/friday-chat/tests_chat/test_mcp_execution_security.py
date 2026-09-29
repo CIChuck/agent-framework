@@ -318,6 +318,95 @@ async def test_loop_distinct_ids_redacted_messages_reasoning_and_concurrent_call
 
 
 @pytest.mark.asyncio
+async def test_loop_reserves_native_ids_from_later_supplied_messages(
+    tmp_path, processes
+):
+    runtime = build_runtime(config())
+    bridge = install(runtime, tmp_path)
+    source = [
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {"name": "mcp_peer_read_file", "arguments": {}, "id": "shared"}
+            ],
+        },
+        {
+            "role": "assistant",
+            "tool_calls": [
+                {"name": "echo", "arguments": {"text": "native"}, "id": "shared"}
+            ],
+        },
+    ]
+    try:
+        await bridge.start()
+        result = await ToolLoop(bridge, max_iterations=2).run(
+            source, bridge.list_tools()
+        )
+        mcp, native = result.tool_calls
+        assert native.call_id == "shared" and native.result == "native"
+        assert mcp.call_id != "shared"
+        assert mcp.call_id == mcp.mcp_provenance.call_id
+        assert result.messages[0]["tool_calls"][0]["id"] == mcp.call_id
+        assert source[0]["tool_calls"][0]["id"] == "shared"
+    finally:
+        await bridge.stop()
+    assert_stopped(bridge, processes)
+
+
+@pytest.mark.asyncio
+async def test_concurrent_records_reconcile_atomically_without_reexecution(
+    tmp_path, processes
+):
+    from friday_chat.tools.output import reconcile_mcp_call_ids
+
+    runtime = build_runtime(config())
+    bridge = install(runtime, tmp_path)
+    try:
+        await bridge.start()
+        used = set()
+        records = list(
+            await asyncio.gather(
+                *(
+                    bridge.call_tool_record(
+                        "mcp_peer_read_file", {}, call_id="shared", used_call_ids=used
+                    )
+                    for _ in range(4)
+                )
+            )
+        )
+        originals = list(records)
+        messages = [
+            {
+                "role": "assistant",
+                "tool_calls": [
+                    {"name": r.name, "id": r.call_id, "arguments": {}} for r in records
+                ],
+            },
+            *[
+                {"role": "tool", "name": r.name, "tool_call_id": r.call_id}
+                for r in records
+            ],
+        ]
+        reconcile_mcp_call_ids(records, messages, {"shared"}, used)
+        assert len({r.call_id for r in records}) == 4
+        assert "shared" not in {r.call_id for r in records}
+        assert [c["id"] for c in messages[0]["tool_calls"]] == [
+            r.call_id for r in records
+        ]
+        assert [m["tool_call_id"] for m in messages[1:]] == [r.call_id for r in records]
+        for before, after in zip(originals, records, strict=True):
+            assert before.result == after.result and after.arguments == {}
+            assert before.mcp_provenance.model_dump(exclude={"call_id"}) == (
+                after.mcp_provenance.model_dump(exclude={"call_id"})
+            )
+            assert after.call_id == after.mcp_provenance.call_id
+        assert originals[0].call_id == "shared"
+    finally:
+        await bridge.stop()
+    assert_stopped(bridge, processes)
+
+
+@pytest.mark.asyncio
 async def test_cancellation_propagates_then_owner_stops_and_retries(
     tmp_path, processes
 ):

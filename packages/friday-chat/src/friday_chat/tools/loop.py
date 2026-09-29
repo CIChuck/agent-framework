@@ -94,6 +94,14 @@ class ToolLoop:
             if recorder and recorder.is_mcp_tool(name)
         }
         mcp_names.update(mcp_tool_names)
+        # Every supplied response is already known here. Reserve native IDs
+        # across the entire pass before executing any MCP call.
+        identifiers.update(
+            str(call["id"])
+            for message in messages
+            for call in _extract_tool_calls(message)
+            if call.get("id") is not None and call.get("name") not in mcp_names
+        )
         safe_messages: list[Mapping[str, Any]] = [
             redact_tool_request_message(message, (), mcp_names) for message in messages
         ]
@@ -101,17 +109,6 @@ class ToolLoop:
         for index, message in enumerate(messages[: self._max_iterations]):
             message_records: list[ToolCallRecord] = []
             calls = _extract_tool_calls(message)
-            # Reserve native IDs before MCP allocation, even when native calls
-            # follow MCP calls in this response. Native IDs are not rewritten.
-            identifiers.update(
-                str(call["id"])
-                for call in calls
-                if call.get("id") is not None
-                and (
-                    not isinstance(call.get("name"), str)
-                    or call.get("name") not in mcp_names
-                )
-            )
             heartbeat = self._heartbeat_factory.create_heartbeat("tool")
             try:
                 heartbeat.start()
