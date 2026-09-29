@@ -1,8 +1,11 @@
 # Construction Directive: MCP-WS-07 Telemetry And Diagnostics
 
-Status: Reconciled proposal; **not approved for implementation**
+Status: Approved construction directive
 Date: 2026-09-29
 Preparation base: `e98411825c2f2275f43d45762a656e8d7b85a9b0`
+Approved by: repository maintainer
+Approved at: 2026-09-29
+Approval evidence: explicit "proceed" after review of this exact directive and the Chat health-command deferral decision
 Workstream: `MCP-WS-07`
 Tactical authority: [MCP tactical plan](../tactical-plan.md), tasks `MCP-07-01` through `MCP-07-06`
 Readiness: [WS-07 checkpoint](../execution/WS-07-readiness-checkpoint.md)
@@ -16,8 +19,8 @@ storage contracts. This proposal **defers a new Friday Chat health command** in
 this pass (`MCP-07-04/05`): the headless provider already exposes safe discovery,
 diagnostics, lifecycle and registration decisions, while Chat retains the
 provider through `MCPChatRegistry`. A new user command requires a separate
-CLI/output contract. Bounded approval must explicitly accept this deferral or
-request a revised command manifest before product work starts.
+CLI/output contract. The maintainer explicitly accepted this bounded scope and
+deferral before product work started.
 
 ## Exact proposed product manifest
 

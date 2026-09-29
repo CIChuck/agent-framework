@@ -6,9 +6,9 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: explicitly approve bounded WS-07 telemetry and diagnostics directive, including deferral of Chat health command
-implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006; WS-07 remains draft
-execution_phase: planning
+next_gate: implement approved WS-07 telemetry and diagnostics; freeze candidate for fresh independent review
+implementation_authority: granted for MCP-WS-00 through MCP-WS-07 within approved directives; Chat health command deferred in WS-07
+execution_phase: implementation
 validation_state: not_ready
 ---
 
@@ -22,14 +22,12 @@ report and 935-member archive remain byte-exact in
 [lossless evidence](validation/VAL-015-evidence.yaml); historical VAL-014 remains
 unchanged for its earlier candidate.
 
-The [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md) and
-[readiness checkpoint](execution/WS-07-readiness-checkpoint.md) now reconcile
-accepted source into an exact proposed telemetry/diagnostics manifest. The
-first-pass decision proposes deferring a new Friday Chat health command;
-explicit bounded maintainer approval of both scope and deferral is next.
-Phase planning/state not_ready records this non-authorizing preparation. The
-wider initiative remains started/granted/normal/local on the WS-06 branch.
-WS-07/08 implementation, aggregate/pre-merge review and delivery are separate.
+The maintainer explicitly approved the exact [WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md)
+and [readiness checkpoint](execution/WS-07-readiness-checkpoint.md) with
+"proceed" on 2026-09-29, including deferral of the Friday Chat health command.
+WS-07 implementation is active on `feature/friday-mcp-ws07-telemetry`.
+The next gate is a stable candidate and fresh independent review; WS-08,
+aggregate/pre-merge review and delivery remain separate.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

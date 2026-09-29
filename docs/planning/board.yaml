@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicitly approve bounded WS-07 telemetry and diagnostics directive, including deferral of Chat health command
+  next_gate: implement approved WS-07 telemetry and diagnostics; freeze candidate for fresh independent review
   delivery_state: local
-  branch: feature/friday-mcp-ws06-memory
+  branch: feature/friday-mcp-ws07-telemetry
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md

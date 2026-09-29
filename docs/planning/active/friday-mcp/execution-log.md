@@ -1600,3 +1600,16 @@ planning/not_ready and the directive is unapproved. Next is explicit bounded
 maintainer approval of the directive and command deferral; then a dedicated
 WS-07 branch/start may be recorded. No WS-07 product files, historical review
 evidence, unrelated dirty paths or delivery state changed.
+
+## 2026-09-29 — WS-07 Scope Approved; Execution Started
+
+The maintainer answered "proceed" after receiving the exact reconciled
+[WS-07 directive](directives/ws-07-telemetry-diagnostics-health.md) and
+[readiness checkpoint](execution/WS-07-readiness-checkpoint.md), including
+the proposal to defer a new Friday Chat health command. This explicitly
+approves the directive's exact product manifest, criteria, checks and stop
+conditions, with no command surface. The controller created
+`feature/friday-mcp-ws07-telemetry` from planning commit
+`48030be18853833f3d2c936159c61515b7c2acce` and records WS-07 as
+implementation active. No WS-08, live provider, delivery or historical
+snapshot cleanup is approved. Unrelated local changes remain untouched.
