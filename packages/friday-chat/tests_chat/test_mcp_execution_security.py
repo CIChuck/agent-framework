@@ -16,6 +16,7 @@ from friday_chat.runtime import build_runtime
 from friday_chat.tools.loop import ToolLoop
 from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.tools.output import MCPOutputPolicy, MCPResultLimitError
+from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolCallRecord
 from friday_core.mcp import MCPToolMetadata
 
@@ -437,6 +438,95 @@ async def test_cancellation_propagates_then_owner_stops_and_retries(
 def test_native_four_positional_fields_remain_compatible():
     native = ToolCallRecord("native", {"value": ARGUMENT}, "native result", "native-id")
     assert native.mcp_provenance is None and native.arguments["value"] == ARGUMENT
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("name", [{"bad": 1}, ["bad"]], ids=["dict", "list"])
+@pytest.mark.parametrize("function_form", [False, True], ids=["flat", "function"])
+@pytest.mark.parametrize("present_id", [False, True], ids=["missing-id", "present-id"])
+@pytest.mark.parametrize("mixed", [False, True], ids=["native-only", "mixed"])
+async def test_malformed_names_skip_and_preserve_following_native_mcp_calls(
+    tmp_path, processes, name, function_form, present_id, mixed
+):
+    runtime = build_runtime(config())
+    native_registry = runtime.tools
+    bridge = install(runtime, tmp_path) if mixed else None
+    registry = bridge or native_registry
+    invalid = (
+        {"function": {"name": name, "arguments": "{}"}}
+        if function_form
+        else {"name": name, "arguments": {}}
+    )
+    if present_id:
+        invalid["id"] = "malformed-present"
+    calls = [
+        invalid,
+        {"name": "echo", "arguments": {"text": "native after"}, "id": "shared"},
+    ]
+    if mixed:
+        calls.append({"name": "mcp_peer_read_file", "arguments": {}, "id": "shared"})
+    try:
+        if bridge is not None:
+            await bridge.start()
+        result = await ToolLoop(registry, max_iterations=2).run(
+            [{"role": "assistant", "tool_calls": calls}], registry.list_tools()
+        )
+        assert not result.circuit_breaker_open
+        native = result.tool_calls[0]
+        assert native.name == "echo" and native.call_id == "shared"
+        assert (
+            native.arguments == {"text": "native after"}
+            and native.result == "native after"
+        )
+        assert (
+            len(native_registry.calls) == 1 and native_registry.calls[0].name == "echo"
+        )
+        assert len(result.tool_calls) == (2 if mixed else 1)
+        if mixed:
+            mcp = result.tool_calls[1]
+            assert mcp.call_id != "shared" and mcp.call_id == mcp.mcp_provenance.call_id
+            assert mcp.arguments == {} and mcp.mcp_provenance.status == "succeeded"
+            assert result.messages[0]["tool_calls"][-1]["id"] == mcp.call_id
+    finally:
+        if bridge is not None:
+            await bridge.stop()
+    if bridge is not None:
+        assert_stopped(bridge, processes)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("name", [{"bad": 1}, ["bad"]], ids=["dict", "list"])
+@pytest.mark.parametrize("function_form", [False, True], ids=["flat", "function"])
+@pytest.mark.parametrize("present_id", [False, True], ids=["missing-id", "present-id"])
+async def test_malformed_names_keep_existing_failure_threshold(
+    name, function_form, present_id
+):
+    registry = FakeToolRegistry()
+    invalid = (
+        {"function": {"name": name, "arguments": "{}"}}
+        if function_form
+        else {"name": name, "arguments": {}}
+    )
+    if present_id:
+        invalid["id"] = "malformed-present"
+    result = await ToolLoop(registry, max_iterations=1).run(
+        [
+            {
+                "tool_calls": [
+                    invalid,
+                    {
+                        "name": "echo",
+                        "arguments": {"text": "unexecuted"},
+                        "id": "native",
+                    },
+                ]
+            }
+        ],
+        registry.list_tools(),
+    )
+    assert (
+        result.circuit_breaker_open and result.tool_calls == [] and registry.calls == []
+    )
 
 
 @pytest.mark.asyncio

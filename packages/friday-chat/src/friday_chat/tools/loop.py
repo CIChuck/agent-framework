@@ -100,7 +100,11 @@ class ToolLoop:
             str(call["id"])
             for message in messages
             for call in _extract_tool_calls(message)
-            if call.get("id") is not None and call.get("name") not in mcp_names
+            if call.get("id") is not None
+            and (
+                not isinstance(call.get("name"), str)
+                or call.get("name") not in mcp_names
+            )
         )
         safe_messages: list[Mapping[str, Any]] = [
             redact_tool_request_message(message, (), mcp_names) for message in messages
