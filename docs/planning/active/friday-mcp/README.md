@@ -6,23 +6,25 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: fresh VAL-012 remediation delta and full WS-05 aggregate review
+next_gate: implement bounded REM-007 native compatibility continuation then fresh VAL-013
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
-Current checkpoint: the approved separate REM-006 remediator produced frozen
-corrected candidate `f24ed20f82eac0cbce17e4b86615497cc9993921`. The [remediation report](execution/REM-006-implementation-report.md)
-records both findings, bounded source changes, regressions and required checks.
-The pinned [VAL-012 request](validation/VAL-012-request.yaml) requires a new
-fresh-context read-only remediation delta plus complete original WS-05 aggregate.
-Phase validation/state in_review; new `/root/mcp_ws05_val012` with
-`fork_turns: none` is performing the frozen request. No verdict exists yet.
-Historical [VAL-011](validation/VAL-011-report.md) remains byte-exact and is
-[superseded only for this changed candidate](validation/VAL-011-status.yaml).
-WS-00 through WS-04 remain accepted; wider initiative started/granted/normal/local.
-No WS-05 acceptance or later-phase/delivery authority.
+Current checkpoint: fresh read-only [VAL-012](validation/VAL-012-report.md) is
+complete at frozen `f24ed20`, **CHANGES_REQUESTED** for both delta and original
+WS-05 aggregate. Both original VAL-011 High findings close; the single new
+Medium `VAL-012-F-001` is a native malformed-name TypeError introduced by ID
+reservation. Its complete report and original evidence are archived byte-exact.
+[REM-007](remediation/REM-007-directive.md) is a three-path requirement-preserving
+continuation of the maintainer's already-approved REM-006 eight-path scope,
+restoring native compatibility without changing privacy or pairing requirements.
+Phase remediation/state changes_requested, separate remediator assigned after
+this start record. This is the second WS-05 remediation cycle; fresh VAL-013 must
+review the new delta and full original WS-05 aggregate. All accepted predecessors
+and unrelated work remain preserved. Wider initiative started/granted/normal/local;
+no WS-05 acceptance, later-phase or delivery authority.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with

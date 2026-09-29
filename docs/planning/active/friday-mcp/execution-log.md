@@ -1294,3 +1294,24 @@ probes/package/baseline checks. No parent/builder/remediator context or private
 reasoning was supplied. Phase validation/state in_review; no verdict/acceptance.
 Product/config/test bytes, 32 authorities/five reports and all hash-pinned
 historical/builder evidence remain frozen; five unrelated paths preserved.
+
+## 2026-09-28 — VAL-012 Complete; Bounded REM-007 Continuation Started
+
+Fresh read-only `/root/mcp_ws05_val012` at `f24ed20f82eac0cbce17e4b86615497cc9993921`
+returned CHANGES_REQUESTED in delta and work-unit aggregate. Both original High
+VAL-011 findings close. Single Medium VAL-012-F-001 requires restoring malformed
+native-call skip behavior before native ID reservation; final independent matrix
+31 passed/four failures for that single finding. Complete report/archive/manifests
+are preserved byte-exact. All 18 mandatory commands, baseline comparisons,
+local-peer UAT/cleanup and pinned preservation are recorded in the review.
+
+The existing explicit "fix them - proceed" REM-006 approval already requires
+native compatibility and allows these same paths. REM-007 records a bounded
+three-path continuation under REM006-AC03/WS05-AC09, not new scope or inferred
+approval. Follow-up base `446e3a6f4e445a456dcbe6ef25058e60af54fe53`; reviewed source remains f24ed20. Only loop.py,
+existing execution security tests and existing REM-006 report may change. Dispatch
+the same separate remediator after this recorded started/granted/current-branch
+gate. This is cycle two: freeze new candidate, retain historical VAL-012 bytes,
+then new fresh read-only VAL-013 delta and complete original aggregate. If it is
+unsuccessful, return unresolved findings. Phase remediation/changes_requested;
+no acceptance/later phases/delivery. Five unrelated fingerprints remain preserved.

@@ -74,3 +74,14 @@ from `dd6a337eb2928ab4050ea70fb41dc77072210e34` on the existing WS-05 branch.
 Next implement the approved corrections/regressions, freeze a new candidate and
 obtain fresh read-only VAL-012 delta plus complete original WS-05 aggregate.
 No new verdict or acceptance exists; the original VAL-011 report remains unchanged.
+
+## Current Gate — VAL-012 And Requirement-Preserving Follow-up
+
+The complete [VAL-012 report](../validation/VAL-012-report.md) supersedes the older
+VAL-011 gate for reviewed f24ed20. Both original High findings close, but a single
+new Medium VAL-012-F-001 prevents verification in both delta and aggregate modes.
+The [complete evidence](../validation/VAL-012-evidence.yaml) is preserved byte-exact.
+The already approved REM-006 scope requires native compatibility; the controller
+recorded [REM-007](../remediation/REM-007-directive.md) as a three-path continuation
+of that authorization. Same separate remediator; new fresh VAL-013 mandatory.
+This remains unaccepted cycle-two remediation, with no wider scope or delivery.

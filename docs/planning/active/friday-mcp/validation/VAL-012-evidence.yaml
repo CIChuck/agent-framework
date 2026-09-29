@@ -1,0 +1,38 @@
+id: VAL-012-evidence
+date: '2026-09-28'
+reviewer: /root/mcp_ws05_val012
+fresh_context: true
+governed_workspace_read_only: true
+candidate: f24ed20f82eac0cbce17e4b86615497cc9993921
+base: dd6a337eb2928ab4050ea70fb41dc77072210e34
+aggregate_base: a609f948fe2d869ac29d0cce29d22d9334cd7d08
+request_sha256: cbf910be9459710e52ad5c7d026b967de2a69b7031a211b23117a8656ed48bb1
+review_modes:
+  delta: CHANGES_REQUESTED
+  work_unit_aggregate: CHANGES_REQUESTED
+overall_outcome: CHANGES_REQUESTED
+findings:
+- id: VAL-012-F-001
+  severity: Medium
+report: docs/planning/active/friday-mcp/validation/VAL-012-report.md
+report_sha256: 2a3be2680065075d18ae31b49091ebb28805a4d899322e1b75b59f2191195786
+archive: docs/planning/active/friday-mcp/validation/VAL-012-evidence.tar.gz
+archive_sha256: 1c867521970154c4a0fec5ef031acc3aebe24e9375eef480a220a45b78666c11
+archive_bytes: 3054208
+artifact_count: 328
+archive_preservation: Original independent report, archive, manifest, delivery copied byte-exact; every
+  original member verified
+artifact_manifest: docs/planning/active/friday-mcp/validation/VAL-012-artifact-manifest.json
+artifact_manifest_sha256: bd54af8a8ab01ffa9e26110f2f4047049d60af2e0ce92f844d0d5626117358e3
+delivery_manifest: docs/planning/active/friday-mcp/validation/VAL-012-delivery.json
+delivery_manifest_sha256: 529d9ec05884b387891aee7a60d8fdb0f580b0b282a12122b4379ef48772f00f
+report_archive_links_verified: 164
+independent_required_commands: 18
+pinned_authorities: 32
+pinned_candidate_reports: 5
+tracked_product_files_preserved: 978
+unrelated_fingerprints_preserved: 5
+restore_command: mkdir -p /private/tmp/val-012-restored && tar -xzf docs/planning/active/friday-mcp/validation/VAL-012-evidence.tar.gz
+  -C /private/tmp/val-012-restored
+acceptance: not supplied
+delivery: local only

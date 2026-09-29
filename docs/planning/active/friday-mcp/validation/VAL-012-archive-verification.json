@@ -1,0 +1,1698 @@
+{
+  "all_member_hashes_verified": true,
+  "member_count": 328,
+  "checks": [
+    {
+      "member": "aggregate-process.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "aggregate-source.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "aggregate-tests.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "aggregate.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "aggregate.name-status.txt",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/findings-candidate/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/findings-original-base/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/findings-remediation-base/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_cancellation_public_retry0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_caps_failure_modes_actual0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_caps_failure_modes_actual1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_historical_prevention_onl0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_native_and_no_mcp_budget_0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_native_and_no_mcp_budget_1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_output_redaction_and6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc1/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc2/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc3/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc4/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc5/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc6/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc7/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_real_turn_privacy_and_suc7/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_tiny_cap_before_rpc_and_s0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_toolloop_real_direct_conc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probe-tmp/test_toolloop_real_direct_conc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_cancellation_public_retry0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_caps_failure_modes_actual0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_caps_failure_modes_actual1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_historical_prevention_onl0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_native_and_no_mcp_budget_0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_native_and_no_mcp_budget_1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_error_tool_0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_flag_invali0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_inject_outp0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_malformed_i0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_rpc_executi0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_timeout_tim0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_failures_transport_e0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_output_redaction_and6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc1/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc2/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc3/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc4/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc5/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc6/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc7/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_real_turn_privacy_and_suc7/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_tiny_cap_before_rpc_and_s0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_toolloop_real_direct_conc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-corrected/test_toolloop_real_direct_conc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_cancellation_public_retry0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_caps_failure_modes_actual0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_caps_failure_modes_actual1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_historical_prevention_onl0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_native_and_no_mcp_budget_0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_native_and_no_mcp_budget_1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_error_tool_0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_flag_invali0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_inject_outp0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_malformed_i0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_rpc_executi0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_timeout_tim0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_failures_transport_e0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_output_redaction_and6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc1/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc1/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc2/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc2/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc3/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc3/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc4/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc4/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc5/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc5/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc6/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc6/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc7/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_real_turn_privacy_and_suc7/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_tiny_cap_before_rpc_and_s0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_toolloop_real_direct_conc0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/probes-final/test_toolloop_real_direct_conc0/audit-beta.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/supplement/test_public_cleanup_failure_ow0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "audits/supplement/test_stop_during_memory_preser0/audit-alpha.jsonl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "baseline-git-catalog.txt",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "candidate-imports.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "declared-dependencies.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "delta-process.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "delta-source.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "delta-tests.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "delta.diff",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "delta.name-status.txt",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "extended-integrity.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "finding-facts-candidate.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "finding-facts-original-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "finding-facts-remediation-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "freeze-closeout.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "freeze-start.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/AGENTS.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/build-plan.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/REM-005-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-00-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-01-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-02-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-03-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-03-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-04-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-04-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-04-readiness-checkpoint.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-05-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/execution/WS-05-readiness-checkpoint.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/rebaseline-2026-09-27.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/remediation/REM-003-directive.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/remediation/REM-004-directive.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/remediation/REM-005-directive.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/remediation/REM-006-directive.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/tactical-plan.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-002-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-004-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-007-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-008-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-009-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-010-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-011-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-012-frozen-inputs.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/planning/active/friday-mcp/validation/VAL-012-request.yaml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/reference/policies/development-task-lifecycle.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/reference/policies/independent-validation-policy.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "inputs/docs/reference/policies/repository-engineering-policy.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-chat.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-chat.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-imports.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-imports.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-integration.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-integration.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-mypy.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/baseline-mypy.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/extended-integrity.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-candidate.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-candidate.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-original-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-original-base.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-remediation-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/findings-remediation-base.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/freeze-closeout.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-probes-corrected.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-probes-corrected.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-probes-final.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-probes-final.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-probes-first.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-supplement.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/independent-supplement.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-candidate.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-candidate.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-original-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-original-base.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-remediation-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/native-controls-remediation-base.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-build-core.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-build-telemetry.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-build-transcript.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-install.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-isolated-import.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-tools.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/package-venv.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-01.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-01.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-02.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-02.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-03.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-03.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-04.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-04.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-05.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-05.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-06.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-06.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-07.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-07.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-08.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-08.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-09.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-09.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-10.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-10.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-11.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-11.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-12.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-12.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-13.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-13.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-14.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-14.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-15.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-15.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-16.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-16.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-17.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-17.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-18.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "logs/required-18.log",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "native-controls-candidate.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "native-controls-original-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "native-controls-remediation-base.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "original-base-imports.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "package-commands.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "prior-archives-integrity.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "probe-results.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/README.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/README.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/execution/WS-05-builder-evidence.yaml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/execution/WS-05-closeout.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/execution/WS-05-implementation-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/execution-log.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/remediation/REM-006-directive.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/task-queue.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-artifact-manifest.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-delivery.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-evidence.yaml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-frozen-inputs.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/active/friday-mcp/validation/VAL-011-request.yaml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "process/docs/planning/board.yaml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "remediation-base-imports.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "report.md",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scope.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/baselines.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/build_report.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/catalog-bin/git",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/checks.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/diff_review.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/extended_integrity-first.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/extended_integrity.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/findings_repro.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/freeze.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/native_controls.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/package_check.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/package_delivery.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/peer.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/probe_common-first.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/probe_common.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/run_findings.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/run_native_controls.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/run_probes-second.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/run_probes.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/run_supplement.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/setup.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/test_independent-first.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/test_independent-second.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/test_independent.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/test_supplement.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "scripts/wheel_import.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/adapters.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/tools/loop.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/tools/mcp.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/tools/output.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/tools/schemas.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/src/friday_chat/turns/processor.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/tests_chat/fixtures/mcp_execution_peer.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/tests_chat/test_mcp_chat_bridge.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/tests_chat/test_mcp_execution_security.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-core/src/friday_core/mcp.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-core/tests_core/test_mcp_contracts.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-mcp/src/friday_mcp/client/base.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-mcp/tests_mcp/client/test_execution.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/pyproject.toml",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/src/friday_transcript/exporters/csv.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/src/friday_transcript/exporters/jsonl.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/src/friday_transcript/exporters/markdown.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/src/friday_transcript/models/transcript.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/packages/friday-transcript/tests/test_mcp_provenance.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/tests/integration/test_mcp_execution_provenance.py",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "sources/uv.lock",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "supplement-results.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheel-build-tools.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheel-metadata.json",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheels/.gitignore",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheels/friday_framework_core-0.1.0a2-py3-none-any.whl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheels/friday_framework_telemetry-0.1.0a2-py3-none-any.whl",
+      "bytes_match": true,
+      "sha256_match": true
+    },
+    {
+      "member": "wheels/friday_framework_transcript-0.1.0a2-py3-none-any.whl",
+      "bytes_match": true,
+      "sha256_match": true
+    }
+  ],
+  "report_links": 164,
+  "all_report_links_resolve": true,
+  "markdown_tables": [
+    {
+      "rows": 4,
+      "columns": 3
+    },
+    {
+      "rows": 17,
+      "columns": 2
+    },
+    {
+      "rows": 4,
+      "columns": 3
+    },
+    {
+      "rows": 8,
+      "columns": 4
+    },
+    {
+      "rows": 12,
+      "columns": 4
+    },
+    {
+      "rows": 10,
+      "columns": 3
+    },
+    {
+      "rows": 20,
+      "columns": 5
+    },
+    {
+      "rows": 5,
+      "columns": 4
+    },
+    {
+      "rows": 17,
+      "columns": 3
+    },
+    {
+      "rows": 11,
+      "columns": 2
+    },
+    {
+      "rows": 7,
+      "columns": 3
+    },
+    {
+      "rows": 34,
+      "columns": 3
+    },
+    {
+      "rows": 7,
+      "columns": 3
+    }
+  ],
+  "all_markdown_tables_valid": true
+}
