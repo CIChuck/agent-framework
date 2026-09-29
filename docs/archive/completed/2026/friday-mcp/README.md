@@ -7,7 +7,7 @@ document_type: initiative-index
 status: accepted
 work_state: accepted
 updated: 2026-09-29
-next_gate: maintainer review and merge PR #6; optional WS-09 and later delivery require separate authority
+next_gate: none; pull request 6 merged, optional WS-09 and later delivery require separate authority
 implementation_authority: closed
 execution_phase: closeout
 validation_state: verified
@@ -18,9 +18,9 @@ initiative with "accepted" on 2026-09-29 after reviewing the complete
 [VAL-020 report](validation/VAL-020-report.md) and
 [closeout proposal](execution/MCP-first-pass-closeout-proposal.md). The
 [accepted closeout](closeout.md) records the candidate, evidence, baseline
-nonzero checks and scope limits. The accepted branch is pushed in
-[PR #6](https://github.com/CIChuck/agent-framework/pull/6) for maintainer
-review and merge. WS-09, live UAT and later delivery actions require separate
+nonzero checks and scope limits. [PR #6](https://github.com/CIChuck/agent-framework/pull/6)
+merged at `be0b9e1`; its remote branch was deleted and local `master` synced to
+`origin/master`. WS-09, live UAT and later delivery actions require separate
 authority. Historical checkpoints below remain as recorded at their respective
 gates.
 

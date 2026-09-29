@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: first-pass initiative accepted; PR #6 open; maintainer merge pending; optional WS-09 requires separate authority
+Status: first-pass initiative accepted and merged in PR #6; optional WS-09 requires separate authority
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -717,3 +717,12 @@ accepted branch was pushed to the configured private origin and
 lifecycle predecessor commits in this branch's ancestry. Delivery state is
 `pushed`; the maintainer retains the merge action. The five unrelated local
 dirty groups remain outside the pushed branch.
+
+## 2026-09-29 — PR #6 Merged; Branches Reconciled
+
+[PR #6](https://github.com/CIChuck/agent-framework/pull/6) was already merged
+on GitHub at `be0b9e1` when the controller checked it. The remote feature
+branch had been deleted. Local `master` was fast-forwarded to `origin/master`,
+the stale remote-tracking ref pruned and the fully merged local feature branch
+deleted. Delivery state is `merged`; the five unrelated local dirty groups
+remain preserved. Optional WS-09 and later delivery require separate authority.

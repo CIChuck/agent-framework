@@ -6,7 +6,7 @@
 - Branch: `feature/friday-mcp-ws08-docs`
 - Frozen product candidate: `fb3712127229ba032427b8f3deae04da543e646d`
 - Work state: accepted
-- Delivery state: pushed; [PR #6](https://github.com/CIChuck/agent-framework/pull/6) open against `master`
+- Delivery state: merged; [PR #6](https://github.com/CIChuck/agent-framework/pull/6) merged at `be0b9e1af6830178221d50f94e2e93774eb0d3a4`
 
 The maintainer accepted the first-pass Friday MCP client initiative, covering
 WS-00 through WS-08 and the bounded REM-010 correction. Fresh-context,
@@ -25,10 +25,10 @@ budgeting, transcript provenance, opt-in Memory ingestion, telemetry and
 guides. The evidence covers local fake-peer checks, not live-provider or remote
 interoperability, external UAT, arbitrary-secret detection or later source
 revocation. Optional WS-09 and the deferred Chat health command remain outside
-the accepted scope. The maintainer then authorized a push and PR; the branch is
-published to the private configured origin in PR #6. Merge, release,
-deployment and any live UAT require separate authority. The five unrelated
-local dirty-path groups were preserved.
+the accepted scope. The maintainer then authorized a push and PR; PR #6 was
+merged on GitHub and its remote branch deleted. Release, deployment and any
+live UAT require separate authority. The five unrelated local dirty-path
+groups were preserved.
 
 The packet moved from `docs/planning/active/friday-mcp/` through the review
 lane into this archive after validation. The frozen review reports, requests,

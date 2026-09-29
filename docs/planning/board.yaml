@@ -59,8 +59,8 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/archive/completed/2026/friday-mcp/
-  next_gate: maintainer review and merge PR #6; optional WS-09 and later delivery require separate authority
-  delivery_state: pushed
+  next_gate: none; pull request 6 merged, optional WS-09 and later delivery require separate authority
+  delivery_state: merged
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
   validation:
@@ -857,3 +857,10 @@ events:
   action: delivery local -> pushed
   note: 'Maintainer authorized pushing the accepted feature branch and opening PR #6 against master; branch pushed to private origin and PR is open for maintainer merge'
   evidence: https://github.com/CIChuck/agent-framework/pull/6
+- task: friday-mcp
+  at: '2026-09-29T23:40:27+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery pushed -> merged
+  note: 'PR #6 merged on GitHub at be0b9e1; remote feature branch deleted; local master fast-forwarded to origin/master'
+  evidence: https://github.com/CIChuck/agent-framework/pull/6; merge be0b9e1af6830178221d50f94e2e93774eb0d3a4

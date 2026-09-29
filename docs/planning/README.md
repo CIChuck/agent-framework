@@ -53,7 +53,7 @@ Directory placement does not grant implementation authority.
 | ---: | --- | --- | --- | --- | --- |
 | 1 | [Development Kanban governance](../archive/completed/2026/development-kanban-governance/) | normal | closed | local | none; accepted, delivery remains local |
 | 2 | [Friday Chat client-session shutdown](../archive/completed/2026/friday-chat-client-lifecycle/) | normal | closed | local | none; accepted, delivery remains local |
-| 3 | [Friday MCP client enhancement](../archive/completed/2026/friday-mcp/) | normal | closed | pushed | maintainer review and merge PR |
+| 3 | [Friday MCP client enhancement](../archive/completed/2026/friday-mcp/) | normal | closed | merged | none; pull request 6 merged, optional WS-09 and later delivery require separate authority |
 | 22 | [Documentation information architecture](../archive/completed/2026/documentation-governance/) | normal | closed | merged | none; accepted and merged |
 
 ## Operating Rules
