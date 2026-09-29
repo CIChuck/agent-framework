@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import warnings
 from dataclasses import dataclass
-from typing import Any, Protocol, TypeVar
+from typing import Any, Protocol, TypeAlias, TypeVar
 
 from friday_core.interfaces.llm import ChatCompletionResponse
 from friday_llm import (
@@ -39,7 +39,7 @@ class LegacyMemoryLLMClient(Protocol):
         ...
 
 
-MemoryLLMClient = TypedLLMClient | LegacyMemoryLLMClient
+MemoryLLMClient: TypeAlias = TypedLLMClient | LegacyMemoryLLMClient
 
 
 @dataclass(frozen=True, slots=True)

@@ -3,6 +3,7 @@
 """Tests for CollectionManager."""
 
 import uuid
+from types import SimpleNamespace
 
 import pytest
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance, MCPToolMetadata
@@ -259,6 +260,28 @@ class TestCollectionManager:
         assert doc["metadata"]["decay_score"] == 0.5  # Reset to neutral
 
     @pytest.mark.asyncio
+    async def test_stage_moves_preserve_numeric_embedding(self, manager) -> None:
+        text = "Memory carried through stages"
+        await manager.add_to_short_term([text], [{"type": "insight"}], ["mem1"])
+        expected = [float(len(text)) / 100] * 768
+
+        assert await manager.promote_memory("mem1")
+        assert await manager.demote_to_decayed("mem1")
+        assert await manager.reactivate_from_decayed("mem1")
+
+        for store, expected_count in (
+            (manager.short_term, 0),
+            (manager.decayed, 0),
+            (manager.long_term, 1),
+        ):
+            assert await store.count() == expected_count
+        stored = manager.long_term._collection.get(
+            ids=["mem1"], include=["embeddings"]
+        )
+        assert stored["embeddings"] is not None
+        assert list(stored["embeddings"][0]) == pytest.approx(expected)
+
+    @pytest.mark.asyncio
     async def test_get_stats(self, manager) -> None:
         """Test getting stats across all collections."""
         await manager.add_to_short_term(
@@ -368,3 +391,46 @@ async def test_owned_mcp_lookup_excludes_native_and_reuses_actual_call(tmp_path)
     repeated = await ingester.prepare(facts, text, "entry", policy)
     assert repeated.snapshot == first.snapshot
     assert await manager.short_term.count() == 2
+
+
+@pytest.mark.asyncio
+async def test_orphan_cleanup_requires_listing_and_keeps_shared_nodes(tmp_path):
+    manager = CollectionManager(
+        MockEmbeddingFunction(), config=unique_config(), path=str(tmp_path / "vectors")
+    )
+
+    class ListingGraph:
+        def __init__(self):
+            self.nodes = [
+                SimpleNamespace(id="orphan", source_memory_ids=["gone"]),
+                SimpleNamespace(id="shared", source_memory_ids=["gone", "kept"]),
+                SimpleNamespace(id="unlinked", source_memory_ids=[]),
+            ]
+            self.removed = []
+
+        async def get_all_nodes(self):
+            return self.nodes
+
+        async def remove_node(self, node_id):
+            self.removed.append(node_id)
+            return True
+
+    graph = ListingGraph()
+    preview = await manager.cleanup_orphaned_graph_nodes({"gone"}, graph)
+    assert preview == {
+        "deleted_count": 1, "deleted_node_ids": ["orphan"], "dry_run": True
+    }
+    assert graph.removed == []
+
+    deleted = await manager.cleanup_orphaned_graph_nodes(
+        {"gone"}, graph, dry_run=False
+    )
+    assert deleted["deleted_node_ids"] == ["orphan"]
+    assert graph.removed == ["orphan"]
+
+    absent = await manager.cleanup_orphaned_graph_nodes(
+        {"gone"}, SimpleNamespace(remove_node=graph.remove_node), dry_run=False
+    )
+    assert absent["deleted_count"] == 0
+    assert absent["error"] == "Graph store does not support node listing"
+    assert graph.removed == ["orphan"]

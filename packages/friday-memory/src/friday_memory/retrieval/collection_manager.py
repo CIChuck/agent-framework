@@ -14,8 +14,9 @@ from __future__ import annotations
 import asyncio
 import logging
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 
+from chromadb.api.types import PyEmbeddings
 from pydantic import BaseModel, Field
 
 from friday_memory.adapters.vector import ChromaVectorStore
@@ -32,8 +33,16 @@ if TYPE_CHECKING:
     from friday_core.interfaces import EmbeddingModel
 
     from friday_memory.adapters.graph import GraphStoreAdapter
+    from friday_memory.models import GraphNode
 
 logger = logging.getLogger(__name__)
+
+
+@runtime_checkable
+class _GraphNodeListing(Protocol):
+    """Optional graph listing capability used by orphan cleanup."""
+
+    async def get_all_nodes(self) -> list[GraphNode]: ...
 
 
 class CollectionConfig(BaseModel):
@@ -473,9 +482,12 @@ class CollectionManager:
         """Never overwrite an existing native or different-source record."""
         if len(text.encode("utf-8")) != snapshot.stored_size_bytes:
             return False
+        call_id = snapshot.call.call_id
+        if call_id is None:
+            return False
         async with self._mcp_lock:
             owned = await self.find_mcp_snapshot(
-                snapshot.transcript_entry_id, snapshot.call.call_id
+                snapshot.transcript_entry_id, call_id
             )
             if owned is not None and owned.snapshot.record_id != snapshot.record_id:
                 return False
@@ -543,7 +555,9 @@ class CollectionManager:
 
         # Get embedding by re-embedding the text (we don't have access to original)
         # This ensures consistency with the embedding function
-        embeddings = await self._embedding_function.embed_documents([text])
+        embeddings: PyEmbeddings = [
+            values for values in await self._embedding_function.embed_documents([text])
+        ]
 
         # Insert into long-term
         self._long_term._collection.add(
@@ -599,7 +613,9 @@ class CollectionManager:
         metadata["decayed_at"] = datetime.now().isoformat()
 
         # Get embedding
-        embeddings = await self._embedding_function.embed_documents([text])
+        embeddings: PyEmbeddings = [
+            values for values in await self._embedding_function.embed_documents([text])
+        ]
 
         # Add to decayed collection
         self._decayed._collection.add(
@@ -647,7 +663,9 @@ class CollectionManager:
         metadata["access_count"] = metadata.get("access_count", 0) + 1
 
         # Get embedding
-        embeddings = await self._embedding_function.embed_documents([text])
+        embeddings: PyEmbeddings = [
+            values for values in await self._embedding_function.embed_documents([text])
+        ]
 
         # Add to long-term
         self._long_term._collection.add(
@@ -870,6 +888,8 @@ class CollectionManager:
         orphaned_node_ids: list[str] = []
 
         try:
+            if not isinstance(graph_store, _GraphNodeListing):
+                raise TypeError("Graph store does not support node listing")
             all_nodes = await graph_store.get_all_nodes()
 
             for node in all_nodes:

@@ -141,6 +141,26 @@ async def test_pending_then_commit_reload_promote_and_decay_preserve_provenance(
 
 
 @pytest.mark.asyncio
+async def test_stage_rejects_missing_call_id_before_owned_lookup_or_write(manager):
+    prepared = await MCPMemoryIngester(manager).prepare(
+        facts(), TEXT, "entry", policy()
+    )
+    snapshot = prepared.snapshot
+    assert isinstance(snapshot, MCPMemorySnapshot)
+    stored = await manager.short_term.get_by_id(snapshot.record_id)
+    assert stored is not None
+    assert await manager.short_term.delete([snapshot.record_id])
+    previous_writes = manager._embedding_function.writes
+    malformed = snapshot.model_copy(
+        update={"call": snapshot.call.model_copy(update={"call_id": None})}
+    )
+
+    assert not await manager.stage_mcp_snapshot(malformed, stored["text"])
+    assert await manager.short_term.count() == 0
+    assert manager._embedding_function.writes == previous_writes
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "text,cap,expected",
     [
