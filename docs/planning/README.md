@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | obtain explicit bounded approval of reconciled WS-06 directive |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014 |
 
 ## Completed
 

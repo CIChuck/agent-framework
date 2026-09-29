@@ -1418,3 +1418,15 @@ Next explicit bounded directive approval. After approval, pin planning checkpoin
 create feature/friday-mcp-ws06-memory and record started execution before code.
 Fresh read-only aggregate VAL-014 and later maintainer acceptance remain required.
 The wider initiative remains started/granted/normal/local; no WS-07/08 or delivery.
+
+## 2026-09-29 — WS-06 Explicitly Approved; Execution Started
+
+Maintainer explicitly said "approved - proceed with speed" after the complete
+reconciled WS-06 proposal. Controller recorded approval in the directive and
+started feature/friday-mcp-ws06-memory from 99bde5148ee21f47d4734d2a026fb198a3d19cbd.
+Board remains started/granted/normal/local, names the current branch and agrees
+with phase implementation/state not_ready. The approved exact 18-path manifest,
+seven tasks/ten criteria, required checks and fresh read-only VAL-014 govern.
+This approval/start record precedes source generation. Freeze unrelated work
+and all outside-scope product inputs; accepted WS-00 through WS-05 and historical
+review evidence remain immutable. No later scope or delivery authority.

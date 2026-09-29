@@ -6,19 +6,22 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: obtain explicit bounded approval of reconciled WS-06 directive
-implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
-execution_phase: planning
+next_gate: implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014
+implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
+execution_phase: implementation
 validation_state: not_ready
 ---
 
-Current checkpoint: WS-06 planning/readiness reconciliation is complete. The
-[reconciled draft](directives/ws-06-memory-compatibility-ingestion.md) binds 18
-paths, seven tasks and ten criteria; the [readiness checkpoint](execution/WS-06-readiness-checkpoint.md)
-records actual adapter/store/budget interfaces and preserved inputs. Next is
-explicit bounded directive approval before WS-06 product work. Phase planning/
-state not_ready describe WS-06 only; accepted WS-00 through WS-05 and VERIFIED
-VAL-013 remain unchanged. No new branch or product changes were made.
+Current checkpoint: the maintainer explicitly approved the reconciled WS-06
+18-path/seven-task/ten-criterion directive with "approved - proceed with speed"
+on 2026-09-29. Execution starts on `feature/friday-mcp-ws06-memory` from
+`99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase implementation/state not_ready;
+next implement the approved scope, required checks, stable candidate and fresh
+read-only complete-aggregate VAL-014. Accepted WS-00 through WS-05 remain intact.
+Approval/start metadata precedes product generation. WS-07/08 and delivery remain
+separate. Historical [readiness](execution/WS-06-readiness-checkpoint.md) records
+the planning proposal; the [directive](directives/ws-06-memory-compatibility-ingestion.md)
+now records explicit approval and exact execution authority.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)
@@ -28,8 +31,8 @@ findings and the native compatibility regression close. The [WS-05 closeout](exe
 records the maintainer, date, exact decision and complete byte-exact evidence.
 WS-00 through WS-05 are accepted. The historical closeout/state verified records
 that completed work-unit gate; the wider initiative remains started/granted/normal/local.
-WS-06 reconciliation is now complete; separate bounded approval is pending.
-WS-06 and later implementation remain unapproved. Historical review evidence and
+WS-06 reconciliation and separate explicit bounded approval are now complete.
+WS-07 and later implementation remain unapproved. Historical review evidence and
 unrelated work remain preserved; historical stored snapshot cleanup is outside scope.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)

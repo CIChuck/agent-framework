@@ -1,13 +1,13 @@
 # Construction Directive: MCP-WS-06 Memory Compatibility And Optional MCP Ingestion
 
-Status: Reconciled draft construction directive; implementation approval pending
+Status: Approved construction directive
 Date: 2026-09-29
 Workstream: `MCP-WS-06`
 Readiness: [WS-06 checkpoint](../execution/WS-06-readiness-checkpoint.md)
 Preparation HEAD: `6890771127e405f3299ed783296174366c67f995`
 Preparation branch: `feature/friday-mcp-ws05-execution`
-Proposed execution branch: `feature/friday-mcp-ws06-memory`
-Execution base: Pin the committed planning checkpoint after explicit approval.
+Execution branch: `feature/friday-mcp-ws06-memory`
+Execution base: `99bde5148ee21f47d4734d2a026fb198a3d19cbd`
 
 ## Authority And Approval Boundary
 
@@ -20,11 +20,12 @@ then the [build plan](../build-plan.md), [tactical plan](../tactical-plan.md),
 [rebaseline](../rebaseline-2026-09-27.md), and this bounded directive.
 
 WS-05 is explicitly accepted at `cca86b51105666d12c2e7ed571f8f9a05d2085f9`
-with fresh complete [VAL-013](../validation/VAL-013-report.md). The maintainer's
-"proceed" authorizes the recorded WS-06 planning/readiness gate. This new product
-manifest remains unapproved. Record explicit directive approval, pin the planning
-commit, create the proposed branch and record started execution before product
-code. The wider initiative remains started/granted/normal/local.
+with fresh complete [VAL-013](../validation/VAL-013-report.md). The maintainer
+explicitly approved this complete 18-path scope on 2026-09-29 with "approved -
+proceed with speed". Execution starts on `feature/friday-mcp-ws06-memory`
+from the committed planning checkpoint above. Approval includes implementation,
+required checks and fresh independent aggregate review; later workstreams and
+delivery remain separate. The initiative stays started/granted/normal/local.
 
 The historical draft names a nonexistent Chat `memory/` directory and broad
 package edits. Actual integration uses `FrameworkMemoryAdapter`, public Memory

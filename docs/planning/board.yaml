@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: obtain explicit bounded approval of reconciled WS-06 directive
+  next_gate: implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014
   delivery_state: local
-  branch: feature/friday-mcp-ws05-execution
+  branch: feature/friday-mcp-ws06-memory
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md
