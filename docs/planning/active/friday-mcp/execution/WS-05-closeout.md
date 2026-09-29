@@ -1,7 +1,7 @@
 # MCP-WS-05 Work-Unit Closeout
 
 Date: 2026-09-28
-Status: Independently VERIFIED; work-unit completion proposed; explicit maintainer acceptance pending
+Status: Independently VERIFIED and explicitly accepted
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-05`
 Branch: `feature/friday-mcp-ws05-execution`
@@ -13,7 +13,9 @@ WS-05 approval/start: `5e86df832a311a62509fb0838f6c45b6ecd6fdfa`
 REM-006 approval/start: `5145f0638fe644c97dc74e0dcf8f7657f8fbcd12`
 REM-007 requirement-preserving continuation/start: `69831774fcd3ebdbd62a2f09b207ecafe1e6bb58`
 Delivery: Local
-Acceptance: Not supplied by validation or the earlier implementation approval
+Accepted by: repository maintainer
+Accepted at: 2026-09-28
+Acceptance evidence: Explicit maintainer message "accepted" after the verified WS-05 closeout, complete VAL-013 review and acceptance gate were presented
 
 ## Result And Corrected Behavior
 
@@ -85,12 +87,16 @@ or universal arbitrary-secret/injection protection.
 
 ## Acceptance And Remaining Gates
 
-Next gate: explicit maintainer acceptance of this verified WS-05 candidate and
-complete independent closeout. Earlier "ws-05 is approved. proceed" and
-"fix them - proceed" authorized implementation/remediation, not acceptance of
-this subsequently reviewed result. Accepted WS-00 through WS-04 remain unchanged.
-The wider Friday MCP initiative remains started/granted/normal/local; completing
-this work unit does not complete or accept the initiative. WS-06/07/08, initiative
-aggregate/pre-merge review and push/merge/release/deployment retain separate gates.
-Historical VAL-011 and VAL-012 reports remain unchanged and superseded only for
-changed-candidate decisions; VAL-013 supplies the current independent result.
+The maintainer explicitly accepted this verified WS-05 candidate and complete
+independent closeout with "accepted" on 2026-09-28. The decision applies to
+`cca86b51105666d12c2e7ed571f8f9a05d2085f9` and its complete fresh VAL-013 review.
+WS-00 through WS-05 are independently verified and explicitly accepted work units.
+
+Next gate: reconcile the draft WS-06 memory compatibility/optional ingestion
+directive and readiness, then obtain explicit bounded scope approval before
+implementation. This acceptance grants no WS-06 implementation authority. The
+wider Friday MCP initiative remains started/granted/normal/local, with the active
+packet retained until initiative completion and acceptance. WS-06/07/08,
+initiative aggregate/pre-merge review and delivery retain separate gates.
+Historical VAL-011/VAL-012 reports and all independent evidence remain unchanged;
+VAL-013 supplies the current accepted work-unit verification result.

@@ -1368,3 +1368,21 @@ five unrelated fingerprints remain intact. Controller closeout metadata introduc
 no product or authority change. Phase closeout/verified; next explicit maintainer
 WS-05 acceptance. Wider initiative remains started/granted/normal/local, accepted
 predecessors intact, no later phase/delivery or historical storage cleanup.
+
+## 2026-09-28 — WS-05 Explicitly Accepted
+
+The repository maintainer said "accepted" after the verified WS-05 closeout,
+complete fresh VAL-013 review and acceptance gate were presented. Acceptance
+applies to frozen `cca86b51105666d12c2e7ed571f8f9a05d2085f9`, delta and complete
+original aggregate VERIFIED, all three numbered findings closed, complete
+report/evidence archived byte-exact. The closeout records accepting maintainer,
+date and explicit decision. WS-00 through WS-05 are accepted work units.
+
+Only controller acceptance/index/queue/log/board/dashboard metadata changes;
+source/tests/config, controlling authorities and independent report/archive
+bytes remain unchanged. Five unrelated dirty fingerprints are preserved.
+Current phase closeout/state verified; next gate reconcile the draft WS-06
+directive/readiness and obtain separate bounded scope approval. No WS-06
+implementation begins here. Wider initiative stays started/granted/normal/local;
+its active packet remains until full initiative acceptance. No delivery,
+historical storage cleanup or later-phase authority is inferred.

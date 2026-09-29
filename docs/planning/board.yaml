@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer acceptance of VERIFIED WS-05 candidate and complete VAL-013
+  next_gate: reconcile WS-06 directive/readiness and obtain explicit bounded approval
   delivery_state: local
   branch: feature/friday-mcp-ws05-execution
   depends_on: []

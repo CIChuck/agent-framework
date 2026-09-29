@@ -6,24 +6,23 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-28
-next_gate: explicit maintainer acceptance of VERIFIED WS-05 candidate and complete VAL-013
+next_gate: reconcile WS-06 directive/readiness and obtain explicit bounded approval
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
 execution_phase: closeout
 validation_state: verified
 ---
 
-Current checkpoint: fresh read-only [VAL-013](validation/VAL-013-report.md)
-returns delta, full original WS-05 aggregate and overall **VERIFIED** at
-`cca86b51105666d12c2e7ed571f8f9a05d2085f9`. Both original High findings and the introduced Medium native
-compatibility regression close. Complete original report/evidence is archived
-byte-exact; all 19 required checks and independent public/storage/privacy/
-correlation/export/package/cleanup/preservation evidence are recorded.
-[WS-05 closeout](execution/WS-05-closeout.md) proposes work-unit completion and
-requests explicit maintainer acceptance. Phase closeout/state verified; acceptance
-is pending, no later work or delivery approval. Historical VAL-011/VAL-012 reports
-remain unchanged, superseded only for changed-candidate decisions. Accepted
-WS-00 through WS-04 and unrelated local work remain intact. Wider initiative
-started/granted/normal/local; existing stored snapshot cleanup remains outside scope.
+Current checkpoint: the maintainer explicitly accepted verified WS-05 with
+"accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)
+review and closeout. Candidate `cca86b51105666d12c2e7ed571f8f9a05d2085f9` is
+accepted with delta, full original aggregate and overall VERIFIED; both High
+findings and the native compatibility regression close. The [WS-05 closeout](execution/WS-05-closeout.md)
+records the maintainer, date, exact decision and complete byte-exact evidence.
+WS-00 through WS-05 are accepted. Phase closeout/state verified records this
+completed work-unit gate; the wider initiative remains started/granted/normal/local.
+Next is WS-06 directive/readiness reconciliation and separate bounded approval.
+WS-06 and later implementation remain unapproved. Historical review evidence and
+unrelated work remain preserved; historical stored snapshot cleanup is outside scope.
 
 Historical WS-03 checkpoint: fresh-context [VAL-009](validation/VAL-009-report.md)
 returned delta, complete original WS-03 aggregate and overall `VERIFIED`, with

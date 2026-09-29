@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-04 accepted; WS-05 VERIFIED, explicit acceptance pending
+Status: WS-00 through WS-05 accepted; WS-06 readiness/approval gate next
 Updated: 2026-09-28
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws05-execution`
@@ -18,7 +18,7 @@ each handoff. An approved future step is not a claim that it has started.
 
 ## Current Checkpoint
 
-WS-00 through WS-04 are independently verified and explicitly accepted. WS-05
+WS-00 through WS-05 are independently verified and explicitly accepted. WS-05
 was explicitly approved with "ws-05 is approved. proceed"; REM-006 correction
 was approved with "fix them - proceed". Separate bounded remediation and its
 native-compatibility continuation are complete at `cca86b51105666d12c2e7ed571f8f9a05d2085f9`. Fresh
@@ -27,9 +27,11 @@ and overall VERIFIED with no outstanding findings. All original/remediation/
 follow-up criteria and independent required/public/package/freeze checks are
 recorded in its byte-exact [evidence](validation/VAL-013-evidence.yaml).
 
-The [WS-05 closeout](execution/WS-05-closeout.md) proposes completed work-unit
-status and awaits explicit maintainer acceptance; implementation approval and
-independent verification do not supply it. Current phase closeout/state verified.
+The maintainer explicitly accepted the verified WS-05 candidate and complete
+VAL-013 closeout with "accepted" on 2026-09-28; the [closeout](execution/WS-05-closeout.md)
+records the decision. WS-00 through WS-05 are accepted work units. Current phase
+closeout/state verified; next is WS-06 directive/readiness reconciliation and
+separate bounded approval before implementation.
 The wider initiative remains started/granted/normal/local on the named branch.
 WS-06 through WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -82,7 +84,7 @@ is authorized by the REM-004 approval.
 | --- | --- | --- |
 | 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
 | 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
-| 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete independent VAL-013 delta/full aggregate VERIFIED at `cca86b5`; explicit maintainer WS-05 acceptance pending. |
+| 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Requires accepted prior contracts/execution/budget behavior, reconciled WS-06 directive and separate explicit approval; not yet approved. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry, runtime diagnostics, and operational health; make any new Chat health command a separate explicit scope decision. | Requires relevant lifecycle/registry/execution/budget readiness and separate explicit WS-07 approval; not yet approved. |
 | 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
@@ -335,3 +337,21 @@ five unrelated fingerprints remain intact. Controller closeout metadata introduc
 no product or authority change. Phase closeout/verified; next explicit maintainer
 WS-05 acceptance. Wider initiative remains started/granted/normal/local, accepted
 predecessors intact, no later phase/delivery or historical storage cleanup.
+
+## 2026-09-28 — WS-05 Explicitly Accepted
+
+The repository maintainer said "accepted" after the verified WS-05 closeout,
+complete fresh VAL-013 review and acceptance gate were presented. Acceptance
+applies to frozen `cca86b51105666d12c2e7ed571f8f9a05d2085f9`, delta and complete
+original aggregate VERIFIED, all three numbered findings closed, complete
+report/evidence archived byte-exact. The closeout records accepting maintainer,
+date and explicit decision. WS-00 through WS-05 are accepted work units.
+
+Only controller acceptance/index/queue/log/board/dashboard metadata changes;
+source/tests/config, controlling authorities and independent report/archive
+bytes remain unchanged. Five unrelated dirty fingerprints are preserved.
+Current phase closeout/state verified; next gate reconcile the draft WS-06
+directive/readiness and obtain separate bounded scope approval. No WS-06
+implementation begins here. Wider initiative stays started/granted/normal/local;
+its active packet remains until full initiative acceptance. No delivery,
+historical storage cleanup or later-phase authority is inferred.
