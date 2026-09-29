@@ -6,9 +6,9 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: reconcile WS-08 documentation directive and request bounded approval
-implementation_authority: granted for MCP-WS-00 through MCP-WS-07 within approved directives; Chat health command deferred in WS-07
-execution_phase: planning
+next_gate: execute approved WS-08 documentation scope and validate frozen guide candidate
+implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
+execution_phase: implementation
 validation_state: not_ready
 ---
 
@@ -34,9 +34,12 @@ scratch artifacts are preserved in [byte-checked evidence](validation/VAL-016-ev
 The maintainer explicitly accepted the verified WS-07 candidate and review with
 "accepted" on 2026-09-29. The [WS-07 closeout](execution/WS-07-closeout.md)
 records that decision. WS-00 through WS-07 are now independently verified and
-explicitly accepted work units. Next is reconciliation of the draft WS-08
-documentation directive and a separate bounded approval decision. Initiative
-aggregate review and delivery remain separate.
+explicitly accepted work units. The maintainer then said "continue with ws-08"
+on 2026-09-29. The [reconciled WS-08 directive](directives/ws-08-documentation-guide-closeout.md)
+and [readiness checkpoint](execution/WS-08-readiness-checkpoint.md) bind a
+documentation-only 11-path deliverable; execution is active on
+`feature/friday-mcp-ws08-docs`. Initiative aggregate review and delivery remain
+separate.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

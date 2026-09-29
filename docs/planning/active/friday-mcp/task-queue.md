@@ -1,9 +1,9 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-07 independently verified and explicitly accepted; WS-08 reconciliation next
+Status: WS-00 through WS-07 accepted; WS-08 documentation execution active
 Updated: 2026-09-29
 Initiative: `friday-mcp`
-Branch: `feature/friday-mcp-ws07-telemetry`
+Branch: `feature/friday-mcp-ws08-docs`
 WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
 WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
@@ -42,9 +42,12 @@ implementation produced stable candidate `2e36613`. Fresh-context, read-only
 no findings. Its report and [byte-checked evidence](validation/VAL-016-evidence.yaml)
 are recorded in the [WS-07 closeout](execution/WS-07-closeout.md). The maintainer
 explicitly accepted WS-07 with "accepted" on 2026-09-29. Next is reconciling
-the draft WS-08 directive and requesting separate bounded approval.
+the draft WS-08 directive and requesting separate bounded approval. The
+maintainer then instructed "continue with ws-08"; the directive was narrowed
+to an exact documentation-only manifest and WS-08 execution started on its
+dedicated branch.
 The wider initiative remains started/granted/normal/local on the named branch.
-WS-08 and optional/deferred WS-09 remain unstarted and unapproved;
+Optional/deferred WS-09 remains unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
 VAL-011 and VAL-012 stay byte-exact, superseded only for changed candidates.
 Accepted predecessor records and all five unrelated fingerprints are preserved.
@@ -98,7 +101,7 @@ is authorized by the REM-004 approval.
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Complete: nine-path REM-008 candidate 820e252 received fresh VAL-015 delta/full-aggregate VERIFIED; maintainer explicitly accepted WS-06 on 2026-09-29. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; the maintainer explicitly accepted it in the [closeout](execution/WS-07-closeout.md). |
-| 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Requires WS-01 through WS-07 readiness and separate explicit WS-08 approval; not yet approved. Live/paid/provider UAT requires its own external-effects authority. |
+| 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Approved by maintainer's "continue with ws-08" after accepted WS-07; [reconciled readiness](execution/WS-08-readiness-checkpoint.md) binds exact documentation paths. Local synthetic UAT only; live/paid/provider UAT needs separate authority. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
 | Deferred / [WS-09](directives/ws-09-optional-external-config-include.md) | Optional external MCP config includes parsed into the canonical typed runtime model, with path confinement and precedence. | Tools-only inline integration stable and a separate maintainer decision to activate the phase. Not required automatically by this queue. |
 
@@ -562,3 +565,14 @@ review. WS-00 through WS-07 are accepted. Current phase planning/state
 not_ready; next reconcile the draft WS-08 directive and request separate
 bounded approval. The initiative remains started/granted/normal/local, with no
 WS-08 implementation, external UAT or delivery authority inferred.
+
+## 2026-09-29 — WS-08 Documentation Scope Approved And Started
+
+The maintainer's "continue with ws-08" authorized the remaining required
+documentation workstream. The [reconciled directive](directives/ws-08-documentation-guide-closeout.md)
+and [readiness checkpoint](execution/WS-08-readiness-checkpoint.md) bind exact
+guide, README and two distributed config-example paths against accepted
+implementation. Branch `feature/friday-mcp-ws08-docs` starts at `93d3684`.
+Phase implementation/state not_ready; next execute the documentation and
+validate snippets with canonical parsers and a local synthetic stdio peer.
+No source implementation, remote/provider UAT, WS-09 or delivery is included.

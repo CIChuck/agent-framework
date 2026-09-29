@@ -59,9 +59,9 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: reconcile WS-08 documentation directive and request bounded approval
+  next_gate: execute approved WS-08 documentation scope and validate frozen guide candidate
   delivery_state: local
-  branch: feature/friday-mcp-ws07-telemetry
+  branch: feature/friday-mcp-ws08-docs
   depends_on: []
   validation:
   - docs/planning/active/friday-mcp/validation/VAL-002-report.md

@@ -1,7 +1,8 @@
 # Construction Directive: MCP-WS-08 Documentation And Guide Close-Out
 
-Status: Draft construction directive
-Date: 2026-07-24
+Status: Approved for documentation-only WS-08 execution by the maintainer's
+"continue with ws-08" on 2026-09-29; reconciled exact scope below
+Date: 2026-09-29
 Tactical plan: [Friday Framework MCP Tactical Implementation Plan](../tactical-plan.md)
 Workstream: `MCP-WS-08`
 
@@ -11,11 +12,17 @@ You are the documentation implementation agent for the Friday Framework MCP enha
 
 ## Source Authority And Precedence
 
-1. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md)
-2. [Friday Framework MCP tactical implementation plan](../tactical-plan.md)
-3. [Friday Framework MCP enhancements build plan](../build-plan.md)
-4. Completed implementation from `MCP-WS-01` through `MCP-WS-07`
-5. Current config templates, package READMEs, and guides
+1. Explicit maintainer direction to continue WS-08, within this documentation
+   workstream and without product-code or external-effects authority.
+2. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md),
+   [development lifecycle](../../../../reference/policies/development-task-lifecycle.md),
+   and [independent validation policy](../../../../reference/policies/independent-validation-policy.md).
+3. [Friday Framework MCP build plan](../build-plan.md) and
+   [tactical plan](../tactical-plan.md).
+4. Independently verified and explicitly accepted WS-00 through WS-07,
+   including [WS-07 closeout](../execution/WS-07-closeout.md) and
+   [VAL-016](../validation/VAL-016-report.md).
+5. Current source, parser tests, distributed templates, package READMEs, and guides.
 
 ## Implementation Objective
 
@@ -23,18 +30,26 @@ Create accurate user-facing documentation for configuring and operating MCP clie
 
 ## Allowed Scope
 
-You may edit:
+The complete deliverable path manifest is:
 
-- `docs/guides/`
 - `docs/guides/README.md`
-- `docs/planning/queued/friday-mcp/build-plan.md` only to mark documentation findings or reconcile implemented behavior
+- `docs/guides/05-tools.md`
+- `docs/guides/10-configuration.md`
+- `docs/guides/11-advanced-topics.md`
+- `docs/guides/13-troubleshooting.md`
+- `docs/guides/17-mcp-client.md` (new)
 - `packages/friday-mcp/README.md`
 - `packages/friday-runtime/README.md`
 - `packages/friday-chat/README.md`
-- Friday Chat distributed config templates
-- package READMEs directly affected by public MCP behavior
+- `packages/friday-chat/config.example.yaml`
+- `packages/friday-chat/src/friday_chat/config_templates/config.example.yaml`
 
-Do not edit source implementation unless documentation validation exposes a small typo in examples or exported names. If behavior differs from docs, stop and report the mismatch before changing implementation.
+Only this directive, a readiness/implementation report, validation request,
+review/evidence, closeout, packet/board state and rendered dashboard may be
+added or updated as process artifacts. Do not change implementation source,
+tests, other templates, package metadata, build plans or historical evidence.
+If behavior differs from the intended documentation, record the mismatch and
+stop for a separate product decision.
 
 ## Explicit Non-Goals
 
@@ -44,6 +59,12 @@ Do not edit source implementation unless documentation validation exposes a smal
 - Do not add marketing pages.
 - Do not reorganize the entire docs tree.
 - Do not alter package build metadata except for including documented templates if already authorized elsewhere.
+- Do not add a Chat MCP health command, an external config include, remote
+  integrated transport, a telemetry endpoint, live refresh or memory ingestion
+  by default. The integrated runtime supports local stdio only; the lower-level
+  `friday-mcp` package may expose additional protocol APIs separately.
+- Do not run paid/live providers or make external network requests. Local
+  synthetic stdio peers and scratch paths are permitted for verification.
 
 ## Required Workstreams
 
@@ -78,7 +99,7 @@ State clearly that this is the canonical config surface for both framework runti
 
 Document that `tools.providers.mcp.config_file` is reserved and rejected until the optional external include phase is implemented.
 
-If `MCP-WS-09` has already been implemented, document its actual semantics instead.
+WS-09 is deferred; do not imply that the reserved key is usable.
 
 ### `MCP-08-04`: Tool Budget Behavior
 
@@ -161,12 +182,23 @@ If no docs checker exists, report that and rely on snippet validation through co
 Run documentation-adjacent validation:
 
 ```bash
-uv run pytest packages/friday-runtime/tests_runtime
-uv run pytest packages/friday-chat/tests_chat
-uv run pytest packages/friday-mcp/tests_mcp
+UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-runtime/tests_runtime
+UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-chat/tests_chat
+UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-mcp/tests_mcp
 ```
 
-If a docs or link checker exists, run it and report the command. If none exists, report that no docs checker was found.
+Also parse every new YAML guide example with the current Runtime and Chat MCP
+config models, including disabled, selected, optional, required, filters,
+environment interpolation and rejected `config_file`. Exercise one local
+synthetic stdio server and required-server failure through the accepted runtime
+path. Run `scripts/check-documentation-lifecycle.py`, board validate/next/show/
+render, and `git diff --check`. If another docs or link checker exists, run it;
+otherwise record the available lifecycle/link evidence.
+
+The broad Chat suite has an inherited PTY timing failure and three localhost
+fixture bind PermissionErrors; report it as nonzero, not passing or waived.
+Run the focused MCP/Chat config, budget and ingestion coverage separately and
+distinguish any new failure from this byte-checked WS-07 baseline.
 
 Run formatting checks for touched README and guide Markdown only if a project command exists. Do not invent a new formatter.
 

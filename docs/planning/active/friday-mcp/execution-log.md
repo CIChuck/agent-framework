@@ -1670,3 +1670,16 @@ directive against accepted source, guides and distributed configuration and
 request separate bounded approval. WS-08 product/documentation implementation,
 initiative aggregate review, live-provider UAT and delivery are not authorized
 by this acceptance.
+
+## 2026-09-29 — WS-08 Documentation Scope Approved And Started
+
+After WS-07 acceptance, the maintainer instructed "continue with ws-08" after
+being told it is the remaining required documentation workstream. The
+[readiness checkpoint](execution/WS-08-readiness-checkpoint.md) reconciles the
+draft against accepted source, current guides and the two distributed Chat
+config examples. The [revised directive](directives/ws-08-documentation-guide-closeout.md)
+narrows scope to 11 exact documentation/example paths, parser/local-stdio
+verification and no product-code or external-effects change. Dedicated branch
+`feature/friday-mcp-ws08-docs` starts from accepted WS-07 commit `93d3684`.
+Phase implementation/state not_ready; board remains started/granted/normal/local.
+No WS-09, initiative aggregate review or delivery authority is inferred.
