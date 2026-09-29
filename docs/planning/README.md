@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014 |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | dispatch fresh read-only VAL-014 for frozen WS-06 full aggregate |
 
 ## Completed
 

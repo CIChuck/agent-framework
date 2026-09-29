@@ -1,0 +1,393 @@
+{
+  "id": "VAL-014",
+  "initiative": "friday-mcp",
+  "work_unit": "MCP-WS-06",
+  "date": "2026-09-29",
+  "status": "requested",
+  "branch": "feature/friday-mcp-ws06-memory",
+  "review_modes": [
+    "work_unit_full_aggregate"
+  ],
+  "base_commit": "99bde5148ee21f47d4734d2a026fb198a3d19cbd",
+  "candidate_commit": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+  "diff_range": "99bde5148ee21f47d4734d2a026fb198a3d19cbd..910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+  "work_unit_authorization_commit": "4d049880650c62267670b3690928120ac391649b",
+  "approval_evidence": "Maintainer explicitly approved the complete reconciled 18-path scope with \"approved - proceed with speed\"; approved directive and execution-start were recorded before product generation. Only WS-06 and fresh aggregate review are authorized.",
+  "accepted_predecessor_product": "cca86b51105666d12c2e7ed571f8f9a05d2085f9",
+  "authority_revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-003-directive.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-004-directive.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-00-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-01-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-02-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-002-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-004-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-007-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/rebaseline-2026-09-27.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-005-directive.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "5bff5b4b043d504384219d85af958bfffc4da584e057d910d35da3cb0a4c3ecb"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-008-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "1bf0b019e0ba69f75eb638e1aa68f89a3d90088e2471dea11ce7ee76c1b46d0c"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "07f635f7f58f498227ab86175584da9ce6a19cba6a8af0edaa7dd04ca0e8c250"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-009-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "69fc9a1355e1de082396fc5259064f9c88976d25f57dd518126bac414dece05a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "f84b5fb3e91b58f6105e1ee803d402ae902ea937af1dc146ba41274c8e99646a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-04-readiness-checkpoint.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "db9892cfe82e16af3635e283bcae3563ab8e07e5cbe72bb43b8deb8b65ed2f8b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-04-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "b17fa4a08b337a7ff6cd9505e0928939200c4d1f2320ec44940860cb7144f97f"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-010-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-05-readiness-checkpoint.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "4db94081499b7bae7ecc816d1712312f863511918947a4b2516c8c8e5f5a88c1"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "8d30aea83513e04c1b44d49d2eb4eea7486af112ea8bb54e93d245cbd809b803"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-006-directive.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "96cb5e149b04f9dfdf4a43706a0e2b1de3e463e792f0da1373a824c7c5c0bd5a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-011-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "0e79c26a3cb90557228c06db7b7d8cc2de68410b19843c789a8b9f18cf9f3266"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-012-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "2a3be2680065075d18ae31b49091ebb28805a4d899322e1b75b59f2191195786"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-007-directive.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "4c100b77cbf1f20919ece6a9dac206ed3ccc0b36a19112af3e3bf43b9cb8446d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "7407dab54fe31da2545958ff37e59e78a8249afdf0fb97239917e8e4fd976d0e"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-readiness-checkpoint.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "c0f9271e90d774e3e5956fb580be0f739e96c42ded23104e61fc301702b0bb37"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-readiness-evidence.yaml",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "65a8221911d9ba3d6fa485b5637940c94c69e224c80d219f4548f465679afb09"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-05-closeout.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "dadaf39ed8310811a31e2cc7f7927c35e476a02031e8ca9a9ae0237e9d809092"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-013-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "7bae31e98d91fa6d19e9bd1ef5c8976a19c098b84b998f69cd6362f305ed33a2"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-013-evidence.yaml",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "14844d6217b476f2e9bedbf6b6d2eedbed5a73d7bbb34269a1e43d5c7d37d1d7"
+    }
+  ],
+  "candidate_report_hashes": [
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-005-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "df3207f11d0beab740599346ffa9b9a9ec76eb1b9aca6861093956014cafebd1"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "836cbe11243da78ba34f739f808b97ee52dda264b3448c51d3763caae1d31965"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-04-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "e643b6249c85ad77e976b635d7bc9fd974319dd9741479f1062385f619132f8d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-05-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "8a6df6a16ffefc3567f8263ea1adb477063cfdb49fbc07e885a0b7eeac1042d2"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "30c0b2ab647c5337626e725d77681dae438969a962da70d240f265062fe88c51"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-implementation-report.md",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "fca3aee95cca15081ad4b70abac4921299502ad7433dc4781a3f83f06b0742b3"
+    }
+  ],
+  "builder_evidence": [
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-builder-evidence.yaml",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "ec42aa50ca657e764a15216e008819db479f1cc8f9c1c9fde9b9e44bf1117c39"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-builder-evidence.tar.gz",
+      "revision": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+      "sha256": "59de1ec676f4f48ef1d96ece12d2c5b33b4ff93d5867e3c406fc4fed4da69c6a"
+    }
+  ],
+  "allowed_product_paths": [
+    "packages/friday-memory/src/friday_memory/models/mcp.py",
+    "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+    "packages/friday-memory/src/friday_memory/retrieval/mcp.py",
+    "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+    "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+    "packages/friday-chat/src/friday_chat/memory_mcp.py",
+    "packages/friday-chat/src/friday_chat/runtime.py",
+    "packages/friday-chat/src/friday_chat/adapters.py",
+    "packages/friday-chat/src/friday_chat/turns/processor.py"
+  ],
+  "allowed_test_paths": [
+    "packages/friday-memory/tests_memory/test_mcp_memory.py",
+    "packages/friday-memory/tests_memory/test_retrieval/test_collection_manager.py",
+    "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py",
+    "packages/friday-chat/tests_chat/test_mcp_memory.py",
+    "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+    "packages/friday-chat/tests_chat/test_mcp_turn_budget.py",
+    "packages/friday-transcript/tests/test_mcp_provenance.py",
+    "tests/integration/test_mcp_memory_ingestion.py"
+  ],
+  "allowed_dependency_paths": [],
+  "allowed_implementation_report": "docs/planning/active/friday-mcp/execution/WS-06-implementation-report.md",
+  "allowed_controller_artifacts": [
+    "docs/planning/active/friday-mcp/execution/WS-06-builder-evidence.yaml",
+    "docs/planning/active/friday-mcp/execution/WS-06-builder-evidence.tar.gz",
+    "docs/planning/board.yaml",
+    "docs/planning/README.md",
+    "docs/planning/active/friday-mcp/README.md",
+    "docs/planning/active/friday-mcp/task-queue.md",
+    "docs/planning/active/friday-mcp/execution-log.md",
+    "docs/planning/active/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md"
+  ],
+  "tactical_task_ids": [
+    "MCP-06-01",
+    "MCP-06-02",
+    "MCP-06-03",
+    "MCP-06-04",
+    "MCP-06-05",
+    "MCP-06-06",
+    "MCP-06-07"
+  ],
+  "acceptance_criteria": [
+    "WS06-AC01: Accepted Core policy/facts reused; typed snapshots/receipts, complete bounded provenance and actual safe record/entry/call IDs round-trip.",
+    "WS06-AC02: Default makes zero direct MCP semantic writes/embedding calls/record IDs; safe transcript and ordinary/native/custom adapters remain compatible.",
+    "WS06-AC03: Enabled plus exact server OR canonical-tool grant, union semantics; wildcard/prefix/case/original-name/unlisted/native/failed/unchecked negatives.",
+    "WS06-AC04: Distinct complete storage sanitation, UTF-8 cap including overhead, multibyte/normalization/tiny-cap/injection negatives, no raw-bearing persistence/diagnostics.",
+    "WS06-AC05: Verified durable write precedes ingested receipt; actual append-only transcript readback precedes publication; partial/false-return/cancel/retry/concurrency/crash-pending/multi-call cases truthful.",
+    "WS06-AC06: Honest snapshot/no-revocation assumptions; pending/malformed exclusion and pending promotion guard; provenance survives stage copies/reloads; maintenance does not turn snapshots into ordinary facts.",
+    "WS06-AC07: Public helpers and production Chat retain labels/exclusion; malformed MCP metadata rejected; old/native/file/conversation retrieval remains compatible.",
+    "WS06-AC08: Supplied WS-04 budget forwarded once, including zero; full MCP overhead fits residual estimated budget or snapshot omitted; native selection/reserve/floor intact.",
+    "WS06-AC09: Temporary production Chroma/SQLite and existing JSONL/Markdown/CSV preserve safe actual correlations, old/native/export privacy behavior; no schema/config/dependency change.",
+    "WS06-AC10: Exact manifest, meaningful typing, required checks, independent base comparisons, local public UAT, isolated-package proof, cleanup and frozen predecessor/unrelated evidence complete."
+  ],
+  "required_commands": [
+    "uv run --no-sync pytest packages/friday-memory/tests_memory/test_mcp_memory.py packages/friday-memory/tests_memory/test_retrieval/test_collection_manager.py packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py packages/friday-chat/tests_chat/test_mcp_memory.py packages/friday-chat/tests_chat/test_mcp_execution_transcript.py packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-transcript/tests/test_mcp_provenance.py tests/integration/test_mcp_memory_ingestion.py",
+    "uv run --no-sync pytest packages/friday-chat/tests_chat/test_mcp_execution_security.py packages/friday-chat/tests_chat/test_mcp_chat_bridge.py tests/integration/test_mcp_execution_provenance.py packages/friday-chat/tests_chat/compat/test_tool_loop_parity.py packages/friday-chat/tests_chat/compat/test_turn_contract_parity.py",
+    "uv run --no-sync pytest packages/friday-memory/tests_memory",
+    "uv run --no-sync pytest packages/friday-chat/tests_chat",
+    "uv run --no-sync pytest packages/friday-transcript/tests",
+    "uv run --no-sync pytest packages/friday-agent/tests_agent",
+    "uv run --no-sync pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime",
+    "uv run --no-sync pytest tests/integration",
+    "uv run --no-sync ruff check packages/friday-memory packages/friday-chat packages/friday-transcript tests/integration/test_mcp_memory_ingestion.py",
+    "uv run --no-sync mypy packages/friday-memory packages/friday-chat packages/friday-transcript",
+    "uv run --no-sync mypy --python-version 3.13 packages/friday-memory/src/friday_memory/models/mcp.py packages/friday-memory/src/friday_memory/ingestion/mcp.py packages/friday-memory/src/friday_memory/retrieval/mcp.py packages/friday-memory/src/friday_memory/retrieval/collection_manager.py packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-chat/src/friday_chat/memory_mcp.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/turns/processor.py",
+    "uv lock --check --offline",
+    "uv run --no-sync python scripts/friday-dev-board.py validate",
+    "uv run --no-sync python scripts/friday-dev-board.py render --check",
+    "uv run --no-sync python scripts/check-documentation-lifecycle.py",
+    "git diff --check 99bde5148ee21f47d4734d2a026fb198a3d19cbd..910508cd40c49c30ddfbd6a779aec5fda3ac2a67"
+  ],
+  "mandatory_additional_evidence": [
+    "Independently exercise real public Chat/Memory/SQLite with local peers, all safety/default/allowlist/budget/labels/receipt/cancel/partial/freshness/maintenance/old-record boundaries; helper tests and builder assertions alone are insufficient.",
+    "Rebuild current declared framework wheels offline and independently prove new public imports/typed production Chroma+SQLite roundtrip from fresh isolated installed/extracted distributions and recursively marker/version-validated declared dependencies, no editable source/PYTHONPATH masking. Distinguish clean resolver/install cache gaps.",
+    "Independently reproduce unrelated broad failures against immutable approved base; meaningful affected-source typing and changed-path Ruff must pass. Full commands/outputs/exits and public process/task cleanup required.",
+    "At review start/closeout verify frozen authorities/reports/products/historical evidence and five unrelated fingerprints. Request controlling manifest excludes mutable controller phase metadata."
+  ],
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "UV_NO_SYNC": "true",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "permitted": "Synthetic local stdio peers; deterministic embeddings/model doubles; scratch-only temporary DBs/venvs/artifacts; offline build tools. No provider/paid calls, real credentials/runtime state or externally visible actions."
+  },
+  "reviewer_rules": [
+    "New conversation/context with fork_turns none; no builder/controller conversation/private reasoning. Read-only governed repository and candidate; no fixes, commits, staging, board changes or cleanup of user/runtime state. Scratch writes only.",
+    "Review complete base-to-candidate aggregate, all seven tasks/ten criteria/checks, package interfaces and policy. Return exactly VERIFIED, CHANGES_REQUESTED or BLOCKED with complete evidence and prioritized reproducible numbered findings.",
+    "Return complete independent Markdown report and lossless original scripts/logs/command exits/package/probe/preservation artifacts in a scratch directory; give exact hashes and artifact selection. The controller archives report bytes unchanged."
+  ],
+  "known_baseline_references": [
+    "Chat PTY failure and three localhost setup errors; initial approved-base suite run recorded independently before product edits.",
+    "Integration development-board assertion expects 22 tasks; current and approved-base board correctly have 23; reproduce from approved base archive.",
+    "Default mypy hits installed NumPy syntax under configured Python 3.10; all nine affected source files must pass meaningful Python-3.13 check without broad ignores/filtering.",
+    "Offline clean install may lack cached litellm; disclose separately and still independently establish required isolated declared-distribution proof."
+  ],
+  "unrelated": {
+    ".DS_Store": {
+      "files": 1,
+      "sha256": "726abde51b913404c3c5af3bf5ec36210f129b89ca33a0efc24dd4cd73fe98a9",
+      "state": "present"
+    },
+    "docker-bench-security/": {
+      "files": 57,
+      "sha256": "d7215d8bafcc427e5dde801fd1f80f88438fa5bc4215ff3262f86bfcea870f85",
+      "state": "present"
+    },
+    "family-tree.md": {
+      "state": "absent"
+    },
+    "packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak": {
+      "files": 1,
+      "sha256": "b9164e100cf67ff37ff860ed82c5987981ed740e2fec88f8bcc25e815a9c7cea",
+      "state": "present"
+    },
+    "packages/friday-sandbox/docker/Dockerfile.audit": {
+      "files": 1,
+      "sha256": "8904c2cd686fb4acb2612f00b875f8bb03e4a284c3f2b4e4cb440ab7e2739884",
+      "state": "present"
+    }
+  },
+  "board_snapshot": {
+    "work_state": "started",
+    "implementation_authority": "granted",
+    "branch": "feature/friday-mcp-ws06-memory",
+    "condition": "normal",
+    "delivery_state": "local"
+  },
+  "preservation_manifest": "docs/planning/active/friday-mcp/validation/VAL-014-frozen-inputs.json"
+}

@@ -6,22 +6,20 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014
+next_gate: dispatch fresh read-only VAL-014 for frozen WS-06 full aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
-Current checkpoint: the maintainer explicitly approved the reconciled WS-06
-18-path/seven-task/ten-criterion directive with "approved - proceed with speed"
-on 2026-09-29. Execution starts on `feature/friday-mcp-ws06-memory` from
-`99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase implementation/state not_ready;
-next implement the approved scope, required checks, stable candidate and fresh
-read-only complete-aggregate VAL-014. Accepted WS-00 through WS-05 remain intact.
-Approval/start metadata precedes product generation. WS-07/08 and delivery remain
-separate. Historical [readiness](execution/WS-06-readiness-checkpoint.md) records
-the planning proposal; the [directive](directives/ws-06-memory-compatibility-ingestion.md)
-now records explicit approval and exact execution authority.
+Current checkpoint: approved WS-06 implementation is frozen at `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`.
+[Implementation report](execution/WS-06-implementation-report.md) and lossless
+builder evidence record all seven tasks/ten criteria/checks and unchanged baselines.
+The pinned [VAL-014 request](validation/VAL-014-request.yaml) requires a new fresh
+read-only full aggregate review from `99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase validation/state pending;
+request prepared, reviewer not yet dispatched and no verdict/acceptance claimed.
+All 18 authorized paths and outside-scope/user preservation checks pass. Accepted
+WS-00 through WS-05 remain intact; later scopes and delivery remain separate.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)

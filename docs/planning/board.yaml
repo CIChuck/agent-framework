@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: implement approved WS-06 memory scope, freeze candidate and obtain fresh VAL-014
+  next_gate: dispatch fresh read-only VAL-014 for frozen WS-06 full aggregate
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []

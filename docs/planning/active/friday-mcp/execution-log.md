@@ -1430,3 +1430,17 @@ seven tasks/ten criteria, required checks and fresh read-only VAL-014 govern.
 This approval/start record precedes source generation. Freeze unrelated work
 and all outside-scope product inputs; accepted WS-00 through WS-05 and historical
 review evidence remain immutable. No later scope or delivery authority.
+
+## 2026-09-29 — WS-06 Candidate Frozen; Fresh VAL-014 Prepared
+
+Approved WS-06 candidate `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`, complete base `99bde5148ee21f47d4734d2a026fb198a3d19cbd`.
+Exactly 18 product/report paths; lossless controller evidence has 75 artifacts.
+Focused161/compat97/Memory715/Transcript35/Agent209/framework416 tests pass; Chat
+and integration/default-typing failures independently match approved-base debt.
+Ruff/all-nine-source meaningful typing, isolated 11-wheel declared production
+Chroma/SQLite proof, lock/board/doc/whitespace and preservation pass. Full
+implementation report retains limits/attempts without claiming independent verdict.
+VAL-014 request pins 40 authorities, six reports, two builder artifacts, all
+985 product bytes and five unrelated fingerprints. New fresh read-only aggregate
+review mandatory; phase validation/pending, not dispatched by preparation.
+No source edits while frozen; no WS-06 acceptance/later scopes/delivery.
