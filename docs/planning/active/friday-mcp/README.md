@@ -6,8 +6,8 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: review and approve bounded REM-010 aggregate typing remediation and separate remediator
-implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
+next_gate: execute approved REM-010 exact Memory scope with separate remediator and freeze corrected candidate
+implementation_authority: granted for MCP-WS-00 through MCP-WS-08 and exact REM-010; Chat health command deferred in WS-07
 execution_phase: remediation
 validation_state: changes_requested
 ---
@@ -70,8 +70,9 @@ Fresh read-only [VAL-019](validation/VAL-019-report.md) returned
 Its [complete evidence](validation/VAL-019-evidence.yaml) is preserved.
 The [draft REM-010 directive](remediation/REM-010-directive.md) limits the
 correction to five Memory source/test paths and an exact joint typing recheck.
-The next gate is explicit maintainer approval of that remediation and separate
-remediator; WS-00 through WS-08 acceptance remains intact.
+The maintainer approved that exact remediation and a separate remediator with
+"approved, continue" on 2026-09-29. The next gate is bounded execution and a
+new stable candidate; WS-00 through WS-08 acceptance remains intact.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-08 accepted; VAL-019 aggregate typing finding awaits bounded REM-010 approval
+Status: WS-00 through WS-08 accepted; bounded REM-010 aggregate typing correction approved
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -661,3 +661,13 @@ is archived byte-exact. [REM-010](remediation/REM-010-directive.md) drafts one
 bounded five-path Memory correction. Phase remediation/state changes_requested;
 next is explicit maintainer approval of its scope and separate remediator.
 No product edit or initiative completion is authorized by this review.
+
+## 2026-09-29 — Maintainer Approves Exact REM-010 And Separate Remediator
+
+The maintainer said "approved, continue" after the complete VAL-019 finding
+and [REM-010 directive](remediation/REM-010-directive.md) were presented. The
+approval covers the exact five-path Memory source/test boundary, type-safe
+correction and separate remediator. Phase remediation/state changes_requested;
+next execute, run the exact joint mypy and focused/full affected checks, freeze
+a new candidate and request fresh delta plus complete feature-branch aggregate
+review. No initiative acceptance, WS-09 or delivery authority is inferred.

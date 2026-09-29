@@ -1800,3 +1800,13 @@ Phase remediation/state changes_requested; next explicit maintainer approval
 of the directive and separate remediator. Historical VAL-019 remains valid for
 `847d410`; WS-00 through WS-08 acceptance remains intact. No product edit,
 initiative completion, WS-09 approval or delivery is inferred.
+
+## 2026-09-29 — Exact REM-010 And Separate Remediator Approved
+
+The maintainer said "approved, continue" after reviewing the complete
+VAL-019 result and [REM-010](remediation/REM-010-directive.md). The approval
+covers the directive's five named Memory source/test paths, a separate
+remediator, the exact joint type-check gate and fresh delta/full aggregate
+review. Phase remediation/state changes_requested; next bounded execution and
+candidate freeze. Accepted WS-00 through WS-08, historical VAL-019, unrelated
+local work and local-only delivery remain intact.

@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: review and approve bounded REM-010 aggregate typing remediation and separate remediator
+  next_gate: execute approved REM-010 exact Memory scope with separate remediator and freeze corrected candidate
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []

@@ -1,7 +1,8 @@
 # REM-010 — Close Aggregate Memory Typing Gate
 
 - Date: 2026-09-29
-- Status: Draft; explicit maintainer approval required before product edits
+- Status: Approved for the exact bounded correction and separate remediator
+- Approval: repository maintainer, 2026-09-29, "approved, continue" after the complete VAL-019 finding and REM-010 proposal were presented
 - Initiative: `friday-mcp`
 - Finding: [VAL-019-F-001](../validation/VAL-019-report.md), Medium
 - Reviewed aggregate candidate: `847d410934150865395bdcf58beb2a9342cd19f8`
@@ -74,5 +75,6 @@ and request a **new** fresh-context read-only review of this remediation delta
 followed by the complete `20c70dd`-based feature-branch aggregate. Do not infer
 initiative completion, acceptance, WS-09 authority or delivery from a local
 green check. A separate remediator is required for this cross-package typing
-boundary under the independent-validation policy; no product work begins until
-the maintainer approves this exact directive and assignment.
+boundary under the independent-validation policy. The maintainer approved this
+exact directive and separate assignment on 2026-09-29; no wider source or
+delivery scope is granted.
