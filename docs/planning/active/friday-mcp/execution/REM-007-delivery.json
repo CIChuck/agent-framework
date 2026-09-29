@@ -1,0 +1,32 @@
+{
+  "full_candidate": "cca86b51105666d12c2e7ed571f8f9a05d2085f9",
+  "source_test_candidate": "e425d6765a2689256d0e48ec8305a4ad183e4945",
+  "followup_base": "446e3a6f4e445a456dcbe6ef25058e60af54fe53",
+  "remediation_base": "dd6a337eb2928ab4050ea70fb41dc77072210e34",
+  "original_aggregate_base": "a609f948fe2d869ac29d0cce29d22d9334cd7d08",
+  "approved_implementation_paths": [
+    "docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md",
+    "packages/friday-chat/src/friday_chat/tools/loop.py",
+    "packages/friday-chat/tests_chat/test_mcp_execution_security.py"
+  ],
+  "artifacts": {
+    "REM-006-implementation-report.md": {
+      "bytes": 36096,
+      "sha256": "30c0b2ab647c5337626e725d77681dae438969a962da70d240f265062fe88c51"
+    },
+    "evidence.json": {
+      "bytes": 31990,
+      "sha256": "2536e33051ec92eadcbea77b453b1ed6ce70d565bb60bdf12600205901d73b76"
+    },
+    "REM-007-evidence.tar.gz": {
+      "bytes": 8929677,
+      "sha256": "25200f93c9e6fc6c9971956526ba7daaa3c5ed684b6eb83532d401599ad4fb75"
+    },
+    "artifact-verification.json": {
+      "bytes": 495,
+      "sha256": "2fa7fbf733d95ba02fb899d6e319a587643aa002d585af84ee8966857f91993d"
+    }
+  },
+  "historical_REM006_archive_sha256": "13a70178162b27c49e404481fa7e97a35a7b6c6fea271e7b83f7a0b3a7e52ae9",
+  "independent_gate": "Pending new fresh read-only VAL-013 delta plus complete original WS-05 aggregate; remediator regression checks are not an independent verdict or acceptance."
+}

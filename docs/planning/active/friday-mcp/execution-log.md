@@ -1329,3 +1329,16 @@ new stable candidate and fresh VAL-013 delta/full aggregate required. Root is
 controller; reviewer performs no fixes. Phase remediation/changes_requested;
 no new scope, acceptance or delivery. Second unsuccessful cycle would return
 unresolved findings to maintainer.
+
+## 2026-09-28 — REM-007 Candidate Frozen; Fresh VAL-013 Prepared
+
+Separate remediator froze `cca86b51105666d12c2e7ed571f8f9a05d2085f9` within the exact three already-approved
+paths, from follow-up base `446e3a6f4e445a456dcbe6ef25058e60af54fe53`. Original REM-006 base `dd6a337eb2928ab4050ea70fb41dc77072210e34` and
+WS-05 aggregate base `a609f948fe2d869ac29d0cce29d22d9334cd7d08` remain explicit. Original VAL-012 report/archive
+and earlier evidence remain byte-exact, superseded for changed candidate only.
+Fresh VAL-013 must close VAL-012-F-001 and reconfirm both original High findings,
+with delta/full aggregate, all required commands and independent public/storage/
+privacy/compatibility/package/cleanup/freeze evidence. Phase validation/pending;
+not dispatched/verified/accepted by preparation. Second remediation cycle; if
+unsuccessful return remaining findings. Accepted predecessors, unrelated paths,
+later phase and delivery boundaries remain intact.

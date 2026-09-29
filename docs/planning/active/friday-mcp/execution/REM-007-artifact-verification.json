@@ -1,0 +1,14 @@
+{
+  "full_candidate": "cca86b51105666d12c2e7ed571f8f9a05d2085f9",
+  "member_count": 185,
+  "all_member_hashes_match": true,
+  "manifest_exact_member_set": true,
+  "report_reference_count": 20,
+  "all_followup_report_members_present": true,
+  "all_19_required_command_logs_present": true,
+  "runtime_databases_state_venvs_caches_excluded": true,
+  "historical_report_prefix_byte_exact": true,
+  "report_eof_exactly_one_newline": true,
+  "deterministic_archive_byte_equal": true,
+  "errors": []
+}
