@@ -21,7 +21,7 @@ product edits. Acceptance and delivery remain separate gates.
 ## Authority And Dependencies
 
 Apply explicit maintainer scope decisions, repository engineering/security and
-[independent-validation policy](../../../../reference/policies/independent-validation-policy.md),
+[independent-validation policy](../../../../../reference/policies/independent-validation-policy.md),
 then the approved [build plan](../build-plan.md),
 [tactical sequence](../tactical-plan.md), accepted WS-00/01/02 decisions, and this
 directive once approved. Later-slice drafts do not grant current authority.

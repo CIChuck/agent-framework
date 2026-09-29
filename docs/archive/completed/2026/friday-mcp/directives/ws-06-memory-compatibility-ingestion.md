@@ -11,10 +11,10 @@ Execution base: `99bde5148ee21f47d4734d2a026fb198a3d19cbd`
 
 ## Authority And Approval Boundary
 
-Maintainer instructions and [AGENTS.md](../../../../../AGENTS.md) govern first,
-followed by [engineering policy](../../../../reference/policies/repository-engineering-policy.md),
-[lifecycle policy](../../../../reference/policies/development-task-lifecycle.md),
-and [independent validation policy](../../../../reference/policies/independent-validation-policy.md).
+Maintainer instructions and [AGENTS.md](../../../../../../AGENTS.md) govern first,
+followed by [engineering policy](../../../../../reference/policies/repository-engineering-policy.md),
+[lifecycle policy](../../../../../reference/policies/development-task-lifecycle.md),
+and [independent validation policy](../../../../../reference/policies/independent-validation-policy.md).
 Apply accepted WS-00 through WS-05 contracts, directives, amendments and closeouts;
 then the [build plan](../build-plan.md), [tactical plan](../tactical-plan.md),
 [rebaseline](../rebaseline-2026-09-27.md), and this bounded directive.

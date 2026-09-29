@@ -13,7 +13,7 @@ This phase must not start until inline MCP configuration is stable and tested.
 
 ## Source Authority And Precedence
 
-1. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md)
+1. [Repository engineering policy](../../../../../reference/policies/repository-engineering-policy.md)
 2. [Friday Framework MCP tactical implementation plan](../tactical-plan.md)
 3. [Friday Framework MCP enhancements build plan](../build-plan.md)
 4. Completed `MCP-WS-01`

@@ -8,7 +8,7 @@
 - Authority: [approved reconciled WS-08 directive](../directives/ws-08-documentation-guide-closeout.md)
 - Scope: [exact 11-path product manifest](WS-08-product-manifest.json)
 
-The new [MCP client guide](../../../../guides/17-mcp-client.md) provides a
+The new [MCP client guide](../../../../../guides/17-mcp-client.md) provides a
 checkout-local stdio example and the disabled default, selected-mode naming,
 optional/required server behavior, workspace paths, environment interpolation,
 discovery and per-turn budgets, output/provenance, default-disabled ingestion,

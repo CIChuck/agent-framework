@@ -4,13 +4,23 @@
 title: Friday MCP Client Enhancement
 initiative: friday-mcp
 document_type: initiative-index
-status: active
+status: accepted
+work_state: accepted
 updated: 2026-09-29
-next_gate: explicit maintainer decision on first-pass initiative completion and acceptance
-implementation_authority: granted for MCP-WS-00 through MCP-WS-08 and exact REM-010; Chat health command deferred in WS-07
+next_gate: none; first-pass initiative accepted, delivery remains local; optional WS-09 and delivery require separate authority
+implementation_authority: closed
 execution_phase: closeout
 validation_state: verified
 ---
+
+The repository maintainer explicitly accepted the verified first-pass
+initiative with "accepted" on 2026-09-29 after reviewing the complete
+[VAL-020 report](validation/VAL-020-report.md) and
+[closeout proposal](execution/MCP-first-pass-closeout-proposal.md). The
+[accepted closeout](closeout.md) records the candidate, evidence, baseline
+nonzero checks and scope limits. Delivery remains local. WS-09, live UAT and
+delivery actions require separate authority. Historical checkpoints below
+remain as recorded at their respective gates.
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
 with "i accept - continue" on 2026-09-29 after fresh

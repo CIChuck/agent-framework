@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-08 accepted; full aggregate VAL-020 VERIFIED; initiative acceptance pending
+Status: first-pass initiative accepted; delivery local; optional WS-09 requires separate authority
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -9,7 +9,7 @@ WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
 Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
 Historical VAL-008 candidate: `397caa9898612cd989f6404951b3e1f5005dfac2`
 
-The [development board](../../board.yaml) remains the canonical initiative
+The [development board](../../../../planning/board.yaml) remains the canonical initiative
 registry. This queue makes the existing [tactical sequence](tactical-plan.md)
 and current [approved REM-005](remediation/REM-005-directive.md) actionable;
 it does not approve later workstreams, create new board states, or change
@@ -110,7 +110,7 @@ is authorized by the REM-004 approval.
 
 ## Separate Backlog And Delivery Gates
 
-- [Friday runtime skills](../../backlog/friday-runtime-skills/README.md) remains
+- [Friday runtime skills](../../../../planning/backlog/friday-runtime-skills/README.md) remains
   a separate backlog initiative. Its next gate is definition review and
   promotion of a bounded first phase, not implementation under MCP approval.
   Reconcile system-prompt placement and shared tool/memory/skills budget
@@ -697,3 +697,13 @@ affected package checks passed. Broad Chat and top-level integration remain
 nonzero for reproduced baseline PTY, localhost-bind and stale board-count
 classes; the proposal records those limits. Phase closeout/state verified;
 WS-09 and delivery remain separate gates.
+
+## 2026-09-29 — Maintainer Accepts First-Pass Initiative
+
+The maintainer explicitly said "accepted" after complete fresh
+[VAL-020](validation/VAL-020-report.md) and the
+[initiative proposal](execution/MCP-first-pass-closeout-proposal.md) were
+presented. The [accepted closeout](closeout.md) records the decision for
+WS-00 through WS-08 and the corrected aggregate candidate `fb371212`.
+Work state accepted; implementation authority closed; delivery remains local.
+Optional WS-09, live UAT, push, merge and release require separate authority.

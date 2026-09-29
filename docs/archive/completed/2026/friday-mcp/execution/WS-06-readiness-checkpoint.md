@@ -84,7 +84,7 @@ paths retain their byte fingerprints: `.DS_Store`, absent `family-tree.md`,
 `docker/Dockerfile.audit`. No cache/runtime-state cleanup or broad staging.
 
 Next: explicit bounded approval of the reconciled WS-06 directive.
-[AGENTS.md](../../../../../AGENTS.md) requires an "approved construction directive"
+[AGENTS.md](../../../../../../AGENTS.md) requires an "approved construction directive"
 before product edits. This checkpoint supplies that concrete decision, not approval.
 After implementation, fresh read-only complete-aggregate VAL-014 and separate
 maintainer acceptance remain required. WS-07/08 and delivery stay separate gates.

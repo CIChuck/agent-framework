@@ -10,10 +10,10 @@ Execution base: `a609f948fe2d869ac29d0cce29d22d9334cd7d08`
 ## Authority And Approval Boundary
 
 Explicit maintainer direction and repository policy govern first:
-[AGENTS.md](../../../../../AGENTS.md),
-[engineering policy](../../../../reference/policies/repository-engineering-policy.md),
-[lifecycle policy](../../../../reference/policies/development-task-lifecycle.md), and
-[independent validation policy](../../../../reference/policies/independent-validation-policy.md).
+[AGENTS.md](../../../../../../AGENTS.md),
+[engineering policy](../../../../../reference/policies/repository-engineering-policy.md),
+[lifecycle policy](../../../../../reference/policies/development-task-lifecycle.md), and
+[independent validation policy](../../../../../reference/policies/independent-validation-policy.md).
 Then apply accepted WS-00 through WS-04 contracts, directives, amendments and
 closeouts; the [build plan](../build-plan.md), [tactical plan](../tactical-plan.md)
 and [rebaseline](../rebaseline-2026-09-27.md); this directive binds the new slice.

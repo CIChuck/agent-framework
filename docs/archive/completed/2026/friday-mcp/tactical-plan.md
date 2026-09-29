@@ -7,9 +7,9 @@ Source build plan: [friday-framework-mcp-enhancements.md](build-plan.md)
 
 ## Source Authority And Precedence
 
-1. [Repository engineering policy](../../../reference/policies/repository-engineering-policy.md) is the code-quality and governance authority for implementation.
+1. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md) is the code-quality and governance authority for implementation.
 2. [Friday Framework MCP enhancements build plan](build-plan.md) is the feature and architectural authority for this work.
-3. [Tactical implementation planner skill](../../../dev-skills/tactical-implementation-planner.md) is the planning-format authority for this document.
+3. [Tactical implementation planner skill](../../../../dev-skills/tactical-implementation-planner.md) is the planning-format authority for this document.
 4. Current package source is the implementation-reality authority when older documentation conflicts with code.
 
 `docs/methodology/constitution/gendev.md` was referenced by the planner skill but is not present in this checkout. If that file is restored later, this plan should be reviewed against it before implementation starts.

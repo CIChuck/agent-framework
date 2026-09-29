@@ -14,9 +14,9 @@ You are the documentation implementation agent for the Friday Framework MCP enha
 
 1. Explicit maintainer direction to continue WS-08, within this documentation
    workstream and without product-code or external-effects authority.
-2. [Repository engineering policy](../../../../reference/policies/repository-engineering-policy.md),
-   [development lifecycle](../../../../reference/policies/development-task-lifecycle.md),
-   and [independent validation policy](../../../../reference/policies/independent-validation-policy.md).
+2. [Repository engineering policy](../../../../../reference/policies/repository-engineering-policy.md),
+   [development lifecycle](../../../../../reference/policies/development-task-lifecycle.md),
+   and [independent validation policy](../../../../../reference/policies/independent-validation-policy.md).
 3. [Friday Framework MCP build plan](../build-plan.md) and
    [tactical plan](../tactical-plan.md).
 4. Independently verified and explicitly accepted WS-00 through WS-07,

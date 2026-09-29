@@ -1848,3 +1848,17 @@ memory, telemetry and cleanup probes passed. No live-provider or external UAT
 is claimed. The [initiative closeout proposal](execution/MCP-first-pass-closeout-proposal.md)
 is ready for an explicit maintainer decision. Phase closeout/state verified;
 initiative acceptance, WS-09 and delivery are separate.
+
+## 2026-09-29 — Maintainer Accepts First-Pass Friday MCP Initiative
+
+After reviewing the complete fresh-context [VAL-020 VERIFIED report](validation/VAL-020-report.md)
+and [first-pass proposal](execution/MCP-first-pass-closeout-proposal.md), the
+repository maintainer explicitly said "accepted". The controller recorded
+`started -> completed -> accepted` and moved the packet into the completed
+archive. The [accepted closeout](closeout.md) identifies the exact product
+candidate, reproduced baseline nonzero checks and retained limits. This
+acceptance covers WS-00 through WS-08 with REM-010, not optional WS-09, the
+deferred Chat health command, live UAT or delivery. Delivery remains local;
+implementation authority is closed. Five unrelated dirty groups remain
+preserved. Archive relocation changes navigation paths, not product source or
+the byte-exact frozen review artifacts.

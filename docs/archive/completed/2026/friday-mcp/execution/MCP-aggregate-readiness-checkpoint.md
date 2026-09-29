@@ -12,7 +12,7 @@
 The build and tactical plans define an initial tools-only integrated MCP client
 pass across Core, MCP, Runtime, Chat, Transcript, Memory, Telemetry, tests and
 guides. The nine accepted work units were each reviewed within their own
-construction boundaries. [Independent validation policy](../../../../reference/policies/independent-validation-policy.md)
+construction boundaries. [Independent validation policy](../../../../../reference/policies/independent-validation-policy.md)
 also requires a complete feature-branch aggregate review before merge to test
 their interaction. The frozen initiative baseline is the recorded WS-00 start
 base, not the older Git merge-base that includes unrelated prior initiatives.

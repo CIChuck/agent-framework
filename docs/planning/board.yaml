@@ -55,55 +55,58 @@ tasks:
 - id: friday-mcp
   title: Friday MCP client enhancement
   priority: 3
-  work_state: started
+  work_state: accepted
   condition: normal
-  implementation_authority: granted
-  packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer decision on first-pass initiative completion and acceptance
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-mcp/
+  next_gate: none; first-pass initiative accepted, delivery remains local; optional WS-09 and delivery require separate authority
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
   validation:
-  - docs/planning/active/friday-mcp/validation/VAL-002-report.md
-  - docs/planning/active/friday-mcp/execution/WS-00-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-004-report.md
-  - docs/planning/active/friday-mcp/execution/WS-01-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-005-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-006-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-007-report.md
-  - docs/planning/active/friday-mcp/execution/WS-02-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-008-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-009-report.md
-  - docs/planning/active/friday-mcp/execution/WS-03-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-010-report.md
-  - docs/planning/active/friday-mcp/execution/WS-04-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-011-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-011-evidence.yaml
-  - docs/planning/active/friday-mcp/validation/VAL-012-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-012-evidence.yaml
-  - docs/planning/active/friday-mcp/validation/VAL-013-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-013-evidence.yaml
-  - docs/planning/active/friday-mcp/execution/WS-05-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-014-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-014-evidence.yaml
-  - docs/planning/active/friday-mcp/validation/VAL-015-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-015-evidence.yaml
-  - docs/planning/active/friday-mcp/execution/WS-06-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-016-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-016-evidence.yaml
-  - docs/planning/active/friday-mcp/execution/WS-07-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-017-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-017-evidence.yaml
-  - docs/planning/active/friday-mcp/validation/VAL-018-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-018-evidence.yaml
-  - docs/planning/active/friday-mcp/execution/WS-08-closeout.md
-  - docs/planning/active/friday-mcp/validation/VAL-019-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-019-evidence.yaml
-  - docs/planning/active/friday-mcp/validation/VAL-020-report.md
-  - docs/planning/active/friday-mcp/validation/VAL-020-evidence.yaml
-  - docs/planning/active/friday-mcp/execution/MCP-first-pass-closeout-proposal.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-002-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-00-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-004-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-01-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-005-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-006-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-007-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-02-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-008-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-009-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-03-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-010-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-04-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-011-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-011-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-012-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-012-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-013-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-013-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-05-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-014-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-014-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-015-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-015-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-06-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-016-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-016-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-07-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-017-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-017-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-018-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-018-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-08-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-019-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-019-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-020-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-020-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/MCP-first-pass-closeout-proposal.md
+  - docs/archive/completed/2026/friday-mcp/closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-29'
 - id: memory-v2
   title: Friday Memory V2
   priority: 4
@@ -834,3 +837,16 @@ events:
   action: note
   note: 'Explicit WS-05 approval: ws-05 is approved. proceed; complete reconciled 23-path directive at a609f94. Dedicated execution branch started; no later-slice or delivery authority.'
   evidence: docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md
+- task: friday-mcp
+  at: '2026-09-29T23:21:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: First-pass product candidate fb371212 and full aggregate VAL-020 VERIFIED with no findings; completion proposed for maintainer acceptance
+  evidence: docs/planning/review/friday-mcp/validation/VAL-020-report.md
+- task: friday-mcp
+  at: '2026-09-29T23:21:30+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer explicitly said accepted after reviewing VAL-020 VERIFIED and the first-pass initiative closeout proposal; acceptance applies to WS-00 through WS-08 first pass only

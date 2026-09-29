@@ -25,7 +25,7 @@ The original WS-06 approval authorized its construction scope and independent
 review; the separate maintainer message above now authorizes this numbered
 correction and separate remediator. It does not accept the resulting candidate.
 
-The [independent-validation policy](../../../../reference/policies/independent-validation-policy.md)
+The [independent-validation policy](../../../../../reference/policies/independent-validation-policy.md)
 requires: "Use a separate remediator for security, architecture, data integrity,
 package boundaries, or a repeated failure." It also states: "Automated remediation
 may proceed only for bounded, non-destructive findings that the maintainer
