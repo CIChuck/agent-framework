@@ -1,0 +1,9 @@
+id: VAL-011-status
+date: '2026-09-28'
+reviewed_candidate: 2388e747ba1bf8157881230ad36ae3ef3272b807
+historical_outcome: CHANGES_REQUESTED
+decision_status: superseded_for_changed_candidate_only
+new_candidate: f24ed20f82eac0cbce17e4b86615497cc9993921
+remediation: REM-006
+replacement_review: VAL-012
+report_and_evidence: original bytes retained unchanged; not a new verdict

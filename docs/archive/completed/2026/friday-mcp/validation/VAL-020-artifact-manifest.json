@@ -1,0 +1,120 @@
+{
+  "id": "VAL-020-artifact-manifest",
+  "members": [
+    {
+      "path": "val020-checks/01.log",
+      "bytes": 2485,
+      "sha256": "e9a119471346d14caed3235b44ae9e9d3c8d859050053a54267d7972627ad525"
+    },
+    {
+      "path": "val020-checks/02.log",
+      "bytes": 10739,
+      "sha256": "66420aeadd488651b8113392c3d0bc66c591ee5f2f52b41f9e9403dee58bee3e"
+    },
+    {
+      "path": "val020-checks/03.log",
+      "bytes": 2179,
+      "sha256": "a8a5f5b8fd2a7d5e565d1e210d71b5d0aeef7545ca87cb6a46186c763bd0046c"
+    },
+    {
+      "path": "val020-checks/04.log",
+      "bytes": 1262,
+      "sha256": "4aeb5fd3bfc566830ff89b5a426bd89c5b5c00125780be85bcae8ce42407add9"
+    },
+    {
+      "path": "val020-checks/05.log",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "path": "val020-checks/06.log",
+      "bytes": 45,
+      "sha256": "453aeb6a1bafc0a5de2120dfa98bae12d7633f5e1aed990f945cd79945f62011"
+    },
+    {
+      "path": "val020-checks/07.log",
+      "bytes": 29,
+      "sha256": "6262dd88dec8392596a0c0a28affa9c2a0dffe6df3885aebd21d0cf9d30ce50d"
+    },
+    {
+      "path": "val020-checks/08.log",
+      "bytes": 70,
+      "sha256": "a3acb66bf16685a7ef372ce3b700312410e1661e8c50047038e88f83684f3135"
+    },
+    {
+      "path": "val020-checks/09.log",
+      "bytes": 46,
+      "sha256": "eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93"
+    },
+    {
+      "path": "val020-checks/10.log",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "path": "val020-checks/11.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val020-checks/15.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val020-checks/16.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "val020-checks/17.log",
+      "bytes": 99,
+      "sha256": "3c7a5005277e2ecc1291edfc746a454d0b2959e09942b062ad7239fd68a3eea8"
+    },
+    {
+      "path": "val020-checks/results.json",
+      "bytes": 7746,
+      "sha256": "d2ea71e76fc5b76f196b4afed7602d840469fe5a1f9d9dc67c6e2727fdcd78d1"
+    },
+    {
+      "path": "val020-close.json",
+      "bytes": 91408,
+      "sha256": "6da9f57dfc6d2113dd2caca6ef7035a2c5132d45329cbd39710caf12773753b2"
+    },
+    {
+      "path": "val020-failure-probe.log",
+      "bytes": 89,
+      "sha256": "18007bada0857c6a5564ecaac82b326574c8d334de0f83b88fe76b3b1572d3b6"
+    },
+    {
+      "path": "val020-probe.log",
+      "bytes": 420,
+      "sha256": "596dc76acdc3fd9c992ca5b66d14f846c4cd53c15468dc7a24596072fffd66bc"
+    },
+    {
+      "path": "val020-start.json",
+      "bytes": 91408,
+      "sha256": "6da9f57dfc6d2113dd2caca6ef7035a2c5132d45329cbd39710caf12773753b2"
+    },
+    {
+      "path": "val020_audit.py",
+      "bytes": 1788,
+      "sha256": "4c8db747c7c854fec24dd6f3abfcff34c3112188d2c2ceab166071e439eb1561"
+    },
+    {
+      "path": "val020_checks.py",
+      "bytes": 1135,
+      "sha256": "22155486939c88c7b6107fff86ccfb97e0dfbe4dc7b5086000d1f5e93588192a"
+    },
+    {
+      "path": "val020_failure_probe.py",
+      "bytes": 1553,
+      "sha256": "bd4b0f50a91608b83e650ac2d36cbb10e598436eb87f4b6a34e18945df268b9f"
+    },
+    {
+      "path": "val020_probe.py",
+      "bytes": 3974,
+      "sha256": "9fbd783d240d7e0e1084195fa70bde334d4f93b8f2a6e4e84f565bff3d9b9ced"
+    }
+  ]
+}

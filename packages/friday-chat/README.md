@@ -5,6 +5,28 @@ Terminal chat application for the Friday Framework.
 Friday Chat provides the user-facing command-line chat experience built on the
 Friday runtime, memory, agent, LLM, transcript, and tools packages.
 
+## MCP client tools
+
+The distributed `config.example.yaml` and packaged
+`src/friday_chat/config_templates/config.example.yaml` include the same
+default-disabled MCP stanza. Copy the runtime example to an editable config
+outside the package, then configure a trusted local stdio server under
+`tools.providers.mcp`. Run
+`friday-chat --config /path/to/config.yaml --runtime real` to use real
+providers; the CLI's default fake runtime does not connect
+to MCP peers. The [MCP client guide](../../docs/guides/17-mcp-client.md) has a
+checkout-local peer example and the exact selected-mode tool-name filter.
+
+Friday Chat selects registered tools per turn. MCP schema tokens and result
+reservation reduce the remaining memory retrieval budget while preserving its
+configured floor. Checked, bounded tool results can appear in transcript
+records; direct MCP long-term memory ingestion remains disabled until an
+explicit sanitized server/tool opt-in. Diagnostics are available through the
+MCP provider owner; no Chat MCP health command is present. Keep secrets in
+process environment variables, not the editable YAML or runtime state
+directory. External `config_file` includes and integrated remote transports
+are deferred.
+
 ## Install
 
 ```bash

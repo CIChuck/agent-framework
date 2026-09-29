@@ -1,0 +1,132 @@
+id: VAL-008
+initiative: friday-mcp
+work_unit: MCP-WS-03
+review_mode: work_unit_aggregate
+status: requested
+date: '2026-09-28'
+branch: feature/friday-mcp-ws03-registry
+work_unit_base_commit: 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641
+work_unit_authorization_commit: b54069654bb3e21a6265fbabcd23f6991e286ab0
+accepted_predecessor_product: a257f041d1d68f8aea2f5b9773df1b88acd82379
+candidate_commit: 397caa9898612cd989f6404951b3e1f5005dfac2
+aggregate_diff_range: 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641..397caa9898612cd989f6404951b3e1f5005dfac2
+implementation_diff_range: b54069654bb3e21a6265fbabcd23f6991e286ab0..397caa9898612cd989f6404951b3e1f5005dfac2
+authority_revision: 397caa9898612cd989f6404951b3e1f5005dfac2
+working_packet_prefix: docs/planning/blocked/friday-mcp/
+pinned_packet_prefix: docs/planning/active/friday-mcp/
+relocation_note: >-
+  After fresh dispatch failed on thread capacity, development lifecycle policy
+  requires the blocked packet under docs/planning/blocked/friday-mcp/. Candidate
+  and authority revisions retain the original active paths. For working-content
+  hash/stability checks only, replace pinned_packet_prefix with working_packet_prefix;
+  use original paths for git show at pinned revisions. All twenty authority
+  document contents/hashes and frozen source/tests/configuration are unchanged.
+  Request gains only this controller relocation mapping, not new review scope.
+required_outcome: VERIFIED | CHANGES_REQUESTED | BLOCKED
+approval_evidence: >-
+  Maintainer explicitly said "ws-03 approved" on 2026-09-28 after the complete
+  reconciled directive/readiness checkpoint. Exact seven source / nine allowed
+  test-fixture / one report paths, all ten criteria, decisions and stop conditions
+  are approved. No later-slice or external/delivery authority is inferred.
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/friday-mcp/build-plan.md
+    sha256: 17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00
+  - path: docs/planning/active/friday-mcp/tactical-plan.md
+    sha256: ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba
+  - path: docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md
+    sha256: c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd
+  - path: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
+    sha256: ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac
+  - path: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md
+    sha256: 96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319
+  - path: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+    sha256: a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d
+  - path: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+    sha256: b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680
+  - path: docs/planning/active/friday-mcp/remediation/REM-004-directive.md
+    sha256: 1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b
+  - path: docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+    sha256: 434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486
+  - path: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+    sha256: 8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b
+  - path: docs/planning/active/friday-mcp/execution/WS-02-closeout.md
+    sha256: df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3
+  - path: docs/planning/active/friday-mcp/validation/VAL-002-report.md
+    sha256: cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566
+  - path: docs/planning/active/friday-mcp/validation/VAL-004-report.md
+    sha256: d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f
+  - path: docs/planning/active/friday-mcp/validation/VAL-007-report.md
+    sha256: 649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6
+  - path: docs/planning/active/friday-mcp/rebaseline-2026-09-27.md
+    sha256: ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a
+  - path: docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md
+    sha256: 2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521
+metadata_note: >-
+  Later commits add controller-only request/board/index/log/queue/dashboard
+  metadata. Frozen source/tests/configuration and all twenty controlling
+  authority documents remain byte-identical to the candidate. Approval commit
+  modifies status/start records only, not the reconciled behavioral requirements.
+  Aggregate covers all WS-03 changes and accepted WS-00/01/02 interactions,
+  not a substitute for the later full feature-branch pre-merge review.
+acceptance_criteria:
+  - MCP-03-AC-01 accepted naming/prefix/length and exact original multi-peer routing.
+  - MCP-03-AC-02 pre-filter MCP/MCP and MCP/native collision preflight with safe diagnostics and no overwrite.
+  - MCP-03-AC-03 exact read-only typed sidecar, additive compatible DTOs, costs/states and non-double-counted discovery/filter/selection/registration diagnostics.
+  - MCP-03-AC-04 all/selected/category/name/exclusion semantics, zero default selection and fatal explicit missing includes even on optional peers.
+  - MCP-03-AC-05 upstream and full final-export count/byte/aggregate caps, deterministic admission and no repeated discovery/backfill.
+  - MCP-03-AC-06 complete bounded supported-schema validation/sanitation, semantic preservation, attack/shape/depth/node/ref rejection/redaction, repr safety and input/adapter mutation resistance.
+  - MCP-03-AC-07 complete ToolDefinition and legacy API compatibility plus real native-registry callable stdio dispatch.
+  - MCP-03-AC-08 publication before bindings, compatible native/disabled/empty behavior and safe known missing-MCP reasons.
+  - MCP-03-AC-09 transaction/failure/cancellation/repeated-start-stop cleanup, native preservation, retained public ownership/retry and all REM-003/004/noisy regression interactions.
+  - MCP-03-AC-10 exact edit boundary, meaningful typing, no new broad ignores/dependencies/config/later-slice/external effects, accurate documentation/residual gates.
+required_checks:
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core/test_mcp_contracts.py packages/friday-mcp/tests_mcp/client/test_adapter.py packages/friday-runtime/tests_runtime/test_mcp_registration.py packages/friday-agent/tests_agent/test_registry.py tests/integration/test_mcp_registry.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime packages/friday-agent/tests_agent/test_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/test_mcp_registry.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-tools/tests_tools -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest tests/integration -q --tb=short
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-core/src/friday_core/mcp.py packages/friday-core/tests_core/test_mcp_contracts.py packages/friday-mcp packages/friday-runtime tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-core packages/friday-runtime packages/friday-mcp
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-core/src/friday_core/mcp.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-core/src/friday_core/mcp.py packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py validate
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py render --check
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py
+  - git diff --check 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641..397caa9898612cd989f6404951b3e1f5005dfac2
+  - git diff --exit-code 397caa9898612cd989f6404951b3e1f5005dfac2 -- packages tests pyproject.toml uv.lock
+known_baselines_to_verify:
+  - Default mypy NumPy __init__.pyi line 737 syntax under default Python 3.10 target.
+  - Core-inclusive unfiltered Python 3.13 four profiles.py no-any-return errors at 77/82/110/115, declared in approved directive.
+  - Unchanged integration board-count assertion line 75 expects 22 instead of canonical 23 initiatives.
+  - Native tools DOCX/XLSX invalid-zip dependency-only fixture assertions at test_filesystem_readers.py 286/306; independently establish unchanged predecessor reproduction before classifying as baseline. No repair or waiver authorized.
+reviewer_instructions:
+  - Newly spawned independent context with fork_turns none; do not read parent sessions, builder private reasoning or adopt builder conclusions.
+  - Read AGENTS.md, policies and all twenty pinned authority documents completely; inspect exact diffs/candidate and all ten criteria.
+  - Read-only governed workspace; no source/report/process edits, staging, commits, board changes, remediation, branch cleanup or effects. Return full report to controller.
+  - Verify request/candidate/authority revisions and SHA256 values at start and closeout, plus frozen source/tests/config stability.
+  - Independently run all required checks and appropriate adversarial local probes, not only the candidate tests.
+  - Probe real public registry callable exact routing, full exported cost overhead, sanitizer/unsupported/deep/late-content bypasses, immutable snapshots and diagnostics.
+  - Probe mixed native/MCP collision/filter/strict includes, transaction/insert-then-raise/rollback refusal, binding failure after publication, registered-peer failure/cancellation/noisy shutdown and public retained-owner retry.
+  - Preserve production cleanup budgets and explicit fixture task/process settlement in finally, including assertion failures. Separate defensive cleanup from asserted public cleanup.
+  - Native registry exports remain mutable to trusted in-process callers as explicitly approved; do not invent whole-registry immutability or later-slice output/prompt guarantees.
+  - State exact commands/exits/results, mandatory criterion evidence, numbered findings with severity/authority/reproduction/mitigation, docs/config impacts and residual gates.
+  - Return exactly one overall outcome VERIFIED, CHANGES_REQUESTED or BLOCKED. VERIFIED is not acceptance; changed candidate/authority needs fresh review.
+permitted_validation:
+  - Deterministic local doubles and bounded local stdio fake peers only, no live MCP/model/provider/network/credentials/delivery.
+  - Read-only exec/import checks or scratch files under /private/tmp via apply_patch are allowed; always settle tasks and kill/drain/reap synthetic subprocesses in finally.
+  - Use the task-specific UV cache and local LiteLLM cost map; do not inspect secret environment values.
+preserved_unrelated_paths:
+  - .DS_Store
+  - family-tree.md
+  - docker-bench-security/
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+  - packages/friday-sandbox/docker/Dockerfile.audit

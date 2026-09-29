@@ -1,0 +1,48 @@
+{
+  "base": "c05882e45d78dc83ad48ee17b156aa9efff6fff0",
+  "changed_product_paths": {
+    "packages/friday-chat/src/friday_chat/memory_mcp.py": "62eeb681b0dbb08b154951ee401d77878a1c64053b6a16fee89991d8a547b287",
+    "packages/friday-chat/src/friday_chat/runtime.py": "0a768386a9c89e719940fc36cb453a2ab933568450d44057570a5ebc56fd5063",
+    "packages/friday-chat/src/friday_chat/tools/mcp.py": "2c286a81e1f8354bb46fbeb2dc381043493ab13b11237b63835e4f6dbd1f093d",
+    "packages/friday-chat/src/friday_chat/turns/processor.py": "85d1aff6f072582d466a7f10fc79eaea76067aa7c8b1bdd5f175f02661a3b096",
+    "packages/friday-chat/tests_chat/test_mcp_chat_bridge.py": "e3f834037ee55a123d2b2ba2c9f77e10d99837cb7923111d3703e9bb79d6e4e3",
+    "packages/friday-chat/tests_chat/test_mcp_execution_security.py": "c0863818cb4c44e8f08a4a85b53b587708c6e6c7f4795ee57bdb3449c3f2ca8f",
+    "packages/friday-chat/tests_chat/test_mcp_memory.py": "1a458eae116b407f228f5d5d5ca718f0f8a825d180ec72387fabdc4ac3909241",
+    "packages/friday-mcp/src/friday_mcp/client/adapter.py": "f061af1c437fb73e7eb6823ddc79ccfd4ce8b02b4783d83f90718f4348e8399a",
+    "packages/friday-mcp/tests_mcp/client/test_adapter.py": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d",
+    "packages/friday-runtime/src/friday_runtime/di.py": "8085b142495376bab4ad38465bb7bdb267f598c443e4ed2375329ed8fb670f9c",
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py": "757044165d07829a04b2fd2416fb4e69f73907906daf85f2947f19a8177ef8c2",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py": "8f575811b035726589304cf9be8297d89278da2df49bd804decff6431222ab26",
+    "packages/friday-telemetry/src/friday_telemetry/__init__.py": "cda7168dde9044ba475f58977ca0be624518d9d636ae0a2c012a46455bb98438",
+    "packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py": "50bc3cefd7434eec706718e4baa1f168164f434f524bc52f48a9607eaf0f6c42",
+    "packages/friday-telemetry/src/friday_telemetry/models/mcp.py": "53f7a172f6a5ec7ed31f72a4fe260e2e4e97c932151a43958b8a4dc6e7641fda",
+    "packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py": "b974efe5b48e90f68ab03d2faf38089543cb199af03d4533805a1c0bfc967a98"
+  },
+  "unrelated": {
+    ".DS_Store": {
+      "files": 1,
+      "sha256": "726abde51b913404c3c5af3bf5ec36210f129b89ca33a0efc24dd4cd73fe98a9",
+      "state": "present"
+    },
+    "docker-bench-security/": {
+      "files": 57,
+      "sha256": "d7215d8bafcc427e5dde801fd1f80f88438fa5bc4215ff3262f86bfcea870f85",
+      "state": "present"
+    },
+    "family-tree.md": {
+      "state": "absent"
+    },
+    "packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak": {
+      "files": 1,
+      "sha256": "b9164e100cf67ff37ff860ed82c5987981ed740e2fec88f8bcc25e815a9c7cea",
+      "state": "present"
+    },
+    "packages/friday-sandbox/docker/Dockerfile.audit": {
+      "files": 1,
+      "sha256": "8904c2cd686fb4acb2612f00b875f8bb03e4a284c3f2b4e4cb440ab7e2739884",
+      "state": "present"
+    }
+  },
+  "historical_validation_unchanged": true,
+  "errors": []
+}

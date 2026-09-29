@@ -1,0 +1,859 @@
+version: 1
+updated: '2026-09-29'
+tasks:
+- id: development-kanban-governance
+  title: Development Kanban governance
+  priority: 1
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/development-kanban-governance/
+  next_gate: none; accepted, delivery remains local
+  delivery_state: local
+  branch: feature/development-kanban-governance
+  depends_on:
+  - documentation-governance
+  validation:
+  - 'tests/integration: 17 passed'
+  - focused mypy and Ruff passed
+  - 'documentation lifecycle: 289 Markdown files passed'
+  - friday-dev-board skill validation passed
+  - docs/guides unchanged from 63cb579
+  - AGENTS.md canonical code-generation authority assertions passed
+  - 'tests/integration: 17 passed after authority update'
+  - focused mypy and Ruff passed after authority update
+  - documentation lifecycle and guide-boundary checks passed
+  - 'tests/integration final: 18 passed'
+  - board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed
+  - VAL-004 VERIFIED aggregate candidate c185c4e
+  - 'tests/integration: 24 passed; focused board tests: 11 passed'
+  - 'board validation: 22 tasks; documentation lifecycle: 298 Markdown files'
+  - focused Ruff and Python 3.13 mypy passed
+  approved_by: repository maintainer
+  approved_at: '2026-09-03'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-22'
+- id: friday-chat-client-lifecycle
+  title: Friday Chat client-session shutdown
+  priority: 2
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-chat-client-lifecycle/
+  next_gate: none; accepted, delivery remains local
+  delivery_state: local
+  branch: feature/friday-chat-client-lifecycle
+  depends_on: []
+  validation:
+  - docs/archive/completed/2026/friday-chat-client-lifecycle/validation/VAL-002-report.md
+  - docs/archive/completed/2026/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml
+  - docs/archive/completed/2026/friday-chat-client-lifecycle/closeout.md
+  approved_by: repository maintainer
+  approved_at: '2026-09-14'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-22'
+- id: friday-mcp
+  title: Friday MCP client enhancement
+  priority: 3
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/friday-mcp/
+  next_gate: maintainer review and merge PR #6; optional WS-09 and later delivery require separate authority
+  delivery_state: pushed
+  branch: feature/friday-mcp-ws08-docs
+  depends_on: []
+  validation:
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-002-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-00-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-004-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-01-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-005-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-006-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-007-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-02-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-008-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-009-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-03-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-010-report.md
+  - docs/archive/completed/2026/friday-mcp/execution/WS-04-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-011-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-011-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-012-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-012-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-013-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-013-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-05-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-014-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-014-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-015-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-015-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-06-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-016-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-016-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-07-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-017-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-017-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-018-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-018-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/WS-08-closeout.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-019-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-019-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-020-report.md
+  - docs/archive/completed/2026/friday-mcp/validation/VAL-020-evidence.yaml
+  - docs/archive/completed/2026/friday-mcp/execution/MCP-first-pass-closeout-proposal.md
+  - docs/archive/completed/2026/friday-mcp/closeout.md
+  approved_by: repository maintainer
+  approved_at: '2026-09-27'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-29'
+- id: memory-v2
+  title: Friday Memory V2
+  priority: 4
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/memory-v2/
+  next_gate: choose and approve the next design artifact
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: tool-governance
+  title: Tool governance
+  priority: 5
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/tool-governance/
+  next_gate: reconcile reviews into an approved contract plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: framework-validation-and-contracts
+  title: Framework validation and contracts
+  priority: 6
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/framework-validation-and-contracts/
+  next_gate: revalidate scope and obtain implementation approval
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: prompt-injection-mitigation
+  title: Prompt-injection mitigation
+  priority: 7
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/prompt-injection-mitigation/
+  next_gate: reconcile the historical plan with current tool-governance authority
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: claude-agent-sdk-tools
+  title: Claude Agent SDK tools
+  priority: 8
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/claude-agent-sdk-tools/
+  next_gate: confirm plan currency and authorize implementation
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: friday-startup-context
+  title: Friday startup context
+  priority: 9
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-startup-context/
+  next_gate: review and approve the draft feature plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-web-chat
+  title: Friday Web Chat
+  priority: 10
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-web-chat/
+  next_gate: review and approve the draft product plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-api
+  title: Friday API
+  priority: 11
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-api/
+  next_gate: review architecture and approve a bounded phase
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-tui
+  title: Friday TUI
+  priority: 12
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-tui/
+  next_gate: review and approve the draft product plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: friday-speech
+  title: Friday Speech
+  priority: 13
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-speech/
+  next_gate: review provider security and approve the draft plan
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: self-evolving-knowledge-graph
+  title: Self-Evolving Knowledge Graph
+  priority: 14
+  work_state: approved
+  condition: normal
+  implementation_authority: design_only
+  packet: docs/planning/queued/self-evolving-knowledge-graph/
+  next_gate: produce and approve the target design
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: nonblocking-chat-input
+  title: Nonblocking Friday Chat input
+  priority: 15
+  work_state: completed
+  condition: blocked
+  implementation_authority: closed
+  packet: docs/planning/blocked/nonblocking-chat-input/
+  next_gate: complete or waive provider-backed idle-maintenance validation
+  delivery_state: unknown
+  branch: null
+  depends_on: []
+  validation:
+  - deterministic implementation validation completed before board import
+  legacy_import: true
+- id: human-in-the-loop
+  title: Human in the Loop
+  priority: 16
+  work_state: queued
+  condition: blocked
+  implementation_authority: not_granted
+  packet: docs/planning/blocked/human-in-the-loop/
+  next_gate: resolve the high-priority architecture contradictions
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: model-aware-reasoning-control
+  title: Model-aware reasoning control
+  priority: 17
+  work_state: queued
+  condition: deferred
+  implementation_authority: not_granted
+  packet: docs/planning/deferred/model-aware-reasoning-control/
+  next_gate: explicit maintainer decision to reopen design
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: agent-scoped-memory-context
+  title: Agent-scoped memory context
+  priority: 18
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/agent-scoped-memory-context/
+  next_gate: promote into a bounded design packet
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - memory-v2
+  validation: []
+  legacy_import: true
+- id: friday-chat-framework-followups
+  title: Friday Chat framework follow-ups
+  priority: 19
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/friday-chat-framework-followups/
+  next_gate: reconcile proposed entries against current source
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: strategic-roadmap
+  title: Strategic roadmap notes
+  priority: 20
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/strategic-roadmap/
+  next_gate: promote one bounded initiative into planning
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+  legacy_import: true
+- id: tool-capabilities
+  title: Tool capability notes
+  priority: 21
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/tool-capabilities/
+  next_gate: reconcile requirements with tool governance
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - tool-governance
+  validation: []
+  legacy_import: true
+- id: documentation-governance
+  title: Documentation information architecture
+  priority: 22
+  work_state: accepted
+  condition: normal
+  implementation_authority: closed
+  packet: docs/archive/completed/2026/documentation-governance/
+  next_gate: none; accepted and merged
+  delivery_state: merged
+  branch: feature/docs-information-architecture-remediation
+  depends_on: []
+  validation:
+  - documentation lifecycle validation passed for 282 Markdown files
+  - focused tests passed
+  - protected guides remained unchanged
+  approved_by: repository maintainer
+  approved_at: '2026-09-03'
+  accepted_by: repository maintainer
+  accepted_at: '2026-09-03'
+- id: friday-runtime-skills
+  title: Friday runtime skills
+  priority: 23
+  work_state: queued
+  condition: backlog
+  implementation_authority: not_granted
+  packet: docs/planning/backlog/friday-runtime-skills/
+  next_gate: review the draft definition and promote a bounded first phase
+  delivery_state: not_started
+  branch: null
+  depends_on: []
+  validation: []
+events:
+- task: documentation-governance
+  at: '2026-09-03'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted
+  note: Documentation refactor accepted and merged through pull request 5.
+  evidence: merge commit 63cb579
+- task: development-kanban-governance
+  at: '2026-09-03'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved
+  note: Approved the repository-visible digital Kanban approach.
+- task: development-kanban-governance
+  at: '2026-09-03'
+  actor: Codex
+  actor_role: agent
+  action: started
+  note: Created the isolated Kanban governance feature branch.
+  evidence: feature/development-kanban-governance
+- task: development-kanban-governance
+  at: '2026-09-03T20:41:15+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Implementation and validation completed for maintainer review
+  evidence: 'tests/integration: 17 passed; focused mypy and Ruff passed; documentation lifecycle: 289 Markdown files passed; friday-dev-board skill validation passed; docs/guides unchanged from 63cb579'
+- task: development-kanban-governance
+  at: '2026-09-03T20:57:32+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened before acceptance to add canonical code-generation authority to AGENTS.md
+- task: development-kanban-governance
+  at: '2026-09-03T20:59:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Canonical AGENTS.md planning and code-generation authority completed and validated
+  evidence: 'AGENTS.md canonical code-generation authority assertions passed; tests/integration: 17 passed after authority update; focused mypy and Ruff passed after authority update; documentation lifecycle and guide-boundary checks passed'
+- task: development-kanban-governance
+  at: '2026-09-03T21:00:41+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened to stabilize the next-task regression independently of current board state
+- task: development-kanban-governance
+  at: '2026-09-03T21:00:56+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Final state-independent regression and validation snapshot completed
+  evidence: 'tests/integration final: 18 passed; board, documentation, mypy, Ruff, skill, diff, and guide-boundary checks passed'
+- task: development-kanban-governance
+  at: '2026-09-03T21:16:59+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned completed -> started
+  note: Reopened after maintainer approval to add documentation-only independent-validation governance
+  evidence: Maintainer accepted all recommended independent-validation policy decisions and authorized documentation/process work only
+- task: development-kanban-governance
+  at: '2026-09-03T21:47:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> blocked
+  note: VAL-002 requested source/test remediation outside the approved documentation-only scope
+  evidence: VAL-002-F01; proposed REM-002 not authorized
+- task: development-kanban-governance
+  at: '2026-09-03T22:18:00+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer approved REM-002 bounded source and test remediation
+  evidence: Explicit maintainer authorization in active conversation on 2026-09-03
+- task: development-kanban-governance
+  at: '2026-09-03T22:31:17+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> blocked
+  note: VAL-003 requested a missing negative regression after the second remediation cycle
+  evidence: VAL-003-F01; proposed REM-003 not authorized
+- task: development-kanban-governance
+  at: '2026-09-04T18:16:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer authorized REM-003 as an explicit exception to the two-cycle limit
+  evidence: Explicit maintainer authorization in active conversation on 2026-09-04
+- task: development-kanban-governance
+  at: '2026-09-04T18:27:38+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: Independent aggregate validation verified the completed governance implementation
+  evidence: 'VAL-004 VERIFIED aggregate candidate c185c4e; tests/integration: 24 passed; focused board tests: 11 passed; board validation: 22 tasks; documentation lifecycle: 298 Markdown files; focused Ruff and Python 3.13 mypy passed'
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:15:40+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Maintainer directed Codex to proceed with the bounded client-lifecycle remediation on 2026-09-14.
+  evidence: docs/planning/queued/friday-chat-client-lifecycle/directives/CD-001-client-lifecycle.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:16:19+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Started approved CD-001 from baseline fe15552 on the dedicated feature branch.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/execution-log.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:29:34+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Deterministic validation completed; preparing the stable candidate for fresh read-only review.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-request.yaml
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:45:03+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: VAL-001 requested one bounded shutdown-order remediation; REM-001 records the exact mitigation and tests.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-report.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T19:52:43+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: REM-001 is implemented and deterministically validated; freeze the remediated candidate for fresh review.
+  evidence: docs/planning/active/friday-chat-client-lifecycle/execution/REM-001-implementation-report.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-14T20:05:55+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: CD-001 and REM-001 are implemented; fresh VAL-002 delta and aggregate validation returned VERIFIED.
+  evidence: docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-report.md; docs/planning/review/friday-chat-client-lifecycle/validation/VAL-002-evidence.yaml; docs/planning/review/friday-chat-client-lifecycle/closeout.md
+- task: development-kanban-governance
+  at: '2026-09-23T01:17:03+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Repository maintainer explicitly accepted the verified development governance result on 2026-09-22.
+  evidence: docs/archive/completed/2026/development-kanban-governance/closeout.md
+- task: friday-chat-client-lifecycle
+  at: '2026-09-23T01:19:15+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Repository maintainer explicitly accepted the verified Friday Chat client lifecycle result on 2026-09-22.
+  evidence: docs/archive/completed/2026/friday-chat-client-lifecycle/closeout.md
+- task: friday-runtime-skills
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded backlog definition
+  note: Maintainer requested a comprehensive definition of runtime-configured skills and possible enhancements.
+  evidence: docs/planning/backlog/friday-runtime-skills/build-plan.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: rebaselined queued packet
+  note: Audited existing standalone MCP package and narrowed the pending WS-00 gate to contracts, defaults, and explicit security decisions without changing work state or authority.
+  evidence: docs/planning/queued/friday-mcp/rebaseline-2026-09-27.md
+- task: friday-mcp
+  at: '2026-09-27T19:57:57+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Maintainer approved rebaselined WS-00 contracts/defaults-only scope, first-pass stdio-only runtime posture, and no stored argument hashes by default on 2026-09-27.
+  evidence: Explicit maintainer approval in active conversation on 2026-09-27
+- task: friday-mcp
+  at: '2026-09-27T19:58:30+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Started approved contracts/defaults-only WS-00 from baseline 20c70dd on dedicated feature branch; runtime, Chat, memory, transcript, telemetry, and CLI remain excluded.
+  evidence: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-00 candidate for validation
+  note: Implemented scoped shared contracts and focused tests; recorded passing checks and separable baseline failures before independent review.
+  evidence: docs/planning/active/friday-mcp/execution/WS-00-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: validation changes requested
+  note: Independent VAL-001 identified incomplete cross-package contract fields and insufficient collision diagnostics; REM-001 is prepared for a separate remediator.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-001-report.md; docs/planning/active/friday-mcp/remediation/REM-001-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-001 remediator
+  note: Maintainer directed continuation after an explicit request to delegate bounded architectural remediation of F-001 and F-002.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-001-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested fresh REM-001 validation
+  note: Separate remediator committed candidate b79754f for F-001 and F-002; pending fresh delta and aggregate review.
+  evidence: docs/planning/active/friday-mcp/execution/REM-001-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified WS-00 work unit
+  note: Fresh independent VAL-002 verified both the REM-001 delta and complete WS-00 aggregate. The initiative remains started; later workstreams require separate approval.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-002-report.md; docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted WS-00 work unit and approved bounded WS-01 directive
+  note: Maintainer replied accepted to the explicit next-gate request for strict MCP configuration parsing and validation without connection or runtime loading authority.
+  evidence: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md; docs/planning/active/friday-mcp/validation/VAL-002-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: started bounded WS-01 implementation
+  note: Started approved configuration slice on feature/friday-mcp-ws01-config from WS-00 closeout ab49ba5; initiative remains started and delivery remains local.
+  evidence: docs/planning/active/friday-mcp/execution-log.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-01 candidate for validation
+  note: Scoped strict runtime MCP configuration and tests are ready for candidate freeze; no connection or Chat behavior changed.
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested independent WS-01 validation
+  note: Candidate de8db57 and exact work-unit diff are frozen for fresh-context read-only review.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-request.yaml
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: validation changes requested for WS-01
+  note: Independent VAL-003 found the MCP default mode and Friday Chat compatibility evidence incomplete; REM-002 awaits separate-remediator authorization.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-003-report.md; docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-002 remediator
+  note: Maintainer explicitly authorized the bounded F-001/F-002 remediation pass; no wider MCP workstream or Friday Chat source change was approved.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-002 dependency stop condition
+  note: Separate remediator stopped before edits because the required runtime-package test would import downstream Friday Chat across an undeclared reverse dependency; maintainer test-location decision required.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md; docs/planning/active/friday-mcp/execution-log.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved REM-002 test-location revision
+  note: Maintainer directed revision to allow only the F-002 config-compatibility test in Friday Chat's test package, with no source or dependency change; separate remediation may resume.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: requested fresh REM-002 validation
+  note: Separate remediator committed candidate dd6c65b within the revised test scope; fresh delta and full WS-01 aggregate validation remain required.
+  evidence: docs/planning/active/friday-mcp/execution/REM-002-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified WS-01 work unit
+  note: Fresh independent VAL-004 verified both the REM-002 delta and complete WS-01 aggregate; initiative remains started, WS-01 acceptance and WS-02 approval remain maintainer decisions.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-004-report.md; docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: accepted WS-01 work unit
+  note: Maintainer explicitly said accept ws-01 after verified closeout. Acceptance applies only to WS-01; the initiative remains started and local, and WS-02 requires separate approval.
+  evidence: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved bounded WS-02 runtime lifecycle
+  note: Maintainer explicitly said ws-02 approved; approval covers the existing directive, not additional source files, later workstreams, or delivery effects.
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded WS-02 readiness scope stop
+  note: Created feature/friday-mcp-ws02-lifecycle from accepted WS-01 checkpoint a64e423; fake-transport probe reproduced partial-handshake cleanup loss, and stdio raw logs require two source files outside the directive. No product code changed; narrow amendment awaits maintainer approval.
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved WS-02 cleanup amendment
+  note: Maintainer said continue next steps after the two-file amendment request and defect explanation; bounded base/stdio cleanup and redaction may proceed, registry insertion stays WS-03, and no external effects or delivery are approved.
+  evidence: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: prepared WS-02 lifecycle candidate
+  note: Runtime-owned stdio lifecycle, bounded discovery handoff, failure diagnostics, and partial-startup cleanup are implemented under the approved amendment; registry insertion remains WS-03. Independent validation is pending.
+  evidence: docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded WS-02 validation changes requested
+  note: Fresh independent VAL-005 confirmed checks but found high F-001 startup-retry ownership loss after cleanup failure; bounded REM-003 awaits authorization of a separate remediator. Candidate remains frozen and no corrective source edits occurred.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-005-report.md; docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: authorized separate REM-003 remediator
+  note: Maintainer explicitly said proceed after the separate REM-003 authorization request; authority is limited to the bounded F-001 correction and fresh review, not WS-03 or delivery effects.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: froze REM-003 candidate for fresh review
+  note: Separate remediator committed 26f4d7d within the five permitted paths; VAL-005 is superseded for decision purposes only. Fresh VAL-006 delta and complete WS-02 aggregate review are required; initiative remains started and local.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-request.yaml
+- task: friday-mcp
+  at: '2026-09-27'
+  actor: Codex
+  actor_role: agent
+  action: recorded verified ownership delta and WS-02 aggregate cleanup finding
+  note: Fresh VAL-006 verifies REM-003 but requests aggregate changes for high F-001 paused-stdout post-kill shutdown hang. Draft REM-004 bounds transport source/tests/report remediation and awaits separate maintainer authorization; no corrective product changes or new remediator dispatch occurred.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-006-report.md; docs/planning/active/friday-mcp/remediation/REM-004-directive.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved bounded REM-004 and separate remediator
+  note: Maintainer said aproved... make a list of next steps in our task queue in reply to the REM-004 authorization request. Approval covers only the exact transport correction and fresh review; this turn records approval and the queue without product edits or remediator dispatch.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-004-directive.md; docs/planning/active/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 agent dispatch capacity stop
+  note: Maintainer said proceed after readiness audit. New separate-remediator dispatch and prior-remediator resumption both failed with agent thread limit reached. No product edits or agent dispatch occurred; approval remains valid, and execution needs available separate-remediator and fresh-validator capacity.
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: Codex
+  actor_role: agent
+  action: prepared existing agent for separate REM-004 remediation
+  note: Existing historical WS-01 reviewer mcp_ws01_val004 confirmed availability and no WS-02 builder/remediator conflict. It may be reassigned solely as the approved separate remediator and must not validate its resulting work. Fresh independent review remains required and its capacity is not yet established.
+  evidence: docs/planning/active/friday-mcp/execution-log.md; docs/planning/active/friday-mcp/task-queue.md
+- task: friday-mcp
+  at: '2026-09-28T14:24:07+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> blocked
+  note: Fresh-context VAL-008 completed with CHANGES_REQUESTED for one medium collision diagnostic finding. Archive unchanged review evidence and prepare bounded REM-005; the old capacity stop is resolved, and explicit remediation approval is the current gate. No product fixes or remediator dispatch.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
+- task: friday-mcp
+  at: '2026-09-28T15:38:09+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition blocked -> normal
+  note: Maintainer explicitly approved REM-005 and its separate remediator with Thats approved. Proceed. Clear the resolved approval condition, restore active packet and authorize only bounded F-001 execution and fresh review; no later-slice or delivery authority.
+  evidence: docs/planning/active/friday-mcp/remediation/REM-005-directive.md
+- task: friday-mcp
+  at: '2026-09-28T16:02:49+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Separate approved REM-005 remediator committed exact eight-path candidate d395acd. Pin fresh VAL-009 delta/full work-unit review and retain historical VAL-008 unchanged; request preparation is not dispatch or verification.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml
+- task: friday-mcp
+  at: '2026-09-28T16:04:35+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: New fresh-context read-only mcp_ws03_val009 successfully spawned with fork_turns none. Formal review starts after stable dispatch metadata and controller GO; candidate/request/22 authorities/reports remain frozen. No verdict or acceptance exists.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-009-request.yaml
+- task: friday-mcp
+  at: '2026-09-28T16:35:53+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Fresh VAL-009 verified REM-005 delta and complete WS-03 aggregate; closeout prepared, work-unit acceptance pending
+  evidence: docs/planning/active/friday-mcp/validation/VAL-009-report.md; docs/planning/active/friday-mcp/execution/WS-03-closeout.md
+- task: friday-mcp
+  at: '2026-09-28T16:52:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: 'Record explicit maintainer WS-03 acceptance: accepted - Summarize WS-03.; candidate d395acd and fresh VAL-009 verified. Wider initiative remains started; next is WS-04 planning before separate approval.'
+  evidence: docs/planning/active/friday-mcp/execution/WS-03-closeout.md
+- task: friday-mcp
+  at: '2026-09-28T17:34:10+00:00'
+  actor: Codex
+  actor_role: agent
+  action: condition normal -> normal
+  note: Maintainer explicitly approved reviewed WS-04 scope with proceed - lets build it; exact directive/readiness reconciled and dedicated branch created before product edits.
+  evidence: docs/planning/active/friday-mcp/directives/ws-04-friday-chat-context-budget.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: WS-04 stable candidate 53d76d45cedea16122436e53b178de074c5bc322 frozen; exact VAL-010 request pins 26 authorities and three reports. Fresh review pending, not verified or accepted.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: New fresh-context /root/mcp_ws04_val010 dispatched read-only with fork_turns none after stable request 62a5c50; validation in_review, no verdict or acceptance.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-request.yaml
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: controller
+  actor_role: agent
+  action: note
+  note: Fresh read-only VAL-010 verified complete WS-04 aggregate with no findings; full independent report/evidence archived and work-unit closeout prepared. Explicit acceptance pending, initiative remains started/local.
+  evidence: docs/planning/active/friday-mcp/validation/VAL-010-report.md; docs/planning/active/friday-mcp/execution/WS-04-closeout.md
+- task: friday-mcp
+  at: '2026-09-28'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: note
+  note: 'Explicit WS-04 acceptance: accepted; verified candidate 53d76d4 and complete fresh VAL-010, no findings. Wider initiative remains started/local; next is WS-05 directive/readiness reconciliation before separate approval.'
+  evidence: docs/planning/active/friday-mcp/execution/WS-04-closeout.md
+- task: friday-mcp
+  at: '2026-09-28T19:06:15+00:00'
+  actor: controller
+  actor_role: agent
+  action: condition normal -> normal
+  note: 'WS-05 planning reconciliation complete after proceed: exact 23-path draft, eight tasks/ten criteria and reproducible local readiness evidence. Explicit directive approval pending; no product edit or WS-05 branch/agent dispatch.'
+  evidence: docs/planning/active/friday-mcp/execution/WS-05-readiness-checkpoint.md
+- task: friday-mcp
+  at: '2026-09-28T22:06:28.963975+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: note
+  note: 'Explicit WS-05 approval: ws-05 is approved. proceed; complete reconciled 23-path directive at a609f94. Dedicated execution branch started; no later-slice or delivery authority.'
+  evidence: docs/planning/active/friday-mcp/directives/ws-05-execution-provenance-transcript.md
+- task: friday-mcp
+  at: '2026-09-29T23:21:23+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned started -> completed
+  note: First-pass product candidate fb371212 and full aggregate VAL-020 VERIFIED with no findings; completion proposed for maintainer acceptance
+  evidence: docs/planning/review/friday-mcp/validation/VAL-020-report.md
+- task: friday-mcp
+  at: '2026-09-29T23:21:30+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned completed -> accepted
+  note: Maintainer explicitly said accepted after reviewing VAL-020 VERIFIED and the first-pass initiative closeout proposal; acceptance applies to WS-00 through WS-08 first pass only
+- task: friday-mcp
+  at: '2026-09-29T23:33:56+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: 'Maintainer authorized pushing the accepted feature branch and opening PR #6 against master; branch pushed to private origin and PR is open for maintainer merge'
+  evidence: https://github.com/CIChuck/agent-framework/pull/6

@@ -1,0 +1,49 @@
+version: 1
+review_id: VAL-003
+outcome: CHANGES_REQUESTED
+reviewed_at: '2026-09-03T22:28:19Z'
+reviewer: /root/independent_validation_val_003
+model: Codex/GPT-5
+model_version: unavailable
+review_mode: aggregate
+remediation_cycle: 2
+candidate: 190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+aggregate_diff: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+remediation_diff: 67d468cc90d5e62de4050e542c8d81e79b332490..190e39ea5b7018d4ba43facd250cfe9b5a19ec3e
+request_sha256: e11d096346c604cb533e022954e75bb43e2b33ec3ebeb8a7cd29b870326b2c74
+authority_hashes:
+  matched: 14
+  mismatched: 0
+candidate_stability: pass
+prior_finding:
+  VAL-002-F01: behavior_fixed_but_required_negative_test_missing
+findings:
+  - id: VAL-003-F01
+    severity: medium
+    subject: missing_backward_delivery_rejection_regression
+    paths:
+      - tests/integration/test_development_board.py
+      - docs/planning/active/development-kanban-governance/execution/REM-002-implementation-report.md
+    violated_requirement: REM-002 Required Tests
+checks:
+  board_validate: 'pass: 22 tasks'
+  documentation_lifecycle: 'pass: 296 Markdown files'
+  focused_tests: 'pass: 10'
+  integration_tests: 'pass: 23'
+  focused_ruff: pass
+  mypy_script: pass
+  mypy_python_313_script_and_test: pass
+  aggregate_diff_check: pass_empty
+  aggregate_protected_paths: pass_empty
+  amendment_protected_paths: pass_empty
+  id_traceability: 'pass: AC 13/13; TP 15/15'
+  final_candidate_stability: pass
+skipped_required_checks: []
+baseline:
+  combined_mypy_python_310: numpy_stub_python_312_syntax_failure
+  modified:
+    - .DS_Store
+  untracked:
+    - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+candidate_regressions: []
+next_gate: maintainer decision after second unsuccessful remediation cycle

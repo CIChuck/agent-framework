@@ -5,9 +5,10 @@ from __future__ import annotations
 import json
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
-from typing import Any, Protocol
+from typing import Any, Protocol, runtime_checkable
 
 from friday_chat.display import HeartbeatFactory, NoopHeartbeatFactory
+from friday_chat.tools.output import redact_tool_request_message
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 
@@ -17,6 +18,22 @@ class ToolCallRegistry(Protocol):
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
         """Execute one named tool."""
+
+
+@runtime_checkable
+class RecordingToolCallRegistry(Protocol):
+    """Optional atomic recording boundary; native/fake registries need not add it."""
+
+    def is_mcp_tool(self, name: str) -> bool: ...
+
+    async def call_tool_record(
+        self,
+        name: str,
+        arguments: dict[str, Any],
+        *,
+        call_id: str | None = None,
+        used_call_ids: set[str] | None = None,
+    ) -> ToolCallRecord: ...
 
 
 @dataclass
@@ -49,6 +66,9 @@ class ToolLoop:
         self,
         messages: Sequence[Mapping[str, Any]],
         tool_schemas: Sequence[ToolDefinition],
+        *,
+        used_call_ids: set[str] | None = None,
+        mcp_tool_names: frozenset[str] = frozenset(),
     ) -> ToolLoopResult:
         """Run deterministic fake function calls found in supplied messages."""
         allowed = {tool.name for tool in tool_schemas}
@@ -56,15 +76,53 @@ class ToolLoop:
         executed: list[ToolCallRecord] = []
         circuit_breaker_open = False
         reasoning_content: list[str] = []
+        identifiers = used_call_ids if used_call_ids is not None else set()
+        recorder = (
+            self._registry
+            if isinstance(self._registry, RecordingToolCallRegistry)
+            else None
+        )
+        request_names = {
+            call["name"]
+            for message in messages
+            for call in _extract_tool_calls(message)
+            if isinstance(call.get("name"), str)
+        }
+        mcp_names = {
+            name
+            for name in allowed | request_names
+            if recorder and recorder.is_mcp_tool(name)
+        }
+        mcp_names.update(mcp_tool_names)
+        # Every supplied response is already known here. Reserve native IDs
+        # across the entire pass before executing any MCP call.
+        identifiers.update(
+            str(call["id"])
+            for message in messages
+            for call in _extract_tool_calls(message)
+            if call.get("id") is not None
+            and (
+                not isinstance(call.get("name"), str)
+                or call.get("name") not in mcp_names
+            )
+        )
+        safe_messages: list[Mapping[str, Any]] = [
+            redact_tool_request_message(message, (), mcp_names) for message in messages
+        ]
 
-        for message in messages[: self._max_iterations]:
+        for index, message in enumerate(messages[: self._max_iterations]):
+            message_records: list[ToolCallRecord] = []
+            calls = _extract_tool_calls(message)
             heartbeat = self._heartbeat_factory.create_heartbeat("tool")
             try:
                 heartbeat.start()
                 reasoning = message.get("reasoning_content")
-                if isinstance(reasoning, str):
+                if isinstance(reasoning, str) and not any(
+                    isinstance(call.get("name"), str) and call.get("name") in mcp_names
+                    for call in calls
+                ):
                     reasoning_content.append(reasoning)
-                for call in _extract_tool_calls(message):
+                for call in calls:
                     name = call.get("name")
                     arguments = call.get("arguments", {})
                     if not isinstance(name, str) or name not in allowed:
@@ -76,37 +134,63 @@ class ToolLoop:
                     if not isinstance(arguments, dict):
                         arguments = {}
                     try:
-                        result = await self._registry.call_tool(name, arguments)
+                        raw_id = call.get("id")
+                        identifier = (
+                            raw_id
+                            if isinstance(raw_id, str)
+                            else (
+                                None
+                                if name in mcp_names or raw_id is None
+                                else str(raw_id)
+                            )
+                        )
+                        if recorder is not None:
+                            record = await recorder.call_tool_record(
+                                name,
+                                arguments,
+                                call_id=identifier,
+                                used_call_ids=identifiers,
+                            )
+                        else:
+                            result = await self._registry.call_tool(name, arguments)
+                            record = ToolCallRecord(name, arguments, result, identifier)
+                        if name in mcp_names and (
+                            record.mcp_provenance is None
+                            or record.arguments
+                            or record.name != name
+                            or record.call_id != record.mcp_provenance.call_id
+                            or record.mcp_provenance.tool.canonical_name != name
+                            or record.mcp_provenance.output_sanitization_state
+                            == "not_checked"
+                            or record.mcp_provenance.model_result_size_bytes
+                            != len(record.result.encode("utf-8"))
+                        ):
+                            raise RuntimeError(
+                                "MCP execution requires checked per-call provenance"
+                            )
                     except KeyError:
                         consecutive_failures += 1
                         if consecutive_failures >= self._max_iterations:
                             circuit_breaker_open = True
                             break
                         continue
-                    executed.append(
-                        ToolCallRecord(
-                            name=name,
-                            arguments=arguments,
-                            result=result,
-                            call_id=(
-                                str(call["id"])
-                                if call.get("id") is not None
-                                else None
-                            ),
-                        )
-                    )
+                    executed.append(record)
+                    message_records.append(record)
                     consecutive_failures = 0
                 if circuit_breaker_open:
                     break
             finally:
                 heartbeat.stop()
+                safe_messages[index] = redact_tool_request_message(
+                    message, message_records, mcp_names
+                )
 
         return ToolLoopResult(
-            messages=list(messages),
+            messages=safe_messages,
             tool_calls=executed,
             iterations=len(executed),
             circuit_breaker_open=circuit_breaker_open,
-            token_usage=_estimate_token_usage(messages, executed),
+            token_usage=_estimate_token_usage(safe_messages, executed),
             reasoning_content=reasoning_content,
         )
 

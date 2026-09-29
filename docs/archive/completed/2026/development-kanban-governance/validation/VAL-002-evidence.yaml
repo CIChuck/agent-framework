@@ -1,0 +1,77 @@
+version: 1
+review_id: VAL-002
+outcome: CHANGES_REQUESTED
+reviewed_at: '2026-09-03T21:44:17Z'
+reviewer: /root/independent_validation_val_002
+model: Codex/GPT-5
+model_version: unavailable
+review_mode: aggregate
+candidate: 7eea978b598025b9920c34c5b80a4d543e0dfb42
+aggregate_diff: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..7eea978b598025b9920c34c5b80a4d543e0dfb42
+amendment_diff: 3553901849362137a7c1d1e14bfcd51915d1567d..7eea978b598025b9920c34c5b80a4d543e0dfb42
+request_sha256: 0a8b2a2140f25a64111d704d506c32bdef32fb2eabbf0c2c38a5ee538fe8fb25
+authority_hashes:
+  matched: 11
+  mismatched: 0
+prior_review_hashes:
+  matched: 2
+  mismatched: 0
+prior_findings:
+  VAL-001-B01: resolved
+  VAL-001-F02: resolved
+findings:
+  - id: VAL-002-F01
+    severity: medium
+    subject: completed_to_started_downgrades_delivery_state
+    path: scripts/friday-dev-board.py
+    lines: 611-621
+    tactical_task: TP-04
+acceptance_criteria:
+  AC-01: pass
+  AC-02: pass
+  AC-03: pass
+  AC-04: pass
+  AC-05: pass
+  AC-06: pass_with_cross_cutting_finding
+  AC-07: pass
+  AC-08: pass
+  AC-09: pass
+  AC-10: pass
+  AC-11: pass
+  AC-12: pass
+  AC-13: pass
+tactical_tasks:
+  TP-01: pass
+  TP-02: pass
+  TP-03: pass
+  TP-04: fail_VAL-002-F01
+  TP-05: pass
+  TP-06: pass
+  TP-07: pass
+  TP-08: pass
+  TP-09: pass
+  TP-10: pass
+  TP-11: pass
+  TP-12: pass
+  TP-13: pass
+  TP-14: pass
+  TP-15: pass_gate_preserved
+checks:
+  board_validate: 'pass: 22 tasks'
+  documentation_lifecycle: 'pass: 293 Markdown files'
+  integration_tests: 'pass: 18 in 3.69s'
+  aggregate_diff_check: pass_empty
+  amendment_protected_paths: pass_empty
+  focused_ruff: pass
+  focused_mypy: pass
+  id_traceability: 'pass: AC 13/13; TP 15/15'
+  final_candidate_stability: pass
+skipped_required_checks: []
+baseline:
+  modified:
+    - .DS_Store
+  untracked:
+    - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+candidate_regressions:
+  - VAL-002-F01
+next_gate: maintainer authorization for REM-002 source/test remediation

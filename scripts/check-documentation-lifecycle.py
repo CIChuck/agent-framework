@@ -11,23 +11,25 @@ from urllib.parse import unquote
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = REPOSITORY_ROOT / "docs"
-BASELINE_COMMIT = "482b857507409fb73556e273f96acdce1c398480"
-PLANNING_LANES = ("active", "queued", "blocked", "deferred", "backlog")
+PLANNING_LANES = ("active", "queued", "review", "blocked", "deferred", "backlog")
 RETIRED_PATH = "docs/planning/build-plans/friday-chat-v2-aechive"
 RETIRED_PATH_EXEMPTIONS = {
     DOCS_ROOT
-    / "planning"
-    / "active"
+    / "archive"
+    / "completed"
+    / "2026"
     / "documentation-governance"
     / "README.md",
     DOCS_ROOT
-    / "planning"
-    / "active"
+    / "archive"
+    / "completed"
+    / "2026"
     / "documentation-governance"
     / "classification-ledger.md",
     DOCS_ROOT
-    / "planning"
-    / "active"
+    / "archive"
+    / "completed"
+    / "2026"
     / "documentation-governance"
     / "current-state-authority-manifest.md",
 }
@@ -134,15 +136,18 @@ def _check_retired_path(markdown_files: list[Path]) -> list[str]:
     return errors
 
 
-def _check_guides_unchanged() -> list[str]:
+def _check_development_board() -> list[str]:
     result = subprocess.run(
-        ["git", "diff", "--quiet", BASELINE_COMMIT, "--", "docs/guides"],
+        ["uv", "run", "python", "scripts/friday-dev-board.py", "validate"],
         cwd=REPOSITORY_ROOT,
         check=False,
+        capture_output=True,
+        text=True,
     )
     if result.returncode == 0:
         return []
-    return [f"docs/guides: differs from protected baseline {BASELINE_COMMIT}"]
+    detail = result.stderr.strip() or result.stdout.strip()
+    return [f"docs/planning/board.yaml: {detail}"]
 
 
 def main() -> int:
@@ -151,7 +156,7 @@ def main() -> int:
         *_check_planning_packets(),
         *_check_links(markdown_files),
         *_check_retired_path(markdown_files),
-        *_check_guides_unchanged(),
+        *_check_development_board(),
     ]
     if errors:
         print("Documentation lifecycle validation failed:")

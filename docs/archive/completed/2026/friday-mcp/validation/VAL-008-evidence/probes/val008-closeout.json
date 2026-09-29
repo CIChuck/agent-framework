@@ -1,0 +1,112 @@
+{
+  "head": "b8e1f041695b94303517617362f590ef3272e0cc",
+  "branch": "feature/friday-mcp-ws03-registry",
+  "request_sha256": "43fb708815e569dbe3d8b0a443ec28bf782e5b5ff2db75fb0be5d4dd2d139cfc",
+  "request_matches_head_blob": true,
+  "all_authorities_match": true,
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md",
+      "sha256": "c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "sha256": "ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md",
+      "sha256": "96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md",
+      "sha256": "a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-003-directive.md",
+      "sha256": "b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-004-directive.md",
+      "sha256": "1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-00-closeout.md",
+      "sha256": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-01-closeout.md",
+      "sha256": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-02-closeout.md",
+      "sha256": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-002-report.md",
+      "sha256": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-004-report.md",
+      "sha256": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-007-report.md",
+      "sha256": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/rebaseline-2026-09-27.md",
+      "sha256": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a",
+      "pinned_expected_working_match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md",
+      "sha256": "2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521",
+      "pinned_expected_working_match": true
+    }
+  ],
+  "frozen_diff_exit": 0,
+  "status": " M .DS_Store\n D family-tree.md\n?? docker-bench-security/\n?? packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak\n?? packages/friday-sandbox/docker/Dockerfile.audit\n",
+  "start_closeout_match": true
+}

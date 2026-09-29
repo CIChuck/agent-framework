@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Markdown transcript exporter.
 
@@ -6,10 +5,17 @@ Exports transcripts to human-readable Markdown format for documentation,
 review, and sharing.
 """
 
+import html
+import json
+import re
 from pathlib import Path
 from typing import TextIO
 
-from friday_transcript.models.transcript import TranscriptEntry, TranscriptSession
+from friday_transcript.models.transcript import (
+    TranscriptEntry,
+    TranscriptSession,
+    mcp_provenance_summary,
+)
 from friday_transcript.stores.protocol import TranscriptStore
 
 
@@ -70,6 +76,7 @@ class MarkdownExporter:
 
         # Open file if path provided
         should_close = False
+        f: TextIO
         if isinstance(output, Path):
             f = open(output, "w")  # noqa: SIM115
             should_close = True
@@ -165,14 +172,25 @@ class MarkdownExporter:
             lines.append("**Tool Calls:**")
             lines.append("")
             for tc in entry.tool_calls:
-                lines.append(f"- `{tc.name}`: `{tc.arguments}`")
+                if tc.mcp_provenance is not None:
+                    summary = json.dumps(mcp_provenance_summary(tc.mcp_provenance))
+                    lines.append(f"- MCP: `{summary}`")
+                else:
+                    lines.append(f"- `{tc.name}`: `{tc.arguments}`")
             lines.append("")
 
             if entry.tool_results:
                 lines.append("**Tool Results:**")
                 lines.append("")
                 for tr in entry.tool_results:
-                    if tr.error:
+                    if tr.mcp_provenance is not None:
+                        preview = str(tr.output)[:200]
+                        preview = re.sub(r"[\x00-\x1f\x7f]", " ", preview)
+                        preview = html.escape(preview)
+                        preview = re.sub(r"([\\`*_{}\[\]()#+.!|>-])", r"\\\1", preview)
+                        suffix = "..." if len(str(tr.output)) > 200 else ""
+                        lines.append(f"- MCP result: {preview}{suffix}")
+                    elif tr.error:
                         lines.append(f"- Error: {tr.error}")
                     else:
                         output_preview = str(tr.output)[:200]

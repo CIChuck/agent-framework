@@ -1,0 +1,129 @@
+version: 1
+review_id: VAL-002
+initiative: development-kanban-governance
+work_unit: independent-validation-governance-remediation
+requested_on: '2026-09-03'
+review_mode: aggregate
+reviewer_context: fresh
+reviewer_write_policy: read_only
+remediation_cycle: 1
+outcomes:
+  - VERIFIED
+  - CHANGES_REQUESTED
+  - BLOCKED
+revisions:
+  repository_base: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5
+  amendment_base: 3553901849362137a7c1d1e14bfcd51915d1567d
+  prior_candidate: 12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07
+  candidate: 7eea978b598025b9920c34c5b80a4d543e0dfb42
+diffs:
+  aggregate: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..7eea978b598025b9920c34c5b80a4d543e0dfb42
+  documentation_amendment: 3553901849362137a7c1d1e14bfcd51915d1567d..7eea978b598025b9920c34c5b80a4d543e0dfb42
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/development-kanban-governance/README.md
+    sha256: 8acd223531a291806704d156b125b978519a213b882135ca255afca1fe453318
+  - path: docs/planning/active/development-kanban-governance/build-plan.md
+    sha256: 4abd8a6294cda9029c31c9d224ed341764ce54f25a8a52d5ff0d407ea1503ce3
+  - path: docs/planning/active/development-kanban-governance/tactical-plan.md
+    sha256: 68a482f48c803eb737761108c0dc491fd22b75453f7464909962c124c3870ac3
+  - path: docs/dev-skills/ai-construction-directive-builder.md
+    sha256: 1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259
+  - path: docs/dev-skills/independent-code-validator.md
+    sha256: 578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508
+  - path: docs/dev-skills/remediation-closeout.md
+    sha256: 1a12b3fcaaed1cce2bd8eb73c2e04baa008452948560442a6191f69b4cbb8608
+  - path: docs/dev-skills/subagent-directives-template.md
+    sha256: e70716896d6131c752be8f52670915a7ab471f8fd5bff650120f408698db25f3
+prior_review:
+  report: docs/planning/active/development-kanban-governance/validation/VAL-001-report.md
+  report_sha256: 862307a404e7d18e36da821b9700b1ca6462d274ebc6aa9e1e4a1b11493a2a0d
+  remediation: docs/planning/active/development-kanban-governance/remediation/REM-001-directive.md
+  remediation_sha256: 53c6d3fcae5509457d46310efb0023b0c820891d384a95845ef4be3c09531a1c
+  findings:
+    - VAL-001-B01
+    - VAL-001-F02
+construction_directive:
+  status: adoption_exception
+  reason: >-
+    Board automation was generated before adoption of the mandatory directive
+    gate. The current amendment is maintainer-authorized documentation and
+    process work only under the packet's lightweight-change exemption.
+  evidence: docs/planning/active/development-kanban-governance/README.md
+acceptance_authority:
+  build_plan: docs/planning/active/development-kanban-governance/build-plan.md
+  acceptance_criteria:
+    - AC-01
+    - AC-02
+    - AC-03
+    - AC-04
+    - AC-05
+    - AC-06
+    - AC-07
+    - AC-08
+    - AC-09
+    - AC-10
+    - AC-11
+    - AC-12
+    - AC-13
+  tactical_plan: docs/planning/active/development-kanban-governance/tactical-plan.md
+  tactical_tasks:
+    - TP-01
+    - TP-02
+    - TP-03
+    - TP-04
+    - TP-05
+    - TP-06
+    - TP-07
+    - TP-08
+    - TP-09
+    - TP-10
+    - TP-11
+    - TP-12
+    - TP-13
+    - TP-14
+    - TP-15
+  execution_log: docs/planning/active/development-kanban-governance/execution-log.md
+required_checks:
+  - uv run python scripts/friday-dev-board.py validate
+  - uv run python scripts/check-documentation-lifecycle.py
+  - uv run pytest tests/integration -q
+  - git diff --check 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..7eea978b598025b9920c34c5b80a4d543e0dfb42
+  - >-
+    git diff --name-only
+    3553901849362137a7c1d1e14bfcd51915d1567d..7eea978b598025b9920c34c5b80a4d543e0dfb42
+    -- docs/guides packages scripts tests main.py pyproject.toml uv.lock
+required_review:
+  - Resolve every acceptance-criterion ID exactly once against the build plan and candidate evidence.
+  - Resolve every tactical-task ID exactly once against the tactical plan and candidate evidence.
+  - Re-evaluate VAL-001-B01 and VAL-001-F02 and record their dispositions.
+  - Review the aggregate feature-branch diff for policy, scope, state, and package-boundary drift.
+  - Verify the documentation amendment changes no source, tests, automation, guides, entrypoints, or workspace metadata.
+  - Verify maintainer-only approval and acceptance remain intact.
+  - Verify validator independence, evidence, outcomes, stale-review handling, and remediation limits are internally consistent.
+  - Separate pre-existing baseline state from candidate regressions.
+known_baseline_state:
+  - .DS_Store is modified and is not part of the candidate.
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak is untracked and is not part of the candidate.
+external_effects:
+  network: forbidden
+  credentials: forbidden
+  paid_services: forbidden
+  persistent_runtime_state: forbidden
+  push_merge_release_deploy: forbidden
+report:
+  path: docs/planning/active/development-kanban-governance/validation/VAL-002-report.md
+  evidence_path: docs/planning/active/development-kanban-governance/validation/VAL-002-evidence.yaml
+allowed_post_review_closeout:
+  - Add VAL-002 report and evidence artifacts.
+  - Append review disposition to the execution log.
+  - Update packet status, execution_phase, validation_state, and next_gate.
+  - Transition the board and generated dashboard from started to completed after VERIFIED.
+  - Do not alter governed policy, AGENTS.md, dev-skill, source, test, script, guide, or package content without a fresh review.

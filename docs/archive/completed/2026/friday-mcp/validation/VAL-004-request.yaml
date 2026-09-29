@@ -1,0 +1,82 @@
+id: VAL-004
+initiative: friday-mcp
+work_unit: MCP-WS-01
+review_modes:
+  - delta
+  - aggregate
+status: requested
+date: '2026-09-27'
+work_unit_base_commit: 22a5643943da06043515494e23b3dfe549052c55
+previous_candidate: de8db57b565968fa02e429e16a481e00c6a92024
+remediation_authorization_commit: 84c984101046613051824748bf9f6a8f8a068518
+candidate_commit: dd6c65bce0035682bbc688953aff8e2011d9d3b7
+delta_diff_range: de8db57b565968fa02e429e16a481e00c6a92024..dd6c65bce0035682bbc688953aff8e2011d9d3b7
+bounded_remediation_diff_range: 84c984101046613051824748bf9f6a8f8a068518..dd6c65bce0035682bbc688953aff8e2011d9d3b7
+aggregate_diff_range: 22a5643943da06043515494e23b3dfe549052c55..dd6c65bce0035682bbc688953aff8e2011d9d3b7
+previous_review: docs/planning/active/friday-mcp/validation/VAL-003-report.md
+required_outcomes: VERIFIED | CHANGES_REQUESTED | BLOCKED for each mode and overall gate
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/friday-mcp/build-plan.md
+    sha256: cfd97c6a64a358c2376edcc971918143ce7b9a7eec7e35b27f89ddbe10ba3cea
+  - path: docs/planning/active/friday-mcp/tactical-plan.md
+    sha256: 80ffdb2a3b31986971fd4efb43393d262b738d86ce6ed7c7f59827caee4a7ed7
+  - path: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md
+    sha256: 96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319
+  - path: docs/planning/active/friday-mcp/rebaseline-2026-09-27.md
+    sha256: ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a
+  - path: docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+    sha256: 434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486
+  - path: docs/planning/active/friday-mcp/validation/VAL-002-report.md
+    sha256: cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566
+  - path: docs/planning/active/friday-mcp/validation/VAL-003-report.md
+    sha256: af93bb3e7a1ccb994440b20e5658b741fff3b7bc73aaefd11f803f41f4381a25
+  - path: docs/planning/active/friday-mcp/remediation/REM-002-directive.md
+    sha256: 914255b7fd6e6a9a96d79f75966052c2bd712fd48ea4008fc632090c3aaae219
+approval_evidence: >-
+  Maintainer authorized the separate REM-002 pass and then replied "revise"
+  to the explicit request to move only F-002's config test to Friday Chat's
+  test package. The revised exact scope was committed in 84c9841.
+metadata_note: >-
+  VAL-003's historical CHANGES_REQUESTED verdict is retained; only a superseded
+  decision-status note was added after dd6c65b. This request and process
+  metadata do not change frozen candidate source, tests, or directive.
+delta_review:
+  - Confirm F-001's three MCP defaults are selected; omitted-mode and explicit-all regressions preserve non-MCP defaults.
+  - Confirm F-002 exercises real Friday Chat YAML/config retention and canonical runtime validation without a second MCP schema.
+  - Confirm the revised Chat test-only scope is obeyed and no source/dependency/turn behavior was added.
+aggregate_review:
+  - Reassess all MCP-01-01 through MCP-01-07 criteria across the complete WS-01 diff.
+  - Confirm strict typed policy/server fields, unknown-key and config_file rejection, workspace confinement, filters, precedence, examples, and backwards compatibility.
+  - Distinguish baseline failures from candidate regressions; retain WS-02 and later-workstream exclusions.
+required_checks:
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py -q
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-mcp packages/friday-runtime packages/friday-chat/tests_chat/test_mcp_config_compatibility.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-mcp packages/friday-runtime
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-mcp packages/friday-runtime packages/friday-chat/tests_chat/test_mcp_config_compatibility.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py validate
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py render --check
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py
+  - git diff --check de8db57..dd6c65b
+  - git diff --check 22a5643..dd6c65b
+known_baseline_failures:
+  - Default mypy target Python 3.10 stops at NumPy's Python 3.12 type-statement stub syntax. Python 3.13 checks the affected scope.
+  - Unchanged tests/integration/test_development_board.py expects 22 tasks while the base board already had 23; its focused suite is 10 passed and one baseline failure.
+exclusions:
+  - No runtime connection/discovery/loading, registry registration, Chat source/alias/turn behavior, memory, transcript, telemetry, or CLI change.
+  - No external includes, remote integrated transport, MCP/provider/live calls, credential use, push, merge, release, or deployment.
+reviewer_instructions:
+  - Fresh context independent of both builder and remediator; read-only review.
+  - Read every pinned authority, previous findings, revised directive, candidate source/tests/examples, and exact diffs; do not rely on builder claims.
+  - Verify all hashes and separate verdicts for delta and aggregate, then the overall gate.
+  - Report reviewer identity/model if available, reproducible checks, numbered findings if any, and residual risk.
+  - No edits, repairs, commits, board mutations, or external/live calls.
+report_path: docs/planning/active/friday-mcp/validation/VAL-004-report.md

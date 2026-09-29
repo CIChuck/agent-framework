@@ -23,6 +23,27 @@ This section provides deep technical dives into advanced Friday Framework topics
 - Familiarity with Python async programming
 - Experience with databases, Docker, and infrastructure
 
+### MCP client lifecycle and trust boundary
+
+The current integrated client accepts local stdio servers with explicit
+commands and workspace-confined working directories. It discovers tools at
+startup, retains an owned provider for truthful retry/cleanup diagnostics, and
+does not refresh a live catalog. Peer metadata, schemas, descriptions and
+results are untrusted. Friday validates and bounds tool definitions before
+registration, checks output before Chat use, and preserves typed local
+diagnostics for optional failures, required failures and name collisions.
+Optional telemetry exports only categorical events and opaque identifiers.
+
+Transcript MCP provenance records checked, bounded call facts without raw
+arguments or argument hashes. Direct long-term memory ingestion is off by
+default; explicit opt-in captures sanitized labeled snapshots, and a pending
+publication is distinct from a published memory. Prompt-injection text in a
+peer description or result does not become system authority. The lower-level
+`friday-mcp` package has separate programmatic transports/server APIs; they do
+not enable SSE or server exposure through the integrated runtime configuration.
+See [MCP client setup and operation](17-mcp-client.md) for exact settings and
+the local synthetic peer example.
+
 ---
 
 ## 11.1 Hybrid Cloud-Local Architecture

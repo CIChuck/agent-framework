@@ -1,0 +1,149 @@
+{
+  "id": "VAL-018",
+  "date": "2026-09-29",
+  "status": "requested",
+  "initiative": "friday-mcp",
+  "work_unit": "MCP-WS-08",
+  "branch": "feature/friday-mcp-ws08-docs",
+  "review_mode": "rem009_delta_plus_complete_original_ws08_aggregate",
+  "base_commit": "d9eb81d6e67bafc71346e142c1d1fd0c61ced6df",
+  "candidate_commit": "08141407f7a7c3ca37174c8950bf552180df47c8",
+  "diff_range": "d9eb81d6e67bafc71346e142c1d1fd0c61ced6df..08141407f7a7c3ca37174c8950bf552180df47c8",
+  "approval_evidence": "Maintainer said continue with ws-08 after the assistant identified WS-08 as the remaining required documentation workstream; the reconciled directive narrows its draft scope to 11 exact guide, README and example-template paths.",
+  "accepted_predecessor_candidate": "2e36613eae6060a99c1255cce04fcb7a27bc7374",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-08-documentation-guide-closeout.md",
+      "sha256": "b5c7d17cb5b6e120d7b0821b63e8ff5b1b0e1a572facb7eae83badb380236f71"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-08-readiness-checkpoint.md",
+      "sha256": "538e7a164e3f7ca318a26d97c23b5c93da40437417a29743c1f7319c6d34def5"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-07-closeout.md",
+      "sha256": "1fa271955f2d718bbbcab87f3452ce6a574522d1043b8b768b13a4203e4d62c8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-08-implementation-report.md",
+      "sha256": "9a80f163ac8aae6b65a1cc926d96f6a29acd860c1fe5d0e93c2e4df80b961cef"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-08-product-manifest.json",
+      "sha256": "74af986561c171e61af26f7a3722136bfe939d0131a36c0245ab510fe220d057"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-009-directive.md",
+      "sha256": "07a04a1801c78efd679359f95cab06c59d92a973a151821f095e90eabc5b5cc2"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-017-request.yaml",
+      "sha256": "443310acc405ff8fe56e7866bcec15c6c6fb22ab0d4056ed10d2731d58bab875"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-017-report.md",
+      "sha256": "cd9d033bf5e3cfaf1fef74fb1d483b6ffb4c53e6ad9c69bbf1be3881282001a3"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-017-evidence.yaml",
+      "sha256": "bda407389b0b44fcc63a95cce45cb416d08d317d3911c7f06a167e6724870d28"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-017-artifact-manifest.json",
+      "sha256": "86ad15475dea8180f7e910a79b793a4a1398e663c6504b308bf824c53780d691"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-009-implementation-report.md",
+      "sha256": "2414f46775d88e4f3040f03edb03ea250ee89c3ace8231b3f3983b288d77e12b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-009-product-manifest.json",
+      "sha256": "e766a73174d8503aa9b93d05f76c9a5f90c2f152236fc6ff0627e17317db6970"
+    }
+  ],
+  "tactical_tasks": [
+    "MCP-08-01",
+    "MCP-08-02",
+    "MCP-08-03",
+    "MCP-08-04",
+    "MCP-08-05",
+    "MCP-08-06",
+    "MCP-08-07",
+    "MCP-08-08"
+  ],
+  "acceptance_criteria": [
+    "REM009-F01: Strict include on an optional missing peer fails with missing_include, while category-only selection permits optional absence; all docs describe both and the wider category admission.",
+    "REM009-F02: Configuration summary recognizes category-only selected mode, and local parser/registration checks support it.",
+    "WS08-AC01: Guide and distributed examples accurately configure default-disabled and one local stdio MCP server through canonical tools.providers.mcp, with selected-mode filters, optional/required behavior, workspace paths and environment secret handling.",
+    "WS08-AC02: Guides correctly distinguish discovery/registration caps from Chat per-turn tool/schema/result budgets and memory floor, plus checked transcript provenance and default-disabled opt-in long-term MCP ingestion.",
+    "WS08-AC03: Troubleshooting and package READMEs match accepted public APIs and typed diagnostics, correct the historical unsupported HTTP MCPClient example, and label deferred config_file, remote integrated transport, refresh, resources/prompts, server exposure and Chat health command.",
+    "WS08-AC04: All 11 deliverable paths match the approved manifest; no runtime source, tests, package metadata, other templates or historical validation changed, and all five unrelated local fingerprints are preserved.",
+    "WS08-AC05: YAML/Python snippets, two distributed templates, local fake stdio/required failure, CLI syntax, docs links, relevant tests and baseline distinctions have reproducible evidence."
+  ],
+  "required_checks": [
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-runtime/tests_runtime",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-chat/tests_chat",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-mcp/tests_mcp",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-chat/tests_chat/test_mcp_memory.py",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q tests/integration/test_mcp_runtime_lifecycle.py tests/integration/test_mcp_registry.py tests/integration/test_mcp_execution_provenance.py tests/integration/test_mcp_memory_ingestion.py",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync friday-chat --help",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/check-documentation-lifecycle.py",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/friday-dev-board.py validate",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/friday-dev-board.py render --check",
+    "git diff --check d9eb81d6e67bafc71346e142c1d1fd0c61ced6df..08141407f7a7c3ca37174c8950bf552180df47c8",
+    "Independently extract and parse every new YAML guide snippet through both Runtime and Chat MCP config models, check both template copies and Chat env interpolation/config_file rejection.",
+    "Independently execute the fenced friday-mcp README Python example and one repo-local stdio/optional/required failure lifecycle probe, settling owned subprocesses.",
+    "At start and closeout verify 11 pinned deliverable hashes, 11 authority hashes, exact diff scope, no product source change and five unrelated fingerprints.",
+    "git diff --check f8970313655e6e18b39d14dc1f151b5a7b5aaa33..08141407f7a7c3ca37174c8950bf552180df47c8",
+    "Independently extract all four guide YAML snippets and both distributed templates, parse through Runtime and Chat; start and register strict and category local stdio peers; with missing command show strict optional missing_include, category optional continuation and required failure.",
+    "Verify VAL-017 report/evidence are historically unchanged; review each F01/F02 delta and rerun all original WS08-AC01 through AC05 against the corrected 11-path aggregate.",
+    "At start and closeout verify 11 corrected product hashes, all pinned authority hashes, exact four-path product remediation delta, exact 11-path original aggregate and all five unrelated byte fingerprints."
+  ],
+  "known_builder_nonzero": [
+    "Broad Chat suite remains nonzero: 620 passed, 5 skipped, one provider-free PTY timing failure and three localhost fixture bind PermissionErrors; same independently reproduced WS-07 baseline class. Report it nonzero; do not waive or repair under WS-08."
+  ],
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "local_only": "Synthetic stdio peer and scratch files; no live provider, paid endpoint, real credential, network, merge, push or release."
+  },
+  "reviewer_rules": [
+    "Use a new fresh context (fork_turns none) and remain read-only against governed repo; scratch only under /private/tmp. Read this VAL-018 request first, then authorities, VAL-017 findings, four-path remediation delta and full 11-path original aggregate. Do not inherit builder/controller private reasoning.",
+    "Independently assess both VAL-017 findings and every original WS08 acceptance criterion across six guide files, three README files and two template copies against accepted source, parser and CLI behavior; do not rely on builder report as verdict.",
+    "Run required checks, local snippet/peer adversarial probes, verify link integrity and compare nonzero Chat behavior to pinned prior baseline or byte-checked base without claiming nonzero pass.",
+    "Do not fix, edit, commit, stage, push, alter board/branch or touch unrelated dirty paths. Settle owned processes.",
+    "Return complete Markdown report with exactly one VERIFIED, CHANGES_REQUESTED or BLOCKED verdict, numbered findings if any, concrete source/command evidence, limits and residual risk. Maintainer acceptance and delivery are separate."
+  ],
+  "report_target": "docs/planning/active/friday-mcp/validation/VAL-018-report.md",
+  "remediation_base_commit": "f8970313655e6e18b39d14dc1f151b5a7b5aaa33",
+  "remediation_diff_range": "f8970313655e6e18b39d14dc1f151b5a7b5aaa33..08141407f7a7c3ca37174c8950bf552180df47c8",
+  "remediation_findings": [
+    "VAL-017-F01",
+    "VAL-017-F02"
+  ],
+  "remediation_cycle": 1
+}

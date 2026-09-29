@@ -1,0 +1,33 @@
+id: REM-007-evidence
+date: '2026-09-28'
+remediator: /root/mcp_ws05_rem006
+candidate: cca86b51105666d12c2e7ed571f8f9a05d2085f9
+source_test_candidate: e425d6765a2689256d0e48ec8305a4ad183e4945
+followup_base: 446e3a6f4e445a456dcbe6ef25058e60af54fe53
+original_remediation_base: dd6a337eb2928ab4050ea70fb41dc77072210e34
+original_aggregate_base: a609f948fe2d869ac29d0cce29d22d9334cd7d08
+approved_implementation_paths:
+- packages/friday-chat/src/friday_chat/tools/loop.py
+- packages/friday-chat/tests_chat/test_mcp_execution_security.py
+- docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md
+report: docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md
+report_sha256: 30c0b2ab647c5337626e725d77681dae438969a962da70d240f265062fe88c51
+archive: docs/planning/active/friday-mcp/execution/REM-007-evidence.tar.gz
+archive_sha256: 25200f93c9e6fc6c9971956526ba7daaa3c5ed684b6eb83532d401599ad4fb75
+archive_bytes: 8929677
+artifact_count: 185
+archive_preservation: Original deterministic archive and all member bytes copied unchanged; every hash
+  verified
+member_manifest: docs/planning/active/friday-mcp/execution/REM-007-artifact-manifest.json
+member_manifest_sha256: 2536e33051ec92eadcbea77b453b1ed6ce70d565bb60bdf12600205901d73b76
+delivery_manifest: docs/planning/active/friday-mcp/execution/REM-007-delivery.json
+new_report_member_locators_verified: 20
+historical_report: original f24ed20 report remains in original REM-006-evidence.tar.gz; updated existing
+  unaccepted report appends follow-up only
+independent_validation: pending new fresh VAL-013; remediator checks are not verification or acceptance
+frozen_inputs_preserved: 56
+outside_scope_product_files_preserved: 976
+unrelated_path_fingerprints_preserved: 5
+runtime_databases_included: false
+restore_command: mkdir -p /private/tmp/rem007-restored && tar -xzf docs/planning/active/friday-mcp/execution/REM-007-evidence.tar.gz
+  -C /private/tmp/rem007-restored

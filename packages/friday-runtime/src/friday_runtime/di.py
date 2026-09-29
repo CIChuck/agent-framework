@@ -47,6 +47,7 @@ from friday_runtime.config import (
     LLMServiceConfig,
     RuntimeConfig,
 )
+from friday_runtime.mcp_loading import RuntimeMCPProvider
 from friday_runtime.tool_loading import register_runtime_tools
 
 logger = logging.getLogger(__name__)
@@ -91,6 +92,8 @@ class DIContainer:
         self.multi_agent_coordinator: PromotionCoordinator | None = None
         self.context_engine: ContextAssembler | None = None
         self.tool_registry: DefaultToolRegistry | None = None
+        self.mcp_provider: RuntimeMCPProvider | None = None
+        self._booted = False
 
     async def boot(self) -> None:
         """
@@ -99,6 +102,8 @@ class DIContainer:
         Creates all eager services in dependency order.
         Raises on failure — partial initialization is not supported.
         """
+        if self._booted:
+            return
         self._create_telemetry()
         self._create_llm_services()
         await self._create_storage_adapters()
@@ -106,6 +111,25 @@ class DIContainer:
         self._create_multi_agent_stack()
         self._create_context_engine()
         self._create_tool_registry()
+        if self._config.tools.providers.mcp.enabled:
+            if self._config.workspace_root is None:
+                raise RuntimeError("Runtime workspace root not initialized")
+            # Failed boot may leave cleanup pending. Reuse its explicit owner
+            # so provider startup and public shutdown can reach every client.
+            if self.mcp_provider is None:
+                self.mcp_provider = RuntimeMCPProvider(
+                    self._config.tools.providers.mcp, self._config.workspace_root,
+                    telemetry=self.telemetry,
+                )
+            await self.mcp_provider.start()
+            if self.tool_registry is None:
+                raise RuntimeError("Runtime tool registry not initialized")
+            try:
+                await self.mcp_provider.register_tools(self.tool_registry)
+            except BaseException:
+                await self.mcp_provider.stop()
+                raise
+        self._booted = True
         logger.info("DI container boot complete")
 
     async def shutdown(self) -> None:
@@ -115,6 +139,9 @@ class DIContainer:
         Safe to call multiple times.
         """
         logger.info("Shutting down DI container...")
+        if self.mcp_provider is not None:
+            await self.mcp_provider.stop()
+        self._booted = False
         # Currently ChromaDB handles its own cleanup.
         # Future: flush telemetry, persist memory, etc.
         logger.info("DI container shutdown complete")

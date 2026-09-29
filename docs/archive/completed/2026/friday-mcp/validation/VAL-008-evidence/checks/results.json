@@ -1,0 +1,107 @@
+[
+  {
+    "number": 1,
+    "command": "LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core/test_mcp_contracts.py packages/friday-mcp/tests_mcp/client/test_adapter.py packages/friday-runtime/tests_runtime/test_mcp_registration.py packages/friday-agent/tests_agent/test_registry.py tests/integration/test_mcp_registry.py -q",
+    "exit": 0,
+    "seconds": 7.91,
+    "log": "/private/tmp/val008-checks/01.log"
+  },
+  {
+    "number": 2,
+    "command": "LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime packages/friday-agent/tests_agent/test_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/test_mcp_registry.py -q",
+    "exit": 0,
+    "seconds": 54.12,
+    "log": "/private/tmp/val008-checks/02.log"
+  },
+  {
+    "number": 3,
+    "command": "LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-tools/tests_tools -q",
+    "exit": 1,
+    "seconds": 12.87,
+    "log": "/private/tmp/val008-checks/03.log"
+  },
+  {
+    "number": 4,
+    "command": "LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py -q",
+    "exit": 0,
+    "seconds": 2.36,
+    "log": "/private/tmp/val008-checks/04.log"
+  },
+  {
+    "number": 5,
+    "command": "LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest tests/integration -q --tb=short",
+    "exit": 1,
+    "seconds": 51.51,
+    "log": "/private/tmp/val008-checks/05.log"
+  },
+  {
+    "number": 6,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-core/src/friday_core/mcp.py packages/friday-core/tests_core/test_mcp_contracts.py packages/friday-mcp packages/friday-runtime tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py",
+    "exit": 0,
+    "seconds": 0.06,
+    "log": "/private/tmp/val008-checks/06.log"
+  },
+  {
+    "number": 7,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-core packages/friday-runtime packages/friday-mcp",
+    "exit": 2,
+    "seconds": 0.81,
+    "log": "/private/tmp/val008-checks/07.log"
+  },
+  {
+    "number": 8,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-core/src/friday_core/mcp.py",
+    "exit": 1,
+    "seconds": 0.24,
+    "log": "/private/tmp/val008-checks/08.log"
+  },
+  {
+    "number": 9,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py",
+    "exit": 0,
+    "seconds": 1.02,
+    "log": "/private/tmp/val008-checks/09.log"
+  },
+  {
+    "number": 10,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-core/src/friday_core/mcp.py packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_registry.py tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py",
+    "exit": 1,
+    "seconds": 0.83,
+    "log": "/private/tmp/val008-checks/10.log"
+  },
+  {
+    "number": 11,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py validate",
+    "exit": 0,
+    "seconds": 0.08,
+    "log": "/private/tmp/val008-checks/11.log"
+  },
+  {
+    "number": 12,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py render --check",
+    "exit": 0,
+    "seconds": 0.08,
+    "log": "/private/tmp/val008-checks/12.log"
+  },
+  {
+    "number": 13,
+    "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py",
+    "exit": 0,
+    "seconds": 0.28,
+    "log": "/private/tmp/val008-checks/13.log"
+  },
+  {
+    "number": 14,
+    "command": "git diff --check 2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641..397caa9898612cd989f6404951b3e1f5005dfac2",
+    "exit": 0,
+    "seconds": 0.02,
+    "log": "/private/tmp/val008-checks/14.log"
+  },
+  {
+    "number": 15,
+    "command": "git diff --exit-code 397caa9898612cd989f6404951b3e1f5005dfac2 -- packages tests pyproject.toml uv.lock",
+    "exit": 0,
+    "seconds": 0.01,
+    "log": "/private/tmp/val008-checks/15.log"
+  }
+]

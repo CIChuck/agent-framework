@@ -1,0 +1,241 @@
+{
+  "id": "VAL-020",
+  "date": "2026-09-29",
+  "status": "requested",
+  "initiative": "friday-mcp",
+  "review_mode": "rem010_delta_plus_complete_first_pass_feature_branch_aggregate",
+  "branch": "feature/friday-mcp-ws08-docs",
+  "baseline_commit": "20c70dd70622e5f1b80029076a789fb58c748fb5",
+  "candidate_commit": "fb3712127229ba032427b8f3deae04da543e646d",
+  "diff_range": "20c70dd70622e5f1b80029076a789fb58c748fb5..fb3712127229ba032427b8f3deae04da543e646d",
+  "approval_evidence": "Repository maintainer explicitly approved exact REM-010 and separate remediator with approved, continue on 2026-09-29. Separate remediator committed five-path candidate fb371212; all WS-00 through WS-08 work units remain accepted. This is a new read-only delta followed by complete original aggregate review.",
+  "deferred_scope": "WS-09 external config_file include remains optional, unapproved and excluded; no live provider, external UAT, merge, push or release.",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/rebaseline-2026-09-27.md",
+      "sha256": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/MCP-aggregate-readiness-checkpoint.md",
+      "sha256": "8fd9c7d17d6e5abf4e5d40649492f4c01d530990b5666193c25b2e32e477d515"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/MCP-aggregate-manifest.json",
+      "sha256": "bfce70eccd32830b62813dcbe4e9abb6e1453b9cb2ed13b28ab1a4e20c4ee2a9"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-00-closeout.md",
+      "sha256": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-01-closeout.md",
+      "sha256": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-02-closeout.md",
+      "sha256": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-closeout.md",
+      "sha256": "07f635f7f58f498227ab86175584da9ce6a19cba6a8af0edaa7dd04ca0e8c250"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-04-closeout.md",
+      "sha256": "b17fa4a08b337a7ff6cd9505e0928939200c4d1f2320ec44940860cb7144f97f"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-05-closeout.md",
+      "sha256": "dadaf39ed8310811a31e2cc7f7927c35e476a02031e8ca9a9ae0237e9d809092"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-06-closeout.md",
+      "sha256": "888369d0c6ecfccd11f325ff12e842b247c8cd7684c0bc966757a1efe49046f0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-07-closeout.md",
+      "sha256": "1fa271955f2d718bbbcab87f3452ce6a574522d1043b8b768b13a4203e4d62c8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-08-closeout.md",
+      "sha256": "64f2ab2607ceac44adce2b4929278a632ccff49ff2397dccf1d269b9cf6663db"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-002-report.md",
+      "sha256": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-004-report.md",
+      "sha256": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-007-report.md",
+      "sha256": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-009-report.md",
+      "sha256": "69fc9a1355e1de082396fc5259064f9c88976d25f57dd518126bac414dece05a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-010-report.md",
+      "sha256": "21064837f338f0334cfab89cc6a3b9ac03c65ec9bbdbe438b22a7b682739f5f9"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-013-report.md",
+      "sha256": "7bae31e98d91fa6d19e9bd1ef5c8976a19c098b84b998f69cd6362f305ed33a2"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-015-report.md",
+      "sha256": "50f4ba48c826fc2c490f5342693c447a2184a28713fa7ec5172cd158d30460f9"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-016-report.md",
+      "sha256": "1aaea6980372e36618641055476874c7ce9a642b44e107484cba3ff06f66f242"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-018-report.md",
+      "sha256": "153e7f5b43ffc15225f4bf6c2dce1db0dbf9a4d8d5486edc37fbef2d61ad5fce"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-009-evidence.yaml",
+      "sha256": "f570ef33336515a64cf7e90a235f9d526c159b07a08f06da5aa5122168972f2e"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-010-evidence.yaml",
+      "sha256": "e97101bfde159f4ebbb9a160684ca06b48a14d66072f4bf9e5a28ee4f5f823d0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-013-evidence.yaml",
+      "sha256": "14844d6217b476f2e9bedbf6b6d2eedbed5a73d7bbb34269a1e43d5c7d37d1d7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-015-evidence.yaml",
+      "sha256": "15fb0c3113d8ace599f4ab293f931417b1774fa88a63c48087d4fc71b9134e2c"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-016-evidence.yaml",
+      "sha256": "43ee057d0ffc2feb08e1111ed652161ccf8d7921c32916fc5df7258e5aa1e2b5"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-018-evidence.yaml",
+      "sha256": "454ae47559d944e998f7b8eb554e249a52ebd9e5177e074f6abc7de186be3d2a"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-017-report.md",
+      "sha256": "cd9d033bf5e3cfaf1fef74fb1d483b6ffb4c53e6ad9c69bbf1be3881282001a3"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-018-request.yaml",
+      "sha256": "911fa9a1f5f06c49940efbe757ce660f6995b499676114e43ef69080b98c6be1"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-009-directive.md",
+      "sha256": "07a04a1801c78efd679359f95cab06c59d92a973a151821f095e90eabc5b5cc2"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-019-request.yaml",
+      "sha256": "3aad5300a77ed37070fb95b4047016656a5d759edc9365bf2205fe2012567769"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-019-report.md",
+      "sha256": "c0ae1ba155b9abba61e050c518da606e3e5e4b90521ce1bf1d3c65c25f864144"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-019-evidence.yaml",
+      "sha256": "3f9695485a43628ea6b34f6caa558b1629318d1f1f30f9b928296f4010ccd68e"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-019-artifact-manifest.json",
+      "sha256": "20c7b78cb04f08a8dcf14cbfdbf4ced88394346827de63ab71c37c9f9d00fd08"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-010-directive.md",
+      "sha256": "4389de923187dc2fa832235f07cd052f4f66fe15e467f465170829a358fb61d9"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-010-implementation-report.md",
+      "sha256": "51c78dde0a52cac7fbd5a4062cd309b3603e0cbcafc9838a8dc3de8fcf10da9c"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/REM-010-aggregate-manifest.json",
+      "sha256": "6a6daee468c5d29d20a07f778c718ff6f97cdcd78de17756b65b053ca2a47faa"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-019-status.yaml",
+      "sha256": "d1b8930b69fd6f20c7b9a753ceb73364103e72ec981c093dc36c6e67b4f53b48"
+    }
+  ],
+  "product_manifest": "docs/planning/active/friday-mcp/execution/REM-010-aggregate-manifest.json",
+  "acceptance_criteria": [
+    "REM010-F001: Newly checked Memory collection manager has explicit optional-ID narrowing, truthful Chroma embedding types and a safe typed graph-listing capability; Memory completion typed/legacy alias resolves inherited errors without behavior drift; exact joint mypy exits zero with no broad suppression.",
+    "MCP-AGG-01: Canonical typed tools.providers.mcp configuration is default-disabled, rejects config_file and unsafe input, and maps through Runtime and Chat without a second authority.",
+    "MCP-AGG-02: Local stdio startup/discovery/registration/stop, optional and required behavior, timeout/retry, rollback, cancellation and retained cleanup ownership work together without native regression.",
+    "MCP-AGG-03: Canonical names, both-source typed collision diagnostics, selected/category filters, explicit includes, schema sanitization, caps, exports and registry metadata remain coherent across Core/MCP/Runtime/Chat.",
+    "MCP-AGG-04: Chat per-turn tool selection, schema/result reservation, required-tool decisions and minimum memory retrieval floor operate together on actual registered MCP and native tools.",
+    "MCP-AGG-05: Checked MCP output, execution provenance and paired transcript/export records retain safe bounded semantics across direct calls and Chat turns.",
+    "MCP-AGG-06: Optional long-term ingestion remains default-disabled; explicit grants, sanitization, durable receipt and retry/pending behavior prevent duplicate or unreceipted publication and preserve native behavior.",
+    "MCP-AGG-07: Telemetry and public operational diagnostics are typed, bounded and redacted across lifecycle, collision, call, budget, result and memory outcomes without raw peer/secret leakage.",
+    "MCP-AGG-08: Guides, package READMEs and distributed templates match accepted source and disclose limits, deferred WS-09/remote capabilities and real optional/strict-include semantics.",
+    "MCP-AGG-09: The exact 77-path product diff and 220 planning/evidence paths are accounted for against initiative baseline; nine accepted work-unit records and historical finding dispositions are coherent; five unrelated dirty paths are preserved.",
+    "MCP-AGG-10: Representative local end-to-end integration, relevant package/integration suites, typing/lint/lock/docs/board checks and independently classified baseline nonzero outcomes support the complete feature-branch verdict."
+  ],
+  "required_checks": [
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime packages/friday-agent/tests_agent",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-chat/tests_chat",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-memory/tests_memory packages/friday-transcript/tests packages/friday-telemetry/tests_telemetry",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q tests/integration",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync ruff check packages/friday-core packages/friday-mcp packages/friday-runtime packages/friday-chat packages/friday-memory packages/friday-transcript packages/friday-telemetry tests/integration",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync mypy --python-version 3.13 packages/friday-core/src/friday_core/mcp.py packages/friday-mcp/src/friday_mcp/client packages/friday-runtime/src/friday_runtime packages/friday-chat/src/friday_chat packages/friday-memory/src/friday_memory packages/friday-transcript/src/friday_transcript packages/friday-telemetry/src/friday_telemetry",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv lock --check --offline",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/check-documentation-lifecycle.py",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/friday-dev-board.py validate",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync python scripts/friday-dev-board.py render --check",
+    "git diff --check 20c70dd70622e5f1b80029076a789fb58c748fb5..fb3712127229ba032427b8f3deae04da543e646d",
+    "Independently run a local fake-stdio end-to-end probe through public Runtime and Chat surfaces, with success and safe failure, selected/category admission, checked result/provenance, optional memory, telemetry and cleanup as feasible; never use a live endpoint.",
+    "Independently audit 77 product hashes, 297 exact diff paths, 44 pinned authorities, accepted WS-00..08 closeouts, deferred WS-09 boundary, and five unrelated dirty-path byte fingerprints at start and close.",
+    "Classify any nonzero result against unchanged baseline source/tests and prior independent evidence; never claim a nonzero suite passed or waive a new regression.",
+    "git diff --check 847d410934150865395bdcf58beb2a9342cd19f8..fb3712127229ba032427b8f3deae04da543e646d",
+    "git diff --check 325947a..fb3712127229ba032427b8f3deae04da543e646d",
+    "UV_CACHE_DIR=/private/tmp/friday-uv-cache UV_NO_SYNC=true LITELLM_LOCAL_MODEL_COST_MAP=true uv run --no-sync pytest -q packages/friday-memory/tests_memory/test_retrieval/test_collection_manager.py packages/friday-memory/tests_memory/test_llm_completion.py packages/friday-memory/tests_memory/test_mcp_memory.py packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py tests/integration/test_mcp_memory_ingestion.py",
+    "Independently inspect each of five approved REM-010 product paths against finding VAL-019-F-001 and exact directive, including negative invalid-ID/no-write, numeric embeddings, graph capability and typed/legacy completion behavior. Compare full aggregate with historical candidate, including two newly changed product paths.",
+    "At start and close verify 44 pinned authority hashes, 77 corrected product hashes, exact 297-path aggregate, five-path REM-010 product delta, unchanged historical VAL-019 artifacts and five unrelated dirty-path byte fingerprints."
+  ],
+  "known_nonzero": [
+    "Historical broad Chat PTY timing and localhost bind PermissionErrors and top-level integration stale board count remain nonzero baseline classes. Joint Python-3.13 mypy must now exit zero; no typing waiver is approved. Independently classify all current results rather than treating builder evidence as verdict."
+  ],
+  "reviewer_rules": [
+    "Fresh context with fork_turns none. Read this VAL-020 request first, then pinned authority, historical VAL-019 finding, REM-010 directive, five-path delta and complete 20c70dd-based aggregate. Remain read-only against governed repo; scratch only under /private/tmp.",
+    "Independently test the corrected typed boundary and old behavior, then all aggregate criteria across WS-00 through WS-08. Do not reuse the builder report as a verdict or substitute prior work-unit reviews for cross-workstream assessment.",
+    "Verify pinned authority/product/hash/diff/unrelated state at start and close. Execute requested checks and local probes; keep current nonzero baseline classes separate from regressions.",
+    "Do not edit, stage, commit, fix, alter board, merge, push, release, clean generated/user state, call live providers or inspect credentials. Settle owned processes.",
+    "Return complete Markdown report with exactly one VERIFIED, CHANGES_REQUESTED or BLOCKED verdict, numbered findings if any, criterion-by-criterion evidence, exact check outcomes, residual limits and next gate. Maintainer acceptance and delivery remain separate."
+  ],
+  "report_target": "docs/planning/active/friday-mcp/validation/VAL-020-report.md",
+  "historical_candidate_commit": "847d410934150865395bdcf58beb2a9342cd19f8",
+  "historical_delta_range": "847d410934150865395bdcf58beb2a9342cd19f8..fb3712127229ba032427b8f3deae04da543e646d",
+  "remediation_start_commit": "325947a5d3b727dfe07fde4bb136e3f7525535b9",
+  "product_delta_range": "325947a..fb3712127229ba032427b8f3deae04da543e646d"
+}

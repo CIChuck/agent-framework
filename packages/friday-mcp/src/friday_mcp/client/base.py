@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 MCP Client Base Implementation.
 
@@ -13,7 +12,8 @@ import contextlib
 import logging
 import uuid
 from abc import ABC, abstractmethod
-from typing import Any
+from types import TracebackType
+from typing import Any, Literal
 
 from friday_mcp.protocols import MCPTransport
 from friday_mcp.utils.schema import extract_text_content
@@ -24,10 +24,21 @@ logger = logging.getLogger(__name__)
 class MCPError(Exception):
     """MCP protocol error."""
 
-    def __init__(self, code: int, message: str):
+    def __init__(self, code: int, message: str) -> None:
         self.code = code
         self.message = message
         super().__init__(f"MCP Error {code}: {message}")
+
+
+class MCPToolExecutionError(MCPError):
+    """Fixed, safe tools/call failure; never carries peer error content."""
+
+    def __init__(self, failure_code: Literal["tool_error", "invalid_result"]) -> None:
+        self.failure_code = failure_code
+        if failure_code == "tool_error":
+            super().__init__(-32020, "MCP tool execution failed")
+        else:
+            super().__init__(-32021, "Invalid MCP tool result")
 
 
 class MCPClientBase(ABC):
@@ -41,7 +52,7 @@ class MCPClientBase(ABC):
     # MCP Protocol Version
     PROTOCOL_VERSION = "2024-11-05"
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         """
         Initialize MCP client.
 
@@ -56,6 +67,7 @@ class MCPClientBase(ABC):
         self._pending_requests: dict[str, asyncio.Future[dict[str, Any]]] = {}
         self._connected = False
         self._receive_task: asyncio.Task[None] | None = None
+        self.request_timeout_seconds: float = 30.0
 
     @abstractmethod
     async def _create_transport(self) -> MCPTransport:
@@ -68,42 +80,41 @@ class MCPClientBase(ABC):
         """
         if self._connected:
             return
+        if self._transport is not None:
+            await self.disconnect()
 
-        logger.info(f"Connecting to MCP server: {self.name}")
-
-        # Create and connect transport
-        self._transport = await self._create_transport()
-        await self._transport.connect()
-
-        # Start message receiver
-        self._receive_task = asyncio.create_task(self._receive_loop())
-
-        # Perform MCP handshake
-        await self._initialize()
-        self._connected = True
-
-        logger.info(
-            f"Connected to MCP server: {self.name} "
-            f"(capabilities: {list(self._server_capabilities.keys())})"
-        )
+        logger.info("Connecting to MCP server")
+        try:
+            self._transport = await self._create_transport()
+            await self._transport.connect()
+            self._receive_task = asyncio.create_task(self._receive_loop())
+            await self._initialize()
+            self._connected = True
+        except BaseException:
+            # Handshake failures and cancellation own the same resources as a
+            # completed connection. Do not rely on the success flag for cleanup.
+            await self.disconnect()
+            raise
+        logger.info("Connected to MCP server")
 
     async def disconnect(self) -> None:
         """Disconnect from the MCP server."""
-        if not self._connected:
-            return
-
-        logger.info(f"Disconnecting from MCP server: {self.name}")
-
+        logger.info("Disconnecting from MCP server")
+        self._connected = False
         if self._receive_task:
             self._receive_task.cancel()
             with contextlib.suppress(asyncio.CancelledError):
                 await self._receive_task
-
+            self._receive_task = None
+        for future in self._pending_requests.values():
+            if not future.done():
+                future.cancel()
+        self._pending_requests.clear()
         if self._transport:
             await self._transport.disconnect()
-
-        self._connected = False
+            self._transport = None
         self._server_capabilities = {}
+        self._server_info = {}
 
     async def _initialize(self) -> None:
         """Perform MCP initialize handshake."""
@@ -129,7 +140,7 @@ class MCPClientBase(ABC):
         self,
         method: str,
         params: dict[str, Any],
-        timeout: float = 30.0,
+        timeout: float | None = None,
     ) -> dict[str, Any]:
         """Send a JSON-RPC request and wait for response."""
         if not self._transport:
@@ -151,7 +162,10 @@ class MCPClientBase(ABC):
 
         try:
             await self._transport.send(message)
-            response = await asyncio.wait_for(future, timeout=timeout)
+            response = await asyncio.wait_for(
+                future,
+                timeout=self.request_timeout_seconds if timeout is None else timeout,
+            )
 
             if "error" in response:
                 raise MCPError(
@@ -159,9 +173,14 @@ class MCPClientBase(ABC):
                     response["error"].get("message", "Unknown error"),
                 )
 
-            return response.get("result", {})
+            result = response.get("result", {})
+            if not isinstance(result, dict):
+                raise ValueError("Invalid MCP response object")
+            return result
         finally:
             self._pending_requests.pop(request_id, None)
+            if not future.done():
+                future.cancel()
 
     async def _notify(self, method: str, params: dict[str, Any]) -> None:
         """Send a JSON-RPC notification (no response expected)."""
@@ -186,9 +205,15 @@ class MCPClientBase(ABC):
                 await self._handle_message(message)
             except asyncio.CancelledError:
                 break
-            except Exception as e:
-                logger.error(f"Error receiving message: {e}")
-                # Don't break on errors, try to continue receiving
+            except Exception:
+                # EOF/malformed transport data is terminal, not a busy retry
+                # loop. Never echo peer payloads or exception messages.
+                logger.error("MCP receive failed")
+                self._connected = False
+                for future in self._pending_requests.values():
+                    if not future.done():
+                        future.set_exception(ConnectionError("MCP transport closed"))
+                break
 
     async def _handle_message(self, message: dict[str, Any]) -> None:
         """Handle an incoming message."""
@@ -205,9 +230,7 @@ class MCPClientBase(ABC):
 
     async def _handle_server_message(self, message: dict[str, Any]) -> None:
         """Handle notifications/requests from the server."""
-        method = message.get("method", "")
-        # Handle server-initiated messages (e.g., progress, logging)
-        logger.debug(f"Server message: {method}")
+        logger.debug("Received MCP server notification")
 
     # --- MCP API Methods ---
 
@@ -222,7 +245,12 @@ class MCPClientBase(ABC):
             return []
 
         response = await self._request("tools/list", {})
-        return response.get("tools", [])
+        tools = response.get("tools", [])
+        if not isinstance(tools, list) or any(
+            not isinstance(tool, dict) for tool in tools
+        ):
+            raise ValueError("Invalid MCP tool catalog")
+        return tools
 
     async def call_tool(
         self,
@@ -247,6 +275,21 @@ class MCPClientBase(ABC):
             },
         )
 
+        error = response.get("isError", False)
+        if not isinstance(error, bool):
+            raise MCPToolExecutionError("invalid_result")
+        if error:
+            raise MCPToolExecutionError("tool_error")
+        content = response.get("content")
+        if not isinstance(content, list):
+            raise MCPToolExecutionError("invalid_result")
+        for block in content:
+            if isinstance(block, str):
+                continue  # Preserve existing string-block extraction compatibility.
+            if not isinstance(block, dict) or not isinstance(block.get("type"), str):
+                raise MCPToolExecutionError("invalid_result")
+            if block["type"] == "text" and not isinstance(block.get("text"), str):
+                raise MCPToolExecutionError("invalid_result")
         return extract_text_content(response)
 
     async def list_prompts(self) -> list[dict[str, Any]]:
@@ -260,7 +303,10 @@ class MCPClientBase(ABC):
             return []
 
         response = await self._request("prompts/list", {})
-        return response.get("prompts", [])
+        prompts = response.get("prompts", [])
+        if not isinstance(prompts, list):
+            raise ValueError("Invalid MCP prompt catalog")
+        return prompts
 
     async def get_prompt(
         self,
@@ -296,7 +342,10 @@ class MCPClientBase(ABC):
             return []
 
         response = await self._request("resources/list", {})
-        return response.get("resources", [])
+        resources = response.get("resources", [])
+        if not isinstance(resources, list):
+            raise ValueError("Invalid MCP resource catalog")
+        return resources
 
     async def read_resource(self, uri: str) -> dict[str, Any]:
         """
@@ -325,6 +374,11 @@ class MCPClientBase(ABC):
         await self.connect()
         return self
 
-    async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
         """Async context manager exit."""
         await self.disconnect()

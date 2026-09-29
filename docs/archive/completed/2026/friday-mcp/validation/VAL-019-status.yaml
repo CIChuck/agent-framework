@@ -1,0 +1,15 @@
+{
+  "id": "VAL-019-status",
+  "date": "2026-09-29",
+  "reviewed_candidate": "847d410934150865395bdcf58beb2a9342cd19f8",
+  "historical_outcome": "CHANGES_REQUESTED",
+  "decision_status": "superseded_for_changed_candidate_only",
+  "findings": [
+    "VAL-019-F-001"
+  ],
+  "remediation": "REM-010",
+  "remediation_approval": "approved by repository maintainer 2026-09-29 for exact REM-010 and separate remediator",
+  "new_candidate": "fb3712127229ba032427b8f3deae04da543e646d",
+  "replacement_review": "docs/planning/active/friday-mcp/validation/VAL-020-request.yaml",
+  "report_and_evidence": "Original VAL-019 report, request, evidence, archive and manifest retained byte-exact; historical CHANGES_REQUESTED applies to candidate 847d410"
+}

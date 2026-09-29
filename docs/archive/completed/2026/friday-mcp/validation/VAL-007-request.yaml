@@ -1,0 +1,159 @@
+id: VAL-007
+initiative: friday-mcp
+work_unit: MCP-WS-02
+review_modes: [delta, work_unit_aggregate]
+status: requested
+date: '2026-09-28'
+work_unit_base_commit: a64e423cffca6162c43b8cfa193792508cf87fd6
+previous_candidate: 26f4d7d4bfd0514b6eb76bed71cb4797da91a067
+work_unit_authorization_commit: 5c31f7c19f93d8b461dd90936e459ba9e28a4a5d
+remediation_authorization_commit: cdd808ed653f2f5fe4ccc4a695782d97c39c2ce8
+execution_baseline_commit: bd10656fed43083ff1d81ef2232205b50f58ac99
+bounded_correction_base_commit: 097bbd9eced5e5ba2ffcc97fbe60273285bf605e
+candidate_commit: a257f041d1d68f8aea2f5b9773df1b88acd82379
+delta_diff_range: 26f4d7d4bfd0514b6eb76bed71cb4797da91a067..a257f041d1d68f8aea2f5b9773df1b88acd82379
+bounded_remediation_diff_range: 097bbd9eced5e5ba2ffcc97fbe60273285bf605e..a257f041d1d68f8aea2f5b9773df1b88acd82379
+aggregate_diff_range: a64e423cffca6162c43b8cfa193792508cf87fd6..a257f041d1d68f8aea2f5b9773df1b88acd82379
+previous_review: docs/planning/active/friday-mcp/validation/VAL-006-report.md
+required_outcomes: VERIFIED | CHANGES_REQUESTED | BLOCKED for each mode and overall gate
+authority_revision: a257f041d1d68f8aea2f5b9773df1b88acd82379
+authority_revision_exception: >-
+  Only VAL-006-report.md is pinned to the commit adding this request: resolve
+  git log -1 --format=%H -- docs/planning/active/friday-mcp/validation/VAL-007-request.yaml.
+  Its difference from candidate content must be only the disclosed superseded
+  decision-status note. Preserve the entire historical verdict and findings.
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/friday-mcp/build-plan.md
+    sha256: 546e0d3671ca01c25d7810a0aae0b352196deb1644e594939efb5450d9cea33d
+  - path: docs/planning/active/friday-mcp/tactical-plan.md
+    sha256: 3238f0d0ae4f62bbce3f7a2a453c68bdc4fd90d24a173e86f5cbeb2caf647fac
+  - path: docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md
+    sha256: a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d
+  - path: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md
+    sha256: 96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319
+  - path: docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md
+    sha256: ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac
+  - path: docs/planning/active/friday-mcp/rebaseline-2026-09-27.md
+    sha256: ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a
+  - path: docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+    sha256: 434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486
+  - path: docs/planning/active/friday-mcp/execution/WS-01-closeout.md
+    sha256: 8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b
+  - path: docs/planning/active/friday-mcp/validation/VAL-004-report.md
+    sha256: d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f
+  - path: docs/planning/active/friday-mcp/remediation/REM-003-directive.md
+    sha256: b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680
+  - path: docs/planning/active/friday-mcp/validation/VAL-005-report.md
+    sha256: 4643b408008bbe69b39744305d34d6a7e0dd8d3107eae420da52c1a2cf46940c
+  - path: docs/planning/active/friday-mcp/remediation/REM-004-directive.md
+    sha256: 1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b
+  - path: docs/planning/active/friday-mcp/validation/VAL-006-report.md
+    sha256: a8288b18bb0690df745a257ca995e51ba7a380aea5871d8f42dec8dc84d70051
+  - path: docs/planning/active/friday-mcp/execution/WS-02-readiness-checkpoint.md
+    sha256: e09d7114a37ccd9c8cb3a547227bfbf5937eddc5564afc14003b7df6194da976
+approval_evidence: >-
+  Maintainer approved REM-004 and its separate remediator with "aproved... make
+  a list of next steps in our task queue" on 2026-09-28, then instructed
+  "proceed" after readiness assessment. Scope is VAL-006 F-001, the six allowed
+  paths, required checks, and fresh delta plus entire WS-02 aggregate review.
+role_and_dispatch_note: >-
+  New remediator creation and prior-remediator resumption hit agent thread
+  capacity. Existing WS-01 reviewer /root/mcp_ws01_val004 was explicitly
+  reassigned solely as separate REM-004 remediator; it was not the WS-02
+  builder or REM-003 remediator and may not validate this candidate. No claim
+  of fresh remediator context is made. VAL-007 must use a newly created
+  independent context with fork_turns none. This request is not proof of
+  successful dispatch or a reviewer verdict; any capacity stop is recorded
+  separately in controller process metadata.
+metadata_note: >-
+  Historical VAL-006 remains intact but is superseded for decisions on this
+  changed candidate. Delta includes intervening controller-only review,
+  approval, queue and dispatch metadata; bounded correction isolates the exact
+  six product/test/report paths from 097bbd9. Later metadata commits must not
+  alter frozen source/tests/configuration or controlling authority. REM-004's
+  approved heading retains its approval-era dispatch-pending label; actual
+  dispatch evidence is in the queue and log. Full feature-branch/merge aggregate
+  remains a separate later gate; this aggregate covers all WS-02 changes and
+  their interaction with accepted WS-00/01.
+delta_review:
+  - Independently reassess VAL-006 F-001 against production stdio and public RuntimeKernel shutdown; builder reports are not independent proof.
+  - REM-004-AC-01 real SIGTERM-ignoring oversized/unterminated-output child is killed, reaped and drained within the documented finite attempt budget without caller pipe intervention.
+  - REM-004-AC-02 successful real discovery then public kernel stop releases all runtime/manager/client/transport resources without cleanup through saved/private references.
+  - REM-004-AC-03 required and optional noisy partial-start/handshake/list failure paths clean failed peers and workers, preserve any valid partial success, and never register failed tools.
+  - REM-004-AC-04 stdout/stderr discard is incremental and bounded-memory; logs and typed diagnostics exclude raw peer payloads, command/args/env and exception details.
+  - REM-004-AC-05 cancellation, already-exited cleanup, repeated disconnect/start/stop, spawn cancellation, EOF, configured RPC deadlines, successful-peer draining and REM-003 recovery remain correct; incomplete cleanup retains owned resources for later public retry.
+  - REM-004-AC-06 exact six-path bounded correction, compatible public signatures/schema, meaningful typing, no new broad suppression/private subprocess or cross-package reach-through, accurate evidence.
+  - Assess documented phase budget, post-kill wait, owned cleanup/drain tasks and single-reader handoff; do not equate a watchdog abandoning resources with successful cleanup.
+  - Independently probe incomplete cleanup and retry/cancellation ownership; inspect assertion-failure fixture teardown separately from public cleanup assertions.
+bounded_remediation_paths:
+  - packages/friday-mcp/src/friday_mcp/client/stdio.py
+  - packages/friday-mcp/tests_mcp/client/test_lifecycle.py
+  - tests/integration/mcp_fake_server.py
+  - tests/integration/test_mcp_runtime_lifecycle.py
+  - docs/planning/active/friday-mcp/execution/REM-004-implementation-report.md
+  - docs/planning/active/friday-mcp/execution/WS-02-implementation-report.md
+aggregate_review:
+  - MCP-02-01 native registration remains compatible; async MCP lifecycle removes unsupported enablement failure without executable MCP registry insertion.
+  - MCP-02-02 explicit runtime-owned non-global manager uses only validated server-specific inputs; retained ownership survives failure and retry at provider and DI layers.
+  - MCP-02-03 discovery and caps precede binding validation; bounded explicitly untrusted discovery handoff is preserved for WS-03 and unregistered bindings remain rejected.
+  - MCP-02-04 public cleanup releases resources on partial startup, failure, cancellation and success; repeated shutdown is safe and genuine incomplete cleanup never loses ownership.
+  - MCP-02-05 optional failures are redacted/diagnosed/skipped, required failures abort, disabled peers are not connected and failed tools never enter the registry.
+  - MCP-02-06 configured effective connection/discovery/RPC deadlines remain honored for optional and required peers.
+  - MCP-02-07 startup/discovery concurrency and cancellation draining are bounded.
+  - MCP-02-08 typed diagnostics distinguish connected/failed/disabled/timeouts/list failures/partial success without secrets or raw peer payloads.
+  - Cleanup amendment covers partial handshake/request/receiver/EOF/exited-child/process-spawn cancellation and removed raw stdio logging.
+  - REM-003-AC-01 through AC-06 remain satisfied at manager/provider/DI ownership layers, including cleanup failure, retry cancellation, public recovery, successful-peer draining and redaction.
+  - Assess every source/test/report in the complete work-unit diff, accepted WS-00/01 contracts/config interaction, compatible public runtime signatures, meaningful typing, baseline separation and later-workstream exclusions.
+required_checks:
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-mcp/tests_mcp/client/test_lifecycle.py tests/integration/test_mcp_runtime_lifecycle.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-runtime/tests_runtime/test_mcp_loading.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime tests/integration/test_mcp_runtime_lifecycle.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py -q
+  - LITELLM_LOCAL_MODEL_COST_MAP=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest tests/integration -q --tb=short
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-runtime packages/friday-mcp
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-runtime packages/friday-mcp tests/integration/test_mcp_runtime_lifecycle.py tests/integration/mcp_fake_server.py
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py validate
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py render --check
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py
+  - git diff --check 26f4d7d4bfd0514b6eb76bed71cb4797da91a067..a257f041d1d68f8aea2f5b9773df1b88acd82379
+  - git diff --check 097bbd9eced5e5ba2ffcc97fbe60273285bf605e..a257f041d1d68f8aea2f5b9773df1b88acd82379
+  - git diff --check a64e423cffca6162c43b8cfa193792508cf87fd6..a257f041d1d68f8aea2f5b9773df1b88acd82379
+  - git diff --exit-code a257f041d1d68f8aea2f5b9773df1b88acd82379 -- packages tests pyproject.toml uv.lock
+known_baseline_failures:
+  - Default mypy Python 3.10 target stops on installed NumPy __init__.pyi line 737 Python 3.12+ type syntax; prescribed 3.13 typing must pass without config changes.
+  - Unchanged tests/integration/test_development_board.py line 75 expects 22 tasks; accepted WS-01 predecessor already has 23. Reproduce and distinguish from candidate regressions; no repair authorized.
+exclusions:
+  - No WS-03 executable registry entries, final filters, prompt-visible schema sanitization, Chat turn selection/budget behavior, provenance, memory/transcript storage, telemetry emitters, CLI, resources/prompts, server exposure, refresh or external includes.
+  - Runtime integration remains stdio-only; legacy SSE is unchanged and live interoperability is not claimed.
+  - No external MCP/provider/network endpoints, credentials, paid calls, push, merge, release, deployment or other external effects.
+permitted_validation:
+  - Deterministic in-process doubles and bounded local synthetic stdio subprocesses only; no live service.
+  - Additional read-only local probes may use exec/imports or scratch files under /private/tmp only, with public APIs and explicit finally kill/drain/reap and task settlement on all outcomes.
+  - Use UV_CACHE_DIR=/private/tmp/friday-uv-cache; tests and diagnostic imports use LITELLM_LOCAL_MODEL_COST_MAP=true; do not inspect or print secret environment values.
+reviewer_instructions:
+  - Fresh independent context with fork_turns none; do not read parent sessions, builder/remediator private reasoning or accept their conclusions as evidence.
+  - Read AGENTS.md, policies, all eighteen pinned authority documents, approved directives, candidate and exact diffs; record full request/candidate/authority revisions and hashes.
+  - Operate read-only; do not edit governed files, repair, stage, commit, change board/process state or write repository report. Return complete report to controller.
+  - Verify authority hashes at start and closeout using pinned revisions and working content; check source/tests/config match candidate throughout. Disclosed later process metadata are not product edits.
+  - Assess delta first and complete WS-02 aggregate second; provide per-mode verdicts and exactly one overall gate outcome.
+  - Independently reproduce production direct/public-kernel noisy-peer cleanup and retained-owner failure/retry controls. Passing existing tests alone does not close F-001.
+  - Do not reinterpret VAL-006 seven-second detector or its perpetual synthetic disconnect observation as a universal SLA or extra historical finding; use documented finite production budget with justified test slack.
+  - Cite concrete requirement/source/test/probe evidence for every mandatory criterion, exact commands/results, baselines, resource cleanup, stability and residual risks.
+  - Report reviewer identity/model when available and numbered findings with severity, authority, evidence, mitigation, regressions and docs/config impact if needed.
+  - This is second WS-02 remediation cycle; unsuccessful aggregate returns unresolved findings to maintainer, not automatic remediation.
+preserved_unrelated_paths:
+  - .DS_Store
+  - family-tree.md
+  - docker-bench-security/
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+  - packages/friday-sandbox/docker/Dockerfile.audit
+report_path: docs/planning/active/friday-mcp/validation/VAL-007-report.md

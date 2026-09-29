@@ -1,0 +1,39 @@
+{
+  "all_report_links_resolve": true,
+  "archive": {
+    "all_member_hashes_verified": true,
+    "bytes": 1301840,
+    "members": 182,
+    "path": "/private/tmp/VAL-011-independent-20260928/VAL-011-evidence.tar.gz",
+    "sha256": "e7c457abf84ba8de84ca87b04ee8a50fa906101157b8682bad980986b69d62c4"
+  },
+  "findings": [
+    {
+      "id": "VAL-011-F-001",
+      "severity": "High"
+    },
+    {
+      "id": "VAL-011-F-002",
+      "severity": "High"
+    }
+  ],
+  "manifest": {
+    "bytes": 51451,
+    "entries": 181,
+    "member": "evidence.json",
+    "path": "/private/tmp/VAL-011-independent-20260928/evidence.json",
+    "sha256": "00d765ad4fb93a81f3c20df4e94b8a1322ed193ed19c3ee8b41ea064accbae2d"
+  },
+  "overall_outcome": "CHANGES_REQUESTED",
+  "portable_manifest_reference": "VAL-011-evidence.tar.gz#evidence.json",
+  "portable_report_reference": "VAL-011-evidence.tar.gz#VAL-011-report.md",
+  "report": {
+    "bytes": 62330,
+    "member": "VAL-011-report.md",
+    "path": "/private/tmp/VAL-011-independent-20260928/VAL-011-report.md",
+    "sha256": "0e79c26a3cb90557228c06db7b7d8cc2de68410b19843c789a8b9f18cf9f3266"
+  },
+  "report_archive_links_checked": 149,
+  "self_hash_policy": "delivery.json is external and not inside the archive, to avoid recursive hashing.",
+  "validation_id": "VAL-011"
+}

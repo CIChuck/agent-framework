@@ -1,0 +1,188 @@
+{
+  "request_sha256": "43fb708815e569dbe3d8b0a443ec28bf782e5b5ff2db75fb0be5d4dd2d139cfc",
+  "head": "b8e1f041695b94303517617362f590ef3272e0cc",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 11736,
+      "lines": 138,
+      "pinned_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "working_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "expected": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "bytes": 8006,
+      "lines": 245,
+      "pinned_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "working_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "bytes": 6422,
+      "lines": 155,
+      "pinned_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "working_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "bytes": 11956,
+      "lines": 297,
+      "pinned_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "working_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/build-plan.md",
+      "bytes": 42939,
+      "lines": 1005,
+      "pinned_sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00",
+      "working_sha256": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00",
+      "expected": "17b341bf51bd21b00ed88f6b0e413baad0b09b865cb9223a9a96d4887a9b6f00",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/tactical-plan.md",
+      "bytes": 36427,
+      "lines": 662,
+      "pinned_sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba",
+      "working_sha256": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba",
+      "expected": "ead395b4949c01bdae6dfc6fb01d8b7af3ee6071902af45ec077c913f6dcd6ba",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-03-tool-naming-metadata-registry.md",
+      "bytes": 23764,
+      "lines": 382,
+      "pinned_sha256": "c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd",
+      "working_sha256": "c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd",
+      "expected": "c723e899d0916012dc324836f8c2882d5c2362a40825cec377e19182f1749efd",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "bytes": 10771,
+      "lines": 242,
+      "pinned_sha256": "ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac",
+      "working_sha256": "ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac",
+      "expected": "ec482e46364c9f4edcd7e76f2e4156d2f8af1710cc1811bf3390d6a5a0f99fac",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md",
+      "bytes": 8996,
+      "lines": 265,
+      "pinned_sha256": "96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319",
+      "working_sha256": "96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319",
+      "expected": "96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/directives/ws-02-runtime-lifecycle-provider-loading.md",
+      "bytes": 9984,
+      "lines": 241,
+      "pinned_sha256": "a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d",
+      "working_sha256": "a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d",
+      "expected": "a432dc3c17e7cff9e767ed9dc78f6a1f65ea0d51dead3fc7e5421ef04327f55d",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-003-directive.md",
+      "bytes": 6702,
+      "lines": 121,
+      "pinned_sha256": "b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680",
+      "working_sha256": "b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680",
+      "expected": "b04504638f1bded4af42c481ba35a89f02217a25fc392fae33b16ca51a57b680",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/remediation/REM-004-directive.md",
+      "bytes": 9894,
+      "lines": 166,
+      "pinned_sha256": "1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b",
+      "working_sha256": "1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b",
+      "expected": "1079756e6f6738c1dd4fb61126d2a1b3159c3ca48ef092470b47f22a09fec37b",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-00-closeout.md",
+      "bytes": 1653,
+      "lines": 33,
+      "pinned_sha256": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486",
+      "working_sha256": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486",
+      "expected": "434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-01-closeout.md",
+      "bytes": 2212,
+      "lines": 44,
+      "pinned_sha256": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b",
+      "working_sha256": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b",
+      "expected": "8e10fcf509102c1faadcc2e56ce06fe6f9333aaa9d164ad82494e960cbfef32b",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-02-closeout.md",
+      "bytes": 3918,
+      "lines": 63,
+      "pinned_sha256": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3",
+      "working_sha256": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3",
+      "expected": "df241a9ad65e09f47df8c1aa33437e720994b811cd98d25a559b1c9626fbf5d3",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-002-report.md",
+      "bytes": 4433,
+      "lines": 80,
+      "pinned_sha256": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566",
+      "working_sha256": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566",
+      "expected": "cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-004-report.md",
+      "bytes": 5896,
+      "lines": 118,
+      "pinned_sha256": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f",
+      "working_sha256": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f",
+      "expected": "d680911d220b0181fa32fca8260e0ce87f24a322d5dc64794951a85809ed2e0f",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/validation/VAL-007-report.md",
+      "bytes": 26963,
+      "lines": 263,
+      "pinned_sha256": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6",
+      "working_sha256": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6",
+      "expected": "649c70566c59109c413e55922b7150dbee7b0acb3c131f30b78ca726060561b6",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/rebaseline-2026-09-27.md",
+      "bytes": 7580,
+      "lines": 115,
+      "pinned_sha256": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a",
+      "working_sha256": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a",
+      "expected": "ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-mcp/execution/WS-03-readiness-checkpoint.md",
+      "bytes": 11999,
+      "lines": 160,
+      "pinned_sha256": "2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521",
+      "working_sha256": "2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521",
+      "expected": "2224bd224d7b004e9e43ebfa1c1eaa00c906f40fa8e35d5865236d44d720b521",
+      "match": true
+    }
+  ],
+  "status": " M .DS_Store\n D family-tree.md\n?? docker-bench-security/\n?? packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak\n?? packages/friday-sandbox/docker/Dockerfile.audit\n",
+  "frozen_diff": 0
+}

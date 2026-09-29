@@ -7,6 +7,7 @@ requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [
+    "friday-framework-core==0.1.0a2",
     "pydantic>=2.0",
     "aiosqlite>=0.19.0",
 ]

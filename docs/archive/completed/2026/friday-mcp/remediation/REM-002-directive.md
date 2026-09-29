@@ -1,0 +1,92 @@
+# REM-002 — MCP-WS-01 Default And Chat Compatibility Remediation
+
+**Status:** Authorized; revised F-002 test location approved by the maintainer on 2026-09-27
+
+**Date:** 2026-09-27
+
+**Input:** [VAL-003](../validation/VAL-003-report.md) on candidate `de8db57`.
+The original candidate and review remain immutable historical evidence.
+
+## Allowed Scope
+
+- `packages/friday-runtime/src/friday_runtime/config.py`
+- `packages/friday-runtime/tests_runtime/test_mcp_runtime_config.py`
+- `packages/friday-chat/tests_chat/test_mcp_config_compatibility.py` — new
+  config-only F-002 test; no other Friday Chat edit is authorized.
+- Small WS-01 execution/report or config-example updates needed to describe
+  the corrected default or cross-package test result.
+
+Do not edit Friday Chat source or other tests, the protocol-local `friday-mcp`
+implementation, WS-00 contracts, unrelated tests, or any later workstream.
+If the compatibility test cannot be written without changing Chat source or
+the declared dependency boundary, stop and report the smallest authority
+decision needed; do not widen scope unilaterally.
+
+## Required Corrections
+
+### F-001 — Default MCP provider mode
+
+Set the MCP-only direct constructor default, `from_dict()` fallback, and
+runtime default-source template to `selected`, as required by the build plan.
+Keep the non-MCP `ToolProviderConfig` defaults unchanged. Add tests for all
+three omitted-mode paths and explicit `mode: all` acceptance (so the change
+does not silently prohibit a deliberate opt-in). Update any WS-01 examples
+or report claims affected by the default.
+
+### F-002 — Friday Chat config compatibility evidence
+
+Add a config-only test in the explicitly allowed Friday Chat test file that proves one
+canonical `tools.providers.mcp` stanza can be retained by Friday Chat's
+existing config parser and validated by `MCPToolProviderConfig.from_dict()`
+without an alternative MCP field schema. The test must exercise the real
+Friday Chat config type and the canonical runtime model. It must not claim
+Chat runtime loading or tool selection works. The downstream Friday Chat test
+may import runtime through Chat's already declared dependency; runtime tests
+must not import Friday Chat. If the test requires a source change, dependency
+change, or cycle, stop and report instead of broadening scope.
+
+## Acceptance And Verification
+
+- Both VAL-003 findings are resolved with focused negative/regression tests.
+- No non-MCP default change, no new runtime loading/Chat behavior, no new
+  broad typing suppression, and no new live or external effect.
+- Re-run core/MCP/runtime tests, affected Ruff, Python 3.13 mypy, board and
+  documentation checks, and diff whitespace check. Report the known default
+  mypy/board-integration baselines separately.
+- Run the new Friday Chat compatibility test and existing config tests:
+  `pytest packages/friday-chat/tests_chat/test_mcp_config_compatibility.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-chat/tests_chat/test_llm_config_migration.py`.
+  Include the new Chat test file in Ruff and Python 3.13 mypy checks.
+- Commit a new stable candidate. A fresh independent reviewer must inspect
+  both `de8db57..new_candidate` remediation delta and
+  `22a5643..new_candidate` complete WS-01 aggregate before any `VERIFIED`
+  claim. `VAL-003` is superseded for decision purposes only after that review.
+
+The maintainer explicitly authorized this bounded separate-remediator pass in
+the active conversation on 2026-09-27. That authorization covers F-001 and
+F-002 only; it does not broaden file scope or authorize WS-02 work. The next
+gate was a committed new candidate and fresh delta plus aggregate review.
+
+## 2026-09-27 Stop-Condition Result
+
+The separate remediator stopped before editing or committing. The required
+F-002 test location under `friday-runtime/tests_runtime` would import
+`friday_chat.config`, but `friday-runtime` does not declare Friday Chat as a
+dependency. Friday Chat already declares `friday-framework-runtime` and
+imports `friday_runtime.model_library`. Importing that downstream package in
+runtime's package test would create an undeclared reverse test dependency; a
+production reverse dependency would be circular. The directive's explicit
+stop condition therefore applies. F-001 also remains open.
+
+The proposed smallest scope decision was to permit the F-002 config-only test under
+`packages/friday-chat/tests_chat/`, which is the downstream consumer and
+already depends on runtime. Keep Friday Chat source, aliases, tool selection,
+and turn behavior unchanged.
+
+## 2026-09-27 Approved Test-Location Revision
+
+The maintainer replied "revise" to the explicit request to move only the
+F-002 config-compatibility test to Friday Chat's test package. The allowed
+scope now names one new Chat test file, without Chat source, production
+dependency, alias, selection, or turn changes. This resolves the test-location
+hold and authorizes the separate remediator to resume F-001/F-002. A new
+candidate and fresh delta plus aggregate validation remain required.

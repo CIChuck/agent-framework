@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 MCP Client Manager.
 
@@ -8,6 +7,7 @@ Manages multiple MCP client connections and provides unified tool access.
 from __future__ import annotations
 
 import logging
+from types import TracebackType
 from typing import Any
 
 from friday_mcp.client.adapter import MCPToolAdapter
@@ -48,7 +48,7 @@ class MCPClientManager:
             tools = await manager.get_all_tools()
     """
 
-    def __init__(self, config: MCPConfig):
+    def __init__(self, config: MCPConfig) -> None:
         """
         Initialize client manager.
 
@@ -70,40 +70,23 @@ class MCPClientManager:
 
         for server_config in self.config.servers:
             if not server_config.enabled:
-                logger.info(f"Skipping disabled server: {server_config.name}")
+                logger.info("Skipping disabled MCP server")
                 results[server_config.name] = False
                 continue
 
-            try:
-                client = self._create_client(server_config)
-                await client.connect()
-
-                self._clients[server_config.name] = client
-                self._adapters[server_config.name] = MCPToolAdapter(
-                    client,
-                    prefix=f"{self.config.tool_name_prefix}{server_config.name}_",
-                )
-
-                results[server_config.name] = True
-                logger.info(f"Connected to MCP server: {server_config.name}")
-
-            except Exception as e:
-                logger.error(f"Failed to connect to {server_config.name}: {e}")
-                results[server_config.name] = False
+            results[server_config.name] = await self.connect(server_config.name)
 
         return results
 
     async def disconnect_all(self) -> None:
         """Disconnect from all servers."""
-        for name, client in self._clients.items():
+        for name in tuple(self._clients):
             try:
-                await client.disconnect()
-                logger.info(f"Disconnected from: {name}")
-            except Exception as e:
-                logger.error(f"Error disconnecting from {name}: {e}")
-
-        self._clients.clear()
-        self._adapters.clear()
+                await self.disconnect(name)
+            except Exception:
+                logger.error("MCP disconnect failed")
+        if self._clients:
+            raise RuntimeError("MCP client cleanup incomplete")
 
     async def connect(self, server_name: str) -> bool:
         """
@@ -115,7 +98,25 @@ class MCPClientManager:
         Returns:
             True if connection successful
         """
-        # Find the server config
+        if not any(server.name == server_name for server in self.config.servers):
+            raise KeyError(f"Server not found in config: {server_name}")
+        try:
+            await self.connect_or_raise(server_name)
+            return True
+        except Exception:
+            logger.error("MCP connection failed")
+            return False
+
+    async def connect_or_raise(self, server_name: str) -> None:
+        """Connect with observable failure/cancellation for lifecycle owners.
+
+        The legacy ``connect`` boolean API is preserved. Partial connections
+        remain manager-owned until public disconnect completes successfully.
+        """
+        if server_name in self._clients:
+            if self._clients[server_name].is_connected:
+                return
+            await self.disconnect(server_name)
         server_config = None
         for config in self.config.servers:
             if config.name == server_name:
@@ -124,23 +125,22 @@ class MCPClientManager:
 
         if server_config is None:
             raise KeyError(f"Server not found in config: {server_name}")
+        if not server_config.enabled:
+            raise ValueError("MCP server is disabled")
 
+        client = self._create_client(server_config)
+        self._clients[server_name] = client
         try:
-            client = self._create_client(server_config)
             await client.connect()
-
-            self._clients[server_name] = client
             self._adapters[server_name] = MCPToolAdapter(
                 client,
                 prefix=f"{self.config.tool_name_prefix}{server_name}_",
             )
 
-            logger.info(f"Connected to MCP server: {server_name}")
-            return True
-
-        except Exception as e:
-            logger.error(f"Failed to connect to {server_name}: {e}")
-            return False
+        except BaseException:
+            await self.disconnect(server_name)
+            raise
+        logger.info("MCP connection established")
 
     async def disconnect(self, server_name: str) -> None:
         """
@@ -152,14 +152,10 @@ class MCPClientManager:
         if server_name not in self._clients:
             return
 
-        try:
-            await self._clients[server_name].disconnect()
-            logger.info(f"Disconnected from: {server_name}")
-        except Exception as e:
-            logger.error(f"Error disconnecting from {server_name}: {e}")
-        finally:
-            self._clients.pop(server_name, None)
-            self._adapters.pop(server_name, None)
+        await self._clients[server_name].disconnect()
+        self._clients.pop(server_name, None)
+        self._adapters.pop(server_name, None)
+        logger.info("MCP connection released")
 
     def _create_client(
         self,
@@ -182,12 +178,12 @@ class MCPClientManager:
         """
         all_tools: list[ToolDefinition] = []
 
-        for name, adapter in self._adapters.items():
+        for adapter in self._adapters.values():
             try:
                 tools = await adapter.get_tools()
                 all_tools.extend(tools)
-            except Exception as e:
-                logger.error(f"Failed to get tools from {name}: {e}")
+            except Exception:
+                logger.error("MCP tool discovery failed")
 
         return all_tools
 
@@ -225,7 +221,10 @@ class MCPClientManager:
         for adapter in self._adapters.values():
             tool = await adapter.get_tool(tool_name)
             if tool is not None:
-                return await tool.execute(**arguments)
+                result = await tool.execute(**arguments)
+                if not isinstance(result, str):
+                    raise TypeError("MCP tool result must be text")
+                return result
 
         raise KeyError(f"Tool not found: {tool_name}")
 
@@ -273,6 +272,11 @@ class MCPClientManager:
             await self.connect_all()
         return self
 
-    async def __aexit__(self, exc_type, exc_val, exc_tb) -> None:
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> None:
         """Async context manager exit."""
         await self.disconnect_all()

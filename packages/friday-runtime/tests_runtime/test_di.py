@@ -1,7 +1,7 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 from pathlib import Path
 from typing import Any, cast
-from unittest.mock import MagicMock
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 from friday_core.profiles import MemoryProfile
@@ -15,6 +15,7 @@ from friday_runtime.config import (
     ToolsConfig,
 )
 from friday_runtime.di import DIContainer
+from friday_runtime.tool_loading import ToolProviderLoadError
 from friday_transcript import SQLiteTranscriptStore
 
 
@@ -249,7 +250,7 @@ def test_di_loads_friday_tools_provider_with_category_filter(tmp_path: Path):
     assert "file_write" in names
 
 
-def test_di_rejects_unimplemented_mcp_tool_provider(tmp_path: Path):
+def test_di_native_registration_defers_mcp_to_async_boot(tmp_path: Path):
     config = _config(tmp_path, "single_agent")
     config.tools_config = ToolsConfig(
         providers=ToolProvidersConfig(
@@ -271,5 +272,46 @@ def test_di_rejects_unimplemented_mcp_tool_provider(tmp_path: Path):
     di = DIContainer(config, MemoryProfile.FULL)
     di.memory = MagicMock()
 
-    with pytest.raises(RuntimeError, match="MCP runtime loading is not implemented"):
-        di._create_tool_registry()
+    di._create_tool_registry()
+    assert di.tool_registry is not None
+    assert "recall_memory" in di.tool_registry.list_names()
+    assert di.mcp_provider is None
+
+
+@pytest.mark.asyncio
+async def test_direct_di_missing_include_failure_uses_public_provider_cleanup(
+    tmp_path, monkeypatch
+):
+    config = _config(tmp_path, "single_agent")
+    config.tools_config = ToolsConfig.from_dict(
+        {
+            "providers": {
+                "mcp": {
+                    "enabled": True,
+                    "include_tools": ["mcp_peer_missing"],
+                    "config": {"auto_connect": False},
+                }
+            }
+        }
+    )
+    di = DIContainer(config, MemoryProfile.TESTING)
+    for method in (
+        "_create_telemetry",
+        "_create_llm_services",
+        "_create_memory_controller",
+        "_create_multi_agent_stack",
+        "_create_context_engine",
+    ):
+        monkeypatch.setattr(di, method, lambda: None)
+    monkeypatch.setattr(di, "_create_storage_adapters", AsyncMock())
+    try:
+        with pytest.raises(ToolProviderLoadError, match="missing_include"):
+            await di.boot()
+        assert di.mcp_provider is not None
+        assert not di.mcp_provider.tool_metadata
+        assert not di.mcp_provider.owned_tool_names
+        assert di.mcp_provider.registration_registry is None
+        assert "missing_include" in di.mcp_provider.diagnostics.codes
+        assert not di._booted
+    finally:
+        await di.shutdown()

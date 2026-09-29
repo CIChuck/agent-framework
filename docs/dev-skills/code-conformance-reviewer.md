@@ -11,6 +11,11 @@ Use this skill after implementation or remediation.
 
 The goal is to review whether code conforms to documented authority, not merely whether it looks reasonable.
 
+For a formal post-generation gate, use the stricter
+[independent code validator](independent-code-validator.md) workflow and follow
+the canonical independent validation policy. This general reviewer template may
+still be used for advisory, planning, or human-written-code reviews.
+
 ## Governing Standard
 
 Follow `docs/methodology/constitution/gendev.md` when available.
@@ -100,7 +105,9 @@ Delta review:
 
 ## Completion Standard
 
-The review is complete when the user can decide whether to accept, remediate, or reopen planning.
+The review is complete when the user can decide whether to verify, remediate, or
+reopen planning. A formal validator may recommend completion but never records
+maintainer acceptance.
 
 ## Operational Coherence Requirements
 

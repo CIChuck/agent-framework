@@ -1,0 +1,75 @@
+id: VAL-003
+initiative: friday-mcp
+work_unit: MCP-WS-01
+review_mode: full_work_unit
+status: requested
+date: '2026-09-27'
+work_unit_base_commit: 22a5643943da06043515494e23b3dfe549052c55
+candidate_commit: de8db57b565968fa02e429e16a481e00c6a92024
+diff_range: 22a5643943da06043515494e23b3dfe549052c55..de8db57b565968fa02e429e16a481e00c6a92024
+prior_verified_work_unit: MCP-WS-00
+prior_closeout_commit: ab49ba52ffcf91dd9fd6e26ccd973c68992c594e
+required_outcomes: VERIFIED | CHANGES_REQUESTED | BLOCKED
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/planning/active/friday-mcp/build-plan.md
+    sha256: cfd97c6a64a358c2376edcc971918143ce7b9a7eec7e35b27f89ddbe10ba3cea
+  - path: docs/planning/active/friday-mcp/tactical-plan.md
+    sha256: 80ffdb2a3b31986971fd4efb43393d262b738d86ce6ed7c7f59827caee4a7ed7
+  - path: docs/planning/active/friday-mcp/directives/ws-01-configuration-model-validation.md
+    sha256: 96ed70391066ac4402542f1f4056f4d38ac9e08be787dbd6daa2f8a41c4cb319
+  - path: docs/planning/active/friday-mcp/rebaseline-2026-09-27.md
+    sha256: ccc6f1ca9feab180474e85b30e4c5b9319c32fbd56131f341907a452388f461a
+  - path: docs/planning/active/friday-mcp/execution/WS-00-closeout.md
+    sha256: 434c24937dd4eff77d37ab6ec5c031127723fc54c83ee9446c3b088d848da486
+  - path: docs/planning/active/friday-mcp/validation/VAL-002-report.md
+    sha256: cfceee2537adb53d5e12fa517f12cc6549691811bd63709e5902edcdedfe2566
+approval_evidence: >-
+  Maintainer replied "accepted" to the explicit bounded WS-01 approval gate
+  after WS-00 work-unit closeout on 2026-09-27. The reconciled directive and
+  board approval event were committed in 22a5643.
+acceptance_criteria:
+  - MCP-01-01 strict typed canonical provider config using WS-00 DTOs
+  - MCP-01-02 validated stdio server fields and safe defaults
+  - MCP-01-03 actionable config_file rejection reserved for WS-09
+  - MCP-01-04 unknown MCP provider and nested keys fail closed
+  - MCP-01-05 duplicate IDs, disabled/required, transport, cwd, limits, filters, timeout, retry, and trust validation
+  - MCP-01-06 existing RuntimeConfig precedence retained without second MCP authority
+  - MCP-01-07 tested parsing examples and explicit later-phase boundaries
+required_checks:
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime -q
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run ruff check packages/friday-mcp packages/friday-runtime
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy packages/friday-mcp packages/friday-runtime
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run mypy --python-version 3.13 packages/friday-mcp packages/friday-runtime
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py validate
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/friday-dev-board.py render --check
+  - UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run python scripts/check-documentation-lifecycle.py
+  - git diff --check 22a5643..de8db57
+known_baseline_failures:
+  - >-
+    Package-wide mypy under the repository Python 3.10 target stops at a
+    NumPy stub Python 3.12 type statement. The Python 3.13 override passes
+    affected packages in the builder run.
+  - >-
+    tests/integration/test_development_board.py expects 22 tasks while the
+    board already had 23 at the WS-00 base; integration run is 23 passed and
+    one baseline failure. This test is outside WS-01 allowed source scope.
+exclusions:
+  - No runtime MCP connection, discovery, or provider loading.
+  - No tool registration, Friday Chat turn or alias behavior, memory, transcript, telemetry, or CLI change.
+  - No external config includes, remote transport integration, or live provider checks.
+  - No push, merge, release, deployment, or publication.
+reviewer_instructions:
+  - Use fresh context independent of the builder; review read-only.
+  - Read authority, candidate source and tests, full diff, and examples rather than relying on builder conclusions.
+  - Separate mandatory findings from baseline failures and future-workstream risks.
+  - Report reviewer identity, model/version if available, commands, results, residual risk, and exact verdict.
+  - Do not repair, commit, edit the board, or make external/live calls.
+report_path: docs/planning/active/friday-mcp/validation/VAL-003-report.md

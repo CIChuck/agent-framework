@@ -1,0 +1,75 @@
+{
+  "all_locators_resolve": true,
+  "all_members_manifested": true,
+  "artifacts": {
+    "VAL-013-evidence.tar.gz": {
+      "bytes": 19882780,
+      "sha256": "0092cad89701dc34f5f615378305f1905bfd6be8ceef3d5f174397b2d006f000"
+    },
+    "artifact-manifest.json": {
+      "bytes": 167923,
+      "sha256": "ba7da461c17595d41a9b48c205734894f6b2dd088b6a91755f4ca0bd81cfca43"
+    },
+    "delivery.json": {
+      "bytes": 1865,
+      "sha256": "1171992f2a9a70a69b7a459a6ba7f0928e42479c478f8a67275ec89cd1e15eea"
+    },
+    "report.md": {
+      "bytes": 30917,
+      "sha256": "7bae31e98d91fa6d19e9bd1ef5c8976a19c098b84b998f69cd6362f305ed33a2"
+    }
+  },
+  "contiguous_markdown_tables": [
+    {
+      "columns": 3,
+      "rows": 13
+    },
+    {
+      "columns": 3,
+      "rows": 10
+    },
+    {
+      "columns": 4,
+      "rows": 3
+    },
+    {
+      "columns": 5,
+      "rows": 20
+    },
+    {
+      "columns": 5,
+      "rows": 8
+    },
+    {
+      "columns": 5,
+      "rows": 19
+    },
+    {
+      "columns": 3,
+      "rows": 4
+    }
+  ],
+  "deterministic_archive": "gzip mtime0, sorted paths, normalized tar timestamps/owners, preserved executable bit",
+  "duplicate_members": false,
+  "errors": [],
+  "freeze_closeout": {
+    "comparisons": 2064,
+    "failures": 0
+  },
+  "freeze_start": {
+    "comparisons": 2064,
+    "failures": 0
+  },
+  "member_count": 931,
+  "owned_stdio_cleanup_proof": "Public child returncode/pipes-EOF assertions and fixture teardown in independently executed probes, including failed assertions. Host ps inventory is sandbox-denied and is not claimed.",
+  "portable_locator_occurrences": 55,
+  "portable_locator_unique": 55,
+  "real_secrets_used": false,
+  "report_byte_exact": true,
+  "report_eof_exactly_one_newline": true,
+  "report_trailing_whitespace": false,
+  "runtime_db_cache_venv_state_excluded": true,
+  "validation": "VAL-013",
+  "verified": true,
+  "verified_member_hashes_and_sizes": 931
+}

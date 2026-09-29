@@ -6,7 +6,7 @@ import asyncio
 import json
 import re
 from collections.abc import AsyncIterator, Awaitable, Callable, Mapping
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any
 from uuid import uuid4
 
@@ -14,10 +14,21 @@ from friday_memory.models.budget import BudgetSeverity, BudgetStatus
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFactory
+from friday_chat.memory_mcp import persist_mcp_interaction
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
+from friday_chat.tools.output import (
+    MCPResultLimitError,
+    reconcile_mcp_call_ids,
+    redact_tool_request_message,
+    safe_mcp_call_id,
+)
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
-from friday_chat.tools.selection import ToolBudgetSnapshot
+from friday_chat.tools.selection import (
+    ToolBudgetSnapshot,
+    ToolRejectionReason,
+    ToolSelectionError,
+)
 from friday_chat.turns.metrics import elapsed_seconds, now_seconds
 from friday_chat.turns.models import (
     ChatModelResponse,
@@ -63,10 +74,21 @@ class PreparedTurn:
     prompt_text: str
     messages: list[dict[str, Any]]
     budget_status: BudgetStatus
+    mcp_tool_names: frozenset[str] = frozenset()
 
 
 class TurnProcessingError(RuntimeError):
     """Base class for FridayV2 turn-processing failures."""
+
+
+class TurnBudgetError(TurnProcessingError):
+    """Required tools or the memory floor cannot fit before retrieval/model calls."""
+
+    def __init__(self, reason: ToolRejectionReason) -> None:
+        self.reason = reason
+        super().__init__(
+            f"Tool selection failed ({reason.value}); check required tools and turn budget policy."
+        )
 
 
 class TurnTimeoutError(TurnProcessingError):
@@ -133,10 +155,11 @@ class TurnProcessor:
             prepared.user_message,
             prepared.messages,
             prepared.tool_definitions,
+            mcp_names=prepared.mcp_tool_names,
         )
         raw_response = _serialize_response(model_response)
 
-        metrics = await self._persist_turn(
+        metrics, tool_calls = await self._persist_turn(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             prompt_text=prepared.prompt_text,
@@ -206,6 +229,7 @@ class TurnProcessor:
                 prepared.user_message,
                 prepared.messages,
                 prepared.tool_definitions,
+                mcp_names=prepared.mcp_tool_names,
             )
             await on_chunk(assistant_message)
         else:
@@ -238,7 +262,7 @@ class TurnProcessor:
             llm_seconds = elapsed_seconds(llm_start)
 
         raw_response = _serialize_response(model_response)
-        metrics = await self._persist_turn(
+        metrics, tool_calls = await self._persist_turn(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             prompt_text=prepared.prompt_text,
@@ -276,16 +300,44 @@ class TurnProcessor:
 
     async def _prepare_turn(self, user_message: str) -> PreparedTurn:
         total_start = now_seconds()
-        self._runtime.tool_selection.synchronize_registered_tools(
-            self._runtime.tools.list_tools()
-        )
-        selection = self._runtime.tool_selection.select_for_turn(user_message)
+        await self._runtime.start_mcp_tools()
+        try:
+            self._runtime.tool_selection.synchronize_registered_tools(
+                self._runtime.tools.list_tools(),
+                mcp_metadata=(
+                    self._runtime.mcp_tools.tool_metadata
+                    if self._runtime.mcp_tools is not None
+                    else None
+                ),
+            )
+            selection = self._runtime.tool_selection.select_for_turn(user_message)
+        except ToolSelectionError as exc:
+            bridge = self._runtime.mcp_tools
+            if bridge is not None:
+                for name in exc.names:
+                    if bridge.is_mcp_tool(name):
+                        bridge.provider.emit_event(
+                            "budget_skip",
+                            tool_name=name,
+                            reason=exc.reason.value,
+                        )
+            raise TurnBudgetError(exc.reason) from None
+        bridge = self._runtime.mcp_tools
+        if bridge is not None:
+            for rejection in selection.budget.rejections:
+                if bridge.is_mcp_tool(rejection.name):
+                    bridge.provider.emit_event(
+                        "budget_skip",
+                        tool_name=rejection.name,
+                        reason=rejection.reason.value,
+                    )
         tool_definitions = selection.definitions
         context_budget_tokens = _calculate_dynamic_context_budget(
             self._runtime.config,
             tool_budget=selection.budget,
         )
 
+        mcp_tool_names = frozenset(self._mcp_names())
         retrieval_start = now_seconds()
         memories = await self._runtime.memory.retrieve(
             user_message,
@@ -330,6 +382,7 @@ class TurnProcessor:
             prompt_text=prompt_text,
             messages=messages,
             budget_status=budget_status,
+            mcp_tool_names=mcp_tool_names,
         )
 
     async def _complete_model_turn(
@@ -337,6 +390,8 @@ class TurnProcessor:
         user_message: str,
         messages: list[dict[str, Any]],
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        mcp_names: frozenset[str] | None = None,
     ) -> tuple[
         str,
         ChatModelResponse,
@@ -344,6 +399,7 @@ class TurnProcessor:
         float,
     ]:
         llm_start = now_seconds()
+        mcp_names = mcp_names if mcp_names is not None else frozenset(self._mcp_names())
         model_response = await self._complete_with_retries(
             messages,
             tools=tool_definitions,
@@ -355,7 +411,15 @@ class TurnProcessor:
                 messages,
                 model_response,
                 tool_definitions,
+                mcp_names=mcp_names,
             )
+        model_response = self._safe_model_response(
+            model_response,
+            mcp_names,
+            used_call_ids={
+                call.call_id for call in tool_calls if call.call_id is not None
+            },
+        )
         assistant_message = model_response.content
         if not assistant_message and tool_calls:
             assistant_message = _tool_fallback_message(tool_calls)
@@ -408,16 +472,28 @@ class TurnProcessor:
         messages: list[dict[str, Any]],
         initial_response: ChatModelResponse,
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        mcp_names: frozenset[str],
     ) -> tuple[ChatModelResponse, tuple[ToolCallRecord, ...]]:
         loop_config = self._runtime.config.tools.loop
         max_iterations = _int_from_mapping(loop_config, "max_iterations", 3)
         all_tool_calls: list[ToolCallRecord] = []
         response = initial_response
+        used_call_ids: set[str] = set()
         for _iteration in range(max_iterations):
             if not response.has_tool_calls:
                 return response, tuple(all_tool_calls)
-            assistant_message = _assistant_message_from_response(response)
-            tool_calls = await self._execute_tool_calls(response, tool_definitions)
+            tool_calls = await self._execute_tool_calls(
+                response,
+                tool_definitions,
+                used_call_ids=used_call_ids,
+                mcp_names=mcp_names,
+            )
+            assistant_message = redact_tool_request_message(
+                _assistant_message_from_response(response),
+                tool_calls,
+                set(mcp_names),
+            )
             all_tool_calls.extend(tool_calls)
             messages.append(assistant_message)
             messages.extend(_tool_result_messages(tool_calls))
@@ -429,12 +505,62 @@ class TurnProcessor:
                 heartbeat_kind="tool",
             )
             response = _with_text_tool_calls(response, tool_definitions)
+            # New native IDs may claim an ID belonging to an earlier MCP call.
+            # Repair the retained pair and atomic facts even on the last/pending
+            # fallback response, before another invocation or turn capture.
+            reconcile_mcp_call_ids(
+                all_tool_calls,
+                messages,
+                {
+                    call.call_id
+                    for call in response.tool_calls
+                    if call.name not in mcp_names and call.call_id is not None
+                },
+                used_call_ids,
+            )
         return response, tuple(all_tool_calls)
+
+    def _mcp_names(self) -> set[str]:
+        bridge = self._runtime.mcp_tools
+        return set(bridge.tool_metadata) if bridge is not None else set()
+
+    def _safe_model_response(
+        self,
+        response: ChatModelResponse,
+        mcp_names: frozenset[str],
+        *,
+        used_call_ids: set[str] | None = None,
+    ) -> ChatModelResponse:
+        """Drop any remaining MCP request prose/raw copies before return/capture."""
+        if not any(call.name in mcp_names for call in response.tool_calls):
+            return response
+        used = {
+            call.call_id
+            for call in response.tool_calls
+            if call.name not in mcp_names and call.call_id is not None
+        }
+        used.update(used_call_ids or ())
+        calls = tuple(
+            replace(call, arguments={}, call_id=safe_mcp_call_id(call.call_id, used))
+            if call.name in mcp_names
+            else call
+            for call in response.tool_calls
+        )
+        return replace(
+            response,
+            content="",
+            tool_calls=calls,
+            reasoning_content=None,
+            raw_response=None,
+        )
 
     async def _execute_tool_calls(
         self,
         response: ChatModelResponse,
         tool_definitions: tuple[ToolDefinition, ...],
+        *,
+        used_call_ids: set[str] | None = None,
+        mcp_names: frozenset[str] = frozenset(),
     ) -> tuple[ToolCallRecord, ...]:
         loop_config = self._runtime.config.tools.loop
         max_iterations = _int_from_mapping(loop_config, "max_iterations", 3)
@@ -443,10 +569,22 @@ class TurnProcessor:
             max_iterations=max_iterations,
             heartbeat_factory=self._heartbeat_factory,
         )
-        tool_result = await tool_loop.run(
-            [_assistant_message_from_response(response)],
-            tool_definitions,
-        )
+        try:
+            tool_result = await tool_loop.run(
+                [_assistant_message_from_response(response)],
+                tool_definitions,
+                used_call_ids=used_call_ids,
+                mcp_tool_names=mcp_names,
+            )
+        except MCPResultLimitError:
+            raise TurnProcessingError(
+                "MCP result limit is too small for safe execution."
+            ) from None
+        if any(
+            call.name in mcp_names and call.mcp_provenance is None
+            for call in tool_result.tool_calls
+        ):
+            raise TurnProcessingError("MCP execution requires per-call provenance")
         return tuple(tool_result.tool_calls)
 
     async def _persist_turn(
@@ -462,7 +600,7 @@ class TurnProcessor:
         llm_seconds: float,
         total_start: float,
         raw_response: str,
-    ) -> TurnMetrics:
+    ) -> tuple[TurnMetrics, tuple[ToolCallRecord, ...]]:
         persistence_start = now_seconds()
         try:
             await self._runtime.memory.store_turn(user_message, assistant_message)
@@ -478,7 +616,9 @@ class TurnProcessor:
                 persistence_seconds=elapsed_seconds(persistence_start),
                 total_seconds=elapsed_seconds(total_start),
             )
-            await self._runtime.transcript.record_interaction(
+            tool_calls = await persist_mcp_interaction(
+                self._runtime.memory, self._runtime.transcript,
+                self._runtime.config.tools.mcp_provider.config.ingestion,
                 InteractionTurn(
                     turn_id=str(uuid4()),
                     user_message=user_message,
@@ -491,7 +631,14 @@ class TurnProcessor:
                         self._runtime.config.transcript.capture_raw_prompts
                     ),
                     tool_calls=tool_calls,
-                )
+                ),
+                observe=(
+                    lambda name, reason: self._runtime.mcp_tools.provider.emit_event(
+                        "ingestion_decision", tool_name=name, reason=reason
+                    )
+                    if self._runtime.mcp_tools is not None
+                    else None
+                ),
             )
         except Exception as exc:
             _rollback_fake_memory_turn(
@@ -499,8 +646,10 @@ class TurnProcessor:
                 user_message,
                 assistant_message,
             )
+            if self._runtime.config.tools.mcp_provider.config.ingestion.long_term_memory_enabled:
+                raise TurnPersistenceError("Failed to persist turn.") from None
             raise TurnPersistenceError("Failed to persist turn.") from exc
-        return metrics
+        return metrics, tool_calls
 
 
 def _rollback_fake_memory_turn(
@@ -580,7 +729,8 @@ def _calculate_dynamic_context_budget(
             0,
             tool_budget.available_context_tokens
             - system_prompt_tokens
-            - tool_budget.schema_tokens,
+            - tool_budget.schema_tokens
+            - tool_budget.reserved_result_tokens,
         ),
     )
 

@@ -1,0 +1,106 @@
+version: 1
+review_id: VAL-001
+initiative: friday-chat-client-lifecycle
+work_unit: CD-001-client-lifecycle
+requested_on: '2026-09-14'
+review_mode: full
+reviewer_context: fresh
+reviewer_write_policy: read_only
+outcomes:
+  - VERIFIED
+  - CHANGES_REQUESTED
+  - BLOCKED
+revisions:
+  repository_base: fe15552cc83caa2590be2e73158091dd15826d1e
+  candidate: ad65ec05974656c580bd928840b44b5c9a87902c
+diffs:
+  full: fe15552cc83caa2590be2e73158091dd15826d1e..ad65ec05974656c580bd928840b44b5c9a87902c
+authority:
+  - path: AGENTS.md
+    sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  - path: docs/reference/policies/repository-engineering-policy.md
+    sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  - path: docs/reference/policies/development-task-lifecycle.md
+    sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  - path: docs/reference/policies/independent-validation-policy.md
+    sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  - path: docs/dev-skills/independent-code-validator.md
+    sha256: 578fe10d00df438be8c0dc2537ee08c08c3361ebb3615db0fd17e148b928f508
+  - path: docs/archive/completed/2026/friday-chat-v2/friday-chat-v2-behavioral-contracts.md
+    sha256: cc773399fb212515ceb5fc883eaa2fa7b9ba0d47c44c6881158b9f262bcab29c
+  - path: docs/planning/active/friday-chat-client-lifecycle/README.md
+    sha256: bce331d2a988ceca2b19067826a49b41280ae0399abfadf96dbfe6069d94ee50
+  - path: docs/planning/active/friday-chat-client-lifecycle/build-plan.md
+    sha256: 7f2e6d7745654422e82f91e065311e274e3a857b6ec177d7b417dfbd001bb082
+  - path: docs/planning/active/friday-chat-client-lifecycle/tactical-plan.md
+    sha256: bddfee4d349fe3ea39f2b0a30c5a56c43a3dfb879b281fc3fd0cd6e2ebf29561
+  - path: docs/planning/active/friday-chat-client-lifecycle/directives/CD-001-client-lifecycle.md
+    sha256: 829b80b4711e37980cca2ca4e7141ee5318f841f74592c5cb547f5a98680d408
+acceptance_authority:
+  acceptance_criteria:
+    - AC-01
+    - AC-02
+    - AC-03
+    - AC-04
+    - AC-05
+    - AC-06
+    - AC-07
+    - AC-08
+    - AC-09
+    - AC-10
+    - AC-11
+    - AC-12
+  tactical_tasks:
+    - TP-01
+    - TP-02
+    - TP-03
+    - TP-04
+    - TP-05
+    - TP-06
+    - TP-07
+    - TP-08
+    - TP-09
+    - TP-10
+    - TP-11
+    - TP-12
+    - TP-13
+required_checks:
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-llm/tests_llm/test_lifecycle.py -q
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-chat/tests_chat/test_input_sources.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/test_runtime.py -q
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-llm/tests_llm -q
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run pytest packages/friday-chat/tests_chat -q
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run ruff check packages/friday-llm/src/friday_llm/lifecycle.py packages/friday-llm/src/friday_llm/__init__.py packages/friday-llm/tests_llm/test_lifecycle.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/app.py packages/friday-chat/src/friday_chat/input_sources.py packages/friday-chat/tests_chat/test_runtime.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/test_input_sources.py
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run mypy --follow-imports=skip packages/friday-llm/src/friday_llm/lifecycle.py packages/friday-chat/src/friday_chat/input_sources.py packages/friday-chat/src/friday_chat/app.py packages/friday-chat/src/friday_chat/runtime.py
+  - UV_CACHE_DIR=$PWD/.uv-cache uv run python scripts/friday-dev-board.py validate
+  - git diff --check fe15552cc83caa2590be2e73158091dd15826d1e..ad65ec05974656c580bd928840b44b5c9a87902c
+required_review:
+  - Verify every authority hash, candidate revision, and selected diff before judging the candidate.
+  - Map all AC and TP identifiers to source, test, package, or reproducible command evidence.
+  - Inspect the LiteLLM 1.100.1 lock resolution and its process-client cleanup API.
+  - Verify cleanup is model and provider independent and occurs only after dependent background and maintenance work.
+  - Verify cleanup errors are content-safe and follow existing snapshot containment semantics.
+  - Verify prompt-toolkit no longer installs its temporary exception handler and terminal EOF and interrupt behavior remains unchanged.
+  - Inspect the complete diff for scope drift, protected-state inclusion, secret exposure, or unauthorized package-version changes.
+known_baseline_state:
+  - The default root pytest command has a duplicate unnamespaced test_display module collection conflict. Do not delete caches or alter protected state to bypass it.
+  - Importlib-mode root validation yielded 2205 passed, 14 skipped, and 7 unrelated failures.
+  - Friday Chat package validation yielded 428 passed, 5 skipped, and 3 PTY failures in test_command_disposable_uat.py, test_display.py, and test_reorganization_terminal.py.
+  - Representative screen-clear and early-acknowledgement PTY failures reproduce with temporary LiteLLM 1.94.1 and are not candidate regressions.
+  - Broader mypy is blocked by the Python 3.10 configuration parsing Python 3.12-only NumPy stub syntax. A pre-existing no-any-return error remains in adapters.py outside the selected diff.
+  - .DS_Store and family-tree.md are unrelated dirty tracked files excluded from the candidate.
+  - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak and packages/friday-sandbox/docker/Dockerfile.audit are unrelated untracked files excluded from the candidate.
+external_effects:
+  network: localhost_only_for_deterministic_wire_capture
+  credentials: forbidden
+  paid_services: forbidden
+  persistent_runtime_state: forbidden
+  push_merge_release_deploy: forbidden
+report:
+  path: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-report.md
+  evidence_path: docs/planning/active/friday-chat-client-lifecycle/validation/VAL-001-evidence.yaml
+allowed_post_review_closeout:
+  - Add VAL-001 report and evidence artifacts supplied by the validator.
+  - Append validation disposition and create closeout.md after VERIFIED.
+  - Update packet status, execution_phase, validation_state, and next_gate.
+  - Transition the board and generated dashboard from started to completed after VERIFIED.
+  - Do not alter governed source, tests, package metadata, lock data, directive, or authority without a fresh review.

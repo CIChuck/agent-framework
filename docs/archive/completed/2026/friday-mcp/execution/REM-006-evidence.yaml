@@ -1,0 +1,37 @@
+id: REM-006-evidence
+date: '2026-09-28'
+remediator: /root/mcp_ws05_rem006
+candidate: f24ed20f82eac0cbce17e4b86615497cc9993921
+source_test_candidate: c7122e94cd94d06cefeb8e2ca02bd89ca0b146d1
+remediation_base: dd6a337eb2928ab4050ea70fb41dc77072210e34
+original_aggregate_base: a609f948fe2d869ac29d0cce29d22d9334cd7d08
+approved_implementation_paths:
+- packages/friday-chat/src/friday_chat/adapters.py
+- packages/friday-chat/src/friday_chat/tools/output.py
+- packages/friday-chat/src/friday_chat/tools/loop.py
+- packages/friday-chat/src/friday_chat/turns/processor.py
+- packages/friday-chat/tests_chat/test_mcp_execution_security.py
+- packages/friday-chat/tests_chat/test_mcp_execution_transcript.py
+- tests/integration/test_mcp_execution_provenance.py
+- docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md
+report: docs/planning/active/friday-mcp/execution/REM-006-implementation-report.md
+report_sha256: 99d856c508203693782386109fd8841b20a0cfaa266197299fa5a476dd3e6950
+archive: docs/planning/active/friday-mcp/execution/REM-006-evidence.tar.gz
+archive_sha256: 13a70178162b27c49e404481fa7e97a35a7b6c6fea271e7b83f7a0b3a7e52ae9
+archive_bytes: 3619662
+artifact_count: 206
+archive_preservation: Original deterministic archive and member bytes copied unchanged; every member hash
+  verified
+member_manifest: docs/planning/active/friday-mcp/execution/REM-006-artifact-manifest.json
+member_manifest_sha256: ba61d78686b0a7e7f6642a9c6163a6f5958bf68a8b8f3e65257bc547cdd4d020
+delivery_manifest: docs/planning/active/friday-mcp/execution/REM-006-delivery.json
+report_member_locators_verified: 61
+focused_tests: 224
+public_replay_tests: 27
+independent_validation: pending new fresh VAL-012; remediator checks are not verification or acceptance
+frozen_inputs_preserved: 41
+outside_scope_product_files_preserved: 971
+unrelated_path_fingerprints_preserved: 5
+runtime_databases_included: false
+restore_command: mkdir -p /private/tmp/rem006-restored && tar -xzf docs/planning/active/friday-mcp/execution/REM-006-evidence.tar.gz
+  -C /private/tmp/rem006-restored

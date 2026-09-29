@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 CSV transcript exporter.
 
@@ -12,9 +11,15 @@ Text content is sanitized to remove newlines and tabs for single-line records.
 import csv
 import json
 from pathlib import Path
-from typing import Any, TextIO
+from typing import Any, Literal, TextIO
 
-from friday_transcript.models.transcript import TranscriptEntry, TranscriptSession
+from friday_transcript.models.transcript import (
+    ToolCall,
+    ToolResult,
+    TranscriptEntry,
+    TranscriptSession,
+    mcp_provenance_summary,
+)
 from friday_transcript.stores.protocol import TranscriptStore
 
 
@@ -60,7 +65,17 @@ class CSVExporter:
         """
         self._store = store
         self._delimiter = delimiter
-        self._quoting = quoting
+        modes: dict[int, Literal[0, 1, 2, 3, 4, 5]] = {
+            0: 0,
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 4,
+            5: 5,
+        }
+        if not isinstance(quoting, int) or quoting not in modes:
+            raise ValueError("Invalid CSV quoting mode")
+        self._quoting = modes[quoting]
 
     def _sanitize_text(self, text: str | None) -> str:
         """
@@ -98,7 +113,7 @@ class CSVExporter:
         self,
         f: TextIO,
         fieldnames: list[str],
-    ) -> csv.DictWriter:
+    ) -> csv.DictWriter[str]:
         """
         Create a CSV DictWriter with consistent configuration.
 
@@ -138,6 +153,7 @@ class CSVExporter:
         entries = await self._store.get_entries(session_id, limit=100000)
 
         should_close = False
+        f: TextIO
         if isinstance(output, Path):
             f = open(output, "w", newline="", encoding="utf-8")  # noqa: SIM115
             should_close = True
@@ -285,10 +301,14 @@ class CSVExporter:
             "timestamp": entry.timestamp.isoformat(),
             "user_message": self._sanitize_text(entry.user_message),
             "assistant_message": self._sanitize_text(entry.assistant_message),
-            "tool_calls": json.dumps([tc.model_dump() for tc in entry.tool_calls])
+            "tool_calls": json.dumps(
+                [self._tool_call_cell(tc) for tc in entry.tool_calls]
+            )
             if entry.tool_calls
             else "",
-            "tool_results": json.dumps([tr.model_dump() for tr in entry.tool_results])
+            "tool_results": json.dumps(
+                [self._tool_result_cell(tr) for tr in entry.tool_results]
+            )
             if entry.tool_results
             else "",
             "prompt_tokens": entry.prompt_tokens
@@ -313,4 +333,27 @@ class CSVExporter:
             if entry.response_completed_at
             else "",
             "metadata": json.dumps(entry.metadata) if entry.metadata else "",
+        }
+
+    def _tool_call_cell(self, call: ToolCall) -> dict[str, Any]:
+        if call.mcp_provenance is None:
+            return call.model_dump()
+        return {
+            "id": call.id,
+            "name": call.mcp_provenance.tool.canonical_name,
+            "arguments": {},
+            "mcp_provenance": mcp_provenance_summary(call.mcp_provenance),
+        }
+
+    def _tool_result_cell(self, result: ToolResult) -> dict[str, Any]:
+        if result.mcp_provenance is None:
+            return result.model_dump()
+        preview = self._sanitize_text(str(result.output)[:200])
+        if len(str(result.output)) > 200:
+            preview += "..."
+        return {
+            "tool_call_id": result.tool_call_id,
+            "output": preview,
+            "error": result.mcp_provenance.failure_code,
+            "mcp_provenance": mcp_provenance_summary(result.mcp_provenance),
         }

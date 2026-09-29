@@ -9,12 +9,21 @@ dual-source loading helpers.
 from __future__ import annotations
 
 import os
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal, cast
 
 import yaml
+from friday_core.mcp import (
+    MCPClientLimits,
+    MCPClientSecurityPolicy,
+    MCPDiscoveryPolicy,
+    MCPIngestionPolicy,
+    MCPSafeIdentifier,
+    normalize_mcp_tool_name,
+)
 from friday_llm import (
     ChatServiceBinding,
     EmbeddingServiceBinding,
@@ -25,6 +34,14 @@ from friday_llm import (
     resolve_embedding_service,
 )
 from friday_mcp.config import MCPConfig
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    field_validator,
+    model_validator,
+)
 
 from friday_runtime.model_library import load_model_library
 
@@ -90,6 +107,170 @@ def _normalize_str_tuple(values: Any, *, field_name: str) -> tuple[str, ...]:
     raise ValueError(f"{field_name} must be a list of strings")
 
 
+_MCP_CANONICAL_TOOL_NAME = re.compile(r"^[a-z][a-z0-9_]*$")
+
+
+def _normalize_mcp_tool_filter(value: object, *, field_name: str) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if not isinstance(value, (list, tuple)):
+        raise ValueError(f"{field_name} must be a list of canonical tool names")
+    if any(
+        not isinstance(name, str)
+        or len(name) > 64
+        or not _MCP_CANONICAL_TOOL_NAME.fullmatch(name)
+        for name in value
+    ):
+        raise ValueError(f"{field_name} requires canonical Friday tool names")
+    return tuple(value)
+
+
+class MCPRuntimeServerConfig(BaseModel):
+    """Strict runtime-facing server config; protocol-local MCPConfig is unchanged."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    name: MCPSafeIdentifier
+    enabled: bool = True
+    required: bool = False
+    transport: Literal["stdio"] = "stdio"
+    command: str | None = Field(default=None, repr=False)
+    args: tuple[str, ...] = Field(default=(), repr=False)
+    env: dict[str, str] = Field(default_factory=dict, repr=False)
+    cwd: str | None = Field(default=None, repr=False)
+    timeout_seconds: int = Field(default=30, gt=0)
+    tool_timeout_seconds: int = Field(default=60, gt=0)
+    retry_attempts: int = Field(default=3, ge=0)
+    trust_level: Literal["local"] = "local"
+
+    @field_validator("args", mode="before")
+    @classmethod
+    def _tuple_args(cls, value: object) -> object:
+        return tuple(value) if isinstance(value, list) else value
+
+    @field_validator("cwd")
+    @classmethod
+    def _safe_cwd_shape(cls, value: str | None) -> str | None:
+        if value is not None and (
+            not value.strip() or ".." in Path(value).parts or value.startswith("~")
+        ):
+            raise ValueError("MCP cwd must be a non-empty workspace-scoped path")
+        return value
+
+    @model_validator(mode="after")
+    def _check_server(self) -> MCPRuntimeServerConfig:
+        if self.enabled and (self.command is None or not self.command.strip()):
+            raise ValueError("enabled MCP stdio server requires an explicit command")
+        if self.required and not self.enabled:
+            raise ValueError("required MCP server cannot be disabled")
+        return self
+
+    def validate_workspace(self, workspace_root: str) -> None:
+        """Reject an MCP working directory outside the configured workspace."""
+        if self.cwd is None:
+            return
+        root = Path(workspace_root).expanduser().resolve()
+        raw = Path(self.cwd)
+        resolved = (raw if raw.is_absolute() else root / raw).resolve()
+        if not resolved.is_relative_to(root):
+            raise ValueError("MCP cwd must be under runtime_paths.workspace_root")
+
+
+class MCPRuntimeClientConfig(BaseModel):
+    """Canonical nested MCP config consumed by later runtime workstreams."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    auto_connect: bool = True
+    tool_name_prefix: str = "mcp_"
+    discovery: MCPDiscoveryPolicy = Field(default_factory=MCPDiscoveryPolicy)
+    limits: MCPClientLimits = Field(default_factory=MCPClientLimits)
+    security: MCPClientSecurityPolicy = Field(default_factory=MCPClientSecurityPolicy)
+    ingestion: MCPIngestionPolicy = Field(default_factory=MCPIngestionPolicy)
+    servers: tuple[MCPRuntimeServerConfig, ...] = ()
+
+    @field_validator("servers", mode="before")
+    @classmethod
+    def _tuple_servers(cls, value: object) -> object:
+        return tuple(value) if isinstance(value, list) else value
+
+    @field_validator("security", "ingestion", mode="before")
+    @classmethod
+    def _tuple_policy_ids(cls, value: object) -> object:
+        if not isinstance(value, Mapping):
+            return value
+        normalized = dict(value)
+        for key in ("allowed_workspace_ids", "opted_in_servers", "opted_in_tools"):
+            if isinstance(normalized.get(key), list):
+                normalized[key] = tuple(normalized[key])
+        return normalized
+
+    @model_validator(mode="after")
+    def _check_catalog(self) -> MCPRuntimeClientConfig:
+        # The same normalizer used by WS-03 makes lossy server IDs fail now.
+        normalize_mcp_tool_name(
+            "server", "probe", tool_name_prefix=self.tool_name_prefix
+        )
+        if len(self.servers) > self.limits.max_servers:
+            raise ValueError("MCP server count exceeds max_servers")
+        canonical_ids: set[str] = set()
+        for server in self.servers:
+            canonical = normalize_mcp_tool_name(server.name, "probe")
+            if canonical in canonical_ids:
+                raise ValueError("duplicate canonical MCP server identifier")
+            canonical_ids.add(canonical)
+        return self
+
+    def validate_workspace(self, workspace_root: str) -> None:
+        for server in self.servers:
+            server.validate_workspace(workspace_root)
+
+
+def _safe_mcp_validation_error(error: ValidationError) -> ValueError:
+    """Surface config errors without echoing env values or untrusted paths."""
+    issue = error.errors(include_input=False, include_context=False)[0]
+    known = set(MCPRuntimeClientConfig.model_fields) | set(
+        MCPRuntimeServerConfig.model_fields
+    )
+    known |= set(MCPClientLimits.model_fields) | set(
+        MCPClientSecurityPolicy.model_fields
+    )
+    known |= set(MCPDiscoveryPolicy.model_fields) | set(MCPIngestionPolicy.model_fields)
+    location = ".".join(
+        str(part) if isinstance(part, int) or part in known else "<unknown>"
+        for part in issue["loc"]
+    )
+    return ValueError(
+        f"Invalid tools.providers.mcp.config at {location or 'config'}: {issue['msg']}"
+    )
+
+
+def _protocol_mcp_to_runtime_data(value: MCPConfig) -> dict[str, object]:
+    """Normalize unambiguous direct-use legacy config without server exposure."""
+    if value.server is not None:
+        raise ValueError("MCP server exposure is not a runtime client config field")
+    servers: list[dict[str, object]] = []
+    for server in value.servers:
+        servers.append(
+            {
+                "name": server.name,
+                "enabled": server.enabled,
+                "transport": server.transport.value,
+                "command": server.command,
+                "args": server.args,
+                "env": server.env,
+                "cwd": str(server.cwd) if server.cwd is not None else None,
+                "timeout_seconds": server.timeout_seconds,
+                "retry_attempts": server.retry_attempts,
+            }
+        )
+    return {
+        "auto_connect": value.auto_connect,
+        "tool_name_prefix": value.tool_name_prefix,
+        "servers": servers,
+    }
+
+
 @dataclass(frozen=True)
 class ToolProviderConfig:
     enabled: bool = False
@@ -130,30 +311,78 @@ class ToolProviderConfig:
 @dataclass(frozen=True)
 class MCPToolProviderConfig:
     enabled: bool = False
-    mode: Literal["all", "selected"] = "all"
+    mode: Literal["all", "selected"] = "selected"
     include_categories: tuple[str, ...] = ()
     exclude_categories: tuple[str, ...] = ()
     include_tools: tuple[str, ...] = ()
     exclude_tools: tuple[str, ...] = ()
-    config: MCPConfig = field(default_factory=MCPConfig)
+    config: MCPRuntimeClientConfig = field(default_factory=MCPRuntimeClientConfig)
 
     def __post_init__(self) -> None:
+        if not isinstance(self.enabled, bool):
+            raise ValueError("tools.providers.mcp.enabled must be a boolean")
+        if not isinstance(self.config, MCPRuntimeClientConfig):
+            raise ValueError("tools.providers.mcp.config must be typed MCP config")
         if self.mode not in {"all", "selected"}:
             raise ValueError("tool provider mode must be 'all' or 'selected'")
+        if set(self.include_tools) & set(self.exclude_tools):
+            raise ValueError("MCP include_tools and exclude_tools must not overlap")
+        for name in (*self.include_tools, *self.exclude_tools):
+            if len(name) > 64 or not _MCP_CANONICAL_TOOL_NAME.fullmatch(name):
+                raise ValueError("MCP tool filters require canonical Friday tool names")
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> MCPToolProviderConfig:
+        if "config_file" in data:
+            raise ValueError(
+                "tools.providers.mcp.config_file is reserved for MCP-WS-09"
+            )
+        allowed = {
+            "enabled",
+            "mode",
+            "include_categories",
+            "exclude_categories",
+            "include_tools",
+            "exclude_tools",
+            "config",
+        }
+        if set(data) - allowed:
+            raise ValueError("Unknown keys in tools.providers.mcp")
         raw_config = data.get("config", {})
-        if isinstance(raw_config, MCPConfig):
+        if isinstance(raw_config, MCPRuntimeClientConfig):
             mcp_config = raw_config
-        elif isinstance(raw_config, Mapping):
-            mcp_config = MCPConfig.model_validate(dict(raw_config))
+        elif isinstance(raw_config, (Mapping, MCPConfig)):
+            if isinstance(raw_config, MCPConfig):
+                normalized_config = _protocol_mcp_to_runtime_data(raw_config)
+            else:
+                normalized_config = dict(raw_config)
+                if "server" in normalized_config:
+                    if normalized_config["server"] is not None:
+                        raise ValueError(
+                            "MCP server exposure is not a runtime client config field"
+                        )
+                    del normalized_config["server"]
+            if "config_file" in normalized_config:
+                raise ValueError(
+                    "tools.providers.mcp.config_file is reserved for MCP-WS-09"
+                )
+            try:
+                mcp_config = MCPRuntimeClientConfig.model_validate(normalized_config)
+            except ValidationError as error:
+                raise _safe_mcp_validation_error(error) from None
         else:
             raise ValueError("tools.providers.mcp.config must be an object")
 
+        enabled = data.get("enabled", False)
+        if not isinstance(enabled, bool):
+            raise ValueError("tools.providers.mcp.enabled must be a boolean")
+        mode = data.get("mode", "selected")
+        if mode not in {"all", "selected"}:
+            raise ValueError("tools.providers.mcp.mode must be 'all' or 'selected'")
+
         return cls(
-            enabled=bool(data.get("enabled", False)),
-            mode=cast(Literal["all", "selected"], data.get("mode", "all")),
+            enabled=enabled,
+            mode=cast(Literal["all", "selected"], mode),
             include_categories=_normalize_str_tuple(
                 data.get("include_categories"),
                 field_name="tools provider include_categories",
@@ -162,13 +391,13 @@ class MCPToolProviderConfig:
                 data.get("exclude_categories"),
                 field_name="tools provider exclude_categories",
             ),
-            include_tools=_normalize_str_tuple(
+            include_tools=_normalize_mcp_tool_filter(
                 data.get("include_tools"),
-                field_name="tools provider include_tools",
+                field_name="tools.providers.mcp.include_tools",
             ),
-            exclude_tools=_normalize_str_tuple(
+            exclude_tools=_normalize_mcp_tool_filter(
                 data.get("exclude_tools"),
-                field_name="tools provider exclude_tools",
+                field_name="tools.providers.mcp.exclude_tools",
             ),
             config=mcp_config,
         )
@@ -503,9 +732,14 @@ class RuntimeConfig:
             }
 
         if self.llm_pool_default_service not in self.llm_pool_services:
-            raise ValueError("llm_pool.default_service must reference a configured service")
+            raise ValueError(
+                "llm_pool.default_service must reference a configured service"
+            )
         for name, service in self.llm_pool_services.items():
-            if isinstance(service, ChatServiceBinding) and name not in self.llm_service_specs:
+            if (
+                isinstance(service, ChatServiceBinding)
+                and name not in self.llm_service_specs
+            ):
                 raise ValueError(
                     f"canonical llm service {name!r} has no resolved service spec"
                 )
@@ -515,9 +749,7 @@ class RuntimeConfig:
             for name, service in self.embedding_pool_services.items()
         }
         if not self.embedding_pool_services:
-            default_llm_service = self.llm_pool_services[
-                self.llm_pool_default_service
-            ]
+            default_llm_service = self.llm_pool_services[self.llm_pool_default_service]
             if isinstance(default_llm_service, LLMServiceConfig):
                 self.embedding_pool_services = {
                     self.embedding_pool_default_service: EmbeddingServiceConfig(
@@ -556,23 +788,32 @@ class RuntimeConfig:
         if self.memory_extraction_llm_service is None:
             self.memory_extraction_llm_service = self.llm_pool_default_service
 
-        if self.memory_extraction_max_tokens is not None and self.memory_extraction_max_tokens <= 0:
+        if (
+            self.memory_extraction_max_tokens is not None
+            and self.memory_extraction_max_tokens <= 0
+        ):
             raise ValueError("memory.extraction.max_tokens must be > 0")
         if not self.memory_extraction_user_name:
             raise ValueError("memory.extraction.user_name must be non-empty")
         if not self.memory_extraction_assistant_name:
             raise ValueError("memory.extraction.assistant_name must be non-empty")
         if self.memory_extraction_llm_service not in self.llm_pool_services:
-            raise ValueError("memory.extraction.llm_service must reference a configured service")
+            raise ValueError(
+                "memory.extraction.llm_service must reference a configured service"
+            )
         if (
             self.memory_extraction_embedding_service is not None
-            and self.memory_extraction_embedding_service not in self.embedding_pool_services
+            and self.memory_extraction_embedding_service
+            not in self.embedding_pool_services
         ):
             raise ValueError(
                 "memory.extraction.embedding_service must reference a configured service"
             )
 
         self.validate_runtime_roots()
+        if self.workspace_root is None:
+            raise RuntimeError("runtime workspace_root was not initialized")
+        self.tools_config.providers.mcp.config.validate_workspace(self.workspace_root)
         self.validate_scratch_path()
         self.validate_artifacts_policy()
         self.validate_transcript_path()
@@ -593,9 +834,7 @@ class RuntimeConfig:
 
     @staticmethod
     def _coerce_embedding_service_config(
-        value: EmbeddingServiceConfig
-        | EmbeddingServiceBinding
-        | Mapping[str, Any],
+        value: EmbeddingServiceConfig | EmbeddingServiceBinding | Mapping[str, Any],
     ) -> EmbeddingServiceConfig | EmbeddingServiceBinding:
         if isinstance(value, EmbeddingServiceConfig):
             return value
@@ -705,7 +944,9 @@ class RuntimeConfig:
             capture_context_log=self.transcript_capture_context_log,
         )
 
-    def get_llm_service_config(self, service_name: str | None = None) -> LLMServiceConfig:
+    def get_llm_service_config(
+        self, service_name: str | None = None
+    ) -> LLMServiceConfig:
         selected = service_name or self.llm_pool_default_service
         try:
             service = self.llm_pool_services[selected]
@@ -725,9 +966,7 @@ class RuntimeConfig:
         except KeyError as exc:
             raise ValueError(f"Unknown embedding service: {selected}") from exc
         if not isinstance(service, EmbeddingServiceConfig):
-            raise ValueError(
-                f"Embedding service {selected!r} uses a canonical profile"
-            )
+            raise ValueError(f"Embedding service {selected!r} uses a canonical profile")
         return service
 
     def validate_runtime_roots(self) -> None:
@@ -826,7 +1065,9 @@ class RuntimeConfig:
         workspace_root = self._resolve(cast(str, self.workspace_root))
         raw = Path(path_value).expanduser()
         resolved = (
-            (runtime_data_root / raw).resolve() if not raw.is_absolute() else raw.resolve()
+            (runtime_data_root / raw).resolve()
+            if not raw.is_absolute()
+            else raw.resolve()
         )
         if runtime_data_root not in resolved.parents and resolved != runtime_data_root:
             raise ValueError("artifacts.root_dir must be under runtime_data_root")
@@ -840,7 +1081,9 @@ class RuntimeConfig:
         workspace_root = self._resolve(cast(str, self.workspace_root))
         raw = Path(path_value).expanduser()
         resolved = (
-            (runtime_data_root / raw).resolve() if not raw.is_absolute() else raw.resolve()
+            (runtime_data_root / raw).resolve()
+            if not raw.is_absolute()
+            else raw.resolve()
         )
         if runtime_data_root not in resolved.parents and resolved != runtime_data_root:
             raise ValueError("transcript.path must be under runtime_data_root")
@@ -1045,14 +1288,13 @@ class RuntimeConfig:
                     },
                     "mcp": {
                         "enabled": False,
-                        "mode": "all",
+                        "mode": "selected",
                         "include_categories": [],
                         "exclude_categories": [],
                         "include_tools": [],
                         "exclude_tools": [],
                         "config": {
                             "servers": [],
-                            "server": None,
                             "auto_connect": True,
                             "tool_name_prefix": "mcp_",
                         },
@@ -1100,7 +1342,11 @@ class RuntimeConfig:
             }
 
         mappings: tuple[tuple[str, tuple[str, ...], Any], ...] = (
-            ("FRIDAY_ALLOW_ENV_OVERRIDE", ("config_policy", "allow_env_override"), _coerce_bool),
+            (
+                "FRIDAY_ALLOW_ENV_OVERRIDE",
+                ("config_policy", "allow_env_override"),
+                _coerce_bool,
+            ),
             (
                 "FRIDAY_STRICT_AGENT_LLM_BINDING",
                 ("config_policy", "strict_agent_llm_binding"),
@@ -1319,7 +1565,9 @@ class RuntimeConfig:
             if section is None:
                 continue
             if not isinstance(section, dict):
-                raise ValueError(f"Runtime config section '{section_name}' must be an object")
+                raise ValueError(
+                    f"Runtime config section '{section_name}' must be an object"
+                )
             unknown = set(section) - allowed
             if unknown:
                 raise ValueError(
@@ -1365,6 +1613,10 @@ class RuntimeConfig:
                         raise ValueError(
                             f"tools.providers.{provider_name} must be an object"
                         )
+                    if provider_name == "mcp" and "config_file" in provider_config:
+                        raise ValueError(
+                            "tools.providers.mcp.config_file is reserved for MCP-WS-09"
+                        )
                     unknown_provider_keys = set(provider_config) - allowed_provider_keys
                     if unknown_provider_keys:
                         raise ValueError(
@@ -1389,10 +1641,20 @@ class RuntimeConfig:
                         raise ValueError(
                             f"tools.providers.{provider_name}.config is only valid for mcp"
                         )
-                    if provider_name == "mcp" and config_value is not None and not isinstance(
-                        config_value, dict
+                    if (
+                        provider_name == "mcp"
+                        and config_value is not None
+                        and not isinstance(config_value, dict)
                     ):
                         raise ValueError("tools.providers.mcp.config must be an object")
+                    if (
+                        provider_name == "mcp"
+                        and isinstance(config_value, dict)
+                        and "config_file" in config_value
+                    ):
+                        raise ValueError(
+                            "tools.providers.mcp.config_file is reserved for MCP-WS-09"
+                        )
 
         transcript = payload.get("transcript", {})
         if isinstance(transcript, dict):
@@ -1424,7 +1686,9 @@ class RuntimeConfig:
             allowed_resilience_keys = {"timeout_seconds", "max_retries"}
             for service_name, config in services.items():
                 if not isinstance(config, dict):
-                    raise ValueError(f"llm_pool.services.{service_name} must be an object")
+                    raise ValueError(
+                        f"llm_pool.services.{service_name} must be an object"
+                    )
                 allowed_service_keys = (
                     allowed_profile_service_keys
                     if "profile" in config
@@ -1670,9 +1934,8 @@ class RuntimeConfig:
             default_templates["llm_pool"]["services"]["default"],
         )
         legacy_llm = cast(Mapping[str, Any], data["llm"])
-        if (
-            default_service_name == "default"
-            and default_service_config == dict(default_pool_service_template)
+        if default_service_name == "default" and default_service_config == dict(
+            default_pool_service_template
         ):
             default_service_config.update(
                 {
@@ -1717,9 +1980,7 @@ class RuntimeConfig:
             "llm_api_base": data["llm"].get("api_base"),
             "llm_pool_default_service": default_service_name,
             "llm_pool_services": {
-                name: cls._coerce_service_config(
-                    cast(Mapping[str, Any], config)
-                )
+                name: cls._coerce_service_config(cast(Mapping[str, Any], config))
                 for name, config in llm_services.items()
             },
             "embedding_pool_default_service": embedding_pool_data.get(
@@ -1741,9 +2002,7 @@ class RuntimeConfig:
             ),
             "memory_extraction_enabled": extraction.get("enabled", True),
             "memory_extraction_llm_service": extraction.get("llm_service"),
-            "memory_extraction_embedding_service": extraction.get(
-                "embedding_service"
-            ),
+            "memory_extraction_embedding_service": extraction.get("embedding_service"),
             "memory_extraction_max_tokens": extraction.get("max_tokens"),
             "memory_extraction_rejection_log": extraction.get("rejection_log"),
             "memory_extraction_user_name": extraction.get("user_name", "User"),

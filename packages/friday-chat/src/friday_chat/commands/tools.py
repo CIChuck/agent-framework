@@ -98,7 +98,12 @@ async def tool_budget_handler(
     state = context.runtime.tool_selection
     state.synchronize_registered_tools(context.runtime.tools.list_tools())
     calculator = state.calculator
-    manual = state.manual_preview()
+    try:
+        manual = state.manual_preview()
+    except ToolSelectionError as exc:
+        return CommandResult(
+            output=f"Tool budget unavailable ({exc.reason.value}); required manual tools no longer fit or are unavailable."
+        )
     last = state.last_turn_snapshot
     automatic = state.last_automatic_snapshot
     if manual is not None:
@@ -118,7 +123,7 @@ async def tool_budget_handler(
     maximum_schema_tokens = (
         estimate.maximum_schema_tokens
         if estimate is not None
-        else calculator.maximum_schema_tokens
+        else state.maximum_schema_tokens
     )
     maximum_tools = estimate.max_tools if estimate is not None else calculator.max_tools
     budget_ratio = (
@@ -159,6 +164,12 @@ async def tool_budget_handler(
         f"- max_tools: {maximum_tools}",
         f"- max_budget_ratio: {budget_ratio:.3f}",
         f"- utilization_pct: {utilization:.1f}",
+        f"- reserved_result_tokens: {estimate.reserved_result_tokens if estimate is not None else 0}",
+        f"- configured_result_reservation: {state.configured_result_reservation}",
+        f"- minimum_memory_tokens: {estimate.minimum_memory_tokens if estimate is not None else state.minimum_memory_tokens}",
+        f"- memory_before_selection: {estimate.memory_tokens_before_selection if estimate is not None else 0}",
+        f"- memory_after_selection: {estimate.memory_tokens_after_selection if estimate is not None else 0}",
+        f"- selected_mcp_count: {estimate.selected_mcp_count if estimate is not None else 0}",
     ]
     if last is not None and last.rejections:
         visible_rejections = last.rejections[:20]

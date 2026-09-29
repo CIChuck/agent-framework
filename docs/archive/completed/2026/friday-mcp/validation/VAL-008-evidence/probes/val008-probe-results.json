@@ -1,0 +1,190 @@
+[
+  {
+    "probe": "admission",
+    "status": "passed",
+    "evidence": {
+      "attack_variants": 9,
+      "unsupported_variants": 12,
+      "shape_variants": 8,
+      "depth_nodes_late_and_snapshots": "passed"
+    }
+  },
+  {
+    "probe": "filters_cost_collisions",
+    "status": "passed",
+    "evidence": {
+      "full_export_bytes": 244,
+      "raw_bytes": 173,
+      "filter_collision_strict_include_export_caps": "passed"
+    }
+  },
+  {
+    "probe": "transactions",
+    "status": "passed",
+    "evidence": [
+      {
+        "insert_then_raise": false,
+        "cancel": false,
+        "refusal": false,
+        "alter_export": false,
+        "status": "passed"
+      },
+      {
+        "insert_then_raise": true,
+        "cancel": false,
+        "refusal": false,
+        "alter_export": false,
+        "status": "passed"
+      },
+      {
+        "insert_then_raise": true,
+        "cancel": true,
+        "refusal": false,
+        "alter_export": false,
+        "status": "passed"
+      },
+      {
+        "insert_then_raise": true,
+        "cancel": false,
+        "refusal": true,
+        "alter_export": false,
+        "status": "passed"
+      },
+      {
+        "insert_then_raise": false,
+        "cancel": false,
+        "refusal": false,
+        "alter_export": true,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "probe": "retained_failure_cancel",
+    "status": "passed",
+    "evidence": {
+      "failed_stop_unpublishes_first": true,
+      "failed_start_retains_owner": true,
+      "public_recovery_and_cancel_retry": true
+    }
+  },
+  {
+    "probe": "kernel_retained_cleanup",
+    "status": "passed",
+    "evidence": {
+      "kernel_registered_peer_failure_retains_owner": true,
+      "successful_peer_drained": true,
+      "public_stop_retry_and_restart": true
+    }
+  },
+  {
+    "probe": "routing",
+    "status": "passed",
+    "evidence": {
+      "kind": "routing",
+      "seconds": 0.027,
+      "processes_reaped_and_pipes_eof": 2,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "binding_after_publication",
+    "status": "passed",
+    "evidence": {
+      "kind": "binding_after_publication",
+      "seconds": 0.021,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "late_schema",
+    "status": "passed",
+    "evidence": {
+      "kind": "late_schema",
+      "seconds": 0.034,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "discovery_registration_counts",
+    "status": "passed",
+    "evidence": {
+      "kind": "discovery_registration_counts",
+      "seconds": 0.021,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "upstream_cap_no_backfill",
+    "status": "passed",
+    "evidence": {
+      "kind": "upstream_cap_no_backfill",
+      "seconds": 0.021,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "strict_optional_excluded_include",
+    "status": "passed",
+    "evidence": {
+      "kind": "strict_optional_excluded_include",
+      "seconds": 0.021,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "peer_collision",
+    "status": "passed",
+    "evidence": {
+      "kind": "peer_collision",
+      "seconds": 0.02,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "native_collision",
+    "status": "passed",
+    "evidence": {
+      "kind": "native_collision",
+      "seconds": 0.02,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "optional_noisy_fail",
+    "status": "passed",
+    "evidence": {
+      "kind": "optional_noisy_fail",
+      "seconds": 5.032,
+      "processes_reaped_and_pipes_eof": 2,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "required_noisy_fail",
+    "status": "passed",
+    "evidence": {
+      "kind": "required_noisy_fail",
+      "seconds": 5.037,
+      "processes_reaped_and_pipes_eof": 2,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  },
+  {
+    "probe": "noisy_cancel",
+    "status": "passed",
+    "evidence": {
+      "kind": "noisy_cancel",
+      "seconds": 5.026,
+      "processes_reaped_and_pipes_eof": 1,
+      "owned_tasks_after_public_cleanup": 0
+    }
+  }
+]

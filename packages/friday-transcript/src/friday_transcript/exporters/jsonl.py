@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 JSONL transcript exporter.
 
@@ -60,6 +59,7 @@ class JSONLExporter:
 
         # Open file if path provided
         should_close = False
+        f: TextIO
         if isinstance(output, Path):
             f = open(output, "w")  # noqa: SIM115
             should_close = True
@@ -110,6 +110,7 @@ class JSONLExporter:
 
         # Open file if path provided
         should_close = False
+        f: TextIO
         if isinstance(output, Path):
             f = open(output, "w")  # noqa: SIM115
             should_close = True
@@ -142,7 +143,7 @@ class JSONLExporter:
                 # Question/answer pairs
                 for entry in entries:
                     if entry.user_message and entry.assistant_message:
-                        qa_data = {
+                        qa_data: dict[str, Any] = {
                             "question": entry.user_message,
                             "answer": entry.assistant_message,
                             "session_id": session_id,

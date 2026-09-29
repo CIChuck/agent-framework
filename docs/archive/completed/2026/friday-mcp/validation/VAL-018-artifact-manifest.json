@@ -1,0 +1,75 @@
+{
+  "id": "VAL-018-artifact-manifest",
+  "members": [
+    {
+      "path": "val018_start.json",
+      "bytes": 12662,
+      "sha256": "8c5af0d596aa3e4e8ffa3d6ac30f31ef2ff45bfbfb3f5128e00418ca5af038c5"
+    },
+    {
+      "path": "val018_close.json",
+      "bytes": 12662,
+      "sha256": "8c5af0d596aa3e4e8ffa3d6ac30f31ef2ff45bfbfb3f5128e00418ca5af038c5"
+    },
+    {
+      "path": "val018_audit.py",
+      "bytes": 2405,
+      "sha256": "3d1a99f49341e590b6e41f57002ac58e7b2ba2f8780bdf88e86ae906c6e86618"
+    },
+    {
+      "path": "val018_probe.py",
+      "bytes": 5559,
+      "sha256": "c1407023e35e536da1c4844ad7b658c303b2b55e0e7979cbb0ac249dbb67b573"
+    },
+    {
+      "path": "val018_tests.py",
+      "bytes": 1624,
+      "sha256": "c10826fbc4793d3bedab2ebe583a033e51618956fbd37f53ff0f8bed4daff3a0"
+    },
+    {
+      "path": "val018_runtime.log",
+      "bytes": 260,
+      "sha256": "9946998dfb25b94014d27ec102c4a2d87a73e0e582de6d80c4456403f973cb6c"
+    },
+    {
+      "path": "val018_mcp.log",
+      "bytes": 99,
+      "sha256": "2d7cd9eb4ce621d9a23bf08436bcf25106efdc1dbfc0400c9b6dfadb794b398f"
+    },
+    {
+      "path": "val018_focused.log",
+      "bytes": 179,
+      "sha256": "b63fa2d4ec49852c3846e1c7cc447c29ffa1060a2eb5e4cecfdf7202709b6a43"
+    },
+    {
+      "path": "val018_integration.log",
+      "bytes": 100,
+      "sha256": "b4b90626f11f9e12f96a77d001ddf5e93ed3217c742e0fd8884bae5622e08a22"
+    },
+    {
+      "path": "val018_chat.log",
+      "bytes": 10739,
+      "sha256": "994c8bdac5981557d0017ffe4812163a91b04193c61aef480e16cab1f02b316d"
+    },
+    {
+      "path": "val018_cli.log",
+      "bytes": 2311,
+      "sha256": "5b06bf8ae825b8ed70b9590ec1b0f0bc655b46a104180532d0f1a89c39174ead"
+    },
+    {
+      "path": "val018_docs.log",
+      "bytes": 953,
+      "sha256": "08b74c59dbcb4d7450067e209d0497458f818e259083920744d20a43e8a99119"
+    },
+    {
+      "path": "val018_board.log",
+      "bytes": 46,
+      "sha256": "eb89d454ace9dd76c41b68314b8a1e13a54439e48741d45a9c8591e2fb89dc93"
+    },
+    {
+      "path": "val018_render.log",
+      "bytes": 30,
+      "sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+id: VAL-013-evidence
+date: '2026-09-28'
+reviewer: /root/mcp_ws05_val013
+fresh_context: true
+governed_workspace_read_only: true
+candidate: cca86b51105666d12c2e7ed571f8f9a05d2085f9
+base: 446e3a6f4e445a456dcbe6ef25058e60af54fe53
+aggregate_base: a609f948fe2d869ac29d0cce29d22d9334cd7d08
+request_sha256: d61fae8ab6095d9871cad19229146f999f815ad0ef5686b786fc76c49cbb5b90
+review_modes:
+  delta: VERIFIED
+  complete_remediation_delta: VERIFIED
+  work_unit_aggregate: VERIFIED
+overall_outcome: VERIFIED
+findings: []
+finding_closures:
+- VAL-012-F-001
+- VAL-011-F-001
+- VAL-011-F-002
+report: docs/planning/active/friday-mcp/validation/VAL-013-report.md
+report_sha256: 7bae31e98d91fa6d19e9bd1ef5c8976a19c098b84b998f69cd6362f305ed33a2
+archive: docs/planning/active/friday-mcp/validation/VAL-013-evidence.tar.gz
+archive_sha256: 0092cad89701dc34f5f615378305f1905bfd6be8ceef3d5f174397b2d006f000
+archive_bytes: 19882780
+artifact_count: 931
+archive_preservation: Original independent archive/report/external manifest/delivery/verification copied
+  byte-exact; every member verified
+artifact_manifest: docs/planning/active/friday-mcp/validation/VAL-013-artifact-manifest.json
+artifact_manifest_sha256: ba7da461c17595d41a9b48c205734894f6b2dd088b6a91755f4ca0bd81cfca43
+delivery_manifest: docs/planning/active/friday-mcp/validation/VAL-013-delivery.json
+delivery_manifest_sha256: 1171992f2a9a70a69b7a459a6ba7f0928e42479c478f8a67275ec89cd1e15eea
+archive_verification: docs/planning/active/friday-mcp/validation/VAL-013-archive-verification.json
+report_archive_links_verified: 55
+independent_required_commands: 19
+independent_cases:
+  main: 35
+  new_matrix: 24
+  supplement: 10
+criteria: 20
+tasks: 8
+pinned_authorities: 34
+pinned_candidate_reports: 5
+tracked_product_files_preserved: 978
+unrelated_fingerprints_preserved: 5
+independent_freeze_comparisons: 2064
+restore_command: mkdir -p /private/tmp/val013-restored && tar -xzf docs/planning/active/friday-mcp/validation/VAL-013-evidence.tar.gz
+  -C /private/tmp/val013-restored
+acceptance: pending explicit maintainer decision
+delivery: local only

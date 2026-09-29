@@ -11,6 +11,10 @@ Use this skill to create implementation authority for an AI builder.
 
 The goal is to produce a prompt/directive precise enough to guide implementation and strict enough to prevent drift.
 
+Every code-generating work unit requires an approved construction directive
+before implementation begins. Only the documented lightweight-change exemption
+in `docs/reference/policies/independent-validation-policy.md` may replace it.
+
 ## Governing Standard
 
 Follow `docs/methodology/constitution/gendev.md` when available.
@@ -47,6 +51,10 @@ Produce a Markdown directive or prompt with:
 - reporting requirements;
 - stop conditions.
 
+Also identify the initiative ID, work-unit ID, approved branch, expected base
+revision, exact allowed scope, and the independent-validation handoff required
+after the builder commits a stable candidate.
+
 ## Anti-Drift Requirements
 
 Always instruct the AI builder:
@@ -58,6 +66,9 @@ Always instruct the AI builder:
 - do not remove unrelated code;
 - do not mark planned behavior as implemented unless it is implemented;
 - report skipped verification honestly.
+- do not self-validate, self-accept, or remediate beyond the directive;
+- stop after producing a committed candidate and implementation report so a
+  fresh-context validator can review the frozen revision.
 
 ## Accuracy Pass
 
@@ -69,10 +80,15 @@ Before finalizing, verify:
 - migration/removal behavior is explicit;
 - documentation close-out is included;
 - reporting requirements are clear.
+- acceptance criteria and tactical task IDs are traceable;
+- the post-generation validation request can be constructed without inventing
+  missing scope or authority.
 
 ## Completion Standard
 
-The directive is complete when it can be sent to an implementation agent as the controlling build authority.
+The directive is complete when it can be sent to an implementation agent as the
+controlling build authority and can later serve as a frozen input to independent
+validation.
 
 ## Operational Coherence Requirements
 

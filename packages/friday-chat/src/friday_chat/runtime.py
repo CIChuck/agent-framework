@@ -8,8 +8,12 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from tempfile import gettempdir
-from typing import TYPE_CHECKING, Any, Protocol
+from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 from uuid import uuid4
+
+from friday_core import TelemetryInterface
+from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
+from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.memory_views import (
@@ -25,8 +29,9 @@ from friday_chat.memory_views import (
 )
 from friday_chat.session import SessionIdentity, resolve_session_identity
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
+from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.tools.registry import FakeToolRegistry
-from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import ToolSelectionState
 from friday_chat.transcripts import (
     TranscriptContextLogView,
@@ -111,6 +116,13 @@ class EmbeddingService(Protocol):
         """Embed one text value."""
 
 
+class AsyncClientLifecycle(Protocol):
+    """Process-scoped async client cleanup required at runtime shutdown."""
+
+    async def close(self) -> None:
+        """Close owned async clients after dependent work is quiescent."""
+
+
 class ToolRegistry(Protocol):
     """Narrow tool registry contract needed by commands and turns."""
 
@@ -167,6 +179,28 @@ class MemoryController(Protocol):
         kind: MemoryRecordKind,
     ) -> MemoryRecordQueryResult:
         """Return typed records for one closed memory kind."""
+
+
+@dataclass(frozen=True)
+class MCPTranscriptReceipt:
+    entry_id: str
+    calls: tuple[MCPToolCallProvenance, ...]
+
+
+@runtime_checkable
+class MCPMemoryCapability(Protocol):
+    """Optional safe MCP ingestion; legacy memory protocols are unchanged."""
+
+    async def prepare_mcp_memory(
+        self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy
+    ) -> MCPMemoryPreparation: ...
+    async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool: ...
+    async def discard_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool: ...
+
+
+@runtime_checkable
+class MCPTranscriptCapability(Protocol):
+    async def record_mcp_interaction(self, turn: InteractionTurn) -> MCPTranscriptReceipt: ...
 
 
 class TranscriptStore(TranscriptQueryStore, Protocol):
@@ -337,6 +371,7 @@ class FridayRuntime:
     config: FridayChatConfig
     chat_llm: ChatModel
     embedding: EmbeddingService
+    async_clients: AsyncClientLifecycle
     memory: MemoryController
     transcript: TranscriptStore
     tools: ToolRegistry
@@ -354,6 +389,18 @@ class FridayRuntime:
     budget_monitor: Any | None = None
     compactor: Any | None = None
     compaction_task: asyncio.Task[Any] | None = None
+    mcp_tools: MCPChatRegistry | None = None
+
+    async def start_mcp_tools(self) -> None:
+        if self.mcp_tools is not None:
+            await self.mcp_tools.start()
+            self.tool_selection.synchronize_registered_tools(
+                self.tools.list_tools(), mcp_metadata=self.mcp_tools.tool_metadata
+            )
+
+    async def stop_mcp_tools(self) -> None:
+        if self.mcp_tools is not None:
+            await self.mcp_tools.stop()
 
 
 @dataclass
@@ -426,6 +473,17 @@ class FakeEmbeddingService:
         checksum = sum(ord(character) for character in text) % 997
         values = [float(len(text)), float(len(text.split())), float(checksum)]
         return values[: self.dimensions]
+
+
+@dataclass
+class FakeAsyncClientLifecycle:
+    """Deterministic provider-free client lifecycle for fake runtimes."""
+
+    close_calls: int = 0
+
+    async def close(self) -> None:
+        """Record one process-client cleanup request."""
+        self.close_calls += 1
 
 
 @dataclass
@@ -527,7 +585,9 @@ class FakeMemoryController:
         self.summaries.append({"text": text, "metadata": dict(metadata)})
 
     async def query_memory_statistics(self) -> MemoryStoreStatistics:
-        vector_count = len(self.insights) + len(self.summaries) + len(self.meta_insights)
+        vector_count = (
+            len(self.insights) + len(self.summaries) + len(self.meta_insights)
+        )
         graph_nodes = (
             MemoryMetric.available(len(self.entities))
             if self.graph_configured
@@ -1148,6 +1208,7 @@ def build_runtime(
     fake: bool = True,
     session_identity: SessionIdentity | None = None,
     session_id: str | None = None,
+    telemetry: TelemetryInterface | None = None,
 ) -> FridayRuntime:
     """Build a FridayV2 runtime bundle from typed config."""
     resolved_session_identity = resolve_session_identity(
@@ -1167,6 +1228,7 @@ def build_runtime(
             config,
             session_identity=resolved_session_identity,
             maintenance_layout=maintenance_layout,
+            telemetry=telemetry,
         )
 
     from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
@@ -1203,9 +1265,7 @@ def build_runtime(
             config.lifecycle.enabled
             and access_buffer_config.get("enabled", True) is not False
         ),
-        priming_enabled=_configured_bool(
-            config.memory.priming.get("enabled", True)
-        ),
+        priming_enabled=_configured_bool(config.memory.priming.get("enabled", True)),
         priming_previous_sessions=(
             0
             if "previous_sessions" not in config.memory.priming
@@ -1224,6 +1284,7 @@ def build_runtime(
         config=config,
         chat_llm=FakeChatModel(model=config.llm.model or "unknown"),
         embedding=FakeEmbeddingService(),
+        async_clients=FakeAsyncClientLifecycle(),
         memory=memory,
         transcript=FakeTranscriptStore(
             session_id=resolved_session_identity.value,
@@ -1302,8 +1363,10 @@ def _build_framework_runtime(
     *,
     session_identity: SessionIdentity,
     maintenance_layout: FridayChatMaintenanceLayout,
+    telemetry: TelemetryInterface | None = None,
 ) -> FridayRuntime:
     from friday_chat.adapters import (
+        build_framework_async_client_lifecycle,
         build_framework_chat_model,
         build_framework_embedding_service,
         build_framework_maintenance_adapter,
@@ -1314,6 +1377,7 @@ def _build_framework_runtime(
     )
 
     diagnostics = RuntimeDiagnostics()
+    async_clients = build_framework_async_client_lifecycle()
     chat_llm = build_framework_chat_model(config)
     embedding = build_framework_embedding_service(config)
     memory = build_framework_memory_adapter(
@@ -1327,7 +1391,18 @@ def _build_framework_runtime(
         session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
     )
-    tools = build_framework_tool_registry(config)
+    native_tools = build_framework_tool_registry(config)
+    mcp_tools = (
+        MCPChatRegistry(
+            native_tools,
+            config.tools.mcp_provider,
+            str(maintenance_layout.captured_process_cwd),
+            telemetry=telemetry,
+        )
+        if config.tools.enabled and config.tools.mcp_provider.enabled
+        else None
+    )
+    tools: ToolRegistry = mcp_tools if mcp_tools is not None else native_tools
     tool_definitions = tuple(tools.list_tools())
     tool_context = None
     if config.tools.enabled and config.tools.context.get("include_in_context") is True:
@@ -1410,9 +1485,11 @@ def _build_framework_runtime(
         config=config,
         chat_llm=chat_llm,
         embedding=embedding,
+        async_clients=async_clients,
         memory=memory,
         transcript=transcript,
         tools=tools,
+        mcp_tools=mcp_tools,
         speech=FakeSpeechAdapter(enabled=config.speech.enabled),
         orchestrator=orchestrator,
         workflow=workflow,

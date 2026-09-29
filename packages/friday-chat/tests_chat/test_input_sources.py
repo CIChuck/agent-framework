@@ -10,7 +10,7 @@ import pytest
 from friday_chat.app import ConsoleInputSource, InputSource
 from friday_chat.background import BackgroundTaskManager
 from friday_chat.display import FridayCliInputSource
-from friday_chat.input_sources import AsyncPromptCallable
+from friday_chat.input_sources import AsyncPromptCallable, AsyncPromptReader
 
 InputSourceFactory = Callable[[AsyncPromptCallable], InputSource]
 
@@ -99,3 +99,27 @@ def test_input_source_constructor_contracts_are_preserved() -> None:
 
     assert console_prompt.default == "> "
     assert friday_prompt.default is inspect.Parameter.empty
+
+
+async def test_prompt_reader_preserves_application_exception_handler() -> None:
+    class RecordingPromptSession:
+        def __init__(self) -> None:
+            self.calls: list[tuple[str, bool]] = []
+
+        async def prompt_async(
+            self,
+            prompt: str,
+            *,
+            set_exception_handler: bool,
+        ) -> str:
+            self.calls.append((prompt, set_exception_handler))
+            return "response"
+
+    session = RecordingPromptSession()
+    reader = AsyncPromptReader()
+    reader._session = session  # type: ignore[assignment]
+
+    result = await reader.read("Chuck: ")
+
+    assert result == "response"
+    assert session.calls == [("Chuck: ", False)]

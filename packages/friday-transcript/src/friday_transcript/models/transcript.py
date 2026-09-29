@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Transcript data models.
 
@@ -10,14 +9,84 @@ Defines the core data structures for conversation transcripts:
 
 from __future__ import annotations
 
+import json
+import re
 from datetime import datetime
+from hashlib import sha256
 from typing import Any
 from uuid import uuid4
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from friday_core.mcp import MCPSafeIdentifier, MCPToolCallProvenance
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    SerializerFunctionWrapHandler,
+    TypeAdapter,
+    field_validator,
+    model_serializer,
+    model_validator,
+)
 
 
-class ToolCall(BaseModel):
+def mcp_provenance_summary(
+    provenance: MCPToolCallProvenance,
+) -> dict[str, str | int | bool | None]:
+    """Bounded human-export fields; no raw original name or tool payload."""
+    server = provenance.tool.server_name
+    if len(server) > 64 or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", server) is None:
+        server = (
+            "mcp-server-"
+            + sha256(server.encode("utf-8", errors="surrogatepass")).hexdigest()[:16]
+        )
+    return {
+        "provider": "mcp",
+        "server": server,
+        "name": provenance.tool.canonical_name,
+        "call_id": provenance.call_id,
+        "status": provenance.status,
+        "sanitization": provenance.output_sanitization_state,
+        "truncated": provenance.result_truncated,
+        "result_size_bytes": provenance.result_size_bytes,
+        "model_result_size_bytes": provenance.model_result_size_bytes,
+    }
+
+
+class _MCPRecordingModel(BaseModel):
+    """Optional typed MCP facts with unchanged native serialization shape."""
+
+    mcp_provenance: MCPToolCallProvenance | None = None
+    model_config = ConfigDict(hide_input_in_errors=True)
+
+    @field_validator("mcp_provenance", mode="before")
+    @classmethod
+    def _load_provenance(cls, value: object) -> MCPToolCallProvenance | None:
+        """Use the shared JSON contract for persisted arrays/strict tuples."""
+        if value is None:
+            return None
+        try:
+            if isinstance(value, MCPToolCallProvenance):
+                return MCPToolCallProvenance.model_validate_json(
+                    value.model_dump_json()
+                )
+            if isinstance(value, dict):
+                return MCPToolCallProvenance.model_validate_json(json.dumps(value))
+        except (TypeError, ValueError):
+            raise ValueError("Invalid MCP transcript provenance") from None
+        raise ValueError("Invalid MCP transcript provenance")
+
+    @model_serializer(mode="wrap")
+    def _serialize_optional_provenance(
+        self,
+        handler: SerializerFunctionWrapHandler,
+    ) -> dict[str, Any]:
+        data: dict[str, Any] = handler(self)
+        if self.mcp_provenance is None:
+            data.pop("mcp_provenance", None)
+        return data
+
+
+class ToolCall(_MCPRecordingModel):
     """Record of a tool invocation by the assistant."""
 
     id: str = Field(description="Unique identifier for this tool call")
@@ -26,8 +95,20 @@ class ToolCall(BaseModel):
         default_factory=dict, description="Arguments passed to the tool"
     )
 
+    @model_validator(mode="after")
+    def _validate_mcp_call(self) -> ToolCall:
+        provenance = self.mcp_provenance
+        if provenance is not None and (
+            self.arguments
+            or self.id != provenance.call_id
+            or self.name != provenance.tool.canonical_name
+            or provenance.output_sanitization_state == "not_checked"
+        ):
+            raise ValueError("MCP transcript call requires redacted, correlated facts")
+        return self
 
-class ToolResult(BaseModel):
+
+class ToolResult(_MCPRecordingModel):
     """Result of a tool execution."""
 
     tool_call_id: str = Field(description="ID of the corresponding ToolCall")
@@ -35,6 +116,26 @@ class ToolResult(BaseModel):
     error: str | None = Field(
         default=None, description="Error message if execution failed"
     )
+
+    @model_validator(mode="after")
+    def _validate_mcp_result(self) -> ToolResult:
+        provenance = self.mcp_provenance
+        if provenance is not None:
+            if self.tool_call_id != provenance.call_id or not isinstance(
+                self.output, str
+            ):
+                raise ValueError("MCP transcript result requires correlated safe text")
+            if self.error is not None and self.error != provenance.failure_code:
+                raise ValueError("MCP transcript error must be a fixed failure code")
+            if provenance.model_result_size_bytes != len(self.output.encode("utf-8")):
+                raise ValueError(
+                    "MCP transcript result byte size does not match provenance"
+                )
+            if provenance.output_sanitization_state == "not_checked":
+                raise ValueError(
+                    "MCP transcript result must be checked before persistence"
+                )
+        return self
 
 
 class TranscriptEntry(BaseModel):
@@ -156,7 +257,46 @@ class TranscriptEntry(BaseModel):
         ),
     )
 
-    model_config = ConfigDict(frozen=False)
+    model_config = ConfigDict(frozen=False, hide_input_in_errors=True)
+
+    @model_validator(mode="after")
+    def validate_mcp_correlations(self) -> TranscriptEntry:
+        """MCP records require unique paired facts and real entry correlations."""
+        mcp_calls = [
+            call for call in self.tool_calls if call.mcp_provenance is not None
+        ]
+        mcp_results = [
+            result for result in self.tool_results if result.mcp_provenance is not None
+        ]
+        if not mcp_calls and not mcp_results:
+            return self
+        try:
+            TypeAdapter(MCPSafeIdentifier).validate_python(self.id)
+        except ValueError:
+            raise ValueError("Invalid MCP transcript entry identifier") from None
+        call_ids = [call.id for call in self.tool_calls]
+        result_ids = [result.tool_call_id for result in self.tool_results]
+        for call in mcp_calls:
+            matches = [
+                result for result in mcp_results if result.tool_call_id == call.id
+            ]
+            if (
+                call_ids.count(call.id) != 1
+                or result_ids.count(call.id) != 1
+                or len(matches) != 1
+                or matches[0].mcp_provenance != call.mcp_provenance
+            ):
+                raise ValueError("MCP transcript requires unique paired provenance")
+        for result in mcp_results:
+            if not any(call.id == result.tool_call_id for call in mcp_calls):
+                raise ValueError("MCP transcript result has no paired call")
+            facts = result.mcp_provenance
+            if facts is not None and facts.transcript_correlation_id not in {
+                None,
+                self.id,
+            }:
+                raise ValueError("MCP transcript correlation does not match entry")
+        return self
 
     @model_validator(mode="after")
     def sync_provenance_metadata(self) -> TranscriptEntry:

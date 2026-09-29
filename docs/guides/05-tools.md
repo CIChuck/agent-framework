@@ -27,6 +27,25 @@ Friday's tool system is built on a protocol-first architecture that makes creati
 
 ---
 
+### MCP client tools in the current runtime
+
+The integrated MCP client is a runtime tool provider under
+`tools.providers.mcp`. It is disabled by default and connects only to local
+stdio peers when enabled. Tool discovery happens at startup. Friday assigns
+canonical names such as `mcp_demo_probe`, applies include/exclude filters,
+sanitizes schemas, enforces discovery and registration caps, and routes an
+admitted call through the normal tool loop. The default MCP provider mode is
+`selected`; discovering a peer tool alone does not register it.
+
+Friday Chat separately selects registered tools for each model turn. Schema
+tokens and a reserved result budget reduce memory retrieval room; the
+configured memory floor remains protected. Broad catalogs therefore cost
+context even before a tool is called. See the tested
+[MCP client setup and operation guide](17-mcp-client.md) for a local stdio
+example, filters, output handling and diagnostics.
+
+---
+
 ## 5.1 Tool Architecture & Design
 
 ### 5.1.1 The BaseTool Protocol

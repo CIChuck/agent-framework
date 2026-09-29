@@ -2,8 +2,125 @@
 """Tests for MCP tool adapter."""
 
 import pytest
+from friday_core.interfaces.tools import ToolDefinition
+from friday_core.mcp import MCPToolMetadata
 
-from friday_mcp.client.adapter import MCPToolAdapter, MCPToolWrapper
+from friday_mcp.client.adapter import (
+    MCPToolAdapter,
+    MCPToolWrapper,
+    MCPValidatedDefinition,
+)
+
+
+@pytest.mark.asyncio
+async def test_validated_wrapper_full_protocol_snapshot_and_exact_route(
+    mock_mcp_client,
+):
+    metadata = MCPToolMetadata(
+        canonical_name="mcp_peer_read_file",
+        server_name="peer",
+        original_name="Read.File",
+        transport="stdio",
+        trust_level="local",
+        discovery_state="discovered",
+        schema_sanitization_state="sanitized",
+        filter_state="included",
+    )
+    definition = MCPValidatedDefinition(
+        "Safe description", '{"type":"object","properties":{"path":{"type":"string"}}}'
+    )
+    wrapper = MCPToolWrapper.from_validated(mock_mcp_client, metadata, definition)
+    assert isinstance(wrapper, ToolDefinition)
+    assert wrapper.name == "mcp_peer_read_file"
+    assert wrapper.category == "mcp"
+    tags = wrapper.tags
+    tags.append("unsafe")
+    exported = wrapper.to_schema("openai")
+    exported["function"]["parameters"]["properties"]["path"]["type"] = "number"
+    assert wrapper.parameters_schema["properties"]["path"]["type"] == "string"
+    assert wrapper.tags == ["mcp"]
+    await wrapper.execute(path="safe.txt")
+    mock_mcp_client.call_tool.assert_awaited_once_with(
+        "Read.File", {"path": "safe.txt"}
+    )
+    assert "Read.File" not in repr(wrapper)
+
+
+@pytest.mark.asyncio
+async def test_optional_call_observer_reports_only_phase_name_and_outcome(
+    mock_mcp_client,
+) -> None:
+    legacy = MCPToolWrapper(
+        mock_mcp_client,
+        {"name": "Read.File", "inputSchema": {"type": "object"}},
+    )
+    with pytest.raises(ValueError, match="checked metadata"):
+        legacy.set_call_observer(lambda phase, name, outcome: None)
+    metadata = MCPToolMetadata(
+        canonical_name="mcp_peer_read_file",
+        server_name="peer",
+        original_name="Read.File",
+        transport="stdio",
+        trust_level="local",
+        discovery_state="discovered",
+        schema_sanitization_state="sanitized",
+        filter_state="included",
+    )
+    wrapper = MCPToolWrapper.from_validated(
+        mock_mcp_client, metadata, MCPValidatedDefinition("safe", '{"type":"object"}')
+    )
+    events = []
+
+    def observe(phase, name, outcome):
+        events.append((phase, name, outcome))
+        if phase == "start":
+            raise RuntimeError("SENTINEL-OBSERVER-SECRET")
+
+    wrapper.set_call_observer(observe)
+    assert await wrapper.execute(token="SENTINEL-ARGUMENT-SECRET") == "test result"
+    assert events == [
+        ("start", "mcp_peer_read_file", None),
+        ("finish", "mcp_peer_read_file", "success"),
+    ]
+    mock_mcp_client.call_tool.side_effect = TimeoutError(
+        "SENTINEL-PEER-SECRET"
+    )
+    with pytest.raises(TimeoutError):
+        await wrapper.execute(token="SENTINEL-ARGUMENT-SECRET")
+    assert events[-2:] == [
+        ("start", "mcp_peer_read_file", None),
+        ("failure", "mcp_peer_read_file", "timeout"),
+    ]
+    assert "SENTINEL-" not in repr(events)
+
+
+def test_legacy_wrapper_snapshots_input_and_each_export(mock_mcp_client):
+    source = {
+        "name": "probe",
+        "inputSchema": {"type": "object", "properties": {"x": {"type": "string"}}},
+    }
+    wrapper = MCPToolWrapper(mock_mcp_client, source, "prefix_")
+    source["name"] = "rerouted"
+    source["inputSchema"]["properties"]["x"]["type"] = "number"
+    wrapper.parameters_schema["properties"]["x"]["type"] = "boolean"
+    assert wrapper.name == "prefix_probe"
+    assert wrapper.parameters_schema["properties"]["x"]["type"] == "string"
+
+
+def test_unchecked_metadata_cannot_use_validated_path(mock_mcp_client):
+    metadata = MCPToolMetadata(
+        canonical_name="mcp_peer_probe",
+        server_name="peer",
+        original_name="probe",
+        transport="stdio",
+        trust_level="local",
+    )
+    with pytest.raises(ValueError, match="checked metadata"):
+        MCPToolWrapper.from_validated(
+            mock_mcp_client,
+            metadata,
+            MCPValidatedDefinition("Safe", '{"type":"object"}'),
+        )
 
 
 class TestMCPToolWrapper:

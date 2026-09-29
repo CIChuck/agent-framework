@@ -1,15 +1,97 @@
-Approve and execute
-docs/archive/completed/2026/friday-chat-command-remediation/construction-directive.md
+# Builder And Independent Validator Handoff Template
 
-First, commit only the construction directive and push the current branch as the pre-implementation
-checkpoint.
+Use this template to dispatch a bounded implementation and its independent
+post-generation review. Replace every bracketed value before use.
 
-Then spawn one fresh-context sub-agent using fork_turns="none" as the primary implementer. Instruct it to read AGENTS.md, the repository engineering policy, the remediation plan, the construction directive, and every required referenced document before editing.
+Follow:
 
-Remain the supervising agent: independently inspect changes and gate evidence, enforce scope, preserve unrelated state, and never use active .friday data.
+1. `AGENTS.md`;
+2. `docs/reference/policies/repository-engineering-policy.md`;
+3. `docs/reference/policies/development-task-lifecycle.md`;
+4. `docs/reference/policies/independent-validation-policy.md`; and
+5. the initiative authority manifest and construction directive.
 
-Execute the directive in order. Require documented PASS, FAIL, or BLOCKED evidence at every gate. Continue through ALL Gates but only after each passes. Stop on any directive stop condition. At the final Gate  pause and request my explicit approval before removing containment or enabling any execution path.
+## Controller Preparation
 
-I delegate approval authority for all Gates to the primary supervising agent. The implementation sub-agent may not approve its own work. After independently reviewing each gate’s changes, tests, and required evidence, the supervising agent may record PASS, close the gate, and direct work to continue without waiting for me—including Gate D. Consult me only if a gate is FAIL or BLOCKED, a directive stop ondition occurs, or additional scope or authority is required.
+- Initiative: `[INITIATIVE-ID]`
+- Work unit: `[WORK-UNIT-ID]`
+- Branch: `[FEATURE-BRANCH]`
+- Base revision: `[BASE-COMMIT]`
+- Construction directive: `[DIRECTIVE-PATH]`
+- Authority manifest: `[AUTHORITY-MANIFEST-PATH]`
+- Required validation profile: `[FULL|DELTA|AGGREGATE]`
+- Authorized external effects: `[NONE OR EXACT AUTHORITY]`
 
-Do not create a PR, merge, or make additional commits or pushes unless I separately authorize them.
+Confirm the work is `started`, implementation authority is granted, the branch
+matches the board, and the directive is approved. Preserve unrelated worktree
+state.
+
+## Builder Dispatch
+
+Spawn a bounded implementation agent and instruct it to:
+
+1. read the authority manifest and every required document completely;
+2. implement only the construction directive;
+3. stop on conflicts, missing authority, scope expansion, or a directive stop
+   condition;
+4. add and run the required tests and verification;
+5. record skipped checks and known failures honestly;
+6. produce an implementation report mapped to tactical tasks and acceptance
+   criteria;
+7. commit a stable candidate without unrelated files; and
+8. return the candidate commit and exact diff range without claiming independent
+   verification or acceptance.
+
+The builder may not approve its own candidate, widen scope, push, merge,
+release, deploy, expose credentials, or affect external systems without separate
+authority.
+
+## Candidate Freeze
+
+After independently checking that the candidate identity and scope are stable,
+the controller creates `validation/VAL-[ID]-request.yaml` containing:
+
+- initiative and work-unit IDs;
+- base and candidate commits and exact diff range;
+- review mode;
+- authority paths, revisions, and hashes;
+- construction directive;
+- acceptance criteria and tactical task IDs;
+- required commands;
+- known baseline failures and exclusions;
+- authorized credentials, costs, and external effects; and
+- report and evidence locations.
+
+## Validator Dispatch
+
+Spawn one fresh-context validator that does not inherit the builder session.
+Provide only the validation request and access to its explicitly named
+repository inputs. Instruct it to use
+`docs/dev-skills/independent-code-validator.md`.
+When the agent interface supports context forking, use its no-history option
+such as `fork_turns="none"`.
+
+The validator is read-only and returns exactly:
+
+- `VERIFIED` with cited evidence;
+- `CHANGES_REQUESTED` with numbered findings and mitigation requirements; or
+- `BLOCKED` with the blocking condition and exit gate.
+
+The validator may not edit, remediate, mutate the board, accept, push, merge,
+release, deploy, disclose credentials, or create external effects.
+
+## Controller Disposition
+
+The controller verifies report completeness and stores the durable request,
+report, and evidence.
+
+- For `VERIFIED`, record validation evidence and propose `completed` for
+  maintainer acceptance.
+- For `CHANGES_REQUESTED`, create a bounded remediation directive containing
+  every finding exactly once, dispatch authorized remediation, commit a new
+  candidate, and start a fresh validator context.
+- For `BLOCKED`, record the blocker and stop at its exact exit gate.
+
+After two unsuccessful remediation cycles, stop and return unresolved findings
+to the maintainer. Never translate `VERIFIED` into `accepted`; only the
+maintainer controls final acceptance.

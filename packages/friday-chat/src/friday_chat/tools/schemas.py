@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from friday_core.mcp import MCPToolCallProvenance
+
 
 @dataclass(frozen=True)
 class ToolDefinition:
@@ -24,3 +26,4 @@ class ToolCallRecord:
     arguments: dict[str, Any]
     result: str
     call_id: str | None = None
+    mcp_provenance: MCPToolCallProvenance | None = None

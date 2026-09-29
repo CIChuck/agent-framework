@@ -1,0 +1,40 @@
+version: 1
+review_id: VAL-001
+outcome: BLOCKED
+reviewed_at: '2026-09-03T21:30:32Z'
+reviewer: /root/independent_validation_val_001
+model: Codex
+model_version: unavailable
+review_mode: aggregate
+candidate: 12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07
+aggregate_diff: 63cb579e37d65cce7f2a6186ee0dc05092ee1ac5..12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07
+amendment_diff: 3553901849362137a7c1d1e14bfcd51915d1567d..12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07
+request_sha256: d806c9652ead6cb5ed333db86c185e09f3338df76fb2323b65478935aa9ebdcf
+authority_hashes:
+  matched: 11
+  mismatched: 0
+findings:
+  - id: VAL-001-B01
+    severity: blocker
+    subject: missing_tactical_and_acceptance_ids
+    disposition: blocks_formal_decision
+  - id: VAL-001-F02
+    severity: medium
+    subject: aggregate_diff_check_failure
+    path: docs/dev-skills/independent-code-validator.md
+    line: 139
+checks:
+  board_validate: pass
+  documentation_lifecycle: pass
+  integration_tests: 'pass: 18'
+  aggregate_diff_check: fail
+  amendment_protected_paths: pass_empty
+  focused_ruff: pass
+  focused_mypy: pass
+  repo_ruff: baseline_fail_11_unchanged_files
+baseline:
+  modified:
+    - .DS_Store
+  untracked:
+    - packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak
+next_gate: REM-001 then new candidate and fresh aggregate review

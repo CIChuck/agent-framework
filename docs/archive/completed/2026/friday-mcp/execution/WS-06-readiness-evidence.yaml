@@ -1,0 +1,149 @@
+{
+  "status": "controller planning evidence; implementation unapproved",
+  "date": "2026-09-29",
+  "preparation_head": "6890771127e405f3299ed783296174366c67f995",
+  "branch": "feature/friday-mcp-ws05-execution",
+  "accepted_candidate": "cca86b51105666d12c2e7ed571f8f9a05d2085f9",
+  "original_draft_sha256": "26ba1fc58af802bc9c2c6d11435a70967e6eb1e8132e26e777e7f517cc38fbbd",
+  "source_inspection": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/mcp.py",
+      "sha256": "78b0065f9c2b27ae7cf7dc52596baf0be5e38a37f7b111c1207d5cdd4585c050"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "sha256": "8d2d6fa84bbf49b44aa31ce729edbda7aa5a1858386d4d8c7fee2fac0a93f377"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "sha256": "9ff2bec529414b0cfe80572f429ff078c971359fb21917ab62f4c8e659983230"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/turns/processor.py",
+      "sha256": "a4d5ea64687c9c48e98522fc629e53fff943b1d25d9d771d9c994bb5b01d0148"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py",
+      "sha256": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+      "sha256": "5ca79deda0471d66831a73db6de19e183724977de810b01cc73b5206d7c197a1"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "sha256": "ddb95847c10b5006db8bbd7acc7eae6f9d291c092d0622ef29b8b6e05d1308b8"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "sha256": "44235da056162f223a9f5ee1ede27e565fccba1b653bdd2bd81aaaed7f104b38"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/vector_metadata.py",
+      "sha256": "8bf774590c32ed0631f84a799720bf4acae2dd2f9c2654e159de187f4690050f"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/vector.py",
+      "sha256": "6bf75710cdaa384ac2a371dbe214182f07170fd0a9d2dbe46a7b177bf0907833"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "sha256": "aa3a251bb5df3db00a714f9b29f56279ed2aabb6727b94ae9657b76da89e6b43"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "sha256": "17532a3717dc78e81fb17567821c8abbc583814dce417b8c0f00fcc3cab326be"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "sha256": "b6401745ea350f38e30a2140046c69785c9852467042615b99d8b678fd67eb61"
+    },
+    {
+      "path": "packages/friday-memory/pyproject.toml",
+      "sha256": "e3b0855afafe716ea5166aee8e65373be9fe9002d336cec497fb8180b9882441"
+    },
+    {
+      "path": "packages/friday-chat/pyproject.toml",
+      "sha256": "ef15278e1359d9ca4e8da2862e07f4e8191b5f0da673276990a25ca4f124f1cd"
+    }
+  ],
+  "preservation": {
+    "request_unchanged": true,
+    "authority_inputs": 34,
+    "candidate_reports": 5,
+    "historical_artifacts": 19,
+    "tracked_product_files": 978,
+    "unrelated": {
+      ".DS_Store": {
+        "files": 1,
+        "sha256": "726abde51b913404c3c5af3bf5ec36210f129b89ca33a0efc24dd4cd73fe98a9",
+        "state": "present"
+      },
+      "docker-bench-security/": {
+        "files": 57,
+        "sha256": "d7215d8bafcc427e5dde801fd1f80f88438fa5bc4215ff3262f86bfcea870f85",
+        "state": "present"
+      },
+      "family-tree.md": {
+        "state": "absent"
+      },
+      "packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak": {
+        "files": 1,
+        "sha256": "b9164e100cf67ff37ff860ed82c5987981ed740e2fec88f8bcc25e815a9c7cea",
+        "state": "present"
+      },
+      "packages/friday-sandbox/docker/Dockerfile.audit": {
+        "files": 1,
+        "sha256": "8904c2cd686fb4acb2612f00b875f8bb03e4a284c3f2b4e4cb440ab7e2739884",
+        "state": "present"
+      }
+    }
+  },
+  "limitations": [
+    "Source inspection only; no WS-06 behavior or independent verdict claimed.",
+    "Ordinary uv run board validation tried Transcript rebuild; hatchling resolution failed due unavailable PyPI DNS/network.",
+    "Installed-environment --no-sync checks are distinct from clean-install/distribution evidence.",
+    "Documentation lifecycle --no-sync attempt also invoked nested ordinary uv run and failed the same hatchling rebuild; UV_NO_SYNC=true inherited by the nested command made the complete check pass."
+  ],
+  "checks": {
+    "board_validate": "passed: 23 tasks using uv run --no-sync",
+    "board_next_show": "passed: existing planning-only gate",
+    "accepted_freeze_before_changes": "passed",
+    "closeout": "passed: board, dashboard, documentation links/lifecycle (358 Markdown files), 18-path/seven-task/ten-criterion manifest, 16 inspected source hashes, whitespace and accepted/unrelated preservation",
+    "command_checks": [
+      {
+        "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run --no-sync python scripts/friday-dev-board.py validate",
+        "chunk_id": "7d1de7",
+        "wall_time_seconds": 2.125e-06,
+        "exit_code": 0,
+        "original_token_count": 12,
+        "output": "Development board validation passed: 23 tasks\n"
+      },
+      {
+        "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run --no-sync python scripts/friday-dev-board.py render --check",
+        "chunk_id": "178f67",
+        "wall_time_seconds": 7.5e-07,
+        "exit_code": 0,
+        "original_token_count": 8,
+        "output": "Planning dashboard is current\n"
+      },
+      {
+        "command": "UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run --no-sync python scripts/check-documentation-lifecycle.py",
+        "chunk_id": "d4a299",
+        "wall_time_seconds": 7.069985667,
+        "exit_code": 1,
+        "original_token_count": 239,
+        "output": "Documentation lifecycle validation failed:\n- docs/planning/board.yaml: Building friday-framework-transcript @ file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-transcript\n  \u00d7 Failed to build `friday-framework-transcript @\n  \u2502 file:///Users/chuckrussell/Dev/gendev/agent-framework/packages/friday-transcript`\n  \u251c\u2500\u25b6 Failed to resolve requirements from `build-system.requires`\n  \u251c\u2500\u25b6 No solution found when resolving: `hatchling`\n  \u251c\u2500\u25b6 Request failed after 3 retries in 7.0s\n  \u251c\u2500\u25b6 Failed to fetch: `https://pypi.org/simple/hatchling/`\n  \u251c\u2500\u25b6 error sending request for url (https://pypi.org/simple/hatchling/)\n  \u251c\u2500\u25b6 client error (Connect)\n  \u251c\u2500\u25b6 dns error\n  \u2570\u2500\u25b6 failed to lookup address information: nodename nor servname provided, or\n      not known\n  help: `friday-framework-transcript` was included because `friday-framework`\n        (v0.1.0a2) depends on `friday-framework-transcript`\n"
+      }
+    ],
+    "documentation_retry": {
+      "command": "UV_NO_SYNC=true UV_CACHE_DIR=/private/tmp/friday-uv-cache uv run --no-sync python scripts/check-documentation-lifecycle.py",
+      "exit_code": 0,
+      "output": "Documentation lifecycle validation passed: 358 Markdown files checked\n"
+    }
+  }
+}

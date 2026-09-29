@@ -537,3 +537,23 @@ def test_provider_models_reject_type_coercion() -> None:
                 "confidence": "0.5",
             }
         )
+
+
+@pytest.mark.asyncio
+async def test_mcp_snapshots_are_excluded_from_native_maintenance_plans(tmp_path):
+    participant, graph = await _participant(tmp_path)
+    client = chromadb.PersistentClient(path=str(tmp_path / "vector"))
+    collection = client.get_collection("primary")
+    collection.add(ids=["mcp-active", "mcp-decayed"],
+        documents=["Synthetic duplicate insight", "Synthetic expired memory"],
+        embeddings=[[1.0, 0.0], [0.0, 1.0]],
+        metadatas=[{"source_type": "mcp_tool", "type": "mcp_tool_snapshot", "topic": "synthetic"},
+                   {"source_type": "mcp_tool", "type": "mcp_tool_snapshot", "stage": "decayed"}])
+    for step in (MemoryMutationStep.DEDUPE, MemoryMutationStep.PRUNE,
+                 MemoryMutationStep.SYNTHESIZE, MemoryMutationStep.VERIFY, MemoryMutationStep.REEMBED):
+        plan = await participant.plan(step)
+        encoded = plan.model_dump_json(exclude={"all_vector_references"})
+        assert '"memory_id":"mcp-active"' not in encoded
+        assert '"memory_id":"mcp-decayed"' not in encoded
+        assert '"mcp-active"' not in encoded and '"mcp-decayed"' not in encoded
+    assert collection.count() == 6

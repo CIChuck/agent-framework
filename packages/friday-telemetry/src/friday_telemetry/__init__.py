@@ -58,6 +58,7 @@ from friday_telemetry.helpers import (
     StreamingTracker,
     classify_error,
 )
+from friday_telemetry.helpers.mcp import MCPTelemetryHelper, opaque_mcp_ref
 from friday_telemetry.interface import TelemetryInterface
 
 # Models - Common
@@ -74,6 +75,7 @@ from friday_telemetry.models.llm import (
     StreamingMetrics,
     TokenUsage,
 )
+from friday_telemetry.models.mcp import MCPEvent, MCPEventName, MCPEventReason
 
 # Models - Memory
 from friday_telemetry.models.memory import (
@@ -119,6 +121,12 @@ __all__ = [
     "MemoryRecallMetrics",
     "MaintenanceMetrics",
     "ArbitrationOpsMetrics",
+    # Models and helpers - MCP
+    "MCPEvent",
+    "MCPEventName",
+    "MCPEventReason",
+    "MCPTelemetryHelper",
+    "opaque_mcp_ref",
     # Attributes
     "OTelAttributes",
     "FridayMemoryAttributes",

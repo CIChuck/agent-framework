@@ -1,0 +1,112 @@
+{
+  "id": "REM-008-maintainer-validation-request",
+  "date": "2026-09-29",
+  "status": "awaiting_maintainer_validation",
+  "initiative": "friday-mcp",
+  "work_unit": "MCP-WS-06",
+  "remediation": "REM-008",
+  "finding": "VAL014-F01",
+  "candidate_commit": "820e252c496712264ebf767404c1e054f025d53a",
+  "remediation_base": "486f3cf585799cc46bc8a6c4f6cf4925734f7188",
+  "remediation_diff": "486f3cf585799cc46bc8a6c4f6cf4925734f7188..820e252c496712264ebf767404c1e054f025d53a",
+  "original_work_unit_base": "99bde5148ee21f47d4734d2a026fb198a3d19cbd",
+  "original_work_unit_aggregate_diff": "99bde5148ee21f47d4734d2a026fb198a3d19cbd..820e252c496712264ebf767404c1e054f025d53a",
+  "reviewed_prior_candidate": "910508cd40c49c30ddfbd6a779aec5fda3ac2a67",
+  "branch": "feature/friday-mcp-ws06-memory",
+  "maintainer_instruction": "Fix the retry behavior. i will Validate afterwards.",
+  "review_reservation": "Maintainer will validate afterwards; no validator was dispatched; no VERIFIED/acceptance claim.",
+  "frozen_inputs": {
+    "path": "docs/planning/active/friday-mcp/validation/REM-008-maintainer-frozen-inputs.json",
+    "sha256": "763e2f3d5007f5edf0d35714aaec6d66901009a2255b9b7f4d76768c690da43d"
+  },
+  "authority_count": 41,
+  "candidate_reports": 8,
+  "historical_evidence_count": 24,
+  "builder_evidence_count": 5,
+  "tracked_product_count": 985,
+  "unrelated_fingerprint_count": 5,
+  "allowed_remediation_paths": [
+    "docs/planning/active/friday-mcp/execution/REM-008-implementation-report.md",
+    "packages/friday-chat/src/friday_chat/adapters.py",
+    "packages/friday-chat/src/friday_chat/memory_mcp.py",
+    "packages/friday-chat/tests_chat/test_mcp_memory.py",
+    "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+    "packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+    "packages/friday-memory/tests_memory/test_mcp_memory.py",
+    "packages/friday-memory/tests_memory/test_retrieval/test_collection_manager.py",
+    "tests/integration/test_mcp_memory_ingestion.py"
+  ],
+  "tactical_task_ids": [
+    "MCP-06-01",
+    "MCP-06-02",
+    "MCP-06-03",
+    "MCP-06-04",
+    "MCP-06-05",
+    "MCP-06-06",
+    "MCP-06-07"
+  ],
+  "original_acceptance_criteria": [
+    "WS06-AC01: Accepted Core policy/facts reused; typed snapshots/receipts, complete bounded provenance and actual safe record/entry/call IDs round-trip.",
+    "WS06-AC02: Default makes zero direct MCP semantic writes/embedding calls/record IDs; safe transcript and ordinary/native/custom adapters remain compatible.",
+    "WS06-AC03: Enabled plus exact server OR canonical-tool grant, union semantics; wildcard/prefix/case/original-name/unlisted/native/failed/unchecked negatives.",
+    "WS06-AC04: Distinct complete storage sanitation, UTF-8 cap including overhead, multibyte/normalization/tiny-cap/injection negatives, no raw-bearing persistence/diagnostics.",
+    "WS06-AC05: Verified durable write precedes ingested receipt; actual append-only transcript readback precedes publication; partial/false-return/cancel/retry/concurrency/crash-pending/multi-call cases truthful.",
+    "WS06-AC06: Honest snapshot/no-revocation assumptions; pending/malformed exclusion and pending promotion guard; provenance survives stage copies/reloads; maintenance does not turn snapshots into ordinary facts.",
+    "WS06-AC07: Public helpers and production Chat retain labels/exclusion; malformed MCP metadata rejected; old/native/file/conversation retrieval remains compatible.",
+    "WS06-AC08: Supplied WS-04 budget forwarded once, including zero; full MCP overhead fits residual estimated budget or snapshot omitted; native selection/reserve/floor intact.",
+    "WS06-AC09: Temporary production Chroma/SQLite and existing JSONL/Markdown/CSV preserve safe actual correlations, old/native/export privacy behavior; no schema/config/dependency change.",
+    "WS06-AC10: Exact manifest, meaningful typing, required checks, independent base comparisons, local public UAT, isolated-package proof, cleanup and frozen predecessor/unrelated evidence complete."
+  ],
+  "remediation_acceptance_criteria": [
+    "REM008-AC01 owned public record/receipt reuse without extra embedding/append",
+    "REM008-AC02 false/ambiguous append, publication, readback and cancellation retries truthful",
+    "REM008-AC03 conflicting ownership and concurrent matching retries fail closed",
+    "REM008-AC04 original WS-06 criteria, exact scope, meaningful checks and preservation intact",
+    "REM008-AC05 stable candidate and reproducible delta/full aggregate evidence handed to maintainer; verdict pending"
+  ],
+  "required_commands": [
+    "uv run --no-sync pytest packages/friday-memory/tests_memory/test_mcp_memory.py packages/friday-memory/tests_memory/test_retrieval/test_collection_manager.py packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py packages/friday-chat/tests_chat/test_mcp_memory.py packages/friday-chat/tests_chat/test_mcp_execution_transcript.py packages/friday-chat/tests_chat/test_mcp_turn_budget.py packages/friday-transcript/tests/test_mcp_provenance.py tests/integration/test_mcp_memory_ingestion.py",
+    "uv run --no-sync pytest packages/friday-chat/tests_chat/test_mcp_execution_security.py packages/friday-chat/tests_chat/test_mcp_chat_bridge.py tests/integration/test_mcp_execution_provenance.py packages/friday-chat/tests_chat/compat/test_tool_loop_parity.py packages/friday-chat/tests_chat/compat/test_turn_contract_parity.py",
+    "uv run --no-sync pytest packages/friday-memory/tests_memory",
+    "uv run --no-sync pytest packages/friday-chat/tests_chat",
+    "uv run --no-sync pytest packages/friday-transcript/tests",
+    "uv run --no-sync pytest packages/friday-agent/tests_agent",
+    "uv run --no-sync pytest packages/friday-core/tests_core packages/friday-mcp/tests_mcp packages/friday-runtime/tests_runtime",
+    "uv run --no-sync pytest tests/integration",
+    "uv run --no-sync ruff check packages/friday-memory packages/friday-chat packages/friday-transcript tests/integration/test_mcp_memory_ingestion.py",
+    "uv run --no-sync mypy packages/friday-memory packages/friday-chat packages/friday-transcript",
+    "uv run --no-sync mypy --python-version 3.13 packages/friday-memory/src/friday_memory/models/mcp.py packages/friday-memory/src/friday_memory/ingestion/mcp.py packages/friday-memory/src/friday_memory/retrieval/mcp.py packages/friday-memory/src/friday_memory/retrieval/collection_manager.py packages/friday-memory/src/friday_memory/maintenance/mutation.py packages/friday-chat/src/friday_chat/memory_mcp.py packages/friday-chat/src/friday_chat/runtime.py packages/friday-chat/src/friday_chat/adapters.py packages/friday-chat/src/friday_chat/turns/processor.py",
+    "uv lock --check --offline",
+    "uv run --no-sync python scripts/friday-dev-board.py validate",
+    "uv run --no-sync python scripts/friday-dev-board.py render --check",
+    "uv run --no-sync python scripts/check-documentation-lifecycle.py",
+    "git diff --check 99bde5148ee21f47d4734d2a026fb198a3d19cbd..820e252c496712264ebf767404c1e054f025d53a"
+  ],
+  "additional_commands": [
+    "git diff --check 486f3cf585799cc46bc8a6c4f6cf4925734f7188..820e252c496712264ebf767404c1e054f025d53a",
+    "git diff --name-status 486f3cf585799cc46bc8a6c4f6cf4925734f7188..820e252c496712264ebf767404c1e054f025d53a",
+    "git diff --name-status 99bde5148ee21f47d4734d2a026fb198a3d19cbd..820e252c496712264ebf767404c1e054f025d53a",
+    "git diff --exit-code 820e252c496712264ebf767404c1e054f025d53a -- packages tests pyproject.toml uv.lock"
+  ],
+  "public_reproducers": [
+    "See original VAL-014 reproducible script in REM-008-builder-evidence.tar.gz plus checkout and isolated final logs; both exit 0 with one committed record/entry and no retry error.",
+    "See retry fault and concurrent ownership scripts/logs and package dependency proof in REM-008-builder-evidence.tar.gz."
+  ],
+  "known_nonzero_checks": [
+    "Chat full package: one PTY failure and three localhost fixture errors reproduced at immutable approved base",
+    "Integration: board 22-vs-23 assertion reproduced at immutable approved base",
+    "Default mypy: installed NumPy Python-3.12 type syntax with Python-3.10 config reproduced at immutable approved base"
+  ],
+  "environment": {
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "UV_NO_SYNC": "true",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "permitted": "Synthetic local stdio peers; deterministic embeddings/model doubles; scratch-only temporary DBs/venvs/artifacts; offline build tools. No provider/paid calls, real credentials/runtime state or externally visible actions."
+  },
+  "limits": "No live provider/paid/credential/external effects or delivery; this request is a maintainer handoff, not a validation verdict.",
+  "report": "docs/planning/active/friday-mcp/execution/REM-008-implementation-report.md",
+  "builder_evidence": "docs/planning/active/friday-mcp/execution/REM-008-builder-evidence.tar.gz",
+  "original_independent_report": "docs/planning/active/friday-mcp/validation/VAL-014-report.md",
+  "original_VAL014_status": "superseded only for decisions on changed candidate; report/evidence historical bytes retained"
+}

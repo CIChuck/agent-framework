@@ -1,0 +1,719 @@
+# Friday MCP Ordered Task Queue
+
+Status: first-pass initiative accepted; PR #6 open; maintainer merge pending; optional WS-09 requires separate authority
+Updated: 2026-09-29
+Initiative: `friday-mcp`
+Branch: `feature/friday-mcp-ws08-docs`
+WS-03 frozen work-unit base: `2c0d6bd1fe481fff9bb180f9e6dfb4a9a2131641`
+WS-03 preparation base: `56251144345888f721c9fc9235ad8a54bbbb23db`
+Current frozen WS-03 product candidate: `d395acdba9e233cb226f54e6258575f480157cf1`
+Historical VAL-008 candidate: `397caa9898612cd989f6404951b3e1f5005dfac2`
+
+The [development board](../../../../planning/board.yaml) remains the canonical initiative
+registry. This queue makes the existing [tactical sequence](tactical-plan.md)
+and current [approved REM-005](remediation/REM-005-directive.md) actionable;
+it does not approve later workstreams, create new board states, or change
+construction scope. Execute one gate at a time and update queue evidence at
+each handoff. An approved future step is not a claim that it has started.
+
+## Current Checkpoint
+
+WS-00 through WS-05 are independently verified and explicitly accepted. WS-05
+was explicitly approved with "ws-05 is approved. proceed"; REM-006 correction
+was approved with "fix them - proceed". Separate bounded remediation and its
+native-compatibility continuation are complete at `cca86b51105666d12c2e7ed571f8f9a05d2085f9`. Fresh
+[VAL-013](validation/VAL-013-report.md) returns delta, full original WS-05 aggregate
+and overall VERIFIED with no outstanding findings. All original/remediation/
+follow-up criteria and independent required/public/package/freeze checks are
+recorded in its byte-exact [evidence](validation/VAL-013-evidence.yaml).
+
+The maintainer explicitly accepted WS-00 through WS-05, then said
+"i accept - continue" on 2026-09-29 after the complete fresh
+[VAL-015](validation/VAL-015-report.md) and
+[WS-06 closeout](execution/WS-06-closeout.md) were presented. WS-06 candidate
+`820e252c496712264ebf767404c1e054f025d53a` is independently VERIFIED and
+explicitly accepted; VAL014-F01 is closed on that candidate. Complete report and
+lossless evidence remain archived byte-exact. The WS-07 directive/readiness
+were then reconciled against source.
+The maintainer then explicitly approved the exact telemetry/diagnostics
+manifest and health-command deferral with "proceed" on 2026-09-29. WS-07
+implementation produced stable candidate `2e36613`. Fresh-context, read-only
+[VAL-016](validation/VAL-016-report.md) returned full-aggregate VERIFIED with
+no findings. Its report and [byte-checked evidence](validation/VAL-016-evidence.yaml)
+are recorded in the [WS-07 closeout](execution/WS-07-closeout.md). The maintainer
+explicitly accepted WS-07 with "accepted" on 2026-09-29. Next is reconciling
+the draft WS-08 directive and requesting separate bounded approval. The
+maintainer then instructed "continue with ws-08"; the directive was narrowed
+to an exact documentation-only manifest and WS-08 execution started on its
+dedicated branch. The exact 11-path guide/template candidate is frozen at
+`f897031`; fresh [VAL-017](validation/VAL-017-report.md) requested two
+documentation corrections. [REM-009](remediation/REM-009-directive.md) binds
+those findings to four existing doc paths and a new candidate/review gate.
+The wider initiative remains started/granted/normal/local on the named branch.
+Optional/deferred WS-09 remains unstarted and unapproved;
+initiative aggregate/pre-merge review and delivery have separate gates. Historical
+VAL-011 and VAL-012 stay byte-exact, superseded only for changed candidates.
+Accepted predecessor records and all five unrelated fingerprints are preserved.
+
+Earlier ordered rows below retain completed historical execution evidence; the
+current checkpoint and canonical board next_gate control the present gate.
+
+## Immediate Queue
+
+| Order / ID | Next task | Readiness | Exit gate / evidence |
+| --- | --- | --- | --- |
+| 1 / MCP-NEXT-01 | Dispatch a separate REM-004 remediator to fix paused-output/forced-kill teardown entirely within the approved transport boundary. | Complete: reassigned separate remediator executed the approved scope. | No MCP base/manager/runtime product changes or private boundary reach-through; exact six-path correction committed. |
+| 2 / MCP-NEXT-02 | Add direct/public-kernel noisy-peer regressions, retained-owner and cancellation coverage; run required checks and commit evidence. | Complete: frozen candidate `a257f04`, [implementation report](execution/REM-004-implementation-report.md). | 39 focused, 333 aggregate, 32 loading and 46 Chat tests pass; integration 44 pass plus declared board-count baseline; Ruff and prescribed typing pass. No independent verdict inferred. |
+| 3 / MCP-NEXT-03 | Freeze candidate and obtain fresh read-only VAL-007 delta plus complete WS-02 aggregate review. | Complete: fresh context returned delta, aggregate and overall VERIFIED, no findings. | Full report preserves pinned authority, exact scope, required checks, independent production/resource-integrity probes, baselines and residual risks. |
+| 4 / MCP-NEXT-04 | Record WS-02 closeout and explicit maintainer acceptance. | Complete: maintainer said "WS-02 accepted" on 2026-09-28; decision recorded in [closeout](execution/WS-02-closeout.md). | Work-unit acceptance only; no wider initiative completion or later-workstream authority inferred. |
+| 5 / MCP-NEXT-05 | Reconcile the WS-03 directive and request bounded approval. | Complete: maintainer explicitly approved the full reconciled directive on 2026-09-28. | Exact paths, handoff/sidecar, strict includes, transactional registry ownership, conservative sanitation/caps, tests and stop conditions approved. |
+| 6a / MCP-NEXT-06A | Record full independent VAL-008 and convert F-001 into bounded REM-005. | Complete: unchanged report/evidence archived and directive drafted. | One medium finding appears exactly once; exact eight-path remediation boundary, six criteria, checks and non-goals are reviewable. |
+| 6b / MCP-NEXT-06B | Approve REM-005 and its separate remediator. | Complete: maintainer said "That's approved. Proceed." | Complete bounded directive and separate remediation explicitly authorized. |
+| 6c / MCP-NEXT-06C | Dispatch separate remediator; correct only F-001, add regressions, run checks and freeze a new candidate. | Complete: separate remediator committed exact eight-path candidate `d395acd`. | 173 focused / 459 aggregate / 46 Chat pass; baseline failures retained, source/report/authority/preservation checks complete; no independent verdict inferred. |
+| 6d / MCP-NEXT-06D | Obtain new fresh-context VAL-009 delta then complete WS-03 aggregate review. | Complete: new `/root/mcp_ws03_val009`, `fork_turns: none`, returned delta, aggregate and overall VERIFIED, no findings. | All seventeen checks executed, independent baselines reproduced, twenty-six groups passed and all six REM-005/ten WS-03 criteria satisfied. Complete byte-exact report/evidence archived; historical VAL-008 unchanged. |
+| 6e / MCP-NEXT-06E | Record verified WS-03 closeout and request explicit work-unit acceptance. | Complete: maintainer explicitly accepted verified WS-03 on 2026-09-28; [closeout](execution/WS-03-closeout.md) records the decision. | Work-unit acceptance only; next is WS-04 directive/readiness reconciliation and separate approval. |
+
+Tasks 1–4 are complete, with fresh independent verification and a subsequent
+explicit maintainer acceptance decision. Task 5's planning/readiness work is
+complete and its explicit approval gate is satisfied. Task 6a records the
+completed VAL-008 review and bounded correction. Tasks 6b–6e are complete;
+WS-03 and WS-04 are independently verified and explicitly accepted;
+subsequent workstreams remain unstarted.
+Accepted work-unit verification and acceptance are unchanged. Do not reuse the remediator as its
+fresh validator or waive a missing independent-review capacity gate.
+
+Required remediation checks are listed in approved REM-005 and the approved WS-03
+directive. Keep unchanged native invalid-zip fixtures, integration board count,
+default NumPy syntax and four core profiles.py typing failures separate from
+regressions; none is authorized for repair or waived. Meaningful affected-scope
+Python 3.13 typing must still pass. Preserve all unrelated paths listed in
+VAL-008; never broad-stage the
+mixed worktree. Local fake peers only, with explicit fixture/probe cleanup.
+
+## Subsequent MCP Workstream Queue
+
+These are the existing proposed workstreams in tactical order. Each needs its
+own reconciled, approved construction directive, implementation checks, stable
+candidate, fresh independent review, and explicit work-unit acceptance. None
+is authorized by the REM-004 approval.
+
+| Order / work unit | Scope | Entry gate |
+| --- | --- | --- |
+| 6 / [WS-03](directives/ws-03-tool-naming-metadata-registry.md) | Executable MCP registry integration: canonical names, collision rejection, typed metadata, include/exclude filters, schema/cap enforcement, sanitization, and mixed native/MCP compatibility. | Complete: verified and explicitly accepted in WS-03 closeout; frozen candidate `d395acd`. |
+| 7 / [WS-04](directives/ws-04-friday-chat-context-budget.md) | Friday Chat tool selection and context budgeting: select rather than blindly inject tools, account for schema/result costs before memory retrieval, preserve the memory floor, and expose safe budget decisions. | Complete: fresh complete VAL-010 aggregate VERIFIED and explicit maintainer acceptance recorded in WS-04 closeout. |
+| 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
+| 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Complete: nine-path REM-008 candidate 820e252 received fresh VAL-015 delta/full-aggregate VERIFIED; maintainer explicitly accepted WS-06 on 2026-09-29. |
+| 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; the maintainer explicitly accepted it in the [closeout](execution/WS-07-closeout.md). |
+| 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Candidate `f897031` received fresh [VAL-017](validation/VAL-017-report.md) CHANGES_REQUESTED for two docs findings; [REM-009](remediation/REM-009-directive.md) corrects four doc paths before new review. Local synthetic UAT only. |
+| 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
+| Deferred / [WS-09](directives/ws-09-optional-external-config-include.md) | Optional external MCP config includes parsed into the canonical typed runtime model, with path confinement and precedence. | Tools-only inline integration stable and a separate maintainer decision to activate the phase. Not required automatically by this queue. |
+
+## Separate Backlog And Delivery Gates
+
+- [Friday runtime skills](../../../../planning/backlog/friday-runtime-skills/README.md) remains
+  a separate backlog initiative. Its next gate is definition review and
+  promotion of a bounded first phase, not implementation under MCP approval.
+  Reconcile system-prompt placement and shared tool/memory/skills budget
+  accounting when that initiative is promoted; do not schedule it here by
+  inference.
+- Other initiative priorities on the development board are unchanged; this
+  work-unit queue does not create additional board initiatives or reorder them.
+- Push, merge, release, deployment, credentials, paid/provider calls and other
+  externally visible actions require separate authority. Acceptance and local
+  deterministic evidence do not grant those permissions.
+
+## 2026-09-28 — WS-04 Approved Execution Checkpoint
+
+Maintainer said "proceed - lets build it" after the eight-feature scope review.
+Reconciled directive and readiness checkpoint are complete within that scope.
+Task 7 is current: implement exact Chat paths, add local regressions/UAT, run
+required checks, freeze a candidate, obtain fresh read-only VAL-010, then propose
+closeout for explicit acceptance. WS-05 and later implementation remains draft.
+Current phase implementation/state not_ready; accepted WS-00 through WS-03
+remain intact. Later execution/delivery retains separate approval gates.
+
+## 2026-09-28 — WS-04 Candidate And VAL-010 Request
+
+Task 7 implementation/check/commit complete at `53d76d45cedea16122436e53b178de074c5bc322`.
+Next is new fresh-context read-only VAL-010, complete WS-04 aggregate from
+`acd1fd1e736a38134fac40d7fdb35cd1f32cf683`, all eight criteria and independent required checks/probes.
+Request pins 26 authorities and three reports. Current phase validation/state
+pending; no verdict, acceptance, WS-05 authority or delivery is inferred.
+All five unrelated path fingerprints and predecessor contracts remain unchanged.
+
+## 2026-09-28 — Fresh VAL-010 Dispatched
+
+New `/root/mcp_ws04_val010`, `fork_turns: none`, received the frozen request
+after local request commit `62a5c50`. It independently reviews complete WS-04
+aggregate, all eight criteria and required commands/probes, read-only. No
+parent/private builder reasoning is supplied. Phase validation/state in_review;
+no verdict/acceptance or later-slice/delivery authority. Candidate source/tests/
+config, 26 authorities and three implementation reports remain frozen; all
+unrelated work is preserved. Task 7 independent review is in progress.
+
+## 2026-09-28 — WS-04 Verified Closeout And Acceptance Gate
+
+Task 7 implementation/check/commit and fresh VAL-010 aggregate review are
+complete at frozen `53d76d4`, VERIFIED with no findings. Complete report and
+lossless evidence are archived. [Closeout](execution/WS-04-closeout.md) records
+all eight criteria, independent checks/probes, baseline debt and frozen inputs.
+Current phase closeout/state verified; next is explicit maintainer WS-04
+acceptance. Task 7 acceptance is pending. WS-05 remains draft/unstarted; no
+later-slice implementation or delivery authority is supplied by verification.
+
+## 2026-09-28 — WS-04 Accepted; Next Preparation Gate
+
+Task 7 is complete: the maintainer explicitly said "accepted" after the
+VERIFIED WS-04 result, complete fresh VAL-010 and explicit acceptance gate.
+[Closeout](execution/WS-04-closeout.md) records the decision for frozen
+`53d76d4`. WS-00 through WS-04 are accepted work units. Wider initiative
+remains started/granted/normal/local; no initiative archive or delivery.
+
+Next is WS-05 directive/readiness reconciliation before requesting bounded
+approval. This turn records acceptance without performing reconciliation or
+authorizing WS-05 code. Phase planning/state not_ready describes that next gate;
+accepted work-unit verification remains unchanged.
+
+## 2026-09-28 — WS-05 Ready For Bounded Approval
+
+Task 8 planning/readiness is complete: exact 23-path [directive](directives/ws-05-execution-provenance-transcript.md),
+eight tasks/ten criteria, local evidence and export/dependency/redaction decisions
+are recorded in the [checkpoint](execution/WS-05-readiness-checkpoint.md).
+Next is explicit maintainer approval, then recorded start/base/branch, implementation,
+stable candidate, fresh read-only complete-aggregate VAL-011 and explicit acceptance.
+Current phase planning/state not_ready; no product/branch/reviewer action or
+later-slice/delivery authority is inferred from the planning "proceed".
+
+## 2026-09-28 — WS-05 Approved Execution
+
+Explicit maintainer approval: "ws-05 is approved. proceed". Task 8 is current:
+implement the exact approved 23 paths, perform required checks/UAT, freeze a
+candidate, obtain new fresh read-only complete-aggregate VAL-011, then propose
+closeout for explicit acceptance. Work-unit base `a609f94`; branch
+`feature/friday-mcp-ws05-execution`; phase implementation/state not_ready.
+Accepted WS-00 through WS-04 remain intact. Later slices and delivery remain gated.
+
+## 2026-09-28 — WS-05 Candidate Frozen For VAL-011
+
+Approved task 8 implementation and builder checks are complete at `2388e747ba1bf8157881230ad36ae3ef3272b807`
+from full work-unit base `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. Exactly 23 deliverables plus two builder-evidence
+artifacts are committed. Full logs, unchanged baseline reproduction, offline
+wheel/import proof and preservation are recorded. Phase validation/state pending;
+next gate fresh read-only complete-aggregate [VAL-011](validation/VAL-011-request.yaml).
+Request preparation is not dispatch, verification or acceptance. Accepted WS-00
+through WS-04 and five unrelated dirty paths remain intact. No later phase or delivery.
+
+## 2026-09-28 — Fresh VAL-011 Dispatched
+
+New `/root/mcp_ws05_val011` was created with `fork_turns: none` after request
+commit `d9d8685`. It received only the pinned request, frozen candidate/base,
+read-only restrictions and required complete independent report/evidence. No
+parent/private reasoning or inherited builder context was supplied. Phase
+validation/state in_review; no verdict or acceptance exists yet. Candidate
+source/tests/config, 30 authority documents and four reports remain frozen,
+with 978 tracked product-file hashes and five unrelated fingerprints checked.
+
+## 2026-09-28 — WS-05 VAL-011 Changes Requested; REM-006 Approval Gate
+
+Fresh read-only `/root/mcp_ws05_val011` completed full original WS-05 aggregate
+at frozen `2388e747ba1bf8157881230ad36ae3ef3272b807`, **CHANGES_REQUESTED**,
+with two High findings: F-001 unsafe MCP session snapshot/JSONL/all-session CSV
+env capture; F-002 across-iteration native ID collision with new production
+persistence failure. Complete report and all 182 original evidence members are
+archived byte-for-byte; 149 report links and every artifact hash verify. All 17
+required checks ran; independent matrix 22 passed/five failed. Baselines, package
+resolver limit/successful isolated wheel imports and resource/freeze evidence
+remain explicit. Candidate, 30 authorities/four reports/978 product files and
+five unrelated fingerprints remain unchanged.
+
+Task 8 cannot close or advance to acceptance. The concrete eight-path
+[REM-006 draft](remediation/REM-006-directive.md) converts both findings exactly
+once, with six criteria, regressions, separate-remediator requirement and new
+fresh delta plus complete-aggregate VAL-012. Next gate explicit maintainer approval
+of that draft and separate remediator. Phase remediation/state changes_requested
+is a proposed correction gate, not authority to execute. No fixes or remediator
+dispatch occurred. Accepted predecessors, later-phase and delivery boundaries hold.
+
+## 2026-09-28 — REM-006 Approved And Started
+
+Maintainer explicitly said "fix them - proceed" after the complete eight-path
+REM-006 proposal and separate-remediator request. Both High VAL-011 findings,
+regressions/report/checks and new fresh read-only delta plus original WS-05
+aggregate VAL-012 are authorized. Remediation base `dd6a337eb2928ab4050ea70fb41dc77072210e34`;
+branch `feature/friday-mcp-ws05-execution`; phase remediation/state changes_requested.
+Next dispatch the separate remediator, execute only the approved manifest and
+freeze a corrected candidate. Historical reports/evidence and accepted predecessors
+remain byte-exact; five unrelated dirty fingerprints are preserved. No acceptance,
+later-phase, delivery or historical database cleanup authority is inferred.
+
+## 2026-09-28 — Separate REM-006 Remediator Dispatched
+
+New `/root/mcp_ws05_rem006`, `fork_turns: none`, received the complete approved
+eight-path directive, both independently reported findings, exact bases and
+local-only constraints after authorization commit `5145f06`. It may implement,
+test/report and commit only the approved paths; no validator role or acceptance.
+Controller freezes 41 authority/report/evidence inputs, 971 product paths outside
+the seven allowed existing product/test files, and five unrelated fingerprints.
+Phase remediation/state changes_requested; candidate and fresh VAL-012 remain
+pending. Historical VAL-011 report/request/evidence and accepted predecessors
+remain byte-exact. Controller work is process metadata only.
+
+## 2026-09-28 — REM-006 Candidate Frozen; VAL-012 Prepared
+
+Separate approved remediator committed corrected candidate `f24ed20f82eac0cbce17e4b86615497cc9993921`
+from remediation base `dd6a337eb2928ab4050ea70fb41dc77072210e34`. Original WS-05
+aggregate base remains `a609f948fe2d869ac29d0cce29d22d9334cd7d08`. Historical VAL-011
+report/evidence stays byte-exact, superseded only for changed-candidate decisions.
+Pinned VAL-012 requires new fresh read-only remediation delta plus full original
+aggregate, six remediation and ten original criteria, all required checks and
+independent public/privacy/correlation/package/cleanup probes. Phase validation/
+state pending; preparation supplies no verdict or acceptance. Unrelated dirty
+work and frozen authorities/reports are preserved. Next dispatch fresh validator.
+
+## 2026-09-28 — Fresh Read-Only VAL-012 Dispatched
+
+New `/root/mcp_ws05_val012`, `fork_turns: none`, received the frozen request
+after process/evidence commit `e0b3395`. It independently reviews REM-006 delta
+then complete original WS-05 aggregate at `f24ed20f82eac0cbce17e4b86615497cc9993921`,
+all six remediation/ten original criteria and eighteen commands plus own public
+probes/package/baseline checks. No parent/builder/remediator context or private
+reasoning was supplied. Phase validation/state in_review; no verdict/acceptance.
+Product/config/test bytes, 32 authorities/five reports and all hash-pinned
+historical/builder evidence remain frozen; five unrelated paths preserved.
+
+## 2026-09-28 — VAL-012 Complete; Bounded REM-007 Continuation Started
+
+Fresh read-only `/root/mcp_ws05_val012` at `f24ed20f82eac0cbce17e4b86615497cc9993921`
+returned CHANGES_REQUESTED in delta and work-unit aggregate. Both original High
+VAL-011 findings close. Single Medium VAL-012-F-001 requires restoring malformed
+native-call skip behavior before native ID reservation; final independent matrix
+31 passed/four failures for that single finding. Complete report/archive/manifests
+are preserved byte-exact. All 18 mandatory commands, baseline comparisons,
+local-peer UAT/cleanup and pinned preservation are recorded in the review.
+
+The existing explicit "fix them - proceed" REM-006 approval already requires
+native compatibility and allows these same paths. REM-007 records a bounded
+three-path continuation under REM006-AC03/WS05-AC09, not new scope or inferred
+approval. Follow-up base `446e3a6f4e445a456dcbe6ef25058e60af54fe53`; reviewed source remains f24ed20. Only loop.py,
+existing execution security tests and existing REM-006 report may change. Dispatch
+the same separate remediator after this recorded started/granted/current-branch
+gate. This is cycle two: freeze new candidate, retain historical VAL-012 bytes,
+then new fresh read-only VAL-013 delta and complete original aggregate. If it is
+unsuccessful, return unresolved findings. Phase remediation/changes_requested;
+no acceptance/later phases/delivery. Five unrelated fingerprints remain preserved.
+
+## 2026-09-28 — Separate REM-007 Remediator Dispatched
+
+Controller dispatched the same separate `/root/mcp_ws05_rem006` after approval/
+start commit `69831774fcd3ebdbd62a2f09b207ecafe1e6bb58`. REM-007 is a bounded
+continuation of the existing explicit REM-006 approval: exactly loop.py, existing
+execution-security tests and existing REM-006 report. New freeze pins 56 inputs,
+976 outside-scope product files and five unrelated fingerprints. Original
+VAL-012 report/archive retained byte-exact. Correct only VAL-012-F-001 and required
+regressions, preserve original High-finding corrections. All 18 mandatory checks,
+new stable candidate and fresh VAL-013 delta/full aggregate required. Root is
+controller; reviewer performs no fixes. Phase remediation/changes_requested;
+no new scope, acceptance or delivery. Second unsuccessful cycle would return
+unresolved findings to maintainer.
+
+## 2026-09-28 — REM-007 Candidate Frozen; Fresh VAL-013 Prepared
+
+Separate remediator froze `cca86b51105666d12c2e7ed571f8f9a05d2085f9` within the exact three already-approved
+paths, from follow-up base `446e3a6f4e445a456dcbe6ef25058e60af54fe53`. Original REM-006 base `dd6a337eb2928ab4050ea70fb41dc77072210e34` and
+WS-05 aggregate base `a609f948fe2d869ac29d0cce29d22d9334cd7d08` remain explicit. Original VAL-012 report/archive
+and earlier evidence remain byte-exact, superseded for changed candidate only.
+Fresh VAL-013 must close VAL-012-F-001 and reconfirm both original High findings,
+with delta/full aggregate, all required commands and independent public/storage/
+privacy/compatibility/package/cleanup/freeze evidence. Phase validation/pending;
+not dispatched/verified/accepted by preparation. Second remediation cycle; if
+unsuccessful return remaining findings. Accepted predecessors, unrelated paths,
+later phase and delivery boundaries remain intact.
+
+## 2026-09-28 — Fresh VAL-013 Dispatched
+
+New `/root/mcp_ws05_val013`, `fork_turns: none`, receives only pinned public
+request/authority/candidate/evidence, not builder/controller conversation or
+private reasoning. Candidate `cca86b51105666d12c2e7ed571f8f9a05d2085f9`, request
+commit `f5510ed599cae1342f33ce8bc0ca977c2c1b0c06`, 34 authorities/five reports,
+19 required commands and current freeze govern. Review follow-up delta, complete
+remediation delta and full original WS-05 aggregate; all original/remediation/
+follow-up criteria and independent public/storage/privacy/compatibility/package/
+cleanup/preservation evidence. Governed workspace read-only; scratch only.
+Phase validation/in_review; no verdict, acceptance, later scope or delivery.
+Second remediation cycle; any unsuccessful result returns remaining findings.
+
+## 2026-09-28 — VAL-013 VERIFIED; WS-05 Acceptance Gate
+
+Fresh-context read-only `/root/mcp_ws05_val013` returned delta, complete original
+work-unit aggregate and overall VERIFIED for `cca86b51105666d12c2e7ed571f8f9a05d2085f9`. Both original High
+findings and Medium VAL-012-F-001 close; all ten WS05/six REM006/four REM007 criteria
+and 19 required commands have complete independent evidence. Full original report,
+archive, manifest, verification and delivery are archived byte-exact; member hashes
+and report links verify. Frozen source/authority/reports/historical evidence and
+five unrelated fingerprints remain intact. Controller closeout metadata introduces
+no product or authority change. Phase closeout/verified; next explicit maintainer
+WS-05 acceptance. Wider initiative remains started/granted/normal/local, accepted
+predecessors intact, no later phase/delivery or historical storage cleanup.
+
+## 2026-09-28 — WS-05 Explicitly Accepted
+
+The repository maintainer said "accepted" after the verified WS-05 closeout,
+complete fresh VAL-013 review and acceptance gate were presented. Acceptance
+applies to frozen `cca86b51105666d12c2e7ed571f8f9a05d2085f9`, delta and complete
+original aggregate VERIFIED, all three numbered findings closed, complete
+report/evidence archived byte-exact. The closeout records accepting maintainer,
+date and explicit decision. WS-00 through WS-05 are accepted work units.
+
+Only controller acceptance/index/queue/log/board/dashboard metadata changes;
+source/tests/config, controlling authorities and independent report/archive
+bytes remain unchanged. Five unrelated dirty fingerprints are preserved.
+Current phase closeout/state verified; next gate reconcile the draft WS-06
+directive/readiness and obtain separate bounded scope approval. No WS-06
+implementation begins here. Wider initiative stays started/granted/normal/local;
+its active packet remains until full initiative acceptance. No delivery,
+historical storage cleanup or later-phase authority is inferred.
+
+## 2026-09-29 — WS-06 Planning Reconciled; Approval Gate
+
+Task 9 planning/readiness is complete at preparation HEAD `6890771`, on the
+existing WS-05 branch. The draft binds 18 product paths, seven tasks and ten
+criteria: explicit disabled-default grants, separate safe snapshot ingestion,
+append-only truthful receipts, pending publication, labels/filters, supplied
+budget compatibility, honest freshness and maintenance provenance protection.
+The readiness checkpoint/evidence record source findings, environment limits and
+unchanged accepted inputs/unrelated work. No product generation or new branch.
+Next is explicit bounded WS-06 directive approval, then record its execution
+branch/base/start before implementation. Fresh complete-aggregate VAL-014 and
+maintainer acceptance follow a stable candidate. Later scopes/delivery separate.
+
+## 2026-09-29 — WS-06 Explicitly Approved And Started
+
+Maintainer said "approved - proceed with speed" for the complete reconciled scope.
+Task 9 starts on feature/friday-mcp-ws06-memory from planning base 99bde51.
+Exactly 18 product paths, seven tasks and ten criteria; no later scope/delivery.
+Record approval/start before source generation, preserve unrelated work, implement
+required checks, freeze stable candidate, then fresh read-only aggregate VAL-014.
+
+## 2026-09-29 — WS-06 Candidate Frozen; Fresh VAL-014 Prepared
+
+Approved WS-06 candidate `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`, complete base `99bde5148ee21f47d4734d2a026fb198a3d19cbd`.
+Exactly 18 product/report paths; lossless controller evidence has 75 artifacts.
+Focused161/compat97/Memory715/Transcript35/Agent209/framework416 tests pass; Chat
+and integration/default-typing failures independently match approved-base debt.
+Ruff/all-nine-source meaningful typing, isolated 11-wheel declared production
+Chroma/SQLite proof, lock/board/doc/whitespace and preservation pass. Full
+implementation report retains limits/attempts without claiming independent verdict.
+VAL-014 request pins 40 authorities, six reports, two builder artifacts, all
+985 product bytes and five unrelated fingerprints. New fresh read-only aggregate
+review mandatory; phase validation/pending, not dispatched by preparation.
+No source edits while frozen; no WS-06 acceptance/later scopes/delivery.
+
+## 2026-09-29 — Fresh VAL-014 Dispatched
+
+New /root/mcp_ws06_val014, fork_turns none, receives only pinned public request/
+authority/candidate/evidence from preparation commit 548da4e. Candidate910508c,
+full base99bde51, all seven tasks/ten criteria/16 commands and mandatory independent
+public/package/baseline/preservation evidence. Governed workspace read-only, no
+fixes or inherited builder/controller conversation. Phase validation/in_review;
+no verdict, acceptance, later scope or delivery. Product/40authorities/sixreports/
+two builder artifacts remain frozen; unrelated work preserved.
+
+## 2026-09-29 — Complete VAL-014 Archived; Bounded REM-008 Approval Gate
+
+Fresh /root/mcp_ws06_val014 returned CHANGES_REQUESTED for candidate
+910508cd40c49c30ddfbd6a779aec5fda3ac2a67, complete WS-06 base
+99bde5148ee21f47d4734d2a026fb198a3d19cbd. One medium finding VAL014-F01:
+public retries create another pending memory UUID and fail immutable duplicate
+append instead of reusing owned identity/receipt. Confirmed in checkout and isolated
+distributions; original committed record/receipt stay truthful, pending is excluded.
+All seven tasks/ten criteria/16 commands and independent public/package/base/freeze
+work completed. No other candidate finding; broad inherited failures remain nonzero.
+
+Complete report copied byte-exact (SHA256
+339644bc16bbf7a30a89181337432ad38cfa58848c18e22d5a5a482b0e1b2c65).
+Archive SHA256 6d83d2f3c22985d9c761c35f4dd16125270d9e18f0cabf25b2c9b1b6ca68e2c8;
+all 870 members/hash/size/original bytes and 44 report links verified. Original
+selection/manifest/archive verification also preserved. Controller and validator
+verify 40 authorities, six reports, two builder artifacts, 19 historical inputs,
+985 products and five unrelated fingerprints unchanged. No source edits or cleanup.
+
+REM-008 is proposed, not approved: exactly four existing sources, four tests and
+one new report, five criteria, owned identity/immutable receipt reuse and public
+false/ambiguous append/publication/cancel/conflict/concurrency regressions. Policy
+requires separate remediation for data integrity and preauthorization of automated
+fixes. Next approve this exact directive and a separate remediator, record execution
+base/start, then new stable candidate and fresh VAL-015 delta plus full original
+WS-06 aggregate. Phase remediation/state changes_requested; board stays
+started/granted/normal/local on WS-06 branch. No dispatch, acceptance, later scope,
+initiative completion or delivery. Original VAL-014 remains the current decision,
+not superseded until a changed candidate exists.
+
+## 2026-09-29 — REM-008 Explicitly Approved And Started
+
+Maintainer instructed "Fix the retry behavior. i will Validate afterwards." after
+review of the exact nine-path REM-008 proposal and separate-remediator question.
+The instruction approves only VAL014-F01 owned retry correction, tests/report,
+public/partial/concurrency/ownership checks and a separate remediator. Execution
+starts from 486f3cf585799cc46bc8a6c4f6cf4925734f7188 on
+feature/friday-mcp-ws06-memory. Board remains started/granted/normal/local;
+packet phase remediation/state changes_requested records the still-open finding.
+Preserve frozen VAL-014 report/authority, unrelated work and outside-scope product.
+After stable candidate, hand exact delta, original WS-06 aggregate, complete
+checks and preservation to the maintainer for their validation; no validation
+agent is dispatched by this instruction. No acceptance/later scope/delivery.
+
+## 2026-09-29 — REM-008 Candidate Frozen For Maintainer Validation
+
+Separate remediator /root/mcp_ws06_rem008 completed only four approved sources,
+four tests and the new implementation report. Final candidate
+820e252c496712264ebf767404c1e054f025d53a; source/test commit adf59d11d1704355f84ec30e1d7a8959f226c355;
+remediation base 486f3cf585799cc46bc8a6c4f6cf4925734f7188, original WS-06
+base 99bde5148ee21f47d4734d2a026fb198a3d19cbd. Both frozen original
+retry reproducers now exit 0, with one committed memory record, one immutable
+transcript entry, no extra retry embedding or append and no pending task. Fault,
+conflict, concurrent, public/isolated distribution proofs and all 16 required
+commands are recorded in the implementation report and the 1,983-member lossless
+builder archive (SHA256 bac6f7861e0302ec3598fc702b44614ee85b5f25869e06b2dbfb6efeac207389).
+Focused170/Ruff/nine-source meaningful typing pass; three broad nonzero command
+classes reproduce against the approved base. Final original and remediation
+diff whitespace checks pass. Controller separately confirms 68 historical frozen
+rows, 977 outside-scope products and all five unrelated fingerprints unchanged.
+The pinned maintainer validation request/manifests and concise handoff name exact
+inputs, criteria, checks and evidence. Historical VAL-014 remains byte-exact;
+its status is superseded for decisions on this changed candidate only. Phase
+validation/state pending; board stays started/granted/normal/local and names
+maintainer validation as the next gate. No validator dispatched, VERIFIED,
+acceptance, later scope or delivery claimed.
+
+## 2026-09-29 — Maintainer Requests Fresh VAL-015 Reviewer
+
+After the frozen REM-008 handoff, the maintainer explicitly asked "Can you
+dispatch a sub-agent to verify this?" This replaces the earlier personal-review
+preference for this candidate; it does not predecide a verdict or acceptance.
+Pinned VAL-015 requests a fresh-context, read-only remediation-delta and complete
+original WS-06 aggregate review of candidate
+820e252c496712264ebf767404c1e054f025d53a. It references the existing
+byte-pinned 41-authority, eight-report, 24-historical, five-builder, 985-product,
+five-unrelated-fingerprint manifest; five remediation and ten original criteria;
+16 required commands, independent public/fault/package/base and freeze probes.
+This preparation changes only process metadata, not reviewed product or authority.
+Phase validation/state pending; next is actual dispatch. No verdict, WS-06
+acceptance, later workstream or delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-015 Dispatched
+
+Fresh /root/mcp_ws06_val015 created with fork_turns none and only the pinned
+VAL-015 request, public authority, candidate and evidence; no inherited builder,
+remediator or controller conversation/private reasoning. Read-only governed repo,
+scratch-only outputs, no fixes or cleanup. Candidate 820e252, exact REM-008 delta
+from 486f3cf and original WS-06 aggregate from 99bde514 remain frozen. Review
+requires five remediation/ten original criteria, seven tasks, all 16 commands,
+independent public/fault/package/base/preservation evidence and complete lossless
+report/archive. Phase validation/state in_review; board next gate fresh verdict.
+No VERIFIED, acceptance, later scope or delivery claimed.
+
+## 2026-09-29 — Fresh VAL-015 VERIFIED; WS-06 Closeout Proposed
+
+Independent /root/mcp_ws06_val015 completed the exact REM-008 delta and full
+original WS-06 aggregate read-only for candidate
+820e252c496712264ebf767404c1e054f025d53a. Overall VERIFIED, no numbered
+finding; VAL014-F01 closed on this changed candidate. All seven tasks, five
+remediation and ten original criteria have cited source/command/public evidence.
+All 16 required commands ran; nonzero Chat/integration/default-typing failures
+reproduce on the byte-verified approved base. Independent checkout/isolated
+Chroma+SQLite retry/fault/compatibility probes and offline rebuilt distribution
+proof pass. Original report SHA256
+50f4ba48c826fc2c490f5342693c447a2184a28713fa7ec5172cd158d30460f9;
+archive SHA256 e91109770e3aaede61b99824e314d31eddca4de76545f6438d6b106cf94ca76a.
+All 935 evidence members, 49 report links, 41 authorities, eight reports,
+24 historical/five builder artifacts, 985 product hashes and five unrelated
+fingerprints were verified unchanged. Complete independent report/evidence
+archived byte-exact. WS-06 closeout proposed; phase closeout/state verified.
+Next gate explicit maintainer WS-06 acceptance. Initiative remains
+started/granted/normal/local; no later scope or delivery authority inferred.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-06
+
+The maintainer said "i accept - continue" after receiving the complete fresh
+VAL-015 VERIFIED report and WS-06 work-unit closeout proposal. Controller records
+explicit acceptance for candidate 820e252c496712264ebf767404c1e054f025d53a
+and its exact REM-008 delta/full original WS-06 aggregate independent review.
+All WS-00 through WS-06 are accepted. Board stays started/granted/normal/local
+on feature/friday-mcp-ws06-memory; there is no merge/push/release/delivery.
+Phase planning/state not_ready; next reconcile the draft WS-07 telemetry,
+diagnostics and optional health-command directive against accepted current source,
+then obtain separate bounded implementation approval. No WS-07 product edits
+are authorized by WS-06 acceptance.
+
+## 2026-09-29 — Fresh VAL-016 VERIFIED; WS-07 Closeout Proposed
+
+Fresh `/root/mcp_ws07_val016`, `fork_turns: none`, returned full WS-07 aggregate
+VERIFIED with no findings for `c05882e..2e36613`. All pinned authority and
+product hashes, exact 16-path scope, and five unrelated fingerprints held at
+start and close. The [complete report](validation/VAL-016-report.md) and
+[byte-checked scratch evidence](validation/VAL-016-evidence.yaml) are recorded.
+Current broad Chat and integration commands are nonzero for inherited PTY,
+localhost bind and stale board-count classes independently reproduced on the
+frozen base. The [WS-07 closeout](execution/WS-07-closeout.md) proposes
+explicit maintainer acceptance. Phase closeout/state verified; board remains
+started/granted/normal/local. WS-08 and delivery remain separate gates.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-07
+
+The maintainer answered "accepted" after receiving the complete independent
+VAL-016 VERIFIED report and WS-07 closeout proposal. The
+[closeout](execution/WS-07-closeout.md) records acceptance for frozen candidate
+`2e36613eae6060a99c1255cce04fcb7a27bc7374` and its full aggregate
+review. WS-00 through WS-07 are accepted. Current phase planning/state
+not_ready; next reconcile the draft WS-08 directive and request separate
+bounded approval. The initiative remains started/granted/normal/local, with no
+WS-08 implementation, external UAT or delivery authority inferred.
+
+## 2026-09-29 — WS-08 Documentation Scope Approved And Started
+
+The maintainer's "continue with ws-08" authorized the remaining required
+documentation workstream. The [reconciled directive](directives/ws-08-documentation-guide-closeout.md)
+and [readiness checkpoint](execution/WS-08-readiness-checkpoint.md) bind exact
+guide, README and two distributed config-example paths against accepted
+implementation. Branch `feature/friday-mcp-ws08-docs` starts at `93d3684`.
+Phase implementation/state not_ready; next execute the documentation and
+validate snippets with canonical parsers and a local synthetic stdio peer.
+No source implementation, remote/provider UAT, WS-09 or delivery is included.
+
+## 2026-09-29 — WS-08 Candidate Frozen; Fresh VAL-017 Prepared
+
+Exact 11-path documentation/template candidate `f897031` is committed from
+`d9eb81d`. The [builder report](execution/WS-08-implementation-report.md)
+records parser, local peer, package, focused and link-check results and the
+nonzero inherited Chat baseline. The [manifest](execution/WS-08-product-manifest.json)
+pins deliverable and unrelated bytes; [VAL-017](validation/VAL-017-request.yaml)
+pins authority and the independent checks. Phase validation/state pending;
+next is actual fresh-context, read-only dispatch. No reviewer verdict,
+acceptance, initiative closeout or delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-017 CHANGES_REQUESTED; REM-009 Opened
+
+The complete independent [VAL-017 report](validation/VAL-017-report.md)
+returns CHANGES_REQUESTED for High F01 (explicit include makes optional
+connection failure fatal at registration) and Low F02 (category selection
+omitted from configuration summary). Its byte-exact
+[evidence](validation/VAL-017-evidence.yaml) is retained. The
+[REM-009 directive](remediation/REM-009-directive.md) maps each finding to
+four exact existing documentation paths and local parser/lifecycle probes.
+Phase remediation/state changes_requested; next freeze a corrected candidate
+and dispatch a new fresh delta/full-aggregate reviewer. No validator verdict
+is converted into acceptance or delivery.
+
+## 2026-09-29 — REM-009 Corrected Candidate Frozen; Fresh VAL-018 Prepared
+
+Exact four-path documentation correction `08141407` addresses both VAL-017
+findings. The [REM-009 implementation report](execution/REM-009-implementation-report.md)
+records local parser/lifecycle and focused test evidence. The corrected
+[manifest](execution/REM-009-product-manifest.json) pins all 11 WS-08
+deliverables and five preserved unrelated paths; [VAL-018](validation/VAL-018-request.yaml)
+pins a fresh read-only delta plus complete original aggregate review. Historical
+VAL-017 is [superseded only for this changed candidate](validation/VAL-017-status.yaml).
+Phase validation/state pending; no new verdict or acceptance exists.
+
+## 2026-09-29 — Fresh VAL-018 VERIFIED; WS-08 Acceptance Pending
+
+The new fresh-context read-only [VAL-018 report](validation/VAL-018-report.md)
+verified both REM-009 findings and all five original WS-08 criteria with no
+findings. The complete [byte-checked evidence](validation/VAL-018-evidence.yaml)
+and [WS-08 closeout proposal](execution/WS-08-closeout.md) are recorded.
+Phase closeout/state verified; next is explicit maintainer acceptance of the
+corrected candidate and full review. Initiative-level review, optional WS-09
+and delivery remain separate.
+
+## 2026-09-29 — Maintainer Explicitly Accepts Verified WS-08
+
+The maintainer said "accepted ws-08, continue" after complete fresh
+[VAL-018](validation/VAL-018-report.md), its independent closeout audit and the
+[WS-08 closeout proposal](execution/WS-08-closeout.md) were presented. The
+closeout records acceptance of corrected candidate `08141407` and its complete
+delta/original work-unit review. WS-00 through WS-08 are accepted. Phase
+planning/state not_ready; next prepare a fresh read-only aggregate review of
+the full MCP feature branch. Optional WS-09, initiative completion and delivery
+are separate gates.
+
+## 2026-09-29 — First-Pass Aggregate Review Prepared
+
+The [readiness checkpoint](execution/MCP-aggregate-readiness-checkpoint.md)
+uses recorded initiative baseline `20c70dd` and accepted WS-08 branch candidate
+`847d410`. The [manifest](execution/MCP-aggregate-manifest.json) pins 75
+product and 212 planning/evidence changed paths plus five unrelated
+fingerprints. [VAL-019](validation/VAL-019-request.yaml) pins 36 authorities,
+ten interaction criteria and read-only checks for the complete first-pass
+aggregate. Phase validation/state pending; next dispatch a new fresh-context
+validator. WS-09 and delivery remain outside this review.
+
+## 2026-09-29 — VAL-019 Aggregate CHANGES_REQUESTED; REM-010 Drafted
+
+Fresh `/root/mcp_val019_aggregate`, `fork_turns: none`, reviewed the complete
+`20c70dd..847d410` feature-branch aggregate read-only and returned
+[CHANGES_REQUESTED](validation/VAL-019-report.md). Medium F-001 is a mandatory
+joint Python-3.13 mypy failure: five errors in changed Memory collection
+manager, including new optional call-ID narrowing, and four separately
+inherited errors in unchanged Memory LLM completion. All other required checks
+and local behavior probes passed or reproduced disclosed inherited nonzero
+Chat/integration classes. The [complete evidence](validation/VAL-019-evidence.yaml)
+is archived byte-exact. [REM-010](remediation/REM-010-directive.md) drafts one
+bounded five-path Memory correction. Phase remediation/state changes_requested;
+next is explicit maintainer approval of its scope and separate remediator.
+No product edit or initiative completion is authorized by this review.
+
+## 2026-09-29 — Maintainer Approves Exact REM-010 And Separate Remediator
+
+The maintainer said "approved, continue" after the complete VAL-019 finding
+and [REM-010 directive](remediation/REM-010-directive.md) were presented. The
+approval covers the exact five-path Memory source/test boundary, type-safe
+correction and separate remediator. Phase remediation/state changes_requested;
+next execute, run the exact joint mypy and focused/full affected checks, freeze
+a new candidate and request fresh delta plus complete feature-branch aggregate
+review. No initiative acceptance, WS-09 or delivery authority is inferred.
+
+## 2026-09-29 — REM-010 Candidate Frozen; VAL-020 Prepared
+
+The separate remediator committed an exact five-path Memory source/test
+correction at `fb371212` and a separate [implementation report](execution/REM-010-implementation-report.md)
+at `1233855`. The exact joint Python-3.13 mypy check passed across 176 files;
+focused tests passed 154, complete Memory plus MCP integration passed 722 with
+one skip, and affected Ruff/lock/board/docs/diff checks passed. The new
+[aggregate manifest](execution/REM-010-aggregate-manifest.json) pins 77
+product and 220 planning/evidence paths from initiative baseline. Historical
+VAL-019 is [superseded only for this changed candidate](validation/VAL-019-status.yaml).
+[VAL-020](validation/VAL-020-request.yaml) requires a new read-only correction
+delta and complete original feature-branch review. Phase validation/state
+pending; no independent verdict or initiative completion exists yet.
+
+## 2026-09-29 — Full Aggregate VERIFIED; Initiative Closeout Proposed
+
+Fresh-context read-only [VAL-020](validation/VAL-020-report.md) verified the
+exact REM-010 correction and complete `20c70dd..fb371212` feature-branch
+aggregate with no findings. The [23-member evidence archive](validation/VAL-020-evidence.yaml)
+and [first-pass closeout proposal](execution/MCP-first-pass-closeout-proposal.md)
+are ready for explicit maintainer decision. The exact joint mypy check and
+affected package checks passed. Broad Chat and top-level integration remain
+nonzero for reproduced baseline PTY, localhost-bind and stale board-count
+classes; the proposal records those limits. Phase closeout/state verified;
+WS-09 and delivery remain separate gates.
+
+## 2026-09-29 — Maintainer Accepts First-Pass Initiative
+
+The maintainer explicitly said "accepted" after complete fresh
+[VAL-020](validation/VAL-020-report.md) and the
+[initiative proposal](execution/MCP-first-pass-closeout-proposal.md) were
+presented. The [accepted closeout](closeout.md) records the decision for
+WS-00 through WS-08 and the corrected aggregate candidate `fb371212`.
+Work state accepted; implementation authority closed; delivery remains local.
+Optional WS-09, live UAT, push, merge and release require separate authority.
+
+## 2026-09-29 — Accepted Branch Pushed; PR #6 Open
+
+The maintainer requested "lets push Cut the PR, and I will merge." The
+accepted branch was pushed to the configured private origin and
+[PR #6](https://github.com/CIChuck/agent-framework/pull/6) opened against
+`master`. The PR explicitly includes accepted governance and Friday Chat
+lifecycle predecessor commits in this branch's ancestry. Delivery state is
+`pushed`; the maintainer retains the merge action. The five unrelated local
+dirty groups remain outside the pushed branch.

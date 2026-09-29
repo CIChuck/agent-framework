@@ -1,0 +1,46 @@
+{
+  "id": "WS-08-product-manifest",
+  "date": "2026-09-29",
+  "base_commit": "d9eb81d6e67bafc71346e142c1d1fd0c61ced6df",
+  "candidate_commit": "f8970313655e6e18b39d14dc1f151b5a7b5aaa33",
+  "diff_range": "d9eb81d..f897031",
+  "product_paths": {
+    "docs/guides/05-tools.md": "db294c5956e6fbdac2ef9e6cef6106d23048d0e0d27f11776d9c1d046a48b6d3",
+    "docs/guides/10-configuration.md": "eb074d212820540d275a28c777bf076196482d918b6ab0802108a2a70bce9d68",
+    "docs/guides/11-advanced-topics.md": "1b6692541dad9471c2e3a6809677f9d248e715ed67c8af236d3b815d14ea183f",
+    "docs/guides/13-troubleshooting.md": "1c1cc0a8e2d1d58e4f32faee205840a266a501f6fb31eb13b9bdccaf107e539e",
+    "docs/guides/17-mcp-client.md": "f0c8b34a28966b9053ddf507b1379bf767b5f37cdb51dc3b6c1cfd6ca4f018df",
+    "docs/guides/README.md": "620fab9db8faa6a3de756770d49070821538e9f4f3b7ee87f6bccb59e6ab6c63",
+    "packages/friday-chat/README.md": "f359640abb886a37ba90d5939e4498c356ad313871dd3522cafc5fafa5d289dc",
+    "packages/friday-chat/config.example.yaml": "2ed5596c3af21c1f294cec10e555cb7ccaa7d503d104e2463859c3ed2cc1be1b",
+    "packages/friday-chat/src/friday_chat/config_templates/config.example.yaml": "2bc7a7bd1c32901d6b0b805f2b9b7667c3e73802d6d7b5a6549eccc189e826aa",
+    "packages/friday-mcp/README.md": "196d54ecc718da8e565e1347312da39dd51a0ca534a8bc22e6c86a645bddd258",
+    "packages/friday-runtime/README.md": "20be060cf891f827e4d451f50b07ec2c32d32479d41000dac7aafc93bda6a424"
+  },
+  "unrelated": {
+    ".DS_Store": {
+      "files": 1,
+      "sha256": "726abde51b913404c3c5af3bf5ec36210f129b89ca33a0efc24dd4cd73fe98a9",
+      "state": "present"
+    },
+    "docker-bench-security/": {
+      "files": 57,
+      "sha256": "d7215d8bafcc427e5dde801fd1f80f88438fa5bc4215ff3262f86bfcea870f85",
+      "state": "present"
+    },
+    "family-tree.md": {
+      "state": "absent"
+    },
+    "packages/friday-chat/config.example.yaml.pre-typed-llm-20260828.bak": {
+      "files": 1,
+      "sha256": "b9164e100cf67ff37ff860ed82c5987981ed740e2fec88f8bcc25e815a9c7cea",
+      "state": "present"
+    },
+    "packages/friday-sandbox/docker/Dockerfile.audit": {
+      "files": 1,
+      "sha256": "8904c2cd686fb4acb2612f00b875f8bb03e4a284c3f2b4e4cb440ab7e2739884",
+      "state": "present"
+    }
+  },
+  "historical_validation_changed": false
+}

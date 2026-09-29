@@ -8,6 +8,7 @@ from typing import Any, cast
 
 import pytest
 from friday_chat.adapters import (
+    FrameworkAsyncClientLifecycle,
     FrameworkChatModel,
     FrameworkEmbeddingService,
     FrameworkMaintenanceAdapter,
@@ -20,6 +21,7 @@ from friday_chat.app import FridayChatApp, ListInputSource
 from friday_chat.config import FridayChatConfig
 from friday_chat.runtime import (
     MAINTENANCE_LLM_ROLES,
+    FakeAsyncClientLifecycle,
     FakeChatModel,
     FakeMemoryController,
     FakeSpeechAdapter,
@@ -133,11 +135,20 @@ def test_runtime_factory_builds_fakes_without_provider_keys() -> None:
     runtime = build_runtime(config)
 
     assert isinstance(runtime.chat_llm, FakeChatModel)
+    assert isinstance(runtime.async_clients, FakeAsyncClientLifecycle)
     assert runtime.chat_llm.model == "openai/test-chat-model"
     assert runtime.tool_context is None
     assert runtime.diagnostics.maintenance_llm_fallbacks == list(
         MAINTENANCE_LLM_ROLES
     )
+
+
+async def test_fake_async_client_lifecycle_is_deterministic() -> None:
+    lifecycle = FakeAsyncClientLifecycle()
+
+    await lifecycle.close()
+
+    assert lifecycle.close_calls == 1
 
 
 @pytest.mark.asyncio
@@ -195,6 +206,7 @@ def test_runtime_factory_builds_framework_adapters_in_real_mode(tmp_path: Path) 
     runtime = build_runtime(config, fake=False, session_id="test-session")
 
     assert isinstance(runtime.chat_llm, FrameworkChatModel)
+    assert isinstance(runtime.async_clients, FrameworkAsyncClientLifecycle)
     assert isinstance(runtime.embedding, FrameworkEmbeddingService)
     assert isinstance(runtime.memory, FrameworkMemoryAdapter)
     assert isinstance(runtime.transcript, FrameworkTranscriptAdapter)

@@ -15,7 +15,38 @@ from friday_runtime.config import (
     ToolsConfig,
 )
 from friday_runtime.kernel import RuntimeKernel
+from friday_runtime.mcp_registration import MCPBindingContext, MCPRegistrationDecision
+from friday_runtime.tool_loading import validate_agent_tool_bindings
 from friday_telemetry.providers.debug import DebugTelemetryRecorder
+
+
+def test_binding_reason_context_is_optional_and_native_errors_are_unchanged():
+    context = MCPBindingContext(
+        (
+            MCPRegistrationDecision(
+                "mcp_peer_probe", "peer", "filtered", "filter_excluded"
+            ),
+        )
+    )
+    with pytest.raises(ValueError, match="MCP reasons:.*filtered"):
+        validate_agent_tool_bindings(
+            agent_name="reader",
+            declared_tools=["mcp_peer_probe"],
+            available_tool_names=set(),
+            mcp_context=context,
+        )
+    for optional_context in (None, context, MCPBindingContext(prefix="")):
+        with pytest.raises(ValueError) as failure:
+            validate_agent_tool_bindings(
+                agent_name="reader",
+                declared_tools=["native_missing"],
+                available_tool_names=set(),
+                mcp_context=optional_context,
+            )
+        assert (
+            str(failure.value)
+            == "Agent 'reader' references unavailable tool(s): ['native_missing']"
+        )
 
 
 def _runtime_config(
@@ -355,7 +386,9 @@ tasks:
         assert execution.status.value == "completed"
         assert execution.execution_id
         assert execution.variables["recommendation_report"] == "# Recommendation"
-        assert execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
+        assert (
+            execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
+        )
         assert mock_orchestrator.delegate.call_args_list[1].args[0] == "synthesizer"
     finally:
         await kernel.stop()
@@ -450,7 +483,9 @@ tasks:
         )
 
         assert execution.status.value == "completed"
-        assert execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
+        assert (
+            execution.execution_id == mock_orchestrator.set_session.await_args.args[0]
+        )
         assert execution.variables["brief"] == "# Brief"
         first_prompt = mock_orchestrator.delegate.call_args_list[0].args[1]
         assert "- mode: deep" in first_prompt
