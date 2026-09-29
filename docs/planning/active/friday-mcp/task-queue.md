@@ -324,3 +324,17 @@ gate. This is cycle two: freeze new candidate, retain historical VAL-012 bytes,
 then new fresh read-only VAL-013 delta and complete original aggregate. If it is
 unsuccessful, return unresolved findings. Phase remediation/changes_requested;
 no acceptance/later phases/delivery. Five unrelated fingerprints remain preserved.
+
+## 2026-09-28 — Separate REM-007 Remediator Dispatched
+
+Controller dispatched the same separate `/root/mcp_ws05_rem006` after approval/
+start commit `69831774fcd3ebdbd62a2f09b207ecafe1e6bb58`. REM-007 is a bounded
+continuation of the existing explicit REM-006 approval: exactly loop.py, existing
+execution-security tests and existing REM-006 report. New freeze pins 56 inputs,
+976 outside-scope product files and five unrelated fingerprints. Original
+VAL-012 report/archive retained byte-exact. Correct only VAL-012-F-001 and required
+regressions, preserve original High-finding corrections. All 18 mandatory checks,
+new stable candidate and fresh VAL-013 delta/full aggregate required. Root is
+controller; reviewer performs no fixes. Phase remediation/changes_requested;
+no new scope, acceptance or delivery. Second unsuccessful cycle would return
+unresolved findings to maintainer.
