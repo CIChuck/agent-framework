@@ -635,3 +635,14 @@ delta/original work-unit review. WS-00 through WS-08 are accepted. Phase
 planning/state not_ready; next prepare a fresh read-only aggregate review of
 the full MCP feature branch. Optional WS-09, initiative completion and delivery
 are separate gates.
+
+## 2026-09-29 — First-Pass Aggregate Review Prepared
+
+The [readiness checkpoint](execution/MCP-aggregate-readiness-checkpoint.md)
+uses recorded initiative baseline `20c70dd` and accepted WS-08 branch candidate
+`847d410`. The [manifest](execution/MCP-aggregate-manifest.json) pins 75
+product and 212 planning/evidence changed paths plus five unrelated
+fingerprints. [VAL-019](validation/VAL-019-request.yaml) pins 36 authorities,
+ten interaction criteria and read-only checks for the complete first-pass
+aggregate. Phase validation/state pending; next dispatch a new fresh-context
+validator. WS-09 and delivery remain outside this review.

@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: prepare fresh read-only aggregate review of WS-00 through WS-08 feature branch
+next_gate: dispatch fresh read-only VAL-019 complete feature-branch aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
-execution_phase: planning
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -60,6 +60,11 @@ maintainer acceptance followed with "accepted ws-08, continue" on 2026-09-29.
 WS-00 through WS-08 are accepted work units; initiative delivery remains local.
 The next gate is the complete feature-branch aggregate review. WS-09 is an
 optional deferred phase and has no implementation approval.
+The [aggregate readiness checkpoint](execution/MCP-aggregate-readiness-checkpoint.md),
+[exact diff manifest](execution/MCP-aggregate-manifest.json), and pinned
+[VAL-019 request](validation/VAL-019-request.yaml) are prepared for a fresh,
+read-only review of the entire first-pass feature branch. No aggregate verdict
+or initiative acceptance exists yet.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

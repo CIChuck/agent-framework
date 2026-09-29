@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: prepare fresh read-only aggregate review of WS-00 through WS-08 feature branch
+  next_gate: dispatch fresh read-only VAL-019 complete feature-branch aggregate review
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []

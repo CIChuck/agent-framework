@@ -1766,3 +1766,15 @@ complete remediation-delta/original work-unit review. WS-00 through WS-08
 are accepted work units. The initiative remains started/granted/normal/local;
 phase planning/state not_ready. Next prepare a fresh read-only complete
 feature-branch aggregate review. Optional WS-09 and delivery are not inferred.
+
+## 2026-09-29 — VAL-019 Complete Feature-Branch Aggregate Prepared
+
+The [readiness checkpoint](execution/MCP-aggregate-readiness-checkpoint.md)
+and [manifest](execution/MCP-aggregate-manifest.json) freeze the recorded
+initiative baseline `20c70dd` to accepted WS-08 branch candidate `847d410`:
+75 product/test/config/guide/metadata paths and 212 planning/evidence paths.
+[VAL-019 request](validation/VAL-019-request.yaml) pins 36 authorities, ten
+cross-workstream criteria, current hashes and independent read-only checks.
+Phase validation/state pending; next dispatch a new fresh-context validator.
+No aggregate result, initiative completion/acceptance, WS-09 approval or
+delivery is inferred.
