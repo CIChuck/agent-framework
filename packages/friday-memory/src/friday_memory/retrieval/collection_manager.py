@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Multi-Collection Manager for Staged Memory Retrieval.
 
@@ -21,7 +20,12 @@ from pydantic import BaseModel, Field
 
 from friday_memory.adapters.vector import ChromaVectorStore
 from friday_memory.lifecycle.stages import MemoryStage, PromotionState
+from friday_memory.models.mcp import MCPMemorySnapshot, MCPStoredSnapshot
 from friday_memory.models.vector_metadata import create_longterm_metadata
+from friday_memory.retrieval.mcp import (
+    decode_mcp_snapshot,
+    mcp_retrieval_eligible,
+)
 
 if TYPE_CHECKING:
     from friday_core import TelemetryInterface
@@ -114,6 +118,7 @@ class CollectionManager:
             telemetry: Optional telemetry interface
         """
         self._config = config or CollectionConfig()
+        self._mcp_lock = asyncio.Lock()
         self._telemetry = telemetry
         self._embedding_function = embedding_function
 
@@ -263,7 +268,7 @@ class CollectionManager:
         metadata = result.get("metadata")
         if not isinstance(metadata, dict):
             return True
-        return not (
+        return mcp_retrieval_eligible(result) and not (
             metadata.get("maintenance_generated") is True
             and metadata.get("verification_status") != "verified"
         )
@@ -311,7 +316,7 @@ class CollectionManager:
             ]
 
         self._prepare_short_term_metadata(metadatas, protected=protected)
-        return await self._short_term.add_documents(texts, metadatas, ids)
+        return bool(await self._short_term.add_documents(texts, metadatas, ids))
 
     async def upsert_to_short_term(
         self,
@@ -326,7 +331,7 @@ class CollectionManager:
         if len(texts) != len(metadatas) or len(texts) != len(ids):
             raise ValueError("short-term upsert inputs must have identical lengths")
         self._prepare_short_term_metadata(metadatas, protected=protected)
-        return await self._short_term.upsert_documents(texts, metadatas, ids)
+        return bool(await self._short_term.upsert_documents(texts, metadatas, ids))
 
     @staticmethod
     def _prepare_short_term_metadata(
@@ -409,7 +414,7 @@ class CollectionManager:
         merged: list[dict[str, Any]] = []
         labels = ["short_term", "long_term", "decayed"]
         for i, result in enumerate(results):
-            if isinstance(result, Exception):
+            if isinstance(result, BaseException):
                 logger.warning(
                     "get_all query failed for %s: %s",
                     labels[i],
@@ -431,6 +436,58 @@ class CollectionManager:
 
         return merged[:limit]
 
+    async def get_mcp_snapshot(self, record_id: str) -> MCPStoredSnapshot | None:
+        """Read a validated snapshot through public vector APIs."""
+        found: MCPStoredSnapshot | None = None
+        for store in (self.short_term, self.long_term, self.decayed):
+            record = await store.get_by_id(record_id)
+            if record is None:
+                continue
+            decoded = decode_mcp_snapshot(record)
+            if decoded is None or (found is not None and decoded != found):
+                return None
+            found = decoded
+        return found
+
+    async def stage_mcp_snapshot(self, snapshot: MCPMemorySnapshot, text: str) -> bool:
+        """Never overwrite an existing native or different-source record."""
+        if len(text.encode("utf-8")) != snapshot.stored_size_bytes:
+            return False
+        async with self._mcp_lock:
+            for store in (self.short_term, self.long_term, self.decayed):
+                existing = await store.get_by_id(snapshot.record_id)
+                if existing is not None:
+                    decoded = decode_mcp_snapshot(existing)
+                    return decoded is not None and decoded.snapshot == snapshot and decoded.text == text
+            metadata = {
+                "source_type": "mcp_tool", "type": "mcp_tool_snapshot",
+                "mcp_provenance": snapshot.encoded_provenance(), "mcp_state": "pending",
+            }
+            return await self.add_to_short_term([text], [metadata], [snapshot.record_id])
+
+    async def publish_mcp_snapshot(self, snapshot: MCPMemorySnapshot) -> bool:
+        """Publish only the exact durable record that received a transcript receipt."""
+        async with self._mcp_lock:
+            stored = await self.get_mcp_snapshot(snapshot.record_id)
+            if stored is None or stored.snapshot != snapshot:
+                return False
+            if stored.state == "committed":
+                return True
+            if not await self.short_term.update_metadata(snapshot.record_id, {"mcp_state": "committed"}):
+                return False
+            published = await self.get_mcp_snapshot(snapshot.record_id)
+            return published is not None and published.snapshot == snapshot and published.state == "committed"
+
+    async def discard_mcp_snapshot(self, snapshot: MCPMemorySnapshot) -> bool:
+        """Remove only an owned pending record; committed receipts are immutable."""
+        async with self._mcp_lock:
+            stored = await self.get_mcp_snapshot(snapshot.record_id)
+            if stored is None:
+                return False
+            if stored.snapshot != snapshot or stored.state != "pending":
+                return False
+            return bool(await self.short_term.delete([snapshot.record_id]))
+
     async def promote_memory(self, memory_id: str) -> bool:
         """
         Promote memory from short-term to long-term with crash recovery support.
@@ -449,6 +506,8 @@ class CollectionManager:
         if not memory:
             return False
 
+        if not mcp_retrieval_eligible(memory):
+            return False
         text = memory.get("text", "")
         existing_metadata = memory.get("metadata", {})
 

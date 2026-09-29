@@ -8,8 +8,11 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from tempfile import gettempdir
-from typing import TYPE_CHECKING, Any, Protocol
+from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 from uuid import uuid4
+
+from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
+from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.memory_views import (
@@ -27,7 +30,7 @@ from friday_chat.session import SessionIdentity, resolve_session_identity
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
 from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.tools.registry import FakeToolRegistry
-from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import ToolSelectionState
 from friday_chat.transcripts import (
     TranscriptContextLogView,
@@ -175,6 +178,28 @@ class MemoryController(Protocol):
         kind: MemoryRecordKind,
     ) -> MemoryRecordQueryResult:
         """Return typed records for one closed memory kind."""
+
+
+@dataclass(frozen=True)
+class MCPTranscriptReceipt:
+    entry_id: str
+    calls: tuple[MCPToolCallProvenance, ...]
+
+
+@runtime_checkable
+class MCPMemoryCapability(Protocol):
+    """Optional safe MCP ingestion; legacy memory protocols are unchanged."""
+
+    async def prepare_mcp_memory(
+        self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy
+    ) -> MCPMemoryPreparation: ...
+    async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool: ...
+    async def discard_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool: ...
+
+
+@runtime_checkable
+class MCPTranscriptCapability(Protocol):
+    async def record_mcp_interaction(self, turn: InteractionTurn) -> MCPTranscriptReceipt: ...
 
 
 class TranscriptStore(TranscriptQueryStore, Protocol):

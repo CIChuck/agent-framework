@@ -354,3 +354,28 @@ def test_relevance_and_manual_omissions_have_explainable_reasons() -> None:
     assert result.budget.rejections[0].reason is ToolRejectionReason.NOT_RELEVANT
     result = selector.inject_manual(("write",))
     assert result.rejections[0].reason is ToolRejectionReason.NOT_REQUESTED
+
+
+@pytest.mark.asyncio
+async def test_opted_in_memory_keeps_ws04_allocation_single_authority():
+    cfg = config()
+    values = cfg.model_dump()
+    values["tools"]["providers"]["mcp"]["config"]["ingestion"] = {
+        "long_term_memory_enabled": True, "opted_in_servers": ("peer",)}
+    cfg = FridayChatConfig.model_validate(values)
+    runtime = build_runtime(cfg)
+    memory = FakeMemoryController()
+    observed = []
+    original = memory.retrieve
+    async def capture(query, *, token_limit=None):
+        observed.append(token_limit)
+        return await original(query, token_limit=token_limit)
+    memory.retrieve = capture
+    runtime.memory = memory
+    runtime.tools = FakeToolRegistry((tool(),))
+    runtime.tool_selection = state(cfg, (tool(),))
+    runtime.tool_selection.inject_manual((tool().name,))
+    result = await TurnProcessor(runtime).process("unrelated")
+    assert observed == [result.context_budget_tokens]
+    assert result.context_budget_tokens == result.tool_budget_snapshot.memory_tokens_after_selection
+    assert result.tool_schema_tokens > 0 and result.tool_budget_snapshot.reserved_result_tokens == 100

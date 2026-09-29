@@ -330,3 +330,10 @@ class TestCollectionManager:
         long_doc = await manager.long_term.get_by_id("pending1")
         assert long_doc is not None
         assert long_doc["metadata"]["promotion_state"] == PromotionState.COMPLETE.value
+
+
+def test_mcp_pending_or_malformed_cannot_bypass_collection_eligibility():
+    for metadata in ({"source_type": "mcp_tool"}, {"type": "mcp_tool_snapshot"},
+                     {"mcp_state": "pending"}, {"mcp_provenance": "{}"}):
+        assert not CollectionManager._is_retrieval_eligible({"id": "bad", "text": "raw", "metadata": metadata})
+    assert CollectionManager._is_retrieval_eligible({"id": "old", "text": "native", "metadata": {}})

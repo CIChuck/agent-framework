@@ -799,3 +799,32 @@ async def test_tiny_result_limit_is_safe_turn_error_before_execution_or_persiste
     finally:
         await bridge.stop()
     assert_stopped(bridge, processes)
+
+
+@pytest.mark.asyncio
+async def test_optional_mcp_receipt_rejects_actual_paired_fact_readback_mismatch(tmp_path, monkeypatch):
+    from friday_chat.runtime import MCPTranscriptReceipt
+    cfg = config()
+    store = SQLiteTranscriptStore(tmp_path / "receipt.sqlite")
+    adapter = FrameworkTranscriptAdapter(store, cfg, "receipt")
+    record = MCPOutputPolicy(256).checked_record(metadata(), "call", "benign", {})
+    correlated = record.mcp_provenance.model_copy(update={"transcript_correlation_id": "entry"})
+    turn = InteractionTurn("entry", "user", "answer", "", "", (), TurnMetrics(0,0,0,0),
+                           tool_calls=(replace(record, mcp_provenance=correlated),))
+    receipt = await adapter.record_mcp_interaction(turn)
+    assert receipt == MCPTranscriptReceipt("entry", (correlated,))
+    original = store.get_entry
+    async def mismatched(entry_id):
+        entry = await original(entry_id)
+        changed = correlated.model_copy(update={"transcript_correlation_id": "wrong"})
+        # Bypass constructor validation only to simulate corrupted persisted facts.
+        entry.tool_results[0] = entry.tool_results[0].model_copy(update={"mcp_provenance": changed})
+        return entry
+    monkeypatch.setattr(store, "get_entry", mismatched)
+    monkeypatch.setattr(adapter, "record_interaction", _receipt_noop)
+    with pytest.raises(RuntimeError, match="inconsistent"):
+        await adapter.record_mcp_interaction(turn)
+
+
+async def _receipt_noop(turn):
+    pass

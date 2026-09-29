@@ -14,6 +14,7 @@ from friday_memory.models.budget import BudgetSeverity, BudgetStatus
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFactory
+from friday_chat.memory_mcp import persist_mcp_interaction
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.tools.loop import ToolLoop
 from friday_chat.tools.output import (
@@ -158,7 +159,7 @@ class TurnProcessor:
         )
         raw_response = _serialize_response(model_response)
 
-        metrics = await self._persist_turn(
+        metrics, tool_calls = await self._persist_turn(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             prompt_text=prepared.prompt_text,
@@ -261,7 +262,7 @@ class TurnProcessor:
             llm_seconds = elapsed_seconds(llm_start)
 
         raw_response = _serialize_response(model_response)
-        metrics = await self._persist_turn(
+        metrics, tool_calls = await self._persist_turn(
             user_message=prepared.user_message,
             assistant_message=assistant_message,
             prompt_text=prepared.prompt_text,
@@ -581,7 +582,7 @@ class TurnProcessor:
         llm_seconds: float,
         total_start: float,
         raw_response: str,
-    ) -> TurnMetrics:
+    ) -> tuple[TurnMetrics, tuple[ToolCallRecord, ...]]:
         persistence_start = now_seconds()
         try:
             await self._runtime.memory.store_turn(user_message, assistant_message)
@@ -597,7 +598,9 @@ class TurnProcessor:
                 persistence_seconds=elapsed_seconds(persistence_start),
                 total_seconds=elapsed_seconds(total_start),
             )
-            await self._runtime.transcript.record_interaction(
+            tool_calls = await persist_mcp_interaction(
+                self._runtime.memory, self._runtime.transcript,
+                self._runtime.config.tools.mcp_provider.config.ingestion,
                 InteractionTurn(
                     turn_id=str(uuid4()),
                     user_message=user_message,
@@ -618,8 +621,10 @@ class TurnProcessor:
                 user_message,
                 assistant_message,
             )
+            if self._runtime.config.tools.mcp_provider.config.ingestion.long_term_memory_enabled:
+                raise TurnPersistenceError("Failed to persist turn.") from None
             raise TurnPersistenceError("Failed to persist turn.") from exc
-        return metrics
+        return metrics, tool_calls
 
 
 def _rollback_fake_memory_turn(

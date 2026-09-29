@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any, TypeGuard, cast
 from uuid import uuid4
 
-from friday_core.mcp import MCPToolCallProvenance
+from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_llm import (
     ChatCompletionRequest,
     FinishEvent,
@@ -51,6 +51,7 @@ from friday_memory import (
     SimpleVectorStore,
 )
 from friday_memory.context.budget_monitor import ContextBudgetMonitor
+from friday_memory.ingestion.mcp import MCPMemoryIngester
 from friday_memory.maintenance import (
     IncrementalGraphMaintainer,
     IncrementalMaintenanceConfig,
@@ -61,6 +62,12 @@ from friday_memory.maintenance.models import (
     MaintenanceConfig as FrameworkMaintenanceConfig,
 )
 from friday_memory.models.budget import CompactionConfig
+from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
+from friday_memory.retrieval.mcp import (
+    estimated_snippet_tokens,
+    is_mcp_memory,
+    mcp_memory_snippet,
+)
 from friday_transcript import (
     ContextLogEntry,
     SQLiteTranscriptStore,
@@ -95,9 +102,10 @@ from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
 from friday_chat.reorganization.mutation import LifecycleStepReport
 from friday_chat.runtime import (
     REORGANIZATION_EXECUTE_DISABLED_REASON,
+    MCPTranscriptReceipt,
     PendingExtractionTurn,
 )
-from friday_chat.tools.schemas import ToolDefinition
+from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import ToolBudgetCalculator
 from friday_chat.transcripts import (
     TranscriptContextLogView,
@@ -266,6 +274,7 @@ class FrameworkMemoryAdapter:
         query: str,
         *,
         token_limit: int | None = None,
+        include_mcp: bool = True,
     ) -> list[str]:
         resolved_token_limit = (
             token_limit
@@ -276,7 +285,26 @@ class FrameworkMemoryAdapter:
             query,
             token_limit=resolved_token_limit,
         )
-        return _context_payload_to_snippets(payload)
+        return _context_payload_to_snippets(
+            payload, token_limit=resolved_token_limit, include_mcp=include_mcp
+        )
+
+    async def prepare_mcp_memory(
+        self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy
+    ) -> MCPMemoryPreparation:
+        facts = call.mcp_provenance
+        if (facts is None or call.arguments or call.call_id != facts.call_id
+                or call.name != facts.tool.canonical_name):
+            return MCPMemoryPreparation("ineligible")
+        return await MCPMemoryIngester(self.collection_manager).prepare(
+            facts, call.result, entry_id, policy
+        )
+
+    async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:
+        return await self.collection_manager.publish_mcp_snapshot(snapshot)
+
+    async def discard_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:
+        return await self.collection_manager.discard_mcp_snapshot(snapshot)
 
     async def store_turn(self, user_message: str, assistant_message: str) -> None:
         await self.controller.add_turn(
@@ -1196,6 +1224,25 @@ class FrameworkTranscriptAdapter:
             )
             self._pending_context_log = None
         self._turn_number = turn_number
+
+    async def record_mcp_interaction(self, turn: ChatInteractionTurn) -> MCPTranscriptReceipt:
+        """Confirm the real append and matching per-call result facts by readback."""
+        await self.record_interaction(turn)
+        entry = await self.store.get_entry(turn.turn_id)
+        if entry is None or entry.session_id != self.session_id:
+            raise RuntimeError("MCP transcript receipt is unavailable.")
+        expected = tuple(c.mcp_provenance for c in turn.tool_calls if c.mcp_provenance is not None)
+        actual = tuple(c.mcp_provenance for c in entry.tool_calls if c.mcp_provenance is not None)
+        if actual != expected:
+            raise RuntimeError("MCP transcript receipt is inconsistent.")
+        for call in entry.tool_calls:
+            if call.mcp_provenance is None:
+                continue
+            paired = [r for r in entry.tool_results if r.tool_call_id == call.id]
+            if (len(paired) != 1 or paired[0].mcp_provenance != call.mcp_provenance
+                    or call.mcp_provenance.transcript_correlation_id != entry.id):
+                raise RuntimeError("MCP transcript receipt is inconsistent.")
+        return MCPTranscriptReceipt(entry.id, actual)
 
     async def record_context_log(self, prompt: str, raw_response: str) -> None:
         self._pending_context_log = (prompt, raw_response)
@@ -2330,27 +2377,49 @@ def _to_openai_tool_schema(tool: ToolDefinition) -> dict[str, Any]:
     }
 
 
-def _context_payload_to_snippets(payload: Any) -> list[str]:
-    snippets: list[str] = []
+def _context_payload_to_snippets(
+    payload: Any, *, token_limit: int | None = None, include_mcp: bool = True
+) -> list[str]:
+    # Dynamic legacy payload decoding stays at the existing adapter boundary.
+    parts: list[tuple[bool, str]] = []
     for turn in getattr(payload, "history", []) or []:
         user = getattr(turn, "user_message", None)
         assistant = getattr(turn, "assistant_message", None)
         if user:
-            snippets.append(f"User: {user}")
+            parts.append((False, f"User: {user}"))
         if assistant:
-            snippets.append(f"Assistant: {assistant}")
-    for item in getattr(payload, "passages", []) or []:
-        text = item.get("text") if isinstance(item, dict) else None
-        if isinstance(text, str) and text:
-            snippets.append(text)
-    for item in getattr(payload, "insights", []) or []:
-        snippets.append(_metadata_text(item))
-    for item in getattr(payload, "summaries", []) or []:
-        snippets.append(_metadata_text(item))
+            parts.append((False, f"Assistant: {assistant}"))
+    for field_name in ("passages", "insights", "summaries"):
+        for item in getattr(payload, field_name, []) or []:
+            if not isinstance(item, dict):
+                continue
+            metadata = item.get("metadata")
+            if isinstance(metadata, Mapping) and is_mcp_memory(metadata):
+                snippet = mcp_memory_snippet(item, include_mcp=include_mcp)
+                if snippet is not None:
+                    parts.append((True, snippet))
+            else:
+                text = item.get("text") if field_name == "passages" else _metadata_text(item)
+                if isinstance(text, str) and text:
+                    parts.append((False, text))
     for fact in getattr(payload, "recent_memories", []) or []:
         if isinstance(fact, str) and fact:
-            snippets.append(fact)
-    return [snippet for snippet in snippets if snippet]
+            parts.append((False, fact))
+    remaining = None if token_limit is None else max(
+        0, token_limit - sum(estimated_snippet_tokens(text) for mcp, text in parts if not mcp)
+    )
+    snippets: list[str] = []
+    seen_mcp: set[str] = set()
+    for mcp, text in parts:
+        if mcp:
+            cost = estimated_snippet_tokens(text)
+            if text in seen_mcp or (remaining is not None and cost > remaining):
+                continue
+            seen_mcp.add(text)
+            if remaining is not None:
+                remaining -= cost
+        snippets.append(text)
+    return snippets
 
 
 def _relationship_matches_name(

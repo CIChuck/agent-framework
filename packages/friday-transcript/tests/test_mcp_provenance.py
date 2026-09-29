@@ -259,3 +259,26 @@ def test_entry_rejects_invalid_mcp_correlations_and_unpaired_facts(invalid):
             tool_results=results,
         )
     assert "WS05_SECRET" not in str(caught.value)
+
+
+@pytest.mark.asyncio
+async def test_ingested_snapshot_receipt_roundtrips_existing_schema_and_privacy_flags(tmp_path):
+    store = SQLiteTranscriptStore(tmp_path / "ingested.sqlite")
+    await store.create_session(TranscriptSession(session_id="ingested", model_name="fake"))
+    provenance = facts(memory_ingested=True, ingestion_decision="ingested",
+                       memory_correlation_id="memory-record", transcript_correlation_id="entry")
+    entry = TranscriptEntry(id="entry", session_id="ingested", turn_number=1,
+        tool_calls=[ToolCall(id="call1", name=provenance.tool.canonical_name, arguments={}, mcp_provenance=provenance)],
+        tool_results=[ToolResult(tool_call_id="call1", output="safe-mcp", mcp_provenance=provenance)])
+    assert await store.append_entry(entry)
+    loaded = await store.get_entry("entry")
+    assert loaded.tool_calls[0].mcp_provenance == loaded.tool_results[0].mcp_provenance == provenance
+    for enabled in (True, False):
+        output = io.StringIO()
+        await JSONLExporter(store).export_session("ingested", output, include_metadata=enabled)
+        rows = [json.loads(row) for row in output.getvalue().splitlines()]
+        row = next(r for r in rows if r["_type"] == "entry")
+        if enabled:
+            assert row["tool_calls"][0]["mcp_provenance"]["memory_correlation_id"] == "memory-record"
+        else:
+            assert "tool_calls" not in row

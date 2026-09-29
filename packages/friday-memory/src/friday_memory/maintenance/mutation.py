@@ -38,6 +38,7 @@ from friday_memory.maintenance.recovery_models import (
     MemoryMaintenanceLayout,
 )
 from friday_memory.models.graph import MemoryStage
+from friday_memory.retrieval.mcp import is_mcp_memory
 
 
 class StrictMutationModel(BaseModel):
@@ -432,6 +433,8 @@ class ExplicitMemoryMutationParticipant:
     @staticmethod
     def _is_active(record: VectorMemoryRecord) -> bool:
         metadata = record.metadata or {}
+        if is_mcp_memory(metadata):
+            return False
         return not any(
             (
                 metadata.get("superseded_by"),
@@ -725,6 +728,8 @@ class ExplicitMemoryMutationParticipant:
         targets = []
         for record in records:
             metadata = record.metadata or {}
+            if is_mcp_memory(metadata):
+                continue
             if any(
                 (
                     bool(metadata.get("superseded_by")),
