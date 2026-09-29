@@ -1259,3 +1259,15 @@ Next dispatch the separate remediator, execute only the approved manifest and
 freeze a corrected candidate. Historical reports/evidence and accepted predecessors
 remain byte-exact; five unrelated dirty fingerprints are preserved. No acceptance,
 later-phase, delivery or historical database cleanup authority is inferred.
+
+## 2026-09-28 — Separate REM-006 Remediator Dispatched
+
+New `/root/mcp_ws05_rem006`, `fork_turns: none`, received the complete approved
+eight-path directive, both independently reported findings, exact bases and
+local-only constraints after authorization commit `5145f06`. It may implement,
+test/report and commit only the approved paths; no validator role or acceptance.
+Controller freezes 41 authority/report/evidence inputs, 971 product paths outside
+the seven allowed existing product/test files, and five unrelated fingerprints.
+Phase remediation/state changes_requested; candidate and fresh VAL-012 remain
+pending. Historical VAL-011 report/request/evidence and accepted predecessors
+remain byte-exact. Controller work is process metadata only.
