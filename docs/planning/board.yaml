@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: await fresh VAL-015 verdict on frozen REM-008 delta and full WS-06 aggregate
+  next_gate: explicit maintainer acceptance of verified WS-06 closeout; later scopes separate
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []
@@ -86,6 +86,9 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-05-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-014-report.md
   - docs/planning/active/friday-mcp/validation/VAL-014-evidence.yaml
+  - docs/planning/active/friday-mcp/validation/VAL-015-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-015-evidence.yaml
+  - docs/planning/active/friday-mcp/execution/WS-06-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2

@@ -1548,3 +1548,23 @@ requires five remediation/ten original criteria, seven tasks, all 16 commands,
 independent public/fault/package/base/preservation evidence and complete lossless
 report/archive. Phase validation/state in_review; board next gate fresh verdict.
 No VERIFIED, acceptance, later scope or delivery claimed.
+
+## 2026-09-29 — Fresh VAL-015 VERIFIED; WS-06 Closeout Proposed
+
+Independent /root/mcp_ws06_val015 completed the exact REM-008 delta and full
+original WS-06 aggregate read-only for candidate
+820e252c496712264ebf767404c1e054f025d53a. Overall VERIFIED, no numbered
+finding; VAL014-F01 closed on this changed candidate. All seven tasks, five
+remediation and ten original criteria have cited source/command/public evidence.
+All 16 required commands ran; nonzero Chat/integration/default-typing failures
+reproduce on the byte-verified approved base. Independent checkout/isolated
+Chroma+SQLite retry/fault/compatibility probes and offline rebuilt distribution
+proof pass. Original report SHA256
+50f4ba48c826fc2c490f5342693c447a2184a28713fa7ec5172cd158d30460f9;
+archive SHA256 e91109770e3aaede61b99824e314d31eddca4de76545f6438d6b106cf94ca76a.
+All 935 evidence members, 49 report links, 41 authorities, eight reports,
+24 historical/five builder artifacts, 985 product hashes and five unrelated
+fingerprints were verified unchanged. Complete independent report/evidence
+archived byte-exact. WS-06 closeout proposed; phase closeout/state verified.
+Next gate explicit maintainer WS-06 acceptance. Initiative remains
+started/granted/normal/local; no later scope or delivery authority inferred.

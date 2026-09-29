@@ -6,37 +6,30 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: await fresh VAL-015 verdict on frozen REM-008 delta and full WS-06 aggregate
+next_gate: explicit maintainer acceptance of verified WS-06 closeout; later scopes separate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
-execution_phase: validation
-validation_state: in_review
+execution_phase: closeout
+validation_state: verified
 ---
 
-Current checkpoint: approved [REM-008](remediation/REM-008-directive.md) is
-implemented in frozen candidate `820e252c496712264ebf767404c1e054f025d53a`.
-The [maintainer handoff](execution/REM-008-maintainer-handoff.md),
-[pinned validation request](validation/REM-008-maintainer-validation-request.yaml)
-and [implementation report](execution/REM-008-implementation-report.md) bind the
-exact nine-path correction, original WS-06 aggregate, seven tasks/ten original
-criteria/five remediation criteria, checks, source/builder evidence and preserved
-inputs. Both original public retry reproducers now exit 0 in checkout and isolated
-built distributions; 170 focused tests, broad Ruff and meaningful typing pass.
-The three nonzero broad command classes are independently reproduced approved-base
-debt. Lossless [builder evidence](execution/REM-008-builder-evidence.yaml) retains
-all original scripts/logs/observations/wheels and failed attempts.
+Current checkpoint: fresh read-only [VAL-015](validation/VAL-015-report.md)
+returns **VERIFIED** for the exact REM-008 delta and complete original WS-06
+aggregate at `820e252c496712264ebf767404c1e054f025d53a`, with no numbered
+finding. VAL014-F01 is closed for this changed candidate. The complete independent
+report and 935 original evidence artifacts are archived byte-exact in
+[lossless evidence](validation/VAL-015-evidence.yaml). All seven tasks, five
+remediation and ten original WS-06 criteria, 16 required commands, independent
+public/isolated/baseline and freeze evidence are mapped in the report.
 
-The maintainer originally reserved validation, then explicitly requested a
-separate sub-agent: "Can you dispatch a sub-agent to verify this?" The pinned
-[fresh VAL-015 request](validation/VAL-015-request.yaml) covers the exact REM-008
-delta and full original WS-06 aggregate. Fresh `/root/mcp_ws06_val015` was dispatched with `fork_turns: none`, no
-inherited builder/remediator/controller context and read-only governed scope.
-Phase validation/state in_review; no verdict or WS-06 acceptance is claimed. Historical fresh
-[VAL-014](validation/VAL-014-report.md) remains byte-exact CHANGES_REQUESTED for
-its old candidate `910508c`; its [status](validation/VAL-014-status.yaml) marks
-only the decision superseded for this changed candidate. Controller confirms
-68 original frozen inputs, 977 outside-scope products and five unrelated
-fingerprints preserved. Accepted WS-00 through WS-05, later scopes and local-only
-delivery remain separate.
+The [WS-06 closeout proposal](execution/WS-06-closeout.md) records the result,
+unchanged nonzero baseline checks, package/cache limits, snapshot/pending risks,
+preserved unrelated work and remaining gates. Phase closeout/state verified;
+next is **explicit maintainer WS-06 acceptance**. No acceptance is inferred from
+VERIFIED. Historical [VAL-014](validation/VAL-014-report.md) stays byte-exact
+CHANGES_REQUESTED for its earlier candidate and is superseded only for decisions
+on this changed candidate. WS-00 through WS-05 are accepted. The wider initiative
+remains started/granted/normal/local; WS-07/08, full initiative review and delivery
+remain separate.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)
