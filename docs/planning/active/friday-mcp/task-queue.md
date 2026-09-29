@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-07 accepted; corrected WS-08 candidate pending fresh VAL-018 review
+Status: WS-00 through WS-07 accepted; WS-08 VERIFIED, explicit acceptance pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -614,3 +614,13 @@ deliverables and five preserved unrelated paths; [VAL-018](validation/VAL-018-re
 pins a fresh read-only delta plus complete original aggregate review. Historical
 VAL-017 is [superseded only for this changed candidate](validation/VAL-017-status.yaml).
 Phase validation/state pending; no new verdict or acceptance exists.
+
+## 2026-09-29 — Fresh VAL-018 VERIFIED; WS-08 Acceptance Pending
+
+The new fresh-context read-only [VAL-018 report](validation/VAL-018-report.md)
+verified both REM-009 findings and all five original WS-08 criteria with no
+findings. The complete [byte-checked evidence](validation/VAL-018-evidence.yaml)
+and [WS-08 closeout proposal](execution/WS-08-closeout.md) are recorded.
+Phase closeout/state verified; next is explicit maintainer acceptance of the
+corrected candidate and full review. Initiative-level review, optional WS-09
+and delivery remain separate.

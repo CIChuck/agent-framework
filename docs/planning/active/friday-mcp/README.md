@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: fresh read-only VAL-018 review of REM-009 delta and complete WS-08 aggregate
+next_gate: explicit maintainer acceptance of verified WS-08 candidate and complete VAL-018 review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
-execution_phase: validation
-validation_state: pending
+execution_phase: closeout
+validation_state: verified
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -52,6 +52,11 @@ the [VAL-018 request](validation/VAL-018-request.yaml) pins a fresh delta and
 complete original WS-08 aggregate review. Historical VAL-017 is
 [superseded for this changed candidate only](validation/VAL-017-status.yaml).
 No acceptance is inferred.
+Fresh read-only [VAL-018](validation/VAL-018-report.md) returned **VERIFIED**
+with no findings for the corrected candidate and complete WS-08 aggregate.
+The [14-member evidence archive](validation/VAL-018-evidence.yaml) and
+[WS-08 closeout proposal](execution/WS-08-closeout.md) are recorded. Explicit
+maintainer acceptance is pending; initiative delivery remains local.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

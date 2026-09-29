@@ -1741,3 +1741,17 @@ read-only review of both findings and the complete original aggregate;
 [VAL-017 status](validation/VAL-017-status.yaml) preserves its historical
 CHANGES_REQUESTED outcome for the old candidate. Phase validation/state
 pending; neither validation, maintainer acceptance nor delivery is inferred.
+
+## 2026-09-29 — Fresh VAL-018 VERIFIED; WS-08 Closeout Proposed
+
+Fresh `/root/mcp_ws08_val018`, dispatched with `fork_turns: none`, independently
+verified the four-path REM-009 correction and complete 11-path WS-08 aggregate
+with no findings. The complete [report](validation/VAL-018-report.md) is copied
+byte-exact; its [14-member scratch evidence](validation/VAL-018-evidence.yaml)
+is byte-checked. All 18 authority and 11 corrected product hashes, original
+and remediation product scope, and five unrelated fingerprints matched at
+review start/close. Runtime, MCP, focused and integration checks passed; broad
+Chat remains nonzero for the recorded PTY/localhost baseline class. The
+[WS-08 closeout proposal](execution/WS-08-closeout.md) makes VERIFIED evidence
+reviewable for explicit maintainer acceptance. Phase closeout/state verified;
+no acceptance, initiative completion or delivery is inferred.

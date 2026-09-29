@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | fresh read-only VAL-018 review of REM-009 delta and complete WS-08 aggregate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | explicit maintainer acceptance of verified WS-08 candidate and complete VAL-018 review |
 
 ## Completed
 

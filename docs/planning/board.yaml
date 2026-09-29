@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh read-only VAL-018 review of REM-009 delta and complete WS-08 aggregate
+  next_gate: explicit maintainer acceptance of verified WS-08 candidate and complete VAL-018 review
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []
@@ -94,6 +94,9 @@ tasks:
   - docs/planning/active/friday-mcp/execution/WS-07-closeout.md
   - docs/planning/active/friday-mcp/validation/VAL-017-report.md
   - docs/planning/active/friday-mcp/validation/VAL-017-evidence.yaml
+  - docs/planning/active/friday-mcp/validation/VAL-018-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-018-evidence.yaml
+  - docs/planning/active/friday-mcp/execution/WS-08-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
 - id: memory-v2
