@@ -6,18 +6,19 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: dispatch fresh read-only VAL-014 for frozen WS-06 full aggregate
+next_gate: await fresh VAL-014 report on frozen WS-06 full aggregate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: approved WS-06 implementation is frozen at `910508cd40c49c30ddfbd6a779aec5fda3ac2a67`.
 [Implementation report](execution/WS-06-implementation-report.md) and lossless
 builder evidence record all seven tasks/ten criteria/checks and unchanged baselines.
 The pinned [VAL-014 request](validation/VAL-014-request.yaml) requires a new fresh
-read-only full aggregate review from `99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase validation/state pending;
-request prepared, reviewer not yet dispatched and no verdict/acceptance claimed.
+read-only full aggregate review from `99bde5148ee21f47d4734d2a026fb198a3d19cbd`. Phase validation/state in_review;
+new `/root/mcp_ws06_val014` dispatched with fork_turns none from preparation
+commit `548da4e`; no verdict/acceptance claimed.
 All 18 authorized paths and outside-scope/user preservation checks pass. Accepted
 WS-00 through WS-05 remain intact; later scopes and delivery remain separate.
 

@@ -1444,3 +1444,13 @@ VAL-014 request pins 40 authorities, six reports, two builder artifacts, all
 985 product bytes and five unrelated fingerprints. New fresh read-only aggregate
 review mandatory; phase validation/pending, not dispatched by preparation.
 No source edits while frozen; no WS-06 acceptance/later scopes/delivery.
+
+## 2026-09-29 — Fresh VAL-014 Dispatched
+
+New /root/mcp_ws06_val014, fork_turns none, receives only pinned public request/
+authority/candidate/evidence from preparation commit 548da4e. Candidate910508c,
+full base99bde51, all seven tasks/ten criteria/16 commands and mandatory independent
+public/package/baseline/preservation evidence. Governed workspace read-only, no
+fixes or inherited builder/controller conversation. Phase validation/in_review;
+no verdict, acceptance, later scope or delivery. Product/40authorities/sixreports/
+two builder artifacts remain frozen; unrelated work preserved.

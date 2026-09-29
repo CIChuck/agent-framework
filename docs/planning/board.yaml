@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: dispatch fresh read-only VAL-014 for frozen WS-06 full aggregate
+  next_gate: await fresh VAL-014 report on frozen WS-06 full aggregate
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []
