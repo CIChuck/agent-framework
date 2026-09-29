@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: execute approved WS-08 documentation scope and validate frozen guide candidate
+  next_gate: dispatch fresh-context read-only VAL-017 for frozen WS-08 candidate
   delivery_state: local
   branch: feature/friday-mcp-ws08-docs
   depends_on: []

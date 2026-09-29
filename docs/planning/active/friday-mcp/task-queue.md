@@ -1,6 +1,6 @@
 # Friday MCP Ordered Task Queue
 
-Status: WS-00 through WS-07 accepted; WS-08 documentation execution active
+Status: WS-00 through WS-07 accepted; WS-08 candidate frozen, independent review pending
 Updated: 2026-09-29
 Initiative: `friday-mcp`
 Branch: `feature/friday-mcp-ws08-docs`
@@ -45,7 +45,8 @@ explicitly accepted WS-07 with "accepted" on 2026-09-29. Next is reconciling
 the draft WS-08 directive and requesting separate bounded approval. The
 maintainer then instructed "continue with ws-08"; the directive was narrowed
 to an exact documentation-only manifest and WS-08 execution started on its
-dedicated branch.
+dedicated branch. The exact 11-path guide/template candidate is frozen at
+`f897031`; [VAL-017](validation/VAL-017-request.yaml) is the next gate.
 The wider initiative remains started/granted/normal/local on the named branch.
 Optional/deferred WS-09 remains unstarted and unapproved;
 initiative aggregate/pre-merge review and delivery have separate gates. Historical
@@ -101,7 +102,7 @@ is authorized by the REM-004 approval.
 | 8 / [WS-05](directives/ws-05-execution-provenance-transcript.md) | Secure execution/result handling and transcript provenance: bounded sanitized outputs, redacted arguments, typed provenance, and the accepted no-stored-argument-hash default. | Complete: fresh VAL-013 delta/full aggregate VERIFIED at `cca86b5` and explicit maintainer acceptance recorded in WS-05 closeout. |
 | 9 / [WS-06](directives/ws-06-memory-compatibility-ingestion.md) | Memory compatibility and opt-in ingestion: no long-term MCP storage by default, policy allowlists/sanitization/quarantine, provenance and retrieval-budget compatibility. | Built at 910508c; fresh complete VAL-014 CHANGES_REQUESTED for one medium owned-retry finding. Complete: nine-path REM-008 candidate 820e252 received fresh VAL-015 delta/full-aggregate VERIFIED; maintainer explicitly accepted WS-06 on 2026-09-29. |
 | 10 / [WS-07](directives/ws-07-telemetry-diagnostics-health.md) | Redacted telemetry and structured runtime/Chat diagnostics; first pass defers a new Chat health command. | Candidate `2e36613` received fresh [VAL-016](validation/VAL-016-report.md) full-aggregate VERIFIED with no findings; the maintainer explicitly accepted it in the [closeout](execution/WS-07-closeout.md). |
-| 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Approved by maintainer's "continue with ws-08" after accepted WS-07; [reconciled readiness](execution/WS-08-readiness-checkpoint.md) binds exact documentation paths. Local synthetic UAT only; live/paid/provider UAT needs separate authority. |
+| 11 / [WS-08](directives/ws-08-documentation-guide-closeout.md) | Tested guide/config examples, package/developer docs, accurate capabilities/limits, and documentation/UAT closeout for implemented behavior. | Approved scope built at `f897031`; pinned [VAL-017 request](validation/VAL-017-request.yaml) requires fresh read-only review. No verdict or acceptance yet. Local synthetic UAT only. |
 | 12 / Initiative closeout | Complete feature-branch aggregate review, evidence reconciliation, and explicit maintainer initiative acceptance. | Required workstreams verified and accepted, no unresolved mandatory finding; delivery operations remain a separate approval. |
 | Deferred / [WS-09](directives/ws-09-optional-external-config-include.md) | Optional external MCP config includes parsed into the canonical typed runtime model, with path confinement and precedence. | Tools-only inline integration stable and a separate maintainer decision to activate the phase. Not required automatically by this queue. |
 
@@ -576,3 +577,14 @@ implementation. Branch `feature/friday-mcp-ws08-docs` starts at `93d3684`.
 Phase implementation/state not_ready; next execute the documentation and
 validate snippets with canonical parsers and a local synthetic stdio peer.
 No source implementation, remote/provider UAT, WS-09 or delivery is included.
+
+## 2026-09-29 — WS-08 Candidate Frozen; Fresh VAL-017 Prepared
+
+Exact 11-path documentation/template candidate `f897031` is committed from
+`d9eb81d`. The [builder report](execution/WS-08-implementation-report.md)
+records parser, local peer, package, focused and link-check results and the
+nonzero inherited Chat baseline. The [manifest](execution/WS-08-product-manifest.json)
+pins deliverable and unrelated bytes; [VAL-017](validation/VAL-017-request.yaml)
+pins authority and the independent checks. Phase validation/state pending;
+next is actual fresh-context, read-only dispatch. No reviewer verdict,
+acceptance, initiative closeout or delivery is inferred.

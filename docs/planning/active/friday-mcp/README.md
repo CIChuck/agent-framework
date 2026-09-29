@@ -6,10 +6,10 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: execute approved WS-08 documentation scope and validate frozen guide candidate
+next_gate: dispatch fresh-context read-only VAL-017 for frozen WS-08 candidate
 implementation_authority: granted for MCP-WS-00 through MCP-WS-08 within approved directives; Chat health command deferred in WS-07
-execution_phase: implementation
-validation_state: not_ready
+execution_phase: validation
+validation_state: pending
 ---
 
 Accepted predecessor: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
@@ -40,6 +40,11 @@ and [readiness checkpoint](execution/WS-08-readiness-checkpoint.md) bind a
 documentation-only 11-path deliverable; execution is active on
 `feature/friday-mcp-ws08-docs`. Initiative aggregate review and delivery remain
 separate.
+The [WS-08 builder candidate](execution/WS-08-implementation-report.md)
+`f897031` is frozen. Its exact [product manifest](execution/WS-08-product-manifest.json)
+and [VAL-017 request](validation/VAL-017-request.yaml) are prepared for a
+fresh-context read-only review. Builder checks are not a review verdict or
+maintainer acceptance.
 The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with

@@ -1683,3 +1683,22 @@ verification and no product-code or external-effects change. Dedicated branch
 `feature/friday-mcp-ws08-docs` starts from accepted WS-07 commit `93d3684`.
 Phase implementation/state not_ready; board remains started/granted/normal/local.
 No WS-09, initiative aggregate review or delivery authority is inferred.
+
+## 2026-09-29 — WS-08 Guide Candidate Frozen; VAL-017 Prepared
+
+The exact 11-path guide, package README and two distributed config-example
+delta from `d9eb81d` is committed at `f897031`. The
+[implementation report](execution/WS-08-implementation-report.md) records
+parser-checked enabled/disabled/env YAML, matching template stanzas, a
+checkout-local stdio registration probe, optional/required failure, runnable
+package README example and CLI syntax. Focused 92, Runtime 195, MCP 65 and
+MCP integration 56 tests pass. Broad Chat remains nonzero with the previously
+independently reproduced PTY/localhost baseline class. Documentation local
+links and board checks pass. No source implementation or tests changed.
+
+The [product manifest](execution/WS-08-product-manifest.json) pins all 11
+deliverable bytes and five unrelated fingerprints. The
+[VAL-017 request](validation/VAL-017-request.yaml) pins authority hashes,
+full diff, claims, commands and fresh read-only review. Phase validation/state
+pending; next dispatch the reviewer. Builder evidence is not a verdict,
+acceptance, WS-09 or delivery authority.
