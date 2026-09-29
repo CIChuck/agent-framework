@@ -2149,6 +2149,27 @@ FRIDAY_MEMORY__VECTOR__MIGRATION__AUTO_MIGRATE="true"
 
 ## 10.4 Tool Configuration
 
+### Integrated MCP client configuration (current behavior)
+
+The canonical inline location for both headless RuntimeConfig and Friday Chat
+compatibility is `tools.providers.mcp`. Copy the disabled example from the
+Friday Chat runtime template, then use the
+[MCP client guide](17-mcp-client.md) to configure a trusted local stdio peer.
+The provider defaults to `enabled: false` and `mode: selected`; selected mode
+needs explicit canonical `include_tools` names. Server `required: true` makes
+connection/discovery failure fatal at startup, while an optional failure is
+diagnostic. `cwd` must remain under `runtime_paths.workspace_root`.
+
+`config.limits` controls discovery/registration caps, result bounds and the
+minimum memory retrieval floor. Friday Chat's `tools.context` applies separate
+per-turn tool count/schema budgets. `config.ingestion.long_term_memory_enabled`
+defaults to false; a true value also requires server or canonical tool opt-ins
+and sanitation. Friday Chat can interpolate `${EXAMPLE_API_KEY}` into a server
+`env` value from its process environment; keep real secrets out of YAML and
+version control. External `tools.providers.mcp.config_file` is reserved and
+rejected until the optional WS-09 phase. Integrated remote SSE, resources,
+prompts and server exposure are not configured by this stanza.
+
 Friday's tool system provides 50+ built-in tools for filesystem operations, shell commands, web access, git operations, and more. Tool configuration controls which tools are available, how they're executed, and security boundaries.
 
 ### 10.4.1 Tool Registry Setup

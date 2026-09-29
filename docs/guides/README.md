@@ -24,6 +24,7 @@ Read in order for a full walkthrough; jump directly for reference.
 | 13 | [Troubleshooting & FAQ](13-troubleshooting.md) | Common problems and fixes |
 | 14 | [Appendices](14-appendices.md) | Technical reference, protocol specifications |
 | 15 | [Contributing & Community](15-contributing.md) | How to contribute |
+| 17 | [MCP Client](17-mcp-client.md) | Local stdio setup, tool filters, budgets, memory defaults, diagnostics |
 
 ## Supplementary Documents
 

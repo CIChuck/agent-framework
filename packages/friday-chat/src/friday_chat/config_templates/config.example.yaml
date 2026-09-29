@@ -539,6 +539,13 @@ smart_file:
       ]\n}}\n"
 tools:
   enabled: true
+  # Integrated MCP starts disabled. See docs/guides/17-mcp-client.md for stdio setup.
+  providers:
+    mcp:
+      enabled: false
+      mode: selected
+      config:
+        servers: []
   loop:
     max_iterations: 25
     max_consecutive_failures: 3

@@ -1,59 +1,59 @@
 # Friday Framework MCP
 
-MCP (Model Context Protocol) integration for the Friday Framework.
-
-## Features
-
-- **MCP Client**: Connect to external MCP servers and consume their tools
-- **MCP Server**: Expose Friday capabilities (agent or tools) via MCP
-- **Transport Support**: Both stdio (subprocess) and SSE (HTTP streaming)
-- **Tool Adaptation**: Seamlessly adapt MCP tools to Friday's ToolDefinition protocol
+`friday-mcp` provides protocol-level MCP clients, transports and server APIs.
+Its programmatic clients support stdio and SSE; the integrated Friday runtime
+client currently configures **local stdio only**. The runtime owns discovery,
+registration, filters, diagnostics and lifecycle. See the
+[MCP client guide](../../docs/guides/17-mcp-client.md) for the canonical
+`tools.providers.mcp` configuration and Friday Chat use.
 
 ## Installation
 
 ```bash
-# Core package
 pip install friday-framework-mcp
-
-# With SSE server support
-pip install friday-framework-mcp[server]
-
-# Full integration with Friday
-pip install friday-framework-mcp[full]
 ```
 
-## Quick Start
+The optional `server` extra provides standalone server dependencies. The
+`full` extra includes the package's broader protocol integrations; neither
+extra enables remote servers in the integrated runtime config.
 
-### Connecting to MCP Servers (Client)
+## Programmatic client
+
+This low-level example uses the repository's local synthetic peer. It runs
+from a checkout and does not contact a network:
 
 ```python
+import asyncio
+
 from friday_mcp import MCPClientManager, MCPConfig, MCPServerConfig
 
-config = MCPConfig(
-    servers=[
-        MCPServerConfig(
-            name="filesystem",
-            command="npx",
-            args=["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
-        )
-    ]
-)
+async def main() -> None:
+    config = MCPConfig(
+        servers=[
+            MCPServerConfig(
+                name="demo",
+                command="python",
+                args=["-u", "tests/integration/mcp_fake_server.py", "good"],
+            )
+        ]
+    )
 
-async with MCPClientManager(config) as manager:
-    tools = await manager.get_all_tools()
-    # Use tools with Friday's agent
+    async with MCPClientManager(config) as manager:
+        tools = await manager.get_all_tools()
+        print([tool.name for tool in tools])
+
+asyncio.run(main())
 ```
 
-### Exposing Friday as MCP Server
+Run it from the repository root. For an installed application, substitute an
+owned local server executable. The integrated
+runtime path uses `friday_runtime.config.MCPToolProviderConfig` and imposes
+stricter local transport, workspace, filtering, schema and result policies.
 
-```python
-from friday_mcp import StdioMCPServer, MCPServerSettings
-from friday_mcp.server.agent_mode import configure_agent_mode
-
-server = StdioMCPServer()
-configure_agent_mode(server, agent, profile, MCPServerSettings())
-await server.start()
-```
+The package also exposes programmatic MCP server classes. They are separate
+from `tools.providers.mcp`, which configures Friday as a client and does not
+expose Friday as a server. Resources, prompts and external config includes
+are not implemented by that integrated client.
 
 ## License
 
