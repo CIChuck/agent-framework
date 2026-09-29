@@ -1,0 +1,51 @@
+{
+  "acceptance": false,
+  "artifacts": {
+    "VAL-013-evidence.tar.gz": {
+      "bytes": 19882780,
+      "sha256": "0092cad89701dc34f5f615378305f1905bfd6be8ceef3d5f174397b2d006f000"
+    },
+    "artifact-manifest.json": {
+      "bytes": 167923,
+      "sha256": "ba7da461c17595d41a9b48c205734894f6b2dd088b6a91755f4ca0bd81cfca43"
+    },
+    "report.md": {
+      "bytes": 30917,
+      "sha256": "7bae31e98d91fa6d19e9bd1ef5c8976a19c098b84b998f69cd6362f305ed33a2"
+    }
+  },
+  "branch": "feature/friday-mcp-ws05-execution",
+  "candidate_commit": "cca86b51105666d12c2e7ed571f8f9a05d2085f9",
+  "complete_remediation_delta_outcome": "VERIFIED",
+  "criteria": 20,
+  "delivery_authorized": false,
+  "delta_outcome": "VERIFIED",
+  "finding_closures": [
+    "VAL-012-F-001",
+    "VAL-011-F-001",
+    "VAL-011-F-002"
+  ],
+  "fresh_context": true,
+  "head": "ee8aa0367c92a1dfb79ea89737dfb8eb6311509e",
+  "independent_cases": {
+    "main": 35,
+    "new_matrix": 24,
+    "supplement": 10
+  },
+  "overall_outcome": "VERIFIED",
+  "paths": {
+    "VAL-013-evidence.tar.gz": "/private/tmp/VAL-013-independent-20260928/VAL-013-evidence.tar.gz",
+    "archive-verification.json": "/private/tmp/VAL-013-independent-20260928/archive-verification.json",
+    "artifact-manifest.json": "/private/tmp/VAL-013-independent-20260928/artifact-manifest.json",
+    "delivery.json": "/private/tmp/VAL-013-independent-20260928/delivery.json",
+    "report.md": "/private/tmp/VAL-013-independent-20260928/report.md"
+  },
+  "post_archive_verification": "archive-verification.json records delivery.json hash/size and all member/locator/whitespace checks.",
+  "read_only": true,
+  "request_preparation_commit": "f5510ed599cae1342f33ce8bc0ca977c2c1b0c06",
+  "required_commands": 19,
+  "reviewer": "/root/mcp_ws05_val013",
+  "tasks": 8,
+  "validation": "VAL-013",
+  "work_unit_aggregate_outcome": "VERIFIED"
+}

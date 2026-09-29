@@ -1355,3 +1355,16 @@ follow-up criteria and independent public/storage/privacy/compatibility/package/
 cleanup/preservation evidence. Governed workspace read-only; scratch only.
 Phase validation/in_review; no verdict, acceptance, later scope or delivery.
 Second remediation cycle; any unsuccessful result returns remaining findings.
+
+## 2026-09-28 — VAL-013 VERIFIED; WS-05 Acceptance Gate
+
+Fresh-context read-only `/root/mcp_ws05_val013` returned delta, complete original
+work-unit aggregate and overall VERIFIED for `cca86b51105666d12c2e7ed571f8f9a05d2085f9`. Both original High
+findings and Medium VAL-012-F-001 close; all ten WS05/six REM006/four REM007 criteria
+and 19 required commands have complete independent evidence. Full original report,
+archive, manifest, verification and delivery are archived byte-exact; member hashes
+and report links verify. Frozen source/authority/reports/historical evidence and
+five unrelated fingerprints remain intact. Controller closeout metadata introduces
+no product or authority change. Phase closeout/verified; next explicit maintainer
+WS-05 acceptance. Wider initiative remains started/granted/normal/local, accepted
+predecessors intact, no later phase/delivery or historical storage cleanup.

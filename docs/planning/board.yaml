@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: fresh VAL-013 remediation delta and full WS-05 aggregate review
+  next_gate: explicit maintainer acceptance of VERIFIED WS-05 candidate and complete VAL-013
   delivery_state: local
   branch: feature/friday-mcp-ws05-execution
   depends_on: []
@@ -81,6 +81,8 @@ tasks:
   - docs/planning/active/friday-mcp/validation/VAL-011-evidence.yaml
   - docs/planning/active/friday-mcp/validation/VAL-012-report.md
   - docs/planning/active/friday-mcp/validation/VAL-012-evidence.yaml
+  - docs/planning/active/friday-mcp/validation/VAL-013-report.md
+  - docs/planning/active/friday-mcp/validation/VAL-013-evidence.yaml
   - docs/planning/active/friday-mcp/execution/WS-05-closeout.md
   approved_by: repository maintainer
   approved_at: '2026-09-27'
