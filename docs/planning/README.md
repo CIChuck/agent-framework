@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | explicit maintainer acceptance of verified WS-06 closeout; later scopes separate |
+| 3 | [Friday MCP client enhancement](active/friday-mcp/) | normal | granted | local | reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval |
 
 ## Completed
 

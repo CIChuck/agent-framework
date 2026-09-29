@@ -1,7 +1,7 @@
-# MCP-WS-06 Work-Unit Closeout Proposal
+# MCP-WS-06 Work-Unit Closeout
 
 Date: 2026-09-29
-Status: Independently VERIFIED; pending explicit maintainer acceptance
+Status: Independently VERIFIED and explicitly accepted
 Initiative: `friday-mcp`
 Work unit: `MCP-WS-06`
 Branch: `feature/friday-mcp-ws06-memory`
@@ -9,7 +9,9 @@ Candidate: `820e252c496712264ebf767404c1e054f025d53a`
 Original work-unit base: `99bde5148ee21f47d4734d2a026fb198a3d19cbd`
 Remediation base: `486f3cf585799cc46bc8a6c4f6cf4925734f7188`
 Delivery: Local
-Accepted by/at: Pending maintainer decision
+Accepted by: repository maintainer
+Accepted at: 2026-09-29
+Acceptance evidence: Explicit maintainer message "i accept - continue" after complete VAL-015 and closeout proposal were presented
 
 ## Result
 
@@ -81,9 +83,16 @@ No historical stored snapshot cleanup or live interoperability/UAT is included.
 
 ## Acceptance And Remaining Gates
 
-This closeout is a proposal based on the complete independent VERIFIED result.
-Only the maintainer may explicitly accept MCP-WS-06. The wider Friday MCP
-initiative remains started/granted/normal/local on its named branch. WS-07/08,
-full initiative aggregate/pre-merge review and delivery have separate gates.
-No acceptance, branch integration or external effect is inferred from this
-report, review verdict or local commit.
+The maintainer explicitly accepted this verified WS-06 candidate and complete
+independent VAL-015 result with "i accept - continue" on 2026-09-29. WS-00 through
+WS-06 are now independently verified and explicitly accepted work units. This
+decision applies to candidate `820e252c496712264ebf767404c1e054f025d53a`
+and its complete delta/original-aggregate review; it grants no later workstream
+implementation authority.
+
+Next gate: reconcile the draft WS-07 telemetry, diagnostics and optional health
+directive against accepted source/readiness, then obtain separate bounded
+scope and health-command decisions before product implementation. The wider
+Friday MCP initiative remains started/granted/normal/local on its named branch.
+WS-07/08, full initiative aggregate/pre-merge review and delivery have separate
+gates. No branch integration or external effect is inferred from acceptance.

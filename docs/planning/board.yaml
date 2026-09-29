@@ -59,7 +59,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp/
-  next_gate: explicit maintainer acceptance of verified WS-06 closeout; later scopes separate
+  next_gate: reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval
   delivery_state: local
   branch: feature/friday-mcp-ws06-memory
   depends_on: []

@@ -6,30 +6,29 @@ initiative: friday-mcp
 document_type: initiative-index
 status: active
 updated: 2026-09-29
-next_gate: explicit maintainer acceptance of verified WS-06 closeout; later scopes separate
-implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006
-execution_phase: closeout
-validation_state: verified
+next_gate: reconcile WS-07 telemetry and diagnostics directive/readiness; obtain separate bounded approval
+implementation_authority: granted for MCP-WS-00 through MCP-WS-06 with approved predecessor amendments and REM-006; WS-07 remains draft
+execution_phase: planning
+validation_state: not_ready
 ---
 
-Current checkpoint: fresh read-only [VAL-015](validation/VAL-015-report.md)
-returns **VERIFIED** for the exact REM-008 delta and complete original WS-06
-aggregate at `820e252c496712264ebf767404c1e054f025d53a`, with no numbered
-finding. VAL014-F01 is closed for this changed candidate. The complete independent
-report and 935 original evidence artifacts are archived byte-exact in
-[lossless evidence](validation/VAL-015-evidence.yaml). All seven tasks, five
-remediation and ten original WS-06 criteria, 16 required commands, independent
-public/isolated/baseline and freeze evidence are mapped in the report.
+Current checkpoint: the maintainer explicitly accepted [WS-06](execution/WS-06-closeout.md)
+with "i accept - continue" on 2026-09-29 after fresh
+[VAL-015](validation/VAL-015-report.md) verified the exact REM-008 delta and
+complete original WS-06 aggregate at candidate
+`820e252c496712264ebf767404c1e054f025d53a`. All WS-00 through WS-06 work
+units are independently verified and explicitly accepted. The complete VAL-015
+report and 935-member archive remain byte-exact in
+[lossless evidence](validation/VAL-015-evidence.yaml); historical VAL-014 remains
+unchanged for its earlier candidate.
 
-The [WS-06 closeout proposal](execution/WS-06-closeout.md) records the result,
-unchanged nonzero baseline checks, package/cache limits, snapshot/pending risks,
-preserved unrelated work and remaining gates. Phase closeout/state verified;
-next is **explicit maintainer WS-06 acceptance**. No acceptance is inferred from
-VERIFIED. Historical [VAL-014](validation/VAL-014-report.md) stays byte-exact
-CHANGES_REQUESTED for its earlier candidate and is superseded only for decisions
-on this changed candidate. WS-00 through WS-05 are accepted. The wider initiative
-remains started/granted/normal/local; WS-07/08, full initiative review and delivery
-remain separate.
+Next gate: reconcile the draft [WS-07 telemetry/diagnostics directive](directives/ws-07-telemetry-diagnostics-health.md)
+and readiness against accepted current source, including the separate optional
+Friday Chat health-command decision, then obtain bounded maintainer scope approval.
+Phase planning/state not_ready records this non-authorizing preparation. The
+wider initiative remains started/granted/normal/local on the WS-06 branch.
+WS-07/08 implementation, aggregate/pre-merge review and delivery are separate.
+The five unrelated dirty paths remain preserved.
 
 Accepted WS-05 handoff: the maintainer explicitly accepted verified WS-05 with
 "accepted" on 2026-09-28 after its complete fresh [VAL-013](validation/VAL-013-report.md)
