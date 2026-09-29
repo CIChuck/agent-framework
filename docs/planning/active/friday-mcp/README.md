@@ -9,7 +9,7 @@ updated: 2026-09-28
 next_gate: fresh VAL-013 remediation delta and full WS-05 aggregate review
 implementation_authority: granted for MCP-WS-00 through MCP-WS-05 with approved predecessor amendments and REM-006
 execution_phase: validation
-validation_state: pending
+validation_state: in_review
 ---
 
 Current checkpoint: separate remediator froze `cca86b51105666d12c2e7ed571f8f9a05d2085f9` after the
@@ -18,9 +18,9 @@ bounded REM-007 native compatibility continuation. The updated existing
 original findings and follow-up correction; its earlier reviewed bytes remain
 in original REM-006 evidence and Git. The [VAL-013 request](validation/VAL-013-request.yaml)
 requires a new fresh read-only delta and complete original WS-05 aggregate.
+Fresh read-only `/root/mcp_ws05_val013`, `fork_turns: none`, is now dispatched.
 Historical [VAL-012](validation/VAL-012-report.md) is superseded only for the
-changed candidate and stays byte-exact. Phase validation/pending; preparation
-is not a verdict. Second WS-05 remediation cycle, no acceptance or later scope.
+changed candidate and stays byte-exact. Phase validation/in_review; dispatch is not a verdict. Second WS-05 remediation cycle, no acceptance or later scope.
 Accepted predecessors and unrelated work remain preserved; wider initiative
 started/granted/normal/local.
 

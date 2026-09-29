@@ -1342,3 +1342,16 @@ privacy/compatibility/package/cleanup/freeze evidence. Phase validation/pending;
 not dispatched/verified/accepted by preparation. Second remediation cycle; if
 unsuccessful return remaining findings. Accepted predecessors, unrelated paths,
 later phase and delivery boundaries remain intact.
+
+## 2026-09-28 — Fresh VAL-013 Dispatched
+
+New `/root/mcp_ws05_val013`, `fork_turns: none`, receives only pinned public
+request/authority/candidate/evidence, not builder/controller conversation or
+private reasoning. Candidate `cca86b51105666d12c2e7ed571f8f9a05d2085f9`, request
+commit `f5510ed599cae1342f33ce8bc0ca977c2c1b0c06`, 34 authorities/five reports,
+19 required commands and current freeze govern. Review follow-up delta, complete
+remediation delta and full original WS-05 aggregate; all original/remediation/
+follow-up criteria and independent public/storage/privacy/compatibility/package/
+cleanup/preservation evidence. Governed workspace read-only; scratch only.
+Phase validation/in_review; no verdict, acceptance, later scope or delivery.
+Second remediation cycle; any unsuccessful result returns remaining findings.
