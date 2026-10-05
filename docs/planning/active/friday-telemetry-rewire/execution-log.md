@@ -166,3 +166,29 @@ preservation manifest remains controlling. Work stays `started`; execution
 phase: `validation`; validation state: `pending` for fresh A02 readiness review,
 then implementation checks and independent delta/aggregate review. No source
 change occurred before this authority preparation.
+
+## 2026-10-05 — REM-001 implemented; candidate freeze preparation
+
+CDR-003 independently returned READY at `98cc9e7` before source generation;
+all eleven authority hashes remained unchanged. REM-001 changes only the three
+approved product paths. Six deterministic regressions reproduce on old source;
+135 focused tests and 14 reused synthetic probes pass after remediation.
+Affected Ruff, mypy 3.10/3.13 and syntax pass. Full package matrix is 676/718/724
+passes at preparation base/pre-remediation/remediation, with the same one timing
+failure, five skips and three sandbox listener errors. Root Ruff has the exact
+same 337 diagnostics; root pytest has the same duplicate-module collection
+error. Actual installed 3.10 stdlib smoke passes, but package imports fail on
+missing pydantic in that interpreter, on base and candidate. Full smoke is not
+claimed passed. Newly required baseline checks are explicitly retrospective.
+
+Warm isolated timing reruns still fail; no WVR-001 approval is inferred, and
+its all-other-gates-pass condition remains unmet. Board/product authority and
+unrelated 64-entry preservation remain intact. Full preflight, commands, hashes,
+limits and reports are retained in the packet. Work stays `started`; execution
+phase: `validation`; validation state: `pending`. Next gate: committed candidate
+and fresh REM-001 delta plus aggregate TELEM-01 independent review.
+
+Candidate preparation gates: working board passed (25 tasks), documentation
+lifecycle passed (402 Markdown files), whitespace passed, and all 64 preservation
+entries matched. Only named authorized paths enter the commit; the unrelated
+tool-continuity board/dashboard edits remain outside the index.

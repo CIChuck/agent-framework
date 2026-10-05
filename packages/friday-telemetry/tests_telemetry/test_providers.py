@@ -1,11 +1,16 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for telemetry providers."""
 
+from types import SimpleNamespace
+from typing import Any
+
+import pytest
 from friday_telemetry import (
     CompositeProvider,
     DebugTelemetryRecorder,
     OpenTelemetryProvider,
 )
+from friday_telemetry.interface import TelemetryInterface
 
 
 class TestDebugTelemetryRecorder:
@@ -257,6 +262,7 @@ class TestCompositeSpanOwnership:
         composite = CompositeProvider([sink])
         span = composite.start_span("test")
         composite.end_span(span)
+
         composite.end_span(span)
         composite.end_span("unknown")
         assert sink.ends == 1
@@ -318,3 +324,124 @@ class TestCompositeSpanOwnership:
         assert error.value.failure_count == 1
         assert healthy.get_span_by_name("span").end_time is not None
         composite.end_span(span)
+
+
+class LocalIdProvider(TelemetryInterface):
+    """Synthetic provider whose IDs are local, deterministic, and reusable."""
+
+    def __init__(self, ids: tuple[str, ...] = ("span-0", "span-1")) -> None:
+        self.ids = iter(ids)
+        self.started: list[tuple[str, str, str | None]] = []
+        self.open_ids: set[str] = set()
+        self.ended: list[tuple[str, dict[str, Any] | None]] = []
+
+    def capture_event(self, event_name: str, data: dict[str, Any]) -> None:
+        return None
+
+    def start_span(self, name: str, parent_id: str | None = None) -> str:
+        span_id = next(self.ids)
+        if span_id in self.open_ids:
+            raise RuntimeError("Synthetic provider cannot alias active local spans")
+        self.open_ids.add(span_id)
+        self.started.append((span_id, name, parent_id))
+        return span_id
+
+    def end_span(self, span_id: str, data: dict[str, Any] | None = None) -> None:
+        if span_id not in self.open_ids:
+            raise RuntimeError("Synthetic provider received an unrelated end")
+        self.open_ids.remove(span_id)
+        self.ended.append((span_id, data))
+
+
+class TestCompositeReusedIds:
+    @pytest.mark.parametrize("old_first", [True, False])
+    def test_replacement_keeps_both_open_spans_addressable(self, old_first):
+        old, replacement = LocalIdProvider(), LocalIdProvider()
+        composite = CompositeProvider([old])
+        old_id = composite.start_span("old")
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        new_id = composite.start_span("new", old_id)
+        assert old_id == "span-0"
+        assert new_id != old_id
+        assert replacement.started == [("span-0", "new", None)]
+
+        first_id, first_sink, second_id, second_sink = (
+            (old_id, old, new_id, replacement)
+            if old_first
+            else (new_id, replacement, old_id, old)
+        )
+        composite.end_span(first_id, {"step": 1})
+        assert first_sink.ended == [("span-0", {"step": 1})]
+        assert second_sink.open_ids == {"span-0"}
+        composite.end_span(first_id)
+        composite.end_span(second_id, {"step": 2})
+        composite.end_span(second_id)
+        assert second_sink.ended == [("span-0", {"step": 2})]
+
+    def test_completed_child_id_is_never_republished(self):
+        sink = LocalIdProvider(("span-0", "span-0"))
+        composite = CompositeProvider([sink])
+        completed = composite.start_span("completed")
+        composite.end_span(completed)
+        current = composite.start_span("current", completed)
+        assert current != completed
+        assert sink.started[-1] == ("span-0", "current", None)
+        composite.end_span(completed)
+        assert sink.open_ids == {"span-0"}
+        assert len(sink.ended) == 1
+        composite.end_span(current)
+        assert len(sink.ended) == 2
+
+    def test_completed_replacement_parent_maps_its_own_local_id(self):
+        old, replacement = LocalIdProvider(), LocalIdProvider()
+        composite = CompositeProvider([old])
+        completed = composite.start_span("completed")
+        composite.end_span(completed)
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        parent = composite.start_span("parent")
+        child = composite.start_span("child", parent)
+        assert parent != completed
+        assert replacement.started[-1] == ("span-1", "child", "span-0")
+        composite.end_span(completed)
+        assert replacement.open_ids == {"span-0", "span-1"}
+        composite.end_span(child)
+        composite.end_span(parent)
+        assert [span_id for span_id, _ in replacement.ended] == ["span-1", "span-0"]
+        assert len(old.ended) == 1
+
+    def test_generated_ids_skip_native_collision_without_randomness(self, monkeypatch):
+        monkeypatch.setattr(
+            "friday_telemetry.providers.composite.uuid4",
+            lambda: SimpleNamespace(hex="reserved"),
+        )
+        old = LocalIdProvider(("reserved:1",))
+        replacement = LocalIdProvider(("reserved:1",))
+        composite = CompositeProvider([old])
+        old_id = composite.start_span("old")
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        new_id = composite.start_span("new")
+        assert old_id == "reserved:1"
+        assert new_id == "reserved:2"
+        composite.end_span(old_id)
+        assert replacement.open_ids == {"reserved:1"}
+        composite.end_span(new_id)
+
+    def test_provider_cannot_reuse_published_generated_id(self, monkeypatch):
+        monkeypatch.setattr(
+            "friday_telemetry.providers.composite.uuid4",
+            lambda: SimpleNamespace(hex="reserved"),
+        )
+        composite = CompositeProvider([])
+        completed = composite.start_span("empty")
+        composite.end_span(completed)
+        sink = LocalIdProvider((completed,))
+        composite.add_provider(sink)
+        current = composite.start_span("current")
+        assert current != completed
+        composite.end_span(completed)
+        assert sink.open_ids == {completed}
+        composite.end_span(current)
+        assert sink.ended == [(completed, None)]

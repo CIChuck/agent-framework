@@ -25,14 +25,18 @@ class _ChildSpan:
 class CompositeProvider(TelemetryInterface):
     """Map each child's span and parent IDs and snapshot span membership.
 
-    The first child ID remains the public ID for caller compatibility. Empty
-    composites use an opaque local ID. Failing sinks do not prevent healthy
-    sinks from receiving events or closing their own spans.
+    A never-published first child ID remains public for caller compatibility.
+    Reused child IDs and empty composites use opaque local IDs. Published IDs
+    stay reserved for this instance's lifetime so stale ends cannot alias later
+    spans. Failing sinks do not prevent delivery to healthy sinks.
     """
 
     def __init__(self, providers: list[TelemetryInterface]) -> None:
         self._providers = list(providers)
         self._spans: dict[str, tuple[_ChildSpan, ...]] = {}
+        self._issued_span_ids: set[str] = set()
+        self._span_namespace = uuid4().hex
+        self._next_span_id = 0
 
     def add_provider(self, provider: TelemetryInterface) -> None:
         self._providers.append(provider)
@@ -73,9 +77,20 @@ class CompositeProvider(TelemetryInterface):
                 except Exception:
                     failures += 1
             raise CompositeDeliveryError(failures)
-        span_id = children[0].span_id if children else uuid4().hex
+        span_id = children[0].span_id if children else self._new_span_id()
+        if span_id in self._issued_span_ids:
+            span_id = self._new_span_id()
+        self._issued_span_ids.add(span_id)
         self._spans[span_id] = tuple(children)
         return span_id
+
+    def _new_span_id(self) -> str:
+        """Allocate without assuming random IDs cannot collide with child IDs."""
+        while True:
+            self._next_span_id += 1
+            span_id = f"{self._span_namespace}:{self._next_span_id}"
+            if span_id not in self._issued_span_ids:
+                return span_id
 
     def end_span(self, span_id: str, data: dict[str, Any] | None = None) -> None:
         failures = 0

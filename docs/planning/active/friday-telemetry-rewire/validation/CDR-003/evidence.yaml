@@ -1,0 +1,259 @@
+{
+  "review_id": "CDR-003",
+  "verdict": "READY",
+  "review_type": "full construction-readiness; A01 verification plus A02 identity amendment",
+  "review_mode": "fresh-context read-only",
+  "reviewer": {
+    "agent": "/root/cd001_a02_reviewer",
+    "model_family": "GPT-6",
+    "exact_runtime_model_version": "not exposed",
+    "date": "2026-10-05",
+    "shared_context": "Controller request and boundaries only; no builder/private reasoning or previous reports"
+  },
+  "candidate": "98cc9e74cf40320af08533f4915e394eecf39537",
+  "preparation_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "diff_range": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735..98cc9e74cf40320af08533f4915e394eecf39537 (authority readiness, not product conformance)",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "expected_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "worktree_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "commit_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "worktree_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "commit_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "worktree_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "commit_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "worktree_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "commit_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "matches": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "worktree_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "commit_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "expected_sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "worktree_sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "commit_sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "worktree_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "commit_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "expected_sha256": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "worktree_sha256": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "commit_sha256": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "expected_sha256": "e332e54dfde73bc0ba334c8932832190a802d4418cb62fdfe6a1c1824efba3e6",
+      "worktree_sha256": "e332e54dfde73bc0ba334c8932832190a802d4418cb62fdfe6a1c1824efba3e6",
+      "commit_sha256": "e332e54dfde73bc0ba334c8932832190a802d4418cb62fdfe6a1c1824efba3e6",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "expected_sha256": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "worktree_sha256": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "commit_sha256": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "expected_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "worktree_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "commit_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "matches": true
+    }
+  ],
+  "state_checks": {
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "status_unchanged": true,
+    "request_unchanged": true,
+    "authority_unchanged": true,
+    "all_authority_matches": true
+  },
+  "guidance_sha256": "1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259",
+  "checks": [
+    {
+      "id": "CDR-003-C01",
+      "category": "Identity, authority, scope and precedence",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:3-56; docs/reference/policies/independent-validation-policy.md:52-87",
+      "assessment": "Approved A01/A02 are recorded; initiative, unit, named branch and preparation base are explicit. Policy and accepted MCP contracts precede plans/directive. Exact Chat and telemetry manifests exclude other product packages/config/state; REM-001 narrows remediation to composite source, tests and README."
+    },
+    {
+      "id": "CDR-003-C02",
+      "category": "Strict configuration and provider ownership",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md:7-29; docs/planning/active/friday-telemetry-rewire/tactical-plan.md:19-20",
+      "assessment": "Default disabled/debug-only local configuration, rejection behavior, unchanged Langfuse/shared defaults and safe caller override are explicit. Observer construction precedes runtime service assembly; no caller-owned provider shutdown is authorized."
+    },
+    {
+      "id": "CDR-003-C03",
+      "category": "Lifecycle, privacy, bounded diagnostics and MCP preservation",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md:31-54; docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:63-73; docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md:44-85",
+      "assessment": "Immutable closed events use opaque IDs/categories/counts; runtime readiness and completed/failed/cancelled cleanup have truthful meanings. Newest-256 retention and cumulative failure/drop counts are required. Content-bearing fields and exception text are prohibited; strict public MCPEvent validation preserves accepted MCP meanings; legacy LLM/memory forwarding remains deferred."
+    },
+    {
+      "id": "CDR-003-C04",
+      "category": "A02 collision identity, ownership and stale ends",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md:56-78; docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md:20-30,49-60",
+      "assessment": "First-child public ID is compatible only on first publication. Every later collision requires a fresh composite-owned opaque ID with separate child mappings; instance-lifetime reservation covers completed IDs. Child parents and ends are mapped per original provider membership; unknown/duplicate ends are no-ops. Failure fan-out, rollback coverage, independent payload dictionaries and empty composites are specified."
+    },
+    {
+      "id": "CDR-003-C05",
+      "category": "A02 reservation cost and deterministic regressions",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md:27-30,49-60",
+      "assessment": "Reservation retains only strings rather than completed providers/payloads, and cumulative memory cost must be documented. Required regressions deterministically reuse span-0 across distinct provider replacements, cover completed-ID reuse/stale ends/nesting/removal/empty spans/partial rollback/failures, and preserve ordinary first-child behavior. No UUID probability is permitted as proof."
+    },
+    {
+      "id": "CDR-003-C06",
+      "category": "A01 broad and changed-file verification authority",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:98-131; docs/planning/active/friday-telemetry-rewire/verification-profile.md:8-42",
+      "assessment": "Focused tests, full Chat+telemetry suites, root Ruff, root pytest with only two named live-module exclusions, exact changed-file Ruff, 3.10 and 3.13 changed-source mypy, board/doc checks and whitespace checks are mandatory. Later changed-file lists must be regenerated; narrower passes cannot substitute for broad gates."
+    },
+    {
+      "id": "CDR-003-C07",
+      "category": "A01 safety preflight and minimum Python compatibility",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/verification-profile.md:44-104",
+      "assessment": "Static preflight before collection covers discovery/modules/conftests/helpers/subprocesses. Synthetic/temp/loopback-only execution, isolated sources, no real state, environment allowlist and offline/no-sync/no-download restrictions are explicit. Missing safety/runtime requires a stop. Minimum-version syntax script, API availability evidence and separate 3.10 typing are required; unavailable 3.10 interpreter is reported without a runtime-pass claim."
+    },
+    {
+      "id": "CDR-003-C08",
+      "category": "Baseline handling, freeze, reporting and stop boundaries",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/verification-profile.md:106-126; docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:126-146; docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md:62-73",
+      "assessment": "Preparation-base and candidate checks use identical isolation/settings; new A01 evidence is retrospective and pending/nonzero/baseline results remain explicit. Next request freezes revisions, diff, hashes, exact commands/lists, preflight, exclusions and known failures. Stable candidate/report stops generation for fresh read-only delta and aggregate review. No self-verification/acceptance/push/merge/release/live effects or further remediation; no timing waiver is approved."
+    },
+    {
+      "id": "CDR-003-C09",
+      "category": "Tactical traceability and directive-building guidance",
+      "result": "PASS",
+      "pass_meaning": "directive requirement coverage only",
+      "citation": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md:15-30; docs/dev-skills/ai-construction-directive-builder.md:34-98",
+      "assessment": "T01-01..06 and AC-01..06 map to positive/negative/compatibility/privacy/lifecycle/integration/composite/verification evidence. Objective, bounds, migration (none persisted), security, local CLI/API inspection, closeout, reporting and anti-drift stops satisfy the construction-directive guidance. Later telemetry units remain separate directives."
+    }
+  ],
+  "findings": [],
+  "commands": [
+    {
+      "command": "pwd; rg --files with authority/interface/AGENTS filters",
+      "result": "Repository and document inventory; only root AGENTS.md found; no gendev.md found",
+      "exit": "0 for successful inventory; initial optional-directory rg returned 2 with missing optional paths"
+    },
+    {
+      "command": "cat and nl -ba/sed over pinned documents and directive-builder guidance",
+      "result": "Full controlling authority and selected citation lines reviewed",
+      "exit": 0
+    },
+    {
+      "command": "git status --porcelain=v1; git rev-parse HEAD; git branch --show-current",
+      "result": "Frozen candidate and branch match, existing dirt recorded; repeated with GIT_OPTIONAL_LOCKS=0",
+      "exit": 0
+    },
+    {
+      "command": "GIT_OPTIONAL_LOCKS=0 python3 SHA-256/static state capture; git show <frozen-commit>:<authority-path>",
+      "result": "All 11 authority hashes match request in working files and commit; before/after unchanged",
+      "exit": 0
+    },
+    {
+      "command": "git show <preparation-base>:<public-interface/composite/runtime/app-path>; selected static reads",
+      "result": "Public contract and assembly/lifecycle seams feasible within approved scope; no imports or runtime",
+      "exit": 0
+    },
+    {
+      "command": "rg/sed relevant board fields; git diff --name-status <base> <frozen> -- four amended-authority paths",
+      "result": "Board context agrees; governed authority paths added since preparation base",
+      "exit": 0
+    }
+  ],
+  "not_run": [
+    "pytest/collection",
+    "product imports or application runtime",
+    "Ruff/mypy/3.10 syntax and API validation",
+    "board/docs execution",
+    "network/services",
+    "prior reports and waiver documents"
+  ],
+  "external_effects": "none",
+  "repository_mutations": "none",
+  "writes": "review artifacts only in /private/tmp/telem-01/CDR-003",
+  "residual_risks": [
+    "No code VERIFIED outcome; all implementation verification gates remain required",
+    "Lifetime ID reservations have cumulative memory cost requiring documentation",
+    "Broad-preflight and minimum-version evidence not established by this review",
+    "Maintainer approval quotes verified in pinned files only",
+    "Unpinned dirty board read solely for contextual state"
+  ],
+  "artifacts": [
+    {
+      "path": "request.yaml",
+      "sha256": "d8c3220f603f82a2933dabcc8730a7ac73eaea2db96225150fab72473af111d6"
+    },
+    {
+      "path": "state-before.json",
+      "sha256": "668b7045f96ae1449559638e8bd1c3a43c35d5865f377acd0d78fb716536bf86"
+    },
+    {
+      "path": "state-after.json",
+      "sha256": "68640b4fc4789610c53b0474a2a7f282f3d29a12562f84181b67e7ecf9458971"
+    },
+    {
+      "path": "state-comparison.json",
+      "sha256": "d8230bb1aea060ec98bf2f3160297628442783ce216a2294631c48bba4d129ef"
+    },
+    {
+      "path": "authority-lines.txt",
+      "sha256": "c5cfd5ab9dcdd5754cc98ef02c3a6a02d6e613d3adfc69bac8e65f17d03f03f4"
+    },
+    {
+      "path": "preparation-base-interfaces.txt",
+      "sha256": "dc71859df39b5398d0e490a42d8444674d8e58d2a5058d1af36cb83c05eec7d9"
+    },
+    {
+      "path": "report.md",
+      "sha256": "b4105da743d473e2476a269174c186afc5e9a1fbb455a3bb547f24e4550106c3"
+    }
+  ]
+}
