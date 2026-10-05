@@ -93,3 +93,8 @@ Fresh readiness review precedes implementation, then fresh candidate review.
 all18 project minimums and tooling/setup with Python >=3.13.4. Frozen dependency
 versions remain unchanged; candidate verification and fresh independent review
 are pending. All other aggregate AC-06 failures remain unresolved.
+
+[VAL-004](validation/VAL-004/report.md) requested exact grpcio selection
+preservation and retained unwaived aggregate failures. A bounded lock correction
+preserves existing supported-runtime selections across24 graph contexts. Fresh
+review of the new stable candidate follows; no source/test/authority changes.

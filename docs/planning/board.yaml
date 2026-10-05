@@ -407,6 +407,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1015,3 +1017,10 @@ events:
   action: implemented approved Python support migration after CDR-006 READY
   note: Python >=3.13.4 metadata and tooling aligned; dependency pins preserved; fresh review pending and aggregate gates unresolved.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-004 and bounded supported-runtime lock correction
+  note: Preserved grpcio selections for Python3.13 and3.14; fresh review required; aggregate AC-06 remains unwaived.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md

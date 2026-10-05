@@ -333,3 +333,18 @@ and graph inventory pass with LiteLLM1.100.1 and all surviving pins preserved.
 A rejected PyPika resolver upgrade was corrected before freeze; no shared .venv
 sync occurred. No source/test edits. Candidate static, broad and genuine runtime
 checks are next, followed by fresh independent delta/aggregate review.
+
+## 2026-10-05 — VAL-004 and bounded lock correction
+
+VAL-004 CHANGES_REQUESTED at285254b: F01 exposed a grpcio3.13 selection change
+missed by a package-set subset check; F02 retained unwaived AC-06 failures.
+Only the original workspace uv.lock was corrected during the tail of review;
+the isolated candidate tracked hashes remained unchanged. Corrected lock201
+packages preserves supported3.13 grpcio1.67.1 and3.14 grpcio1.76.0 selections.
+24 full graph contexts and1833 retained artifact URL/hash checks pass, as do
+offline regeneration/check. The reviewer report/raw logs remain preserved.
+An original-workspace docs checker attempted nested sync; download failure
+prevented install, and195 installed distribution/RECORD hashes are unchanged.
+Inherited UV_NO_SYNC/UV_OFFLINE fixes execution without changing checker source.
+No source, test, dependency constraint or controlling authority change. A new
+stable candidate and fresh reviewer are required; no baseline waiver applies.
