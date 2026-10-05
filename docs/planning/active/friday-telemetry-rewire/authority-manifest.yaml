@@ -1,0 +1,34 @@
+initiative: friday-telemetry-rewire
+work_unit: TELEM-01
+directive: CD-001
+base: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735
+branch: feature/friday-telemetry-rewire
+review_mode: fresh-context read-only full work-unit review
+authority:
+- path: AGENTS.md
+  sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+- path: docs/reference/policies/repository-engineering-policy.md
+  sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+- path: docs/reference/policies/development-task-lifecycle.md
+  sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+- path: docs/reference/policies/independent-validation-policy.md
+  sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+- path: docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md
+  sha256: 4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f
+- path: docs/planning/active/friday-telemetry-rewire/build-plan.md
+  sha256: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
+- path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
+  sha256: ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df
+- path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
+  sha256: 125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae
+- path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+  sha256: 513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba
+acceptance_criteria:
+- AC-01
+- AC-02
+- AC-03
+- AC-04
+- AC-05
+- AC-06
+external_services: none; deterministic synthetic localhost fixtures only; no vendor
+  credentials or real runtime data

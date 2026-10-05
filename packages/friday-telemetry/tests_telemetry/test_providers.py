@@ -202,3 +202,119 @@ class TestCompositeProvider:
         composite = CompositeProvider([recorder1, recorder2])
 
         assert composite.providers == [recorder1, recorder2]
+
+
+class TestCompositeSpanOwnership:
+    def test_nested_spans_end_in_each_sink(self):
+        first, second = DebugTelemetryRecorder(), DebugTelemetryRecorder()
+        composite = CompositeProvider([first, second])
+        parent = composite.start_span("parent")
+        child = composite.start_span("child", parent)
+        composite.end_span(child, {"outcome": "success"})
+        composite.end_span(parent)
+        for sink in (first, second):
+            root = sink.get_span_by_name("parent")
+            nested = sink.get_span_by_name("child")
+            assert root.end_time is not None
+            assert nested.end_time is not None
+            assert nested.parent_id in sink.spans
+            assert sink.spans[nested.parent_id] is root
+            assert nested.data == {"outcome": "success"}
+        assert first.get_span(parent) is not None
+        assert first.get_span(child) is not None
+
+    def test_membership_is_pinned_and_new_child_has_no_foreign_parent(self):
+        first, second, added = (DebugTelemetryRecorder() for _ in range(3))
+        composite = CompositeProvider([first, second])
+        parent = composite.start_span("parent")
+        composite.remove_provider(first)
+        composite.add_provider(added)
+        child = composite.start_span("child", parent)
+        assert added.get_span_by_name("child").parent_id is None
+        assert second.get_span_by_name("child").parent_id in second.spans
+        composite.end_span(parent)
+        composite.end_span(child)
+        assert len(first.spans) == 1
+        assert all(
+            span.end_time is not None
+            for sink in (first, second, added)
+            for span in sink.spans.values()
+        )
+
+    def test_empty_and_duplicate_end(self):
+        empty = CompositeProvider([])
+        assert empty.start_span("empty")
+        empty.end_span("unknown")
+
+        class Counting(DebugTelemetryRecorder):
+            ends = 0
+
+            def end_span(self, span_id, data=None):
+                self.ends += 1
+                super().end_span(span_id, data)
+
+        sink = Counting()
+        composite = CompositeProvider([sink])
+        span = composite.start_span("test")
+        composite.end_span(span)
+        composite.end_span(span)
+        composite.end_span("unknown")
+        assert sink.ends == 1
+
+    def test_payload_mutation_is_isolated(self):
+        class Mutating(DebugTelemetryRecorder):
+            def capture_event(self, event_name, data):
+                data["nested"]["value"] = "changed"
+
+            def end_span(self, span_id, data=None):
+                data["nested"]["value"] = "changed"
+                super().end_span(span_id, data)
+
+        mutating, normal = Mutating(), DebugTelemetryRecorder()
+        composite = CompositeProvider([mutating, normal])
+        data = {"nested": {"value": "original"}}
+        composite.capture_event("event", data)
+        span = composite.start_span("span")
+        composite.end_span(span, data)
+        assert data["nested"]["value"] == "original"
+        assert normal.get_event("event")["nested"]["value"] == "original"
+        assert normal.get_span_by_name("span").data["nested"]["value"] == "original"
+
+    def test_failures_attempt_all_sinks_and_rollback_opened_spans(self):
+        import pytest
+        from friday_telemetry.providers.composite import CompositeDeliveryError
+
+        class Failing(DebugTelemetryRecorder):
+            def capture_event(self, event_name, data):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+            def start_span(self, name, parent_id=None):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+        healthy = DebugTelemetryRecorder()
+        composite = CompositeProvider([Failing(), healthy])
+        with pytest.raises(CompositeDeliveryError) as error:
+            composite.capture_event("event", {"count": 1})
+        assert "PRIVATE_EXCEPTION" not in str(error.value)
+        assert error.value.failure_count == 1
+        assert healthy.get_event("event") == {"count": 1}
+        with pytest.raises(CompositeDeliveryError):
+            composite.start_span("span")
+        assert healthy.get_span_by_name("span").end_time is not None
+
+    def test_failed_end_still_closes_other_sink_once(self):
+        import pytest
+        from friday_telemetry.providers.composite import CompositeDeliveryError
+
+        class FailingEnd(DebugTelemetryRecorder):
+            def end_span(self, span_id, data=None):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+        failing, healthy = FailingEnd(), DebugTelemetryRecorder()
+        composite = CompositeProvider([failing, healthy])
+        span = composite.start_span("span")
+        with pytest.raises(CompositeDeliveryError) as error:
+            composite.end_span(span)
+        assert error.value.failure_count == 1
+        assert healthy.get_span_by_name("span").end_time is not None
+        composite.end_span(span)

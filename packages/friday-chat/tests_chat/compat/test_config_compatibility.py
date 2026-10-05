@@ -33,6 +33,7 @@ LEGACY_TOP_LEVEL_SECTIONS = TOP_LEVEL_SECTIONS - {
     "model_library",
     "llm_pool",
     "embedding_pool",
+    "telemetry",
 }
 HIGH_VALUE_NESTED_SECTIONS = {
     tuple(section.split(".", maxsplit=1))

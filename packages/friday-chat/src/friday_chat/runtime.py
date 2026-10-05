@@ -29,6 +29,7 @@ from friday_chat.memory_views import (
 )
 from friday_chat.session import SessionIdentity, resolve_session_identity
 from friday_chat.speech import SpeechPlaybackController, add_speech_prompt_snippet
+from friday_chat.telemetry import ChatTelemetryObserver
 from friday_chat.tools.mcp import MCPChatRegistry
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
@@ -390,6 +391,7 @@ class FridayRuntime:
     compactor: Any | None = None
     compaction_task: asyncio.Task[Any] | None = None
     mcp_tools: MCPChatRegistry | None = None
+    telemetry: ChatTelemetryObserver | None = None
 
     async def start_mcp_tools(self) -> None:
         if self.mcp_tools is not None:
@@ -1216,6 +1218,11 @@ def build_runtime(
         session_id=session_id,
     )
     config = _apply_startup_speech_prompt(config)
+    observer = ChatTelemetryObserver(
+        enabled=config.telemetry.enabled,
+        session_id=resolved_session_identity.value,
+        provider=telemetry,
+    )
     if not fake:
         from friday_chat.reorganization.assembly import resolve_maintenance_layout
 
@@ -1224,12 +1231,15 @@ def build_runtime(
             config,
             captured_process_cwd=captured_process_cwd,
         )
-        return _build_framework_runtime(
+        runtime = _build_framework_runtime(
             config,
             session_identity=resolved_session_identity,
             maintenance_layout=maintenance_layout,
-            telemetry=telemetry,
+            telemetry=observer if observer.enabled else None,
         )
+        runtime.telemetry = observer
+        observer.emit("runtime_ready")
+        return runtime
 
     from friday_chat.reorganization.layout import FridayChatMaintenanceLayout
 
@@ -1279,7 +1289,7 @@ def build_runtime(
         summary_sink=memory,
     )
 
-    return FridayRuntime(
+    runtime = FridayRuntime(
         session_identity=resolved_session_identity,
         config=config,
         chat_llm=FakeChatModel(model=config.llm.model or "unknown"),
@@ -1307,6 +1317,9 @@ def build_runtime(
         budget_monitor=budget_monitor,
         compactor=maintenance if budget_monitor is not None else None,
     )
+    runtime.telemetry = observer
+    observer.emit("runtime_ready")
+    return runtime
 
 
 def _apply_startup_speech_prompt(config: FridayChatConfig) -> FridayChatConfig:

@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-29'
+updated: '2026-10-05'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -377,6 +377,20 @@ tasks:
   branch: null
   depends_on: []
   validation: []
+- id: friday-telemetry-rewire
+  title: Friday-telemetry-rewire
+  priority: 25
+  work_state: started
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/active/friday-telemetry-rewire/
+  next_gate: fresh-context independent validation of the TELEM-01 frozen candidate
+  delivery_state: local
+  branch: feature/friday-telemetry-rewire
+  depends_on: []
+  validation: []
+  approved_by: repository maintainer
+  approved_at: '2026-10-04'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -864,3 +878,38 @@ events:
   action: delivery pushed -> merged
   note: 'PR #6 merged on GitHub at be0b9e1; remote feature branch deleted; local master fast-forwarded to origin/master'
   evidence: https://github.com/CIChuck/agent-framework/pull/6; merge be0b9e1af6830178221d50f94e2e93774eb0d3a4
+- task: friday-telemetry-rewire
+  at: '2026-10-01'
+  actor: Codex
+  actor_role: agent
+  action: created queued planning packet
+  note: Maintainer requested restoration and improvement of observability from the earlier Friday launcher in the current Friday Chat package; implementation remains unapproved.
+  evidence: docs/planning/queued/friday-telemetry-rewire/build-plan.md
+- task: friday-telemetry-rewire
+  at: '2026-10-01'
+  actor: Codex
+  actor_role: agent
+  action: revised draft scope
+  note: Maintainer clarified that Friday Chat observability must use the existing provider-neutral telemetry adapter; Langfuse is optional and does not gate the core rewire.
+  evidence: docs/planning/queued/friday-telemetry-rewire/build-plan.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05T03:03:39+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Recorded explicit conversation approval on 2026-10-04 for provider-neutral telemetry direction and first-slice preparation. CD-001 is prepared and awaits its specific approval before source generation.
+  evidence: docs/planning/queued/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05T13:02:24+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Maintainer approved CD-001 with explicit proceed on 2026-10-05; first local slice begins on its dedicated branch.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: TELEM-01 implementation checks recorded; candidate preparation
+  note: Focused regression checks and affected typing/lint pass. Full package run reproduces pre-existing terminal failures and sandbox loopback errors. Independent validation remains pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/implementation-report.md

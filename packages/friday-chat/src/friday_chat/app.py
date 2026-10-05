@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import sys
 from collections.abc import Awaitable, Callable, Sequence
 from dataclasses import dataclass, field
@@ -32,6 +33,7 @@ from friday_chat.reorganization.gate import MaintenanceAdmissionGate
 from friday_chat.runtime import FridayRuntime, build_runtime
 from friday_chat.session import FridaySession, SessionIdentityMismatchError
 from friday_chat.shell import ShellService
+from friday_chat.telemetry import Outcome, Reason
 from friday_chat.turns.processor import (
     TurnProcessingError,
     TurnProcessor,
@@ -176,6 +178,7 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
     background: BackgroundTaskManager
     background_work: BackgroundWorkCoordinator | None = None
     _extraction_preempted: bool = field(default=False, init=False, repr=False)
+    cleanup_failed: bool = field(default=False, init=False)
 
     async def prepare_for_manual_maintenance(self) -> None:
         """Cancel supervised writers after exclusive intent blocks new work."""
@@ -220,16 +223,19 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
         failures += not await self._run_step(
             "flush_pending_extraction",
             self.runtime.maintenance.flush_pending_extraction(),
+            cleanup=True,
         )
         if self.runtime.config.session.flush_on_exit or snapshot_requested:
             failures += not await self._run_step(
                 "flush_memory",
                 self.runtime.maintenance.flush_memory(),
+                cleanup=True,
             )
         if self.runtime.config.session.lifecycle_on_exit:
             failures += not await self._run_step(
                 "run_lifecycle",
                 self.runtime.maintenance.run_lifecycle(),
+                cleanup=True,
             )
         if snapshot_requested and failures:
             raise RuntimeError("shutdown maintenance drain failed")
@@ -239,6 +245,7 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
         succeeded = await self._run_step(
             "close_async_clients",
             self.runtime.async_clients.close(),
+            cleanup=True,
         )
         if snapshot_requested and not succeeded:
             raise RuntimeError("shutdown client cleanup failed")
@@ -250,10 +257,14 @@ class AppMaintenanceRuntimeHooks(MaintenanceRuntimeHooks):
         self,
         name: str,
         operation: Awaitable[object],
+        *,
+        cleanup: bool = False,
     ) -> bool:
         try:
             await operation
         except Exception as exc:
+            if cleanup:
+                self.cleanup_failed = True
             self.runtime.diagnostics.maintenance_warnings.append(
                 f"{name}: {type(exc).__name__}"
             )
@@ -367,6 +378,7 @@ class FridayChatApp:
         self.session = session
         self.command_context.session = self.session
         self._started = False
+        self._telemetry_cleanup_failed = False
 
     @property
     def started(self) -> bool:
@@ -391,8 +403,58 @@ class FridayChatApp:
             )
 
     async def run(self) -> AppRunResult:
+        """Observe lifecycle completion without changing cleanup or exception behavior."""
+        observer = self.runtime.telemetry
+        self._telemetry_cleanup_failed = False
+        self.maintenance_hooks.cleanup_failed = False
+        if observer is not None:
+            observer.emit("application_start")
+        startup_complete = False
+        try:
+            self.start()
+            startup_complete = True
+            result = await self._run_lifecycle()
+        except BaseException as exc:
+            if observer is not None:
+                cancelled = isinstance(exc, asyncio.CancelledError)
+                reason: Reason
+                if (
+                    self._telemetry_cleanup_failed
+                    or self.maintenance_hooks.cleanup_failed
+                ):
+                    reason = "shutdown_failed"
+                elif cancelled:
+                    reason = "cancelled"
+                elif startup_complete:
+                    reason = "application_failed"
+                else:
+                    reason = "startup_failed"
+                observer.emit(
+                    "application_stop",
+                    outcome="cancelled" if cancelled else "failed",
+                    reason=reason,
+                )
+            raise
+        if observer is not None:
+            failed = (
+                self._telemetry_cleanup_failed or self.maintenance_hooks.cleanup_failed
+            )
+            outcome: Outcome = "succeeded"
+            stop_reason: Reason | None = None
+            if failed:
+                outcome, stop_reason = "failed", "shutdown_failed"
+            elif result.exit_reason == "keyboard_interrupt":
+                outcome, stop_reason = "cancelled", "cancelled"
+            observer.emit(
+                "application_stop",
+                outcome=outcome,
+                reason=stop_reason,
+                count=min(result.turns_processed, 1_000_000),
+            )
+        return result
+
+    async def _run_lifecycle(self) -> AppRunResult:
         """Run the interactive lifecycle until EOF or keyboard interrupt."""
-        self.start()
         turns_processed = 0
         exit_reason: Literal["eof", "keyboard_interrupt", "command_exit"] = "eof"
         try:
@@ -474,6 +536,9 @@ class FridayChatApp:
         finally:
             try:
                 await self.runtime.stop_mcp_tools()
+            except BaseException:
+                self._telemetry_cleanup_failed = True
+                raise
             finally:
                 try:
                     await self._shutdown_through_coordinator()
@@ -560,6 +625,7 @@ class FridayChatApp:
         try:
             await self.reorganization_coordinator.shutdown(request)
         except Exception as exc:
+            self._telemetry_cleanup_failed = True
             self.runtime.diagnostics.maintenance_warnings.append(
                 f"shutdown coordinator: {type(exc).__name__}"
             )
@@ -571,6 +637,7 @@ class FridayChatApp:
                     snapshot_requested=snapshot_requested
                 )
             except Exception as exc:
+                self._telemetry_cleanup_failed = True
                 self.runtime.diagnostics.maintenance_warnings.append(
                     f"shutdown coordinator: {type(exc).__name__}"
                 )

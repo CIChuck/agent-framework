@@ -148,3 +148,34 @@ setting.
 ## License
 
 MIT
+
+### Local telemetry
+
+Chat telemetry defaults to disabled. Enable the local diagnostic provider with:
+
+```yaml
+telemetry:
+  enabled: true
+  provider: debug
+```
+
+The CLI reports telemetry state at startup. Embedded applications can inspect
+`runtime.telemetry.snapshot()` for immutable runtime/application lifecycle and
+validated MCP event records. The observer retains the newest 256 records and
+cumulative drop, rejection, and delivery-failure counts; these records remain in
+process memory. A failed injected sink remains visible as `failed`, while Chat
+continues operating and local inspection remains available.
+
+`build_runtime(config, telemetry=provider)` accepts any existing
+`TelemetryInterface` implementation as a caller-owned override, including when
+YAML telemetry is disabled. Chat wraps it with the same typed content boundary
+and never closes it. Only allowlisted lifecycle and existing MCP attributes are
+forwarded. Prompts, responses, reasoning, memory, schemas, arguments, results,
+paths, exception messages, and raw session identifiers are excluded.
+
+This first slice covers runtime/application lifecycle and existing MCP events.
+Detailed LLM, native-tool, memory, persistence, and turn metrics, remote exporter
+assembly, and optional Langfuse compatibility remain later work. The `langfuse`
+section is not activated by local telemetry. Unsupported telemetry providers and
+fields fail config validation; the shared framework telemetry defaults and
+raw transcript capture settings are unchanged.

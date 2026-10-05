@@ -1,0 +1,36 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.10, pytest-9.0.2, pluggy-1.6.0
+rootdir: /Users/chuckrussell/Dev/gendev/agent-framework
+configfile: pyproject.toml
+plugins: respx-0.22.0, langsmith-0.5.2, anyio-4.12.0, asyncio-1.3.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 129 items
+
+packages/friday-chat/tests_chat/test_telemetry.py ...................... [ 17%]
+............                                                             [ 26%]
+packages/friday-chat/tests_chat/test_cli.py .............                [ 36%]
+packages/friday-chat/tests_chat/test_runtime.py ....................     [ 51%]
+packages/friday-chat/tests_chat/test_app_lifecycle.py .................. [ 65%]
+......                                                                   [ 70%]
+packages/friday-chat/tests_chat/compat/test_config_compatibility.py .... [ 73%]
+..............                                                           [ 84%]
+packages/friday-telemetry/tests_telemetry/test_providers.py ............ [ 93%]
+........                                                                 [100%]
+
+============================= 129 passed in 2.19s ==============================
+Exception while exporting Span.
+Traceback (most recent call last):
+  File "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_shared_internal/__init__.py", line 179, in _export
+    self._exporter.export(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        [
+        ^
+    ...<8 lines>...
+        ]
+        ^
+    )
+    ^
+  File "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/trace/export/__init__.py", line 307, in export
+    self.out.write(self.formatter(span))
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+ValueError: I/O operation on closed file.

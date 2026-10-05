@@ -50,6 +50,7 @@ TOP_LEVEL_CONFIG_SECTIONS: tuple[str, ...] = (
     "tools",
     "web",
     "langfuse",
+    "telemetry",
     "finance",
     "security",
     "session",
@@ -97,6 +98,7 @@ CONFIG_TRACEABILITY: dict[str, str] = {
     "tools": "friday_chat.tools.registry, friday_chat.tools.loop",
     "web": "friday_chat.tools.registry.web_tools",
     "langfuse": "friday_chat.runtime.telemetry",
+    "telemetry": "friday_chat.telemetry, friday_chat.runtime.telemetry",
     "finance": "friday_chat.tools.registry.finance_tools",
     "security": "friday_chat.security",
     "session": "friday_chat.app.exit_maintenance",
@@ -589,6 +591,17 @@ class WebConfig(FlexibleConfigSection):
     serper_api_key: str | None = None
 
 
+class ChatTelemetryConfig(BaseModel):
+    """Strict, local-only telemetry configuration; no exporter is activated."""
+
+    model_config = ConfigDict(
+        extra="forbid", frozen=True, strict=True, hide_input_in_errors=True
+    )
+
+    enabled: bool = False
+    provider: Literal["debug"] = "debug"
+
+
 class LangfuseConfig(FlexibleConfigSection):
     """Langfuse telemetry configuration."""
 
@@ -663,6 +676,7 @@ class FridayChatConfig(BaseModel):
     tools: ToolsConfig = Field(default_factory=ToolsConfig)
     web: WebConfig = Field(default_factory=WebConfig)
     langfuse: LangfuseConfig = Field(default_factory=LangfuseConfig)
+    telemetry: ChatTelemetryConfig = Field(default_factory=ChatTelemetryConfig)
     finance: FinanceConfig = Field(default_factory=FinanceConfig)
     security: SecurityConfig = Field(default_factory=SecurityConfig)
     session: SessionConfig = Field(default_factory=SessionConfig)
@@ -899,6 +913,11 @@ def _format_validation_error(error: ValidationError) -> str:
     details: list[str] = []
     for item in error.errors(include_input=False, include_url=False):
         location = ".".join(str(part) for part in item.get("loc", ())) or "config"
+        if location.startswith("telemetry.") and location not in {
+            "telemetry.enabled",
+            "telemetry.provider",
+        }:
+            location = "telemetry"
         details.append(f"{location}: {item.get('msg', 'invalid value')}")
     return "; ".join(details) or "Invalid Friday Chat configuration."
 
