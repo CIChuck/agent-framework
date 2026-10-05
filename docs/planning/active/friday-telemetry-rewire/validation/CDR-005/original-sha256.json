@@ -1,0 +1,14 @@
+{
+  "after-state.json": "74af814ee90b10bf8b7d91f6c26e596c0dc402bd1ac7655815f9c01ecbfa5b1f",
+  "authority-and-board-read.txt": "d178a16c04693ca9c28bb054bee0dc53db1f96e36f19375f280c2910535ea463",
+  "authority-hashes.json": "8681304cc90f18276bffc46bb199554a31f153e77029b127d2a03bb0cd688947",
+  "authority-manifest.txt": "6957f986f83d34825c8e5155f8957e0610d2fd4e538ca9c9289f5ae29fc3847f",
+  "before-state.json": "115e3ab57c143d6341b1d54d207d0a59ef12f1e04d60985b7469c1ae4c69e3be",
+  "delta-name-status.txt": "8c9a4cae2c56f421b7f84fbbf22f030b10ea68c12f7ccafc7314a49ebb36f8f1",
+  "evidence.yaml": "d2d32c45f3747cdc8c20b628b6e93e2d1cb9bd34e58fc5befda5a1a207a9153c",
+  "git-read-checks.txt": "315ac80329bcca4e4e8d81c965a6f094e528de681afa7d2f3db0e843dfdca7cb",
+  "read-only-comparison.json": "692313f9d4af555f8cb80b409caa5f678ef152aec14dc629d071b065bb4ce674",
+  "report.md": "1746e0a2dc489990c3705446e6df404076d417fca01c6cd8b9c35e0faaff2e84",
+  "request.yaml": "3f0e9a3a192b01f9eb1e655bc322a7476a2560ed1d1e4dc42b27e59c028bd306",
+  "substantive-delta.patch": "ce720b3bb170080a53e9386baf48dfbd92d7f6ee2f91b6ca05fa7241db01fdf2"
+}

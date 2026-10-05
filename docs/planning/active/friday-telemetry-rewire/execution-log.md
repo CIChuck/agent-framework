@@ -258,3 +258,27 @@ Corrected only that metadata to distinguish the already-approved temporary 3.10
 provisioning exception from credential-free loopback-only tests. No new scope,
 waiver, product or authority-body change is introduced. Freeze a corrected
 authority revision for fresh-context readiness before execution.
+
+## 2026-10-05 — CDR-005 READY; REM-002 verification executed
+
+Fresh CDR-005 READY at362b66c verified all12 pins, manifest SHA and2,091
+unchanged tracked files. Evidence is retained verbatim in validation/CDR-005.
+Approved setup now collects2727 candidate/2679 baseline tests. Root execution
+has2699/2651 passes and exactly matching16 failures,11 listener errors,1 skip.
+Root Ruff exactly matches337 diagnostics; source lint, both typing targets,
+syntax/API and focused135/87 checks pass. Full affected724/676 passes retain
+same timing failure,3 listener errors and5 skips. Exact three privileged
+localhost nodes pass at both revisions; no broader privilege is inferred.
+
+Temporary installed3.10 environment contains127 locked distributions, with
+public artifact URLs/hashes and verified cached PyPika reuse. Both genuine
+imports fail on locked LiteLLM1.100.1 importing typing.NotRequired. Incompatibility
+stop condition reached: no dependency/lock/metadata or shared environment edit.
+Existing3.13 environment195 version/RECORD hashes, original cached PyPika files,
+frozen source/checkouts and64 preserved entries remain unchanged.
+All failures are retained without waiver. Stable metadata candidate and fresh
+independent execution-delta/aggregate review are next. Work remains started.
+
+Execution evidence freeze checks: board25 tasks, docs407 Markdown files and
+whitespace pass; all12 authority pins and64 preservation entries match.
+Product/metadata/lock diff from3a69050 is empty. Exact metadata paths only.

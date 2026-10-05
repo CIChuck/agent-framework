@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: fresh A03 readiness review; execute approved REM-002 verification setup and rerun gates
+next_gate: fresh REM-002 execution and aggregate TELEM-01 review; reconcile unwaived baseline and frozen 3.10 dependency gates
 execution_phase: validation
 validation_state: pending
 implementation_authority: granted
@@ -69,3 +69,11 @@ VERIFIED or task completion is claimed. The maintainer approved
 [REM-002 verification setup](remediation/REM-002-verification-directive.md) on
 2026-10-05. Fresh A03 readiness review precedes execution. No lint or timing
 waiver is approved; product source/tests remain frozen at `3a69050`.
+
+[CDR-005](validation/CDR-005/report.md) returned READY for corrected A03.
+Approved REM-002 setup/reruns are recorded in the
+[execution report](execution/REM-002-implementation-report.md). Root collection
+is complete, three permitted localhost tests pass, and all broad failures match
+baseline. The frozen3.10 dependency set installs but genuine imports fail on
+LiteLLM typing.NotRequired, identically at base/candidate. No dependency change,
+waiver or runtime3.10 PASS is claimed. Fresh independent review is pending.

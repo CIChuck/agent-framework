@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh A03 readiness review; execute approved REM-002 verification setup and rerun gates
+  next_gate: fresh REM-002 execution and aggregate TELEM-01 review; reconcile unwaived baseline and frozen 3.10 dependency gates
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -401,6 +401,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/evidence.yaml
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -981,3 +983,10 @@ events:
   action: corrected CDR-004-F01 authority metadata
   note: Recorded exact already-approved locked PyPI provisioning exception; no new scope, waiver or product edits. Fresh corrected-authority review required.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: REM-002 verification reruns prepared for independent review
+  note: CDR-005 READY; root collection succeeds, exact permitted localhost nodes pass. Broad failures match baseline; locked3.10 LiteLLM import incompatible. No waiver, dependency/product edit, completion or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-002-implementation-report.md
