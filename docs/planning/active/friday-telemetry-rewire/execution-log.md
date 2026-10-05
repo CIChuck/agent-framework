@@ -128,3 +128,23 @@ A01 pre-freeze checks: board passed (25 working tasks), documentation lifecycle
 passed (399 Markdown files), diff whitespace passed, and all 64 unrelated
 preservation hashes matched. Product source/tests are unchanged. These are
 documentation-amendment checks; newly required product gates remain unrun.
+
+## 2026-10-05 — independent CD-001 A01 review: READY
+
+Fresh-context read-only reviewer `/root/cd001_a01_reviewer` assessed frozen
+authority candidate `6013be5e6c280a3c93f6686e0b53e7d7cd6b9bf3`. Complete
+request, report, evidence, and original evidence bundle are retained in
+`validation/CDR-002/`. Verdict: `READY` for directive readiness only;
+this is not implementation `VERIFIED`, completion, or acceptance.
+
+No product source/tests changed, no newly required product checks were claimed
+as run, and no REM-001/WVR-001 authority was inferred. VAL-001 remains historical
+defect/baseline evidence under the old authority; A01 requires fresh subsequent
+implementation review after separately approved work and all required evidence.
+Work remains `started`; execution phase: `remediation`; validation state:
+`changes_requested`. Next gate: approve REM-001 for VAL-001-F01; decide WVR-001 and satisfy amended A01 verification before fresh implementation review.
+
+Review-evidence closeout checks: board passed (25 working tasks), documentation
+lifecycle passed (400 Markdown files), diff whitespace passed, and all 64
+preserved entries matched. Product diff from candidate `0c7b6d4` is empty.
+Only review metadata is added after the frozen authority review.

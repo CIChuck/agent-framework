@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: independent CD-001 A01 readiness review; then separate REM-001 and WVR-001 decisions
-execution_phase: validation
-validation_state: pending
+next_gate: approve REM-001 for VAL-001-F01; decide WVR-001 and satisfy amended A01 verification before fresh implementation review
+execution_phase: remediation
+validation_state: changes_requested
 implementation_authority: granted
 ---
 
@@ -49,6 +49,6 @@ are prepared for maintainer review. No remediation or exception is approved.
 The maintainer approved the verification-only A01 amendment after the independent
 [directive review](validation/CDR-001/report.md). The approved
 [verification profile](verification-profile.md) reconciles repository checks and
-advertised Python 3.10 compatibility evidence. Fresh directive readiness review
-is pending. Existing implementation validation remains unresolved; changing
+advertised Python 3.10 compatibility evidence. Fresh [CDR-002 directive readiness review](validation/CDR-002/report.md)
+returned `READY` for frozen authority candidate `6013be5`. Existing implementation validation remains unresolved; changing
 controlling authority requires fresh subsequent implementation review.

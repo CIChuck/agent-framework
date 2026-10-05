@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: independent CD-001 A01 readiness review; then separate REM-001 and WVR-001 decisions
+  next_gate: approve REM-001 for VAL-001-F01; decide WVR-001 and satisfy amended A01 verification before fresh implementation review
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -393,6 +393,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/evidence.yaml
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -931,3 +933,10 @@ events:
   action: recorded maintainer-approved CD-001 A01
   note: Maintainer approved CDR-001/CDR-002 verification-only corrections. Fresh directive review is pending; REM-001 and WVR-001 remain proposed and implementation findings remain unresolved.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-002 READY
+  note: 'Independent directive readiness only: READY. Product validation remains unresolved; REM-001 and WVR-001 remain proposed. New authority requires fresh subsequent implementation review.'
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-002/report.md
