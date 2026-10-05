@@ -324,3 +324,12 @@ Original dirty changes are preserved in /private/tmp/telem-01/REM-003/preserved.
 Board remains started on feature/friday-telemetry-rewire. Board selection returned
 AWAITING_APPROVAL memory-v2; explicit maintainer direction continues this already
 started initiative. Fresh directive readiness review is the next execution gate.
+
+## 2026-10-05 — REM-003 stable candidate preparation
+
+Fresh CDR-006 READY at816e64f preceded product edits. All18 projects require
+>=3.13.4; tooling/scaffold/setup/image guidance is aligned. Offline lock check
+and graph inventory pass with LiteLLM1.100.1 and all surviving pins preserved.
+A rejected PyPika resolver upgrade was corrected before freeze; no shared .venv
+sync occurred. No source/test edits. Candidate static, broad and genuine runtime
+checks are next, followed by fresh independent delta/aggregate review.

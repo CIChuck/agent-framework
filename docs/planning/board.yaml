@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: execute approved Python 3.13.4 minimum migration after fresh readiness review; no waiver approved
+  next_gate: validate Python 3.13.4 support migration and resolve remaining AC-06 baseline gates; no waiver approved
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -405,6 +405,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/evidence.yaml
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1006,3 +1008,10 @@ events:
   action: approved REM-003 Python support migration
   note: Require Python >=3.13.4 and align workspace metadata, tooling, lock and setup docs; no baseline waiver.
   evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: implemented approved Python support migration after CDR-006 READY
+  note: Python >=3.13.4 metadata and tooling aligned; dependency pins preserved; fresh review pending and aggregate gates unresolved.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-implementation-report.md

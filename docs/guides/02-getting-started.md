@@ -24,7 +24,12 @@ By the end, you'll have a working Friday agent that remembers conversations, lea
 ## Prerequisites
 
 ### System Requirements
-- **Python 3.10 or higher** (3.11+ recommended)
+- **Python 3.13.4 or higher**
+
+Existing environments using an older Python must be recreated with a supported
+interpreter. Use `uv python install 3.13` if needed, then `uv sync --python 3.13`.
+The minimum patch version is 3.13.4.
+
 - **4GB RAM minimum** (16+GB recommended for local LLMs)
 - **macOS, Linux, or Windows** (WSL2 recommended for Windows)
 - **Internet connection** (for cloud LLM providers) or local Ollama instance

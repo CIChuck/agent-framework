@@ -14,7 +14,7 @@ A multi-stage build keeps the final image small by separating the build environm
 
 ```dockerfile
 # Stage 1: Build dependencies
-FROM python:3.11-slim AS builder
+FROM python:3.13.4-slim AS builder
 
 WORKDIR /app
 
@@ -28,7 +28,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen
 
 # Stage 2: Runtime image
-FROM python:3.11-slim
+FROM python:3.13.4-slim
 
 WORKDIR /app
 

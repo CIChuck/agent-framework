@@ -3,7 +3,7 @@ name = "friday-framework-finance"
 version = "0.1.0a2"
 description = "Financial data provider integration for Friday Agent Framework"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 dependencies = [

@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | execute approved Python 3.13.4 minimum migration after fresh readiness review; no waiver approved |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | validate Python 3.13.4 support migration and resolve remaining AC-06 baseline gates; no waiver approved |
 
 ## Completed
 

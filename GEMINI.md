@@ -54,7 +54,7 @@ The project is a monorepo managed by `uv`.
 ## Development & Usage
 
 ### Prerequisites
-*   Python 3.10+
+*   Python 3.13.4+
 *   `uv` (Universal Python Package Manager)
 
 ### Build and Run

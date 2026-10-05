@@ -3,7 +3,7 @@
 #
 # Ref: docs/specs/sandbox_specifications.md - Section 9: Docker Image
 
-FROM python:3.11-slim-bookworm
+FROM python:3.13.4-slim-bookworm
 
 # Labels
 LABEL org.opencontainers.image.title="Friday Sandbox Python"

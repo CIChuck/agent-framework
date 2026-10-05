@@ -761,7 +761,7 @@ class MockSandbox(SandboxProtocol):
 
 ```dockerfile
 # friday-sandbox-python:latest
-FROM python:3.11-slim
+FROM python:3.13.4-slim
 
 # Install common packages
 RUN pip install --no-cache-dir \
@@ -818,7 +818,7 @@ echo "Built friday-sandbox-python:latest"
 name = "friday-sandbox"
 version = "0.1.0"
 description = "Secure code execution sandbox for AI agents"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = { text = "MIT" }
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "sandbox", "docker", "isolation"]

@@ -2484,7 +2484,7 @@ Friday provides a Dockerfile for the sandbox environment:
 
 ```dockerfile
 # Friday Sandbox Image
-FROM python:3.11-slim
+FROM python:3.13.4-slim
 
 # Create non-root user
 RUN groupadd -r sandbox && useradd -r -g sandbox sandbox

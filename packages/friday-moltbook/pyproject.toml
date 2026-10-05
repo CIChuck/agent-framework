@@ -3,7 +3,7 @@ name = "friday-framework-moltbook"
 version = "0.1.0a2"
 description = "Moltbook API client and models"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["moltbook", "api", "client", "agents"]

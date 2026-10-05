@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: execute approved Python 3.13.4 minimum migration after fresh readiness review; no waiver approved
+next_gate: validate Python 3.13.4 support migration and resolve remaining AC-06 baseline gates; no waiver approved
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -87,3 +87,9 @@ and CD-001 A04: require Python >=3.13.4 across the workspace and align tooling,
 lockfile and current setup docs. Prior 3.10 evidence remains historical; the
 new support policy removes that obligation without waiving other AC-06 failures.
 Fresh readiness review precedes implementation, then fresh candidate review.
+
+[CDR-006](validation/CDR-006/report.md) returned READY for A04. The approved
+[REM-003 implementation](execution/REM-003-implementation-report.md) now aligns
+all18 project minimums and tooling/setup with Python >=3.13.4. Frozen dependency
+versions remain unchanged; candidate verification and fresh independent review
+are pending. All other aggregate AC-06 failures remain unresolved.

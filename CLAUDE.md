@@ -102,7 +102,7 @@ friday-cli (Rich terminal interface components)
 
 **Async Throughout:** Tools and LLM calls are async (`async def execute()`).
 
-**Ruff:** Line length 88, Python 3.10+.
+**Ruff:** Line length 88, Python 3.13.4+.
 
 ## Environment Variables
 
