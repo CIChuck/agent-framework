@@ -248,3 +248,13 @@ A03 records the explicit root import mode/helper entry and scoped environment
 permissions. Other root/package execution remains unprivileged; report nonzero
 results honestly alongside the isolated permitted listener rerun.
 Work remains started; validation pending for fresh A03 readiness then execution.
+
+## 2026-10-05 — CDR-004 metadata finding corrected
+
+Fresh CDR-004 returned CHANGES_REQUESTED solely for F01: manifest external-services
+metadata still said none despite explicit approved locked PyPI provisioning.
+The original report and unchanged-state evidence are retained in validation/CDR-004.
+Corrected only that metadata to distinguish the already-approved temporary 3.10
+provisioning exception from credential-free loopback-only tests. No new scope,
+waiver, product or authority-body change is introduced. Freeze a corrected
+authority revision for fresh-context readiness before execution.

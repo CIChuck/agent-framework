@@ -399,6 +399,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/evidence.yaml
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -972,3 +974,10 @@ events:
   action: recorded maintainer approval of REM-002 and A03
   note: All outlined verification setup tasks approved, including three named localhost nodes and locked temporary Python 3.10 dependency downloads. No waiver or product edits. Fresh readiness review pending.
   evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: corrected CDR-004-F01 authority metadata
+  note: Recorded exact already-approved locked PyPI provisioning exception; no new scope, waiver or product edits. Fresh corrected-authority review required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
