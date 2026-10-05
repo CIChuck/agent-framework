@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | independent REM-001 delta and aggregate TELEM-01 review; reconcile unwaived A01 baseline gates |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | review proposed REM-002 verification setup for VAL-002-F01; resolve remaining gates without implicit waiver |
 
 ## Completed
 

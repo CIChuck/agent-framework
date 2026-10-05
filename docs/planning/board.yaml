@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: independent REM-001 delta and aggregate TELEM-01 review; reconcile unwaived A01 baseline gates
+  next_gate: review proposed REM-002 verification setup for VAL-002-F01; resolve remaining gates without implicit waiver
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -397,6 +397,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/evidence.yaml
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -956,3 +958,10 @@ events:
   action: REM-001 candidate prepared after CDR-003 READY
   note: Approved collision remediation has focused and minimum-version static evidence. Root lint/collection and test environment baselines remain unwaived; fresh independent delta/aggregate review pending.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-001-implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-002 CHANGES_REQUESTED
+  note: Independent review supports REM-001 collision fix and AC-01 through AC-05. VAL-002-F01 aggregate gates remain unresolved. REM-002 is proposed; WVR-001 remains unapproved. No source VERIFIED, completion or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md

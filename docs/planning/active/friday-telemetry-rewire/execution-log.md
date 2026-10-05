@@ -192,3 +192,44 @@ Candidate preparation gates: working board passed (25 tasks), documentation
 lifecycle passed (402 Markdown files), whitespace passed, and all 64 preservation
 entries matched. Only named authorized paths enter the commit; the unrelated
 tool-continuity board/dashboard edits remain outside the index.
+
+## 2026-10-05 — VAL-002 review retained; verification proposal prepared
+
+Independent validator `/root/telem01_rem001_validator` reviewed frozen product
+candidate `3a690505c8a82aa2cf8abfb872848e64f084e2b3` against preparation base
+`2155a0f` and REM-001 delta base `98cc9e7`. Verdict: CHANGES_REQUESTED.
+No new product defect was found. AC-01 through AC-05 and collision remediation
+are supported by 135 focused tests and ten new independent probes. Candidate,
+all tracked hashes, clean review status and eleven authority hashes remained
+unchanged. Complete original request/report/evidence and top-level raw artifacts
+are archived in `validation/VAL-002/`; temporary state/cache/database trees are
+excluded from the archive. Original validator artifact hashes were checked.
+
+VAL-002-F01 is the sole high finding: aggregate AC-06 remains unsatisfied.
+Independent candidate/baseline root Ruff both report 337 diagnostics; root
+pytest exits 2 at the same duplicate-module collection failure. Complete Chat
+and telemetry suites have 724/676 passes, the same unchanged 0.8-second PTY
+failure, three sandbox loopback listener setup errors and five skips. Changed
+Ruff, 3.10/3.13 mypy, syntax/API review and current board/docs checks pass.
+Actual 3.10 package smoke lacks pydantic at both revisions and is not a PASS.
+The required legacy OTel fixture uses local console output; no remote exporter
+or real application runtime was activated. Its shutdown output error is retained.
+
+Proposed REM-002 maps VAL-002-F01 to bounded verification setup: explicit root
+import mode/helper source resolution, permission for exactly three synthetic
+loopback fixture nodes, and an isolated locked Python 3.10 environment. Any
+necessary downloads require explicit bounded authorization. It changes no
+product files, test bodies, deadlines, package metadata or existing environment.
+Root lint cleanup or an exact baseline exception remains a separate decision.
+WVR-001 stays proposed: its all-other-gates-pass condition is unmet. No exception,
+acceptance, completion or delivery is inferred from the favorable collision delta.
+
+Work remains started; execution phase remediation; validation state
+changes_requested. Current A01/A02 authority and reviewed product are unchanged.
+Next gate: review the concrete REM-002 proposal before further verification
+authority changes or execution outside the current no-download/no-privilege scope.
+
+Review closeout checks: board passed (25 working tasks), documentation lifecycle
+passed (404 Markdown files), whitespace passed, and all 64 preservation entries
+matched. All eleven authority hashes and reviewed product source/tests remain
+unchanged. Telemetry-only board/dashboard blobs preserve unrelated working edits.
