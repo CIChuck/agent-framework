@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: approve REM-001 for VAL-001-F01; decide WVR-001 and satisfy amended A01 verification before fresh implementation review
-execution_phase: remediation
-validation_state: changes_requested
+next_gate: fresh A02 directive review; implement approved REM-001 and rerun all required checks before considering WVR-001
+execution_phase: validation
+validation_state: pending
 implementation_authority: granted
 ---
 
@@ -43,8 +43,9 @@ CD-001. Later units require separate construction authority.
 
 Independent [VAL-001](validation/VAL-001/report.md) returned `CHANGES_REQUESTED`
 for a provider-replacement span-ID collision. [REM-001](remediation/REM-001-directive.md)
-and the separate [WVR-001 proposal](validation/WVR-001-baseline-pty-timing.md)
-are prepared for maintainer review. No remediation or exception is approved.
+is approved by the maintainer's "i Approve your recommendations. Continue."
+The separate [WVR-001 proposal](validation/WVR-001-baseline-pty-timing.md) remains
+unapproved: fix the collision and rerun first, then consider a waiver if needed.
 
 The maintainer approved the verification-only A01 amendment after the independent
 [directive review](validation/CDR-001/report.md). The approved
@@ -52,3 +53,7 @@ The maintainer approved the verification-only A01 amendment after the independen
 advertised Python 3.10 compatibility evidence. Fresh [CDR-002 directive readiness review](validation/CDR-002/report.md)
 returned `READY` for frozen authority candidate `6013be5`. Existing implementation validation remains unresolved; changing
 controlling authority requires fresh subsequent implementation review.
+
+CD-001 A02 records the approved collision identity amendment. Its fresh readiness
+review precedes bounded REM-001 source generation; subsequent independent product
+review must assess the delta and aggregate TELEM-01 under all A01 checks.

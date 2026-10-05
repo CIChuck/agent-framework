@@ -148,3 +148,21 @@ Review-evidence closeout checks: board passed (25 working tasks), documentation
 lifecycle passed (400 Markdown files), diff whitespace passed, and all 64
 preserved entries matched. Product diff from candidate `0c7b6d4` is empty.
 Only review metadata is added after the frozen authority review.
+
+## 2026-10-05 — REM-001 approved; waiver deferred
+
+Maintainer: "i Approve your recommendations. Continue." This approves the
+recommended collision fix and rerun-first sequence. REM-001 and the necessary
+CD-001 A02/contract identity amendment are approved. WVR-001 remains proposed;
+no timing, typing, broad-gate, or other exception is granted. Published composite
+IDs remain reserved for instance lifetime to prevent stale ends; finished
+provider/payload references are released and cumulative ID retention is disclosed.
+
+Branch is `feature/friday-telemetry-rewire`, HEAD before preparation `f953fc9`;
+product candidate remains `0c7b6d4`. Board validation passes (25 tasks), while
+board `next` still selects queued Memory V2. Maintainer explicitly selected
+telemetry; no other task priority or authority changes. Existing 64-path
+preservation manifest remains controlling. Work stays `started`; execution
+phase: `validation`; validation state: `pending` for fresh A02 readiness review,
+then implementation checks and independent delta/aggregate review. No source
+change occurred before this authority preparation.

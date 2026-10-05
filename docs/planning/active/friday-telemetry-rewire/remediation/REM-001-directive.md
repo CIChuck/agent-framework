@@ -1,12 +1,15 @@
 # REM-001: preserve composite identity across provider replacement
 
-Status: Proposed for maintainer approval; no remediation code is authorized yet.
+Status: Approved by repository maintainer on 2026-10-05.
+Approval evidence: "i Approve your recommendations. Continue." after recommendation
+to fix the collision and rerun before considering the timing waiver.
+WVR-001 remains proposed; no timing exception is approved.
 Date: 2026-10-05. Initiative: `friday-telemetry-rewire`; work unit: `TELEM-01`.
 Finding: `VAL-001-F01` from the fresh-context candidate review.
 Candidate to remediate: `0c7b6d4c416402443d140a5ee09abed70be34c69`.
 Branch: `feature/friday-telemetry-rewire`.
 
-## Problem and authority amendment to approve
+## Problem and approved authority amendment
 
 Two conforming providers can issue the same provider-local span ID. If the first
 provider is replaced while its span is open, `CompositeProvider.start_span`
@@ -15,13 +18,16 @@ provider's span and strands the removed provider's old span. This violates
 CD-001 AC-05 and the approved contract's pinned span ownership requirement.
 
 The current contract's unconditional reuse of the first child's ID cannot
-represent both spans in this case. Approve this bounded identity amendment:
+represent both spans in this case. The maintainer approved this bounded identity amendment:
 retain that ID when it can safely identify one composite span; otherwise issue
 an opaque composite-owned ID and retain the complete per-child mapping. A stale
 end must never close a different, later span. Keep normal first-child-ID
 compatibility and treat child IDs as opaque; do not require provider-generated
-UUIDs or rename child spans. This amendment is proposed, not silently applied
-to the frozen authority.
+UUIDs or rename child spans. This amendment is recorded in the controlling contract and CD-001 A02 before
+source generation. Published IDs must remain reserved for this composite
+instance's lifetime, including completed spans, so stale ends cannot alias a
+new span. Retain only ID strings for this reservation, not completed child
+providers or payloads; document its cumulative memory cost.
 
 ## Exact remediation scope
 
@@ -31,7 +37,7 @@ Product changes are limited to:
 - `packages/friday-telemetry/tests_telemetry/test_providers.py`
 - `packages/friday-telemetry/README.md`
 
-On explicit approval, reconcile the identity paragraph in this initiative's
+Under the recorded approval, reconcile the identity paragraph in this initiative's
 `telemetry-contract.md` and CD-001 and record the amendment in this directive and
 execution log before code generation. Other Chat/telemetry contracts and
 product files remain frozen. Preserve unrelated local state and the dirty

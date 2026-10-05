@@ -8,6 +8,9 @@ Amendment A01 approved at: 2026-10-05.
 Amendment evidence: maintainer's "approved, proceed" after independent directive
 review requested CDR-001 and CDR-002 corrections. Scope: verification authority
 and reporting only; no product contract, remediation, or waiver is approved.
+Amendment A02 approved at: 2026-10-05, with REM-001.
+Amendment evidence: "i Approve your recommendations. Continue." Scope: collision-safe
+composite IDs and corresponding bounded regressions/documentation. No waiver.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
@@ -84,7 +87,11 @@ Use temporary storage and synthetic providers for all tests. Preserve existing
 `.friday`, Chroma, transcript, and local config state. No content-bearing text,
 arbitrary exceptions, or environment values enter diagnostic payloads. Default
 disabled behavior and caller injection are backward compatible. Composite IDs
-keep the first child ID, while downstream children now receive their own IDs.
+keep the first child ID only when never previously published by this instance;
+otherwise use a fresh opaque composite-owned ID. Published IDs stay reserved
+for the instance lifetime to prevent stale-end aliasing. Downstream children
+receive their own IDs. The approved [REM-001](../remediation/REM-001-directive.md)
+binds collision regressions and remediation scope.
 No persisted migration is needed. Add no typing suppressions or global typing
 relaxations; essential invariants use explicit checks, not only assertions.
 

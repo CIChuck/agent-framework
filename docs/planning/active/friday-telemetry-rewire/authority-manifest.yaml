@@ -18,13 +18,15 @@ authority:
 - path: docs/planning/active/friday-telemetry-rewire/build-plan.md
   sha256: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
 - path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
-  sha256: ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df
+  sha256: ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17
 - path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
   sha256: d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc
 - path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
-  sha256: e295302272d8519a8f4f5040e372fbea412c3b317efe7c2a873260eafe4d70e9
+  sha256: e332e54dfde73bc0ba334c8932832190a802d4418cb62fdfe6a1c1824efba3e6
 - path: docs/planning/active/friday-telemetry-rewire/verification-profile.md
   sha256: c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2
+- path: docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md
+  sha256: 0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d
 acceptance_criteria:
 - AC-01
 - AC-02
@@ -34,5 +36,5 @@ acceptance_criteria:
 - AC-06
 external_services: none; deterministic synthetic loopback fixtures only after safety
   preflight; no vendor credentials, live models or real runtime data
-authority_amendment: CD-001 A01; approved verification-only corrections CDR-001 and
-  CDR-002
+authority_amendment: CD-001 A01 verification and A02/REM-001 collision identity; timing
+  waiver unapproved

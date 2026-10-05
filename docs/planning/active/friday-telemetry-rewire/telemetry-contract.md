@@ -58,7 +58,11 @@ correlation are subsequent work.
 Fix `CompositeProvider` to retain the child span ID returned by each provider,
 translate a composite parent into each child's parent ID, and end the
 corresponding child span exactly once. Keep the first provider's span ID as the
-public composite ID for existing callers. An empty composite still returns a
+public composite ID when it has never been published by this composite
+instance. Otherwise return a fresh opaque composite-owned ID and preserve every
+child mapping. Reserve published IDs for the instance lifetime, even after end,
+so a stale end cannot close a later span. This collision amendment is approved
+with REM-001/CD-001 A02 on 2026-10-05. An empty composite still returns a
 nonempty ID and safely ends it.
 
 Pin span ownership at start: removing a provider must not strand its open span;

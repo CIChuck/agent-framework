@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | approve REM-001 for VAL-001-F01; decide WVR-001 and satisfy amended A01 verification before fresh implementation review |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | fresh A02 directive review; implement approved REM-001 and rerun all required checks before considering WVR-001 |
 
 ## Completed
 
