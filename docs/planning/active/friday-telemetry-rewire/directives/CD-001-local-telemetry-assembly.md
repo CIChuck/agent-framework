@@ -4,6 +4,10 @@ Status: Approved construction directive.
 Approved by: repository maintainer.
 Approved at: 2026-10-05.
 Approval evidence: explicit "proceed" in response to CD-001 approval request.
+Amendment A01 approved at: 2026-10-05.
+Amendment evidence: maintainer's "approved, proceed" after independent directive
+review requested CDR-001 and CDR-002 corrections. Scope: verification authority
+and reporting only; no product contract, remediation, or waiver is approved.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
@@ -92,24 +96,39 @@ Run required commands with `UV_CACHE_DIR=/private/tmp/friday-uv-cache` and
 ```text
 uv run pytest packages/friday-chat/tests_chat/test_telemetry.py packages/friday-chat/tests_chat/test_cli.py packages/friday-chat/tests_chat/test_runtime.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-telemetry/tests_telemetry/test_providers.py
 uv run pytest packages/friday-chat/tests_chat packages/friday-telemetry/tests_telemetry
+uv run ruff check .
+uv run pytest --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py --ignore=packages/friday-llm/tests_llm/test_live_lmstudio.py
 uv run ruff check <exact changed Python files>
+uv run mypy --python-version 3.10 <exact changed source files>
 uv run mypy --python-version 3.13 <exact changed source files>
 uv run python scripts/friday-dev-board.py validate
 uv run python scripts/check-documentation-lifecycle.py
 git diff --check
 ```
 
+The mandatory [verification profile](../verification-profile.md) binds the exact
+changed-file lists, Python 3.10 syntax/API evidence, broad-test safety preflight,
+two live-module safety exclusions, baseline handling, and report fields.
+Repository-wide Ruff and deterministic root pytest are required alongside
+focused/package checks, regardless of observed coupling. The safety exclusions
+implement the existing prohibition on live services; they waive no deterministic
+test or failing requirement. If preflight identifies another unsafe test, stop
+that execution and obtain a precise authority decision; do not invent exclusions
+or substitute package suites for the root gate.
+
 Include positive, negative, integration, privacy, cancellation, and regression
 coverage mapped to each tactical criterion. Record baseline failures separately;
-do not silence them or claim checks not run. Run broader tests if evidence
-shows coupling beyond these packages. Record baseline command results before
-implementation and preserve the local path manifest in the execution log.
+do not silence them or claim checks not run. Record baseline command results
+before implementation and preserve the local path manifest in the execution log.
+For A01's newly required checks, use the original preparation base and unchanged
+product candidate; label this as retrospective evidence, not a pre-build run.
 
 Document local configuration, inspection, injection ownership, privacy, and
 deferred telemetry coverage. Produce an implementation report with exact paths,
 behavior, commands/results, criteria mapping, exclusions, and residual risks.
 Commit only authorized files to create a stable candidate. Freeze base/candidate,
-exact diff, SHA-256 authority manifest, known baselines, and required commands
+exact diff, SHA-256 authority manifest (including the verification profile),
+known baselines, and every required command and exclusion
 in a validation request. A fresh-context, read-only validator must review that
 candidate, returning `VERIFIED`, `CHANGES_REQUESTED`, or `BLOCKED` with evidence.
 The builder may not self-verify, accept the work, or apply unapproved remediation.

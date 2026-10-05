@@ -20,9 +20,11 @@ authority:
 - path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
   sha256: ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df
 - path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
-  sha256: 125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae
+  sha256: d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc
 - path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
-  sha256: 513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba
+  sha256: e295302272d8519a8f4f5040e372fbea412c3b317efe7c2a873260eafe4d70e9
+- path: docs/planning/active/friday-telemetry-rewire/verification-profile.md
+  sha256: c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2
 acceptance_criteria:
 - AC-01
 - AC-02
@@ -30,5 +32,7 @@ acceptance_criteria:
 - AC-04
 - AC-05
 - AC-06
-external_services: none; deterministic synthetic localhost fixtures only; no vendor
-  credentials or real runtime data
+external_services: none; deterministic synthetic loopback fixtures only after safety
+  preflight; no vendor credentials, live models or real runtime data
+authority_amendment: CD-001 A01; approved verification-only corrections CDR-001 and
+  CDR-002

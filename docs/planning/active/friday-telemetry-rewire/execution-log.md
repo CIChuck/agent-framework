@@ -90,3 +90,41 @@ Proposed REM-001 reconciles the public-ID collision contract and regression
 coverage; proposed WVR-001 covers only the unchanged timing test, conditionally
 on fresh remediation validation. Neither proposal is authorized yet. No source
 was changed after freeze; no completion, acceptance, or delivery is claimed.
+
+## 2026-10-05 — CD-001 A01 verification amendment approved
+
+The maintainer directed "approved, proceed" after the independent construction
+review returned CDR-001 and CDR-002 (both medium). Approval is recorded for
+verification-profile and reporting corrections only. No product code or tests,
+package metadata, behavior contract, REM-001, or WVR-001 is changed or approved.
+The original directive review is retained in `validation/CDR-001/`, including
+its complete original hash/state evidence bundle.
+
+Documentation-only exemption: authorized by repository maintainer on 2026-10-05
+through the quoted instruction; exact scope is CD-001, tactical AC-06 mapping,
+verification profile, authority manifest, this log/index, directive review
+artifacts/requests, and telemetry-only board/dashboard metadata. The reason is
+to correct verification authority; runtime behavior cannot change. Appropriate
+checks are board validation, documentation lifecycle, diff whitespace, exact
+preservation hashes, and a fresh independent directive-readiness review.
+
+A01 adds required repository Ruff and deterministic root pytest, with only the
+two named live-model modules excluded under the existing no-live boundary.
+It requires a frozen safety preflight before collection, stops for additional
+unsafe paths, and never treats package suites or baseline failures as waivers.
+Minimum-version evidence includes Python 3.10 mypy, syntax parsing, and explicit
+stdlib/dependency API review alongside retained 3.13 typing. Future added checks
+must compare preparation base and product candidate as retrospective evidence.
+Old implementation reports and VAL-001 requests/results remain historical;
+new authority requires fresh subsequent implementation validation.
+
+Work state remains `started`; execution phase: `validation`; validation state:
+`pending` for directive readiness, while implementation still has unresolved
+VAL-001 findings. Next gate: fresh CD-001 A01 readiness review, then return to
+separate REM-001 and WVR-001 decisions. Advisory contract clarifications are
+retained in the review and deferred, without changing product authority.
+
+A01 pre-freeze checks: board passed (25 working tasks), documentation lifecycle
+passed (399 Markdown files), diff whitespace passed, and all 64 unrelated
+preservation hashes matched. Product source/tests are unchanged. These are
+documentation-amendment checks; newly required product gates remain unrun.

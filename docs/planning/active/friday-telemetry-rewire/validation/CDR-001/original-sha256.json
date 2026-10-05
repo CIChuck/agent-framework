@@ -1,0 +1,19 @@
+{
+  "evidence.yaml": "a3a073eb3a91b1c591d39234394729d31f501894e2541e773f98c1d8e5463ffc",
+  "hash-after.json": "07cfaa1a69a8c6b1b690adaed2f44e2bfd58b62c386d107d491afdd1c0f0ac48",
+  "hash-before.json": "07cfaa1a69a8c6b1b690adaed2f44e2bfd58b62c386d107d491afdd1c0f0ac48",
+  "input-hashes.json": "65bfa1a62567dca3366bc07e3ae5a4aec982eff6a6cc2443f10b3b943df46564",
+  "preparation-base/packages/friday-chat/pyproject.toml": "ef15278e1359d9ca4e8da2862e07f4e8191b5f0da673276990a25ca4f124f1cd",
+  "preparation-base/packages/friday-telemetry/pyproject.toml": "95805efd3a67b701cb9f8788bf9292b1aca33be89eb245af818e99576e38be14",
+  "preparation-base/packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py": "50bc3cefd7434eec706718e4baa1f168164f434f524bc52f48a9607eaf0f6c42",
+  "preparation-base/packages/friday-telemetry/src/friday_telemetry/interface.py": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61",
+  "preparation-base/packages/friday-telemetry/src/friday_telemetry/models/mcp.py": "53f7a172f6a5ec7ed31f72a4fe260e2e4e97c932151a43958b8a4dc6e7641fda",
+  "preparation-base/packages/friday-telemetry/src/friday_telemetry/providers/composite.py": "5204bd1f69a7eb7e8a09294c4dd410909a7955093d3a28fa00c2c6ab3b54a516",
+  "preparation-base/packages/friday-telemetry/src/friday_telemetry/providers/debug.py": "3b8921c89eb99292fd89808ebbfcf77e011d65b24cf3245e867bbdc5018145bb",
+  "preparation-base/pyproject.toml": "88ead16b337b27120d39fab9f2e932930d77864b9a4258cef09b36d476d52dd1",
+  "report.md": "c86be1e0ab96318d47db5454f5ce96bb56fb4826523067133dd7387c9ca02e0d",
+  "repository-state-after.json": "fdb66c86f344f2e94dffff0f64c62835e59328a013a6cd7e6d13af475bcefc73",
+  "repository-state-before.json": "fdb66c86f344f2e94dffff0f64c62835e59328a013a6cd7e6d13af475bcefc73",
+  "supplemental-hash-after.json": "103d5bfddf0a43f2ed3b66fa7a745a39e634911b418c9b4c56e01bc0f9bd74cb",
+  "supplemental-input-hashes.json": "67add90b40897a7897c0d894e458a32abc056f94725d658c6f8bd3a714aeced1"
+}

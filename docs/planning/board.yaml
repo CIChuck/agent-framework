@@ -384,13 +384,15 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: approve REM-001 for VAL-001-F01 and decide WVR-001 baseline timing exception
+  next_gate: independent CD-001 A01 readiness review; then separate REM-001 and WVR-001 decisions
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
   validation:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -922,3 +924,10 @@ events:
   action: recorded VAL-001 CHANGES_REQUESTED
   note: Fresh read-only review found VAL-001-F01 provider-local span-ID collision; baseline PTY timing also requires passing evidence or maintainer exception. REM-001 and WVR-001 are proposed; no remediation, completion or acceptance is authorized.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer-approved CD-001 A01
+  note: Maintainer approved CDR-001/CDR-002 verification-only corrections. Fresh directive review is pending; REM-001 and WVR-001 remain proposed and implementation findings remain unresolved.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
