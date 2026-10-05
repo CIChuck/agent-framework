@@ -282,3 +282,34 @@ independent execution-delta/aggregate review are next. Work remains started.
 Execution evidence freeze checks: board25 tasks, docs407 Markdown files and
 whitespace pass; all12 authority pins and64 preservation entries match.
 Product/metadata/lock diff from3a69050 is empty. Exact metadata paths only.
+
+## 2026-10-05 — VAL-003 CHANGES_REQUESTED; approved REM-002 actions closed
+
+Fresh validator reviewed evidence candidate faa2dc0 and complete TELEM-01 source
+against2155a0f. Sole high finding VAL-003-F01: aggregate mandatory gates remain
+unwaived. Root collection now succeeds2727/2679; root2699/2651 passes retain
+identical16 failures/11 listener errors/one skip. Root lint has identical337
+diagnostics. Focused135/87, changed lint/typing/syntax/API and exact three permitted
+localhost nodes pass. Nine independent probes pass with original reviewer
+arithmetic error/correction retained. Composite genuine3.10 lifecycle passes;
+Chat imports fail identically through locked LiteLLM typing.NotRequired.
+Installed127 versions/artifact origins/RECORD hashes checked independently.
+
+All12 authority hashes, manifest,2099 candidate/2001 fresh baseline tracked files,
+HEADs/status unchanged. Operational addendum clarifies existing synthetic ignored
+test-artifact writes only in isolated temporary checkouts; path/hash manifests are
+retained. Fresh baseline preserves earlier builder outputs. No source/test/config,
+dependency/lock/shared environment, original state or vendor effect is introduced.
+Complete original review and raw artifacts are archived in validation/VAL-003.
+
+All approved REM-002 setup/rerun/review tasks are performed. Further dependency,
+baseline repair/exception or permission scope requires a separately bounded
+directive; current authority grants no waiver or such product edits. The initiative
+remains started/local, execution phase remediation, validation changes_requested.
+No implementation VERIFIED, task completion or acceptance. See REM-002 closeout.
+
+Review closeout checks: board25 tasks, docs410 Markdown files and whitespace
+pass; all12 authority pins,64 preservation entries and195 shared environment
+version/RECORD hashes match. Reviewed product/lock unchanged. Report source links
+are adapted in an explicitly labeled reader copy; exact original bytes remain
+in gzip/full archive with separate hashes. Telemetry-only metadata paths staged.

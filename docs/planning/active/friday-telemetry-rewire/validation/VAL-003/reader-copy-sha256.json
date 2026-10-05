@@ -1,0 +1,7 @@
+{
+  "note": "original-sha256.json names the exact original artifacts inside original-review-artifacts.tar.gz; report.md is an explicitly labeled hyperlink-adapted reader copy",
+  "original_report_sha256": "9b12286237b36d455840be9a188b2a83f4f7230d3ad7993e6f1dc8090b4d18a3",
+  "reader_copy_sha256": "e3e8e4708f9b0b2cbefe7afa302926109f09e88c1bd9c92808ab3d76c0218f92",
+  "original_report_gzip_sha256": "85e001df217a52100d913750012f450a023b5465959d63d1a2df1f7f22220652",
+  "preflight_sha256": "681021673c011a7b883e2dc4239a4fbf5bc6d8060ce41b8569321b4a51d5d3d7"
+}

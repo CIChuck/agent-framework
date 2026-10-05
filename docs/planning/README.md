@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | fresh REM-002 execution and aggregate TELEM-01 review; reconcile unwaived baseline and frozen 3.10 dependency gates |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | scope remaining AC-06 baseline and frozen 3.10 dependency remediation; no waiver approved |
 
 ## Completed
 

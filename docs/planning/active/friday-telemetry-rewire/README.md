@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: fresh REM-002 execution and aggregate TELEM-01 review; reconcile unwaived baseline and frozen 3.10 dependency gates
-execution_phase: validation
-validation_state: pending
+next_gate: scope remaining AC-06 baseline and frozen 3.10 dependency remediation; no waiver approved
+execution_phase: remediation
+validation_state: changes_requested
 implementation_authority: granted
 ---
 
@@ -76,4 +76,8 @@ Approved REM-002 setup/reruns are recorded in the
 is complete, three permitted localhost tests pass, and all broad failures match
 baseline. The frozen3.10 dependency set installs but genuine imports fail on
 LiteLLM typing.NotRequired, identically at base/candidate. No dependency change,
-waiver or runtime3.10 PASS is claimed. Fresh independent review is pending.
+waiver or runtime3.10 PASS is claimed. Fresh independent [VAL-003](validation/VAL-003/report.md) returned
+CHANGES_REQUESTED for sole finding VAL-003-F01. The
+[REM-002 execution closeout](execution/REM-002-closeout.md) records completed
+actions, standalone Composite3.10 PASS and unresolved aggregate gates.
+No task completion, acceptance or waiver is claimed.
