@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: fresh-context independent validation of the TELEM-01 frozen candidate
-execution_phase: validation
-validation_state: pending
+next_gate: approve REM-001 for VAL-001-F01 and decide WVR-001 baseline timing exception
+execution_phase: remediation
+validation_state: changes_requested
 implementation_authority: granted
 ---
 
@@ -40,3 +40,8 @@ work units. Existing `.friday` data is outside every first-slice operation.
 
 The board records execution as `started` on the named branch under approved
 CD-001. Later units require separate construction authority.
+
+Independent [VAL-001](validation/VAL-001/report.md) returned `CHANGES_REQUESTED`
+for a provider-replacement span-ID collision. [REM-001](remediation/REM-001-directive.md)
+and the separate [WVR-001 proposal](validation/WVR-001-baseline-pty-timing.md)
+are prepared for maintainer review. No remediation or exception is approved.

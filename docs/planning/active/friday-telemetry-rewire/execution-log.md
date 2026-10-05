@@ -73,3 +73,20 @@ manifest prepared before candidate freeze.
 
 Raw package/baseline logs are stored as lossless gzip artifacts to retain
 pytest output without staging its trailing-whitespace formatting.
+
+## 2026-10-05 — VAL-001 CHANGES_REQUESTED
+
+Frozen candidate: `0c7b6d4c416402443d140a5ee09abed70be34c69`. Fresh independent
+review found VAL-001-F01: medium mandatory AC-05 ownership collision when
+a replacement provider reuses a local span ID. AC-01 through AC-04 passed.
+AC-06 still has an independently reproduced baseline PTY startup timing gate;
+no waiver was inferred. Independent checks: 129 focused tests, 13 probes,
+Ruff/mypy, board/docs, and 3 permitted loopback fixtures pass; collision probe
+fails. Candidate/authority and all 2,015 tracked review files were unchanged.
+
+Complete report and archival evidence: `validation/VAL-001/`. Work remains
+`started`; execution phase: `remediation`; validation state: `changes_requested`.
+Proposed REM-001 reconciles the public-ID collision contract and regression
+coverage; proposed WVR-001 covers only the unchanged timing test, conditionally
+on fresh remediation validation. Neither proposal is authorized yet. No source
+was changed after freeze; no completion, acceptance, or delivery is claimed.

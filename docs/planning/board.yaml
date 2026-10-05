@@ -384,11 +384,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh-context independent validation of the TELEM-01 frozen candidate
+  next_gate: approve REM-001 for VAL-001-F01 and decide WVR-001 baseline timing exception
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
-  validation: []
+  validation:
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/evidence.yaml
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -913,3 +915,10 @@ events:
   action: TELEM-01 implementation checks recorded; candidate preparation
   note: Focused regression checks and affected typing/lint pass. Full package run reproduces pre-existing terminal failures and sandbox loopback errors. Independent validation remains pending.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-001 CHANGES_REQUESTED
+  note: Fresh read-only review found VAL-001-F01 provider-local span-ID collision; baseline PTY timing also requires passing evidence or maintainer exception. REM-001 and WVR-001 are proposed; no remediation, completion or acceptance is authorized.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md

@@ -1,0 +1,474 @@
+validation_id: VAL-001
+outcome: CHANGES_REQUESTED
+date: '2026-10-05T13:34:26.966482+00:00'
+reviewer:
+  identity: Codex independent validator /root/telem01_validator
+  model: GPT-6 family per session instructions; exact runtime model/build/version
+    unavailable
+  mode: fresh-context read-only full work-unit review
+  fresh_context: true
+  builder_conclusions_relied_upon: false
+  shared_context_exceptions:
+  - Controller-provided request includes baseline claims, independently checked against
+    an exact base archive. Shared original .venv used only as execution environment;
+    isolated source directories take precedence. Historical memory was consulted only
+    for orientation and supplies no acceptance or candidate evidence.
+initiative: friday-telemetry-rewire
+work_unit: TELEM-01
+directive: CD-001
+base: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735
+candidate: 0c7b6d4c416402443d140a5ee09abed70be34c69
+diff_range: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735..0c7b6d4c416402443d140a5ee09abed70be34c69
+diff_sha256: 9042b3ae413dfd430851ad4c207e6ea60d7877bc61dac4b5fdcb58017450b313
+authority:
+- path: AGENTS.md
+  sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  actual: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  match: true
+  revision: 0c8095f5132c9cc47573f27481dea59a7cc70c6c
+- path: docs/reference/policies/repository-engineering-policy.md
+  sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  actual: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+  match: true
+  revision: 0c8095f5132c9cc47573f27481dea59a7cc70c6c
+- path: docs/reference/policies/development-task-lifecycle.md
+  sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  actual: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+  match: true
+  revision: 0c8095f5132c9cc47573f27481dea59a7cc70c6c
+- path: docs/reference/policies/independent-validation-policy.md
+  sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  actual: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+  match: true
+  revision: 12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07
+- path: docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md
+  sha256: 4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f
+  actual: 4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f
+  match: true
+  revision: d50788d730e8c3e2c30b01af9b4fa6e2c5146cda
+- path: docs/planning/active/friday-telemetry-rewire/build-plan.md
+  sha256: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
+  actual: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
+  match: true
+  revision: 0c7b6d4c416402443d140a5ee09abed70be34c69
+- path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
+  sha256: ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df
+  actual: ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df
+  match: true
+  revision: 0c7b6d4c416402443d140a5ee09abed70be34c69
+- path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
+  sha256: 125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae
+  actual: 125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae
+  match: true
+  revision: 0c7b6d4c416402443d140a5ee09abed70be34c69
+- path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+  sha256: 513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba
+  actual: 513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba
+  match: true
+  revision: 0c7b6d4c416402443d140a5ee09abed70be34c69
+authority_manifest_sha256: 31e02a055acf184c94e637b93b5441ab0495d480a6a9c9929924c15fe41c6f63
+request_sha256: b3abe225268519d75fda00e03f9ff0bc9a2c7b4fbfb88e67156682d89f3f70f3
+environment:
+  python: 3.13.10
+  pytest: 9.0.2
+  UV_PROJECT_ENVIRONMENT: /Users/chuckrussell/Dev/gendev/agent-framework/.venv
+  UV_CACHE_DIR: /private/tmp/friday-uv-cache
+  LITELLM_LOCAL_MODEL_COST_MAP: 'true'
+  PYTHONPATH: All sorted isolated packages/*/src; no original source path appended
+  pytest_cache: Disabled by -p no:cacheprovider
+  pycache_and_lint_type_caches: Outside candidate under VAL-001
+  uv: Outer calls --no-sync; nested docs follow-up UV_NO_SYNC=true/UV_OFFLINE=true
+  credentials: Key/token/secret/password/Langfuse/OTel-exporter environment variables
+    removed by runner; no secret values printed or saved
+  terminal_default: TERM=dumb; NO_COLOR=1
+  terminal_control: TERM=xterm-256color; NO_COLOR removed
+commands:
+- name: focused
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat/test_telemetry.py
+  - packages/friday-chat/tests_chat/test_cli.py
+  - packages/friday-chat/tests_chat/test_runtime.py
+  - packages/friday-chat/tests_chat/test_app_lifecycle.py
+  - packages/friday-chat/tests_chat/compat/test_config_compatibility.py
+  - packages/friday-telemetry/tests_telemetry/test_providers.py
+  exit_code: 0
+  result: 129 passed; exit 0
+  log: focused.log
+- name: aggregate
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat
+  - packages/friday-telemetry/tests_telemetry
+  exit_code: 1
+  result: 716 passed, 5 skipped, 3 failures, 3 setup errors; exit 1
+  log: aggregate.log
+- name: baseline
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat
+  - packages/friday-telemetry/tests_telemetry
+  exit_code: 1
+  cwd: /private/tmp/telem-01/VAL-001/base
+  TERM: dumb
+  NO_COLOR_present: true
+  result: 674 passed, 5 skipped, same 3 failures and 3 setup errors; exit 1
+  log: baseline.log
+- name: controlled
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat
+  - packages/friday-telemetry/tests_telemetry
+  exit_code: 1
+  cwd: /private/tmp/telem-01/review
+  TERM: xterm-256color
+  NO_COLOR_present: false
+  result: 718 passed, 5 skipped, 1 timing failure, 3 setup errors; exit 1
+  log: controlled.log
+- name: loopback
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json
+  - packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults
+  - packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http
+  exit_code: 0
+  cwd: /private/tmp/telem-01/review
+  TERM: dumb
+  NO_COLOR_present: true
+  result: 3 passed using narrow loopback escalation; exit 0
+  log: loopback.log
+- command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - packages/friday-chat/tests_chat/test_reorganization_terminal.py::test_provider_free_pty_acknowledges_before_bounded_progress_completes
+  exit_code: 1
+  TERM: xterm-256color
+  NO_COLOR_present: false
+  result: Unchanged warmed isolated timing test still fails; exit 1
+  name: pty-isolated
+  log: pty-isolated.log
+- name: independent
+  command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - --basetemp=/private/tmp/telem-01/VAL-001/independent-temp
+  - -k
+  - not membership_replacement
+  - /private/tmp/telem-01/VAL-001/test_independent.py
+  exit_code: 0
+  result: 13 independent probes passed; exit 0; collision probe executed separately
+  log: independent.log
+- command:
+  - uv
+  - run
+  - --no-sync
+  - pytest
+  - -p
+  - no:cacheprovider
+  - /private/tmp/telem-01/VAL-001/test_independent.py::test_membership_replacement_cannot_overwrite_preexisting_child_ownership
+  exit_code: 1
+  result: 1 independent ownership probe failed; exit 1
+  name: membership-collision
+  log: membership-collision.log
+- name: ruff
+  command:
+  - uv
+  - run
+  - --no-sync
+  - ruff
+  - check
+  - packages/friday-chat/src/friday_chat/app.py
+  - packages/friday-chat/src/friday_chat/cli.py
+  - packages/friday-chat/src/friday_chat/config.py
+  - packages/friday-chat/src/friday_chat/runtime.py
+  - packages/friday-chat/src/friday_chat/telemetry.py
+  - packages/friday-chat/tests_chat/compat/test_config_compatibility.py
+  - packages/friday-chat/tests_chat/test_cli.py
+  - packages/friday-chat/tests_chat/test_telemetry.py
+  - packages/friday-telemetry/src/friday_telemetry/providers/composite.py
+  - packages/friday-telemetry/tests_telemetry/test_providers.py
+  exit_code: 0
+  result: All 10 changed Python files pass; exit 0
+  log: ruff.log
+- name: mypy
+  command:
+  - uv
+  - run
+  - --no-sync
+  - mypy
+  - --python-version
+  - '3.13'
+  - packages/friday-chat/src/friday_chat/app.py
+  - packages/friday-chat/src/friday_chat/cli.py
+  - packages/friday-chat/src/friday_chat/config.py
+  - packages/friday-chat/src/friday_chat/runtime.py
+  - packages/friday-chat/src/friday_chat/telemetry.py
+  - packages/friday-telemetry/src/friday_telemetry/providers/composite.py
+  exit_code: 0
+  result: All 6 changed source files pass; exit 0
+  log: mypy.log
+- name: board
+  command:
+  - uv
+  - run
+  - --no-sync
+  - python
+  - scripts/friday-dev-board.py
+  - validate
+  exit_code: 0
+  result: 24 tasks valid; exit 0
+  log: board.log
+- name: docs
+  command:
+  - uv
+  - run
+  - --no-sync
+  - python
+  - scripts/check-documentation-lifecycle.py
+  exit_code: 0
+  result: 391 Markdown files valid with UV_NO_SYNC=true and UV_OFFLINE=true; exit
+    0
+  log: docs.log
+- name: diff-check
+  command:
+  - git
+  - diff
+  - --check
+  - 2155a0fc51f5b20dea4e35c6cfc70f1d52002735..0c7b6d4c416402443d140a5ee09abed70be34c69
+  exit_code: 0
+  result: Exact base..candidate passes; exit 0
+  log: diff-check.log
+- name: origins
+  command:
+  - uv
+  - run
+  - --no-sync
+  - python
+  - -c
+  - import friday_chat,friday_telemetry,friday_mcp,friday_runtime; print("\n".join(x.__file__
+    for x in [friday_chat,friday_telemetry,friday_mcp,friday_runtime]))
+  exit_code: 0
+  result: Chat, Telemetry, MCP and Runtime modules resolve isolated source roots;
+    exit 0
+  log: origins.log
+initial_docs_check:
+  command:
+  - uv
+  - run
+  - --no-sync
+  - python
+  - scripts/check-documentation-lifecycle.py
+  exit_code: 1
+  result: Nested uv run attempted build-system resolution (hatchling) and failed DNS
+    before synchronization; no reviewed files changed. Follow-up nested no-sync/offline
+    control passes.
+acceptance_criteria:
+- id: AC-01
+  status: PASS
+  source:
+  - packages/friday-chat/src/friday_chat/config.py:591-603
+  - packages/friday-chat/src/friday_chat/config.py:913-925
+  tests:
+  - packages/friday-chat/tests_chat/test_telemetry.py:46-95
+  - packages/friday-chat/tests_chat/compat/test_config_compatibility.py
+  - test_independent.py:28-33
+  evidence:
+  - focused.log
+  - independent.log
+  assessment: Strict default-disabled debug-only configuration, safe loader errors
+    and old compatibility fixtures pass.
+- id: AC-02
+  status: PASS
+  source:
+  - packages/friday-chat/src/friday_chat/runtime.py:1218-1242
+  - packages/friday-chat/src/friday_chat/runtime.py:1317-1322
+  - packages/friday-chat/src/friday_chat/cli.py:114-123
+  - packages/friday-chat/src/friday_chat/telemetry.py:78-117
+  tests:
+  - packages/friday-chat/tests_chat/test_telemetry.py:46-57
+  - packages/friday-chat/tests_chat/test_telemetry.py:200-240
+  - packages/friday-chat/tests_chat/test_cli.py:255-269
+  - test_independent.py:19-26
+  evidence:
+  - focused.log
+  - independent.log
+  - origins.log
+  assessment: Fake and stubbed-real assembly create observer before construction;
+    injected override works with disabled YAML; CLI uses shared path. No live providers
+    required.
+- id: AC-03
+  status: PASS
+  source:
+  - packages/friday-chat/src/friday_chat/app.py:405-458
+  - packages/friday-chat/src/friday_chat/app.py:536-550
+  - packages/friday-chat/src/friday_chat/app.py:625-644
+  - packages/friday-chat/src/friday_chat/telemetry.py:93-117
+  - packages/friday-chat/src/friday_chat/telemetry.py:166-180
+  tests:
+  - packages/friday-chat/tests_chat/test_telemetry.py:98-115
+  - packages/friday-chat/tests_chat/test_telemetry.py:244-385
+  - test_independent.py:49-80
+  evidence:
+  - focused.log
+  - independent.log
+  assessment: Truthful assembly/app lifecycle, existing cleanup ordering, cancellation
+    plus cleanup failure, bounded immutable snapshots and cumulative counts pass.
+- id: AC-04
+  status: PASS
+  source:
+  - packages/friday-chat/src/friday_chat/telemetry.py:27-45
+  - packages/friday-chat/src/friday_chat/telemetry.py:137-180
+  - packages/friday-chat/src/friday_chat/telemetry.py:182-215
+  - packages/friday-telemetry/src/friday_telemetry/models/mcp.py:86-106
+  tests:
+  - packages/friday-chat/tests_chat/test_telemetry.py:118-197
+  - test_independent.py:19-46
+  - test_independent.py:49-80
+  evidence:
+  - focused.log
+  - independent.log
+  assessment: All 15 existing MCP event names preserve allowlisted payloads; 135 content-field
+    attempts rejected. No planted content appears in safe diagnostics/healthy sink.
+    Mixed mutating/failing composite sink isolation passes.
+- id: AC-05
+  status: FAIL
+  source:
+  - packages/friday-telemetry/src/friday_telemetry/providers/composite.py:53-88
+  tests:
+  - packages/friday-telemetry/tests_telemetry/test_providers.py:208-318
+  - packages/friday-chat/tests_chat/test_telemetry.py:168-186
+  - test_independent.py:82-110
+  evidence:
+  - focused.log
+  - independent.log
+  - membership-collision.log
+  assessment: Ordinary nested IDs, empty/duplicate ends, membership changes with globally
+    random IDs, mutation and failure fan-out pass. Provider-local public-ID collision
+    after membership replacement overwrites old ownership and strands removed child;
+    VAL-001-F01.
+- id: AC-06
+  status: BLOCKED
+  source:
+  - docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:87-115
+  - docs/reference/policies/independent-validation-policy.md:187-200
+  tests:
+  - packages/friday-chat/tests_chat/test_reorganization_terminal.py:91-113
+  evidence:
+  - aggregate.log
+  - baseline.log
+  - controlled.log
+  - loopback.log
+  - pty-isolated.log
+  - ruff.log
+  - mypy.log
+  - board.log
+  - docs.log
+  - diff-check.log
+  - stability.json
+  assessment: Focused/static/governance/documentation gates pass; aggregate remains
+    nonzero on a independently reproduced baseline timing test. No approved waiver
+    exists. Regression evidence separated from infrastructure, but required all-green/waived
+    gate is unsatisfied.
+findings:
+- id: VAL-001-F01
+  severity: medium
+  priority: 1
+  criterion: AC-05
+  files:
+  - packages/friday-telemetry/src/friday_telemetry/providers/composite.py:76-77
+  - packages/friday-telemetry/src/friday_telemetry/providers/composite.py:80-84
+  authority:
+  - docs/planning/active/friday-telemetry-rewire/telemetry-contract.md:58-72
+  - docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md:67-69
+  requirement: Pin child ownership at start; removing a provider must not strand its
+    open span; end each corresponding child exactly once.
+  observed: A different provider can validly reuse the same provider-local ID. On
+    replacement of the first provider, unconditional _spans[span_id] assignment overwrites
+    the old ownership tuple. end_span closes only the new child, while the removed
+    old provider receives no end.
+  evidence:
+  - test_independent.py:94-110
+  - membership-collision.log
+  risk: Incorrect span attribution and permanent loss of cleanup for an existing child
+    span under supported dynamic membership/custom injection.
+  required_mitigation: 'Do not overwrite a live public-ID ownership entry. Preserve
+    first-child public-ID compatibility: detect collision, safely close all children
+    newly opened by that attempted start and report a content-free aggregate failure,
+    leaving prior ownership untouched; or obtain an explicitly approved contract adjustment
+    with equivalent safe behavior.'
+  required_regression: Two independent conforming providers whose IDs are unique within
+    each provider but share a local namespace; replace first provider while a span
+    is open, attempt colliding start, verify new children cleaned once, old child
+    remains tracked and ends once, no arbitrary exception contents escape. Also retain
+    normal parent/membership and failure rollback coverage.
+  documentation_config_impact: No new config required. Document the collision/failure
+    behavior in telemetry README and reconcile with approved public-ID contract if
+    behavior is amended.
+limitations:
+- id: VAL-001-L01
+  kind: baseline/infrastructure
+  criterion: AC-06
+  description: Required aggregate timing test fails both exact base and candidate.
+    TERM=dumb/NO_COLOR also breaks two PTY clear tests; terminal control resolves
+    those two, and narrow 127.0.0.1 escalation resolves all 3 listener fixtures. The
+    unchanged 0.8-second PTY acknowledgment check still fails warmed and isolated.
+  exit_gate: Obtain a passing unchanged timing test/required aggregate in an adequate
+    authorized environment, or maintainer-recorded narrowly scoped baseline exception
+    under independent-validation policy. Do not infer waiver from baseline listing;
+    changed authority/candidate requires fresh review.
+scope:
+  changed_paths_artifact: candidate-manifest.txt
+  all_product_paths_authorized: true
+  builder_execution_artifacts: Inspected manifest/content hashes only, not used as
+    test/review evidence. Execution log/board metadata read only for scope/state;
+    builder conclusions ignored.
+  no_prohibited_product_change: true
+stability:
+  HEAD: 0c7b6d4c416402443d140a5ee09abed70be34c69
+  tracked_file_count: 2015
+  tracked_hashes_unchanged: true
+  status_before: ''
+  status_after: ''
+  unchanged: true
+residual_risk:
+- No remote-exporter/vendor/real-conversation behavior tested or activated; later
+  TELEM units remain outside scope. Existing local OTel console-provider test produces
+  atexit closed-file noise on candidate and base.
+- Baseline timing gate remains unsatisfied and cannot be silently waived.
+- Custom provider identifiers are provider-local namespaces; global uniqueness must
+  not be assumed.
+- No remediation, commits, source/config/doc/board edits or original-checkout operation
+  occurred.

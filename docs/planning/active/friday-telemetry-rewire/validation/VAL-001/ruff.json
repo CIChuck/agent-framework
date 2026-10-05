@@ -1,0 +1,21 @@
+{
+  "name": "ruff",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "ruff",
+    "check",
+    "packages/friday-chat/src/friday_chat/app.py",
+    "packages/friday-chat/src/friday_chat/cli.py",
+    "packages/friday-chat/src/friday_chat/config.py",
+    "packages/friday-chat/src/friday_chat/runtime.py",
+    "packages/friday-chat/src/friday_chat/telemetry.py",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+    "packages/friday-chat/tests_chat/test_cli.py",
+    "packages/friday-chat/tests_chat/test_telemetry.py",
+    "packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+    "packages/friday-telemetry/tests_telemetry/test_providers.py"
+  ],
+  "exit_code": 0
+}

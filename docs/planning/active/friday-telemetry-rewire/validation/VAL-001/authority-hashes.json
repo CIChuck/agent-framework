@@ -1,0 +1,65 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+    "actual": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+    "match": true,
+    "revision": "0c8095f5132c9cc47573f27481dea59a7cc70c6c"
+  },
+  {
+    "path": "docs/reference/policies/repository-engineering-policy.md",
+    "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "match": true,
+    "revision": "0c8095f5132c9cc47573f27481dea59a7cc70c6c"
+  },
+  {
+    "path": "docs/reference/policies/development-task-lifecycle.md",
+    "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+    "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+    "match": true,
+    "revision": "0c8095f5132c9cc47573f27481dea59a7cc70c6c"
+  },
+  {
+    "path": "docs/reference/policies/independent-validation-policy.md",
+    "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "match": true,
+    "revision": "12c1e9e577409bf25f7fdc18fb7bb75a24f5ec07"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+    "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+    "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+    "match": true,
+    "revision": "d50788d730e8c3e2c30b01af9b4fa6e2c5146cda"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+    "sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+    "actual": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+    "match": true,
+    "revision": "0c7b6d4c416402443d140a5ee09abed70be34c69"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+    "sha256": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+    "actual": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+    "match": true,
+    "revision": "0c7b6d4c416402443d140a5ee09abed70be34c69"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+    "sha256": "125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae",
+    "actual": "125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae",
+    "match": true,
+    "revision": "0c7b6d4c416402443d140a5ee09abed70be34c69"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+    "sha256": "513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba",
+    "actual": "513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba",
+    "match": true,
+    "revision": "0c7b6d4c416402443d140a5ee09abed70be34c69"
+  }
+]

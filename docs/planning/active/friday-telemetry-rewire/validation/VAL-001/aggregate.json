@@ -1,0 +1,14 @@
+{
+  "name": "aggregate",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "packages/friday-chat/tests_chat",
+    "packages/friday-telemetry/tests_telemetry"
+  ],
+  "exit_code": 1
+}

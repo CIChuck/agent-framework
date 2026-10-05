@@ -1,0 +1,16 @@
+{
+  "name": "independent",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/private/tmp/telem-01/VAL-001/independent-temp",
+    "-k",
+    "not membership_replacement",
+    "/private/tmp/telem-01/VAL-001/test_independent.py"
+  ],
+  "exit_code": 0
+}
