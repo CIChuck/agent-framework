@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: review proposed REM-002 verification setup for VAL-002-F01; resolve remaining gates without implicit waiver
-execution_phase: remediation
-validation_state: changes_requested
+next_gate: fresh A03 readiness review; execute approved REM-002 verification setup and rerun gates
+execution_phase: validation
+validation_state: pending
 implementation_authority: granted
 ---
 
@@ -65,6 +65,7 @@ remediation and AC-01 through AC-05, with 135 focused tests and 10 new probes
 passing. Aggregate verdict is `CHANGES_REQUESTED` for VAL-002-F01: identical
 baseline lint, collection, timing and listener failures remain unwaived.
 Actual Python 3.10 package smoke cannot import missing pydantic. No implementation
-VERIFIED or task completion is claimed. The proposed
-[REM-002 verification setup](remediation/REM-002-verification-directive.md) is
-prepared for maintainer review; no further implementation or waiver is approved.
+VERIFIED or task completion is claimed. The maintainer approved
+[REM-002 verification setup](remediation/REM-002-verification-directive.md) on
+2026-10-05. Fresh A03 readiness review precedes execution. No lint or timing
+waiver is approved; product source/tests remain frozen at `3a69050`.

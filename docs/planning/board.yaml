@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: review proposed REM-002 verification setup for VAL-002-F01; resolve remaining gates without implicit waiver
+  next_gate: fresh A03 readiness review; execute approved REM-002 verification setup and rerun gates
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -965,3 +965,10 @@ events:
   action: recorded VAL-002 CHANGES_REQUESTED
   note: Independent review supports REM-001 collision fix and AC-01 through AC-05. VAL-002-F01 aggregate gates remain unresolved. REM-002 is proposed; WVR-001 remains unapproved. No source VERIFIED, completion or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer approval of REM-002 and A03
+  note: All outlined verification setup tasks approved, including three named localhost nodes and locked temporary Python 3.10 dependency downloads. No waiver or product edits. Fresh readiness review pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md

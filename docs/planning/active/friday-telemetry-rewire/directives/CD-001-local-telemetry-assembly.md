@@ -11,6 +11,10 @@ and reporting only; no product contract, remediation, or waiver is approved.
 Amendment A02 approved at: 2026-10-05, with REM-001.
 Amendment evidence: "i Approve your recommendations. Continue." Scope: collision-safe
 composite IDs and corresponding bounded regressions/documentation. No waiver.
+Amendment A03 approved at: 2026-10-05, with REM-002.
+Amendment evidence: "Approve of your recommendations. Proceed with all tasks you've outlined. Require any other approvals?"
+Scope: root collection invocation/helper resolution, exactly three loopback
+fixture permissions, isolated locked Python 3.10 environment and reruns. No waiver.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
@@ -104,7 +108,7 @@ Run required commands with `UV_CACHE_DIR=/private/tmp/friday-uv-cache` and
 uv run pytest packages/friday-chat/tests_chat/test_telemetry.py packages/friday-chat/tests_chat/test_cli.py packages/friday-chat/tests_chat/test_runtime.py packages/friday-chat/tests_chat/test_app_lifecycle.py packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-telemetry/tests_telemetry/test_providers.py
 uv run pytest packages/friday-chat/tests_chat packages/friday-telemetry/tests_telemetry
 uv run ruff check .
-uv run pytest --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py --ignore=packages/friday-llm/tests_llm/test_live_lmstudio.py
+uv run pytest --import-mode=importlib --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py --ignore=packages/friday-llm/tests_llm/test_live_lmstudio.py
 uv run ruff check <exact changed Python files>
 uv run mypy --python-version 3.10 <exact changed source files>
 uv run mypy --python-version 3.13 <exact changed source files>
@@ -144,3 +148,9 @@ Stop for unapproved files, conflicting authority, missing baseline/candidate,
 external effects, changed ownership, unsafe payloads, or broader architectural
 requirements. Stop after the committed candidate and report for independent
 review. TELEM-01 verification does not authorize later units or full closeout.
+
+A03 supersedes only the verification setup restrictions identified in
+[REM-002](../remediation/REM-002-verification-directive.md). Expand the isolated
+Chat test-helper PYTHONPATH entry as the verification profile prescribes.
+Preserve A01 default-root failures as historical evidence. No product path,
+waiver or additional live-test exclusion is authorized.

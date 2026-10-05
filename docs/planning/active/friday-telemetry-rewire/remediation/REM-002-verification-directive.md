@@ -1,11 +1,13 @@
-# Proposed REM-002: reconcile TELEM-01 verification execution
+# Approved REM-002: reconcile TELEM-01 verification execution
 
-Status: Proposed; not approved. This proposal does not authorize edits or waive
-any gate. REM-001's collision fix was independently supported at `3a69050`.
+Status: Approved by repository maintainer on 2026-10-05.
+Approval evidence: "Approve of your recommendations. Proceed with all tasks you've outlined. Require any other approvals?"
+Scope: verification setup and required reruns, including the three named
+loopback fixtures and locked public PyPI downloads if needed. No waiver. REM-001's collision fix was independently supported at `3a69050`.
 [VAL-002](../validation/VAL-002/report.md) returned CHANGES_REQUESTED for the
 single finding VAL-002-F01: unresolved mandatory aggregate verification gates.
-This proposal maps that finding once, through the execution steps and the
-separate lint/timing dispositions below. It does not change current authority.
+This directive maps that finding once, through the execution steps and the
+separate lint/timing dispositions below. CD-001 A03 and the amended verification profile record this approval.
 
 The next bounded step is verification setup, followed by fresh required runs.
 No product source, existing test body/deadline, package minimum version, dependency
@@ -17,7 +19,7 @@ constraint, shared `.venv`, user config, or existing application data may change
    base and candidate before full execution. Preserve root testpaths and exactly
    the two currently approved live-module exclusions; do not drop any additional
    test. Retain the originally failed default-root invocation as evidence.
-2. Obtain bounded permission for the three synthetic HTTP fixture tests in
+2. Approved bounded permission covers the three synthetic HTTP fixture tests in
    `packages/friday-chat/tests_chat/test_llm_adapter_migration.py`:
    `test_chat_adapter_controls_reach_final_http_json`,
    `test_chat_adapter_typed_stream_reuses_generation_defaults`, and
@@ -28,7 +30,7 @@ constraint, shared `.venv`, user config, or existing application data may change
    No other privileged execution or network destination is included.
 3. Build a separate Python 3.10 test environment from the existing frozen lock
    and supported workspace metadata. Reuse cached distributions first; if needed,
-   approval must explicitly permit package downloads from public PyPI solely for
+   this approval permits package downloads from public PyPI solely for
    this temporary test environment, with frozen integrity hashes and no
    credentials. Never alter the existing shared environment or package metadata.
    Rerun genuine observer/composite import and lifecycle smoke checks; no stubbed
@@ -40,11 +42,11 @@ constraint, shared `.venv`, user config, or existing application data may change
    compatibility and governance gates; obtain fresh read-only independent
    delta/aggregate review after authority changes. Stop for new failures or scope.
 
-Documentation authority targets only: this directive/proposal, CD-001,
+Documentation authority targets only: this directive, CD-001,
 verification-profile.md, authority-manifest.yaml, execution log/index, request
 and evidence records, and telemetry-only board/dashboard metadata. Product
-source/test/configuration targets: none. A01 remains controlling until a
-maintainer explicitly approves and a fresh readiness review freezes a revision.
+source/test/configuration targets: none. A01/A02 remain controlling except for the explicit A03 verification amendment.
+A fresh readiness review must assess the frozen authority before new execution.
 
 ## Existing repository lint debt
 
@@ -65,7 +67,7 @@ and message; SHA-256:
 | SIM115 | 1 |
 
 A separate scope decision is required for lint cleanup or an explicit narrow
-baseline gate exception. This proposal performs neither and contains no lint
+baseline gate exception. This directive performs neither and contains no lint
 suppression. Any proposed exception must identify the exact frozen list,
 maintainer owner, reason, follow-up and expiry, require affected-file lint and
 zero introduced diagnostics, and never cover new source defects or prohibited
@@ -74,4 +76,4 @@ typing/invariant behavior. A baseline listing is not itself approval.
 WVR-001's unchanged timing failure persists. Keep that decision deferred until
 other gates have a defensible disposition; its existing all-other-gates-pass
 condition is presently unmet. No exception, acceptance or delivery follows from
-this proposal or an independently sound collision delta.
+this directive or an independently sound collision delta.

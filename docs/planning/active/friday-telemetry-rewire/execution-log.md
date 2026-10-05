@@ -233,3 +233,18 @@ Review closeout checks: board passed (25 working tasks), documentation lifecycle
 passed (404 Markdown files), whitespace passed, and all 64 preservation entries
 matched. All eleven authority hashes and reviewed product source/tests remain
 unchanged. Telemetry-only board/dashboard blobs preserve unrelated working edits.
+
+## 2026-10-05 — REM-002 and CD-001 A03 approved
+
+Maintainer: "Approve of your recommendations. Proceed with all tasks you've outlined. Require any other approvals?"
+Approval covers every verification setup task in REM-002, the three exact
+synthetic loopback fixture nodes and locked public PyPI downloads if needed
+for a separate Python 3.10 environment. It grants no lint/timing exception,
+product edit, lock/metadata change or shared environment modification.
+Current branch is feature/friday-telemetry-rewire at `325a0e5`; preserved dirty
+paths and reviewed product `3a69050` are unchanged. Board passes (25 tasks);
+board next selects Memory V2, while the maintainer explicitly selected telemetry.
+A03 records the explicit root import mode/helper entry and scoped environment
+permissions. Other root/package execution remains unprivileged; report nonzero
+results honestly alongside the isolated permitted listener rerun.
+Work remains started; validation pending for fresh A03 readiness then execution.
