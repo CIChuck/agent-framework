@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: validate Python 3.13.4 support migration and resolve remaining AC-06 baseline gates; no waiver approved
+next_gate: resolve remaining AC-06 lint and test gates; Python 3.13.4 migration supported by fresh review; no waiver approved
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -98,3 +98,9 @@ are pending. All other aggregate AC-06 failures remain unresolved.
 preservation and retained unwaived aggregate failures. A bounded lock correction
 preserves existing supported-runtime selections across24 graph contexts. Fresh
 review of the new stable candidate follows; no source/test/authority changes.
+
+Fresh [VAL-005](validation/VAL-005/report.md) supports the Python >=3.13.4
+migration and corrected lock selections; its sole remaining finding concerns
+unwaived aggregate AC-06 lint/test gates. [REM-003 execution closeout](execution/REM-003-closeout.md)
+records completed requested migration, unchanged dependency selections and
+remaining failures. Work stays started; no aggregate VERIFIED or acceptance.

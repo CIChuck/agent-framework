@@ -348,3 +348,15 @@ prevented install, and195 installed distribution/RECORD hashes are unchanged.
 Inherited UV_NO_SYNC/UV_OFFLINE fixes execution without changing checker source.
 No source, test, dependency constraint or controlling authority change. A new
 stable candidate and fresh reviewer are required; no baseline waiver applies.
+
+## 2026-10-05 — REM-003 execution closeout / VAL-005
+
+Fresh VAL-005 reviewed corrected4c0afdb. All migration-specific checks pass,
+including154 lock graph contexts and1833 retained artifact records with no
+selected dependency/version/source/edge drift. Python >=3.13.4 is now the
+declared supported minimum; actual runtime evidence uses3.13.10. Root Ruff
+459 and unwaived broad test/permission failures retain aggregate
+CHANGES_REQUESTED. The requested support migration is implemented and
+independently supported, while full telemetry acceptance remains open.
+Only review/execution/board metadata changes after the reviewed candidate.
+No source, lock or controlling-authority change; original dirty paths preserved.

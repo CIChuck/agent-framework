@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: validate Python 3.13.4 support migration and resolve remaining AC-06 baseline gates; no waiver approved
+  next_gate: resolve remaining AC-06 lint and test gates; Python 3.13.4 migration supported by fresh review; no waiver approved
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -409,6 +409,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1024,3 +1026,10 @@ events:
   action: recorded VAL-004 and bounded supported-runtime lock correction
   note: Preserved grpcio selections for Python3.13 and3.14; fresh review required; aggregate AC-06 remains unwaived.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-005 and Python minimum migration execution closeout
+  note: Python >=3.13.4 migration supported; dependency selections preserved; remaining aggregate lint/test gates unwaived.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-closeout.md
