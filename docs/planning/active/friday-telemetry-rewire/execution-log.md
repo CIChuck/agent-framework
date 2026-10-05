@@ -313,3 +313,14 @@ pass; all12 authority pins,64 preservation entries and195 shared environment
 version/RECORD hashes match. Reviewed product/lock unchanged. Report source links
 are adapted in an explicitly labeled reader copy; exact original bytes remain
 in gzip/full archive with separate hashes. Telemetry-only metadata paths staged.
+
+## 2026-10-05 — approved Python minimum migration
+
+The maintainer rejected a practical need for 3.10 and explicitly said "Make it
+happen." after the recommendation to require Python >=3.13.4. REM-003/CD-001 A04
+records that bounded contract migration. Existing product candidate is 09fe690;
+telemetry source, LiteLLM pin, shared environment and prior evidence are unchanged.
+Original dirty changes are preserved in /private/tmp/telem-01/REM-003/preserved.json.
+Board remains started on feature/friday-telemetry-rewire. Board selection returned
+AWAITING_APPROVAL memory-v2; explicit maintainer direction continues this already
+started initiative. Fresh directive readiness review is the next execution gate.

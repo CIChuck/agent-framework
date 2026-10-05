@@ -6,7 +6,7 @@ branch: feature/friday-telemetry-rewire
 review_mode: fresh-context read-only full work-unit review
 authority:
 - path: AGENTS.md
-  sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+  sha256: 02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152
 - path: docs/reference/policies/repository-engineering-policy.md
   sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
 - path: docs/reference/policies/development-task-lifecycle.md
@@ -16,19 +16,21 @@ authority:
 - path: docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md
   sha256: 4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f
 - path: docs/planning/active/friday-telemetry-rewire/build-plan.md
-  sha256: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
+  sha256: d8aed15c6d087dccf367f9ab8a09b5b942a9437cc81aa93bdf5411d1d1d84ec5
 - path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
   sha256: ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17
 - path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
-  sha256: d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc
+  sha256: f2b6744654fa71203a1267a6d46d83a01a814b1ca7aca3ff827049cc606b93c9
 - path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
-  sha256: 73f716469fbbfab3495cbd64e9cc435bfbe2901ffc2f7cf8e7e924736c6dbf06
+  sha256: 1940d403cb5894f8278e7757f20a95d8380f01644f94ce7182155b69f80d4c4a
 - path: docs/planning/active/friday-telemetry-rewire/verification-profile.md
-  sha256: a586686bda13379c13d53922bed8cf6e911b801f8cdb56657ecbe84dd52c683d
+  sha256: 12b064b834091b66c7095434e2f12cb3cfa22b9c5144a064dd3c4c54d65c815a
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md
   sha256: 0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md
   sha256: 999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5
+- path: docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md
+  sha256: b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203
 acceptance_criteria:
 - AC-01
 - AC-02
@@ -36,11 +38,10 @@ acceptance_criteria:
 - AC-04
 - AC-05
 - AC-06
-external_services: 'Test execution: synthetic loopback only; no vendor credentials,
-  live models, remote exporters or real application data. A03/REM-002 provisioning
-  exception: integrity-checked frozen public PyPI artifacts, credential-free, only
-  for a separate temporary environment using the existing Python 3.10 interpreter;
-  no interpreter download, dependency re-resolution, lock/metadata or shared environment
-  change.'
-authority_amendment: CD-001 A01 verification, A02/REM-001 collision identity, A03/REM-002
-  verification setup; no waiver
+external_services: 'Test execution: synthetic loopback only, existing network guard, no credentials,
+  live models, remote exporters or real data. A04/REM-003 lock regeneration: offline/cache first,
+  optional credential-free public PyPI reads, preserve surviving dependency versions/sources;
+  no source builds, interpreter download, image build/pull/run, or shared environment synchronization.
+  A03 provisioning completed and historical.'
+authority_amendment: CD-001 A01/A02/A03 historical approvals, A04/REM-003 Python >=3.13.4 support
+  migration; no waiver

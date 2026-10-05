@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: scope remaining AC-06 baseline and frozen 3.10 dependency remediation; no waiver approved
+next_gate: execute approved Python 3.13.4 minimum migration after fresh readiness review; no waiver approved
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -81,3 +81,9 @@ CHANGES_REQUESTED for sole finding VAL-003-F01. The
 [REM-002 execution closeout](execution/REM-002-closeout.md) records completed
 actions, standalone Composite3.10 PASS and unresolved aggregate gates.
 No task completion, acceptance or waiver is claimed.
+
+The maintainer's "Make it happen." approves [REM-003](remediation/REM-003-python-minimum-directive.md)
+and CD-001 A04: require Python >=3.13.4 across the workspace and align tooling,
+lockfile and current setup docs. Prior 3.10 evidence remains historical; the
+new support policy removes that obligation without waiving other AC-06 failures.
+Fresh readiness review precedes implementation, then fresh candidate review.

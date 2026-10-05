@@ -21,7 +21,7 @@ Preparation base: `2155a0fc51f5b20dea4e35c6cfc70f1d52002735`.
 | T01-03 / AC-03: lifecycle truth and bounded inspection | Runtime/app events match assembly and cleanup outcomes; cancellation and failed cleanup are distinguishable; 256-event bound and retained failure/drop counts |
 | T01-04 / AC-04: content boundary | Planted sentinels absent from all first-slice events/diagnostics; valid MCP events retain meaning; unknown/invalid event attempts counted and rejected |
 | T01-05 / AC-05: composite correctness | Both child spans end with correct parents; duplicate/unknown end, empty composite, membership changes, mutation and sink failures |
-| T01-06 / AC-06: regressions and closeout | Complete Chat and telemetry suites; repository Ruff and safe deterministic root pytest; changed-file Ruff; changed-source Python 3.10 and 3.13 mypy plus minimum-version syntax/API evidence; board/docs checks; exact candidate manifest and independent read-only review, under the [verification profile](verification-profile.md) |
+| T01-06 / AC-06: regressions and closeout | Complete Chat and telemetry suites; repository Ruff and safe deterministic root pytest; changed-file Ruff; changed-source Python 3.13 mypy plus syntax/API and Python >=3.13.4 supported-runtime evidence; board/docs checks; exact candidate manifest and independent read-only review, under the [verification profile](verification-profile.md) |
 
 The builder performs implementation checks; it cannot grant `VERIFIED`.
 The controller freezes the exact authority and candidate for a fresh-context

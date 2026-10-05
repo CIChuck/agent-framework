@@ -224,3 +224,10 @@ subject to an approved construction directive and recorded start transition.
 Credential disclosure, live exporter connections, changes to existing `.friday`
 state, and tool-governance authorization changes remain outside this plan.
 The board remains the authority for state and priority.
+
+## Python support amendment A04 — 2026-10-05
+
+The maintainer approved Python >=3.13.4 for the workspace ("Make it happen.").
+[REM-003](remediation/REM-003-python-minimum-directive.md) binds the exact
+metadata/setup migration and supersedes the old Python 3.10 runtime obligation.
+Telemetry source behavior and remaining AC-06 repository failures are unchanged.

@@ -1,9 +1,11 @@
-# TELEM-01 verification profile — CD-001 amendments A01 and A03
+# TELEM-01 verification profile — CD-001 amendments A01, A03 and A04
 
 Status: Approved verification authority, 2026-10-05.
 Maintainer evidence: "approved, proceed" following the independent CD-001 review
 findings CDR-001 and CDR-002. This profile changes verification and reporting,
-not product behavior, package minimum versions, or allowed product paths.
+not telemetry behavior. A04 explicitly changes package minimum versions and
+metadata/setup scope under [REM-003](remediation/REM-003-python-minimum-directive.md),
+approved by the maintainer's "Make it happen." on 2026-10-05.
 
 ## Required scope and commands
 
@@ -66,12 +68,12 @@ Chroma state. Ensure imports resolve its package sources, not editable sources
 in the original dirty checkout. Use offline/no-sync execution where needed:
 `UV_CACHE_DIR=/private/tmp/friday-uv-cache`, `UV_NO_SYNC=true`, `UV_OFFLINE=true`,
 and `LITELLM_LOCAL_MODEL_COST_MAP=true`. Record interpreter/tool versions and
-source-resolution setup. Do not install or download missing tools implicitly. A03 explicitly authorizes
-a separate temporary Python 3.10 environment using frozen lock versions, hashes
-and compatible metadata. Use cached distributions first; public PyPI downloads
-are approved only for that environment. Record every artifact URL/hash and
-installed version. Do not alter the shared environment, lock or metadata.
-No interpreter download or dependency re-resolution is authorized.
+source-resolution setup. Do not install or download missing tools implicitly. A03's completed Python 3.10 provisioning remains historical evidence.
+A04/REM-003 replaces the supported minimum with Python 3.13.4. Tests use the
+already-installed Python 3.13.10 environment without synchronization. Only
+REM-003 permits bounded lock regeneration, cache/offline first with optional
+credential-free public PyPI reads; surviving dependency pins must not change.
+No interpreter download, source build or shared environment mutation is allowed.
 
 If a discovered test cannot satisfy these boundaries, stop before collection or
 execution and identify its exact module/node, import/helper path, unsafe effect,
@@ -84,43 +86,25 @@ additional evidence and does not turn a nonzero broad suite into PASS. An incomp
 is reported as a missing gate, never a passing root test run. This profile does
 not authorize vendor traffic or reading the user's existing application state.
 
-## Advertised Python 3.10 compatibility
+## Supported Python 3.13.4 minimum
 
-Both affected packages continue to advertise Python >=3.10. Required typing is
-`uv run mypy --python-version 3.10 <exact changed source files>` using the root
-configuration, separately from the retained Python 3.13 command. Do not weaken
-typing or raise package minimum metadata to make the checks pass.
+All workspace projects and the lab project require Python >=3.13.4 under A04.
+Run `uv run mypy --python-version 3.13 <exact changed source files>` with root
+configuration; do not weaken typing. Python 3.10 checks are historical and are
+no longer current acceptance gates. This is an explicit support-contract change,
+not a waiver or a claim that the old Python 3.10 runtime passed.
 
-Also run this syntax check on the exact changed-source list, saved as a frozen
-list argument rather than relying on discovery:
-
-```python
-import ast
-import sys
-from pathlib import Path
-
-for filename in sys.argv[1:]:
-    ast.parse(Path(filename).read_text(encoding="utf-8"),
-              filename=filename, feature_version=(3, 10))
-```
-
-Execute it with `uv run python <external syntax-check script> <exact changed
-source files>`; store the script and hashes with validation evidence. Syntax
-parsing alone does not establish API or runtime compatibility. Review every
-introduced/changed standard-library import and API against Python 3.10
-availability, and every changed dependency API against frozen supported metadata.
-Record symbols, source lines, availability evidence (installed 3.10 stdlib/stubs
-or official versioned documentation), and any compatibility guard.
-
-Use an already available Python 3.10 interpreter for synthetic observer/composite
-import and lifecycle smoke checks when available; do not download an interpreter under
-this directive. A03 permits locked dependency installation in a separate
-temporary environment for the existing installed interpreter. If unavailable, report that limitation and rely only on the
-explicit typing, syntax, and API review evidence, without claiming a 3.10
-runtime pass. Missing or inconclusive required typing/syntax/API evidence needs
-a bounded authority decision or waiver before `VERIFIED`; interpreter absence
-does not silently waive those checks. Run the same applicable checks on the
-preparation base, omitting the then-absent new telemetry source and recording it.
+Parse the exact changed-source list with `ast.parse(..., feature_version=(3, 13))`.
+Syntax alone does not establish API/runtime compatibility. Review changed
+stdlib/dependency APIs against Python 3.13 and the frozen dependency pins.
+Independently smoke-test the real public Chat observer and Composite lifecycle
+on installed Python 3.13.10, using synthetic providers, temporary state, the
+same guard and no credentials. Record the actual interpreter patch version;
+do not claim an exact 3.13.4 runtime run when only 3.13.10 is installed.
+Package SpecifierSet checks establish that 3.13.3 is rejected and 3.13.4 accepted.
+No exact-floor interpreter download is authorized; do not silently waive a
+missing required runtime check. Repeat applicable supported-runtime checks on
+preparation base/candidate, omitting then-absent new observer source explicitly.
 
 ## Baselines, frozen requests, and implementation reporting
 
@@ -136,7 +120,7 @@ expanded commands/lists, both revisions and diff, preflight evidence, exclusions
 known failures, and any separately approved waiver. Preserve old requests and
 reports as historical frozen evidence; do not edit their recorded outcomes.
 The next implementation/remediation report must include a row for each command,
-distinguish 3.13 typing from minimum-version evidence, and map results to AC-06.
+distinguish 3.13 typing, the metadata patch floor, and actual runtime evidence, and map results to AC-06.
 Pending or nonzero results remain pending or failed; narrower successes do not
 replace missing broad gates. Unchanged baseline failures are not implicit waivers.
 

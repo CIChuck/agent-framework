@@ -15,6 +15,11 @@ Amendment A03 approved at: 2026-10-05, with REM-002.
 Amendment evidence: "Approve of your recommendations. Proceed with all tasks you've outlined. Require any other approvals?"
 Scope: root collection invocation/helper resolution, exactly three loopback
 fixture permissions, isolated locked Python 3.10 environment and reruns. No waiver.
+Amendment A04 approved at: 2026-10-05, with REM-003.
+Amendment evidence: "Make it happen." after recommendation to require Python
+3.13.4 or newer. The [REM-003 directive](../remediation/REM-003-python-minimum-directive.md)
+extends metadata/setup scope and supersedes the old minimum-runtime checks.
+No dependency upgrade, source change, baseline waiver or acceptance is approved.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
@@ -53,7 +58,7 @@ this initiative packet. Package README updates may be made in
 document the new local behavior and composite mapping. Board/dashboard updates
 are limited to this initiative and must preserve unrelated existing edits.
 
-All other product files, including the dirty Chat example YAML, are outside the
+Outside the explicit A04/REM-003 metadata/setup extension, all other product files, including the dirty Chat example YAML, are outside the
 manifest. Do not edit framework LLM, memory, runtime, core, MCP, transcript,
 telemetry interface/config/OTel provider, dependency metadata, packaged config
 templates, or command registry. A necessary extra file requires scope
@@ -110,7 +115,6 @@ uv run pytest packages/friday-chat/tests_chat packages/friday-telemetry/tests_te
 uv run ruff check .
 uv run pytest --import-mode=importlib --ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py --ignore=packages/friday-llm/tests_llm/test_live_lmstudio.py
 uv run ruff check <exact changed Python files>
-uv run mypy --python-version 3.10 <exact changed source files>
 uv run mypy --python-version 3.13 <exact changed source files>
 uv run python scripts/friday-dev-board.py validate
 uv run python scripts/check-documentation-lifecycle.py
@@ -118,7 +122,7 @@ git diff --check
 ```
 
 The mandatory [verification profile](../verification-profile.md) binds the exact
-changed-file lists, Python 3.10 syntax/API evidence, broad-test safety preflight,
+changed-file lists, Python 3.13 syntax/API and supported-runtime evidence, broad-test safety preflight,
 two live-module safety exclusions, baseline handling, and report fields.
 Repository-wide Ruff and deterministic root pytest are required alongside
 focused/package checks, regardless of observed coupling. The safety exclusions
