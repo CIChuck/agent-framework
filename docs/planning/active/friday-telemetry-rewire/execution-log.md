@@ -455,3 +455,21 @@ CD-001, REM-004, verification profile and nineteen-pin current manifest.
 Six partial permitted fixes and unrelated dirty paths preserved; construction
 resumes only after fresh independent frozen-authority readiness. No acceptance
 or delivery action; TELEM-02 through TELEM-05 remain deferred.
+
+## 2026-10-06 — CDR-011 approved A06 authority READY / remediation resumed
+
+Fresh independent approved-authority review atcbd82f returned READY. Current
+nineteen controlling pins, approved exact one-live-UP046 compatibility plus
+326archival disposition and original bounded REM-004 scope are coherent.
+Separate remediator released to complete the exact approved fixes; product
+verification and stable candidate delta/aggregate review remain mandatory.
+No completion, acceptance, push, merge or later-unit authority.
+
+The final execution harness now materializes shared/no-checkout sparse snapshots
+that omit tracked application-data roots before checkout, including integration
+.friday/vector/backups/catalog state and provider-memory Chroma storage. This
+corrects earlier private full clones' inclusion of committed runtime artifacts;
+none were used by selected tests, and no original working application state was
+read or changed. New snapshot manifest records every omission; no governed
+source/test/config file is omitted. All required test collection and Ruff paths
+remain intact. Original and earlier snapshots/evidence remain preserved.

@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: fresh approved A06/WVR-003 readiness then resume REM-004; retain exact one live UP046 and archival326; all other gates required
+next_gate: complete approved REM-004 under A06/WVR-003 then freeze for fresh delta and aggregate validation; exact archival326 plus one live UP046
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -137,3 +137,7 @@ Fresh [CDR-010](validation/CDR-010/report.md) returned READY for maintainer
 consideration of the exact A06/WVR-003 compatibility proposal at cdb1b8b.
 The new precise compatibility decision is approved; fresh authority readiness precedes construction;
 no earlier approval is revoked and no product verification is claimed.
+
+Fresh [CDR-011](validation/CDR-011/report.md) reviewed approved A06 authority
+atcbd82f and returned READY. Separate remediation may now resume within the
+unchanged exact scope; all final verification and aggregate review remain open.
