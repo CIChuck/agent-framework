@@ -3,7 +3,9 @@
 Filesystem reading tools.
 
 Ref: docs/reference/specs/tool_specification.md - Category 1: Filesystem - Reading
-Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Enhanced file reading
+Ref:
+docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md -
+Enhanced file reading
 """
 
 from __future__ import annotations

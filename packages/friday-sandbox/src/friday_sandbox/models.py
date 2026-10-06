@@ -7,7 +7,7 @@ Ref: docs/reference/specs/sandbox_specifications.md - Section 3: Data Models
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -55,14 +55,14 @@ class ExecutionResult(BaseModel):
 
 def _utc_now() -> datetime:
     """Return current UTC time with timezone awareness."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def _ensure_utc(value: datetime) -> datetime:
     """Coerce naive datetimes to UTC and normalize aware values to UTC."""
     if value.tzinfo is None:
-        return value.replace(tzinfo=timezone.utc)
-    return value.astimezone(timezone.utc)
+        return value.replace(tzinfo=UTC)
+    return value.astimezone(UTC)
 
 
 class Workspace(BaseModel):

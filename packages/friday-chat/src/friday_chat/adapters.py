@@ -10,11 +10,12 @@ import os
 import warnings
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, TypeGuard, cast
 from uuid import uuid4
 
+from friday_core.interfaces.llm import ChatCompletionResponse
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_llm import (
     ChatCompletionRequest,
@@ -27,6 +28,7 @@ from friday_llm import (
     TextDeltaEvent,
     ToolCallCompleteEvent,
     ToolCallDeltaEvent,
+    TypedChatCompletionResponse,
     UsageEvent,
     close_litellm_async_clients,
 )
@@ -154,6 +156,7 @@ class FrameworkChatModel:
     ) -> ChatModelResponse:
         message_values = [dict(message) for message in messages]
         tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
+        response: ChatCompletionResponse | TypedChatCompletionResponse
         if isinstance(self.execution, LegacyLLMExecutionConfig):
             response = await self.service.chat_completion(
                 messages=message_values,
@@ -1492,7 +1495,7 @@ def _transcript_context_log_view(
 
 def _datetime_sort_key(value: datetime) -> float:
     normalized = (
-        value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+        value if value.tzinfo is not None else value.replace(tzinfo=UTC)
     )
     return normalized.timestamp()
 

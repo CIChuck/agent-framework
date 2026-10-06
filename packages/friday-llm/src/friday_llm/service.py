@@ -620,7 +620,7 @@ class LiteLLMService:
                                 len(event.text.split())
                             )
                             yield event.text
-                except asyncio.TimeoutError as e:
+                except TimeoutError as e:
                     await self._close_stream(response)
                     raise LLMTimeoutError(
                         "Streaming response timed out",
@@ -677,7 +677,7 @@ class LiteLLMService:
         except asyncio.CancelledError:
             await self._close_stream(response)
             raise
-        except asyncio.TimeoutError as error:
+        except TimeoutError as error:
             await self._close_stream(response)
             raise LLMTimeoutError(
                 "Streaming response timed out",
@@ -765,7 +765,7 @@ class LiteLLMService:
         if not done:
             pending_read.cancel()
             await asyncio.gather(pending_read, return_exceptions=True)
-            raise asyncio.TimeoutError
+            raise TimeoutError
         return pending_read.result()
 
     @staticmethod
@@ -855,7 +855,7 @@ class LiteLLMService:
                     litellm.acompletion(**kwargs),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError as e:
+            except TimeoutError as e:
                 raise LLMTimeoutError(
                     f"LLM call timed out after {timeout}s",
                     timeout_seconds=timeout,
@@ -918,7 +918,7 @@ class LiteLLMService:
                     litellm.acompletion(**kwargs),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError as e:
+            except TimeoutError as e:
                 raise LLMTimeoutError(
                     f"Stream setup timed out after {timeout}s",
                     timeout_seconds=timeout,

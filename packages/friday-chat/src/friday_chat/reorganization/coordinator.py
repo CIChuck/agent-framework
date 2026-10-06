@@ -6,7 +6,7 @@ import asyncio
 import re
 from collections.abc import Awaitable, Callable, Sequence
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from pathlib import Path
 from typing import Protocol, TypeVar
@@ -1341,7 +1341,7 @@ class ReorganizationCoordinator:
             transcript_manifest_path.relative_to(self.layout.recovery_root),
             TranscriptSnapshotManifest,
         )
-        created_at = datetime.now(timezone.utc)
+        created_at = datetime.now(UTC)
         completed_at = created_at + timedelta(microseconds=1)
         verification_completed_at = completed_at + timedelta(microseconds=1)
         bundle = RecoveryBundleManifest(
@@ -1799,7 +1799,7 @@ class ReorganizationCoordinator:
         terminal_status: ResultStatus | None = None,
         errors: tuple[ReorganizationError, ...] | None = None,
     ) -> _JournalCursor:
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         if now <= cursor.journal.updated_at:
             now = cursor.journal.updated_at + timedelta(microseconds=1)
         current = cursor.journal.transition(

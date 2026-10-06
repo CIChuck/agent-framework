@@ -131,7 +131,7 @@ class ElementXGraphStore(GraphStoreAdapter):
 
         try:
             await asyncio.wait_for(self._lock.acquire(), timeout=timeout)
-        except asyncio.TimeoutError:
+        except TimeoutError:
             logger.error(f"Lock acquisition timeout after {timeout}s")
             raise
 

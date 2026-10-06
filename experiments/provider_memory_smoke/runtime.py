@@ -7,7 +7,7 @@ import importlib
 import json
 import tempfile
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 
@@ -247,7 +247,7 @@ async def _await_extraction_evidence(
 
 def _persist_result_artifact(result: ProviderMemorySmokeResult) -> str:
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     artifact_path = ARTIFACTS_DIR / f"provider-memory-smoke-{timestamp}.json"
     result.artifact_result_path = str(artifact_path)
     artifact_path.write_text(

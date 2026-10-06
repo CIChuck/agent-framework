@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
 
@@ -52,7 +52,7 @@ class MaintenanceArtifactStore:
     ) -> RecoveryJournal:
         """Create, but do not persist, an initial journal bound to this layout."""
         effective_run_id = run_id or uuid4().hex
-        timestamp = created_at or datetime.now(timezone.utc)
+        timestamp = created_at or datetime.now(UTC)
         return RecoveryJournal(
             journal_id=journal_id or uuid4().hex,
             lease_id=lease_id or uuid4().hex,

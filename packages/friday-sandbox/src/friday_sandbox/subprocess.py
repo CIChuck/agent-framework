@@ -2,7 +2,8 @@
 """
 Subprocess-based sandbox implementation.
 
-Ref: docs/reference/specs/sandbox_specifications.md - Section 8: Alternative Implementations
+Ref: docs/reference/specs/sandbox_specifications.md - Section 8: Alternative
+Implementations
 
 Provides local subprocess execution as a fallback when Docker is unavailable.
 WARNING: This is less secure than Docker - use only for development/testing.
@@ -142,7 +143,7 @@ class SubprocessSandbox:
                     ),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 process.kill()
                 process.wait()
                 raise SandboxTimeoutError(timeout)  # noqa: B904

@@ -1,9 +1,12 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
+import inspect
+import runpy
 from pathlib import Path
 from typing import Any, cast
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
+from friday_agent.tools.registry import _GLOBAL_TOOL_REGISTRY, tool
 from friday_core.profiles import MemoryProfile
 from friday_runtime.config import (
     EmbeddingServiceConfig,
@@ -17,6 +20,62 @@ from friday_runtime.config import (
 from friday_runtime.di import DIContainer
 from friday_runtime.tool_loading import ToolProviderLoadError
 from friday_transcript import SQLiteTranscriptStore
+
+
+@pytest.mark.parametrize("close_early", [False, True])
+def test_agent_fixture_preserves_decorator_declarations(request, close_early):
+    """Exercise the actual agent fixture without importing built-ins again."""
+    fixture_path = (
+        Path(__file__).resolve().parents[2]
+        / "friday-agent"
+        / "tests_agent"
+        / "conftest.py"
+    )
+    fixture = None
+    for plugin in request.config.pluginmanager.get_plugins():
+        plugin_path = getattr(plugin, "__file__", None)
+        if plugin_path is not None and Path(plugin_path).resolve() == fixture_path:
+            fixture = plugin.clear_global_registry
+            break
+    if fixture is None:
+        # Only load the tracked test helper when the runtime suite runs alone.
+        fixture = runpy.run_path(str(fixture_path))["clear_global_registry"]
+
+    outer_registry = dict(_GLOBAL_TOOL_REGISTRY)
+    original_definition = {
+        "func": lambda value: value,
+        "description": "Synthetic prior declaration",
+        "parameters": {"type": "object", "properties": {"value": {"type": "string"}}},
+        "category": "synthetic",
+    }
+    generator = None
+    try:
+        _GLOBAL_TOOL_REGISTRY["rem004_original"] = original_definition
+        expected = dict(_GLOBAL_TOOL_REGISTRY)
+        generator = inspect.unwrap(fixture)()
+        next(generator)
+        assert not _GLOBAL_TOOL_REGISTRY
+
+        @tool(name="rem004_test_created", category="synthetic")
+        def test_created(value: str) -> str:
+            return value
+
+        assert "rem004_test_created" in _GLOBAL_TOOL_REGISTRY
+        if close_early:
+            generator.close()
+        else:
+            with pytest.raises(StopIteration):
+                next(generator)
+        assert expected == _GLOBAL_TOOL_REGISTRY
+        assert _GLOBAL_TOOL_REGISTRY["rem004_original"] is original_definition
+        assert "rem004_test_created" not in _GLOBAL_TOOL_REGISTRY
+    finally:
+        try:
+            if generator is not None:
+                generator.close()
+        finally:
+            _GLOBAL_TOOL_REGISTRY.clear()
+            _GLOBAL_TOOL_REGISTRY.update(outer_registry)
 
 
 def _config(tmp_path: Path, memory_mode: str) -> RuntimeConfig:

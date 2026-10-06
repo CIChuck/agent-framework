@@ -5,7 +5,7 @@ Namespace policy engine for additive multi-agent memory mode.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from friday_core.interfaces import NamespacePolicyInterface, SharedWriteCapability
 
@@ -60,11 +60,11 @@ class NamespacePolicyEngine(NamespacePolicyInterface):
     def _capability_is_valid(capability: SharedWriteCapability | None) -> bool:
         if capability is None:
             return False
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         issued_at = capability.issued_at
         expires_at = capability.expires_at
         if issued_at.tzinfo is None:
-            issued_at = issued_at.replace(tzinfo=timezone.utc)
+            issued_at = issued_at.replace(tzinfo=UTC)
         if expires_at.tzinfo is None:
-            expires_at = expires_at.replace(tzinfo=timezone.utc)
+            expires_at = expires_at.replace(tzinfo=UTC)
         return issued_at <= now < expires_at

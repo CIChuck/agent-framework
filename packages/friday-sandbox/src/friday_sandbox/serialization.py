@@ -132,7 +132,7 @@ def extract_return_value(stdout: str) -> tuple[str, Any | None, str | None]:
         return cleaned_stdout, None, raw_json
 
 
-def validate_return_type(
+def validate_return_type[T: BaseModel](
     value: Any,
     return_type: type[T],
 ) -> T:

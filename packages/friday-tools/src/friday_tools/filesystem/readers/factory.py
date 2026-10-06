@@ -4,7 +4,9 @@ Reader factory for automatic file format detection.
 
 Uses MIME type and extension-based detection to route files to appropriate readers.
 
-Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 4
+Ref:
+docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md -
+Phase 4
 """
 
 from __future__ import annotations

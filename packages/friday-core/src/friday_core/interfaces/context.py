@@ -15,14 +15,14 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     # Forward references to types defined in friday-memory/models/
     # These are only used for type checking, not at runtime
-    from typing import TypeAlias
 
-    SessionState: TypeAlias = Any  # Will be friday_memory.models.SessionState
-    ConsolidationReport: TypeAlias = (
+
+    type SessionState = Any  # Will be friday_memory.models.SessionState
+    type ConsolidationReport = (
         Any  # Will be friday_memory.models.ConsolidationReport
     )
-    ContextPayload: TypeAlias = Any  # Will be friday_memory.models.ContextPayload
-    Interaction: TypeAlias = Any  # Will be friday_memory.models.Interaction
+    type ContextPayload = Any  # Will be friday_memory.models.ContextPayload
+    type Interaction = Any  # Will be friday_memory.models.Interaction
 
 
 class ContextEngineeringInterface(ABC):

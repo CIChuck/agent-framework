@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -84,7 +84,7 @@ class QuarantineStore:
             risk_level=risk_level,
             detected_patterns=detected_patterns,
             content=content,
-            created_at=datetime.now(timezone.utc).isoformat(),
+            created_at=datetime.now(UTC).isoformat(),
             metadata=metadata,
         )
         with self._path.open("a", encoding="utf-8") as f:

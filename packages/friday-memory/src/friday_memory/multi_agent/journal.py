@@ -6,7 +6,7 @@ Promotion journal for additive multi-agent memory mode.
 from __future__ import annotations
 
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -56,7 +56,7 @@ class PromotionJournal:
                 "state": state,
                 "error": error,
                 "promotion_id": resolved_promotion_id,
-                "updated_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(UTC),
             },
             deep=True,
         )

@@ -18,11 +18,11 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     # Forward references to types defined in friday-memory/models/
     # These are only used for type checking, not at runtime
-    from typing import TypeAlias
 
-    InteractionTurn: TypeAlias = Any  # Will be friday_memory.models.InteractionTurn
-    GraphNode: TypeAlias = Any  # Will be friday_memory.models.GraphNode
-    GraphEdge: TypeAlias = Any  # Will be friday_memory.models.GraphEdge
+
+    type InteractionTurn = Any  # Will be friday_memory.models.InteractionTurn
+    type GraphNode = Any  # Will be friday_memory.models.GraphNode
+    type GraphEdge = Any  # Will be friday_memory.models.GraphEdge
 
 
 class EpisodicStoreAdapter(ABC):

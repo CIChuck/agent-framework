@@ -13,7 +13,7 @@ import logging
 import shutil
 import uuid
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from .config import WorkspaceConfig
@@ -24,14 +24,14 @@ logger = logging.getLogger(__name__)
 
 def _utc_now() -> datetime:
     """Return current UTC time with timezone awareness."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def _ensure_utc(value: datetime) -> datetime:
     """Coerce naive datetimes to UTC and normalize aware values to UTC."""
     if value.tzinfo is None:
-        return value.replace(tzinfo=timezone.utc)
-    return value.astimezone(timezone.utc)
+        return value.replace(tzinfo=UTC)
+    return value.astimezone(UTC)
 
 
 class WorkspaceManager:

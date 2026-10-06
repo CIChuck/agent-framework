@@ -143,7 +143,7 @@ async def _check_for_escape_key(token: CancellationToken) -> None:
     await _check_for_key(token, "\x1b")
 
 
-async def run_cancellable(
+async def run_cancellable[T](
     operation: Coroutine[Any, Any, T],
     cancel_message: str = "Press [Esc] to cancel",
     show_hint: bool = True,

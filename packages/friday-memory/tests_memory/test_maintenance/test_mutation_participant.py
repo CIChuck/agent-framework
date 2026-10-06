@@ -2,7 +2,7 @@
 
 import json
 from collections.abc import Sequence
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import chromadb
@@ -252,7 +252,7 @@ def test_synthesis_source_provenance_is_bounded() -> None:
             reasoning="Synthetic bounded provenance test",
             synthesis_fingerprint="a" * 64,
             synthesis_version="1",
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
 
 
@@ -378,7 +378,7 @@ async def test_synthesis_verification_and_reembedding_postconditions(
         reasoning="Synthetic memories support one higher-order observation",
         synthesis_fingerprint=synthesis_group.fingerprint,
         synthesis_version="1",
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
     synthesis_command = MemoryMutationCommand(
         plan_id=synthesis_plan.plan_id,

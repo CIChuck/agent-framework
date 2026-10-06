@@ -6,6 +6,8 @@ Tests encoding detection, CSV reading, and the reader factory.
 PDF, DOCX, and XLSX tests are skipped if optional dependencies are not installed.
 """
 
+import builtins
+
 import pytest
 
 from friday_tools.filesystem.readers import (
@@ -21,6 +23,17 @@ from friday_tools.filesystem.readers import (
 def _normalize_encoding(encoding: str) -> str:
     """Normalize encoding name for comparison."""
     return encoding.lower().replace("_", "-").replace(" ", "-")
+
+
+def _missing_import(monkeypatch, module_name):
+    original_import = builtins.__import__
+
+    def import_module(name, *args, **kwargs):
+        if name == module_name:
+            raise ImportError(f"Synthetic unavailable dependency: {module_name}")
+        return original_import(name, *args, **kwargs)
+
+    monkeypatch.setattr(builtins, "__import__", import_module)
 
 
 class TestEncodingDetector:
@@ -271,39 +284,90 @@ class TestPdfReader:
 class TestDocxReader:
     """Tests for DOCX reader (skipped if python-docx not installed)."""
 
-    def test_docx_reader_missing_dependency(self, tmp_path):
+    def test_docx_reader_missing_dependency(self, tmp_path, monkeypatch):
         """Test graceful failure when python-docx not installed."""
         from friday_tools.filesystem.readers import DocxReader
 
         reader = DocxReader()
         test_file = tmp_path / "test.docx"
         test_file.write_bytes(b"PK\x03\x04 fake docx")
-
+        _missing_import(monkeypatch, "docx")
         result = reader.read(test_file)
+        assert not result.success
+        assert "pip install friday-tools[documents]" in result.error
+        assert result.metadata == {
+            "missing_dependency": "python-docx", "file_type": "docx",
+        }
 
-        # Should either work or report missing dependency
-        if not result.success:
-            assert (
-                "python-docx" in result.error or "dependencies" in result.error.lower()
-            )
+    def test_docx_reader_invalid_container(self, tmp_path):
+        pytest.importorskip("docx")
+        from friday_tools.filesystem.readers import DocxReader
+
+        test_file = tmp_path / "invalid.docx"
+        test_file.write_bytes(b"PK\x03\x04 invalid archive")
+        result = DocxReader().read(test_file)
+        assert not result.success
+        assert result.error == "Failed to read DOCX: File is not a zip file"
+        assert "missing_dependency" not in result.metadata
+
+    def test_docx_reader_valid_synthetic_document(self, tmp_path):
+        docx = pytest.importorskip("docx")
+        from friday_tools.filesystem.readers import DocxReader
+
+        test_file = tmp_path / "valid.docx"
+        document = docx.Document()
+        document.add_paragraph("Synthetic document paragraph")
+        document.save(test_file)
+        result = DocxReader().read(test_file)
+        assert result.success
+        assert result.content == "Synthetic document paragraph"
+        assert result.metadata["paragraph_count"] == 1
 
 
 class TestXlsxReader:
     """Tests for XLSX reader (skipped if openpyxl not installed)."""
 
-    def test_xlsx_reader_missing_dependency(self, tmp_path):
+    def test_xlsx_reader_missing_dependency(self, tmp_path, monkeypatch):
         """Test graceful failure when openpyxl not installed."""
         from friday_tools.filesystem.readers import XlsxReader
 
         reader = XlsxReader()
         test_file = tmp_path / "test.xlsx"
         test_file.write_bytes(b"PK\x03\x04 fake xlsx")
-
+        _missing_import(monkeypatch, "openpyxl")
         result = reader.read(test_file)
+        assert not result.success
+        assert "pip install friday-tools[spreadsheets]" in result.error
+        assert result.metadata == {
+            "missing_dependency": "openpyxl", "file_type": "xlsx",
+        }
 
-        # Should either work or report missing dependency
-        if not result.success:
-            assert "openpyxl" in result.error or "dependencies" in result.error.lower()
+    def test_xlsx_reader_invalid_container(self, tmp_path):
+        pytest.importorskip("openpyxl")
+        from friday_tools.filesystem.readers import XlsxReader
+
+        test_file = tmp_path / "invalid.xlsx"
+        test_file.write_bytes(b"PK\x03\x04 invalid archive")
+        result = XlsxReader().read(test_file)
+        assert not result.success
+        assert result.error == "Failed to read Excel file: File is not a zip file"
+        assert "missing_dependency" not in result.metadata
+
+    def test_xlsx_reader_valid_synthetic_spreadsheet(self, tmp_path):
+        openpyxl = pytest.importorskip("openpyxl")
+        from friday_tools.filesystem.readers import XlsxReader
+
+        test_file = tmp_path / "valid.xlsx"
+        workbook = openpyxl.Workbook()
+        workbook.active.append(["name", "value"])
+        workbook.active.append(["Synthetic row", 42])
+        workbook.save(test_file)
+        workbook.close()
+        result = XlsxReader().read(test_file)
+        assert result.success
+        assert "Synthetic row" in result.content
+        assert "42" in result.content
+        assert result.metadata["row_count"] == 1
 
 
 class TestFileReadToolIntegration:

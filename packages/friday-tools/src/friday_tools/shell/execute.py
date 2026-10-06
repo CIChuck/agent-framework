@@ -89,7 +89,7 @@ class ShellExecuteTool(BaseTool):
                     loop.run_in_executor(None, process.communicate),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 process.kill()
                 return f"Error: Command timed out after {timeout} seconds"
 
@@ -201,7 +201,7 @@ class ShellScriptTool(BaseTool):
                     loop.run_in_executor(None, process.communicate),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 process.kill()
                 return f"Error: Script timed out after {timeout} seconds"
 

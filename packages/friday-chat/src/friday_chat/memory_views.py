@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Generic, TypeVar
+from typing import TypeVar
 
 T = TypeVar("T")
 
@@ -31,7 +31,7 @@ class MemoryDiagnosticReason(str, Enum):
 
 
 @dataclass(frozen=True)
-class MemoryMetric(Generic[T]):
+class MemoryMetric[T]:
     """One typed value that never conflates absence with numeric zero."""
 
     state: MemoryMetricState

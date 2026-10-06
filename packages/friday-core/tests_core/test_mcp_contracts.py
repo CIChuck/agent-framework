@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from types import MappingProxyType
 
 import pytest
@@ -376,7 +376,7 @@ def test_discovery_tracks_bounded_per_server_state() -> None:
         server_id="filesystem",
         connection_state="connected",
         catalog_version="v1.2",
-        cache_timestamp=datetime(2026, 9, 27, tzinfo=timezone.utc),
+        cache_timestamp=datetime(2026, 9, 27, tzinfo=UTC),
         rejected_tools=1,
         filtered_tools=2,
         diagnostic_codes=("invalid_schema", "filter_excluded"),

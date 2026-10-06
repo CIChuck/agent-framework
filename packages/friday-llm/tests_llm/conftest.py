@@ -16,7 +16,7 @@ os.environ.setdefault("LITELLM_LOCAL_MODEL_COST_MAP", "True")
 @pytest.fixture(autouse=True)
 def prohibit_external_network(
     monkeypatch: pytest.MonkeyPatch,
-) -> Generator[None, None, None]:
+) -> Generator[None]:
     """Permit deterministic loopback transports and reject external DNS."""
 
     original = socket.getaddrinfo

@@ -424,7 +424,7 @@ class LiteLLMEmbeddingService:
                     litellm.aembedding(**kwargs),
                     timeout=timeout,
                 )
-            except asyncio.TimeoutError as e:
+            except TimeoutError as e:
                 raise LLMTimeoutError(
                     f"Embedding call timed out after {timeout}s",
                     timeout_seconds=timeout,

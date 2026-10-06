@@ -46,6 +46,8 @@ def test_provider_free_pty_acknowledges_before_bounded_progress_completes() -> N
     script = textwrap.dedent(
         """
         import asyncio
+        import select
+        import sys
 
         from friday_chat.app import ConsoleOutputSink, FridayChatApp, ListInputSource
         from friday_chat.config import FridayChatConfig
@@ -85,25 +87,58 @@ def test_provider_free_pty_acknowledges_before_bounded_progress_completes() -> N
             input_source=ListInputSource(["/reorganize --backup"]),
             output_sink=ConsoleOutputSink(),
         )
+        print("REM004_PTY_READY", flush=True)
+        readable, _, _ = select.select([sys.stdin], [], [], 10.0)
+        if not readable or sys.stdin.buffer.read(1) != b"G":
+            raise RuntimeError("Parent trigger was not received")
         asyncio.run(app.run())
+        assert app.background.closed
+        assert not app.maintenance_gate.snapshot.accepting_shared
+        assert runtime.transcript.finalized
         """
     )
     master, slave = pty.openpty()
-    process = subprocess.Popen(
-        [sys.executable, "-c", script],
-        stdin=subprocess.DEVNULL,
-        stdout=slave,
-        stderr=slave,
-        close_fds=True,
-    )
-    os.close(slave)
+    process = None
     captured = bytearray()
-    deadline = time.monotonic() + 0.8
     try:
+        process = subprocess.Popen(
+            [sys.executable, "-c", script],
+            stdin=subprocess.PIPE,
+            stdout=slave,
+            stderr=slave,
+            close_fds=True,
+        )
+        os.close(slave)
+        slave = None
+        bootstrap_deadline = time.monotonic() + 20.0
+        while b"REM004_PTY_READY" not in captured and time.monotonic() < bootstrap_deadline:
+            ready, _, _ = select.select([master], [], [], 0.05)
+            if not ready:
+                continue
+            try:
+                chunk = os.read(master, 4096)
+            except OSError:
+                break
+            if not chunk:
+                break
+            captured.extend(chunk)
+        assert b"REM004_PTY_READY" in captured, (
+            "Child did not become ready within bootstrap budget: "
+            + captured.decode("utf-8", errors="replace")
+        )
+        assert b"Reorganization accepted:" not in captured
+        assert process.stdin is not None
+        deadline = time.monotonic() + 0.8
+        process.stdin.write(b"G")
+        process.stdin.flush()
+        process.stdin.close()
         while time.monotonic() < deadline:
             ready, _, _ = select.select([master], [], [], 0.05)
             if ready:
-                chunk = os.read(master, 4096)
+                try:
+                    chunk = os.read(master, 4096)
+                except OSError:
+                    break
                 if not chunk:
                     break
                 captured.extend(chunk)
@@ -131,10 +166,17 @@ def test_provider_free_pty_acknowledges_before_bounded_progress_completes() -> N
             captured.extend(chunk)
         process.wait(timeout=5)
     finally:
-        if process.poll() is None:
-            process.kill()
-            process.wait(timeout=5)
-        os.close(master)
+        try:
+            if process is not None:
+                if process.stdin is not None and not process.stdin.closed:
+                    process.stdin.close()
+                if process.poll() is None:
+                    process.kill()
+                    process.wait(timeout=5)
+        finally:
+            if slave is not None:
+                os.close(slave)
+            os.close(master)
 
     output = captured.decode("utf-8", errors="replace")
     assert process.returncode == 0

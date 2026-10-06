@@ -17,7 +17,7 @@ import sys
 from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 import yaml
 
@@ -211,7 +211,7 @@ class SessionConfig:
 
 
 @dataclass
-class SessionContext(Generic[T]):
+class SessionContext[T]:
     """
     Container for an active session with its resources.
 
@@ -232,7 +232,7 @@ class SessionContext(Generic[T]):
         self.resources[name] = resource
 
 
-class SessionManager(Generic[T]):
+class SessionManager[T]:
     """
     Manages CLI session lifecycle with graceful shutdown.
 

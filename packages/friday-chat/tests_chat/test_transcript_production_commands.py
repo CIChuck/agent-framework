@@ -7,7 +7,7 @@ import csv
 import json
 import socket
 import sqlite3
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -30,7 +30,7 @@ from friday_transcript import (
     TranscriptSession,
 )
 
-START = datetime(2026, 8, 8, 12, 0, tzinfo=timezone.utc)
+START = datetime(2026, 8, 8, 12, 0, tzinfo=UTC)
 
 
 @pytest.fixture(autouse=True)

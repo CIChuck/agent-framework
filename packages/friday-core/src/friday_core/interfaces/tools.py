@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from enum import Enum
-from typing import Any, Generic, Protocol, TypeVar, runtime_checkable
+from typing import Any, Protocol, TypeVar, runtime_checkable
 
 
 class SchemaFormat(str, Enum):
@@ -124,7 +124,7 @@ T = TypeVar("T")
 
 
 @runtime_checkable
-class ToolAdapter(Protocol, Generic[T]):
+class ToolAdapter[T](Protocol):
     """
     Adapts external framework tools to Friday's ToolDefinition.
 

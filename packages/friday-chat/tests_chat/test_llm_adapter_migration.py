@@ -9,6 +9,7 @@ from collections.abc import AsyncIterator, Iterator
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
+from unittest.mock import AsyncMock
 
 import pytest
 from friday_chat.adapters import (
@@ -17,6 +18,8 @@ from friday_chat.adapters import (
 )
 from friday_chat.config import FridayChatConfig, TypedLLMExecutionConfig
 from friday_chat.tools.schemas import ToolDefinition
+from friday_core.interfaces.llm import ChatCompletionResponse
+from friday_core.interfaces.llm import ToolCall as LegacyToolCall
 from friday_llm import (
     ChatCompletionRequest,
     CompletionAssurance,
@@ -30,6 +33,7 @@ from friday_llm import (
     TypedChatCompletionResponse,
     UsageEvent,
 )
+from pydantic import ValidationError
 
 
 def _typed_config(
@@ -84,6 +88,169 @@ def _typed_response() -> TypedChatCompletionResponse:
         finish_reason="tool_calls",
         assurance=CompletionAssurance(),
     )
+
+
+def _completion_model(typed: bool):
+    if typed:
+        return build_framework_chat_model(_typed_config())
+    return build_framework_chat_model(
+        FridayChatConfig.model_validate(
+            {"llm": {"model": "openai/synthetic", "temperature": 0.0,
+                     "max_tokens": 123, "timeout_seconds": 10.0}}
+        )
+    )
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("typed", [False, True])
+@pytest.mark.parametrize("content", [None, "", "synthetic answer"])
+async def test_published_chat_responses_preserve_forwarding_projection_and_identity(
+    typed, content, monkeypatch,
+):
+    model = _completion_model(typed)
+    if typed:
+        response = TypedChatCompletionResponse(
+            content=content,
+            reasoning_content="synthetic reasoning",
+            model="synthetic response model",
+            tool_calls=(CompletionToolCall(
+                id="synthetic-call", name="echo", arguments={"text": "synthetic"},
+            ),),
+            usage=CompletionUsage(total_tokens=5),
+            assurance=CompletionAssurance(),
+        )
+        expected_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 5}
+    else:
+        response = ChatCompletionResponse(
+            content=content,
+            reasoning_content="synthetic reasoning",
+            model="synthetic response model",
+            tool_calls=[LegacyToolCall(
+                id="synthetic-call", name="echo", arguments={"text": "synthetic"},
+            )],
+            usage={"total_tokens": 5},
+        )
+        expected_usage = {"total_tokens": 5}
+    typed_completion = AsyncMock(return_value=response)
+    legacy_completion = AsyncMock(return_value=response)
+    monkeypatch.setattr(model.service, "chat_completion_request", typed_completion)
+    monkeypatch.setattr(model.service, "chat_completion", legacy_completion)
+    messages = ({"role": "user", "content": "synthetic request"},)
+    tools = (ToolDefinition(
+        name="echo", description="Synthetic echo", input_schema={"type": "object"},
+    ),)
+    result = await model.complete(messages, tools=tools)
+    assert result.content == (content or "")
+    assert result.reasoning_content == "synthetic reasoning"
+    assert result.model == response.model
+    assert result.raw_response is response
+    assert result.usage == expected_usage
+    assert result.tool_calls[0].name == "echo"
+    assert result.tool_calls[0].call_id == "synthetic-call"
+    assert result.tool_calls[0].arguments == {"text": "synthetic"}
+    if typed:
+        assert legacy_completion.call_count == 0
+        request = typed_completion.call_args.args[0]
+        assert request.messages == messages
+        assert request.tools[0]["function"]["name"] == "echo"
+        assert request.tool_choice == "auto"
+        assert request.timeout == 10.0
+        assert request.provider_options == model.execution.provider_options
+        assert request.overrides is None
+        assert "reasoning_tokens" not in result.usage
+    else:
+        assert typed_completion.call_count == 0
+        assert legacy_completion.call_args.kwargs == {
+            "messages": list(messages),
+            "tools": [{"type": "function", "function": {
+                "name": "echo", "description": "Synthetic echo",
+                "parameters": {"type": "object"},
+            }}],
+            "temperature": 0.0,
+            "max_tokens": 123,
+            "timeout": 10.0,
+        }
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("typed", [False, True])
+async def test_published_chat_response_without_tools_preserves_request_defaults(typed, monkeypatch):
+    model = _completion_model(typed)
+    response = (
+        TypedChatCompletionResponse(model="synthetic", assurance=CompletionAssurance())
+        if typed else ChatCompletionResponse()
+    )
+    complete = AsyncMock(return_value=response)
+    method = "chat_completion_request" if typed else "chat_completion"
+    monkeypatch.setattr(model.service, method, complete)
+    result = await model.complete([{"role": "user", "content": "synthetic request"}])
+    assert result.content == ""
+    assert result.tool_calls == ()
+    assert result.reasoning_content is None
+    assert result.raw_response is response
+    if typed:
+        request = complete.call_args.args[0]
+        assert request.tools is None
+        assert request.tool_choice is None
+        assert request.overrides is None
+        assert result.usage == {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    else:
+        assert complete.call_args.kwargs["tools"] is None
+        assert result.usage == {}
+
+
+@pytest.mark.asyncio
+async def test_typed_chat_refusal_preserves_empty_projection_and_raw_response(monkeypatch):
+    model = _completion_model(True)
+    response = TypedChatCompletionResponse(
+        content=None,
+        model="synthetic refusal model",
+        finish_reason="content_filter",
+        assurance=CompletionAssurance(),
+    )
+    monkeypatch.setattr(
+        model.service, "chat_completion_request", AsyncMock(return_value=response),
+    )
+    result = await model.complete([{"role": "user", "content": "synthetic request"}])
+    assert result.content == ""
+    assert result.tool_calls == ()
+    assert result.model == response.model
+    assert result.raw_response is response
+    assert result.raw_response.finish_reason == "content_filter"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("typed", [False, True])
+async def test_chat_response_exception_propagates_unchanged(typed, monkeypatch):
+    model = _completion_model(typed)
+    error = LookupError("synthetic completion error")
+    complete = AsyncMock(side_effect=error)
+    other = AsyncMock(side_effect=AssertionError("wrong completion branch"))
+    method = "chat_completion_request" if typed else "chat_completion"
+    other_method = "chat_completion" if typed else "chat_completion_request"
+    monkeypatch.setattr(model.service, method, complete)
+    monkeypatch.setattr(model.service, other_method, other)
+    with pytest.raises(LookupError) as raised:
+        await model.complete([{"role": "user", "content": "synthetic request"}])
+    assert raised.value is error
+    assert other.call_count == 0
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("typed", [False, True])
+async def test_chat_malformed_tool_call_error_propagates_without_coercion(typed, monkeypatch):
+    model = _completion_model(typed)
+    with pytest.raises(ValidationError) as invalid:
+        CompletionToolCall.model_validate(
+            {"id": "synthetic", "name": "echo", "arguments": ["invalid"]},
+        )
+    complete = AsyncMock(side_effect=invalid.value)
+    method = "chat_completion_request" if typed else "chat_completion"
+    monkeypatch.setattr(model.service, method, complete)
+    with pytest.raises(ValidationError) as propagated:
+        await model.complete([{"role": "user", "content": "synthetic request"}])
+    assert propagated.value is invalid.value
+    assert complete.await_count == 1
 
 
 def test_typed_builder_sets_targets_and_generation_without_deprecation() -> None:

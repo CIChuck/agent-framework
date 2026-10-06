@@ -6,7 +6,7 @@ Promotion coordinator for additive multi-agent memory mode.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from friday_core.interfaces import ArbitrationDecision, ArbitrationInterface
@@ -71,8 +71,8 @@ class PromotionCoordinator:
                 author_id=proposal.author_id,
                 correlation_id=proposal.correlation_id,
                 transcript_entry_id=proposal.transcript_entry_id,
-                created_at=datetime.now(timezone.utc),
-                updated_at=datetime.now(timezone.utc),
+                created_at=datetime.now(UTC),
+                updated_at=datetime.now(UTC),
             )
         )
         return proposal
@@ -153,7 +153,7 @@ class PromotionCoordinator:
                     source_type="agent",
                     author_id=proposal.author_id,
                     confidence=1.0,
-                    created_at=datetime.now(timezone.utc),
+                    created_at=datetime.now(UTC),
                 ),
             )
             await memory.store_fact(node)
@@ -171,7 +171,7 @@ class PromotionCoordinator:
                     source_type="agent",
                     author_id=proposal.author_id,
                     confidence=1.0,
-                    created_at=datetime.now(timezone.utc),
+                    created_at=datetime.now(UTC),
                 ),
                 extra_metadata={
                     "namespace": SHARED_NAMESPACE,

@@ -303,7 +303,7 @@ def _format_memory_statistics(snapshot: MemoryStatisticsSnapshot) -> str:
     return "\n".join(lines)
 
 
-def _metric_text(metric: MemoryMetric[T], *, suffix: str = "") -> str:
+def _metric_text[T](metric: MemoryMetric[T], *, suffix: str = "") -> str:
     if metric.state is MemoryMetricState.AVAILABLE:
         if isinstance(metric.value, bool):
             return "true" if metric.value else "false"

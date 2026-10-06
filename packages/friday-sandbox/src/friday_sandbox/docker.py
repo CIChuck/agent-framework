@@ -127,7 +127,7 @@ class DockerSandbox:
                 workspace=workspace,
                 environment=environment,
             )
-        except asyncio.TimeoutError:
+        except TimeoutError:
             raise SandboxTimeoutError(timeout)  # noqa: B904
 
         execution_time_ms = (time.time() - start_time) * 1000
@@ -236,7 +236,7 @@ class DockerSandbox:
                 exit_code=exit_code.get("StatusCode", 1),
             )
 
-        except asyncio.TimeoutError:
+        except TimeoutError:
             # Kill container on timeout
             await loop.run_in_executor(None, container.kill)
             raise

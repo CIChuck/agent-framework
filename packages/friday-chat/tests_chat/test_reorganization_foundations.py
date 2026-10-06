@@ -7,7 +7,7 @@ import multiprocessing
 import os
 import platform
 import stat
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -52,7 +52,7 @@ from friday_memory import (
 from friday_transcript import TranscriptSnapshotManifest
 from pydantic import ValidationError
 
-NOW = datetime(2026, 8, 6, 12, 0, tzinfo=timezone.utc)
+NOW = datetime(2026, 8, 6, 12, 0, tzinfo=UTC)
 DARWIN_ONLY = pytest.mark.skipif(
     platform.system() != "Darwin",
     reason="lease execution semantics are verified only on Darwin",

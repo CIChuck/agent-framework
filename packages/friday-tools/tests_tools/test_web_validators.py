@@ -1,9 +1,87 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for URL validation and SSRF protection."""
 
+import socket
+
 import pytest
 
 from friday_tools.web import URLValidationError, is_safe_url, validate_url
+
+
+@pytest.fixture(autouse=True)
+def public_domain_answers(monkeypatch):
+    """Keep ordinary domain validation deterministic and offline."""
+    monkeypatch.setattr(
+        socket,
+        "getaddrinfo",
+        lambda *args, **kwargs: [
+            (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("8.8.8.8", 0))
+        ],
+    )
+
+
+def _prohibit_literal_dns(monkeypatch):
+    def resolve(*args, **kwargs):
+        pytest.fail("Literal addresses must be classified without DNS")
+
+    monkeypatch.setattr(socket, "getaddrinfo", resolve)
+
+
+@pytest.mark.parametrize(
+    "host",
+    [
+        "10.0.0.1", "172.16.0.1", "192.168.1.1", "169.254.169.254",
+        "[fc00::1]", "[fe80::1]", "[ff02::1]", "[::1]", "127.0.0.2",
+        "240.0.0.1", "224.0.0.1",
+    ],
+)
+def test_private_literals_rejected_without_resolver(host, monkeypatch):
+    _prohibit_literal_dns(monkeypatch)
+    with pytest.raises(URLValidationError):
+        validate_url(f"http://{host}/synthetic")
+
+
+@pytest.mark.parametrize("host", ["8.8.8.8", "[2606:4700:4700::1111]"])
+def test_public_literals_accepted_without_resolver(host, monkeypatch):
+    _prohibit_literal_dns(monkeypatch)
+    url = f"https://{host}/synthetic"
+    assert validate_url(url) == url
+
+
+@pytest.mark.parametrize("host", ["192.168.1.1", "[fc00::1]", "[ff02::1]"])
+def test_private_literal_override_preserved_without_resolver(host, monkeypatch):
+    _prohibit_literal_dns(monkeypatch)
+    url = f"http://{host}/synthetic"
+    assert validate_url(url, allow_private_ips=True) == url
+    with pytest.raises(URLValidationError, match="blocked"):
+        validate_url(url, allow_private_ips=True, blocked_hosts={host.strip("[]")})
+    with pytest.raises(URLValidationError, match="not allowed"):
+        validate_url(url.replace("http:", "ftp:"), allow_private_ips=True)
+
+
+@pytest.mark.parametrize("private", ["192.168.1.1", "fc00::1", "fe80::1", "ff02::1"])
+@pytest.mark.parametrize("private_first", [False, True])
+def test_domain_mixed_answers_reject_any_private_address(
+    private, private_first, monkeypatch,
+):
+    public = (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("8.8.8.8", 0))
+    family = socket.AF_INET6 if ":" in private else socket.AF_INET
+    unsafe = (family, socket.SOCK_STREAM, 6, "", (private, 0))
+    answers = [unsafe, public] if private_first else [public, unsafe]
+    monkeypatch.setattr(socket, "getaddrinfo", lambda *args, **kwargs: answers)
+    with pytest.raises(URLValidationError, match="private IP"):
+        validate_url("https://synthetic.example/")
+
+
+@pytest.mark.parametrize(
+    "failure", [socket.gaierror("synthetic DNS failure"), RuntimeError("guard")],
+)
+def test_domain_resolver_failure_policy_preserved(failure, monkeypatch):
+    def resolve(*args, **kwargs):
+        raise failure
+
+    monkeypatch.setattr(socket, "getaddrinfo", resolve)
+    assert validate_url("https://synthetic.example/") == "https://synthetic.example/"
 
 
 class TestValidateUrl:

@@ -8,7 +8,7 @@ Provides tools for getting current date/time in various formats and timezones.
 from __future__ import annotations
 
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -81,7 +81,7 @@ class GetCurrentDateTimeTool(FridayTool):
                     # Couldn't determine IANA name, use offset
                     tz_display = now.strftime("UTC%z")
             elif args.timezone_name == "UTC":
-                now = datetime.now(timezone.utc)
+                now = datetime.now(UTC)
             elif ZoneInfo is not None:
                 try:
                     tz = ZoneInfo(args.timezone_name)
@@ -98,7 +98,7 @@ class GetCurrentDateTimeTool(FridayTool):
                         content="Only UTC timezone supported (zoneinfo unavailable)",
                         error="zoneinfo module not available",
                     )
-                now = datetime.now(timezone.utc)
+                now = datetime.now(UTC)
 
             # Build result data
             result_data = {

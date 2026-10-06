@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import warnings
 from dataclasses import dataclass
-from typing import Any, Protocol, TypeAlias, TypeVar
+from typing import Any, Protocol, TypeVar
 
 from friday_core.interfaces.llm import ChatCompletionResponse
 from friday_llm import (
@@ -39,7 +39,7 @@ class LegacyMemoryLLMClient(Protocol):
         ...
 
 
-MemoryLLMClient: TypeAlias = TypedLLMClient | LegacyMemoryLLMClient
+type MemoryLLMClient = TypedLLMClient | LegacyMemoryLLMClient
 
 
 @dataclass(frozen=True, slots=True)
@@ -69,7 +69,7 @@ async def complete_memory_request(
             override_values["sampling"] = SamplingConfig(temperature=temperature)
         if max_tokens is not None:
             override_values["max_tokens"] = max_tokens
-        response = await client.chat_completion_request(
+        typed_response = await client.chat_completion_request(
             ChatCompletionRequest(
                 messages=tuple(messages),
                 overrides=GenerationOverrides.model_validate(override_values),
@@ -77,24 +77,24 @@ async def complete_memory_request(
             )
         )
         return MemoryCompletion(
-            content=response.content,
-            reasoning_content=response.reasoning_content,
+            content=typed_response.content,
+            reasoning_content=typed_response.reasoning_content,
         )
 
     _warn_for_legacy_client()
-    response = await client.chat_completion(
+    legacy_response = await client.chat_completion(
         messages=messages,
         temperature=temperature if temperature is not None else 0.7,
         max_tokens=max_tokens,
         timeout=timeout,
     )
     return MemoryCompletion(
-        content=response.content,
-        reasoning_content=response.reasoning_content,
+        content=legacy_response.content,
+        reasoning_content=legacy_response.reasoning_content,
     )
 
 
-async def complete_structured_memory_request(
+async def complete_structured_memory_request[ResponseModelT: BaseModel](
     client: MemoryLLMClient,
     *,
     messages: list[dict[str, Any]],

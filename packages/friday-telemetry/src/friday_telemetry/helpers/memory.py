@@ -430,7 +430,7 @@ class MemoryTelemetryHelper:
             "batch_store",
         ],
         store_type: Literal["vector", "graph", "episodic"],
-    ) -> Generator[MemoryWriteTracker, None, None]:
+    ) -> Generator[MemoryWriteTracker]:
         """
         Context manager for tracking a memory write operation.
 
@@ -462,7 +462,7 @@ class MemoryTelemetryHelper:
         self,
         operation: Literal["recall", "prime", "search", "get_context"],
         query_text: str,
-    ) -> Generator[MemoryRecallTracker, None, None]:
+    ) -> Generator[MemoryRecallTracker]:
         """
         Context manager for tracking a memory recall operation.
 
@@ -494,7 +494,7 @@ class MemoryTelemetryHelper:
         self,
         operation: Literal["prune", "promote", "synthesize", "reorganize", "decay"],
         dry_run: bool = False,
-    ) -> Generator[MaintenanceTracker, None, None]:
+    ) -> Generator[MaintenanceTracker]:
         """
         Context manager for tracking a memory maintenance operation.
 

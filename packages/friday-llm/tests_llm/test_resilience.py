@@ -6,7 +6,6 @@ Tests for LLM resilience features.
 Tests retry logic, timeouts, circuit breaker, and exception handling.
 """
 
-import asyncio
 import warnings
 from unittest.mock import AsyncMock, patch
 
@@ -356,7 +355,7 @@ class TestLiteLLMServiceResilience:
     async def test_timeout_error_raised(self, service_no_retry):
         """Test that timeouts are wrapped in LLMTimeoutError."""
         with patch("litellm.acompletion", new_callable=AsyncMock) as mock:
-            mock.side_effect = asyncio.TimeoutError()
+            mock.side_effect = TimeoutError()
 
             with pytest.raises(LLMTimeoutError) as exc_info:
                 await service_no_retry.chat_completion(
@@ -466,7 +465,7 @@ class TestLiteLLMEmbeddingServiceResilience:
         )
 
         with patch("litellm.aembedding", new_callable=AsyncMock) as mock:
-            mock.side_effect = asyncio.TimeoutError()
+            mock.side_effect = TimeoutError()
 
             with pytest.raises(LLMTimeoutError) as exc_info:
                 await service.embed_query("test query", timeout=5.0)

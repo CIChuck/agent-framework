@@ -7,7 +7,7 @@ import json
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Protocol, TypeVar, cast
 
@@ -792,7 +792,7 @@ class FrameworkMaintenanceMutationAdapter(MaintenanceMutationAdapter):
             vectors = await embedding.embed_documents(
                 tuple(draft.document for draft, _group in accepted)
             )
-            created_at = datetime.now(timezone.utc)
+            created_at = datetime.now(UTC)
             additions = tuple(
                 MemoryVectorAddition(
                     collection=draft.collection,
