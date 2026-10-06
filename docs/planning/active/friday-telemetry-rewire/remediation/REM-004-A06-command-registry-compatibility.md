@@ -1,8 +1,11 @@
-# Proposed CD-001 A06 / REM-004 compatibility amendment
+# Approved CD-001 A06 / REM-004 compatibility amendment
 
-Status: proposed, not approved. Date: 2026-10-05.
+Status: explicitly approved, 2026-10-06, by repository maintainer Chuck Russell.
+Approval evidence: "I approve A06 and WVR-003".
+Proposal date: 2026-10-05.
 Base approved authority: A05 / REM-004 and WVR-002, frozen at559ae9f;
-readiness metadata HEAD1718ed2. This proposal grants no construction authority.
+readiness metadata HEAD1718ed2. Approval grants the exact A06 extension,
+subject to reconciled frozen authority and fresh independent readiness.
 
 ## Concrete decision
 
@@ -13,7 +16,7 @@ CommandRegistry to inferred contravariance or manufacture state solely to influe
 variance. The [six-class evidence](../execution/REM-004-compatibility/report.md)
 identifies this as the sole demonstrated variance conflict.
 
-If explicitly approved, A06 supersedes only R4-06's all133-fixed/zero-live lint
+Approved A06 supersedes only R4-06's all133-fixed/zero-live lint
 condition: fix132 live diagnostics, retain this one unchanged declaration, and
 require exact327 root findings jointly disposed by WVR-002 and WVR-003. It also
 explicitly reconciles WVR-002's zero-live condition as described in WVR-003. The
@@ -24,7 +27,7 @@ whole-suite zero exits and aggregate AC-01 through AC-06 remain mandatory.
 
 ## Resumption and verification
 
-Construction remains stopped pending maintainer approval. Following approval,
+Maintainer approval is recorded above. Before construction resumes,
 record the exact evidence, reconcile CD-001/verification profile/REM-004/current
 manifest and board, freeze a stable authority candidate, and obtain fresh
 independent read-only readiness before releasing the separate remediator.
@@ -43,4 +46,4 @@ package tests, focused telemetry tests, full root/Chat+telemetry, original root
 lint, changed-file lint, aggregate-source mypy3.13/AST, offline lock and metadata
 checks remain mandatory. Commit the completed product candidate for a fresh
 read-only delta plus aggregate review; no completion/acceptance/push/merge or
-future-unit authority is granted by this proposal.
+future-unit authority is granted by this amendment.

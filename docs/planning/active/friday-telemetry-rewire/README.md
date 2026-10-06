@@ -8,17 +8,18 @@ status: approved
 work_state: started
 condition: normal
 created: 2026-10-01
-updated: 2026-10-05
-next_gate: resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet
+updated: 2026-10-06
+next_gate: fresh approved A06/WVR-003 readiness then resume REM-004; retain exact one live UP046 and archival326; all other gates required
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
 ---
 
-Construction is paused on the demonstrated CommandRegistry variance conflict.
+The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.
 The [A06 amendment](remediation/REM-004-A06-command-registry-compatibility.md) and
 [WVR-003 proposal](validation/WVR-003-command-registry-variance.md) preserve its
-existing contract with one exact live lint exception; neither is approved.
+existing contract with one exact live lint exception; both are now approved.
+Fresh reconciled-authority readiness precedes resumption.
 [Partial-check evidence](execution/REM-004-compatibility/report.md) is advisory.
 
 The maintainer authorized preparation of the proposed
@@ -134,5 +135,5 @@ fresh delta/aggregate review remain pending.
 
 Fresh [CDR-010](validation/CDR-010/report.md) returned READY for maintainer
 consideration of the exact A06/WVR-003 compatibility proposal at cdb1b8b.
-Construction remains paused pending the new precise compatibility decision;
+The new precise compatibility decision is approved; fresh authority readiness precedes construction;
 no earlier approval is revoked and no product verification is claimed.

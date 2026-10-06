@@ -4,6 +4,11 @@ Status: Approved construction directive, 2026-10-05.
 Approved by: repository maintainer Chuck Russell.
 Approval evidence: "I approve both REM-004 and WVR-002."
 WVR-002 separately approved in that same explicit response.
+A06 and WVR-003 explicitly approved 2026-10-06: "I approve A06 and WVR-003".
+[A06](REM-004-A06-command-registry-compatibility.md) supersedes only the
+all133-fixed/zero-live lint condition below: fix132 and retain the exact one
+CommandRegistry UP046 under [WVR-003](../validation/WVR-003-command-registry-variance.md).
+All other scope, tests, typing, guard, listeners, archive pins and gates remain required.
 Preparation authorized: maintainer's 2026-10-05 "proceed" following the recommendation
 to prepare this exact directive and obtain independent review.
 Initiative: friday-telemetry-rewire. Work unit: TELEM-01 / REM-004, approved CD-001 A05.

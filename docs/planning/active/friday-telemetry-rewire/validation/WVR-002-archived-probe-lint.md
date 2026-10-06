@@ -6,6 +6,12 @@ Date: 2026-10-05. Work unit: TELEM-01 / REM-004.
 Owner: repository maintainer Chuck Russell; controller records exact evidence.
 Follow-up: REM-004-HIST-01, described below. WVR-001 is separate and unapproved.
 
+Approved A06/WVR-003 supplement, 2026-10-06: "I approve A06 and WVR-003".
+Only the zero-live condition below is superseded by exactly one independently
+matched live CommandRegistry UP046 under [WVR-003](WVR-003-command-registry-variance.md).
+The archival scope remains326, its identities/hashes/config/tool/expiry unchanged.
+All other live findings and mandatory gates remain failures.
+
 The [exact scope inventory](../remediation/REM-004-scope.json) freezes 326 Ruff
 diagnostics in four accepted MCP validation probe artifacts, their normalized
 path/code/location/message identities and complete SHA-256 file hashes. They

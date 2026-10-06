@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | fresh approved A06/WVR-003 readiness then resume REM-004; retain exact one live UP046 and archival326; all other gates required |
 
 ## Completed
 

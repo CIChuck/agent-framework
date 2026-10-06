@@ -1,5 +1,5 @@
 {
-  "status": "proposed; not approved",
+  "status": "explicitly approved",
   "work_unit": "TELEM-01 / REM-004",
   "code": "UP046",
   "source_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
@@ -20,5 +20,8 @@
   "ruff": "0.14.10",
   "target": "py313",
   "lint_configuration": "Exact unchanged 17 hashes in approved WVR-002",
-  "disposition": "Only this one live diagnostic; joint approved WVR-002 covers its exact 326 archive identities; no other findings"
+  "disposition": "Only this one live diagnostic; joint approved WVR-002 covers its exact 326 archive identities; no other findings",
+  "approval_date": "2026-10-06",
+  "approval_evidence": "I approve A06 and WVR-003",
+  "approved_by": "repository maintainer Chuck Russell"
 }

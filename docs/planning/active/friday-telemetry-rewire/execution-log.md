@@ -442,3 +442,16 @@ and the exact UP046; all83 request inputs,16 current controlling pins,17 lint
 configuration hashes and four archival hashes match. Review remains planning-only:
 A06/WVR-003 are unapproved, construction paused, product unverified. Existing
 REM-004/WVR-002 approvals and all mandatory gates remain unchanged.
+
+## 2026-10-06 — A06 and WVR-003 approved / authority reconciliation
+
+Maintainer explicitly said "I approve A06 and WVR-003". Exact compatibility
+disposition is approved: retain invariant CommandRegistry byte-identical and
+its one pinned live UP046; unchanged root lint must contain exactly327 jointly
+covered identities after all other132live findings are fixed. WVR-002 archival
+scope remains326; tests, typing, listeners, guard, package/API/lock/aggregate gates
+and stop conditions remain mandatory. Reconciled approved amendment, waivers,
+CD-001, REM-004, verification profile and nineteen-pin current manifest.
+Six partial permitted fixes and unrelated dirty paths preserved; construction
+resumes only after fresh independent frozen-authority readiness. No acceptance
+or delivery action; TELEM-02 through TELEM-05 remain deferred.

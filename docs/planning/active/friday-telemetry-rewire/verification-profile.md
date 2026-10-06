@@ -1,4 +1,4 @@
-# TELEM-01 verification profile — CD-001 amendments A01, A03, A04 and A05
+# TELEM-01 verification profile — CD-001 amendments A01, A03, A04, A05 and A06
 
 Status: Approved verification authority, 2026-10-05.
 Maintainer evidence: "approved, proceed" following the independent CD-001 review
@@ -146,3 +146,18 @@ multiset/hash/tool/config matches, zero live/other findings and all other gates
 passing. The report names the approved exception rather than claiming raw lint
 passed. No pytest, typing, security, listener or future-phase exception exists.
 WVR-001 remains unapproved. All WVR-002 expiry conditions apply.
+
+## A06 exact CommandRegistry compatibility disposition
+
+Explicit approval2026-10-06: "I approve A06 and WVR-003".
+Approved [A06](remediation/REM-004-A06-command-registry-compatibility.md) and
+[WVR-003](validation/WVR-003-command-registry-variance.md) supersede only the
+A05 zero-live condition above. Retain commands.py byte-identical at its exact
+frozen hash and one UP046 identity; fix all remaining132 live diagnostics.
+Unchanged root Ruff must report exactly327 identities: WVR-002's326 immutable
+archival findings plus WVR-003's single live finding. Changed-file Ruff can
+retain only that one when its file is selected. Disclose both raw nonzero exits
+and exact approved dispositions; any other finding remains a failure.
+Every existing test/type/security/listener/guard/lock/API/aggregate gate and both
+waivers' tool/config/hash/expiry/follow-up conditions remain binding. Freeze
+and run both-direction negative registry consumer probes at final candidate.

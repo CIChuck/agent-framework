@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet
+  next_gate: fresh approved A06/WVR-003 readiness then resume REM-004; retain exact one live UP046 and archival326; all other gates required
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1076,3 +1076,10 @@ events:
   action: recorded CDR-010 compatibility proposal READY
   note: Independently reproduced exact one-class variance conflict and exact live UP046; A06/WVR-003 await explicit maintainer approval; no construction resumption or product verification.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved exact A06 and separately WVR-003
+  note: I approve A06 and WVR-003. Preserve invariant CommandRegistry and one pinned live UP046; all other REM-004 scope and mandatory gates remain required; fresh frozen-authority readiness precedes resumption.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md

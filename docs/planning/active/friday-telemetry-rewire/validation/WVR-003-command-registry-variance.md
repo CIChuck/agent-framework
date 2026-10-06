@@ -1,6 +1,8 @@
-# Proposed WVR-003: preserve CommandRegistry invariance
+# Approved WVR-003: preserve CommandRegistry invariance
 
-Status: proposed, not approved. Date: 2026-10-05.
+Status: explicitly approved, 2026-10-06, by repository maintainer Chuck Russell.
+Approval evidence: "I approve A06 and WVR-003".
+Proposal date: 2026-10-05.
 Work unit: TELEM-01 / REM-004. Owner: repository maintainer Chuck Russell.
 Follow-up: REM-004-GENERIC-01; cleanup decision before acceptance beyond TELEM-01.
 
@@ -20,7 +22,7 @@ directions and remain subject to the original implementation and API gates.
 Retaining this one declaration protects the existing contract while the remaining
 132 current-code findings are fixed.
 
-If explicitly approved together with A06, this supplements WVR-002 **only** by
+Approved together with A06, this supplements WVR-002 **only** by
 replacing its zero-live condition with exactly this single, independently matched
 UP046 identity and frozen source hash. All WVR-002 archive identities, four file
 hashes, Ruff 0.14.10, py313 target, seventeen lint configuration hashes, follow-up,
@@ -29,7 +31,7 @@ changed-file Ruff must both run unchanged. Root must have exactly327 diagnostics
 326 WVR-002 archival findings plus this one live UP046. Changed-file Ruff may
 have only this one when commands.py is among its targets; all other diagnostics
 remain failures. Reports disclose the raw nonzero exits and each approved
-exception separately. This proposal grants no passing raw lint claim and no
+exception separately. This approval grants no passing raw lint claim and no
 pytest, typing, security, provider, telemetry or acceptance exception.
 
 The independent validator must match the complete sorted diagnostic multiset

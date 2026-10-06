@@ -22,9 +22,9 @@ authority:
 - path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
   sha256: 554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de
 - path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
-  sha256: 6b1df45143e7e92ccf85f03e9f8feeef61cf796c7d6ef2fc795890a477da3b9b
+  sha256: 08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478
 - path: docs/planning/active/friday-telemetry-rewire/verification-profile.md
-  sha256: 65e219accefff9a49ede6d8571168ef55300709e8c5ad4c4ba9319ce7bc7cb48
+  sha256: 6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md
   sha256: 0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md
@@ -32,11 +32,17 @@ authority:
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md
   sha256: b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md
-  sha256: 0ad931d5bf1c0617142b33c43fee09851d3e28df69654fb8780ea91ebd14566b
+  sha256: f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828
 - path: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json
   sha256: b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21
 - path: docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md
-  sha256: 624a28c385c29a91994d2aba66f99bb4fcc474b5fb32d2b75b12bd09361c30c7
+  sha256: 7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98
+- path: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md
+  sha256: 8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd
+- path: docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md
+  sha256: 9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c
+- path: docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json
+  sha256: 2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2
 acceptance_criteria:
 - AC-01
 - AC-02
@@ -48,5 +54,6 @@ external_services: 'Approved REM-004: synthetic localhost ephemeral listeners fo
   exactly11 inventoried nodes in full root and Chat+telemetry suites under normal-user
   sandbox escape, fresh preflight, allowlist and unchanged guard. No live provider,
   remote exporter, real data, credentials, downloads, builds or environment synchronization.'
-authority_amendment: CD-001 A01-A04 historical approvals; A05/REM-004 exact remediation
-  and separately approved WVR-002 archival lint exception
+authority_amendment: CD-001 A01-A05 historical approvals; approved A06 exact CommandRegistry
+  compatibility and separately approved WVR-003 one-live-UP046 plus WVR-002 archival326;
+  all other REM-004 gates unchanged

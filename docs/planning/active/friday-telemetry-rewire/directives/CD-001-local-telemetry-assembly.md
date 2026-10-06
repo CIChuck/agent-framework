@@ -26,6 +26,13 @@ Amendment evidence: "I approve both REM-004 and WVR-002."
 test/security/typing/live-lint scope and synthetic full-suite listener execution.
 [WVR-002](../validation/WVR-002-archived-probe-lint.md) covers only326 immutable
 historical lint diagnostics; all other mandatory checks remain required.
+Amendment A06 approved at: 2026-10-06, with separately WVR-003.
+Amendment evidence: "I approve A06 and WVR-003".
+[A06](../remediation/REM-004-A06-command-registry-compatibility.md) preserves
+byte-identical invariant CommandRegistry. [WVR-003](../validation/WVR-003-command-registry-variance.md)
+permits only its exact one live UP046 in addition to WVR-002's326 archival identities.
+This explicitly supersedes the all133-fixed/zero-live condition; all remaining
+132 live findings and every test/typing/aggregate gate remain mandatory.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
