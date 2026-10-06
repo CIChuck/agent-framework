@@ -6668,5 +6668,29 @@
       "status": "ERROR"
     }
   ],
-  "status": "proposed; no construction approval or waiver"
+  "status": "proposed; no construction approval or waiver",
+  "typing_baseline": {
+    "diagnostics": [
+      {
+        "code": "assignment",
+        "line": 85,
+        "message": "Incompatible types in assignment (expression has type \"ChatCompletionResponse\", variable has type \"TypedChatCompletionResponse\")",
+        "path": "packages/friday-memory/src/friday_memory/llm_completion.py"
+      },
+      {
+        "code": "assignment",
+        "line": 167,
+        "message": "Incompatible types in assignment (expression has type \"TypedChatCompletionResponse\", variable has type \"ChatCompletionResponse\")",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      },
+      {
+        "code": "attr-defined",
+        "line": 178,
+        "message": "\"dict[str, int]\" has no attribute \"model_dump\"",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      }
+    ],
+    "source_count": 58,
+    "status": "three exact pre-existing failures; fix required, no waiver"
+  }
 }

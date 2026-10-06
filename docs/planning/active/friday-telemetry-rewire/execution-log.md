@@ -375,3 +375,14 @@ the corrected command and both raw results are retained. Current live lint is
 probes, covered only by a proposed explicit exception. No source/test/lock/
 configuration or active controlling-authority change. The board remains started,
 remediation/changes_requested; no completion, acceptance or delivery action.
+
+## 2026-10-05 — CDR-007 proposal correction
+
+Fresh frozen-proposal review of b264ceb returned CHANGES_REQUESTED for
+REM004-PR-F01: expanded58-source mypy reproduces three preexisting errors in
+Chat adapters and Memory completion, outside the initial lint-site-only allowance.
+The proposed R4-06b now names those exact response-variable/annotation fixes,
+published response contracts, bounded typed/legacy coverage and zero-exit typing.
+Both product files already belong to the lint manifest. This is a proposal scope
+correction, not product remediation or a typing waiver. Freeze a new stable
+proposal and start a fresh reviewer; preserve CDR-007's original outcome.

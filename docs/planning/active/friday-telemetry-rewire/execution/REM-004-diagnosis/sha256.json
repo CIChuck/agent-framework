@@ -6,5 +6,7 @@
   "native-after-agent.json": "232fec3e600a101e9a62ee2615338bc2bb5a9a267457a8994740a969a1f6ff53",
   "native-after-agent.log": "7553de5a2eb4f8eac3228fdc1f0636b423dabd16407b3d692f69d3d16e9386e0",
   "native-isolated.json": "1cda660985e4705f8fb453a282222d064f26c72c8da70f4b07d9a7a60c2684da",
-  "native-isolated.log": "21a2bc43b97f65ac379b4a73457c8d0e1938977e6c3635169a3bae5c4ffcbdde"
+  "native-isolated.log": "21a2bc43b97f65ac379b4a73457c8d0e1938977e6c3635169a3bae5c4ffcbdde",
+  "proposed-mypy-baseline.json": "f5a377e65912bef59331c0a6cd2ec983b4899a0512fa6e3cb841862b8d73dd5e",
+  "proposed-mypy-baseline.log": "b0e0a30f73cbb5528fe91b7b4f1381fc725fdd5654ac386297cf29ff37632826"
 }

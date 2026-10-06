@@ -58,9 +58,9 @@
     }
   ],
   "proposal_inputs": {
-    "remediation/REM-004-verification-closeout-directive.md": "1333f97bbfd18440ab4a2e26001b96ea4ea50951424b508ab77533f8a8816310",
-    "remediation/REM-004-scope.json": "27810c32e04a2c6a0d9ee652a3fa70c5a3186eea4db79bff754160b71064a617",
-    "remediation/REM-004-diagnosis.md": "a92e73d2ea606270810b62d45353420f869176e3c0fcc43ed55e7cbd0922bff0",
+    "remediation/REM-004-verification-closeout-directive.md": "403b9b0149fe023ae00125edb7ef15019c6fd5bb1aebd2fe272bb7ca09e55fff",
+    "remediation/REM-004-scope.json": "1cc9d18889556ae67d8c0b26e79fb3b20329169604487c3410789993fcfd0555",
+    "remediation/REM-004-diagnosis.md": "f085ba6a3e21696bf00ecca87bd6a564c283b656cb2fab0c5ed27db0ccb123c9",
     "validation/WVR-002-archived-probe-lint.md": "ca7f1bf31bebc2cb44b547290efdea8d7a791364e8c52a65e78e9fc0b9f261d7"
   }
 }

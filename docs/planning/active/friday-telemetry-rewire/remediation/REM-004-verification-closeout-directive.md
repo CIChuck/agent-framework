@@ -67,14 +67,16 @@ Product/test paths may change only as follows:
    REM-004-scope.json may bind `127.0.0.1` with OS-assigned ephemeral ports under the
    execution profile below. Their complete containing suites must also run.
 6. R4-06: exactly the 80 keys in `live_lint_files` in REM-004-scope.json, and only the
-   identified diagnostic sites plus necessary imports/annotations/line wrapping.
+   identified diagnostic sites plus necessary imports/annotations/line wrapping,
+   and the three exact typing sites in R4-06b below.
    These overlap some paths above; the union is the allowed manifest. Allowed rules:
    UP017(71), UP041(19), UP040(12), UP043(7), UP046(6), UP047(4), UP035(1), I001(2),
    E501(11). No other opportunistic refactoring. Focused public typing regressions
    may additionally be added to these existing files:
    `packages/friday-core/tests_core/test_interfaces.py`,
    `packages/friday-cli/tests_cli/test_cancellation.py`,
-   `packages/friday-memory/tests_memory/test_llm_completion.py`.
+   `packages/friday-memory/tests_memory/test_llm_completion.py`, and
+   `packages/friday-chat/tests_chat/test_llm_adapter_migration.py`.
 
 If one of the named existing regression files is absent, stop and revise that
 path before construction rather than silently creating a differently named file.
@@ -165,6 +167,35 @@ freeze an exact amendment first. Keep the four archive files byte-identical.
 exit/count must be reported. With explicit WVR-002 approval only, an exact match
 of those 326 diagnostics and hashes, zero live findings and all other passing
 checks satisfies that limited gate. Any other diagnostic remains a failure.
+
+**R4-06b — Exact expanded-scope typing failures.** Independent proposal review
+REM004-PR-F01 reproduced three errors over the 58 proposed source targets.
+At the frozen baseline, `friday_chat/adapters.py:167` reassigns a legacy-inferred
+ChatCompletionResponse variable to TypedChatCompletionResponse, and `:178` then
+reports dict usage has no model_dump. `friday_memory/llm_completion.py:85` reuses
+a typed-inferred response variable for a legacy ChatCompletionResponse. Both
+files already belong to the 80-file lint scope. Scope additionally permits only
+response local-variable/annotation separation and necessary public model imports
+in FrameworkChatModel.complete and complete_memory_request, plus the bounded
+response regressions in the existing two completion-test files named above.
+Use separate branch-local response names or an explicit public response union
+with correct narrowing; no cast workaround, Any erasure, suppression, changed
+LLM interfaces, response coercion, request defaults or deprecation policy.
+
+Preserve and verify both typed and legacy Chat request forwarding, content,
+reasoning, model, tool calls, usage projection and raw response identity; preserve
+both typed and legacy Memory content/reasoning projection, controls, structured
+response-model validation and compatibility warning behavior. Use published
+response models and synthetic clients. Cover absent/empty content, omitted typed
+usage fields, invalid structured JSON/model data and unchanged exception propagation
+in both branches; malformed structured output must not become a valid model.
+Existing adequate coverage may be retained;
+add only missing response-contract cases. Require zero exit from the exact
+aggregate changed-source mypy command and record that the three baseline errors
+are resolved without weakening configuration or other checks. A fourth typing
+error or additional function/file is a stop condition for a precise amendment.
+This typing component belongs to R4-06's acceptance criterion and sole
+VAL-005-F01 mapping; no new waiver is proposed.
 
 ## Verification commands and execution profile
 
