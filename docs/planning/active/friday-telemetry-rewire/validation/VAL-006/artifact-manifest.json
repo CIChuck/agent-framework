@@ -56,9 +56,6 @@
   "report.md": {
     "sha256": "b67d8271acfdd7f6b6f4d49d58220ce354423eaa5c8ebde9993694d26009e421"
   },
-  "baseline_moltbook.py": {
-    "sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da"
-  },
   "registry-finally.json": {
     "sha256": "9562adfe038c750273bd5ed74236c10a962a365374b807f307f39e2b932d5e73"
   },
@@ -94,9 +91,6 @@
   },
   "docs.log.gz": {
     "sha256": "53c0a2a7b0022998dd7f0b867aaf602461ef4a13c519759c0460cd8662e9655c"
-  },
-  "review.py": {
-    "sha256": "9eb37a34abc94c35f366299c5440401e800d76ba00c2a984efb0b8e408d9d322"
   },
   "registry-finally.log.gz": {
     "sha256": "d8ddb11830b9f4a2122bd48c70c378483262e5f24b617aae7c794941e568803e"
@@ -142,9 +136,6 @@
   },
   "native-after-agent.json": {
     "sha256": "de8f10fa158c84911805da0ff3a6df9bc81a48277405eba1063a3ac18ef596a3"
-  },
-  "consumer.py": {
-    "sha256": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c"
   },
   "native-alone.log.gz": {
     "sha256": "bff98200fb2b03322bfa19ce58b8a26ad3a6bb40057cbe7b6f15bd4d45fbab01"
@@ -227,10 +218,30 @@
   "reviewer-artifact-manifest.json": {
     "sha256": "5d8d04ba55f8fc0f1c3989e85542d3e18d569238250ae9b90e82fe265a70aeaa"
   },
-  "smoke.py": {
-    "sha256": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476"
-  },
   "pty-alone.log.gz": {
     "sha256": "3aa4744577dacf80b37ae589fe386366a6dcdec7a2f3463492df6c5df68bea92"
+  },
+  "baseline_moltbook.py.gz": {
+    "sha256": "5c3e182dd64349d3b073b6a03e746ff429c0572b016916ab73e22f9268d498f2",
+    "original_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+    "packaging": "gzip; exact original bytes"
+  },
+  "consumer.py.gz": {
+    "sha256": "b5e97a2e2a9597181c2670bfee4782dc2e27587dad38b2bf65b82383bd01da2f",
+    "original_sha256": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c",
+    "packaging": "gzip; exact original bytes"
+  },
+  "review.py.gz": {
+    "sha256": "eb93a0b9b931750dda403f3367a4b47af6f2124458571f9e1b004264b339e720",
+    "original_sha256": "9eb37a34abc94c35f366299c5440401e800d76ba00c2a984efb0b8e408d9d322",
+    "packaging": "gzip; exact original bytes"
+  },
+  "smoke.py.gz": {
+    "sha256": "1a360cbb3228814bef98a0405482dece93203cbd41820a380b7285d5c58b9559",
+    "original_sha256": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476",
+    "packaging": "gzip; exact original bytes"
+  },
+  "artifact-manifest.pre-packaging.json": {
+    "sha256": "35b65f5088fc6ad6fbb6be770a367c5aef57eb9e4c542a8a18542fec60dd85d2"
   }
 }

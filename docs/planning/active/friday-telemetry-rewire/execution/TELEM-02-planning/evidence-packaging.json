@@ -1,0 +1,118 @@
+{
+  "status": "documentation/evidence packaging correction; no product change",
+  "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "files": {
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py.gz",
+      "uncompressed_sha256": "88d89008cce19fb779e4879264511940f3eeb4fc115d9d800fa8bc237c484044",
+      "stored_sha256": "ae7d29e8b3db89642a6af9999bc5359d778c865745b618dfc5d08983427502b2",
+      "diagnostics_removed_from_discovery": 22
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py.gz",
+      "uncompressed_sha256": "28ac26126e8e65a0e175b23f124cc25b1d0fbd5f9667a892823c03395e149a6b",
+      "stored_sha256": "0b1899c2782983022b21a3bbac6fbda03a58e2fb6f319d38d38ed4df106d9aeb",
+      "diagnostics_removed_from_discovery": 17
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py.gz",
+      "uncompressed_sha256": "998d1b1a07790447e401b7986d74a59c7bc078bce6e9a1108e5a043bd77e21a5",
+      "stored_sha256": "f5d1709b17d13403cb4df27f50c8fe9b467e066bbb92c3da81de01a740957d8f",
+      "diagnostics_removed_from_discovery": 14
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py.gz",
+      "uncompressed_sha256": "615e7e1ad9a709b1bc372f4ce20bc91c7b45a2e014c6fd77fff2e946b3b61cd7",
+      "stored_sha256": "e556730b9e68d75b1b7b4f3caba9f1b6a699fc496d1eb5defb97b5bef0c7bc3e",
+      "diagnostics_removed_from_discovery": 26
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py.gz",
+      "uncompressed_sha256": "afbe5fe317d89cf8a874b8a692ecc723f63a846272b48a47d65c980784390d17",
+      "stored_sha256": "214c3121775f95c5844ba822dadbde302a6d45943f2e3e0a139bee3b03394c04",
+      "diagnostics_removed_from_discovery": 27
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py.gz",
+      "uncompressed_sha256": "ffe983b5e0edddc3493a401498dab20e9a601f88d7e6703f40ab183f8867cb5f",
+      "stored_sha256": "ae284af6a11a9911693ea315b29fd00922e3ccbb3f315f7a6d4405e4c69b3f82",
+      "diagnostics_removed_from_discovery": 5
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py.gz",
+      "uncompressed_sha256": "32f75b900b24bea338651ac5a6793599c898abfbd2441af04a8f05066a816994",
+      "stored_sha256": "437dc68ad8a9edcae01dddc16d9bddf33185a37348b4400f4a0a6fbf0e8b6ac6",
+      "diagnostics_removed_from_discovery": 3
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py.gz",
+      "uncompressed_sha256": "858d5343d02c0d90113374ab7e8a86f24f401df9db68de4a705663dfd8be02ae",
+      "stored_sha256": "23f9297478223a9e91b41ab208d90ab8aea2fc2f9aac9721283436d4bdbdbe50",
+      "diagnostics_removed_from_discovery": 29
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py.gz",
+      "uncompressed_sha256": "e2cafc5af6ea038b0d04f1b0c0806ac0905d953ef6ccfdee74fa38f3106077c3",
+      "stored_sha256": "673a4607c1b895f478615386855c8dea7b37221b1072b30686500c1566de419a",
+      "diagnostics_removed_from_discovery": 5
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py.gz",
+      "uncompressed_sha256": "8eae2bf161bf5964a472652663b844636e000c366a27c92cf9bb2586d0dbaaf6",
+      "stored_sha256": "45c405796078c4a9fd6158d7e825aa2d2a2241c3ec3a516f7bcef224c1c1c192",
+      "diagnostics_removed_from_discovery": 29
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py.gz",
+      "uncompressed_sha256": "21daa1ff67e2bc29dea7f391da16a299cfeab8f8086e38ebbf32f860941e200e",
+      "stored_sha256": "0a001c78b494ab4ae53423a129b75d1b73f832d7e235c2c0f30ff0bb3d2397de",
+      "diagnostics_removed_from_discovery": 29
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py.gz",
+      "uncompressed_sha256": "3eef78ae5408cbcf34e34c72dedd1e0dbd8062f844aa4727bf1f164be397aa07",
+      "stored_sha256": "13d4794c82ab0e68ebd388ebe79170ba5b9e2bf8dd1f350e930abe427ecff403",
+      "diagnostics_removed_from_discovery": 6
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py.gz",
+      "uncompressed_sha256": "ceb7b8ebf08188969554d8eb5aa5afaf11a830651a3abf47037ccdf64c0da77a",
+      "stored_sha256": "73031caf64dacc12d88504680d3dfe4caaa01aed8a77f7a5946f9c6a39cc4250",
+      "diagnostics_removed_from_discovery": 2
+    },
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py.gz",
+      "uncompressed_sha256": "b0215c3a034c8b1289862d364aa849dddcd8316a0a1701f386ebbd83701d356b",
+      "stored_sha256": "99131ae980daf4a95dd0b3ff45e4a0b2b26f261fcc67d2979c64d2ce973956bb",
+      "diagnostics_removed_from_discovery": 2
+    },
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py.gz",
+      "uncompressed_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "stored_sha256": "5c3e182dd64349d3b073b6a03e746ff429c0572b016916ab73e22f9268d498f2",
+      "diagnostics_removed_from_discovery": 1
+    },
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py.gz",
+      "uncompressed_sha256": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c",
+      "stored_sha256": "b5e97a2e2a9597181c2670bfee4782dc2e27587dad38b2bf65b82383bd01da2f",
+      "diagnostics_removed_from_discovery": 5
+    },
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py.gz",
+      "uncompressed_sha256": "9eb37a34abc94c35f366299c5440401e800d76ba00c2a984efb0b8e408d9d322",
+      "stored_sha256": "eb93a0b9b931750dda403f3367a4b47af6f2124458571f9e1b004264b339e720",
+      "diagnostics_removed_from_discovery": 20
+    },
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py": {
+      "storage": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py.gz",
+      "uncompressed_sha256": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476",
+      "stored_sha256": "1a360cbb3228814bef98a0405482dece93203cbd41820a380b7285d5c58b9559",
+      "diagnostics_removed_from_discovery": 10
+    }
+  },
+  "raw_before": 579,
+  "packaging_only_findings": 252,
+  "expected_after": 327,
+  "proof": "Each decompressed script equals its tracked pre-packaging bytes; original manifests retained verbatim. Reports/evidence/current authority unchanged. gzip -dc restores a script for private replay."
+}

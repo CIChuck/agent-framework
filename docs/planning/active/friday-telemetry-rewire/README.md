@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: TELEM-01 accepted; next TELEM-02 directive decision and scoped lint-policy follow-ups
-execution_phase: closeout
-validation_state: verified
+next_gate: independent CD-002 and WVR-004 proposal review then explicit construction and lint-disposition approval
+execution_phase: planning
+validation_state: not_ready
 implementation_authority: granted
 ---
 
@@ -29,6 +29,17 @@ on 2026-10-06 through the explicit response "accepted". The
 initiative remains started for TELEM-02 through TELEM-05; next is the TELEM-02
 directive decision and scoped lint-policy follow-ups. Delivery remains local.
 Earlier readiness/changes-requested statements below are historical checkpoints.
+
+TELEM-02 preparation is authorized by the maintainer's "proceed" on2026-10-06.
+[CD-002](directives/CD-002-otel-adapter-lifecycle.md), the
+[unit contract](telem02-contract.md), [verification profile](verification-profile-TELEM-02.md)
+and [WVR-004](validation/WVR-004-telem02-lint-disposition.md) are **proposals, not approved**.
+A separate [authority manifest](authority-manifest-TELEM-02.yaml) freezes review
+inputs. Shared adapter/factory scope keeps accepted Chat defaults/borrowed ownership
+unchanged; native synthetic gRPC collector permissions are proposed explicitly.
+Fresh independent proposal review precedes concrete construction and separate lint
+approval. No TELEM-02 product source, tests or dependency changes are made.
+
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.
 The [A06 amendment](remediation/REM-004-A06-command-registry-compatibility.md) and

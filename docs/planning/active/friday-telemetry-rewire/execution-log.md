@@ -513,3 +513,36 @@ full-initiative acceptance, push, merge, release or remote activation.
 Acceptance-only metadata checks: isolated tracked board24tasks and documentation
 lifecycle433Markdown files both pass. Raw receipts are archived with the unit.
 No product tests were repeated because reviewed product and authority are unchanged.
+
+## 2026-10-06 — TELEM-02 proposal preparation authorized / source inventory
+
+Maintainer Chuck Russell responded "proceed" to preparing CD-002, exact validation
+and lint disposition and dispatching independent review before construction approval.
+Documentation-only preparation covers this packet/initiative board row and reversible
+byte-preserving review-script packaging. It changes no runtime behavior; no product
+construction exemption or new waiver approval is inferred. Validation: board/docs,
+selected whitespace, frozen authority/source and decompressed-evidence byte checks.
+
+execution_phase: planning. validation_state: not_ready. TELEM-01 remains accepted;
+initiative remains started/granted/local on feature/friday-telemetry-rewire.
+Board next selects unrelated memory-v2; the explicit current maintainer instruction
+controls this telemetry preparation, not implementation of the unrelated task.
+
+Source inventory found ignored parent IDs, global SDK registration, lost standalone
+events, missing explicit lifecycle and installed SDK1.39.1 flush timeout limitation.
+HTTP exporter is absent; no install is authorized. CD-002 proposes owned public-SDK
+processing and existing gRPC export with explicit literal-loopback collector effects,
+strict additive factory and content-free initialization/export diagnostics. Chat YAML,
+CLI/headless factory adoption, later metrics and live activation remain outside it.
+
+Fresh raw root lint at preparation basee8b075a is579: the expected327 plus252 in18
+unformatted scripts I stored raw during evidence-only closeout. Corrected their storage
+to gzip without changing any original script byte, report, source or authority. Original
+artifact manifests are retained; packaging map and raw baseline preserve this error.
+No new lint waiver covers those252. WVR-004 proposes only the original exact327 for
+TELEM-02, explicitly separate from expired WVR-002/WVR-003 and pending approval.
+
+Unrelated .DS_Store, deleted family-tree.md, dirty Chat example config, audit Dockerfile,
+security tree and tool-manifest packet/board/dashboard changes stay outside commits.
+Original application state and credentials are not read, copied or cleaned. No product
+edits, environment mutation, SDK activation, external traffic, push or merge.

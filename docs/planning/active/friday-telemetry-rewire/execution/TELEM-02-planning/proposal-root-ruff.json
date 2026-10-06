@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "ruff",
+    "check",
+    ".",
+    "--output-format=json"
+  ],
+  "cwd": "/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit",
+  "revision": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "overlay": [
+    "this-initiative metadata/proposals and byte-preserving evidence packaging; product unchanged"
+  ],
+  "snapshot_hash": "ea8785ec7754b284a8201f14d163547eea7184dcaf2d4d5bc4b92544ab076004",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-agent/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-chat/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-cli/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-core/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-finance/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-llm/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-mcp/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-memory/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-moltbook/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-optimization/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-runtime/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-sandbox/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-speech/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-telemetry/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-tools/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-transcript/src:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit/packages/friday-chat/tests_chat:/private/tmp/telem-01/REM-004/approved-execution/telem02-proposal-precommit",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/approved-execution/tmp/telem02-proposal-precommit/proposal-root-ruff",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/tmp/telem02-proposal-precommit/proposal-root-ruff/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/tmp/telem02-proposal-precommit/proposal-root-ruff/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-01/REM-004/approved-execution/tmp/telem02-proposal-precommit/proposal-root-ruff/pytest"
+  },
+  "exit_code": 1,
+  "seconds": 0.07371091842651367,
+  "log_sha256": "faa70c7c31920b4405aec7186a98b84b16e38b523e7745b460601fbd81328367",
+  "tracked_unchanged": true
+}

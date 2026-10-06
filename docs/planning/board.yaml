@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: TELEM-01 accepted; next TELEM-02 directive decision and scoped lint-policy follow-ups
+  next_gate: independent CD-002 and WVR-004 proposal review then explicit construction and lint-disposition approval
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1109,3 +1109,10 @@ events:
   action: accepted TELEM-01 work unit
   note: Explicit "accepted" after VERIFIED local telemetry closeout; broader initiative remains started/local for later units. WVR-002 and WVR-003 expire after this decision and are not renewed.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: prepared TELEM-02 directive and separate lint-disposition proposals
+  note: Maintainer authorized preparation and independent review; no product construction or WVR-004 approval. Byte-preserving closeout script packaging corrects added lint debt; accepted TELEM-01 and original dirty work preserved.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md
