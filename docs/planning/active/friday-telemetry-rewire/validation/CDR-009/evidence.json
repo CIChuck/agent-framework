@@ -1,0 +1,520 @@
+{
+  "outcome": "READY",
+  "reviewer": "/root/rem004_approved_authority_readiness",
+  "model": "GPT-6 family; exact version unavailable",
+  "date_utc": "2026-10-06T00:58:56.340132+00:00",
+  "mode": "fresh-context read-only approved construction directive readiness; READY permits scoped dispatch, not VERIFIED or acceptance",
+  "request_sha256": "57744be12911bdfda97ba5d9aa2c92d74a0ea7e75a373213a1bf4b409bd34200",
+  "candidate": "559ae9ffb246ef61ca3f19119aabaa79d41f4dcc",
+  "base": "9034a36d401ed3ad22ec7693886e3c9828be6dda",
+  "diff_range": "9034a36d401ed3ad22ec7693886e3c9828be6dda..559ae9ffb246ef61ca3f19119aabaa79d41f4dcc",
+  "complete_diff_sha256": "82494d474c82b82cb1ed3a178ea63a3e53f2415070dee087b6c2698a906ee2bc",
+  "complete_diff_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/friday-telemetry-rewire/README.md",
+    "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+    "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+    "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+    "docs/planning/active/friday-telemetry-rewire/execution-log.md",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+    "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+    "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+    "docs/planning/board.yaml"
+  ],
+  "checkout": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+  "authority_manifest_sha256": "14fb96bab6f25db1109bea7cee410d74aae0dcf6c47671d5590f7fb4f9a28ca3",
+  "authority_pins": [
+    {
+      "path": "AGENTS.md",
+      "expected": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "actual": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "match": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "expected": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "actual": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "actual": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "expected": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "actual": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "expected": "6b1df45143e7e92ccf85f03e9f8feeef61cf796c7d6ef2fc795890a477da3b9b",
+      "actual": "6b1df45143e7e92ccf85f03e9f8feeef61cf796c7d6ef2fc795890a477da3b9b",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "expected": "65e219accefff9a49ede6d8571168ef55300709e8c5ad4c4ba9319ce7bc7cb48",
+      "actual": "65e219accefff9a49ede6d8571168ef55300709e8c5ad4c4ba9319ce7bc7cb48",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "expected": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "actual": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "expected": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "actual": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "expected": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+      "actual": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "expected": "0ad931d5bf1c0617142b33c43fee09851d3e28df69654fb8780ea91ebd14566b",
+      "actual": "0ad931d5bf1c0617142b33c43fee09851d3e28df69654fb8780ea91ebd14566b",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "expected": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+      "actual": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "expected": "624a28c385c29a91994d2aba66f99bb4fcc474b5fb32d2b75b12bd09361c30c7",
+      "actual": "624a28c385c29a91994d2aba66f99bb4fcc474b5fb32d2b75b12bd09361c30c7",
+      "match": true
+    }
+  ],
+  "checks": {
+    "authority_pins": true,
+    "manifest_pin": true,
+    "snapshot_candidate_match": true,
+    "live_file_hashes": true,
+    "archive_file_hashes": true,
+    "waiver_config_hashes": true,
+    "raw_ruff_multiset_match": true,
+    "all_live_paths_exact": true,
+    "per_file_diagnostic_counts": true,
+    "regression_paths_exist": true,
+    "source_test_lock_unchanged_since_VAL005": true
+  },
+  "snapshot_tracked_count": 2270,
+  "snapshot_tracked_inventory_sha256": "7efb61c5adfe4afa847e1a15594dfd6d1ff168308b1ef0b7aef45a04a8c34734",
+  "snapshot_mismatches": [],
+  "recorded_approval": {
+    "maintainer": "Chuck Russell",
+    "date": "2026-10-05",
+    "quote": "I approve both REM-004 and WVR-002.",
+    "records": [
+      "REM-004 directive",
+      "WVR-002 waiver",
+      "CD-001 A05",
+      "build-plan A05",
+      "tactical-plan A05",
+      "scope approval fields",
+      "packet index",
+      "execution log",
+      "board maintainer event"
+    ]
+  },
+  "exact_allowed_REM004_product_paths": [
+    "experiments/prompt_transcript_audit/runtime.py",
+    "experiments/provider_memory_smoke/runtime.py",
+    "experiments/workflow_artifact_smoke/runtime.py",
+    "packages/friday-agent/src/friday_agent/workflows/engine.py",
+    "packages/friday-agent/src/friday_agent/workflows/models.py",
+    "packages/friday-agent/tests_agent/conftest.py",
+    "packages/friday-agent/tests_agent/test_pipeline_dispatch.py",
+    "packages/friday-chat/src/friday_chat/adapters.py",
+    "packages/friday-chat/src/friday_chat/commands/memory.py",
+    "packages/friday-chat/src/friday_chat/commands/transcript.py",
+    "packages/friday-chat/src/friday_chat/memory_views.py",
+    "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+    "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+    "packages/friday-chat/src/friday_chat/reorganization/lease.py",
+    "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+    "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py",
+    "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+    "packages/friday-chat/tests_chat/test_reorganization_contracts.py",
+    "packages/friday-chat/tests_chat/test_reorganization_foundations.py",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+    "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+    "packages/friday-cli/src/friday_cli/cancellation.py",
+    "packages/friday-cli/src/friday_cli/commands.py",
+    "packages/friday-cli/src/friday_cli/session.py",
+    "packages/friday-cli/tests_cli/test_cancellation.py",
+    "packages/friday-core/src/friday_core/interfaces/context.py",
+    "packages/friday-core/src/friday_core/interfaces/memory.py",
+    "packages/friday-core/src/friday_core/interfaces/tools.py",
+    "packages/friday-core/src/friday_core/interfaces/transcript.py",
+    "packages/friday-core/src/friday_core/security/quarantine.py",
+    "packages/friday-core/tests_core/test_interfaces.py",
+    "packages/friday-core/tests_core/test_mcp_contracts.py",
+    "packages/friday-llm/src/friday_llm/embeddings.py",
+    "packages/friday-llm/src/friday_llm/service.py",
+    "packages/friday-llm/tests_llm/conftest.py",
+    "packages/friday-llm/tests_llm/test_resilience.py",
+    "packages/friday-mcp/src/friday_mcp/server/sse.py",
+    "packages/friday-memory/src/friday_memory/adapters/graph.py",
+    "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+    "packages/friday-memory/src/friday_memory/llm_completion.py",
+    "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+    "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/models.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+    "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+    "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py",
+    "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py",
+    "packages/friday-memory/tests_memory/test_llm_completion.py",
+    "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py",
+    "packages/friday-memory/tests_memory/test_multi_agent.py",
+    "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py",
+    "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py",
+    "packages/friday-moltbook/src/friday_moltbook/responses.py",
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+    "packages/friday-runtime/tests_runtime/test_di.py",
+    "packages/friday-sandbox/src/friday_sandbox/docker.py",
+    "packages/friday-sandbox/src/friday_sandbox/mock.py",
+    "packages/friday-sandbox/src/friday_sandbox/models.py",
+    "packages/friday-sandbox/src/friday_sandbox/serialization.py",
+    "packages/friday-sandbox/src/friday_sandbox/subprocess.py",
+    "packages/friday-sandbox/src/friday_sandbox/workspace.py",
+    "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py",
+    "packages/friday-speech/src/friday_speech/playback.py",
+    "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py",
+    "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py",
+    "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py",
+    "packages/friday-tools/src/friday_tools/filesystem/read.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/base.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py",
+    "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py",
+    "packages/friday-tools/src/friday_tools/shell/command.py",
+    "packages/friday-tools/src/friday_tools/shell/execute.py",
+    "packages/friday-tools/src/friday_tools/text/transform.py",
+    "packages/friday-tools/src/friday_tools/utility/datetime.py",
+    "packages/friday-tools/src/friday_tools/web/validators.py",
+    "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+    "packages/friday-tools/tests_tools/test_web_reader.py",
+    "packages/friday-tools/tests_tools/test_web_validators.py",
+    "scripts/check-package-metadata.py",
+    "scripts/friday-dev-board.py",
+    "tests/integration/memory/friday.py",
+    "tests/integration/test_package_cohort_metadata.py"
+  ],
+  "scope": {
+    "live_files": 80,
+    "live_diagnostics": 133,
+    "live_rules": {
+      "UP017": 71,
+      "UP047": 4,
+      "UP046": 6,
+      "UP040": 12,
+      "UP041": 19,
+      "UP043": 7,
+      "UP035": 1,
+      "E501": 11,
+      "I001": 2
+    },
+    "archive_files": 4,
+    "archive_diagnostics": 326,
+    "root_total": 459,
+    "root_nodes": [
+      {
+        "node": "packages/friday-chat/tests_chat/test_reorganization_terminal.py::test_provider_free_pty_acknowledges_before_bounded_progress_completes",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_builtin_tools_by_default",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_friday_tools_provider_with_category_filter",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_native_registration_defers_mcp_to_async_boot",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[False]",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[True]",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[False]",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[True]",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_filesystem_readers.py::TestDocxReader::test_docx_reader_missing_dependency",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_filesystem_readers.py::TestXlsxReader::test_xlsx_reader_missing_dependency",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_reader.py::TestURLValidation::test_rejects_private_ip",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_10_x",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_172_16_x",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_192_168_x",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_link_local",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestIsSafeUrl::test_unsafe_url_returns_false",
+        "status": "FAILED"
+      },
+      {
+        "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_non_streaming_final_http_payload",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[xhigh]",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[medium]",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[low]",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_provider_default_emits_no_reasoning_override",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_disabled_reasoning_reaches_final_http_json",
+        "status": "ERROR"
+      },
+      {
+        "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_named_tool_choice_uses_lm_studio_bounded_wire_form",
+        "status": "ERROR"
+      }
+    ],
+    "typing_sites": [
+      {
+        "code": "assignment",
+        "line": 85,
+        "message": "Incompatible types in assignment (expression has type \"ChatCompletionResponse\", variable has type \"TypedChatCompletionResponse\")",
+        "path": "packages/friday-memory/src/friday_memory/llm_completion.py"
+      },
+      {
+        "code": "assignment",
+        "line": 167,
+        "message": "Incompatible types in assignment (expression has type \"TypedChatCompletionResponse\", variable has type \"ChatCompletionResponse\")",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      },
+      {
+        "code": "attr-defined",
+        "line": 178,
+        "message": "\"dict[str, int]\" has no attribute \"model_dump\"",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      }
+    ]
+  },
+  "raw_baseline": {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-005/raw/root-ruff.log.gz",
+    "uncompressed_sha256": "3478a7984528fe46011ba31dd0c3ac0fdda202520eb37f0fea4eac881a0963e0",
+    "normalization": "Relative path plus code/location/end_location/message sorted multiset; exact match to all 459 scope diagnostics."
+  },
+  "waiver_config_hashes": {
+    "packages/friday-agent/pyproject.toml": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+    "packages/friday-chat/pyproject.toml": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+    "packages/friday-cli/pyproject.toml": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+    "packages/friday-core/pyproject.toml": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+    "packages/friday-finance/pyproject.toml": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+    "packages/friday-llm/pyproject.toml": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+    "packages/friday-mcp/pyproject.toml": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+    "packages/friday-memory/pyproject.toml": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+    "packages/friday-moltbook/pyproject.toml": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+    "packages/friday-optimization/pyproject.toml": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+    "packages/friday-runtime/pyproject.toml": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+    "packages/friday-sandbox/pyproject.toml": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+    "packages/friday-speech/pyproject.toml": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+    "packages/friday-telemetry/pyproject.toml": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+    "packages/friday-tools/pyproject.toml": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+    "packages/friday-transcript/pyproject.toml": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+    "pyproject.toml": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77"
+  },
+  "guard": {
+    "path": "/private/tmp/telem-01/REM-001/network-guard/sitecustomize.py",
+    "sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81"
+  },
+  "commands": [
+    {
+      "command": "git diff 9034a36d401ed3ad22ec7693886e3c9828be6dda 559ae9ffb246ef61ca3f19119aabaa79d41f4dcc",
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "result": "Complete 12-path authority-only diff read."
+    },
+    {
+      "command": "python3 -B inline standard-library SHA256/Git-blob/inventory/source/raw-gzip checks",
+      "exit": 0,
+      "result": {
+        "authority_pins": true,
+        "manifest_pin": true,
+        "snapshot_candidate_match": true,
+        "live_file_hashes": true,
+        "archive_file_hashes": true,
+        "waiver_config_hashes": true,
+        "raw_ruff_multiset_match": true,
+        "all_live_paths_exact": true,
+        "per_file_diagnostic_counts": true,
+        "regression_paths_exist": true,
+        "source_test_lock_unchanged_since_VAL005": true
+      }
+    },
+    {
+      "command": "env -i PATH=/usr/bin:/bin PYTHONDONTWRITEBYTECODE=1 /Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python -B scripts/friday-dev-board.py validate",
+      "cwd": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+      "exit": 0,
+      "result": "Development board validation passed:24 tasks"
+    },
+    {
+      "command": "same isolated board invocation: next",
+      "cwd": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+      "exit": 0,
+      "result": "AWAITING_APPROVAL memory-v2: choose and approve the next design artifact. Explicit task direction scopes this review to already-started telemetry."
+    },
+    {
+      "command": "same isolated board invocation: show friday-telemetry-rewire",
+      "cwd": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+      "exit": 0,
+      "result": "started/normal/granted/local; feature/friday-telemetry-rewire; approved A05 readiness then REM-004 next gate"
+    },
+    {
+      "command": "same isolated board invocation: render --check",
+      "cwd": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+      "exit": 0,
+      "result": "Planning dashboard is current"
+    },
+    {
+      "command": "git diff --check 9034a36d401ed3ad22ec7693886e3c9828be6dda 559ae9ffb246ef61ca3f19119aabaa79d41f4dcc",
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "result": "No whitespace errors"
+    },
+    {
+      "command": "git branch --show-current;git rev-parse HEAD",
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit": 0,
+      "result": "feature/friday-telemetry-rewire;559ae9ffb246ef61ca3f19119aabaa79d41f4dcc"
+    }
+  ],
+  "operational_notes": [
+    "Initial and one later Git inspection in archive snapshot failed because snapshot intentionally contains no .git; corrected repository object reads succeeded. No input was modified.",
+    "No prior proposal review report/evidence or controller private scripts/reasoning consulted. VAL-005 stable finding and raw Ruff baseline were read only to independently verify mapping and immutable inventory.",
+    "Memory registry quick search only located older telemetry history; no stale authorization or proposal conclusion was used."
+  ],
+  "not_executed": [
+    "pytest/product tests",
+    "Ruff tool run",
+    "mypy",
+    "live services",
+    "network",
+    "privileged execution",
+    "installation or synchronization",
+    "product/source writes",
+    "board mutation",
+    "commits"
+  ],
+  "findings": [],
+  "dispatch_requirements": [
+    "Use separate remediator for exact 91-path product union and site-level constraints.",
+    "Freeze concrete changed-source/test/owning-package commands; regenerate lists from complete aggregate product diff.",
+    "Freeze fresh changed-candidate complete import/helper/subprocess preflight, guard/source hashes and credential-free allowlist before collection or sandbox escape.",
+    "Complete unchanged root and Chat+telemetry suites must exit zero;11-node reruns alone never satisfy broad gates.",
+    "Root Ruff must retain nonzero raw326 outcome and independently match exact WVR-002 multiset/hash/version/target/config, with zero live/other diagnostics.",
+    "All remaining mandatory checks and frozen-candidate independent delta plus aggregate review remain required."
+  ],
+  "residual_limits": [
+    "READY permits scoped dispatch only. It is not product VERIFIED, completion, maintainer acceptance or delivery authority.",
+    "Future complete-suite import/helper/subprocess safety is a mandatory execution precondition; this readiness review did not execute collection or grant a safety-preflight PASS.",
+    "PEP695 public/runtime compatibility, exact response behavior and defect regressions require implementation evidence; additional errors/files or API drift stop for precise amendment.",
+    "Only installed3.13.10 runtime is prescribed; no exact3.13.4 run or download is claimed."
+  ]
+}

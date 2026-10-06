@@ -1,0 +1,80 @@
+{
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-01 / REM-004 CD-001 A05",
+  "candidate": "559ae9ffb246ef61ca3f19119aabaa79d41f4dcc",
+  "base": "9034a36d401ed3ad22ec7693886e3c9828be6dda",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "checkout": "/private/tmp/telem-01/REM-004/approved-execution/authority-checkout",
+  "directive": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+  "manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+  "manifest_sha256": "14fb96bab6f25db1109bea7cee410d74aae0dcf6c47671d5590f7fb4f9a28ca3",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "6b1df45143e7e92ccf85f03e9f8feeef61cf796c7d6ef2fc795890a477da3b9b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "65e219accefff9a49ede6d8571168ef55300709e8c5ad4c4ba9319ce7bc7cb48"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "sha256": "0ad931d5bf1c0617142b33c43fee09851d3e28df69654fb8780ea91ebd14566b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "sha256": "624a28c385c29a91994d2aba66f99bb4fcc474b5fb32d2b75b12bd09361c30c7"
+    }
+  ],
+  "mode": "fresh-context read-only approved construction directive readiness; READY permits scoped dispatch, not VERIFIED or acceptance",
+  "output_directory": "/private/tmp/telem-01/REM-004/approved-execution/authority-review",
+  "constraints": "No candidate/original writes, product changes, original runtime data, live providers/exporters, synchronization/install, privileged tests or network. Read-only standard-library/board/source/hash checks only; cache and outputs outside snapshot. Do not consult builder private scripts/reasoning or reuse proposal result as current readiness."
+}

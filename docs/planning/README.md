@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | obtain fresh A05 authority readiness then execute approved REM-004; WVR-002 covers exact archival lint only |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only |
 
 ## Completed
 

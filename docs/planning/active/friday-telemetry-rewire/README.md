@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: obtain fresh A05 authority readiness then execute approved REM-004; WVR-002 covers exact archival lint only
+next_gate: execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -121,3 +121,7 @@ Preparation is complete; the maintainer has now approved construction and WVR-00
 Maintainer approval recorded2026-10-05: "I approve both REM-004 and WVR-002.".
 Fresh approved-authority readiness is next, followed by separate remediation and
 fresh product validation. Existing aggregate CHANGES_REQUESTED remains open.
+
+Fresh [CDR-009](validation/CDR-009/report.md) returned READY for approved A05
+authority at559ae9f. Separate REM-004 remediation is released; product checks and
+fresh delta/aggregate review remain pending.

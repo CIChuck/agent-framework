@@ -407,3 +407,10 @@ the source/test and full-suite localhost profile. Freeze fresh authority and
 obtain independent readiness before dispatching the separate remediator.
 Original dirty paths are hash-manifested. Product source/tests/lock remain unchanged
 at this authority gate. No broader waiver, completion, acceptance or delivery.
+
+## 2026-10-05 — CDR-009 READY / separate remediator dispatched
+
+Fresh approved-authority review at559ae9f returned READY. All16 controlling pins
+and2270 tracked blobs match; exact91-path permissions and326-only WVR-002 match.
+Separate /root/rem004_remediator released for exact fixes; no source self-approval.
+Fresh changed-test/full-suite safety preflight and new product validation required.

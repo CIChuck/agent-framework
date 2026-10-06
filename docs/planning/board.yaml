@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: obtain fresh A05 authority readiness then execute approved REM-004; WVR-002 covers exact archival lint only
+  next_gate: execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -415,6 +415,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1051,3 +1053,10 @@ events:
   action: approved exact REM-004 and separately WVR-002
   note: I approve both REM-004 and WVR-002. Fresh authority readiness precedes construction; no test/typing/security exception or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-009 READY and dispatched separate REM-004 remediator
+  note: Approved A05 authority and WVR-002 coherent; only bounded source/test remediation released; fresh full-suite preflight and product review required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
