@@ -37,8 +37,9 @@ and [WVR-004](validation/WVR-004-telem02-lint-disposition.md) are **proposals, n
 A separate [authority manifest](authority-manifest-TELEM-02.yaml) freezes review
 inputs. Shared adapter/factory scope keeps accepted Chat defaults/borrowed ownership
 unchanged; native synthetic gRPC collector permissions are proposed explicitly.
-Fresh independent proposal review precedes concrete construction and separate lint
-approval. No TELEM-02 product source, tests or dependency changes are made.
+First independent [CDR-012](validation/CDR-012/report.md) requested the R02-01 TLS
+trust-policy correction. The corrected proposal awaits fresh independent readiness
+before concrete construction and separate lint approval. No TELEM-02 product source, tests or dependency changes are made.
 
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.

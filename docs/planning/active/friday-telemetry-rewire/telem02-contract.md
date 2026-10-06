@@ -104,8 +104,10 @@ by documenting explicit cleanup and fixing the existing synthetic provider test
 with finally, rather than keeping an unowned batch thread until interpreter exit.
 Generic scalar limits: max64 attributes, ASCII keys/event/span names up to128
 characters with a declared safe-name pattern, scalar string values up to1024
-characters, finite floats and bounded counters. Reject invalid inputs safely before
-SDK calls; do not rely on SDK warning logs to validate untrusted fields.
+UTF-8 bytes (reject unencodable Unicode), signed64-bit integers in the inclusive
+range[-2**63,2**63-1], finite floats and bounded counters. Booleans retain boolean
+type. Reject unsupported or protobuf-unrepresentable inputs safely before
+SDK/encoder calls; do not rely on SDK warning logs to validate untrusted fields.
 
 Console export uses an explicitly owned processor and safe writer-failure handling;
 never closes the caller's stream. The closed-pytest-capture-stream residual must be
@@ -119,7 +121,8 @@ debug, or otel; OTel settings select console or otlp_grpc, service_name, explici
 endpoint and the bounded processing limits above. Reject unknown fields, wrong types,
 nonfinite values, unsupported protocols, userinfo/query/fragment/path destinations,
 and batch limits exceeding the queue. No YAML imports, vendor provider names, dynamic
-entry points, auth/header fields, filesystem certificates or secret references.
+entry points, auth/header fields, custom filesystem certificates, client credentials
+or secret references. The sole native public trust-root allowance below is explicit.
 
 Disabled/debug factories do not import SDK/exporter modules or create threads,
 channels or sockets. OTel creates its own SDK resource with only service.name, fixed
@@ -131,21 +134,43 @@ Embedding applications inject handle.telemetry into build_runtime(telemetry=...)
 and close the handle themselves; Chat still never owns injected providers.
 
 Before SDK construction, reject conflicting telemetry/transport environment keys
-(OTEL_*, GRPC_*, proxy keys and certificate override keys, case-insensitive) without
+(OTEL_*, GRPC_*, proxy keys and certificate override keys including SSL_CERT_FILE,
+SSL_CERT_DIR, REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE, case-insensitive) without
 reading/logging their values or mutating os.environ. This deliberately fails explicit
 OTel construction with unsupported inherited settings instead of letting the SDK
-read headers, certificates, credential providers, endpoints or proxy destinations.
+read headers, custom certificates, credential providers, endpoints or proxy destinations.
 Pass supported endpoint/security/compression/timeouts explicitly to the owned
 gRPC channel. No SDK export constructor or credential-environment loader is used. No process-global
 environment clearing, custom truthy header hacks, fake authorization headers, or
-silently inherited SDK settings. Add sentinel tests that prove forbidden file,
-credential-provider and endpoint resolution is never attempted.
+silently inherited SDK settings. Add sentinel tests that prove forbidden custom-file,
+credential-provider and endpoint resolution is never attempted; this is not a claim
+that the native default public trust-root store is never loaded.
 
 For otlp_grpc, require http://literal-loopback:port for insecure local collector,
-or https://host:port for explicitly configured TLS destinations. Explicitly supply
-transport security, timeout, NoCompression and supported channel options. A remote
-TLS destination can be validated using mocked exporter construction only; real
-remote connections, credentials and live activation require a later explicit profile.
+or https://host:port for explicitly configured TLS destinations. HTTPS uses the
+native gRPC runtime-selected default public trust-root store, including its normal
+bundled/system-root loading. This is the sole permitted certificate-resolution
+exception: call public grpc.ssl_channel_credentials(root_certificates=None,
+private_key=None, certificate_chain=None), then secure_channel with ordinary hostname
+verification. No application trust files, custom in-memory roots, client keys/certs,
+root callbacks, credential plugins, authority/hostname overrides or insecure fallback.
+The factory neither configures nor registers an alternate native trust-root loader.
+Reject GRPC_DEFAULT_SSL_ROOTS_FILE_PATH (covered by GRPC_*) and the certificate keys
+above before SDK/channel creation; inspect key names only. Missing/unusable default
+roots yield content-free initialization failure or degraded export status according
+to when failure becomes observable, never plaintext fallback or raw exceptions.
+Explicitly supply transport security, timeout and NoCompression; channel options are
+limited to grpc.enable_http_proxy=0 and bounded message-size limits. No default_authority
+or ssl_target_name_override. The loopback HTTP branch uses insecure_channel only.
+
+Remote HTTPS credential/channel construction is mocked for this unit: assert all
+three credential arguments are None, the correct secure branch/target/options and
+failure behavior, plus forbidden-loader sentinels and no channel before validation.
+These tests do not prove native filesystem behavior, real TLS handshake or public
+connectivity. Native default trust-store loading is allowed by the proposed production
+contract but is not exercised by this verification profile. Actual remote/TLS
+connections, certificate provisioning, credentials and live activation require a later
+explicit profile. Package migration docs must state this trust and test boundary.
 Missing exporter never falls back to console. Outage after valid construction
 returns visible degraded export state without changing application outcomes.
 
@@ -173,7 +198,10 @@ normal-user sandbox escape for synthetic loopback only, never an egress waiver.
 
 [Source inventory](execution/TELEM-02-planning/source-inventory.json) records actual
 SDK source hashes and lock pins at accepted preparation basee8b075a. SDK/API/exporter
-pins are1.39.1; HTTP exporter is not installed and no install is proposed. gRPC is the
+pins are1.39.1; HTTP exporter is not installed and no install is proposed. The
+package extra allowing older SDK versions is not evidence of this adapter's compatibility:
+state the1.39.1 validated boundary in package docs, reject incompatible public APIs
+with content-free InitializationError and stop rather than changing dependencies. gRPC is the
 existing installed path. New factory/callers remain provider-neutral.
 
 Official API references: [SDK trace and processor lifecycle](https://opentelemetry-python.readthedocs.io/en/latest/sdk/trace.html),

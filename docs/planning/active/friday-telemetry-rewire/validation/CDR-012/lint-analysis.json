@@ -1,0 +1,61 @@
+{
+  "raw_counts": {
+    "candidate": 327,
+    "baseline": 579
+  },
+  "multiset_matches": true,
+  "extra": [],
+  "missing": [],
+  "removed_count": 252,
+  "removed_per_path": {
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py": 22,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py": 17,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py": 14,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py": 26,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py": 27,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py": 5,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py": 3,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py": 29,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py": 5,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py": 29,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py": 29,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py": 6,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py": 2,
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py": 2,
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py": 1,
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py": 5,
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py": 20,
+    "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py": 10
+  },
+  "all_removed_paths_packaged": true,
+  "packaging_counts_match": true,
+  "archive_hashes": {
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py": true,
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py": true,
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py": true,
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py": true
+  },
+  "config_hashes": {
+    "packages/friday-agent/pyproject.toml": true,
+    "packages/friday-chat/pyproject.toml": true,
+    "packages/friday-cli/pyproject.toml": true,
+    "packages/friday-core/pyproject.toml": true,
+    "packages/friday-finance/pyproject.toml": true,
+    "packages/friday-llm/pyproject.toml": true,
+    "packages/friday-mcp/pyproject.toml": true,
+    "packages/friday-memory/pyproject.toml": true,
+    "packages/friday-moltbook/pyproject.toml": true,
+    "packages/friday-optimization/pyproject.toml": true,
+    "packages/friday-runtime/pyproject.toml": true,
+    "packages/friday-sandbox/pyproject.toml": true,
+    "packages/friday-speech/pyproject.toml": true,
+    "packages/friday-telemetry/pyproject.toml": true,
+    "packages/friday-tools/pyproject.toml": true,
+    "packages/friday-transcript/pyproject.toml": true,
+    "pyproject.toml": true
+  },
+  "registry_source_hash": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+  "registry_source_matches": true,
+  "registry_ast_hash": "34336e7c35b598b215dbb6d08e1150c2ef96e22d08cacc17b5f76e3f5be3f3e7",
+  "registry_ast_matches": true
+}

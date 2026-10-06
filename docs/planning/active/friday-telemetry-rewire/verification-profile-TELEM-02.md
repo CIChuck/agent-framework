@@ -30,7 +30,16 @@ Before full suites, freeze all13 synthetic listener node IDs (existing11 plus th
 exact2 named in CD-002), server/client constructor/teardown/helper hashes, allowlist,
 expected effects and native guard limitation. Only proposed normal-user sandbox
 escape for those effects; no sudo or nonloopback test traffic. Static endpoint
-config negative tests must mock construction before SDK opens a channel.
+config negative tests must mock construction before SDK opens a channel. All HTTPS
+credential/secure-channel construction is mocked: assert root_certificates,
+private_key and certificate_chain are each None, native-default-public-root policy,
+ordinary hostname verification, approved options and no plaintext fallback. Reject
+certificate/env override keys before construction and prove no custom-file/credential
+loader calls. No real TLS handshake, remote channel, certificate provisioning or native
+trust-store loading occurs in this unit's tests. The production contract explicitly
+allows runtime-selected bundled/system public roots; Python guards and these mocks
+do not prove native filesystem behavior. Protobuf tests cover both signed64-bit
+integer boundaries and rejected overflow/unencodable strings before SDK/encoder logging.
 
 ## Mandatory checks
 

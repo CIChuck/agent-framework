@@ -1,0 +1,12 @@
+{
+  "kind": "documentation-only corrected proposal check; not product validation",
+  "snapshot_revision": "75aef2272d702e3ce99ec21b520914a5528407e3",
+  "overlay": "proposal packet only",
+  "docs_exit": 0,
+  "markdown_count": 438,
+  "root_ruff_exit": 1,
+  "root_ruff_count": 327,
+  "exact_WVR004_multiset_match": true,
+  "waiver_approved": false,
+  "no_product_or_native_execution": true
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "git",
+    "--no-optional-locks",
+    "-C",
+    "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "diff",
+    "--check",
+    "e8b075a3861e1e3c1bfac050091a71be60b7e165..75aef2272d702e3ce99ec21b520914a5528407e3"
+  ],
+  "exit_code": 0
+}

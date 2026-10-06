@@ -546,3 +546,20 @@ Unrelated .DS_Store, deleted family-tree.md, dirty Chat example config, audit Do
 security tree and tool-manifest packet/board/dashboard changes stay outside commits.
 Original application state and credentials are not read, copied or cleaned. No product
 edits, environment mutation, SDK activation, external traffic, push or merge.
+
+## 2026-10-06 — CDR-012 changes requested / R02-01 proposal correction
+
+Fresh independent CDR-012 reviewed stable75aef227 with15 pins plus manifest and
+returned CHANGES_REQUESTED for one TLS trust-root policy gap; WVR-004 was separately
+READY for maintainer consideration, not approved. Its report/evidence/request and
+raw receipts are preserved verbatim under validation/CDR-012 with storage hashes.
+It independently reproduced raw root Ruff579/327, all18 decompressed scripts and199
+accepted artifacts unchanged or byte-preserved; no product or native activation.
+
+Documentation-only correction R02-01 chooses native gRPC runtime-selected default
+public trust roots as an explicit exception, forbids custom certificates/client
+credentials/overrides, and requires mocked secure-channel/credential arguments and
+failure cases; no real remote/TLS effects. Signed64-bit/UTF-8 scalar constraints,
+pinned SDK compatibility boundary and inventory observations are made precise.
+These are still proposals; neither construction nor WVR-004 approval is inferred.
+Freeze updated manifest and stable proposal for a new fresh-context readiness review.

@@ -44,15 +44,15 @@
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
-      "sha256": "8139e5d069d83d3f4fa142fde0a403cafd75ce83ebcb79cfecf19806411a6c8b"
+      "sha256": "c9aca87ce71b3fa62f888c4a7d75d6f6e49e91b4300aa7962c746a16bae12e41"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
-      "sha256": "e2986776e8ebfce8533e7155b9f18360164b9cab66a425b2d7f0c1274459ef4c"
+      "sha256": "7cd798fcb92a159042f7c3901b264aba38b5b8440fed358b8ffd6057df222331"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
-      "sha256": "c2dc90bb56b8e2219cf473587fdd850033b200748001acf738cc39709e7da074"
+      "sha256": "584ef0fa2d5dd5c6ecf1268ab5652fa1dcdad56a264efd8163391d58321527c9"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",

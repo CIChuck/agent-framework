@@ -56,7 +56,7 @@ TELEM-01 authority. No pyproject/lock/config-template/example YAML changes.
 | T02-04 / AC02-04 | Public-SDK owned bounded processor, actual exporter success/failure, queue drop, flush deadline, idempotent cancelled shutdown, complete worker/channel cleanup and real console regression |
 | T02-05 / AC02-05 | Two exact deterministic gRPC collector nodes, protobuf parent/events/scalars and visible UNAVAILABLE result; fixed literal-loopback target/effect evidence |
 | T02-06 / AC02-06 | Real Chat observer injection and two-provider Composite using synthetic managed OTel; unchanged borrowed ownership and safe payloads; local diagnostics survive sink failure |
-| T02-07 / AC02-07 | Closed/no-secret export/resource/snapshot assertions, no env/certificate/proxy/credential resolution, no SDK/global mutation or raw legacy-hook adoption |
+| T02-07 / AC02-07 | Closed/no-secret export/resource/snapshot assertions, no env/proxy/custom-certificate/credential-provider resolution; explicit native public trust-root exception and mocked HTTPS branch; no global tracer registration or raw legacy-hook adoption |
 | T02-08 / AC02-08 | Unit and preparation-base aggregate typing/lint/AST/API/owning/root gates, package docs/migration, lock unchanged, scope manifest and fresh delta+aggregate VERIFIED |
 
 Before first product edit, collect frozen source/API baselines with scoped dependency

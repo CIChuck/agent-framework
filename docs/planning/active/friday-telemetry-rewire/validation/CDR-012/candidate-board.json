@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/friday-dev-board.py",
+    "validate"
+  ],
+  "cwd": "/private/tmp/telem-02/readiness/candidate",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/readiness/candidate",
+    "TMPDIR": "/private/tmp/telem-02/readiness/tmp/candidate-board",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/readiness/tmp/candidate-board/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/readiness/tmp/candidate-board/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/readiness/tmp/candidate-board/pytest"
+  },
+  "exit_code": 0,
+  "seconds": 0.07636380195617676,
+  "stdout_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
