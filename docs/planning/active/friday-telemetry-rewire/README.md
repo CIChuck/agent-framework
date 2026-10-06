@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: TELEM-01 independently verified at 8aedd87; maintainer acceptance and next bounded-unit directive decision
+next_gate: TELEM-01 accepted; next TELEM-02 directive decision and scoped lint-policy follow-ups
 execution_phase: closeout
 validation_state: verified
 implementation_authority: granted
@@ -23,10 +23,11 @@ plus the approved single CommandRegistry finding. The
 [REM-004 execution closeout](execution/REM-004-final/report.md) retains raw
 checks, scope/API evidence, unchanged inputs and preservation records.
 
-Local provider-neutral Chat telemetry assembly is verified. The initiative
-remains started because TELEM-02 through TELEM-05 require their own directives.
-Maintainer TELEM-01 acceptance and selection of the next bounded unit are next;
-no acceptance, push, merge, publication or remote-exporter activation is recorded.
+Local provider-neutral Chat telemetry assembly is accepted by Chuck Russell
+on 2026-10-06 through the explicit response "accepted". The
+[TELEM-01 closeout](closeout.md) links the archived acceptance record. The broader
+initiative remains started for TELEM-02 through TELEM-05; next is the TELEM-02
+directive decision and scoped lint-policy follow-ups. Delivery remains local.
 Earlier readiness/changes-requested statements below are historical checkpoints.
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.

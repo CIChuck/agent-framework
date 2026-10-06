@@ -494,3 +494,22 @@ This metadata-only closeout does not change reviewed product or controlling
 nineteen authority documents. Initiative stays started/local; next gate is
 maintainer TELEM-01 acceptance and next bounded-unit directive decision.
 No subsequent-unit implementation, acceptance, push, merge or deployment.
+
+## 2026-10-06 — maintainer accepted TELEM-01
+
+Chuck Russell explicitly responded "accepted" after the VERIFIED closeout.
+TELEM-01 transitions from verified completion to maintainer acceptance at
+product candidate8aedd87 and evidence-only closeout00238817. The archived
+[acceptance record](../../../archive/completed/2026/friday-telemetry-rewire-telem-01/README.md)
+retains the exact scope, evidence hashes, residual OTel diagnostic and follow-ups.
+
+execution_phase: closeout. validation_state: verified. TELEM-01: accepted.
+Initiative work_state remains started; delivery remains local because later
+TELEM-02–05 units are unfinished and separately governed. WVR-002/WVR-003 expire
+after this decision without automatic renewal for subsequent work. Next gate:
+TELEM-02 directive decision and scoped lint-policy follow-ups. No source changes,
+full-initiative acceptance, push, merge, release or remote activation.
+
+Acceptance-only metadata checks: isolated tracked board24tasks and documentation
+lifecycle433Markdown files both pass. Raw receipts are archived with the unit.
+No product tests were repeated because reviewed product and authority are unchanged.

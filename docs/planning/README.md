@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | TELEM-01 independently verified at 8aedd87; maintainer acceptance and next bounded-unit directive decision |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | TELEM-01 accepted; next TELEM-02 directive decision and scoped lint-policy follow-ups |
 
 ## Completed
 
