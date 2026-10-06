@@ -360,3 +360,18 @@ CHANGES_REQUESTED. The requested support migration is implemented and
 independently supported, while full telemetry acceptance remains open.
 Only review/execution/board metadata changes after the reviewed candidate.
 No source, lock or controlling-authority change; original dirty paths preserved.
+
+## 2026-10-05 — REM-004 preparation
+
+Maintainer "proceed" authorized the recommended concrete verification-closeout
+directive and independent review. Preparation is documentation/read-only diagnosis;
+new construction scope and WVR-002 remain proposed. VAL-005-F01 is mapped once
+into six bounded components with exact file/rule/node inventory. New isolated
+probes demonstrate registry test-order contamination (7 pass alone; 7 fail after
+one agent test), and resolver-dependent private literal acceptance under the
+unchanged network guard. One incorrectly named probe node returned no tests;
+the corrected command and both raw results are retained. Current live lint is
+133 findings across80 files;326 findings are four immutable accepted archive
+probes, covered only by a proposed explicit exception. No source/test/lock/
+configuration or active controlling-authority change. The board remains started,
+remediation/changes_requested; no completion, acceptance or delivery action.

@@ -15,6 +15,15 @@ validation_state: changes_requested
 implementation_authority: granted
 ---
 
+The maintainer authorized preparation of the proposed
+[REM-004 verification closeout directive](remediation/REM-004-verification-closeout-directive.md)
+on 2026-10-05. Its exact diagnosis/scope and
+[WVR-002 archival lint exception](validation/WVR-002-archived-probe-lint.md) are
+proposals awaiting explicit approval. Existing CD-001 A04 authority remains
+unchanged; aggregate AC-06 remains nonpassing. Independent proposal review is
+the preparation gate, followed by approval and fresh frozen-authority readiness
+before any newly scoped implementation.
+
 The maintainer approved the telemetry plan and preparation of its first
 implementation slice on 2026-10-04 (conversation: "approved"). The dedicated
 preparation branch is `feature/friday-telemetry-rewire`, based on
