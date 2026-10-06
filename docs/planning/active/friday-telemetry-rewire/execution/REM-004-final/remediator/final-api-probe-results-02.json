@@ -1,0 +1,477 @@
+{
+  "snapshot": "/private/tmp/telem-01/REM-004/approved-execution/remediator-a06-final-02",
+  "classes": [
+    {
+      "class": "MemoryMetric",
+      "path": "packages/friday-chat/src/friday_chat/memory_views.py",
+      "baseline_sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7",
+      "current_sha256": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f",
+      "consumer_sha256": "a36adf0531abf444e2936fc510fb8397ffe097f8a70b8837566a4b513ba96b0b",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MemoryMetric/consumer.py:6: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MemoryMetric/consumer.py:8: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MemoryMetric/consumer.py:10: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MemoryMetric/consumer.py:12: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    },
+    {
+      "class": "CommandRegistry",
+      "path": "packages/friday-cli/src/friday_cli/commands.py",
+      "baseline_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "current_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "consumer_sha256": "9142b9c760321167c55b8bb5a48f66eb02fd3caf2d0ce98412e9e013b473134d",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/CommandRegistry/consumer.py:6: error: Incompatible return value type (got \"CommandRegistry[Parent]\", expected \"CommandRegistry[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/CommandRegistry/consumer.py:8: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/CommandRegistry/consumer.py:10: error: Incompatible return value type (got \"CommandRegistry[Parent]\", expected \"CommandRegistry[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/CommandRegistry/consumer.py:12: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    },
+    {
+      "class": "SessionContext",
+      "path": "packages/friday-cli/src/friday_cli/session.py",
+      "baseline_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "current_sha256": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
+      "consumer_sha256": "456f24db97cca95b38de448c1e42ba0479d88cadc9aa1231ebe0f12abc462fde",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionContext/consumer.py:6: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionContext/consumer.py:8: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionContext/consumer.py:10: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionContext/consumer.py:12: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    },
+    {
+      "class": "SessionManager",
+      "path": "packages/friday-cli/src/friday_cli/session.py",
+      "baseline_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "current_sha256": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
+      "consumer_sha256": "e1488b6112b7a9ad9c8718f3154967a5564ce52884735ec90c0939614b79355f",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionManager/consumer.py:6: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionManager/consumer.py:8: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionManager/consumer.py:10: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/SessionManager/consumer.py:12: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    },
+    {
+      "class": "ToolAdapter",
+      "path": "packages/friday-core/src/friday_core/interfaces/tools.py",
+      "baseline_sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d",
+      "current_sha256": "3bd33e99093bc3f544790ee8c236d622c0b4d9488b79a3cb65eb7c79292e6ff6",
+      "consumer_sha256": "25094584d86e508062a66858c685f3b72903b4512e4d2bf4efd577efdac8590b",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/ToolAdapter/consumer.py:6: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/ToolAdapter/consumer.py:8: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/ToolAdapter/consumer.py:10: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/ToolAdapter/consumer.py:12: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    },
+    {
+      "class": "MoltbookResponse",
+      "path": "packages/friday-moltbook/src/friday_moltbook/responses.py",
+      "baseline_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "current_sha256": "dc816833335c1c930aeef253cd17277fe0d5e55841d0551ec1f9382f46dabe05",
+      "consumer_sha256": "6d8918b9cecbb246102612a71d73d1cd51382d4cd763912ba7a6add8f0dc5614",
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MoltbookResponse/consumer.py:9: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MoltbookResponse/consumer.py:11: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MoltbookResponse/consumer.py:13: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/MoltbookResponse/consumer.py:15: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+      "stderr": "",
+      "exit": 1,
+      "baseline_and_current_invariant": true,
+      "same_type_positive_accepted": true
+    }
+  ],
+  "pydantic": {
+    "original": {
+      "parent_schema": {
+        "$defs": {
+          "Parent": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "title": "Parent",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Parent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Parent]",
+        "type": "object"
+      },
+      "child_schema": {
+        "$defs": {
+          "Child": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              },
+              "extra": {
+                "title": "Extra",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value",
+              "extra"
+            ],
+            "title": "Child",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Child"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Child]",
+        "type": "object"
+      },
+      "parent_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic"
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "child_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic",
+          "extra": 1
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "negative_child_required_field": true,
+      "public_subscriptability": true
+    },
+    "current": {
+      "parent_schema": {
+        "$defs": {
+          "Parent": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "title": "Parent",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Parent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Parent]",
+        "type": "object"
+      },
+      "child_schema": {
+        "$defs": {
+          "Child": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              },
+              "extra": {
+                "title": "Extra",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value",
+              "extra"
+            ],
+            "title": "Child",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Child"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Child]",
+        "type": "object"
+      },
+      "parent_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic"
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "child_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic",
+          "extra": 1
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "negative_child_required_field": true,
+      "public_subscriptability": true
+    }
+  },
+  "pydantic_equal": true,
+  "UTC_identity": true,
+  "TimeoutError_identity": true,
+  "functions": {
+    "positive": {
+      "exit": 0,
+      "stdout": "Success: no issues found in 6 source files\n",
+      "stderr": "",
+      "sha256": "afb94876a94c2f6d304b467a9d80919fe27e7da8a2896ccb5e369975b3c5f87a"
+    },
+    "negative": {
+      "exit": 1,
+      "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/function_negative.py:5: error: Value of type variable \"ResponseModelT\" of \"complete_structured_memory_request\" cannot be \"str\"  [type-var]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/final-api-source-02/function_negative.py:6: error: Value of type variable \"T\" of \"validate_return_type\" cannot be \"str\"  [type-var]\nFound 2 errors in 1 file (checked 6 source files)\n",
+      "stderr": "",
+      "sha256": "d12d8b68f10a9dd7dcecff90cc8466e8b8c968d6675367404c7115b08d68981b"
+    }
+  },
+  "runtime_validate_return_type_positive_negative": true
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "variant": "object_bound",
+    "exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/annotation-probes/object_bound/consumer.py:8: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 1 error in 1 file (checked 1 source file)\n",
+    "stderr": ""
+  },
+  {
+    "variant": "explicit_self_execute",
+    "exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/annotation-probes/explicit_self_execute/consumer.py:8: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 1 error in 1 file (checked 1 source file)\n",
+    "stderr": ""
+  },
+  {
+    "variant": "explicit_self_command",
+    "exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/annotation-probes/explicit_self_command/consumer.py:8: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 1 error in 1 file (checked 1 source file)\n",
+    "stderr": ""
+  },
+  {
+    "variant": "explicit_self_init",
+    "exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/annotation-probes/explicit_self_init/consumer.py:8: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 1 error in 1 file (checked 1 source file)\n",
+    "stderr": ""
+  }
+]

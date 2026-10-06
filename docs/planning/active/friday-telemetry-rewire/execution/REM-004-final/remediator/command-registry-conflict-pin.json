@@ -1,0 +1,35 @@
+{
+  "diagnostic": {
+    "code": "UP046",
+    "end_location": {
+      "column": 33,
+      "row": 74
+    },
+    "location": {
+      "column": 23,
+      "row": 74
+    },
+    "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+    "path": "packages/friday-cli/src/friday_cli/commands.py"
+  },
+  "original_file_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+  "current_file_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+  "source_snippet_sha256": "a71121e6bc30ab8153a52c7e8b4da2bc06b156d2ada23c647b40e9391c90b5e5",
+  "snippet_ranges": [
+    [
+      17,
+      24
+    ],
+    [
+      70,
+      95
+    ],
+    [
+      286,
+      312
+    ]
+  ],
+  "current_location_unchanged": true,
+  "expected_post_other_permitted_edits_location": "No other diagnostic sites or edits in this file; retain exact file bytes for invariant-compatible exception, row74 col23/endcol33 remains unchanged.",
+  "minimal_decision": "Keep current invariant Generic[T] with separately approved exact liveUP046 exception, or explicitly authorize contravariance change at this one class; neither existingWVR002 nor currentR4-06 authorizes either outcome."
+}

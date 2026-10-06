@@ -1,0 +1,10 @@
+{
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "guard": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+  "files": {
+    "consumer.py": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c",
+    "smoke.py": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476",
+    "baseline_moltbook.py": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da"
+  },
+  "review": "Private annotation-only negative type consumer; real frozen Chat observer + two debug Composite children, fake app, synthetic Pydantic schema comparison with baseline; no transport/state/exporter; same guarded allowlist."
+}

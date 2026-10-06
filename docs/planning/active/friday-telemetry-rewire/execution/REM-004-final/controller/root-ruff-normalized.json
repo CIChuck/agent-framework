@@ -1,0 +1,4253 @@
+[
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py",
+    "code": "I001",
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "end_location": {
+      "column": 21,
+      "row": 5
+    },
+    "message": "Import block is un-sorted or un-formatted"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py",
+    "code": "SIM115",
+    "location": {
+      "column": 21,
+      "row": 8
+    },
+    "end_location": {
+      "column": 25,
+      "row": 8
+    },
+    "message": "Use a context manager for opening files"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "I001",
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "end_location": {
+      "column": 62,
+      "row": 25
+    },
+    "message": "Import block is un-sorted or un-formatted"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "F401",
+    "location": {
+      "column": 29,
+      "row": 16
+    },
+    "end_location": {
+      "column": 44,
+      "row": 16
+    },
+    "message": "`friday_core.mcp.MCPClientLimits` imported but unused"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "F401",
+    "location": {
+      "column": 39,
+      "row": 18
+    },
+    "end_location": {
+      "column": 53,
+      "row": 18
+    },
+    "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 59
+    },
+    "end_location": {
+      "column": 24,
+      "row": 59
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 61
+    },
+    "end_location": {
+      "column": 9,
+      "row": 61
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 62
+    },
+    "end_location": {
+      "column": 23,
+      "row": 62
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 63
+    },
+    "end_location": {
+      "column": 10,
+      "row": 63
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 66
+    },
+    "end_location": {
+      "column": 9,
+      "row": 66
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 67
+    },
+    "end_location": {
+      "column": 23,
+      "row": 67
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 68
+    },
+    "end_location": {
+      "column": 10,
+      "row": 68
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 17,
+      "row": 69
+    },
+    "end_location": {
+      "column": 18,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 49,
+      "row": 69
+    },
+    "end_location": {
+      "column": 50,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 69
+    },
+    "end_location": {
+      "column": 68,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 29,
+      "row": 71
+    },
+    "end_location": {
+      "column": 30,
+      "row": 71
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 72
+    },
+    "end_location": {
+      "column": 28,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 72
+    },
+    "end_location": {
+      "column": 92,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 12,
+      "row": 83
+    },
+    "end_location": {
+      "column": 13,
+      "row": 83
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 84
+    },
+    "end_location": {
+      "column": 42,
+      "row": 84
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 13,
+      "row": 85
+    },
+    "end_location": {
+      "column": 14,
+      "row": 85
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 86
+    },
+    "end_location": {
+      "column": 9,
+      "row": 86
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 37,
+      "row": 87
+    },
+    "end_location": {
+      "column": 38,
+      "row": 87
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 88
+    },
+    "end_location": {
+      "column": 10,
+      "row": 88
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 12,
+      "row": 90
+    },
+    "end_location": {
+      "column": 13,
+      "row": 90
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 91
+    },
+    "end_location": {
+      "column": 42,
+      "row": 91
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 13,
+      "row": 92
+    },
+    "end_location": {
+      "column": 14,
+      "row": 92
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 20,
+      "row": 93
+    },
+    "end_location": {
+      "column": 21,
+      "row": 93
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 32,
+      "row": 106
+    },
+    "end_location": {
+      "column": 33,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 48,
+      "row": 106
+    },
+    "end_location": {
+      "column": 49,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 65,
+      "row": 106
+    },
+    "end_location": {
+      "column": 66,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 94,
+      "row": 106
+    },
+    "end_location": {
+      "column": 95,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 110
+    },
+    "end_location": {
+      "column": 23,
+      "row": 110
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 21,
+      "row": 111
+    },
+    "end_location": {
+      "column": 22,
+      "row": 111
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 31,
+      "row": 118
+    },
+    "end_location": {
+      "column": 32,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 66,
+      "row": 118
+    },
+    "end_location": {
+      "column": 67,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 87,
+      "row": 118
+    },
+    "end_location": {
+      "column": 88,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 105,
+      "row": 118
+    },
+    "end_location": {
+      "column": 106,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 26,
+      "row": 123
+    },
+    "end_location": {
+      "column": 27,
+      "row": 123
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 22,
+      "row": 128
+    },
+    "end_location": {
+      "column": 23,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 46,
+      "row": 128
+    },
+    "end_location": {
+      "column": 47,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 128
+    },
+    "end_location": {
+      "column": 60,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 128
+    },
+    "end_location": {
+      "column": 72,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 38,
+      "row": 131
+    },
+    "end_location": {
+      "column": 39,
+      "row": 131
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 27,
+      "row": 132
+    },
+    "end_location": {
+      "column": 28,
+      "row": 132
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 43,
+      "row": 135
+    },
+    "end_location": {
+      "column": 44,
+      "row": 135
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 137
+    },
+    "end_location": {
+      "column": 24,
+      "row": 137
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 63,
+      "row": 145
+    },
+    "end_location": {
+      "column": 64,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "B023",
+    "location": {
+      "column": 64,
+      "row": 145
+    },
+    "end_location": {
+      "column": 71,
+      "row": 145
+    },
+    "message": "Function definition does not bind loop variable `clients`"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 81,
+      "row": 145
+    },
+    "end_location": {
+      "column": 82,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 21,
+      "row": 146
+    },
+    "end_location": {
+      "column": 22,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 86,
+      "row": 146
+    },
+    "end_location": {
+      "column": 87,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 109,
+      "row": 146
+    },
+    "end_location": {
+      "column": 110,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 133,
+      "row": 146
+    },
+    "end_location": {
+      "column": 134,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 160,
+      "row": 146
+    },
+    "end_location": {
+      "column": 161,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 176,
+      "row": 146
+    },
+    "end_location": {
+      "column": 177,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 190,
+      "row": 146
+    },
+    "end_location": {
+      "column": 191,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 20,
+      "row": 153
+    },
+    "end_location": {
+      "column": 21,
+      "row": 153
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 42,
+      "row": 154
+    },
+    "end_location": {
+      "column": 43,
+      "row": 154
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 30,
+      "row": 166
+    },
+    "end_location": {
+      "column": 31,
+      "row": 166
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 29,
+      "row": 172
+    },
+    "end_location": {
+      "column": 30,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 60,
+      "row": 172
+    },
+    "end_location": {
+      "column": 61,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 92,
+      "row": 172
+    },
+    "end_location": {
+      "column": 93,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 29,
+      "row": 174
+    },
+    "end_location": {
+      "column": 30,
+      "row": 174
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 179
+    },
+    "end_location": {
+      "column": 55,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 72,
+      "row": 179
+    },
+    "end_location": {
+      "column": 73,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 43,
+      "row": 180
+    },
+    "end_location": {
+      "column": 44,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 180
+    },
+    "end_location": {
+      "column": 68,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 184
+    },
+    "end_location": {
+      "column": 29,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 184
+    },
+    "end_location": {
+      "column": 55,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 186
+    },
+    "end_location": {
+      "column": 17,
+      "row": 186
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 187
+    },
+    "end_location": {
+      "column": 42,
+      "row": 187
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 188
+    },
+    "end_location": {
+      "column": 18,
+      "row": 188
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 191
+    },
+    "end_location": {
+      "column": 17,
+      "row": 191
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 192
+    },
+    "end_location": {
+      "column": 42,
+      "row": 192
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 193
+    },
+    "end_location": {
+      "column": 18,
+      "row": 193
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 196
+    },
+    "end_location": {
+      "column": 29,
+      "row": 196
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 47,
+      "row": 199
+    },
+    "end_location": {
+      "column": 48,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 98,
+      "row": 199
+    },
+    "end_location": {
+      "column": 99,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 202
+    },
+    "end_location": {
+      "column": 17,
+      "row": 202
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 42,
+      "row": 203
+    },
+    "end_location": {
+      "column": 43,
+      "row": 203
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 204
+    },
+    "end_location": {
+      "column": 18,
+      "row": 204
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 206
+    },
+    "end_location": {
+      "column": 55,
+      "row": 206
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 207
+    },
+    "end_location": {
+      "column": 28,
+      "row": 207
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 210
+    },
+    "end_location": {
+      "column": 26,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 56,
+      "row": 210
+    },
+    "end_location": {
+      "column": 57,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 88,
+      "row": 210
+    },
+    "end_location": {
+      "column": 89,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 36,
+      "row": 211
+    },
+    "end_location": {
+      "column": 37,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 50,
+      "row": 211
+    },
+    "end_location": {
+      "column": 51,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 213
+    },
+    "end_location": {
+      "column": 26,
+      "row": 213
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 217
+    },
+    "end_location": {
+      "column": 55,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 72,
+      "row": 217
+    },
+    "end_location": {
+      "column": 73,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 121,
+      "row": 218
+    },
+    "end_location": {
+      "column": 122,
+      "row": 218
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 221
+    },
+    "end_location": {
+      "column": 29,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 49,
+      "row": 221
+    },
+    "end_location": {
+      "column": 50,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 221
+    },
+    "end_location": {
+      "column": 72,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 224
+    },
+    "end_location": {
+      "column": 17,
+      "row": 224
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 225
+    },
+    "end_location": {
+      "column": 42,
+      "row": 225
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 226
+    },
+    "end_location": {
+      "column": 18,
+      "row": 226
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 239
+    },
+    "end_location": {
+      "column": 26,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 56,
+      "row": 239
+    },
+    "end_location": {
+      "column": 57,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 88,
+      "row": 239
+    },
+    "end_location": {
+      "column": 89,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 241
+    },
+    "end_location": {
+      "column": 26,
+      "row": 241
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 47,
+      "row": 244
+    },
+    "end_location": {
+      "column": 48,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 63,
+      "row": 244
+    },
+    "end_location": {
+      "column": 64,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 73,
+      "row": 244
+    },
+    "end_location": {
+      "column": 74,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 95,
+      "row": 244
+    },
+    "end_location": {
+      "column": 96,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 23,
+      "row": 246
+    },
+    "end_location": {
+      "column": 24,
+      "row": 246
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 144,
+      "row": 249
+    },
+    "end_location": {
+      "column": 145,
+      "row": 249
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 31,
+      "row": 252
+    },
+    "end_location": {
+      "column": 32,
+      "row": 252
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 51,
+      "row": 257
+    },
+    "end_location": {
+      "column": 52,
+      "row": 257
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 38,
+      "row": 262
+    },
+    "end_location": {
+      "column": 39,
+      "row": 262
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 13,
+      "row": 265
+    },
+    "end_location": {
+      "column": 14,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 265
+    },
+    "end_location": {
+      "column": 28,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 265
+    },
+    "end_location": {
+      "column": 60,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 96,
+      "row": 265
+    },
+    "end_location": {
+      "column": 97,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 127,
+      "row": 265
+    },
+    "end_location": {
+      "column": 128,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 75,
+      "row": 266
+    },
+    "end_location": {
+      "column": 76,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 266
+    },
+    "end_location": {
+      "column": 92,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 55,
+      "row": 267
+    },
+    "end_location": {
+      "column": 56,
+      "row": 267
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 23,
+      "row": 268
+    },
+    "end_location": {
+      "column": 24,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 268
+    },
+    "end_location": {
+      "column": 60,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 268
+    },
+    "end_location": {
+      "column": 92,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 119,
+      "row": 268
+    },
+    "end_location": {
+      "column": 120,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 151,
+      "row": 268
+    },
+    "end_location": {
+      "column": 152,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 269
+    },
+    "end_location": {
+      "column": 24,
+      "row": 269
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 68,
+      "row": 271
+    },
+    "end_location": {
+      "column": 69,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 87,
+      "row": 271
+    },
+    "end_location": {
+      "column": 88,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 70,
+      "row": 273
+    },
+    "end_location": {
+      "column": 71,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 130,
+      "row": 273
+    },
+    "end_location": {
+      "column": 131,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 30,
+      "row": 275
+    },
+    "end_location": {
+      "column": 31,
+      "row": 275
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 63,
+      "row": 276
+    },
+    "end_location": {
+      "column": 64,
+      "row": 276
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 62,
+      "row": 278
+    },
+    "end_location": {
+      "column": 63,
+      "row": 278
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 161,
+      "row": 279
+    },
+    "end_location": {
+      "column": 162,
+      "row": 279
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 283
+    },
+    "end_location": {
+      "column": 68,
+      "row": 283
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 32,
+      "row": 286
+    },
+    "end_location": {
+      "column": 33,
+      "row": 286
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 288
+    },
+    "end_location": {
+      "column": 72,
+      "row": 288
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 45,
+      "row": 289
+    },
+    "end_location": {
+      "column": 46,
+      "row": 289
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 291
+    },
+    "end_location": {
+      "column": 10,
+      "row": 291
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 296
+    },
+    "end_location": {
+      "column": 17,
+      "row": 296
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 34,
+      "row": 297
+    },
+    "end_location": {
+      "column": 35,
+      "row": 297
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 29,
+      "row": 298
+    },
+    "end_location": {
+      "column": 30,
+      "row": 298
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 53,
+      "row": 301
+    },
+    "end_location": {
+      "column": 54,
+      "row": 301
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 60,
+      "row": 302
+    },
+    "end_location": {
+      "column": 61,
+      "row": 302
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 24,
+      "row": 316
+    },
+    "end_location": {
+      "column": 25,
+      "row": 316
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 37,
+      "row": 317
+    },
+    "end_location": {
+      "column": 38,
+      "row": 317
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 318
+    },
+    "end_location": {
+      "column": 26,
+      "row": 318
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 47,
+      "row": 322
+    },
+    "end_location": {
+      "column": 48,
+      "row": 322
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 95,
+      "row": 329
+    },
+    "end_location": {
+      "column": 96,
+      "row": 329
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 47,
+      "row": 333
+    },
+    "end_location": {
+      "column": 48,
+      "row": 333
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 24,
+      "row": 337
+    },
+    "end_location": {
+      "column": 25,
+      "row": 337
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 50,
+      "row": 338
+    },
+    "end_location": {
+      "column": 51,
+      "row": 338
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 339
+    },
+    "end_location": {
+      "column": 26,
+      "row": 339
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 44,
+      "row": 349
+    },
+    "end_location": {
+      "column": 45,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 62,
+      "row": 349
+    },
+    "end_location": {
+      "column": 63,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 44,
+      "row": 350
+    },
+    "end_location": {
+      "column": 45,
+      "row": 350
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 48,
+      "row": 352
+    },
+    "end_location": {
+      "column": 49,
+      "row": 352
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 27,
+      "row": 354
+    },
+    "end_location": {
+      "column": 28,
+      "row": 354
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 21,
+      "row": 355
+    },
+    "end_location": {
+      "column": 22,
+      "row": 355
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 61,
+      "row": 358
+    },
+    "end_location": {
+      "column": 62,
+      "row": 358
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 43,
+      "row": 361
+    },
+    "end_location": {
+      "column": 44,
+      "row": 361
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 43,
+      "row": 369
+    },
+    "end_location": {
+      "column": 44,
+      "row": 369
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 373
+    },
+    "end_location": {
+      "column": 29,
+      "row": 373
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+    "code": "E701",
+    "location": {
+      "column": 51,
+      "row": 377
+    },
+    "end_location": {
+      "column": 52,
+      "row": 377
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "I001",
+    "location": {
+      "column": 1,
+      "row": 1
+    },
+    "end_location": {
+      "column": 62,
+      "row": 25
+    },
+    "message": "Import block is un-sorted or un-formatted"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "F401",
+    "location": {
+      "column": 29,
+      "row": 16
+    },
+    "end_location": {
+      "column": 44,
+      "row": 16
+    },
+    "message": "`friday_core.mcp.MCPClientLimits` imported but unused"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "F401",
+    "location": {
+      "column": 39,
+      "row": 18
+    },
+    "end_location": {
+      "column": 53,
+      "row": 18
+    },
+    "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 59
+    },
+    "end_location": {
+      "column": 24,
+      "row": 59
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 61
+    },
+    "end_location": {
+      "column": 9,
+      "row": 61
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 62
+    },
+    "end_location": {
+      "column": 23,
+      "row": 62
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 63
+    },
+    "end_location": {
+      "column": 10,
+      "row": 63
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 66
+    },
+    "end_location": {
+      "column": 9,
+      "row": 66
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 67
+    },
+    "end_location": {
+      "column": 23,
+      "row": 67
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 68
+    },
+    "end_location": {
+      "column": 10,
+      "row": 68
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 17,
+      "row": 69
+    },
+    "end_location": {
+      "column": 18,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 49,
+      "row": 69
+    },
+    "end_location": {
+      "column": 50,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 69
+    },
+    "end_location": {
+      "column": 68,
+      "row": 69
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 29,
+      "row": 71
+    },
+    "end_location": {
+      "column": 30,
+      "row": 71
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 72
+    },
+    "end_location": {
+      "column": 28,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 72
+    },
+    "end_location": {
+      "column": 92,
+      "row": 72
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 12,
+      "row": 83
+    },
+    "end_location": {
+      "column": 13,
+      "row": 83
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 84
+    },
+    "end_location": {
+      "column": 42,
+      "row": 84
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 13,
+      "row": 85
+    },
+    "end_location": {
+      "column": 14,
+      "row": 85
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 8,
+      "row": 86
+    },
+    "end_location": {
+      "column": 9,
+      "row": 86
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 37,
+      "row": 87
+    },
+    "end_location": {
+      "column": 38,
+      "row": 87
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 88
+    },
+    "end_location": {
+      "column": 10,
+      "row": 88
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 12,
+      "row": 90
+    },
+    "end_location": {
+      "column": 13,
+      "row": 90
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 91
+    },
+    "end_location": {
+      "column": 42,
+      "row": 91
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 13,
+      "row": 92
+    },
+    "end_location": {
+      "column": 14,
+      "row": 92
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 20,
+      "row": 93
+    },
+    "end_location": {
+      "column": 21,
+      "row": 93
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 32,
+      "row": 106
+    },
+    "end_location": {
+      "column": 33,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 48,
+      "row": 106
+    },
+    "end_location": {
+      "column": 49,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 65,
+      "row": 106
+    },
+    "end_location": {
+      "column": 66,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 94,
+      "row": 106
+    },
+    "end_location": {
+      "column": 95,
+      "row": 106
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 22,
+      "row": 110
+    },
+    "end_location": {
+      "column": 23,
+      "row": 110
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 21,
+      "row": 111
+    },
+    "end_location": {
+      "column": 22,
+      "row": 111
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 31,
+      "row": 118
+    },
+    "end_location": {
+      "column": 32,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 66,
+      "row": 118
+    },
+    "end_location": {
+      "column": 67,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 87,
+      "row": 118
+    },
+    "end_location": {
+      "column": 88,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 105,
+      "row": 118
+    },
+    "end_location": {
+      "column": 106,
+      "row": 118
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 26,
+      "row": 123
+    },
+    "end_location": {
+      "column": 27,
+      "row": 123
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 22,
+      "row": 128
+    },
+    "end_location": {
+      "column": 23,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 46,
+      "row": 128
+    },
+    "end_location": {
+      "column": 47,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 128
+    },
+    "end_location": {
+      "column": 60,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 128
+    },
+    "end_location": {
+      "column": 72,
+      "row": 128
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 38,
+      "row": 131
+    },
+    "end_location": {
+      "column": 39,
+      "row": 131
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 27,
+      "row": 132
+    },
+    "end_location": {
+      "column": 28,
+      "row": 132
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 43,
+      "row": 135
+    },
+    "end_location": {
+      "column": 44,
+      "row": 135
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 137
+    },
+    "end_location": {
+      "column": 24,
+      "row": 137
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 63,
+      "row": 145
+    },
+    "end_location": {
+      "column": 64,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "B023",
+    "location": {
+      "column": 64,
+      "row": 145
+    },
+    "end_location": {
+      "column": 71,
+      "row": 145
+    },
+    "message": "Function definition does not bind loop variable `clients`"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 81,
+      "row": 145
+    },
+    "end_location": {
+      "column": 82,
+      "row": 145
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 21,
+      "row": 146
+    },
+    "end_location": {
+      "column": 22,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 86,
+      "row": 146
+    },
+    "end_location": {
+      "column": 87,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 109,
+      "row": 146
+    },
+    "end_location": {
+      "column": 110,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 133,
+      "row": 146
+    },
+    "end_location": {
+      "column": 134,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 160,
+      "row": 146
+    },
+    "end_location": {
+      "column": 161,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 176,
+      "row": 146
+    },
+    "end_location": {
+      "column": 177,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 190,
+      "row": 146
+    },
+    "end_location": {
+      "column": 191,
+      "row": 146
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 20,
+      "row": 153
+    },
+    "end_location": {
+      "column": 21,
+      "row": 153
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 42,
+      "row": 154
+    },
+    "end_location": {
+      "column": 43,
+      "row": 154
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 30,
+      "row": 166
+    },
+    "end_location": {
+      "column": 31,
+      "row": 166
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 29,
+      "row": 172
+    },
+    "end_location": {
+      "column": 30,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 60,
+      "row": 172
+    },
+    "end_location": {
+      "column": 61,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 92,
+      "row": 172
+    },
+    "end_location": {
+      "column": 93,
+      "row": 172
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 29,
+      "row": 174
+    },
+    "end_location": {
+      "column": 30,
+      "row": 174
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 179
+    },
+    "end_location": {
+      "column": 55,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 72,
+      "row": 179
+    },
+    "end_location": {
+      "column": 73,
+      "row": 179
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 43,
+      "row": 180
+    },
+    "end_location": {
+      "column": 44,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 180
+    },
+    "end_location": {
+      "column": 68,
+      "row": 180
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 184
+    },
+    "end_location": {
+      "column": 29,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 184
+    },
+    "end_location": {
+      "column": 55,
+      "row": 184
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 186
+    },
+    "end_location": {
+      "column": 17,
+      "row": 186
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 187
+    },
+    "end_location": {
+      "column": 42,
+      "row": 187
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 188
+    },
+    "end_location": {
+      "column": 18,
+      "row": 188
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 191
+    },
+    "end_location": {
+      "column": 17,
+      "row": 191
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 192
+    },
+    "end_location": {
+      "column": 42,
+      "row": 192
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 193
+    },
+    "end_location": {
+      "column": 18,
+      "row": 193
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 196
+    },
+    "end_location": {
+      "column": 29,
+      "row": 196
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 47,
+      "row": 199
+    },
+    "end_location": {
+      "column": 48,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 98,
+      "row": 199
+    },
+    "end_location": {
+      "column": 99,
+      "row": 199
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 202
+    },
+    "end_location": {
+      "column": 17,
+      "row": 202
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 42,
+      "row": 203
+    },
+    "end_location": {
+      "column": 43,
+      "row": 203
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 204
+    },
+    "end_location": {
+      "column": 18,
+      "row": 204
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 206
+    },
+    "end_location": {
+      "column": 55,
+      "row": 206
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 207
+    },
+    "end_location": {
+      "column": 28,
+      "row": 207
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 210
+    },
+    "end_location": {
+      "column": 26,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 56,
+      "row": 210
+    },
+    "end_location": {
+      "column": 57,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 88,
+      "row": 210
+    },
+    "end_location": {
+      "column": 89,
+      "row": 210
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 36,
+      "row": 211
+    },
+    "end_location": {
+      "column": 37,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 50,
+      "row": 211
+    },
+    "end_location": {
+      "column": 51,
+      "row": 211
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 213
+    },
+    "end_location": {
+      "column": 26,
+      "row": 213
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 54,
+      "row": 217
+    },
+    "end_location": {
+      "column": 55,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 72,
+      "row": 217
+    },
+    "end_location": {
+      "column": 73,
+      "row": 217
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 121,
+      "row": 218
+    },
+    "end_location": {
+      "column": 122,
+      "row": 218
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 221
+    },
+    "end_location": {
+      "column": 29,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 49,
+      "row": 221
+    },
+    "end_location": {
+      "column": 50,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 221
+    },
+    "end_location": {
+      "column": 72,
+      "row": 221
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 224
+    },
+    "end_location": {
+      "column": 17,
+      "row": 224
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 41,
+      "row": 225
+    },
+    "end_location": {
+      "column": 42,
+      "row": 225
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 17,
+      "row": 226
+    },
+    "end_location": {
+      "column": 18,
+      "row": 226
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 239
+    },
+    "end_location": {
+      "column": 26,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 56,
+      "row": 239
+    },
+    "end_location": {
+      "column": 57,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 88,
+      "row": 239
+    },
+    "end_location": {
+      "column": 89,
+      "row": 239
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 241
+    },
+    "end_location": {
+      "column": 26,
+      "row": 241
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 47,
+      "row": 244
+    },
+    "end_location": {
+      "column": 48,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 63,
+      "row": 244
+    },
+    "end_location": {
+      "column": 64,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 73,
+      "row": 244
+    },
+    "end_location": {
+      "column": 74,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 95,
+      "row": 244
+    },
+    "end_location": {
+      "column": 96,
+      "row": 244
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 23,
+      "row": 246
+    },
+    "end_location": {
+      "column": 24,
+      "row": 246
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 144,
+      "row": 249
+    },
+    "end_location": {
+      "column": 145,
+      "row": 249
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 31,
+      "row": 252
+    },
+    "end_location": {
+      "column": 32,
+      "row": 252
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 51,
+      "row": 257
+    },
+    "end_location": {
+      "column": 52,
+      "row": 257
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 38,
+      "row": 262
+    },
+    "end_location": {
+      "column": 39,
+      "row": 262
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 13,
+      "row": 265
+    },
+    "end_location": {
+      "column": 14,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 27,
+      "row": 265
+    },
+    "end_location": {
+      "column": 28,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 265
+    },
+    "end_location": {
+      "column": 60,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 96,
+      "row": 265
+    },
+    "end_location": {
+      "column": 97,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 127,
+      "row": 265
+    },
+    "end_location": {
+      "column": 128,
+      "row": 265
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 75,
+      "row": 266
+    },
+    "end_location": {
+      "column": 76,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 266
+    },
+    "end_location": {
+      "column": 92,
+      "row": 266
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 55,
+      "row": 267
+    },
+    "end_location": {
+      "column": 56,
+      "row": 267
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 23,
+      "row": 268
+    },
+    "end_location": {
+      "column": 24,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 59,
+      "row": 268
+    },
+    "end_location": {
+      "column": 60,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 91,
+      "row": 268
+    },
+    "end_location": {
+      "column": 92,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 119,
+      "row": 268
+    },
+    "end_location": {
+      "column": 120,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 151,
+      "row": 268
+    },
+    "end_location": {
+      "column": 152,
+      "row": 268
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 23,
+      "row": 269
+    },
+    "end_location": {
+      "column": 24,
+      "row": 269
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 68,
+      "row": 271
+    },
+    "end_location": {
+      "column": 69,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 87,
+      "row": 271
+    },
+    "end_location": {
+      "column": 88,
+      "row": 271
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 70,
+      "row": 273
+    },
+    "end_location": {
+      "column": 71,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 130,
+      "row": 273
+    },
+    "end_location": {
+      "column": 131,
+      "row": 273
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 30,
+      "row": 275
+    },
+    "end_location": {
+      "column": 31,
+      "row": 275
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 63,
+      "row": 276
+    },
+    "end_location": {
+      "column": 64,
+      "row": 276
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 62,
+      "row": 278
+    },
+    "end_location": {
+      "column": 63,
+      "row": 278
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 161,
+      "row": 279
+    },
+    "end_location": {
+      "column": 162,
+      "row": 279
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 67,
+      "row": 283
+    },
+    "end_location": {
+      "column": 68,
+      "row": 283
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 32,
+      "row": 286
+    },
+    "end_location": {
+      "column": 33,
+      "row": 286
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 71,
+      "row": 288
+    },
+    "end_location": {
+      "column": 72,
+      "row": 288
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 45,
+      "row": 289
+    },
+    "end_location": {
+      "column": 46,
+      "row": 289
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 9,
+      "row": 291
+    },
+    "end_location": {
+      "column": 10,
+      "row": 291
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 16,
+      "row": 296
+    },
+    "end_location": {
+      "column": 17,
+      "row": 296
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 34,
+      "row": 297
+    },
+    "end_location": {
+      "column": 35,
+      "row": 297
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 29,
+      "row": 298
+    },
+    "end_location": {
+      "column": 30,
+      "row": 298
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 53,
+      "row": 301
+    },
+    "end_location": {
+      "column": 54,
+      "row": 301
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 60,
+      "row": 302
+    },
+    "end_location": {
+      "column": 61,
+      "row": 302
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 24,
+      "row": 316
+    },
+    "end_location": {
+      "column": 25,
+      "row": 316
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 37,
+      "row": 317
+    },
+    "end_location": {
+      "column": 38,
+      "row": 317
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 318
+    },
+    "end_location": {
+      "column": 26,
+      "row": 318
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 47,
+      "row": 322
+    },
+    "end_location": {
+      "column": 48,
+      "row": 322
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 95,
+      "row": 329
+    },
+    "end_location": {
+      "column": 96,
+      "row": 329
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 47,
+      "row": 333
+    },
+    "end_location": {
+      "column": 48,
+      "row": 333
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 24,
+      "row": 337
+    },
+    "end_location": {
+      "column": 25,
+      "row": 337
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 50,
+      "row": 338
+    },
+    "end_location": {
+      "column": 51,
+      "row": 338
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 25,
+      "row": 339
+    },
+    "end_location": {
+      "column": 26,
+      "row": 339
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 44,
+      "row": 349
+    },
+    "end_location": {
+      "column": 45,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 62,
+      "row": 349
+    },
+    "end_location": {
+      "column": 63,
+      "row": 349
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 44,
+      "row": 350
+    },
+    "end_location": {
+      "column": 45,
+      "row": 350
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 48,
+      "row": 352
+    },
+    "end_location": {
+      "column": 49,
+      "row": 352
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 27,
+      "row": 354
+    },
+    "end_location": {
+      "column": 28,
+      "row": 354
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 21,
+      "row": 355
+    },
+    "end_location": {
+      "column": 22,
+      "row": 355
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 61,
+      "row": 358
+    },
+    "end_location": {
+      "column": 62,
+      "row": 358
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 43,
+      "row": 361
+    },
+    "end_location": {
+      "column": 44,
+      "row": 361
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 43,
+      "row": 369
+    },
+    "end_location": {
+      "column": 44,
+      "row": 369
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E702",
+    "location": {
+      "column": 28,
+      "row": 373
+    },
+    "end_location": {
+      "column": 29,
+      "row": 373
+    },
+    "message": "Multiple statements on one line (semicolon)"
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+    "code": "E701",
+    "location": {
+      "column": 51,
+      "row": 377
+    },
+    "end_location": {
+      "column": 52,
+      "row": 377
+    },
+    "message": "Multiple statements on one line (colon)"
+  },
+  {
+    "path": "packages/friday-cli/src/friday_cli/commands.py",
+    "code": "UP046",
+    "location": {
+      "column": 23,
+      "row": 74
+    },
+    "end_location": {
+      "column": 33,
+      "row": 74
+    },
+    "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters"
+  }
+]

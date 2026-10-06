@@ -1,0 +1,103 @@
+{
+  "sites": [
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "name": "SessionState",
+      "baseline_line": 20,
+      "baseline_rhs": "Any",
+      "current": "type SessionState = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "name": "ConsolidationReport",
+      "baseline_line": 21,
+      "baseline_rhs": "Any",
+      "current": "type ConsolidationReport = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "name": "ContextPayload",
+      "baseline_line": 24,
+      "baseline_rhs": "Any",
+      "current": "type ContextPayload = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "name": "Interaction",
+      "baseline_line": 25,
+      "baseline_rhs": "Any",
+      "current": "type Interaction = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "name": "InteractionTurn",
+      "baseline_line": 23,
+      "baseline_rhs": "Any",
+      "current": "type InteractionTurn = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "name": "GraphNode",
+      "baseline_line": 24,
+      "baseline_rhs": "Any",
+      "current": "type GraphNode = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "name": "GraphEdge",
+      "baseline_line": 25,
+      "baseline_rhs": "Any",
+      "current": "type GraphEdge = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "name": "ContextLogEntry",
+      "baseline_line": 18,
+      "baseline_rhs": "Any",
+      "current": "type ContextLogEntry = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "name": "TranscriptEntry",
+      "baseline_line": 19,
+      "baseline_rhs": "Any",
+      "current": "type TranscriptEntry = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "name": "TranscriptSession",
+      "baseline_line": 20,
+      "baseline_rhs": "Any",
+      "current": "type TranscriptSession = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "name": "InteractionTurn",
+      "baseline_line": 21,
+      "baseline_rhs": "Any",
+      "current": "type InteractionTurn = Any",
+      "runtime": false
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "name": "MemoryLLMClient",
+      "baseline_line": 42,
+      "baseline_rhs": "TypedLLMClient | LegacyMemoryLLMClient",
+      "current": "type MemoryLLMClient = TypedLLMClient | LegacyMemoryLLMClient",
+      "runtime": true
+    }
+  ],
+  "baseline_revision": "1b28d373bb613e754947e4b13c7f7280314c560e",
+  "runtime_alias_contract": "MemoryLLMClient consumer uses are annotations/imports only; no isinstance/issubclass/get_args/get_origin/__args__/__origin__/identity caller found among tracked Python sources. PEP695 changes runtime alias object to TypeAliasType; external introspection compatibility not claimed. Eleven other aliases remain TYPE_CHECKING-only, absent at runtime both versions.",
+  "consumer_inventory": "alias-consumer-inventory-final.json"
+}

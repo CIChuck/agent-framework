@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "--import-mode=importlib",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_builtin_tools_by_default",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_friday_tools_provider_with_category_filter",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_native_registration_defers_mcp_to_async_boot",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[False]",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[True]",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[False]",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[True]"
+  ],
+  "cwd": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline",
+  "revision": "1b28d373bb613e754947e4b13c7f7280314c560e",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/baseline-native-alone/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-agent/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-chat/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-cli/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-core/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-finance/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-llm/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-mcp/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-memory/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-moltbook/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-optimization/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-runtime/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-sandbox/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-speech/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-telemetry/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-tools/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-transcript/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-01/REM-004/approved-execution/product-validation/baseline",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/baseline-native-alone",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/baseline-native-alone/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/baseline-native-alone/mypy",
+    "PYTEST_ADDOPTS": "-rA -o cache_dir=/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/baseline-native-alone/pytest"
+  },
+  "exit_code": 0,
+  "log_sha256": "ee7bd01b6d17cb6367f91b533c95a2b9f978f210651a5d950a6b47495c9e9cb1",
+  "preflight_sha256": "d028de1844d9c124e744a3e6e2f3f87d0f54e2fbfada30c04dd5936ea1ebb9ca",
+  "seconds": 2.589252233505249,
+  "tracked_unchanged": true
+}

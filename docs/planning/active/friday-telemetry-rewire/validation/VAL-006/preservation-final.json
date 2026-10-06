@@ -1,0 +1,31 @@
+{
+  "HEAD": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "authority_still_pinned": {
+    "AGENTS.md": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "docs/reference/policies/repository-engineering-policy.md": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "docs/reference/policies/development-task-lifecycle.md": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+    "docs/reference/policies/independent-validation-policy.md": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+    "docs/planning/active/friday-telemetry-rewire/build-plan.md": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+    "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+    "docs/planning/active/friday-telemetry-rewire/tactical-plan.md": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+    "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478",
+    "docs/planning/active/friday-telemetry-rewire/verification-profile.md": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2"
+  },
+  "original_status_unchanged": true,
+  "status": " M .DS_Store\n M docs/planning/README.md\n M docs/planning/board.yaml\n D family-tree.md\n M packages/friday-chat/config.example.yaml\n?? .claude/\n?? docker-bench-security/\n?? docs/planning/queued/friday-tool-manifest-continuity/\n?? packages/friday-sandbox/docker/Dockerfile.audit\n",
+  "candidate_governed_hashes_unchanged": true,
+  "candidate_files_compared": 1368,
+  "baseline_governed_hashes_unchanged": true,
+  "protected_267_paths_still_absent": true,
+  "no_product_authority_index_or_original_runtime_writes": true
+}

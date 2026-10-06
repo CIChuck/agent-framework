@@ -1,0 +1,9 @@
+{
+  "raw_exit": 1,
+  "total": 327,
+  "archive": 326,
+  "live": 1,
+  "exact_multiset_match": true,
+  "canonical_sha256": "b772de4b7bcd864bf9fc64c90eb9178e336c1fbc468fb40d75f8dac5429cbda4",
+  "disposition": "root Ruff nonzero; exact326archival WVR002 plus1liveUP046 WVR003; noadditionaldiagnostics; rawlintnotPASS"
+}

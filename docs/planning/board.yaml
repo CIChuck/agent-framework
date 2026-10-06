@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: complete approved REM-004 under A06/WVR-003 then freeze for fresh delta and aggregate validation; exact archival326 plus one live UP046
+  next_gate: TELEM-01 independently verified at 8aedd87; maintainer acceptance and next bounded-unit directive decision
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -421,6 +421,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1092,3 +1094,10 @@ events:
   action: recorded CDR-011 approved A06 authority READY and resumed separate remediation
   note: Exact approved compatibility and original scope coherent; all other required tests, typing, security and aggregate checks remain mandatory; no product verification or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-011/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: recorded independently verified TELEM-01 delta and aggregate closeout
+  note: REM-004 complete at frozen 8aedd87; all mandatory gates pass with exact approved WVR-002/WVR-003 lint disposition. Initiative stays started; maintainer acceptance and later-unit authority remain separate.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md

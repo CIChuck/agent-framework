@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | complete approved REM-004 under A06/WVR-003 then freeze for fresh delta and aggregate validation; exact archival326 plus one live UP046 |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | TELEM-01 independently verified at 8aedd87; maintainer acceptance and next bounded-unit directive decision |
 
 ## Completed
 

@@ -1,0 +1,862 @@
+[
+  {
+    "path": "experiments/prompt_transcript_audit/runtime.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport importlib\nimport json\nimport shutil\nimport tempfile\nfrom collections.abc import Mapping\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, cast\n\nfrom friday_agent import DefaultToolRegistry, InteractiveAgent\nfrom friday_agent.prompting import compose_system_prompt\nfrom friday_core.profiles import MemoryProfile\nfrom friday_runtime.config import RuntimeConfig\nfrom friday_runtime.kernel import RuntimeKernel\nfrom friday_transcript import SQLiteTranscriptStore\n\nfrom experiments.prompt_transcript_audit.fake_llm import (\n    DEFAULT_PROMPT,\n    DEFAULT_RESPONSE,\n    DeterministicAuditLLMClient,\n)\nfrom experiments.prompt_transcript_audit.schema import (\n    PromptTranscriptAuditResult,\n    PromptTranscriptAuditScenarioConfig,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 31
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "experiments/provider_memory_smoke/runtime.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport importlib\nimport json\nimport tempfile\nfrom dataclasses import asdict, dataclass\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, cast\n\nfrom friday_agent import DefaultToolRegistry, InteractiveAgent\nfrom friday_agent.prompting import compose_system_prompt\nfrom friday_core.profiles import MemoryProfile\nfrom friday_runtime.config import RuntimeConfig\nfrom friday_runtime.kernel import RuntimeKernel\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "experiments/workflow_artifact_smoke/runtime.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport importlib\nimport json\nimport re\nimport tempfile\nfrom dataclasses import asdict\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, cast\n\nfrom friday_core.profiles import MemoryProfile\nfrom friday_runtime.config import RuntimeConfig\nfrom friday_runtime.kernel import RuntimeKernel\nfrom friday_transcript import SQLiteTranscriptStore\n\nfrom experiments.workflow_artifact_smoke.schema import (\n    WorkflowArtifactSmokeResult,\n    WorkflowArtifactSmokeScenarioConfig,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 24
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-agent/src/friday_agent/workflows/engine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport logging\nimport uuid\nfrom collections.abc import Awaitable, Callable\nfrom datetime import UTC, datetime, timedelta\nfrom typing import TYPE_CHECKING, Any, Literal, cast\n\nfrom friday_memory.multi_agent import ScratchPlanItemStatus\nfrom friday_telemetry.interface import TelemetryInterface\n\nfrom friday_agent.workflows.models import (\n    ArtifactLifecycleState,\n    ArtifactPolicy,\n    ArtifactRecord,\n    CanonicalWorkflowExecution,\n    HITLDecision,\n    HITLDecisionAction,\n    HITLPolicy,\n    HITLRequest,\n    PipelineDefinition,\n    PipelineDispatch,\n    PipelineExecutionState,\n    PipelineExecutionStatus,\n    PipelineLineageRecord,\n    PipelineResult,\n    TaskAssignment,\n    TaskAssignmentStatus,\n    TaskDefinition,\n    TaskNode,\n    TaskState,\n    TaskStatus,\n    WorkflowDefinition,\n    WorkflowExecution,\n    WorkflowPipelineDefinition,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 49
+          },
+          "location": {
+            "column": 1,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-agent/src/friday_agent/workflows/models.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\nfrom enum import Enum\nfrom typing import Any, Literal\n\nfrom pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator\n\nfrom friday_agent.skills import is_valid_skill_ref\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 11
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-agent/tests_agent/test_pipeline_dispatch.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_agent.workflows import (\n    PipelineDefinition,\n    PipelineDispatch,\n    PipelineDispatchEngine,\n    PipelineDispatchError,\n    PipelineExecutionStatus,\n    TaskAssignmentStatus,\n    TaskDefinition,\n    WorkflowPipelineDefinition,\n)\nfrom pydantic import ValidationError\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 23
+          },
+          "location": {
+            "column": 1,
+            "row": 5
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/adapters.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport importlib\nimport json\nimport math\nimport os\nimport warnings\nfrom collections.abc import AsyncIterator, Mapping, Sequence\nfrom dataclasses import dataclass, field\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, TypeGuard, cast\nfrom uuid import uuid4\n\nfrom friday_core.interfaces.llm import ChatCompletionResponse\nfrom friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance\nfrom friday_llm import (\n    ChatCompletionRequest,\n    FinishEvent,\n    LiteLLMEmbeddingService,\n    LiteLLMService,\n    ReasoningDeltaEvent,\n    ResilienceConfig,\n    StreamErrorEvent,\n    TextDeltaEvent,\n    ToolCallCompleteEvent,\n    ToolCallDeltaEvent,\n    TypedChatCompletionResponse,\n    UsageEvent,\n    close_litellm_async_clients,\n)\nfrom friday_memory import (\n    AccessBuffer,\n    AccessBufferConfig,\n    CollectionConfig,\n    CollectionManager,\n    DecayConfig,\n    ElementXGraphStore,\n    ExtractionCommitCompletedUnderCancellation,\n    FactorComputerConfig,\n    InMemoryEpisodicStore,\n    InteractionTurn,\n    MemoryController,\n    MemoryExtractor,\n    MemoryPromotionService,\n    NullGraphStore,\n    PassageRouter,\n    PassageRouterConfig,\n    RetrievalFactorComputer,\n    SimpleVectorStore,\n)\nfrom friday_memory.context.budget_monitor import ContextBudgetMonitor\nfrom friday_memory.ingestion.mcp import MCPMemoryIngester\nfrom friday_memory.maintenance import (\n    IncrementalGraphMaintainer,\n    IncrementalMaintenanceConfig,\n    InSessionCompactor,\n    MemoryReorganizer,\n)\nfrom friday_memory.maintenance.models import (\n    MaintenanceConfig as FrameworkMaintenanceConfig,\n)\nfrom friday_memory.models.budget import CompactionConfig\nfrom friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot\nfrom friday_memory.retrieval.mcp import (\n    estimated_snippet_tokens,\n    is_mcp_memory,\n    mcp_memory_snippet,\n)\nfrom friday_transcript import (\n    ContextLogEntry,\n    SQLiteTranscriptStore,\n    ToolCall,\n    ToolResult,\n    TranscriptEntry,\n    TranscriptSession,\n)\n\nfrom friday_chat.config import (\n    FridayChatConfig,\n    LegacyLLMExecutionConfig,\n    PrimaryLLMExecutionConfig,\n    TypedLLMExecutionConfig,\n)\nfrom friday_chat.memory_views import (\n    MemoryCollection,\n    MemoryDiagnosticReason,\n    MemoryDiagnosticWarning,\n    MemoryMetric,\n    MemoryRecordKind,\n    MemoryRecordQueryResult,\n    MemoryRecordView,\n    MemoryStoreComponent,\n    MemoryStoreStatistics,\n)\nfrom friday_chat.reorganization.contracts import (\n    ReorganizationError,\n    ReorganizationErrorCode,\n)\nfrom friday_chat.reorganization.layout import FridayChatMaintenanceLayout\nfrom friday_chat.reorganization.mutation import LifecycleStepReport\nfrom friday_chat.runtime import (\n    REORGANIZATION_EXECUTE_DISABLED_REASON,\n    MCPTranscriptReceipt,\n    PendingExtractionTurn,\n)\nfrom friday_chat.tools.schemas import ToolCallRecord, ToolDefinition\nfrom friday_chat.tools.selection import ToolBudgetCalculator\nfrom friday_chat.transcripts import (\n    TranscriptContextLogView,\n    TranscriptEntryView,\n    TranscriptSessionView,\n)\nfrom friday_chat.turns.models import (\n    ChatModelResponse,\n    ToolCallRequest,\n)\nfrom friday_chat.turns.models import (\n    InteractionTurn as ChatInteractionTurn,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 125
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport csv\nimport io\nimport json\nfrom collections.abc import Sequence\nfrom datetime import UTC, datetime\nfrom pathlib import Path\n\nfrom friday_chat.commands.contracts import (\n    CommandContext,\n    CommandMetadata,\n    CommandResult,\n)\nfrom friday_chat.transcripts import (\n    TranscriptContextLogView,\n    TranscriptEntryView,\n    TranscriptExportResult,\n    TranscriptSessionView,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 24
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom uuid import uuid4\n\nfrom friday_memory import MemorySnapshotManifest\nfrom friday_transcript import TranscriptSnapshotManifest\n\nfrom friday_chat.reorganization.contracts import (\n    JournalSafeBoundary,\n    JournalState,\n    OperationTrigger,\n    ParticipantKind,\n    RecoveryBundleManifest,\n    RecoveryJournal,\n    ReorganizationMode,\n)\nfrom friday_chat.reorganization.durability import (\n    AtomicJsonStore,\n    DurableArtifact,\n    DurableArtifactError,\n)\nfrom friday_chat.reorganization.layout import FridayChatMaintenanceLayout\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 29
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport re\nfrom collections.abc import Awaitable, Callable, Sequence\nfrom dataclasses import dataclass\nfrom datetime import UTC, datetime, timedelta\nfrom enum import Enum\nfrom pathlib import Path\nfrom typing import Protocol, TypeVar\nfrom uuid import uuid4\n\nfrom friday_memory import (\n    MemoryOperationResult,\n    MemoryRecoveryOperation,\n    MemoryRecoveryParticipant,\n    MemorySnapshotManifest,\n    MemoryStoreKind,\n    StoreDiscoveryState,\n)\nfrom friday_transcript import (\n    TranscriptSnapshotManifest,\n    TranscriptSnapshotParticipant,\n    TranscriptSnapshotResult,\n)\nfrom pydantic import Field\n\nfrom friday_chat.reorganization.artifacts import MaintenanceArtifactStore\nfrom friday_chat.reorganization.contracts import (\n    JournalSafeBoundary,\n    JournalState,\n    MutationStep,\n    MutationStepResult,\n    MutationStepStatus,\n    OperationTrigger,\n    ParticipantKind,\n    ParticipantManifestReference,\n    ProgressStep,\n    RecoveryBundleManifest,\n    RecoveryJournal,\n    RecoveryRequest,\n    ReorganizationError,\n    ReorganizationErrorCode,\n    ReorganizationLogRecord,\n    ReorganizationMode,\n    ReorganizationRequest,\n    ReorganizationResult,\n    ResultStatus,\n    StoreCapabilityState,\n    StoreOperationResult,\n    StoreOperationStatus,\n    StrictContractModel,\n)\nfrom friday_chat.reorganization.durability import (\n    AtomicJsonStore,\n    DurableArtifactError,\n)\nfrom friday_chat.reorganization.gate import MaintenanceAdmissionGate\nfrom friday_chat.reorganization.layout import FridayChatMaintenanceLayout\nfrom friday_chat.reorganization.lease import (\n    DarwinLayoutLeaseRegistry,\n    LayoutLeaseError,\n    LayoutLeaseHandle,\n)\nfrom friday_chat.reorganization.preflight import MaintenanceEnvironmentPreflight\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 70
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/reorganization/lease.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport errno\nimport os\nimport platform\nimport re\nimport socket\nimport stat\nfrom collections.abc import Iterator\nfrom contextlib import contextmanager, suppress\nfrom dataclasses import dataclass\nfrom datetime import UTC, datetime\nfrom enum import Enum\nfrom pathlib import Path\nfrom typing import Protocol, cast\nfrom uuid import uuid4\n\nfrom pydantic import ValidationError\n\nfrom friday_chat.reorganization.artifacts import MaintenanceArtifactStore\nfrom friday_chat.reorganization.contracts import (\n    JournalState,\n    LayoutLeaseRecord,\n    OperationTrigger,\n    RecoveryJournal,\n)\nfrom friday_chat.reorganization.durability import (\n    AtomicJsonStore,\n    DurableArtifactError,\n    ensure_owner_directory,\n)\nfrom friday_chat.reorganization.layout import (\n    FridayChatMaintenanceLayout,\n    MaintenanceLayoutError,\n    live_targets_overlap,\n    validate_declared_paths,\n    validate_live_target_identities,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 43
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport hashlib\nimport json\nimport math\nfrom collections.abc import Mapping\nfrom dataclasses import dataclass, field\nfrom datetime import UTC, datetime\nfrom enum import Enum\nfrom typing import Protocol, TypeVar, cast\n\nfrom friday_llm import LiteLLMEmbeddingService, LiteLLMService, ResilienceConfig\nfrom friday_memory import (\n    GraphEmbeddingUpdate,\n    MemoryEmbeddingUpdate,\n    MemoryMutationCommand,\n    MemoryMutationParticipant,\n    MemoryMutationPlan,\n    MemoryMutationStep,\n    MemoryVectorAddition,\n    MemoryVerificationStatus,\n    MemoryVerificationUpdate,\n    SynthesisCandidateGroup,\n    SynthesisConfig,\n)\nfrom friday_memory.json_response import (\n    json_response_text,\n    parse_json_object_from_text,\n)\nfrom friday_memory.llm_completion import MemoryLLMClient, complete_memory_request\nfrom pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator\n\nfrom friday_chat.config import FridayChatConfig\nfrom friday_chat.reorganization.contracts import (\n    MutationStep,\n    MutationStepResult,\n    MutationStepStatus,\n    ReorganizationError,\n    ReorganizationErrorCode,\n    ReorganizationRequest,\n)\nfrom friday_chat.reorganization.coordinator import (\n    MaintenanceMutationAdapter,\n    MutationPreflight,\n    MutationVerification,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 51
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport json\nimport os\nimport re\nimport socket\nimport threading\nfrom collections.abc import AsyncIterator, Mapping, Sequence\nfrom dataclasses import dataclass, field\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, cast\n\nimport pytest\nimport yaml\nfrom friday_chat import adapters\nfrom friday_chat import display as display_module\nfrom friday_chat.adapters import (\n    FrameworkEmbeddingService,\n    FrameworkMemoryAdapter,\n    FrameworkToolRegistryAdapter,\n    FrameworkTranscriptAdapter,\n)\nfrom friday_chat.app import FridayChatApp\nfrom friday_chat.commands.registry import RegistryCommandContext, build_default_registry\nfrom friday_chat.config import FridayChatConfig\nfrom friday_chat.display import (\n    BannerDisplayConfig,\n    FridayCliDisplay,\n    FridayCliInputSource,\n    FridayCliOutputSink,\n    Heartbeat,\n    HeartbeatKind,\n)\nfrom friday_chat.runtime import FridayRuntime, build_runtime\nfrom friday_chat.tools.schemas import ToolDefinition\nfrom friday_chat.tools.selection import (\n    ToolSelectionMode,\n    canonical_tool_schema_bytes,\n)\nfrom friday_chat.turns.models import ChatModelResponse\nfrom friday_chat.turns.processor import TurnProcessor\nfrom friday_cli import CLIConfig\nfrom friday_llm import LiteLLMEmbeddingService, LiteLLMService\nfrom friday_memory import (\n    GraphEdge,\n    GraphNode,\n    MemoryVectorAddition,\n    ProvenanceMetadata,\n)\nfrom friday_transcript import TranscriptEntry, TranscriptSession\nfrom rich.console import Console\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 57
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport json\nimport socket\nfrom collections.abc import AsyncIterator, Iterator\nfrom datetime import UTC, datetime\nfrom pathlib import Path\n\nimport pytest\nfrom friday_chat import adapters\nfrom friday_chat.adapters import FrameworkEmbeddingService, FrameworkMemoryAdapter\nfrom friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink\nfrom friday_chat.commands.registry import RegistryCommandContext, build_default_registry\nfrom friday_chat.config import FridayChatConfig\nfrom friday_chat.memory_views import (\n    MemoryDiagnosticReason,\n    MemoryMetric,\n    MemoryMetricState,\n    MemoryRecordKind,\n)\nfrom friday_chat.runtime import FakeMemoryController, FridayRuntime, build_runtime\nfrom friday_chat.session import FridaySession\nfrom friday_llm import LiteLLMEmbeddingService, LiteLLMService\nfrom friday_memory import (\n    GraphEdge,\n    GraphNode,\n    MemoryVectorAddition,\n    ProvenanceMetadata,\n)\nfrom friday_memory.models.budget import BudgetSeverity, BudgetStatus\nfrom friday_transcript import TranscriptEntry, TranscriptSession\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 36
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/tests_chat/test_reorganization_contracts.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import json\nfrom datetime import UTC, datetime, timedelta\nfrom pathlib import Path\n\nimport pytest\nfrom friday_chat.config import FridayChatConfig\nfrom friday_chat.reorganization import (\n    JournalSafeBoundary,\n    JournalState,\n    OperationTrigger,\n    ProgressStep,\n    RecoveryJournal,\n    RecoveryRequest,\n    ReorganizationError,\n    ReorganizationErrorCode,\n    ReorganizationMode,\n    ReorganizationRequest,\n    ReorganizationResult,\n    ResultStatus,\n    StoreCapabilityState,\n    StoreOperationResult,\n    StoreOperationStatus,\n)\nfrom friday_chat.reorganization.assembly import (\n    ExitReorganizationModeError,\n    build_exit_reorganization_request,\n)\nfrom friday_chat.reorganization.contracts import (\n    MutationStep,\n    MutationStepResult,\n    MutationStepStatus,\n)\nfrom pydantic import ValidationError\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 38
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/tests_chat/test_reorganization_foundations.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport fcntl\nimport multiprocessing\nimport os\nimport platform\nimport stat\nfrom datetime import UTC, datetime, timedelta\nfrom pathlib import Path\nfrom typing import Any\n\nimport friday_chat.reorganization.durability as durability_module\nimport friday_chat.reorganization.layout as layout_module\nimport pytest\nfrom friday_chat.reorganization import (\n    AtomicJsonStore,\n    DarwinLayoutLeaseRegistry,\n    DurableArtifactError,\n    FridayChatMaintenanceLayout,\n    JournalSafeBoundary,\n    JournalState,\n    LayoutLeaseContentionError,\n    LayoutLeaseError,\n    MaintenanceArtifactStore,\n    MaintenanceLayoutError,\n    MaintenancePlatformError,\n    OperationTrigger,\n    ParticipantKind,\n    ParticipantManifestReference,\n    ProgressStep,\n    RecoveryBundleManifest,\n    RecoveryJournal,\n    ReorganizationError,\n    ReorganizationErrorCode,\n    ReorganizationMode,\n    ResultStatus,\n    StaleLeaseReconciliationError,\n)\nfrom friday_chat.reorganization.contracts import StrictContractModel\nfrom friday_chat.reorganization.durability import ensure_owner_directory\nfrom friday_memory import (\n    AccessBufferRecoveryStrategy,\n    AccessBufferSnapshotManifest,\n    GraphSnapshotManifest,\n    MemorySnapshotManifest,\n    MemorySnapshotStrategy,\n    StoreDiscoveryState,\n    VectorSnapshotManifest,\n)\nfrom friday_transcript import TranscriptSnapshotManifest\nfrom pydantic import ValidationError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 55
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport csv\nimport json\nimport socket\nimport sqlite3\nfrom datetime import UTC, datetime, timedelta\nfrom pathlib import Path\n\nimport pytest\nfrom friday_chat.adapters import FrameworkTranscriptAdapter\nfrom friday_chat.app import FridayChatApp, ListInputSource, ListOutputSink\nfrom friday_chat.commands.registry import RegistryCommandContext, build_default_registry\nfrom friday_chat.config import FridayChatConfig\nfrom friday_chat.runtime import FakeTranscriptStore, FridayRuntime, build_runtime\nfrom friday_chat.session import SessionIdentity\nfrom friday_chat.transcripts import (\n    TranscriptContextLogView,\n    TranscriptEntryView,\n    TranscriptSessionView,\n)\nfrom friday_chat.turns.processor import TurnProcessor\nfrom friday_transcript import (\n    ContextLogEntry,\n    SQLiteTranscriptStore,\n    TranscriptEntry,\n    TranscriptSession,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 33
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-core/src/friday_core/security/quarantine.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport json\nfrom dataclasses import asdict, dataclass\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any\n\nfrom friday_core.logging import get_logger\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-core/tests_core/test_mcp_contracts.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\nfrom types import MappingProxyType\n\nimport pytest\nfrom friday_core.mcp import (\n    MCPClientLimits,\n    MCPClientSecurityPolicy,\n    MCPDiscoveryPolicy,\n    MCPDiscoveryState,\n    MCPIngestionPolicy,\n    MCPProviderDiagnostics,\n    MCPServerDiscoveryState,\n    MCPServerRuntimePolicy,\n    MCPToolCallProvenance,\n    MCPToolMetadata,\n    build_mcp_metadata_index,\n    normalize_mcp_tool_name,\n    normalize_mcp_tool_names,\n)\nfrom pydantic import BaseModel, ValidationError\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 27
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport html\nfrom datetime import UTC, datetime\nfrom typing import Literal, Protocol, runtime_checkable\nfrom uuid import uuid4\n\nfrom friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance\nfrom friday_core.security import SanitizationConfig, ToolOutputSanitizer\n\nfrom friday_memory.models.mcp import (\n    MCPMemoryPreparation,\n    MCPMemorySnapshot,\n    MCPMemoryStorage,\n    MCPStoredSnapshot,\n)\nfrom friday_memory.retrieval.mcp import snapshot_label\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport hashlib\nimport json\nimport math\nimport re\nimport struct\nfrom collections.abc import Iterable, Mapping, Sequence\nfrom datetime import UTC, datetime\nfrom enum import Enum\nfrom typing import Protocol, runtime_checkable\n\nimport chromadb\nfrom chromadb.api import ClientAPI\nfrom chromadb.api.models.Collection import Collection\nfrom chromadb.errors import ChromaError\nfrom pydantic import (\n    BaseModel,\n    ConfigDict,\n    Field,\n    JsonValue,\n    TypeAdapter,\n    model_validator,\n)\n\nfrom friday_memory.adapters.graph import ElementXGraphStore\nfrom friday_memory.maintenance.models import SynthesisConfig\nfrom friday_memory.maintenance.recovery_models import (\n    CHROMA_REBUILD_MAXIMUM_FLOAT32_ULP_DRIFT,\n    MemoryMaintenanceLayout,\n)\nfrom friday_memory.models.graph import MemoryStage\nfrom friday_memory.retrieval.mcp import is_mcp_memory\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 44
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import datetime\nfrom enum import Enum\nfrom pathlib import Path\nfrom typing import Final, Literal, Self\n\nfrom pydantic import (\n    BaseModel,\n    ConfigDict,\n    Field,\n    JsonValue,\n    field_validator,\n    model_validator,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport uuid\nfrom datetime import UTC, datetime\nfrom typing import Any\n\nfrom friday_core.interfaces import MultiAgentMemoryInterface, SharedWriteCapability\n\nfrom friday_memory.controller import MemoryController\nfrom friday_memory.models import ContextPayload, GraphNode, ProvenanceMetadata\nfrom friday_memory.multi_agent.coordinator import PromotionCoordinator\nfrom friday_memory.multi_agent.models import (\n    PRIVATE_VISIBILITY,\n    SHARED_NAMESPACE,\n    SHARED_VISIBILITY,\n)\nfrom friday_memory.multi_agent.policy import NamespacePolicyEngine\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 25
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport uuid\nfrom datetime import UTC, datetime\nfrom typing import Any\n\nfrom friday_core.interfaces import ArbitrationDecision, ArbitrationInterface\n\nfrom friday_memory.controller import MemoryController\nfrom friday_memory.models import GraphNode, ProvenanceMetadata\nfrom friday_memory.multi_agent.journal import PromotionJournal\nfrom friday_memory.multi_agent.models import (\n    SHARED_NAMESPACE,\n    SHARED_VISIBILITY,\n    PromotionJournalEntry,\n    PromotionJournalEvent,\n    PromotionJournalState,\n    SharedPromotionProposal,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 27
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport json\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any\n\nfrom friday_memory.multi_agent.models import (\n    PromotionJournalEntry,\n    PromotionJournalEvent,\n    PromotionJournalState,\n)\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 19
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/models.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\nfrom enum import Enum\nfrom typing import Any\n\nfrom pydantic import BaseModel, Field\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime, timedelta\n\nfrom friday_memory.multi_agent.journal import PromotionJournal\nfrom friday_memory.multi_agent.models import PromotionJournalState\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\n\nfrom friday_core.interfaces import NamespacePolicyInterface, SharedWriteCapability\n\nfrom friday_memory.multi_agent.models import SHARED_NAMESPACE\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport uuid\nfrom datetime import UTC, datetime, timedelta\nfrom enum import Enum\nfrom typing import Any\n\nfrom pydantic import BaseModel, Field\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_memory.lifecycle.decay import DecayCalculator, DecayConfig\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 16
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import uuid\nfrom datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_memory.lifecycle.decay import DecayConfig\nfrom friday_memory.lifecycle.promotion import (\n    MemoryPromotionService,\n    PromotionResult,\n    PromotionScorer,\n)\nfrom friday_memory.lifecycle.stages import MemoryStage\nfrom friday_memory.retrieval.collection_manager import (\n    CollectionConfig,\n    CollectionManager,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 5
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import json\nfrom collections.abc import Sequence\nfrom datetime import UTC, datetime\nfrom pathlib import Path\n\nimport chromadb\nimport pytest\nfrom friday_memory import (\n    ElementXGraphStore,\n    ExplicitMemoryMutationParticipant,\n    GraphEdge,\n    GraphEmbeddingUpdate,\n    GraphNode,\n    MemoryEmbeddingUpdate,\n    MemoryMaintenanceLayout,\n    MemoryMutationCommand,\n    MemoryMutationStep,\n    MemoryVectorAddition,\n    MemoryVerificationStatus,\n    MemoryVerificationUpdate,\n    ProvenanceMetadata,\n    SynthesisConfig,\n)\nfrom friday_memory.models.graph import MemoryStage as GraphMemoryStage\nfrom pydantic import ValidationError\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 30
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_core.interfaces import ArbitrationDecision, SharedWriteCapability\nfrom friday_memory.models import (\n    ContextPayload,\n    GraphEdge,\n    GraphNode,\n    ProvenanceMetadata,\n)\nfrom friday_memory.multi_agent import (\n    MultiAgentMemoryController,\n    NamespacePolicyEngine,\n    PromotionCoordinator,\n    PromotionJournal,\n    PromotionJournalState,\n    ScratchPadStore,\n    ScratchPlanItemStatus,\n    build_promotion_ops_snapshot,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 26
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import uuid\nfrom datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_memory.retrieval.collection_manager import (\n    CollectionConfig,\n    CollectionManager,\n)\nfrom friday_memory.retrieval.factor_computer import (\n    FactorComputerConfig,\n    FactorComputeResult,\n    RetrievalFactorComputer,\n    calculate_inclusion_score_fast,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 21
+          },
+          "location": {
+            "column": 1,
+            "row": 5
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from datetime import UTC, datetime, timedelta\n\nimport pytest\nfrom friday_memory.retrieval.inclusion_scorer import (\n    InclusionScorerConfig,\n    LongTermInclusionScorer,\n)\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 14
+          },
+          "location": {
+            "column": 1,
+            "row": 5
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport json\nfrom collections.abc import Mapping\nfrom dataclasses import dataclass, field, replace\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any, Literal, Protocol\n\nfrom friday_core.interfaces import ToolDefinition\nfrom friday_core.mcp import (\n    MCPDiagnosticCode,\n    MCPDiscoveryState,\n    MCPProviderDiagnostics,\n    MCPServerDiscoveryState,\n    MCPToolMetadata,\n    build_mcp_metadata_index,\n)\nfrom friday_mcp.client.manager import MCPClientManager\nfrom friday_mcp.config import MCPConfig, MCPServerConfig\nfrom friday_mcp.protocols import MCPClient\nfrom friday_telemetry import (\n    MCPEventName,\n    MCPEventReason,\n    MCPTelemetryHelper,\n    TelemetryInterface,\n)\n\nfrom friday_runtime.config import MCPRuntimeServerConfig, MCPToolProviderConfig\nfrom friday_runtime.mcp_registration import (\n    MCPBindingContext,\n    MCPRegistrationDecision,\n    MCPRegistrationError,\n    prepare_registration,\n)\nfrom friday_runtime.tool_loading import ToolProviderLoadError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 45
+          },
+          "location": {
+            "column": 1,
+            "row": 7
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-sandbox/src/friday_sandbox/models.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nfrom datetime import UTC, datetime\nfrom pathlib import Path\nfrom typing import Any\n\nfrom pydantic import BaseModel, Field\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-sandbox/src/friday_sandbox/workspace.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport contextlib\nimport logging\nimport shutil\nimport uuid\nfrom collections.abc import Callable\nfrom datetime import UTC, datetime\nfrom pathlib import Path\n\nfrom .config import WorkspaceConfig\nfrom .models import Workspace, WorkspaceExpiredError, WorkspaceNotFoundError\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 22
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import asyncio\nfrom datetime import UTC, datetime, timedelta\n\nimport pytest\n\nfrom friday_sandbox import Workspace, WorkspaceNotFoundError\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-speech/src/friday_speech/playback.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport asyncio\nimport shutil\nimport tempfile\nfrom array import array\nfrom collections.abc import AsyncIterator, Iterable\nfrom datetime import UTC, datetime\nfrom pathlib import Path\n\nfrom friday_core.logging import get_logger\n\nfrom .config import LimitsConfig, PlaybackConfig, SpeechMode\nfrom .errors import DependencyError, PlaybackError\nfrom .interfaces import AudioFormat, AudioStream\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "packages/friday-tools/src/friday_tools/utility/datetime.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport time\nfrom datetime import UTC, datetime\nfrom typing import Literal\n\nfrom pydantic import BaseModel, Field\n\nfrom friday_tools.base import FridayTool, ToolResult\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "scripts/check-package-metadata.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport argparse\nimport re\nimport sys\nimport tomllib\nfrom pathlib import Path\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  },
+  {
+    "path": "tests/integration/test_package_cohort_metadata.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from __future__ import annotations\n\nimport ast\nimport re\nimport tomllib\nfrom pathlib import Path\n\nfrom packaging.requirements import Requirement\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 12
+          },
+          "location": {
+            "column": 1,
+            "row": 3
+          }
+        }
+      ],
+      "message": "Organize imports"
+    }
+  }
+]

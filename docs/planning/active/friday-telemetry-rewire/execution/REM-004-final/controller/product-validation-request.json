@@ -1,0 +1,303 @@
+{
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "delta_base": "1b28d373bb613e754947e4b13c7f7280314c560e",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "mode": "fresh-context read-only full REM-004 delta plus aggregate TELEM-01 AC-01..AC-06 validation; exactly VERIFIED,CHANGES_REQUESTED,BLOCKED",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "sha256": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "sha256": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md",
+      "sha256": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md",
+      "sha256": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json",
+      "sha256": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2"
+    }
+  ],
+  "manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+  "manifest_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89",
+  "expanded": {
+    "changed_python": [
+      "experiments/prompt_transcript_audit/runtime.py",
+      "experiments/provider_memory_smoke/runtime.py",
+      "experiments/workflow_artifact_smoke/runtime.py",
+      "packages/friday-agent/src/friday_agent/workflows/engine.py",
+      "packages/friday-agent/src/friday_agent/workflows/models.py",
+      "packages/friday-agent/tests_agent/conftest.py",
+      "packages/friday-agent/tests_agent/test_pipeline_dispatch.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/app.py",
+      "packages/friday-chat/src/friday_chat/cli.py",
+      "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "packages/friday-chat/src/friday_chat/config.py",
+      "packages/friday-chat/src/friday_chat/memory_views.py",
+      "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "packages/friday-chat/src/friday_chat/reorganization/lease.py",
+      "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-chat/src/friday_chat/telemetry.py",
+      "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+      "packages/friday-chat/tests_chat/test_cli.py",
+      "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+      "packages/friday-chat/tests_chat/test_llm_adapter_migration.py",
+      "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+      "packages/friday-chat/tests_chat/test_reorganization_contracts.py",
+      "packages/friday-chat/tests_chat/test_reorganization_foundations.py",
+      "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+      "packages/friday-chat/tests_chat/test_telemetry.py",
+      "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "packages/friday-cli/src/friday_cli/cancellation.py",
+      "packages/friday-cli/src/friday_cli/session.py",
+      "packages/friday-core/src/friday_core/interfaces/context.py",
+      "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "packages/friday-core/src/friday_core/interfaces/tools.py",
+      "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "packages/friday-core/src/friday_core/security/quarantine.py",
+      "packages/friday-core/tests_core/test_mcp_contracts.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/service.py",
+      "packages/friday-llm/tests_llm/conftest.py",
+      "packages/friday-llm/tests_llm/test_resilience.py",
+      "packages/friday-mcp/src/friday_mcp/server/sse.py",
+      "packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+      "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+      "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py",
+      "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py",
+      "packages/friday-memory/tests_memory/test_llm_completion.py",
+      "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py",
+      "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py",
+      "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py",
+      "packages/friday-moltbook/src/friday_moltbook/responses.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+      "packages/friday-runtime/tests_runtime/test_di.py",
+      "packages/friday-sandbox/src/friday_sandbox/docker.py",
+      "packages/friday-sandbox/src/friday_sandbox/mock.py",
+      "packages/friday-sandbox/src/friday_sandbox/models.py",
+      "packages/friday-sandbox/src/friday_sandbox/serialization.py",
+      "packages/friday-sandbox/src/friday_sandbox/subprocess.py",
+      "packages/friday-sandbox/src/friday_sandbox/workspace.py",
+      "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py",
+      "packages/friday-speech/src/friday_speech/playback.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py",
+      "packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+      "packages/friday-telemetry/tests_telemetry/test_providers.py",
+      "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py",
+      "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/base.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py",
+      "packages/friday-tools/src/friday_tools/shell/command.py",
+      "packages/friday-tools/src/friday_tools/shell/execute.py",
+      "packages/friday-tools/src/friday_tools/text/transform.py",
+      "packages/friday-tools/src/friday_tools/utility/datetime.py",
+      "packages/friday-tools/src/friday_tools/web/validators.py",
+      "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+      "packages/friday-tools/tests_tools/test_web_reader.py",
+      "packages/friday-tools/tests_tools/test_web_validators.py",
+      "scripts/check-package-metadata.py",
+      "scripts/friday-dev-board.py",
+      "tests/integration/memory/friday.py",
+      "tests/integration/test_package_cohort_metadata.py"
+    ],
+    "sources": [
+      "packages/friday-agent/src/friday_agent/workflows/engine.py",
+      "packages/friday-agent/src/friday_agent/workflows/models.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/app.py",
+      "packages/friday-chat/src/friday_chat/cli.py",
+      "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "packages/friday-chat/src/friday_chat/config.py",
+      "packages/friday-chat/src/friday_chat/memory_views.py",
+      "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "packages/friday-chat/src/friday_chat/reorganization/lease.py",
+      "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-chat/src/friday_chat/telemetry.py",
+      "packages/friday-cli/src/friday_cli/cancellation.py",
+      "packages/friday-cli/src/friday_cli/session.py",
+      "packages/friday-core/src/friday_core/interfaces/context.py",
+      "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "packages/friday-core/src/friday_core/interfaces/tools.py",
+      "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "packages/friday-core/src/friday_core/security/quarantine.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/service.py",
+      "packages/friday-mcp/src/friday_mcp/server/sse.py",
+      "packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+      "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+      "packages/friday-moltbook/src/friday_moltbook/responses.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+      "packages/friday-sandbox/src/friday_sandbox/docker.py",
+      "packages/friday-sandbox/src/friday_sandbox/mock.py",
+      "packages/friday-sandbox/src/friday_sandbox/models.py",
+      "packages/friday-sandbox/src/friday_sandbox/serialization.py",
+      "packages/friday-sandbox/src/friday_sandbox/subprocess.py",
+      "packages/friday-sandbox/src/friday_sandbox/workspace.py",
+      "packages/friday-speech/src/friday_speech/playback.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py",
+      "packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+      "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py",
+      "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/base.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py",
+      "packages/friday-tools/src/friday_tools/shell/command.py",
+      "packages/friday-tools/src/friday_tools/shell/execute.py",
+      "packages/friday-tools/src/friday_tools/text/transform.py",
+      "packages/friday-tools/src/friday_tools/utility/datetime.py",
+      "packages/friday-tools/src/friday_tools/web/validators.py"
+    ],
+    "owning_packages": [
+      "packages/friday-agent/tests_agent",
+      "packages/friday-chat/tests_chat",
+      "packages/friday-cli/tests_cli",
+      "packages/friday-core/tests_core",
+      "packages/friday-llm/tests_llm",
+      "packages/friday-mcp/tests_mcp",
+      "packages/friday-memory/tests_memory",
+      "packages/friday-moltbook/tests_moltbook",
+      "packages/friday-runtime/tests_runtime",
+      "packages/friday-sandbox/tests_sandbox",
+      "packages/friday-speech/tests_speech",
+      "packages/friday-telemetry/tests_telemetry",
+      "packages/friday-tools/tests_tools"
+    ],
+    "focused": [
+      "packages/friday-chat/tests_chat/test_telemetry.py",
+      "packages/friday-chat/tests_chat/test_cli.py",
+      "packages/friday-chat/tests_chat/test_runtime.py",
+      "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+      "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+      "packages/friday-telemetry/tests_telemetry/test_providers.py"
+    ],
+    "root_args": [
+      "--import-mode=importlib",
+      "--ignore=packages/friday-chat/tests_chat/test_live_lmstudio.py",
+      "--ignore=packages/friday-llm/tests_llm/test_live_lmstudio.py"
+    ]
+  },
+  "output_directory": "/private/tmp/telem-01/REM-004/approved-execution/product-validation",
+  "approved_exceptions": [
+    "exact WVR-002326 archive diagnostics",
+    "exact WVR-0031CommandRegistryUP046/sourcehash"
+  ],
+  "baseline": "VAL005 at4c0afdb:459rootlint; root2727collected2699pass16fail11error1skip. Prior rootMypy3 existingresponseerrors. WVR001 remains unapproved; all27exactfailureIDs inREM004-scope. No live/provider acceptance.",
+  "profile": "Fresh no-data sparse committed snapshots; no original .env/.friday/Chroma/transcripts/credentials/runtime, no configdirty use, no sync/install/download/push/merge/index/product/authoritywrites. InstalledPython3.13.10+existingvenv read-only; offline/no-sync guardhash6f61ea4c... unchanged non-loopback ban, synthetic temporary caches/state. Only exactly11inventoriedlocalhostephemeralnode effects allowed under normal-user sandboxescape for required fullsuites; never sudo/remote.",
+  "required_checks": [
+    "Full changed98Python/63source and owningpackages; preserve publicaliases/genericvariance/bounds/schema/privacy/lifecycle/security",
+    "Six original focused telemetry modules",
+    "CompleteChat+telemetry(no liveflags) zero",
+    "Rootcollect/fullimportlib with exactly2existinglive-exclusions zero",
+    "R4orderedregistryrealfixture/baseline regression evidence; readerWebPTYrequestresponse checks",
+    "UnchangedrootRuff exact327identitysortedmultiset, fourarchives+commandsSHA19authority17lint/tool/target/expiry; changed-fileRuff zero",
+    "Oneaggregate63sourceMypy3.13 zero and98AST parse; targeted publishedconsumer/genericbounds/runtimePydantic includingunchangedregistrybothdirections",
+    "uvlockoffline--check--no-python-downloads--no-build, metadata unchanged, board/doc + selected/aggregate whitespace",
+    "Genuine synthetic ChatObserver+twoComposite providers nestedspan/lifecycle"
+  ],
+  "controller_raw_directory": "/private/tmp/telem-01/REM-004/approved-execution/runs/root-a06-final",
+  "controller_preflight": "/private/tmp/telem-01/REM-004/approved-execution/root-final-preflight.json",
+  "constraints": "Reviewer freshcontext no builderprivate reasoning; independentlyinspect sources/directive/delta/fullaggregate; do not selfremediate. Controller mandatory rawchecks maystillbe running, inspect cited rawJSON sourcehashes/logs ratherthan trustclaimedpasses. Reproduce required checks as needed under own freshsafetyreview; permittednormalusersyntheticlistenerescalations alreadyexplicitapproved. Use report-only -rA in PYTEST_ADDOPTS to retain exact failure/skipIDs, no exclusion/rule/testpolicychange. Writes onlyprivatevalidation directory; final report.md/evidence.json with inputs/revision/diff/commands/outputs/skips/rawnonzeroexceptions/preservation and findings. Any product/authority change invalidatesreview."
+}

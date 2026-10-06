@@ -1,0 +1,97 @@
+{
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "original_paths": {
+    ".DS_Store": {
+      "preserved": true,
+      "sha256": "338332ef17121fe252e57d395d63e5dc82911aa165465d77fc6d4a21ab0a6a96"
+    },
+    "family-tree.md": {
+      "preserved": true,
+      "sha256": null
+    },
+    "packages/friday-chat/config.example.yaml": {
+      "preserved": true,
+      "sha256": "2e1db3a47a38076cbda7627265cf8b28ac2a9da96387b3f6788da1dc8bb2932f"
+    },
+    "docker-bench-security/": {
+      "preserved": true,
+      "sha256": {
+        "docker-bench-security/LICENSE.md": "c2a757570558239cfe0436bb7d9edea2cd036c4bc5ae6ee43b9b36d818404720",
+        "docker-bench-security/docker-bench-security.sh": "ac88e3eac1ecdc0fcc5f22f01abc55bf1a2ea1abf67a6d65e2a17351f3fe48fb",
+        "docker-bench-security/Dockerfile": "99ba706a403cb6a6f51edc8acad7c7473a8549e04f89c4101f47ad730dbfc515",
+        "docker-bench-security/bench.txt": "5babf2b963c497b30ff699fe813c95e2ba298f4dd235fcb33407adb0c8b0afde",
+        "docker-bench-security/MAINTAINERS": "4b8c6e544c6bef48c86aaa4a16c5cdd84b35f23c3b2403b5a7b842e14ed024b4",
+        "docker-bench-security/README.md": "f33a3b308f9fbc80af64438f3d032357987e45575ba4777522a89c58ea215da1",
+        "docker-bench-security/.dockerignore": "c57ea16e81a20d82248dc1e8d50ba1be9728ab7a09aa827412a93058d8967b64",
+        "docker-bench-security/.gitignore": "3375562a30f44053001312deb93bf35de17eabe817e73cfe6e1f4e089746f9de",
+        "docker-bench-security/CONTRIBUTORS.md": "1ce8929a76a8b82fc964f4e30cf4b553667492d2d1da111ef4245b931d736140",
+        "docker-bench-security/CONTRIBUTING.md": "5c9ab1d1ebf16736521d0af6972419e81910a62e86f9c014a35ea99c69b2a478",
+        "docker-bench-security/Vagrantfile": "ee3e5f2bf155678626ef7d2d09553520afd37f3236b6e39e8a0cff7bac855372",
+        "docker-bench-security/docker-compose.yml": "b93df47453070d090388299580bb398e98f495a246b81000dcfef8a42db1b156",
+        "docker-bench-security/bench.txt.json": "eee81028b1ded4c47ac2ab754831885d644f5024b977151727c324657a440b8c",
+        "docker-bench-security/tests/6_docker_security_operations.sh": "3f94c9b2888588a17ae0eee220f00fb94796c0aa2891d9c9ab3d4405c32bf3e3",
+        "docker-bench-security/tests/99_community_checks.sh": "fa78461b280cab5b29157ba811ec7516a54da86c66a02ddeb83e25303efd9aff",
+        "docker-bench-security/tests/3_docker_daemon_configuration_files.sh": "f6b16c4f35f5b14ab2ef24eb6045ec117cfe2eeae3f4706ad49c928a3d28bc69",
+        "docker-bench-security/tests/7_docker_swarm_configuration.sh": "5b1104db028fde92b993da3d94cf5b1f2f3d7f24d8e8946dada3d906877f3599",
+        "docker-bench-security/tests/4_container_images.sh": "302cae5d80f0168b659d5d04466c83696b51140f648fee6fda46621936017c36",
+        "docker-bench-security/tests/1_host_configuration.sh": "26e535e108d18eecc2a02dc6a01e74b5c39e4ea55df69174179c5b6bf6e496e8",
+        "docker-bench-security/tests/8_docker_enterprise_configuration.sh": "b2a472f2b73a05db15a8383d2c7b27fdc65c7dbab83cb712e159b91c65fa2999",
+        "docker-bench-security/tests/2_docker_daemon_configuration.sh": "a67b4261ecfd6f1e70b6a64502cb2ddbb4edf73e48d750e53aadcc51a2ce9d3f",
+        "docker-bench-security/tests/5_container_runtime.sh": "835c7a3bb1d677c3bc5eecaf92f31a5f3644dcf4a5b3068beea03d0f830c379a",
+        "docker-bench-security/img/benchmark_log.png": "e955b122352b4e8e0c7e43a7b109f603cc9fe43da6ef7efefe6c5fbb30e59e37",
+        "docker-bench-security/functions/functions_lib.sh": "7fb89dd944bd0610e62a42ebd083e76c0190da039290dfed23df3a9d0783e066",
+        "docker-bench-security/functions/helper_lib.sh": "a77380bf8b3e04da7b25ca1075e863409591d3c4dc46ee8783292cc8cf8ccbd5",
+        "docker-bench-security/functions/output_lib.sh": "4723aace3bc9400ef265ce60856ac8031f17616e21c17e560975b873712179f4",
+        "docker-bench-security/.git/config": "75aaaaccc73cc053731cbb3d7bfbd348d77dc77afa942bc64a51bb1ebcd647eb",
+        "docker-bench-security/.git/shallow": "85a71cd0c6cce142d2a15e21e8b590329c0178db3342d0e55ae5965e4bdcbc18",
+        "docker-bench-security/.git/HEAD": "f6f2b945f6c411b02ba3da9c7ace88dcf71b6af65ba2e0d89aa82900042b5a10",
+        "docker-bench-security/.git/description": "85ab6c163d43a17ea9cf7788308bca1466f1b0a8d1cc92e26e9bf63da4062aee",
+        "docker-bench-security/.git/index": "1b9db34ca224bfc9560e751b751b4fc1d85b56c0043274971c99ba0ab6b7df7a",
+        "docker-bench-security/.git/packed-refs": "045529239a670638ace2d9719318e759f18a6b61dfcd62cab670916f417aac03",
+        "docker-bench-security/.git/info/exclude": "6671fe83b7a07c8932ee89164d1f2793b2318058eb8b98dc5c06ee0a5a3b0ec1",
+        "docker-bench-security/.git/logs/HEAD": "af73634f8101dc26fbd4ad95f17ec3eca07d603a810c5022ff65c6da2b8ef711",
+        "docker-bench-security/.git/hooks/commit-msg.sample": "1f74d5e9292979b573ebd59741d46cb93ff391acdd083d340b94370753d92437",
+        "docker-bench-security/.git/hooks/pre-rebase.sample": "4febce867790052338076f4e66cc47efb14879d18097d1d61c8261859eaaa7b3",
+        "docker-bench-security/.git/hooks/sendemail-validate.sample": "44ebfc923dc5466bc009602f0ecf067b9c65459abfe8868ddc49b78e6ced7a92",
+        "docker-bench-security/.git/hooks/pre-commit.sample": "57185b7b9f05239d7ab52db045f5b89eb31348d7b2177eab214f5eb872e1971b",
+        "docker-bench-security/.git/hooks/applypatch-msg.sample": "0223497a0b8b033aa58a3a521b8629869386cf7ab0e2f101963d328aa62193f7",
+        "docker-bench-security/.git/hooks/fsmonitor-watchman.sample": "e0549964e93897b519bd8e333c037e51fff0f88ba13e086a331592bf801fa1d0",
+        "docker-bench-security/.git/hooks/pre-receive.sample": "a4c3d2b9c7bb3fd8d1441c31bd4ee71a595d66b44fcf49ddb310252320169989",
+        "docker-bench-security/.git/hooks/prepare-commit-msg.sample": "e9ddcaa4189fddd25ed97fc8c789eca7b6ca16390b2392ae3276f0c8e1aa4619",
+        "docker-bench-security/.git/hooks/post-update.sample": "81765af2daef323061dcbc5e61fc16481cb74b3bac9ad8a174b186523586f6c5",
+        "docker-bench-security/.git/hooks/pre-merge-commit.sample": "d3825a70337940ebbd0a5c072984e13245920cdf8898bd225c8d27a6dfc9cb53",
+        "docker-bench-security/.git/hooks/pre-applypatch.sample": "e15c5b469ea3e0a695bea6f2c82bcf8e62821074939ddd85b77e0007ff165475",
+        "docker-bench-security/.git/hooks/pre-push.sample": "ecce9c7e04d3f5dd9d8ada81753dd1d549a9634b26770042b58dda00217d086a",
+        "docker-bench-security/.git/hooks/update.sample": "8d5f2fa83e103cf08b57eaa67521df9194f45cbdbcb37da52ad586097a14d106",
+        "docker-bench-security/.git/hooks/push-to-checkout.sample": "a53d0741798b287c6dd7afa64aee473f305e65d3f49463bb9d7408ec3b12bf5f",
+        "docker-bench-security/.git/refs/heads/master": "85a71cd0c6cce142d2a15e21e8b590329c0178db3342d0e55ae5965e4bdcbc18",
+        "docker-bench-security/.git/refs/remotes/origin/HEAD": "cdc65e67690c4c6475174e5ec662b70655246a2f3924354778835ab3be70aa76",
+        "docker-bench-security/.git/logs/refs/heads/master": "af73634f8101dc26fbd4ad95f17ec3eca07d603a810c5022ff65c6da2b8ef711",
+        "docker-bench-security/.git/logs/refs/remotes/origin/HEAD": "af73634f8101dc26fbd4ad95f17ec3eca07d603a810c5022ff65c6da2b8ef711",
+        "docker-bench-security/.git/objects/pack/pack-80ff9a254fc81b3bad712f881cbc70d6367fb37c.rev": "9b5374611bc4e451920f5e78389e80ed3778c5e5f740ceb03cfdfc12386aa3ba",
+        "docker-bench-security/.git/objects/pack/pack-80ff9a254fc81b3bad712f881cbc70d6367fb37c.idx": "42728ff7a7daefa619c2965289daaaca3b48640e5b7ccf30a98b8cabc29bfbcd",
+        "docker-bench-security/.git/objects/pack/pack-80ff9a254fc81b3bad712f881cbc70d6367fb37c.pack": "b4a64733b0369d39d29815671411933b46827888f71ec69d4b32459d9700b533",
+        "docker-bench-security/.github/workflows/slsa.yml": "497d02663d80fed60de03115aa4ee2cf67b93ddde971ea05c90f53e678022f79",
+        "docker-bench-security/.github/workflows/issues.yml": "5f45c71a033d9362348481cc6ddb11de3a2fe562329b4b8df193139c910dc0d3"
+      }
+    },
+    "docs/planning/queued/friday-tool-manifest-continuity/": {
+      "preserved": true,
+      "sha256": {
+        "docs/planning/queued/friday-tool-manifest-continuity/README.md": "beae0d6907bbaef18736fb0ef4e69bb6c20bd8fcfd5f59a4b14ffda2eff98c17",
+        "docs/planning/queued/friday-tool-manifest-continuity/remediation-tasks.md": "84b73ba5ae15a39d91bd31604472bed213eb5866268fcec25951a9d98e7339ea"
+      }
+    },
+    "packages/friday-sandbox/docker/Dockerfile.audit": {
+      "preserved": true,
+      "sha256": "ae21cdfd3737897ecb4d9909445c5cc992c7d3ecc472e1b3755e62b39e311f33"
+    },
+    "docs/planning/board.yaml": {
+      "original_dirty_line_multiset_preserved": true
+    },
+    "docs/planning/README.md": {
+      "original_dirty_line_multiset_preserved": true
+    }
+  },
+  "transient_untracked_note": "An externally appearing .claude/ directory disappeared during earlier authority review; no claim about its content preservation; see concurrent-untracked-state.json."
+}

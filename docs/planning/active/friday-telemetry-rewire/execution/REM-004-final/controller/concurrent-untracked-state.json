@@ -1,0 +1,6 @@
+{
+  "date": "2026-10-06",
+  "path": ".claude/",
+  "observation": "Concurrent unrelated untracked directory appeared during read-only authority review; root/remediator did not create it. Preserved untouched, contents not inspected.",
+  "status": " M .DS_Store\n M docs/planning/README.md\n M docs/planning/board.yaml\n D family-tree.md\n M packages/friday-agent/tests_agent/conftest.py\n M packages/friday-chat/config.example.yaml\n M packages/friday-chat/tests_chat/test_reorganization_terminal.py\n M packages/friday-tools/src/friday_tools/web/validators.py\n M packages/friday-tools/tests_tools/test_filesystem_readers.py\n M packages/friday-tools/tests_tools/test_web_reader.py\n M packages/friday-tools/tests_tools/test_web_validators.py\n?? docker-bench-security/\n?? docs/planning/queued/friday-tool-manifest-continuity/\n?? packages/friday-sandbox/docker/Dockerfile.audit\n"
+}

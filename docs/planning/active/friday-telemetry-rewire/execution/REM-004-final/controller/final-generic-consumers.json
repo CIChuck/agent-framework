@@ -1,0 +1,164 @@
+[
+  {
+    "cls": "MemoryMetric",
+    "path": "packages/friday-chat/src/friday_chat/memory_views.py",
+    "original_sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7",
+    "final_sha256": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f",
+    "consumer": "from original import MemoryMetric as Original\nfrom final import MemoryMetric as Final\nclass Parent: pass\nclass Child(Parent): pass\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MemoryMetric/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MemoryMetric/consumer.py:6: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MemoryMetric/consumer.py:9: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MemoryMetric/consumer.py:12: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MemoryMetric/consumer.py:15: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      6,
+      9,
+      12,
+      15
+    ],
+    "contract_preserved": true
+  },
+  {
+    "cls": "CommandRegistry",
+    "path": "packages/friday-cli/src/friday_cli/commands.py",
+    "original_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+    "final_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+    "consumer": "from original import CommandRegistry as Original\nfrom final import CommandRegistry as Final\nclass Parent: pass\nclass Child(Parent): pass\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/CommandRegistry/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/CommandRegistry/consumer.py:6: error: Incompatible return value type (got \"CommandRegistry[Parent]\", expected \"CommandRegistry[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/CommandRegistry/consumer.py:9: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/CommandRegistry/consumer.py:12: error: Incompatible return value type (got \"CommandRegistry[Parent]\", expected \"CommandRegistry[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/CommandRegistry/consumer.py:15: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      6,
+      9,
+      12,
+      15
+    ],
+    "contract_preserved": true
+  },
+  {
+    "cls": "SessionContext",
+    "path": "packages/friday-cli/src/friday_cli/session.py",
+    "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+    "final_sha256": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
+    "consumer": "from original import SessionContext as Original\nfrom final import SessionContext as Final\nclass Parent: pass\nclass Child(Parent): pass\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionContext/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionContext/consumer.py:6: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionContext/consumer.py:9: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionContext/consumer.py:12: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionContext/consumer.py:15: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      6,
+      9,
+      12,
+      15
+    ],
+    "contract_preserved": true
+  },
+  {
+    "cls": "SessionManager",
+    "path": "packages/friday-cli/src/friday_cli/session.py",
+    "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+    "final_sha256": "91371d2f4905da0413e63d1c3a5b848020c6caee07c726a4807e0a811120321a",
+    "consumer": "from original import SessionManager as Original\nfrom final import SessionManager as Final\nclass Parent: pass\nclass Child(Parent): pass\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionManager/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionManager/consumer.py:6: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionManager/consumer.py:9: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionManager/consumer.py:12: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/SessionManager/consumer.py:15: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      6,
+      9,
+      12,
+      15
+    ],
+    "contract_preserved": true
+  },
+  {
+    "cls": "ToolAdapter",
+    "path": "packages/friday-core/src/friday_core/interfaces/tools.py",
+    "original_sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d",
+    "final_sha256": "3bd33e99093bc3f544790ee8c236d622c0b4d9488b79a3cb65eb7c79292e6ff6",
+    "consumer": "from original import ToolAdapter as Original\nfrom final import ToolAdapter as Final\nclass Parent: pass\nclass Child(Parent): pass\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/ToolAdapter/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/ToolAdapter/consumer.py:6: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/ToolAdapter/consumer.py:9: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/ToolAdapter/consumer.py:12: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/ToolAdapter/consumer.py:15: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      6,
+      9,
+      12,
+      15
+    ],
+    "contract_preserved": true
+  },
+  {
+    "cls": "MoltbookResponse",
+    "path": "packages/friday-moltbook/src/friday_moltbook/responses.py",
+    "original_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+    "final_sha256": "dc816833335c1c930aeef253cd17277fe0d5e55841d0551ec1f9382f46dabe05",
+    "consumer": "from original import MoltbookResponse as Original\nfrom final import MoltbookResponse as Final\nfrom pydantic import BaseModel\nclass Parent(BaseModel):\n    value: str\nclass Child(Parent):\n    extra: int\ndef old_parent_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef old_child_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef final_parent_child(value: Final[Parent]) -> Final[Child]:\n    return value\n\ndef final_child_parent(value: Final[Child]) -> Final[Parent]:\n    return value\n\n",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--config-file",
+      "/private/tmp/telem-01/REM-004/approved-execution/root-a06-final/pyproject.toml",
+      "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MoltbookResponse/consumer.py"
+    ],
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MoltbookResponse/consumer.py:9: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MoltbookResponse/consumer.py:12: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MoltbookResponse/consumer.py:15: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/tmp/root-a06-final/final-invariant-consumers/final-generic-consumers/MoltbookResponse/consumer.py:18: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "expected_lines": [
+      9,
+      12,
+      15,
+      18
+    ],
+    "contract_preserved": true
+  }
+]

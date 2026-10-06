@@ -1,0 +1,850 @@
+[
+  {
+    "class": "MemoryMetric",
+    "path": "packages/friday-chat/src/friday_chat/memory_views.py",
+    "original_sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7",
+    "header_before": "class MemoryMetric(Generic[T]):",
+    "header_after": "class MemoryMetric[T]:",
+    "consumer_sha256": "f0430e36929ee65b651778601ea847fd945c8f1ab8e1ef7b49fecd926f933fe4",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MemoryMetric/consumer.py:6: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MemoryMetric/consumer.py:9: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MemoryMetric/consumer.py:12: error: Incompatible return value type (got \"MemoryMetric[Parent]\", expected \"MemoryMetric[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MemoryMetric/consumer.py:15: error: Incompatible return value type (got \"MemoryMetric[Child]\", expected \"MemoryMetric[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import MemoryMetric as Original\nfrom converted import MemoryMetric as Converted\nclass Parent: pass\nclass Child(Parent): pass\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 30,
+            "row": 34
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-chat/src/friday_chat/memory_views.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 19,
+                  "row": 34
+                },
+                "location": {
+                  "column": 19,
+                  "row": 34
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 31,
+                  "row": 34
+                },
+                "location": {
+                  "column": 19,
+                  "row": 34
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 20,
+            "row": 34
+          },
+          "message": "Generic class `MemoryMetric` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 34,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 30,
+            "row": 34
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-chat/src/friday_chat/memory_views.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 19,
+                  "row": 34
+                },
+                "location": {
+                  "column": 19,
+                  "row": 34
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 31,
+                  "row": 34
+                },
+                "location": {
+                  "column": 19,
+                  "row": 34
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 20,
+            "row": 34
+          },
+          "message": "Generic class `MemoryMetric` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 34,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  },
+  {
+    "class": "CommandRegistry",
+    "path": "packages/friday-cli/src/friday_cli/commands.py",
+    "original_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+    "header_before": "class CommandRegistry(Generic[T]):",
+    "header_after": "class CommandRegistry[T]:",
+    "consumer_sha256": "adb285d57066e640129f6c5b0f514c4804a23f62dc365a0315484009eb84f240",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/CommandRegistry/consumer.py:6: error: Incompatible return value type (got \"CommandRegistry[Parent]\", expected \"CommandRegistry[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/CommandRegistry/consumer.py:9: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/CommandRegistry/consumer.py:15: error: Incompatible return value type (got \"CommandRegistry[Child]\", expected \"CommandRegistry[Parent]\")  [return-value]\nFound 3 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import CommandRegistry as Original\nfrom converted import CommandRegistry as Converted\nclass Parent: pass\nclass Child(Parent): pass\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 33,
+            "row": 74
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/commands.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 22,
+                  "row": 74
+                },
+                "location": {
+                  "column": 22,
+                  "row": 74
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 34,
+                  "row": 74
+                },
+                "location": {
+                  "column": 22,
+                  "row": 74
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 23,
+            "row": 74
+          },
+          "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 74,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 33,
+            "row": 74
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/commands.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 22,
+                  "row": 74
+                },
+                "location": {
+                  "column": 22,
+                  "row": 74
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 34,
+                  "row": 74
+                },
+                "location": {
+                  "column": 22,
+                  "row": 74
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 23,
+            "row": 74
+          },
+          "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 74,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  },
+  {
+    "class": "SessionContext",
+    "path": "packages/friday-cli/src/friday_cli/session.py",
+    "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+    "header_before": "class SessionContext(Generic[T]):",
+    "header_after": "class SessionContext[T]:",
+    "consumer_sha256": "5f34027712fd1b13e75c09aae390e4e84136f24a25469553a5cb3170698358fb",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionContext/consumer.py:6: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionContext/consumer.py:9: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionContext/consumer.py:12: error: Incompatible return value type (got \"SessionContext[Parent]\", expected \"SessionContext[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionContext/consumer.py:15: error: Incompatible return value type (got \"SessionContext[Child]\", expected \"SessionContext[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import SessionContext as Original\nfrom converted import SessionContext as Converted\nclass Parent: pass\nclass Child(Parent): pass\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 214
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 214
+          },
+          "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 214,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        },
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 235
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 235
+          },
+          "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 235,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 214
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 214
+          },
+          "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 214,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        },
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 235
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 235
+          },
+          "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 235,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  },
+  {
+    "class": "SessionManager",
+    "path": "packages/friday-cli/src/friday_cli/session.py",
+    "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+    "header_before": "class SessionManager(Generic[T]):",
+    "header_after": "class SessionManager[T]:",
+    "consumer_sha256": "448717146c029e125555b40ade11fea1130289556d52e1e754b3d53d08fcb4e8",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionManager/consumer.py:6: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionManager/consumer.py:9: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionManager/consumer.py:12: error: Incompatible return value type (got \"SessionManager[Parent]\", expected \"SessionManager[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/SessionManager/consumer.py:15: error: Incompatible return value type (got \"SessionManager[Child]\", expected \"SessionManager[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import SessionManager as Original\nfrom converted import SessionManager as Converted\nclass Parent: pass\nclass Child(Parent): pass\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 214
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 214
+          },
+          "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 214,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        },
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 235
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 235
+          },
+          "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 235,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 214
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 214
+                },
+                "location": {
+                  "column": 21,
+                  "row": 214
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 214
+          },
+          "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 214,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        },
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 32,
+            "row": 235
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-cli/src/friday_cli/session.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 21,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 33,
+                  "row": 235
+                },
+                "location": {
+                  "column": 21,
+                  "row": 235
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 22,
+            "row": 235
+          },
+          "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 235,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  },
+  {
+    "class": "ToolAdapter",
+    "path": "packages/friday-core/src/friday_core/interfaces/tools.py",
+    "original_sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d",
+    "header_before": "class ToolAdapter(Protocol, Generic[T]):",
+    "header_after": "class ToolAdapter[T](Protocol):",
+    "consumer_sha256": "dfecd41e9d3332774feb56ace5dedfc0d467d13d5db91655d2d194414f29ebf2",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/ToolAdapter/consumer.py:6: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/ToolAdapter/consumer.py:9: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/ToolAdapter/consumer.py:12: error: Incompatible return value type (got \"ToolAdapter[Parent]\", expected \"ToolAdapter[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/ToolAdapter/consumer.py:15: error: Incompatible return value type (got \"ToolAdapter[Child]\", expected \"ToolAdapter[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import ToolAdapter as Original\nfrom converted import ToolAdapter as Converted\nclass Parent: pass\nclass Child(Parent): pass\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 39,
+            "row": 127
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-core/src/friday_core/interfaces/tools.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 18,
+                  "row": 127
+                },
+                "location": {
+                  "column": 18,
+                  "row": 127
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 39,
+                  "row": 127
+                },
+                "location": {
+                  "column": 27,
+                  "row": 127
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 29,
+            "row": 127
+          },
+          "message": "Generic class `ToolAdapter` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 127,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 39,
+            "row": 127
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-core/src/friday_core/interfaces/tools.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 18,
+                  "row": 127
+                },
+                "location": {
+                  "column": 18,
+                  "row": 127
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 39,
+                  "row": 127
+                },
+                "location": {
+                  "column": 27,
+                  "row": 127
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 29,
+            "row": 127
+          },
+          "message": "Generic class `ToolAdapter` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 127,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  },
+  {
+    "class": "MoltbookResponse",
+    "path": "packages/friday-moltbook/src/friday_moltbook/responses.py",
+    "original_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+    "header_before": "class MoltbookResponse(BaseModel, Generic[T]):",
+    "header_after": "class MoltbookResponse[T](BaseModel):",
+    "consumer_sha256": "1f728e16644d15c93634ce37fcd66fa5120959187a645f44fdbdde266cbe0034",
+    "mypy_exit": 1,
+    "stdout": "/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MoltbookResponse/consumer.py:9: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MoltbookResponse/consumer.py:12: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MoltbookResponse/consumer.py:15: error: Incompatible return value type (got \"MoltbookResponse[Parent]\", expected \"MoltbookResponse[Child]\")  [return-value]\n/private/tmp/telem-01/REM-004/approved-execution/remediator/variance-matrix-source/MoltbookResponse/consumer.py:18: error: Incompatible return value type (got \"MoltbookResponse[Child]\", expected \"MoltbookResponse[Parent]\")  [return-value]\nFound 4 errors in 1 file (checked 1 source file)\n",
+    "stderr": "",
+    "consumer": "from original import MoltbookResponse as Original\nfrom converted import MoltbookResponse as Converted\nfrom pydantic import BaseModel\nclass Parent(BaseModel):\n    value: str\nclass Child(Parent):\n    extra: int\ndef original_parent_to_child(value: Original[Parent]) -> Original[Child]:\n    return value\n\ndef original_child_to_parent(value: Original[Child]) -> Original[Parent]:\n    return value\n\ndef converted_parent_to_child(value: Converted[Parent]) -> Converted[Child]:\n    return value\n\ndef converted_child_to_parent(value: Converted[Child]) -> Converted[Parent]:\n    return value\n",
+    "explicit_false": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 45,
+            "row": 14
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-moltbook/src/friday_moltbook/responses.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 23,
+                  "row": 14
+                },
+                "location": {
+                  "column": 23,
+                  "row": 14
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 45,
+                  "row": 14
+                },
+                "location": {
+                  "column": 33,
+                  "row": 14
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 35,
+            "row": 14
+          },
+          "message": "Generic class `MoltbookResponse` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 14,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    },
+    "no_inference": {
+      "exit": 1,
+      "diagnostics": [
+        {
+          "cell": null,
+          "code": "UP046",
+          "end_location": {
+            "column": 45,
+            "row": 14
+          },
+          "filename": "/private/tmp/telem-01/REM-004/approved-execution/remediator-probe-01/packages/friday-moltbook/src/friday_moltbook/responses.py",
+          "fix": {
+            "applicability": "unsafe",
+            "edits": [
+              {
+                "content": "[T]",
+                "end_location": {
+                  "column": 23,
+                  "row": 14
+                },
+                "location": {
+                  "column": 23,
+                  "row": 14
+                }
+              },
+              {
+                "content": "",
+                "end_location": {
+                  "column": 45,
+                  "row": 14
+                },
+                "location": {
+                  "column": 33,
+                  "row": 14
+                }
+              }
+            ],
+            "message": "Use type parameters"
+          },
+          "location": {
+            "column": 35,
+            "row": 14
+          },
+          "message": "Generic class `MoltbookResponse` uses `Generic` subclass instead of type parameters",
+          "noqa_row": 14,
+          "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+        }
+      ],
+      "stderr": ""
+    }
+  }
+]

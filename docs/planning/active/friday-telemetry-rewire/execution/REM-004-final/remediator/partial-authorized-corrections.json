@@ -1,0 +1,28 @@
+{
+  "status": "ordinary incomplete in-scope partial implementation; no product repairs while construction stopped",
+  "controller_observations": {
+    "ordered_agent_then_test_di": "221 passed",
+    "tools_three_modules": "105 passed; 2 failed",
+    "PTY_module": "1 passed; 1 failed after early ack/progress"
+  },
+  "required_authorized_corrections": [
+    {
+      "component": "R4-02",
+      "path": "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+      "node": "TestDocxReader::test_docx_reader_invalid_container",
+      "issue": "Installed python-docx malformed ZIP path returns Failed to read DOCX prefix; existing test expects Invalid or corrupted DOCX file. Require exact observed container-failure error and absent missing_dependency metadata."
+    },
+    {
+      "component": "R4-02",
+      "path": "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+      "node": "TestXlsxReader::test_xlsx_reader_missing_dependency",
+      "issue": "Published XLSX actionable dependency error uses friday-tools[spreadsheets], while partial assertion incorrectly expects [documents]."
+    },
+    {
+      "component": "R4-04",
+      "path": "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+      "node": "test_provider_free_pty_acknowledges_before_bounded_progress_completes",
+      "issue": "New child ownership assertion references runtime.maintenance_gate rather than existing app.maintenance_gate. Controller extracting exact child traceback; correct existing owner after release and retain all budgets/cleanup."
+    }
+  ]
+}

@@ -9,11 +9,25 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: complete approved REM-004 under A06/WVR-003 then freeze for fresh delta and aggregate validation; exact archival326 plus one live UP046
-execution_phase: remediation
-validation_state: changes_requested
+next_gate: TELEM-01 independently verified at 8aedd87; maintainer acceptance and next bounded-unit directive decision
+execution_phase: closeout
+validation_state: verified
 implementation_authority: granted
 ---
+
+Current TELEM-01 result: fresh independent [VAL-006](validation/VAL-006/report.md)
+returned **VERIFIED** for frozen product candidate `8aedd87`, reviewing the REM-004
+delta and complete preparation-base aggregate. All mandatory tests and typing
+pass; unchanged root Ruff retains exactly the approved326 archival findings
+plus the approved single CommandRegistry finding. The
+[REM-004 execution closeout](execution/REM-004-final/report.md) retains raw
+checks, scope/API evidence, unchanged inputs and preservation records.
+
+Local provider-neutral Chat telemetry assembly is verified. The initiative
+remains started because TELEM-02 through TELEM-05 require their own directives.
+Maintainer TELEM-01 acceptance and selection of the next bounded unit are next;
+no acceptance, push, merge, publication or remote-exporter activation is recorded.
+Earlier readiness/changes-requested statements below are historical checkpoints.
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.
 The [A06 amendment](remediation/REM-004-A06-command-registry-compatibility.md) and

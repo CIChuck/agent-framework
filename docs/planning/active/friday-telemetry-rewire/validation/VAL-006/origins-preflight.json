@@ -1,0 +1,5 @@
+{
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "command_code": "import importlib.util,json; origins={n:importlib.util.find_spec(n).origin for n in ['friday_agent', 'friday_chat', 'friday_cli', 'friday_core', 'friday_finance', 'friday_llm', 'friday_mcp', 'friday_memory', 'friday_moltbook', 'friday_opt', 'friday_runtime', 'friday_sandbox', 'friday_speech', 'friday_telemetry', 'friday_tools', 'friday_transcript']}; assert all(p.startswith('/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate'+\"/packages/\") for p in origins.values()); print(json.dumps(origins,indent=2))",
+  "review": "Static top-level find_spec paths only; no package import or runtime effects; same guard/allowlist."
+}
