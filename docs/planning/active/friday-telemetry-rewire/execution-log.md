@@ -414,3 +414,22 @@ Fresh approved-authority review at559ae9f returned READY. All16 controlling pins
 and2270 tracked blobs match; exact91-path permissions and326-only WVR-002 match.
 Separate /root/rem004_remediator released for exact fixes; no source self-approval.
 Fresh changed-test/full-suite safety preflight and new product validation required.
+
+## 2026-10-05 — REM-004 compatibility stop / proposed A06 and WVR-003
+
+The separate remediator demonstrated CommandRegistry invariant-to-contravariant
+public typing drift from a one-header PEP695 conversion and stopped under R4-06.
+All six generic classes were probed both directions; only this one conflicts.
+Its module has no other required lint edit and remains byte-identical. Prepared
+A06/WVR-003 retain the contract with exactly one live UP046 exception and explicitly
+reconcile the archival waiver zero-live condition without expanding its326 scope.
+Both remain proposed; current A05/REM-004/WVR-002 approval remains unchanged.
+
+Six permitted partial files are preserved uncommitted. Guarded advisory tests
+found221 ordered Agent/Runtime passes,105 Tools passes/two unfinished assertion
+failures, and one PTY pass/one resource-owner assertion failure. Exact child
+reproduction confirms owner error after successful ack/progress. All fixes remain
+in original scope; no mandatory gate is waived. Complete compressed raw/source
+evidence and hashes are in execution/REM-004-compatibility. Construction is paused
+until precise compatibility approval, reconciled frozen authority and fresh READY.
+No product verification, completion, acceptance or delivery.

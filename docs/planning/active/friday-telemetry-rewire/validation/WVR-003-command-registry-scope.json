@@ -1,0 +1,24 @@
+{
+  "status": "proposed; not approved",
+  "work_unit": "TELEM-01 / REM-004",
+  "code": "UP046",
+  "source_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+  "class_ast_sha256": "34336e7c35b598b215dbb6d08e1150c2ef96e22d08cacc17b5f76e3f5be3f3e7",
+  "diagnostic": {
+    "code": "UP046",
+    "end_location": {
+      "column": 33,
+      "row": 74
+    },
+    "location": {
+      "column": 23,
+      "row": 74
+    },
+    "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+    "path": "packages/friday-cli/src/friday_cli/commands.py"
+  },
+  "ruff": "0.14.10",
+  "target": "py313",
+  "lint_configuration": "Exact unchanged 17 hashes in approved WVR-002",
+  "disposition": "Only this one live diagnostic; joint approved WVR-002 covers its exact 326 archive identities; no other findings"
+}

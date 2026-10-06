@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only
+  next_gate: resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1060,3 +1060,10 @@ events:
   action: recorded CDR-009 READY and dispatched separate REM-004 remediator
   note: Approved A05 authority and WVR-002 coherent; only bounded source/test remediation released; fresh full-suite preflight and product review required.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 generic compatibility stop and exact A06/WVR-003 proposal
+  note: One demonstrated public variance conflict; six partial fixes preserved and advisory checks disclosed; existing approvals retained; proposed live lint exception unapproved.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/report.md

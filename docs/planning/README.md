@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet |
 
 ## Completed
 

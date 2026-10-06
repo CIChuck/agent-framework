@@ -9,11 +9,17 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: execute approved REM-004 then freeze product for fresh aggregate validation; WVR-002 exact archival lint only
+next_gate: resolve CommandRegistry variance stop via proposed A06/WVR-003; preserve partial fixes; no construction resumption yet
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
 ---
+
+Construction is paused on the demonstrated CommandRegistry variance conflict.
+The [A06 amendment](remediation/REM-004-A06-command-registry-compatibility.md) and
+[WVR-003 proposal](validation/WVR-003-command-registry-variance.md) preserve its
+existing contract with one exact live lint exception; neither is approved.
+[Partial-check evidence](execution/REM-004-compatibility/report.md) is advisory.
 
 The maintainer authorized preparation of the proposed
 [REM-004 verification closeout directive](remediation/REM-004-verification-closeout-directive.md)
