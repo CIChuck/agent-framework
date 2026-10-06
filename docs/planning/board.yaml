@@ -417,6 +417,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1067,3 +1069,10 @@ events:
   action: recorded REM-004 generic compatibility stop and exact A06/WVR-003 proposal
   note: One demonstrated public variance conflict; six partial fixes preserved and advisory checks disclosed; existing approvals retained; proposed live lint exception unapproved.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-010 compatibility proposal READY
+  note: Independently reproduced exact one-class variance conflict and exact live UP046; A06/WVR-003 await explicit maintainer approval; no construction resumption or product verification.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md

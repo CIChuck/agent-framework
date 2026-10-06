@@ -131,3 +131,8 @@ fresh product validation. Existing aggregate CHANGES_REQUESTED remains open.
 Fresh [CDR-009](validation/CDR-009/report.md) returned READY for approved A05
 authority at559ae9f. Separate REM-004 remediation is released; product checks and
 fresh delta/aggregate review remain pending.
+
+Fresh [CDR-010](validation/CDR-010/report.md) returned READY for maintainer
+consideration of the exact A06/WVR-003 compatibility proposal at cdb1b8b.
+Construction remains paused pending the new precise compatibility decision;
+no earlier approval is revoked and no product verification is claimed.

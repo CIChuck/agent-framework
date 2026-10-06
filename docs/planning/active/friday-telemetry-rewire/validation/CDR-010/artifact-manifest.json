@@ -1,0 +1,23 @@
+{
+  "conditional-final-root-diagnostic-multiset.json": "35eae82802a08dc59da08e569b415fa5ac756e127f91879faf7a99837099c774",
+  "controller-preservation.json": "8b70b9b6f3b7bc9c1f05d8ab726c41d6b0d724e84348a5b323797389d3c5aae2",
+  "diff-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "diff-check.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evidence.json": "b2bb8509026cc92333ff41f2268c34a5ef4dfb884da4b86ddc270cad99630562",
+  "initial-profile-evidence.json": "30ea138255a676c4dbbfb7ae747d43efe3aedfb385e41af4510735fe15d01c33",
+  "registry-consumer-corrected-profile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "registry-consumer-corrected-profile.stdout": "39b4dac84b058ae71d2dd3a30b830d02d299e0f4a204d270a6f86f5e1ac514c9",
+  "registry-consumer.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "registry-consumer.stdout": "39b4dac84b058ae71d2dd3a30b830d02d299e0f4a204d270a6f86f5e1ac514c9",
+  "registry-ruff-corrected-profile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "registry-ruff-corrected-profile.stdout": "2e0efe12eb8fe5c9f91c1bf4fe71952b20d9ce2813795e32bb8bf4c3f3c4976e",
+  "registry-ruff.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "registry-ruff.stdout": "2e0efe12eb8fe5c9f91c1bf4fe71952b20d9ce2813795e32bb8bf4c3f3c4976e",
+  "report.md": "5df80a3b62f4e2d3dcf0c22c7653c91122c55d3c892e911a1dddcf28271e33e3",
+  "request.json": "04a3b5373d498fc068fea991efeb93459f9b0028d739400375afe6126cc7ae1e",
+  "safety-preflight.json": "25e3d1f16f850b42400167166e8b934005c0e22c16df645f1380421c15b1d048",
+  "versions-corrected-profile.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "versions-corrected-profile.stdout": "42b6ed73cd6a8f11b9eff841b122f986651e935128dd12ddb580a315cbc5317b",
+  "versions.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "versions.stdout": "42b6ed73cd6a8f11b9eff841b122f986651e935128dd12ddb580a315cbc5317b"
+}

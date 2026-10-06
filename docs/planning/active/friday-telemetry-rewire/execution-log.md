@@ -433,3 +433,12 @@ in original scope; no mandatory gate is waived. Complete compressed raw/source
 evidence and hashes are in execution/REM-004-compatibility. Construction is paused
 until precise compatibility approval, reconciled frozen authority and fresh READY.
 No product verification, completion, acceptance or delivery.
+
+## 2026-10-05 — CDR-010 compatibility proposal READY
+
+Fresh independent proposal review of cdb1b8b returned READY for maintainer
+consideration. It independently reproduced both-direction variance behavior
+and the exact UP046; all83 request inputs,16 current controlling pins,17 lint
+configuration hashes and four archival hashes match. Review remains planning-only:
+A06/WVR-003 are unapproved, construction paused, product unverified. Existing
+REM-004/WVR-002 approvals and all mandatory gates remain unchanged.
