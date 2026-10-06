@@ -20,6 +20,12 @@ Amendment evidence: "Make it happen." after recommendation to require Python
 3.13.4 or newer. The [REM-003 directive](../remediation/REM-003-python-minimum-directive.md)
 extends metadata/setup scope and supersedes the old minimum-runtime checks.
 No dependency upgrade, source change, baseline waiver or acceptance is approved.
+Amendment A05 approved at: 2026-10-05, with REM-004 and separately WVR-002.
+Amendment evidence: "I approve both REM-004 and WVR-002."
+[REM-004](../remediation/REM-004-verification-closeout-directive.md) extends exact
+test/security/typing/live-lint scope and synthetic full-suite listener execution.
+[WVR-002](../validation/WVR-002-archived-probe-lint.md) covers only326 immutable
+historical lint diagnostics; all other mandatory checks remain required.
 Date: 2026-10-04.
 Initiative: `friday-telemetry-rewire`. Work unit: `TELEM-01`.
 Branch: `feature/friday-telemetry-rewire`.
@@ -58,8 +64,8 @@ this initiative packet. Package README updates may be made in
 document the new local behavior and composite mapping. Board/dashboard updates
 are limited to this initiative and must preserve unrelated existing edits.
 
-Outside the explicit A04/REM-003 metadata/setup extension, all other product files, including the dirty Chat example YAML, are outside the
-manifest. Do not edit framework LLM, memory, runtime, core, MCP, transcript,
+Outside the explicit A04/REM-003 and A05/REM-004 exact extensions, all other product files, including the dirty Chat example YAML, are outside the
+manifest. Except for the exact approved REM-004 inventory and fixes, do not edit framework LLM, memory, runtime, core, MCP, transcript,
 telemetry interface/config/OTel provider, dependency metadata, packaged config
 templates, or command registry. A necessary extra file requires scope
 reconciliation before editing it.

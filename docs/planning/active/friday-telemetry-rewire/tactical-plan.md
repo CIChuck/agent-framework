@@ -28,3 +28,12 @@ The controller freezes the exact authority and candidate for a fresh-context
 validator, as required by `AGENTS.md`. Work stays `started` throughout review
 and any separately authorized remediation. TELEM-01 verification does not
 complete or accept the whole telemetry initiative.
+
+## Approved REM-004 verification closeout
+
+Maintainer explicitly approved REM-004 and WVR-002 on2026-10-05. R4-01 through
+R4-06/R4-06b map the remaining VAL-005-F01 once. Execute the exact directive after
+fresh A05 readiness, then require a stable product delta and aggregate review.
+Only the exact326 historical lint findings are waived; all live lint, typing,
+security, listener and deterministic test gates remain mandatory. TELEM-02
+through TELEM-05 remain separately governed.

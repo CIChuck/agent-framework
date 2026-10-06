@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: approve exact REM-004 construction scope and separately WVR-002 archival exception; aggregate AC-06 remains unwaived
+  next_gate: obtain fresh A05 authority readiness then execute approved REM-004; WVR-002 covers exact archival lint only
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1044,3 +1044,10 @@ events:
   action: recorded REM-004 proposal preparation and CDR-008 READY
   note: Exact fixes and archive exception are reviewable proposals; implementation and WVR-002 await explicit approval; current aggregate result remains CHANGES_REQUESTED.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved exact REM-004 and separately WVR-002
+  note: I approve both REM-004 and WVR-002. Fresh authority readiness precedes construction; no test/typing/security exception or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md

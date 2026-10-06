@@ -1,9 +1,12 @@
-# Proposed REM-004: resolve the remaining TELEM-01 verification gates
+# Approved REM-004: resolve the remaining TELEM-01 verification gates
 
-Status: Proposed construction directive; implementation and WVR-002 are not approved.
+Status: Approved construction directive, 2026-10-05.
+Approved by: repository maintainer Chuck Russell.
+Approval evidence: "I approve both REM-004 and WVR-002."
+WVR-002 separately approved in that same explicit response.
 Preparation authorized: maintainer's 2026-10-05 "proceed" following the recommendation
 to prepare this exact directive and obtain independent review.
-Initiative: friday-telemetry-rewire. Work unit: TELEM-01 / REM-004, proposed CD-001 A05.
+Initiative: friday-telemetry-rewire. Work unit: TELEM-01 / REM-004, approved CD-001 A05.
 Preparation HEAD: 686a5bd17d84fea3ec3a3d329df2d39c70d10c03.
 Branch: feature/friday-telemetry-rewire. Current aggregate outcome: CHANGES_REQUESTED.
 
@@ -16,13 +19,12 @@ REM-003:19–23 explicitly left these components outside its implementation auth
 This proposal maps VAL-005-F01 exactly once into R4-01 through R4-06 below; those
 components do not create six independently waived copies of the finding.
 
-Preparation includes diagnosis, exact scope, exception proposal and fresh read-only
-readiness review. It supplies no source/test authority. Before implementation,
-record the maintainer's approval of this directive, reconcile A05 in CD-001 and the
-verification profile, refresh the controlling authority hashes, freeze an authority
-candidate and obtain fresh directive readiness review. WVR-002 requires its own
-explicit approval, which may be recorded in the same maintainer response. Without
-it, root lint remains failed even after all live diagnostics are fixed.
+Preparation and proposal reviews are historical. The maintainer explicitly approved
+this exact directive and WVR-002 on 2026-10-05. CD-001 A05, the verification
+profile and controlling manifest record that approval. Freeze amended authority
+and obtain fresh readiness before implementation. WVR-002 covers only the exact
+326 historical diagnostics; all live lint, typing, security and complete-suite
+gates remain mandatory. No broader exception or initiative acceptance is granted.
 
 Use a separate remediator for the entire work unit: it includes security, public
 type boundaries and a repeated aggregate failure. The controller may prepare and
@@ -140,7 +142,7 @@ used or extended.
 **R4-05 — Synthetic listener environment.** Reconfirm all 11 exact nodes use only
 temporary synthetic responses, fake clients and localhost ephemeral listeners.
 Privileged here means escaping the binding-restricted sandbox with normal user
-permissions; never sudo/admin rights. Proposed A05 permits the complete root and
+permissions; never sudo/admin rights. Approved A05 permits the complete root and
 Chat+telemetry suite invocations below to execute in that environment solely to
 allow those listeners. Freeze a fresh import/helper/subprocess safety preflight,
 environment allowlist and source-resolution inventory before either invocation.
@@ -162,9 +164,9 @@ introspection is a stop condition requiring an explicit compatibility decision.
 Run affected package contract tests and targeted type checks without adding broad
 suppression or reducing Ruff rules/targets. If extra regression paths are needed,
 freeze an exact amendment first. Keep the four archive files byte-identical.
-[WVR-002](../validation/WVR-002-archived-probe-lint.md) proposes only their exact
+[WVR-002](../validation/WVR-002-archived-probe-lint.md) covers only their exact
 326 existing diagnostics. Root Ruff must still run unchanged and its nonzero raw
-exit/count must be reported. With explicit WVR-002 approval only, an exact match
+exit/count must be reported. Under the explicit WVR-002 approval, an exact match
 of those 326 diagnostics and hashes, zero live findings and all other passing
 checks satisfies that limited gate. Any other diagnostic remains a failure.
 
@@ -251,7 +253,7 @@ plus aggregate review against the complete feature branch. Readiness is not
 VERIFIED; VERIFIED is not maintainer acceptance. Preserve original and isolated
 tracked files/runtime state via before/after manifests. Resolve VAL-005-F01 only
 when all R4 criteria and aggregate AC-01 through AC-06 pass, including the exact
-approved archival disposition if applicable. Keep work started until then.
+approved exact archival disposition. Keep work started until then.
 
 Stop on additional files/diagnostics, new baseline failures, generic API drift,
 dependency changes, failed mandatory checks, unsafe imports/subprocesses,

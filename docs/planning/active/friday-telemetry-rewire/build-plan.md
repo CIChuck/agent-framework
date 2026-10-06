@@ -231,3 +231,13 @@ The maintainer approved Python >=3.13.4 for the workspace ("Make it happen.").
 [REM-003](remediation/REM-003-python-minimum-directive.md) binds the exact
 metadata/setup migration and supersedes the old Python 3.10 runtime obligation.
 Telemetry source behavior and remaining AC-06 repository failures are unchanged.
+
+## Verification closeout amendment A05 — 2026-10-05
+
+Maintainer "I approve both REM-004 and WVR-002." authorizes the exact
+[REM-004](remediation/REM-004-verification-closeout-directive.md) fixes/checks and
+separately the precise archival lint exception. This supersedes prior freeze/
+three-listener restrictions only within that inventory. Local telemetry contracts,
+dependency pins, no-live-provider boundary and later-unit gates remain unchanged.
+Fresh approved-authority readiness precedes separate remediation and independent
+product delta/aggregate review. No completion or acceptance is granted.

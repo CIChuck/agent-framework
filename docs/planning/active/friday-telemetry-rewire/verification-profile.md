@@ -1,4 +1,4 @@
-# TELEM-01 verification profile — CD-001 amendments A01, A03 and A04
+# TELEM-01 verification profile — CD-001 amendments A01, A03, A04 and A05
 
 Status: Approved verification authority, 2026-10-05.
 Maintainer evidence: "approved, proceed" following the independent CD-001 review
@@ -77,14 +77,15 @@ No interpreter download, source build or shared environment mutation is allowed.
 
 If a discovered test cannot satisfy these boundaries, stop before collection or
 execution and identify its exact module/node, import/helper path, unsafe effect,
-and required bounded authority decision. No further exclusion is approved. A03 permits bounded privileged execution
-of exactly the three synthetic localhost nodes named in REM-002, with the
-non-loopback network guard and the same isolated credential-free environment.
-Other test execution remains unprivileged. Retain broad-suite failures if
-listener permissions remain unavailable there; the three-node rerun supplies
-additional evidence and does not turn a nonzero broad suite into PASS. An incomplete safety preflight or unavailable runtime
-is reported as a missing gate, never a passing root test run. This profile does
-not authorize vendor traffic or reading the user's existing application state.
+and required bounded authority decision. No further test exclusion is approved. A05/REM-004, approved by
+"I approve both REM-004 and WVR-002.", supersedes A03's three-node privilege
+restriction: exactly the11 synthetic listener nodes in REM-004-scope.json may
+bind localhost ephemeral ports during the complete root and Chat+telemetry
+commands. Normal-user sandbox escape only; no sudo/admin or real service access.
+Fresh complete import/helper/subprocess preflight, allowlist, isolated sources and
+unchanged inherited guard remain required. Full commands must exit zero; separate
+node reruns do not replace their gates. Missing safe execution is a missing gate.
+This profile authorizes no vendor traffic or original application data access.
 
 ## Supported Python 3.13.4 minimum
 
@@ -127,3 +128,21 @@ replace missing broad gates. Unchanged baseline failures are not implicit waiver
 Changing this authority requires a fresh directive review and fresh subsequent
 implementation review. Directive readiness does not verify the existing code,
 resolve VAL-001-F01, approve REM-001/WVR-001, or complete the initiative.
+
+## A05 exact archival lint disposition and expanded source checks
+
+The approved [REM-004](remediation/REM-004-verification-closeout-directive.md)
+adds only its exact file/site scope, regression and positive/negative contracts.
+Regenerate changed-source, Python-test and owning-package lists from the aggregate
+preparation-base/candidate diff. Require changed-source3.13 mypy, syntax, changed-
+file Ruff, all owning packages and original telemetry checks; no obsolete six-
+source substitution. The three exact existing response-branch typing errors must
+be fixed under R4-06b, never waived.
+
+Approved [WVR-002](validation/WVR-002-archived-probe-lint.md) covers only the exact
+326 archived findings and four content hashes in REM-004-scope.json. Run unchanged
+root Ruff, retain its nonzero raw result and independently verify exact diagnostic
+multiset/hash/tool/config matches, zero live/other findings and all other gates
+passing. The report names the approved exception rather than claiming raw lint
+passed. No pytest, typing, security, listener or future-phase exception exists.
+WVR-001 remains unapproved. All WVR-002 expiry conditions apply.

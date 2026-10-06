@@ -398,3 +398,12 @@ No product verification or waiver was granted. Exact construction scope and
 WVR-002 are now the board's approval gate. Only evidence/index/log and
 telemetry-specific board/dashboard closeout changed after the reviewed proposal.
 Source/tests/lock/current authority and unrelated dirty work remain preserved.
+
+## 2026-10-05 — REM-004 and WVR-002 approved / A05 frozen
+
+Maintainer explicitly said "I approve both REM-004 and WVR-002." The exact
+construction scope and326-diagnostic archive exception are approved; A05 reconciles
+the source/test and full-suite localhost profile. Freeze fresh authority and
+obtain independent readiness before dispatching the separate remediator.
+Original dirty paths are hash-manifested. Product source/tests/lock remain unchanged
+at this authority gate. No broader waiver, completion, acceptance or delivery.

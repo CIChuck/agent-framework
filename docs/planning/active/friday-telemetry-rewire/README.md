@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: approve exact REM-004 construction scope and separately WVR-002 archival exception; aggregate AC-06 remains unwaived
+next_gate: obtain fresh A05 authority readiness then execute approved REM-004; WVR-002 covers exact archival lint only
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -18,9 +18,9 @@ implementation_authority: granted
 The maintainer authorized preparation of the proposed
 [REM-004 verification closeout directive](remediation/REM-004-verification-closeout-directive.md)
 on 2026-10-05. Its exact diagnosis/scope and
-[WVR-002 archival lint exception](validation/WVR-002-archived-probe-lint.md) are
-proposals awaiting explicit approval. Existing CD-001 A04 authority remains
-unchanged; aggregate AC-06 remains nonpassing. Independent proposal review is
+[WVR-002 archival lint exception](validation/WVR-002-archived-probe-lint.md) were
+proposals reviewed before approval. The maintainer now explicitly approved both;
+CD-001 A05 and WVR-002 govern the exact extension; aggregate AC-06 remains nonpassing. Independent proposal review is
 the preparation gate, followed by approval and fresh frozen-authority readiness
 before any newly scoped implementation.
 
@@ -116,4 +116,8 @@ remaining failures. Work stays started; no aggregate VERIFIED or acceptance.
 
 Fresh [CDR-008](validation/CDR-008/report.md) returned READY for the revised
 REM-004 proposal at d248234 after CDR-007 identified the exact typing-scope gap.
-Preparation is complete; construction and WVR-002 remain pending maintainer approval.
+Preparation is complete; the maintainer has now approved construction and WVR-002.
+
+Maintainer approval recorded2026-10-05: "I approve both REM-004 and WVR-002.".
+Fresh approved-authority readiness is next, followed by separate remediation and
+fresh product validation. Existing aggregate CHANGES_REQUESTED remains open.

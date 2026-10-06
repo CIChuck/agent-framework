@@ -1,4 +1,6 @@
 {
+  "approval_date": "2026-10-05",
+  "approval_evidence": "I approve both REM-004 and WVR-002.",
   "archived_files": {
     "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py": "3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e",
     "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py": "000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd",
@@ -6668,7 +6670,7 @@
       "status": "ERROR"
     }
   ],
-  "status": "proposed; no construction approval or waiver",
+  "status": "approved exact scope and WVR-002; immutable diagnostic baseline",
   "typing_baseline": {
     "diagnostics": [
       {
