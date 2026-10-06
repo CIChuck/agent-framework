@@ -1,0 +1,78 @@
+{
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-01 / REM-004 proposal",
+  "candidate": "d248234b5f8610697e6633be08f50b29c4db4bf9",
+  "base": "686a5bd17d84fea3ec3a3d329df2d39c70d10c03",
+  "diff": "686a5bd17d84fea3ec3a3d329df2d39c70d10c03..d248234b5f8610697e6633be08f50b29c4db4bf9",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "checkout": "/private/tmp/telem-01/REM-004/revised-proposal-checkout",
+  "review_manifest": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-review-manifest.json",
+  "review_manifest_sha256": "3f302d8c5674832a10a1580abec7bd241d409e0c853c73da418bc2b70edb9f3a",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "d8aed15c6d087dccf367f9ab8a09b5b942a9437cc81aa93bdf5411d1d1d84ec5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "f2b6744654fa71203a1267a6d46d83a01a814b1ca7aca3ff827049cc606b93c9"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "1940d403cb5894f8278e7757f20a95d8380f01644f94ce7182155b69f80d4c4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "12b064b834091b66c7095434e2f12cb3cfa22b9c5144a064dd3c4c54d65c815a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    }
+  ],
+  "approved_manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+  "approved_manifest_sha256": "a3fe515e04e95f7ec56bb2f04d09def2bcbaa6793f3e6f07708bfc1c527097e1",
+  "proposal_inputs": {
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md": "403b9b0149fe023ae00125edb7ef15019c6fd5bb1aebd2fe272bb7ca09e55fff",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json": "1cc9d18889556ae67d8c0b26e79fb3b20329169604487c3410789993fcfd0555",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-diagnosis.md": "f085ba6a3e21696bf00ecca87bd6a564c283b656cb2fab0c5ed27db0ccb123c9",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md": "ca7f1bf31bebc2cb44b547290efdea8d7a791364e8c52a65e78e9fc0b9f261d7"
+  },
+  "mode": "fresh-context read-only proposal readiness; READY means coherent for maintainer approval, never approved construction, waived gate, VERIFIED or acceptance",
+  "output_directory": "/private/tmp/telem-01/REM-004/revised-proposal-review",
+  "constraints": "No candidate/repository mutation, commits, original state, environment synchronization, live services, outbound DNS/network, or privileged test execution. Read-only source/evidence checks; synthetic unprivileged diagnostic probes only if independently justified, with pinned guard and allowlist. Do not read private builder scripts/reasoning. Read named policies and frozen candidate rather than assuming prior conclusions.",
+  "prior_review_path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-007/report.md",
+  "prior_review_sha256": "b206ae29c88c6893668b54ff98255124b52aa585d73235f066c7e026eba1baed"
+}

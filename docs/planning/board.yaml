@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: resolve remaining AC-06 lint and test gates; Python 3.13.4 migration supported by fresh review; no waiver approved
+  next_gate: approve exact REM-004 construction scope and separately WVR-002 archival exception; aggregate AC-06 remains unwaived
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -411,6 +411,10 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/evidence.json
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1033,3 +1037,10 @@ events:
   action: recorded VAL-005 and Python minimum migration execution closeout
   note: Python >=3.13.4 migration supported; dependency selections preserved; remaining aggregate lint/test gates unwaived.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-closeout.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 proposal preparation and CDR-008 READY
+  note: Exact fixes and archive exception are reviewable proposals; implementation and WVR-002 await explicit approval; current aggregate result remains CHANGES_REQUESTED.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md

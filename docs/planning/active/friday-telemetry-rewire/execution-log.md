@@ -386,3 +386,15 @@ published response contracts, bounded typed/legacy coverage and zero-exit typing
 Both product files already belong to the lint manifest. This is a proposal scope
 correction, not product remediation or a typing waiver. Freeze a new stable
 proposal and start a fresh reviewer; preserve CDR-007's original outcome.
+
+## 2026-10-05 — REM-004 preparation complete / CDR-008 READY
+
+Fresh revised-proposal review at d248234 returned READY for maintainer
+consideration, resolving REM004-PR-F01's scope gap. It independently matched
+all20 input pins,2266 tracked blobs,459 Ruff identities and the three typing
+baseline errors. The reviewer retained and disclosed54 ignored Ruff cache files
+created in its disposable export; tracked/controlling inputs stayed unchanged.
+No product verification or waiver was granted. Exact construction scope and
+WVR-002 are now the board's approval gate. Only evidence/index/log and
+telemetry-specific board/dashboard closeout changed after the reviewed proposal.
+Source/tests/lock/current authority and unrelated dirty work remain preserved.

@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-05
-next_gate: resolve remaining AC-06 lint and test gates; Python 3.13.4 migration supported by fresh review; no waiver approved
+next_gate: approve exact REM-004 construction scope and separately WVR-002 archival exception; aggregate AC-06 remains unwaived
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -113,3 +113,7 @@ migration and corrected lock selections; its sole remaining finding concerns
 unwaived aggregate AC-06 lint/test gates. [REM-003 execution closeout](execution/REM-003-closeout.md)
 records completed requested migration, unchanged dependency selections and
 remaining failures. Work stays started; no aggregate VERIFIED or acceptance.
+
+Fresh [CDR-008](validation/CDR-008/report.md) returned READY for the revised
+REM-004 proposal at d248234 after CDR-007 identified the exact typing-scope gap.
+Preparation is complete; construction and WVR-002 remain pending maintainer approval.
