@@ -23,6 +23,9 @@ bounded owned lifecycle, actual SDK context/parent/event evidence and synthetic
 OTLP collector delivery. No Chat YAML/CLI/headless assembly adoption in this unit.
 Implement exactly the [approved contract](../telem02-contract.md) and
 [verification profile](../verification-profile-TELEM-02.md).
+Approved [A02](CD-002-A02-native-retry-disable.md) requires fixed
+grpc.enable_retries=0 on both channel branches. Its [decision record](CD-002-A02-approval-record.md)
+and fresh approved-amendment readiness precede implementation/native OTLP tests.
 
 ## Exact approved product manifest
 

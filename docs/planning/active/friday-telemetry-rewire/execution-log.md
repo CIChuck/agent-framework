@@ -634,3 +634,14 @@ exact7 source/5 test paths and README. Expanded final import/fixture/effect13-no
 preflight remains required before collection/native tests. Full unit/root/Chat/owning
 and aggregate lint/type/API/privacy/lifecycle/lock/document gates plus stable fresh
 product delta+2155a0f aggregate review are outstanding. No renewed approval needed.
+
+## 2026-10-06 — CD-002 A02 approved; native gate awaits fresh readiness
+
+Chuck Russell replied "approved" to the concrete one-option amendment. The exact
+record and approved A02 are pinned with the amended contract/directive/profile in
+the current19-control manifest. Fixed grpc.enable_retries=0 reconciles native retry
+semantics with the existing no-implicit-retry requirement. Original CD-002/WVR-004
+and13 listener effects remain unchanged; accepted TELEM-01 controls are immutable.
+execution_phase: implementation; validation_state: pending. Other construction
+continues. Only the affected option/native tests await fresh approved-amendment
+readiness; no further maintainer approval is required for these authorized steps.

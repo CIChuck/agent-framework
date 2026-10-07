@@ -1,6 +1,7 @@
 # CD-002 A02: require native gRPC retries disabled
 
-Status: proposal; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell. Date: 2026-10-06 (America/New_York).
+Approval: [exact decision record](CD-002-A02-approval-record.md).
 Work unit: TELEM-02. Finding: T02-B01.
 
 The approved contract requires no implicit retries but limits channel options to
@@ -12,7 +13,7 @@ retries, and the pinned [gRPC1.67.1 channel argument header](https://github.com/
 provides grpc.enable_retries with an enabled default. No native retry experiment
 or external service was used to establish this specification conflict.
 
-## Exact proposed amendment
+## Exact approved amendment
 
 Permit and require one additional fixed channel option, grpc.enable_retries=0,
 for both insecure literal-loopback and secure-channel construction. Revise the
@@ -43,6 +44,6 @@ nodes are the stated evidence boundary. HTTPS remains mocked.
 
 No new product/test paths, public API, collector/listener IDs, external effects,
 credentials, TLS activation, installs/downloads, package/config/lock changes,
-source suppression, waived test/type/lint gate or acceptance is proposed. Exact
+source suppression, waived test/type/lint gate or acceptance is granted by this amendment. Exact
 13 synthetic listener effects,327 WVR-004 identities/hashes/expiry, caller-owned
 Chat injection and every other CD-002 requirement remain unchanged.

@@ -2,7 +2,7 @@
   "initiative": "friday-telemetry-rewire",
   "work_unit": "TELEM-02",
   "directive": "CD-002",
-  "status": "approved; construction pending fresh approved-authority readiness",
+  "status": "CD-002 and A02 approved; amended transport gate pending fresh approved-amendment readiness",
   "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
   "branch": "feature/friday-telemetry-rewire",
   "authority": [
@@ -44,15 +44,15 @@
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
-      "sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae"
+      "sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
-      "sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d"
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
-      "sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee"
+      "sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
@@ -73,6 +73,14 @@
     {
       "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
       "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7"
     }
   ],
   "acceptance_criteria": [
@@ -87,5 +95,6 @@
   ],
   "review_mode": "fresh-context read-only approved-authority construction readiness; not product verification",
   "external_services": "Exactly13 synthetic loopback nodes approved under CD-002, subject to final fixture/effect/import preflight; native gRPC limitation explicit. No remote/TLS activation, credentials, installs/downloads or provider services.",
-  "approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md"
+  "approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+  "amendment_approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md"
 }

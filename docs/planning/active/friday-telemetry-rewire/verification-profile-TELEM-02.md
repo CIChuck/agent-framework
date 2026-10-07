@@ -25,6 +25,11 @@ unchanged external network guard, all isolated */src, Chat tests_chat helper, ro
 Native gRPC bypasses some Python socket hooks: do not claim the guard alone proves
 no egress. Preflight and intercepted constructor target/options must prove both new
 collector tests use literal127.0.0.1 ephemeral targets and no inherited settings.
+Under approved [A02](directives/CD-002-A02-native-retry-disable.md), assert the exact
+channel options on mocked insecure/secure branches and both existing native nodes:
+grpc.enable_http_proxy=0, grpc.enable_retries=0 and bounded send/receive sizes.
+Verify one public Export call per batch, finite timeout and wait_for_ready=False.
+No additional native retry fault-injection experiment is required or authorized.
 
 Before full suites, freeze all13 synthetic listener node IDs (existing11 plus the
 exact2 named in CD-002), server/client constructor/teardown/helper hashes, allowlist,

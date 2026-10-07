@@ -160,7 +160,9 @@ above before SDK/channel creation; inspect key names only. Missing/unusable defa
 roots yield content-free initialization failure or degraded export status according
 to when failure becomes observable, never plaintext fallback or raw exceptions.
 Explicitly supply transport security, timeout and NoCompression; channel options are
-limited to grpc.enable_http_proxy=0 and bounded message-size limits. No default_authority
+limited to fixed grpc.enable_http_proxy=0, fixed grpc.enable_retries=0 and bounded
+message-size limits. Native transparent/configured retries must be disabled, as
+approved in [CD-002 A02](directives/CD-002-A02-native-retry-disable.md). No default_authority
 or ssl_target_name_override. The loopback HTTP branch uses insecure_channel only.
 
 Remote HTTPS credential/channel construction is mocked for this unit: assert all
