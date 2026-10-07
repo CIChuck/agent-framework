@@ -1,0 +1,1399 @@
+{
+  "count": 199,
+  "all_preserved": true,
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/artifact-manifest.json",
+      "kind": "original manifest retained",
+      "base_sha256": "7c0bca817de23c24681f8cb9e7bab976dda85afa6a6dac2b19085df7b9834d4c",
+      "candidate_original_sha256": "7c0bca817de23c24681f8cb9e7bab976dda85afa6a6dac2b19085df7b9834d4c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-0.log",
+      "kind": "unchanged",
+      "base_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "candidate_original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-1.log",
+      "kind": "unchanged",
+      "base_sha256": "4d243e6caed2be4df955bb41a49570e330f64bdf4e28204f87060dc4dc3c0c31",
+      "candidate_original_sha256": "4d243e6caed2be4df955bb41a49570e330f64bdf4e28204f87060dc4dc3c0c31",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-checks.json",
+      "kind": "unchanged",
+      "base_sha256": "5d17b236437d84538e741a59a8dd286669b58236e80a03d6647a521a59d78f66",
+      "candidate_original_sha256": "5d17b236437d84538e741a59a8dd286669b58236e80a03d6647a521a59d78f66",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.json",
+      "kind": "unchanged",
+      "base_sha256": "1e1bdd7b3e25b026a10d4b768896e9f7856e64fb9ece8f171cb88159cf02e902",
+      "candidate_original_sha256": "1e1bdd7b3e25b026a10d4b768896e9f7856e64fb9ece8f171cb88159cf02e902",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "candidate_original_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.json",
+      "kind": "unchanged",
+      "base_sha256": "80e57eb68cede8bba0c348291448dcf0066d8d82de4911261f055c71fb074c78",
+      "candidate_original_sha256": "80e57eb68cede8bba0c348291448dcf0066d8d82de4911261f055c71fb074c78",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "candidate_original_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.json",
+      "kind": "unchanged",
+      "base_sha256": "478342e6adfe396ffb91cccc11297ab99365cadf15cac67b5994f632edf3d3ce",
+      "candidate_original_sha256": "478342e6adfe396ffb91cccc11297ab99365cadf15cac67b5994f632edf3d3ce",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "candidate_original_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.json",
+      "kind": "unchanged",
+      "base_sha256": "1bbdb2311594ab48ee3f7b7c01abcd6bcd9adf6d992cc468c7a6a93e15017d0e",
+      "candidate_original_sha256": "1bbdb2311594ab48ee3f7b7c01abcd6bcd9adf6d992cc468c7a6a93e15017d0e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "candidate_original_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.json",
+      "kind": "unchanged",
+      "base_sha256": "e452155a8dd70ef91c96bf59adb597366541fe0096dd5ebd84016b30d0a31075",
+      "candidate_original_sha256": "e452155a8dd70ef91c96bf59adb597366541fe0096dd5ebd84016b30d0a31075",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "dbbf2eecfe196e6297a2da11d31820e2ab2f355d160d701601274ea5d4a317a5",
+      "candidate_original_sha256": "dbbf2eecfe196e6297a2da11d31820e2ab2f355d160d701601274ea5d4a317a5",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.json",
+      "kind": "unchanged",
+      "base_sha256": "fc54631ef5789df23bf6abc50bd934395e2d3e61e9ce5359237df85ed594fe00",
+      "candidate_original_sha256": "fc54631ef5789df23bf6abc50bd934395e2d3e61e9ce5359237df85ed594fe00",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "53c0a2a7b0022998dd7f0b867aaf602461ef4a13c519759c0460cd8662e9655c",
+      "candidate_original_sha256": "53c0a2a7b0022998dd7f0b867aaf602461ef4a13c519759c0460cd8662e9655c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.json",
+      "kind": "unchanged",
+      "base_sha256": "9858f2a00ad954e697b0e4044f1cb80ae0e7b07511f984f78f0d431706a49d7b",
+      "candidate_original_sha256": "9858f2a00ad954e697b0e4044f1cb80ae0e7b07511f984f78f0d431706a49d7b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "4655eff6a1c77606e5642ef04f1639588e5293273317a03697a39f3ce8944b35",
+      "candidate_original_sha256": "4655eff6a1c77606e5642ef04f1639588e5293273317a03697a39f3ce8944b35",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.json",
+      "kind": "unchanged",
+      "base_sha256": "357f58eac29b187165a37e7d06dd19d2a9ea180450a8080540c07a855d27372a",
+      "candidate_original_sha256": "357f58eac29b187165a37e7d06dd19d2a9ea180450a8080540c07a855d27372a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "6b0b54d628385a6600ea82edb465a2fb0be05d972e68c4d51ab4ee43de6f527e",
+      "candidate_original_sha256": "6b0b54d628385a6600ea82edb465a2fb0be05d972e68c4d51ab4ee43de6f527e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.json",
+      "kind": "unchanged",
+      "base_sha256": "3dccf4c69d2ace9e6e38cca14e16111930a584fe9aa49329885c6c30d657294a",
+      "candidate_original_sha256": "3dccf4c69d2ace9e6e38cca14e16111930a584fe9aa49329885c6c30d657294a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "d250de4cdb62ad892e56e3f5223bd3866605f9c11d8a529bc7df372c701142a0",
+      "candidate_original_sha256": "d250de4cdb62ad892e56e3f5223bd3866605f9c11d8a529bc7df372c701142a0",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.json",
+      "kind": "unchanged",
+      "base_sha256": "4af29f125a10fef45e53d4eba68fdcc903154a6427d7708a22d291b30242c61d",
+      "candidate_original_sha256": "4af29f125a10fef45e53d4eba68fdcc903154a6427d7708a22d291b30242c61d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "fe81b00968626bb2df3cccea663806acffd13177cb7a4a53d50373b2ac403d27",
+      "candidate_original_sha256": "fe81b00968626bb2df3cccea663806acffd13177cb7a4a53d50373b2ac403d27",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.json",
+      "kind": "unchanged",
+      "base_sha256": "463f2a3486187879847065d9aa21f63ba4b5028e5b3590c9a63389e871203235",
+      "candidate_original_sha256": "463f2a3486187879847065d9aa21f63ba4b5028e5b3590c9a63389e871203235",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "candidate_original_sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.json",
+      "kind": "unchanged",
+      "base_sha256": "290c871f996b4ec87fd93098db07b1060bb1832e396e62ec03359fb7b5f947b7",
+      "candidate_original_sha256": "290c871f996b4ec87fd93098db07b1060bb1832e396e62ec03359fb7b5f947b7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "d52c05cfde4fa535c7430c02afef3955d47afdba4f663a487ba9291dbc36c893",
+      "candidate_original_sha256": "d52c05cfde4fa535c7430c02afef3955d47afdba4f663a487ba9291dbc36c893",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.json",
+      "kind": "unchanged",
+      "base_sha256": "19b46de4b083a767528aad0f532a1f1595293c7569683dd72b37c27c08f6fa99",
+      "candidate_original_sha256": "19b46de4b083a767528aad0f532a1f1595293c7569683dd72b37c27c08f6fa99",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "6e27baae9aa27775b022c9de767f90a2445f25cd0ba8d4de5089260cc5fefc7e",
+      "candidate_original_sha256": "6e27baae9aa27775b022c9de767f90a2445f25cd0ba8d4de5089260cc5fefc7e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.json",
+      "kind": "unchanged",
+      "base_sha256": "97a28316537af821258c37c930d0342090f8179fee59252e26a154ab28dfc986",
+      "candidate_original_sha256": "97a28316537af821258c37c930d0342090f8179fee59252e26a154ab28dfc986",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "d4bfa6102fbf9018abaa92b9cdf70985d1f62629732c597f10248e4cfbb966f7",
+      "candidate_original_sha256": "d4bfa6102fbf9018abaa92b9cdf70985d1f62629732c597f10248e4cfbb966f7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.json",
+      "kind": "unchanged",
+      "base_sha256": "e036095be8a9a4d694420a3b4fd874f5741cebfdb862ac2a840059dc3b880718",
+      "candidate_original_sha256": "e036095be8a9a4d694420a3b4fd874f5741cebfdb862ac2a840059dc3b880718",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "523487aa6be58fabca661c53de776772c4cd1a3ffe9127ee901fa2f1c6588a4a",
+      "candidate_original_sha256": "523487aa6be58fabca661c53de776772c4cd1a3ffe9127ee901fa2f1c6588a4a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.json",
+      "kind": "unchanged",
+      "base_sha256": "a2ff82aaead4cae4c75d33240e25703bcf038cdededd3e32105dde4b099e3eb1",
+      "candidate_original_sha256": "a2ff82aaead4cae4c75d33240e25703bcf038cdededd3e32105dde4b099e3eb1",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "31a99a694e2178495f82a5d08c3c908891378ebd97eda9c8eea79f8434a9c0fa",
+      "candidate_original_sha256": "31a99a694e2178495f82a5d08c3c908891378ebd97eda9c8eea79f8434a9c0fa",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "7530a714465779417c6a553f42ee8a7459bbe6dd854a053f9c6e9aa90bab29c8",
+      "candidate_original_sha256": "7530a714465779417c6a553f42ee8a7459bbe6dd854a053f9c6e9aa90bab29c8",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-snapshot.json.gz",
+      "kind": "unchanged",
+      "base_sha256": "f5792f1b9b2e1dc1c4be9e0fc348a29760cb2ca591b1355f31393bce04bcc083",
+      "candidate_original_sha256": "f5792f1b9b2e1dc1c4be9e0fc348a29760cb2ca591b1355f31393bce04bcc083",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/concurrent-untracked-state.json",
+      "kind": "unchanged",
+      "base_sha256": "a834b666c14d574733ac2c8c4b6a0ce0381addf2ff0ef19fca88aabdbb660a89",
+      "candidate_original_sha256": "a834b666c14d574733ac2c8c4b6a0ce0381addf2ff0ef19fca88aabdbb660a89",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final-generic-consumers.json",
+      "kind": "unchanged",
+      "base_sha256": "b19843ec289a79894ca4d511254ed8d9b83e1c8c12fab2ba5db3d680cd8247ad",
+      "candidate_original_sha256": "b19843ec289a79894ca4d511254ed8d9b83e1c8c12fab2ba5db3d680cd8247ad",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "88d89008cce19fb779e4879264511940f3eeb4fc115d9d800fa8bc237c484044",
+      "candidate_original_sha256": "88d89008cce19fb779e4879264511940f3eeb4fc115d9d800fa8bc237c484044",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "28ac26126e8e65a0e175b23f124cc25b1d0fbd5f9667a892823c03395e149a6b",
+      "candidate_original_sha256": "28ac26126e8e65a0e175b23f124cc25b1d0fbd5f9667a892823c03395e149a6b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "998d1b1a07790447e401b7986d74a59c7bc078bce6e9a1108e5a043bd77e21a5",
+      "candidate_original_sha256": "998d1b1a07790447e401b7986d74a59c7bc078bce6e9a1108e5a043bd77e21a5",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/network-guard/sitecustomize.py",
+      "kind": "unchanged",
+      "base_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+      "candidate_original_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/product-validation-request.json",
+      "kind": "unchanged",
+      "base_sha256": "faafd49e78c136ddb498c157880451082e2762aafa7aa01af17e22d0f559e0ba",
+      "candidate_original_sha256": "faafd49e78c136ddb498c157880451082e2762aafa7aa01af17e22d0f559e0ba",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-expanded.json",
+      "kind": "unchanged",
+      "base_sha256": "21867d7ef1fb683fe0e4b67887918009b6c9d4121f0502f958e293c27ae9a01c",
+      "candidate_original_sha256": "21867d7ef1fb683fe0e4b67887918009b6c9d4121f0502f958e293c27ae9a01c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-snapshot.json.gz",
+      "kind": "unchanged",
+      "base_sha256": "feab465ed94f4a84fd694d9d5a9df5bd4ed6f0e1b7badabc63a2eed4d3f37b4b",
+      "candidate_original_sha256": "feab465ed94f4a84fd694d9d5a9df5bd4ed6f0e1b7badabc63a2eed4d3f37b4b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-integrity.json",
+      "kind": "unchanged",
+      "base_sha256": "f8dc1074bfc23a9b8b880517900c4a1245b6655203bf83237b3f567f78809b75",
+      "candidate_original_sha256": "f8dc1074bfc23a9b8b880517900c4a1245b6655203bf83237b3f567f78809b75",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "d7a38cd010f59c42b2b673f694fe4426038c2721e7ec9e5092745dcb962edf4a",
+      "candidate_original_sha256": "d7a38cd010f59c42b2b673f694fe4426038c2721e7ec9e5092745dcb962edf4a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-product-freeze.json",
+      "kind": "unchanged",
+      "base_sha256": "bea7d7c98ecf36fe123bfe6c4568be4d2e0ba3eff64e666d20b8bed690d4fe18",
+      "candidate_original_sha256": "bea7d7c98ecf36fe123bfe6c4568be4d2e0ba3eff64e666d20b8bed690d4fe18",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-disposition.json",
+      "kind": "unchanged",
+      "base_sha256": "386ea1f406624b5de2092b1274faefb1ac28b97be3476320fefda351716bb8c1",
+      "candidate_original_sha256": "386ea1f406624b5de2092b1274faefb1ac28b97be3476320fefda351716bb8c1",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-normalized.json",
+      "kind": "unchanged",
+      "base_sha256": "5be9173e28314dba0df9300dec372f85253c495e773282d3964654f05adc8453",
+      "candidate_original_sha256": "5be9173e28314dba0df9300dec372f85253c495e773282d3964654f05adc8453",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "615e7e1ad9a709b1bc372f4ce20bc91c7b45a2e014c6fd77fff2e946b3b61cd7",
+      "candidate_original_sha256": "615e7e1ad9a709b1bc372f4ce20bc91c7b45a2e014c6fd77fff2e946b3b61cd7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "afbe5fe317d89cf8a874b8a692ecc723f63a846272b48a47d65c980784390d17",
+      "candidate_original_sha256": "afbe5fe317d89cf8a874b8a692ecc723f63a846272b48a47d65c980784390d17",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/preservation.json",
+      "kind": "unchanged",
+      "base_sha256": "bed51d61dabeac6e6ccc5aa9fdcf9f298620417764af210adc00594082403a47",
+      "candidate_original_sha256": "bed51d61dabeac6e6ccc5aa9fdcf9f298620417764af210adc00594082403a47",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.json",
+      "kind": "unchanged",
+      "base_sha256": "8406acf9387b913bb2fbd6769ef8aa3c3d5a10e3c877e33af9e79c3828db007b",
+      "candidate_original_sha256": "8406acf9387b913bb2fbd6769ef8aa3c3d5a10e3c877e33af9e79c3828db007b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "ced9679340893bf67a53b3b9f0878b9549024663c412449c3b7b3966e79a9c96",
+      "candidate_original_sha256": "ced9679340893bf67a53b3b9f0878b9549024663c412449c3b7b3966e79a9c96",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.json",
+      "kind": "unchanged",
+      "base_sha256": "b9589b663a7ef9de5ce6c353f07db894e43d881d033615a21a990862cb8a1920",
+      "candidate_original_sha256": "b9589b663a7ef9de5ce6c353f07db894e43d881d033615a21a990862cb8a1920",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "787abe93d3af2101a3c99e9225b955c24c07593f1ac26032a6e8989081b754b0",
+      "candidate_original_sha256": "787abe93d3af2101a3c99e9225b955c24c07593f1ac26032a6e8989081b754b0",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.json",
+      "kind": "unchanged",
+      "base_sha256": "ee61fc8b88f196e87bbc3af37c5cc744e084e0833c1cf5a9ff4e203eda7886a8",
+      "candidate_original_sha256": "ee61fc8b88f196e87bbc3af37c5cc744e084e0833c1cf5a9ff4e203eda7886a8",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "f1773454f28d5bcf3cb42ca6f346c341768ddcc63951a41a433c0e46925fc66e",
+      "candidate_original_sha256": "f1773454f28d5bcf3cb42ca6f346c341768ddcc63951a41a433c0e46925fc66e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.json",
+      "kind": "unchanged",
+      "base_sha256": "ea41152377974d20fb785298d572869fc41dae456646cc62e1455a41dfde1ddb",
+      "candidate_original_sha256": "ea41152377974d20fb785298d572869fc41dae456646cc62e1455a41dfde1ddb",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "fedb378c2a520f5006f91802a567258b9957ef63dbc1692bf3db0200a89a1e97",
+      "candidate_original_sha256": "fedb378c2a520f5006f91802a567258b9957ef63dbc1692bf3db0200a89a1e97",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.json",
+      "kind": "unchanged",
+      "base_sha256": "22f31f839de0c988027f9f63d700151e87773a01c549185aabcbeaa71b6900d9",
+      "candidate_original_sha256": "22f31f839de0c988027f9f63d700151e87773a01c549185aabcbeaa71b6900d9",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "1f0b4b5702e54ce1996bf0b6d5a1a6c7213f83ad7d74a79e6af4c3f6640f5ef5",
+      "candidate_original_sha256": "1f0b4b5702e54ce1996bf0b6d5a1a6c7213f83ad7d74a79e6af4c3f6640f5ef5",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.json",
+      "kind": "unchanged",
+      "base_sha256": "0de495644c64915f9f8e70d1c052183e5ad0c04284e3e8056758d035c64da5a3",
+      "candidate_original_sha256": "0de495644c64915f9f8e70d1c052183e5ad0c04284e3e8056758d035c64da5a3",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "fd3ee5944ee5bb7ad9e5f0eb4684bdc3611385916efeb55fb5566a85670a9dad",
+      "candidate_original_sha256": "fd3ee5944ee5bb7ad9e5f0eb4684bdc3611385916efeb55fb5566a85670a9dad",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.json",
+      "kind": "unchanged",
+      "base_sha256": "9fe8072e4096283228dd5f436dd7621e4a1457a1323c0449eaa5cf46780fbffa",
+      "candidate_original_sha256": "9fe8072e4096283228dd5f436dd7621e4a1457a1323c0449eaa5cf46780fbffa",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "19e6d7fd38da5911b42c775e121ed68e154fba9dba8a5dd249db0d160e92dc7a",
+      "candidate_original_sha256": "19e6d7fd38da5911b42c775e121ed68e154fba9dba8a5dd249db0d160e92dc7a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.json",
+      "kind": "unchanged",
+      "base_sha256": "f9c7fec3a683755d98f5efd1bf62428886ab549e1f25456abbee285dffa6beb4",
+      "candidate_original_sha256": "f9c7fec3a683755d98f5efd1bf62428886ab549e1f25456abbee285dffa6beb4",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "0d057f6e4e862b39f173bbf8f552af6af5f5e1419fb193e4d792981fd8d48887",
+      "candidate_original_sha256": "0d057f6e4e862b39f173bbf8f552af6af5f5e1419fb193e4d792981fd8d48887",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.json",
+      "kind": "unchanged",
+      "base_sha256": "71247a845008f84ce78b902bb488454b58367f5bac902d49a67a220c2e0daed7",
+      "candidate_original_sha256": "71247a845008f84ce78b902bb488454b58367f5bac902d49a67a220c2e0daed7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "2b1da581dc47f2d494ad3f137a627da525f239ccc8d6b2f2a7694b0ecf45588c",
+      "candidate_original_sha256": "2b1da581dc47f2d494ad3f137a627da525f239ccc8d6b2f2a7694b0ecf45588c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.json",
+      "kind": "unchanged",
+      "base_sha256": "2f9b3732ce27c8646be8c26a9f024b756bf0f35644ebc34f9d8c34337aea8ad9",
+      "candidate_original_sha256": "2f9b3732ce27c8646be8c26a9f024b756bf0f35644ebc34f9d8c34337aea8ad9",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "fda662dcb5c02cc6044bdacd98c30d36c3fa6e09c8818eb5c7f8b10d3d23d131",
+      "candidate_original_sha256": "fda662dcb5c02cc6044bdacd98c30d36c3fa6e09c8818eb5c7f8b10d3d23d131",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.json",
+      "kind": "unchanged",
+      "base_sha256": "cd72e23017f35507565cc613e307854098174de12e1ebb71859a15f5dae00544",
+      "candidate_original_sha256": "cd72e23017f35507565cc613e307854098174de12e1ebb71859a15f5dae00544",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "candidate_original_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.json",
+      "kind": "unchanged",
+      "base_sha256": "e0fcc96ca2d2e249b9977cd2c852287f2193edffa2fb25abf54418e9077e3e67",
+      "candidate_original_sha256": "e0fcc96ca2d2e249b9977cd2c852287f2193edffa2fb25abf54418e9077e3e67",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "f43be0d97dea33c0f62ceac8c144be7a560f88d09884391f8574e9b126ce9d89",
+      "candidate_original_sha256": "f43be0d97dea33c0f62ceac8c144be7a560f88d09884391f8574e9b126ce9d89",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory-final.json",
+      "kind": "unchanged",
+      "base_sha256": "e80565376cfec1f0ce5aafd19de6f937b83a6f5a36ce98eabebb8f999cf4f0ff",
+      "candidate_original_sha256": "e80565376cfec1f0ce5aafd19de6f937b83a6f5a36ce98eabebb8f999cf4f0ff",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory.json",
+      "kind": "unchanged",
+      "base_sha256": "ed1511519b12e06eae8b9c47e59472764a7ea8ff377fa08e78f84355e84c943b",
+      "candidate_original_sha256": "ed1511519b12e06eae8b9c47e59472764a7ea8ff377fa08e78f84355e84c943b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-site-review.json",
+      "kind": "unchanged",
+      "base_sha256": "cec61818ee6d5527f3aae6414236a38c62589ed654e4682992a746dcc4fc0739",
+      "candidate_original_sha256": "cec61818ee6d5527f3aae6414236a38c62589ed654e4682992a746dcc4fc0739",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all-six-compatibility-report.md",
+      "kind": "unchanged",
+      "base_sha256": "c4bf1e6fc74a0c280e71259e4750ca2a42272d8c94abe67b92e74215f6ea01e6",
+      "candidate_original_sha256": "c4bf1e6fc74a0c280e71259e4750ca2a42272d8c94abe67b92e74215f6ea01e6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "ffe983b5e0edddc3493a401498dab20e9a601f88d7e6703f40ab183f8867cb5f",
+      "candidate_original_sha256": "ffe983b5e0edddc3493a401498dab20e9a601f88d7e6703f40ab183f8867cb5f",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation-probes.json",
+      "kind": "unchanged",
+      "base_sha256": "3b3996161d02d6bf21ad5185975107e9961d3c57cecb28be597f143e00de773a",
+      "candidate_original_sha256": "3b3996161d02d6bf21ad5185975107e9961d3c57cecb28be597f143e00de773a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "32f75b900b24bea338651ac5a6793599c898abfbd2441af04a8f05066a816994",
+      "candidate_original_sha256": "32f75b900b24bea338651ac5a6793599c898abfbd2441af04a8f05066a816994",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "858d5343d02c0d90113374ab7e8a86f24f401df9db68de4a705663dfd8be02ae",
+      "candidate_original_sha256": "858d5343d02c0d90113374ab7e8a86f24f401df9db68de4a705663dfd8be02ae",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "e2cafc5af6ea038b0d04f1b0c0806ac0905d953ef6ccfdee74fa38f3106077c3",
+      "candidate_original_sha256": "e2cafc5af6ea038b0d04f1b0c0806ac0905d953ef6ccfdee74fa38f3106077c3",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/command-registry-conflict-pin.json",
+      "kind": "unchanged",
+      "base_sha256": "ae48cd329e8570dfce6ee975317547a19cc77eaf60633e8a7abc850e1dd36718",
+      "candidate_original_sha256": "ae48cd329e8570dfce6ee975317547a19cc77eaf60633e8a7abc850e1dd36718",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-evidence-manifest.json",
+      "kind": "unchanged",
+      "base_sha256": "ba9c8aafe82eb2a9cbdf8761254ddfb97823801546067414364a44e12ba47f9e",
+      "candidate_original_sha256": "ba9c8aafe82eb2a9cbdf8761254ddfb97823801546067414364a44e12ba47f9e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-matrix.json",
+      "kind": "unchanged",
+      "base_sha256": "01b0668a7bde6262a6e847ccacd99340b0736d2faf01c14bb4f5c4a27892584c",
+      "candidate_original_sha256": "01b0668a7bde6262a6e847ccacd99340b0736d2faf01c14bb4f5c4a27892584c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop-report.md",
+      "kind": "unchanged",
+      "base_sha256": "c162e213adb5ff7981ee3712e7bb39a21d33f7077a5af622fb1a3cd067611001",
+      "candidate_original_sha256": "c162e213adb5ff7981ee3712e7bb39a21d33f7077a5af622fb1a3cd067611001",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop.json",
+      "kind": "unchanged",
+      "base_sha256": "9ee2c38ad78bba07ea24522568261106f4bbe3889b763418eb35de6df50feea3",
+      "candidate_original_sha256": "9ee2c38ad78bba07ea24522568261106f4bbe3889b763418eb35de6df50feea3",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-evidence-manifest.json",
+      "kind": "unchanged",
+      "base_sha256": "de981350cdf1b9e9c4f9af746b0149e4cc15dfd74cccaa1d5c097d140cd35053",
+      "candidate_original_sha256": "de981350cdf1b9e9c4f9af746b0149e4cc15dfd74cccaa1d5c097d140cd35053",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-01.json",
+      "kind": "unchanged",
+      "base_sha256": "aa1f2ca7caedec53373796a8cb8af6afb5ba7d50830a1d8c6a9612c3bab3eb47",
+      "candidate_original_sha256": "aa1f2ca7caedec53373796a8cb8af6afb5ba7d50830a1d8c6a9612c3bab3eb47",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-02.json",
+      "kind": "unchanged",
+      "base_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "candidate_original_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-03.json",
+      "kind": "unchanged",
+      "base_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "candidate_original_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-final.json",
+      "kind": "unchanged",
+      "base_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "candidate_original_sha256": "06997c16bc68b2a2f5d2bbe600baf5f2b99e2701ef19cb9e7377f5012a1be7e6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-handoff-report.md",
+      "kind": "unchanged",
+      "base_sha256": "f81e7c8a2d78cf18e15a9811358edba5b8912d6bf4af757962af59a368ae8044",
+      "candidate_original_sha256": "f81e7c8a2d78cf18e15a9811358edba5b8912d6bf4af757962af59a368ae8044",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-01.json",
+      "kind": "unchanged",
+      "base_sha256": "88e6a77c96c4ddb2d08c595028d6ad0da55f8aa034ebf7e98c4df5f65a93f6ed",
+      "candidate_original_sha256": "88e6a77c96c4ddb2d08c595028d6ad0da55f8aa034ebf7e98c4df5f65a93f6ed",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-02.json",
+      "kind": "unchanged",
+      "base_sha256": "cc319521f7bb2a10b7ad72e4b3ad1490a80a6dcf60e8d6d417db1ce4852f33da",
+      "candidate_original_sha256": "cc319521f7bb2a10b7ad72e4b3ad1490a80a6dcf60e8d6d417db1ce4852f33da",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-final.json",
+      "kind": "unchanged",
+      "base_sha256": "f6046078b16d0a031287295dfbd8161c90cf8c0fdb69c483902f565757466c99",
+      "candidate_original_sha256": "f6046078b16d0a031287295dfbd8161c90cf8c0fdb69c483902f565757466c99",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-verification-receipts.json",
+      "kind": "unchanged",
+      "base_sha256": "0871a60cbb15c6a8b00d6a292275ebd303bfa7f7786154eec80b54dac5521939",
+      "candidate_original_sha256": "0871a60cbb15c6a8b00d6a292275ebd303bfa7f7786154eec80b54dac5521939",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-api-probe-results-02.json",
+      "kind": "unchanged",
+      "base_sha256": "94907dadd746bf97432b3fccf59765b723373df18fe71609522f923379142eb6",
+      "candidate_original_sha256": "94907dadd746bf97432b3fccf59765b723373df18fe71609522f923379142eb6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-diff.patch.gz",
+      "kind": "unchanged",
+      "base_sha256": "dea39f14b5d79067a28be48037bdcdf004c1573d8519d3a0d3208bb82d4da4be",
+      "candidate_original_sha256": "dea39f14b5d79067a28be48037bdcdf004c1573d8519d3a0d3208bb82d4da4be",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-manifest.json",
+      "kind": "unchanged",
+      "base_sha256": "77be1a2b3e25812a6b79078b603e88cf201b7db7035a27f474a06158d2429aa6",
+      "candidate_original_sha256": "77be1a2b3e25812a6b79078b603e88cf201b7db7035a27f474a06158d2429aa6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "8eae2bf161bf5964a472652663b844636e000c366a27c92cf9bb2586d0dbaaf6",
+      "candidate_original_sha256": "8eae2bf161bf5964a472652663b844636e000c366a27c92cf9bb2586d0dbaaf6",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "21daa1ff67e2bc29dea7f391da16a299cfeab8f8086e38ebbf32f860941e200e",
+      "candidate_original_sha256": "21daa1ff67e2bc29dea7f391da16a299cfeab8f8086e38ebbf32f860941e200e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/import-cleanup-01.json",
+      "kind": "unchanged",
+      "base_sha256": "5dd493f1aa088e15efde0aa5864a8ae66b07e32ae139444e36bd5d83edc0f2ae",
+      "candidate_original_sha256": "5dd493f1aa088e15efde0aa5864a8ae66b07e32ae139444e36bd5d83edc0f2ae",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/lint-site-transformations.json",
+      "kind": "unchanged",
+      "base_sha256": "edc5827a836acfdab00baa66be674087a5fd20276fd8acdd751310565ce27108",
+      "candidate_original_sha256": "edc5827a836acfdab00baa66be674087a5fd20276fd8acdd751310565ce27108",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-authorized-corrections.json",
+      "kind": "unchanged",
+      "base_sha256": "732f3acee215d9d6fd72a73a970d5302d43b57b0e6801567f96d017f747b192e",
+      "candidate_original_sha256": "732f3acee215d9d6fd72a73a970d5302d43b57b0e6801567f96d017f747b192e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-changes.patch.gz",
+      "kind": "unchanged",
+      "base_sha256": "86ef7e35f5b10809d08ce9b3cd3305e22951db0cb6043f9b268b144900112730",
+      "candidate_original_sha256": "86ef7e35f5b10809d08ce9b3cd3305e22951db0cb6043f9b268b144900112730",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-regression-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "01f19444bf84733b2a20445cca1ae245a152020566c07e2c8570bed2bf3af7d7",
+      "candidate_original_sha256": "01f19444bf84733b2a20445cca1ae245a152020566c07e2c8570bed2bf3af7d7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic-generic-raw.json",
+      "kind": "unchanged",
+      "base_sha256": "09ae8a2148e19122b55c8f191bfdec19e8d3e5719619b614b454cb056ef6337d",
+      "candidate_original_sha256": "09ae8a2148e19122b55c8f191bfdec19e8d3e5719619b614b454cb056ef6337d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "3eef78ae5408cbcf34e34c72dedd1e0dbd8062f844aa4727bf1f164be397aa07",
+      "candidate_original_sha256": "3eef78ae5408cbcf34e34c72dedd1e0dbd8062f844aa4727bf1f164be397aa07",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/source-review-start.json",
+      "kind": "unchanged",
+      "base_sha256": "5bdfa8e947a99ef02ec1841f98d3b3ac7fa1c07f93970c83e85e70fb0d55166a",
+      "candidate_original_sha256": "5bdfa8e947a99ef02ec1841f98d3b3ac7fa1c07f93970c83e85e70fb0d55166a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance-matrix-raw.json",
+      "kind": "unchanged",
+      "base_sha256": "33a1af726b439a9b7231e86aaad2f808a4459d091cf41cee64445a432346b11b",
+      "candidate_original_sha256": "33a1af726b439a9b7231e86aaad2f808a4459d091cf41cee64445a432346b11b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "ceb7b8ebf08188969554d8eb5aa5afaf11a830651a3abf47037ccdf64c0da77a",
+      "candidate_original_sha256": "ceb7b8ebf08188969554d8eb5aa5afaf11a830651a3abf47037ccdf64c0da77a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "b0215c3a034c8b1289862d364aa849dddcd8316a0a1701f386ebbd83701d356b",
+      "candidate_original_sha256": "b0215c3a034c8b1289862d364aa849dddcd8316a0a1701f386ebbd83701d356b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/report.md",
+      "kind": "unchanged",
+      "base_sha256": "4ddcaeeed77f94dd2e53f91843ad7bd1073a9c15cfc6263968e3858226be44c5",
+      "candidate_original_sha256": "4ddcaeeed77f94dd2e53f91843ad7bd1073a9c15cfc6263968e3858226be44c5",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate-paths.txt",
+      "kind": "unchanged",
+      "base_sha256": "af8c64adc072e61576354c02b990364df62c35410ee8092dab921ca0856f7e4e",
+      "candidate_original_sha256": "af8c64adc072e61576354c02b990364df62c35410ee8092dab921ca0856f7e4e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate.diff.gz",
+      "kind": "unchanged",
+      "base_sha256": "6faee5a3238fee809296446b66bb58850b8e658dac99b07443a8c97221148785",
+      "candidate_original_sha256": "6faee5a3238fee809296446b66bb58850b8e658dac99b07443a8c97221148785",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-manifest.json",
+      "kind": "original manifest retained",
+      "base_sha256": "35b65f5088fc6ad6fbb6be770a367c5aef57eb9e4c542a8a18542fec60dd85d2",
+      "candidate_original_sha256": "35b65f5088fc6ad6fbb6be770a367c5aef57eb9e4c542a8a18542fec60dd85d2",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-map.json",
+      "kind": "unchanged",
+      "base_sha256": "a06d865c7f5c1501bec1700a0bcf1ff8ae457b5e212f310d3f2e76197e035ea7",
+      "candidate_original_sha256": "a06d865c7f5c1501bec1700a0bcf1ff8ae457b5e212f310d3f2e76197e035ea7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.json",
+      "kind": "unchanged",
+      "base_sha256": "78ecd798ecc8c9d86727c5d3259b995a09d2b81a9babd6eb0f36c48aa435929e",
+      "candidate_original_sha256": "78ecd798ecc8c9d86727c5d3259b995a09d2b81a9babd6eb0f36c48aa435929e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "4f50405c1b0229b71f15ee16f1a242642ed99b76e31687688e8517dc4a83f86a",
+      "candidate_original_sha256": "4f50405c1b0229b71f15ee16f1a242642ed99b76e31687688e8517dc4a83f86a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.json",
+      "kind": "unchanged",
+      "base_sha256": "ad6858fde52cd3c212950c618e028c1e656f7b607db5da27c92933c16a81ed70",
+      "candidate_original_sha256": "ad6858fde52cd3c212950c618e028c1e656f7b607db5da27c92933c16a81ed70",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "e5aa6b99e52ecf81a71c210a5be0479265f4da6b269ccbd95fa1eb47f53ec125",
+      "candidate_original_sha256": "e5aa6b99e52ecf81a71c210a5be0479265f4da6b269ccbd95fa1eb47f53ec125",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.json",
+      "kind": "unchanged",
+      "base_sha256": "b8ad5b23b09e8a21c2bcc602f8ce5fd526d65767cecd90a007782d28041a238a",
+      "candidate_original_sha256": "b8ad5b23b09e8a21c2bcc602f8ce5fd526d65767cecd90a007782d28041a238a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "dbf279ec1828b64aa301988ecb785a68f4b7d98c0d2e44369520f19be025c95d",
+      "candidate_original_sha256": "dbf279ec1828b64aa301988ecb785a68f4b7d98c0d2e44369520f19be025c95d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "d028de1844d9c124e744a3e6e2f3f87d0f54e2fbfada30c04dd5936ea1ebb9ca",
+      "candidate_original_sha256": "d028de1844d9c124e744a3e6e2f3f87d0f54e2fbfada30c04dd5936ea1ebb9ca",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "candidate_original_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.json",
+      "kind": "unchanged",
+      "base_sha256": "4cf98f30c048bc923373b2b319dd1d0a61964baedf9872d479e60b749955d3eb",
+      "candidate_original_sha256": "4cf98f30c048bc923373b2b319dd1d0a61964baedf9872d479e60b749955d3eb",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "candidate_original_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.json",
+      "kind": "unchanged",
+      "base_sha256": "514466ab21a6767e1a288f3f3c04aacacd37419e903184c8b8b46f99a6e5427c",
+      "candidate_original_sha256": "514466ab21a6767e1a288f3f3c04aacacd37419e903184c8b8b46f99a6e5427c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "64406e753d82e11c6bd63d1d04bb6aa083eefa0a46949bbfce994d556b989f0f",
+      "candidate_original_sha256": "64406e753d82e11c6bd63d1d04bb6aa083eefa0a46949bbfce994d556b989f0f",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.json",
+      "kind": "unchanged",
+      "base_sha256": "a982d0432dce04d938a6c7f113ff5fddd2e19c07c2246c55e9d9611312306e12",
+      "candidate_original_sha256": "a982d0432dce04d938a6c7f113ff5fddd2e19c07c2246c55e9d9611312306e12",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "8746e339bd4622ab6c53ccda01cde393b9eef444b03652113324a450b69cf05d",
+      "candidate_original_sha256": "8746e339bd4622ab6c53ccda01cde393b9eef444b03652113324a450b69cf05d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.json",
+      "kind": "unchanged",
+      "base_sha256": "93437fdb6aa622748097441cad00c9bf7c4496fd136e6c55563c06246c560a58",
+      "candidate_original_sha256": "93437fdb6aa622748097441cad00c9bf7c4496fd136e6c55563c06246c560a58",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "3cc5f5b18116df0a4a342494380140d8ec4880b7ff6db6d2d511a154f321e37e",
+      "candidate_original_sha256": "3cc5f5b18116df0a4a342494380140d8ec4880b7ff6db6d2d511a154f321e37e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-disposition.json",
+      "kind": "unchanged",
+      "base_sha256": "ab5995f21d4b24dd87b4130c9f30c8104c2e70682afcb7c0fce8f605af9f1544",
+      "candidate_original_sha256": "ab5995f21d4b24dd87b4130c9f30c8104c2e70682afcb7c0fce8f605af9f1544",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.json",
+      "kind": "unchanged",
+      "base_sha256": "78db98b6b196cdfea72c2bb86c853b69d23df66d035bc7e94ca7fd7fd6264638",
+      "candidate_original_sha256": "78db98b6b196cdfea72c2bb86c853b69d23df66d035bc7e94ca7fd7fd6264638",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "2568bbea2d07bce0379bec413599b57aed7e41e9d3fa170b71d69277d02fdcf4",
+      "candidate_original_sha256": "2568bbea2d07bce0379bec413599b57aed7e41e9d3fa170b71d69277d02fdcf4",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.json",
+      "kind": "unchanged",
+      "base_sha256": "045f393349ec6d2a74e9628b7315fd6e3a76c1a8470bb4485c3f9a67ce498a0d",
+      "candidate_original_sha256": "045f393349ec6d2a74e9628b7315fd6e3a76c1a8470bb4485c3f9a67ce498a0d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "0dcbf037f9a731bed9f2ba1ef51d430a3e81d79b63c65d0bbc083122276a3e1b",
+      "candidate_original_sha256": "0dcbf037f9a731bed9f2ba1ef51d430a3e81d79b63c65d0bbc083122276a3e1b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c",
+      "candidate_original_sha256": "399e7e5af9f0585911668ba059f6a2838362a3dbc06b3cd11facb3abbe52cb1c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta-paths.txt",
+      "kind": "unchanged",
+      "base_sha256": "f357578d784b099630769266339450d6807c5b47797e57cc3aa9e06f1cf6da33",
+      "candidate_original_sha256": "f357578d784b099630769266339450d6807c5b47797e57cc3aa9e06f1cf6da33",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta.diff.gz",
+      "kind": "unchanged",
+      "base_sha256": "dea39f14b5d79067a28be48037bdcdf004c1573d8519d3a0d3208bb82d4da4be",
+      "candidate_original_sha256": "dea39f14b5d79067a28be48037bdcdf004c1573d8519d3a0d3208bb82d4da4be",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.json",
+      "kind": "unchanged",
+      "base_sha256": "457c4a976b4c72dba640eac6d42e44aefc51e78bcba7425f8305673504a94e4b",
+      "candidate_original_sha256": "457c4a976b4c72dba640eac6d42e44aefc51e78bcba7425f8305673504a94e4b",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "53c0a2a7b0022998dd7f0b867aaf602461ef4a13c519759c0460cd8662e9655c",
+      "candidate_original_sha256": "53c0a2a7b0022998dd7f0b867aaf602461ef4a13c519759c0460cd8662e9655c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json",
+      "kind": "unchanged",
+      "base_sha256": "a063afd3549bc842292368306cf160a6e8f19b290589e604fe47e6a9233b0733",
+      "candidate_original_sha256": "a063afd3549bc842292368306cf160a6e8f19b290589e604fe47e6a9233b0733",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.json",
+      "kind": "unchanged",
+      "base_sha256": "395777fc3cc15981e7e659fe14a2aff623b2c985c9d25bf893d8bd17794670db",
+      "candidate_original_sha256": "395777fc3cc15981e7e659fe14a2aff623b2c985c9d25bf893d8bd17794670db",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "de08637c63eaa551b68627a3c3b00c9de6e192c2908f6725e3d6f922b5daef2a",
+      "candidate_original_sha256": "de08637c63eaa551b68627a3c3b00c9de6e192c2908f6725e3d6f922b5daef2a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lint-syntax-metadata.json",
+      "kind": "unchanged",
+      "base_sha256": "f88061be9ccfe677986aa612412f6dc46a0177c2b24208a7af9b1e4b9409509a",
+      "candidate_original_sha256": "f88061be9ccfe677986aa612412f6dc46a0177c2b24208a7af9b1e4b9409509a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock-metadata-whitespace.json",
+      "kind": "unchanged",
+      "base_sha256": "7f52863d6f65e8905e18de43d5ddbea8d95a4f6fb4960799898e72b6174bdf7a",
+      "candidate_original_sha256": "7f52863d6f65e8905e18de43d5ddbea8d95a4f6fb4960799898e72b6174bdf7a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.json",
+      "kind": "unchanged",
+      "base_sha256": "70163042a37af41b632c26e38f1969b471747d257a7236ce1d4219d166745823",
+      "candidate_original_sha256": "70163042a37af41b632c26e38f1969b471747d257a7236ce1d4219d166745823",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "candidate_original_sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.json",
+      "kind": "unchanged",
+      "base_sha256": "54827b1586ffd6a9a0da6a76ce6cdf5411c3ff9b80b86b3f769273d608147274",
+      "candidate_original_sha256": "54827b1586ffd6a9a0da6a76ce6cdf5411c3ff9b80b86b3f769273d608147274",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "69faedab32acf804d65eb1010978dc4cd2faaf79152397585520520ef5bd079a",
+      "candidate_original_sha256": "69faedab32acf804d65eb1010978dc4cd2faaf79152397585520520ef5bd079a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.json",
+      "kind": "unchanged",
+      "base_sha256": "4b36ee080c6755620bf65079dd0181ba07b93b5c544ca157a1bf064f4dc6e5df",
+      "candidate_original_sha256": "4b36ee080c6755620bf65079dd0181ba07b93b5c544ca157a1bf064f4dc6e5df",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "candidate_original_sha256": "441eb34b8bddbf0892fac068d97e6c2d503caf44dfbbf5c1125214f6a8dfdcdd",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.json",
+      "kind": "unchanged",
+      "base_sha256": "de8f10fa158c84911805da0ff3a6df9bc81a48277405eba1063a3ac18ef596a3",
+      "candidate_original_sha256": "de8f10fa158c84911805da0ff3a6df9bc81a48277405eba1063a3ac18ef596a3",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "8aa5d898ed03031ea133d4c3b8340a9154920f93e3cc349ed8dee423669eabca",
+      "candidate_original_sha256": "8aa5d898ed03031ea133d4c3b8340a9154920f93e3cc349ed8dee423669eabca",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.json",
+      "kind": "unchanged",
+      "base_sha256": "bf523ac5ae4c7b8371e2397fc32f1180575b32153dafa6cf9bc5346f56b1c714",
+      "candidate_original_sha256": "bf523ac5ae4c7b8371e2397fc32f1180575b32153dafa6cf9bc5346f56b1c714",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "bff98200fb2b03322bfa19ce58b8a26ad3a6bb40057cbe7b6f15bd4d45fbab01",
+      "candidate_original_sha256": "bff98200fb2b03322bfa19ce58b8a26ad3a6bb40057cbe7b6f15bd4d45fbab01",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "615d6c382741b9641f7efed76bc5940b30fc327dd54e1de944825c5c249dc5c1",
+      "candidate_original_sha256": "615d6c382741b9641f7efed76bc5940b30fc327dd54e1de944825c5c249dc5c1",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.json",
+      "kind": "unchanged",
+      "base_sha256": "efe4c5e1dfb074ed16711acba728729bc32830a87e1b4fc9b447c93389eef563",
+      "candidate_original_sha256": "efe4c5e1dfb074ed16711acba728729bc32830a87e1b4fc9b447c93389eef563",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "28f11758e765827c3036579cfd84c48c971932ff9b515e99d1dfcb00975a31ef",
+      "candidate_original_sha256": "28f11758e765827c3036579cfd84c48c971932ff9b515e99d1dfcb00975a31ef",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.json",
+      "kind": "unchanged",
+      "base_sha256": "9c48cbf2b9a9993b39ee49699497636ac3c3bd94cde9b2030f0835f84bee1543",
+      "candidate_original_sha256": "9c48cbf2b9a9993b39ee49699497636ac3c3bd94cde9b2030f0835f84bee1543",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "c1d492273a31e9bd98e7040078100eaf0ffa1a82e3d0ce8d58deb811bde74a41",
+      "candidate_original_sha256": "c1d492273a31e9bd98e7040078100eaf0ffa1a82e3d0ce8d58deb811bde74a41",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "434e34fbf7565d0e9107fe4ef6250936ecf0e6b0dba34f082af0818506c806a0",
+      "candidate_original_sha256": "434e34fbf7565d0e9107fe4ef6250936ecf0e6b0dba34f082af0818506c806a0",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preservation-final.json",
+      "kind": "unchanged",
+      "base_sha256": "ad5308deb9a9f3dfb01816609069c6a042271a111e70fb3b291aae8567ab557d",
+      "candidate_original_sha256": "ad5308deb9a9f3dfb01816609069c6a042271a111e70fb3b291aae8567ab557d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/probe-preflight.json",
+      "kind": "unchanged",
+      "base_sha256": "a9b475bb5378545a431ec838509f251b8d6d756506e13a07791539e29280f631",
+      "candidate_original_sha256": "a9b475bb5378545a431ec838509f251b8d6d756506e13a07791539e29280f631",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.json",
+      "kind": "unchanged",
+      "base_sha256": "7144005873ac7beae960132d524921d2f0eade49cc33a9d37a95ef3cd8c9d214",
+      "candidate_original_sha256": "7144005873ac7beae960132d524921d2f0eade49cc33a9d37a95ef3cd8c9d214",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "3aa4744577dacf80b37ae589fe386366a6dcdec7a2f3463492df6c5df68bea92",
+      "candidate_original_sha256": "3aa4744577dacf80b37ae589fe386366a6dcdec7a2f3463492df6c5df68bea92",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.json",
+      "kind": "unchanged",
+      "base_sha256": "7cced9c44436f3c243aa5e47b5aff38a99dacf0d225b46270f53c7aab76fd305",
+      "candidate_original_sha256": "7cced9c44436f3c243aa5e47b5aff38a99dacf0d225b46270f53c7aab76fd305",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "40c0dd545d87539ad798823a205ddfea0e9aa997b495f590e7fe2610a41fb17c",
+      "candidate_original_sha256": "40c0dd545d87539ad798823a205ddfea0e9aa997b495f590e7fe2610a41fb17c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.json",
+      "kind": "unchanged",
+      "base_sha256": "9562adfe038c750273bd5ed74236c10a962a365374b807f307f39e2b932d5e73",
+      "candidate_original_sha256": "9562adfe038c750273bd5ed74236c10a962a365374b807f307f39e2b932d5e73",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "d8ddb11830b9f4a2122bd48c70c378483262e5f24b617aae7c794941e568803e",
+      "candidate_original_sha256": "d8ddb11830b9f4a2122bd48c70c378483262e5f24b617aae7c794941e568803e",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md",
+      "kind": "unchanged",
+      "base_sha256": "b67d8271acfdd7f6b6f4d49d58220ce354423eaa5c8ebde9993694d26009e421",
+      "candidate_original_sha256": "b67d8271acfdd7f6b6f4d49d58220ce354423eaa5c8ebde9993694d26009e421",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/request.json",
+      "kind": "unchanged",
+      "base_sha256": "faafd49e78c136ddb498c157880451082e2762aafa7aa01af17e22d0f559e0ba",
+      "candidate_original_sha256": "faafd49e78c136ddb498c157880451082e2762aafa7aa01af17e22d0f559e0ba",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/retrospective-baselines.json",
+      "kind": "unchanged",
+      "base_sha256": "8ed6abd3939614008f7656712811df24bade79b151c9dc31e63f0ff3ab355dd7",
+      "candidate_original_sha256": "8ed6abd3939614008f7656712811df24bade79b151c9dc31e63f0ff3ab355dd7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "9eb37a34abc94c35f366299c5440401e800d76ba00c2a984efb0b8e408d9d322",
+      "candidate_original_sha256": "9eb37a34abc94c35f366299c5440401e800d76ba00c2a984efb0b8e408d9d322",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/reviewer-artifact-manifest.json",
+      "kind": "unchanged",
+      "base_sha256": "5d8d04ba55f8fc0f1c3989e85542d3e18d569238250ae9b90e82fe265a70aeaa",
+      "candidate_original_sha256": "5d8d04ba55f8fc0f1c3989e85542d3e18d569238250ae9b90e82fe265a70aeaa",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.json",
+      "kind": "unchanged",
+      "base_sha256": "3b20504533e55a9293e684c14b4ae3c5304a732a7d0cd39aa550541969d5199f",
+      "candidate_original_sha256": "3b20504533e55a9293e684c14b4ae3c5304a732a7d0cd39aa550541969d5199f",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "25ea1ae812ea6e3f537245f018cc8d3bdee0a06f28b214d2738d71262da901a7",
+      "candidate_original_sha256": "25ea1ae812ea6e3f537245f018cc8d3bdee0a06f28b214d2738d71262da901a7",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.json",
+      "kind": "unchanged",
+      "base_sha256": "636938d1de4778cd0e8ed1fd7fce607a8447a8b52bc7746c5c1961aa8a0fa9e1",
+      "candidate_original_sha256": "636938d1de4778cd0e8ed1fd7fce607a8447a8b52bc7746c5c1961aa8a0fa9e1",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "c6071a1c28d3a5e29c290f709ea5692eb40469feb788ecb4b5d97f685f4eb304",
+      "candidate_original_sha256": "c6071a1c28d3a5e29c290f709ea5692eb40469feb788ecb4b5d97f685f4eb304",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.json",
+      "kind": "unchanged",
+      "base_sha256": "82684e2c01351a81ce1f2e52828a65cfb7ffed76d9dd537123e3be4095bee2fa",
+      "candidate_original_sha256": "82684e2c01351a81ce1f2e52828a65cfb7ffed76d9dd537123e3be4095bee2fa",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "596487241b43cb06172ab2c64d453943be1a3910176306621a016fc12aac6d5a",
+      "candidate_original_sha256": "596487241b43cb06172ab2c64d453943be1a3910176306621a016fc12aac6d5a",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/scope-check.json",
+      "kind": "unchanged",
+      "base_sha256": "6e731a532e0acfb0d72457d823474b1d1bdfa05f1bb0b148f4183250b2f0795d",
+      "candidate_original_sha256": "6e731a532e0acfb0d72457d823474b1d1bdfa05f1bb0b148f4183250b2f0795d",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.json",
+      "kind": "unchanged",
+      "base_sha256": "949e80810d993c84f2281cd8377b7b773419a0a0991713843ae6c4d9f74864fc",
+      "candidate_original_sha256": "949e80810d993c84f2281cd8377b7b773419a0a0991713843ae6c4d9f74864fc",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "ce8f4bbbe9927f7a65389c866106cd009ab40e792d2a25a25064f47d87d94597",
+      "candidate_original_sha256": "ce8f4bbbe9927f7a65389c866106cd009ab40e792d2a25a25064f47d87d94597",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py",
+      "kind": "gzip byte preserved",
+      "base_sha256": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476",
+      "candidate_original_sha256": "ae948f77c18aec0b343822725fb3394efe5acfd5d81cb470fd2e15ba2f09d476",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/snapshot.json.gz",
+      "kind": "unchanged",
+      "base_sha256": "c308fabe517ace9ef27f2b76a7cd9c6a2c0ef8f62cc31993bffc65bb076b8e47",
+      "candidate_original_sha256": "c308fabe517ace9ef27f2b76a7cd9c6a2c0ef8f62cc31993bffc65bb076b8e47",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.json",
+      "kind": "unchanged",
+      "base_sha256": "91537e8fac6a6c085c3721ba96f6fa2507c75319558c4c7f56470f0f299de6fe",
+      "candidate_original_sha256": "91537e8fac6a6c085c3721ba96f6fa2507c75319558c4c7f56470f0f299de6fe",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "c18d16919f9f240db3e907242dcee828a84f3aefec4f5d42c66bfcd64ddd886c",
+      "candidate_original_sha256": "c18d16919f9f240db3e907242dcee828a84f3aefec4f5d42c66bfcd64ddd886c",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.json",
+      "kind": "unchanged",
+      "base_sha256": "e71111889957cc57401563d34364d1894c1ce3d54c5c8af34db4767ba0e91ecb",
+      "candidate_original_sha256": "e71111889957cc57401563d34364d1894c1ce3d54c5c8af34db4767ba0e91ecb",
+      "preserved": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.log.gz",
+      "kind": "unchanged",
+      "base_sha256": "b11454f983fa1ad5c2d9dce93433006b30d271bfc12ec0e96fc2c3b6063c0969",
+      "candidate_original_sha256": "b11454f983fa1ad5c2d9dce93433006b30d271bfc12ec0e96fc2c3b6063c0969",
+      "preserved": true
+    }
+  ]
+}

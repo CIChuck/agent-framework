@@ -1,0 +1,19 @@
+{
+  "source_hashes": {
+    "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/interface.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/config.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_providers.py": true
+  },
+  "lock_pins": {
+    "opentelemetry-api": true,
+    "opentelemetry-exporter-otlp": true,
+    "opentelemetry-exporter-otlp-proto-common": true,
+    "opentelemetry-exporter-otlp-proto-grpc": true,
+    "opentelemetry-exporter-otlp-proto-http": true,
+    "opentelemetry-proto": true,
+    "opentelemetry-sdk": true,
+    "opentelemetry-semantic-conventions": true
+  },
+  "lock_sha256": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c"
+}

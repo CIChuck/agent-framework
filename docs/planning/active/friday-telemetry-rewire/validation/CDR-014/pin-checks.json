@@ -1,0 +1,104 @@
+[
+  {
+    "path": "AGENTS.md",
+    "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "actual_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/repository-engineering-policy.md",
+    "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "actual_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/development-task-lifecycle.md",
+    "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+    "actual_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/independent-validation-policy.md",
+    "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "actual_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+    "matches": true
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+    "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+    "actual_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+    "matches": true
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+    "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+    "actual_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+    "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+    "actual_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+    "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+    "actual_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+    "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+    "actual_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+    "sha256": "756bc3ae21190393743416c390d6d2dcf00d69fdbabe0d5dba22b0d9be64ee86",
+    "actual_sha256": "756bc3ae21190393743416c390d6d2dcf00d69fdbabe0d5dba22b0d9be64ee86",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+    "sha256": "93a469c723ef302c0714ec38719d1c4f93126c0779cf3362f393fbb5e46a468f",
+    "actual_sha256": "93a469c723ef302c0714ec38719d1c4f93126c0779cf3362f393fbb5e46a468f",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+    "sha256": "9ad8de5f441795881cf801f5cd11515d2875cf1dc5e441919e683ec299acb44d",
+    "actual_sha256": "9ad8de5f441795881cf801f5cd11515d2875cf1dc5e441919e683ec299acb44d",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+    "sha256": "2a49006d776d6ad22a01ae52c595b4218cf2781fccfaf08990f38217d5a1312c",
+    "actual_sha256": "2a49006d776d6ad22a01ae52c595b4218cf2781fccfaf08990f38217d5a1312c",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+    "sha256": "4b7d980617f5d11b28f25511aede133e9ddd1b21f7b3c444608f7413dee938f3",
+    "actual_sha256": "4b7d980617f5d11b28f25511aede133e9ddd1b21f7b3c444608f7413dee938f3",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+    "sha256": "5048c01c0a7b21555ed3d43b2f5eca8cfa6554fb9ac7fe19df76df5c18c1cc97",
+    "actual_sha256": "5048c01c0a7b21555ed3d43b2f5eca8cfa6554fb9ac7fe19df76df5c18c1cc97",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+    "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+    "actual_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+    "sha256": "e6c9246af8b6c5b4f873779c30d17d7617060b3c762927576748260ab5493439",
+    "actual_sha256": "e6c9246af8b6c5b4f873779c30d17d7617060b3c762927576748260ab5493439",
+    "matches": true
+  }
+]

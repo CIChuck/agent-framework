@@ -1,0 +1,14 @@
+{
+  "initial_interpreter": "system Python3.9.6",
+  "initial_commands": [
+    "/usr/bin/python3 analyze_evidence.py",
+    "/usr/bin/python3 full_audit.py"
+  ],
+  "observed": "Initial registry class AST hash differed under3.9; full_audit exited1 due to missing tomllib. Affected analyses independently rerun under guarded installed Python3.13.10; correct AST pin matches and audits exit0.",
+  "final_receipts": [
+    "audit-analysis.json",
+    "audit-full.json",
+    "audit-approval.json"
+  ],
+  "sdk_imports": false
+}
