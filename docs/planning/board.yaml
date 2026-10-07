@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: independent CD-002 and WVR-004 proposal review then explicit construction and lint-disposition approval
+  next_gate: explicit CD-002 construction and separate WVR-004 lint-disposition approval
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1116,3 +1116,10 @@ events:
   action: prepared TELEM-02 directive and separate lint-disposition proposals
   note: Maintainer authorized preparation and independent review; no product construction or WVR-004 approval. Byte-preserving closeout script packaging corrects added lint debt; accepted TELEM-01 and original dirty work preserved.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent corrected TELEM-02 proposal readiness
+  note: CDR-013 READY for CD-002 and separately WVR-004; R02-01 closed. Explicit maintainer construction and lint decisions pending; not product VERIFIED or approval. Accepted TELEM-01 and unrelated dirty work preserved.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md

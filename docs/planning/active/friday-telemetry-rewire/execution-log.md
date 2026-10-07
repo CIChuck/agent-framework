@@ -563,3 +563,26 @@ failure cases; no real remote/TLS effects. Signed64-bit/UTF-8 scalar constraints
 pinned SDK compatibility boundary and inventory observations are made precise.
 These are still proposals; neither construction nor WVR-004 approval is inferred.
 Freeze updated manifest and stable proposal for a new fresh-context readiness review.
+
+## 2026-10-06 — CDR-013 corrected proposal READY / explicit decisions pending
+
+Fresh-context independent CDR-013 reviewed stable3059e139, full basee8b075a delta,
+updated15 authority pins plus manifest and required R02-01 correction. It returns
+READY for CD-002 and separately READY for WVR-004, with R02-01 closed and precise
+construction obligations retained. Its frozen report/evidence/request/raw receipts
+and installed/authority source snapshots are preserved byte-for-byte with hashes.
+Readiness is not product VERIFIED, construction approval, waiver approval or acceptance.
+
+Current gate: maintainer Chuck Russell decides CD-002 and separately WVR-004's exact
+327 temporary lint identities. No product construction or waiver renewal occurred.
+Following explicit decisions, freeze reconciled approved authority for fresh readiness,
+then separate builder and fresh delta plus aggregate product validation. No delivery
+or activation decision is inferred. TELEM-01 remains accepted and initiative local.
+
+Evidence-only closeout changes index/log/board/dashboard and reviewer storage; all
+15 reviewed controlling pins and the manifest remain identical to3059e139, along
+with all19 accepted TELEM-01 controls. Controller preservation independently confirms
+named nonprotected dirty paths and original board/dashboard unrelated +/-lines match.
+An initial private preservation comparator excluded nested .git files from a57-file
+original inventory; it was corrected to match the same inventory, and all57 hashes
+match. No original cleanup or content change was performed.

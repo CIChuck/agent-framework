@@ -1,0 +1,18 @@
+{
+  "candidate": "3059e139d5d9a041606473c56b2ee72068c381dd",
+  "checks": {
+    ".DS_Store": true,
+    "family-tree.md": true,
+    "packages/friday-chat/config.example.yaml": true,
+    "docker-bench-security/": true,
+    "docs/planning/queued/friday-tool-manifest-continuity/": true,
+    "packages/friday-sandbox/docker/Dockerfile.audit": true,
+    "docs/planning/board.yaml unrelated dirty edits": true,
+    "docs/planning/README.md unrelated dirty edits": true,
+    "accepted19pins_and_manifest": true,
+    "no_product_config_lock_delta": true,
+    "empty_index": true
+  },
+  "scope": "named nonprotected dirty paths and original user board/dashboard diff; accepted controlling authority; no product delta",
+  "protected_payloads_read": false
+}

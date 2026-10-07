@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: independent CD-002 and WVR-004 proposal review then explicit construction and lint-disposition approval
+next_gate: explicit CD-002 construction and separate WVR-004 lint-disposition approval
 execution_phase: planning
 validation_state: not_ready
 implementation_authority: granted
@@ -38,8 +38,12 @@ A separate [authority manifest](authority-manifest-TELEM-02.yaml) freezes review
 inputs. Shared adapter/factory scope keeps accepted Chat defaults/borrowed ownership
 unchanged; native synthetic gRPC collector permissions are proposed explicitly.
 First independent [CDR-012](validation/CDR-012/report.md) requested the R02-01 TLS
-trust-policy correction. The corrected proposal awaits fresh independent readiness
-before concrete construction and separate lint approval. No TELEM-02 product source, tests or dependency changes are made.
+trust-policy correction. Fresh [CDR-013](validation/CDR-013/report.md) returns
+**READY** for corrected CD-002 and separately for WVR-004 at frozen candidate
+`3059e139`. This is proposal readiness, not product VERIFIED or approval.
+The next gate is Chuck Russell's explicit construction and separate lint decisions.
+After approval, reconcile/freeze approved authority and obtain fresh readiness
+before a separate builder constructs TELEM-02. No TELEM-02 product source, tests or dependency changes are made.
 
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.

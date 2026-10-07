@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/friday-dev-board.py",
+    "show",
+    "friday-telemetry-rewire"
+  ],
+  "cwd": "/private/tmp/telem-02/corrected-readiness/baseline",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-02/corrected-readiness/tmp/baseline-show/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/corrected-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/corrected-readiness/baseline",
+    "TMPDIR": "/private/tmp/telem-02/corrected-readiness/tmp/baseline-show",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/corrected-readiness/tmp/baseline-show/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/corrected-readiness/tmp/baseline-show/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/corrected-readiness/tmp/baseline-show/pytest"
+  },
+  "exit_code": 0,
+  "seconds": 0.10338401794433594,
+  "stdout_sha256": "50c4ae03c7fc705241fcca31d6c8db02bad63613eb3f6f495fe5ccbd86f3b9cf",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
