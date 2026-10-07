@@ -645,3 +645,15 @@ and13 listener effects remain unchanged; accepted TELEM-01 controls are immutabl
 execution_phase: implementation; validation_state: pending. Other construction
 continues. Only the affected option/native tests await fresh approved-amendment
 readiness; no further maintainer approval is required for these authorized steps.
+
+## 2026-10-06 — CDR-017 READY, A02 native gate released
+
+Fresh independent approved-amendment CDR-017 returns READY at
+9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd. All19 current pins match; prior17 retains14
+unchanged controls, with only3 approved wording changes and2 new amendment pins.
+Exact13 listener effects and WVR-004327 identities/hashes/expiry remain unchanged.
+This releases fixed grpc.enable_retries=0 implementation and the already approved
+native collector nodes after refreshed final source/import/fixture/effect preflight.
+No renewed maintainer approval is required. All full candidate and independent
+product delta+aggregate gates remain mandatory. This READY is not product VERIFIED.
+execution_phase: implementation; validation_state: pending. Delivery remains local.
