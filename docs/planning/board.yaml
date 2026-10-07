@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: prepare TELEM-03 safe LLM metrics and role-service injection directive
+  next_gate: approve proposed CD-003 and separately WVR-005 for TELEM-03
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1165,3 +1165,10 @@ events:
   action: accepted TELEM-02
   note: Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03–05; next gate is TELEM-03 directive preparation, with separate implementation approval.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: prepared TELEM-03 construction proposal
+  note: Maintainer authorized preparation by proceed. CD-003 and separate WVR-005 are proposals only; accepted TELEM-01/02 and expired WVR-004 remain unchanged. No product edits or new external effects.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md

@@ -702,3 +702,34 @@ initiative stays started/local for TELEM-03 through TELEM-05. execution_phase:
 planning; validation_state: not_ready for the next unit. Next: prepare the TELEM-03
 safe LLM metrics/role-service injection directive. That source implementation
 requires its own approved directive; no delivery or external activation is inferred.
+
+
+## 2026-10-06 — TELEM-03 proposal prepared
+
+Maintainer "proceed" authorizes documentation-only preparation of CD-003 after
+TELEM-02 acceptance, not new product construction. Exact scope: eleven source,
+fourteen test and three package documentation paths. New closed request/attempt/
+batch event contract covers all typed/legacy completion, streaming and embedding
+paths; factory inventory includes compaction and explicit reorganization providers.
+Roles describe construction and preserve legacy aliases. New core emissions omit
+raw content/identifiers/errors; standalone legacy helpers remain compatibility APIs.
+No new LLM spans, turn correlation, tool/memory/persistence metrics or Langfuse
+callback work: those later units retain separate authority.
+
+Fresh isolated static source/API inventory and proposal baseline retain267 protected
+tracked paths omitted before checkout. Board/docs/offline lock pass. Root Ruff exits1
+with exactly327 unchanged identities. Eight prospective existing source targets
+produce two pre-existing no-any-return errors in adapters.py; the proposal includes
+bounded typed boundary fixes, with no suppression or typing waiver. Behavioral
+baseline probes and all candidate tests remain future mandatory work, not PASS.
+
+WVR-004 remains expired. Separate WVR-005 proposes only the same exact327 identities,
+with original hashes/config/tool/target and TELEM-03 acceptance expiry. CD-003
+proposes only the existing13 synthetic loopback effects after refreshed preflight;
+no prior permission is silently carried forward. Accepted TELEM-01/02 authority and
+unrelated dirty changes are preserved. Proposal metadata validation is recorded in
+the planning report; it is not independent readiness or product VERIFIED.
+
+execution_phase: planning; validation_state: not_ready. Initiative started/local.
+Next: explicit CD-003 scope approval and separate WVR-005 decision, followed by
+approved-authority reconciliation, required fresh review and safe pre-build probes.

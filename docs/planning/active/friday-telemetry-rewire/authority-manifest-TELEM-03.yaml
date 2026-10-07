@@ -1,0 +1,149 @@
+{
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-03",
+  "directive": "CD-003",
+  "status": "proposed; no construction or lint approval",
+  "base": "4ca9baecdcdcf26fc5e8055b326c3a54cda36cb7",
+  "aggregate_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "branch": "feature/friday-telemetry-rewire",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md",
+      "sha256": "9fa124dbafeb71a06dc00c12281767a843fbc5fc2829167268c0341b6928b31c"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json",
+      "sha256": "d48636248178ab4e53daaa038e04d590d8c1d8c65bf18d222a5c3e99b7286d23"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+      "sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md",
+      "sha256": "58689aba72d15b0fb3c536db3f583f14be712dd451f78baf0a381ce66e32dbfd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem03-contract.md",
+      "sha256": "055030f8e84428acaf9ee88053b9cc5afd98c02eff16e1aa8ff896ca637c0b82"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-03.md",
+      "sha256": "b2b0d42041e7033f4e1cb76567d139fa144e89adcbe7be217e2bfe9996eb1e2f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-disposition.md",
+      "sha256": "b795ef22aabca53adcb2014fe82bef6e28e79bf0c5b5706fcd0ef600eb852499"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-scope.json",
+      "sha256": "26bfbebd1472481ed9cf86f5fafa565f48b81bf318190d5a511fb9ec64acc699"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.md",
+      "sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.json",
+      "sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/listener-scope.json",
+      "sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf"
+    }
+  ],
+  "product_manifest": {
+    "source": [
+      "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+      "packages/friday-telemetry/src/friday_telemetry/models/llm_events.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py",
+      "packages/friday-llm/src/friday_llm/service.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/pricing.py",
+      "packages/friday-llm/src/friday_llm/telemetry.py",
+      "packages/friday-chat/src/friday_chat/telemetry.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    ],
+    "tests": [
+      "packages/friday-telemetry/tests_telemetry/test_llm_events.py",
+      "packages/friday-telemetry/tests_telemetry/test_safe_llm.py",
+      "packages/friday-llm/tests_llm/test_service.py",
+      "packages/friday-llm/tests_llm/test_embeddings.py",
+      "packages/friday-llm/tests_llm/test_streaming.py",
+      "packages/friday-llm/tests_llm/test_typed_service.py",
+      "packages/friday-llm/tests_llm/test_resilience.py",
+      "packages/friday-llm/tests_llm/test_pricing.py",
+      "packages/friday-llm/tests_llm/test_safe_telemetry.py",
+      "packages/friday-chat/tests_chat/test_telemetry.py",
+      "packages/friday-chat/tests_chat/test_runtime.py",
+      "packages/friday-chat/tests_chat/test_reorganization_mutation.py",
+      "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+      "packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    ],
+    "documentation": [
+      "packages/friday-telemetry/README.md",
+      "packages/friday-llm/README.md",
+      "packages/friday-chat/README.md"
+    ]
+  },
+  "acceptance_criteria": [
+    "AC03-01",
+    "AC03-02",
+    "AC03-03",
+    "AC03-04",
+    "AC03-05",
+    "AC03-06",
+    "AC03-07",
+    "AC03-08"
+  ],
+  "review_mode": "proposal preparation; not independent readiness or product verification",
+  "external_services": "Proposed exact13 existing synthetic loopback nodes only after explicit CD003 approval and final preflight; no additional effects.",
+  "lint_disposition": "WVR004 expired; separate WVR005 proposed only; root raw327 nonzero",
+  "future_product_review": "fresh-context read-only validator of exact unit delta and complete aggregate; maintainer acceptance separate"
+}
