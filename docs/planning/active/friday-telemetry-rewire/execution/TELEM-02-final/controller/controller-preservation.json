@@ -1,0 +1,19 @@
+{
+  "candidate": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "checks": {
+    ".DS_Store": true,
+    "family-tree.md": true,
+    "packages/friday-chat/config.example.yaml": true,
+    "docker-bench-security/": true,
+    "docs/planning/queued/friday-tool-manifest-continuity/": true,
+    "packages/friday-sandbox/docker/Dockerfile.audit": true,
+    "docs/planning/board.yaml unrelated dirty edits": true,
+    "docs/planning/README.md unrelated dirty edits": true,
+    "accepted19pins_and_manifest": true,
+    "product_delta_only_exact_CD002_paths": true,
+    "all19_current_unit_authority_pins": true,
+    "empty_index": true
+  },
+  "scope": "named nonprotected dirty paths and original user board/dashboard diff; accepted controlling authority; product delta constrained to exact approved CD002 manifest",
+  "protected_payloads_read": false
+}

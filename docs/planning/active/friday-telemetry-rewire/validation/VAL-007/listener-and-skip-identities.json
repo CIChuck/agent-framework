@@ -1,0 +1,28 @@
+{
+  "exact13expanded_nodes_passed_root": [
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_non_streaming_final_http_payload",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[xhigh]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[medium]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[low]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_provider_default_emits_no_reasoning_override",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_disabled_reasoning_reaches_final_http_json",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_named_tool_choice_uses_lm_studio_bounded_wire_form",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+  ],
+  "historical_skip_sources_byte_unchanged": true,
+  "chat_skips": [
+    "SKIPPED [2] packages/friday-chat/tests_chat/test_live_lmstudio.py:96: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:109: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:124: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+    "SKIPPED [1] packages/friday-chat/tests_chat/test_live_lmstudio.py:154: set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests"
+  ],
+  "root_skips": [
+    "SKIPPED [1] packages/friday-memory/tests_memory/test_adapters/test_graph.py:250: could not import 'scipy': No module named 'scipy'"
+  ],
+  "no_new_native_listener": true
+}

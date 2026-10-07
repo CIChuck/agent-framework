@@ -1,0 +1,15 @@
+{
+  "packages/friday-telemetry/src/friday_telemetry/__init__.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/config.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/factory.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/lifecycle.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/providers/_otel_exporter.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/providers/_otel_processor.py": true,
+  "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": true,
+  "packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py": true,
+  "packages/friday-telemetry/tests_telemetry/test_otel_contract.py": true,
+  "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py": true,
+  "packages/friday-telemetry/tests_telemetry/test_providers.py": true,
+  "packages/friday-telemetry/tests_telemetry/test_telemetry_factory.py": true,
+  "packages/friday-telemetry/README.md": true
+}

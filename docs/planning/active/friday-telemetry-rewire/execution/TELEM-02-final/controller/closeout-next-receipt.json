@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/friday-dev-board.py",
+    "next"
+  ],
+  "cwd": "/private/tmp/telem-02/controller-closeout/metadata-check",
+  "revision": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-02/controller-closeout/tmp/closeout-next/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-agent/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-chat/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-cli/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-core/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-finance/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-llm/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-mcp/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-memory/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-moltbook/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-optimization/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-runtime/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-sandbox/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-speech/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-telemetry/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-tools/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-transcript/src:/private/tmp/telem-02/controller-closeout/metadata-check/packages/friday-chat/tests_chat:/private/tmp/telem-02/controller-closeout/metadata-check",
+    "TMPDIR": "/private/tmp/telem-02/controller-closeout/tmp/closeout-next",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/controller-closeout/tmp/closeout-next/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/controller-closeout/tmp/closeout-next/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/controller-closeout/tmp/closeout-next/pytest"
+  },
+  "started_epoch": 1791334977.309404,
+  "finished_epoch": 1791334977.579572,
+  "seconds": 0.2701680660247803,
+  "exit_code": 0,
+  "tracked_unchanged": true,
+  "log_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+  "snapshot_sha256": "b76008a8f92c5d9800742aca9ce8db0262f3648575ecfa3902ebca3782c4727e"
+}

@@ -1,0 +1,18 @@
+{
+  "nonproduct_attempts": [
+    {
+      "receipt": "tooling-receipt.json",
+      "raw_exit": 2,
+      "cause": "Private metadata.py was invoked before creation; raw missing-file stdout/stderr retained; tooling-retry succeeded after helper creation."
+    },
+    {
+      "source": "tool call diagnostic during static_contract.py preparation",
+      "cause": "Private parser used JSON for accepted YAML manifest; corrected private helper, refrozen, static-contract-receipt.json exit0. No product or authority edit."
+    },
+    {
+      "source": "tool call diagnostic during floor artifact preparation",
+      "cause": "System Python lacked packaging; installed allowed3.13 interpreter used via frozen floor_probe.py; floor-specifiers-receipt.json exit0. No installs."
+    }
+  ],
+  "first_independent_sdk_probe": "retained supplemental run; stronger refrozen and source-audited rerun is authoritative"
+}

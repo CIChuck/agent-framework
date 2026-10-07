@@ -1,0 +1,39 @@
+{
+  "original_HEAD_index_unchanged": true,
+  "original_status_unchanged": false,
+  "status_delta": "Only controller-createduntrackedexecution/TELEM-02-final evidence directory; provenance reconciled in original-status-reconciliation.json; no reviewedinputdrift",
+  "original_governed13product_matches_commit": {
+    "packages/friday-telemetry/src/friday_telemetry/__init__.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/config.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/factory.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/lifecycle.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/providers/_otel_exporter.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/providers/_otel_processor.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_otel_contract.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_providers.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_telemetry_factory.py": true,
+    "packages/friday-telemetry/README.md": true
+  },
+  "snapshots": {
+    "candidate": {
+      "revision": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+      "tracked_file_count": 3002,
+      "all_tracked_unchanged": true,
+      "267protectedpaths_absent": true,
+      "guard_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+      "snapshot_sha256": "d8466bac68ecdc1207d47e26ac922c923760b7d0c323c2fe0770ffa24fd1fbec"
+    },
+    "base": {
+      "revision": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+      "tracked_file_count": 2334,
+      "all_tracked_unchanged": true,
+      "267protectedpaths_absent": true,
+      "guard_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+      "snapshot_sha256": "624497f638f982dea7edbfe019e0d18309e252cf1b617d0a4057724b9cc9688e"
+    }
+  },
+  "original_runtime_or_credential_payloads_not_read_or_hashed": true
+}

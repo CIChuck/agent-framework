@@ -1,0 +1,146 @@
+{
+  "hashes": {
+    "packages/friday-telemetry/src/friday_telemetry/interface.py": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61",
+    "packages/friday-telemetry/src/friday_telemetry/config.py": "dc0d17ff6b3d8b0a07d15473130c3689c105680ef685bcb2e52bcdd7f3b350e5",
+    "packages/friday-telemetry/src/friday_telemetry/__init__.py": "cda7168dde9044ba475f58977ca0be624518d9d636ae0a2c012a46455bb98438",
+    "packages/friday-telemetry/src/friday_telemetry/providers/__init__.py": "76f14cc2ed262bcae5382952182ed149f4d25c801487cdf356d820640865f2aa",
+    "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": "dbbf24380c6ff6d3f3d3e9ed6f9a426f5ed12a9629bb4d1031f318bb139151f5",
+    "packages/friday-telemetry/src/friday_telemetry/providers/debug.py": "3b8921c89eb99292fd89808ebbfcf77e011d65b24cf3245e867bbdc5018145bb",
+    "packages/friday-telemetry/src/friday_telemetry/providers/composite.py": "ae77ac4ccd49d577ee869b00ff4cc15cf73d1a33d62f3cd55b550ad278a99de1",
+    "packages/friday-chat/src/friday_chat/config.py": "e8063c648cbe34ec22e286d3abc1c94db4e10ce36fb0869dc3ba92d005030f0f",
+    "packages/friday-telemetry/tests_telemetry/test_providers.py": "9ea8350c74de02a21a9ec299f652d326be8f1bc084dc3182ae1a7bb7d045c416",
+    "packages/friday-telemetry/tests_telemetry/test_mcp_telemetry.py": "b974efe5b48e90f68ab03d2faf38089543cb199af03d4533805a1c0bfc967a98",
+    "packages/friday-telemetry/pyproject.toml": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+    "pyproject.toml": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+    "uv.lock": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c"
+  },
+  "public_exports": [
+    "TelemetryInterface",
+    "SpanRecord",
+    "EventRecord",
+    "DebugTelemetryRecorder",
+    "OpenTelemetryProvider",
+    "CompositeProvider",
+    "RequestContext",
+    "GenAIOperationType",
+    "ErrorCategory",
+    "TokenUsage",
+    "CostEstimate",
+    "StreamingMetrics",
+    "ConversationContext",
+    "LLMCallMetrics",
+    "EmbeddingMetrics",
+    "MemoryWriteMetrics",
+    "MemoryRecallMetrics",
+    "MaintenanceMetrics",
+    "ArbitrationOpsMetrics",
+    "MCPEvent",
+    "MCPEventName",
+    "MCPEventReason",
+    "MCPTelemetryHelper",
+    "opaque_mcp_ref",
+    "OTelAttributes",
+    "FridayMemoryAttributes",
+    "FridayToolAttributes",
+    "FridayAgentAttributes",
+    "LLMTelemetryHelper",
+    "StreamingTracker",
+    "CompletionTracker",
+    "EmbeddingTracker",
+    "classify_error",
+    "MemoryTelemetryHelper",
+    "MemoryWriteTracker",
+    "MemoryRecallTracker",
+    "MaintenanceTracker",
+    "TelemetryConfig"
+  ],
+  "api": {
+    "packages/friday-telemetry/src/friday_telemetry/interface.py": {
+      "TelemetryInterface": {
+        "capture_event": "self, event_name: str, data: dict[str, Any]",
+        "start_span": "self, name: str, parent_id: str | None=None",
+        "end_span": "self, span_id: str, data: dict[str, Any] | None=None"
+      }
+    },
+    "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": {
+      "OpenTelemetryProvider": {
+        "__init__": "self, service_name: str, endpoint: str | None=None",
+        "capture_event": "self, event_name: str, data: dict[str, Any]",
+        "start_span": "self, name: str, parent_id: str | None=None",
+        "end_span": "self, span_id: str, data: dict[str, Any] | None=None"
+      }
+    }
+  },
+  "legacy_default_expressions": {
+    "TelemetryConfig": {
+      "enabled": {
+        "annotation": "bool",
+        "default_expression": "Field(default=True, description='Whether telemetry collection is enabled')"
+      },
+      "service_name": {
+        "annotation": "str",
+        "default_expression": "Field(default='friday', description='Service name for traces')"
+      },
+      "otel_enabled": {
+        "annotation": "bool",
+        "default_expression": "Field(default=False, description='Enable OpenTelemetry export')"
+      },
+      "otel_endpoint": {
+        "annotation": "str | None",
+        "default_expression": "Field(default=None, description='OTLP endpoint URL')"
+      },
+      "otel_headers": {
+        "annotation": "dict[str, str]",
+        "default_expression": "Field(default_factory=dict, description='OTLP request headers')"
+      },
+      "sampling_rate": {
+        "annotation": "float",
+        "default_expression": "Field(default=1.0, ge=0.0, le=1.0, description='Trace sampling rate (0.0-1.0)')"
+      },
+      "always_sample_errors": {
+        "annotation": "bool",
+        "default_expression": "Field(default=True, description='Always sample traces with errors')"
+      },
+      "debug_enabled": {
+        "annotation": "bool",
+        "default_expression": "Field(default=False, description='Enable debug telemetry recorder')"
+      },
+      "console_export": {
+        "annotation": "bool",
+        "default_expression": "Field(default=False, description='Export traces to console (development)')"
+      },
+      "batch_size": {
+        "annotation": "int",
+        "default_expression": "Field(default=512, ge=1, description='Maximum batch size for exports')"
+      },
+      "export_interval_ms": {
+        "annotation": "int",
+        "default_expression": "Field(default=5000, ge=100, description='Export interval in milliseconds')"
+      },
+      "max_attribute_length": {
+        "annotation": "int",
+        "default_expression": "Field(default=1024, ge=1, description='Maximum attribute value length')"
+      },
+      "include_query_text": {
+        "annotation": "bool",
+        "default_expression": "Field(default=False, description='Include query text in recall metrics (may be sensitive)')"
+      }
+    },
+    "ChatTelemetryConfig": {
+      "enabled": {
+        "annotation": "bool",
+        "default_expression": "False"
+      },
+      "provider": {
+        "annotation": "Literal['debug']",
+        "default_expression": "'debug'"
+      }
+    }
+  },
+  "missing_new_source": [
+    "packages/friday-telemetry/src/friday_telemetry/lifecycle.py",
+    "packages/friday-telemetry/src/friday_telemetry/factory.py",
+    "packages/friday-telemetry/src/friday_telemetry/providers/_otel_processor.py",
+    "packages/friday-telemetry/src/friday_telemetry/providers/_otel_exporter.py"
+  ]
+}

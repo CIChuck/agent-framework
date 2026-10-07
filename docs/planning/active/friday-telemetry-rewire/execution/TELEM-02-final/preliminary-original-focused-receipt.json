@@ -1,0 +1,41 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "packages/friday-chat/tests_chat/test_telemetry.py",
+    "packages/friday-chat/tests_chat/test_cli.py",
+    "packages/friday-chat/tests_chat/test_runtime.py",
+    "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+    "packages/friday-telemetry/tests_telemetry/test_providers.py",
+    "-rA"
+  ],
+  "cwd": "/private/tmp/telem-02/builder-execution/build03",
+  "revision": "95949e49df7b55f8da391a47f6df67cc2ff8e5ce",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preliminary-original-focused/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/builder-execution/build03/packages/friday-agent/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-chat/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-cli/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-core/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-finance/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-llm/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-mcp/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-memory/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-moltbook/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-optimization/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-runtime/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-sandbox/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-speech/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-telemetry/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-tools/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-transcript/src:/private/tmp/telem-02/builder-execution/build03/packages/friday-chat/tests_chat:/private/tmp/telem-02/builder-execution/build03",
+    "TMPDIR": "/private/tmp/telem-02/builder-execution/tmp/preliminary-original-focused",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preliminary-original-focused/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preliminary-original-focused/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/builder-execution/tmp/preliminary-original-focused/pytest"
+  },
+  "started_epoch": 1791333668.134781,
+  "finished_epoch": 1791333671.972073,
+  "seconds": 3.837292194366455,
+  "exit_code": 0,
+  "tracked_unchanged": true,
+  "log_sha256": "211b231d53209d4719ff5ff474d59f30933c00510f0a5be9e37c392f09d4a908",
+  "snapshot_sha256": "93053db391fe9f5e55e57953267b0d7cd0e0bdee3a3d21bd5a02423ef8ea06ae"
+}

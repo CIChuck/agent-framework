@@ -1,0 +1,37 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/friday-dev-board.py",
+    "show",
+    "friday-telemetry-rewire"
+  ],
+  "cwd": "/private/tmp/telem-02/product-validation/candidate",
+  "revision": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-02/product-validation/tmp/gate-14/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/product-validation/candidate/packages/friday-agent/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-chat/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-cli/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-core/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-finance/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-llm/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-mcp/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-memory/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-optimization/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-runtime/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-speech/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-tools/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-transcript/src:/private/tmp/telem-02/product-validation/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/product-validation/candidate",
+    "TMPDIR": "/private/tmp/telem-02/product-validation/tmp/gate-14",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/product-validation/tmp/gate-14/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/product-validation/tmp/gate-14/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/product-validation/tmp/gate-14/pytest"
+  },
+  "started_epoch": 1791334168.908397,
+  "finished_epoch": 1791334169.265894,
+  "seconds": 0.357496976852417,
+  "exit_code": 0,
+  "tracked_unchanged": true,
+  "stdout_sha256": "687f541303aa54b1ee95aa438b86cecbc5cef7a43e5c432e09d0fc7a80644382",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

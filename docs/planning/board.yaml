@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: TELEM-02 implementation and mandatory delta plus aggregate product validation
+  next_gate: maintainer acceptance of VERIFIED TELEM-02; then TELEM-03 directive preparation
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -424,6 +424,11 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1137,3 +1142,17 @@ events:
   action: released approved TELEM-02 construction after readiness and baselines
   note: CDR-015 READY closes A02-01; frozen fake-only true pre-build source/API baseline. Exact CD-002 and WVR-004 approved; product checks and fresh delta plus aggregate validation pending. Delivery local and TELEM-01 acceptance retained.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-015/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-002 A02 fixed native retry disablement
+  note: Explicit approved response; one fixed grpc.enable_retries=0 option, unchanged13 listener effects and WVR-004 expiry. Fresh CDR-017 READY preceded implementation.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: proposed TELEM-02 completion after independent verification
+  note: VAL-007 VERIFIED full unit and complete2155a0f aggregate at45f3114; no findings. Root2891, Chat828 and owning2873passed; exact raw327 lint disposition retained. Acceptance pending, initiative started, delivery local, later units separately governed.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
