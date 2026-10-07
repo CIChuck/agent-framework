@@ -44,7 +44,8 @@ from friday_telemetry.attributes import (
 )
 
 # Config
-from friday_telemetry.config import TelemetryConfig
+from friday_telemetry.config import OTelConfig, TelemetryConfig, TelemetryFactoryConfig
+from friday_telemetry.factory import ManagedTelemetry, create_telemetry
 
 # Helpers
 from friday_telemetry.helpers import (
@@ -60,6 +61,13 @@ from friday_telemetry.helpers import (
 )
 from friday_telemetry.helpers.mcp import MCPTelemetryHelper, opaque_mcp_ref
 from friday_telemetry.interface import TelemetryInterface
+from friday_telemetry.lifecycle import (
+    LifecycleResult,
+    TelemetryInitializationError,
+    TelemetryLifecycle,
+    TelemetryOperationError,
+    TelemetrySnapshot,
+)
 
 # Models - Common
 from friday_telemetry.models.common import RequestContext
@@ -144,6 +152,15 @@ __all__ = [
     "MaintenanceTracker",
     # Config
     "TelemetryConfig",
+    "OTelConfig",
+    "TelemetryFactoryConfig",
+    "ManagedTelemetry",
+    "create_telemetry",
+    "TelemetryLifecycle",
+    "LifecycleResult",
+    "TelemetrySnapshot",
+    "TelemetryInitializationError",
+    "TelemetryOperationError",
 ]
 
 __version__ = "0.1.0a2"

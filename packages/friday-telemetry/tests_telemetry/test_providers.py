@@ -127,18 +127,30 @@ class TestDebugTelemetryRecorder:
 class TestOpenTelemetryProvider:
     """Tests for OpenTelemetryProvider."""
 
-    def test_no_op_without_otel(self):
+    def test_no_op_without_otel(self, monkeypatch):
         """Test that provider works in no-op mode without OpenTelemetry."""
         # This test verifies the provider handles missing OTel gracefully
+        import builtins
+
+        original_import = builtins.__import__
+
+        def missing_sdk(name, *args, **kwargs):
+            if name.startswith("opentelemetry"):
+                raise ImportError("synthetic missing SDK")
+            return original_import(name, *args, **kwargs)
+
+        monkeypatch.setattr(builtins, "__import__", missing_sdk)
         provider = OpenTelemetryProvider(service_name="test-service")
 
         # Should not raise even without OTel installed
-        provider.capture_event("test", {"key": "value"})
-        span_id = provider.start_span("test_span")
-        provider.end_span(span_id, {"result": "ok"})
-
-        # span_id should still be valid (for correlation)
-        assert span_id is not None
+        try:
+            provider.capture_event("test", {"key": "value"})
+            span_id = provider.start_span("test_span")
+            provider.end_span(span_id, {"result": "ok"})
+            assert span_id is not None
+            assert not provider.snapshot().available
+        finally:
+            provider.shutdown()
 
 
 class TestCompositeProvider:
