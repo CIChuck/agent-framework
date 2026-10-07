@@ -1,0 +1,1780 @@
+{
+  "candidate": "dd543fd6a6819ec0c4fb2529fa384fea886f5509",
+  "unit_base": "4ca9baecdcdcf26fc5e8055b326c3a54cda36cb7",
+  "aggregate_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "mode": "builder evidence; no independent verdict or maintainer acceptance",
+  "gzip_mtime": 0,
+  "artifacts": [
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0071a5532e01460a418bbaefc38ae10be6a344c7c7dc0d7f4bf432145921eebe-clean-README.md",
+      "stored": "raw/controller/clean-README.md.gz",
+      "original_sha256": "0071a5532e01460a418bbaefc38ae10be6a344c7c7dc0d7f4bf432145921eebe",
+      "stored_sha256": "96968eca19d6e92d809cc550d2332c5a71c73407554f351f98207b906c9374e7",
+      "bytes": 5416,
+      "captured_origin": "/private/tmp/telem-03/construction/clean-README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/acc702643a9229cb49b4c64e4658a4ec65c5d422f2de6eeecfb3420a8a8f940c-clean-board.yaml",
+      "stored": "raw/controller/clean-board.yaml.gz",
+      "original_sha256": "acc702643a9229cb49b4c64e4658a4ec65c5d422f2de6eeecfb3420a8a8f940c",
+      "stored_sha256": "b4c9afc9f7120552982cc49eb7456249b2687c0a605426114be7270b5420b58e",
+      "bytes": 61158,
+      "captured_origin": "/private/tmp/telem-03/construction/clean-board.yaml"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0241aecacee348ab96a43a34709b9de3db7631a718707fd343a65b0a07e5beab-contracts.py",
+      "stored": "raw/controller/contracts.py.gz",
+      "original_sha256": "0241aecacee348ab96a43a34709b9de3db7631a718707fd343a65b0a07e5beab",
+      "stored_sha256": "8ad0ba8dfff6ef0b160f0334f5f08de945a487b4f70b3740a48258b17f03a318",
+      "bytes": 5067,
+      "captured_origin": "/private/tmp/telem-03/construction/contracts.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/79955b058b708bce5898b80e27708f2b5d87eb2f2ec01c75c48f20bf4de2b498-driver.py",
+      "stored": "raw/controller/driver.py.gz",
+      "original_sha256": "79955b058b708bce5898b80e27708f2b5d87eb2f2ec01c75c48f20bf4de2b498",
+      "stored_sha256": "2576e02037cd82f4741259d30c07b7f1f26f0c146ed89059ae9457ba1d5a0608",
+      "bytes": 992,
+      "captured_origin": "/private/tmp/telem-03/construction/driver.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/2ac831cc4b20f4bf44f78f0082e311e0ca44faf79fbfec6d9284d4ad8cc25784-freeze_evidence.py",
+      "stored": "raw/controller/freeze_evidence.py.gz",
+      "original_sha256": "2ac831cc4b20f4bf44f78f0082e311e0ca44faf79fbfec6d9284d4ad8cc25784",
+      "stored_sha256": "0a606fd2adb95dcfd2afa2e2a5a5997015b5ebf578c07c1c32dee46b5c0d1fcb",
+      "bytes": 2435,
+      "captured_origin": "/private/tmp/telem-03/construction/freeze_evidence.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/5df6c9b5458bec4a9bfde37cca12ff03fa0e7dbcdd2799091423368ac7eed221-frozen-aggregate-ruff-receipt.json",
+      "stored": "raw/controller/frozen-aggregate-ruff-receipt.json.gz",
+      "original_sha256": "5df6c9b5458bec4a9bfde37cca12ff03fa0e7dbcdd2799091423368ac7eed221",
+      "stored_sha256": "f045a54862eef9a77218e5154d10f4f503120c779d06c3a9ca3eb7a1de4caf47",
+      "bytes": 10927,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-aggregate-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18-frozen-aggregate-ruff.log",
+      "stored": "raw/controller/frozen-aggregate-ruff.log.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-aggregate-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/e53d6c9530a863003444c9fbb16d6e5b15bfd61e2cc25ad2c0a1bf988dfa571c-frozen-board-next-receipt.json",
+      "stored": "raw/controller/frozen-board-next-receipt.json.gz",
+      "original_sha256": "e53d6c9530a863003444c9fbb16d6e5b15bfd61e2cc25ad2c0a1bf988dfa571c",
+      "stored_sha256": "b985a35f4ac623dcb19e8813549d2de61c9db3a529e7e9aeac8df3e9372a560f",
+      "bytes": 2993,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-next-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830-frozen-board-next.log",
+      "stored": "raw/controller/frozen-board-next.log.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-next.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/99e779d57554ff4b3e33bc568158191f02e7ce950ca102a4cce749b9f290c9fc-frozen-board-render-receipt.json",
+      "stored": "raw/controller/frozen-board-render-receipt.json.gz",
+      "original_sha256": "99e779d57554ff4b3e33bc568158191f02e7ce950ca102a4cce749b9f290c9fc",
+      "stored_sha256": "0f44c34dfd41c86d4a1f2693b70a403124ad50b2d6e5e60ba3ac37b6c92c0b38",
+      "bytes": 3016,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-render-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33-frozen-board-render.log",
+      "stored": "raw/controller/frozen-board-render.log.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-render.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/25c0fef368f56b1d5b0b3af611c38fb622e71bce861763caac1186d0436cd038-frozen-board-show-receipt.json",
+      "stored": "raw/controller/frozen-board-show-receipt.json.gz",
+      "original_sha256": "25c0fef368f56b1d5b0b3af611c38fb622e71bce861763caac1186d0436cd038",
+      "stored_sha256": "036dcb0038a842004e53a37a242c554cf8e7409340ed7a14211026902e87d0f1",
+      "bytes": 3024,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-show-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7333d5663796655134c5b66f60e883e53a9123e15d91c0cfed179e1d7c91dfe3-frozen-board-show.log",
+      "stored": "raw/controller/frozen-board-show.log.gz",
+      "original_sha256": "7333d5663796655134c5b66f60e883e53a9123e15d91c0cfed179e1d7c91dfe3",
+      "stored_sha256": "667f5e1fd3e06ff3abfa6b5cfd85d98a777c54f6d79d592bc51e2ae3a7410939",
+      "bytes": 3713,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-show.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/bd124b29921e903e56e0bfc8f40638642f74fecba50a34261c5ca022e7426aa2-frozen-board-validate-receipt.json",
+      "stored": "raw/controller/frozen-board-validate-receipt.json.gz",
+      "original_sha256": "bd124b29921e903e56e0bfc8f40638642f74fecba50a34261c5ca022e7426aa2",
+      "stored_sha256": "676b74f71db5d80ff677e825656b2aa89a7f049e545662250942c8e71b09de44",
+      "bytes": 3015,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-validate-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94-frozen-board-validate.log",
+      "stored": "raw/controller/frozen-board-validate.log.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-board-validate.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/2855cacde0fd2ed7c0f728d13634532d182d75c6088041c786809698ec70ba25-frozen-candidate-snapshot.json",
+      "stored": "raw/controller/frozen-candidate-snapshot.json.gz",
+      "original_sha256": "2855cacde0fd2ed7c0f728d13634532d182d75c6088041c786809698ec70ba25",
+      "stored_sha256": "ff726ad24f483898cd6086f2f0b01be66911bb3b37630215747a79e2ce73cc9f",
+      "bytes": 1754577,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/dd542f8db6a2877edb711b3f3673a3fd99e6c4926782334845864c2252704f94-frozen-control-audit-receipt.json",
+      "stored": "raw/controller/frozen-control-audit-receipt.json.gz",
+      "original_sha256": "dd542f8db6a2877edb711b3f3673a3fd99e6c4926782334845864c2252704f94",
+      "stored_sha256": "44e604b7f8e17e0c0ab82a36339880033d08826d16be576ec6a19bd3f6ee3216",
+      "bytes": 3018,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-control-audit-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/dbeab06e2ad339d14d20039f8abf04b774ff6befe9752d04e72be232898cc33b-frozen-control-audit.json",
+      "stored": "raw/controller/frozen-control-audit.json.gz",
+      "original_sha256": "dbeab06e2ad339d14d20039f8abf04b774ff6befe9752d04e72be232898cc33b",
+      "stored_sha256": "35a33bf576884459f6dc64d2cbdad3fe752e82ef06c1ad8717985b9503d1d732",
+      "bytes": 863,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-control-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/63d3a386a1e31616b5f0becbfcca5dd4a19ab06aa3d16664695ad807fdc9e6a2-frozen-control-audit.log",
+      "stored": "raw/controller/frozen-control-audit.log.gz",
+      "original_sha256": "63d3a386a1e31616b5f0becbfcca5dd4a19ab06aa3d16664695ad807fdc9e6a2",
+      "stored_sha256": "fdd6098383e8013ad3655e1fbff5628a0b1e1cd550e897c7ef71d372d3a6d0b2",
+      "bytes": 100,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-control-audit.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3b61b0b47372488ad9f8a048571de58cb6fa9fcfe35590fa2e2dbbc8e2aa3a61-frozen-documentation-receipt.json",
+      "stored": "raw/controller/frozen-documentation-receipt.json.gz",
+      "original_sha256": "3b61b0b47372488ad9f8a048571de58cb6fa9fcfe35590fa2e2dbbc8e2aa3a61",
+      "stored_sha256": "70a21e3a095979aa395f0c11e5cffa71594465cc517317a6479938cb3bc99f6b",
+      "bytes": 3007,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-documentation-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0b5ee87a4f95bff168eba36204b737c4742a30eb0a602e29e7bfc1f8688ed4fc-frozen-documentation.log",
+      "stored": "raw/controller/frozen-documentation.log.gz",
+      "original_sha256": "0b5ee87a4f95bff168eba36204b737c4742a30eb0a602e29e7bfc1f8688ed4fc",
+      "stored_sha256": "59315278c38ab245f5b515772848224ba46cc6af321c40a0920991f4771c9ac1",
+      "bytes": 70,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-documentation.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ba03f596263bed77860ddecf2b6e74a7ad48d4b52466e9aa9c7e6a4adb7774cb-frozen-lint-disposition.json",
+      "stored": "raw/controller/frozen-lint-disposition.json.gz",
+      "original_sha256": "ba03f596263bed77860ddecf2b6e74a7ad48d4b52466e9aa9c7e6a4adb7774cb",
+      "stored_sha256": "7121bf865f243a93b178701b78d3e6eb67ddb045ae3393613f12f2c0a9423b65",
+      "bytes": 313,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-lint-disposition.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7a6c1f8aa8f1249fb2eb05ea55c4d778aedac9c2bd5b0b8741ac1dd301e79b2d-frozen-root-ruff-receipt.json",
+      "stored": "raw/controller/frozen-root-ruff-receipt.json.gz",
+      "original_sha256": "7a6c1f8aa8f1249fb2eb05ea55c4d778aedac9c2bd5b0b8741ac1dd301e79b2d",
+      "stored_sha256": "1296512a226b9b73c75a748f5f3f17c6622356f2055ae54823c834a9956584b8",
+      "bytes": 2994,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-root-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c6a58ddba5bd8f7914db81cedb632ddc75428303fe9e07313f7648e92a483512-frozen-root-ruff.log",
+      "stored": "raw/controller/frozen-root-ruff.log.gz",
+      "original_sha256": "c6a58ddba5bd8f7914db81cedb632ddc75428303fe9e07313f7648e92a483512",
+      "stored_sha256": "a229befa40b0b355a0b9d27d9bb22b4977ab9d0576fc6a0abee531a01e57e89b",
+      "bytes": 175496,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-root-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/399d35a258b83253660fd5238663ed0b6a4bd7a8272773c5a9a434512b4ae616-frozen-sdk-consumer-receipt.json",
+      "stored": "raw/controller/frozen-sdk-consumer-receipt.json.gz",
+      "original_sha256": "399d35a258b83253660fd5238663ed0b6a4bd7a8272773c5a9a434512b4ae616",
+      "stored_sha256": "ff6a630806f5039df36ab48ff911d9d592660908f63e70ec3d23b51d4d25e259",
+      "bytes": 3079,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-sdk-consumer-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0604b3f6536f4ecc5c46e2ae607e8bd73fe822104ec90da39919f84647549600-frozen-sdk-consumer.log",
+      "stored": "raw/controller/frozen-sdk-consumer.log.gz",
+      "original_sha256": "0604b3f6536f4ecc5c46e2ae607e8bd73fe822104ec90da39919f84647549600",
+      "stored_sha256": "771961dedeee3903f8320374b2bee8ba62803c9a1fbf7a0181beeb8e5884e97c",
+      "bytes": 120,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-sdk-consumer.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ad4d34073a291d4bc3cb36d373d55dea3fb09f99436927ee61fb40cd7f78cbb4-frozen-sdk-evidence.json",
+      "stored": "raw/controller/frozen-sdk-evidence.json.gz",
+      "original_sha256": "ad4d34073a291d4bc3cb36d373d55dea3fb09f99436927ee61fb40cd7f78cbb4",
+      "stored_sha256": "01fdc938635521b95b8bff743d25fe17c2ad080e5b7b8d5306b1981796fed767",
+      "bytes": 5757,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-sdk-evidence.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d4067fc8c4b29b8856fd2dd874830244bcf0bb51f971598552b3352c39271101-frozen-source-equivalence.json",
+      "stored": "raw/controller/frozen-source-equivalence.json.gz",
+      "original_sha256": "d4067fc8c4b29b8856fd2dd874830244bcf0bb51f971598552b3352c39271101",
+      "stored_sha256": "9d1ddd9dcb54c22ccf15c1b59e6857d1d3a49c6063597d36ae72e3e608024b97",
+      "bytes": 258,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-source-equivalence.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0bef8fed95d0bb15ed1f230b84e1375c5b324b6a3cb4f702748a1b4579b35d3a-frozen-tool-versions-receipt.json",
+      "stored": "raw/controller/frozen-tool-versions-receipt.json.gz",
+      "original_sha256": "0bef8fed95d0bb15ed1f230b84e1375c5b324b6a3cb4f702748a1b4579b35d3a",
+      "stored_sha256": "2510e73157fadfae7b2d6b67f2b02ac1bfbec4efb04e03846228d77307d7f71b",
+      "bytes": 3174,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-tool-versions-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/1a2e279b032b38f13688170cd9c1376039fc916f07aa71a4f3e568ff5ab4195b-frozen-tool-versions.log",
+      "stored": "raw/controller/frozen-tool-versions.log.gz",
+      "original_sha256": "1a2e279b032b38f13688170cd9c1376039fc916f07aa71a4f3e568ff5ab4195b",
+      "stored_sha256": "b1fcf9fd49beebc13a4e445a5642f691ab57308d3e3b4634cd3795734dd77f48",
+      "bytes": 188,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-tool-versions.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/33679b1144fe1872aa5bbf5155207dd9277d6ab2891472a84c62b6382e4d268a-gate-paths.json",
+      "stored": "raw/controller/gate-paths.json.gz",
+      "original_sha256": "33679b1144fe1872aa5bbf5155207dd9277d6ab2891472a84c62b6382e4d268a",
+      "stored_sha256": "9419805a9da65675fa7b6802b532cffe2cecef5aa9dec54df88f4d4d9b872ede",
+      "bytes": 15279,
+      "captured_origin": "/private/tmp/telem-03/construction/gate-paths.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9ced760b8f4ce5082c3217f8e144a255cdfe8c78e31aea7dee9ecabd8e4ff45f-gates.py",
+      "stored": "raw/controller/gates.py.gz",
+      "original_sha256": "9ced760b8f4ce5082c3217f8e144a255cdfe8c78e31aea7dee9ecabd8e4ff45f",
+      "stored_sha256": "ab08b11b8572c27522e67b46db1afe27f117ff5716ad31332eb486616cf5bb57",
+      "bytes": 1645,
+      "captured_origin": "/private/tmp/telem-03/construction/gates.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/58acada976db25d00b55db56c40f55c11f4ee5bd552f9c6c6b46e6d1a1152df6-iteration-01-snapshot.json",
+      "stored": "raw/controller/iteration-01-snapshot.json.gz",
+      "original_sha256": "58acada976db25d00b55db56c40f55c11f4ee5bd552f9c6c6b46e6d1a1152df6",
+      "stored_sha256": "cda2358f2703df2dda9decf15485df55a44e7de63af9229bdfab3f84d589ef3a",
+      "bytes": 1176541,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d349f80e3d41150d22318fa6b954ae9b4fe0bae9364e7fc5159dd069c8bdefe7-iteration-01-unit-mypy-receipt.json",
+      "stored": "raw/controller/iteration-01-unit-mypy-receipt.json.gz",
+      "original_sha256": "d349f80e3d41150d22318fa6b954ae9b4fe0bae9364e7fc5159dd069c8bdefe7",
+      "stored_sha256": "5a61e4e5b1517e5153085cded3461d38fbe071d662fdc44404bd95f8259c0c08",
+      "bytes": 3530,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01-unit-mypy-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/cbb7f941a4ca9e81870a2aff18ca021d01d17176cd917f68319edb3728041868-iteration-01-unit-mypy.log",
+      "stored": "raw/controller/iteration-01-unit-mypy.log.gz",
+      "original_sha256": "cbb7f941a4ca9e81870a2aff18ca021d01d17176cd917f68319edb3728041868",
+      "stored_sha256": "692f9cf3010f48ac64485a66e40c70fadfb078a93420cdac8aa8e20882ff4cad",
+      "bytes": 1561,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01-unit-mypy.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0a32c49f7c544e62f5c424620ceac896a8729335476afc44dcc757d1e6ee424a-iteration-02-new-ruff-receipt.json",
+      "stored": "raw/controller/iteration-02-new-ruff-receipt.json.gz",
+      "original_sha256": "0a32c49f7c544e62f5c424620ceac896a8729335476afc44dcc757d1e6ee424a",
+      "stored_sha256": "e1f16e209919a0c71de6ee2bdd1185a08cd05d02a8af966b1fff4f21f711014d",
+      "bytes": 3132,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-new-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18-iteration-02-new-ruff.log",
+      "stored": "raw/controller/iteration-02-new-ruff.log.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-new-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c80132dfefeafb4335e3447334369bf97c9b56153a4271154b3c1779e0b13024-iteration-02-new-tests-receipt.json",
+      "stored": "raw/controller/iteration-02-new-tests-receipt.json.gz",
+      "original_sha256": "c80132dfefeafb4335e3447334369bf97c9b56153a4271154b3c1779e0b13024",
+      "stored_sha256": "7eb5687a455a921f849ee6c15f7b8ed8d488648921f61b60766a402066b0a343",
+      "bytes": 3277,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-new-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/67e52680f50dee3a442735c4cece8f8f96b537e54364683284c4bc80710e71c7-iteration-02-new-tests-source-audit.json",
+      "stored": "raw/controller/iteration-02-new-tests-source-audit.json.gz",
+      "original_sha256": "67e52680f50dee3a442735c4cece8f8f96b537e54364683284c4bc80710e71c7",
+      "stored_sha256": "583c8a470633a104f9b37c5308714b97a22c675b33b65431f7716e1744de914f",
+      "bytes": 89722,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-new-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d685121e637ee8d457ee5550ba1f90c458ce8b78a2e457b8030868a36c7e9d24-iteration-02-new-tests.log",
+      "stored": "raw/controller/iteration-02-new-tests.log.gz",
+      "original_sha256": "d685121e637ee8d457ee5550ba1f90c458ce8b78a2e457b8030868a36c7e9d24",
+      "stored_sha256": "833c829b8caafccf10e34599902e617bac8ac52c50ab89ebca81c6e2d5d48af4",
+      "bytes": 31272,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-new-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/20d8a78b52385349a3bd70f08e856c2a8554c049b7a9436f63d81b231ca839eb-iteration-02-preflight.json",
+      "stored": "raw/controller/iteration-02-preflight.json.gz",
+      "original_sha256": "20d8a78b52385349a3bd70f08e856c2a8554c049b7a9436f63d81b231ca839eb",
+      "stored_sha256": "a705e4cf83fbb85ba5c26fd108c9e9691f6e3817d63210c6403ff8c388bdf434",
+      "bytes": 12295,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-preflight.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b0307f28e5dcd01c664e69f4e8baf99774bfeab50339d08555a83d4765d6d398-iteration-02-snapshot.json",
+      "stored": "raw/controller/iteration-02-snapshot.json.gz",
+      "original_sha256": "b0307f28e5dcd01c664e69f4e8baf99774bfeab50339d08555a83d4765d6d398",
+      "stored_sha256": "4b6ae0371b5c66334aaf21f1f414a20928fa61e2cd31d0e41aab0e933c8b4df9",
+      "bytes": 1177587,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ba82be11d25335b1c802d04acd0a087f598494c5a4fc128f6bf90fe7fe60bf0e-iteration-02-unit-mypy-receipt.json",
+      "stored": "raw/controller/iteration-02-unit-mypy-receipt.json.gz",
+      "original_sha256": "ba82be11d25335b1c802d04acd0a087f598494c5a4fc128f6bf90fe7fe60bf0e",
+      "stored_sha256": "6dc7a92712e3071305b0b4503624805f3e03f2178dd17792ffa7d5599f9bf856",
+      "bytes": 3567,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-unit-mypy-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/049f51b850512be193c74d3fbb731e25fbc6374a66560d8ec0d6569d79c88ea6-iteration-02-unit-mypy.log",
+      "stored": "raw/controller/iteration-02-unit-mypy.log.gz",
+      "original_sha256": "049f51b850512be193c74d3fbb731e25fbc6374a66560d8ec0d6569d79c88ea6",
+      "stored_sha256": "f17975b6e31bcccc608b4448aecc9455f2451f4cf70c0f883c7728b6d01181eb",
+      "bytes": 44,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02-unit-mypy.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0bfe674ff705046e0456e9ec1f415e5952096137669ab29dec88cdd709359ce2-iteration-03-new-tests-receipt.json",
+      "stored": "raw/controller/iteration-03-new-tests-receipt.json.gz",
+      "original_sha256": "0bfe674ff705046e0456e9ec1f415e5952096137669ab29dec88cdd709359ce2",
+      "stored_sha256": "dc467799d1c4c959c869cad57aa8ab7c1d32fc765888ecbf817efbb371991315",
+      "bytes": 3278,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03-new-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/5a6c106e0d2bfed84fcc1962165b4399d1b39f68c623abe07a740d6a33e95252-iteration-03-new-tests-source-audit.json",
+      "stored": "raw/controller/iteration-03-new-tests-source-audit.json.gz",
+      "original_sha256": "5a6c106e0d2bfed84fcc1962165b4399d1b39f68c623abe07a740d6a33e95252",
+      "stored_sha256": "29828d061c8e41f273b25959b8d9c4dffb379127b79650e97472eaae28cf3998",
+      "bytes": 89722,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03-new-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/82338be1cacf489839499a4a6bc2d5d8620199f4259f255a1a8dc5b67807a874-iteration-03-new-tests.log",
+      "stored": "raw/controller/iteration-03-new-tests.log.gz",
+      "original_sha256": "82338be1cacf489839499a4a6bc2d5d8620199f4259f255a1a8dc5b67807a874",
+      "stored_sha256": "60f2976b4c6f808fc05406924be09e0af8ceb3e31895b31ce9307db0d1509c12",
+      "bytes": 13881,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03-new-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/99dd5420bdffed80edb27475ce7cb9385cafdd97d4d47089bf1a361f408c9f25-iteration-03-preflight.json",
+      "stored": "raw/controller/iteration-03-preflight.json.gz",
+      "original_sha256": "99dd5420bdffed80edb27475ce7cb9385cafdd97d4d47089bf1a361f408c9f25",
+      "stored_sha256": "3406d9782ae5c9b281b722f6294766515fba8d3bf9a772f0c7e1837ee3c034e7",
+      "bytes": 12375,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03-preflight.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c902c0a96ab380b9a1c0249368f214ebbbd4991fe66b7d0894c700ee5136c77f-iteration-03-snapshot.json",
+      "stored": "raw/controller/iteration-03-snapshot.json.gz",
+      "original_sha256": "c902c0a96ab380b9a1c0249368f214ebbbd4991fe66b7d0894c700ee5136c77f",
+      "stored_sha256": "37e546375d1683c5ca8263a94272175e7a5258408e70e8d762d3124e0af59f80",
+      "bytes": 1177705,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/64094afa0ae37a8ced57921981263a6e9b40430fa12f83b8bdf0dd3b6c3e1b69-iteration-04-aggregate-mypy-receipt.json",
+      "stored": "raw/controller/iteration-04-aggregate-mypy-receipt.json.gz",
+      "original_sha256": "64094afa0ae37a8ced57921981263a6e9b40430fa12f83b8bdf0dd3b6c3e1b69",
+      "stored_sha256": "9de406c5233370f448c0271ed213f1849663223488813c71024381b50d1e0a98",
+      "bytes": 7858,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-aggregate-mypy-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4ef32b02733c640ba275e5de2c0f630d3ea2a6293bb124ad0dc2173d46e40541-iteration-04-aggregate-mypy.log",
+      "stored": "raw/controller/iteration-04-aggregate-mypy.log.gz",
+      "original_sha256": "4ef32b02733c640ba275e5de2c0f630d3ea2a6293bb124ad0dc2173d46e40541",
+      "stored_sha256": "601057427b9381778c285cf1b0e9aafa210de58b9c7439e2bf44398cda86a744",
+      "bytes": 44,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-aggregate-mypy.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/1488f6a93f6a7d44bc51196b49a95d1755be6be03f833dd9985fd278939068a4-iteration-04-aggregate-ruff-receipt.json",
+      "stored": "raw/controller/iteration-04-aggregate-ruff-receipt.json.gz",
+      "original_sha256": "1488f6a93f6a7d44bc51196b49a95d1755be6be03f833dd9985fd278939068a4",
+      "stored_sha256": "27ae9eaf903ac308acd86c75f83e1223045264e911007d9ddb13c1720abe13f1",
+      "bytes": 10394,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-aggregate-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18-iteration-04-aggregate-ruff.log",
+      "stored": "raw/controller/iteration-04-aggregate-ruff.log.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-aggregate-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d265852413908a9d9cbf3366217bfdac08a2bff7245e57f5072369808ca74bf4-iteration-04-collect-receipt.json",
+      "stored": "raw/controller/iteration-04-collect-receipt.json.gz",
+      "original_sha256": "d265852413908a9d9cbf3366217bfdac08a2bff7245e57f5072369808ca74bf4",
+      "stored_sha256": "70020277f40ab54563ac73aef243d2e3ccb9190900c46c12aa326d3782332c47",
+      "bytes": 3180,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-collect-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4a17dfa524c3682ff30afd986f4675af7018830a7214ff011ee0342617581ba6-iteration-04-collect-source-audit.json",
+      "stored": "raw/controller/iteration-04-collect-source-audit.json.gz",
+      "original_sha256": "4a17dfa524c3682ff30afd986f4675af7018830a7214ff011ee0342617581ba6",
+      "stored_sha256": "48a2686d1e77755fca9c3fe908d82936effe6877351cb195f7db53805122b24d",
+      "bytes": 122376,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-collect-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/52762d46a4fef97dc6525bb6692cfa12ab4a1f3f5d572e205123358efdb258e1-iteration-04-collect.log",
+      "stored": "raw/controller/iteration-04-collect.log.gz",
+      "original_sha256": "52762d46a4fef97dc6525bb6692cfa12ab4a1f3f5d572e205123358efdb258e1",
+      "stored_sha256": "a7388ae47e2ff2aaac63143b1527bd343581ce401fa935584f4db805141075a8",
+      "bytes": 1333738,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-collect.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/75d40250e6e7dfc248dfeaf3d8668d58d40f7afb622496837d69f4a18cce446b-iteration-04-lint-disposition.json",
+      "stored": "raw/controller/iteration-04-lint-disposition.json.gz",
+      "original_sha256": "75d40250e6e7dfc248dfeaf3d8668d58d40f7afb622496837d69f4a18cce446b",
+      "stored_sha256": "d9eb0c3cffa37fc6d260394bfb00b1e8365fea39961a2dc4a683327305c1732c",
+      "bytes": 247,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-lint-disposition.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d24ed716fa1d518883a0c8a8fe1fd9a89a626e15952d90208dc65adc805916e2-iteration-04-new-tests-receipt.json",
+      "stored": "raw/controller/iteration-04-new-tests-receipt.json.gz",
+      "original_sha256": "d24ed716fa1d518883a0c8a8fe1fd9a89a626e15952d90208dc65adc805916e2",
+      "stored_sha256": "cbff04e45a710dd1fe496d30797fcb81a67f6aa9a16f2355bc63cb8984d95064",
+      "bytes": 3279,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-new-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/088c919cefa8ec7e5e0238a90f190f3721f600c6a305e88fd9bbd75a06421bed-iteration-04-new-tests-source-audit.json",
+      "stored": "raw/controller/iteration-04-new-tests-source-audit.json.gz",
+      "original_sha256": "088c919cefa8ec7e5e0238a90f190f3721f600c6a305e88fd9bbd75a06421bed",
+      "stored_sha256": "556548fa66fc31028a39af66e0df48483f1d13aa8735870450f7663b4fd27127",
+      "bytes": 89722,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-new-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7487d9c7b6219da3329a36bfb813ee7b2b4c191cb3d8da5df4f3e471ea398e74-iteration-04-new-tests.log",
+      "stored": "raw/controller/iteration-04-new-tests.log.gz",
+      "original_sha256": "7487d9c7b6219da3329a36bfb813ee7b2b4c191cb3d8da5df4f3e471ea398e74",
+      "stored_sha256": "31df9ca44e8ecc8f4daafc79320d43446ddc3781efc1e9ec48f35cf4f7199bec",
+      "bytes": 16136,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-new-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ce1a051c6af80b93f69e6a427667d89cb2e5b5dff133e1c3b29fc0b37abbfca9-iteration-04-package-tests-receipt.json",
+      "stored": "raw/controller/iteration-04-package-tests-receipt.json.gz",
+      "original_sha256": "ce1a051c6af80b93f69e6a427667d89cb2e5b5dff133e1c3b29fc0b37abbfca9",
+      "stored_sha256": "b422d270f712e8731d87727a8c7a8c5d98f935a66186cdad7db75c54c40dde22",
+      "bytes": 3300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-package-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/a1953f0b4db84588f71d40fc30b8e6f7c40467cf52939afc5eee3eab3884f547-iteration-04-package-tests-source-audit.json",
+      "stored": "raw/controller/iteration-04-package-tests-source-audit.json.gz",
+      "original_sha256": "a1953f0b4db84588f71d40fc30b8e6f7c40467cf52939afc5eee3eab3884f547",
+      "stored_sha256": "7607fc23c168cd7533c12656aa826402ec122f3f95fb1bbf4ee3417815902d63",
+      "bytes": 110732,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-package-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/e04e838202f7171c7b662a385fff631d508c7fbf908028a5906ed3e5f8330f21-iteration-04-package-tests.log",
+      "stored": "raw/controller/iteration-04-package-tests.log.gz",
+      "original_sha256": "e04e838202f7171c7b662a385fff631d508c7fbf908028a5906ed3e5f8330f21",
+      "stored_sha256": "95da49bc525e60bb76d54c02e2660e747d841e349c0504ec04896dd4386585c7",
+      "bytes": 1340026,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-package-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/5998adc694a2569499bdf0b797572b3bae948f5679dbcc908576a1854543d83e-iteration-04-preflight.json",
+      "stored": "raw/controller/iteration-04-preflight.json.gz",
+      "original_sha256": "5998adc694a2569499bdf0b797572b3bae948f5679dbcc908576a1854543d83e",
+      "stored_sha256": "0340a628b940a1d50714b81732407e1b320ed9ef91dfa0dc0680dffdddf43f07",
+      "bytes": 12724,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-preflight.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/de07e87da378818b2dddc63af8cc8d1591c8ba9b70673a2d868289b9e368d0b0-iteration-04-root-ruff-receipt.json",
+      "stored": "raw/controller/iteration-04-root-ruff-receipt.json.gz",
+      "original_sha256": "de07e87da378818b2dddc63af8cc8d1591c8ba9b70673a2d868289b9e368d0b0",
+      "stored_sha256": "12256873e13d63fb1f47953a0010831720763f28d508b52103ec6040fc2b108d",
+      "bytes": 2917,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-root-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/74b6062316d96fb4f7cca0aca6a6b92018e8202fe4147904ad85f7e06f5a8342-iteration-04-root-ruff.log",
+      "stored": "raw/controller/iteration-04-root-ruff.log.gz",
+      "original_sha256": "74b6062316d96fb4f7cca0aca6a6b92018e8202fe4147904ad85f7e06f5a8342",
+      "stored_sha256": "51abdb529ddda2b0229baeb47a0065fe497c41723127d2c6f80119ab218ad05e",
+      "bytes": 174188,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-root-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c3fea565ad02bd0f5e3731428a9bd7cb8a78e1ed39e0df09e128cd8196fc4d9b-iteration-04-sdk-consumer-receipt.json",
+      "stored": "raw/controller/iteration-04-sdk-consumer-receipt.json.gz",
+      "original_sha256": "c3fea565ad02bd0f5e3731428a9bd7cb8a78e1ed39e0df09e128cd8196fc4d9b",
+      "stored_sha256": "cefa9c82e302ec4db4dc2cc9848fda7234babbe59cf8e0baeced1d2311706d6b",
+      "bytes": 3008,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-sdk-consumer-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0604b3f6536f4ecc5c46e2ae607e8bd73fe822104ec90da39919f84647549600-iteration-04-sdk-consumer.log",
+      "stored": "raw/controller/iteration-04-sdk-consumer.log.gz",
+      "original_sha256": "0604b3f6536f4ecc5c46e2ae607e8bd73fe822104ec90da39919f84647549600",
+      "stored_sha256": "771961dedeee3903f8320374b2bee8ba62803c9a1fbf7a0181beeb8e5884e97c",
+      "bytes": 120,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-sdk-consumer.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/e45a8a0667d075cbd6efad716a6bd4369748074861f35d9a0511ce156c33cfa4-iteration-04-sdk-evidence.json",
+      "stored": "raw/controller/iteration-04-sdk-evidence.json.gz",
+      "original_sha256": "e45a8a0667d075cbd6efad716a6bd4369748074861f35d9a0511ce156c33cfa4",
+      "stored_sha256": "10d9bd4451aa07f0f87c51f4c00f771e3065648d791d235416f3bd84a809c26c",
+      "bytes": 5761,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-sdk-evidence.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/662f6354ce179b41213a457ef4baeb11cec19d2e288ce3faa95e3e9de342c9a7-iteration-04-snapshot.json",
+      "stored": "raw/controller/iteration-04-snapshot.json.gz",
+      "original_sha256": "662f6354ce179b41213a457ef4baeb11cec19d2e288ce3faa95e3e9de342c9a7",
+      "stored_sha256": "955bddf4aa16c0f35fe1edbd669f3f6bcd2147c7ba2c5aa516449e053156c50f",
+      "bytes": 1177705,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/562a1227a2752ce7458d6e959ac7219ec2a455a0d7233c8035bb7a801a5bc89d-iteration-04-unit-ruff-receipt.json",
+      "stored": "raw/controller/iteration-04-unit-ruff-receipt.json.gz",
+      "original_sha256": "562a1227a2752ce7458d6e959ac7219ec2a455a0d7233c8035bb7a801a5bc89d",
+      "stored_sha256": "a161e17bfbc02ec5401f9a4c9e64956f115421a19c8616a58cb31034dd09d598",
+      "bytes": 3918,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-unit-ruff-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18-iteration-04-unit-ruff.log",
+      "stored": "raw/controller/iteration-04-unit-ruff.log.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04-unit-ruff.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/93602238ff2e81a09e476dc66a5563a9635eb2fcac6879337f723da5faaf1b69-iteration-05-aggregate-mypy-receipt.json",
+      "stored": "raw/controller/iteration-05-aggregate-mypy-receipt.json.gz",
+      "original_sha256": "93602238ff2e81a09e476dc66a5563a9635eb2fcac6879337f723da5faaf1b69",
+      "stored_sha256": "3c82e80d9ec74426cdf8b2c59dda611085b9692c01db38552938bbfe66530a79",
+      "bytes": 7859,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-aggregate-mypy-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4ef32b02733c640ba275e5de2c0f630d3ea2a6293bb124ad0dc2173d46e40541-iteration-05-aggregate-mypy.log",
+      "stored": "raw/controller/iteration-05-aggregate-mypy.log.gz",
+      "original_sha256": "4ef32b02733c640ba275e5de2c0f630d3ea2a6293bb124ad0dc2173d46e40541",
+      "stored_sha256": "601057427b9381778c285cf1b0e9aafa210de58b9c7439e2bf44398cda86a744",
+      "bytes": 44,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-aggregate-mypy.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9dbbc2ef1086f741493479ee39b1a1350c11124683eb9679b2fb017716c64432-iteration-05-contracts.json",
+      "stored": "raw/controller/iteration-05-contracts.json.gz",
+      "original_sha256": "9dbbc2ef1086f741493479ee39b1a1350c11124683eb9679b2fb017716c64432",
+      "stored_sha256": "e165bdbb4ec2fa8f5529b4c7fee880cef172cd221ddff37b4f6b472cb487e39b",
+      "bytes": 11611,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-contracts.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/f71544f14d0e7d7cc126f4abc5cedb561f16f89501606a05ee0c8a5f938fe74b-iteration-05-lock-receipt.json",
+      "stored": "raw/controller/iteration-05-lock-receipt.json.gz",
+      "original_sha256": "f71544f14d0e7d7cc126f4abc5cedb561f16f89501606a05ee0c8a5f938fe74b",
+      "stored_sha256": "450323b95d692d856402a67a4ebffd04e60fc21b0eac4abca802a99d75352759",
+      "bytes": 2885,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-lock-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/f7800fcbaf2df462396d3418c9bc828464c314d11ffd11d3e1b31a2882770bd3-iteration-05-lock.log",
+      "stored": "raw/controller/iteration-05-lock.log.gz",
+      "original_sha256": "f7800fcbaf2df462396d3418c9bc828464c314d11ffd11d3e1b31a2882770bd3",
+      "stored_sha256": "596059619ab0855c8ddb81c080baf7b05883b5054f6b7c6a432a5027eadccb34",
+      "bytes": 29,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-lock.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/2ead3583c1bc1bea5c3f75ddf6b0bf92114fcbe23544ff2638cb1a4145fb2a85-iteration-05-owning-tests-receipt.json",
+      "stored": "raw/controller/iteration-05-owning-tests-receipt.json.gz",
+      "original_sha256": "2ead3583c1bc1bea5c3f75ddf6b0bf92114fcbe23544ff2638cb1a4145fb2a85",
+      "stored_sha256": "4b6f9a90844ec70eef0539c751944dc4f1c05792b23bbf726fee03d827409d10",
+      "bytes": 3743,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-owning-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/bf592d534d2ad500252ebee01eb92439300538900aa07c8be3e07066fcb2ff96-iteration-05-owning-tests-source-audit.json",
+      "stored": "raw/controller/iteration-05-owning-tests-source-audit.json.gz",
+      "original_sha256": "bf592d534d2ad500252ebee01eb92439300538900aa07c8be3e07066fcb2ff96",
+      "stored_sha256": "d5badfed568f9002bfb15f727a6d5af96656e2ef2da5ae5cbb7d920d6edc6cd0",
+      "bytes": 132042,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-owning-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4ecfdd05e29667b23f2e72921a91bdbc767295a9eae163f8c7d042587bdb9e00-iteration-05-owning-tests.log",
+      "stored": "raw/controller/iteration-05-owning-tests.log.gz",
+      "original_sha256": "4ecfdd05e29667b23f2e72921a91bdbc767295a9eae163f8c7d042587bdb9e00",
+      "stored_sha256": "7987722d69b07933a2a155f9d462f0eca098fbd887106ef70e982499b40d97d1",
+      "bytes": 1542443,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-owning-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/650a3ffa8c1dcdca863468eed26c72c1f7f6a07c9099e8e48500de1aacbc442a-iteration-05-package-tests-receipt.json",
+      "stored": "raw/controller/iteration-05-package-tests-receipt.json.gz",
+      "original_sha256": "650a3ffa8c1dcdca863468eed26c72c1f7f6a07c9099e8e48500de1aacbc442a",
+      "stored_sha256": "5ad2c2a146a6d039c58c2544eda31a1bcd0e25b4ce47813a5653f800910c3bb3",
+      "bytes": 3298,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-package-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4e55cad4f18266fb71b7b589627b5b7ae230122ebc2825a5fa073918990c34eb-iteration-05-package-tests-source-audit.json",
+      "stored": "raw/controller/iteration-05-package-tests-source-audit.json.gz",
+      "original_sha256": "4e55cad4f18266fb71b7b589627b5b7ae230122ebc2825a5fa073918990c34eb",
+      "stored_sha256": "2a35e4eac01a16bca0bb007f85af510893d0ee0a7352034bd3a1e9c7a50737a1",
+      "bytes": 110732,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-package-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/2df609025bda93f3545a3868cdc33e35e91d2cf61cc313c4c17ce5b3fedf0fa3-iteration-05-package-tests.log",
+      "stored": "raw/controller/iteration-05-package-tests.log.gz",
+      "original_sha256": "2df609025bda93f3545a3868cdc33e35e91d2cf61cc313c4c17ce5b3fedf0fa3",
+      "stored_sha256": "e0d930769f1368b7c07070ab13228b3b1bdbf0f20642131ef0da349fa8e20cb1",
+      "bytes": 1268630,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-package-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/85fb7ba65f64c265d54f411fd64f57ecaf3b61a3440259a6a5b5e81634af90ac-iteration-05-preflight.json",
+      "stored": "raw/controller/iteration-05-preflight.json.gz",
+      "original_sha256": "85fb7ba65f64c265d54f411fd64f57ecaf3b61a3440259a6a5b5e81634af90ac",
+      "stored_sha256": "191c40c4fafe66339cbdcf8179d5674e937e71592bf260e7c98f99a50978a380",
+      "bytes": 12724,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-preflight.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0daa78de95a72de419e226a0470bf21ff0d551954318f7337db6a0901889fa30-iteration-05-root-tests-receipt.json",
+      "stored": "raw/controller/iteration-05-root-tests-receipt.json.gz",
+      "original_sha256": "0daa78de95a72de419e226a0470bf21ff0d551954318f7337db6a0901889fa30",
+      "stored_sha256": "905d36e58e9716cf895310c7fdb6f5d9759151557aa41343e88dc20dad1671a7",
+      "bytes": 3187,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-root-tests-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/bf592d534d2ad500252ebee01eb92439300538900aa07c8be3e07066fcb2ff96-iteration-05-root-tests-source-audit.json",
+      "stored": "raw/controller/iteration-05-root-tests-source-audit.json.gz",
+      "original_sha256": "bf592d534d2ad500252ebee01eb92439300538900aa07c8be3e07066fcb2ff96",
+      "stored_sha256": "d5badfed568f9002bfb15f727a6d5af96656e2ef2da5ae5cbb7d920d6edc6cd0",
+      "bytes": 132042,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-root-tests-source-audit.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/a73b0a0d83b6590cf809d523a09d983672eab471c02aacee3843caf790399f0b-iteration-05-root-tests.log",
+      "stored": "raw/controller/iteration-05-root-tests.log.gz",
+      "original_sha256": "a73b0a0d83b6590cf809d523a09d983672eab471c02aacee3843caf790399f0b",
+      "stored_sha256": "f3632649c62e503f57f95b3a370a5f7adf01177b93581e13c0a5d88c4fc0f65d",
+      "bytes": 1545279,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-root-tests.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c63461f9d1ca0b60caddc2c3640cf76bff6cb8d6914305aeac01fc9bd949585b-iteration-05-snapshot.json",
+      "stored": "raw/controller/iteration-05-snapshot.json.gz",
+      "original_sha256": "c63461f9d1ca0b60caddc2c3640cf76bff6cb8d6914305aeac01fc9bd949585b",
+      "stored_sha256": "a0d6c2a0386f5a0623f26076b934674fada43fb00959d2b2b18d874eb237224a",
+      "bytes": 1177705,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-snapshot.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/eb8e67089e41866b3c1b668ac1b0b21f9f9508a4a6d3785c2f2244d3a08725b5-iteration-05-unit-mypy-receipt.json",
+      "stored": "raw/controller/iteration-05-unit-mypy-receipt.json.gz",
+      "original_sha256": "eb8e67089e41866b3c1b668ac1b0b21f9f9508a4a6d3785c2f2244d3a08725b5",
+      "stored_sha256": "9e664cc0b5e498bcaa462d9e92b839121aa410c9d4d6a1f755906ecd3479d22e",
+      "bytes": 3565,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-unit-mypy-receipt.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/049f51b850512be193c74d3fbb731e25fbc6374a66560d8ec0d6569d79c88ea6-iteration-05-unit-mypy.log",
+      "stored": "raw/controller/iteration-05-unit-mypy.log.gz",
+      "original_sha256": "049f51b850512be193c74d3fbb731e25fbc6374a66560d8ec0d6569d79c88ea6",
+      "stored_sha256": "f17975b6e31bcccc608b4448aecc9455f2451f4cf70c0f883c7728b6d01181eb",
+      "bytes": 44,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05-unit-mypy.log"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/cfa21c0d5dc36d7823a21d5ad855a437d0c80f16a17d65699f2dfad71f3a2f97-preflight-03.py",
+      "stored": "raw/controller/preflight-03.py.gz",
+      "original_sha256": "cfa21c0d5dc36d7823a21d5ad855a437d0c80f16a17d65699f2dfad71f3a2f97",
+      "stored_sha256": "a0ddf3848040b512df5a4c2fafb8168b11af2f250b6da5f36c51936c9be84410",
+      "bytes": 2690,
+      "captured_origin": "/private/tmp/telem-03/construction/preflight-03.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/5aab30580434be33208a8c8cd63eadac81468b0e6f2fa0ed3edeaa1650ad7826-preflight-04.py",
+      "stored": "raw/controller/preflight-04.py.gz",
+      "original_sha256": "5aab30580434be33208a8c8cd63eadac81468b0e6f2fa0ed3edeaa1650ad7826",
+      "stored_sha256": "1841f947cf8979b5c6f38bf1251c5e294c21ebb06e2626b2e7ae58020c719722",
+      "bytes": 2690,
+      "captured_origin": "/private/tmp/telem-03/construction/preflight-04.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/46284512293b41711cc63ba276c7c228c45b71c4e6e925861dad972166e2cc61-preflight-05.py",
+      "stored": "raw/controller/preflight-05.py.gz",
+      "original_sha256": "46284512293b41711cc63ba276c7c228c45b71c4e6e925861dad972166e2cc61",
+      "stored_sha256": "36236f0350f919baaa2fc713340e7a9e8bb3e6da6b4bc8b22a9d656e8653c842",
+      "bytes": 2690,
+      "captured_origin": "/private/tmp/telem-03/construction/preflight-05.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/654981b03dcd2b446ef52a06d3abe95cb2d0cd0fe912483679bdbdb400d775ac-preflight.py",
+      "stored": "raw/controller/preflight.py.gz",
+      "original_sha256": "654981b03dcd2b446ef52a06d3abe95cb2d0cd0fe912483679bdbdb400d775ac",
+      "stored_sha256": "75d57b0b3ed38469c22affaeb6721fd41d76662b128eda22f322847d191cb766",
+      "bytes": 2690,
+      "captured_origin": "/private/tmp/telem-03/construction/preflight.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/56c538bcc60166b55e6229e796b6553e6902a3c32722bcedf07c180519f2e9c4-pytest_source_audit.py",
+      "stored": "raw/controller/pytest_source_audit.py.gz",
+      "original_sha256": "56c538bcc60166b55e6229e796b6553e6902a3c32722bcedf07c180519f2e9c4",
+      "stored_sha256": "337cbd54e83f41a5bee66c0774848cfd1fa023521f0b1120c7e2acbcdfdb37bc",
+      "bytes": 1677,
+      "captured_origin": "/private/tmp/telem-03/construction/pytest_source_audit.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3621530ced6d7035a54be3178b47666769ebcdde05442b42b27a3f1c0cb63643-sdk-final-preflight.json",
+      "stored": "raw/controller/sdk-final-preflight.json.gz",
+      "original_sha256": "3621530ced6d7035a54be3178b47666769ebcdde05442b42b27a3f1c0cb63643",
+      "stored_sha256": "c50395f975ec041efc15a926ff37dad2b70f198acc4d6008507f1b9709f5ee65",
+      "bytes": 568,
+      "captured_origin": "/private/tmp/telem-03/construction/sdk-final-preflight.json"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/78234f2f4c31891deccd60464f38f998af66bb919ba310310532478e28c4fe56-sdk_consumer.py",
+      "stored": "raw/controller/sdk_consumer.py.gz",
+      "original_sha256": "78234f2f4c31891deccd60464f38f998af66bb919ba310310532478e28c4fe56",
+      "stored_sha256": "701ab6ca8414d1fa8e427748dfe10f48b4fd08548009e6a85859486ef2cd51cf",
+      "bytes": 4485,
+      "captured_origin": "/private/tmp/telem-03/construction/sdk_consumer.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aaff577ca6e253a94d6774f59eb5a8c309afc02302524f0651b7f51ed0878c25-static_audit.py",
+      "stored": "raw/controller/static_audit.py.gz",
+      "original_sha256": "aaff577ca6e253a94d6774f59eb5a8c309afc02302524f0651b7f51ed0878c25",
+      "stored_sha256": "9610382116588cea37b75fd1cd10e64e33cd9c57b10fa4a9a972d06a18fcb3b0",
+      "bytes": 2005,
+      "captured_origin": "/private/tmp/telem-03/construction/static_audit.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/52d95b128f21e8f5a45bbfddf9fff63179f6ed8e56235bb4ff6e63f8af71741d-README.md",
+      "stored": "raw/iteration-01/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "52d95b128f21e8f5a45bbfddf9fff63179f6ed8e56235bb4ff6e63f8af71741d",
+      "stored_sha256": "c1c4834ce06dd3835065102ec9a3c255eeba28ebfd88a0b04a4338a1a08e5bfe",
+      "bytes": 6567,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/iteration-01/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/iteration-01/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460-runtime.py",
+      "stored": "raw/iteration-01/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460",
+      "stored_sha256": "e8794eed6cd4e9c9101e4f239f957a06924c05a9aeb181735e8a57106c74f88e",
+      "bytes": 55483,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/1f67e8a48f6ed0e84cba85a2b3a4e35b0fc2501b127dc5f70fec9fd0858ec313-telemetry.py",
+      "stored": "raw/iteration-01/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "1f67e8a48f6ed0e84cba85a2b3a4e35b0fc2501b127dc5f70fec9fd0858ec313",
+      "stored_sha256": "f348ae280f903849ad41f36ed7c8d740707c72a5b20b3414e596af74f7bffda2",
+      "bytes": 7743,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b2df47d3cfacae9a191bf3ed556efeb485bb704b6f57271281d661920166e124-README.md",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "b2df47d3cfacae9a191bf3ed556efeb485bb704b6f57271281d661920166e124",
+      "stored_sha256": "22ad4bb4accfb8e5cc8f4bb48ba0f96ca61d21ae50975871fc3183dd43b33b14",
+      "bytes": 6831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/01df92ab7228bdd880e50737fd2a57ae070d90c1e88252aaefd2d21dcbc443ce-service.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "01df92ab7228bdd880e50737fd2a57ae070d90c1e88252aaefd2d21dcbc443ce",
+      "stored_sha256": "80eae382ed8a2a36afce3a4ffebb31f459830c7fd3d943871eb9a5f41f3619e0",
+      "bytes": 44134,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/e4e4d54c2cce0396f29f4a9197494133ccb2c69685c97ad31703e17775010b50-telemetry.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "e4e4d54c2cce0396f29f4a9197494133ccb2c69685c97ad31703e17775010b50",
+      "stored_sha256": "7eb138b38949ca371d046269addaa974e369ec82c754f47a1d57a4c0912d42d0",
+      "bytes": 5606,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/93f1f5f14f7857a79261cc0518ecccbd3ea8c8badec737ac3bb9171e82f2f6c6-test_embeddings.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "93f1f5f14f7857a79261cc0518ecccbd3ea8c8badec737ac3bb9171e82f2f6c6",
+      "stored_sha256": "5f876456519ac5f797b7b6f6160d99fc3a8a1586e6755f1dfb7c8bb8a77da238",
+      "bytes": 9862,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/24601a71b544ad833e1742ed2f6d1edab5345789196f239a1dfc8ead4ceca08c-test_service.py",
+      "stored": "raw/iteration-01/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "24601a71b544ad833e1742ed2f6d1edab5345789196f239a1dfc8ead4ceca08c",
+      "stored_sha256": "0c98ca05b70c696501519ad82dd7f5a786f0320956bca9bb5b401caa2401402e",
+      "bytes": 8754,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ccf01e5d507ce1d6f58dd3211bae6d44140fd184ea4383197fb6b3ad69a76073-README.md",
+      "stored": "raw/iteration-01/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "ccf01e5d507ce1d6f58dd3211bae6d44140fd184ea4383197fb6b3ad69a76073",
+      "stored_sha256": "c69920cbc7fa560c973d39603293257911cca7150f85bdd87d2a3cd75bc2d190",
+      "bytes": 7555,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/iteration-01/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/8571ad5f99b54f8546056151c8827002191f73b9ef4667aabab5e1c1bc95eef8-safe_llm.py",
+      "stored": "raw/iteration-01/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "8571ad5f99b54f8546056151c8827002191f73b9ef4667aabab5e1c1bc95eef8",
+      "stored_sha256": "43a5c46915a245af5eac504cda0a0f3d29bf491576d48e63f4e469e7d7aa5268",
+      "bytes": 11600,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/50d0544d10b3b036b3e13510852985f3bdbf83edeb114a072f5e2d23c8c96414-llm_events.py",
+      "stored": "raw/iteration-01/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "50d0544d10b3b036b3e13510852985f3bdbf83edeb114a072f5e2d23c8c96414",
+      "stored_sha256": "16c1661f365327ae478c5f70de8164bc6714eb4a698d7af4ea94a1216b9349a9",
+      "bytes": 7494,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-01/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/52d95b128f21e8f5a45bbfddf9fff63179f6ed8e56235bb4ff6e63f8af71741d-README.md",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "52d95b128f21e8f5a45bbfddf9fff63179f6ed8e56235bb4ff6e63f8af71741d",
+      "stored_sha256": "c1c4834ce06dd3835065102ec9a3c255eeba28ebfd88a0b04a4338a1a08e5bfe",
+      "bytes": 6567,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460-runtime.py",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460",
+      "stored_sha256": "e8794eed6cd4e9c9101e4f239f957a06924c05a9aeb181735e8a57106c74f88e",
+      "bytes": 55483,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250-telemetry.py",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "stored_sha256": "1be3ef51f778807b3b081d4a923e138139e17595191993abf5c9a9caafed3143",
+      "bytes": 7831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/d5fc533b64294fd9a4fb6e31577a5d38882c80587534aa98b6fafbe5ee801816-test_llm_telemetry_injection.py",
+      "stored": "raw/iteration-02/sources/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py.gz",
+      "original_sha256": "d5fc533b64294fd9a4fb6e31577a5d38882c80587534aa98b6fafbe5ee801816",
+      "stored_sha256": "04fbb74d62ff8779c5dc4c0c0103fa86be839a006536119d0c2ee39f4cbbc276",
+      "bytes": 9813,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b2df47d3cfacae9a191bf3ed556efeb485bb704b6f57271281d661920166e124-README.md",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "b2df47d3cfacae9a191bf3ed556efeb485bb704b6f57271281d661920166e124",
+      "stored_sha256": "22ad4bb4accfb8e5cc8f4bb48ba0f96ca61d21ae50975871fc3183dd43b33b14",
+      "bytes": 6831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219-service.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219",
+      "stored_sha256": "6b56e58e6eb38fa5d2bcdea94727908d8723e1151a24978fc9413ccab9337712",
+      "bytes": 44151,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3-telemetry.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3",
+      "stored_sha256": "fb4e30ae65ca1dd74437af63b7fe184456ea7fd4b33cfe46ff099fdaf7608594",
+      "bytes": 5610,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645-test_embeddings.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "stored_sha256": "f812d79a0ee64d48a781b31ebcf60af122bb8662ed18a7a7243b1c415306657f",
+      "bytes": 9858,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6408ded7de76687843cefdb1d9bc0e7d576cd9e0a48e7b4e91291dbb766eba46-test_safe_telemetry.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/tests_llm/test_safe_telemetry.py.gz",
+      "original_sha256": "6408ded7de76687843cefdb1d9bc0e7d576cd9e0a48e7b4e91291dbb766eba46",
+      "stored_sha256": "01a82f4a573453a11f74c1f9f22756897852c484e033e2798f73d648fb18aca4",
+      "bytes": 17857,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/tests_llm/test_safe_telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4-test_service.py",
+      "stored": "raw/iteration-02/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4",
+      "stored_sha256": "85bb39de7ab0d3083ddb6537273fdbc449176fa0f6130b3dc6d755a86d0333b2",
+      "bytes": 8750,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ccf01e5d507ce1d6f58dd3211bae6d44140fd184ea4383197fb6b3ad69a76073-README.md",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "ccf01e5d507ce1d6f58dd3211bae6d44140fd184ea4383197fb6b3ad69a76073",
+      "stored_sha256": "c69920cbc7fa560c973d39603293257911cca7150f85bdd87d2a3cd75bc2d190",
+      "bytes": 7555,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/484e98f0d288f3d576e73e8001cebb658b42f1b94a4f129cf1b966452df0a4fb-safe_llm.py",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "484e98f0d288f3d576e73e8001cebb658b42f1b94a4f129cf1b966452df0a4fb",
+      "stored_sha256": "a661e4e900d7fe7554b8860e8a7d38a4f1dd9165a73dbdec184a8249b93cee3a",
+      "bytes": 11762,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/f51337d3d53f9f4803a50803b061b781fcd163d2f39612ab769c56004a82a6b5-llm_events.py",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "f51337d3d53f9f4803a50803b061b781fcd163d2f39612ab769c56004a82a6b5",
+      "stored_sha256": "c29301b52e62bd3670d23635d61206b645236fa2c25a9e20e282dd154aa3bbf7",
+      "bytes": 8460,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6-test_llm_events.py",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/tests_telemetry/test_llm_events.py.gz",
+      "original_sha256": "6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6",
+      "stored_sha256": "a2d5c5b154f857ea1015fd85b86d6051588d00478b79f5dfba057ceb845990e6",
+      "bytes": 4094,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/tests_telemetry/test_llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1-test_safe_llm.py",
+      "stored": "raw/iteration-02/sources/packages/friday-telemetry/tests_telemetry/test_safe_llm.py.gz",
+      "original_sha256": "545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1",
+      "stored_sha256": "5d981db2e91f5f1558b682b643ccd10c4940ffa3cf4540484bb4eb571b37611d",
+      "bytes": 4882,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-02/packages/friday-telemetry/tests_telemetry/test_safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101-README.md",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101",
+      "stored_sha256": "58360e54d8a449afe5972a1bf7cde877c1be564b2b57906d94c3436e1bed85e5",
+      "bytes": 7348,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460-runtime.py",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460",
+      "stored_sha256": "e8794eed6cd4e9c9101e4f239f957a06924c05a9aeb181735e8a57106c74f88e",
+      "bytes": 55483,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250-telemetry.py",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "stored_sha256": "1be3ef51f778807b3b081d4a923e138139e17595191993abf5c9a9caafed3143",
+      "bytes": 7831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/633f285fbea20c17708eaa9bb3068ed5f757a31e98917f04058fdf3f1b0b99df-test_llm_telemetry_injection.py",
+      "stored": "raw/iteration-03/sources/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py.gz",
+      "original_sha256": "633f285fbea20c17708eaa9bb3068ed5f757a31e98917f04058fdf3f1b0b99df",
+      "stored_sha256": "bedb6afbcdc8b0de305eec209ed27cb516921f8797f377d39945f60db22dd295",
+      "bytes": 9866,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f-README.md",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f",
+      "stored_sha256": "2559d2eb917e0d27920e49fadd5dfc6160f6516ff6ff0c9af29d96971e2c58dd",
+      "bytes": 8945,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219-service.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219",
+      "stored_sha256": "6b56e58e6eb38fa5d2bcdea94727908d8723e1151a24978fc9413ccab9337712",
+      "bytes": 44151,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3-telemetry.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3",
+      "stored_sha256": "fb4e30ae65ca1dd74437af63b7fe184456ea7fd4b33cfe46ff099fdaf7608594",
+      "bytes": 5610,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645-test_embeddings.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "stored_sha256": "f812d79a0ee64d48a781b31ebcf60af122bb8662ed18a7a7243b1c415306657f",
+      "bytes": 9858,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/cd573aad4d22c783f4de149177c4c500b66b19d47f3034abdb06daa0c25f4516-test_safe_telemetry.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/tests_llm/test_safe_telemetry.py.gz",
+      "original_sha256": "cd573aad4d22c783f4de149177c4c500b66b19d47f3034abdb06daa0c25f4516",
+      "stored_sha256": "c83d9150d223fc50b805d6d86de93f9a2e5d670bb63ce96d471ff2d6aa4087ab",
+      "bytes": 18194,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/tests_llm/test_safe_telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4-test_service.py",
+      "stored": "raw/iteration-03/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4",
+      "stored_sha256": "85bb39de7ab0d3083ddb6537273fdbc449176fa0f6130b3dc6d755a86d0333b2",
+      "bytes": 8750,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0-README.md",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0",
+      "stored_sha256": "7204bcb1b4fe6976b48dcaabd4a0ff9532560c0eb88274c954a4e1901ed94039",
+      "bytes": 8603,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/484e98f0d288f3d576e73e8001cebb658b42f1b94a4f129cf1b966452df0a4fb-safe_llm.py",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "484e98f0d288f3d576e73e8001cebb658b42f1b94a4f129cf1b966452df0a4fb",
+      "stored_sha256": "a661e4e900d7fe7554b8860e8a7d38a4f1dd9165a73dbdec184a8249b93cee3a",
+      "bytes": 11762,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6-llm_events.py",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6",
+      "stored_sha256": "1604eb0e6752ec27ab5d7b0df69e4b2794633fdf82866cc24aa39fb73583b857",
+      "bytes": 8492,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6-test_llm_events.py",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/tests_telemetry/test_llm_events.py.gz",
+      "original_sha256": "6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6",
+      "stored_sha256": "a2d5c5b154f857ea1015fd85b86d6051588d00478b79f5dfba057ceb845990e6",
+      "bytes": 4094,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/tests_telemetry/test_llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1-test_safe_llm.py",
+      "stored": "raw/iteration-03/sources/packages/friday-telemetry/tests_telemetry/test_safe_llm.py.gz",
+      "original_sha256": "545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1",
+      "stored_sha256": "5d981db2e91f5f1558b682b643ccd10c4940ffa3cf4540484bb4eb571b37611d",
+      "bytes": 4882,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-03/packages/friday-telemetry/tests_telemetry/test_safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101-README.md",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101",
+      "stored_sha256": "58360e54d8a449afe5972a1bf7cde877c1be564b2b57906d94c3436e1bed85e5",
+      "bytes": 7348,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460-runtime.py",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "3a2c6110173d3cd7a07936d130fc486a3d458495fcfb3d9493b000b5a75e4460",
+      "stored_sha256": "e8794eed6cd4e9c9101e4f239f957a06924c05a9aeb181735e8a57106c74f88e",
+      "bytes": 55483,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250-telemetry.py",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "stored_sha256": "1be3ef51f778807b3b081d4a923e138139e17595191993abf5c9a9caafed3143",
+      "bytes": 7831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c-test_llm_telemetry_injection.py",
+      "stored": "raw/iteration-04/sources/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py.gz",
+      "original_sha256": "4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c",
+      "stored_sha256": "663c812276ca640c30501953b8cc13ee2b13e6d6b6e6e0ddda52249a19b8a524",
+      "bytes": 12363,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f-README.md",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f",
+      "stored_sha256": "2559d2eb917e0d27920e49fadd5dfc6160f6516ff6ff0c9af29d96971e2c58dd",
+      "bytes": 8945,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219-service.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219",
+      "stored_sha256": "6b56e58e6eb38fa5d2bcdea94727908d8723e1151a24978fc9413ccab9337712",
+      "bytes": 44151,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3-telemetry.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3",
+      "stored_sha256": "fb4e30ae65ca1dd74437af63b7fe184456ea7fd4b33cfe46ff099fdaf7608594",
+      "bytes": 5610,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645-test_embeddings.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "stored_sha256": "f812d79a0ee64d48a781b31ebcf60af122bb8662ed18a7a7243b1c415306657f",
+      "bytes": 9858,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5-test_safe_telemetry.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/tests_llm/test_safe_telemetry.py.gz",
+      "original_sha256": "0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5",
+      "stored_sha256": "c6d08b9a1c2139b828c2771bffa00af1c9c26730032be29fed4517f238f9bddd",
+      "bytes": 23328,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/tests_llm/test_safe_telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4-test_service.py",
+      "stored": "raw/iteration-04/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4",
+      "stored_sha256": "85bb39de7ab0d3083ddb6537273fdbc449176fa0f6130b3dc6d755a86d0333b2",
+      "bytes": 8750,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0-README.md",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0",
+      "stored_sha256": "7204bcb1b4fe6976b48dcaabd4a0ff9532560c0eb88274c954a4e1901ed94039",
+      "bytes": 8603,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594-safe_llm.py",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594",
+      "stored_sha256": "8c60fc206ffbd073f7c20ff77426b257f1043506bf3f255bba1993e9044cb443",
+      "bytes": 11959,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6-llm_events.py",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6",
+      "stored_sha256": "1604eb0e6752ec27ab5d7b0df69e4b2794633fdf82866cc24aa39fb73583b857",
+      "bytes": 8492,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6-test_llm_events.py",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/tests_telemetry/test_llm_events.py.gz",
+      "original_sha256": "6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6",
+      "stored_sha256": "a2d5c5b154f857ea1015fd85b86d6051588d00478b79f5dfba057ceb845990e6",
+      "bytes": 4094,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/tests_telemetry/test_llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1-test_safe_llm.py",
+      "stored": "raw/iteration-04/sources/packages/friday-telemetry/tests_telemetry/test_safe_llm.py.gz",
+      "original_sha256": "545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1",
+      "stored_sha256": "5d981db2e91f5f1558b682b643ccd10c4940ffa3cf4540484bb4eb571b37611d",
+      "bytes": 4882,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-04/packages/friday-telemetry/tests_telemetry/test_safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101-README.md",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101",
+      "stored_sha256": "58360e54d8a449afe5972a1bf7cde877c1be564b2b57906d94c3436e1bed85e5",
+      "bytes": 7348,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/fc10be33355014da4a07ff4e86d987b08950b7748b546f0e4d9f486513ddad3d-runtime.py",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "fc10be33355014da4a07ff4e86d987b08950b7748b546f0e4d9f486513ddad3d",
+      "stored_sha256": "ea215d45e01f275c84be3d1cdb2e30ef4d3933a5e39c8e41b71aeec67b4bb595",
+      "bytes": 55730,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250-telemetry.py",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "stored_sha256": "1be3ef51f778807b3b081d4a923e138139e17595191993abf5c9a9caafed3143",
+      "bytes": 7831,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c-test_llm_telemetry_injection.py",
+      "stored": "raw/iteration-05/sources/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py.gz",
+      "original_sha256": "4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c",
+      "stored_sha256": "663c812276ca640c30501953b8cc13ee2b13e6d6b6e6e0ddda52249a19b8a524",
+      "bytes": 12363,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f-README.md",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f",
+      "stored_sha256": "2559d2eb917e0d27920e49fadd5dfc6160f6516ff6ff0c9af29d96971e2c58dd",
+      "bytes": 8945,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219-service.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219",
+      "stored_sha256": "6b56e58e6eb38fa5d2bcdea94727908d8723e1151a24978fc9413ccab9337712",
+      "bytes": 44151,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3-telemetry.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3",
+      "stored_sha256": "fb4e30ae65ca1dd74437af63b7fe184456ea7fd4b33cfe46ff099fdaf7608594",
+      "bytes": 5610,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645-test_embeddings.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "stored_sha256": "f812d79a0ee64d48a781b31ebcf60af122bb8662ed18a7a7243b1c415306657f",
+      "bytes": 9858,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5-test_safe_telemetry.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/tests_llm/test_safe_telemetry.py.gz",
+      "original_sha256": "0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5",
+      "stored_sha256": "c6d08b9a1c2139b828c2771bffa00af1c9c26730032be29fed4517f238f9bddd",
+      "bytes": 23328,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/tests_llm/test_safe_telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4-test_service.py",
+      "stored": "raw/iteration-05/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4",
+      "stored_sha256": "85bb39de7ab0d3083ddb6537273fdbc449176fa0f6130b3dc6d755a86d0333b2",
+      "bytes": 8750,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0-README.md",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0",
+      "stored_sha256": "7204bcb1b4fe6976b48dcaabd4a0ff9532560c0eb88274c954a4e1901ed94039",
+      "bytes": 8603,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594-safe_llm.py",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594",
+      "stored_sha256": "8c60fc206ffbd073f7c20ff77426b257f1043506bf3f255bba1993e9044cb443",
+      "bytes": 11959,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6-llm_events.py",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6",
+      "stored_sha256": "1604eb0e6752ec27ab5d7b0df69e4b2794633fdf82866cc24aa39fb73583b857",
+      "bytes": 8492,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6-test_llm_events.py",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/tests_telemetry/test_llm_events.py.gz",
+      "original_sha256": "6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6",
+      "stored_sha256": "a2d5c5b154f857ea1015fd85b86d6051588d00478b79f5dfba057ceb845990e6",
+      "bytes": 4094,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/tests_telemetry/test_llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1-test_safe_llm.py",
+      "stored": "raw/iteration-05/sources/packages/friday-telemetry/tests_telemetry/test_safe_llm.py.gz",
+      "original_sha256": "545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1",
+      "stored_sha256": "5d981db2e91f5f1558b682b643ccd10c4940ffa3cf4540484bb4eb571b37611d",
+      "bytes": 4882,
+      "captured_origin": "/private/tmp/telem-03/construction/iteration-05/packages/friday-telemetry/tests_telemetry/test_safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101-README.md",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/README.md.gz",
+      "original_sha256": "df2b366dc133ca2a47b1fedcf27c060ef5d8dcdbc31e69263fdbdde6f5c8d101",
+      "stored_sha256": "58360e54d8a449afe5972a1bf7cde877c1be564b2b57906d94c3436e1bed85e5",
+      "bytes": 7348,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521-adapters.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/src/friday_chat/adapters.py.gz",
+      "original_sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "stored_sha256": "fab1efef7162e5db9dcdfb04e6dbb3df296ba650979b7070f3c0b4dcb00c6055",
+      "bytes": 106237,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/src/friday_chat/adapters.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7-mutation.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/src/friday_chat/reorganization/mutation.py.gz",
+      "original_sha256": "30c8a7b855b4783b6151301b02b9fa47d439d002bcf796f974d61ea9ea9edca7",
+      "stored_sha256": "e303b2976c864b819723c85a17ea33de65f8a4dfa23c2f2ee9140ee8834844b1",
+      "bytes": 42300,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/fc10be33355014da4a07ff4e86d987b08950b7748b546f0e4d9f486513ddad3d-runtime.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/src/friday_chat/runtime.py.gz",
+      "original_sha256": "fc10be33355014da4a07ff4e86d987b08950b7748b546f0e4d9f486513ddad3d",
+      "stored_sha256": "ea215d45e01f275c84be3d1cdb2e30ef4d3933a5e39c8e41b71aeec67b4bb595",
+      "bytes": 55730,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/src/friday_chat/runtime.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250-telemetry.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/src/friday_chat/telemetry.py.gz",
+      "original_sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "stored_sha256": "1be3ef51f778807b3b081d4a923e138139e17595191993abf5c9a9caafed3143",
+      "bytes": 7831,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/src/friday_chat/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c-test_llm_telemetry_injection.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py.gz",
+      "original_sha256": "4cacf450b2722c91a9b0bab6add483230170eecdacf8a1be52d6dd0686702b8c",
+      "stored_sha256": "663c812276ca640c30501953b8cc13ee2b13e6d6b6e6e0ddda52249a19b8a524",
+      "bytes": 12363,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-chat/tests_chat/test_llm_telemetry_injection.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f-README.md",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/README.md.gz",
+      "original_sha256": "9974588854d57bb80b91a6bebce8073f063a3f910f0ea3aa3658a58e35dbbb1f",
+      "stored_sha256": "2559d2eb917e0d27920e49fadd5dfc6160f6516ff6ff0c9af29d96971e2c58dd",
+      "bytes": 8945,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b-embeddings.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/src/friday_llm/embeddings.py.gz",
+      "original_sha256": "b1e269b28b907ae53189016529a85dbf75127d0754d9175be5d21a6828681a7b",
+      "stored_sha256": "270d96780a7055276dc49503af8ede4ed18452abbd0f1a0730323a30cae24b1d",
+      "bytes": 14904,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/src/friday_llm/embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046-pricing.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/src/friday_llm/pricing.py.gz",
+      "original_sha256": "ef02fa2198d9e8600aaaa3e062aafe7897c577a7092a02e7f2caf75ae0697046",
+      "stored_sha256": "9ab77420cc2ba6db771b5745a2e50ab50e9da82cb9f8909c191b803136403e8a",
+      "bytes": 10423,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/src/friday_llm/pricing.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219-service.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/src/friday_llm/service.py.gz",
+      "original_sha256": "c849a430e090a3ee93c3aa66100a996a1f0c6be78ff9f8ee73e1a53213ec9219",
+      "stored_sha256": "6b56e58e6eb38fa5d2bcdea94727908d8723e1151a24978fc9413ccab9337712",
+      "bytes": 44151,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/src/friday_llm/service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3-telemetry.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/src/friday_llm/telemetry.py.gz",
+      "original_sha256": "ef6fc3621583eadb07a63a3ce6438e3ef3be3bc1b3db03875d87a03c07e82de3",
+      "stored_sha256": "fb4e30ae65ca1dd74437af63b7fe184456ea7fd4b33cfe46ff099fdaf7608594",
+      "bytes": 5610,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/src/friday_llm/telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645-test_embeddings.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/tests_llm/test_embeddings.py.gz",
+      "original_sha256": "aa9bb997e9d5d919dc9e8dfcfb50ec5e5176fb93ffa23a3861e347836d215645",
+      "stored_sha256": "f812d79a0ee64d48a781b31ebcf60af122bb8662ed18a7a7243b1c415306657f",
+      "bytes": 9858,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/tests_llm/test_embeddings.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5-test_safe_telemetry.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/tests_llm/test_safe_telemetry.py.gz",
+      "original_sha256": "0c93b180c112281d53f8afe2f35b5e77383b9187ffeb385cd270d4bbd87631e5",
+      "stored_sha256": "c6d08b9a1c2139b828c2771bffa00af1c9c26730032be29fed4517f238f9bddd",
+      "bytes": 23328,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/tests_llm/test_safe_telemetry.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4-test_service.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-llm/tests_llm/test_service.py.gz",
+      "original_sha256": "ac496146445a8382120ce688ed2f980e951ec36e65d8ec21038b6ab69b5082a4",
+      "stored_sha256": "85bb39de7ab0d3083ddb6537273fdbc449176fa0f6130b3dc6d755a86d0333b2",
+      "bytes": 8750,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-llm/tests_llm/test_service.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0-README.md",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/README.md.gz",
+      "original_sha256": "89097cfdba256a4abfa6ce6103eb7aa5bab658183e10052bee2c414b133371b0",
+      "stored_sha256": "7204bcb1b4fe6976b48dcaabd4a0ff9532560c0eb88274c954a4e1901ed94039",
+      "bytes": 8603,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/README.md"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26-__init__.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/src/friday_telemetry/__init__.py.gz",
+      "original_sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "stored_sha256": "bc163b3e07ddcb2eea770c28ce8ffb9d5d569ba613cac46c42c504bdc8292812",
+      "bytes": 4468,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/src/friday_telemetry/__init__.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594-safe_llm.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py.gz",
+      "original_sha256": "c5487b2e65dffc4cf2314b6f1de634f08d2d664414d1d9be9088ab353e741594",
+      "stored_sha256": "8c60fc206ffbd073f7c20ff77426b257f1043506bf3f255bba1993e9044cb443",
+      "bytes": 11959,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/src/friday_telemetry/helpers/safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6-llm_events.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py.gz",
+      "original_sha256": "c20b009148aaaa959182181c4e2685ef8d78481c0cb5646d9b592cd3642a1db6",
+      "stored_sha256": "1604eb0e6752ec27ab5d7b0df69e4b2794633fdf82866cc24aa39fb73583b857",
+      "bytes": 8492,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/src/friday_telemetry/models/llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6-test_llm_events.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/tests_telemetry/test_llm_events.py.gz",
+      "original_sha256": "6eed0634ae7ecf8ea6827f5545c2b2b4d8e35c5a46b4f7c76362aa4d5d5c6cd6",
+      "stored_sha256": "a2d5c5b154f857ea1015fd85b86d6051588d00478b79f5dfba057ceb845990e6",
+      "bytes": 4094,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/tests_telemetry/test_llm_events.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1-test_safe_llm.py",
+      "stored": "raw/frozen-candidate/sources/packages/friday-telemetry/tests_telemetry/test_safe_llm.py.gz",
+      "original_sha256": "545fb2c9ef53f84004e83a74e018de7b8a2e8ce1942cbb84fbc4defd80bad6a1",
+      "stored_sha256": "5d981db2e91f5f1558b682b643ccd10c4940ffa3cf4540484bb4eb571b37611d",
+      "bytes": 4882,
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate/packages/friday-telemetry/tests_telemetry/test_safe_llm.py"
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/3561179db851f5c9cb096a8391c757827a226abd3148fdf37101e0afa5cc35dd-frozen-product-snapshot-original.json",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-product-snapshot-original.json",
+      "stored": "raw/versions/3561179db851f5c9cb096a8391c757827a226abd3148fdf37101e0afa5cc35dd-frozen-product-snapshot-original.json.gz",
+      "original_sha256": "3561179db851f5c9cb096a8391c757827a226abd3148fdf37101e0afa5cc35dd",
+      "stored_sha256": "13ac64e917978c396a33200ddcea105d85b1fccf3a4f5ff48b6b4aa3ee081962",
+      "bytes": 1177522
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/202bea1f289f0c368bf693f9c5e9f15d0894ba30c85eef887bebfd51003780c4-frozen-candidate-snapshot.json",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-candidate-snapshot.json",
+      "stored": "raw/versions/202bea1f289f0c368bf693f9c5e9f15d0894ba30c85eef887bebfd51003780c4-frozen-candidate-snapshot.json.gz",
+      "original_sha256": "202bea1f289f0c368bf693f9c5e9f15d0894ba30c85eef887bebfd51003780c4",
+      "stored_sha256": "6a762bee19c101496f5eae158db2877629c7db38111dddf95a22a830da1848a1",
+      "bytes": 1830327
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/916f3055490be315c0b5dd50682d6fc2923efefc7f1910fb4ad6e52baf4e6ec4-frozen-closeout-documentation.log",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-closeout-documentation.log",
+      "stored": "raw/versions/916f3055490be315c0b5dd50682d6fc2923efefc7f1910fb4ad6e52baf4e6ec4-frozen-closeout-documentation.log.gz",
+      "original_sha256": "916f3055490be315c0b5dd50682d6fc2923efefc7f1910fb4ad6e52baf4e6ec4",
+      "stored_sha256": "85781ad3091942a07eeb7b4a02e3d7a9553a5e74aba6f6cbd9d94a643dc23275",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/03bca740e33368c97ed6d9d00232668b7ce13a4fc7cb92cea0964bb36108e182-frozen-closeout-documentation-receipt.json",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-closeout-documentation-receipt.json",
+      "stored": "raw/versions/03bca740e33368c97ed6d9d00232668b7ce13a4fc7cb92cea0964bb36108e182-frozen-closeout-documentation-receipt.json.gz",
+      "original_sha256": "03bca740e33368c97ed6d9d00232668b7ce13a4fc7cb92cea0964bb36108e182",
+      "stored_sha256": "90d310085af4fa4fbf367dc4c2feb25d901c8e657075cbe3856e95b449a37653",
+      "bytes": 3051
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33-frozen-closeout-board-render.log",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-closeout-board-render.log",
+      "stored": "raw/versions/a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33-frozen-closeout-board-render.log.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-03/construction/immutable-raw/2e0366eae2069708a79108674017502dbbb89276613ce5f298e13892bfd2b0ac-frozen-closeout-board-render-receipt.json",
+      "captured_origin": "/private/tmp/telem-03/construction/frozen-closeout-board-render-receipt.json",
+      "stored": "raw/versions/2e0366eae2069708a79108674017502dbbb89276613ce5f298e13892bfd2b0ac-frozen-closeout-board-render-receipt.json.gz",
+      "original_sha256": "2e0366eae2069708a79108674017502dbbb89276613ce5f298e13892bfd2b0ac",
+      "stored_sha256": "f0cf5e166a313c6c2ba17c2d0c89706f81a8b9577035249af2f4938a335bdf03",
+      "bytes": 3064
+    }
+  ],
+  "snapshot_versions_by_sha256": {
+    "2855cacde0fd2ed7c0f728d13634532d182d75c6088041c786809698ec70ba25": "raw/controller/frozen-candidate-snapshot.json.gz",
+    "58acada976db25d00b55db56c40f55c11f4ee5bd552f9c6c6b46e6d1a1152df6": "raw/controller/iteration-01-snapshot.json.gz",
+    "b0307f28e5dcd01c664e69f4e8baf99774bfeab50339d08555a83d4765d6d398": "raw/controller/iteration-02-snapshot.json.gz",
+    "c902c0a96ab380b9a1c0249368f214ebbbd4991fe66b7d0894c700ee5136c77f": "raw/controller/iteration-03-snapshot.json.gz",
+    "662f6354ce179b41213a457ef4baeb11cec19d2e288ce3faa95e3e9de342c9a7": "raw/controller/iteration-04-snapshot.json.gz",
+    "c63461f9d1ca0b60caddc2c3640cf76bff6cb8d6914305aeac01fc9bd949585b": "raw/controller/iteration-05-snapshot.json.gz",
+    "3561179db851f5c9cb096a8391c757827a226abd3148fdf37101e0afa5cc35dd": "raw/versions/3561179db851f5c9cb096a8391c757827a226abd3148fdf37101e0afa5cc35dd-frozen-product-snapshot-original.json.gz",
+    "202bea1f289f0c368bf693f9c5e9f15d0894ba30c85eef887bebfd51003780c4": "raw/versions/202bea1f289f0c368bf693f9c5e9f15d0894ba30c85eef887bebfd51003780c4-frozen-candidate-snapshot.json.gz"
+  },
+  "capture_note": "Every original points to an immutable byte copy. captured_origin records execution path; governance overlays have separate receipt-addressable snapshot versions. Product bytes stay frozen."
+}

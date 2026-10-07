@@ -8,10 +8,10 @@ status: approved
 work_state: started
 condition: normal
 created: 2026-10-01
-updated: 2026-10-06
-next_gate: construct approved CD-003; verify stable TELEM-03 candidate independently
-execution_phase: implementation
-validation_state: pending
+updated: 2026-10-07
+next_gate: fresh VAL-008 review of TELEM-03 candidate dd543fd and complete aggregate
+execution_phase: validation
+validation_state: in_review
 implementation_authority: granted
 ---
 
@@ -23,7 +23,8 @@ The [current manifest](authority-manifest-TELEM-03.yaml) pins 24 approved contro
 Fresh independent [CDR-018](validation/CDR-018/report.md) returns READY separately
 for authority and lint renewal at7bb6256. The [true pre-build baseline](execution/TELEM-03-baseline/report.md)
 reproduces current gaps with patched dispatch before any source edit. Exact CD-003
-construction is released; candidate checks and fresh product review remain pending.
+construction is frozen at `dd543fd`. Fresh-context [VAL-008](validation/VAL-008/request.md)
+reviews the complete unit and aggregate; verification and acceptance remain pending.
 
 Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit

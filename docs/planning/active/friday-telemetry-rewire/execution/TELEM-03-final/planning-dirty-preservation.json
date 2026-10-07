@@ -1,0 +1,12 @@
+{
+  "docs/planning/board.yaml": {
+    "pre_gate_dirty_patch_sha256": "5e41650cf9dc50bf716fc75113c1c11e5a788147449cd5e48874e8b27cb06a4a",
+    "reconstructed_after_gate_patch_sha256": "5e41650cf9dc50bf716fc75113c1c11e5a788147449cd5e48874e8b27cb06a4a",
+    "only_controller_gate_changed": true
+  },
+  "docs/planning/README.md": {
+    "pre_gate_dirty_patch_sha256": "8eb00f81fbbb1cdda61c1642713babcf6162115a1a9399d87c0e8b874951031e",
+    "reconstructed_after_gate_patch_sha256": "8eb00f81fbbb1cdda61c1642713babcf6162115a1a9399d87c0e8b874951031e",
+    "only_controller_gate_changed": true
+  }
+}

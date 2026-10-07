@@ -771,3 +771,32 @@ are frozen before source construction. No source or test edit preceded the probe
 execution_phase: implementation; validation_state: pending. Exact CD-003 construction
 is released. Full candidate gates and stable commit then fresh-context read-only
 product delta+complete2155a0f aggregate validation are required; acceptance separate.
+
+## 2026-10-07 — TELEM-03 candidate frozen for fresh VAL-008
+
+Product candidate dd543fd6a6819ec0c4fb2529fa384fea886f5509 implements the approved
+20-path subset of CD-003's 28 targets. Closed LLM events, bounded per-request
+accounting, usage/cost provenance and provider-neutral Chat role injection replace
+unsafe service hooks; standalone legacy compatibility helpers remain unchanged.
+The required snapshot-publisher typing correction preserves both bool values.
+Disabled factory construction preserves its original call shape; enabled factories
+receive the same observer. Legacy shared-service aliases keep their constructed role.
+
+Builder's isolated source-equivalent regression gates:105 new tests,1,115 combined
+Chat/LLM/telemetry tests, root2,996 and13 owning trees2,978; root/owning retain only
+the unchanged SciPy skip. Unit11/aggregate74 source typing and unit17/aggregate112
+Python lint pass. The complete aggregate expansion includes120 Python paths
+(the initial package-only112 check omitted eight historical nonpackage paths);
+the independently expanded120-path gate also passes. Raw root Ruff remains exit1/exact327 independently approved
+WVR-005 identities; no extra debt or suppression. Separate actual managed SDK
+consumer evidence uses an owned in-memory exporter, no channel or listener, with
+explicit worker/exporter cleanup and no global registration. No new pytest SDK fixture.
+Original failed test-double runs and disabled-call-shape regression evidence remain
+retained and distinguished from passing checks. No fixture outside approved targets
+was edited to hide a failure. All24 authority controls and accepted-unit pins stay fixed.
+
+Fresh-context read-only VAL-008 is dispatched under AGENTS.md. Review mode is full
+TELEM-03 unit delta plus complete2155a0f aggregate. Candidate remains started/local;
+execution_phase: validation; validation_state: in_review. No completion or maintainer
+acceptance is inferred from builder checks. Original dirty changes remain preserved
+and unstaged. Delivery, live services and later units remain separate authority.

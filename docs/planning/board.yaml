@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: construct approved CD-003; verify stable TELEM-03 candidate independently
+  next_gate: fresh VAL-008 review of TELEM-03 candidate dd543fd and complete aggregate
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
