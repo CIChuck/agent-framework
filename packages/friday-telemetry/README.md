@@ -137,3 +137,20 @@ not prove native filesystem behavior, real TLS handshakes or public connectivity
 Python socket guards cannot intercept all native gRPC I/O; explicit target/options
 and fixture cleanup evidence are required. Real remote/TLS activation, credentials,
 certificate provisioning and live providers require a later explicit profile.
+
+## Safe LLM event boundary
+
+`LLMEvent` and `SafeLLMTelemetry` provide immutable, runtime-validated version-one
+`llm.request_start`, `llm.attempt_finish`, `llm.batch_finish` and
+`llm.request_finish` events through the unchanged `TelemetryInterface.capture_event`.
+Payloads contain only bounded counts, finite timing/cost values, closed categories
+and generated opaque identifiers. Missing values are omitted. The helper borrows
+its sink, creates no spans or exporter, and retains at most 256 content-free
+failure diagnostics in its typed `snapshot()`.
+
+Each logical invocation has its own request state. Actual provider dispatches and
+embedding batches get separate IDs; no ambient span is held across stream yields.
+Ordinary sink failures cannot replace application results, exceptions or cancellation.
+The standalone legacy `LLMTelemetryHelper` and its exports remain available for
+compatibility and retain their historical raw-content behavior. They are outside
+this safety guarantee and are no longer used by the instrumented LiteLLM services.

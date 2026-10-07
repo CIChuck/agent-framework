@@ -60,6 +60,7 @@ from friday_telemetry.helpers import (
     classify_error,
 )
 from friday_telemetry.helpers.mcp import MCPTelemetryHelper, opaque_mcp_ref
+from friday_telemetry.helpers.safe_llm import SafeLLMTelemetry
 from friday_telemetry.interface import TelemetryInterface
 from friday_telemetry.lifecycle import (
     LifecycleResult,
@@ -83,6 +84,7 @@ from friday_telemetry.models.llm import (
     StreamingMetrics,
     TokenUsage,
 )
+from friday_telemetry.models.llm_events import LLMEvent
 from friday_telemetry.models.mcp import MCPEvent, MCPEventName, MCPEventReason
 
 # Models - Memory
@@ -104,6 +106,8 @@ from friday_telemetry.providers import (
 from friday_telemetry.records import EventRecord, SpanRecord
 
 __all__ = [
+    "LLMEvent",
+    "SafeLLMTelemetry",
     # Interface
     "TelemetryInterface",
     # Records

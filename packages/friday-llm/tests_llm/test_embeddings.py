@@ -125,7 +125,7 @@ class TestLiteLLMEmbeddingService:
 
             await service.embed_documents(["test"])
 
-            assert "embeddings_generated" in recorder.event_names
+            assert "llm.request_finish" in recorder.event_names
 
     @pytest.mark.asyncio
     async def test_query_telemetry(self, embedding_service_with_telemetry):
@@ -139,7 +139,7 @@ class TestLiteLLMEmbeddingService:
             await service.embed_query("test query")
 
             # Query embedding now uses unified telemetry, emits embeddings_generated
-            assert "embeddings_generated" in recorder.event_names
+            assert "llm.request_finish" in recorder.event_names
 
 
 class TestEmbeddingCache:

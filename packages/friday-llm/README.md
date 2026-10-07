@@ -175,3 +175,36 @@ settings alongside its results.
 ## License
 
 MIT
+
+## Provider-neutral request metrics
+
+An optional borrowed `TelemetryInterface` sink now receives closed version-one
+`llm.request_start`, `llm.attempt_finish`, `llm.batch_finish` and
+`llm.request_finish` events. Consumers of the services' previous
+`llm_completion_success/error` or `embeddings_generated/error` payloads must
+migrate to these events; the services do not emit both schemas. Completion, stream
+and vector return shapes, retries, circuit policy and Langfuse metadata remain
+compatible. Constructors and `from_spec` accept optional keyword-only
+`service_role`, defaulting to `unspecified`.
+
+Metrics exclude prompts, response/reasoning text, tool data, vectors, raw model or
+context identifiers and exception messages. Request IDs are generated per call,
+attempt IDs count actual dispatches, and embedding batch IDs correlate their
+attempts. Cache hits, empty input and preflight rejection have no dispatch or
+fabricated usage. Reported zero differs from unavailable usage. Streams count raw
+chunks and retain the final cumulative usage snapshot once, including usage after
+finish; `first_text_ms` measures elapsed time to first text, including setup retries.
+Cancellation and explicit early close produce `cancelled` and `incomplete` outcomes.
+
+USD values are estimates from reported usage and local rates, never actual billing.
+`price_source`, `price_match` and an opaque `pricing_ref` describe the effective
+rates without exposing model/config strings. Built-in rates are the historical
+early-2025 table, not verified current prices; custom and supplied rates are caller
+inputs. Partial/missing required usage, disabled pricing or an unpriced model means
+no estimate. Failed attempts may incur unknown provider charges. The additive
+`CostCalculator.estimate_with_provenance` leaves legacy numeric `calculate` and
+lookup behavior intact; invalid rates have an explicit telemetry disposition.
+
+The public standalone legacy telemetry helper retains historical unsafe payloads
+for compatibility and is outside this guarantee. Full turn/parent-span correlation
+and Langfuse adoption remain separate work.

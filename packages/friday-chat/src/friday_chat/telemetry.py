@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 from collections import deque
+from collections.abc import Mapping
 from dataclasses import dataclass
 from hashlib import sha256
 from typing import Any, Literal
 from uuid import uuid4
 
-from friday_telemetry import MCPEvent, TelemetryInterface
+from friday_telemetry import LLMEvent, MCPEvent, TelemetryInterface
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 LifecycleName = Literal["runtime_ready", "application_start", "application_stop"]
@@ -21,7 +22,7 @@ Reason = Literal[
     "sink_failed",
     "invalid_event",
 ]
-Scalar = str | int | bool
+Scalar = str | int | float | bool
 
 
 class LifecycleEvent(BaseModel):
@@ -70,8 +71,8 @@ class TelemetrySnapshot:
 class ChatTelemetryObserver(TelemetryInterface):
     """Local provider or safe wrapper around a borrowed custom provider.
 
-    The interface's dynamic dictionaries are validated at entry. Only lifecycle
-    models and existing MCP models cross the sink boundary. Legacy hooks are
+    The interface's dynamic dictionaries are validated at entry. Only closed lifecycle, MCP and LLM event
+    models cross the sink boundary. Raw legacy hooks are
     deliberately not connected in this slice. Borrowed providers are never closed.
     """
 
@@ -137,12 +138,19 @@ class ChatTelemetryObserver(TelemetryInterface):
     def capture_event(self, event_name: str, data: dict[str, Any]) -> None:
         if not self.enabled:
             return
+        attributes: dict[str, Scalar] = {}
         try:
             if "name" in data:
                 raise ValueError("reserved event field")
             if event_name.startswith("mcp."):
                 model = MCPEvent.model_validate({**data, "name": event_name[4:]})
-                attributes = model.attributes()
+                attributes.update(model.attributes())
+            elif event_name.startswith("llm."):
+                llm = LLMEvent.model_validate({**data, "name": event_name})
+                if llm.root.session_ref not in (None, self._session_ref):
+                    raise ValueError("foreign session")
+                attributes = llm.attributes()
+                attributes["session_ref"] = self._session_ref
             elif event_name.startswith("chat."):
                 lifecycle = LifecycleEvent.model_validate(
                     {**data, "name": event_name[5:]}
@@ -163,7 +171,7 @@ class ChatTelemetryObserver(TelemetryInterface):
             except Exception:
                 self._record_failure("sink_failed")
 
-    def _record(self, name: str, attributes: dict[str, Scalar]) -> None:
+    def _record(self, name: str, attributes: Mapping[str, Scalar]) -> None:
         self._sequence += 1
         if len(self._events) == self._events.maxlen:
             self._dropped += 1

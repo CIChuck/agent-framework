@@ -1390,21 +1390,25 @@ def _build_framework_runtime(
     )
 
     diagnostics = RuntimeDiagnostics()
+    # Keep the established disabled construction call shape. Optional factory
+    # defaults supply None; enabled assembly forwards the same observer.
+    telemetry_arguments = {"telemetry": telemetry} if telemetry is not None else {}
     async_clients = build_framework_async_client_lifecycle()
-    chat_llm = build_framework_chat_model(config)
-    embedding = build_framework_embedding_service(config)
+    chat_llm = build_framework_chat_model(config, **telemetry_arguments)
+    embedding = build_framework_embedding_service(config, **telemetry_arguments)
     memory = build_framework_memory_adapter(
         config,
         embedding,
         session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
+        **telemetry_arguments,
     )
     transcript = build_framework_transcript_adapter(
         config,
         session_id=session_identity.value,
         maintenance_layout=maintenance_layout,
     )
-    native_tools = build_framework_tool_registry(config)
+    native_tools = build_framework_tool_registry(config, **telemetry_arguments)
     mcp_tools = (
         MCPChatRegistry(
             native_tools,
@@ -1435,6 +1439,7 @@ def _build_framework_runtime(
         llm_models=maintenance_models,
         diagnostics=diagnostics,
         maintenance_layout=maintenance_layout,
+        **telemetry_arguments,
     )
 
     from friday_memory import (
@@ -1485,7 +1490,7 @@ def _build_framework_runtime(
     reorganization_mutation = (
         FrameworkMaintenanceMutationAdapter(
             memory=memory_mutation,
-            providers=build_explicit_maintenance_provider_registry(config),
+            providers=build_explicit_maintenance_provider_registry(config, **telemetry_arguments),
             lifecycle=maintenance,
             synthesis_guidance=build_synthesis_guidance(config),
         )
