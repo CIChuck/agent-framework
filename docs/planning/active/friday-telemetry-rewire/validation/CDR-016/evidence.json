@@ -1,0 +1,238 @@
+{
+  "reviewer": "/root/telem02_a02_proposal_review",
+  "model": "GPT-6 family; exact runtime model/version not exposed",
+  "timestamp_utc": "2026-10-07T00:33:37.006376+00:00",
+  "review_mode": "fresh independent read-only prospective proposal approval readiness; not product verification",
+  "base": "95949e49df7b55f8da391a47f6df67cc2ff8e5ce",
+  "candidate": "db9223e68e11facc74d2b88853ab4c3a2eaeb17b",
+  "diff_range": "95949e49df7b55f8da391a47f6df67cc2ff8e5ce..db9223e68e11facc74d2b88853ab4c3a2eaeb17b",
+  "verdict": "READY",
+  "findings": [],
+  "changed_paths_receipt": "A\tdocs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md\n",
+  "diff_sha256": "31dd19421f9a3aaf896b8dda0ede74d37d71c7db2d8c938852b9d36cc37bf6a4",
+  "diff_check_exit": 0,
+  "diff_check_stdout": "",
+  "diff_check_stderr": "",
+  "input_hashes": [
+    {
+      "path": "AGENTS.md",
+      "expected_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "candidate_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "base_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "current_control_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "candidate_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "base_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "current_control_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "candidate_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "base_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "current_control_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "candidate_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "base_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "current_control_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "candidate_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "base_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "current_control_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "expected_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "candidate_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "base_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "current_control_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "expected_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "candidate_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "base_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "current_control_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "candidate_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "base_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "current_control_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "expected_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "candidate_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "base_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "current_control_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "expected_sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae",
+      "candidate_sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae",
+      "base_sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae",
+      "current_control_sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "expected_sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d",
+      "candidate_sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d",
+      "base_sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d",
+      "current_control_sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "expected_sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee",
+      "candidate_sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee",
+      "base_sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee",
+      "current_control_sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "expected_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "candidate_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "base_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "current_control_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "expected_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "candidate_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "base_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "current_control_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "expected_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "candidate_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "base_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "current_control_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "expected_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "candidate_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "base_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "current_control_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+      "expected_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "candidate_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "base_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "current_control_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "matches_pin": true,
+      "base_candidate_current_equal": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+      "candidate_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+      "git_blob": "db46ed6cf88bfeb5892a338ef9479beaa3b0100a",
+      "current_control_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+      "current_equal_candidate": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "candidate_sha256": "88dfcd97f2580f23d103542e1e9db3baca3ed9fb6173cbb37a400de6d01e6889",
+      "git_blob": "a26c45a42438adc9cce864708ec7fa6608f292e8",
+      "current_control_sha256": "88dfcd97f2580f23d103542e1e9db3baca3ed9fb6173cbb37a400de6d01e6889",
+      "current_equal_candidate": true
+    },
+    {
+      "path": "uv.lock",
+      "candidate_sha256": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c",
+      "git_blob": "f3fc8edff15ad5c7b257ce34d07135ecc4c7f3fc"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/source-inventory.json",
+      "candidate_sha256": "9ad9d62cae5bf18dc57f1ebc7ee4495336e511ce3891ce4a836894257d03aa70",
+      "git_blob": "4fb6b80d1f7dc291519e7f9faa1cbda56543b95b"
+    }
+  ],
+  "authority_pin_count": 17,
+  "all_pins_match": true,
+  "all_pinned_controls_base_candidate_current_equal": true,
+  "manifest_base_candidate_current_equal": true,
+  "listener_count": 13,
+  "native_node_ids": [
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+  ],
+  "existing_approvals": "CD-002 and separately WVR-004 remain valid within their exact current scope. A02 is not approved or controlling.",
+  "known_independent_work": "Controller disclosed builder product edits continuing outside affected OTLP gate. Uncommitted product files and whole-worktree status were deliberately not inspected. Review binds only frozen proposal delta and approved controls.",
+  "approval_gate": "Explicit maintainer approval; reconcile contract/directive/profile and current-unit hashes; fresh approved-amendment readiness; only then implement option or run native OTLP tests.",
+  "activation": "None. No SDK import, test collection/test run, native channel/listener/provider, credentials/runtime state, original writes/staging/commit/environment mutation, install/sync/download/build, or protected snapshot checkout.",
+  "source_access": "Read-only official-source browsing only; no local source download or original environment mutation.",
+  "reproduction": [
+    "python3 /private/tmp/telem-02/a02-proposal-review/audit.py",
+    "git diff --name-status 95949e49df7b55f8da391a47f6df67cc2ff8e5ce db9223e68e11facc74d2b88853ab4c3a2eaeb17b",
+    "git diff --check 95949e49df7b55f8da391a47f6df67cc2ff8e5ce db9223e68e11facc74d2b88853ab4c3a2eaeb17b"
+  ],
+  "primary_source_receipts": [
+    {
+      "url": "https://github.com/grpc/grpc/blob/v1.67.1/include/grpc/impl/channel_arg_names.h",
+      "raw_url": "https://raw.githubusercontent.com/grpc/grpc/v1.67.1/include/grpc/impl/channel_arg_names.h",
+      "web_source_lines_zero_based": "301-310",
+      "observed": "Version-pinned header documents default enabled retries, both transparent and service-configured, under GRPC_ARG_ENABLE_RETRIES.",
+      "quote": "Enables retry functionality. Defaults to true.",
+      "symbol": "#define GRPC_ARG_ENABLE_RETRIES \"grpc.enable_retries\""
+    },
+    {
+      "url": "https://grpc.io/docs/guides/retry/",
+      "web_source_lines_zero_based": "137-145",
+      "observed": "Official guide says default transparent retries remain without a policy; channel-level disablement prevents transparent and policy retries.",
+      "quote": "disables transparent retries and any configured retry policies"
+    }
+  ],
+  "limits": "This evidence establishes proposal necessity and required future verification, not runtime behavior of any future implementation. Native retry fault injection is neither executed nor granted; HTTPS remains mocked and Python socket guards do not comprehensively intercept native gRPC. No product VERIFIED/acceptance/live activation claim.",
+  "artifact_hashes": {
+    "report.md": "7e0b68979e8ed6605ea6a58dd848e29cc4e8721eb01b8d43136fdd7eed4d10d6",
+    "audit.py": "36189465da41534da05104a0f36ccb1815cbb553aa6715a83d04e6f0a2890f2b",
+    "exact.diff": "31dd19421f9a3aaf896b8dda0ede74d37d71c7db2d8c938852b9d36cc37bf6a4",
+    "proposal.numbered.txt": "601263a69e293f3d6a0d72d1abe3ac8c2e9e7eef66629262967cc2e29760f245",
+    "authority-excerpts.json": "9bc3da3d61934aa60753f9cab606decfa9120538fc9cb67f182a4f7cedf18e33"
+  }
+}

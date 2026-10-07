@@ -1,0 +1,61 @@
+{
+  "review": "CDR-016",
+  "verdict": "READY",
+  "files": [
+    {
+      "original": "audit.py",
+      "stored": "audit.py.gz",
+      "original_sha256": "36189465da41534da05104a0f36ccb1815cbb553aa6715a83d04e6f0a2890f2b",
+      "stored_sha256": "79f88fead61a0ad7e8e2585b4b0239d2aa1f06a9e2470fdf8bb122ae70670559"
+    },
+    {
+      "original": "authority-excerpts.json",
+      "stored": "authority-excerpts.json",
+      "original_sha256": "9bc3da3d61934aa60753f9cab606decfa9120538fc9cb67f182a4f7cedf18e33",
+      "stored_sha256": "9bc3da3d61934aa60753f9cab606decfa9120538fc9cb67f182a4f7cedf18e33"
+    },
+    {
+      "original": "evidence.json",
+      "stored": "evidence.json",
+      "original_sha256": "502bdbf1246e976d260f19bcad050fef831f5c01da0dc809922ceded7affc637",
+      "stored_sha256": "502bdbf1246e976d260f19bcad050fef831f5c01da0dc809922ceded7affc637"
+    },
+    {
+      "original": "exact.diff",
+      "stored": "exact.diff.gz",
+      "original_sha256": "31dd19421f9a3aaf896b8dda0ede74d37d71c7db2d8c938852b9d36cc37bf6a4",
+      "stored_sha256": "92dc89a32a3bff0426d39f019004b167deffe6e2bb5af714f051de205d43a05b"
+    },
+    {
+      "original": "proposal.numbered.txt",
+      "stored": "proposal.numbered.txt.gz",
+      "original_sha256": "601263a69e293f3d6a0d72d1abe3ac8c2e9e7eef66629262967cc2e29760f245",
+      "stored_sha256": "869886884c2e531c0095c3cf259ea43b94c86bea0f932017a1e19b8f8ffd4c1f"
+    },
+    {
+      "original": "report.md",
+      "stored": "reviewer-report.md.gz",
+      "original_sha256": "7e0b68979e8ed6605ea6a58dd848e29cc4e8721eb01b8d43136fdd7eed4d10d6",
+      "stored_sha256": "19c41a5b5518e86a0ec21d3e66eb58189fe873a1743b3317d1374a53254e1ca2"
+    },
+    {
+      "original": "frozen request",
+      "stored": "request.json",
+      "original_sha256": "e5f26efa5da32d51e76afedc12ce3fe361d4970631c38b068ae8174c6b65d9b4",
+      "stored_sha256": "e5f26efa5da32d51e76afedc12ce3fe361d4970631c38b068ae8174c6b65d9b4"
+    },
+    {
+      "original": "controller-readable-copy-only-storage-links-adjusted",
+      "stored": "report.md",
+      "original_sha256": "eb580fa1b75bc66cfb7c6eb08851935febaabf44e8d20bf78126a0c3bf442261",
+      "stored_sha256": "eb580fa1b75bc66cfb7c6eb08851935febaabf44e8d20bf78126a0c3bf442261"
+    },
+    {
+      "original": "controller-proposal-review-dispatch",
+      "stored": "proposal-review-input.json",
+      "original_sha256": "9fc443721ad8681cd4a0748aa299bf1be52878ec1e28935b353686fd28914b4e",
+      "stored_sha256": "9fc443721ad8681cd4a0748aa299bf1be52878ec1e28935b353686fd28914b4e"
+    }
+  ],
+  "excluded": "private clones, git metadata, temp/cache roots; source snapshots compressed"
+}

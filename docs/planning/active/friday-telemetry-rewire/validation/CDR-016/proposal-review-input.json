@@ -1,0 +1,8 @@
+{
+  "candidate": "db9223e68e11facc74d2b88853ab4c3a2eaeb17b",
+  "base": "95949e49df7b55f8da391a47f6df67cc2ff8e5ce",
+  "proposal": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+  "reviewer": "/root/telem02_a02_proposal_review",
+  "review_mode": "fresh read-only one-option amendment proposal approval readiness",
+  "record": "Task dispatch supplied exact candidate/diff/approved17controls and primary sources; request.json retained prior approved unit controls only, not the A02 dispatch."
+}
