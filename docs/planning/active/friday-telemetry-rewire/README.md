@@ -9,13 +9,13 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: maintainer acceptance of VERIFIED TELEM-02; then TELEM-03 directive preparation
-execution_phase: closeout
-validation_state: verified
+next_gate: prepare TELEM-03 safe LLM metrics and role-service injection directive
+execution_phase: planning
+validation_state: not_ready
 implementation_authority: granted
 ---
 
-Current TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
+Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit
 and complete `2155a0f` aggregate. The [builder closeout](execution/TELEM-02-final/report.md)
 preserves separate construction evidence and exact source/command receipts.
@@ -26,10 +26,14 @@ exits1 with exactly327 approved WVR-004 identities; raw root lint does not pass.
 Approved [A02](directives/CD-002-A02-native-retry-disable.md) was released after
 fresh [CDR-017](validation/CDR-017/report.md) READY, before fixed native retries0
 implementation and the two already approved collector nodes. No product finding
-remains. TELEM-02 is ready for maintainer acceptance, which is not recorded here.
-The initiative remains started for later units; delivery remains local. After
-acceptance, the next planning gate is TELEM-03's safe LLM metrics and role-service
-injection construction directive. Its implementation requires separate authority.
+remains. Chuck Russell explicitly accepted TELEM-02 on2026-10-06 by responding
+"accepted". The [unit closeout](closeout-TELEM-02.md) and archived acceptance record
+pin that decision and exact verified evidence. WVR-004 expired after this decision;
+its historical scope is preserved, with no renewal to later units.
+The initiative remains started for TELEM-03 through TELEM-05; delivery remains local.
+Next is TELEM-03 safe LLM metrics/role-service injection directive preparation.
+Header planning/not_ready now describes that next unit, not the accepted TELEM-02
+verification result. TELEM-03 implementation requires its own approved directive.
 
 Accepted TELEM-01 historical result: fresh independent [VAL-006](validation/VAL-006/report.md)
 returned **VERIFIED** for frozen product candidate `8aedd87`, reviewing the REM-004

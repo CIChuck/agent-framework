@@ -1,0 +1,81 @@
+{
+  "role": "maintainer acceptance metadata verification",
+  "product_candidate": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "pre_acceptance_HEAD": "10857936715f82049490e2f0e52671df3075e680",
+  "checks": "board validate/show/render and documentation lifecycle raw0; prepared metadata overlay hashed; original dirty paths and accepted controls preserved",
+  "files": [
+    {
+      "original": "accept_telem02.py",
+      "stored": "accept_telem02.py.gz",
+      "original_sha256": "8974106bdad304f56c63249f70f8ab36539f9abfac224b8369de34080f3c2a64",
+      "stored_sha256": "62a50530780fe00ade5cdc93a76f0ed8dbb2dbb5bfc8cd97f338c4bf1ed057d8"
+    },
+    {
+      "original": "acceptance-board-receipt.json",
+      "stored": "acceptance-board-receipt.json",
+      "original_sha256": "3f981c67ebb3c7aceae6543d84416cda2e76065949b32dbe1f3cc2a6973df1bc",
+      "stored_sha256": "3f981c67ebb3c7aceae6543d84416cda2e76065949b32dbe1f3cc2a6973df1bc"
+    },
+    {
+      "original": "acceptance-board.log",
+      "stored": "acceptance-board.log.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884"
+    },
+    {
+      "original": "acceptance-docs-receipt.json",
+      "stored": "acceptance-docs-receipt.json",
+      "original_sha256": "cf246185eaa971c2b345f23c18cd69747793905339681fcdecafc1964ed55a4d",
+      "stored_sha256": "cf246185eaa971c2b345f23c18cd69747793905339681fcdecafc1964ed55a4d"
+    },
+    {
+      "original": "acceptance-docs.log",
+      "stored": "acceptance-docs.log.gz",
+      "original_sha256": "1bd7b1241017884dcf9b090517ebba82f9e8073f8439cdd163840aa8c4a4d0fe",
+      "stored_sha256": "51885212336254e51eec30cb5e1a1a175ad67bdab6bb8b4062fd705fba37e5e2"
+    },
+    {
+      "original": "acceptance-render-receipt.json",
+      "stored": "acceptance-render-receipt.json",
+      "original_sha256": "83ce32c92771630d50d2080382e7836827ebc38073811d56731c93de87ddf042",
+      "stored_sha256": "83ce32c92771630d50d2080382e7836827ebc38073811d56731c93de87ddf042"
+    },
+    {
+      "original": "acceptance-render.log",
+      "stored": "acceptance-render.log.gz",
+      "original_sha256": "f27719abacb685f5c795dcccfe79316fc8f20c09c9ed1a562e331761233ec8fc",
+      "stored_sha256": "4ddbdbd122fa25126c8e2b584b1badfc5045925b6318d4acbccffc996d4eaeda"
+    },
+    {
+      "original": "acceptance-show-receipt.json",
+      "stored": "acceptance-show-receipt.json",
+      "original_sha256": "9f1e2d2c2b48cca25adb7c1b4ca897830c590aaffa2765a3a65243a4da998add",
+      "stored_sha256": "9f1e2d2c2b48cca25adb7c1b4ca897830c590aaffa2765a3a65243a4da998add"
+    },
+    {
+      "original": "acceptance-show.log",
+      "stored": "acceptance-show.log.gz",
+      "original_sha256": "9e23f22768795a73d4b6a2db0b67ad5babd0562771373ccaf35275a294f40cd1",
+      "stored_sha256": "13b5f4b17ff390ebb3c6d11bee48f47807618a12c777b8124d81879db8cb7cbc"
+    },
+    {
+      "original": "metadata-check-snapshot.json",
+      "stored": "metadata-check-snapshot.json.gz",
+      "original_sha256": "5c29090c0118b778cda56778e265c77d9354b22960a6e043ea3c7d9dc6fdcfcf",
+      "stored_sha256": "1918f0024eccd2cd0bc54291e20f3d4a075f1d630adbcd11d94e93a2737db75f"
+    },
+    {
+      "original": "check_acceptance.py",
+      "stored": "check_acceptance.py.gz",
+      "original_sha256": "ab78961e27040a036ce2ad9ca6823239c5ac03ff54602305ea8c6be2e74c6f48",
+      "stored_sha256": "98feab7a48c502fbe019d398643a644eaecfd6f746bfb551463805b1a748db65"
+    },
+    {
+      "original": "controller-preservation.json",
+      "stored": "controller-preservation.json",
+      "original_sha256": "f98d571c71c7b76a625ee95e624191deb7c2dd6d0aba98bf48dd72b0a1b1d139",
+      "stored_sha256": "f98d571c71c7b76a625ee95e624191deb7c2dd6d0aba98bf48dd72b0a1b1d139"
+    }
+  ],
+  "excluded": "private clone,git,cache,tmp; no runtime/credential payload copied"
+}
