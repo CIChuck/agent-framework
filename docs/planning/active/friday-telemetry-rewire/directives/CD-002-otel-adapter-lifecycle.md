@@ -1,29 +1,30 @@
-# Proposed CD-002: OTel adapter semantics and owned factory lifecycle
+# Approved CD-002: OTel adapter semantics and owned factory lifecycle
 
-Status: proposal; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell. Date: 2026-10-06.
 Initiative: friday-telemetry-rewire. Work unit: TELEM-02.
 Branch: feature/friday-telemetry-rewire.
 Preparation base: e8b075a3861e1e3c1bfac050091a71be60b7e165.
-Maintainer instruction "proceed" authorizes preparing and independently reviewing
-this proposal after TELEM-01 acceptance; it does not approve its product changes,
-new bounded loopback effects, or separately proposed WVR-004. No source is generated
-under this proposal before explicit construction approval and fresh readiness.
+Maintainer Chuck Russell explicitly approved CD-002 and separately WVR-004 by
+responding "approved" to the concrete decision after corrected independent CDR-013
+READY. The [approval record](CD-002-approval-record.md) binds the exact reviewed scope,
+13 synthetic loopback effects and temporary327 lint disposition. Construction begins
+only after fresh reconciled approved-authority readiness and source/API baselines.
 
 ## Authority and objective
 
 Follow explicit maintainer direction, engineering/security/lifecycle/independent
 validation policies, accepted MCP WS-07, approved build/tactical direction, accepted
-TELEM-01 boundaries, then this directive and proposed unit contract/profile. The
+TELEM-01 boundaries, then this directive and approved unit contract/profile. The
 separate [TELEM-02 manifest](../authority-manifest-TELEM-02.yaml) freezes these inputs;
 the accepted TELEM-01 manifest and all its authority/evidence remain unchanged.
 
 Repair the shared OTel adapter and supply a typed programmatic factory with truthful
 bounded owned lifecycle, actual SDK context/parent/event evidence and synthetic
 OTLP collector delivery. No Chat YAML/CLI/headless assembly adoption in this unit.
-Implement exactly the [proposed contract](../telem02-contract.md) and
+Implement exactly the [approved contract](../telem02-contract.md) and
 [verification profile](../verification-profile-TELEM-02.md).
 
-## Exact proposed product manifest
+## Exact approved product manifest
 
 Allowed existing source (all under packages/friday-telemetry/src/friday_telemetry/):
 - providers/otel.py: semantics, actual optional SDK boundary typing and lifecycle;
@@ -66,7 +67,7 @@ do not label tests introduced afterward as pre-build runs. Construction is relea
 only after explicit CD-002 approval, separate lint decision and fresh reconciled
 readiness. Existing board initiative started/granted is insufficient for this unit.
 
-## Security, ownership and proposed execution permissions
+## Security, ownership and approved execution permissions
 
 Preserve accepted Chat local-only defaults and caller-owned injection. The factory
 owns only resources it creates; a caller injects and later explicitly closes the
@@ -76,7 +77,7 @@ callback, no LLM/memory/tool/persistence schema or tracing changes. No user data
 live vendor, remote collector, paid calls, external messages, push/merge/deployment.
 No install/download/sync, interpreter provisioning or dependency update.
 
-If approved, permit normal-user sandbox escape only for the eleven exact existing
+Under this approval, permit normal-user sandbox escape only for the eleven exact existing
 synthetic HTTP listener nodes recorded in the approved REM-004 inventory and the
 two new nodes test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events
 and ::test_grpc_unavailable_reports_export_failure. Both new fixtures bind only
@@ -92,8 +93,8 @@ run; do not silently exclude it or replace full gates with selected-node passes.
 Every command in the separate profile is mandatory. Unit Ruff/type checks require
 raw zero. Root Ruff must run unchanged with raw exit recorded; its current327
 findings are unwaived for this new unit unless [WVR-004](../validation/WVR-004-telem02-lint-disposition.md)
-is separately approved. No inherited TELEM-01 waiver, PTY waiver, failure skip,
-blanket typing relaxation or source-ignore continuation is approved by this proposal.
+is separately approved in the linked approval record. No inherited TELEM-01 waiver, PTY waiver, failure skip,
+blanket typing relaxation or source-ignore continuation is approved by this directive.
 
 Freeze stable product commit, exact allowed and aggregate manifests, source/tool/
 config/authority hashes, baseline and candidate effects and all raw receipts. A fresh

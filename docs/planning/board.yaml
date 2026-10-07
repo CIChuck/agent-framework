@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: explicit CD-002 construction and separate WVR-004 lint-disposition approval
+  next_gate: fresh approved CD-002 and WVR-004 authority readiness then source/API baselines and TELEM-02 construction
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1123,3 +1123,10 @@ events:
   action: recorded independent corrected TELEM-02 proposal readiness
   note: CDR-013 READY for CD-002 and separately WVR-004; R02-01 closed. Explicit maintainer construction and lint decisions pending; not product VERIFIED or approval. Accepted TELEM-01 and unrelated dirty work preserved.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-002 and separately WVR-004
+  note: Explicit approved response to both concrete decisions after CDR-013 READY; exact reviewed TELEM-02 scope and13 synthetic loopback effects plus327 temporary lint identities. Fresh approved-authority readiness and baselines precede construction; no remote activation or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md

@@ -1,6 +1,6 @@
-# Proposed TELEM-02 verification profile
+# Approved TELEM-02 verification profile
 
-Status: proposal; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell. Date: 2026-10-06.
 Bound to [CD-002](directives/CD-002-otel-adapter-lifecycle.md) and its exact manifest.
 Accepted TELEM-01 profile remains immutable historical/unit-specific authority.
 
@@ -28,7 +28,7 @@ collector tests use literal127.0.0.1 ephemeral targets and no inherited settings
 
 Before full suites, freeze all13 synthetic listener node IDs (existing11 plus the
 exact2 named in CD-002), server/client constructor/teardown/helper hashes, allowlist,
-expected effects and native guard limitation. Only proposed normal-user sandbox
+expected effects and native guard limitation. Only approved normal-user sandbox
 escape for those effects; no sudo or nonloopback test traffic. Static endpoint
 config negative tests must mock construction before SDK opens a channel. All HTTPS
 credential/secure-channel construction is mocked: assert root_certificates,

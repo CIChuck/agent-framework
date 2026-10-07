@@ -1,6 +1,6 @@
-# WVR-004 proposal: TELEM-02 exact baseline lint disposition
+# WVR-004 approved disposition: TELEM-02 exact baseline lint disposition
 
-Status: proposal; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell. Date: 2026-10-06.
 Owner: Chuck Russell. Work unit: TELEM-02 / proposed CD-002 only.
 
 WVR-002/WVR-003 expired after TELEM-01 acceptance and are historical evidence.

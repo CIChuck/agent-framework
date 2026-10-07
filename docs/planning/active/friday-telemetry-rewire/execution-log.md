@@ -586,3 +586,14 @@ named nonprotected dirty paths and original board/dashboard unrelated +/-lines m
 An initial private preservation comparator excluded nested .git files from a57-file
 original inventory; it was corrected to match the same inventory, and all57 hashes
 match. No original cleanup or content change was performed.
+
+## 2026-10-06 — maintainer approved CD-002 and separately WVR-004
+
+Chuck Russell responded "approved" to the concrete question approving CD-002 and
+WVR-004. Exact reviewed construction scope and13 synthetic loopback effects are
+approved; the exact327 temporary lint identities are separately approved. Updated
+approval labels/record and16-control current-unit manifest preserve substantive
+contract/profile, accepted TELEM-01 controls and all historical review evidence.
+execution_phase: planning; validation_state: not_ready pending fresh approved-authority
+readiness. No product edits are made before readiness and source/API baseline preflight.
+No additional approval is needed for these authorized steps. Delivery remains local.

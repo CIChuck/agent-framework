@@ -1,6 +1,6 @@
-# TELEM-02 proposed adapter and factory contract
+# TELEM-02 approved adapter and factory contract
 
-Status: proposal; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell. Date: 2026-10-06.
 Applies only after [CD-002](directives/CD-002-otel-adapter-lifecycle.md) approval.
 Accepted TELEM-01 observer, Composite contract, MCP schema and borrowed ownership
 remain unchanged. Factory integration into Chat YAML/CLI or headless DI is deferred;
@@ -191,7 +191,7 @@ No collector executable, Docker, installed service, auth, TLS/network provisioni
 or package installation. Python's socket guard cannot intercept all native gRPC I/O;
 record that limitation and prove literal-loopback server/target/options by preflight
 and constructor interception. Keep the inherited Python guard unchanged. The frozen
-allowlist omits native proxy/credential settings. This is explicitly proposed
+allowlist omits native proxy/credential settings. This is explicitly approved
 normal-user sandbox escape for synthetic loopback only, never an egress waiver.
 
 ## Sources and frozen implementation observations
