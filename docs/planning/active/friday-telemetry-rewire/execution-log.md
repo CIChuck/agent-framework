@@ -749,3 +749,25 @@ fresh independent lint-authority review, reconciliation and true fake-only pre-b
 probes, then exact CD-003 construction. Stable product candidate and fresh-context
 independent unit+aggregate validation remain mandatory; maintainer acceptance and
 any delivery/live action stay separate. No renewed approval is needed for these steps.
+
+
+## 2026-10-07 — CDR-018 READY; true baseline frozen; construction released
+
+Reused independent reviewer instance conducted a new read-only review at7bb6256
+without participation in TELEM-03 generation; context exception is disclosed.
+CDR-018 returns READY separately for CD-003 authority and WVR-005 renewal, matching
+24 approved/22 proposal and accepted19+19 hashes, exact327 diagnostics at both
+baseline/candidate, covered hashes/AST/tool/target,13 effects and board/docs. No
+mandatory finding. T03-A01 separates fake-only new fixtures from standalone owned
+in-memory SDK consumer evidence; no channel/listener/remote/TLS effect expansion.
+T03-A02 index header explanation is reconciled without changing any control pin.
+
+True pre-build probes at the same source revision use dispatch patches established
+before Friday imports; corrected fixture run exits0. Original first fixture-shape
+failure remains raw evidence. Observed gaps, raw legacy projection, missing-usage
+zero defaults, cancellation and sink masking, alias identity and pricing behavior
+are frozen before source construction. No source or test edit preceded the probes.
+
+execution_phase: implementation; validation_state: pending. Exact CD-003 construction
+is released. Full candidate gates and stable commit then fresh-context read-only
+product delta+complete2155a0f aggregate validation are required; acceptance separate.

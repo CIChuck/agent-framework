@@ -1,0 +1,1160 @@
+{
+  "frozen_review_candidate": "7bb6256f38d1f51b48f1c15fc0beefd591d26c3d",
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/evidence.json",
+      "sha256": "265e2dab0ab53db4f7a15b14d7bf139a0276e88001f36fd85d8f658b46e79209",
+      "original_sha256": null
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/original-artifact-manifest.json",
+      "sha256": "f65fdd4b33f9e8628e69fa6ab651312049f2759fda9408a2bcc5becceb74560c",
+      "original_sha256": null
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/base-snapshot.json.gz",
+      "sha256": "f23b76a874629cfccd301533c181f7b1ee63db8ef5da72211108c193393ec873",
+      "original_sha256": "3dc6333d1b0ff4beb344c49c0fd671d71370172be4dfd592abfa597c28c5b918"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/candidate-snapshot.json.gz",
+      "sha256": "72f55b2411479f7c463db22ece4eac9889a2ad1fde2ee5bc6197214d0a765bc4",
+      "original_sha256": "00e8552a8debf544eedc5078b3854919446db533d85aa4af11ff7da3a2f413dd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/checks.json.gz",
+      "sha256": "fa52f91b587ba7eb9506b7644dbf464f2ee7ee2531a0398d3eaf25488f437838",
+      "original_sha256": "6feaed233da257fc2402037f8a3e546fef9561234ccc188f17c3cf2002ac555f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/evidence.json.gz",
+      "sha256": "6522bf6c23e36a12ff24023f9afa9c05af8164849b259cc893e5797c0d3086bc",
+      "original_sha256": "265e2dab0ab53db4f7a15b14d7bf139a0276e88001f36fd85d8f658b46e79209"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/finalize.py.gz",
+      "sha256": "aa4455cb4b9ab42d43c11e95a759f66c8d366146d08bff14111c41fab37baad8",
+      "original_sha256": "40b770fb0ef20844aa4b5acde60df926adc4e60521d78589d5beb3f2c7133ef2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/accepted-archives-delta.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/accepted-archives-delta.stdout.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-00.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-00.stdout.gz",
+      "sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3",
+      "original_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-01.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-01.stdout.gz",
+      "sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45",
+      "original_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-02.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-02.stdout.gz",
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f",
+      "original_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-03.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-03.stdout.gz",
+      "sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845",
+      "original_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-04.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-04.stdout.gz",
+      "sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160",
+      "original_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-05.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-05.stdout.gz",
+      "sha256": "65af503cea9ed589753559881f0da73fb524c54770451e40084bbb3faeef3827",
+      "original_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-06.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-06.stdout.gz",
+      "sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8",
+      "original_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-07.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-07.stdout.gz",
+      "sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a",
+      "original_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-08.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-08.stdout.gz",
+      "sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69",
+      "original_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-09.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-09.stdout.gz",
+      "sha256": "696028250f1df05839e0370bf89dab55bdc1b0791a4480b1740d33a6c3686155",
+      "original_sha256": "9fa124dbafeb71a06dc00c12281767a843fbc5fc2829167268c0341b6928b31c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-10.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-10.stdout.gz",
+      "sha256": "e3407058c9c0f8f1697aaf7c702169e04997566fcac4efe5ab900ff6cfd91b5f",
+      "original_sha256": "d48636248178ab4e53daaa038e04d590d8c1d8c65bf18d222a5c3e99b7286d23"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-11.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-11.stdout.gz",
+      "sha256": "e8218aeb89f1902dc5f374f2e3e5d5dcaddd1ace1534f9e21c75cbf5692e18e9",
+      "original_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-12.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-12.stdout.gz",
+      "sha256": "33d2e0a5104e330fb73c9d977551e0365c1880b53840e95713b61e897c00bc74",
+      "original_sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-13.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-13.stdout.gz",
+      "sha256": "7bb220245d2ffeb14869da27989f57de4a38667821efc8a7dccc7635876015ef",
+      "original_sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-14.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-14.stdout.gz",
+      "sha256": "e9136f68f4500255278494bfe1721cedb07020b798fa361544044df29d9af69c",
+      "original_sha256": "61dbc5f2fa49680c03f5ee027d7e546ee3a294da53c532a56f9d6a3d831f64fb"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-15.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-15.stdout.gz",
+      "sha256": "82039f9794ebd96e855656dd9a2b87fee3ef362db23d4f84cf61b6c12f9a302d",
+      "original_sha256": "90485994f2acc73f26b2870bb1c4c19a7147d31b4f02fc49cdf22a5c73ff563b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-16.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-16.stdout.gz",
+      "sha256": "27a7e9ec545ea01de549953bcf9d9c6dd487e9f5b62f2bc2152088f317eb1891",
+      "original_sha256": "7e1a9961ce2c01cde57192cd804202000fbf2a15572cf153800f6b10e5a5a60a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-17.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-17.stdout.gz",
+      "sha256": "997f8345ea8f0cee3b53ffb3ad777114f3d5c8a04f517ba96b42913b19cc49cc",
+      "original_sha256": "73c54db5719f3f314db25ceb8759e3b3befb7f9105022125640bb0a2f1799ed8"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-18.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-18.stdout.gz",
+      "sha256": "8e4bca943c6b27189ed76771227c15cf949f6e141b8e3ff5207563899480790d",
+      "original_sha256": "bc74c39d6823da40af3b087da3265379cdb85b249fe371b23c5760306fbab22a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-19.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-19.stdout.gz",
+      "sha256": "ceb3f3495c9c88e088079e77e277ee626e79c6d26505fc30359bba966cfb274c",
+      "original_sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-20.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-20.stdout.gz",
+      "sha256": "e849c42244d4aaa1b6c1d3eebec1c6afe9da018fd1351ef9e1ec469c75f04b42",
+      "original_sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-21.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-21.stdout.gz",
+      "sha256": "03cb2c4aefd42e36ddf675d841159d51e6134da3ddd8d23672693f6f4b1a618f",
+      "original_sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-22.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-22.stdout.gz",
+      "sha256": "1dcd36ef99ea396d6a25ab4d597ec1c04b5b53b1d889eb2d2c4685555a1b1175",
+      "original_sha256": "c6ae3950a286fea558e1b59b75ae55c239d20c051b99c2721677b233f9c39e8e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-23.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/authority-23.stdout.gz",
+      "sha256": "8e4f72a3095b2feb2e6c9c442b19b5d7cee02e59eebc0d601890bfd691551f43",
+      "original_sha256": "5a7ff3af3f4c5c6258110b5c699b1a81a49fb871cd39da9f70fa137e6b14cb25"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/base-root-ruff.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/base-root-ruff.stdout.gz",
+      "sha256": "ec78f15dbc1b28edefb6c2e544c56ef048d2c60a9bb0a9610e4102d2701008d4",
+      "original_sha256": "645012b094bde0baa4146a353989bd8724e92f0c9c2ebfb9c6545c4646945974"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/base-ruff-version.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/base-ruff-version.stdout.gz",
+      "sha256": "596487241b43cb06172ab2c64d453943be1a3910176306621a016fc12aac6d5a",
+      "original_sha256": "5c218bad3d3966fc0a61f2d77271435aacd471038e833636bfa8cf5fe743f4ab"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-next.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-next.stdout.gz",
+      "sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-render-check.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-render-check.stdout.gz",
+      "sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-show.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-show.stdout.gz",
+      "sha256": "6d61de7f9bba599d7df13896c0af15f7889a6a5fa9693d87a1e5f12fb4a5ac95",
+      "original_sha256": "6fe9be16ee4bedeae7314c00f89c1185202ab067db40c57c1b612836decb557f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-validate.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/board-validate.stdout.gz",
+      "sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/candidate-root-ruff.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/candidate-root-ruff.stdout.gz",
+      "sha256": "c8ed652d0897740a8bc89e33dda48996230bf689c8a15cee09aef71b9fccfd67",
+      "original_sha256": "2466778303dc21afb2782c182dc9a9f4f964684ace9477f01af0df0723f4a9ef"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/candidate-ruff-version.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/candidate-ruff-version.stdout.gz",
+      "sha256": "596487241b43cb06172ab2c64d453943be1a3910176306621a016fc12aac6d5a",
+      "original_sha256": "5c218bad3d3966fc0a61f2d77271435aacd471038e833636bfa8cf5fe743f4ab"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/delta-check.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/delta-check.stdout.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/delta-paths.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/delta-paths.stdout.gz",
+      "sha256": "c16b6ab3ef7d0f60f762db72ed3e97b4b5da247c3ade4d01791e3845aa1ee944",
+      "original_sha256": "da40661f6987e5486be6aa761bedcae246fa2d11019ad476f227edd2741a9e00"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/docs-lifecycle.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/docs-lifecycle.stdout.gz",
+      "sha256": "97709350980a0db9c7cd945aa003a1085f2cf6d089a6732bbd1f581ee227722c",
+      "original_sha256": "334ca2c4f01feb63525909bf1e0837290047c505ae90a40e5f5ffcb8480a05d0"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/manifest.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/manifest.stdout.gz",
+      "sha256": "0f5b923eea538f436ecc22b33647281139c9c8d2792a81e11073fada4647166c",
+      "original_sha256": "62964692726067e8521355229a3c073fc82234d115c013ed43b3caa303ff09cd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/original-head-after.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/original-head-after.stdout.gz",
+      "sha256": "9394f65f43c84f1f0d2ab61b4576007f4c93a0b4093b6a2b0fbdf305525c4bf6",
+      "original_sha256": "61d443a80af8d19a92b1984081b341ec8d442a4f10e0f557d1b99b465d8139df"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/original-head-before.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/original-head-before.stdout.gz",
+      "sha256": "9394f65f43c84f1f0d2ab61b4576007f4c93a0b4093b6a2b0fbdf305525c4bf6",
+      "original_sha256": "61d443a80af8d19a92b1984081b341ec8d442a4f10e0f557d1b99b465d8139df"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-00.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-00.stdout.gz",
+      "sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3",
+      "original_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-01.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-01.stdout.gz",
+      "sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45",
+      "original_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-02.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-02.stdout.gz",
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f",
+      "original_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-03.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-03.stdout.gz",
+      "sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845",
+      "original_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-04.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-04.stdout.gz",
+      "sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160",
+      "original_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-05.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-05.stdout.gz",
+      "sha256": "65af503cea9ed589753559881f0da73fb524c54770451e40084bbb3faeef3827",
+      "original_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-06.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-06.stdout.gz",
+      "sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8",
+      "original_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-07.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-07.stdout.gz",
+      "sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a",
+      "original_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-08.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-08.stdout.gz",
+      "sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69",
+      "original_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-09.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-09.stdout.gz",
+      "sha256": "696028250f1df05839e0370bf89dab55bdc1b0791a4480b1740d33a6c3686155",
+      "original_sha256": "9fa124dbafeb71a06dc00c12281767a843fbc5fc2829167268c0341b6928b31c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-10.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-10.stdout.gz",
+      "sha256": "e3407058c9c0f8f1697aaf7c702169e04997566fcac4efe5ab900ff6cfd91b5f",
+      "original_sha256": "d48636248178ab4e53daaa038e04d590d8c1d8c65bf18d222a5c3e99b7286d23"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-11.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-11.stdout.gz",
+      "sha256": "e8218aeb89f1902dc5f374f2e3e5d5dcaddd1ace1534f9e21c75cbf5692e18e9",
+      "original_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-12.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-12.stdout.gz",
+      "sha256": "33d2e0a5104e330fb73c9d977551e0365c1880b53840e95713b61e897c00bc74",
+      "original_sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-13.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-13.stdout.gz",
+      "sha256": "7bb220245d2ffeb14869da27989f57de4a38667821efc8a7dccc7635876015ef",
+      "original_sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-14.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-14.stdout.gz",
+      "sha256": "970d81b95096576472bd19460296c8af2a10b7a04db00754f5e372037e039e9d",
+      "original_sha256": "58689aba72d15b0fb3c536db3f583f14be712dd451f78baf0a381ce66e32dbfd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-15.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-15.stdout.gz",
+      "sha256": "81bb24992f0ae6525630f00ff62a17a23964e25183d25b4d1a5f4744eaeac50b",
+      "original_sha256": "055030f8e84428acaf9ee88053b9cc5afd98c02eff16e1aa8ff896ca637c0b82"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-16.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-16.stdout.gz",
+      "sha256": "523583b1519056828300b40fe56867de9522c32b6541430412c1a3f2cfd267c9",
+      "original_sha256": "b2b0d42041e7033f4e1cb76567d139fa144e89adcbe7be217e2bfe9996eb1e2f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-17.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-17.stdout.gz",
+      "sha256": "a1551df4927321f6f34d9a591a30d439ae3a163a15e747c83abb6eaeaeacf589",
+      "original_sha256": "b795ef22aabca53adcb2014fe82bef6e28e79bf0c5b5706fcd0ef600eb852499"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-18.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-18.stdout.gz",
+      "sha256": "97f1b1a29d8ee9117e254dc6d0b40f4f8775ea2dbd80b8bc685381cb01acfd39",
+      "original_sha256": "26bfbebd1472481ed9cf86f5fafa565f48b81bf318190d5a511fb9ec64acc699"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-19.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-19.stdout.gz",
+      "sha256": "ceb3f3495c9c88e088079e77e277ee626e79c6d26505fc30359bba966cfb274c",
+      "original_sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-20.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-20.stdout.gz",
+      "sha256": "e849c42244d4aaa1b6c1d3eebec1c6afe9da018fd1351ef9e1ec469c75f04b42",
+      "original_sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-21.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-control-21.stdout.gz",
+      "sha256": "03cb2c4aefd42e36ddf675d841159d51e6134da3ddd8d23672693f6f4b1a618f",
+      "original_sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-manifest.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-manifest.stdout.gz",
+      "sha256": "d338069e274a68c2e4f031bf1cd297ff2c83b067bda2558bc6d43ed262fbff60",
+      "original_sha256": "726387031223b96af22a839e4b3bf0b1f73301cd7e4324b5818adcb57da89a08"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-to-candidate.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/proposal-to-candidate.stdout.gz",
+      "sha256": "72d2b377c864d7e106bc758f67562d3da42f964a136154e106e2d9617ef52c66",
+      "original_sha256": "89ba386999d1026a1f757669be8c7da148d9f1e9a14ab684e9c174468b135664"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/python-version.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/python-version.stdout.gz",
+      "sha256": "34f57b6cdb0bb01ecbab89fcc5a2cbdc624b07c7f73bc965e9e1e22920d82c38",
+      "original_sha256": "026cce652273e45c36e4f52d20a211fe0954ce5d0026a9d663ef3bbfeaa0f19c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/ruff-target-settings.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/ruff-target-settings.stdout.gz",
+      "sha256": "2830e54945e540387ed73f36a42ea9f967c8fcf87830fbc2324d0cbda4435947",
+      "original_sha256": "d67aa0ef89c861d167600cf68b4385576c2ebb21bdef8ecae367d70f4b778579"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/source-from-preparation.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/source-from-preparation.stdout.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-0.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-0.stdout.gz",
+      "sha256": "25c3e32d4e99ffb35ee19dfdd2b10f8b967bf844930d0d75607489bbce7a2651",
+      "original_sha256": "a157f4eacbe1d4240581dffe8123601610bc0b872cdf1e5fa6ff94106e676e2a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-1.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-1.stdout.gz",
+      "sha256": "2ca69c1f929ad60ac8e261cc3194d7e86d6c9b829e237dc01811093428a7296a",
+      "original_sha256": "061b1c61037dad763ec47c23335f51ec5d9da55b3b3dadf5f739f2702c5844da"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-2.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-2.stdout.gz",
+      "sha256": "301f8ba7ab67acfcd362b1eafa5325dfcdeff7eb4ecafaee923de80966a86ba7",
+      "original_sha256": "a0fff560de21e75c5448c510062e650981c297f7b8bf84dd0db89ecb32b5994b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-3.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/state-3.stdout.gz",
+      "sha256": "8dc1248adfbcbba7f6f98096dec19392f903688efcff02ab301e961b30d9bf17",
+      "original_sha256": "c790b1519d16997cc3d490e41955a17ae2db4cb529528fa1d2566f4243389d9d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-00.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-00.stdout.gz",
+      "sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3",
+      "original_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-01.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-01.stdout.gz",
+      "sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45",
+      "original_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-02.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-02.stdout.gz",
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f",
+      "original_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-03.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-03.stdout.gz",
+      "sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845",
+      "original_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-04.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-04.stdout.gz",
+      "sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160",
+      "original_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-05.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-05.stdout.gz",
+      "sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8",
+      "original_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-06.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-06.stdout.gz",
+      "sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a",
+      "original_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-07.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-07.stdout.gz",
+      "sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69",
+      "original_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-08.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-08.stdout.gz",
+      "sha256": "5ee7fcf4fb88097a81215be2f1059886f6e5f92d350742dbc4d87674ff205c36",
+      "original_sha256": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-09.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-09.stdout.gz",
+      "sha256": "b10a349478194c2081bb5b568990e3776bd982a01565ddb6c9990c322681da1e",
+      "original_sha256": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-10.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-10.stdout.gz",
+      "sha256": "f4b612e3908e1939ba9835804a638289db35fd3d3f721e400dbc01ae18452379",
+      "original_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-11.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-11.stdout.gz",
+      "sha256": "8dbefe76ff3415898020f95cbde7b3ca446f3cd247ea1f1abc8bdd6543f7ad0e",
+      "original_sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-12.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-12.stdout.gz",
+      "sha256": "deaf42711790f4d69b4c78284cae6b65214201777ce098245d38f8e3ce8fab87",
+      "original_sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-13.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-13.stdout.gz",
+      "sha256": "bc0fc46b6bbf004e4586bf2e645800ce4eecf3e7cb5de903d58308fcf965f8ac",
+      "original_sha256": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-14.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-14.stdout.gz",
+      "sha256": "1946a1537c10c79530668edb18de7a58e0c2cbb8e590a54d4a7bd9f42207b8d2",
+      "original_sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-15.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-15.stdout.gz",
+      "sha256": "2b015f10fd7c9804aa3ca92ff98b70c9bb323d12bf9733d4b7b2ef0d1cabb08e",
+      "original_sha256": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-16.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-16.stdout.gz",
+      "sha256": "2def998307bd3651bc6ba9da9c4650765bef3184385efa1d4f0106dff622d703",
+      "original_sha256": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-17.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-17.stdout.gz",
+      "sha256": "4a6e9323126cc0e5b627a9831abe66e78a36f0dd0cb8c5ad5cf11c02c31c6b6d",
+      "original_sha256": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-18.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-control-18.stdout.gz",
+      "sha256": "02cecdfd8fc66e76819abab47eabeb6f2b913c70b5050c2e02071fd58934e09c",
+      "original_sha256": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-manifest.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem01-manifest.stdout.gz",
+      "sha256": "e8218aeb89f1902dc5f374f2e3e5d5dcaddd1ace1534f9e21c75cbf5692e18e9",
+      "original_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-00.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-00.stdout.gz",
+      "sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3",
+      "original_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-01.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-01.stdout.gz",
+      "sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45",
+      "original_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-02.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-02.stdout.gz",
+      "sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f",
+      "original_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-03.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-03.stdout.gz",
+      "sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845",
+      "original_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-04.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-04.stdout.gz",
+      "sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160",
+      "original_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-05.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-05.stdout.gz",
+      "sha256": "65af503cea9ed589753559881f0da73fb524c54770451e40084bbb3faeef3827",
+      "original_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-06.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-06.stdout.gz",
+      "sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8",
+      "original_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-07.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-07.stdout.gz",
+      "sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a",
+      "original_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-08.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-08.stdout.gz",
+      "sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69",
+      "original_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-09.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-09.stdout.gz",
+      "sha256": "f5b220e9c51ce6aceec12e4edc80f43342eea6d3a8ef91c085201eabfcf1452c",
+      "original_sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-10.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-10.stdout.gz",
+      "sha256": "7bb220245d2ffeb14869da27989f57de4a38667821efc8a7dccc7635876015ef",
+      "original_sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-11.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-11.stdout.gz",
+      "sha256": "31346a69f3faf2b8ebca9bfaf1ce15e215c5bcbeb345062898f6402051515231",
+      "original_sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-12.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-12.stdout.gz",
+      "sha256": "82a423d9bd5a72de962c812c7a3a214839dfaa34f89184edc6d8caaa4281cd99",
+      "original_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-13.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-13.stdout.gz",
+      "sha256": "bfd9cd0b6ba676c5cc3cb66a50536fea29fa6d529480285d4ae251675bdc9545",
+      "original_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-14.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-14.stdout.gz",
+      "sha256": "29b12272435d075bb4b22f32de2999a2b7920ef398c68e0c68ea07f80a3553d1",
+      "original_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-15.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-15.stdout.gz",
+      "sha256": "81b696eee148d120b4b9b383efc2c88657a1f52c3dedecbe4353e457e3fbd3ca",
+      "original_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-16.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-16.stdout.gz",
+      "sha256": "f9024d41ce16441b2ff6c3492894f1e7b4639474b376864e386adb9a05a4a06e",
+      "original_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-17.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-17.stdout.gz",
+      "sha256": "95ae6c5943a6ae134dbb045f30546c30c7a8bd77602aa4797c0d2945f1d0b471",
+      "original_sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-18.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-control-18.stdout.gz",
+      "sha256": "0d13f287b7cc7a09e326191dbb609e8e71785a83c892b363fbb65ff5f26098ad",
+      "original_sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-manifest.stderr.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/raw/telem02-manifest.stdout.gz",
+      "sha256": "33d2e0a5104e330fb73c9d977551e0365c1880b53840e95713b61e897c00bc74",
+      "original_sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/report.md.gz",
+      "sha256": "bd741fb119f07975c05506dad4c44cda8c755bd8dbd490e1f0c1b10edadd2510",
+      "original_sha256": "ecee06a859ce2efd7e3d52d5ffd4d2ae90435522c3f0fd3e4cb16e1ee8f0d377"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/reused-prepare.py.gz",
+      "sha256": "8e3977b78ffb0e9fbf8857726058987a48e86e92cae05e8d75c9b4d533ac62ab",
+      "original_sha256": "cd3963d50f55b5c2c18f2cf83f38a1ac4e13cb9bfc8ae3b3e31522d8492a9586"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/raw/review.py.gz",
+      "sha256": "ade045f8dc9c75e9b33daf3a1f47538e016f3589f1f465d60d4a510360c9be41",
+      "original_sha256": "e544309a7af331547724ab97654b6e88eada49602f13f53b960453d6819a5e76"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-018/report.md",
+      "sha256": "ecee06a859ce2efd7e3d52d5ffd4d2ae90435522c3f0fd3e4cb16e1ee8f0d377",
+      "original_sha256": null
+    }
+  ]
+}

@@ -9,8 +9,8 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: complete approved TELEM-03 authority review and pre-build probes, then construct CD-003
-execution_phase: planning
+next_gate: construct approved CD-003; verify stable TELEM-03 candidate independently
+execution_phase: implementation
 validation_state: pending
 implementation_authority: granted
 ---
@@ -20,8 +20,10 @@ and separately [WVR-005](validation/WVR-005-telem03-lint-disposition.md) on 2026
 The [approval record](directives/CD-003-approval-record.md) preserves the decision,
 22 original proposal hashes, exact 28 product paths and 13 existing synthetic nodes.
 The [current manifest](authority-manifest-TELEM-03.yaml) pins 24 approved controls.
-Required fresh independent lint-authority review and true pre-build probes precede
-construction; no product changes or VERIFIED result yet. Accepted units are unchanged.
+Fresh independent [CDR-018](validation/CDR-018/report.md) returns READY separately
+for authority and lint renewal at7bb6256. The [true pre-build baseline](execution/TELEM-03-baseline/report.md)
+reproduces current gaps with patched dispatch before any source edit. Exact CD-003
+construction is released; candidate checks and fresh product review remain pending.
 
 Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit
@@ -41,7 +43,7 @@ its historical scope is preserved, with no renewal to later units.
 The initiative remains started for TELEM-03 through TELEM-05; delivery remains local.
 TELEM-03 safe LLM metrics/role-service injection directive preparation is now complete;
 its scope and separate lint disposition are now explicitly approved.
-Header planning/not_ready now describes that next unit, not the accepted TELEM-02
+Header implementation/pending now describes that next unit, not the accepted TELEM-02
 verification result. TELEM-03 implementation requires its own approved directive.
 
 Accepted TELEM-01 historical result: fresh independent [VAL-006](validation/VAL-006/report.md)

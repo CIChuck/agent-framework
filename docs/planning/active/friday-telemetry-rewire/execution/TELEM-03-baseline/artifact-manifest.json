@@ -1,0 +1,65 @@
+{
+  "source_revision": "7bb6256f38d1f51b48f1c15fc0beefd591d26c3d",
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/observed-behavior.json",
+      "sha256": "de3d49b5a202a6d6e8d9ee247bba5085a00576b787d4943c8df1db48dc68d66f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/approval-board-receipt.json.gz",
+      "sha256": "6a3f5e9388911042d163c716e23df55b86d73003f537d9a9989d314b275a2a09"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/approval-docs-receipt.json.gz",
+      "sha256": "5330ec0c2b550ce24afa7a7297c7db08e6e19910b871b53d0aee617b46164b10"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/approval-next-receipt.json.gz",
+      "sha256": "fde6e893e89826af9d76271cf1569aa60a53f14c8136112e812a56438e078b9c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/approval-show-receipt.json.gz",
+      "sha256": "feecf4d4d3acc6b5ea80b65aeb89bda188952cd4ef3688e6096fa2c41208d6ca"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/approved-overlay-snapshot.json.gz",
+      "sha256": "81d779bd386b42a5a71285af440450a78687779cf3bfd4e62166645221500620"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/fake-baseline-original-v1.py.gz",
+      "sha256": "abbac322a05151bafc2fce5d3858c63674ab03f3baf5646353e2bbde6b74b98a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/fake_baseline.py.gz",
+      "sha256": "591e4a8c07b3eabfbc51e3f6fbfa70ea348e2d8df7755443985894c5b3928dd1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-fake-receipt.json.gz",
+      "sha256": "24ff5e2c66346f66265f49ca1a6257deb9b21717bb26ee035a1c607df49339d7"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-fake-v2-receipt.json.gz",
+      "sha256": "e28dffc39bb4da2fb41b1bd74c700f09dc14f5e9577640ac2506130b8101d88e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-fake-v2.log.gz",
+      "sha256": "97a22664ce922bff72361fe4ba2bedf86ad6986a030c65f6f07c3c0ae643ca92"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-fake.log.gz",
+      "sha256": "ce920a49f867ea0826ba5288e7904fa427e172168a57271514eb895b9be77755"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-original-v1-snapshot.json.gz",
+      "sha256": "29fdf0916bf5c7cfc958ac2aa4e4aa201ee8f659f516c40e6c603c9aa77077db"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/raw/true-baseline-snapshot-v2.json.gz",
+      "sha256": "a82392e42af7e9d83fd18645960cfeea30082615baba8f36f818f5151c532421"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-baseline/report.md",
+      "sha256": "c73b2694af692936f7a11d7499d7c3d0b0623e6207525d5e68a4bc54cf507955"
+    }
+  ]
+}

@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: complete approved TELEM-03 authority review and pre-build probes, then construct CD-003
+  next_gate: construct approved CD-003; verify stable TELEM-03 candidate independently
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1179,3 +1179,10 @@ events:
   action: approved CD-003 and separately WVR-005
   note: Explicitly approved exact TELEM-03 scope and327 lint identities. Required independent lint review and pre-build reconciliation precede construction; accepted units and unrelated work unchanged.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-07'
+  actor: Codex
+  actor_role: agent
+  action: released approved TELEM-03 construction
+  note: Independent CDR-018 READY for CD-003 and WVR-005; true fake-only pre-build probes frozen before product edits. Exact28 paths only; final preflight and fresh product validation remain required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-018/report.md
