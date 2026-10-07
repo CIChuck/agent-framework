@@ -1,6 +1,6 @@
-# TELEM-03 completion proposal
+# TELEM-03 accepted closeout
 
-Status: independently VERIFIED; ready for maintainer acceptance,2026-10-07.
+Status: independently VERIFIED and accepted by Chuck Russell,2026-10-07.
 Product candidate: `dd543fd6a6819ec0c4fb2529fa384fea886f5509`.
 Authority: approved CD-003 and separately approved WVR-005.
 
@@ -23,9 +23,11 @@ pass. Raw root lint remains nonzero for exactly327 approved WVR-005 identities.
 No new source suppression, diagnostic, test exclusion, dependency/config drift or
 external effect was introduced. All original unrelated dirty work is preserved.
 
-TELEM-03 completion is proposed, not accepted. The continuing initiative stays
-started/local; execution_phase closeout and validation_state verified. Next gate is
-Chuck Russell's acceptance of this concrete unit and candidate. After acceptance,
-prepare the TELEM-04 construction directive for its own scope decision. WVR-005
-expires at TELEM-03 acceptance or any listed input drift; it creates no later-unit
-lint authority. No push/merge/deployment/live provider action is authorized here.
+Chuck Russell directed "lets continue with telem-04" after the verified-result
+report and acceptance explanation. The archived
+[acceptance record](../../../archive/completed/2026/friday-telemetry-rewire-telem-03/README.md)
+records that explicit progression decision and exact candidate/evidence hashes.
+The continuing initiative stays started/local. WVR-005 expires under its terms;
+it supplies no TELEM-04 authority. Next is approval of the prepared CD-004 scope
+and separate WVR-006 proposal. No new product or delivery action is authorized
+by this closeout record.

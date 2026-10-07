@@ -9,16 +9,26 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-07
-next_gate: maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd
-execution_phase: closeout
-validation_state: verified
+next_gate: approve proposed CD-004 and separately WVR-006 for TELEM-04
+execution_phase: preparation
+validation_state: pending
 implementation_authority: granted
 ---
 
-Current gate: TELEM-03 is independently **VERIFIED**, with no findings, at
-`dd543fd`. [VAL-008](validation/VAL-008/report.md) reviews the entire unit and full
-aggregate. [Completion is proposed](closeout-TELEM-03.md); maintainer acceptance
-remains pending. The initiative stays started/local for the continuing units.
+Current gate: TELEM-04 planning is prepared for maintainer scope approval.
+The [CD-004 proposal](directives/CD-004-correlated-execution.md),
+[execution contract](telem04-contract.md), [verification profile](verification-profile-TELEM-04.md)
+and separate [WVR-006 proposal](validation/WVR-006-telem04-lint-disposition.md)
+bind29 product targets and the unchanged327 historical lint identities.
+[Planning evidence](execution/TELEM-04-planning/report.md) separates static checks
+from future behavior/independent review. No TELEM-04 product construction is approved.
+
+TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
+with no findings. Chuck Russell's "lets continue with telem-04", after the result
+and acceptance explanation, supplies the progression decision recorded in the
+[archive](../../../archive/completed/2026/friday-telemetry-rewire-telem-03/README.md).
+WVR-005 expired; no earlier waiver is inherited. The initiative stays started/local
+for TELEM-04/05. Header pending describes the new unit, not TELEM-03's verified result.
 
 TELEM-03 construction authority: Chuck Russell explicitly approved [CD-003](directives/CD-003-safe-llm-metrics.md)
 and separately [WVR-005](validation/WVR-005-telem03-lint-disposition.md) on 2026-10-07.
@@ -29,8 +39,8 @@ Fresh independent [CDR-018](validation/CDR-018/report.md) returns READY separate
 for authority and lint renewal at7bb6256. The [true pre-build baseline](execution/TELEM-03-baseline/report.md)
 reproduces current gaps with patched dispatch before any source edit. Exact CD-003
 construction is frozen at `dd543fd`. Fresh-context VAL-008 returns VERIFIED;
-only maintainer acceptance remains for this unit. Later-unit construction and
-delivery require their separate authority.
+maintainer acceptance is recorded in the separate archive. Later-unit construction
+and delivery require their separate authority.
 
 Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit

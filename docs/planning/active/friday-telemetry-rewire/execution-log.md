@@ -826,3 +826,36 @@ started/local, execution_phase closeout, validation_state verified. Next gate is
 maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd. No maintainer
 acceptance, WVR-005 expiry, TELEM-04 implementation, delivery or live permission is
 inferred. Original unrelated dirty changes remain unchanged and unstaged.
+
+
+## 2026-10-07 — TELEM-03 progression accepted; TELEM-04 planning prepared
+
+Chuck Russell instructed "lets continue with telem-04" after the independently
+VERIFIED TELEM-03 result and the explanation of acceptance as sign-off. The
+separate archived TELEM-03 acceptance record attributes the progression decision
+to that instruction and pins product dd543fd, closeout e6209e3 and VAL-008 evidence.
+It does not derive acceptance from tests or the validator. WVR-005 expires under
+its unchanged terms; all24 frozen controls and earlier accepted units stay fixed.
+
+The same instruction authorizes documentation-only TELEM-04 preparation. Proposed
+CD-004 binds12 source,15 test and2 package-doc targets for closed execution events,
+turn/model/native-MCP/memory/persistence scopes, background origin handoff, safe
+reasoning-history booleans and bounded local diagnostic counters/histograms.
+Accepted LLM/MCP events/interfaces and persistence algorithms remain unchanged.
+Headless assembly, Langfuse, remote activation and OTel Meter adoption are separate.
+
+Fresh credential-free tracked preparation snapshot at e6209e3 omits267 protected
+runtime paths before checkout. Board validate/next/show/render, documentation,
+offline lock check and genuine prospective-source Ruff/Mypy pass. Raw root Ruff
+exits1 with exactly327 prior identities; source/class/config/archive hashes match.
+WVR-006 proposes only that exact new-unit disposition, not an inherited approval.
+Planning checks are static, not behavioral baseline or product VERIFIED. No source,
+test, config, dependency, actual SDK, listener or provider construction occurred.
+
+Planning-only exemption: authorized maintainer Chuck Russell,2026-10-07, exact
+initiative directive/contract/profile/manifest/evidence and board/dashboard/index/
+log/TELEM-03 closeout/archive metadata. Runtime behavior cannot change; validate
+links, board, manifests, source/accepted-input hashes and unrelated dirty preservation.
+Execution_phase preparation; validation_state pending; initiative started/local.
+Next gate: explicit CD-004 and separate WVR-006 decision, required independent
+approved-authority reconciliation and fake pre-build baseline before source edits.

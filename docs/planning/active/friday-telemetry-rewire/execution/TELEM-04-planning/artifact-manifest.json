@@ -1,0 +1,840 @@
+{
+  "base": "e6209e3156216afde1655758e280690229f7d3e6",
+  "mode": "controller static preparation; no independent verdict",
+  "gzip_mtime": 0,
+  "artifacts": [
+    {
+      "original": "/private/tmp/telem-04/planning/WVR-006-telem04-lint-scope.json",
+      "stored": "receipts/WVR-006-telem04-lint-scope.json.gz",
+      "original_sha256": "d690d3385ba4e2a73ec18f6d464ad19f7a725c38475082de4b04c3e8dddddd83",
+      "stored_sha256": "424a8a3f4b1fb80742a9f5ac1b9b248b0ca6385d22de3d74a06a1abbf394d699",
+      "bytes": 116972
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/baseline-snapshot.json",
+      "stored": "receipts/baseline-snapshot.json.gz",
+      "original_sha256": "b1b632ee82d79b621b78492d65c9a9a303c723d77ae6ac6a2c2df94796cd272b",
+      "stored_sha256": "037cc700b045df716fd0ccd8c068c51b18f7ff47f66079adf5bda2181457441e",
+      "bytes": 690507
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-next-receipt.json",
+      "stored": "receipts/board-next-receipt.json.gz",
+      "original_sha256": "d1b49eefdeae8dd375c77f03c0430de94f278e5fa663c8d1873452a8cccd39ae",
+      "stored_sha256": "c328431aedf252ec6b114fb6588a82fc299371b0b1eb814a5e25a2e688084880",
+      "bytes": 2460
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-next.stderr",
+      "stored": "receipts/board-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-next.stdout",
+      "stored": "receipts/board-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-render-receipt.json",
+      "stored": "receipts/board-render-receipt.json.gz",
+      "original_sha256": "e656e1d30df92136b4c608e0fcf3fbc5189123e8d4f317321be7bf229186c8f5",
+      "stored_sha256": "73a5ea07fca59127a3a518f81a8880b97b25ba265cdfa12b5e781c14ddbcb796",
+      "bytes": 2484
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-render.stderr",
+      "stored": "receipts/board-render.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-render.stdout",
+      "stored": "receipts/board-render.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-show-receipt.json",
+      "stored": "receipts/board-show-receipt.json.gz",
+      "original_sha256": "65d74dae890167ff17ffb24b250dc2bd1d46b4e3b41590b84f2e52bc095d47e4",
+      "stored_sha256": "7db707a1101e4b3b3675cdcadb26d97dfa9d351036b3cecf84f0a99bca4e162c",
+      "bytes": 2491
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-show.stderr",
+      "stored": "receipts/board-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-show.stdout",
+      "stored": "receipts/board-show.stdout.gz",
+      "original_sha256": "832b95d247ac769b795a4b4a20f789264147ff4f4ae988bc78ed8ebefc44c2a4",
+      "stored_sha256": "7b097ebfb8b0e3cc19334df574f49f150072bac6e7572acf4541caab8f618300",
+      "bytes": 4022
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-validate-receipt.json",
+      "stored": "receipts/board-validate-receipt.json.gz",
+      "original_sha256": "6d44dd97a5699bc999d15624ada780bbdd2146fbf928ff9075515bc05bf4aa7e",
+      "stored_sha256": "c15fce94b6177bac7560bd5e3c0b07d83729871c4d86c48a5394d46e5b251e66",
+      "bytes": 2480
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-validate.stderr",
+      "stored": "receipts/board-validate.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/board-validate.stdout",
+      "stored": "receipts/board-validate.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/details-preservation.json",
+      "stored": "receipts/details-preservation.json.gz",
+      "original_sha256": "ca0acf2aabb8728e852655b48c4c1c53dd5166ae05ad118c1447b85b9ba32d91",
+      "stored_sha256": "34c1af7efd3765244aa7cc0a4ea3f4243968e37318db568bf6e541ae012566f4",
+      "bytes": 71
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/details.py",
+      "stored": "receipts/details.py.gz",
+      "original_sha256": "eda008ac0c951670de30095596eae1d3b504207ee2c8c23a7783c6a5a3bd1f2e",
+      "stored_sha256": "665643792a465df789318902aba5798ba129ade2be6f8ded0ec30178c8d878f6",
+      "bytes": 5160
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/docs-receipt.json",
+      "stored": "receipts/docs-receipt.json.gz",
+      "original_sha256": "aa26e6fb1f4504c7bf223725023be9e63276f9e1bf09b3f151e2875fd80d7871",
+      "stored_sha256": "9f7fa12b2100cf6c82c2dc48ce989adab88ee1683823675368caa4e37814b0fa",
+      "bytes": 2437
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/docs.stderr",
+      "stored": "receipts/docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/docs.stdout",
+      "stored": "receipts/docs.stdout.gz",
+      "original_sha256": "a860b8383456e57766914a2885bb7359de367cff2410e5ab82f3aac2f928f514",
+      "stored_sha256": "a8f48e3df9ec5082136a8c6c799d83618565e65349dfcc6dcf06fa199d0b9b4a",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/freeze_packet.py",
+      "stored": "receipts/freeze_packet.py.gz",
+      "original_sha256": "c492547ed1430c5d7404941551467f741d86cdd17a0b6e8cb3ba1418dacae007",
+      "stored_sha256": "a4bfa14abf91f44fd1c9b4e5130f2faaf41e07916dffc49257dc92c01d4c281a",
+      "bytes": 3382
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/lint-comparison.json",
+      "stored": "receipts/lint-comparison.json.gz",
+      "original_sha256": "8c228ada98b1a9aeb428a0e655bbe9a5c6a535841e7c2a3a226df8401c9e7655",
+      "stored_sha256": "c8fe5f5275e87348b6318ab8642c630d057638e2375300833c3ae528a09b4fb1",
+      "bytes": 175
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/lock-receipt.json",
+      "stored": "receipts/lock-receipt.json.gz",
+      "original_sha256": "2cd3b3d83027b5cced62875d604954ed330e278912d4d237fc2880ac05924954",
+      "stored_sha256": "41834250aed9b6ccc9ff46a3d6f73466d00613eeceb5f8b1f946e89e3e8505d7",
+      "bytes": 2438
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/lock.stderr",
+      "stored": "receipts/lock.stderr.gz",
+      "original_sha256": "facff7319f8a4197db439cdd6d293459fedff4aeddd84a5dcdc8b2a46d290307",
+      "stored_sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "bytes": 29
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/lock.stdout",
+      "stored": "receipts/lock.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/original-after.json",
+      "stored": "receipts/original-after.json.gz",
+      "original_sha256": "e310bf58d55fd282ddaf4bf1e0f850c2ca29e73f3a017b102fe87d5f3c14966f",
+      "stored_sha256": "09c427d1304fb7aa01043354de88a1b9ba589361dfcccb8ebb03c3f3ac9557b1",
+      "bytes": 744
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/original-before.json",
+      "stored": "receipts/original-before.json.gz",
+      "original_sha256": "e310bf58d55fd282ddaf4bf1e0f850c2ca29e73f3a017b102fe87d5f3c14966f",
+      "stored_sha256": "09c427d1304fb7aa01043354de88a1b9ba589361dfcccb8ebb03c3f3ac9557b1",
+      "bytes": 744
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/planning-dirty-before.json",
+      "stored": "receipts/planning-dirty-before.json.gz",
+      "original_sha256": "46a8e627c00ac5c4d31c473fab4fd43a39f01c8fb523d98e7c81b1831e650f30",
+      "stored_sha256": "fb77a19486417da5248a355c7f6e279f8f11e735a5eacddadeceabe1d9b377f7",
+      "bytes": 2203
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/planning-dirty-preservation.json",
+      "stored": "receipts/planning-dirty-preservation.json.gz",
+      "original_sha256": "33d1b6eab1537a2f6d102926466ab4c8bd135eeba9e4f238d7cdb8afbda6fa83",
+      "stored_sha256": "3a59db7fed41b038d3e07bc3bf7d1e5da8ff303976b572a2ff45ab228d887200",
+      "bytes": 10237
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prepare_baseline.py",
+      "stored": "receipts/prepare_baseline.py.gz",
+      "original_sha256": "69325be55301368b0863437dcd476e8128b8e68d18a40b9cdd20996192a21310",
+      "stored_sha256": "f48a40d6dfb6e39d4994d2e8e3f8f10fb2a212f573bbdbb5a920f74b4a327af6",
+      "bytes": 2034
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/product-manifest.json",
+      "stored": "receipts/product-manifest.json.gz",
+      "original_sha256": "e20481ab79e39ed14365e04ca4e69c7937173eecbca85f139f5d16a38ddf543a",
+      "stored_sha256": "67ba6f566a86802b1e1405c082337e5088823cde9be0197f3aa25a1de8fbb47b",
+      "bytes": 1919
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-mypy-receipt.json",
+      "stored": "receipts/prospective-mypy-receipt.json.gz",
+      "original_sha256": "878419931ee5f7acbf98eb3f4f0738696566aa1340c6d0a1b8331f4f94c22e5d",
+      "stored_sha256": "4a447817ccc069738ced2b73131993580774aa562f1c4ac62a86b1148b790b01",
+      "bytes": 2999
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-mypy.stderr",
+      "stored": "receipts/prospective-mypy.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-mypy.stdout",
+      "stored": "receipts/prospective-mypy.stdout.gz",
+      "original_sha256": "46984ca20bf69f7b14ec1fd9bd82101d56a4e109e68f016fd2a04f22481b09b3",
+      "stored_sha256": "48b5b7deaa75619f778f8eddfed7d89a19b519d6178d241435c1712d263fb3f7",
+      "bytes": 43
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-ruff-receipt.json",
+      "stored": "receipts/prospective-ruff-receipt.json.gz",
+      "original_sha256": "72ba587b0e4366ed4195ef6508c47e9c622229a9f284569a33a8daef3d559586",
+      "stored_sha256": "ed76c38216b01ce7989b64ea0dbeb10d0cb9f1899ba98ff563867398c83e324d",
+      "bytes": 2978
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-ruff.stderr",
+      "stored": "receipts/prospective-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/prospective-ruff.stdout",
+      "stored": "receipts/prospective-ruff.stdout.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/record_packet.py",
+      "stored": "receipts/record_packet.py.gz",
+      "original_sha256": "dd82727614de02199750551f63ca2f36e14aae86d209787c97d280ef18e32546",
+      "stored_sha256": "57112fe43edcebe846b1419677f9abfa47457946108ae478087e47120ae8618e",
+      "bytes": 13236
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/resume_board.py",
+      "stored": "receipts/resume_board.py.gz",
+      "original_sha256": "a064873e14be3920bd078515245933ef4e13adbfc4d114f39e513026f872c6d1",
+      "stored_sha256": "0757c594dec1129ff4fb184927e25954f4fb437ce5bd5ad5b279abc1c301aa83",
+      "bytes": 3178
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/root-ruff-receipt.json",
+      "stored": "receipts/root-ruff-receipt.json.gz",
+      "original_sha256": "a8e56f76d20e6564d11fa54029a13908af82b7dc8e3d4fc50956c1f4b0440d9e",
+      "stored_sha256": "f494498de0fcf57ea01b6ee4d3ef3bad12d520fd5426dca6f8c6db5dcf2109d7",
+      "bytes": 2463
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/root-ruff.stderr",
+      "stored": "receipts/root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/root-ruff.stdout",
+      "stored": "receipts/root-ruff.stdout.gz",
+      "original_sha256": "aa2075f9cbb36d5b2a173d93dc1d18b2b4f8b8e2ff496ef42707976041db781d",
+      "stored_sha256": "309214cecc852ecb566cdd31446001ab99b8aa8d4b8a3cbe0407b76b5230659e",
+      "bytes": 171572
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/source-inventory.json",
+      "stored": "receipts/source-inventory.json.gz",
+      "original_sha256": "0e518e019ba1249a98a3097132a2d7de5d686901581b994bf398f8513f37a391",
+      "stored_sha256": "61a6b0cec41b6ef51a7ceff491119c5c989cc127114816f86b8b490e9e50734d",
+      "bytes": 75444
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/unrelated-before.json",
+      "stored": "receipts/unrelated-before.json.gz",
+      "original_sha256": "a9ff80621561bd216e95491683776a92fa102a87472efd264df2b9f946e0b195",
+      "stored_sha256": "69b9c5ce26ce7f3c72a883837dc50a050a94153c06105dd6af18dab070de2a32",
+      "bytes": 7579
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/versions.json",
+      "stored": "receipts/versions.json.gz",
+      "original_sha256": "5551ccbc3ad94590a70ba8b5c0a05fa9e3add812601b870b32c0eda9db49d87d",
+      "stored_sha256": "43f9f7d9ac4e4c65bcfcc895c44acaec501635265fa26a4672beaed44d5353c8",
+      "bytes": 172
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/check_proposal.py",
+      "stored": "receipts/check_proposal.py.gz",
+      "original_sha256": "52c9556cc17d8f6cca321eb954e86d422d4ca52acfbb3710c50721a8825b09c7",
+      "stored_sha256": "dc8a26736fc2229576ca1189212cf0ac3ec1243f358a7f3723f343bf719598b5",
+      "bytes": 6451
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-next-receipt.json",
+      "stored": "receipts/proposal-board-next-receipt.json.gz",
+      "original_sha256": "a1270416da121847ece4487da6662c249bc5f6481c261a54efd1390950521f51",
+      "stored_sha256": "7d6c9302dc0832ba93229e72f47e3b6f97e3e9b807b770d57698310fca9a014c",
+      "bytes": 2584
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-next.stderr",
+      "stored": "receipts/proposal-board-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-next.stdout",
+      "stored": "receipts/proposal-board-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-render-receipt.json",
+      "stored": "receipts/proposal-board-render-receipt.json.gz",
+      "original_sha256": "574849fc3a6018d00905838d50e304a7f33179ed11836bab6483db24b8930207",
+      "stored_sha256": "9837fa2a94af222966f90fd114f5cdb087230a258718013bb807802c8f81f37e",
+      "bytes": 2609
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-render.stderr",
+      "stored": "receipts/proposal-board-render.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-render.stdout",
+      "stored": "receipts/proposal-board-render.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-show-receipt.json",
+      "stored": "receipts/proposal-board-show-receipt.json.gz",
+      "original_sha256": "14ff1a66e8a7629e93ccbcf2e181b55dca696255b8c3c33efa36ff1523d51d5a",
+      "stored_sha256": "4def87ff339b6829c65ca81cfb9d1099a7beb993eb4bbf006e183cd8a63ffc30",
+      "bytes": 2615
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-show.stderr",
+      "stored": "receipts/proposal-board-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-show.stdout",
+      "stored": "receipts/proposal-board-show.stdout.gz",
+      "original_sha256": "525c2174e6b6c59dec4b7602450f429116c15779ad8cacffee86102980ee6d1e",
+      "stored_sha256": "f1f685c04656beb4a9c2d5c3f7623e8f30a5fa416a12d5379fbc5d4e6fde192c",
+      "bytes": 4179
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-validate-receipt.json",
+      "stored": "receipts/proposal-board-validate-receipt.json.gz",
+      "original_sha256": "c6c6f06229bc74123a41094a037e4e1ebd0dd804fdb43046702b261cf7651a94",
+      "stored_sha256": "be7fba87ab6c77348869ceab941373218ef3ecbe90e36cda3e12cf7d251b5e14",
+      "bytes": 2604
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-validate.stderr",
+      "stored": "receipts/proposal-board-validate.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-board-validate.stdout",
+      "stored": "receipts/proposal-board-validate.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-diff-check-receipt.json",
+      "stored": "receipts/proposal-diff-check-receipt.json.gz",
+      "original_sha256": "876051c30213c3c516f82794cf816439bf088b137a32e2d52c41d70946be938a",
+      "stored_sha256": "f9ca16cfd0cb15e56a91711d27dc675a4fce6c1c4cf96fa24326bf8d0b81bb6e",
+      "bytes": 2523
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-diff-check.stderr",
+      "stored": "receipts/proposal-diff-check.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-diff-check.stdout",
+      "stored": "receipts/proposal-diff-check.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-docs-receipt.json",
+      "stored": "receipts/proposal-docs-receipt.json.gz",
+      "original_sha256": "e6360023007dd24218c8835f955224a18f7e9cb3c2c1708921a1d742ccbf5fdb",
+      "stored_sha256": "fa55011c1a7a68edd3e08b02ff02418f7b928a5fc4d48ced619f4aac2f70ef52",
+      "bytes": 2561
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-docs.stderr",
+      "stored": "receipts/proposal-docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-docs.stdout",
+      "stored": "receipts/proposal-docs.stdout.gz",
+      "original_sha256": "0f62be4ff34947006f8f4128557e5be07d074ac33ebf05e509153c4eeed210da",
+      "stored_sha256": "d485986ee15c9ee24ca655e36013f36a93b7f6948909482290efeecb64a0d01e",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-overlay.json",
+      "stored": "receipts/proposal-overlay.json.gz",
+      "original_sha256": "c64ba9dde9d8831967c7d8e45ee797b651d3d0a984666f2c0eff2c5e62d647e4",
+      "stored_sha256": "92e16aaed2bdb0d573a3ca53be4f8fbfeefe17f09828296bb4792c0b481160f5",
+      "bytes": 20010
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-root-ruff-receipt.json",
+      "stored": "receipts/proposal-root-ruff-receipt.json.gz",
+      "original_sha256": "f60ac431cdaab5262d768e9ff0eff2cf6e4564c4af1fdd1cd80ca4269c89a7c4",
+      "stored_sha256": "363c9f2de2c3d52a4f971ad1194c3ec5f3d6c7299695b8e32dbadd89bc2dadde",
+      "bytes": 2588
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-root-ruff.stderr",
+      "stored": "receipts/proposal-root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-root-ruff.stdout",
+      "stored": "receipts/proposal-root-ruff.stdout.gz",
+      "original_sha256": "42f54a0ab4dc46ea357c44e8977a1338d82592df5edc9d97de4760cb4f05f958",
+      "stored_sha256": "e1b45bfc5dae77627acb9b7d0676cfcc0450875909c82bb4c6a6d20495427de2",
+      "bytes": 171572
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-snapshot.json",
+      "stored": "receipts/proposal-snapshot.json.gz",
+      "original_sha256": "21fbaaba865cfa6be2bc39e94820467a5b59985881ce57cc7736d72e75c217c3",
+      "stored_sha256": "eed2550efbe19aae48b37d1f6832d4a9608d2503cedcf62cbb7d66d0524316f2",
+      "bytes": 690507
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/check_proposal-r2.py",
+      "stored": "receipts/check_proposal-r2.py.gz",
+      "original_sha256": "6bce08dcc306a937eb1ac9355ac68521dd8f99a795d630912585fa0c98b78877",
+      "stored_sha256": "aad6481b4e9907d5ccb711c5d815f52b90f0f38ee674b5b567ee00d3db8d59d7",
+      "bytes": 6569
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-next-receipt.json",
+      "stored": "receipts/proposal-r2-board-next-receipt.json.gz",
+      "original_sha256": "3539b0758e044ec2a92b428769eafe1dd2084b1e4c841448817a3a2f98c63c7c",
+      "stored_sha256": "48ac472bfed193adec4f626cfb2b85723862de04f2462494849cc3c247a880fd",
+      "bytes": 2653
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-next.stderr",
+      "stored": "receipts/proposal-r2-board-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-next.stdout",
+      "stored": "receipts/proposal-r2-board-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-render-receipt.json",
+      "stored": "receipts/proposal-r2-board-render-receipt.json.gz",
+      "original_sha256": "606c28a574a64beee8059bf2f23c612b571936be48f38128755fa225287a8dc5",
+      "stored_sha256": "539938a070915539c72abcc716f38c39d0a63d031fdb1e5098f682c800c3935d",
+      "bytes": 2678
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-render.stderr",
+      "stored": "receipts/proposal-r2-board-render.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-render.stdout",
+      "stored": "receipts/proposal-r2-board-render.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-show-receipt.json",
+      "stored": "receipts/proposal-r2-board-show-receipt.json.gz",
+      "original_sha256": "b0869711d51c1fad154db7c86f7f4031fe354dadab46d4822d33e90b75822b09",
+      "stored_sha256": "7b4a83f95988d38a43f04d9124d06d5b16d6300e844c6a474a2071acc0adb39d",
+      "bytes": 2684
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-show.stderr",
+      "stored": "receipts/proposal-r2-board-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-show.stdout",
+      "stored": "receipts/proposal-r2-board-show.stdout.gz",
+      "original_sha256": "525c2174e6b6c59dec4b7602450f429116c15779ad8cacffee86102980ee6d1e",
+      "stored_sha256": "f1f685c04656beb4a9c2d5c3f7623e8f30a5fa416a12d5379fbc5d4e6fde192c",
+      "bytes": 4179
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-validate-receipt.json",
+      "stored": "receipts/proposal-r2-board-validate-receipt.json.gz",
+      "original_sha256": "882c6d11fdcd04debd9f3be3b5a9a91c8179d0af573c3fdece6934910d53f8fc",
+      "stored_sha256": "1585723124bc85ffa8a06345423596e8da965835b4e8248550044b65c70dc43b",
+      "bytes": 2673
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-validate.stderr",
+      "stored": "receipts/proposal-r2-board-validate.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-board-validate.stdout",
+      "stored": "receipts/proposal-r2-board-validate.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-diff-check-receipt.json",
+      "stored": "receipts/proposal-r2-diff-check-receipt.json.gz",
+      "original_sha256": "c38225bdcd1d58112b11a34ef0a888f88c952d1014fc319dd46342d336358e5c",
+      "stored_sha256": "945b7f67e7e441bbbb8e077e2934622e17e16b461f607896bea69f661de66fc9",
+      "bytes": 2591
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-diff-check.stderr",
+      "stored": "receipts/proposal-r2-diff-check.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-diff-check.stdout",
+      "stored": "receipts/proposal-r2-diff-check.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-docs-receipt.json",
+      "stored": "receipts/proposal-r2-docs-receipt.json.gz",
+      "original_sha256": "c168a8c3eaee1a1025916d5e559dd993865ae80374e7185996d466ec8880caea",
+      "stored_sha256": "e3d4e9fdf87d4f86c9dc395e23debec8aad118e492bdb9c33d31b495c61bab13",
+      "bytes": 2630
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-docs.stderr",
+      "stored": "receipts/proposal-r2-docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-docs.stdout",
+      "stored": "receipts/proposal-r2-docs.stdout.gz",
+      "original_sha256": "0f62be4ff34947006f8f4128557e5be07d074ac33ebf05e509153c4eeed210da",
+      "stored_sha256": "d485986ee15c9ee24ca655e36013f36a93b7f6948909482290efeecb64a0d01e",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-root-ruff-receipt.json",
+      "stored": "receipts/proposal-r2-root-ruff-receipt.json.gz",
+      "original_sha256": "00fd3250dec90cf0cc33a86819c78908752d984df9345e9bee12aa8174cdfdca",
+      "stored_sha256": "863cab0bce7856e5feed53bcf494f42c2c15b903624259837f9683e6c9f32e1d",
+      "bytes": 2657
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-root-ruff.stderr",
+      "stored": "receipts/proposal-r2-root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-root-ruff.stdout",
+      "stored": "receipts/proposal-r2-root-ruff.stdout.gz",
+      "original_sha256": "e666d4ec731452f2e72bdab1cfffda557f20bc5b990b96dba7f97d4224d878a6",
+      "stored_sha256": "4a2198b02e42d77408b18cad64edeb730f2e4549a7ae3267a0767e268d9fd43c",
+      "bytes": 172553
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r2-snapshot.json",
+      "stored": "receipts/proposal-r2-snapshot.json.gz",
+      "original_sha256": "da15bed9db2871c2848c17f60d0f14e3e10ad7367ffc111527c5883397e015b2",
+      "stored_sha256": "529503f1b871a4268cad498d7e5cdc851f661bf1b38a02202e59ec94e4a9425d",
+      "bytes": 690510
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/check_proposal-r3.py",
+      "stored": "receipts/check_proposal-r3.py.gz",
+      "original_sha256": "7ed39c882715be432fa37e2b2e0075a690b12d03c2abafff6fc3340cc26bd88d",
+      "stored_sha256": "db17a72e15ec657e132fe61a4fbabf8ccb359c55ad97546f21caf14b210c3b54",
+      "bytes": 6910
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-next-receipt.json",
+      "stored": "receipts/proposal-r3-board-next-receipt.json.gz",
+      "original_sha256": "81ce6bf0be81ad26f54d49505897cfa31f38221fe155d4beb2732f17c3c8e3c5",
+      "stored_sha256": "51e196a8e822d75463b4d987be410a1aa66da8c3bc50d299397244c4c8477852",
+      "bytes": 2653
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-next.stderr",
+      "stored": "receipts/proposal-r3-board-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-next.stdout",
+      "stored": "receipts/proposal-r3-board-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-render-receipt.json",
+      "stored": "receipts/proposal-r3-board-render-receipt.json.gz",
+      "original_sha256": "688768a04fec984ce91de1a39a3772ec07ba80f2476119032e14c11b3dceb8dc",
+      "stored_sha256": "ae661c7a0dd4878d7a26a1e9279e4eec4d28f16b1d6c28b0585af18d576f4765",
+      "bytes": 2678
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-render.stderr",
+      "stored": "receipts/proposal-r3-board-render.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-render.stdout",
+      "stored": "receipts/proposal-r3-board-render.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-show-receipt.json",
+      "stored": "receipts/proposal-r3-board-show-receipt.json.gz",
+      "original_sha256": "77a90ce695112b706a0d933fcc84aa41ae378f98c24b574a06ce973c4ccf85d3",
+      "stored_sha256": "d3fefe927baa1d37884ff1bd06229523cfef19707001e2283236cfafcdff3abd",
+      "bytes": 2684
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-show.stderr",
+      "stored": "receipts/proposal-r3-board-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-show.stdout",
+      "stored": "receipts/proposal-r3-board-show.stdout.gz",
+      "original_sha256": "525c2174e6b6c59dec4b7602450f429116c15779ad8cacffee86102980ee6d1e",
+      "stored_sha256": "f1f685c04656beb4a9c2d5c3f7623e8f30a5fa416a12d5379fbc5d4e6fde192c",
+      "bytes": 4179
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-validate-receipt.json",
+      "stored": "receipts/proposal-r3-board-validate-receipt.json.gz",
+      "original_sha256": "d42a2a86cf233fea747e26cac18c61a4993e9b305c000aa0176689bfdc6b31e9",
+      "stored_sha256": "8eb90c3a6ffae6afcdd21b1d8a994182895de0c00f7092389b6ecea23c673384",
+      "bytes": 2673
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-validate.stderr",
+      "stored": "receipts/proposal-r3-board-validate.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-board-validate.stdout",
+      "stored": "receipts/proposal-r3-board-validate.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-diff-check-receipt.json",
+      "stored": "receipts/proposal-r3-diff-check-receipt.json.gz",
+      "original_sha256": "cd6a83e8059cb602f0f13b94054bb3a89d46f23a23d03588e7240821a87e46d2",
+      "stored_sha256": "99bf3eb9c50ebea8c89737b58883106bd21cdff92a696737d5657534f0c6f638",
+      "bytes": 2592
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-diff-check.stderr",
+      "stored": "receipts/proposal-r3-diff-check.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-diff-check.stdout",
+      "stored": "receipts/proposal-r3-diff-check.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-docs-receipt.json",
+      "stored": "receipts/proposal-r3-docs-receipt.json.gz",
+      "original_sha256": "dc2ff87c68577313b809b7c6d496340d9bd5b2ec476edafd1fafdf8bac7213d0",
+      "stored_sha256": "2e91dca7cb6e0ef0e4a6adf9c3a73f73da24d91c4eaaaf6a67570f1ee08338d8",
+      "bytes": 2630
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-docs.stderr",
+      "stored": "receipts/proposal-r3-docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-docs.stdout",
+      "stored": "receipts/proposal-r3-docs.stdout.gz",
+      "original_sha256": "0f62be4ff34947006f8f4128557e5be07d074ac33ebf05e509153c4eeed210da",
+      "stored_sha256": "d485986ee15c9ee24ca655e36013f36a93b7f6948909482290efeecb64a0d01e",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-root-ruff-receipt.json",
+      "stored": "receipts/proposal-r3-root-ruff-receipt.json.gz",
+      "original_sha256": "bb42fc8f116ca607198591a5b6a6fe29d7aeacc1dcc85d8688accebef1f8156e",
+      "stored_sha256": "3d28ee81b0047281fc902bf3b2340b8212cb62d6edbd870567cf57ab8d2751af",
+      "bytes": 2657
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-root-ruff.stderr",
+      "stored": "receipts/proposal-r3-root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-root-ruff.stdout",
+      "stored": "receipts/proposal-r3-root-ruff.stdout.gz",
+      "original_sha256": "326da43d734df3fee3e0d4efbfb346090a140d7e4367eabb1f5a31b315ea0c75",
+      "stored_sha256": "672f88b04bc9e69ba416fb2dca6667d1c04a679834e8c6c259ee92cbc3ec88b3",
+      "bytes": 172553
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/proposal-r3-snapshot.json",
+      "stored": "receipts/proposal-r3-snapshot.json.gz",
+      "original_sha256": "461c2374ae8e7f73044c28ec5fe8e989cd87048d6ab4e0b4b45dff5b484e9c79",
+      "stored_sha256": "dabab95634d3c5107110430d13339285b5b905b92e5bce22c666e69aa2edde0b",
+      "bytes": 690510
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/commit_packet.py",
+      "stored": "receipts/commit_packet.py.gz",
+      "original_sha256": "2f8008126c40038c1f74b4e599002ff590ec6da2ae694817082524bcc36fd48a",
+      "stored_sha256": "b78175972ab2ff4334881acc61b7361490d49bae7d8be0a76b17d47626394f25",
+      "bytes": 3832
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/staging-whitespace-failure.json",
+      "stored": "receipts/staging-whitespace-failure.json.gz",
+      "original_sha256": "4e3a2ecaf115542c77a4f552b4a6f2d3d308df4404fba37bb7666003465507be",
+      "stored_sha256": "a3ccec66012edf6c3254d215fd6cff273443995289c5ade76f2da5c36a19cf03",
+      "bytes": 597
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/before-eof-fix-source-inventory.md",
+      "stored": "receipts/before-eof-fix-source-inventory.md.gz",
+      "original_sha256": "bc1c5b7895bdd88541049bc9a2f26bb23fe26ddfe656d8c36e7b1b3b97b356e6",
+      "stored_sha256": "30a2b11afa7c7941c778e3dd1a887843d775fe8dfb112c4218d18a069c7f3be4",
+      "bytes": 2977
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/before-eof-fix-CD-004-correlated-execution.md",
+      "stored": "receipts/before-eof-fix-CD-004-correlated-execution.md.gz",
+      "original_sha256": "f4004029206beba59acc8dece6006b8e44454b45eab272fec5155b9f1b07537f",
+      "stored_sha256": "a08e581a337887ec92dcab85e3b1f9bbcb1277483bb80ca11c9212f857cf4531",
+      "bytes": 8494
+    },
+    {
+      "original": "/private/tmp/telem-04/planning/before-eof-fix-verification-profile-TELEM-04.md",
+      "stored": "receipts/before-eof-fix-verification-profile-TELEM-04.md.gz",
+      "original_sha256": "3156eea3fe645e314dce7e7a2bb3dd6577d49deded6ee4baf36631a571f16d40",
+      "stored_sha256": "7c24207647a35c1fb4b30593b96fdbf8f70aa64febf339f2e9c0f6ccd009835a",
+      "bytes": 7771
+    }
+  ]
+}
