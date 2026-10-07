@@ -37,7 +37,7 @@ and [WVR-004](validation/WVR-004-telem02-lint-disposition.md) are **approved** b
 on2026-10-06; the [approval record](directives/CD-002-approval-record.md) retains the decision.
 A separate [authority manifest](authority-manifest-TELEM-02.yaml) freezes review
 inputs. Shared adapter/factory scope keeps accepted Chat defaults/borrowed ownership
-unchanged; native synthetic gRPC collector permissions are proposed explicitly.
+unchanged; native synthetic gRPC collector permissions are approved explicitly.
 First independent [CDR-012](validation/CDR-012/report.md) requested the R02-01 TLS
 trust-policy correction. Fresh [CDR-013](validation/CDR-013/report.md) returns
 **READY** for corrected CD-002 and separately for WVR-004 at frozen candidate

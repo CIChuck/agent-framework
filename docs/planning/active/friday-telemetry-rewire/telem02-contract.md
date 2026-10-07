@@ -18,7 +18,7 @@ exceptions, endpoints, header values or configuration dumps. Idempotent shutdown
 returns the retained result. A borrowed arbitrary TelemetryInterface need not
 implement lifecycle methods and is never implicitly closed.
 
-Intentional corrections requiring CD-002 approval: remove global tracer-provider
+Intentional corrections approved under CD-002: remove global tracer-provider
 registration; honor supplied parent IDs; deliver events without an ambient SDK
 span; stop silently substituting console for a requested but unavailable exporter;
 expose missing dependencies and exporter failures. Existing service-only legacy
@@ -167,7 +167,7 @@ Remote HTTPS credential/channel construction is mocked for this unit: assert all
 three credential arguments are None, the correct secure branch/target/options and
 failure behavior, plus forbidden-loader sentinels and no channel before validation.
 These tests do not prove native filesystem behavior, real TLS handshake or public
-connectivity. Native default trust-store loading is allowed by the proposed production
+connectivity. Native default trust-store loading is allowed by the approved production
 contract but is not exercised by this verification profile. Actual remote/TLS
 connections, certificate provisioning, credentials and live activation require a later
 explicit profile. Package migration docs must state this trust and test boundary.

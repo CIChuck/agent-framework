@@ -4283,7 +4283,7 @@
   },
   "live_count": 1,
   "ruff_version": "0.14.10",
-  "status": "proposal; not approved",
+  "status": "approved by Chuck Russell for TELEM-02; exact scope only",
   "target": "py313",
   "work_unit": "TELEM-02"
 }

@@ -597,3 +597,15 @@ contract/profile, accepted TELEM-01 controls and all historical review evidence.
 execution_phase: planning; validation_state: not_ready pending fresh approved-authority
 readiness. No product edits are made before readiness and source/API baseline preflight.
 No additional approval is needed for these authorized steps. Delivery remains local.
+
+## 2026-10-06 — CDR-014 approval-state reconciliation / REM-005
+
+Independent approved-authority review at3044daa returned CHANGES_REQUESTED for stale
+approval-state labels in controlling listener/lint JSON and current unit prose.
+Maintainer approval itself is valid; no renewal is needed. REM-005 performs only
+mechanical current-label/hash reconciliation, preserving all substantive scope,
+13 effects,327 identities/hashes/expiry and gates. Current17-control manifest freezes
+this correction for fresh readiness before construction. CDR-014 remains historical.
+A transient unrelated untracked .claude/ path appeared and disappeared during review;
+its payload was not inspected, copied or modified. Named original dirty paths remain
+preserved. No product or native effects occurred during this reconciliation.

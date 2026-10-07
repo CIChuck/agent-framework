@@ -84,10 +84,9 @@ or failure is a finding. Require both full root and Chat commands to exit zero.
 At original preparation basee8b075a, root Ruff exits1 with579 findings:327
 original debt plus252 raw closeout-script findings. The evidence-only packaging
 correction preserves all18 scripts byte-for-byte in gzip, with original manifests
-retained. The proposal candidate must reproduce327 after this correction, never
+retained. The candidate must reproduce327 after this correction, never
 waive the additional252. Record both raw results and the exact compression proof.
-The corrected327 remain unwaived current-unit debt
-until WVR-004 receives separate explicit approval. If approved, independently match
+The corrected327 are separately approved current-unit debt under WVR-004. Independently match
 its327 exact identities, four archive hashes, unchanged registry source/AST,
 seventeen lint-config hashes, Ruff version and py313 at baseline/final. Every other
 finding fails; no global exclusions/ignore changes. Raw root lint is never called

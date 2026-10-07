@@ -1,5 +1,5 @@
 {
-  "status": "proposal; not approved for TELEM-02",
+  "status": "approved by Chuck Russell for TELEM-02; exact scope only",
   "existing_nodes": [
     "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
     "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",

@@ -92,8 +92,8 @@ run; do not silently exclude it or replace full gates with selected-node passes.
 
 Every command in the separate profile is mandatory. Unit Ruff/type checks require
 raw zero. Root Ruff must run unchanged with raw exit recorded; its current327
-findings are unwaived for this new unit unless [WVR-004](../validation/WVR-004-telem02-lint-disposition.md)
-is separately approved in the linked approval record. No inherited TELEM-01 waiver, PTY waiver, failure skip,
+findings are covered only by separately approved [WVR-004](../validation/WVR-004-telem02-lint-disposition.md)
+in the linked approval record, with exact identity/hash reproduction required. No inherited TELEM-01 waiver, PTY waiver, failure skip,
 blanket typing relaxation or source-ignore continuation is approved by this directive.
 
 Freeze stable product commit, exact allowed and aggregate manifests, source/tool/
