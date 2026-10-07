@@ -800,3 +800,29 @@ TELEM-03 unit delta plus complete2155a0f aggregate. Candidate remains started/lo
 execution_phase: validation; validation_state: in_review. No completion or maintainer
 acceptance is inferred from builder checks. Original dirty changes remain preserved
 and unstaged. Delivery, live services and later units remain separate authority.
+
+## 2026-10-07 — fresh VAL-008 VERIFIED; TELEM-03 completion proposed
+
+Fresh-context read-only `/root/telem03_product_validator` returns VERIFIED with
+no findings for dd543fd and the complete unit/2155a0f aggregate. Independent105 new,
+1,115 Chat/LLM/telemetry, root2,996 and owning2,978 tests pass; only the prior SciPy
+optional node is skipped in root/owning gates. Unit17/aggregate120 Python lint,
+unit11/aggregate74 source typing, collection2,997, lock/board/docs/API/AST/privacy/
+18floors and exact327 WVR-005 identity/input checks pass. Raw root lint stays exit1.
+Independent managed-SDK consumer preserves safe scalars outside/within the accepted
+application span, with no channel, global registration or owned-worker leak.
+
+The unaltered independent report SHA256 is
+602796deea2fffa681820bd0ed68ff67a2fa2f60b9c722d96361b39b51676654.
+All218 final original reviewer artifacts and their compressed repository copies
+were verified by the controller. The reviewer retains restricted bind failures and
+an incorrect private SDK span assumption, followed by complete approved normal-user
+and corrected owned-probe passes; no source repair or new product failure/skip.
+Announced55de75a process/evidence tracking drift leaves product and24 controls intact.
+
+[VAL-008 storage record](validation/VAL-008/report.md) and
+[TELEM-03 completion proposal](closeout-TELEM-03.md) are recorded. Initiative remains
+started/local, execution_phase closeout, validation_state verified. Next gate is
+maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd. No maintainer
+acceptance, WVR-005 expiry, TELEM-04 implementation, delivery or live permission is
+inferred. Original unrelated dirty changes remain unchanged and unstaged.

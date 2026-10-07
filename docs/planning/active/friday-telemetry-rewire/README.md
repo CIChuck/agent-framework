@@ -9,13 +9,18 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-07
-next_gate: fresh VAL-008 review of TELEM-03 candidate dd543fd and complete aggregate
-execution_phase: validation
-validation_state: in_review
+next_gate: maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd
+execution_phase: closeout
+validation_state: verified
 implementation_authority: granted
 ---
 
-Current next unit: Chuck Russell explicitly approved [CD-003](directives/CD-003-safe-llm-metrics.md)
+Current gate: TELEM-03 is independently **VERIFIED**, with no findings, at
+`dd543fd`. [VAL-008](validation/VAL-008/report.md) reviews the entire unit and full
+aggregate. [Completion is proposed](closeout-TELEM-03.md); maintainer acceptance
+remains pending. The initiative stays started/local for the continuing units.
+
+TELEM-03 construction authority: Chuck Russell explicitly approved [CD-003](directives/CD-003-safe-llm-metrics.md)
 and separately [WVR-005](validation/WVR-005-telem03-lint-disposition.md) on 2026-10-07.
 The [approval record](directives/CD-003-approval-record.md) preserves the decision,
 22 original proposal hashes, exact 28 product paths and 13 existing synthetic nodes.
@@ -23,8 +28,9 @@ The [current manifest](authority-manifest-TELEM-03.yaml) pins 24 approved contro
 Fresh independent [CDR-018](validation/CDR-018/report.md) returns READY separately
 for authority and lint renewal at7bb6256. The [true pre-build baseline](execution/TELEM-03-baseline/report.md)
 reproduces current gaps with patched dispatch before any source edit. Exact CD-003
-construction is frozen at `dd543fd`. Fresh-context [VAL-008](validation/VAL-008/request.md)
-reviews the complete unit and aggregate; verification and acceptance remain pending.
+construction is frozen at `dd543fd`. Fresh-context VAL-008 returns VERIFIED;
+only maintainer acceptance remains for this unit. Later-unit construction and
+delivery require their separate authority.
 
 Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit

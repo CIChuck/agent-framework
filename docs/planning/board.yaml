@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh VAL-008 review of TELEM-03 candidate dd543fd and complete aggregate
+  next_gate: maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -431,6 +431,10 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-03.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:

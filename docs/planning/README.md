@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | fresh VAL-008 review of TELEM-03 candidate dd543fd and complete aggregate |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | maintainer acceptance of VERIFIED TELEM-03 candidate dd543fd |
 
 ## Completed
 
