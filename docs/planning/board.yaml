@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: approve proposed CD-003 and separately WVR-005 for TELEM-03
+  next_gate: complete approved TELEM-03 authority review and pre-build probes, then construct CD-003
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1172,3 +1172,10 @@ events:
   action: prepared TELEM-03 construction proposal
   note: Maintainer authorized preparation by proceed. CD-003 and separate WVR-005 are proposals only; accepted TELEM-01/02 and expired WVR-004 remain unchanged. No product edits or new external effects.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md
+- task: friday-telemetry-rewire
+  at: '2026-10-07'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-003 and separately WVR-005
+  note: Explicitly approved exact TELEM-03 scope and327 lint identities. Required independent lint review and pre-build reconciliation precede construction; accepted units and unrelated work unchanged.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md

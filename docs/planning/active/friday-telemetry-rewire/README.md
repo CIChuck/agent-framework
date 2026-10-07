@@ -9,23 +9,19 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: approve proposed CD-003 and separately WVR-005 for TELEM-03
+next_gate: complete approved TELEM-03 authority review and pre-build probes, then construct CD-003
 execution_phase: planning
-validation_state: not_ready
+validation_state: pending
 implementation_authority: granted
 ---
 
-Current next unit: [CD-003](directives/CD-003-safe-llm-metrics.md),
-[TELEM-03 contract](telem03-contract.md), [profile](verification-profile-TELEM-03.md)
-and [WVR-005](validation/WVR-005-telem03-lint-disposition.md) are prepared proposals,
-not approved. The [source inventory and planning checks](execution/TELEM-03-planning/report.md)
-cover typed/legacy/streaming/embedding paths and all role factories, including
-compaction and explicit maintenance providers. Static typing identifies two existing
-adapter return-contract errors included for correction; no typing waiver is proposed.
-The [new unit manifest](authority-manifest-TELEM-03.yaml) pins the proposal.
-No TELEM-03 product edit or behavioral test has occurred. Next: explicit CD-003
-scope decision and separate exact WVR-005 lint decision, then approved-authority
-reconciliation/required fresh review and pre-build probes before construction.
+Current next unit: Chuck Russell explicitly approved [CD-003](directives/CD-003-safe-llm-metrics.md)
+and separately [WVR-005](validation/WVR-005-telem03-lint-disposition.md) on 2026-10-07.
+The [approval record](directives/CD-003-approval-record.md) preserves the decision,
+22 original proposal hashes, exact 28 product paths and 13 existing synthetic nodes.
+The [current manifest](authority-manifest-TELEM-03.yaml) pins 24 approved controls.
+Required fresh independent lint-authority review and true pre-build probes precede
+construction; no product changes or VERIFIED result yet. Accepted units are unchanged.
 
 Accepted TELEM-02 result: fresh independent [VAL-007](validation/VAL-007/report.md)
 returns **VERIFIED** for product candidate `45f3114`, reviewing the full CD-002 unit
@@ -44,7 +40,7 @@ pin that decision and exact verified evidence. WVR-004 expired after this decisi
 its historical scope is preserved, with no renewal to later units.
 The initiative remains started for TELEM-03 through TELEM-05; delivery remains local.
 TELEM-03 safe LLM metrics/role-service injection directive preparation is now complete;
-its scope and separate lint disposition await explicit approval.
+its scope and separate lint disposition are now explicitly approved.
 Header planning/not_ready now describes that next unit, not the accepted TELEM-02
 verification result. TELEM-03 implementation requires its own approved directive.
 

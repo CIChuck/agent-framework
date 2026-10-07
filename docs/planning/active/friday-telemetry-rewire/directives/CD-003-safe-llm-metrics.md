@@ -1,14 +1,15 @@
-# Proposed CD-003: Safe LLM metrics and role-service injection
+# Approved CD-003: Safe LLM metrics and role-service injection
 
-Status: proposed; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell on 2026-10-07. Prepared: 2026-10-06.
 Initiative: friday-telemetry-rewire. Work unit: TELEM-03.
 Branch: feature/friday-telemetry-rewire.
 Preparation base: 4ca9baecdcdcf26fc5e8055b326c3a54cda36cb7.
 
-The maintainer's "proceed" authorizes preparing this proposal after accepted
-TELEM-02. It does not approve this new construction scope or renew expired WVR-004.
-The initiative stays started/local, execution_phase planning, validation_state
-not_ready. No TELEM-03 product code or tests have been changed.
+Chuck Russell explicitly approved CD-003 and separately WVR-005 on 2026-10-07:
+"i approve cd-003, wvr-005 - proceed to next steps". The
+[approval record](CD-003-approval-record.md) binds the reviewed proposal at 22c8651.
+The initiative stays started/local. Required independent lint-authority review,
+approved-authority reconciliation and pre-build probes precede source construction.
 
 ## Objective and authority
 
@@ -20,13 +21,13 @@ maintenance providers. Preserve application results, exceptions, retry/circuit
 policy, service selection and ownership.
 
 Follow explicit maintainer direction, repository policies, accepted TELEM-01/02
-contracts, approved build/tactical plans, then this unit's proposed
+contracts, approved build/tactical plans, then this unit's approved
 [contract](../telem03-contract.md) and [verification profile](../verification-profile-TELEM-03.md).
 The separate [manifest](../authority-manifest-TELEM-03.yaml) pins exact authority,
-product targets, source inventory, proposed lint disposition and synthetic effects.
+product targets, source inventory, approved lint disposition and synthetic effects.
 Accepted unit manifests, contracts and evidence remain immutable.
 
-## Exact proposed product manifest
+## Exact approved product manifest
 
 Existing source allowed:
 
@@ -104,7 +105,7 @@ its board/dashboard row may change; preserve unrelated user edits separately.
 
 Before first source edit, freeze pre-build call signatures, factory construction
 inventory, model-selection/alias behavior, pricing behavior, existing test expectations
-and safe fake-only probes. This proposal retains static preparation evidence, not
+and safe fake-only probes. The preparation packet retains static evidence, not
 executed behavioral proof. Record actual baseline probe outcomes before editing;
 later baseline comparisons must be labelled retrospective.
 
@@ -140,15 +141,15 @@ fabrication. Explicit early close/cancellation cleanup is permitted, not new ret
 
 All new tests are fake-only, in-memory and deterministic, with no provider/channel/
 listener construction. Full regression gates include the existing 13 synthetic
-loopback nodes in the proposed [effect inventory](../execution/TELEM-03-planning/listener-scope.json).
-Approval of CD-003 would authorize only those named normal-user localhost effects
+loopback nodes in the frozen [effect inventory](../execution/TELEM-03-planning/listener-scope.json).
+CD-003 approval authorizes only those named normal-user localhost effects
 after final fixture/import/helper preflight. Prior unit approval is not reused.
 No real state, credential loading, TLS/remote endpoint, paid call, install/sync/
 download, publication, push, merge or deployment is authorized.
 
-Root Ruff currently exits 1 with 327 exact unchanged identities. Only separate
-approval of [WVR-005](../validation/WVR-005-telem03-lint-disposition.md) could dispose
-those for this unit; CD-003 alone cannot. Every changed-unit/aggregate lint and
+Root Ruff currently exits 1 with 327 exact unchanged identities. Separate
+approval of [WVR-005](../validation/WVR-005-telem03-lint-disposition.md) disposes
+only those for this unit; CD-003 alone cannot. Every changed-unit/aggregate lint and
 typing command must exit zero. No new suppression, skip or diagnostic is covered.
 
 After explicit scope and lint decisions, reconcile approved authority and preflight

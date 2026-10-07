@@ -1,6 +1,6 @@
-# Proposed TELEM-03 verification profile
+# Approved TELEM-03 verification profile
 
-Status: proposed; not approved. Date: 2026-10-06.
+Status: approved by Chuck Russell on 2026-10-07. Prepared: 2026-10-06.
 Bound to [CD-003](directives/CD-003-safe-llm-metrics.md) and
 [contract](telem03-contract.md). Earlier accepted profiles remain historical.
 
@@ -25,7 +25,7 @@ inherit credentials, live flags, HOME overrides, proxies, OTEL_*/GRPC_*/certific
 variables. Native gRPC bypasses Python hooks: prove literal loopback targets,
 accepted retries=0/proxy=0/finite timeout/owned cleanup in the two unchanged nodes.
 
-Proposed CD-003 permissions cover only the exact existing 13 parameter-expanded
+Approved CD-003 permissions cover only the exact existing 13 parameter-expanded
 nodes in [listener-scope.json](execution/TELEM-03-planning/listener-scope.json),
 normal-user localhost sandbox escape, after final fixture/helper/import hash audit.
 No remote/TLS/public-root loading/provider services. Any extra listener effect
@@ -113,6 +113,6 @@ changed-unit/aggregate Ruff and Mypy must exit zero. WVR-004 is expired, not inh
 Freeze product candidate, exact delta/aggregate paths and immutable authority hashes.
 AGENTS.md requires a fresh-context read-only validator after construction, reviewing
 all criteria and accepted-unit regressions. Return VERIFIED/CHANGES_REQUESTED/BLOCKED.
-If renewed lint authority is approved, obtain its required fresh independent review
+Obtain the approved renewed lint authority's required fresh independent review
 before construction; no self-approved waiver or proposal readiness is claimed here.
 Maintainer acceptance and external/delivery actions remain separate.

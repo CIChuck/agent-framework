@@ -1,6 +1,6 @@
-# Proposed TELEM-03 safe LLM event contract
+# Approved TELEM-03 safe LLM event contract
 
-Status: proposed; not approved. Date: 2026-10-06. Schema version: 1.
+Status: approved by Chuck Russell on 2026-10-07. Prepared: 2026-10-06. Schema version: 1.
 Bound to [CD-003](directives/CD-003-safe-llm-metrics.md).
 
 ## Closed schema and identity

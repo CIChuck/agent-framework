@@ -733,3 +733,19 @@ the planning report; it is not independent readiness or product VERIFIED.
 execution_phase: planning; validation_state: not_ready. Initiative started/local.
 Next: explicit CD-003 scope approval and separate WVR-005 decision, followed by
 approved-authority reconciliation, required fresh review and safe pre-build probes.
+
+
+## 2026-10-07 — CD-003 and WVR-005 approved
+
+Chuck Russell explicitly stated "i approve cd-003, wvr-005 - proceed to next steps".
+The approval record freezes the proposal at22c8651, original22 controls, exact28
+product paths, exact327 lint identities and existing13 synthetic loopback effects.
+Current24-control authority adds the decision record/evidence and updates approval
+labels only; accepted TELEM-01/02 authority and frozen planning evidence stay intact.
+WVR-004 remains expired. No product edit, new effect, test skip or suppression.
+
+execution_phase: planning; validation_state: pending. Next authorized: required
+fresh independent lint-authority review, reconciliation and true fake-only pre-build
+probes, then exact CD-003 construction. Stable product candidate and fresh-context
+independent unit+aggregate validation remain mandatory; maintainer acceptance and
+any delivery/live action stay separate. No renewed approval is needed for these steps.
