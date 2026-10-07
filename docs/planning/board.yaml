@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh approved CD-002 and WVR-004 authority readiness then source/API baselines and TELEM-02 construction
+  next_gate: TELEM-02 implementation and mandatory delta plus aggregate product validation
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1130,3 +1130,10 @@ events:
   action: approved CD-002 and separately WVR-004
   note: Explicit approved response to both concrete decisions after CDR-013 READY; exact reviewed TELEM-02 scope and13 synthetic loopback effects plus327 temporary lint identities. Fresh approved-authority readiness and baselines precede construction; no remote activation or acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: released approved TELEM-02 construction after readiness and baselines
+  note: CDR-015 READY closes A02-01; frozen fake-only true pre-build source/API baseline. Exact CD-002 and WVR-004 approved; product checks and fresh delta plus aggregate validation pending. Delivery local and TELEM-01 acceptance retained.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-015/report.md

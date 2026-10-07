@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+    "old_status": "proposal; not approved",
+    "new_status": "approved by Chuck Russell for TELEM-02; exact scope only",
+    "non_status_exact": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+    "old_status": "proposal; not approved for TELEM-02",
+    "new_status": "approved by Chuck Russell for TELEM-02; exact scope only",
+    "non_status_exact": true
+  }
+]

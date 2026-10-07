@@ -1,0 +1,595 @@
+{
+  "python": "3.13.10 (main, Dec  2 2025, 22:01:27) [Clang 21.1.4 ]",
+  "executable": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+  "versions": {
+    "opentelemetry-api": {
+      "version": "1.39.1",
+      "metadata_sha256": "fc8fe7937002f224391d2038aac9ef231720bc9355d2ff9e23c36022ceb490d0",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "opentelemetry-sdk": {
+      "version": "1.39.1",
+      "metadata_sha256": "319e763ac2456dae69175cfe2d2dd4a52e08a39bb5a036c6d642ae68647a0528",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "opentelemetry-exporter-otlp-proto-grpc": {
+      "version": "1.39.1",
+      "metadata_sha256": "b50281cb7041efa486ea012b2962fd862b9d8390accdf94fa9ee82e059ea2206",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "opentelemetry-exporter-otlp-proto-common": {
+      "version": "1.39.1",
+      "metadata_sha256": "ba853ce1af19c6c31c41ae3382b609c34931789da68dcb1f4a7bf3bb0811053f",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "opentelemetry-proto": {
+      "version": "1.39.1",
+      "metadata_sha256": "f32e9c6cf36b1abb90e665eb54f8380c91408ccf524acb0bdb86527fd8eac196",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "grpcio": {
+      "version": "1.67.1",
+      "metadata_sha256": "60da8afdd8e843feb4059b2780979d9ceece92909dae56c936653907f526a183",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "protobuf": {
+      "version": "6.33.2",
+      "metadata_sha256": "ad469488c5773500cc7545ee5b923acfe53abcc1935328729e74e42e783725bd",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "ruff": {
+      "version": "0.14.10",
+      "metadata_sha256": "86e063cb7acbb27119b412806f65b8c3effacff999fe8801273a9d20c450539e",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "mypy": {
+      "version": "1.19.1",
+      "metadata_sha256": "3129168be583bc96f3fac62a7c23f3d4ff6517fa3ae048baf78fda405129f679",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    },
+    "pydantic": {
+      "version": "2.12.5",
+      "metadata_sha256": "a3ba23e895191fed69b8323cbcbcdc82984ca0b6a3cdc62c48a2341886a9c08d",
+      "location": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages"
+    }
+  },
+  "http_exporter_absent": true,
+  "sdk_sources": {
+    "opentelemetry/sdk/trace/__init__.py": {
+      "sha256": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07",
+      "api": {
+        "SpanProcessor": {
+          "on_start": "self, span: 'Span', parent_context: Optional[context_api.Context]=None",
+          "on_end": "self, span: 'ReadableSpan'",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        },
+        "SynchronousMultiSpanProcessor": {
+          "__init__": "self",
+          "add_span_processor": "self, span_processor: SpanProcessor",
+          "on_start": "self, span: 'Span', parent_context: Optional[context_api.Context]=None",
+          "on_end": "self, span: 'ReadableSpan'",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        },
+        "ConcurrentMultiSpanProcessor": {
+          "__init__": "self, num_threads: int=2",
+          "add_span_processor": "self, span_processor: SpanProcessor",
+          "on_start": "self, span: 'Span', parent_context: Optional[context_api.Context]=None",
+          "on_end": "self, span: 'ReadableSpan'",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        },
+        "EventBase": {
+          "__init__": "self, name: str, timestamp: Optional[int]=None",
+          "name": "self",
+          "timestamp": "self",
+          "attributes": "self"
+        },
+        "Event": {
+          "__init__": "self, name: str, attributes: types.Attributes=None, timestamp: Optional[int]=None, limit: Optional[int]=_DEFAULT_OTEL_SPAN_ATTRIBUTE_COUNT_LIMIT",
+          "attributes": "self",
+          "dropped_attributes": "self"
+        },
+        "ReadableSpan": {
+          "__init__": "self, name: str, context: Optional[trace_api.SpanContext]=None, parent: Optional[trace_api.SpanContext]=None, resource: Optional[Resource]=None, attributes: types.Attributes=None, events: Sequence[Event]=(), links: Sequence[trace_api.Link]=(), kind: trace_api.SpanKind=trace_api.SpanKind.INTERNAL, instrumentation_info: Optional[InstrumentationInfo]=None, status: Status=Status(StatusCode.UNSET), start_time: Optional[int]=None, end_time: Optional[int]=None, instrumentation_scope: Optional[InstrumentationScope]=None",
+          "dropped_attributes": "self",
+          "dropped_events": "self",
+          "dropped_links": "self",
+          "name": "self",
+          "get_span_context": "self",
+          "context": "self",
+          "kind": "self",
+          "parent": "self",
+          "start_time": "self",
+          "end_time": "self",
+          "status": "self",
+          "attributes": "self",
+          "events": "self",
+          "links": "self",
+          "resource": "self",
+          "instrumentation_info": "self",
+          "instrumentation_scope": "self",
+          "to_json": "self, indent: Optional[int]=4"
+        },
+        "SpanLimits": {
+          "__init__": "self, max_attributes: Optional[int]=None, max_events: Optional[int]=None, max_links: Optional[int]=None, max_span_attributes: Optional[int]=None, max_event_attributes: Optional[int]=None, max_link_attributes: Optional[int]=None, max_attribute_length: Optional[int]=None, max_span_attribute_length: Optional[int]=None"
+        },
+        "Span": {
+          "__init__": "self, name: str, context: trace_api.SpanContext, parent: Optional[trace_api.SpanContext]=None, sampler: Optional[sampling.Sampler]=None, trace_config: None=None, resource: Optional[Resource]=None, attributes: types.Attributes=None, events: Optional[Sequence[Event]]=None, links: Sequence[trace_api.Link]=(), kind: trace_api.SpanKind=trace_api.SpanKind.INTERNAL, span_processor: SpanProcessor=SpanProcessor(), instrumentation_info: Optional[InstrumentationInfo]=None, record_exception: bool=True, set_status_on_exception: bool=True, limits=_UnsetLimits, instrumentation_scope: Optional[InstrumentationScope]=None",
+          "get_span_context": "self",
+          "set_attributes": "self, attributes: Mapping[str, types.AttributeValue]",
+          "set_attribute": "self, key: str, value: types.AttributeValue",
+          "add_event": "self, name: str, attributes: types.Attributes=None, timestamp: Optional[int]=None",
+          "add_link": "self, context: SpanContext, attributes: types.Attributes=None",
+          "start": "self, start_time: Optional[int]=None, parent_context: Optional[context_api.Context]=None",
+          "end": "self, end_time: Optional[int]=None",
+          "update_name": "self, name: str",
+          "is_recording": "self",
+          "set_status": "self, status: typing.Union[Status, StatusCode], description: typing.Optional[str]=None",
+          "record_exception": "self, exception: BaseException, attributes: types.Attributes=None, timestamp: Optional[int]=None, escaped: bool=False"
+        },
+        "_Span": {},
+        "Tracer": {
+          "__init__": "self, sampler: sampling.Sampler, resource: Resource, span_processor: Union[SynchronousMultiSpanProcessor, ConcurrentMultiSpanProcessor], id_generator: IdGenerator, instrumentation_info: InstrumentationInfo, span_limits: SpanLimits, instrumentation_scope: InstrumentationScope",
+          "start_as_current_span": "self, name: str, context: Optional[context_api.Context]=None, kind: trace_api.SpanKind=trace_api.SpanKind.INTERNAL, attributes: types.Attributes=None, links: Optional[Sequence[trace_api.Link]]=(), start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True, end_on_exit: bool=True",
+          "start_span": "self, name: str, context: Optional[context_api.Context]=None, kind: trace_api.SpanKind=trace_api.SpanKind.INTERNAL, attributes: types.Attributes=None, links: Optional[Sequence[trace_api.Link]]=(), start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True"
+        },
+        "TracerProvider": {
+          "__init__": "self, sampler: Optional[sampling.Sampler]=None, resource: Optional[Resource]=None, shutdown_on_exit: bool=True, active_span_processor: Union[SynchronousMultiSpanProcessor, ConcurrentMultiSpanProcessor, None]=None, id_generator: Optional[IdGenerator]=None, span_limits: Optional[SpanLimits]=None",
+          "resource": "self",
+          "get_tracer": "self, instrumenting_module_name: str, instrumenting_library_version: typing.Optional[str]=None, schema_url: typing.Optional[str]=None, attributes: typing.Optional[types.Attributes]=None",
+          "add_span_processor": "self, span_processor: SpanProcessor",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        }
+      }
+    },
+    "opentelemetry/sdk/trace/export/__init__.py": {
+      "sha256": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a",
+      "api": {
+        "SpanExportResult": {},
+        "SpanExporter": {
+          "export": "self, spans: typing.Sequence[ReadableSpan]",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        },
+        "SimpleSpanProcessor": {
+          "__init__": "self, span_exporter: SpanExporter",
+          "on_start": "self, span: Span, parent_context: typing.Optional[Context]=None",
+          "on_end": "self, span: ReadableSpan",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: int=30000"
+        },
+        "BatchSpanProcessor": {
+          "__init__": "self, span_exporter: SpanExporter, max_queue_size: int | None=None, schedule_delay_millis: float | None=None, max_export_batch_size: int | None=None, export_timeout_millis: float | None=None",
+          "span_exporter": "self",
+          "on_start": "self, span: Span, parent_context: Context | None=None",
+          "on_end": "self, span: ReadableSpan",
+          "shutdown": "self",
+          "force_flush": "self, timeout_millis: typing.Optional[int]=None"
+        },
+        "ConsoleSpanExporter": {
+          "__init__": "self, service_name: str | None=None, out: typing.IO=sys.stdout, formatter: typing.Callable[[ReadableSpan], str]=lambda span: span.to_json() + linesep",
+          "export": "self, spans: typing.Sequence[ReadableSpan]",
+          "force_flush": "self, timeout_millis: int=30000"
+        }
+      }
+    },
+    "opentelemetry/sdk/_shared_internal/__init__.py": {
+      "sha256": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767",
+      "api": {
+        "DuplicateFilter": {
+          "filter": "self, record"
+        },
+        "BatchExportStrategy": {},
+        "Exporter": {
+          "export": "self, batch: list[Telemetry], /",
+          "shutdown": "self"
+        },
+        "BatchProcessor": {
+          "__init__": "self, exporter: Exporter[Telemetry], schedule_delay_millis: float, max_export_batch_size: int, export_timeout_millis: float, max_queue_size: int, exporting: str",
+          "worker": "self",
+          "emit": "self, data: Telemetry",
+          "shutdown": "self, timeout_millis: int=30000",
+          "force_flush": "self, timeout_millis: Optional[int]=None"
+        }
+      }
+    },
+    "opentelemetry/sdk/resources/__init__.py": {
+      "sha256": "8a0c61d2fdad040e9128020d1f2ae4c3b34929a4611162e08ffe837117356a1a",
+      "api": {
+        "Resource": {
+          "__init__": "self, attributes: Attributes, schema_url: typing.Optional[str]=None",
+          "create": "attributes: typing.Optional[Attributes]=None, schema_url: typing.Optional[str]=None",
+          "get_empty": "",
+          "attributes": "self",
+          "schema_url": "self",
+          "merge": "self, other: 'Resource'",
+          "to_json": "self, indent: Optional[int]=4"
+        },
+        "ResourceDetector": {
+          "__init__": "self, raise_on_error: bool=False",
+          "detect": "self"
+        },
+        "OTELResourceDetector": {
+          "detect": "self"
+        },
+        "ProcessResourceDetector": {
+          "detect": "self"
+        },
+        "OsResourceDetector": {
+          "detect": "self"
+        },
+        "_HostResourceDetector": {
+          "detect": "self"
+        }
+      }
+    },
+    "opentelemetry/sdk/trace/sampling.py": {
+      "sha256": "9f9900322cb7184d365036c6b8a175900b292d10a7a8e16d4a9274d0a66f1f0f",
+      "api": {
+        "Decision": {
+          "is_recording": "self",
+          "is_sampled": "self"
+        },
+        "SamplingResult": {
+          "__init__": "self, decision: Decision, attributes: 'Attributes'=None, trace_state: Optional['TraceState']=None"
+        },
+        "Sampler": {
+          "should_sample": "self, parent_context: Optional['Context'], trace_id: int, name: str, kind: Optional[SpanKind]=None, attributes: Attributes=None, links: Optional[Sequence['Link']]=None, trace_state: Optional['TraceState']=None",
+          "get_description": "self"
+        },
+        "StaticSampler": {
+          "__init__": "self, decision: 'Decision'",
+          "should_sample": "self, parent_context: Optional['Context'], trace_id: int, name: str, kind: Optional[SpanKind]=None, attributes: Attributes=None, links: Optional[Sequence['Link']]=None, trace_state: Optional['TraceState']=None",
+          "get_description": "self"
+        },
+        "TraceIdRatioBased": {
+          "__init__": "self, rate: float",
+          "get_bound_for_rate": "cls, rate: float",
+          "rate": "self",
+          "bound": "self",
+          "should_sample": "self, parent_context: Optional['Context'], trace_id: int, name: str, kind: Optional[SpanKind]=None, attributes: Attributes=None, links: Optional[Sequence['Link']]=None, trace_state: Optional['TraceState']=None",
+          "get_description": "self"
+        },
+        "ParentBased": {
+          "__init__": "self, root: Sampler, remote_parent_sampled: Sampler=ALWAYS_ON, remote_parent_not_sampled: Sampler=ALWAYS_OFF, local_parent_sampled: Sampler=ALWAYS_ON, local_parent_not_sampled: Sampler=ALWAYS_OFF",
+          "should_sample": "self, parent_context: Optional['Context'], trace_id: int, name: str, kind: Optional[SpanKind]=None, attributes: Attributes=None, links: Optional[Sequence['Link']]=None, trace_state: Optional['TraceState']=None",
+          "get_description": "self"
+        },
+        "ParentBasedTraceIdRatio": {
+          "__init__": "self, rate: float"
+        },
+        "_AlwaysOff": {
+          "__init__": "self, _"
+        },
+        "_AlwaysOn": {
+          "__init__": "self, _"
+        },
+        "_ParentBasedAlwaysOff": {
+          "__init__": "self, _"
+        },
+        "_ParentBasedAlwaysOn": {
+          "__init__": "self, _"
+        }
+      }
+    },
+    "opentelemetry/trace/__init__.py": {
+      "sha256": "d03d8682b0e52f30928c956d8acc2a6a0c3a10a42ec3bfebe820ff838d2b5449",
+      "api": {
+        "_LinkBase": {
+          "__init__": "self, context: 'SpanContext'",
+          "context": "self",
+          "attributes": "self"
+        },
+        "Link": {
+          "__init__": "self, context: 'SpanContext', attributes: types.Attributes=None",
+          "attributes": "self",
+          "dropped_attributes": "self"
+        },
+        "SpanKind": {},
+        "TracerProvider": {
+          "get_tracer": "self, instrumenting_module_name: str, instrumenting_library_version: typing.Optional[str]=None, schema_url: typing.Optional[str]=None, attributes: typing.Optional[types.Attributes]=None"
+        },
+        "NoOpTracerProvider": {
+          "get_tracer": "self, instrumenting_module_name: str, instrumenting_library_version: typing.Optional[str]=None, schema_url: typing.Optional[str]=None, attributes: typing.Optional[types.Attributes]=None"
+        },
+        "_DefaultTracerProvider": {},
+        "ProxyTracerProvider": {
+          "get_tracer": "self, instrumenting_module_name: str, instrumenting_library_version: typing.Optional[str]=None, schema_url: typing.Optional[str]=None, attributes: typing.Optional[types.Attributes]=None"
+        },
+        "Tracer": {
+          "start_span": "self, name: str, context: Optional[Context]=None, kind: SpanKind=SpanKind.INTERNAL, attributes: types.Attributes=None, links: _Links=None, start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True",
+          "start_as_current_span": "self, name: str, context: Optional[Context]=None, kind: SpanKind=SpanKind.INTERNAL, attributes: types.Attributes=None, links: _Links=None, start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True, end_on_exit: bool=True"
+        },
+        "ProxyTracer": {
+          "__init__": "self, instrumenting_module_name: str, instrumenting_library_version: typing.Optional[str]=None, schema_url: typing.Optional[str]=None, attributes: typing.Optional[types.Attributes]=None",
+          "start_span": "self, *args, **kwargs",
+          "start_as_current_span": "self, *args, **kwargs"
+        },
+        "NoOpTracer": {
+          "start_span": "self, name: str, context: Optional[Context]=None, kind: SpanKind=SpanKind.INTERNAL, attributes: types.Attributes=None, links: _Links=None, start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True",
+          "start_as_current_span": "self, name: str, context: Optional[Context]=None, kind: SpanKind=SpanKind.INTERNAL, attributes: types.Attributes=None, links: _Links=None, start_time: Optional[int]=None, record_exception: bool=True, set_status_on_exception: bool=True, end_on_exit: bool=True"
+        },
+        "_DefaultTracer": {}
+      }
+    },
+    "opentelemetry/context/__init__.py": {
+      "sha256": "f5550bc7ac7eb84baab410fc6e2491921e915057daeba5923cd0c5edddb1fb8c",
+      "api": {}
+    },
+    "opentelemetry/exporter/otlp/proto/common/_internal/__init__.py": {
+      "sha256": "e4a0df434a56b7a0226c944bdab48bee1760bf655b7ff5f442b915c4a1749725",
+      "api": {}
+    },
+    "opentelemetry/exporter/otlp/proto/common/trace_encoder.py": {
+      "sha256": "04b758e45ef7b9e8c040801e3015bb3e68b9b04ee7d466edb79f4fdb6185d239",
+      "api": {}
+    },
+    "opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py": {
+      "sha256": "8f7d2f614410639943bf412e6f626dc97b35a2731bcc3935b41e7c6ae1f50af5",
+      "api": {}
+    },
+    "opentelemetry/exporter/otlp/proto/grpc/exporter.py": {
+      "sha256": "09ce35204768cb21485766150801554e63df8c8df33e3ca65a7326e633e1cadb",
+      "api": {
+        "InvalidCompressionValueException": {
+          "__init__": "self, environ_key: str, environ_value: str"
+        },
+        "OTLPExporterMixin": {
+          "__init__": "self, stub: ExportStubT, result: ExportResultT, endpoint: Optional[str]=None, insecure: Optional[bool]=None, credentials: Optional[ChannelCredentials]=None, headers: Optional[Union[TypingSequence[Tuple[str, str]], Dict[str, str], str]]=None, timeout: Optional[float]=None, compression: Optional[Compression]=None, channel_options: Optional[Tuple[Tuple[str, str]]]=None",
+          "shutdown": "self, timeout_millis: float=30000, **kwargs"
+        }
+      }
+    },
+    "opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py": {
+      "sha256": "29c71739f14c31a99b607edbd7f8cb1ce35eac95021424653d069b579a23a60d",
+      "api": {
+        "OTLPSpanExporter": {
+          "__init__": "self, endpoint: Optional[str]=None, insecure: Optional[bool]=None, credentials: Optional[ChannelCredentials]=None, headers: Optional[Union[TypingSequence[Tuple[str, str]], Dict[str, str], str]]=None, timeout: Optional[float]=None, compression: Optional[Compression]=None, channel_options: Optional[Tuple[Tuple[str, str]]]=None",
+          "export": "self, spans: Sequence[ReadableSpan]",
+          "shutdown": "self, timeout_millis: float=30000, **kwargs",
+          "force_flush": "self, timeout_millis: int=30000"
+        }
+      }
+    },
+    "opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py": {
+      "sha256": "82f4704d4fc69da3464a2e150b902e3933a65effae7a61856113a64d5ed8896f",
+      "api": {
+        "TraceServiceStub": {
+          "__init__": "self, channel"
+        },
+        "TraceServiceServicer": {
+          "Export": "self, request, context"
+        },
+        "TraceService": {
+          "Export": "request, target, options=(), channel_credentials=None, call_credentials=None, insecure=False, compression=None, wait_for_ready=None, timeout=None, metadata=None"
+        }
+      }
+    },
+    "grpc/__init__.py": {
+      "sha256": "28fa25d26f5a955af1e2d76f5991b2bf63f03d9c9993ee6791fc37dcc8453742",
+      "api": {
+        "FutureTimeoutError": {},
+        "FutureCancelledError": {},
+        "Future": {
+          "cancel": "self",
+          "cancelled": "self",
+          "running": "self",
+          "done": "self",
+          "result": "self, timeout=None",
+          "exception": "self, timeout=None",
+          "traceback": "self, timeout=None",
+          "add_done_callback": "self, fn"
+        },
+        "ChannelConnectivity": {},
+        "StatusCode": {},
+        "Status": {},
+        "RpcError": {},
+        "RpcContext": {
+          "is_active": "self",
+          "time_remaining": "self",
+          "cancel": "self",
+          "add_callback": "self, callback"
+        },
+        "Call": {
+          "initial_metadata": "self",
+          "trailing_metadata": "self",
+          "code": "self",
+          "details": "self"
+        },
+        "ClientCallDetails": {},
+        "UnaryUnaryClientInterceptor": {
+          "intercept_unary_unary": "self, continuation, client_call_details, request"
+        },
+        "UnaryStreamClientInterceptor": {
+          "intercept_unary_stream": "self, continuation, client_call_details, request"
+        },
+        "StreamUnaryClientInterceptor": {
+          "intercept_stream_unary": "self, continuation, client_call_details, request_iterator"
+        },
+        "StreamStreamClientInterceptor": {
+          "intercept_stream_stream": "self, continuation, client_call_details, request_iterator"
+        },
+        "ChannelCredentials": {
+          "__init__": "self, credentials"
+        },
+        "CallCredentials": {
+          "__init__": "self, credentials"
+        },
+        "AuthMetadataContext": {},
+        "AuthMetadataPluginCallback": {},
+        "AuthMetadataPlugin": {},
+        "ServerCredentials": {
+          "__init__": "self, credentials"
+        },
+        "ServerCertificateConfiguration": {
+          "__init__": "self, certificate_configuration"
+        },
+        "UnaryUnaryMultiCallable": {
+          "with_call": "self, request, timeout=None, metadata=None, credentials=None, wait_for_ready=None, compression=None",
+          "future": "self, request, timeout=None, metadata=None, credentials=None, wait_for_ready=None, compression=None"
+        },
+        "UnaryStreamMultiCallable": {},
+        "StreamUnaryMultiCallable": {
+          "with_call": "self, request_iterator, timeout=None, metadata=None, credentials=None, wait_for_ready=None, compression=None",
+          "future": "self, request_iterator, timeout=None, metadata=None, credentials=None, wait_for_ready=None, compression=None"
+        },
+        "StreamStreamMultiCallable": {},
+        "Channel": {
+          "subscribe": "self, callback, try_to_connect=False",
+          "unsubscribe": "self, callback",
+          "unary_unary": "self, method, request_serializer=None, response_deserializer=None, _registered_method=False",
+          "unary_stream": "self, method, request_serializer=None, response_deserializer=None, _registered_method=False",
+          "stream_unary": "self, method, request_serializer=None, response_deserializer=None, _registered_method=False",
+          "stream_stream": "self, method, request_serializer=None, response_deserializer=None, _registered_method=False",
+          "close": "self"
+        },
+        "ServicerContext": {
+          "invocation_metadata": "self",
+          "peer": "self",
+          "peer_identities": "self",
+          "peer_identity_key": "self",
+          "auth_context": "self",
+          "set_compression": "self, compression",
+          "send_initial_metadata": "self, initial_metadata",
+          "set_trailing_metadata": "self, trailing_metadata",
+          "trailing_metadata": "self",
+          "abort": "self, code, details",
+          "abort_with_status": "self, status",
+          "set_code": "self, code",
+          "set_details": "self, details",
+          "code": "self",
+          "details": "self",
+          "disable_next_message_compression": "self"
+        },
+        "RpcMethodHandler": {},
+        "HandlerCallDetails": {},
+        "GenericRpcHandler": {
+          "service": "self, handler_call_details"
+        },
+        "ServiceRpcHandler": {
+          "service_name": "self"
+        },
+        "ServerInterceptor": {
+          "intercept_service": "self, continuation, handler_call_details"
+        },
+        "Server": {
+          "add_generic_rpc_handlers": "self, generic_rpc_handlers",
+          "add_registered_method_handlers": "self, service_name, method_handlers",
+          "add_insecure_port": "self, address",
+          "add_secure_port": "self, address, server_credentials",
+          "start": "self",
+          "stop": "self, grace",
+          "wait_for_termination": "self, timeout=None"
+        },
+        "LocalConnectionType": {},
+        "Compression": {}
+      }
+    },
+    "grpc/_channel.py": {
+      "sha256": "b0f55b88f43906e0f1d6b8013e56a35e2f571fde7c5c27861ac29789ed3c4edc",
+      "api": {
+        "_RPCState": {
+          "__init__": "self, due: Sequence[cygrpc.OperationType], initial_metadata: Optional[MetadataType], trailing_metadata: Optional[MetadataType], code: Optional[grpc.StatusCode], details: Optional[str]",
+          "reset_postfork_child": "self"
+        },
+        "_InactiveRpcError": {
+          "__init__": "self, state: _RPCState",
+          "initial_metadata": "self",
+          "trailing_metadata": "self",
+          "code": "self",
+          "details": "self",
+          "debug_error_string": "self",
+          "cancel": "self",
+          "cancelled": "self",
+          "running": "self",
+          "done": "self",
+          "result": "self, timeout: Optional[float]=None",
+          "exception": "self, timeout: Optional[float]=None",
+          "traceback": "self, timeout: Optional[float]=None",
+          "add_done_callback": "self, fn: Callable[[grpc.Future], None], timeout: Optional[float]=None"
+        },
+        "_Rendezvous": {
+          "__init__": "self, state: _RPCState, call: Union[cygrpc.SegregatedCall, cygrpc.IntegratedCall], response_deserializer: Optional[DeserializingFunction], deadline: Optional[float]",
+          "is_active": "self",
+          "time_remaining": "self",
+          "cancel": "self",
+          "add_callback": "self, callback: NullaryCallbackType",
+          "next": "self",
+          "debug_error_string": "self"
+        },
+        "_SingleThreadedRendezvous": {
+          "cancelled": "self",
+          "running": "self",
+          "done": "self",
+          "result": "self, timeout: Optional[float]=None",
+          "exception": "self, timeout: Optional[float]=None",
+          "traceback": "self, timeout: Optional[float]=None",
+          "add_done_callback": "self, fn: Callable[[grpc.Future], None]",
+          "initial_metadata": "self",
+          "trailing_metadata": "self",
+          "code": "self",
+          "details": "self",
+          "debug_error_string": "self"
+        },
+        "_MultiThreadedRendezvous": {
+          "initial_metadata": "self",
+          "trailing_metadata": "self",
+          "code": "self",
+          "details": "self",
+          "debug_error_string": "self",
+          "cancelled": "self",
+          "running": "self",
+          "done": "self",
+          "result": "self, timeout: Optional[float]=None",
+          "exception": "self, timeout: Optional[float]=None",
+          "traceback": "self, timeout: Optional[float]=None",
+          "add_done_callback": "self, fn: Callable[[grpc.Future], None]"
+        },
+        "_UnaryUnaryMultiCallable": {
+          "__init__": "self, channel: cygrpc.Channel, managed_call: IntegratedCallFactory, method: bytes, target: bytes, request_serializer: Optional[SerializingFunction], response_deserializer: Optional[DeserializingFunction], _registered_call_handle: Optional[int]",
+          "with_call": "self, request: Any, timeout: Optional[float]=None, metadata: Optional[MetadataType]=None, credentials: Optional[grpc.CallCredentials]=None, wait_for_ready: Optional[bool]=None, compression: Optional[grpc.Compression]=None",
+          "future": "self, request: Any, timeout: Optional[float]=None, metadata: Optional[MetadataType]=None, credentials: Optional[grpc.CallCredentials]=None, wait_for_ready: Optional[bool]=None, compression: Optional[grpc.Compression]=None"
+        },
+        "_SingleThreadedUnaryStreamMultiCallable": {
+          "__init__": "self, channel: cygrpc.Channel, method: bytes, target: bytes, request_serializer: SerializingFunction, response_deserializer: DeserializingFunction, _registered_call_handle: Optional[int]"
+        },
+        "_UnaryStreamMultiCallable": {
+          "__init__": "self, channel: cygrpc.Channel, managed_call: IntegratedCallFactory, method: bytes, target: bytes, request_serializer: SerializingFunction, response_deserializer: DeserializingFunction, _registered_call_handle: Optional[int]"
+        },
+        "_StreamUnaryMultiCallable": {
+          "__init__": "self, channel: cygrpc.Channel, managed_call: IntegratedCallFactory, method: bytes, target: bytes, request_serializer: Optional[SerializingFunction], response_deserializer: Optional[DeserializingFunction], _registered_call_handle: Optional[int]",
+          "with_call": "self, request_iterator: Iterator, timeout: Optional[float]=None, metadata: Optional[MetadataType]=None, credentials: Optional[grpc.CallCredentials]=None, wait_for_ready: Optional[bool]=None, compression: Optional[grpc.Compression]=None",
+          "future": "self, request_iterator: Iterator, timeout: Optional[float]=None, metadata: Optional[MetadataType]=None, credentials: Optional[grpc.CallCredentials]=None, wait_for_ready: Optional[bool]=None, compression: Optional[grpc.Compression]=None"
+        },
+        "_StreamStreamMultiCallable": {
+          "__init__": "self, channel: cygrpc.Channel, managed_call: IntegratedCallFactory, method: bytes, target: bytes, request_serializer: Optional[SerializingFunction], response_deserializer: Optional[DeserializingFunction], _registered_call_handle: Optional[int]"
+        },
+        "_InitialMetadataFlags": {
+          "with_wait_for_ready": "self, wait_for_ready: Optional[bool]"
+        },
+        "_ChannelCallState": {
+          "__init__": "self, channel: cygrpc.Channel",
+          "reset_postfork_child": "self"
+        },
+        "_ChannelConnectivityState": {
+          "__init__": "self, channel: grpc.Channel",
+          "reset_postfork_child": "self"
+        },
+        "Channel": {
+          "__init__": "self, target: str, options: Sequence[ChannelArgumentType], credentials: Optional[grpc.ChannelCredentials], compression: Optional[grpc.Compression]",
+          "subscribe": "self, callback: Callable[[grpc.ChannelConnectivity], None], try_to_connect: Optional[bool]=None",
+          "unsubscribe": "self, callback: Callable[[grpc.ChannelConnectivity], None]",
+          "unary_unary": "self, method: str, request_serializer: Optional[SerializingFunction]=None, response_deserializer: Optional[DeserializingFunction]=None, _registered_method: Optional[bool]=False",
+          "unary_stream": "self, method: str, request_serializer: Optional[SerializingFunction]=None, response_deserializer: Optional[DeserializingFunction]=None, _registered_method: Optional[bool]=False",
+          "stream_unary": "self, method: str, request_serializer: Optional[SerializingFunction]=None, response_deserializer: Optional[DeserializingFunction]=None, _registered_method: Optional[bool]=False",
+          "stream_stream": "self, method: str, request_serializer: Optional[SerializingFunction]=None, response_deserializer: Optional[DeserializingFunction]=None, _registered_method: Optional[bool]=False",
+          "close": "self"
+        }
+      }
+    }
+  },
+  "sdk_loaded_modules": []
+}

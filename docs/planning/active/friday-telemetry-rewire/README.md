@@ -9,9 +9,9 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-06
-next_gate: fresh approved CD-002 and WVR-004 authority readiness then source/API baselines and TELEM-02 construction
-execution_phase: planning
-validation_state: not_ready
+next_gate: TELEM-02 implementation and mandatory delta plus aggregate product validation
+execution_phase: implementation
+validation_state: pending
 implementation_authority: granted
 ---
 
@@ -42,9 +42,12 @@ First independent [CDR-012](validation/CDR-012/report.md) requested the R02-01 T
 trust-policy correction. Fresh [CDR-013](validation/CDR-013/report.md) returns
 **READY** for corrected CD-002 and separately for WVR-004 at frozen candidate
 `3059e139`. This is proposal readiness, not product VERIFIED or approval.
-Chuck Russell has explicitly approved both decisions. The next gate is fresh
-reconciled approved-authority readiness, then source/API baselines and a separate
-builder implementing TELEM-02. Product validation has not begun. No TELEM-02 product source, tests or dependency changes are made.
+Chuck Russell has explicitly approved both decisions. Fresh approved-authority
+[CDR-015](validation/CDR-015/report.md) returns READY at `d187ce3`, closing A02-01.
+The [true pre-build baseline](execution/TELEM-02-baseline/report.md) captures source/API
+and fake-only retrospective defect evidence at preparation/current authority snapshots.
+The separate builder is released for exact CD-002 implementation; mandatory new-product
+checks and fresh delta plus aggregate validation remain pending. No TELEM-02 product source, tests or dependency changes are made.
 
 
 The maintainer approved the exact CommandRegistry compatibility decision on2026-10-06.

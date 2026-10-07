@@ -609,3 +609,28 @@ this correction for fresh readiness before construction. CDR-014 remains histori
 A transient unrelated untracked .claude/ path appeared and disappeared during review;
 its payload was not inspected, copied or modified. Named original dirty paths remain
 preserved. No product or native effects occurred during this reconciliation.
+
+## 2026-10-06 — CDR-015 READY, source/API baselines frozen, construction released
+
+Fresh independent CDR-015 returns READY atd187ce35074697633108ef1e8ad5b404b0de9fcc;
+A02-01 closed, no new readiness finding. Historical reports and raw receipts are
+preserved. All17 current controls and19 accepted controls remain unchanged. Raw
+root lint reproduces exactlyapproved327, with baseline579 and18 byte-preserved scripts.
+This is readiness, not product VERIFIED, acceptance or activation.
+
+Separate builder froze true pre-build baseline report/22-file original manifest and
+raw source/API/tool/SDK/dual-snapshot probe receipts. Both scoped fake-only probes
+exit0 before edits, proving ignored parents/lost events/foreign ambient routing/global
+registration attempt/stringification/requested-exporter console fallback and missing
+owned lifecycle. SDK1.39.1 source establishes ignored flush timeout/atexit ownership;
+no real SDK/thread/channel/listener was activated by baseline probes. Public API,
+legacy defaults and38 exports remain frozen. Full installed environment is read-only;
+protected267 tracked paths were omitted before checkout. Baseline and original
+metadata preservation receipts are retained separately from future product evidence.
+
+execution_phase: implementation; validation_state: pending. Explicit CD-002/WVR-004
+approval plus fresh readiness and frozen baselines release the separate builder to
+exact7 source/5 test paths and README. Expanded final import/fixture/effect13-node
+preflight remains required before collection/native tests. Full unit/root/Chat/owning
+and aggregate lint/type/API/privacy/lifecycle/lock/document gates plus stable fresh
+product delta+2155a0f aggregate review are outstanding. No renewed approval needed.

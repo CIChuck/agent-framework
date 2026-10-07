@@ -1,0 +1,92 @@
+[
+  {
+    "path": "opentelemetry/sdk/trace/__init__.py",
+    "sha256": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07",
+    "matched_lines": [
+      {
+        "line": 129,
+        "text": "def force_flush(self, timeout_millis: int = 30000) -> bool:"
+      },
+      {
+        "line": 182,
+        "text": "def force_flush(self, timeout_millis: int = 30000) -> bool:"
+      },
+      {
+        "line": 264,
+        "text": "def force_flush(self, timeout_millis: int = 30000) -> bool:"
+      },
+      {
+        "line": 1191,
+        "text": "shutdown_on_exit: bool = True,"
+      },
+      {
+        "line": 1218,
+        "text": "self._atexit_handler = atexit.register(self.shutdown)"
+      },
+      {
+        "line": 1286,
+        "text": "def force_flush(self, timeout_millis: int = 30000) -> bool:"
+      }
+    ]
+  },
+  {
+    "path": "opentelemetry/sdk/_shared_internal/__init__.py",
+    "sha256": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767",
+    "matched_lines": [
+      {
+        "line": 60,
+        "text": "return True"
+      },
+      {
+        "line": 122,
+        "text": "self._worker_thread.start()"
+      },
+      {
+        "line": 135,
+        "text": "return True"
+      },
+      {
+        "line": 137,
+        "text": "return True"
+      },
+      {
+        "line": 151,
+        "text": "self._worker_thread.start()"
+      },
+      {
+        "line": 168,
+        "text": "self._export(BatchExportStrategy.EXPORT_ALL)"
+      },
+      {
+        "line": 210,
+        "text": "def shutdown(self, timeout_millis: int = 30000):"
+      },
+      {
+        "line": 238,
+        "text": "def force_flush(self, timeout_millis: Optional[int] = None) -> bool:"
+      },
+      {
+        "line": 242,
+        "text": "self._export(BatchExportStrategy.EXPORT_ALL)"
+      },
+      {
+        "line": 243,
+        "text": "return True"
+      }
+    ]
+  },
+  {
+    "path": "opentelemetry/sdk/trace/export/__init__.py",
+    "sha256": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a",
+    "matched_lines": [
+      {
+        "line": 196,
+        "text": "return self._batch_processor.shutdown()"
+      },
+      {
+        "line": 199,
+        "text": "return self._batch_processor.force_flush(timeout_millis)"
+      }
+    ]
+  }
+]
