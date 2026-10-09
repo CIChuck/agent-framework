@@ -14,6 +14,7 @@ from uuid import uuid4
 from friday_core import TelemetryInterface
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_memory.models.mcp import MCPMemoryPreparation, MCPMemorySnapshot
+from friday_telemetry import ExecutionContext
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.memory_views import (
@@ -72,6 +73,7 @@ class PendingExtractionTurn:
     turn_id: str
     user_message: str
     assistant_message: str
+    correlation_context: ExecutionContext | None = None
 
     def __post_init__(self) -> None:
         if not self.turn_id.strip():

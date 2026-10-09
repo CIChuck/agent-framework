@@ -109,6 +109,7 @@ from friday_chat.runtime import (
     MCPTranscriptReceipt,
     PendingExtractionTurn,
 )
+from friday_chat.telemetry import ChatTelemetryObserver
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import ToolBudgetCalculator
 from friday_chat.transcripts import (
@@ -123,6 +124,7 @@ from friday_chat.turns.models import (
 from friday_chat.turns.models import (
     InteractionTurn as ChatInteractionTurn,
 )
+from friday_chat.turns.telemetry import operation_scope
 
 _MAX_SOURCE_PROVENANCE_CHARS = 32_000
 _MAX_SOURCE_PROVENANCE_BYTES = 32_000
@@ -278,6 +280,7 @@ class FrameworkMemoryAdapter:
     passage_router: PassageRouter | None = None
     access_buffer: AccessBuffer | None = None
     access_buffer_configured: bool = False
+    observer: ChatTelemetryObserver | None = None
 
     async def retrieve(
         self,
@@ -354,6 +357,19 @@ class FrameworkMemoryAdapter:
         return bool(await self.episodic_store.clear_session(self.session_id))
 
     async def ingest_document(
+        self,
+        *,
+        source_path: str,
+        description: str | None,
+        content: str,
+    ) -> int:
+        with operation_scope(self.observer, "memory_ingest_document") as observation:
+            count = await self._ingest_document(source_path=source_path, description=description, content=content)
+            observation.count = count
+            observation.count_kind = "chunks"
+            return count
+
+    async def _ingest_document(
         self,
         *,
         source_path: str,
@@ -675,6 +691,7 @@ class FrameworkMaintenanceAdapter:
     compaction_calls: list[dict[str, Any]] = field(default_factory=list)
     errors: list[BaseException] = field(default_factory=list)
     migration_needed: bool = False
+    observer: ChatTelemetryObserver | None = None
 
     async def flush_memory(self) -> None:
         """Flush memory buffers."""
@@ -827,6 +844,10 @@ class FrameworkMaintenanceAdapter:
         if self.flush_pending_error is not None:
             raise self.flush_pending_error
         if not self.pending_extraction:
+            with operation_scope(self.observer, "memory_extract") as observation:
+                observation.outcome = "skipped"
+                observation.count = 0
+                observation.count_kind = "turns"
             self.actions.append("flush_pending_extraction")
             return 0
         pending = list(self.pending_extraction)
@@ -841,6 +862,10 @@ class FrameworkMaintenanceAdapter:
         if self.flush_pending_error is not None:
             raise self.flush_pending_error
         if not self.pending_extraction:
+            with operation_scope(self.observer, "memory_extract") as observation:
+                observation.outcome = "skipped"
+                observation.count = 0
+                observation.count_kind = "turns"
             self.background_actions.append(f"extract:{trigger_reason}:0")
             return 0
         pending = list(self.pending_extraction)
@@ -1122,23 +1147,37 @@ class FrameworkMaintenanceAdapter:
 
     async def _extract_turns(self, turns: list[PendingExtractionTurn]) -> None:
         if self.extractor is None:
+            for turn in turns:
+                with operation_scope(self.observer, "memory_extract", origin=turn.correlation_context) as observation:
+                    observation.outcome = "skipped"
+                    observation.reason = "unavailable"
+                    observation.count = 0
+                    observation.count_kind = "turns"
             return
         for index, pending_turn in enumerate(turns):
             try:
-                result = await self.extractor.extract(
-                    InteractionTurn(
-                        id=pending_turn.turn_id,
-                        session_id=self.session_id,
-                        user_message=pending_turn.user_message,
-                        assistant_message=pending_turn.assistant_message,
-                        model_name=self.config.llm.model,
-                        temperature=self.config.llm.temperature,
-                    )
-                )
-                if isinstance(result, Mapping) and result.get("error"):
-                    raise RuntimeError(
-                        f"Memory extraction failed: {result['error']}"
-                    )
+                with operation_scope(self.observer, "memory_extract", origin=pending_turn.correlation_context) as observation:
+                    try:
+                        result = await self.extractor.extract(
+                            InteractionTurn(
+                                id=pending_turn.turn_id,
+                                session_id=self.session_id,
+                                user_message=pending_turn.user_message,
+                                assistant_message=pending_turn.assistant_message,
+                                model_name=self.config.llm.model,
+                                temperature=self.config.llm.temperature,
+                            )
+                        )
+                        if isinstance(result, Mapping) and result.get("error"):
+                            raise RuntimeError(
+                                f"Memory extraction failed: {result['error']}"
+                            )
+                    except ExtractionCommitCompletedUnderCancellation:
+                        observation.persistence_state = "completed"
+                        raise
+                    observation.count = 1
+                    observation.count_kind = "turns"
+                    observation.persistence_state = "completed"
             except ExtractionCommitCompletedUnderCancellation:
                 self.pending_extraction[:0] = turns[index + 1 :]
                 raise asyncio.CancelledError from None
@@ -1790,6 +1829,7 @@ def build_framework_memory_adapter(
             graph_store if isinstance(graph_store, ElementXGraphStore) else None
         ),
         passage_router=_build_passage_router(config, telemetry=telemetry),
+        observer=telemetry if isinstance(telemetry, ChatTelemetryObserver) else None,
         access_buffer_configured=(
             config.lifecycle.enabled
             and config.lifecycle.access_buffer.get("enabled", True) is not False
@@ -2069,6 +2109,7 @@ def build_framework_maintenance_adapter(
         budget_monitor=budget_monitor,
         compactor=compactor,
         extractor=extractor,
+        observer=telemetry if isinstance(telemetry, ChatTelemetryObserver) else None,
     )
 
 

@@ -872,3 +872,34 @@ validation_state pending. Required fresh independent authority/lint reconciliati
 and true fake-only baseline precede exact construction. Subsequent stable product
 and fresh-context unit plus aggregate review remain required; no acceptance or
 delivery action is inferred. No further approval is needed within this exact scope.
+
+
+## 2026-10-09 — CDR-019 READY and true baseline; construction released
+
+Fresh-context read-only CDR-019 returns READY separately for approved CD-004 and
+WVR-006 atb8d885f. All40/38 approved/proposal pins and29 targets reconcile;
+accepted268 authority/archive inputs stay fixed. Exact327 raw root lint and all
+prospective/board/docs/lock gates reproduce; no unresolved feasibility finding.
+The original independent report/receipts are frozen separately from controller
+storage and the12-case true fake pre-build baseline. Both retain initial private
+probe corrections and successful reruns without product changes. Readiness and
+baseline do not claim product VERIFIED. Exact construction is released within
+29 paths and approved effects. Execution_phase implementation; validation_state
+pending; started/local. Next: mandatory gates, stable candidate and fresh independent
+unit plus aggregate review. Original unrelated work remains separate.
+
+
+## 2026-10-09 — TELEM-04 builder gates; candidate freeze
+
+Approved exact CD-004 construction changes21 of29 allowed product targets.
+Builder gates:54 new cases; Chat/LLM/Telemetry1,169 passed; root3,050 passed;
+owning3,032 passed; unchanged one optional SciPy skip and two explicit live exclusions.
+Changed unit/aggregate Ruff pass; genuine Mypy12/81 source files pass; root Ruff
+rawexit1 exactly327 approved WVR-006 identities, no new findings/suppressions.
+Actual installed owned in-memory SDK probe:73 safe matching events/30 spans,
+concurrent/nested restoration, detached origin without closed parent, no channel/global
+registration and owned cleanup. Lock/API/AST/accepted authority and preservation
+gates pass. Initial private test/SDK/audit-helper corrections and the old lifecycle
+expectation failure remain separate raw records. No product VERIFIED is inferred.
+Freeze candidate and dispatch fresh-context read-only full unit+aggregate validation.
+Started/local; execution_phase validation; validation_state pending.

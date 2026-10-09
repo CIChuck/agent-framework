@@ -59,6 +59,7 @@ from friday_telemetry.helpers import (
     StreamingTracker,
     classify_error,
 )
+from friday_telemetry.helpers.correlation import CorrelationScope, ExecutionContext
 from friday_telemetry.helpers.mcp import MCPTelemetryHelper, opaque_mcp_ref
 from friday_telemetry.helpers.safe_llm import SafeLLMTelemetry
 from friday_telemetry.interface import TelemetryInterface
@@ -72,6 +73,7 @@ from friday_telemetry.lifecycle import (
 
 # Models - Common
 from friday_telemetry.models.common import RequestContext
+from friday_telemetry.models.execution import ExecutionEvent
 
 # Models - LLM
 from friday_telemetry.models.llm import (
@@ -106,6 +108,9 @@ from friday_telemetry.providers import (
 from friday_telemetry.records import EventRecord, SpanRecord
 
 __all__ = [
+    "CorrelationScope",
+    "ExecutionContext",
+    "ExecutionEvent",
     "LLMEvent",
     "SafeLLMTelemetry",
     # Interface

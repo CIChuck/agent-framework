@@ -529,6 +529,7 @@ class FridayChatApp:
                             user_message=user_message,
                             assistant_message=result.assistant_message,
                             budget_status=result.budget_status,
+                            correlation_context=result.correlation_context if isinstance(result, TurnResult) else None,
                         )
                 finally:
                     if extraction_preempted:

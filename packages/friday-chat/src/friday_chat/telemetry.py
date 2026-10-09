@@ -9,7 +9,20 @@ from hashlib import sha256
 from typing import Any, Literal
 from uuid import uuid4
 
-from friday_telemetry import LLMEvent, MCPEvent, TelemetryInterface
+from friday_telemetry import (
+    CorrelationScope,
+    ExecutionEvent,
+    LLMEvent,
+    MCPEvent,
+    TelemetryInterface,
+)
+from friday_telemetry.models.execution import (
+    ExecutionIdentity,
+    LLMLink,
+    MCPLink,
+    OperationFinish,
+    TurnFinish,
+)
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 LifecycleName = Literal["runtime_ready", "application_start", "application_stop"]
@@ -68,6 +81,13 @@ class TelemetrySnapshot:
     rejected_count: int
 
 
+@dataclass(frozen=True)
+class ExecutionDiagnostics:
+    turns: tuple[TurnFinish, ...]
+    counters: tuple[tuple[str, str, int], ...]
+    histograms: tuple[tuple[str, str, str, int], ...]
+
+
 class ChatTelemetryObserver(TelemetryInterface):
     """Local provider or safe wrapper around a borrowed custom provider.
 
@@ -97,6 +117,55 @@ class ChatTelemetryObserver(TelemetryInterface):
         self._failures = 0
         self._rejected = 0
         self._spans: dict[str, str | None] = {}
+        self.correlation = CorrelationScope(self._session_ref)
+        self._turn_summaries: deque[TurnFinish] = deque(maxlen=32)
+        self._counters: dict[tuple[str, str], int] = {}
+        self._histograms: dict[tuple[str, str, str], int] = {}
+
+    def execution_snapshot(self) -> ExecutionDiagnostics:
+        return ExecutionDiagnostics(tuple(self._turn_summaries),
+                                    tuple((*key, value) for key, value in sorted(self._counters.items())),
+                                    tuple((*key, value) for key, value in sorted(self._histograms.items())))
+
+    def report_failure(self) -> None:
+        self._rejected += 1
+        self._record_failure("invalid_event")
+
+    def execution(self, event: ExecutionIdentity) -> None:
+        if not self.enabled:
+            return
+        try:
+            parsed = ExecutionEvent.model_validate(event)
+            attributes = parsed.attributes()
+        except (ValidationError, ValueError, TypeError):
+            self.report_failure()
+            return
+        self.capture_event(parsed.root.name, attributes)
+
+    def _aggregate(self, event: OperationFinish | TurnFinish) -> None:
+        frame = self.correlation.current()
+        if frame is None or frame.terminal:
+            raise ValueError("unowned or duplicate terminal event")
+        frame.terminal = True
+        kind = event.operation_kind if isinstance(event, OperationFinish) else "turn"
+        key = (kind, event.outcome)
+        self._counters[key] = min(2**63-1, self._counters.get(key, 0)+1)
+        bucket = next((f"le_{limit}" for limit in (1, 5, 10, 25, 50, 100, 250, 500, 1000, 5000)
+                       if event.duration_ms <= limit), "gt_5000")
+        hist_key = (*key, bucket)
+        self._histograms[hist_key] = min(2**63-1, self._histograms.get(hist_key, 0)+1)
+        if isinstance(event, TurnFinish):
+            self._turn_summaries.append(event)
+        elif frame.accounting is not None:
+            if event.operation_kind in {"native_tool", "mcp_tool"}:
+                if event.outcome == "succeeded":
+                    frame.accounting.completed_tools = min(2**63-1, frame.accounting.completed_tools+1)
+                elif event.outcome != "skipped":
+                    frame.accounting.failed_tools = min(2**63-1, frame.accounting.failed_tools+1)
+            if event.operation_kind == "memory_store_turn" and event.outcome == "succeeded":
+                frame.accounting.persistence = "partial"
+            if event.operation_kind == "persistence":
+                frame.accounting.persistence = "completed" if event.outcome == "succeeded" else "cancelled" if event.outcome == "cancelled" else "failed"
 
     @property
     def enabled(self) -> bool:
@@ -158,6 +227,16 @@ class ChatTelemetryObserver(TelemetryInterface):
                 if lifecycle.session_ref != self._session_ref:
                     raise ValueError("foreign session")
                 attributes = lifecycle.model_dump(exclude={"name"}, exclude_none=True)
+            elif event_name.startswith("execution."):
+                execution = ExecutionEvent.model_validate({**data, "name": event_name})
+                frame = self.correlation.current()
+                if frame is None or execution.root.session_ref != self._session_ref or (
+                    execution.root.turn_ref, execution.root.operation_ref, execution.root.parent_operation_ref
+                ) != (frame.context.turn_ref, frame.context.operation_ref, frame.context.parent_operation_ref):
+                    raise ValueError("foreign or inactive execution scope")
+                attributes = execution.attributes()
+                if isinstance(execution.root, (OperationFinish, TurnFinish)):
+                    self._aggregate(execution.root)
             else:
                 raise ValueError("unknown event")
         except (ValidationError, ValueError, TypeError):
@@ -165,11 +244,23 @@ class ChatTelemetryObserver(TelemetryInterface):
             self._record_failure("invalid_event")
             return
         self._record(event_name, attributes)
+        source_sequence = self._sequence
         if self._sink is not None:
             try:
                 self._sink.capture_event(event_name, dict(attributes))
             except Exception:
                 self._record_failure("sink_failed")
+        frame = self.correlation.current()
+        if frame is not None and frame.context.turn_ref is not None:
+            try:
+                identity = frame.context.identity().model_dump()
+                if event_name == "llm.request_start":
+                    self.execution(LLMLink.model_validate({**identity, "request_id": attributes["request_id"]}))
+                elif event_name.startswith("mcp."):
+                    self.execution(MCPLink.model_validate({**identity, **attributes,
+                                                          "source_event": event_name[4:], "source_sequence": source_sequence}))
+            except (ValidationError, ValueError, TypeError, KeyError):
+                self.report_failure()
 
     def _record(self, name: str, attributes: Mapping[str, Scalar]) -> None:
         self._sequence += 1
@@ -191,7 +282,7 @@ class ChatTelemetryObserver(TelemetryInterface):
         span_id = uuid4().hex
         if not self.enabled:
             return span_id
-        if name not in {"chat.runtime", "chat.application"} or len(self._spans) >= 128:
+        if name not in {"chat.runtime", "chat.application", "chat.turn", "chat.operation"} or len(self._spans) >= 128:
             self._rejected += 1
             self._record_failure("invalid_event")
             return span_id

@@ -184,9 +184,32 @@ keep their role rather than being relabelled by concurrent consumers.
 LLM events contain generated request/attempt/batch identities, truthful reported
 usage and bounded timing/cost estimates; no LLM span remains open across stream
 yields. Built-in pricing is historical early-2025 data, not current billing, and
-failed attempts may have unknown charges. Full turn correlation, native-tool,
-memory and persistence metrics, remote exporter assembly and optional Langfuse
+failed attempts may have unknown charges. Turn correlation and local execution
+metrics are described below. Remote exporter assembly and optional Langfuse
 compatibility remain later work. The `langfuse`
 section is not activated by local telemetry. Unsupported telemetry providers and
 fields fail config validation; the shared framework telemetry defaults and
 raw transcript capture settings are unchanged.
+
+## Execution diagnostics
+
+Enabled Chat telemetry links one opaque turn reference across model requests,
+native/MCP dispatch, memory retrieval, and the existing persistence path. Tool
+failure records retain their failed/blocked meaning. Intermediate persistence
+completion is distinct from full-turn success; these observations do not promise
+atomic rollback or durable commit acknowledgements absent from the underlying API.
+The accepted MCP receipt/publication events preserve pending versus published truth.
+
+`TurnResult.correlation_context` and `PendingExtractionTurn.correlation_context`
+are optional, immutable, process-local origin metadata. Background extraction
+rebinds each item's origin independently and preserves retry/requeue behavior,
+including committed extraction followed by cancellation. Old/custom results and
+work items default to uncorrelated behavior. Borrowed sinks remain caller-owned.
+
+Existing `/debug` and `/timing` now include safe last-turn outcome/persistence and
+bounded execution counters, even for failed turns without a result. Snapshots
+retain at most256 event records,32 terminal summaries,128 active spans and fixed
+operation/outcome histogram labels. They contain no prompt, reasoning, tool
+arguments/results/names, memory/document contents, paths, raw IDs or exception text.
+Diagnostics remain available with remote exporters off or failing. Disabled
+telemetry preserves prior invocation behavior and produces no execution events.

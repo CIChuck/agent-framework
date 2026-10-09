@@ -154,3 +154,18 @@ Ordinary sink failures cannot replace application results, exceptions or cancell
 The standalone legacy `LLMTelemetryHelper` and its exports remain available for
 compatibility and retain their historical raw-content behavior. They are outside
 this safety guarantee and are no longer used by the instrumented LiteLLM services.
+
+## Correlated execution events
+
+`ExecutionEvent` adds a strict, content-free execution family without changing
+`TelemetryInterface` or accepted LLM/MCP payloads. `ExecutionContext` and
+`CorrelationScope` provide instance-owned task-local opaque lineage; foreign-owner
+bindings fail validation and expired inherited scopes cannot remain current.
+Friday Chat owns turn/operation spans around awaited work, closes them on every
+exit, and leaves public generator yields without a new ambient span.
+
+Operational counters/histograms are a bounded provider-neutral local snapshot;
+there is no new OTel Meter, global registration, exporter or vendor callback.
+LLM/MCP links never contribute duplicate execution counters. Raw historical memory
+and LLM helpers remain outside this safety claim. Headless assembly and Langfuse
+adoption require separate work.

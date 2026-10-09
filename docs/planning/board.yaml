@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: independent CD-004/WVR-006 authority reconciliation, then pre-build baseline and TELEM-04 construction
+  next_gate: fresh-context full TELEM-04 unit and aggregate product validation of the stable candidate
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -438,6 +438,8 @@ tasks:
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
   - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md
   - docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-baseline/report.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1207,3 +1209,17 @@ events:
   action: approved CD-004 and separately WVR-006
   note: Explicit approved response to concrete29-path scope and exact327 lint renewal at1c46336; independent authority reconciliation and pre-build baseline precede construction.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T13:58:24+00:00'
+  actor: controller
+  actor_role: agent
+  action: released approved TELEM-04 construction
+  note: Fresh CDR-019 READY for both authority decisions;12-case true fake pre-build baseline before product edits. Exact29 targets and approved effects only; stable independent product review remains mandatory.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T14:20:26+00:00'
+  actor: controller
+  actor_role: agent
+  action: freezing TELEM-04 candidate for independent review
+  note: Approved CD-004 construction and mandatory builder gates complete; authority unchanged. Started/local, pending fresh-context product review. Independent verification and maintainer acceptance remain separate.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md

@@ -261,11 +261,14 @@ async def test_app_lifecycle_and_borrowed_provider_ownership(
         output_sink=ListOutputSink(),
     ).run()
     assert result.turns_processed == 1
-    assert sink.event_names == [
+    assert [name for name in sink.event_names if name.startswith("chat.")] == [
         "chat.runtime_ready",
         "chat.application_start",
         "chat.application_stop",
     ]
+    assert sink.event_names.count("execution.turn_start") == 1
+    assert sink.event_names.count("execution.turn_finish") == 1
+    assert sink.event_names.index("execution.turn_finish") < sink.event_names.index("chat.application_stop")
     assert sink.get_event("chat.application_stop")["outcome"] == "succeeded"
     assert SENTINEL not in repr(observer(runtime).snapshot())
     assert SENTINEL not in repr(sink.events)

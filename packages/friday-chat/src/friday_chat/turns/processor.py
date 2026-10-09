@@ -11,6 +11,7 @@ from typing import Any
 from uuid import uuid4
 
 from friday_memory.models.budget import BudgetSeverity, BudgetStatus
+from friday_telemetry import ExecutionContext
 
 from friday_chat.config import FridayChatConfig
 from friday_chat.display import HeartbeatFactory, HeartbeatKind, NoopHeartbeatFactory
@@ -36,6 +37,7 @@ from friday_chat.turns.models import (
     ToolCallRequest,
     TurnMetrics,
 )
+from friday_chat.turns.telemetry import operation_scope, turn_scope
 
 
 @dataclass(frozen=True)
@@ -56,6 +58,7 @@ class TurnResult:
     budget_status: BudgetStatus | None = None
     tool_calls: tuple[ToolCallRecord, ...] = ()
     raw_response: str = ""
+    correlation_context: ExecutionContext | None = None
 
 
 @dataclass(frozen=True)
@@ -139,6 +142,11 @@ class TurnProcessor:
         self._turn_count = 0
 
     async def process(self, user_message: str) -> TurnResult:
+        with turn_scope(self._runtime.telemetry, "completion") as context:
+            result = await self._process(user_message)
+            return replace(result, correlation_context=context) if context is not None else result
+
+    async def _process(self, user_message: str) -> TurnResult:
         """Process a deterministic fake turn."""
         if self._circuit_breaker_open:
             raise TurnCircuitBreakerOpenError(
@@ -212,6 +220,16 @@ class TurnProcessor:
         *,
         on_chunk: Callable[[str], Awaitable[None]],
     ) -> TurnResult:
+        with turn_scope(self._runtime.telemetry, "streaming") as context:
+            result = await self._process_streaming(user_message, on_chunk=on_chunk)
+            return replace(result, correlation_context=context) if context is not None else result
+
+    async def _process_streaming(
+        self,
+        user_message: str,
+        *,
+        on_chunk: Callable[[str], Awaitable[None]],
+    ) -> TurnResult:
         """Process a no-tool turn using streaming output."""
         if self._circuit_breaker_open:
             raise TurnCircuitBreakerOpenError(
@@ -246,14 +264,15 @@ class TurnProcessor:
 
             try:
                 heartbeat.start()
-                async for chunk in self._runtime.chat_llm.stream_complete(
-                    prepared.messages,
-                    tools=(),
-                ):
-                    if not assistant_chunks:
-                        stop_heartbeat_once()
-                    assistant_chunks.append(chunk)
-                    await on_chunk(chunk)
+                with operation_scope(self._runtime.telemetry, "model_call"):
+                    async for chunk in self._runtime.chat_llm.stream_complete(
+                        prepared.messages,
+                        tools=(),
+                    ):
+                        if not assistant_chunks:
+                            stop_heartbeat_once()
+                        assistant_chunks.append(chunk)
+                        await on_chunk(chunk)
             finally:
                 stop_heartbeat_once()
             assistant_message = "".join(assistant_chunks)
@@ -312,6 +331,18 @@ class TurnProcessor:
             )
             selection = self._runtime.tool_selection.select_for_turn(user_message)
         except ToolSelectionError as exc:
+            observer = self._runtime.telemetry
+            frame = observer.correlation.current() if observer is not None else None
+            if observer is not None and frame is not None:
+                mcp_names = self._mcp_names()
+                observer.capture_event("execution.selection", {
+                    **frame.context.identity().model_dump(), "toolset_ref": uuid4().hex,
+                    "selected_native": 0, "selected_mcp": 0,
+                    "rejected_native": sum(name not in mcp_names for name in exc.names),
+                    "rejected_mcp": sum(name in mcp_names for name in exc.names),
+                    "schema_tokens": 0, "context_budget_tokens": 0,
+                    "rejection_reason": exc.reason.value, "rejection_count": len(exc.names),
+                })
             bridge = self._runtime.mcp_tools
             if bridge is not None:
                 for name in exc.names:
@@ -337,12 +368,33 @@ class TurnProcessor:
             tool_budget=selection.budget,
         )
 
+        observer = self._runtime.telemetry
+        frame = observer.correlation.current() if observer is not None else None
+        if observer is not None and frame is not None:
+            mcp_names = self._mcp_names()
+            fields = {
+                **frame.context.identity().model_dump(), "toolset_ref": uuid4().hex,
+                "selected_native": sum(t.name not in mcp_names for t in tool_definitions),
+                "selected_mcp": sum(t.name in mcp_names for t in tool_definitions),
+                "rejected_native": sum(t.name not in mcp_names for t in selection.budget.rejections),
+                "rejected_mcp": sum(t.name in mcp_names for t in selection.budget.rejections),
+                "schema_tokens": selection.budget.schema_tokens, "context_budget_tokens": context_budget_tokens,
+            }
+            observer.capture_event("execution.selection", fields)
+            for reason in ToolRejectionReason:
+                count = sum(rejection.reason == reason for rejection in selection.budget.rejections)
+                if count:
+                    observer.capture_event("execution.selection", {**fields, "rejection_reason": reason.value, "rejection_count": count})
+
         mcp_tool_names = frozenset(self._mcp_names())
         retrieval_start = now_seconds()
-        memories = await self._runtime.memory.retrieve(
-            user_message,
-            token_limit=context_budget_tokens,
-        )
+        with operation_scope(self._runtime.telemetry, "memory_retrieve") as observation:
+            memories = await self._runtime.memory.retrieve(
+                user_message,
+                token_limit=context_budget_tokens,
+            )
+            observation.count = len(memories)
+            observation.count_kind = "items"
         retrieval_seconds = elapsed_seconds(retrieval_start)
 
         tool_context = None
@@ -443,16 +495,17 @@ class TurnProcessor:
             heartbeat = self._heartbeat_factory.create_heartbeat(heartbeat_kind)
             try:
                 heartbeat.start()
-                timeout = self._runtime.config.llm.timeout_seconds
-                if timeout is not None:
-                    response = await asyncio.wait_for(
-                        self._runtime.chat_llm.complete(messages, tools=tools),
-                        timeout=timeout,
+                with operation_scope(self._runtime.telemetry, "model_call"):
+                    timeout = self._runtime.config.llm.timeout_seconds
+                    if timeout is not None:
+                        response = await asyncio.wait_for(
+                            self._runtime.chat_llm.complete(messages, tools=tools),
+                            timeout=timeout,
+                        )
+                        return _ensure_chat_response(response)
+                    return _ensure_chat_response(
+                        await self._runtime.chat_llm.complete(messages, tools=tools)
                     )
-                    return _ensure_chat_response(response)
-                return _ensure_chat_response(
-                    await self._runtime.chat_llm.complete(messages, tools=tools)
-                )
             except TimeoutError as exc:
                 raise TurnTimeoutError(
                     "LLM turn timed out.",
@@ -499,6 +552,17 @@ class TurnProcessor:
             messages.extend(_tool_result_messages(tool_calls))
             if not tool_calls:
                 break
+            observer = self._runtime.telemetry
+            frame = observer.correlation.current() if observer is not None else None
+            if observer is not None and frame is not None:
+                present = isinstance(response.reasoning_content, str) and bool(response.reasoning_content)
+                observer.capture_event("execution.reasoning_history", {
+                    **frame.context.identity().model_dump(), "iteration": _iteration + 1,
+                    "present": present,
+                    "preserved": present and assistant_message.get("reasoning_content") == response.reasoning_content,
+                    "eligible": not any(call.name in mcp_names for call in response.tool_calls),
+                    "message_count": len(messages),
+                })
             response = await self._complete_with_retries(
                 messages,
                 tools=tool_definitions,
@@ -568,6 +632,7 @@ class TurnProcessor:
             self._runtime.tools,
             max_iterations=max_iterations,
             heartbeat_factory=self._heartbeat_factory,
+            observer=self._runtime.telemetry,
         )
         try:
             tool_result = await tool_loop.run(
@@ -603,43 +668,49 @@ class TurnProcessor:
     ) -> tuple[TurnMetrics, tuple[ToolCallRecord, ...]]:
         persistence_start = now_seconds()
         try:
-            await self._runtime.memory.store_turn(user_message, assistant_message)
-            await self._runtime.transcript.record_turn(user_message, assistant_message)
-            if self._runtime.config.transcript.capture_raw_prompts:
-                await self._runtime.transcript.record_context_log(
-                    prompt_text,
-                    raw_response,
+            with operation_scope(self._runtime.telemetry, "persistence") as persistence:
+                with operation_scope(self._runtime.telemetry, "memory_store_turn"):
+                    await self._runtime.memory.store_turn(user_message, assistant_message)
+                with operation_scope(self._runtime.telemetry, "transcript_record_turn"):
+                    await self._runtime.transcript.record_turn(user_message, assistant_message)
+                if self._runtime.config.transcript.capture_raw_prompts:
+                    with operation_scope(self._runtime.telemetry, "transcript_context_log"):
+                        await self._runtime.transcript.record_context_log(
+                            prompt_text,
+                            raw_response,
+                        )
+                metrics = TurnMetrics(
+                    retrieval_seconds=retrieval_seconds,
+                    llm_seconds=llm_seconds,
+                    persistence_seconds=elapsed_seconds(persistence_start),
+                    total_seconds=elapsed_seconds(total_start),
                 )
-            metrics = TurnMetrics(
-                retrieval_seconds=retrieval_seconds,
-                llm_seconds=llm_seconds,
-                persistence_seconds=elapsed_seconds(persistence_start),
-                total_seconds=elapsed_seconds(total_start),
-            )
-            tool_calls = await persist_mcp_interaction(
-                self._runtime.memory, self._runtime.transcript,
-                self._runtime.config.tools.mcp_provider.config.ingestion,
-                InteractionTurn(
-                    turn_id=str(uuid4()),
-                    user_message=user_message,
-                    assistant_message=assistant_message,
-                    prompt=prompt_text,
-                    context=context_text,
-                    memory_snippets=tuple(memories),
-                    metrics=metrics,
-                    raw_prompt_captured=(
-                        self._runtime.config.transcript.capture_raw_prompts
-                    ),
-                    tool_calls=tool_calls,
-                ),
-                observe=(
-                    lambda name, reason: self._runtime.mcp_tools.provider.emit_event(
-                        "ingestion_decision", tool_name=name, reason=reason
+                with operation_scope(self._runtime.telemetry, "transcript_interaction"):
+                    tool_calls = await persist_mcp_interaction(
+                        self._runtime.memory, self._runtime.transcript,
+                        self._runtime.config.tools.mcp_provider.config.ingestion,
+                        InteractionTurn(
+                            turn_id=str(uuid4()),
+                            user_message=user_message,
+                            assistant_message=assistant_message,
+                            prompt=prompt_text,
+                            context=context_text,
+                            memory_snippets=tuple(memories),
+                            metrics=metrics,
+                            raw_prompt_captured=(
+                                self._runtime.config.transcript.capture_raw_prompts
+                            ),
+                            tool_calls=tool_calls,
+                        ),
+                        observe=(
+                            lambda name, reason: self._runtime.mcp_tools.provider.emit_event(
+                                "ingestion_decision", tool_name=name, reason=reason
+                            )
+                            if self._runtime.mcp_tools is not None
+                            else None
+                        ),
                     )
-                    if self._runtime.mcp_tools is not None
-                    else None
-                ),
-            )
+                persistence.persistence_state = "completed"
         except Exception as exc:
             _rollback_fake_memory_turn(
                 self._runtime.memory,
