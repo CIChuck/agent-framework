@@ -1,10 +1,10 @@
-# Proposed WVR-006: TELEM-04 exact historical lint disposition
+# Approved WVR-006: TELEM-04 exact historical lint disposition
 
-Status: proposed, not approved. Prepared2026-10-07.
+Status: approved by Chuck Russell on2026-10-09. Prepared2026-10-07.
 Owner: Chuck Russell. Scope: TELEM-04/CD-004 only.
 
 WVR-005 expires with TELEM-03 acceptance and supplies no authority for this unit.
-This separate proposal covers only the same326 findings in four immutable accepted
+This separate approval covers only the same326 findings in four immutable accepted
 MCP probe artifacts and one UP046 in unchanged invariant CommandRegistry. The
 [exact scope](WVR-006-telem04-lint-scope.json) pins sorted diagnostic identities,
 original archive/source/class AST hashes,17 configuration hashes, Ruff0.14.10 and
@@ -18,7 +18,9 @@ source suppression, excluded file/rule, config weakening, archive/registry chang
 typing/test/behavior failure or broader debt is covered. Raw root lint remains
 nonpassing even if this narrow disposition is approved.
 
-Approval must be explicit and separate from CD-004. Fresh independent review and
+Chuck Russell explicitly approved both CD-004 and separately WVR-006 by replying
+"approved" to the precise scope/waiver request. The [decision record](../directives/CD-004-approval-record.md)
+preserves the original scope hashes. Fresh independent review and
 exact authority/baseline reconciliation are required before construction, then
 baseline/candidate comparison in the full product review. Every identity/input
 mismatch fails; changed-unit/aggregate lint and typing require exit0.

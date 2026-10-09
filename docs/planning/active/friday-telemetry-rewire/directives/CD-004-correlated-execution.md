@@ -1,6 +1,6 @@
-# Proposed CD-004: turn, tool, memory and persistence telemetry
+# Approved CD-004: turn, tool, memory and persistence telemetry
 
-Status: proposed, not approved. Prepared 2026-10-07.
+Status: approved by Chuck Russell on2026-10-09. Prepared2026-10-07.
 Initiative: friday-telemetry-rewire. Work unit: TELEM-04.
 Branch: feature/friday-telemetry-rewire.
 Preparation base: e6209e3156216afde1655758e280690229f7d3e6.
@@ -8,7 +8,8 @@ Aggregate base: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735.
 
 Chuck Russell instructed "lets continue with telem-04" after TELEM-03's VERIFIED
 closeout and explanation of the next unit. That authorizes this planning packet;
-this exact new construction scope and separate lint disposition require approval.
+Chuck Russell now approves this exact construction scope and separately WVR-006
+by replying "approved" on2026-10-09. See the [decision record](CD-004-approval-record.md).
 Planning-only exemption: Chuck Russell,2026-10-07; prepare this directive, contract,
 profile, scope manifest, evidence, TELEM-03 acceptance archive and the initiative's
 board/dashboard/index/log/closeout metadata. No product behavior changes. Validate
@@ -96,8 +97,8 @@ normal-user localhost execution after final fixture/import/helper preflight. It
 does not inherit prior unit effects. No credentials, real .friday/Chroma/transcript
 data, TLS/remote service, paid call, install/sync/download, push/merge or publication.
 
-Root Ruff remains raw exit1 for exactly327 historical findings. Separately proposed
-[WVR-006](../validation/WVR-006-telem04-lint-disposition.md) is the only requested
+Root Ruff remains raw exit1 for exactly327 historical findings. Separately approved
+[WVR-006](../validation/WVR-006-telem04-lint-disposition.md) is the only approved
 exception; CD-004 approval alone grants none. Its fresh independent reconciliation
 must precede construction. All other gates require normal passes.
 

@@ -859,3 +859,16 @@ links, board, manifests, source/accepted-input hashes and unrelated dirty preser
 Execution_phase preparation; validation_state pending; initiative started/local.
 Next gate: explicit CD-004 and separate WVR-006 decision, required independent
 approved-authority reconciliation and fake pre-build baseline before source edits.
+
+
+## 2026-10-09 — CD-004 and separately WVR-006 approved
+
+Chuck Russell replied "approved" to the concrete two-decision request at1c46336.
+The approval record preserves38 proposal controls,29 targets and exact327 lint
+identities/13 existing loopback nodes. Only approval labels/current metadata are
+reconciled; product scope and accepted inputs do not change. Initiative remains
+started/local on feature/friday-telemetry-rewire. Execution_phase planning,
+validation_state pending. Required fresh independent authority/lint reconciliation
+and true fake-only baseline precede exact construction. Subsequent stable product
+and fresh-context unit plus aggregate review remain required; no acceptance or
+delivery action is inferred. No further approval is needed within this exact scope.

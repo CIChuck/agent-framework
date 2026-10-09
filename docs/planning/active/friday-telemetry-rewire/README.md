@@ -9,19 +9,17 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-07
-next_gate: approve proposed CD-004 and separately WVR-006 for TELEM-04
-execution_phase: preparation
+next_gate: independent CD-004/WVR-006 authority reconciliation, then pre-build baseline and TELEM-04 construction
+execution_phase: planning
 validation_state: pending
 implementation_authority: granted
 ---
 
-Current gate: TELEM-04 planning is prepared for maintainer scope approval.
-The [CD-004 proposal](directives/CD-004-correlated-execution.md),
-[execution contract](telem04-contract.md), [verification profile](verification-profile-TELEM-04.md)
-and separate [WVR-006 proposal](validation/WVR-006-telem04-lint-disposition.md)
-bind29 product targets and the unchanged327 historical lint identities.
-[Planning evidence](execution/TELEM-04-planning/report.md) separates static checks
-from future behavior/independent review. No TELEM-04 product construction is approved.
+Current gate: CD-004 and separately WVR-006 are **approved** by Chuck Russell
+on2026-10-09. The [decision record](directives/CD-004-approval-record.md) binds the
+reviewable29-path proposal at1c46336. Fresh independent authority/lint reconciliation
+and a true fake-only pre-build baseline precede exact construction. Product
+validation remains pending; accepted TELEM-01–03 controls/evidence stay frozen.
 
 TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
 with no findings. Chuck Russell's "lets continue with telem-04", after the result

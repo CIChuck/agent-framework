@@ -1,6 +1,6 @@
-# Proposed TELEM-04 contract: correlated execution and local diagnostics
+# Approved TELEM-04 contract: correlated execution and local diagnostics
 
-Status: proposed, not approved. Prepared 2026-10-07 for CD-004.
+Status: approved by Chuck Russell on2026-10-09; prepared2026-10-07 for CD-004.
 Preparation base: e6209e3156216afde1655758e280690229f7d3e6.
 
 ## Boundary and compatibility

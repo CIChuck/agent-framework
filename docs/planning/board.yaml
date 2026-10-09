@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: approve proposed CD-004 and separately WVR-006 for TELEM-04
+  next_gate: independent CD-004/WVR-006 authority reconciliation, then pre-build baseline and TELEM-04 construction
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -437,6 +437,7 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-03.md
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
   - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md
+  - docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1199,3 +1200,10 @@ events:
   action: checkpoint
   note: Record maintainer-directed TELEM-03 progression acceptance and prepare unapproved CD-004/WVR-006; preserve continuing started/local state.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T13:44:26+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-004 and separately WVR-006
+  note: Explicit approved response to concrete29-path scope and exact327 lint renewal at1c46336; independent authority reconciliation and pre-build baseline precede construction.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md

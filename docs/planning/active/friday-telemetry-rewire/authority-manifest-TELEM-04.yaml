@@ -2,7 +2,7 @@
   "initiative": "friday-telemetry-rewire",
   "work_unit": "TELEM-04",
   "directive": "CD-004",
-  "status": "proposed; construction not approved; WVR-006 requires separate approval and independent reconciliation",
+  "status": "CD-004 and separately WVR-006 approved2026-10-09; independent authority reconciliation and pre-build baseline pending",
   "base": "e6209e3156216afde1655758e280690229f7d3e6",
   "aggregate_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
   "branch": "feature/friday-telemetry-rewire",
@@ -117,19 +117,19 @@
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md",
-      "sha256": "7be59d0cbd06194297b30bc15887d67c4002ad00643aca31c5bc1f23673c0943"
+      "sha256": "de736e9cd8bb0fafc07ecd840cf8f1db332204619bb9c83fa67044a809ceff6d"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
-      "sha256": "108533d53e675c3b2f82a2857e20491f7d17199c832fa3a1d3d764041a84c512"
+      "sha256": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-04.md",
-      "sha256": "4a01cc2d422ceada9a1cbbd3ed23b9371096aded99e2b1674fe44b9df4e7a258"
+      "sha256": "fdda776093256701480a8e9e202fae73c2a0a2c8215b997fe920b985437ea080"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-disposition.md",
-      "sha256": "40992cef2dede3275fed750aa02892f8c20283f9ccc42b5343f842a2845e8433"
+      "sha256": "0db78d23cad673d4c9382595bfa92d9ecfa44bac8fd8b835e48268a3819ddd52"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-scope.json",
@@ -158,6 +158,14 @@
     {
       "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-03/acceptance-evidence.json",
       "sha256": "0283012c33a3b51f5b0f9880f19015ab09f2125bd9352b9bfa7a4beeb5fe4363"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md",
+      "sha256": "5e6a92960f4000055a4481499e2cb39e79d932303c5747528a3fd0ea8b020d31"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-evidence.json",
+      "sha256": "2b680f11e6e29b1a34fd8d3515317446cf4b27bcb4feb8d4869021c0dc934d7a"
     }
   ],
   "product_manifest": {
@@ -213,6 +221,6 @@
   ],
   "review_mode": "fresh-context read-only full unit and complete aggregate after stable construction candidate",
   "external_services": "proposed exact13 existing synthetic loopback nodes only; owned in-memory SDK consumer; no real provider/state/remote service",
-  "lint_disposition": "WVR-006 proposed; not approved; WVR-005 expired",
+  "lint_disposition": "WVR-006 approved for exact327 historical identities only; WVR-005 expired",
   "future_product_review": "Mandatory AGENTS.md independent validation; no product generation until approved construction directive"
 }

@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | approve proposed CD-004 and separately WVR-006 for TELEM-04 |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | independent CD-004/WVR-006 authority reconciliation, then pre-build baseline and TELEM-04 construction |
 
 ## Completed
 

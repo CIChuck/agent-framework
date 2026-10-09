@@ -1,6 +1,6 @@
-# Proposed TELEM-04 verification profile
+# Approved TELEM-04 verification profile
 
-Status: proposed, not approved; bound to [CD-004](directives/CD-004-correlated-execution.md)
+Status: approved by Chuck Russell on2026-10-09; bound to [CD-004](directives/CD-004-correlated-execution.md)
 and the [execution contract](telem04-contract.md). Prepared 2026-10-07.
 
 ## Isolation and evidence
