@@ -903,3 +903,26 @@ gates pass. Initial private test/SDK/audit-helper corrections and the old lifecy
 expectation failure remain separate raw records. No product VERIFIED is inferred.
 Freeze candidate and dispatch fresh-context read-only full unit+aggregate validation.
 Started/local; execution_phase validation; validation_state pending.
+
+
+## 2026-10-09 — VAL-009 CHANGES_REQUESTED; proposed REM-005
+
+Fresh-context read-only product validator reviews exact1547fae full TELEM-04 unit
+and2155a0f aggregate. All18 mandatory commands independently reproduce; supplemental
+probes identify VAL-009-F01–F05. High: active-foreground SDK parent inherited by
+background extraction; None-origin items falsely correlated; retained streaming
+iterator not explicitly closed (also at unit base). Medium: rejected MCP classified
+native; bool/float execution schema version accepted before metrics. No source fix
+was performed. Original report SHA6368a6cb61b16d77fb145a5504cddb23db9fe3cc8e98c917ebb22877f6c15393
+and156 artifact hashes stored unchanged, with setup failures and shared-context/
+new-untracked-metadata exceptions explicit. Candidate, controls and original dirty
+entries stay unchanged. No VERIFIED/completion/acceptance claim.
+
+Proposed REM-005 binds all five findings once,15 exact existing approved targets,
+44 controls and full required gates. Preserve three-method interface, provider
+ownership, queue/scheduling and accepted events; isolate per-frame sink context,
+keep absent origins absent, use existing MCP membership, close actual adapter/model
+iterators and strictly validate integer version. No new effect or waiver renewal.
+Approval must precede separate architectural remediation and a new stable candidate/
+fresh-context full product review. Started/local; execution_phase remediation;
+validation_state changes_requested. Next gate: maintainer REM-005 preauthorization.

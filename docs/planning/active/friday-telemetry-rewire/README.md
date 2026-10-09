@@ -9,20 +9,35 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-07
-next_gate: fresh-context full TELEM-04 unit and aggregate product validation of the stable candidate
-execution_phase: validation
-validation_state: pending
+next_gate: maintainer approval of proposed REM-005 for all five VAL-009 findings, then separate remediation and fresh independent full review
+execution_phase: remediation
+validation_state: changes_requested
 implementation_authority: granted
 ---
 
-Current gate: CD-004 and separately WVR-006 are **approved** by Chuck Russell
-on2026-10-09. The [decision record](directives/CD-004-approval-record.md) binds the
-reviewable29-path proposal at1c46336. Fresh independent [CDR-019](validation/CDR-019/report.md) returns READY for both
-authority decisions. The [true pre-build baseline](execution/TELEM-04-baseline/report.md)
-records12 fake behavior cases before source edits. Exact construction and builder
-gates are complete; the stable candidate proceeds to fresh-context full unit and
-aggregate product review. Independent validation remains pending; accepted TELEM-01–03
-controls/evidence stay frozen.
+Current gate: independent [VAL-009](validation/VAL-009/report.md) returns
+**CHANGES_REQUESTED** for frozen product1547fae, full TELEM-04 unit and complete
+aggregate. Five mandatory findings cover SDK background lineage, None-origin
+correlation, MCP rejection classification, explicit streaming closure and strict
+execution schema versions. All18 required commands pass except the exact approved
+327 raw root-lint identities; the supplemental findings still require repair.
+The [builder record](execution/TELEM-04-final/report.md) and unaltered independent
+report/156 artifacts remain separate. Product/accepted authority is unchanged.
+
+[REM-005](remediation/REM-005-execution-correlation.md), its
+[verification profile](verification-profile-REM-005.md) and
+[44-pin/15-target manifest](authority-manifest-REM-005.yaml) are **proposed**.
+Every finding appears once; all15 targets are within CD-004's original29. No new
+SDK/provider/interface/config/queue/effect/waiver scope. Remediation awaits
+maintainer preauthorization, a separate remediator and new fresh-context full
+unit/aggregate review. Task remains started/local, unverified and unaccepted.
+
+CD-004 and separately WVR-006 were approved by Chuck Russell on2026-10-09.
+[CDR-019](validation/CDR-019/report.md) returned READY for authority; the
+[true pre-build baseline](execution/TELEM-04-baseline/report.md) ran before source
+edits. Their original controls/evidence remain frozen. WVR-006 is still limited
+by its exact327 inputs and TELEM-04 acceptance/input-drift expiry; it does not
+waive any VAL-009 finding. No source remediation has occurred.
 
 TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
 with no findings. Chuck Russell's "lets continue with telem-04", after the result

@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh-context full TELEM-04 unit and aggregate product validation of the stable candidate
+  next_gate: maintainer approval of proposed REM-005 for all five VAL-009 findings, then separate remediation and fresh independent full review
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -440,6 +440,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
   - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-baseline/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1223,3 +1225,10 @@ events:
   action: freezing TELEM-04 candidate for independent review
   note: Approved CD-004 construction and mandatory builder gates complete; authority unchanged. Started/local, pending fresh-context product review. Independent verification and maintainer acceptance remain separate.
   evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T14:54:15+00:00'
+  actor: controller
+  actor_role: agent
+  action: recorded VAL-009 changes requested and proposed REM-005
+  note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15 targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
