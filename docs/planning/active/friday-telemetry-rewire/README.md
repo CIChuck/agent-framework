@@ -8,8 +8,8 @@ status: approved
 work_state: started
 condition: normal
 created: 2026-10-01
-updated: 2026-10-07
-next_gate: maintainer approval of proposed REM-005 for all five VAL-009 findings, then separate remediation and fresh independent full review
+updated: 2026-10-11
+next_gate: independent approved REM-005 authority/effect reconciliation and five-finding baseline, then separate remediation and fresh full unit/aggregate validation
 execution_phase: remediation
 validation_state: changes_requested
 implementation_authority: granted
@@ -24,13 +24,17 @@ execution schema versions. All18 required commands pass except the exact approve
 The [builder record](execution/TELEM-04-final/report.md) and unaltered independent
 report/156 artifacts remain separate. Product/accepted authority is unchanged.
 
-[REM-005](remediation/REM-005-execution-correlation.md), its
-[verification profile](verification-profile-REM-005.md) and
-[44-pin/15-target manifest](authority-manifest-REM-005.yaml) are **proposed**.
-Every finding appears once; all15 targets are within CD-004's original29. No new
-SDK/provider/interface/config/queue/effect/waiver scope. Remediation awaits
-maintainer preauthorization, a separate remediator and new fresh-context full
-unit/aggregate review. Task remains started/local, unverified and unaccepted.
+[REM-005](remediation/REM-005-execution-correlation.md) and its complete
+[verification profile](verification-profile-REM-005.md) are approved by Chuck Russell
+on2026-10-11, response "i approve rem-005 spec". The
+[approval record](remediation/REM-005-approval-record.md) preserves all44 proposal
+pins and15 targets; the current manifest adds two approval artifacts. Every finding
+appears once; all15 targets remain within CD-004's original29. No new SDK/provider/
+interface/config/queue/effect/waiver scope. Independent authority/effect reconciliation
+and true five-finding baseline precede release of a separate remediator. A new
+stable candidate and fresh-context full unit/aggregate review remain required.
+Task remains started/local, changes_requested and unaccepted. Explicit approval
+resumes this active unit while MCP retains first pending priority.
 
 CD-004 and separately WVR-006 were approved by Chuck Russell on2026-10-09.
 [CDR-019](validation/CDR-019/report.md) returned READY for authority; the

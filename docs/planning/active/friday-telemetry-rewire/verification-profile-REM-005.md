@@ -1,6 +1,6 @@
-# Proposed REM-005 verification profile
+# Approved REM-005 verification profile
 
-Status: proposed, not approved. Bound to [REM-005](remediation/REM-005-execution-correlation.md),
+Status: approved by Chuck Russell on2026-10-11. Bound to [REM-005](remediation/REM-005-execution-correlation.md),
 unchanged approved CD-004 and the complete TELEM-04 contract/profile. No source
 remediation has occurred. Candidate1547fae and VAL-009 remain immutable.
 

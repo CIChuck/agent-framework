@@ -1,7 +1,7 @@
-# Proposed REM-005: execution correlation and stream closure
+# Approved REM-005: execution correlation and stream closure
 
-Status: proposed, not approved. Prepared2026-10-09. Planning only; no source
-remediation is authorized by this proposal. Initiative friday-telemetry-rewire;
+Status: approved by Chuck Russell on2026-10-11. Prepared2026-10-09.
+See [approval record](REM-005-approval-record.md). Initiative friday-telemetry-rewire;
 work unit TELEM-04; branch feature/friday-telemetry-rewire.
 
 Frozen product candidate:1547fae7cac6450ec9ad7440f19d1f1162598fe2.
@@ -16,7 +16,7 @@ SHA256600ced2de3d81d78c6d98bd3dbbcaffb22176725c5887532beab32f31bc0e0e1.
 
 Follow explicit maintainer direction, repository engineering/security and independent
 validation policies, accepted TELEM-01–03/MCP contracts, approved build/tactical
-plans, approved CD-004/execution contract/profile and this exact proposed directive.
+plans, approved CD-004/execution contract/profile and this exact approved directive.
 The [REM manifest](../authority-manifest-REM-005.yaml) pins those controls, the
 unaltered independent finding authority and15 product targets. All15 are a subset
 of CD-004's original29; no accepted specification or WVR-006 input is rewritten.

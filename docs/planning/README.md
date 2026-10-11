@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | maintainer approval of proposed REM-005 for all five VAL-009 findings, then separate remediation and fresh independent full review |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | independent approved REM-005 authority/effect reconciliation and five-finding baseline, then separate remediation and fresh full unit/aggregate validation |
 
 ## Completed
 

@@ -2,7 +2,7 @@
   "initiative": "friday-telemetry-rewire",
   "work_unit": "TELEM-04",
   "directive": "REM-005",
-  "status": "proposed; not approved; no source remediation",
+  "status": "approved by Chuck Russell 2026-10-11; source remediation pending authority reconciliation",
   "branch": "feature/friday-telemetry-rewire",
   "base": "1547fae7cac6450ec9ad7440f19d1f1162598fe2",
   "unit_base": "e6209e3156216afde1655758e280690229f7d3e6",
@@ -181,11 +181,11 @@
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-execution-correlation.md",
-      "sha256": "81e45c7ee3b077202471827912907c5505fa14edcadb4c44e109fd4bbd28a51d"
+      "sha256": "a1ef632771870931933ea3d0068f1ca6b9018ab50bdc1d53b965b0dba2d2f5ab"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-REM-005.md",
-      "sha256": "e78a56e729711661bd74a1ad5bbb9888331b1d22725940bf81d5c099ad9c69f2"
+      "sha256": "e293ccec48e57ac4e2b52a1806f532560727eec98096a59f8180a1a8ebc99eaf"
     },
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-009/raw/report.md.gz",
@@ -194,6 +194,14 @@
     {
       "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-009/original-artifact-manifest.json",
       "sha256": "600ced2de3d81d78c6d98bd3dbbcaffb22176725c5887532beab32f31bc0e0e1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md",
+      "sha256": "fd611bae2cd029a41e952fc77885ce8bebd23efbcfa3cfd878604ca3f9540125"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-evidence.json",
+      "sha256": "624ef663cda53663d4df8e4789e9a54bb45c856c198c3ef451f754accc137972"
     }
   ],
   "product_manifest": {
@@ -238,5 +246,5 @@
   },
   "waiver": "Existing separately approved WVR-006 only, unchanged exact327 identities and pinned inputs; no renewal or broadening requested",
   "effects": "Same CD-00413 synthetic nodes after preflight, separate owned in-memory SDK probe, fake-only new fixtures; no extra effect",
-  "approval_required": "REM-005 construction/remediation preauthorization; separate remediator and new fresh-context full product validator required"
+  "approval_required": "REM-005 approved; separate remediator, exact full verification and new fresh-context full product validator required"
 }

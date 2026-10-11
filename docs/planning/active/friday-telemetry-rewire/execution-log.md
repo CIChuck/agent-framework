@@ -926,3 +926,20 @@ iterators and strictly validate integer version. No new effect or waiver renewal
 Approval must precede separate architectural remediation and a new stable candidate/
 fresh-context full product review. Started/local; execution_phase remediation;
 validation_state changes_requested. Next gate: maintainer REM-005 preauthorization.
+
+
+## 2026-10-11 — REM-005 approved; bounded remediation resumed
+
+Chuck Russell explicitly approved the prepared specification: "i approve rem-005
+spec". Approval evidence preserves the proposal c2d4926, original manifest/all44
+pins,15 target/base hashes and all five independent findings. Only current approval
+labels/hashes are reconciled; two approval artifacts are added. Accepted CD-004,
+WVR-006 and original VAL-009 evidence are unchanged. All44 controls and15 source
+base hashes matched before reconciliation.
+
+The explicit decision resumes this already-started telemetry remediation despite
+MCP being the first pending initiative. Preserve the queued MCP/continuity work
+and unrelated dirty bytes. Independent authority/lint/effect input reconciliation
+and a true five-finding baseline precede separate architectural remediation.
+Keep started/local, execution_phase remediation, validation_state changes_requested;
+no product VERIFIED, completion, acceptance or delivery is inferred.
