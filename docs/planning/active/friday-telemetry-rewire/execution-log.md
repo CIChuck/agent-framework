@@ -1002,3 +1002,17 @@ TELEM-04 completion is proposed for maintainer acceptance; core TELEM-01–04 re
 is complete, optional TELEM-05 does not gate core telemetry. Started/local;
 execution_phase closeout; validation_state verified. No acceptance or delivery
 is inferred. Preserve queued MCP priority and all unrelated board/payload bytes.
+
+
+## 2026-10-11 — TELEM-04 accepted; core telemetry closed
+
+Chuck Russell replied "accepted" directly to VAL-010 VERIFIED/allfive finding
+closure and the TELEM-04 completion proposal. The archived TELEM-04 decision
+records exact5c3a0e6 product,09e0ba3 evidence commit,46 controls, original report/
+manifest hashes and source hashes. This is explicit maintainer acceptance.
+Core TELEM-01–04 are accepted and closed. WVR-006 expires by its existing terms;
+frozen controlling/validation artifacts stay unchanged with no renewal. Optional
+TELEM-05 does not gate core telemetry and requires its own decision/directive.
+Continuing initiative started/local for optional planning; construction authority
+closed; execution_phase closeout; validation_state verified. MCP remains first
+pending. No product or delivery actions; unrelated work and board history preserved.

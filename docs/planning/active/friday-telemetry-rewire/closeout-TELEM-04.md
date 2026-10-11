@@ -1,6 +1,6 @@
-# TELEM-04 completion proposal
+# TELEM-04 accepted closeout
 
-Status: independently VERIFIED; completion proposed; maintainer acceptance pending.
+Status: independently VERIFIED and accepted by Chuck Russell on2026-10-11.
 Product candidate: `5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8`.
 Authority: approved CD-004, REM-005 and separately approved unchanged WVR-006.
 
@@ -26,15 +26,17 @@ exactly327 separately approved WVR-006 identities, not an unqualified lint pass.
 Actual SDK and composite tests use owned in-memory/synthetic resources; no live
 vendor/exporter activation, push, merge, release or publication occurred.
 
-TELEM-01 through03 are already accepted; TELEM-04 is now ready for maintainer
-acceptance. The approved tactical plan says optional TELEM-05 Langfuse compatibility
-does not gate core telemetry. Core Friday Chat telemetry implementation/review is
-complete within the approved units. Headless adoption, remote exporter assembly,
-OTel Meter wiring, persisted diagnostics and optional Langfuse remain explicitly
-outside TELEM-04; no broader production-observability claim is made.
+Chuck Russell explicitly accepted this exact result by replying **"accepted"**
+after the verified-result report and completion proposal. The
+[archived decision](../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md)
+records product/evidence hashes,46 frozen controls and the response/date.
+Core TELEM-01 through04 are accepted and closed. Optional TELEM-05 Langfuse
+compatibility does not gate core telemetry under the approved tactical plan.
+Headless adoption, remote exporter assembly, OTel Meter wiring, persisted
+diagnostics and Langfuse remain outside TELEM-04's accepted scope.
 
-The board retains the continuing initiative as started/local with this unit's
-acceptance as its next gate; no maintainer acceptance is inferred from specification
-approval. WVR-006 remains bounded until that acceptance or input drift. Any optional
-follow-up needs its separate scope/directive. MCP keeps its queued first-pending
-priority and requires its own implementation authority.
+WVR-006 expired under its existing terms at this acceptance. Its original approved
+artifact remains frozen for historical evidence; it is not renewed or inherited.
+Current construction authority is closed. The continuing initiative remains
+started/local only for separately governed optional planning; MCP remains first
+pending. No new product or push/merge/release/publication action is authorized.

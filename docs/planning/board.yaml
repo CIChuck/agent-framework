@@ -382,9 +382,9 @@ tasks:
   priority: 25
   work_state: started
   condition: normal
-  implementation_authority: granted
+  implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: maintainer acceptance of independently VERIFIED TELEM-04 core telemetry closeout; optional TELEM-05 is separately governed and does not gate core telemetry
+  next_gate: "core TELEM-01\u201304 accepted and closed; optional TELEM-05 needs a separate decision/directive; MCP protocol upgrade remains first pending"
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -449,6 +449,8 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md
   - docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md
   - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/README.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1267,3 +1269,10 @@ events:
   action: TELEM-04 completion proposed
   note: Fresh VAL-010 VERIFIED exact5c3a0e6 REM/full-unit/aggregate. Allfive findings resolved,19 gates and supplemental contracts reviewed. Core telemetry completion proposed; maintainer acceptance pending; optional Langfuse does not gate core. Preserve queued priority and local delivery.
   evidence: docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: TELEM-04 accepted
+  note: "Explicit response accepted to verified TELEM-04 completion. Core01\u201304 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged."
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json

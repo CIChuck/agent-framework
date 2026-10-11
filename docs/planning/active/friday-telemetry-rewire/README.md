@@ -9,31 +9,29 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-11
-next_gate: maintainer acceptance of independently VERIFIED TELEM-04 core telemetry closeout; optional TELEM-05 is separately governed and does not gate core telemetry
+next_gate: core TELEM-01–04 accepted and closed; optional TELEM-05 needs a separate decision/directive; MCP protocol upgrade remains first pending
 execution_phase: closeout
 validation_state: verified
-implementation_authority: granted
+implementation_authority: closed
 ---
 
-Current gate: fresh independent [VAL-010](validation/VAL-010/report.md)
-returns **VERIFIED** for candidate5c3a0e6, all five approved REM-005 repairs, full
-TELEM-04 unit and complete telemetry aggregate. The
-[TELEM-04 completion proposal](closeout-TELEM-04.md) is ready for maintainer acceptance.
-Task remains started/local for that decision; execution_phase closeout and
-validation_state verified refer to this completed unit review.
+Core telemetry is **accepted and closed** across TELEM-01–04. Chuck Russell
+explicitly accepted TELEM-04 on2026-10-11, response "accepted", after fresh
+independent [VAL-010 VERIFIED](validation/VAL-010/report.md) for candidate5c3a0e6,
+all five REM-005 repairs, full unit and complete aggregate. The
+[accepted closeout](closeout-TELEM-04.md) and
+[archive](../../../archive/completed/2026/friday-telemetry-rewire-telem-04/README.md)
+bind that exact decision, product,46 controls and original evidence hashes.
 
-Core Friday Chat telemetry implementation/review is complete across TELEM-01–04;
-01–03 are already accepted and04 awaits acceptance. Optional TELEM-05 Langfuse
-compatibility does not gate core telemetry under the approved tactical plan.
-TELEM-04's explicit non-goals remain outside its completion claim.
+The continuing initiative remains started/local for separately governed optional
+planning. Construction authority is closed. Optional TELEM-05 Langfuse compatibility
+does not gate core telemetry and needs its own decision/directive. No source work
+for that optional unit is authorized. MCP protocol upgrade is first pending.
 
-Chuck Russell approved REM-005 on2026-10-11. Independent CDR-020 readiness and the
-true five-finding baseline preceded separate remediation. Exactly15 repair paths
-and all46 controlling pins are frozen. [Builder closeout](execution/REM-005-final/report.md)
-and independent immutable originals remain separate. Root lint retains the exact
-approved327 WVR-006 identities; the waiver expires at TELEM-04 acceptance/input drift.
-Original VAL-009 is retained unchanged history. Unrelated dirty/queued work stays
-preserved, and MCP retains first pending priority. No delivery action is inferred.
+WVR-006 expired at TELEM-04 acceptance under its existing terms, with no extension
+to any follow-up. All original approved controls/reports remain unchanged. Existing
+root lint debt remains visible as historical327 identities. Unrelated dirty files,
+queued work and original evidence remain preserved. Delivery remains local.
 
 TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
 with no findings. Chuck Russell's "lets continue with telem-04", after the result
