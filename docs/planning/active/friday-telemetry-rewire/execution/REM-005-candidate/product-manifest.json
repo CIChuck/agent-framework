@@ -1,0 +1,29 @@
+{
+  "authority_commit": "3e07707d13f1db7c023d660d721e0b817661bdad",
+  "product_base": "1547fae7cac6450ec9ad7440f19d1f1162598fe2",
+  "unit_base": "e6209e3156216afde1655758e280690229f7d3e6",
+  "aggregate_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "frozen_utc": "2026-10-11T17:15:24.301241+00:00",
+  "files": {
+    "packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py": "241c04fb039684bed5f8394b65c705b84af22e707ad15c34c170d389c6bf98d7",
+    "packages/friday-telemetry/src/friday_telemetry/models/execution.py": "30be7cede8f5b45794a2cb607344e774930cdc2e09a2eb0deb1b9801dd614e37",
+    "packages/friday-chat/src/friday_chat/telemetry.py": "ba0e2aeb2c376449c02e21fbdfc5f569971091f3bee3920457d88de0b68f0e91",
+    "packages/friday-chat/src/friday_chat/turns/telemetry.py": "5c42769fcec1188e6f15810db16f4c68733f5b8868e7f960fc1970438c13d711",
+    "packages/friday-chat/src/friday_chat/adapters.py": "884557cfb3305096d213f2f7de95977de367be02405700bfce1083d3be34228d",
+    "packages/friday-chat/src/friday_chat/tools/loop.py": "d87bb749cea9f6e89fbb76c07b884d39a13aa6ded52a90e3974353ae0972de32",
+    "packages/friday-chat/src/friday_chat/turns/processor.py": "8238bbb873b41b0d7644d3ef34aacba86f4e8f821a83b8d4b7b5cf3d77ccb146",
+    "packages/friday-telemetry/tests_telemetry/test_execution_events.py": "ece2564a36575bbfb876d762730eff2194623cea8392474d8a5ad959e384c5b3",
+    "packages/friday-telemetry/tests_telemetry/test_correlation.py": "728291665806e8381315ed1b8d5ecd532a1fd8c3941a4c4fc223935554aceb84",
+    "packages/friday-chat/tests_chat/test_turn_telemetry.py": "0d97ed24be91018216d41a7b268874c22976c611917ba3880454b212db671b66",
+    "packages/friday-chat/tests_chat/test_tool_telemetry.py": "3cc9aadc5a17f7c444d5b42cb01acf314fc0616d400f600029a480a8e79dbbe5",
+    "packages/friday-chat/tests_chat/test_memory_telemetry.py": "27d1c9d87cbf0c8702bb9d19330dde78e944115daff9f7d4da2a0a89eb715a45",
+    "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py": "1d09187104e453ee20c05f7db19566c2364a05a01fe79fedfc6ff1d10388ffe3",
+    "packages/friday-telemetry/README.md": "f5462f5784082faec1d25ade197aaf1844d09335018dfce78f5b28b4b09466c4",
+    "packages/friday-chat/README.md": "397c72d16f04a6d3b3bea6162b7af1a518fb7a39e23572d847b766fa8c4ea3e8"
+  },
+  "count": 15,
+  "builder_original_manifest_sha256": "8d3de24c11b126656b6de6cecad8754c8c2aa53d11188127695df5aa386b1497",
+  "validation_state": "pending",
+  "acceptance": "not recorded",
+  "delivery": "local"
+}

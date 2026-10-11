@@ -943,3 +943,34 @@ and unrelated dirty bytes. Independent authority/lint/effect input reconciliatio
 and a true five-finding baseline precede separate architectural remediation.
 Keep started/local, execution_phase remediation, validation_state changes_requested;
 no product VERIFIED, completion, acceptance or delivery is inferred.
+
+
+## 2026-10-11 — CDR-020 READY and true REM-005 baseline; source release
+
+Independent approved-authority readiness at3e07707 returns READY with46 pins,
+15 product hashes, exact327 lint identities/inputs,13-node effect inventory and
+owned SDK consumer reconciled. Genuine changed-unit/aggregate Ruff/Mypy, tool
+hashes/floors/AST, offline lock and board/docs gates pass. Missing private helpers
+and historical tmp-link failures are preserved; exact archived helper/guard and
+five historical candidate files recover liveness without frozen report changes.
+
+The separate remediator reproduced all five findings at1547fae before any product
+write, including actual owned SDK parentage and inherited F04 at unitbasee6209e3.
+Root releases only the approved15-target source scope. Started/local;
+execution_phase implementation; validation_state pending. Required full unit and
+aggregate gates, stable candidate and fresh independent review remain open.
+
+
+## 2026-10-11 — REM-005 product freeze; fresh full review required
+
+Separate remediation of VAL-009-F01 through F05 is frozen in exactly15 approved
+product targets after true baseline and CDR-020 readiness. The
+[candidate manifest](execution/REM-005-candidate/product-manifest.json) pins final
+bytes. A final malformed-origin diagnostic preservation correction invalidated
+an earlier private freeze; its receipts remain separate historical evidence.
+Builder final broader checks and original evidence storage remain in progress.
+Commit this unverified stable candidate and request fresh-context read-only
+VAL-010 for REM delta, full TELEM-04 unit and complete aggregate. Do not borrow
+builder conclusions. Preserve original VAL-009, controls, queued work and dirty
+payload. Started/local; execution_phase validation; validation_state pending.
+Completion requires independent VERIFIED; acceptance remains maintainer-only.

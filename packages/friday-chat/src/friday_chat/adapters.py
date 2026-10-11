@@ -124,7 +124,7 @@ from friday_chat.turns.models import (
 from friday_chat.turns.models import (
     InteractionTurn as ChatInteractionTurn,
 )
-from friday_chat.turns.telemetry import operation_scope
+from friday_chat.turns.telemetry import closing_stream, detached_scope, operation_scope
 
 _MAX_SOURCE_PROVENANCE_CHARS = 32_000
 _MAX_SOURCE_PROVENANCE_BYTES = 32_000
@@ -215,14 +215,16 @@ class FrameworkChatModel:
         message_values = [dict(message) for message in messages]
         tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
         if isinstance(self.execution, LegacyLLMExecutionConfig):
-            async for chunk in self.service.chat_completion_stream(
+            legacy_iterator = aiter(self.service.chat_completion_stream(
                 messages=message_values,
                 tools=tool_values,
                 temperature=self.execution.temperature,
                 max_tokens=self.execution.max_tokens,
                 timeout=self.config.llm.timeout_seconds,
-            ):
-                yield chunk
+            ))
+            async with closing_stream(legacy_iterator):
+                async for chunk in legacy_iterator:
+                    yield chunk
             return
 
         request = ChatCompletionRequest(
@@ -232,22 +234,24 @@ class FrameworkChatModel:
             provider_options=self.execution.provider_options,
             timeout=self.config.llm.timeout_seconds,
         )
-        async for event in self.service.chat_completion_events(request):
-            if isinstance(event, TextDeltaEvent):
-                yield event.text
-            elif isinstance(event, (ReasoningDeltaEvent, UsageEvent, FinishEvent)):
-                continue
-            elif isinstance(
-                event,
-                (ToolCallDeltaEvent, ToolCallCompleteEvent, StreamErrorEvent),
-            ):
-                raise FridayChatStreamProtocolError(
-                    "Friday Chat's text-only stream received a non-text tool event"
-                )
-            else:
-                raise FridayChatStreamProtocolError(
-                    "Friday Chat received an unknown typed stream event"
-                )
+        event_iterator = aiter(self.service.chat_completion_events(request))
+        async with closing_stream(event_iterator):
+            async for event in event_iterator:
+                if isinstance(event, TextDeltaEvent):
+                    yield event.text
+                elif isinstance(event, (ReasoningDeltaEvent, UsageEvent, FinishEvent)):
+                    continue
+                elif isinstance(
+                    event,
+                    (ToolCallDeltaEvent, ToolCallCompleteEvent, StreamErrorEvent),
+                ):
+                    raise FridayChatStreamProtocolError(
+                        "Friday Chat's text-only stream received a non-text tool event"
+                    )
+                else:
+                    raise FridayChatStreamProtocolError(
+                        "Friday Chat received an unknown typed stream event"
+                    )
 
 
 @dataclass
@@ -1148,7 +1152,7 @@ class FrameworkMaintenanceAdapter:
     async def _extract_turns(self, turns: list[PendingExtractionTurn]) -> None:
         if self.extractor is None:
             for turn in turns:
-                with operation_scope(self.observer, "memory_extract", origin=turn.correlation_context) as observation:
+                with detached_scope(self.observer), operation_scope(self.observer, "memory_extract", origin=turn.correlation_context) as observation:
                     observation.outcome = "skipped"
                     observation.reason = "unavailable"
                     observation.count = 0
@@ -1156,7 +1160,7 @@ class FrameworkMaintenanceAdapter:
             return
         for index, pending_turn in enumerate(turns):
             try:
-                with operation_scope(self.observer, "memory_extract", origin=pending_turn.correlation_context) as observation:
+                with detached_scope(self.observer), operation_scope(self.observer, "memory_extract", origin=pending_turn.correlation_context) as observation:
                     try:
                         result = await self.extractor.extract(
                             InteractionTurn(

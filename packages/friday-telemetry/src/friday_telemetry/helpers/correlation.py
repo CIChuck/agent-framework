@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterator
 from contextlib import contextmanager
-from contextvars import ContextVar
+from contextvars import Context, ContextVar
 from dataclasses import dataclass, field, replace
 from uuid import uuid4
 
@@ -49,6 +49,7 @@ class CorrelationFrame:
     accounting: TurnAccounting | None = None
     active: bool = True
     terminal: bool = False
+    delivery_context: Context = field(default_factory=Context, repr=False)
 
 
 class CorrelationScope:
@@ -76,10 +77,12 @@ class CorrelationScope:
 
     @contextmanager
     def bind(self, context: ExecutionContext, *, span_id: str | None = None,
-             accounting: TurnAccounting | None = None) -> Iterator[CorrelationFrame]:
+             accounting: TurnAccounting | None = None,
+             delivery_context: Context | None = None) -> Iterator[CorrelationFrame]:
         if not self.accepts(context):
             raise ValueError("foreign or invalid execution context")
-        frame = CorrelationFrame(context, span_id, accounting)
+        frame = CorrelationFrame(context, span_id, accounting,
+                                 delivery_context=delivery_context if delivery_context is not None else Context())
         token = self._current.set(frame)
         try:
             yield frame

@@ -43,3 +43,20 @@ async def test_concurrent_nested_and_expired_inheritance():
     gate.set()
     await task
     assert scope.current() is None
+
+
+def test_private_delivery_contexts_do_not_change_caller_or_siblings():
+    from contextvars import ContextVar
+    value = ContextVar("fake_sink_stack", default=())
+    value.set(("caller",))
+    scope = CorrelationScope("a" * 16)
+    with scope.bind(scope.context(turn=True)) as parent:
+        parent.delivery_context.run(value.set, ("parent",))
+        left = parent.delivery_context.copy()
+        right = parent.delivery_context.copy()
+        with scope.bind(parent.context.child(), delivery_context=left) as child:
+            child.delivery_context.run(value.set, ("parent", "left"))
+        assert right.run(value.get) == ("parent",)
+        assert parent.delivery_context.run(value.get) == ("parent",)
+        assert value.get() == ("caller",)
+    assert scope.current() is None

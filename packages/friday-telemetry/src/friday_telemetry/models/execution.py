@@ -10,6 +10,7 @@ from pydantic import (
     Field,
     RootModel,
     StrictBool,
+    field_validator,
     model_validator,
 )
 
@@ -49,6 +50,13 @@ class ExecutionIdentity(BaseModel):
     turn_ref: Identifier | None = None
     operation_ref: Identifier | None = None
     parent_operation_ref: Identifier | None = None
+
+    @field_validator("schema_version", mode="before")
+    @classmethod
+    def integer_version(cls, value: object) -> object:
+        if type(value) is not int:
+            raise ValueError("schema version requires an integer")
+        return value
 
     @model_validator(mode="after")
     def validate_parent(self) -> Self:
@@ -149,5 +157,7 @@ class ExecutionEvent(RootModel[Annotated[
     TurnStart | TurnFinish | OperationStart | OperationFinish | Selection | ReasoningHistory | LLMLink | MCPLink,
     Field(discriminator="name"),
 ]]):
+    model_config = ConfigDict(frozen=True, strict=True, revalidate_instances="always")
+
     def attributes(self) -> dict[str, Scalar]:
         return self.root.attributes()

@@ -9,39 +9,32 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-11
-next_gate: independent approved REM-005 authority/effect reconciliation and five-finding baseline, then separate remediation and fresh full unit/aggregate validation
-execution_phase: remediation
-validation_state: changes_requested
+next_gate: fresh independent VAL-010 review of frozen REM-005 candidate, full TELEM-04 unit and complete aggregate; require VERIFIED before completion proposal
+execution_phase: validation
+validation_state: pending
 implementation_authority: granted
 ---
 
-Current gate: independent [VAL-009](validation/VAL-009/report.md) returns
-**CHANGES_REQUESTED** for frozen product1547fae, full TELEM-04 unit and complete
-aggregate. Five mandatory findings cover SDK background lineage, None-origin
-correlation, MCP rejection classification, explicit streaming closure and strict
-execution schema versions. All18 required commands pass except the exact approved
-327 raw root-lint identities; the supplemental findings still require repair.
-The [builder record](execution/TELEM-04-final/report.md) and unaltered independent
-report/156 artifacts remain separate. Product/accepted authority is unchanged.
+Current gate: approved [REM-005](remediation/REM-005-execution-correlation.md)
+is implemented and [frozen for independent review](execution/REM-005-candidate/report.md).
+Fresh-context VAL-010 must review the five repairs, full TELEM-04 unit and
+complete aggregate. Builder final checks/evidence storage remain in progress;
+the candidate is unverified and unaccepted. Task remains started/local.
 
-[REM-005](remediation/REM-005-execution-correlation.md) and its complete
-[verification profile](verification-profile-REM-005.md) are approved by Chuck Russell
-on2026-10-11, response "i approve rem-005 spec". The
-[approval record](remediation/REM-005-approval-record.md) preserves all44 proposal
-pins and15 targets; the current manifest adds two approval artifacts. Every finding
-appears once; all15 targets remain within CD-004's original29. No new SDK/provider/
-interface/config/queue/effect/waiver scope. Independent authority/effect reconciliation
-and true five-finding baseline precede release of a separate remediator. A new
-stable candidate and fresh-context full unit/aggregate review remain required.
-Task remains started/local, changes_requested and unaccepted. Explicit approval
-resumes this active unit while MCP retains first pending priority.
+Chuck Russell approved the exact specification on2026-10-11, response
+"i approve rem-005 spec". The [approval record](remediation/REM-005-approval-record.md)
+preserves44 proposal pins and15 product targets; current authority pins46 controls.
+Independent [CDR-020](validation/CDR-020/report.md) returned READY and the
+[true five-finding baseline](execution/REM-005-baseline/report.md) preceded release
+of a separate remediator. All15 paths remain within CD-004's original29, with no
+new SDK/provider/interface/config/queue/effect/waiver scope. Explicit approval
+resumes this active unit while queued MCP retains first pending priority.
 
-CD-004 and separately WVR-006 were approved by Chuck Russell on2026-10-09.
-[CDR-019](validation/CDR-019/report.md) returned READY for authority; the
-[true pre-build baseline](execution/TELEM-04-baseline/report.md) ran before source
-edits. Their original controls/evidence remain frozen. WVR-006 is still limited
-by its exact327 inputs and TELEM-04 acceptance/input-drift expiry; it does not
-waive any VAL-009 finding. No source remediation has occurred.
+Original [VAL-009](validation/VAL-009/report.md) CHANGES_REQUESTED remains immutable
+history for1547fae. It is superseded only for decision purposes by review of this
+new candidate; no VERIFIED finding is inferred. CD-004 and separately WVR-006
+remain approved at their original hashes. WVR-006 covers only its unchanged327
+root-lint identities and expires at TELEM-04 acceptance or input drift.
 
 TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
 with no findings. Chuck Russell's "lets continue with telem-04", after the result

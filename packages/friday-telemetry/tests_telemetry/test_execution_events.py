@@ -46,3 +46,28 @@ def test_parent_cycle_rejected():
     with pytest.raises(ValidationError):
         OperationFinish(**IDENTITY, parent_operation_ref=IDENTITY["operation_ref"],
                         operation_kind="native_tool", outcome="succeeded", duration_ms=0.0)
+
+
+@pytest.mark.parametrize("version", [True, False, 1.0, "1", 0, 2])
+def test_version_requires_actual_integer_even_for_forged_instances(version):
+    data = {**IDENTITY, "operation_kind": "native_tool", "outcome": "succeeded",
+            "duration_ms": 0.0, "schema_version": version}
+    with pytest.raises(ValidationError):
+        OperationFinish.model_validate(data)
+    forged = OperationFinish.model_construct(**data)
+    with pytest.raises(ValidationError):
+        OperationFinish.model_validate(forged)
+    with pytest.raises(ValidationError):
+        ExecutionEvent.model_validate(forged)
+    with pytest.raises(ValidationError):
+        ExecutionEvent.model_validate(ExecutionEvent.model_construct(root=forged))
+
+
+@pytest.mark.parametrize("explicit", [False, True])
+def test_default_and_exact_integer_version_preserved(explicit):
+    data = {**IDENTITY, "operation_kind": "native_tool", "outcome": "succeeded", "duration_ms": 0.0}
+    if explicit:
+        data["schema_version"] = 1
+    event = OperationFinish.model_validate(data)
+    assert type(event.schema_version) is int and event.schema_version == 1
+    assert ExecutionEvent.model_validate(event).attributes()["schema_version"] == 1

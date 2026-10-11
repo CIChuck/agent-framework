@@ -136,8 +136,9 @@ class ToolLoop:
                             if frame is not None:
                                 self._observer.capture_event("execution.selection", {
                                     **frame.context.identity().model_dump(), "toolset_ref": uuid4().hex,
-                                    "selected_native": 0, "selected_mcp": 0, "rejected_native": 1,
-                                    "rejected_mcp": 0, "schema_tokens": 0, "context_budget_tokens": 0,
+                                    "selected_native": 0, "selected_mcp": 0,
+                                    "rejected_native": int(not (isinstance(name, str) and name in mcp_names)),
+                                    "rejected_mcp": int(isinstance(name, str) and name in mcp_names), "schema_tokens": 0, "context_budget_tokens": 0,
                                     "rejection_reason": "unknown_tool", "rejection_count": 1,
                                 })
                         consecutive_failures += 1

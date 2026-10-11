@@ -37,7 +37,7 @@ from friday_chat.turns.models import (
     ToolCallRequest,
     TurnMetrics,
 )
-from friday_chat.turns.telemetry import operation_scope, turn_scope
+from friday_chat.turns.telemetry import closing_stream, operation_scope, turn_scope
 
 
 @dataclass(frozen=True)
@@ -265,14 +265,13 @@ class TurnProcessor:
             try:
                 heartbeat.start()
                 with operation_scope(self._runtime.telemetry, "model_call"):
-                    async for chunk in self._runtime.chat_llm.stream_complete(
-                        prepared.messages,
-                        tools=(),
-                    ):
-                        if not assistant_chunks:
-                            stop_heartbeat_once()
-                        assistant_chunks.append(chunk)
-                        await on_chunk(chunk)
+                    iterator = aiter(self._runtime.chat_llm.stream_complete(prepared.messages, tools=()))
+                    async with closing_stream(iterator):
+                        async for chunk in iterator:
+                            if not assistant_chunks:
+                                stop_heartbeat_once()
+                            assistant_chunks.append(chunk)
+                            await on_chunk(chunk)
             finally:
                 stop_heartbeat_once()
             assistant_message = "".join(assistant_chunks)

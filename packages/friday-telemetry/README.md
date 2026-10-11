@@ -169,3 +169,12 @@ there is no new OTel Meter, global registration, exporter or vendor callback.
 LLM/MCP links never contribute duplicate execution counters. Raw historical memory
 and LLM helpers remain outside this safety claim. Headless assembly and Langfuse
 adoption require separate work.
+
+
+Execution schema_version accepts actual integer1 only; bool, float, string and
+forged-instance versions are rejected before recording, sink delivery or metrics.
+Chat delivery contexts are private active-frame state, never exported lineage.
+Independent frames and copied active child contexts keep provider stack bindings
+isolated while explicit owned parents preserve legitimate nesting. Per-item absent
+origins remain session-only. Close-capable upstream iterators are awaited through
+Chat's stream wrapper chain before terminal return, preserving primary exceptions.

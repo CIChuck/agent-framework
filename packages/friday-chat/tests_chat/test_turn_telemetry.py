@@ -155,3 +155,96 @@ async def test_selection_block_and_retry_attempt_layers():
     await TurnProcessor(r).process("safe")
     calls = [e for e in events(r, "operation_finish") if e["operation_kind"] == "model_call"]
     assert [e["outcome"] for e in calls] == ["failed", "succeeded"]
+
+
+class RetainedStream:
+    def __init__(self, values, cleanup=None, primary=None):
+        self.values = iter(values)
+        self.cleanup = cleanup
+        self.primary = primary
+        self.close_attempts = 0
+        self.closed = False
+    def __aiter__(self):
+        return self
+    async def __anext__(self):
+        if self.primary is not None:
+            raise self.primary
+        try:
+            return next(self.values)
+        except StopIteration:
+            raise StopAsyncIteration from None
+    async def aclose(self):
+        self.close_attempts += 1
+        await asyncio.sleep(0)
+        self.closed = True
+        if self.cleanup is not None:
+            raise self.cleanup
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", ["direct", "legacy", "typed"])
+@pytest.mark.parametrize("failure", ["normal", "callback", "callback_cancel", "model_cancel"])
+@pytest.mark.parametrize("cleanup", ["normal", "error", "cancel"])
+async def test_retained_actual_stream_cleanup_before_terminal_and_primary_identity(path, failure, cleanup):
+    from friday_chat.adapters import FrameworkChatModel
+    from friday_chat.config import LegacyLLMExecutionConfig
+    from friday_llm import TextDeltaEvent
+    r = runtime()
+    primary = asyncio.CancelledError() if failure in {"callback_cancel", "model_cancel"} else RuntimeError("PRIVATE_PRIMARY")
+    cleanup_error = RuntimeError("PRIVATE_CLEANUP") if cleanup == "error" else asyncio.CancelledError() if cleanup == "cancel" else None
+    upstream = RetainedStream([TextDeltaEvent(text="first"), TextDeltaEvent(text="second")] if path == "typed" else ["first", "second"],
+                              cleanup_error, primary if failure == "model_cancel" else None)
+    class Service:
+        def chat_completion_stream(self, **kwargs):
+            return upstream
+        def chat_completion_events(self, request):
+            return upstream
+    if path == "direct":
+        class Model:
+            def stream_complete(self, *args, **kwargs):
+                return upstream
+        r.chat_llm = Model()
+    else:
+        cfg = FridayChatConfig.model_validate({"llm": {"model": "fake/test", "transport_target": {"provider": "openai_compatible", "dialect": "openai_chat_completions", "serving_engine": "lm_studio"}, "model_target": {"model_id": "fake/test", "family": "qwen3_8", "revision": "fake"}}})
+        execution = LegacyLLMExecutionConfig(0.0, None, None) if path == "legacy" else cfg.llm.resolve_execution()
+        r.chat_llm = FrameworkChatModel(Service(), cfg, execution)
+    chunks = []
+    async def capture(chunk):
+        chunks.append(chunk)
+        if failure.startswith("callback"):
+            raise primary
+    expected = primary if failure != "normal" else cleanup_error
+    if expected is None:
+        result = await TurnProcessor(r).process_streaming("PRIVATE", on_chunk=capture)
+        assert result.assistant_message == "firstsecond" and chunks == ["first", "second"]
+    else:
+        with pytest.raises(type(expected)) as caught:
+            await TurnProcessor(r).process_streaming("PRIVATE", on_chunk=capture)
+        assert caught.value is expected
+    assert upstream.close_attempts == 1 and upstream.closed
+    terminal, = events(r, "turn_finish")
+    assert terminal["outcome"] == ("succeeded" if expected is None else "cancelled" if isinstance(expected, asyncio.CancelledError) else "failed")
+    assert not r.telemetry._spans and r.telemetry.correlation.current() is None
+    assert "PRIVATE" not in repr(r.telemetry.snapshot())
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", ["legacy", "typed"])
+@pytest.mark.parametrize("cleanup", [None, "error", "cancel"])
+async def test_public_adapter_early_close_awaits_retained_upstream(path, cleanup):
+    from friday_chat.adapters import FrameworkChatModel
+    from friday_chat.config import LegacyLLMExecutionConfig
+    from friday_llm import TextDeltaEvent
+    cfg = FridayChatConfig.model_validate({"llm": {"model": "fake/test", "transport_target": {"provider": "openai_compatible", "dialect": "openai_chat_completions", "serving_engine": "lm_studio"}, "model_target": {"model_id": "fake/test", "family": "qwen3_8", "revision": "fake"}}})
+    upstream = RetainedStream([TextDeltaEvent(text="first"), TextDeltaEvent(text="second")] if path == "typed" else ["first", "second"],
+                              RuntimeError("PRIVATE") if cleanup == "error" else asyncio.CancelledError() if cleanup == "cancel" else None)
+    class Service:
+        def chat_completion_stream(self, **kwargs):
+            return upstream
+        def chat_completion_events(self, request):
+            return upstream
+    model = FrameworkChatModel(Service(), cfg, LegacyLLMExecutionConfig(0.0, None, None) if path == "legacy" else cfg.llm.resolve_execution())
+    iterator = model.stream_complete([{"role": "user", "content": "safe"}])
+    assert await anext(iterator) == "first"
+    await iterator.aclose()  # GeneratorExit remains primary if cleanup also fails.
+    assert upstream.close_attempts == 1 and upstream.closed

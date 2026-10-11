@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: independent approved REM-005 authority/effect reconciliation and five-finding baseline, then separate remediation and fresh full unit/aggregate validation
+  next_gate: fresh independent VAL-010 review of frozen REM-005 candidate, full TELEM-04 unit and complete aggregate; require VERIFIED before completion proposal
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -443,6 +443,9 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-final/report.md
   - docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
   - docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-baseline/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1175,7 +1178,7 @@ events:
   actor: Chuck Russell
   actor_role: maintainer
   action: accepted TELEM-02
-  note: Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03–05; next gate is TELEM-03 directive preparation, with separate implementation approval.
+  note: "Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03\u201305; next gate is TELEM-03 directive preparation, with separate implementation approval."
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
@@ -1240,3 +1243,17 @@ events:
   action: remediation_approved
   note: 'Explicitly approved REM-005 specification: i approve rem-005 spec. Resume exact five-finding/15-target remediation with separate remediator and full fresh validation; no scope/effect/waiver expansion or acceptance. Preserve MCP pending priority.'
   evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: remediation_released
+  note: CDR-020 READY plus true reproduction of all five findings precedes source release for approved15-target REM-005. Preserve queued work and original findings; require stable candidate and fresh full independent validation.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex controller
+  actor_role: agent
+  action: frozen approved REM-005 candidate for fresh full independent review
+  note: Exact15-path unverified candidate; builder final evidence pending. Require fresh VAL-010 REM/full-unit/aggregate review before proposing completion. Preserve earlier findings, queued work and local delivery.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md

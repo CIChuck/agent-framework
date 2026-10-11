@@ -213,3 +213,14 @@ operation/outcome histogram labels. They contain no prompt, reasoning, tool
 arguments/results/names, memory/document contents, paths, raw IDs or exception text.
 Diagnostics remain available with remote exporters off or failing. Disabled
 telemetry preserves prior invocation behavior and produces no execution events.
+
+
+Execution spans deliver synchronous sink calls in private per-frame contexts.
+Active owned children retain explicit parents; independent background items,
+including explicit absent origins, cannot inherit a foreground sink stack. None
+origins emit session-only facts and do not contribute to foreground accounting.
+Known rejected MCP calls use trusted membership for their closed rejection counts.
+Execution schema versions require actual integer1, including forged-instance entry.
+Acquired close-capable model iterators are explicitly awaited before terminal return
+through direct, legacy and typed stream paths. Cleanup preserves an active callback,
+model or cancellation exception; chunk ordering, heartbeat and buffering stay intact.

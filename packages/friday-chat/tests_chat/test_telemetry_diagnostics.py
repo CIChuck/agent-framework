@@ -68,3 +68,28 @@ def test_end_failure_capacity_saturation_and_invalid_link():
     for span in tuple(o._spans):
         o.end_span(span)
     assert not o._spans and "PRIVATE_END" not in repr(o.snapshot())
+
+
+@pytest.mark.parametrize("version", [True, False, 1.0, "1", 0, 2])
+@pytest.mark.parametrize("entry", ["dictionary", "forged", "forged_root"])
+def test_invalid_versions_rejected_before_record_delivery_and_metrics(version, entry):
+    from friday_telemetry.models.execution import ExecutionEvent
+    sink = DebugTelemetryRecorder()
+    o = ChatTelemetryObserver(enabled=True, session_id="private", provider=sink)
+    with operation_scope(o, "native_tool"):
+        frame = o.correlation.current()
+        data = {**frame.context.identity().model_dump(), "schema_version": version,
+                "operation_kind": "native_tool", "outcome": "succeeded", "duration_ms": 0.0}
+        before = o.execution_snapshot()
+        delivered = len(sink.events)
+        if entry == "dictionary":
+            o.capture_event("execution.operation_finish", data)
+        else:
+            forged = OperationFinish.model_construct(**data)
+            o.execution(forged if entry == "forged" else ExecutionEvent.model_construct(root=forged))
+        assert o.execution_snapshot() == before
+        assert len(sink.events) == delivered
+        assert not frame.terminal
+        assert o.snapshot().rejected_count == 1
+        assert not any(e.name == "execution.operation_finish" for e in o.snapshot().events)
+    assert o.execution_snapshot().counters == (("native_tool", "succeeded", 1),)

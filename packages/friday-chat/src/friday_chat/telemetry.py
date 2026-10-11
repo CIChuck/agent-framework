@@ -247,7 +247,11 @@ class ChatTelemetryObserver(TelemetryInterface):
         source_sequence = self._sequence
         if self._sink is not None:
             try:
-                self._sink.capture_event(event_name, dict(attributes))
+                frame = self.correlation.current()
+                if frame is None:
+                    self._sink.capture_event(event_name, dict(attributes))
+                else:
+                    frame.delivery_context.run(self._sink.capture_event, event_name, dict(attributes))
             except Exception:
                 self._record_failure("sink_failed")
         frame = self.correlation.current()
@@ -289,9 +293,10 @@ class ChatTelemetryObserver(TelemetryInterface):
         sink_id = None
         if self._sink is not None:
             try:
-                sink_id = self._sink.start_span(
-                    name, self._spans.get(parent_id) if parent_id else None
-                )
+                sink_parent = self._spans.get(parent_id) if parent_id else None
+                frame = self.correlation.current()
+                sink_id = (self._sink.start_span(name, sink_parent) if frame is None else
+                           frame.delivery_context.run(self._sink.start_span, name, sink_parent))
             except Exception:
                 self._record_failure("sink_failed")
         self._spans[span_id] = sink_id
@@ -309,6 +314,10 @@ class ChatTelemetryObserver(TelemetryInterface):
             attributes = {"outcome": "failed", "count": 0}
         if self._sink is not None and sink_id is not None:
             try:
-                self._sink.end_span(sink_id, attributes)
+                frame = self.correlation.current()
+                if frame is None:
+                    self._sink.end_span(sink_id, attributes)
+                else:
+                    frame.delivery_context.run(self._sink.end_span, sink_id, attributes)
             except Exception:
                 self._record_failure("sink_failed")

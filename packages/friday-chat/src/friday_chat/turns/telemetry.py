@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import asyncio
 import time
-from collections.abc import Iterator
-from contextlib import contextmanager
+from collections.abc import AsyncIterator, Iterator
+from contextlib import asynccontextmanager, contextmanager
+from contextvars import Context
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Literal
+from enum import Enum
+from typing import TYPE_CHECKING, Literal, Protocol, runtime_checkable
 
 from friday_telemetry import ExecutionContext
 from friday_telemetry.helpers.correlation import TurnAccounting
@@ -69,10 +71,13 @@ def turn_scope(observer: ChatTelemetryObserver | None, mode: Literal["completion
     context = observer.correlation.context(turn=True)
     started = time.monotonic()
     accounting = TurnAccounting()
-    span = observer.start_span("chat.turn")
+    parent = observer.correlation.current()
+    delivery = parent.delivery_context.copy() if parent is not None else Context()
     outcome: ExecutionOutcome = "succeeded"
     reason: ExecutionReason | None = None
-    with observer.correlation.bind(context, span_id=span, accounting=accounting):
+    with observer.correlation.bind(context, accounting=accounting, delivery_context=delivery) as frame:
+        span = observer.start_span("chat.turn", parent.span_id if parent is not None else None)
+        frame.span_id = span
         observer.execution(TurnStart(**context.identity().model_dump(), mode=mode))
         try:
             yield context.origin()
@@ -91,23 +96,32 @@ def turn_scope(observer: ChatTelemetryObserver | None, mode: Literal["completion
                 observer.end_span(span, {"outcome": "succeeded" if outcome == "succeeded" else "cancelled" if outcome == "cancelled" else "failed"})
 
 
+class _InheritedOrigin(Enum):
+    INHERIT = "inherit"
+
+
 @contextmanager
 def operation_scope(observer: ChatTelemetryObserver | None, kind: OperationKind,
-                    *, origin: ExecutionContext | None = None) -> Iterator[OperationObservation]:
+                    *, origin: ExecutionContext | None | _InheritedOrigin = _InheritedOrigin.INHERIT) -> Iterator[OperationObservation]:
     observation = OperationObservation()
     if observer is None or not observer.enabled:
         yield observation
         return
-    parent = observer.correlation.current()
-    if origin is not None and not observer.correlation.accepts(origin):
+    parent = observer.correlation.current() if origin is _InheritedOrigin.INHERIT else None
+    if origin is not _InheritedOrigin.INHERIT and origin is not None and (
+        not isinstance(origin, ExecutionContext) or not observer.correlation.accepts(origin)
+    ):
         observer.report_failure()
         origin = None
         parent = None
-    context = (origin or (parent.context if parent else observer.correlation.context())).child()
+    base = origin if isinstance(origin, ExecutionContext) else parent.context if parent else observer.correlation.context()
+    context = base.child()
     started = time.monotonic()
-    span = observer.start_span("chat.operation", parent.span_id if parent and origin is None else None)
-    accounting = parent.accounting if parent and origin is None else None
-    with observer.correlation.bind(context, span_id=span, accounting=accounting):
+    accounting = parent.accounting if parent is not None else None
+    delivery = parent.delivery_context.copy() if parent is not None else Context()
+    with observer.correlation.bind(context, accounting=accounting, delivery_context=delivery) as frame:
+        span = observer.start_span("chat.operation", parent.span_id if parent is not None else None)
+        frame.span_id = span
         observer.execution(OperationStart(**context.identity().model_dump(), operation_kind=kind))
         try:
             yield observation
@@ -136,3 +150,28 @@ def detached_scope(observer: ChatTelemetryObserver | None) -> Iterator[None]:
     else:
         with observer.correlation.clear():
             yield
+
+
+@runtime_checkable
+class AsyncIteratorClosure(Protocol):
+    """Optional declared cleanup capability of an acquired model iterator."""
+
+    async def aclose(self) -> None: ...
+
+
+@asynccontextmanager
+async def closing_stream[T](iterator: AsyncIterator[T]) -> AsyncIterator[AsyncIterator[T]]:
+    """Await owned iterator cleanup without replacing an active primary exception."""
+    primary = False
+    try:
+        yield iterator
+    except BaseException:
+        primary = True
+        raise
+    finally:
+        if isinstance(iterator, AsyncIteratorClosure):
+            try:
+                await iterator.aclose()
+            except BaseException:
+                if not primary:
+                    raise
