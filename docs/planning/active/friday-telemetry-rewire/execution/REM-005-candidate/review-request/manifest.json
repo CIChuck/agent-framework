@@ -1,0 +1,29 @@
+{
+  "candidate": "5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8",
+  "artifacts": [
+    {
+      "original": "validation-request-VAL-010.json",
+      "original_sha256": "3287f1ab3b88016dbc464b808efd205678bf2a1d813245f5c00806a25953069c",
+      "stored": "validation-request-VAL-010.json.gz",
+      "stored_sha256": "aa4fde3d6abb8087ecb1e06dec323d16e4e3a4e2e9e3e8772c88205822ddbe73"
+    },
+    {
+      "original": "rem-candidate.diff",
+      "original_sha256": "2e0b4bd328b1d60de03bb334a838c990bb79ee2c2e5e8954c850736f761ea06d",
+      "stored": "rem-candidate.diff.gz",
+      "stored_sha256": "2cca5d332acd7f0d292807cfcf9c7d6347dd3d65c22e59f88b825ac5abf65b70"
+    },
+    {
+      "original": "unit-candidate.diff",
+      "original_sha256": "ae251df1c82282888528a3d7efb45a36927db084535490371986e333281458f7",
+      "stored": "unit-candidate.diff.gz",
+      "stored_sha256": "e0e4f14b400ef3994774fa7f1d9bbcc538f4ac240868cafd9686a9acaad8eb2a"
+    },
+    {
+      "original": "aggregate-candidate.diff",
+      "original_sha256": "1f4cbf7c3e2774212b33da9719483428cfaedae6ad83d91fca7e1b032bb8a7e4",
+      "stored": "aggregate-candidate.diff.gz",
+      "stored_sha256": "c1f56c28654998a29e67a6ca9aa56aa20a17013f321f82504fd6d6926f696492"
+    }
+  ]
+}

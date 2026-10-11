@@ -9,32 +9,31 @@ work_state: started
 condition: normal
 created: 2026-10-01
 updated: 2026-10-11
-next_gate: fresh independent VAL-010 review of frozen REM-005 candidate, full TELEM-04 unit and complete aggregate; require VERIFIED before completion proposal
-execution_phase: validation
-validation_state: pending
+next_gate: maintainer acceptance of independently VERIFIED TELEM-04 core telemetry closeout; optional TELEM-05 is separately governed and does not gate core telemetry
+execution_phase: closeout
+validation_state: verified
 implementation_authority: granted
 ---
 
-Current gate: approved [REM-005](remediation/REM-005-execution-correlation.md)
-is implemented and [frozen for independent review](execution/REM-005-candidate/report.md).
-Fresh-context VAL-010 must review the five repairs, full TELEM-04 unit and
-complete aggregate. Builder final checks/evidence storage remain in progress;
-the candidate is unverified and unaccepted. Task remains started/local.
+Current gate: fresh independent [VAL-010](validation/VAL-010/report.md)
+returns **VERIFIED** for candidate5c3a0e6, all five approved REM-005 repairs, full
+TELEM-04 unit and complete telemetry aggregate. The
+[TELEM-04 completion proposal](closeout-TELEM-04.md) is ready for maintainer acceptance.
+Task remains started/local for that decision; execution_phase closeout and
+validation_state verified refer to this completed unit review.
 
-Chuck Russell approved the exact specification on2026-10-11, response
-"i approve rem-005 spec". The [approval record](remediation/REM-005-approval-record.md)
-preserves44 proposal pins and15 product targets; current authority pins46 controls.
-Independent [CDR-020](validation/CDR-020/report.md) returned READY and the
-[true five-finding baseline](execution/REM-005-baseline/report.md) preceded release
-of a separate remediator. All15 paths remain within CD-004's original29, with no
-new SDK/provider/interface/config/queue/effect/waiver scope. Explicit approval
-resumes this active unit while queued MCP retains first pending priority.
+Core Friday Chat telemetry implementation/review is complete across TELEM-01–04;
+01–03 are already accepted and04 awaits acceptance. Optional TELEM-05 Langfuse
+compatibility does not gate core telemetry under the approved tactical plan.
+TELEM-04's explicit non-goals remain outside its completion claim.
 
-Original [VAL-009](validation/VAL-009/report.md) CHANGES_REQUESTED remains immutable
-history for1547fae. It is superseded only for decision purposes by review of this
-new candidate; no VERIFIED finding is inferred. CD-004 and separately WVR-006
-remain approved at their original hashes. WVR-006 covers only its unchanged327
-root-lint identities and expires at TELEM-04 acceptance or input drift.
+Chuck Russell approved REM-005 on2026-10-11. Independent CDR-020 readiness and the
+true five-finding baseline preceded separate remediation. Exactly15 repair paths
+and all46 controlling pins are frozen. [Builder closeout](execution/REM-005-final/report.md)
+and independent immutable originals remain separate. Root lint retains the exact
+approved327 WVR-006 identities; the waiver expires at TELEM-04 acceptance/input drift.
+Original VAL-009 is retained unchanged history. Unrelated dirty/queued work stays
+preserved, and MCP retains first pending priority. No delivery action is inferred.
 
 TELEM-03 is **accepted** at `dd543fd` under fresh independent VAL-008 VERIFIED
 with no findings. Chuck Russell's "lets continue with telem-04", after the result

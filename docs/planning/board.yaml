@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: fresh independent VAL-010 review of frozen REM-005 candidate, full TELEM-04 unit and complete aggregate; require VERIFIED before completion proposal
+  next_gate: maintainer acceptance of independently VERIFIED TELEM-04 core telemetry closeout; optional TELEM-05 is separately governed and does not gate core telemetry
   delivery_state: local
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -446,6 +446,9 @@ tasks:
   - docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
   - docs/planning/active/friday-telemetry-rewire/execution/REM-005-baseline/report.md
   - docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
   approved_by: repository maintainer
   approved_at: '2026-10-04'
 events:
@@ -1257,3 +1260,10 @@ events:
   action: frozen approved REM-005 candidate for fresh full independent review
   note: Exact15-path unverified candidate; builder final evidence pending. Require fresh VAL-010 REM/full-unit/aggregate review before proposing completion. Preserve earlier findings, queued work and local delivery.
   evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex controller
+  actor_role: agent
+  action: TELEM-04 completion proposed
+  note: Fresh VAL-010 VERIFIED exact5c3a0e6 REM/full-unit/aggregate. Allfive findings resolved,19 gates and supplemental contracts reviewed. Core telemetry completion proposed; maintainer acceptance pending; optional Langfuse does not gate core. Preserve queued priority and local delivery.
+  evidence: docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md

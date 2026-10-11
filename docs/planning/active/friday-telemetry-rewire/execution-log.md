@@ -974,3 +974,31 @@ VAL-010 for REM delta, full TELEM-04 unit and complete aggregate. Do not borrow
 builder conclusions. Preserve original VAL-009, controls, queued work and dirty
 payload. Started/local; execution_phase validation; validation_state pending.
 Completion requires independent VERIFIED; acceptance remains maintainer-only.
+
+
+## 2026-10-11 — Stable REM-005 candidate and VAL-010 dispatched
+
+Candidate5c3a0e6 freezes exactly15 final product files. Fresh-context read-only
+VAL-010 receives all46 pinned controls, original five findings, exact REM/unit/
+aggregate diffs and19 mandatory commands plus supplemental behavioral contracts.
+It receives no builder conclusions. Separate builder closeout stores300 immutable
+originals; final132/1247/3128/3110 gates pass with only the existing optional SciPy
+skip and exact327 WVR-006 root-lint identities. Reconstructed/lost early evidence
+limitations remain explicit; final receipts are original. Source is unchanged.
+Started/local; execution_phase validation; validation_state in_review. Require
+independent VERIFIED before any completion proposal; acceptance is separate.
+
+
+## 2026-10-11 — VAL-010 VERIFIED; TELEM-04 completion proposed
+
+Fresh-context read-only VAL-010 independently verifies candidate5c3a0e6 for exact
+REM-005, full TELEM-04 unit and complete2155a0f aggregate. Allfive original findings
+are resolved;19 required gates, full AC04 contracts and supplemental SDK/closure/
+privacy/bounds/API/default/generic/accepted-input checks have independent evidence.
+Original review/receipts and failed attempts are stored without edits. Source and
+all46 controls remain frozen. Independent132/1247/3128/3110 pass, unchanged optional
+SciPy skip, source Ruff/Mypy pass and exact327 WVR-006 raw root-lint identities.
+TELEM-04 completion is proposed for maintainer acceptance; core TELEM-01–04 review
+is complete, optional TELEM-05 does not gate core telemetry. Started/local;
+execution_phase closeout; validation_state verified. No acceptance or delivery
+is inferred. Preserve queued MCP priority and all unrelated board/payload bytes.

@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | fresh independent VAL-010 review of frozen REM-005 candidate, full TELEM-04 unit and complete aggregate; require VERIFIED before completion proposal |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | granted | local | maintainer acceptance of independently VERIFIED TELEM-04 core telemetry closeout; optional TELEM-05 is separately governed and does not gate core telemetry |
 
 ## Completed
 
