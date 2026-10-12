@@ -119,3 +119,12 @@ VAL-UP02A-001 and002 are recorded exactly once in REM-MCP-UP-001. Preserve
 fallback/metadata conformance gaps prevent VERIFIED. Separate remediator follows
 existing approved criteria and exact paths. No new authority, waiver or delivery
 is inferred. Commit a corrected candidate and conduct fresh delta/full review.
+
+
+## 2026-10-12 — remediation candidate dispatched for fresh review
+
+execution_phase: validation; validation_state: in_review. Stable builder candidate
+9283146f10defcb8095270cd7a1b740aa2830112 corrects exactly VAL-UP02A-001/002 within original scope.
+Original failed review is retained; fresh delta and full work-unit review required.
+Current process-only transitions are separately recorded in current-process-state.json
+without revising the frozen index after dispatch. No acceptance/delivery inferred.

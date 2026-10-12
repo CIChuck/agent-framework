@@ -1,0 +1,30 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-02A",
+  "directive": "CD-MCP-UP-001",
+  "remediation": "REM-MCP-UP-001",
+  "review_mode": "fresh-context read-only finding delta followed by full original work-unit review",
+  "product_baseline": "46005353046553477417a730f05ff21ead64a00d",
+  "construction_base": "9e11fb7aec73745cb38dc1702e54481935945ecb",
+  "product_candidate": "9283146f10defcb8095270cd7a1b740aa2830112",
+  "candidate_ref": "HEAD of this committed validation request",
+  "full_diff": "9e11fb7..HEAD",
+  "remediation_diff": "4f3574c..HEAD",
+  "prior_report": "validation/VAL-UP02A-01/report.md",
+  "findings": [
+    "VAL-UP02A-001",
+    "VAL-UP02A-002"
+  ],
+  "authority_manifest": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json",
+    "sha256": "c202d2d8a3fe83e29187a2273faee7b743471bc0d528f1de8b06ca1b3b0775b2"
+  },
+  "required_checks": "All tactical UP-02A commands and original independent adversarial probes plus new context-boundary regressions",
+  "permitted_effects": "Unchanged tactical guarded isolated synthetic stdio and existing fixture-only literal 127.0.0.1 profile. No dependency sync, credentials/providers/live peer/exporter/user state/source edits/board mutation/acceptance/delivery.",
+  "required_outcome": [
+    "VERIFIED",
+    "CHANGES_REQUESTED",
+    "BLOCKED"
+  ],
+  "process_closeout": "Frozen controlling index must not be revised after dispatch. Subsequent evidence/state metadata is separately declared in the referenced process-only state record, board and execution log; governing deliverable or authority changes still invalidate review."
+}

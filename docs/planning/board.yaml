@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: correct VAL-UP02A-001/002 under bounded REM-MCP-UP-001, then fresh independent review; later units remain unapproved
+  next_gate: fresh independent delta and full CD-MCP-UP-001 work-unit review of corrected candidate; later HTTP/runtime/server remain unapproved
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1402,3 +1402,10 @@ events:
   action: recorded independent changes requested
   note: Two conformance findings converted to bounded existing-scope remediation; started/local retained
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:45:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded corrected candidate
+  note: Bounded findings fixed by separate remediator; fresh review required; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/remediation-01-builder/report.md

@@ -9,10 +9,10 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: bounded REM-MCP-UP-001 correction, then fresh independent review
+next_gate: fresh independent delta and full work-unit validation of corrected client-core
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: remediation
-validation_state: changes_requested
+execution_phase: validation
+validation_state: in_review
 ---
 
 ## Current checkpoint
@@ -156,3 +156,18 @@ for modern-error fallback and protocol metadata/schema validation. All automated
 gates pass, but do not close these requirements. [Bounded remediation](remediation/REM-MCP-UP-001.md)
 implements the already-approved behavior in the original paths through a separate
 remediator. The corrected candidate requires fresh independent validation.
+
+
+## Corrected candidate review checkpoint — 2026-10-12
+
+[REM-MCP-UP-001 builder evidence](execution/remediation-01-builder/report.md)
+records the correction of the two numbered findings. The original CHANGES_REQUESTED
+report remains historical. A fresh-context read-only delta and full work-unit
+review is required; no builder verification/acceptance is inferred.
+
+This hashed index records the frozen review-dispatch checkpoint above. Later
+process-only review/closeout transitions are declared in
+[current process state](execution/current-process-state.json) and the execution
+log; they do not alter this frozen control, approved product scope or reviewed
+candidate. No source, directive, contract or other controlling input may change
+without a newly frozen candidate and fresh review.

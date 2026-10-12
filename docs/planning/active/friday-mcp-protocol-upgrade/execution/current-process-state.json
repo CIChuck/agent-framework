@@ -1,0 +1,10 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-02A",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "next_gate": "fresh independent delta and full work-unit review",
+  "work_state": "started",
+  "delivery_state": "local",
+  "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority."
+}
