@@ -15,6 +15,7 @@ from friday_mcp.client.protocol import (
     LEGACY_VERSION,
     META_PREFIX,
     MODERN_VERSION,
+    MODERN_WIRE_ERRORS,
     CatalogPage,
     Discovery,
     FailureCode,
@@ -219,7 +220,7 @@ class MCPClientBase(ABC):
                 )
                 response = await self._request("server/discover", {}, timeout=timeout)
             except MCPError as exc:
-                if self.protocol_profile != "auto" or exc.code == -32022:
+                if self.protocol_profile != "auto" or exc.code in MODERN_WIRE_ERRORS:
                     raise
             except TimeoutError:
                 if self.protocol_profile != "auto":
@@ -395,7 +396,9 @@ class MCPClientBase(ABC):
                 break
 
     async def _handle_message(self, message: dict[str, Any]) -> None:
-        bounded = validate_message(message, self.limits)
+        bounded = validate_message(
+            message, self.limits, modern=self._selected_version == MODERN_VERSION
+        )
         if "method" in bounded:
             await self._handle_server_message(bounded)
             return

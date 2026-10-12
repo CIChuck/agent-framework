@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -26,6 +27,13 @@ type FailureCode = Literal[
 LEGACY_VERSION = "2024-11-05"
 MODERN_VERSION = "2026-07-28"
 META_PREFIX = "io.modelcontextprotocol/"
+# Only defined peer wire codes identify the modern era; local adapter codes do not.
+MODERN_WIRE_ERRORS = frozenset({-32020, -32021, -32022})
+_META_KEY = re.compile(
+    r"(?:[A-Za-z](?:[A-Za-z0-9-]*[A-Za-z0-9])?"
+    r"(?:\.[A-Za-z](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*/)?"
+    r"(?:[A-Za-z0-9](?:[A-Za-z0-9_.-]*[A-Za-z0-9])?)?"
+)
 _MESSAGES: dict[FailureCode, str] = {
     "invalid_result": "Invalid MCP tool result",
     "invalid_protocol": "Invalid MCP protocol message",
@@ -197,13 +205,141 @@ class ResultSnapshot(dict[str, JSONValue]):
         self.wire_bytes = wire_bytes
 
 
-def validate_message(value: object, limits: ProtocolLimits) -> dict[str, JSONValue]:
+def _strings(value: dict[str, JSONValue], *keys: str) -> None:
+    for key in keys:
+        if key in value and not isinstance(value[key], str):
+            raise ProtocolFailure()
+
+
+def _icons(value: dict[str, JSONValue]) -> None:
+    if "icons" not in value:
+        return
+    icons = value["icons"]
+    if not isinstance(icons, list):
+        raise ProtocolFailure()
+    for icon in icons:
+        if not isinstance(icon, dict) or not isinstance(icon.get("src"), str):
+            raise ProtocolFailure()
+        _strings(icon, "mimeType")
+        if "sizes" in icon and (
+            not isinstance(icon["sizes"], list)
+            or any(not isinstance(size, str) for size in icon["sizes"])
+        ):
+            raise ProtocolFailure()
+        if "theme" in icon and icon["theme"] not in ("light", "dark"):
+            raise ProtocolFailure()
+
+
+def _implementation(value: JSONValue) -> None:
+    if (
+        not isinstance(value, dict)
+        or not isinstance(value.get("name"), str)
+        or not isinstance(value.get("version"), str)
+    ):
+        raise ProtocolFailure()
+    _strings(value, "title", "description", "websiteUrl")
+    _icons(value)
+
+
+def _metadata(
+    value: JSONValue, context: Literal["generic", "result", "notification"] = "generic"
+) -> None:
+    """Check this declared MetaObject only, never JSON values inside it."""
+    if not isinstance(value, dict) or any(
+        _META_KEY.fullmatch(k) is None for k in value
+    ):
+        raise ProtocolFailure()
+    if context == "result" and META_PREFIX + "serverInfo" in value:
+        _implementation(value[META_PREFIX + "serverInfo"])
+    if context == "notification" and META_PREFIX + "subscriptionId" in value:
+        identifier = value[META_PREFIX + "subscriptionId"]
+        if isinstance(identifier, bool) or not isinstance(
+            identifier, (str, int, float)
+        ):
+            raise ProtocolFailure()
+
+
+def _server_capabilities(value: JSONValue) -> None:
+    if not isinstance(value, dict) or any(
+        not isinstance(v, dict) for v in value.values()
+    ):
+        raise ProtocolFailure()
+    for key, fields in (
+        ("tools", ("listChanged",)),
+        ("prompts", ("listChanged",)),
+        ("resources", ("listChanged", "subscribe")),
+    ):
+        capability = value.get(key)
+        if isinstance(capability, dict):
+            for name in fields:
+                if name in capability and type(capability[name]) is not bool:
+                    raise ProtocolFailure()
+    for key in ("experimental", "extensions"):
+        settings = value.get(key)
+        if isinstance(settings, dict):
+            if any(not isinstance(v, dict) for v in settings.values()):
+                raise ProtocolFailure()
+            if key == "extensions":
+                _metadata(settings)
+                if any("/" not in name for name in settings):
+                    raise ProtocolFailure()
+
+
+def _tool_optional_fields(tool: dict[str, JSONValue]) -> None:
+    _strings(tool, "title")
+    _icons(tool)
+    if "_meta" in tool:
+        _metadata(tool["_meta"])
+    if "annotations" in tool:
+        annotations = tool["annotations"]
+        if not isinstance(annotations, dict):
+            raise ProtocolFailure()
+        _strings(annotations, "title")
+        for key in (
+            "readOnlyHint",
+            "destructiveHint",
+            "idempotentHint",
+            "openWorldHint",
+        ):
+            if key in annotations and type(annotations[key]) is not bool:
+                raise ProtocolFailure()
+
+
+def _text_optional_fields(block: dict[str, JSONValue]) -> None:
+    if "_meta" in block:
+        _metadata(block["_meta"])
+    if "annotations" not in block:
+        return
+    annotations = block["annotations"]
+    if not isinstance(annotations, dict):
+        raise ProtocolFailure()
+    _strings(annotations, "lastModified")
+    if "audience" in annotations and (
+        not isinstance(annotations["audience"], list)
+        or any(role not in ("user", "assistant") for role in annotations["audience"])
+    ):
+        raise ProtocolFailure()
+    if "priority" in annotations:
+        priority = annotations["priority"]
+        if (
+            isinstance(priority, bool)
+            or not isinstance(priority, (int, float))
+            or not 0 <= priority <= 1
+        ):
+            raise ProtocolFailure()
+
+
+def validate_message(
+    value: object, limits: ProtocolLimits, *, modern: bool = False
+) -> dict[str, JSONValue]:
     bounded = json_value(value, limits, byte_limit=limits.frame_bytes)
     encode_json(bounded, limits, byte_limit=limits.frame_bytes)
     if not isinstance(bounded, dict) or bounded.get("jsonrpc") != "2.0":
         raise ProtocolFailure()
     if "_meta" in bounded and not isinstance(bounded["_meta"], dict):
         raise ProtocolFailure()
+    if modern and "_meta" in bounded:
+        _metadata(bounded["_meta"])
     if "id" in bounded and (
         isinstance(bounded["id"], bool) or not isinstance(bounded["id"], (str, int))
     ):
@@ -221,11 +357,16 @@ def validate_message(value: object, limits: ProtocolLimits) -> dict[str, JSONVal
             "_meta" in params and not isinstance(params["_meta"], dict)
         ):
             raise ProtocolFailure()
+        if modern and "_meta" in params:
+            _metadata(params["_meta"], "generic" if "id" in bounded else "notification")
     else:
         if "id" not in bounded or (("result" in bounded) == ("error" in bounded)):
             raise ProtocolFailure()
         if "result" in bounded and not isinstance(bounded["result"], dict):
             raise ProtocolFailure()
+        result = bounded.get("result")
+        if modern and isinstance(result, dict) and "_meta" in result:
+            _metadata(result["_meta"], "result")
         if "error" in bounded:
             error = bounded["error"]
             if (
@@ -257,6 +398,8 @@ def response_from_message(
 
 
 def complete_result(result: dict[str, JSONValue], modern: bool) -> None:
+    if modern and "_meta" in result:
+        _metadata(result["_meta"], "result")
     kind = result.get("resultType", None if modern else "complete")
     if kind == "input_required":
         state = result.get("requestState")
@@ -309,6 +452,7 @@ class Discovery:
 
     @classmethod
     def parse(cls, result: dict[str, JSONValue], limits: ProtocolLimits) -> Discovery:
+        result = FrozenJSON.from_value(result, limits).object()
         complete_result(result, True)
         versions = result.get("supportedVersions")
         if (
@@ -322,30 +466,19 @@ class Discovery:
         if MODERN_VERSION not in names:
             raise ProtocolFailure("unsupported_version")
         capabilities = result.get("capabilities")
-        if not isinstance(capabilities, dict) or any(
-            not isinstance(v, dict) for v in capabilities.values()
-        ):
-            raise ProtocolFailure()
+        _server_capabilities(capabilities)
         meta = result.get("_meta", {})
         if not isinstance(meta, dict):
             raise ProtocolFailure()
         info = meta.get(META_PREFIX + "serverInfo", {})
-        if not isinstance(info, dict) or (
-            info
-            and (
-                not isinstance(info.get("name"), str)
-                or not isinstance(info.get("version"), str)
-            )
-        ):
-            raise ProtocolFailure()
         instructions = result.get("instructions")
-        if instructions is not None and not isinstance(instructions, str):
+        if "instructions" in result and not isinstance(instructions, str):
             raise ProtocolFailure()
         return cls(
             names,
             FrozenJSON.from_value(capabilities, limits),
             FrozenJSON.from_value(info, limits),
-            instructions,
+            instructions if isinstance(instructions, str) else None,
             CacheHint.parse(result, True),
         )
 
@@ -507,6 +640,8 @@ class ToolDefinition:
             raise ProtocolFailure()
         if "description" in tool and not isinstance(tool["description"], str):
             raise ProtocolFailure()
+        if modern:
+            _tool_optional_fields(tool)
         if (
             modern
             and "$schema" in schema
@@ -535,6 +670,7 @@ class CatalogPage:
     def parse(
         cls, result: dict[str, JSONValue], modern: bool, limits: ProtocolLimits
     ) -> CatalogPage:
+        result = FrozenJSON.from_value(result, limits).object()
         complete_result(result, modern)
         tools = result.get("tools")
         cursor = result.get("nextCursor")
@@ -572,6 +708,8 @@ class ToolResult:
                 texts.append(block)
             elif isinstance(block, dict) and isinstance(block.get("type"), str):
                 if block["type"] == "text":
+                    if modern:
+                        _text_optional_fields(block)
                     text = block.get("text")
                     if not isinstance(text, str):
                         raise ProtocolFailure("invalid_result")

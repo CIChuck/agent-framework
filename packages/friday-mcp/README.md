@@ -88,7 +88,7 @@ Self-reported server identity and instructions are retained as bounded untrusted
 metadata; they do not authorize actions or enter model context automatically.
 `auto` probes modern discovery once, reserving half the remaining connection
 deadline for legacy fallback on a non-modern error or timeout. A recognized
-modern version rejection remains an error. Calls are never replayed after an
+modern wire error (`-32020`, `-32021` or `-32022`) remains an error. Calls are never replayed after an
 ambiguous failure. Modern stdio rejects server requests without sending a
 forbidden client response; legacy unknown requests receive MethodNotFound.
 
@@ -115,6 +115,17 @@ their declared output schemas. Returned catalogs/capabilities are fresh JSON
 snapshots; internal metadata/results are immutable and omit payloads from repr.
 Runtime admission still enforces its existing 25-tools-per-server/50-total and
 8 KiB input-schema restrictions.
+
+Modern parsing validates metadata objects and key grammar at the declared
+result/notification, Tool and supported TextContent locations. It checks typed
+server identity (including optional titles/descriptions/website/icons), known
+capability flags and extension settings, Tool annotations/icons, and TextContent
+audience/priority/lastModified annotations. Unknown metadata values remain
+bounded untrusted JSON; reserved fields are typed only in the schema context
+that declares them. Optional URLs/icons are shape-checked without fetching.
+Application JSON in arguments, structuredContent and schema annotations,
+defaults or examples is not recursively interpreted as protocol metadata.
+Legacy text extraction and optional-field compatibility remain unchanged.
 
 Modern results require `resultType: complete`; legacy missing tags mean complete.
 `input_required` yields fixed `input_required_unsupported`, without a continuation

@@ -14,6 +14,7 @@ from friday_mcp.client.protocol import (
     LEGACY_VERSION,
     META_PREFIX,
     MODERN_VERSION,
+    CatalogPage,
     Discovery,
     FrozenJSON,
     ProtocolFailure,
@@ -39,7 +40,11 @@ def tool(name="echo", **kwargs):
 
 def discover(**kwargs):
     return cached(
-        supportedVersions=[MODERN_VERSION], capabilities={"tools": {}}, **kwargs
+        **{
+            "supportedVersions": [MODERN_VERSION],
+            "capabilities": {"tools": {}},
+            **kwargs,
+        }
     )
 
 
@@ -181,6 +186,14 @@ async def test_recognized_modern_version_error_and_no_intersection_do_not_fallba
     caplog,
 ):
     for response in [
+        {"error": {"code": -32020, "message": "SENTINEL", "data": "SENTINEL"}},
+        {
+            "error": {
+                "code": -32021,
+                "message": "SENTINEL",
+                "data": {"requiredCapabilities": {"elicitation": {}}},
+            }
+        },
         {"error": {"code": -32022, "message": "SENTINEL", "data": "SENTINEL"}},
         {"result": cached(supportedVersions=["OTHER"], capabilities={})},
     ]:
@@ -732,4 +745,314 @@ async def test_expired_preparation_deadline_issues_no_request():
         await client.call_tool("echo", {})
     assert len(client.transport.sent) == before
     assert not client._pending_requests and not client._exchange_tasks
+    await client.disconnect()
+
+
+@pytest.mark.parametrize(
+    "meta",
+    [
+        [],
+        None,
+        {"bad prefix/key": "SENTINEL"},
+        {"a-/key": 1},
+        {"1a/key": 1},
+        {"a..b/key": 1},
+        {"a/key/extra": 1},
+        {"_name": 1},
+        {"name_": 1},
+        {"é": 1},
+    ],
+)
+@pytest.mark.parametrize(
+    "location", ["discovery", "result", "catalog", "tool", "text", "notification"]
+)
+def test_modern_declared_metadata_locations_reject_malformed_shapes(meta, location):
+    limits = ProtocolLimits()
+    with pytest.raises(ProtocolFailure) as caught:
+        if location == "discovery":
+            Discovery.parse(discover(_meta=meta), limits)
+        elif location == "result":
+            ToolResult.parse(complete(_meta=meta, content=[]), True, limits)
+        elif location == "catalog":
+            CatalogPage.parse(cached(_meta=meta, tools=[]), True, limits)
+        elif location == "tool":
+            CatalogPage.parse(cached(tools=[tool(_meta=meta)]), True, limits)
+        elif location == "text":
+            ToolResult.parse(
+                complete(content=[{"type": "text", "text": "ok", "_meta": meta}]),
+                True,
+                limits,
+            )
+        else:
+            validate_message(
+                {
+                    "jsonrpc": "2.0",
+                    "method": "notifications/tools/list_changed",
+                    "params": {"_meta": meta},
+                },
+                limits,
+                modern=True,
+            )
+    assert "SENTINEL" not in repr(caught.value)
+
+
+@pytest.mark.parametrize(
+    "capabilities",
+    [
+        {"tools": {"listChanged": "SENTINEL"}},
+        {"prompts": {"listChanged": 1}},
+        {"resources": {"subscribe": None}},
+        {"resources": {"listChanged": []}},
+        {"experimental": {"feature": []}},
+        {"extensions": {"com.example/feature": []}},
+        {"extensions": {"feature": {}}},
+        {"extensions": {"bad prefix/key": {}}},
+    ],
+)
+def test_modern_capability_known_fields_are_typed(capabilities):
+    with pytest.raises(ProtocolFailure):
+        Discovery.parse(discover(capabilities=capabilities), ProtocolLimits())
+
+
+@pytest.mark.parametrize(
+    "info",
+    [
+        {},
+        {"name": "fixture"},
+        {"name": "fixture", "version": 1},
+        {"name": "fixture", "version": "1", "title": []},
+        {"name": "fixture", "version": "1", "description": None},
+        {"name": "fixture", "version": "1", "websiteUrl": {}},
+        {"name": "fixture", "version": "1", "icons": [{}]},
+    ],
+)
+def test_modern_result_identity_is_typed_for_every_result(info):
+    meta = {META_PREFIX + "serverInfo": info}
+    for result in (
+        discover(_meta=meta),
+        complete(_meta=meta, content=[]),
+        complete(resultType="input_required", _meta=meta, requestState="opaque"),
+    ):
+        with pytest.raises(ProtocolFailure) as caught:
+            ToolResult.parse(result, True, ProtocolLimits())
+        assert caught.value.failure_code == "invalid_protocol"
+
+
+@pytest.mark.parametrize(
+    "fields",
+    [
+        {"title": None},
+        {"annotations": []},
+        {"annotations": {"title": 1}},
+        *(
+            {"annotations": {key: "SENTINEL"}}
+            for key in (
+                "readOnlyHint",
+                "destructiveHint",
+                "idempotentHint",
+                "openWorldHint",
+            )
+        ),
+        {"icons": {}},
+        {"icons": [{}]},
+        {"icons": [{"src": 1}]},
+        {"icons": [{"src": "https://never-fetched.invalid/icon", "mimeType": []}]},
+        {"icons": [{"src": "https://never-fetched.invalid/icon", "sizes": [1]}]},
+        {"icons": [{"src": "https://never-fetched.invalid/icon", "theme": "blue"}]},
+    ],
+)
+def test_modern_tool_optional_fields_are_typed(fields):
+    with pytest.raises(ProtocolFailure):
+        CatalogPage.parse(cached(tools=[tool(**fields)]), True, ProtocolLimits())
+
+
+@pytest.mark.parametrize(
+    "annotations",
+    [
+        [],
+        None,
+        {"priority": "SENTINEL"},
+        {"priority": True},
+        {"priority": -0.1},
+        {"priority": 1.1},
+        {"audience": "user"},
+        {"audience": ["root"]},
+        {"audience": [{}]},
+        {"lastModified": 1},
+    ],
+)
+def test_supported_modern_text_annotations_are_typed(annotations):
+    with pytest.raises(ProtocolFailure):
+        ToolResult.parse(
+            complete(
+                content=[{"type": "text", "text": "ok", "annotations": annotations}]
+            ),
+            True,
+            ProtocolLimits(),
+        )
+
+
+@pytest.mark.parametrize("identifier", [None, True, [], {}])
+def test_modern_notification_reserved_subscription_identifier_is_typed(identifier):
+    with pytest.raises(ProtocolFailure):
+        validate_message(
+            {
+                "jsonrpc": "2.0",
+                "method": "notifications/tools/list_changed",
+                "params": {"_meta": {META_PREFIX + "subscriptionId": identifier}},
+            },
+            ProtocolLimits(),
+            modern=True,
+        )
+
+
+@pytest.mark.asyncio
+async def test_valid_modern_optional_shapes_and_application_json_are_contextual(caplog):
+    opaque = {"_meta": ["SENTINEL", {"bad prefix/key": None}]}
+    meta = {
+        "": opaque,
+        "a/": None,
+        "Com.Example-1/key_1.x": [opaque],
+        META_PREFIX + "unknown": opaque,
+    }
+    icon = {
+        "src": "https://never-fetched.invalid/icon",
+        "mimeType": "image/png",
+        "sizes": ["48x48", "any"],
+        "theme": "dark",
+    }
+    info = {
+        "name": "SENTINEL",
+        "version": "1",
+        "title": "Fixture",
+        "description": "Fixture",
+        "websiteUrl": "https://never-fetched.invalid/",
+        "icons": [icon],
+    }
+    capabilities = {
+        "tools": {"listChanged": True},
+        "resources": {"subscribe": False, "listChanged": True},
+        "prompts": {"listChanged": False},
+        "extensions": {"com.example/feature": opaque},
+        "experimental": {"feature": opaque},
+        "unknown": opaque,
+    }
+    definition = tool(
+        title="Fixture",
+        icons=[icon],
+        annotations={
+            "title": "Fixture",
+            "readOnlyHint": True,
+            "destructiveHint": False,
+            "idempotentHint": True,
+            "openWorldHint": False,
+        },
+        _meta={**meta, META_PREFIX + "serverInfo": []},
+    )
+    definition["inputSchema"].update(
+        default=opaque,
+        examples=[opaque],
+        **{
+            "x-annotation": opaque,
+            "properties": {"_meta": {"type": "array", "default": []}},
+        },
+    )
+    client = Client()
+
+    def handler(message):
+        if message["method"] == "server/discover":
+            return {
+                "result": discover(
+                    capabilities=capabilities,
+                    _meta={**meta, META_PREFIX + "serverInfo": info},
+                )
+            }
+        if message["method"] == "tools/list":
+            return {"result": cached(tools=[definition], _meta=meta)}
+        if message["method"] == "tools/call":
+            return {
+                "result": complete(
+                    _meta=meta,
+                    content=[
+                        {
+                            "type": "text",
+                            "text": "ok",
+                            "_meta": {**meta, META_PREFIX + "serverInfo": []},
+                            "annotations": {
+                                "priority": 0.5,
+                                "audience": ["user", "assistant"],
+                                "lastModified": "2026-10-12T00:00:00Z",
+                            },
+                        }
+                    ],
+                    structuredContent=opaque,
+                )
+            }
+        return client.transport.default(message)
+
+    client.transport.handler = handler
+    with caplog.at_level(logging.DEBUG):
+        await client.connect()
+        assert await client.list_tools() == [definition]
+        result = json.loads(await client.call_tool("echo", opaque))
+        assert result["structuredContent"] == opaque
+        assert client.transport.sent[-1]["params"]["arguments"] == opaque
+        assert client.server_capabilities == capabilities
+        await client._handle_message(
+            {
+                "jsonrpc": "2.0",
+                "method": "notifications/unknown",
+                "params": {
+                    "_meta": {**meta, META_PREFIX + "subscriptionId": "subscription"},
+                    "data": opaque,
+                },
+            }
+        )
+    assert "SENTINEL" not in caplog.text
+    assert "SENTINEL" not in repr(client._discovery)
+    assert "SENTINEL" not in repr(client._catalog)
+    await client.disconnect()
+
+
+@pytest.mark.asyncio
+async def test_malformed_later_page_metadata_discards_complete_catalog(caplog):
+    client = Client()
+    await client.connect()
+    assert await client.list_tools() == [tool()]
+    client.transport.handler = (
+        lambda message: {"result": cached(tools=[tool("first")], nextCursor="page2")}
+        if "cursor" not in message["params"]
+        else {
+            "result": cached(
+                tools=[tool("second", _meta={"bad prefix/key": "SENTINEL"})]
+            )
+        }
+    )
+    with caplog.at_level(logging.DEBUG), pytest.raises(ProtocolFailure) as caught:
+        await client.list_tools()
+    assert not client._catalog
+    assert "SENTINEL" not in repr(caught.value)
+    assert "SENTINEL" not in caplog.text
+    await client.disconnect()
+
+
+@pytest.mark.asyncio
+async def test_legacy_optional_metadata_and_text_remain_compatible():
+    client = Client("legacy")
+    await client.connect()
+    client.transport.handler = lambda message: {
+        "result": {
+            "content": [
+                "first",
+                {
+                    "type": "text",
+                    "text": "second",
+                    "_meta": [],
+                    "annotations": {"priority": "old-peer"},
+                },
+            ],
+            "_meta": {"bad prefix/key": None},
+        }
+    }
+    assert await client.call_tool("echo", {"_meta": []}) == "first\nsecond"
     await client.disconnect()
