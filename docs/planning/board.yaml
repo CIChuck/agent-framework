@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: execute CD-MCP-UP-001; freeze exact-scope candidate and require fresh independent validation
+  next_gate: 'approve CD-MCP-UP-001 A01: necessary IDNA 3.11 to3.20 exception for SDK2.3.0; no client construction until dependency authority is reconciled'
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1366,3 +1366,10 @@ events:
   actor_role: agent
   action: transitioned approved -> started
   note: Start exact approved CD-MCP-UP-001 after telemetry merge, committed approval and preserved product/control hashes; use isolated sparse construction snapshot.
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12'
+  actor: Codex
+  actor_role: agent
+  action: dependency preparation stop; bounded amendment proposed
+  note: Original no-churn resolution cannot satisfy SDK2.3.0 because httpx2>=2.10 requires idna>=3.18 while existing lock pins3.11. Propose only IDNA3.20; restore isolated product bytes. No source build or install.
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md

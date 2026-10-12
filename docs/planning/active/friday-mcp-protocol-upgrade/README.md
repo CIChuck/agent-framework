@@ -9,10 +9,10 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: execute approved CD-MCP-UP-001 in isolated snapshot; freeze candidate and require independent validation
+next_gate: approve bounded CD-MCP-UP-001 A01 IDNA dependency exception before construction
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: implementation
-validation_state: pending
+execution_phase: planning
+validation_state: blocked
 ---
 
 ## Current checkpoint
@@ -104,3 +104,13 @@ Next: commit the approved controls and frozen normative source pins, create
 `feature/friday-mcp-protocol-upgrade`, and record the start. Fresh independent
 product validation follows a committed implementation candidate. Planning checks
 are not product VERIFIED, completion, acceptance or delivery authority.
+
+
+## Dependency preparation stop — 2026-10-12
+
+SDK resolution requires IDNA >=3.18, versus the existing workspace 3.11 pin.
+The isolated no-churn resolver proves this conflict. The [A01 amendment](directives/CD-MCP-UP-001-A01-sdk-dependency.md)
+proposes only IDNA 3.11 to3.20 and preserves all other existing versions.
+Original eight criteria and twelve product paths remain controlling. Private
+product metadata/lock have been restored; no client source edits or SDK installation
+have occurred. Reviewable original diagnostics and full proposed lock are retained.

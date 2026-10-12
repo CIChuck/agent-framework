@@ -1,0 +1,66 @@
+{
+  "status": "requires_amendment",
+  "current_sdk": "mcp==2.3.0",
+  "chain": [
+    "mcp==2.3.0",
+    "httpx2>=2.10.0",
+    "idna>=3.18"
+  ],
+  "existing_version_changes": {
+    "idna": {
+      "before": [
+        "3.11"
+      ],
+      "proposed": [
+        "3.20"
+      ]
+    }
+  },
+  "new_packages": {
+    "cffi": [
+      "2.1.1"
+    ],
+    "cryptography": [
+      "50.0.2"
+    ],
+    "httpcore2": [
+      "2.13.1"
+    ],
+    "httpx2": [
+      "2.13.1"
+    ],
+    "httpx2-jsfetch": [
+      "1.0"
+    ],
+    "mcp": [
+      "2.3.0"
+    ],
+    "mcp-types": [
+      "2.3.0"
+    ],
+    "pycparser": [
+      "3.11"
+    ],
+    "pyjwt": [
+      "2.15.1"
+    ],
+    "python-multipart": [
+      "0.0.32"
+    ],
+    "sse-starlette": [
+      "3.5.0"
+    ],
+    "truststore": [
+      "0.10.4"
+    ]
+  },
+  "existing_other_version_sets_unchanged": true,
+  "candidate_lock_sha256": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+  "candidate_metadata_sha256": "730f687c040a63e2e4347880fb7e17b536d2b0730467b6fb2eec9286ad3b0aa2",
+  "no_churn_resolution_exit": 1,
+  "limitations": [
+    "Proposal only; no candidate installed or run.",
+    "No protocol source/test edits.",
+    "Full resolution-context and original unit/aggregate verification required after approval."
+  ]
+}
