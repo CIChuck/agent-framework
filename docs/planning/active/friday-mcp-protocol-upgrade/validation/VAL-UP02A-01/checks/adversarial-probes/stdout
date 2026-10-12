@@ -1,0 +1,51 @@
+{
+  "-32020": {
+    "connected": true,
+    "selected_version": "2024-11-05",
+    "methods": [
+      "server/discover",
+      "initialize",
+      "notifications/initialized"
+    ]
+  },
+  "-32021": {
+    "connected": true,
+    "selected_version": "2024-11-05",
+    "methods": [
+      "server/discover",
+      "initialize",
+      "notifications/initialized"
+    ]
+  },
+  "-32022": {
+    "connected": false,
+    "failure_type": "MCPError",
+    "methods": [
+      "server/discover"
+    ]
+  },
+  "discovery_invalid_meta_key": {
+    "accepted": true,
+    "type": "Discovery"
+  },
+  "discovery_malformed_capability": {
+    "accepted": true,
+    "type": "Discovery"
+  },
+  "catalog_tool_nonobject_meta": {
+    "accepted": true,
+    "type": "CatalogPage"
+  },
+  "tool_result_nonobject_text_meta": {
+    "accepted": true,
+    "type": "ToolResult"
+  },
+  "tool_result_malformed_annotations": {
+    "accepted": true,
+    "type": "ToolResult"
+  },
+  "result_invalid_meta_key": {
+    "accepted": true,
+    "type": "ToolResult"
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "head": "4f3574c8d3fe6cca25d9835eda811ebda262429c",
+  "status": "",
+  "authority_sha256": "1d9c8dded9ebf1922269b03100aee3520e4bc58f46a4b9dfe92c5359a28622c1",
+  "controls": [
+    {
+      "path": "AGENTS.md",
+      "expected": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "actual": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-00-contract-policy-foundation.md",
+      "expected": "651eb15e072d567d33a044e09e746422ca49458c5f386cb39d2228b710cd3485",
+      "actual": "651eb15e072d567d33a044e09e746422ca49458c5f386cb39d2228b710cd3485"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-05-execution-provenance-transcript.md",
+      "expected": "9d8a14ffa65a71643fe6a6d92b9c21499dfb88bdd5e62693d7c0859bc17e8e8c",
+      "actual": "9d8a14ffa65a71643fe6a6d92b9c21499dfb88bdd5e62693d7c0859bc17e8e8c"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-06-memory-compatibility-ingestion.md",
+      "expected": "332eba2e05c67675f9578e2d2f455ef69ab707462f3d3fd60c41bcefcade47be",
+      "actual": "332eba2e05c67675f9578e2d2f455ef69ab707462f3d3fd60c41bcefcade47be"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "actual": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
+      "expected": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242",
+      "actual": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json",
+      "expected": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075",
+      "actual": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md",
+      "expected": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571",
+      "actual": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md",
+      "expected": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573",
+      "actual": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md",
+      "expected": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405",
+      "actual": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "expected": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964",
+      "actual": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research.md",
+      "expected": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b",
+      "actual": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/baseline.json",
+      "expected": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8",
+      "actual": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md",
+      "expected": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0",
+      "actual": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
+      "expected": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e",
+      "actual": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "expected": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7",
+      "actual": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md",
+      "expected": "f3118e48a9c2e80756b39c410db3ecca7f63c7f141cd704f29aaa574386e5e19",
+      "actual": "f3118e48a9c2e80756b39c410db3ecca7f63c7f141cd704f29aaa574386e5e19"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+      "expected": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0",
+      "actual": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
+      "expected": "397db31da8967a560f84cc2173858581df3b33a470b77396a0159fa2d89ff5c7",
+      "actual": "397db31da8967a560f84cc2173858581df3b33a470b77396a0159fa2d89ff5c7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
+      "expected": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187",
+      "actual": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz",
+      "expected": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8",
+      "actual": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz",
+      "expected": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d",
+      "actual": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json",
+      "expected": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041",
+      "actual": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json",
+      "expected": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7",
+      "actual": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7"
+    }
+  ],
+  "normative": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--index.md.gz",
+      "bytes": 5817,
+      "expected": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f",
+      "actual": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f",
+      "artifact_expected": "ba5b1cdebd99f81b48c400dd263477ecac9be0bb0887bd5dd2d595c76e93ce81",
+      "artifact_actual": "ba5b1cdebd99f81b48c400dd263477ecac9be0bb0887bd5dd2d595c76e93ce81"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--index.md.gz",
+      "bytes": 24001,
+      "expected": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e",
+      "actual": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e",
+      "artifact_expected": "e980304353744183e828a00344e250fc9db51c39688447f02161b49495da2589",
+      "artifact_actual": "e980304353744183e828a00344e250fc9db51c39688447f02161b49495da2589"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--versioning.md.gz",
+      "bytes": 8410,
+      "expected": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402",
+      "actual": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402",
+      "artifact_expected": "b8823526205253bec25b8416df2d555e2bdafe5e4b4f27165992b9768b80ba79",
+      "artifact_actual": "b8823526205253bec25b8416df2d555e2bdafe5e4b4f27165992b9768b80ba79"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--discover.md.gz",
+      "bytes": 3835,
+      "expected": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c",
+      "actual": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c",
+      "artifact_expected": "fa62da1c05778bfbd8068a5cb2c60d2b9d657dee7d0316b2b8cd31bf94109bd6",
+      "artifact_actual": "fa62da1c05778bfbd8068a5cb2c60d2b9d657dee7d0316b2b8cd31bf94109bd6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--stdio.md.gz",
+      "bytes": 7352,
+      "expected": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5",
+      "actual": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5",
+      "artifact_expected": "dc20b20f4fa591c6a21ff3cc63e62167e358697cae61f4f6158b907250f7dfcb",
+      "artifact_actual": "dc20b20f4fa591c6a21ff3cc63e62167e358697cae61f4f6158b907250f7dfcb"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--streamable-http.md.gz",
+      "bytes": 30407,
+      "expected": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
+      "actual": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
+      "artifact_expected": "c6577a8a16e81f65ff48d00f92b470e880050833b2ad1660d3bdbe87b4fd88f6",
+      "artifact_actual": "c6577a8a16e81f65ff48d00f92b470e880050833b2ad1660d3bdbe87b4fd88f6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--tools.md.gz",
+      "bytes": 24314,
+      "expected": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3",
+      "actual": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3",
+      "artifact_expected": "97849c034d2a7eada88f431f68b6435afd5ff69e0671ee1e8a0d859f9940a1a6",
+      "artifact_actual": "97849c034d2a7eada88f431f68b6435afd5ff69e0671ee1e8a0d859f9940a1a6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--patterns--mrtr.md.gz",
+      "bytes": 13364,
+      "expected": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9",
+      "actual": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9",
+      "artifact_expected": "a6e04c2f9de8cbaa2ee8ebbad6e831f4611c00ff0722ebad0062505bb7943fc0",
+      "artifact_actual": "a6e04c2f9de8cbaa2ee8ebbad6e831f4611c00ff0722ebad0062505bb7943fc0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--authorization.md.gz",
+      "bytes": 25173,
+      "expected": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7",
+      "actual": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7",
+      "artifact_expected": "e973ccaa554ba125c4533104d13c8fa37b0d5bfe0720e02f5b7380f4bd1b2dcc",
+      "artifact_actual": "e973ccaa554ba125c4533104d13c8fa37b0d5bfe0720e02f5b7380f4bd1b2dcc"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.gz",
+      "bytes": 98426,
+      "expected": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "actual": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "artifact_expected": "d9283883c8d95d99ef17c293bd4495788e4cf30bc3134847545f0cbcd8459eb5",
+      "artifact_actual": "d9283883c8d95d99ef17c293bd4495788e4cf30bc3134847545f0cbcd8459eb5"
+    }
+  ],
+  "baseline_product_hashes_match": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": true,
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": true,
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": true,
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": true,
+    "packages/friday-mcp/pyproject.toml": true,
+    "packages/friday-mcp/README.md": true,
+    "uv.lock": true,
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": null
+  },
+  "candidate_products": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "ec458baacd628ac798106c6d145d17318f007ea2609843e66848262f52d71948",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "5914eecad7c83c121888002ed77d0378157a41acdef213c056ab73b83e6d79eb",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "68101693092ac77e83cffec358d6085419e89913bad6254ae71c0150f435f3e3",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d",
+    "packages/friday-mcp/pyproject.toml": "730f687c040a63e2e4347880fb7e17b536d2b0730467b6fb2eec9286ad3b0aa2",
+    "packages/friday-mcp/README.md": "8300dd62360b923b7c98cdc286172a4dbc48743f49f7bae5426d6a33f1c9fb86",
+    "uv.lock": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": "4efff88cdbdf19967b3d24fd54fdc561d51c75becc182847f178851b6d9696e1",
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": "9dcbe83dc3a35bfa5385b87d95adec62a198a445ab7cb25f221cc551e666c7fb",
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": "fc88f5d12b1f3a3dad682afd3e4cfb9762c1baa35cffeabfa7fcacf77cd3f418",
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": "50e4c1422545ef85dff9d5e3c53d39566b86cda39e9c0567847fd8b913167f11",
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec"
+  },
+  "exact_product_changes": [
+    "packages/friday-mcp/README.md",
+    "packages/friday-mcp/pyproject.toml",
+    "packages/friday-mcp/src/friday_mcp/client/base.py",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py",
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py",
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py",
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py",
+    "uv.lock"
+  ],
+  "unauthorized_product_paths": [],
+  "existing_version_changes": {
+    "idna": [
+      [
+        "3.11"
+      ],
+      [
+        "3.20"
+      ]
+    ]
+  },
+  "new_versions": {
+    "pycparser": [
+      "3.11"
+    ],
+    "httpcore2": [
+      "2.13.1"
+    ],
+    "cryptography": [
+      "50.0.2"
+    ],
+    "pyjwt": [
+      "2.15.1"
+    ],
+    "python-multipart": [
+      "0.0.32"
+    ],
+    "mcp-types": [
+      "2.3.0"
+    ],
+    "mcp": [
+      "2.3.0"
+    ],
+    "cffi": [
+      "2.1.1"
+    ],
+    "truststore": [
+      "0.10.4"
+    ],
+    "sse-starlette": [
+      "3.5.0"
+    ],
+    "httpx2": [
+      "2.13.1"
+    ],
+    "httpx2-jsfetch": [
+      "1.0"
+    ]
+  },
+  "lock_matches_approved_decompressed_proposal": true,
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8"
+}

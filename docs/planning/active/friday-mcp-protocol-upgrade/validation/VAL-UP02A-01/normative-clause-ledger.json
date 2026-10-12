@@ -1,0 +1,2293 @@
+{
+  "origin": "Independent extraction from ten complete hash-verified frozen sources, not builder ledger. One row per source line containing MUST/REQUIRED/SHALL, including wrapped context. Typed applicable schema structures separately covered. Noncapitalized binding fallback prose is additionally evaluated as VAL-UP02A-001 under approved contract.",
+  "counts": {
+    "PASS": 47,
+    "FAIL": 8,
+    "NOT_APPLICABLE": 166,
+    "PARTIAL": 1
+  },
+  "rows": [
+    {
+      "id": "N-001",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 37,
+      "keyword_occurrences": 1,
+      "source_context": " * Represents the contents of a `_meta` field, which clients and servers use to attach additional metadata to their interactions.\n *\n * Certain key names are reserved by MCP for protocol-level metadata; implementations MUST NOT make assumptions about values at these keys. Additionally, specific schema definitions may reserve particular names for purpose-specific metadata, as declared in those definitions.\n *\n * Valid keys have two segments:\n *",
+      "status": "PASS",
+      "reason": "Unknown metadata not trusted; modern tag/legacy absence handled; cancellation references issued ID; no result caching.",
+      "evidence": "protocol.py:complete_result; base.py:_request/_cancel_request; stdio.py:_issued_requests; checks/focused/checks/package"
+    },
+    {
+      "id": "N-002",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 42,
+      "keyword_occurrences": 1,
+      "source_context": " *\n * **Prefix:**\n * - Optional \u2014 if specified, MUST be a series of _labels_ separated by dots (`.`), followed by a slash (`/`).\n * - Labels MUST start with a letter and end with a letter or digit. Interior characters may be letters, digits, or hyphens (`-`).\n * - Implementations SHOULD use reverse DNS notation (e.g., `com.example/` rather than `example.com/`).\n * - Any prefix where the second label is `modelcontextprotocol` or `mcp` is **reserved** for MCP use. For example: `io.modelcontextprotocol/`, `dev.mcp/`, `org.modelcontextprotocol.api/`, and `com.mcp.tools/` are all reserved. However, `com.example.mcp/` is NOT reserved, as the second label is `example`.",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: applicable incoming protocol metadata/extension naming and shapes are not validated.",
+      "evidence": "protocol.py:Discovery.parse/ToolDefinition.parse/ToolResult.parse; checks/adversarial-probes"
+    },
+    {
+      "id": "N-003",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 43,
+      "keyword_occurrences": 1,
+      "source_context": " * **Prefix:**\n * - Optional \u2014 if specified, MUST be a series of _labels_ separated by dots (`.`), followed by a slash (`/`).\n * - Labels MUST start with a letter and end with a letter or digit. Interior characters may be letters, digits, or hyphens (`-`).\n * - Implementations SHOULD use reverse DNS notation (e.g., `com.example/` rather than `example.com/`).\n * - Any prefix where the second label is `modelcontextprotocol` or `mcp` is **reserved** for MCP use. For example: `io.modelcontextprotocol/`, `dev.mcp/`, `org.modelcontextprotocol.api/`, and `com.mcp.tools/` are all reserved. However, `com.example.mcp/` is NOT reserved, as the second label is `example`.\n *",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: applicable incoming protocol metadata/extension naming and shapes are not validated.",
+      "evidence": "protocol.py:Discovery.parse/ToolDefinition.parse/ToolResult.parse; checks/adversarial-probes"
+    },
+    {
+      "id": "N-004",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 48,
+      "keyword_occurrences": 1,
+      "source_context": " *\n * **Name:**\n * - Unless empty, MUST start and end with an alphanumeric character (`[a-z0-9A-Z]`).\n * - Interior characters may be alphanumeric, hyphens (`-`), underscores (`_`), or dots (`.`).\n *\n * @see [General fields: `_meta`](/specification/2026-07-28/basic/index#meta) for more details.",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: applicable incoming protocol metadata/extension naming and shapes are not validated.",
+      "evidence": "protocol.py:Discovery.parse/ToolDefinition.parse/ToolResult.parse; checks/adversarial-probes"
+    },
+    {
+      "id": "N-005",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 71,
+      "keyword_occurrences": 1,
+      "source_context": "   * The MCP Protocol Version being used for this request. Required.\n   *\n   * For the HTTP transport, this value MUST match the `MCP-Protocol-Version`\n   * header; otherwise the server MUST return a `400 Bad Request`. If the\n   * server does not support the requested version, it MUST return an\n   * {@link UnsupportedProtocolVersionError}.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-006",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 72,
+      "keyword_occurrences": 1,
+      "source_context": "   *\n   * For the HTTP transport, this value MUST match the `MCP-Protocol-Version`\n   * header; otherwise the server MUST return a `400 Bad Request`. If the\n   * server does not support the requested version, it MUST return an\n   * {@link UnsupportedProtocolVersionError}.\n   */",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-007",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 73,
+      "keyword_occurrences": 1,
+      "source_context": "   * For the HTTP transport, this value MUST match the `MCP-Protocol-Version`\n   * header; otherwise the server MUST return a `400 Bad Request`. If the\n   * server does not support the requested version, it MUST return an\n   * {@link UnsupportedProtocolVersionError}.\n   */\n  \"io.modelcontextprotocol/protocolVersion\": string;",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-008",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 96,
+      "keyword_occurrences": 1,
+      "source_context": "   * Capabilities are declared per-request rather than once at initialization;\n   * an empty object means the client supports no optional capabilities.\n   * Servers MUST NOT infer capabilities from prior requests.\n   */\n  \"io.modelcontextprotocol/clientCapabilities\": ClientCapabilities;\n  /**",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-009",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 102,
+      "keyword_occurrences": 1,
+      "source_context": "   * The desired log level for this request. Optional.\n   *\n   * If absent, the server MUST NOT send any {@link LoggingMessageNotification | notifications/message}\n   * notifications for this request. The client opts in to log messages by\n   * explicitly setting a level. Replaces the former `logging/setLevel` RPC.\n   *",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-010",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 123,
+      "keyword_occurrences": 1,
+      "source_context": "  /**\n   * Identifies the subscription stream a notification was delivered on. The\n   * server MUST include this key on every notification delivered via a\n   * {@link SubscriptionsListenRequest | subscriptions/listen} stream, so the\n   * client can correlate the notification with the originating subscription.\n   * The key is absent on notifications not delivered via a subscription",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-011",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 229,
+      "keyword_occurrences": 1,
+      "source_context": "   * how to parse the result object.\n   *\n   * Servers implementing this protocol version MUST include this field.\n   * For backward compatibility, when a client receives a result from a\n   * server implementing an earlier protocol version (which does not include\n   * `resultType`), the client MUST treat the absent field as `\"complete\"`.",
+      "status": "PASS",
+      "reason": "Unknown metadata not trusted; modern tag/legacy absence handled; cancellation references issued ID; no result caching.",
+      "evidence": "protocol.py:complete_result; base.py:_request/_cancel_request; stdio.py:_issued_requests; checks/focused/checks/package"
+    },
+    {
+      "id": "N-012",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 232,
+      "keyword_occurrences": 1,
+      "source_context": "   * For backward compatibility, when a client receives a result from a\n   * server implementing an earlier protocol version (which does not include\n   * `resultType`), the client MUST treat the absent field as `\"complete\"`.\n   */\n  resultType: ResultType;\n  [key: string]: unknown;",
+      "status": "PASS",
+      "reason": "Unknown metadata not trusted; modern tag/legacy absence handled; cancellation references issued ID; no result caching.",
+      "evidence": "protocol.py:complete_result; base.py:_request/_cancel_request; stdio.py:_issued_requests; checks/focused/checks/package"
+    },
+    {
+      "id": "N-013",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 456,
+      "keyword_occurrences": 1,
+      "source_context": " * headers do not match the corresponding values in the request body, or\n * because required headers are missing or malformed. For HTTP, the response\n * status code MUST be `400 Bad Request`.\n *\n * @example Header mismatch\n * {@includeCode ./examples/HeaderMismatchError/header-mismatch.json}",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-014",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 475,
+      "keyword_occurrences": 1,
+      "source_context": " * Returned when the request's protocol version is unknown to the server or\n * unsupported (e.g., a known experimental or draft version the server has\n * chosen not to implement). For HTTP, the response status code MUST be\n * `400 Bad Request`.\n *\n * @example Unsupported protocol version",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-015",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 505,
+      "keyword_occurrences": 1,
+      "source_context": "/**\n * Returned when processing a request requires a capability the client did not\n * declare in `clientCapabilities`. For HTTP, the response status code MUST be\n * `400 Bad Request`.\n *\n * @example Missing elicitation capability",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-016",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 575,
+      "keyword_occurrences": 1,
+      "source_context": " * before the request can be completed.\n *\n * At least one of `inputRequests` or `requestState` MUST be present.\n * @example InputRequiredResult with elicitation and sampling input requests and request state\n * {@includeCode ./examples/InputRequiredResult/input-required-result-with-elicitation-and-sampling-and-request-state.json}\n *",
+      "status": "PASS",
+      "reason": "Input-required result must contain state or inputRequests; otherwise it fails; no handlers or replay.",
+      "evidence": "protocol.py:complete_result; checks/focused"
+    },
+    {
+      "id": "N-017",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 624,
+      "keyword_occurrences": 1,
+      "source_context": "   * The ID of the request to cancel.\n   *\n   * This MUST correspond to the ID of a request the client previously issued.\n   */\n  requestId: RequestId;\n",
+      "status": "PASS",
+      "reason": "Unknown metadata not trusted; modern tag/legacy absence handled; cancellation references issued ID; no result caching.",
+      "evidence": "protocol.py:complete_result; base.py:_request/_cancel_request; stdio.py:_issued_requests; checks/focused/checks/package"
+    },
+    {
+      "id": "N-018",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 637,
+      "keyword_occurrences": 1,
+      "source_context": " * This notification is sent by the client to indicate that it is cancelling a request it previously issued.\n *\n * On stdio, the server also sends this notification, solely to terminate a {@link SubscriptionsListenRequest | subscriptions/listen} stream: it references the ID of the `subscriptions/listen` request that opened the stream. Servers MUST NOT use this notification to cancel any other request.\n *\n * The request SHOULD still be in-flight, but due to communication latency, it is always possible that this notification MAY arrive after the request has already finished.\n *",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-019",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 656,
+      "keyword_occurrences": 1,
+      "source_context": "/**\n * A request from the client asking the server to advertise its supported\n * protocol versions, capabilities, and other metadata. Servers **MUST**\n * implement `server/discover`. Clients **MAY** call it but are not required\n * to \u2014 version negotiation can also happen inline via per-request `_meta`.\n *",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-020",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 779,
+      "keyword_occurrences": 1,
+      "source_context": "   * per-extension settings objects. An empty object indicates support with no settings.\n   *\n   * Keys MUST follow the {@link MetaObject | `_meta` key naming rules}, with a\n   * mandatory prefix.\n   *\n   * @example Extensions \u2014 MCP Apps (UI) extension with MIME type support",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-021",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 876,
+      "keyword_occurrences": 1,
+      "source_context": "   * objects. An empty object indicates support with no settings.\n   *\n   * Keys MUST follow the {@link MetaObject | `_meta` key naming rules}, with a\n   * mandatory prefix.\n   *\n   * @example Extensions \u2014 Tasks extension support",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: applicable incoming protocol metadata/extension naming and shapes are not validated.",
+      "evidence": "protocol.py:Discovery.parse/ToolDefinition.parse/ToolResult.parse; checks/adversarial-probes"
+    },
+    {
+      "id": "N-022",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 938,
+      "keyword_occurrences": 1,
+      "source_context": "   * Optional set of sized icons that the client can display in a user interface.\n   *\n   * Clients that support rendering icons MUST support at least the following MIME types:\n   * - `image/png` - PNG images (safe, universal compatibility)\n   * - `image/jpeg` (and `image/jpg`) - JPEG images (safe, universal compatibility)\n   *",
+      "status": "NOT_APPLICABLE",
+      "reason": "Icon rendering is not implemented.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-023",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 1104,
+      "keyword_occurrences": 1,
+      "source_context": "   *   the response and serve it across authorization contexts.\n   * - `\"private\"`: The response MAY be cached and reused only within the\n   *   same authorization context. Caches MUST NOT be shared across\n   *   authorization contexts (e.g., a different access token requires a\n   *   different cache).\n   *",
+      "status": "PASS",
+      "reason": "Unknown metadata not trusted; modern tag/legacy absence handled; cancellation references issued ID; no result caching.",
+      "evidence": "protocol.py:complete_result; base.py:_request/_cancel_request; stdio.py:_issued_requests; checks/focused/checks/package"
+    },
+    {
+      "id": "N-024",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 1265,
+      "keyword_occurrences": 1,
+      "source_context": " * {@link SubscriptionsListenRequest | subscriptions/listen} request.\n *\n * Each notification type is **opt-in**; the server **MUST NOT** send\n * notification types the client has not explicitly requested here.\n *\n * @category `subscriptions/listen`",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-025",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 1298,
+      "keyword_occurrences": 1,
+      "source_context": "  /**\n   * The notifications the client opts in to on this stream. The server\n   * **MUST NOT** send notification types the client has not explicitly\n   * requested.\n   */\n  notifications: SubscriptionFilter;",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-026",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 1386,
+      "keyword_occurrences": 1,
+      "source_context": " * established and to report which notification types it agreed to honor.\n *\n * This notification MUST be the first message the server sends carrying the\n * subscription's ID in `io.modelcontextprotocol/subscriptionId`. The server MUST\n * NOT send any notification on the subscription before acknowledging it. On\n * stdio, where every subscription shares one channel, this ordering is defined",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-027",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 1387,
+      "keyword_occurrences": 1,
+      "source_context": " *\n * This notification MUST be the first message the server sends carrying the\n * subscription's ID in `io.modelcontextprotocol/subscriptionId`. The server MUST\n * NOT send any notification on the subscription before acknowledging it. On\n * stdio, where every subscription shares one channel, this ordering is defined\n * per subscription ID and not per channel: messages belonging to other",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-028",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2143,
+      "keyword_occurrences": 1,
+      "source_context": "  /**\n   * Tools that the model may use during generation.\n   * The client MUST return an error if this field is provided but {@link ClientCapabilities.sampling.tools} is not declared.\n   */\n  tools?: Tool[];\n  /**",
+      "status": "NOT_APPLICABLE",
+      "reason": "Sampling/tool-use/model-selection capabilities not advertised or implemented; unsupported input request disposition is fixed.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-029",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2148,
+      "keyword_occurrences": 1,
+      "source_context": "  /**\n   * Controls how the model uses tools.\n   * The client MUST return an error if this field is provided but {@link ClientCapabilities.sampling.tools} is not declared.\n   * Default is `{ mode: \"auto\" }`.\n   */\n  toolChoice?: ToolChoice;",
+      "status": "NOT_APPLICABLE",
+      "reason": "Sampling/tool-use/model-selection capabilities not advertised or implemented; unsupported input request disposition is fixed.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-030",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2167,
+      "keyword_occurrences": 1,
+      "source_context": "   * Controls the tool use ability of the model:\n   * - `\"auto\"`: Model decides whether to use tools (default)\n   * - `\"required\"`: Model MUST use at least one tool before completing\n   * - `\"none\"`: Model MUST NOT use any tools\n   */\n  mode?: \"auto\" | \"required\" | \"none\";",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-031",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2168,
+      "keyword_occurrences": 1,
+      "source_context": "   * - `\"auto\"`: Model decides whether to use tools (default)\n   * - `\"required\"`: Model MUST use at least one tool before completing\n   * - `\"none\"`: Model MUST NOT use any tools\n   */\n  mode?: \"auto\" | \"required\" | \"none\";\n}",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-032",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2451,
+      "keyword_occurrences": 1,
+      "source_context": "   * The ID of the tool use this result corresponds to.\n   *\n   * This MUST match the ID from a previous {@link ToolUseContent}.\n   */\n  toolUseId: string;\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Sampling/tool-use/model-selection capabilities not advertised or implemented; unsupported input request disposition is fixed.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-033",
+      "source": "modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts",
+      "line": 2512,
+      "keyword_occurrences": 1,
+      "source_context": "   * Optional hints to use for model selection.\n   *\n   * If multiple hints are specified, the client MUST evaluate them in order\n   * (such that the first match is taken).\n   *\n   * The client SHOULD prioritize these hints over the numeric priorities, but",
+      "status": "NOT_APPLICABLE",
+      "reason": "Sampling/tool-use/model-selection capabilities not advertised or implemented; unsupported input request disposition is fixed.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-034",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 24,
+      "keyword_occurrences": 1,
+      "source_context": "* Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n* Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.\n\n### Standards Compliance",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-035",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 63,
+      "keyword_occurrences": 1,
+      "source_context": "## Overview\n\n1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.\n\n2. Authorization servers and MCP clients **SHOULD** support [OAuth Client ID Metadata Documents](/specification/2026-07-28/basic/authorization/client-registration#client-id-metadata-documents)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-036",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 74,
+      "keyword_occurrences": 1,
+      "source_context": "   is deprecated and retained for backwards compatibility with authorization servers that do not support Client ID Metadata Documents.\n\n4. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for [authorization server discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery).\n\n5. MCP authorization servers **MUST** provide at least one of the following discovery mechanisms:",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-037",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 75,
+      "keyword_occurrences": 1,
+      "source_context": "\n4. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for [authorization server discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery).\n\n5. MCP authorization servers **MUST** provide at least one of the following discovery mechanisms:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-038",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 77,
+      "keyword_occurrences": 1,
+      "source_context": "   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for [authorization server discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery).\n\n5. MCP authorization servers **MUST** provide at least one of the following discovery mechanisms:\n\n   * OAuth 2.0 Authorization Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414))\n   * [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-039",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 82,
+      "keyword_occurrences": 1,
+      "source_context": "   * [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html)\n\n   MCP clients **MUST** support both [discovery mechanisms](/specification/2026-07-28/basic/authorization/authorization-server-discovery#authorization-server-metadata-discovery) to obtain the information required to interact with the authorization server.\n\n## Authorization Server Discovery\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-040",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 88,
+      "keyword_occurrences": 1,
+      "source_context": "MCP servers advertise their associated authorization servers through OAuth 2.0 Protected\nResource Metadata, and MCP clients determine authorization server endpoints and supported\ncapabilities through authorization server metadata discovery. Implementations **MUST**\nfollow the normative discovery requirements defined in\n[Authorization Server Discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-041",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 94,
+      "keyword_occurrences": 1,
+      "source_context": "## Client Registration\n\nBefore initiating the authorization flow, MCP clients **MUST** obtain a client ID through\none of three registration mechanisms: Client ID Metadata Documents, pre-registration, or\nDynamic Client Registration, following the requirements and selection priority defined in\n[Client Registration](/specification/2026-07-28/basic/authorization/client-registration).",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-042",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 109,
+      "keyword_occurrences": 1,
+      "source_context": "The scopes included in the `WWW-Authenticate` challenge **MAY** match `scopes_supported`, be a subset\nor superset of it, or an alternative collection that is neither a strict subset nor\nsuperset. Clients **MUST NOT** assume any particular set relationship between the challenged\nscope set and `scopes_supported`. Clients **MUST** treat the scopes provided in the\nchallenge as authoritative for the current operation. These scopes are required to\nsatisfy the current request. When re-authorizing, clients **SHOULD** include these scopes",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-043",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 110,
+      "keyword_occurrences": 1,
+      "source_context": "or superset of it, or an alternative collection that is neither a strict subset nor\nsuperset. Clients **MUST NOT** assume any particular set relationship between the challenged\nscope set and `scopes_supported`. Clients **MUST** treat the scopes provided in the\nchallenge as authoritative for the current operation. These scopes are required to\nsatisfy the current request. When re-authorizing, clients **SHOULD** include these scopes\nalongside any previously granted scopes to avoid losing permissions needed for other operations",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-044",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 194,
+      "keyword_occurrences": 1,
+      "source_context": "### Authorization Response Validation\n\nBefore redirecting the user-agent, the client **MUST** record the `issuer` value from the selected authorization server's validated metadata document (see [Authorization Server Metadata Discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery#authorization-server-metadata-discovery)) and associate it with the same per-request record used to store the PKCE code verifier (and the `state` value, if used). The validation in this section depends on that recorded value being authentic; it provides no protection if the expected issuer was obtained from an unvalidated source.\n\nMCP authorization servers **SHOULD** include the `iss` parameter in authorization responses, including error responses, as defined in [RFC9207 Section 2](https://datatracker.ietf.org/doc/html/rfc9207#section-2). Authorization servers that include the `iss` parameter **MUST** advertise this by setting `authorization_response_iss_parameter_supported` to `true` in their metadata ([RFC9207 Section 2.3](https://datatracker.ietf.org/doc/html/rfc9207#section-2.3)).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-045",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 196,
+      "keyword_occurrences": 1,
+      "source_context": "Before redirecting the user-agent, the client **MUST** record the `issuer` value from the selected authorization server's validated metadata document (see [Authorization Server Metadata Discovery](/specification/2026-07-28/basic/authorization/authorization-server-discovery#authorization-server-metadata-discovery)) and associate it with the same per-request record used to store the PKCE code verifier (and the `state` value, if used). The validation in this section depends on that recorded value being authentic; it provides no protection if the expected issuer was obtained from an unvalidated source.\n\nMCP authorization servers **SHOULD** include the `iss` parameter in authorization responses, including error responses, as defined in [RFC9207 Section 2](https://datatracker.ietf.org/doc/html/rfc9207#section-2). Authorization servers that include the `iss` parameter **MUST** advertise this by setting `authorization_response_iss_parameter_supported` to `true` in their metadata ([RFC9207 Section 2.3](https://datatracker.ietf.org/doc/html/rfc9207#section-2.3)).\n\nOn receiving the authorization response, MCP clients **MUST** apply the validation in [RFC9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4) before transmitting the authorization code to any token endpoint:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-046",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 198,
+      "keyword_occurrences": 1,
+      "source_context": "MCP authorization servers **SHOULD** include the `iss` parameter in authorization responses, including error responses, as defined in [RFC9207 Section 2](https://datatracker.ietf.org/doc/html/rfc9207#section-2). Authorization servers that include the `iss` parameter **MUST** advertise this by setting `authorization_response_iss_parameter_supported` to `true` in their metadata ([RFC9207 Section 2.3](https://datatracker.ietf.org/doc/html/rfc9207#section-2.3)).\n\nOn receiving the authorization response, MCP clients **MUST** apply the validation in [RFC9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4) before transmitting the authorization code to any token endpoint:\n\n| `authorization_response_iss_parameter_supported` | `iss` in response | Client action |\n| - | - | - |",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-047",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 211,
+      "keyword_occurrences": 1,
+      "source_context": "The third row applies the local-policy provision in [RFC9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4): this specification compares a present `iss` against the recorded issuer regardless of metadata advertisement, to accommodate authorization servers that emit `iss` before updating their metadata.\n\nA future revision of this specification is expected to upgrade authorization server inclusion of `iss` from **SHOULD** to **MUST**. Implementers are encouraged to emit and validate `iss` now to ease that transition; client rejection behavior on `iss` absence will continue to be keyed on `authorization_response_iss_parameter_supported` until that revision defines the upgrade path.\n\nAfter decoding the `iss` value from the `application/x-www-form-urlencoded` response per [RFC 9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4), clients **MUST NOT** apply scheme or host case folding, default-port elision, trailing-slash, or percent-encoding normalization ([RFC 3986 Sections 6.2.2-6.2.3](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2)) before comparison.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-048",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 213,
+      "keyword_occurrences": 1,
+      "source_context": "A future revision of this specification is expected to upgrade authorization server inclusion of `iss` from **SHOULD** to **MUST**. Implementers are encouraged to emit and validate `iss` now to ease that transition; client rejection behavior on `iss` absence will continue to be keyed on `authorization_response_iss_parameter_supported` until that revision defines the upgrade path.\n\nAfter decoding the `iss` value from the `application/x-www-form-urlencoded` response per [RFC 9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4), clients **MUST NOT** apply scheme or host case folding, default-port elision, trailing-slash, or percent-encoding normalization ([RFC 3986 Sections 6.2.2-6.2.3](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2)) before comparison.\n\nThis validation applies equally to error responses - on mismatch the client **MUST NOT** act on or display `error`, `error_description`, or `error_uri`.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-049",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 215,
+      "keyword_occurrences": 1,
+      "source_context": "After decoding the `iss` value from the `application/x-www-form-urlencoded` response per [RFC 9207 Section 2.4](https://datatracker.ietf.org/doc/html/rfc9207#section-2.4), clients **MUST NOT** apply scheme or host case folding, default-port elision, trailing-slash, or percent-encoding normalization ([RFC 3986 Sections 6.2.2-6.2.3](https://datatracker.ietf.org/doc/html/rfc3986#section-6.2.2)) before comparison.\n\nThis validation applies equally to error responses - on mismatch the client **MUST NOT** act on or display `error`, `error_description`, or `error_uri`.\n\n## Resource Parameter Implementation\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-050",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 219,
+      "keyword_occurrences": 1,
+      "source_context": "## Resource Parameter Implementation\n\nMCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-051",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 222,
+      "keyword_occurrences": 1,
+      "source_context": "to explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-052",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 223,
+      "keyword_occurrences": 1,
+      "source_context": "\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).\n\n### Canonical Server URI",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-053",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 224,
+      "keyword_occurrences": 1,
+      "source_context": "1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).\n\n### Canonical Server URI\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-054",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 254,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\nMCP clients **MUST** send this parameter regardless of whether authorization servers support it.\n\n## Access Token Usage\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-055",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 260,
+      "keyword_occurrences": 1,
+      "source_context": "### Token Requirements\n\nAccess token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5).\nSpecifically:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-056",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 264,
+      "keyword_occurrences": 1,
+      "source_context": "Specifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.1.1):\n\n```",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-057",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 271,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\nNote that authorization **MUST** be included in every HTTP request from client to server.\n\n2. Access tokens **MUST NOT** be included in the URI query string\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-058",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 273,
+      "keyword_occurrences": 1,
+      "source_context": "Note that authorization **MUST** be included in every HTTP request from client to server.\n\n2. Access tokens **MUST NOT** be included in the URI query string\n\nExample request:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-059",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 285,
+      "keyword_occurrences": 1,
+      "source_context": "### Token Handling\n\nMCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-060",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 287,
+      "keyword_occurrences": 1,
+      "source_context": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.3)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-061",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 289,
+      "keyword_occurrences": 1,
+      "source_context": "MCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-062",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 291,
+      "keyword_occurrences": 1,
+      "source_context": "If validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.\n\nMCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-063",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 294,
+      "keyword_occurrences": 1,
+      "source_context": "response.\n\nMCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.\n\nMCP servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-064",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 296,
+      "keyword_occurrences": 1,
+      "source_context": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.\n\nMCP servers **MUST** only accept tokens that are valid for use with their\nown resources.\n\nMCP servers **MUST NOT** accept or transit any other tokens.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-065",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 299,
+      "keyword_occurrences": 1,
+      "source_context": "own resources.\n\nMCP servers **MUST NOT** accept or transit any other tokens.\n\n## Refresh Tokens\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-066",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 308,
+      "keyword_occurrences": 1,
+      "source_context": "**MCP Clients** that desire refresh tokens:\n\n* **MUST** keep refresh tokens confidential in transit and storage as specified in [OAuth 2.1 Section 4.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-14#section-4.3)\n* **SHOULD** include `refresh_token` in their `grant_types` client metadata\n* **MAY** add `offline_access` to the `scope` parameter of the authorization and token requests when the Authorization Server metadata contains it in `scopes_supported`\n* **MUST NOT** assume refresh tokens will be issued; the AS retains discretion",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-067",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 311,
+      "keyword_occurrences": 1,
+      "source_context": "* **SHOULD** include `refresh_token` in their `grant_types` client metadata\n* **MAY** add `offline_access` to the `scope` parameter of the authorization and token requests when the Authorization Server metadata contains it in `scopes_supported`\n* **MUST NOT** assume refresh tokens will be issued; the AS retains discretion\n\n**MCP Servers** (Protected Resources) **SHOULD NOT** include `offline_access` in\n`WWW-Authenticate` scope or Protected Resource Metadata `scopes_supported`, as refresh",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-068",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 319,
+      "keyword_occurrences": 1,
+      "source_context": "## Error Handling\n\nServers **MUST** return appropriate HTTP status codes for authorization errors:\n\n| Status Code | Description | Usage |\n| - | - | - |",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-069",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 406,
+      "keyword_occurrences": 1,
+      "source_context": "repeated failures for the same resource and operation combination.\n\nServers **MUST** account for scope hierarchies, where a broader scope implies narrower ones, when\ndeciding whether a token is sufficient for an operation.\n\n## Security Considerations",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-070",
+      "source": "specification--2026-07-28--basic--authorization.md",
+      "line": 411,
+      "keyword_occurrences": 1,
+      "source_context": "## Security Considerations\n\nImplementations of this specification **MUST** follow the normative security\nrequirements in [Security Considerations](/specification/2026-07-28/basic/authorization/security-considerations),\ncovering token audience binding and validation, token theft, communication security,\nauthorization code protection, mix-up and confused deputy attacks, open redirection,",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-071",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 19,
+      "keyword_occurrences": 1,
+      "source_context": "* **Utilities**: Cross-cutting concerns like logging and argument completion\n\nAll implementations **MUST** support the base protocol, versioning,\nand the message patterns. Other components **MAY** be implemented based on the specific needs of the\napplication.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-072",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 29,
+      "keyword_occurrences": 1,
+      "source_context": "## Messages\n\nAll messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:\n",
+      "status": "PARTIAL",
+      "reason": "Envelope checks pass; applicable protocol/schema metadata validation is incomplete (VAL-UP02A-002).",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-073",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 48,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\n* Requests **MUST** include a string or integer ID.\n* Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n* The request ID **MUST NOT** match the ID of any other request the sender has issued and\n  not yet received a response for.",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-074",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 49,
+      "keyword_occurrences": 1,
+      "source_context": "\n* Requests **MUST** include a string or integer ID.\n* Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n* The request ID **MUST NOT** match the ID of any other request the sender has issued and\n  not yet received a response for.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-075",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 50,
+      "keyword_occurrences": 1,
+      "source_context": "* Requests **MUST** include a string or integer ID.\n* Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n* The request ID **MUST NOT** match the ID of any other request the sender has issued and\n  not yet received a response for.\n\n### Responses",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-076",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 72,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\n* Result responses **MUST** include the same ID as the request they correspond to.\n* Result responses **MUST** include a `result` field.\n* The `result` **MAY** follow any JSON object structure.\n* The `result` **MUST** include a `resultType` field to indicate the type of the result.",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-077",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 73,
+      "keyword_occurrences": 1,
+      "source_context": "\n* Result responses **MUST** include the same ID as the request they correspond to.\n* Result responses **MUST** include a `result` field.\n* The `result` **MAY** follow any JSON object structure.\n* The `result` **MUST** include a `resultType` field to indicate the type of the result.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-078",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 75,
+      "keyword_occurrences": 1,
+      "source_context": "* Result responses **MUST** include a `result` field.\n* The `result` **MAY** follow any JSON object structure.\n* The `result` **MUST** include a `resultType` field to indicate the type of the result.\n\n##### ResultType\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-079",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 85,
+      "keyword_occurrences": 1,
+      "source_context": "* A `resultType` of `\"complete\"` indicates the request completed successfully and the result contains the final content.\n* A `resultType` of `\"input_required\"` indicates the request is incomplete and more information is needed to process the request. The result contains an [`InputRequiredResult`](/specification/2026-07-28/basic/patterns/mrtr#inputrequiredresult) object with additional information needed.\n* Extensions **MAY** add additional `ResultType` values. The set of supported `ResultType` values **MUST** be created from the set defined in the core protocol and include any additional values of supported extensions that are advertised via capabilities.\n* A `resultType` of any value unrecognized by the client **MUST** be considered invalid.\n* For backward compatibility with servers implementing earlier protocol versions, which do not include `resultType`, clients **MUST** treat an absent `resultType` as `\"complete\"`.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-080",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 86,
+      "keyword_occurrences": 1,
+      "source_context": "* A `resultType` of `\"input_required\"` indicates the request is incomplete and more information is needed to process the request. The result contains an [`InputRequiredResult`](/specification/2026-07-28/basic/patterns/mrtr#inputrequiredresult) object with additional information needed.\n* Extensions **MAY** add additional `ResultType` values. The set of supported `ResultType` values **MUST** be created from the set defined in the core protocol and include any additional values of supported extensions that are advertised via capabilities.\n* A `resultType` of any value unrecognized by the client **MUST** be considered invalid.\n* For backward compatibility with servers implementing earlier protocol versions, which do not include `resultType`, clients **MUST** treat an absent `resultType` as `\"complete\"`.\n\n#### Error Responses",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-081",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 87,
+      "keyword_occurrences": 1,
+      "source_context": "* Extensions **MAY** add additional `ResultType` values. The set of supported `ResultType` values **MUST** be created from the set defined in the core protocol and include any additional values of supported extensions that are advertised via capabilities.\n* A `resultType` of any value unrecognized by the client **MUST** be considered invalid.\n* For backward compatibility with servers implementing earlier protocol versions, which do not include `resultType`, clients **MUST** treat an absent `resultType` as `\"complete\"`.\n\n#### Error Responses\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-082",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 105,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\n* Error responses **MUST** include the same ID as the request they correspond to (except in error cases where the ID could not be read due a malformed request).\n* Error responses **MUST** include an `error` field with a `code` and `message`.\n* Error codes **MUST** be integers.\n* Error responses **MAY** include a `data` member with additional information of any type, such",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-083",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 106,
+      "keyword_occurrences": 1,
+      "source_context": "\n* Error responses **MUST** include the same ID as the request they correspond to (except in error cases where the ID could not be read due a malformed request).\n* Error responses **MUST** include an `error` field with a `code` and `message`.\n* Error codes **MUST** be integers.\n* Error responses **MAY** include a `data` member with additional information of any type, such\n  as nested errors.",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-084",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 107,
+      "keyword_occurrences": 1,
+      "source_context": "* Error responses **MUST** include the same ID as the request they correspond to (except in error cases where the ID could not be read due a malformed request).\n* Error responses **MUST** include an `error` field with a `code` and `message`.\n* Error codes **MUST** be integers.\n* Error responses **MAY** include a `data` member with additional information of any type, such\n  as nested errors.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-085",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 120,
+      "keyword_occurrences": 1,
+      "source_context": "\n* **`-32000` to `-32019` \u2014 legacy.** Codes in this sub-range were allocated by\n  implementations before this policy was introduced. New codes **MUST NOT** be\n  allocated in this sub-range, and new implementations **SHOULD NOT** use codes\n  from this sub-range at all. Apart from `-32002` (see below), receivers\n  **MUST NOT** assume any specific meaning for these codes.",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-086",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 123,
+      "keyword_occurrences": 1,
+      "source_context": "  allocated in this sub-range, and new implementations **SHOULD NOT** use codes\n  from this sub-range at all. Apart from `-32002` (see below), receivers\n  **MUST NOT** assume any specific meaning for these codes.\n* **`-32020` to `-32099` \u2014 reserved for the MCP specification.** Error codes\n  in this sub-range are defined exclusively by the MCP specification and\n  recorded in the [schema](/specification/2026-07-28/schema). Implementations",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-087",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 127,
+      "keyword_occurrences": 1,
+      "source_context": "  in this sub-range are defined exclusively by the MCP specification and\n  recorded in the [schema](/specification/2026-07-28/schema). Implementations\n  **MUST NOT** emit any code from this sub-range that is not defined by this\n  specification and **MUST** use defined codes only with their specified\n  meanings.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-088",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 128,
+      "keyword_occurrences": 1,
+      "source_context": "  recorded in the [schema](/specification/2026-07-28/schema). Implementations\n  **MUST NOT** emit any code from this sub-range that is not defined by this\n  specification and **MUST** use defined codes only with their specified\n  meanings.\n\nMCP defines the following error codes:",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-089",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 140,
+      "keyword_occurrences": 1,
+      "source_context": "\nCodes defined by earlier protocol versions remain reserved and will not be\nreused. Implementations of this protocol version **MUST NOT** emit these codes:\n\n* `-32002` \u2014 resource not found (2025-11-25 and earlier; replaced by `-32602`).\n  Clients [**SHOULD** still",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-090",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 162,
+      "keyword_occurrences": 1,
+      "source_context": "\n[Notifications](/specification/2026-07-28/schema#jsonrpcnotification) are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.\n\n```typescript theme={null}\n{",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-091",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 174,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\n* Notifications **MUST NOT** include an ID.\n\n### Message Patterns\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-092",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 193,
+      "keyword_occurrences": 1,
+      "source_context": "Specifically:\n\n* Servers **MUST NOT** rely on prior requests over the same connection to\n  establish context (e.g., capabilities, protocol version, client identity).\n  Every request supplies this metadata in its [`_meta`](#_meta) field.\n* Servers **SHOULD** be prepared to handle requests associated with multiple",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-093",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 203,
+      "keyword_occurrences": 1,
+      "source_context": "  lifetime boundary for the stdio process.\n* State that needs to span multiple requests (e.g., long-running tasks,\n  application-level handles) **MUST** be referenced by an explicit identifier\n  the client passes on each request.\n\n<Note>",
+      "status": "NOT_APPLICABLE",
+      "reason": "No stateful continuation/handle handling or trace context emission/propagation. Peer trace data is ignored, never interpreted/exported.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-094",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 259,
+      "keyword_occurrences": 1,
+      "source_context": "1. **Default dialect**: When a schema does not include a `$schema` field, it defaults to [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/schema)\n2. **Explicit dialect**: Schemas MAY include a `$schema` field to specify a different dialect\n3. **Supported dialects**: Implementations MUST support at least 2020-12 and SHOULD document which additional dialects they support\n4. **Recommendation**: Implementors are RECOMMENDED to use JSON Schema 2020-12.\n\n### Example Usage",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-095",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 293,
+      "keyword_occurrences": 1,
+      "source_context": "### Implementation Requirements\n\n* Clients and servers **MUST** support JSON Schema 2020-12 for schemas without an explicit `$schema` field\n* Clients and servers **MUST** validate schemas according to their declared or default dialect. They **MUST** handle unsupported dialects gracefully by returning an appropriate error indicating the dialect is not supported.\n* Clients and servers **SHOULD** document which schema dialects they support\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-096",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 294,
+      "keyword_occurrences": 2,
+      "source_context": "\n* Clients and servers **MUST** support JSON Schema 2020-12 for schemas without an explicit `$schema` field\n* Clients and servers **MUST** validate schemas according to their declared or default dialect. They **MUST** handle unsupported dialects gracefully by returning an appropriate error indicating the dialect is not supported.\n* Clients and servers **SHOULD** document which schema dialects they support\n\n### Schema Validation",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-097",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 299,
+      "keyword_occurrences": 1,
+      "source_context": "### Schema Validation\n\n* Schemas **MUST** be valid according to their declared or default dialect\n\n### `$ref` Resolution\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-098",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 303,
+      "keyword_occurrences": 1,
+      "source_context": "### `$ref` Resolution\n\nJSON Schema 2020-12 permits `$ref` to point at an absolute URI. Implementations **MUST NOT**\nautomatically dereference `$ref` values that resolve to a network URI.\n\nImplementations **MAY** offer an opt-in mode that fetches non-local `$ref`s but it",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-099",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 307,
+      "keyword_occurrences": 1,
+      "source_context": "\nImplementations **MAY** offer an opt-in mode that fetches non-local `$ref`s but it\n**MUST** be disabled by default and **SHOULD** enforce an allowlist of hosts or at\nminimum reject loopback, link-local, and private network addresses, apply timeouts and\nsize limits, and log dereferenced URIs.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-100",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 330,
+      "keyword_occurrences": 1,
+      "source_context": "\nCertain key names are reserved by MCP for protocol-level metadata, as specified below;\nimplementations **MUST NOT** make assumptions about values at these keys.\n\n**Key name format:** valid `_meta` key names have two segments: an optional **prefix**, and a **name**.\n",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-101",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 336,
+      "keyword_occurrences": 1,
+      "source_context": "**Prefix:**\n\n* If specified, MUST be a series of labels separated by dots (`.`), followed by a slash (`/`).\n  * Labels MUST start with a letter and end with a letter or digit; interior characters can be letters, digits, or hyphens (`-`).\n  * Implementations SHOULD use reverse DNS notation (e.g., `com.example/` rather than `example.com/`).\n* Any prefix where the second label is `modelcontextprotocol` or `mcp` is **reserved** for MCP use.",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: incoming protocol metadata keys are not validated; invalid prefix/name accepted.",
+      "evidence": "checks/adversarial-probes/stdout; client/protocol.py:200-237,259-274,329-349"
+    },
+    {
+      "id": "N-102",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 337,
+      "keyword_occurrences": 1,
+      "source_context": "\n* If specified, MUST be a series of labels separated by dots (`.`), followed by a slash (`/`).\n  * Labels MUST start with a letter and end with a letter or digit; interior characters can be letters, digits, or hyphens (`-`).\n  * Implementations SHOULD use reverse DNS notation (e.g., `com.example/` rather than `example.com/`).\n* Any prefix where the second label is `modelcontextprotocol` or `mcp` is **reserved** for MCP use.\n  * For example: `io.modelcontextprotocol/`, `dev.mcp/`, `org.modelcontextprotocol.api/`, and `com.mcp.tools/` are all reserved.",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: incoming protocol metadata keys are not validated; invalid prefix/name accepted.",
+      "evidence": "checks/adversarial-probes/stdout; client/protocol.py:200-237,259-274,329-349"
+    },
+    {
+      "id": "N-103",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 345,
+      "keyword_occurrences": 1,
+      "source_context": "**Name:**\n\n* Unless empty, MUST begin and end with an alphanumeric character (`[a-z0-9A-Z]`).\n* MAY contain hyphens (`-`), underscores (`_`), dots (`.`), and alphanumerics in between.\n\n**Reserved keys:**",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: incoming protocol metadata keys are not validated; invalid prefix/name accepted.",
+      "evidence": "checks/adversarial-probes/stdout; client/protocol.py:200-237,259-274,329-349"
+    },
+    {
+      "id": "N-104",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 370,
+      "keyword_occurrences": 1,
+      "source_context": "\nClient requests carry the following `io.modelcontextprotocol/*` fields in `_meta`;\nfields marked as required **MUST** be included on every request. Servers use these\nto identify the protocol version and capabilities in use without relying on any\nprior connection state. See\n[Versioning and Compatibility][lifecycle] for version negotiation rules.",
+      "status": "PASS",
+      "reason": "Applicable client envelope, result/version, metadata emission, local/wire error separation or bounded JSON-Schema profile is implemented.",
+      "evidence": "client/base.py:_request/_handle_message/_handle_server_message; client/protocol.py:validate_message/complete_result/ToolDefinition/validate_output_schema; checks/focused, checks/package, checks/adversarial-probes"
+    },
+    {
+      "id": "N-105",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 382,
+      "keyword_occurrences": 1,
+      "source_context": "| `io.modelcontextprotocol/logLevel` | `LoggingLevel` | No | Minimum log level the server should emit for this request |\n\nA request missing any required field is malformed; the server **MUST** reject it with\nJSON-RPC error code `-32602` (Invalid params). On HTTP, the response status **MUST** be\n`400 Bad Request`.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-106",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 383,
+      "keyword_occurrences": 1,
+      "source_context": "\nA request missing any required field is malformed; the server **MUST** reject it with\nJSON-RPC error code `-32602` (Invalid params). On HTTP, the response status **MUST** be\n`400 Bad Request`.\n\nClients **SHOULD** include `io.modelcontextprotocol/clientInfo` on every request",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-107",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 389,
+      "keyword_occurrences": 1,
+      "source_context": "unless specifically configured not to do so.\n\nA server **MUST NOT** rely on capabilities the client has not declared. If\nprocessing a request requires a capability the client did not include in\n`io.modelcontextprotocol/clientCapabilities`, the server **MUST** return a\n[`MissingRequiredClientCapabilityError`](/specification/2026-07-28/schema#missingrequiredclientcapabilityerror)",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-108",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 391,
+      "keyword_occurrences": 1,
+      "source_context": "A server **MUST NOT** rely on capabilities the client has not declared. If\nprocessing a request requires a capability the client did not include in\n`io.modelcontextprotocol/clientCapabilities`, the server **MUST** return a\n[`MissingRequiredClientCapabilityError`](/specification/2026-07-28/schema#missingrequiredclientcapabilityerror)\n(`-32021`) whose `data.requiredCapabilities` lists the missing capabilities. On\nHTTP, the response status **MUST** be `400 Bad Request`.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-109",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 394,
+      "keyword_occurrences": 1,
+      "source_context": "[`MissingRequiredClientCapabilityError`](/specification/2026-07-28/schema#missingrequiredclientcapabilityerror)\n(`-32021`) whose `data.requiredCapabilities` lists the missing capabilities. On\nHTTP, the response status **MUST** be `400 Bad Request`.\n\n**Per-response protocol fields:**\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-110",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 415,
+      "keyword_occurrences": 1,
+      "source_context": "\nOn notifications delivered via a [`subscriptions/listen`][subscriptions-listen] stream,\nthe server **MUST** include `io.modelcontextprotocol/subscriptionId` in `_meta` so the\nclient can correlate the notification with the originating subscription request.\n\n[lifecycle]: /specification/2026-07-28/basic/versioning",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-111",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 426,
+      "keyword_occurrences": 1,
+      "source_context": "As an exception to the prefix requirement above, the keys `traceparent`, `tracestate`, and\n`baggage` are reserved for [OpenTelemetry](https://opentelemetry.io/) trace context propagation.\nWhen present, their values MUST follow [W3C Trace Context](https://www.w3.org/TR/trace-context/)\nand [W3C Baggage](https://www.w3.org/TR/baggage/) formats respectively.\n\nThis exception exists to maintain compatibility with existing implementations and",
+      "status": "NOT_APPLICABLE",
+      "reason": "No stateful continuation/handle handling or trace context emission/propagation. Peer trace data is ignored, never interpreted/exported.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-112",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 466,
+      "keyword_occurrences": 1,
+      "source_context": "**Required MIME type support:**\n\nClients that support rendering icons **MUST** support at least the following MIME types:\n\n* `image/png` - PNG images (safe, universal compatibility)\n* `image/jpeg` (and `image/jpg`) - JPEG images (safe, universal compatibility)",
+      "status": "NOT_APPLICABLE",
+      "reason": "No icon fetching, rendering or use; bounded opaque catalog metadata does not invoke an icon consumer.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-113",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 478,
+      "keyword_occurrences": 1,
+      "source_context": "**Security considerations:**\n\nConsumers of icon metadata **MUST** take appropriate security precautions when handling icons to prevent compromise:\n\n* Treat icon metadata and icon bytes as untrusted inputs and defend against network, privacy, and parsing risks.\n* Ensure that the icon URI is either a HTTPS or `data:` URI. Clients **MUST** reject icon URIs that use unsafe schemes and redirects, such as `javascript:`, `file:`, `ftp:`, `ws:`, or local app URI schemes.",
+      "status": "NOT_APPLICABLE",
+      "reason": "No icon fetching, rendering or use; bounded opaque catalog metadata does not invoke an icon consumer.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-114",
+      "source": "specification--2026-07-28--basic--index.md",
+      "line": 481,
+      "keyword_occurrences": 1,
+      "source_context": "\n* Treat icon metadata and icon bytes as untrusted inputs and defend against network, privacy, and parsing risks.\n* Ensure that the icon URI is either a HTTPS or `data:` URI. Clients **MUST** reject icon URIs that use unsafe schemes and redirects, such as `javascript:`, `file:`, `ftp:`, `ws:`, or local app URI schemes.\n  * Disallow scheme changes and redirects to hosts on different origins.\n* Be resilient against resource exhaustion attacks stemming from oversized images, large dimensions, or excessive frames (e.g., in GIFs).\n  * Consumers **MAY** set limits for image and content size.",
+      "status": "NOT_APPLICABLE",
+      "reason": "No icon fetching, rendering or use; bounded opaque catalog metadata does not invoke an icon consumer.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-115",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 12,
+      "keyword_occurrences": 1,
+      "source_context": "  Multi Round-Trip Requests (MRTR) was introduced in this version of the MCP\n  specification. This replaces the previous approach of sending server-initiated\n  requests. Servers **MUST** send server-to-client requests (such as\n  `roots/list`, `sampling/createMessage`, or `elicitation/create`) using the\n  MRTR pattern. The previous pattern of server-initiated requests is no longer\n  supported. This is a breaking change.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-116",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 22,
+      "keyword_occurrences": 1,
+      "source_context": "  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>",
+      "status": "PASS",
+      "reason": "Required request metadata is present; input-required state is opaque, not retried or transferred to another request.",
+      "evidence": "base.py:_request; protocol.py:complete_result; checks/focused; checks/package"
+    },
+    {
+      "id": "N-117",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 132,
+      "keyword_occurrences": 1,
+      "source_context": "\n* `inputRequests` *(optional)*: An [`InputRequests`](/specification/2026-07-28/schema#inputrequests) map of server-initiated requests that the client must fulfill.\n* `requestState` *(optional)*: An opaque string meaningful only to the server. Clients **MUST NOT** inspect, parse, modify, or make any assumptions about its contents.\n\n```json theme={null}\n{",
+      "status": "PASS",
+      "reason": "Required request metadata is present; input-required state is opaque, not retried or transferred to another request.",
+      "evidence": "base.py:_request; protocol.py:complete_result; checks/focused; checks/package"
+    },
+    {
+      "id": "N-118",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 194,
+      "keyword_occurrences": 1,
+      "source_context": "| [`tools/call`](/specification/2026-07-28/server/tools#calling-tools) | Yes |\n\nServers **MUST NOT** send `InputRequiredResult` responses on any other client requests.\n\n### Basic Workflow\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-119",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 231,
+      "keyword_occurrences": 1,
+      "source_context": "\n2. The `InputRequiredResult` **MAY** include an `inputRequests` field.\n   * `inputRequests` keys are server assigned identifiers and **MUST** be unique within the scope of the request.\n   * `inputRequests` values are request objects that **MUST** be one of [`ElicitRequest`](/specification/2026-07-28/schema#elicitrequest), [`CreateMessageRequest`](/specification/2026-07-28/schema#createmessagerequest), or [`ListRootsRequest`](/specification/2026-07-28/schema#listrootsrequest)\n\n3. The `InputRequiredResult` **MAY** include a `requestState` field. If specified, this field is an opaque string meaningful only to the server. Servers are free to encode the state in any format (e.g. base64-encoded JSON, encrypted JWT, serialized binary).",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-120",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 232,
+      "keyword_occurrences": 1,
+      "source_context": "2. The `InputRequiredResult` **MAY** include an `inputRequests` field.\n   * `inputRequests` keys are server assigned identifiers and **MUST** be unique within the scope of the request.\n   * `inputRequests` values are request objects that **MUST** be one of [`ElicitRequest`](/specification/2026-07-28/schema#elicitrequest), [`CreateMessageRequest`](/specification/2026-07-28/schema#createmessagerequest), or [`ListRootsRequest`](/specification/2026-07-28/schema#listrootsrequest)\n\n3. The `InputRequiredResult` **MAY** include a `requestState` field. If specified, this field is an opaque string meaningful only to the server. Servers are free to encode the state in any format (e.g. base64-encoded JSON, encrypted JWT, serialized binary).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-121",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 236,
+      "keyword_occurrences": 2,
+      "source_context": "3. The `InputRequiredResult` **MAY** include a `requestState` field. If specified, this field is an opaque string meaningful only to the server. Servers are free to encode the state in any format (e.g. base64-encoded JSON, encrypted JWT, serialized binary).\n\n4. If a client request contains a `requestState` field, servers **MUST** treat `requestState` as an attacker-controlled input. If `requestState` influences authorization, resource access, or business logic, servers **MUST** protect its integrity (e.g. HMAC or AEAD)\n   and **MUST** reject state that fails verification. Integrity protection **MAY** be omitted only when tampering can cause nothing worse than request failure.\n\n5. To prevent replay, servers **SHOULD** include the following inside the integrity-protected `requestState` payload and verify each on receipt:",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-122",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 237,
+      "keyword_occurrences": 1,
+      "source_context": "\n4. If a client request contains a `requestState` field, servers **MUST** treat `requestState` as an attacker-controlled input. If `requestState` influences authorization, resource access, or business logic, servers **MUST** protect its integrity (e.g. HMAC or AEAD)\n   and **MUST** reject state that fails verification. Integrity protection **MAY** be omitted only when tampering can cause nothing worse than request failure.\n\n5. To prevent replay, servers **SHOULD** include the following inside the integrity-protected `requestState` payload and verify each on receipt:\n   * the authenticated principal, rejecting state presented by a different principal.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-123",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 247,
+      "keyword_occurrences": 1,
+      "source_context": "       and cross-request reuse, but do not by themselves guarantee single-use.\n       Servers for which a given `requestState` must be consumed at most once\n       (e.g., one-time redemptions) **MUST** enforce that invariant server-side.\n     </Warning>\n\n6. Servers **MUST** include at least one of `inputRequests` or `requestState` in every `InputRequiredResult` response.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-124",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 250,
+      "keyword_occurrences": 1,
+      "source_context": "     </Warning>\n\n6. Servers **MUST** include at least one of `inputRequests` or `requestState` in every `InputRequiredResult` response.\n\n7. Servers **MUST NOT** send an `inputRequests` that the client has not declared support for in its capabilities. For example, if a client does not declare support for `elicitation`, the server **MUST NOT** include any `elicitation/create` requests in the `inputRequests` field.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-125",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 252,
+      "keyword_occurrences": 2,
+      "source_context": "6. Servers **MUST** include at least one of `inputRequests` or `requestState` in every `InputRequiredResult` response.\n\n7. Servers **MUST NOT** send an `inputRequests` that the client has not declared support for in its capabilities. For example, if a client does not declare support for `elicitation`, the server **MUST NOT** include any `elicitation/create` requests in the `inputRequests` field.\n\n8. Servers **MUST NOT** assume that clients will fulfill the `inputRequests` or retry the original request. Servers **MAY** choose to return an `InputRequiredResult` on multiple attempts at the same request if they want to repeatedly prompt the user for information until they have what they need to complete the request.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-126",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 254,
+      "keyword_occurrences": 1,
+      "source_context": "7. Servers **MUST NOT** send an `inputRequests` that the client has not declared support for in its capabilities. For example, if a client does not declare support for `elicitation`, the server **MUST NOT** include any `elicitation/create` requests in the `inputRequests` field.\n\n8. Servers **MUST NOT** assume that clients will fulfill the `inputRequests` or retry the original request. Servers **MAY** choose to return an `InputRequiredResult` on multiple attempts at the same request if they want to repeatedly prompt the user for information until they have what they need to complete the request.\n\n#### Client Requirements (Basic Workflow)\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-127",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 258,
+      "keyword_occurrences": 1,
+      "source_context": "#### Client Requirements (Basic Workflow)\n\n1. If a client receives an `InputRequiredResult` that contains the `inputRequests` field, the client **MUST** construct the requested\n   inputs before retrying the original request. If the `InputRequiredResult` does *not* contain the `inputRequests` field,\n   the client **MAY** retry the original request immediately.\n2. If an `InputRequiredResult` contains the `requestState` field, the client **MUST** echo back the exact value of that field when retrying the original request.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Conditional on retrying; this approved profile explicitly refuses interactive continuation and performs no retry.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-128",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 261,
+      "keyword_occurrences": 1,
+      "source_context": "   inputs before retrying the original request. If the `InputRequiredResult` does *not* contain the `inputRequests` field,\n   the client **MAY** retry the original request immediately.\n2. If an `InputRequiredResult` contains the `requestState` field, the client **MUST** echo back the exact value of that field when retrying the original request.\n   Clients **MUST NOT** inspect, parse, modify, or make any assumptions about the `requestState` contents. If the `InputRequiredResult` does not contain a `requestState` field, the client **MUST NOT** include one in the retry.\n3. The JSON-RPC `id` **MUST** be different between the initial request and the retry, as they are independent requests.\n4. Both the `inputRequests` and `requestState` fields affect only the client's retry of the original request. They **MUST NOT** be used for any other request that the client may be sending in parallel.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Conditional on retrying; this approved profile explicitly refuses interactive continuation and performs no retry.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-129",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 262,
+      "keyword_occurrences": 2,
+      "source_context": "   the client **MAY** retry the original request immediately.\n2. If an `InputRequiredResult` contains the `requestState` field, the client **MUST** echo back the exact value of that field when retrying the original request.\n   Clients **MUST NOT** inspect, parse, modify, or make any assumptions about the `requestState` contents. If the `InputRequiredResult` does not contain a `requestState` field, the client **MUST NOT** include one in the retry.\n3. The JSON-RPC `id` **MUST** be different between the initial request and the retry, as they are independent requests.\n4. Both the `inputRequests` and `requestState` fields affect only the client's retry of the original request. They **MUST NOT** be used for any other request that the client may be sending in parallel.\n",
+      "status": "PASS",
+      "reason": "Required request metadata is present; input-required state is opaque, not retried or transferred to another request.",
+      "evidence": "base.py:_request; protocol.py:complete_result; checks/focused; checks/package"
+    },
+    {
+      "id": "N-130",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 263,
+      "keyword_occurrences": 1,
+      "source_context": "2. If an `InputRequiredResult` contains the `requestState` field, the client **MUST** echo back the exact value of that field when retrying the original request.\n   Clients **MUST NOT** inspect, parse, modify, or make any assumptions about the `requestState` contents. If the `InputRequiredResult` does not contain a `requestState` field, the client **MUST NOT** include one in the retry.\n3. The JSON-RPC `id` **MUST** be different between the initial request and the retry, as they are independent requests.\n4. Both the `inputRequests` and `requestState` fields affect only the client's retry of the original request. They **MUST NOT** be used for any other request that the client may be sending in parallel.\n\n### Error Handling",
+      "status": "NOT_APPLICABLE",
+      "reason": "Conditional on retrying; this approved profile explicitly refuses interactive continuation and performs no retry.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-131",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 264,
+      "keyword_occurrences": 1,
+      "source_context": "   Clients **MUST NOT** inspect, parse, modify, or make any assumptions about the `requestState` contents. If the `InputRequiredResult` does not contain a `requestState` field, the client **MUST NOT** include one in the retry.\n3. The JSON-RPC `id` **MUST** be different between the initial request and the retry, as they are independent requests.\n4. Both the `inputRequests` and `requestState` fields affect only the client's retry of the original request. They **MUST NOT** be used for any other request that the client may be sending in parallel.\n\n### Error Handling\n",
+      "status": "PASS",
+      "reason": "Required request metadata is present; input-required state is opaque, not retried or transferred to another request.",
+      "evidence": "base.py:_request; protocol.py:complete_result; checks/focused; checks/package"
+    },
+    {
+      "id": "N-132",
+      "source": "specification--2026-07-28--basic--patterns--mrtr.md",
+      "line": 279,
+      "keyword_occurrences": 1,
+      "source_context": "\nBecause `requestState` passes through the client, malicious or compromised clients could attempt to modify it to alter server behavior,\nbypass authorization checks, or corrupt server logic. Servers **MUST** validate request state as described in the [server requirements](#server-requirements-basic-workflow) above.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-133",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 15,
+      "keyword_occurrences": 1,
+      "source_context": "  `stdout`.\n* Each message is a single JSON-RPC request, notification, or response.\n* Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n* The server **MAY** write UTF-8 strings to `stderr` for any logging purposes\n  including informational, debug, and error messages.\n* The client **MAY** capture, forward, or ignore the server's `stderr` output and",
+      "status": "PASS",
+      "reason": "Newline framing and valid outgoing requests/notifications, no modern client responses, bounded issued-request cancellation, and varied nonmodern-error fallback are tested.",
+      "evidence": "stdio.py:send/receive; base.py:_handle_server_message/_cancel_request; checks/focused; checks/package"
+    },
+    {
+      "id": "N-134",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 20,
+      "keyword_occurrences": 1,
+      "source_context": "* The client **MAY** capture, forward, or ignore the server's `stderr` output and\n  **SHOULD NOT** assume `stderr` output indicates error conditions.\n* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP\n  message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a\n  valid MCP message.",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-135",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 22,
+      "keyword_occurrences": 1,
+      "source_context": "* The server **MUST NOT** write anything to its `stdout` that is not a valid MCP\n  message.\n* The client **MUST NOT** write anything to the server's `stdin` that is not a\n  valid MCP message.\n\nStandard streams are the canonical channel, but nothing in this binding",
+      "status": "PASS",
+      "reason": "Newline framing and valid outgoing requests/notifications, no modern client responses, bounded issued-request cancellation, and varied nonmodern-error fallback are tested.",
+      "evidence": "stdio.py:send/receive; base.py:_handle_server_message/_cancel_request; checks/focused; checks/package"
+    },
+    {
+      "id": "N-136",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 38,
+      "keyword_occurrences": 1,
+      "source_context": "\nThe client sends messages by writing JSON-RPC *requests* and *notifications*\nto the server's `stdin`, one message per line. The client **MUST NOT** write\nJSON-RPC *responses*.\n\n## Receiving Messages",
+      "status": "PASS",
+      "reason": "Newline framing and valid outgoing requests/notifications, no modern client responses, bounded issued-request cancellation, and varied nonmodern-error fallback are tested.",
+      "evidence": "stdio.py:send/receive; base.py:_handle_server_message/_cancel_request; checks/focused; checks/package"
+    },
+    {
+      "id": "N-137",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 52,
+      "keyword_occurrences": 1,
+      "source_context": "   `notifications/progress` and `notifications/message`.\n3. *Notifications* delivered for an active\n   [`subscriptions/listen`][subscriptions-listen] request. Clients **MUST**\n   correlate these using the `io.modelcontextprotocol/subscriptionId` field\n   in `_meta`; see\n   [`SubscriptionsListenRequest`][subscriptions-listen-request].",
+      "status": "NOT_APPLICABLE",
+      "reason": "No subscriptions/listen requests opened or optional subscription handler enabled; unsolicited notifications do not cause effects.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-138",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 57,
+      "keyword_occurrences": 1,
+      "source_context": "   [`SubscriptionsListenRequest`][subscriptions-listen-request].\n\nThe server **MUST NOT** write JSON-RPC *requests* to `stdout`.\nServer-to-client interactions are carried in\n[`InputRequiredResult`][mrtr-input-required] replies; see\n[Multi Round-Trip Requests][mrtr].",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-139",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 83,
+      "keyword_occurrences": 1,
+      "source_context": "## Cancellation\n\nTo cancel an in-flight request, the client **MUST** send a\n`notifications/cancelled` notification referencing the request's ID. Because\nstdio is a single shared bidirectional channel, there is no per-request stream\nto close. Servers **SHOULD** stop work on a cancelled request as soon as",
+      "status": "PASS",
+      "reason": "Newline framing and valid outgoing requests/notifications, no modern client responses, bounded issued-request cancellation, and varied nonmodern-error fallback are tested.",
+      "evidence": "stdio.py:send/receive; base.py:_handle_server_message/_cancel_request; checks/focused; checks/package"
+    },
+    {
+      "id": "N-140",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 87,
+      "keyword_occurrences": 1,
+      "source_context": "stdio is a single shared bidirectional channel, there is no per-request stream\nto close. Servers **SHOULD** stop work on a cancelled request as soon as\npractical and **MUST NOT** send any further messages for it. See\n[Cancellation][cancellation] for the full rules.\n\n[cancellation]: /specification/2026-07-28/basic/patterns/cancellation",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-141",
+      "source": "specification--2026-07-28--basic--transports--stdio.md",
+      "line": 146,
+      "keyword_occurrences": 1,
+      "source_context": "  handshake.\n\nThe fallback **MUST NOT** be keyed to one specific error code: legacy servers\nrespond to unknown pre-`initialize` requests with implementation-defined\nerrors (commonly `-32601` or `-32602`) or not at all.\n",
+      "status": "PASS",
+      "reason": "Newline framing and valid outgoing requests/notifications, no modern client responses, bounded issued-request cancellation, and varied nonmodern-error fallback are tested.",
+      "evidence": "stdio.py:send/receive; base.py:_handle_server_message/_cancel_request; checks/focused; checks/package"
+    },
+    {
+      "id": "N-142",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 45,
+      "keyword_occurrences": 1,
+      "source_context": "interactions.\n\nThe server **MUST** provide a single HTTP endpoint path (hereafter referred to\nas the **MCP endpoint**) that supports POST. For example, this could be a URL\nlike `https://example.com/mcp`.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-143",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 57,
+      "keyword_occurrences": 1,
+      "source_context": "When implementing Streamable HTTP transport:\n\n1. Servers **MUST** validate the `Origin` header on all incoming connections\n   to prevent DNS rebinding attacks.\n   * If the `Origin` header is present and invalid, servers **MUST** respond\n     with HTTP 403 Forbidden. The HTTP response body **MAY** comprise a",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-144",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 59,
+      "keyword_occurrences": 1,
+      "source_context": "1. Servers **MUST** validate the `Origin` header on all incoming connections\n   to prevent DNS rebinding attacks.\n   * If the `Origin` header is present and invalid, servers **MUST** respond\n     with HTTP 403 Forbidden. The HTTP response body **MAY** comprise a\n     JSON-RPC *error response* that has no `id`.\n2. When running locally, servers **SHOULD** bind only to localhost",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-145",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 71,
+      "keyword_occurrences": 1,
+      "source_context": "## Sending Messages\n\nEvery JSON-RPC message sent from the client **MUST** be a new HTTP POST\nrequest to the MCP endpoint.\n\n1. The client **MUST** use HTTP POST to send JSON-RPC messages.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-146",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 74,
+      "keyword_occurrences": 1,
+      "source_context": "request to the MCP endpoint.\n\n1. The client **MUST** use HTTP POST to send JSON-RPC messages.\n2. The client **MUST** include an `Accept` header listing both\n   `application/json` and `text/event-stream` as supported content types.\n3. The client **MUST** include the [request metadata headers](#request-metadata)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-147",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 75,
+      "keyword_occurrences": 1,
+      "source_context": "\n1. The client **MUST** use HTTP POST to send JSON-RPC messages.\n2. The client **MUST** include an `Accept` header listing both\n   `application/json` and `text/event-stream` as supported content types.\n3. The client **MUST** include the [request metadata headers](#request-metadata)\n   on each POST request.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-148",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 77,
+      "keyword_occurrences": 1,
+      "source_context": "2. The client **MUST** include an `Accept` header listing both\n   `application/json` and `text/event-stream` as supported content types.\n3. The client **MUST** include the [request metadata headers](#request-metadata)\n   on each POST request.\n4. The body of the HTTP POST **MUST** be a single JSON-RPC *request* or\n   *notification*. The client **MUST NOT** send JSON-RPC *responses*.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-149",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 79,
+      "keyword_occurrences": 1,
+      "source_context": "3. The client **MUST** include the [request metadata headers](#request-metadata)\n   on each POST request.\n4. The body of the HTTP POST **MUST** be a single JSON-RPC *request* or\n   *notification*. The client **MUST NOT** send JSON-RPC *responses*.\n5. If the body is a JSON-RPC *notification*:\n   * If the server accepts it, the server **MUST** return HTTP status code",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-150",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 80,
+      "keyword_occurrences": 1,
+      "source_context": "   on each POST request.\n4. The body of the HTTP POST **MUST** be a single JSON-RPC *request* or\n   *notification*. The client **MUST NOT** send JSON-RPC *responses*.\n5. If the body is a JSON-RPC *notification*:\n   * If the server accepts it, the server **MUST** return HTTP status code\n     `202 Accepted` with no body.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-151",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 82,
+      "keyword_occurrences": 1,
+      "source_context": "   *notification*. The client **MUST NOT** send JSON-RPC *responses*.\n5. If the body is a JSON-RPC *notification*:\n   * If the server accepts it, the server **MUST** return HTTP status code\n     `202 Accepted` with no body.\n   * If the server cannot accept it, it **MUST** return an HTTP error status\n     code (e.g., `400 Bad Request`). The HTTP response body **MAY** comprise",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-152",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 84,
+      "keyword_occurrences": 1,
+      "source_context": "   * If the server accepts it, the server **MUST** return HTTP status code\n     `202 Accepted` with no body.\n   * If the server cannot accept it, it **MUST** return an HTTP error status\n     code (e.g., `400 Bad Request`). The HTTP response body **MAY** comprise\n     a JSON-RPC *error response* that has no `id`.\n6. If the body is a JSON-RPC *request*, the server **MUST** return either",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-153",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 87,
+      "keyword_occurrences": 1,
+      "source_context": "     code (e.g., `400 Bad Request`). The HTTP response body **MAY** comprise\n     a JSON-RPC *error response* that has no `id`.\n6. If the body is a JSON-RPC *request*, the server **MUST** return either\n   `Content-Type: application/json` (a single JSON object) or\n   `Content-Type: text/event-stream` (an SSE response stream). The client\n   **MUST** support both.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-154",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 90,
+      "keyword_occurrences": 1,
+      "source_context": "   `Content-Type: application/json` (a single JSON object) or\n   `Content-Type: text/event-stream` (an SSE response stream). The client\n   **MUST** support both.\n\n<Note>\n  This revision of the core protocol defines no client-to-server",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-155",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 112,
+      "keyword_occurrences": 1,
+      "source_context": "  [`notifications/progress`][notifications-progress]\n  or [`notifications/message`][notifications-message] \u2014\n  before the final response. These notifications **MUST** relate to the\n  originating client request.\n* The server **MUST NOT** send independent JSON-RPC *requests* on this stream.\n  Server-to-client interactions (sampling, elicitation, list-roots) are",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-156",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 114,
+      "keyword_occurrences": 1,
+      "source_context": "  before the final response. These notifications **MUST** relate to the\n  originating client request.\n* The server **MUST NOT** send independent JSON-RPC *requests* on this stream.\n  Server-to-client interactions (sampling, elicitation, list-roots) are\n  embedded as input requests inside an\n  [`InputRequiredResult`][input-required-result] per",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-157",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 235,
+      "keyword_occurrences": 1,
+      "source_context": "## Cancellation\n\nClosing the SSE response stream **MUST** be treated by the server as\ncancellation of that request. Because each request has its own response\nstream, the transport-level disconnect is unambiguous. The server **SHOULD**\nstop work on the cancelled request as soon as practical and **MUST NOT** send",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-158",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 238,
+      "keyword_occurrences": 1,
+      "source_context": "cancellation of that request. Because each request has its own response\nstream, the transport-level disconnect is unambiguous. The server **SHOULD**\nstop work on the cancelled request as soon as practical and **MUST NOT** send\nany further messages for it. See\n[Cancellation][cancellation] for the full rules.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-159",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 252,
+      "keyword_occurrences": 1,
+      "source_context": "### Protocol Version Header\n\nEvery POST request to the MCP endpoint **MUST** include an\n`MCP-Protocol-Version` header.\n\nFor example: `MCP-Protocol-Version: 2026-07-28`",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-160",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 257,
+      "keyword_occurrences": 1,
+      "source_context": "For example: `MCP-Protocol-Version: 2026-07-28`\n\nThe header value **MUST** match the\n`io.modelcontextprotocol/protocolVersion` field carried in the request body's\n`_meta`. If the values do not match, the server **MUST** reject the request\nwith `400 Bad Request` and a `HeaderMismatch` JSON-RPC error",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-161",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 259,
+      "keyword_occurrences": 1,
+      "source_context": "The header value **MUST** match the\n`io.modelcontextprotocol/protocolVersion` field carried in the request body's\n`_meta`. If the values do not match, the server **MUST** reject the request\nwith `400 Bad Request` and a `HeaderMismatch` JSON-RPC error\n(see [Server Validation](#server-validation)).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-162",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 265,
+      "keyword_occurrences": 1,
+      "source_context": "If the server does not implement the requested protocol version (whether the\nversion is unknown to the server, or is a known version the server has chosen\nnot to support), it **MUST** respond with `400 Bad Request` and an\n[`UnsupportedProtocolVersionError`][unsupported-version]\nlisting its supported versions. See\n[Versioning: Protocol Version Negotiation][lifecycle-version]",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-163",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 271,
+      "keyword_occurrences": 1,
+      "source_context": "for the negotiation flow.\n\nIf the server does not implement the requested RPC method, it **MUST** respond\nwith `404 Not Found` and a JSON-RPC error with code `-32601`\n(`Method not found`). The JSON-RPC error body distinguishes this case from a\n`404` returned by a legacy [HTTP+SSE][http-sse] server that does not host the",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-164",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 280,
+      "keyword_occurrences": 1,
+      "source_context": "`2025-06-18` (which did not define the `MCP-Protocol-Version` header) **MAY**\ntreat a request that omits the header as protocol version `2025-03-26`. A\nserver that does not support such clients **MUST** reject a request without\nthe header per [Server Validation](#server-validation).\n\n[unsupported-version]: /specification/2026-07-28/schema#unsupportedprotocolversionerror",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-165",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 294,
+      "keyword_occurrences": 1,
+      "source_context": "| `Mcp-Name` | `params.name` or `params.uri` | `tools/call`, `resources/read`, `prompts/get` requests |\n\nThese headers are **REQUIRED** for compliance.\n\nIf the `Mcp-Name` source value cannot be safely represented as a plain ASCII\nheader value, clients **MUST** encode it using the Base64 sentinel format",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-166",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 297,
+      "keyword_occurrences": 1,
+      "source_context": "\nIf the `Mcp-Name` source value cannot be safely represented as a plain ASCII\nheader value, clients **MUST** encode it using the Base64 sentinel format\ndescribed in [Value Encoding](#value-encoding).\n\n**`tools/call` request:**",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-167",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 365,
+      "keyword_occurrences": 1,
+      "source_context": "details on how to annotate tool parameters.\n\nWhile the use of `x-mcp-header` is optional for servers, clients **MUST**\nsupport this feature. When a server's tool definition includes\n`x-mcp-header` annotations, conforming clients **MUST** mirror the\ndesignated parameter values into HTTP headers.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-168",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 367,
+      "keyword_occurrences": 1,
+      "source_context": "While the use of `x-mcp-header` is optional for servers, clients **MUST**\nsupport this feature. When a server's tool definition includes\n`x-mcp-header` annotations, conforming clients **MUST** mirror the\ndesignated parameter values into HTTP headers.\n\n[tool-definitions]: /specification/2026-07-28/server/tools#x-mcp-header",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-169",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 379,
+      "keyword_occurrences": 1,
+      "source_context": "**Constraints on `x-mcp-header` values**:\n\n* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`)\n  or line feed (LF, `\\n`)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-170",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 380,
+      "keyword_occurrences": 1,
+      "source_context": "\n* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`)\n  or line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-171",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 381,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`)\n  or line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in\n  the `inputSchema`",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-172",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 383,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST NOT** contain control characters, including carriage return (CR, `\\r`)\n  or line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in\n  the `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer,\n  string, boolean). Parameters with type `number` are not permitted.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-173",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 385,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST** be case-insensitively unique among all `x-mcp-header` values in\n  the `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer,\n  string, boolean). Parameters with type `number` are not permitted.\n  Integer values **MUST** be within the safe range for JavaScript\n  (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-174",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 387,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST** only be applied to parameters with primitive types (integer,\n  string, boolean). Parameters with type `number` are not permitted.\n  Integer values **MUST** be within the safe range for JavaScript\n  (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable*\n  from the schema root: reachable via a chain consisting solely of",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-175",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 389,
+      "keyword_occurrences": 1,
+      "source_context": "  Integer values **MUST** be within the safe range for JavaScript\n  (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable*\n  from the schema root: reachable via a chain consisting solely of\n  `properties` keys. The chain **MUST NOT** pass through `items` (or any\n  other array keyword), composition keywords (`oneOf`, `anyOf`, `allOf`,",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-176",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 391,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST** only be applied to properties that are *statically reachable*\n  from the schema root: reachable via a chain consisting solely of\n  `properties` keys. The chain **MUST NOT** pass through `items` (or any\n  other array keyword), composition keywords (`oneOf`, `anyOf`, `allOf`,\n  `not`), conditional keywords (`if`/`then`/`else`), or `$ref`. Nested\n  object properties are permitted as long as every step in the chain is a",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-177",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 403,
+      "keyword_occurrences": 1,
+      "source_context": "the header is omitted.\n\nClients using the Streamable HTTP transport **MUST** reject tool definitions\nwhere any `x-mcp-header` value violates these constraints. Rejection means\nthe client **MUST** exclude the invalid tool from the result of `tools/list`.\nClients **SHOULD** log a warning when rejecting a tool definition, including",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-178",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 405,
+      "keyword_occurrences": 1,
+      "source_context": "Clients using the Streamable HTTP transport **MUST** reject tool definitions\nwhere any `x-mcp-header` value violates these constraints. Rejection means\nthe client **MUST** exclude the invalid tool from the result of `tools/list`.\nClients **SHOULD** log a warning when rejecting a tool definition, including\nthe tool name and the reason for rejection. This ensures that a single\nmalformed tool definition does not prevent other valid tools from being used.",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-179",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 470,
+      "keyword_occurrences": 1,
+      "source_context": "#### Value Encoding\n\nClients **MUST** encode parameter values before including them in HTTP\nheaders to ensure safe transmission and prevent injection attacks.\n\n**Type conversion**: Convert the parameter value to its string representation:",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-180",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 484,
+      "keyword_occurrences": 1,
+      "source_context": "be safely represented as a plain ASCII header value (e.g., it contains\nnon-ASCII characters, control characters, or has leading/trailing\nwhitespace), clients **MUST** use Base64 encoding of the UTF-8\nrepresentation with the following format:\n\n```text theme={null}",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-181",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 500,
+      "keyword_occurrences": 1,
+      "source_context": "\nThe prefix `=?base64?` and suffix `?=` indicate that the value is\nBase64-encoded. These markers are case-sensitive and **MUST** appear exactly\nas shown (lowercase). Servers and intermediaries that need to inspect these\nvalues **MUST** decode them accordingly. In particular, servers **MUST**\ndecode an encoded `Mcp-Name` or `Mcp-Param-{Name}` value before comparing it",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-182",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 502,
+      "keyword_occurrences": 2,
+      "source_context": "Base64-encoded. These markers are case-sensitive and **MUST** appear exactly\nas shown (lowercase). Servers and intermediaries that need to inspect these\nvalues **MUST** decode them accordingly. In particular, servers **MUST**\ndecode an encoded `Mcp-Name` or `Mcp-Param-{Name}` value before comparing it\nto the corresponding request body value during\n[Server Validation](#server-validation).",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-183",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 507,
+      "keyword_occurrences": 1,
+      "source_context": "[Server Validation](#server-validation).\n\nTo avoid ambiguity, clients **MUST** also Base64-encode any plain-ASCII\nvalue that matches the sentinel pattern (i.e., starts with `=?base64?`\nand ends with `?=`).\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-184",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 526,
+      "keyword_occurrences": 1,
+      "source_context": "\nWhen constructing a `tools/call` request via HTTP transport, the client\n**MUST**:\n\n1. Extract the values for any standard headers from the request body (e.g.,\n   `method`, `params.name`, `params.uri`).",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-185",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 550,
+      "keyword_occurrences": 1,
+      "source_context": "\nIntermediate servers that do not recognize an `Mcp-Param-{Name}` header\n**MUST** forward it and otherwise ignore it, as required by the\n[HTTP Semantics RFC][http-semantics].\n\nServers **MUST** reject requests with a recognized `Mcp-Param-{Name}` header",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-186",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 553,
+      "keyword_occurrences": 1,
+      "source_context": "[HTTP Semantics RFC][http-semantics].\n\nServers **MUST** reject requests with a recognized `Mcp-Param-{Name}` header\nthat contains invalid characters (see [Value Encoding](#value-encoding)).\n\nAny server that processes the message body **MUST** validate that encoded",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-187",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 556,
+      "keyword_occurrences": 1,
+      "source_context": "that contains invalid characters (see [Value Encoding](#value-encoding)).\n\nAny server that processes the message body **MUST** validate that encoded\nheader values, after decoding if Base64-encoded, match the corresponding\nvalues in the request body. Servers **MUST** reject requests with a\n`400 Bad Request` HTTP status and JSON-RPC error code `-32020`",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-188",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 558,
+      "keyword_occurrences": 1,
+      "source_context": "Any server that processes the message body **MUST** validate that encoded\nheader values, after decoding if Base64-encoded, match the corresponding\nvalues in the request body. Servers **MUST** reject requests with a\n`400 Bad Request` HTTP status and JSON-RPC error code `-32020`\n(`HeaderMismatch`) if any validation fails.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-189",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 564,
+      "keyword_occurrences": 2,
+      "source_context": "| Scenario | Client Behavior | Server Behavior |\n| - | - | - |\n| Parameter value provided | Client MUST include the header | Server MUST validate header matches body |\n| Parameter value is `null` | Client MUST omit the header | Server MUST NOT expect the header |\n| Parameter not in arguments | Client MUST omit the header | Server MUST NOT expect the header |\n| Client omits header but value is in body | Non-conforming client | Server MUST reject the request |",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-190",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 565,
+      "keyword_occurrences": 2,
+      "source_context": "| - | - | - |\n| Parameter value provided | Client MUST include the header | Server MUST validate header matches body |\n| Parameter value is `null` | Client MUST omit the header | Server MUST NOT expect the header |\n| Parameter not in arguments | Client MUST omit the header | Server MUST NOT expect the header |\n| Client omits header but value is in body | Non-conforming client | Server MUST reject the request |\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-191",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 566,
+      "keyword_occurrences": 2,
+      "source_context": "| Parameter value provided | Client MUST include the header | Server MUST validate header matches body |\n| Parameter value is `null` | Client MUST omit the header | Server MUST NOT expect the header |\n| Parameter not in arguments | Client MUST omit the header | Server MUST NOT expect the header |\n| Client omits header but value is in body | Non-conforming client | Server MUST reject the request |\n\n[http-semantics]: https://www.rfc-editor.org/rfc/rfc9110.html#name-field-names",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-192",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 567,
+      "keyword_occurrences": 1,
+      "source_context": "| Parameter value is `null` | Client MUST omit the header | Server MUST NOT expect the header |\n| Parameter not in arguments | Client MUST omit the header | Server MUST NOT expect the header |\n| Client omits header but value is in body | Non-conforming client | Server MUST reject the request |\n\n[http-semantics]: https://www.rfc-editor.org/rfc/rfc9110.html#name-field-names\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-193",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 575,
+      "keyword_occurrences": 1,
+      "source_context": "Header names (called \"field names\" in\n[RFC 9110][rfc9110-names])\nare case-insensitive. Clients and servers **MUST** use case-insensitive\ncomparisons for header names. Header *values* (such as method names) are\ncase-sensitive.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-194",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 583,
+      "keyword_occurrences": 1,
+      "source_context": "### Server Validation\n\nServers that process the request body **MUST** reject requests where the\nvalues specified in the headers do not match the corresponding values in the\nrequest body. This prevents potential security vulnerabilities when\ndifferent components in the network rely on different sources of truth",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-195",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 596,
+      "keyword_occurrences": 1,
+      "source_context": "</Note>\n\nWhen rejecting a request due to header validation failure, servers **MUST**\nreturn HTTP status `400 Bad Request` and **MUST** include a JSON-RPC error\nresponse using the following error code:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-196",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 597,
+      "keyword_occurrences": 1,
+      "source_context": "\nWhen rejecting a request due to header validation failure, servers **MUST**\nreturn HTTP status `400 Bad Request` and **MUST** include a JSON-RPC error\nresponse using the following error code:\n\n| Code | Name | Description |",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-197",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 627,
+      "keyword_occurrences": 1,
+      "source_context": "* A header value does not match the corresponding request body value.\n  For headers that permit the Base64 sentinel encoding (`Mcp-Name` and\n  `Mcp-Param-{Name}`), servers **MUST** decode encoded values (see\n  [Value Encoding](#value-encoding)) before comparing them to the body value.\n* A header value contains invalid characters.\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-198",
+      "source": "specification--2026-07-28--basic--transports--streamable-http.md",
+      "line": 632,
+      "keyword_occurrences": 1,
+      "source_context": "\n<Note>\n  Intermediaries **MUST** return an appropriate HTTP error status (e.g.,\n  `400 Bad Request`) for validation failures but are not required to return\n  a JSON-RPC error response.\n</Note>",
+      "status": "NOT_APPLICABLE",
+      "reason": "HTTP/OAuth binding belongs to separately unapproved UP-02B/03/05; existing legacy SSE source is unchanged.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-199",
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 52,
+      "keyword_occurrences": 1,
+      "source_context": "If the server does not implement the requested version (whether the version\nis unknown to the server, or is a known version the server has chosen not to\nsupport), it **MUST** respond with an\n[`UnsupportedProtocolVersionError`](/specification/2026-07-28/schema#unsupportedprotocolversionerror)\nlisting the versions it does support:\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-200",
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 75,
+      "keyword_occurrences": 1,
+      "source_context": "version exists.\n\nServers **MUST** implement\n[`server/discover`](/specification/2026-07-28/server/discover). Clients\n**MAY** call it before sending any other requests to learn the server's\nsupported versions up front, but are not required to: a client is free to",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-201",
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 88,
+      "keyword_occurrences": 1,
+      "source_context": "are advertised in the `extensions` field of capabilities, which is a map of\nextension identifiers to per-extension settings objects. Extension identifiers\n**MUST** follow the [`_meta` key naming rules](/specification/2026-07-28/basic/index#meta),\nwith a mandatory prefix.\n\nThe following is an example of a client that advertises the",
+      "status": "FAIL",
+      "reason": "VAL-UP02A-002: supported extension names/settings are retained from server capabilities without declared-schema validation.",
+      "evidence": "protocol.py:324-328; checks/adversarial-probes demonstrates analogous known-capability validation gap; schema ServerCapabilities"
+    },
+    {
+      "id": "N-202",
+      "source": "specification--2026-07-28--basic--versioning.md",
+      "line": 124,
+      "keyword_occurrences": 1,
+      "source_context": "\nIf one party supports an extension but the other does not, the supporting\nparty **MUST** either revert to core protocol behavior or reject the request\nwith an appropriate error. Extensions **SHOULD** document their expected\nfallback behavior.\n",
+      "status": "PASS",
+      "reason": "No optional extensions advertised; unknown result tags fail instead of enabling a handler.",
+      "evidence": "base.py:_request; protocol.py:complete_result; checks/focused"
+    },
+    {
+      "id": "N-203",
+      "source": "specification--2026-07-28--index.md",
+      "line": 22,
+      "keyword_occurrences": 5,
+      "source_context": "[modelcontextprotocol.io](https://modelcontextprotocol.io).\n\nThe key words \"MUST\", \"MUST NOT\", \"REQUIRED\", \"SHALL\", \"SHALL NOT\", \"SHOULD\", \"SHOULD\nNOT\", \"RECOMMENDED\", \"NOT RECOMMENDED\", \"MAY\", and \"OPTIONAL\" in this document are to be\ninterpreted as described in [BCP 14](https://datatracker.ietf.org/doc/html/bcp14)\n\\[[RFC2119](https://datatracker.ietf.org/doc/html/rfc2119)]",
+      "status": "NOT_APPLICABLE",
+      "reason": "BCP14 keyword definition, not a behavioral clause; lowercase host/UI guidance is not a capitalized normative clause.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-204",
+      "source": "specification--2026-07-28--server--discover.md",
+      "line": 10,
+      "keyword_occurrences": 1,
+      "source_context": "\n`server/discover` lets a client query a server's supported protocol versions,\ncapabilities, and identity before sending any other requests. Servers **MUST**\nimplement it.\n\n## Request",
+      "status": "NOT_APPLICABLE",
+      "reason": "Server implementation requirement; modern Friday server remains UP-05. Client discovery is tested independently in checks/focused and checks/package.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-205",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 18,
+      "keyword_occurrences": 1,
+      "source_context": "  metadata (`io.modelcontextprotocol/protocolVersion`,\n  `io.modelcontextprotocol/clientInfo`, and\n  `io.modelcontextprotocol/clientCapabilities`). Every request **MUST** include\n  the required `_meta` fields; see\n  [`_meta`](/specification/2026-07-28/basic/index#meta).\n</Note>",
+      "status": "PASS",
+      "reason": "Every request has required metadata; inputSchema is object/2020-12 validated; annotations are untrusted and never confer authorization.",
+      "evidence": "base.py:_request; protocol.py:ToolDefinition.parse; unchanged accepted runtime/Chat trust paths; checks/focused/checks/cross-package-loopback"
+    },
+    {
+      "id": "N-206",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 47,
+      "keyword_occurrences": 1,
+      "source_context": "## Capabilities\n\nServers that support tools **MUST** declare the `tools` capability:\n\n```json theme={null}\n{",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-207",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 62,
+      "keyword_occurrences": 1,
+      "source_context": "available tools changes.\n\nServers that declare the `tools` capability **MUST** respond to `tools/list` requests\nwith the set of tools currently available to the requesting client. This set **MAY** be\nempty and **MAY** change over time (see\n[List Changed Notification](#list-changed-notification)), but **MUST NOT** vary",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-208",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 65,
+      "keyword_occurrences": 1,
+      "source_context": "with the set of tools currently available to the requesting client. This set **MAY** be\nempty and **MAY** change over time (see\n[List Changed Notification](#list-changed-notification)), but **MUST NOT** vary\nper-connection or as a side effect of other requests on the connection. The set\n**MAY** vary by the authorization presented on the request \u2014 for example, returning\nonly the tools the caller's granted scopes permit \u2014 since credentials are",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-209",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 234,
+      "keyword_occurrences": 1,
+      "source_context": "```\n\nNote that the JSON-RPC `id` **MUST** be different between the initial request and the retry.\n\n### List Changed Notification\n",
+      "status": "NOT_APPLICABLE",
+      "reason": "No MRTR retry; independent tools/call is never automatically replayed.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-210",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 293,
+      "keyword_occurrences": 1,
+      "source_context": "  * Follows the [JSON Schema usage guidelines](/specification/2026-07-28/basic#json-schema-usage)\n  * Defaults to 2020-12 if no `$schema` field is present\n  * **MUST** be a valid JSON Schema object (not `null`)\n  * For tools with no parameters, use one of these valid approaches:\n    * `{ \"type\": \"object\", \"additionalProperties\": false }` - **Recommended**: explicitly accepts only empty objects\n    * `{ \"type\": \"object\" }` - accepts any object (including with properties)",
+      "status": "PASS",
+      "reason": "Every request has required metadata; inputSchema is object/2020-12 validated; annotations are untrusted and never confer authorization.",
+      "evidence": "base.py:_request; protocol.py:ToolDefinition.parse; unchanged accepted runtime/Chat trust paths; checks/focused/checks/cross-package-loopback"
+    },
+    {
+      "id": "N-211",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 305,
+      "keyword_occurrences": 1,
+      "source_context": "\n<Warning>\n  For trust & safety and security, clients **MUST** consider tool annotations to\n  be untrusted unless they come from trusted servers.\n</Warning>\n",
+      "status": "PASS",
+      "reason": "Every request has required metadata; inputSchema is object/2020-12 validated; annotations are untrusted and never confer authorization.",
+      "evidence": "base.py:_request; protocol.py:ToolDefinition.parse; unchanged accepted runtime/Chat trust paths; checks/focused/checks/cross-package-loopback"
+    },
+    {
+      "id": "N-212",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 346,
+      "keyword_occurrences": 1,
+      "source_context": "**Constraints on `x-mcp-header` values:**\n\n* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`) or\n  line feed (LF, `\\n`)",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-213",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 347,
+      "keyword_occurrences": 1,
+      "source_context": "\n* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`) or\n  line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in the",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-214",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 348,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST NOT** be empty\n* **MUST** match HTTP field-name token syntax (`1*tchar`, [RFC 9110 Section 5.1](https://datatracker.ietf.org/doc/html/rfc9110#section-5.1))\n* **MUST NOT** contain control characters, including carriage return (CR, `\\r`) or\n  line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in the\n  `inputSchema`",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-215",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 350,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST NOT** contain control characters, including carriage return (CR, `\\r`) or\n  line feed (LF, `\\n`)\n* **MUST** be case-insensitively unique among all `x-mcp-header` values in the\n  `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer, string, boolean).\n  Parameters with type `number` are not permitted. Integer values **MUST** be within the",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-216",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 352,
+      "keyword_occurrences": 1,
+      "source_context": "* **MUST** be case-insensitively unique among all `x-mcp-header` values in the\n  `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer, string, boolean).\n  Parameters with type `number` are not permitted. Integer values **MUST** be within the\n  safe range for integers represented using IEEE754 double-precision floating point numbers (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable* from the schema",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-217",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 353,
+      "keyword_occurrences": 1,
+      "source_context": "  `inputSchema`\n* **MUST** only be applied to parameters with primitive types (integer, string, boolean).\n  Parameters with type `number` are not permitted. Integer values **MUST** be within the\n  safe range for integers represented using IEEE754 double-precision floating point numbers (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable* from the schema\n  root, as defined in",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-218",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 355,
+      "keyword_occurrences": 1,
+      "source_context": "  Parameters with type `number` are not permitted. Integer values **MUST** be within the\n  safe range for integers represented using IEEE754 double-precision floating point numbers (\u22122<sup>53</sup>+1 to 2<sup>53</sup>\u22121)\n* **MUST** only be applied to properties that are *statically reachable* from the schema\n  root, as defined in\n  [Custom Headers from Tool Parameters](/specification/2026-07-28/basic/transports/streamable-http#custom-headers-from-tool-parameters),\n  which also defines how header values are extracted from call arguments",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-219",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 360,
+      "keyword_occurrences": 1,
+      "source_context": "  which also defines how header values are extracted from call arguments\n\nClients using the Streamable HTTP transport **MUST** reject tool definitions where any\n`x-mcp-header` value violates these constraints. Rejection means the client **MUST**\nexclude the invalid tool from the result of `tools/list`. Clients **SHOULD** log a\nwarning when rejecting a tool definition, including the tool name and the reason for",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-220",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 361,
+      "keyword_occurrences": 1,
+      "source_context": "\nClients using the Streamable HTTP transport **MUST** reject tool definitions where any\n`x-mcp-header` value violates these constraints. Rejection means the client **MUST**\nexclude the invalid tool from the result of `tools/list`. Clients **SHOULD** log a\nwarning when rejecting a tool definition, including the tool name and the reason for\nrejection. This ensures that a single malformed tool definition does not prevent other",
+      "status": "NOT_APPLICABLE",
+      "reason": "x-mcp-header validation is HTTP-specific; stdio is explicitly permitted to ignore annotations.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-221",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 508,
+      "keyword_occurrences": 1,
+      "source_context": "If an output schema is provided:\n\n* Servers **MUST** provide structured results that conform to this schema.\n* Clients **SHOULD** validate structured results against this schema.\n\nExample tool with output schema:",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    },
+    {
+      "id": "N-222",
+      "source": "specification--2026-07-28--server--tools.md",
+      "line": 783,
+      "keyword_occurrences": 1,
+      "source_context": "## Security Considerations\n\n1. Servers **MUST**:\n   * Validate all tool inputs\n   * Implement proper access controls\n   * Rate limit tool invocations",
+      "status": "NOT_APPLICABLE",
+      "reason": "Outside the tools-only stdio client role or optional feature is not implemented/advertised.",
+      "evidence": "protocol-contract.md supported profiles; exact twelve-path product diff in inventory.json"
+    }
+  ],
+  "schema_structures": [
+    {
+      "structure": "RequestMetaObject/RequestParams",
+      "status": "PASS",
+      "evaluation": "Required revision and clientCapabilities, optional package identity; base.py:_request, focused modern metadata wire test."
+    },
+    {
+      "structure": "JSONRPCRequest/Notification/Response/Error",
+      "status": "PASS",
+      "evaluation": "Envelope and type-sensitive ID checks; fixed peer error handling; focused malformed/late/duplicate/concurrent cases."
+    },
+    {
+      "structure": "Result/ResultMetaObject/MetaObject",
+      "status": "FAIL",
+      "evaluation": "VAL-UP02A-002; outer object check does not validate key grammar or known Implementation fields outside discovery."
+    },
+    {
+      "structure": "DiscoverResult/ServerCapabilities",
+      "status": "FAIL",
+      "evaluation": "VAL-UP02A-002; listChanged accepts a string; extension keys/settings are not fully validated."
+    },
+    {
+      "structure": "CacheableResult",
+      "status": "PASS",
+      "evaluation": "ttlMs and public/private types checked; no cache opened; focused discovery/catalog failure cases."
+    },
+    {
+      "structure": "PaginatedResult/ListToolsResult/Tool/BaseMetadata/Icons/ToolAnnotations",
+      "status": "FAIL",
+      "evaluation": "VAL-UP02A-002; tools retain nonobject _meta and known optional fields without checking their schema types; no icons rendered/fetched."
+    },
+    {
+      "structure": "CallToolRequestParams",
+      "status": "PASS",
+      "evaluation": "Tool name/arguments emitted from typed public signature and validated JSON boundary; unchanged routing tested."
+    },
+    {
+      "structure": "CallToolResult/TextContent/Annotations",
+      "status": "FAIL",
+      "evaluation": "VAL-UP02A-002; TextContent _meta=[] and priority string accepted; text/structured values otherwise preserved and bounded."
+    },
+    {
+      "structure": "InputRequiredResult/InputRequests",
+      "status": "PASS_WITH_LIMITATION",
+      "evaluation": "At least one state/request map required; unsupported outcome with no capability handlers, raw repr, continuation or replay. Input request internals are not executed."
+    },
+    {
+      "structure": "CancelledNotificationParams",
+      "status": "PASS",
+      "evaluation": "No id on notification; requestId is issued string request; bounded send; initialize excluded."
+    },
+    {
+      "structure": "ImageContent/AudioContent/ResourceLink/EmbeddedResource",
+      "status": "UNSUPPORTED_SAFE",
+      "evaluation": "Modern nontext returns fixed unsupported_content; no fetch/render occurs. Valid legacy mixed text compatibility retained."
+    },
+    {
+      "structure": "Other schema structures",
+      "status": "NOT_APPLICABLE",
+      "evaluation": "Resources/prompts/sampling/elicitation/roots/subscriptions/completion/server-specific features and HTTP binding are not declared in this first tools-only client slice."
+    }
+  ]
+}

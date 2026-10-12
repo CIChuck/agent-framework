@@ -1,0 +1,91 @@
+{
+  "report_unchanged": true,
+  "report_sha256": "1fb7603c3abbcd394a32fafd75a6bb83808920ea047d305f383cd853a91f05a6",
+  "views": [
+    {
+      "path": "baseline-identity.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "7e24b573eb828052b598403e8840ac2f523f78e486948a808e1e4ae274a726ec"
+    },
+    {
+      "path": "full.diff",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "dba405dab9ed93aa1a70809c153c6a386a028d9c772c8848fb47df81dbd77b24"
+    },
+    {
+      "path": "freeze-closeout.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "bbdb6db01eefc7fb4b5dbb3c2fc5023b8801e32ff97d4fa45337c13afbdb1148"
+    },
+    {
+      "path": "inventory.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "ee6d8dfe0cdcc1fc796fd5c37fe89febf32839ca39e51c531aed69cb3e99ef39"
+    },
+    {
+      "path": "normative/",
+      "kind": "directory archive navigation"
+    },
+    {
+      "path": "candidate-evidence-integrity.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "e95fa6510d7a20deebdcf5a3b9bd23a04623bc395bc1ee588049afde834a1f12"
+    },
+    {
+      "path": "inventory.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "ee6d8dfe0cdcc1fc796fd5c37fe89febf32839ca39e51c531aed69cb3e99ef39"
+    },
+    {
+      "path": "command-ledger.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "0cf0cdebae53950c817406fe69b2fe1dec3dd9176fd5bf8a86af339df3a996fb"
+    },
+    {
+      "path": "adversarial_probes.py",
+      "kind": "readable formatting-only presentation",
+      "original_sha256": "8f092cd302a151058d2e0e0312b46ac39f52b5a8832bb9f2d6c64c5c13205d0d",
+      "raw_archive": "artifacts/adversarial_probes.py.gz",
+      "presentation_sha256": "1a14714be20a34b3fc3fba02c23ce27076b343c1ac5ec51facff1c113b891a0a"
+    },
+    {
+      "path": "checks/adversarial-probes/stdout",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "da913970dda33e69d4cb9bf97a7368e5c790a12273aa1af4277390635e35dfb7"
+    },
+    {
+      "path": "checks/adversarial-probes/receipt.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "6bdf5c142dfbfc15357d6f9735396b1defc935399daea0b4ad629be333621f49"
+    },
+    {
+      "path": "adversarial_probes.py",
+      "kind": "readable formatting-only presentation",
+      "original_sha256": "8f092cd302a151058d2e0e0312b46ac39f52b5a8832bb9f2d6c64c5c13205d0d",
+      "raw_archive": "artifacts/adversarial_probes.py.gz",
+      "presentation_sha256": "1a14714be20a34b3fc3fba02c23ce27076b343c1ac5ec51facff1c113b891a0a"
+    },
+    {
+      "path": "checks/adversarial-probes/stdout",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "da913970dda33e69d4cb9bf97a7368e5c790a12273aa1af4277390635e35dfb7"
+    },
+    {
+      "path": "checks/adversarial-probes/receipt.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "6bdf5c142dfbfc15357d6f9735396b1defc935399daea0b4ad629be333621f49"
+    },
+    {
+      "path": "normative-clause-ledger.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "8db1e5e36b3ad564c29694039bfd522d927ba59dc35a084cc9ea36f48ffbce0d"
+    },
+    {
+      "path": "command-ledger.json",
+      "kind": "byte-identical linked raw artifact",
+      "sha256": "0cf0cdebae53950c817406fe69b2fe1dec3dd9176fd5bf8a86af339df3a996fb"
+    }
+  ],
+  "note": "Preserved immutable report and all executed raw bytes. Restored navigation for literal relative targets; the diagnostic Python target is a separately declared formatting-only presentation, original executed source remains archived.",
+  "diagnostic_presentation_program_ast_matches": true
+}
