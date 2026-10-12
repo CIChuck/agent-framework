@@ -34,13 +34,13 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](queued/friday-mcp-protocol-upgrade/) | normal | granted | not_started | approved controls and dedicated branch prepared from merged telemetry 1302b5f; record start before CD-MCP-UP-001 product construction |
 | 16 | [Self-Evolving Knowledge Graph](queued/self-evolving-knowledge-graph/) | normal | design_only | not_started | produce and approve the target design |
 
 ## Started
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | execute CD-MCP-UP-001; freeze exact-scope candidate and require fresh independent validation |
 | 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 
 ## Completed

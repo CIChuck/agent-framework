@@ -24,7 +24,7 @@ Core TELEM-01–04 remain accepted and closed; Langfuse is an optional destinati
 Chuck Russell requested this queue item on2026-10-11: "Let's add Langfuse
 implementation to the board. We'll queue that up and get to it after we do the
 MCP upgrade." Priority5 follows the
-[MCP protocol upgrade](../friday-mcp-protocol-upgrade/README.md) at priority4.
+[MCP protocol upgrade](../../active/friday-mcp-protocol-upgrade/README.md) at priority4.
 The board dependency requires that MCP initiative's acceptance before Langfuse
 execution. Other tasks retain their relative priority order.
 

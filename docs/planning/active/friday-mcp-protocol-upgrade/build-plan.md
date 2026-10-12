@@ -31,7 +31,7 @@ The inspected baseline is `46005353046553477417a730f05ff21ead64a00d` on
 closed. TELEM-04 product is `5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8`, with
 VAL-010 VERIFIED and acceptance recorded at `4600535`. The
 [baseline receipt](baseline.json) pins the source inventory and accepted controls.
-Langfuse remains [queued after MCP acceptance](../friday-langfuse-integration/README.md).
+Langfuse remains [queued after MCP acceptance](../../queued/friday-langfuse-integration/README.md).
 The old telemetry waivers have expired and do not authorize MCP construction.
 
 ## Requirements and acceptance

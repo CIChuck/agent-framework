@@ -456,12 +456,12 @@ tasks:
 - id: friday-mcp-protocol-upgrade
   title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
   priority: 4
-  work_state: approved
+  work_state: started
   condition: normal
   implementation_authority: granted
-  packet: docs/planning/queued/friday-mcp-protocol-upgrade/
-  next_gate: approved controls and dedicated branch prepared from merged telemetry 1302b5f; record start before CD-MCP-UP-001 product construction
-  delivery_state: not_started
+  packet: docs/planning/active/friday-mcp-protocol-upgrade/
+  next_gate: execute CD-MCP-UP-001; freeze exact-scope candidate and require fresh independent validation
+  delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
   - friday-mcp
@@ -1360,3 +1360,9 @@ events:
   action: delivery pushed -> merged
   note: 'Chuck Russell merged PR #7 and deleted the remote telemetry branch. GitHub confirms mergedBy CIChuck at 2026-10-12T15:16:04Z; merged exact candidate c5b79ba into master as 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666. MCP branch now uses that merged baseline. Core construction remains closed.'
   evidence: https://github.com/CIChuck/agent-framework/pull/7
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T15:52:06+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Start exact approved CD-MCP-UP-001 after telemetry merge, committed approval and preserved product/control hashes; use isolated sparse construction snapshot.

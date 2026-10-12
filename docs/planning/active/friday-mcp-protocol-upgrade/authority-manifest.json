@@ -2,9 +2,9 @@
   "initiative": "friday-mcp-protocol-upgrade",
   "work_unit": "MCP-UP-02A",
   "directive": "CD-MCP-UP-001",
-  "status": "approved_execution_preparation",
+  "status": "approved_execution",
   "approval": {
-    "path": "docs/planning/queued/friday-mcp-protocol-upgrade/approval.json",
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
     "sha256": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e"
   },
   "product_baseline": "46005353046553477417a730f05ff21ead64a00d",
@@ -55,39 +55,39 @@
       "sha256": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/build-plan.md",
-      "sha256": "3c3485cd6359c4653dbbad1b5de31c7a9caea6a1e3e13e42cb6bb2534ce62d3b"
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/build-plan.md",
+      "sha256": "042dc7dac9093d11b5c120a417d89e49136ed577464aa1a4b175389ee1ebb571"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/protocol-contract.md",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/protocol-contract.md",
       "sha256": "339390e41c4643c82d8421dd5eddffa619c123d345b7db84559e05e9b4c3d573"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/tactical-plan.md",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md",
       "sha256": "9e8bd734e695411698833a3285bb43a760a4d5d5812d919ec9b08f774adf7405"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-client-core.md",
       "sha256": "06839e00eecdb1c7e40e76562d32a3f53c7c1aea1095f508d767ef57d198e964"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/research.md",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research.md",
       "sha256": "3bedeed491b63fe4690263df9018e79ca4baf843da387b3861239d37beaf771b"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/baseline.json",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/baseline.json",
       "sha256": "52b22d13a059fed099355406d77c947310fcec3762a2d90a0bcc1570386ad9a8"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/conformance-matrix.md",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/conformance-matrix.md",
       "sha256": "e5c204aa63644eb8b798cd734a2a427bf9d1a7a2f48a2d468f15178846eff6b0"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/approval.json",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval.json",
       "sha256": "44210f5108c60626efa51e450d2853b6e502cd0711f7c0b11936d24c298d7b2e"
     },
     {
-      "path": "docs/planning/queued/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
       "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
     }
   ],
@@ -112,5 +112,7 @@
     "schema_upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
     "schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
     "complete_captured_sources": 10
-  }
+  },
+  "approved_proposal_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c",
+  "execution_preparation_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c"
 }

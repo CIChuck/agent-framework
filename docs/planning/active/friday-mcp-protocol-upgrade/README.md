@@ -5,14 +5,14 @@ title: Friday MCP protocol and remote transport upgrade
 initiative: friday-mcp-protocol-upgrade
 document_type: initiative-index
 status: approved
-work_state: approved
+work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: commit approved controls and prepare the dedicated MCP branch; then start CD-MCP-UP-001
+next_gate: execute approved CD-MCP-UP-001 in isolated snapshot; freeze candidate and require independent validation
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: planning
-validation_state: not_ready
+execution_phase: implementation
+validation_state: pending
 ---
 
 ## Current checkpoint
@@ -30,7 +30,7 @@ TELEM-04 product `5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8` and VAL-010 VERIFIED
 supersedes the original queue note's pending REM-005 status. The
 [baseline receipt](baseline.json) verifies fifteen product hashes and forty-six
 accepted controlling hashes. Telemetry waivers have expired; they do not transfer.
-[Langfuse remains queued after this upgrade's acceptance](../friday-langfuse-integration/README.md).
+[Langfuse remains queued after this upgrade's acceptance](../../queued/friday-langfuse-integration/README.md).
 
 ## Review packet
 

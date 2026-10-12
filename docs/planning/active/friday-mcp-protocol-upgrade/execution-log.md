@@ -47,3 +47,14 @@ Schema upstream commit `271ecc9accafdd9b83a3c869fa67c22953b2af80` was fetched
 separately and its full bytes match SHA-256
 `742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd`.
 These inputs are research authority, not executed product-conformance evidence.
+
+
+## 2026-10-12 — approved first construction slice started
+
+MCP dedicated branch now derives from telemetry merge1302b5f and approved planning
+checkpoint `a3c0cbdc867ca3535f611c2461ff080a991de86c`. Original approved product hashes remain unchanged.
+Move packet to active, repair scheduling links, preserve original approval bytes
+and original queued-control hashes at that checkpoint, and hash active controls.
+Started/granted on feature/friday-mcp-protocol-upgrade for CD-MCP-UP-001 only.
+Construct and validate in an isolated sparse snapshot excluding protected state
+before checkout. No later-unit or delivery authority is added.
