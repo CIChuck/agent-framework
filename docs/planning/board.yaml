@@ -460,12 +460,13 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: fresh-context read-only independent validation of CD-MCP-UP-001 client-core candidate; later HTTP/runtime/server units remain unapproved
+  next_gate: correct VAL-UP02A-001/002 under bounded REM-MCP-UP-001, then fresh independent review; later units remain unapproved
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
   - friday-mcp
-  validation: []
+  validation:
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1394,3 +1395,10 @@ events:
   action: client-core candidate prepared
   note: MCP-UP-02A evidence frozen for independent review; started/local retained
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/client-core-implementation.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:32:31+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent changes requested
+  note: Two conformance findings converted to bounded existing-scope remediation; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md

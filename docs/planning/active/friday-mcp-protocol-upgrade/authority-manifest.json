@@ -100,7 +100,7 @@
     },
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
-      "sha256": "397db31da8967a560f84cc2173858581df3b33a470b77396a0159fa2d89ff5c7"
+      "sha256": "f920d5f924b71c2064867a9fbfcbbdf3391557e18313f2605a70a58d9bb1253f"
     },
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
@@ -121,6 +121,10 @@
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json",
       "sha256": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-001.md",
+      "sha256": "1b7299c05bf63877075ea55b6764b93efdf66267b42eeb3fc7a39b424fa08024"
     }
   ],
   "product_scope": {

@@ -9,10 +9,10 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: fresh-context independent validation of committed CD-MCP-UP-001 candidate
+next_gate: bounded REM-MCP-UP-001 correction, then fresh independent review
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: validation
-validation_state: in_review
+execution_phase: remediation
+validation_state: changes_requested
 ---
 
 ## Current checkpoint
@@ -147,3 +147,12 @@ and [criterion ledger](execution/client-core/criterion-ledger.json) accompany th
 committed candidate. The next gate is fresh-context read-only independent
 validation under the frozen controls. Whole-initiative acceptance and later
 HTTP/runtime/server directives remain separate. Shared IDNA stays at 3.11.
+
+
+## Independent findings — 2026-10-12
+
+[VAL-UP02A-01](validation/VAL-UP02A-01/report.md) returns CHANGES_REQUESTED
+for modern-error fallback and protocol metadata/schema validation. All automated
+gates pass, but do not close these requirements. [Bounded remediation](remediation/REM-MCP-UP-001.md)
+implements the already-approved behavior in the original paths through a separate
+remediator. The corrected candidate requires fresh independent validation.

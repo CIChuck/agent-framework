@@ -109,3 +109,13 @@ reuse and pytest import resolution are disclosed in the implementation report.
 No live service, credential, shared state or later-unit changes occurred. The
 initiative remains started/local. Commit the stable candidate and issue a fresh
 read-only review; no self-VERIFIED or acceptance/delivery inference.
+
+
+## 2026-10-12 — independent findings and bounded remediation
+
+execution_phase: remediation; validation_state: changes_requested.
+VAL-UP02A-001 and002 are recorded exactly once in REM-MCP-UP-001. Preserve
+4f3574c and its full raw independent evidence. All automated gates pass; modern
+fallback/metadata conformance gaps prevent VERIFIED. Separate remediator follows
+existing approved criteria and exact paths. No new authority, waiver or delivery
+is inferred. Commit a corrected candidate and conduct fresh delta/full review.
