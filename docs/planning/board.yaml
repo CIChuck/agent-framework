@@ -460,13 +460,14 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: fresh independent delta and full CD-MCP-UP-001 work-unit review of corrected candidate; later HTTP/runtime/server remain unapproved
+  next_gate: review CD-MCP-UP-001 unit completion proposal (VAL-UP02A-02 VERIFIED), then approve separate Streamable HTTP client directive; whole initiative remains started
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
   - friday-mcp
   validation:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md: VERIFIED client-core/stdio work unit only'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1409,3 +1410,10 @@ events:
   action: recorded corrected candidate
   note: Bounded findings fixed by separate remediator; fresh review required; started/local retained
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/remediation-01-builder/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:57:17+00:00'
+  actor: Codex
+  actor_role: agent
+  action: proposed verified client-core unit completion
+  note: Fresh independent review resolves two findings; maintainer unit acceptance and later directives remain separate; initiative started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md

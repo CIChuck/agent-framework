@@ -1,10 +1,14 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-02A",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "next_gate": "fresh independent delta and full work-unit review",
+  "execution_phase": "closeout",
+  "validation_state": "verified",
+  "next_gate": "maintainer acceptance of CD-MCP-UP-001 unit completion proposal; prepare/approve separate HTTP client directive",
   "work_state": "started",
   "delivery_state": "local",
-  "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority."
+  "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
+  "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md",
+  "independent_report_sha256": "ab45d0066927c6d19b842beeb6be9f2b806f942332a823c725fcad4d00020954",
+  "unit_completion": "proposed; maintainer acceptance pending"
 }

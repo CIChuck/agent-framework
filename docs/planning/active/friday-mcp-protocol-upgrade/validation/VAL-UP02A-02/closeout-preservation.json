@@ -1,0 +1,37 @@
+{
+  "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
+  "independent_verdict": "VERIFIED",
+  "closeout_changes": "Only immutable review evidence and referenced process state, execution log, board/dashboard; original controls and12products unchanged",
+  "controller_checks": [
+    {
+      "path": "closeout-checks/closeout-board/receipt.json.gz",
+      "sha256": "b853cdabac249472564250677af7591ea324998385899da9de93f898111dcf8d",
+      "stored_sha256": "a53555c6a66fdfe967d1d17c2c967715072ad4573b59a25828bc5f62a6652f55"
+    },
+    {
+      "path": "closeout-checks/closeout-board/stderr.gz",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "closeout-checks/closeout-board/stdout.gz",
+      "sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "stored_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202"
+    },
+    {
+      "path": "closeout-checks/closeout-docs/receipt.json.gz",
+      "sha256": "f3f5f2caef0c791a13c783411165e1bdc16a9cb113d000590cf712717f688d33",
+      "stored_sha256": "185315bde245223740a417002bdd9bb33efbffda8aecce745fb37bad5dd877d6"
+    },
+    {
+      "path": "closeout-checks/closeout-docs/stderr.gz",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "closeout-checks/closeout-docs/stdout.gz",
+      "sha256": "063a3bf39311d134d71d8345cd916f0c55dbfec3c7144e794a118be6c01b4cb4",
+      "stored_sha256": "bebc8d2d8a762ba9d60e5824d1e63fcf3472534e09870c81f349ef2eac16ad82"
+    }
+  ]
+}

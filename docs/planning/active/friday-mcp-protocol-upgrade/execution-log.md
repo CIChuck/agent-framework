@@ -128,3 +128,14 @@ execution_phase: validation; validation_state: in_review. Stable builder candida
 Original failed review is retained; fresh delta and full work-unit review required.
 Current process-only transitions are separately recorded in current-process-state.json
 without revising the frozen index after dispatch. No acceptance/delivery inferred.
+
+
+## 2026-10-12 — corrected client-core independently VERIFIED
+
+execution_phase: closeout; validation_state: verified. Fresh independent
+VAL-UP02A-02 verifies reviewed candidate a36142fb41f59a743b72088d8cce749b71b32202.
+VAL-UP02A-001/002 are resolved and the full original unit profile passes. Propose
+MCP-UP-02A completion; maintainer acceptance remains pending. Whole initiative
+remains started/local because HTTP/runtime/server and aggregate units remain.
+Frozen authority/index/directive/product files remain byte-identical; only
+review evidence and the separately referenced process-only state/board are updated.
