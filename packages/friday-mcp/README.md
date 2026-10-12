@@ -191,7 +191,10 @@ Modern calls require a complete successful catalog first, so all declared
 `x-mcp-header` fields are mirrored. Invalid HTTP annotations exclude only that
 tool; `rejected_http_tools` exposes a bounded count. Failed/malformed catalog
 refresh invalidates the catalog and header bindings. Header extraction follows
-exact nested properties; absent/null values are omitted, and unsafe/Unicode or
+only reachable argument properties. Annotations in other schema-bearing locations,
+including `contentSchema`, exclude the tool; example/default/const JSON stays opaque.
+The full catalog is validated before publishing tools, bindings or rejected counts.
+Absent/null values are omitted, and unsafe/Unicode or
 sentinel-shaped values use exact UTF-8 Base64 encoding. Structured/text output
 uses the accepted bounded core adapter and schema validator, including preserving
 the call's output-schema snapshot across concurrent catalog invalidation.
@@ -200,7 +203,17 @@ Modern HTTP has no initialize, protocol session, GET stream or resumption.
 The explicit `2025-11-25` mode initializes and retains an origin-scoped in-memory
 session when supplied. A session 404 starts bounded fresh initialization, but
 the failed call is never replayed. The next explicit call needs a healthy new
-session. Older structured results/output schemas must be objects; legacy bare
+session. Recovery is serialized per connection generation: delayed failures and
+expired waiters from an old session cannot invalidate a newer healthy session or
+catalog. Failed recovery stays disconnected until an explicit `connect()`.
+2025 input schemas use JSON Schema 2020-12 by default or by explicit
+`$schema: https://json-schema.org/draft/2020-12/schema`; malformed or unsupported
+dialect declarations fail with `unsupported_schema` before catalog publication.
+No schema URI is fetched. This preserves permissive 2024 parsing.
+2025 metadata objects and key grammar are checked at received request/notification
+parameters, result, Tool and TextContent boundaries. Valid metadata values stay
+opaque, including reserved keys; application JSON is not recursively interpreted.
+Older structured results/output schemas must be objects; legacy bare
 string content is not accepted as a 2025 content block. Unsupported content and
 input requests fail safely, without resource retrieval or interactive continuation.
 

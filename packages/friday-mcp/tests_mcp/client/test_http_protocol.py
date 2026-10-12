@@ -16,7 +16,12 @@ from friday_mcp.client.http_protocol import (
     response_headers,
     session_id,
 )
-from friday_mcp.client.protocol import ProtocolFailure, ProtocolLimits
+from friday_mcp.client.protocol import (
+    ProtocolFailure,
+    ProtocolLimits,
+    ToolDefinition,
+    validate_message,
+)
 
 
 @pytest.mark.parametrize("value", ["hello", "", "true", "-42", "a\tb"])
@@ -111,6 +116,10 @@ def test_invalid_annotation_type(kind):
         "else",
         "additionalProperties",
         "propertyNames",
+        "contentSchema",
+        "unevaluatedItems",
+        "unevaluatedProperties",
+        "additionalItems",
     ],
 )
 def test_unreachable_annotation_schema_child(keyword):
@@ -126,6 +135,44 @@ def test_unreachable_annotation_composition(keyword):
         header_bindings(
             {keyword: [{"properties": {"v": {"type": "string", "x-mcp-header": "V"}}}]}
         )
+
+
+@pytest.mark.parametrize(
+    "keyword",
+    ["$defs", "definitions", "dependencies", "dependentSchemas", "patternProperties"],
+)
+def test_unreachable_annotation_schema_maps(keyword):
+    with pytest.raises(ProtocolFailure):
+        header_bindings({keyword: {"s": {"type": "string", "x-mcp-header": "Hidden"}}})
+
+
+@pytest.mark.parametrize(
+    "name,kind",
+    [("Hidden", "string"), ("bad name", "string"), (9, "string"), ("Hidden", "number")],
+)
+@pytest.mark.parametrize("nested", [False, True])
+def test_content_schema_annotations_are_unreachable_even_under_properties(
+    name, kind, nested
+):
+    child = {"type": kind, "x-mcp-header": name}
+    schema = {"contentSchema": {"properties": {"v": child}}}
+    if nested:
+        schema = {
+            "properties": {"payload": {"type": "string", "contentSchema": schema}}
+        }
+    with pytest.raises(ProtocolFailure):
+        header_bindings(schema)
+
+
+@pytest.mark.parametrize("keyword", ["examples", "default", "const", "enum"])
+def test_schema_looking_application_data_is_opaque(keyword):
+    data = {
+        "contentSchema": {"x-mcp-header": "invalid name"},
+        "_meta": {"bad/name/key": True},
+    }
+    assert not header_bindings(
+        {keyword: [data] if keyword in ("examples", "enum") else data}
+    )
 
 
 def test_unreachable_defs_annotation_collision_root_and_opaque_examples():
@@ -348,3 +395,43 @@ def test_2025_structured_object_and_opaque_era_metadata():
         "tools/call",
         ProtocolLimits(),
     )
+
+
+def test_2024_opaque_metadata_and_input_dialect_defaults_are_preserved():
+    tool = {
+        "name": "legacy",
+        "inputSchema": {
+            "type": "object",
+            "$schema": "https://unsupported.example/unknown-schema",
+        },
+        "_meta": {"bad/name/key": True},
+    }
+    assert ToolDefinition.parse(tool, ProtocolLimits()).definition.object() == tool
+    message = {"jsonrpc": "2.0", "id": "x", "result": {"_meta": {"bad/name/key": True}}}
+    assert validate_message(message, ProtocolLimits()) == message
+
+
+def test_modern_dialect_and_reserved_result_metadata_remain_strict():
+    with pytest.raises(ProtocolFailure) as dialect_failure:
+        ToolDefinition.parse(
+            {
+                "name": "modern",
+                "inputSchema": {
+                    "type": "object",
+                    "$schema": "https://unsupported.example/unknown-schema",
+                },
+            },
+            ProtocolLimits(),
+            modern=True,
+        )
+    assert dialect_failure.value.failure_code == "unsupported_schema"
+    message = {
+        "jsonrpc": "2.0",
+        "id": "x",
+        "result": {
+            "_meta": {"io.modelcontextprotocol/serverInfo": "opaque only in 2025"}
+        },
+    }
+    assert validate_message(message, ProtocolLimits(), compatibility=True) == message
+    with pytest.raises(ProtocolFailure):
+        validate_message(message, ProtocolLimits(), modern=True)

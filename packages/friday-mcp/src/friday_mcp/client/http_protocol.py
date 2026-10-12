@@ -14,7 +14,7 @@ HTTP_COMPAT_VERSION = "2025-11-25"
 type HTTPVersion = Literal["2026-07-28", "2025-11-25"]
 _TOKEN = re.compile(r"[!#$%&'*+.^_`|~0-9A-Za-z-]+\Z")
 _SCHEMA_MAPS = frozenset(
-    {"$defs", "definitions", "patternProperties", "dependentSchemas"}
+    {"$defs", "definitions", "dependencies", "patternProperties", "dependentSchemas"}
 )
 _SCHEMA_CHILDREN = frozenset(
     {
@@ -25,6 +25,7 @@ _SCHEMA_CHILDREN = frozenset(
         "unevaluatedItems",
         "unevaluatedProperties",
         "propertyNames",
+        "contentSchema",
         "not",
         "if",
         "then",

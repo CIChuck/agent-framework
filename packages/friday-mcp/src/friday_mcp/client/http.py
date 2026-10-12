@@ -34,6 +34,7 @@ from friday_mcp.client.http_protocol import (
 from friday_mcp.client.protocol import (
     META_PREFIX,
     MODERN_VERSION,
+    CatalogPage,
     Discovery,
     FrozenJSON,
     JSONValue,
@@ -41,6 +42,7 @@ from friday_mcp.client.protocol import (
     ProtocolLimits,
     ResultSnapshot,
     RPCResponse,
+    ToolDefinition,
     complete_result,
     decode_json,
     encode_json,
@@ -124,7 +126,6 @@ class StreamableHTTPMCPClient(MCPClientBase):
         self._session_id: bytes | None = None
         self._generation = 0
         self._lifecycle = asyncio.Lock()
-        self._recovery = asyncio.Lock()
         self._bindings: dict[str, tuple[HeaderBinding, ...]] = {}
         self._initializing = False
         self._issued = self._backend.issued
@@ -152,6 +153,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
             self._catalog = ()
             self._bindings.clear()
             self._session_id = None
+            self._generation += 1
             # No proxies/cookies/redirects, no keepalive or connection retry.
             deadline = asyncio.get_running_loop().time() + self._timeout()
             self._pool = httpcore.AsyncConnectionPool(
@@ -207,6 +209,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
 
     async def disconnect(self) -> None:
         self._connected = False
+        self._generation += 1
         async with self._lifecycle:
             await self._disconnect_owned()
 
@@ -334,6 +337,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
             decode_json(data, self.limits),
             self.limits,
             modern=self._selected_version == MODERN_VERSION,
+            compatibility=self._selected_version == HTTP_COMPAT_VERSION,
         )
         if "method" not in message and (
             type(message.get("id")) is not str or message["id"] != request_id
@@ -391,6 +395,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
         message: dict[str, JSONValue] | None,
         owner: str,
         deadline: float,
+        generation: int,
         *,
         delete_session: bytes | None = None,
     ) -> RPCResponse | None:
@@ -453,6 +458,8 @@ class StreamableHTTPMCPClient(MCPClientBase):
             if not isinstance(request_id, str):
                 raise ProtocolFailure()
             if message is not None and message.get("method") == "initialize":
+                if generation != self._generation:
+                    raise ProtocolFailure()
                 self._session_id = session_id(incoming.get(b"mcp-session-id"))
             elif (
                 self._selected_version == MODERN_VERSION
@@ -541,7 +548,13 @@ class StreamableHTTPMCPClient(MCPClientBase):
         if self.outstanding_http_owners >= self.limits.concurrent_requests:
             raise ProtocolFailure("limit_exceeded")
         task = asyncio.create_task(
-            self._exchange(message, owner, deadline, delete_session=delete_session),
+            self._exchange(
+                message,
+                owner,
+                deadline,
+                self._generation,
+                delete_session=delete_session,
+            ),
             name="mcp-http-request",
         )
         self._jobs[owner] = task
@@ -640,18 +653,30 @@ class StreamableHTTPMCPClient(MCPClientBase):
                 compatibility_result(result, method, self.limits)
             return ResultSnapshot(result, rpc.wire_bytes)
         except _SessionExpired:
-            self._connected = False
-            self._catalog = ()
-            self._bindings.clear()
             try:
-                async with asyncio.timeout_at(deadline), self._recovery:
+                # The lifecycle lock serializes recovery with explicit reconnect
+                # and shutdown. A stale response/waiter never owns newer state.
+                async with asyncio.timeout_at(deadline), self._lifecycle:
                     if generation == self._generation:
                         self._generation += 1
+                        recovery_generation = self._generation
+                        self._connected = False
+                        self._catalog = ()
+                        self._bindings.clear()
                         self._session_id = None
-                        await self._handshake(deadline)
-                        self._connected = True
+                        try:
+                            await self._handshake(deadline)
+                            if recovery_generation == self._generation:
+                                self._connected = True
+                        except BaseException:
+                            if recovery_generation == self._generation:
+                                self._connected = False
+                                self._session_id = None
+                                self._catalog = ()
+                                self._bindings.clear()
+                            raise
             except Exception:
-                self._connected = False
+                pass  # Only the recovery owner above may invalidate its state.
             raise ProtocolFailure() from None
         except (TimeoutError, asyncio.CancelledError):
             issued = owner in self._issued
@@ -681,12 +706,68 @@ class StreamableHTTPMCPClient(MCPClientBase):
 
     async def list_tools(self) -> list[dict[str, Any]]:
         deadline = asyncio.get_running_loop().time() + self._timeout()
+        generation = self._generation
+        if not self._connected:
+            raise RuntimeError("MCP HTTP disconnected")
+        if "tools" not in self._capabilities.object():
+            return []
+        self._catalog = ()
         self._bindings.clear()
         self.rejected_http_tools = 0
         try:
-            await super().list_tools()
+            # Keep every page local until complete validation, and bind the whole
+            # refresh to one session generation and one operation deadline.
+            tools: list[ToolDefinition] = []
+            names: set[str] = set()
+            cursors: set[str] = set()
+            cursor: str | None = None
+            total = 0
+            async with asyncio.timeout_at(deadline):
+                for _ in range(self.limits.catalog_pages):
+                    response = await self._request_budget(
+                        "tools/list",
+                        {"cursor": cursor} if cursor is not None else {},
+                        deadline,
+                    )
+                    if generation != self._generation:
+                        raise ProtocolFailure()
+                    total += (
+                        response.wire_bytes
+                        if isinstance(response, ResultSnapshot)
+                        else len(
+                            encode_json(
+                                response,
+                                self.limits,
+                                byte_limit=self.limits.frame_bytes,
+                            )
+                        )
+                    )
+                    if total > self.limits.catalog_bytes:
+                        raise ProtocolFailure("limit_exceeded")
+                    page = CatalogPage.parse(
+                        FrozenJSON.from_value(response, self.limits).object(),
+                        self._selected_version == MODERN_VERSION,
+                        self.limits,
+                    )
+                    if len(tools) + len(page.tools) > self.limits.catalog_tools:
+                        raise ProtocolFailure("limit_exceeded")
+                    for tool in page.tools:
+                        if tool.name in names:
+                            raise ProtocolFailure()
+                        names.add(tool.name)
+                        tools.append(tool)
+                    cursor = page.cursor
+                    if cursor is None:
+                        break
+                    if cursor in cursors:
+                        raise ProtocolFailure()
+                    cursors.add(cursor)
+                else:
+                    raise ProtocolFailure("limit_exceeded")
             retained = []
-            for tool in self._catalog:
+            bindings_by_name: dict[str, tuple[HeaderBinding, ...]] = {}
+            rejected = 0
+            for tool in tools:
                 schema = tool.definition.object().get("inputSchema")
                 if not isinstance(schema, dict):
                     raise ProtocolFailure()
@@ -697,17 +778,20 @@ class StreamableHTTPMCPClient(MCPClientBase):
                         else ()
                     )
                 except ProtocolFailure:
-                    self.rejected_http_tools += 1
+                    rejected += 1
                     continue
-                self._bindings[tool.name] = bindings
+                bindings_by_name[tool.name] = bindings
                 retained.append(tool)
             if asyncio.get_running_loop().time() >= deadline:
                 raise TimeoutError("MCP HTTP timeout")
             self._catalog = tuple(retained)
+            self._bindings = bindings_by_name
+            self.rejected_http_tools = rejected
             return [tool.definition.object() for tool in self._catalog]
         except BaseException:
-            self._catalog = ()
-            self._bindings.clear()
+            if generation == self._generation:
+                self._catalog = ()
+                self._bindings.clear()
             raise
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:

@@ -285,16 +285,11 @@ def _server_capabilities(value: JSONValue) -> None:
                     raise ProtocolFailure()
 
 
-def _tool_optional_fields(
-    tool: dict[str, JSONValue], *, modern_meta: bool = True
-) -> None:
+def _tool_optional_fields(tool: dict[str, JSONValue]) -> None:
     _strings(tool, "title")
     _icons(tool)
     if "_meta" in tool:
-        if modern_meta:
-            _metadata(tool["_meta"])
-        elif not isinstance(tool["_meta"], dict):
-            raise ProtocolFailure()
+        _metadata(tool["_meta"])
     if "annotations" in tool:
         annotations = tool["annotations"]
         if not isinstance(annotations, dict):
@@ -310,14 +305,9 @@ def _tool_optional_fields(
                 raise ProtocolFailure()
 
 
-def _text_optional_fields(
-    block: dict[str, JSONValue], *, modern_meta: bool = True
-) -> None:
+def _text_optional_fields(block: dict[str, JSONValue]) -> None:
     if "_meta" in block:
-        if modern_meta:
-            _metadata(block["_meta"])
-        elif not isinstance(block["_meta"], dict):
-            raise ProtocolFailure()
+        _metadata(block["_meta"])
     if "annotations" not in block:
         return
     annotations = block["annotations"]
@@ -345,8 +335,8 @@ def validate_compatibility_fields(
     limits: ProtocolLimits,
 ) -> None:
     """Validate selected 2025-11-25 fields without changing 2024 stdio defaults."""
-    if "_meta" in result and not isinstance(result["_meta"], dict):
-        raise ProtocolFailure()
+    if "_meta" in result:
+        _metadata(result["_meta"])
     if method == "initialize":
         _implementation(result.get("serverInfo"))
         _server_capabilities(result.get("capabilities"))
@@ -373,7 +363,13 @@ def validate_compatibility_fields(
         for tool in tools:
             if not isinstance(tool, dict):
                 raise ProtocolFailure()
-            _tool_optional_fields(tool, modern_meta=False)
+            _tool_optional_fields(tool)
+            schema = tool.get("inputSchema")
+            if isinstance(schema, dict) and (
+                "$schema" in schema
+                and schema["$schema"] != "https://json-schema.org/draft/2020-12/schema"
+            ):
+                raise ProtocolFailure("unsupported_schema")
             schema = tool.get("outputSchema")
             if "outputSchema" in tool and (
                 not isinstance(schema, dict) or schema.get("type") != "object"
@@ -407,11 +403,15 @@ def validate_compatibility_fields(
                 raise ProtocolFailure("unsupported_content")
             if not isinstance(block.get("text"), str):
                 raise ProtocolFailure("invalid_result")
-            _text_optional_fields(block, modern_meta=False)
+            _text_optional_fields(block)
 
 
 def validate_message(
-    value: object, limits: ProtocolLimits, *, modern: bool = False
+    value: object,
+    limits: ProtocolLimits,
+    *,
+    modern: bool = False,
+    compatibility: bool = False,
 ) -> dict[str, JSONValue]:
     bounded = json_value(value, limits, byte_limit=limits.frame_bytes)
     encode_json(bounded, limits, byte_limit=limits.frame_bytes)
@@ -419,7 +419,7 @@ def validate_message(
         raise ProtocolFailure()
     if "_meta" in bounded and not isinstance(bounded["_meta"], dict):
         raise ProtocolFailure()
-    if modern and "_meta" in bounded:
+    if (modern or compatibility) and "_meta" in bounded:
         _metadata(bounded["_meta"])
     if "id" in bounded and (
         isinstance(bounded["id"], bool) or not isinstance(bounded["id"], (str, int))
@@ -440,6 +440,8 @@ def validate_message(
             raise ProtocolFailure()
         if modern and "_meta" in params:
             _metadata(params["_meta"], "generic" if "id" in bounded else "notification")
+        elif compatibility and "_meta" in params:
+            _metadata(params["_meta"])
     else:
         if "id" not in bounded or (("result" in bounded) == ("error" in bounded)):
             raise ProtocolFailure()
@@ -448,6 +450,8 @@ def validate_message(
         result = bounded.get("result")
         if modern and isinstance(result, dict) and "_meta" in result:
             _metadata(result["_meta"], "result")
+        elif compatibility and isinstance(result, dict) and "_meta" in result:
+            _metadata(result["_meta"])
         if "error" in bounded:
             error = bounded["error"]
             if (

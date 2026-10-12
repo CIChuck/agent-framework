@@ -4,6 +4,7 @@ import asyncio
 import json
 import logging
 import ssl
+from copy import deepcopy
 from dataclasses import dataclass, field
 
 import httpcore
@@ -824,4 +825,507 @@ async def test_public_call_cannot_issue_before_compatibility_handshake_completes
     finally:
         release.set()
         await asyncio.gather(connecting, return_exceptions=True)
+        await client.disconnect()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "name,kind",
+    [("Hidden", "string"), ("bad name", "string"), (9, "string"), ("Hidden", "number")],
+)
+@pytest.mark.parametrize("nested", [False, True])
+async def test_content_schema_invalid_tools_are_counted_after_atomic_catalog(
+    name, kind, nested
+):
+    peer = Peer()
+    child = {
+        "type": "object",
+        "properties": {"v": {"type": kind, "x-mcp-header": name}},
+    }
+    schema = {"type": "object", "contentSchema": child}
+    if nested:
+        schema = {
+            "type": "object",
+            "properties": {
+                "payload": {
+                    "type": "string",
+                    "contentMediaType": "application/json",
+                    "contentSchema": child,
+                }
+            },
+        }
+    bad = {"name": "bad", "inputSchema": schema}
+    page_started = asyncio.Event()
+    page_release = asyncio.Event()
+
+    def hook(verb, headers, request):
+        if request.get("method") != "tools/list":
+            return None
+        if "cursor" not in request["params"]:
+            return peer.rpc(
+                request,
+                {
+                    "tools": [bad],
+                    "nextCursor": "next",
+                    "ttlMs": 0,
+                    "cacheScope": "private",
+                },
+            )
+        page_started.set()
+        return peer.rpc(
+            request,
+            {"tools": peer.tools, "ttlMs": 0, "cacheScope": "private"},
+            stall=page_release,
+        )
+
+    peer.hook = hook
+    client, _, _ = make_client(peer=peer)
+    await client.connect()
+    listing = asyncio.create_task(client.list_tools())
+    try:
+        await asyncio.wait_for(page_started.wait(), 1)
+        assert client._catalog == () and client._bindings == {}
+        assert client.rejected_http_tools == 0
+        page_release.set()
+        assert [t["name"] for t in await listing] == ["echo"]
+        assert client.rejected_http_tools == 1
+        before = len(peer.requests)
+        with pytest.raises(MCPToolExecutionError):
+            await client.call_tool("bad", {"payload": "x"})
+        assert len(peer.requests) == before
+        assert await client.call_tool("echo", {"text": "雪"}) == "雪"
+        assert peer.requests[-1][1][b"mcp-param-text"] == b"=?base64?6Zuq?="
+    finally:
+        page_release.set()
+        await asyncio.gather(listing, return_exceptions=True)
+        await client.disconnect()
+    assert client.outstanding_http_owners == 0
+
+
+class OrderedExpiryStream(WireStream):
+    async def read(self, max_bytes, timeout=None):
+        await self.ready.wait()
+        if b'"text":"late"' in self.outgoing:
+            await self.connector.late_release.wait()
+        return await super().read(max_bytes, timeout)
+
+
+class OrderedExpiryPeer(Peer):
+    def __init__(self):
+        super().__init__(HTTP_COMPAT_VERSION)
+        self.late_release = asyncio.Event()
+        self.late_issued = asyncio.Event()
+
+    async def connect_tcp(
+        self, host, port, timeout=None, local_address=None, socket_options=None
+    ):
+        self.connections.append((host, port))
+        stream = OrderedExpiryStream(self)
+        self.streams.append(stream)
+        return stream
+
+    def dispatch(self, verb, headers, request):
+        if (
+            request.get("method") == "tools/call"
+            and request["params"]["arguments"].get("text") == "late"
+        ):
+            self.late_issued.set()
+        return super().dispatch(verb, headers, request)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("first_recovery", ["success", "failure"])
+async def test_old_generation_404_cannot_disconnect_recovered_session(first_recovery):
+    peer = OrderedExpiryPeer()
+    client, _, _ = await ready_client(peer=peer)
+    recovery_failed = False
+
+    def hook(verb, headers, request):
+        nonlocal recovery_failed
+        if request.get("method") == "tools/call":
+            return Reply(status=404)
+        if (
+            request.get("method") == "initialize"
+            and first_recovery == "failure"
+            and not recovery_failed
+        ):
+            recovery_failed = True
+            return Reply(body=b"invalid")
+        return None
+
+    peer.hook = hook
+    late = asyncio.create_task(client.call_tool("echo", {"text": "late"}))
+    try:
+        await asyncio.wait_for(peer.late_issued.wait(), 1)
+        with pytest.raises(MCPToolExecutionError) as fast_failure:
+            await client.call_tool("echo", {"text": "fast"})
+        assert fast_failure.value.failure_code == "invalid_protocol"
+        if first_recovery == "failure":
+            assert not client.is_connected and client._session_id is None
+            await client.connect()
+        assert client.is_connected and client._session_id == b"session-2"
+        peer.hook = None
+        healthy_catalog = await client.list_tools()
+        catalog_owner = client._catalog
+        generation = client._generation
+        peer.late_release.set()
+        if first_recovery == "failure":
+            with pytest.raises(asyncio.CancelledError):
+                await late
+        else:
+            with pytest.raises(MCPToolExecutionError) as late_failure:
+                await late
+            assert late_failure.value.failure_code == "invalid_protocol"
+        assert peer.methods().count("initialize") == (
+            3 if first_recovery == "failure" else 2
+        )
+        assert peer.methods().count("tools/call") == 2
+        assert client.is_connected and client._session_id == b"session-2"
+        assert client._generation == generation and client._catalog is catalog_owner
+        assert await client.list_tools() == healthy_catalog
+        assert await client.call_tool("echo", {"text": "next"}) == "next"
+        assert peer.requests[-1][1][b"mcp-session-id"] == b"session-2"
+        assert all(
+            b"mcp-session-id" not in h
+            for _, h, r in peer.requests
+            if r.get("method") == "initialize"
+        )
+    finally:
+        peer.late_release.set()
+        await asyncio.gather(late, return_exceptions=True)
+        await client.disconnect()
+    assert client.outstanding_http_owners == 0 and all(s.closed for s in peer.streams)
+
+
+@pytest.mark.asyncio
+async def test_stale_recovery_waiter_deadline_does_not_invalidate_active_recovery():
+    peer = Peer(HTTP_COMPAT_VERSION)
+    client, _, _ = await ready_client(peer=peer)
+    initialize_started = asyncio.Event()
+    initialize_release = asyncio.Event()
+
+    def hook(verb, headers, request):
+        if request.get("method") == "tools/call":
+            return Reply(status=404)
+        if request.get("method") == "initialize":
+            initialize_started.set()
+            peer.sessions += 1
+            return peer.rpc(
+                request,
+                {
+                    "protocolVersion": HTTP_COMPAT_VERSION,
+                    "capabilities": {"tools": {}},
+                    "serverInfo": {"name": "fixture", "version": "1"},
+                },
+                headers=[("MCP-Session-Id", "session-2")],
+                stall=initialize_release,
+            )
+        return None
+
+    peer.hook = hook
+    # Both requests are issued in generation 1 before either response is settled.
+    fast = asyncio.create_task(
+        client._request(
+            "tools/call", {"name": "echo", "arguments": {"text": "fast"}}, timeout=1
+        )
+    )
+    waiter = asyncio.create_task(
+        client._request(
+            "tools/call",
+            {"name": "echo", "arguments": {"text": "waiting"}},
+            timeout=0.05,
+        )
+    )
+    try:
+        await asyncio.wait_for(initialize_started.wait(), 1)
+        with pytest.raises(ProtocolFailure):
+            await waiter
+        assert not client.is_connected and client._session_id == b"session-2"
+        initialize_release.set()
+        with pytest.raises(ProtocolFailure):
+            await fast
+        assert client.is_connected and client._session_id == b"session-2"
+        assert peer.methods().count("initialize") == 2
+        assert peer.methods().count("tools/call") == 2
+        peer.hook = None
+        assert await client.call_tool("echo", {"text": "next"}) == "next"
+    finally:
+        initialize_release.set()
+        await asyncio.gather(fast, waiter, return_exceptions=True)
+        await client.disconnect()
+    assert client.outstanding_http_owners == 0 and all(s.closed for s in peer.streams)
+
+
+@pytest.mark.asyncio
+async def test_timed_out_recovery_retains_disconnected_state_until_explicit_connect():
+    peer = OrderedExpiryPeer()
+    client, _, _ = await ready_client(peer=peer)
+    initialize_started = asyncio.Event()
+    never_release = asyncio.Event()
+
+    def hook(verb, headers, request):
+        if request.get("method") == "tools/call":
+            return Reply(status=404)
+        if request.get("method") == "initialize":
+            initialize_started.set()
+            return peer.rpc(
+                request,
+                {
+                    "protocolVersion": HTTP_COMPAT_VERSION,
+                    "capabilities": {"tools": {}},
+                    "serverInfo": {"name": "fixture", "version": "1"},
+                },
+                stall=never_release,
+            )
+        return None
+
+    peer.hook = hook
+    late = asyncio.create_task(client.call_tool("echo", {"text": "late"}))
+    try:
+        await asyncio.wait_for(peer.late_issued.wait(), 1)
+        with pytest.raises(ProtocolFailure):
+            await client._request(
+                "tools/call",
+                {"name": "echo", "arguments": {"text": "fast"}},
+                timeout=0.05,
+            )
+        assert initialize_started.is_set()
+        assert (
+            not client.is_connected
+            and client._session_id is None
+            and not client._catalog
+        )
+        peer.hook = None
+        # Settle the old response before reconnect cleanup cancels its owner.
+        peer.late_release.set()
+        with pytest.raises(MCPToolExecutionError):
+            await late
+        await client.connect()
+        await client.list_tools()
+        assert (
+            client.is_connected
+            and await client.call_tool("echo", {"text": "next"}) == "next"
+        )
+        assert peer.methods().count("initialize") == 3
+        assert peer.methods().count("tools/call") == 3
+    finally:
+        never_release.set()
+        peer.late_release.set()
+        await asyncio.gather(late, return_exceptions=True)
+        await client.disconnect()
+    assert client.outstanding_http_owners == 0 and all(s.closed for s in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "dialect", [None, "https://json-schema.org/draft/2020-12/schema"]
+)
+async def test_2025_default_and_declared_input_dialect_are_validated_without_retrieval(
+    dialect,
+):
+    peer = Peer(HTTP_COMPAT_VERSION)
+    if dialect is not None:
+        peer.tools[0]["inputSchema"]["$schema"] = dialect
+    client, _, resolver = await ready_client(peer=peer)
+    try:
+        assert await client.call_tool("echo", {"text": "ok"}) == "ok"
+        assert resolver.calls == len(peer.requests)
+        assert all(host == "93.184.216.34" for host, _ in peer.connections)
+    finally:
+        await client.disconnect()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "dialect",
+    [
+        "https://unsupported.example/unknown-schema",
+        "http://json-schema.org/draft-07/schema#",
+        "",
+        None,
+        42,
+        {},
+    ],
+)
+async def test_2025_unsupported_input_dialect_discards_entire_catalog(
+    dialect,
+):
+    peer = Peer(HTTP_COMPAT_VERSION)
+    client, _, resolver = await ready_client(peer=peer)
+    bad = deepcopy(peer.tools[0])
+    bad["name"] = "bad"
+    bad["inputSchema"]["$schema"] = dialect
+
+    def hook(verb, headers, request):
+        if request.get("method") != "tools/list":
+            return None
+        if "cursor" not in request["params"]:
+            return peer.rpc(request, {"tools": peer.tools, "nextCursor": "next"})
+        return peer.rpc(request, {"tools": [bad]})
+
+    peer.hook = hook
+    try:
+        before = len(peer.requests)
+        with pytest.raises(ProtocolFailure) as failure:
+            await client.list_tools()
+        assert failure.value.failure_code == "unsupported_schema"
+        assert str(failure.value) == "MCP output schema is unsupported"
+        assert not client._catalog and not client._bindings
+        assert len(peer.requests) == before + 2
+        assert peer.methods().count("tools/call") == 0
+        assert resolver.calls == len(peer.requests)
+        assert all(host == "93.184.216.34" for host, _ in peer.connections)
+    finally:
+        await client.disconnect()
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "location",
+    [
+        "tool",
+        "result",
+        "text",
+        "list-result",
+        "initialize",
+        "request-params",
+        "notification-params",
+    ],
+)
+@pytest.mark.parametrize(
+    "key",
+    [
+        "bad/name/key",
+        "9bad/name",
+        "bad-/name",
+        "bad..prefix/name",
+        "bad/_name",
+        "bad/name-",
+        "/name",
+    ],
+)
+async def test_2025_malformed_metadata_is_rejected_at_each_boundary(location, key):
+    peer = Peer(HTTP_COMPAT_VERSION)
+    if location == "tool":
+        peer.tools[0]["_meta"] = {key: "private-payload"}
+
+    def hook(verb, headers, request):
+        method = request.get("method")
+        if location == "initialize" and method == "initialize":
+            return peer.rpc(
+                request,
+                {
+                    "protocolVersion": HTTP_COMPAT_VERSION,
+                    "capabilities": {"tools": {}},
+                    "serverInfo": {"name": "fixture", "version": "1"},
+                    "_meta": {key: "private-payload"},
+                },
+            )
+        if location == "list-result" and method == "tools/list":
+            return peer.rpc(
+                request, {"tools": peer.tools, "_meta": {key: "private-payload"}}
+            )
+        if method != "tools/call":
+            return None
+        block = {"type": "text", "text": "ok"}
+        result = {"content": [block]}
+        if location in ("result", "text"):
+            (result if location == "result" else block)["_meta"] = {
+                key: "private-payload"
+            }
+            return peer.rpc(request, result)
+        if location in ("request-params", "notification-params"):
+            message = {
+                "jsonrpc": "2.0",
+                "method": "unsupported",
+                "params": {"_meta": {key: "private-payload"}},
+            }
+            if location == "request-params":
+                message["id"] = "server-request"
+            body = (
+                b"data: "
+                + json.dumps(message).encode()
+                + b"\n\n"
+                + b"data: "
+                + peer.rpc(request, result).body
+                + b"\n\n"
+            )
+            return Reply(body=body, kind="text/event-stream")
+        return None
+
+    peer.hook = hook
+    client, _, _ = make_client(peer=peer)
+    try:
+        if location == "initialize":
+            with pytest.raises(ProtocolFailure) as failure:
+                await client.connect()
+            assert not client.is_connected
+        else:
+            await client.connect()
+            if location in ("tool", "list-result"):
+                with pytest.raises(ProtocolFailure) as failure:
+                    await client.list_tools()
+                assert not client._catalog and not client._bindings
+            else:
+                await client.list_tools()
+                with pytest.raises(MCPToolExecutionError) as failure:
+                    await client.call_tool("echo", {"text": "x"})
+        assert failure.value.failure_code == "invalid_protocol"
+        assert key not in str(failure.value) and "private-payload" not in str(
+            failure.value
+        )
+        assert peer.methods().count("tools/call") == (
+            0 if location in ("initialize", "tool", "list-result") else 1
+        )
+    finally:
+        await client.disconnect()
+    assert client.outstanding_http_owners == 0
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "key",
+    [
+        "",
+        "a",
+        "a.b_c-d",
+        "com.example/",
+        "com.example/name",
+        "io.modelcontextprotocol/serverInfo",
+        "io.modelcontextprotocol/subscriptionId",
+    ],
+)
+async def test_2025_metadata_grammar_preserves_opaque_values_and_application_json(key):
+    peer = Peer(HTTP_COMPAT_VERSION)
+    opaque = {
+        "_meta": {"bad/name/key": "data"},
+        "contentSchema": {"x-mcp-header": "data"},
+    }
+    peer.tools[0]["_meta"] = {key: opaque}
+    peer.tools[0]["inputSchema"]["default"] = opaque
+
+    def hook(verb, headers, request):
+        if request.get("method") != "tools/call":
+            return None
+        return peer.rpc(
+            request,
+            {
+                "content": [{"type": "text", "text": "ok", "_meta": {key: "opaque"}}],
+                "_meta": {key: "opaque"},
+                "structuredContent": opaque,
+            },
+        )
+
+    peer.hook = hook
+    client, _, _ = await ready_client(peer=peer)
+    try:
+        output = json.loads(
+            await client.call_tool(
+                "echo", {"text": "x", "_meta": {"bad/name/key": "ordinary argument"}}
+            )
+        )
+        assert output["structuredContent"] == opaque
+        assert output["content"] == [{"type": "text", "text": "ok"}]
+        assert (await client.list_tools())[0]["_meta"] == {key: opaque}
+    finally:
         await client.disconnect()
