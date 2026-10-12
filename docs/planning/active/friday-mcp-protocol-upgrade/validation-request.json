@@ -1,0 +1,40 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "unit": "MCP-UP-02A",
+  "directive": "CD-MCP-UP-001",
+  "review_mode": "full work-unit, fresh-context read-only",
+  "product_baseline": "46005353046553477417a730f05ff21ead64a00d",
+  "construction_base": "9e11fb7aec73745cb38dc1702e54481935945ecb",
+  "product_candidate": "d4030a25f6e4a97aaef9df90659b9ab8ae9aaa24",
+  "candidate_ref": "HEAD of this committed validation request; product_candidate is its parent",
+  "diff_range": "9e11fb7..HEAD",
+  "authority_manifest": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json",
+    "sha256": "1d9c8dded9ebf1922269b03100aee3520e4bc58f46a4b9dfe92c5359a28622c1"
+  },
+  "criteria": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "commands_authority": "docs/planning/active/friday-mcp-protocol-upgrade/tactical-plan.md#verification-profile-for-up-02a",
+  "required_outcome": [
+    "VERIFIED",
+    "CHANGES_REQUESTED",
+    "BLOCKED"
+  ],
+  "output_directory": "/private/tmp/friday-mcp-upgrade/independent-review",
+  "permitted_effects": "Only frozen tactical fixture profile, allowlisted private test environments, synthetic stdio child and existing 127.0.0.1 fixtures. No credentials/live providers/exporters/user state/dependency sync/remediation/push/merge/acceptance.",
+  "artifacts": [
+    "execution/client-core/criterion-ledger.json",
+    "execution/client-core/normative-clause-ledger.json",
+    "execution/client-core/artifact-manifest.json",
+    "execution/client-core/product-hashes.json"
+  ],
+  "constraints": "Do not treat builder report or raw results as reviewer verdict. Classify every applicable normative clause; independently inspect source, complete diff and rerun required gates. Candidate must remain read-only; caches/results belong outside candidate."
+}
