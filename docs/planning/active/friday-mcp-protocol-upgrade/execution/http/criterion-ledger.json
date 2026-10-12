@@ -1,0 +1,73 @@
+{
+  "HTTP-AC-01": {
+    "groups": [
+      "wire",
+      "results",
+      "compat",
+      "core"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-02": {
+    "groups": [
+      "wire",
+      "core"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-03": {
+    "groups": [
+      "headers"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-04": {
+    "groups": [
+      "wire",
+      "results",
+      "cancel",
+      "limits"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-05": {
+    "groups": [
+      "results",
+      "cancel"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-06": {
+    "groups": [
+      "compat"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-07": {
+    "groups": [
+      "safety"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-08": {
+    "groups": [
+      "cancel",
+      "safety",
+      "limits"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-09": {
+    "groups": [
+      "interop"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  },
+  "HTTP-AC-10": {
+    "groups": [
+      "core",
+      "interop"
+    ],
+    "checks": "stable-up02b-* command receipts; exact dependency/scope/control comparison and archived baseline"
+  }
+}

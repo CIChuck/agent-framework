@@ -285,11 +285,16 @@ def _server_capabilities(value: JSONValue) -> None:
                     raise ProtocolFailure()
 
 
-def _tool_optional_fields(tool: dict[str, JSONValue]) -> None:
+def _tool_optional_fields(
+    tool: dict[str, JSONValue], *, modern_meta: bool = True
+) -> None:
     _strings(tool, "title")
     _icons(tool)
     if "_meta" in tool:
-        _metadata(tool["_meta"])
+        if modern_meta:
+            _metadata(tool["_meta"])
+        elif not isinstance(tool["_meta"], dict):
+            raise ProtocolFailure()
     if "annotations" in tool:
         annotations = tool["annotations"]
         if not isinstance(annotations, dict):
@@ -305,9 +310,14 @@ def _tool_optional_fields(tool: dict[str, JSONValue]) -> None:
                 raise ProtocolFailure()
 
 
-def _text_optional_fields(block: dict[str, JSONValue]) -> None:
+def _text_optional_fields(
+    block: dict[str, JSONValue], *, modern_meta: bool = True
+) -> None:
     if "_meta" in block:
-        _metadata(block["_meta"])
+        if modern_meta:
+            _metadata(block["_meta"])
+        elif not isinstance(block["_meta"], dict):
+            raise ProtocolFailure()
     if "annotations" not in block:
         return
     annotations = block["annotations"]
@@ -327,6 +337,77 @@ def _text_optional_fields(block: dict[str, JSONValue]) -> None:
             or not 0 <= priority <= 1
         ):
             raise ProtocolFailure()
+
+
+def validate_compatibility_fields(
+    result: dict[str, JSONValue],
+    method: str,
+    limits: ProtocolLimits,
+) -> None:
+    """Validate selected 2025-11-25 fields without changing 2024 stdio defaults."""
+    if "_meta" in result and not isinstance(result["_meta"], dict):
+        raise ProtocolFailure()
+    if method == "initialize":
+        _implementation(result.get("serverInfo"))
+        _server_capabilities(result.get("capabilities"))
+        _strings(result, "instructions", "protocolVersion")
+        caps = result.get("capabilities")
+        if isinstance(caps, dict) and "tasks" in caps:
+            tasks = caps["tasks"]
+            if not isinstance(tasks, dict):
+                raise ProtocolFailure()
+            for key in ("list", "cancel", "requests"):
+                if key in tasks and not isinstance(tasks[key], dict):
+                    raise ProtocolFailure()
+            requests = tasks.get("requests")
+            if isinstance(requests, dict) and "tools" in requests:
+                tools = requests["tools"]
+                if not isinstance(tools, dict) or (
+                    "call" in tools and not isinstance(tools["call"], dict)
+                ):
+                    raise ProtocolFailure()
+    elif method == "tools/list":
+        tools = result.get("tools")
+        if not isinstance(tools, list):
+            raise ProtocolFailure()
+        for tool in tools:
+            if not isinstance(tool, dict):
+                raise ProtocolFailure()
+            _tool_optional_fields(tool, modern_meta=False)
+            schema = tool.get("outputSchema")
+            if "outputSchema" in tool and (
+                not isinstance(schema, dict) or schema.get("type") != "object"
+            ):
+                raise ProtocolFailure("unsupported_schema")
+            execution = tool.get("execution")
+            if "execution" in tool and (
+                not isinstance(execution, dict)
+                or (
+                    "taskSupport" in execution
+                    and execution["taskSupport"]
+                    not in ("forbidden", "optional", "required")
+                )
+            ):
+                raise ProtocolFailure()
+    elif method == "tools/call":
+        content = result.get("content")
+        if (
+            not isinstance(content, list)
+            or type(result.get("isError", False)) is not bool
+        ):
+            raise ProtocolFailure("invalid_result")
+        if "structuredContent" in result and not isinstance(
+            result["structuredContent"], dict
+        ):
+            raise ProtocolFailure("invalid_result")
+        for block in content:
+            if not isinstance(block, dict) or not isinstance(block.get("type"), str):
+                raise ProtocolFailure("invalid_result")
+            if block["type"] != "text":
+                raise ProtocolFailure("unsupported_content")
+            if not isinstance(block.get("text"), str):
+                raise ProtocolFailure("invalid_result")
+            _text_optional_fields(block, modern_meta=False)
 
 
 def validate_message(

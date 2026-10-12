@@ -121,8 +121,8 @@ class MCPClientBase(ABC):
         return self._selected_version
 
     @abstractmethod
-    async def _create_transport(self) -> MCPTransport:
-        """Create an owned transport."""
+    async def _create_transport(self) -> MCPTransport | None:
+        """Create a shared transport; request-scoped subclasses own their lifecycle."""
 
     def _timeout(self, requested: float | None = None) -> float:
         timeout = self.request_timeout_seconds if requested is None else requested
@@ -151,6 +151,8 @@ class MCPClientBase(ABC):
             self._connect_deadline = asyncio.get_running_loop().time() + self._timeout()
             async with asyncio.timeout_at(self._connect_deadline):
                 self._transport = await self._create_transport()
+                if self._transport is None:
+                    raise RuntimeError("MCP shared transport unavailable")
                 await self._transport.connect()
                 self._receive_task = asyncio.create_task(
                     self._receive_loop(), name="mcp-receiver"
@@ -480,6 +482,11 @@ class MCPClientBase(ABC):
         raise ProtocolFailure("limit_exceeded")
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
+        # Validate against the schema bound to this call, even if another task
+        # refreshes/invalidates the catalog while the response is outstanding.
+        output_schema = next(
+            (tool.output_schema for tool in self._catalog if tool.name == name), None
+        )
         try:
             response = await self._request(
                 "tools/call", {"name": name, "arguments": arguments}
@@ -496,12 +503,8 @@ class MCPClientBase(ABC):
             result = ToolResult.parse(
                 bounded, self._selected_version == MODERN_VERSION, self.limits
             )
-            for tool in self._catalog:
-                if tool.name == name and tool.output_schema is not None:
-                    validate_structured(
-                        result.structured, tool.output_schema, self.limits
-                    )
-                    break
+            if output_schema is not None:
+                validate_structured(result.structured, output_schema, self.limits)
             return result.text(self.limits)
         except ProtocolFailure as exc:
             raise MCPToolExecutionError(exc.failure_code) from None

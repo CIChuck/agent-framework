@@ -1,9 +1,9 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-02B",
-  "execution_phase": "construction",
-  "validation_state": "not_ready",
-  "next_gate": "Implement exact CD-MCP-UP-002, run required checks, commit stable candidate and dispatch fresh independent validation",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "next_gate": "Fresh read-only independent CD-MCP-UP-002 validation of committed HTTP candidate",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
@@ -21,5 +21,6 @@
     }
   ],
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
-  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json"
+  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json",
+  "unit_completion": "not proposed; independent verdict pending"
 }

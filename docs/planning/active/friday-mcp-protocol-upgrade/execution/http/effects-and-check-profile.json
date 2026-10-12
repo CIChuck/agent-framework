@@ -1,0 +1,200 @@
+{
+  "unit": "MCP-UP-02B",
+  "environment": "Private Python 3.13.10; existing locked SDK 2.3.0 and httpcore 1.0.9; offline, no sync",
+  "guard_sha256": "38f6a7483d66a066336d63c14980f1acfe307ec38848f0761c6928a66989a7a8",
+  "effect_inventory": [
+    "fixtures/http_sdk_server.py: child SDK server, literal 127.0.0.1 allocated port, synthetic tool counters in private TMPDIR",
+    "fixtures/http_compat_server.py: child deterministic HTTP peer, same local-only bounds, synthetic requests/counters",
+    "http policy tests: borrowed controlled resolver/connector, no real public DNS/TCP",
+    "Existing aggregate fixture-only literal-loopback collectors/HTTP listeners and private local persistence stores as previously inventoried",
+    "The same named http_compat_server.py peer additionally uses verified loopback TLS; two generated ephemeral synthetic cert/key files remain in private pytest TMPDIR. No real credential or third peer. Test-only private SSL trust context retains CERT_REQUIRED/hostname checks."
+  ],
+  "excluded": "Public service/model/exporter/network, credentials, shared caches/state/dependencies, arbitrary shell/npm and publication",
+  "check_argv": [
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "next"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "show",
+      "friday-mcp-protocol-upgrade"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py",
+      "packages/friday-mcp/tests_mcp/client/test_execution.py",
+      "packages/friday-mcp/tests_mcp/client/test_lifecycle.py"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp"
+    ],
+    [
+      "pytest",
+      "packages/friday-runtime/tests_runtime",
+      "packages/friday-chat/tests_chat",
+      "packages/friday-telemetry/tests_telemetry"
+    ],
+    [
+      "pytest"
+    ],
+    [
+      "ruff",
+      "check",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py"
+    ],
+    [
+      "ruff",
+      "check",
+      ".",
+      "--output-format=json"
+    ],
+    [
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py"
+    ],
+    [
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp"
+    ],
+    [
+      "python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    [
+      "git",
+      "diff",
+      "--check"
+    ]
+  ],
+  "research_sources": [
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/index.md",
+      "sha256": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--index.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index.md",
+      "sha256": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--index.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning.md",
+      "sha256": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--versioning.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover.md",
+      "sha256": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--discover.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio.md",
+      "sha256": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--stdio.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http.md",
+      "sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--streamable-http.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools.md",
+      "sha256": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--tools.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr.md",
+      "sha256": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--patterns--mrtr.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization.md",
+      "sha256": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--authorization.md.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/main/schema/2026-07-28/schema.ts",
+      "sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/index.md",
+      "sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle.md",
+      "sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports.md",
+      "sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation.md",
+      "sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices.md",
+      "sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools.md",
+      "sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/cancellation.md",
+      "sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/271ecc9accafdd9b83a3c869fa67c22953b2af80/schema/2025-11-25/schema.ts",
+      "sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz"
+    }
+  ],
+  "baseline_snapshot": "/private/tmp/friday-mcp-upgrade/http-baseline-snapshot.json",
+  "cli_resolution": "Reused private libraries have no console scripts: pytest/mypy requirements execute as the equivalent private-python -m module argv; Ruff is the copied pinned binary. Exact argv/env are retained per command receipt."
+}

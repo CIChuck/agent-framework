@@ -166,3 +166,15 @@ and proposal manifest at 9e00288. Work unit MCP-UP-02B enters construction/not_r
 on the existing feature branch. Fourteen exact product paths and fixture-only
 effects are authorized; prior frozen evidence and unrelated dirty root changes
 remain preserved. No Runtime/YAML/server or delivery authority is inferred.
+
+
+## 2026-10-12 — Streamable HTTP stable candidate review checkpoint
+
+execution_phase: validation; validation_state: in_review. CD-MCP-UP-002 products
+are frozen in execution/http/stable-check-freeze.json. All final deterministic
+gates pass; root Ruff has exactly the inherited 327 findings. The new client
+supports modern 2026-07-28 and separate explicit 2025-11-25 profiles within the
+fourteen approved paths. Builder evidence and full raw receipts are retained in
+execution/http/report.md and stored-manifest.json. Fresh independent review is
+required; whole initiative remains started/local and later units are unapproved.
+No original authority/index/directive/proposal/acceptance bytes are revised.

@@ -1199,6 +1199,7 @@ version = "0.1.0a2"
 source = { editable = "packages/friday-mcp" }
 dependencies = [
     { name = "friday-framework-core" },
+    { name = "httpcore" },
     { name = "httpx" },
     { name = "jsonschema" },
     { name = "pydantic" },
@@ -1230,6 +1231,7 @@ requires-dist = [
     { name = "friday-framework-core", editable = "packages/friday-core" },
     { name = "friday-framework-mcp", extras = ["server"], marker = "extra == 'full'", editable = "packages/friday-mcp" },
     { name = "friday-framework-tools", marker = "extra == 'full'", editable = "packages/friday-tools" },
+    { name = "httpcore", specifier = "==1.0.9" },
     { name = "httpx", specifier = ">=0.25.0" },
     { name = "jsonschema", specifier = "==4.25.1" },
     { name = "mcp", marker = "extra == 'dev'", specifier = "==2.3.0" },

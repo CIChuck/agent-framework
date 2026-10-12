@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: 'CD-MCP-UP-002 approved: implement fourteen-path HTTP unit, verify required gates and freeze candidate for fresh independent validation'
+  next_gate: fresh independent CD-MCP-UP-002 Streamable HTTP work-unit review; later Runtime/YAML/server/aggregate units remain separately gated
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1439,3 +1439,10 @@ events:
   action: approved exact CD-MCP-UP-002
   note: 'Exact statement: approved. Fourteen product paths; HTTP unit only; no delivery authority'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:26:52+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze Streamable HTTP candidate
+  note: Fourteen-path approved implementation and stable checks ready for independent review; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/http/report.md

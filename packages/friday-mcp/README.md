@@ -165,3 +165,74 @@ to own its protocol, process lifecycle and provider-neutral telemetry boundaries
 Its necessary IDNA 3.20 dependency change is recorded in approved A01; unrelated
 existing versions are preserved. Verification requires the real SDK stdio child,
 deterministic legacy peer and full MCP/Runtime/Chat/telemetry regressions.
+## Streamable HTTP programmatic client
+
+`StreamableHTTPMCPClient` supports explicit MCP `2026-07-28` and `2025-11-25`
+tools profiles. It is a separate transport from the retained 2024 HTTP+SSE
+client. Runtime/Chat `config.yaml` remote registration belongs to the later
+UP-03 unit; this API does not change current runtime admission/defaults.
+
+```python
+from friday_mcp.client import HTTPEndpointPolicy, StreamableHTTPMCPClient
+
+client = StreamableHTTPMCPClient(
+    "https://mcp.example.com/mcp",
+    protocol_version="2026-07-28",
+    endpoint_policy=HTTPEndpointPolicy(),
+    # Optional bearer_token is supplied explicitly by your secret provider.
+)
+async with client:
+    tools = await client.list_tools()
+    # Call only a discovered tool, using its real name and validated arguments.
+    # result = await client.call_tool("example_tool", {"argument": "value"})
+```
+
+Modern calls require a complete successful catalog first, so all declared
+`x-mcp-header` fields are mirrored. Invalid HTTP annotations exclude only that
+tool; `rejected_http_tools` exposes a bounded count. Failed/malformed catalog
+refresh invalidates the catalog and header bindings. Header extraction follows
+exact nested properties; absent/null values are omitted, and unsafe/Unicode or
+sentinel-shaped values use exact UTF-8 Base64 encoding. Structured/text output
+uses the accepted bounded core adapter and schema validator, including preserving
+the call's output-schema snapshot across concurrent catalog invalidation.
+
+Modern HTTP has no initialize, protocol session, GET stream or resumption.
+The explicit `2025-11-25` mode initializes and retains an origin-scoped in-memory
+session when supplied. A session 404 starts bounded fresh initialization, but
+the failed call is never replayed. The next explicit call needs a healthy new
+session. Older structured results/output schemas must be objects; legacy bare
+string content is not accepted as a 2025 content block. Unsupported content and
+input requests fail safely, without resource retrieval or interactive continuation.
+
+Production policy requires verified HTTPS. URLs are ASCII/punycode with encoded
+paths, no query/userinfo/fragment, and default port 443. Other ports and exact
+private addresses need explicit `HTTPEndpointPolicy` opt-ins for that peer.
+Every new connection resolves and validates all returned addresses, then connects
+to a validated numeric address with the original TLS hostname. Mixed public/
+disallowed answers fail closed. Redirects, environment proxies and cookies are
+unused; credentials remain on the configured origin. A typed borrowed resolver/
+connector is a trusted application dependency, never an arbitrary HTTP client.
+Its returned streams belong to this client; the provider itself remains open.
+
+`ProtocolLimits` and `HTTPLimits` accept positive lower-only ceilings: four owned
+requests, 30 seconds, 16 pages/256 tools, 1 MiB aggregate catalog and frame/wire,
+64 KiB tool result/header/line, 256 SSE events/comments and depth 32/4096 JSON
+nodes. Raw HTTP wire accounting includes framing/headers; httpcore/h11 also has
+a stricter 16 KiB incomplete-header parser bound. SSE comments, progress and
+priming events never reset the deadline. There is no HTTP pool retry or mutating
+call replay. Cancellation closes only the modern request stream; compatible
+cancellation notifications require a fully issued non-initialize request.
+
+httpcore's DEBUG mode exposes response headers. This profile fails closed when
+its transport DEBUG logging is enabled, checks again through its public request
+trace hook, and never changes application logger levels, filters or providers.
+Turn transport DEBUG logging off in application configuration to use the client.
+No payload/header logging, automatic W3C trace/baggage propagation or telemetry
+provider changes are introduced.
+
+`outstanding_http_owners` includes request/cleanup tasks and retained partial
+streams. Incomplete teardown raises a fixed cleanup failure, retains ownership,
+and allows a later `disconnect()` retry. A teardown failure does not replace an
+existing request failure. Always await shutdown; no background owner is silently
+forgotten. Fixture-only plaintext HTTP is restricted to an explicitly allowlisted
+literal 127.0.0.1/port and cannot relax production TLS.
