@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: 'approved REM-MCP-UP-002: correct four findings within six paths, run full CD2 gates, then fresh independent delta/full review'
+  next_gate: fresh independent REM-MCP-UP-002 finding-delta and full CD-MCP-UP-002 work-unit review; whole initiative remains started/local
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1461,3 +1461,10 @@ events:
   action: approved bounded HTTP remediation
   note: 'Exact statement: approved. REM-MCP-UP-002 six-path/four-finding scope; separate builder and fresh reviewer; initiative started/local'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:07:25+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected HTTP candidate for independent review
+  note: Separate bounded remediation complete; four findings require fresh delta/full independent verification; original failed report retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/remediation-UP02B-002-builder/report.md

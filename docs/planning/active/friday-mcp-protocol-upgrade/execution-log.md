@@ -202,3 +202,14 @@ A separate remediator is authorized to correct exactly VAL-UP02B-001..004 and
 run original CD2 gates in the same private guarded fixture profile. All prior
 controls/evidence and unrelated root work remain preserved. No acceptance or
 publication is inferred.
+
+
+## 2026-10-12 — corrected HTTP candidate dispatched for fresh review
+
+execution_phase: validation; validation_state: in_review. Separate remediator
+product commit 462fa7cf25b16e67d7a98267733b4d9f56274a93 addresses the exact four findings of
+REM-MCP-UP-002. Full raw builder evidence is archived separately under execution/
+remediation-UP02B-002-builder. Original authority/directive/proposal/approval/index
+and historical report/raw bytes remain unchanged. VAL-UP02B-01 is superseded only
+for decision on this new candidate. Fresh independent delta and full CD2 review
+required; whole initiative remains started/local and no completion is inferred.
