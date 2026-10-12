@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-11'
+updated: '2026-10-12'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -384,8 +384,8 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: "core TELEM-01\u201304 accepted and closed; optional TELEM-05 needs a separate decision/directive; MCP protocol upgrade remains first pending"
-  delivery_state: local
+  next_gate: core TELEM-01–04 accepted and construction closed; branch pushed; draft PR publication awaits explicit approval; preserve frozen evidence paths; MCP preparation remains authorized
+  delivery_state: pushed
   branch: feature/friday-telemetry-rewire
   depends_on: []
   validation:
@@ -1183,7 +1183,7 @@ events:
   actor: Chuck Russell
   actor_role: maintainer
   action: accepted TELEM-02
-  note: "Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03\u201305; next gate is TELEM-03 directive preparation, with separate implementation approval."
+  note: Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03–05; next gate is TELEM-03 directive preparation, with separate implementation approval.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-06'
@@ -1274,5 +1274,12 @@ events:
   actor: Chuck Russell
   actor_role: maintainer
   action: TELEM-04 accepted
-  note: "Explicit response accepted to verified TELEM-04 completion. Core01\u201304 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged."
+  note: Explicit response accepted to verified TELEM-04 completion. Core01–04 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+- task: friday-telemetry-rewire
+  at: '2026-10-12T15:08:11+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: Published exact committed telemetry branch bb83dc0d0ff1b88ed9db54329cd39c7fca49650a; core remains accepted and construction closed. Draft PR creation was rejected by automatic approval review pending explicit GitHub publication approval. No merge.
+  evidence: https://github.com/CIChuck/agent-framework/tree/feature/friday-telemetry-rewire

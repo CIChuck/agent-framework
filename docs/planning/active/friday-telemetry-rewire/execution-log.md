@@ -1016,3 +1016,13 @@ TELEM-05 does not gate core telemetry and requires its own decision/directive.
 Continuing initiative started/local for optional planning; construction authority
 closed; execution_phase closeout; validation_state verified. MCP remains first
 pending. No product or delivery actions; unrelated work and board history preserved.
+
+
+## 2026-10-12 — accepted telemetry branch published; draft PR approval pending
+
+Published exact bb83dc0d0ff1b88ed9db54329cd39c7fca49650a to origin/feature/friday-telemetry-rewire.
+Core01–04 remain accepted and construction closed. Automatic approval review
+rejected creating the draft PR because publishing its description and repository
+links to GitHub lacked clear specific authorization; explicit publication approval
+is pending. No PR or merge exists. Frozen controls and unrelated work remain
+unchanged; parent started label is historical retention, not active construction.

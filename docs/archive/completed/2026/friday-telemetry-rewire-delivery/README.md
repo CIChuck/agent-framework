@@ -1,6 +1,7 @@
 # Accepted telemetry delivery handoff
 
-Status: delivery preparation; core TELEM-01–04 accepted and construction closed.
+Status: branch pushed; draft PR publication awaiting explicit approval;
+core TELEM-01–04 accepted and construction closed.
 
 The accepted telemetry branch is `feature/friday-telemetry-rewire`. Its accepted
 closeout commit is `46005353046553477417a730f05ff21ead64a00d`; the independently
@@ -8,6 +9,13 @@ verified final product candidate is `5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8`.
 On 2026-10-12, GitHub's default branch and remote `master` both resolve to
 `2155a0fc51f5b20dea4e35c6cfc70f1d52002735`. There is no existing telemetry PR or
 remote telemetry branch at the delivery-preparation checkpoint.
+
+The subsequent push published exact commit
+`bb83dc0d0ff1b88ed9db54329cd39c7fca49650a` to
+`origin/feature/friday-telemetry-rewire`. Automatic approval review rejected draft
+PR creation because publication of the description and repository links to GitHub
+was not clearly authorized. An explicit publication question is pending. No PR
+or merge is recorded. The prepared draft stays available locally.
 
 ## Delivery sequence
 

@@ -13,7 +13,12 @@ next_gate: core TELEM-01–04 accepted and closed; optional TELEM-05 needs a sep
 execution_phase: closeout
 validation_state: verified
 implementation_authority: closed
+delivery_state: pushed
 ---
+
+Current delivery: the accepted branch is pushed. Draft PR publication awaits
+explicit approval after automatic approval review rejection; no merge exists.
+The parent started label retains historical evidence; construction is closed.
 
 Core telemetry is **accepted and closed** across TELEM-01–04. Chuck Russell
 explicitly accepted TELEM-04 on2026-10-11, response "accepted", after fresh
