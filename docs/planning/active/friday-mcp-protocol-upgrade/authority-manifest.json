@@ -100,7 +100,7 @@
     },
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
-      "sha256": "d6b204350ec49dd0a5b2cb21e7bb5efe02fb02cc0f17efb75bf0687e5b9e1018"
+      "sha256": "397db31da8967a560f84cc2173858581df3b33a470b77396a0159fa2d89ff5c7"
     },
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
@@ -140,7 +140,7 @@
   "note": "Original approved proposal hashes are retained in approval.json. Clarification does not expand twelve product paths. Complete normative sources/schema are captured and hashed. Commit active controls and record named branch/started board state before product edits. Later units remain unapproved.",
   "normative_sources": {
     "revision": "2026-07-28",
-    "manifest": "docs/planning/queued/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+    "manifest": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
     "schema_upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
     "schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
     "complete_captured_sources": 10

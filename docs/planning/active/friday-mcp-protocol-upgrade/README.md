@@ -9,10 +9,10 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: install private locked SDK validation dependencies and construct CD-MCP-UP-001
+next_gate: fresh-context independent validation of committed CD-MCP-UP-001 candidate
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: implementation
-validation_state: pending
+execution_phase: validation
+validation_state: in_review
 ---
 
 ## Current checkpoint
@@ -137,3 +137,13 @@ concrete stricter/mapping changes on other inputs. No Friday product regression
 has been established. Private locked SDK installation and original client-core
 construction/aggregate/independent checks remain; current shared environment
 stays on IDNA 3.11.
+
+
+## Client-core candidate — 2026-10-12
+
+The approved twelve-path slice is implemented in an isolated candidate.
+[Implementation and environment evidence](execution/client-core-implementation.md)
+and [criterion ledger](execution/client-core/criterion-ledger.json) accompany the
+committed candidate. The next gate is fresh-context read-only independent
+validation under the frozen controls. Whole-initiative acceptance and later
+HTTP/runtime/server directives remain separate. Shared IDNA stays at 3.11.

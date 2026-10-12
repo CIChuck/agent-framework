@@ -8,13 +8,19 @@ from __future__ import annotations
 
 import asyncio
 import contextlib
-import json
 import logging
 import os
 from pathlib import Path
 from typing import Any
 
 from friday_mcp.client.base import MCPClientBase
+from friday_mcp.client.protocol import (
+    ProtocolFailure,
+    ProtocolLimits,
+    ProtocolProfile,
+    decode_json,
+    encode_json,
+)
 from friday_mcp.config import MCPServerConfig
 
 logger = logging.getLogger(__name__)
@@ -40,6 +46,8 @@ class StdioTransport:
         args: list[str] | None = None,
         env: dict[str, str] | None = None,
         cwd: Path | None = None,
+        *,
+        limits: ProtocolLimits | None = None,
     ) -> None:
         """
         Initialize stdio transport.
@@ -54,6 +62,11 @@ class StdioTransport:
         self.args = args or []
         self.env = env
         self.cwd = cwd
+        if limits is not None and not isinstance(limits, ProtocolLimits):
+            raise ValueError("Invalid MCP protocol limits")
+        self.limits = limits or ProtocolLimits()
+        self._issued_requests: set[str] = set()
+        self.last_frame_bytes = 0
         self._process: asyncio.subprocess.Process | None = None
         self._connected = False
         self._stderr_task: asyncio.Task[None] | None = None
@@ -83,6 +96,7 @@ class StdioTransport:
                 stderr=asyncio.subprocess.PIPE,
                 env=env,
                 cwd=self.cwd,
+                limit=self.limits.frame_bytes,
             )
         )
         try:
@@ -91,7 +105,10 @@ class StdioTransport:
             # If cancellation races process creation, acquire ownership before
             # re-raising so the public cleanup path can reap the child.
             self._process = await spawn
-            await self.disconnect()
+            try:
+                await self.disconnect()
+            except BaseException:
+                logger.error("MCP spawn cleanup incomplete")
             raise
         self._connected = True
 
@@ -202,6 +219,7 @@ class StdioTransport:
         self._stderr_task = None
         self._process_wait_task = None
         self._process = None
+        self._issued_requests.clear()
 
     @staticmethod
     def _ensure_drain(
@@ -251,8 +269,18 @@ class StdioTransport:
         if not self._connected or not self._process or not self._process.stdin:
             raise RuntimeError("Not connected")
 
-        data = json.dumps(message) + "\n"
-        self._process.stdin.write(data.encode())
+        data = (
+            encode_json(message, self.limits, byte_limit=self.limits.frame_bytes - 1)
+            + b"\n"
+        )
+        self._process.stdin.write(data)
+        request_id = message.get("id")
+        if (
+            isinstance(request_id, str)
+            and "method" in message
+            and len(self._issued_requests) < self.limits.concurrent_requests
+        ):
+            self._issued_requests.add(request_id)
         await self._process.stdin.drain()
 
     async def receive(self) -> dict[str, Any]:
@@ -267,14 +295,18 @@ class StdioTransport:
         )
         self._stdout_read_task = reader
         try:
-            line = await reader
+            try:
+                line = await reader
+            except ValueError:
+                raise ProtocolFailure("limit_exceeded") from None
         finally:
             if reader.done() and self._stdout_read_task is reader:
                 self._stdout_read_task = None
         if not line:
             raise EOFError("Process closed stdout")
 
-        message = json.loads(line.decode())
+        self.last_frame_bytes = len(line)
+        message = decode_json(line, self.limits)
         if not isinstance(message, dict):
             raise ValueError("Invalid MCP message object")
         return message
@@ -325,6 +357,9 @@ class StdioMCPClient(MCPClientBase):
         args: list[str] | None = None,
         env: dict[str, str] | None = None,
         cwd: Path | None = None,
+        *,
+        protocol_profile: ProtocolProfile = "legacy",
+        limits: ProtocolLimits | None = None,
     ) -> None:
         """
         Initialize stdio MCP client.
@@ -336,7 +371,7 @@ class StdioMCPClient(MCPClientBase):
             env: Additional environment variables
             cwd: Working directory for the subprocess
         """
-        super().__init__(name)
+        super().__init__(name, protocol_profile=protocol_profile, limits=limits)
         self.command = command
         self.args = args or []
         self.env = env
@@ -373,4 +408,20 @@ class StdioMCPClient(MCPClientBase):
             args=self.args,
             env=self.env,
             cwd=self.cwd,
+            limits=self.limits,
         )
+
+    def _request_was_issued(self, request_id: str) -> bool:
+        return (
+            isinstance(self._transport, StdioTransport)
+            and request_id in self._transport._issued_requests
+        )
+
+    def _forget_request(self, request_id: str) -> None:
+        if isinstance(self._transport, StdioTransport):
+            self._transport._issued_requests.discard(request_id)
+
+    def _received_wire_bytes(self, message: dict[str, Any]) -> int:
+        if isinstance(self._transport, StdioTransport):
+            return self._transport.last_frame_bytes
+        return super()._received_wire_bytes(message)

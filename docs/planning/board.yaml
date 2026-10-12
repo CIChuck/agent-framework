@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: A01 lock and offline hostname comparison pass; install private locked validation dependencies and construct CD-MCP-UP-001, then original regression gates and independent review
+  next_gate: fresh-context read-only independent validation of CD-MCP-UP-001 client-core candidate; later HTTP/runtime/server units remain unapproved
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1387,3 +1387,10 @@ events:
   action: approved dependency reproduction and bounded offline comparison recorded
   note: Exact lock reproduced; 24 static contexts preserve other existing selections/artifacts; 57 representative HTTP URL checks unchanged. Concrete stricter/mapping differences retained. Full product construction and validation pending.
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/idna-regression-assessment.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T17:16:33+00:00'
+  actor: Codex
+  actor_role: agent
+  action: client-core candidate prepared
+  note: MCP-UP-02A evidence frozen for independent review; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/client-core-implementation.md

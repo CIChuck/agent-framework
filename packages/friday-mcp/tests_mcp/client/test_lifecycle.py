@@ -214,19 +214,21 @@ async def test_stdio_config_timeout_reaches_rpc_wait_without_hidden_30_second_ca
     transport = FakeTransport()
     client._transport = transport
     observed = []
-    original = asyncio.wait_for
+    original = asyncio.wait
 
     async def send(message):
-        client._pending_requests[message["id"]].set_result({"result": {"tools": []}})
+        await client._handle_message(
+            {"jsonrpc": "2.0", "id": message["id"], "result": {"tools": []}}
+        )
 
-    async def wait(future, timeout):
+    async def wait(future, *, timeout):
         observed.append(timeout)
-        return await original(future, timeout)
+        return await original(future, timeout=timeout)
 
     monkeypatch.setattr(transport, "send", send)
-    monkeypatch.setattr(asyncio, "wait_for", wait)
+    monkeypatch.setattr(asyncio, "wait", wait)
     await client._request("tools/list", {})
-    assert observed == [77.0]
+    assert len(observed) == 1 and 76 < observed[0] <= 77.0
     await client.disconnect()
 
 

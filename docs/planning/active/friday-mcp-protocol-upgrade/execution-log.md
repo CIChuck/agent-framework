@@ -98,3 +98,14 @@ Unicode-to-YARL URL mapping. Full results, raw outputs and script/hash receipts
 are retained in execution/idna-regression. Source construction and official
 SDK/full regression/independent validation remain pending. Shared IDNA3.11 and
 root twelve-path product baseline remain unchanged.
+
+
+## 2026-10-12 — client-core candidate frozen for independent review
+
+execution_phase: validation; validation_state: in_review. The twelve approved
+product paths are implemented. Final product gates and independently reproduced
+baseline debt are retained in execution/client-core/. Private installed-library
+reuse and pytest import resolution are disclosed in the implementation report.
+No live service, credential, shared state or later-unit changes occurred. The
+initiative remains started/local. Commit the stable candidate and issue a fresh
+read-only review; no self-VERIFIED or acceptance/delivery inference.

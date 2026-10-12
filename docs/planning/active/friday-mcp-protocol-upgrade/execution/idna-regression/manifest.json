@@ -3,12 +3,12 @@
   "status": "bounded_dependency_preparation_passed",
   "files": [
     {
-      "path": "dependency_contexts.py",
-      "sha256": "112a69900fe5e08b66ac9a675391f1be62760ba807e44600f29612c59af6d2ec",
-      "bytes": 5061,
+      "path": "dependency_contexts.py.gz",
+      "sha256": "ac28bcb142b4a42ec7ab6ab73d9a94f37a7b9ffc84d3ec78d1d658093eb10fda",
+      "bytes": 1988,
       "original_sha256": "112a69900fe5e08b66ac9a675391f1be62760ba807e44600f29612c59af6d2ec",
       "original_bytes": 5061,
-      "encoding": "identity"
+      "encoding": "gzip"
     },
     {
       "path": "context-preservation.json",
@@ -19,20 +19,20 @@
       "encoding": "identity"
     },
     {
-      "path": "reproduce_dependency.py",
-      "sha256": "d300dd4376336640e70f6c742815c0b521f17e68a5f2328f8c80d999304da557",
-      "bytes": 1738,
+      "path": "reproduce_dependency.py.gz",
+      "sha256": "be38c2a219bb205b033478daba79118694eac5aef76d061481907b75be25d307",
+      "bytes": 889,
       "original_sha256": "d300dd4376336640e70f6c742815c0b521f17e68a5f2328f8c80d999304da557",
       "original_bytes": 1738,
-      "encoding": "identity"
+      "encoding": "gzip"
     },
     {
-      "path": "reproduce_offline.py",
-      "sha256": "5120072b9b25ef02e300e414b93ffc02f2f00a2a2d617f7ef62c3ae412ec6cac",
-      "bytes": 1508,
+      "path": "reproduce_offline.py.gz",
+      "sha256": "7da7855778db512a39697f6412d210fdb60a5031ff731ca799427e86067ec3bd",
+      "bytes": 779,
       "original_sha256": "5120072b9b25ef02e300e414b93ffc02f2f00a2a2d617f7ef62c3ae412ec6cac",
       "original_bytes": 1508,
-      "encoding": "identity"
+      "encoding": "gzip"
     },
     {
       "path": "approved-lock-check.json",
@@ -83,20 +83,20 @@
       "encoding": "identity"
     },
     {
-      "path": "fetch_idna_probe.py",
-      "sha256": "8895482faa55e6791505ef78731ac6592ad58a5646f860336bb5ac83bef29ff4",
-      "bytes": 1798,
+      "path": "fetch_idna_probe.py.gz",
+      "sha256": "233aa40718a16597b5d7a425b8a61a78862d84a1f06207677d1411d5c0205b12",
+      "bytes": 923,
       "original_sha256": "8895482faa55e6791505ef78731ac6592ad58a5646f860336bb5ac83bef29ff4",
       "original_bytes": 1798,
-      "encoding": "identity"
+      "encoding": "gzip"
     },
     {
-      "path": "idna_probe.py",
-      "sha256": "022a299c827692db7bb5f4dfc9e76647601f46db2e27f858f8be02e1678686c0",
-      "bytes": 5987,
+      "path": "idna_probe.py.gz",
+      "sha256": "87727ed6a552e7f2098ecb5ec220964ac23e45c7067c2ccf5cec272d75a954fa",
+      "bytes": 2324,
       "original_sha256": "022a299c827692db7bb5f4dfc9e76647601f46db2e27f858f8be02e1678686c0",
       "original_bytes": 5987,
-      "encoding": "identity"
+      "encoding": "gzip"
     },
     {
       "path": "3.11-results.json.gz",
@@ -171,5 +171,6 @@
       "encoding": "gzip"
     }
   ],
-  "product_validation": "pending; no independent verdict"
+  "product_validation": "pending; no independent verdict",
+  "storage_note": "Lossless compression of original executed process-script evidence, preserving original bytes and SHA256. Archived evidence is not executable repository source; no raw script rewriting or lint waiver."
 }

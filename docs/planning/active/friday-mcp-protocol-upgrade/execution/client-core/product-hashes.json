@@ -1,0 +1,14 @@
+{
+  "packages/friday-mcp/src/friday_mcp/client/base.py": "ec458baacd628ac798106c6d145d17318f007ea2609843e66848262f52d71948",
+  "packages/friday-mcp/src/friday_mcp/client/stdio.py": "5914eecad7c83c121888002ed77d0378157a41acdef213c056ab73b83e6d79eb",
+  "packages/friday-mcp/tests_mcp/client/test_execution.py": "68101693092ac77e83cffec358d6085419e89913bad6254ae71c0150f435f3e3",
+  "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "f3921e04d2ece03af6d26053fa7b2d52425868085211984e0abef0d1aab48d3d",
+  "packages/friday-mcp/pyproject.toml": "730f687c040a63e2e4347880fb7e17b536d2b0730467b6fb2eec9286ad3b0aa2",
+  "packages/friday-mcp/README.md": "8300dd62360b923b7c98cdc286172a4dbc48743f49f7bae5426d6a33f1c9fb86",
+  "uv.lock": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+  "packages/friday-mcp/src/friday_mcp/client/protocol.py": "4efff88cdbdf19967b3d24fd54fdc561d51c75becc182847f178851b6d9696e1",
+  "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": "9dcbe83dc3a35bfa5385b87d95adec62a198a445ab7cb25f221cc551e666c7fb",
+  "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": "fc88f5d12b1f3a3dad682afd3e4cfb9762c1baa35cffeabfa7fcacf77cd3f418",
+  "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": "50e4c1422545ef85dff9d5e3c53d39566b86cda39e9c0567847fd8b913167f11",
+  "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": "f2cfb56dba97bab9dffe5a4a1cb0f27f4c1faf4773a2e5057a0adff7b251a8ec"
+}
