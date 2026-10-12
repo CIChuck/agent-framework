@@ -39,7 +39,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| — | _None_ | — | — | — | — |
+| 25 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | pushed | core TELEM-01–04 accepted and construction closed; draft PR #7 open against master; review before any merge; preserve frozen evidence paths; MCP preparation remains authorized |
 
 ## Completed
 

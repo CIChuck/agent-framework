@@ -1,0 +1,39 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "mypy",
+    "--python-version",
+    "3.13",
+    "--show-error-codes",
+    "/private/tmp/telem-02/builder-execution/registry_invariance.py",
+    "packages/friday-cli/src/friday_cli/commands.py"
+  ],
+  "cwd": "/private/tmp/telem-02/builder-execution/registry-base",
+  "revision": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preparation-base-registry-invariance/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-agent/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-chat/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-cli/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-core/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-finance/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-llm/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-mcp/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-memory/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-moltbook/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-optimization/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-runtime/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-sandbox/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-speech/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-telemetry/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-tools/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-transcript/src:/private/tmp/telem-02/builder-execution/registry-base/packages/friday-chat/tests_chat:/private/tmp/telem-02/builder-execution/registry-base",
+    "TMPDIR": "/private/tmp/telem-02/builder-execution/tmp/preparation-base-registry-invariance",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preparation-base-registry-invariance/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-02/builder-execution/tmp/preparation-base-registry-invariance/mypy",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/builder-execution/tmp/preparation-base-registry-invariance/pytest"
+  },
+  "started_epoch": 1791334206.510858,
+  "finished_epoch": 1791334208.103054,
+  "seconds": 1.592195987701416,
+  "exit_code": 1,
+  "tracked_unchanged": true,
+  "log_sha256": "1935416ed951ee86dae7108ca0e22c88dd53d450f4b0f9b806d1f2a2225daf38",
+  "snapshot_sha256": "1b5d4ba20462dfcc1cb777d12d4be45478578ed0dd1430ebe67b1816e25b0cc6"
+}

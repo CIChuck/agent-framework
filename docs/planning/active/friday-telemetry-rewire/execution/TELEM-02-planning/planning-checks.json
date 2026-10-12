@@ -1,0 +1,15 @@
+{
+  "kind": "precommit documentation-only proposal checks; not product verification or approved waiver",
+  "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "raw_root_before": 579,
+  "raw_root_after": 327,
+  "additional252_removed_by_exact_gzip_packaging": true,
+  "exact_WVR004_multiset_match": true,
+  "lint_waiver_status": "not approved; raw lint remains nonzero",
+  "configs17_archives4_registry_match": true,
+  "board_exit": 0,
+  "documentation_exit": 0,
+  "board_tracked_tasks": 24,
+  "markdown_files": 437,
+  "tests_or_new_product_code_executed": false
+}

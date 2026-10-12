@@ -10,7 +10,7 @@ import socket
 import threading
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 
@@ -511,7 +511,7 @@ async def _seed_memory(memory: FrameworkMemoryAdapter) -> None:
         reasoning="Two UAT insights support this meta insight",
         synthesis_fingerprint="a" * 64,
         synthesis_version="1",
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
     assert await memory.collection_manager.add_to_short_term(
         [addition.document],

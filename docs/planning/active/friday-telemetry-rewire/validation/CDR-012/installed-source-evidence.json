@@ -1,0 +1,37 @@
+{
+  "module_hashes": {
+    "opentelemetry/sdk/trace/__init__.py": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07",
+    "opentelemetry/sdk/trace/export/__init__.py": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a",
+    "opentelemetry/sdk/_shared_internal/__init__.py": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767",
+    "opentelemetry/sdk/resources/__init__.py": "8a0c61d2fdad040e9128020d1f2ae4c3b34929a4611162e08ffe837117356a1a",
+    "opentelemetry/sdk/trace/sampling.py": "9f9900322cb7184d365036c6b8a175900b292d10a7a8e16d4a9274d0a66f1f0f",
+    "opentelemetry/trace/__init__.py": "d03d8682b0e52f30928c956d8acc2a6a0c3a10a42ec3bfebe820ff838d2b5449",
+    "opentelemetry/context/__init__.py": "f5550bc7ac7eb84baab410fc6e2491921e915057daeba5923cd0c5edddb1fb8c",
+    "opentelemetry/context/contextvars_context.py": "6074f62ec7694e56c9d1fdbfc5e927805e24d59796f94fbfe27ccf91c67fa41d",
+    "opentelemetry/exporter/otlp/proto/grpc/exporter.py": "09ce35204768cb21485766150801554e63df8c8df33e3ca65a7326e633e1cadb",
+    "opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py": "29c71739f14c31a99b607edbd7f8cb1ce35eac95021424653d069b579a23a60d",
+    "opentelemetry/exporter/otlp/proto/common/trace_encoder.py": "04b758e45ef7b9e8c040801e3015bb3e68b9b04ee7d466edb79f4fdb6185d239",
+    "opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py": "8f7d2f614410639943bf412e6f626dc97b35a2731bcc3935b41e7c6ae1f50af5",
+    "opentelemetry/exporter/otlp/proto/common/_internal/__init__.py": "e4a0df434a56b7a0226c944bdab48bee1760bf655b7ff5f442b915c4a1749725",
+    "opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py": "82f4704d4fc69da3464a2e150b902e3933a65effae7a61856113a64d5ed8896f",
+    "opentelemetry/proto/collector/trace/v1/trace_service_pb2.py": "ffe329abb6b9e85e737eeb7eebb8b8fae99688c88541b883de4974f8aafe97ff",
+    "grpc/__init__.py": "28fa25d26f5a955af1e2d76f5991b2bf63f03d9c9993ee6791fc37dcc8453742",
+    "grpc/_channel.py": "b0f55b88f43906e0f1d6b8013e56a35e2f571fde7c5c27861ac29789ed3c4edc"
+  },
+  "versions": {
+    "opentelemetry_api": "1.39.1",
+    "opentelemetry_sdk": "1.39.1",
+    "opentelemetry_exporter_otlp_proto_grpc": "1.39.1",
+    "opentelemetry_exporter_otlp_proto_common": "1.39.1",
+    "opentelemetry_proto": "1.39.1",
+    "grpcio": "1.67.1",
+    "protobuf": "6.33.2",
+    "ruff": "0.14.10",
+    "mypy": "1.19.1"
+  },
+  "inventory_sdk_matches": {
+    "opentelemetry/sdk/trace/__init__.py": true,
+    "opentelemetry/sdk/_shared_internal/__init__.py": true,
+    "opentelemetry/sdk/trace/export/__init__.py": true
+  }
+}

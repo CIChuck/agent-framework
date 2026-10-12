@@ -26,7 +26,12 @@ Let's build the future of AI agents together.
 Before you begin contributing to Friday, ensure you have:
 
 **Required:**
-- **Python 3.10 or higher** (3.11+ recommended for best performance)
+- **Python 3.13.4 or higher**
+
+Existing environments using an older Python must be recreated with a supported
+interpreter. Use `uv python install 3.13` if needed, then `uv sync --python 3.13`.
+The minimum patch version is 3.13.4.
+
 - **Git** for version control
 - **uv** - Modern Python package manager (fast, reliable dependency management)
 - **SQLite 3.35+** (usually pre-installed on macOS/Linux)
@@ -239,7 +244,7 @@ Friday enforces consistent code style with **Ruff** (fast Python linter/formatte
 
 **Ruff Configuration:**
 - Line length: 88 characters (Black-compatible)
-- Target: Python 3.10+
+- Target: Python 3.13.4+
 - Rules: E (errors), F (pyflakes), I (import sorting), UP (pyupgrade), B (bugbear), SIM (simplify)
 
 **Run linting:**
@@ -313,7 +318,7 @@ uv run mypy packages/friday-memory/ --verbose
 **mypy Configuration (in `pyproject.toml`):**
 ```toml
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.13"
 warn_return_any = true
 warn_unused_ignores = true
 disallow_untyped_defs = true
@@ -1699,7 +1704,7 @@ Friday's design has been shaped by:
 
 **Core Technologies:**
 
-- **Python 3.10+** - Primary language (async/await, type hints, modern syntax)
+- **Python 3.13.4+** - Primary language (async/await, type hints, modern syntax)
 - **SQLite** - Episodic memory (transcript storage)
 - **ChromaDB** - Semantic memory (vector embeddings)
 - **NetworkX** - Associative memory (knowledge graph)

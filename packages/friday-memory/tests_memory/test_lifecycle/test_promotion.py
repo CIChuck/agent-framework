@@ -3,7 +3,7 @@
 """Tests for PromotionScorer and MemoryPromotionService."""
 
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from friday_memory.lifecycle.decay import DecayConfig
@@ -139,7 +139,7 @@ class TestPromotionScorer:
         now,
     ) -> None:
         aware_now = now.astimezone()
-        created_at = (aware_now - timedelta(hours=25)).astimezone(timezone.utc)
+        created_at = (aware_now - timedelta(hours=25)).astimezone(UTC)
 
         assert scorer.is_eligible_for_promotion(
             MemoryStage.SHORT_TERM,
@@ -363,7 +363,7 @@ class TestMemoryPromotionService:
         collection_manager,
     ) -> None:
         now = datetime(2024, 1, 15, 12, 0, 0)
-        created_at = (now.astimezone() - timedelta(hours=48)).astimezone(timezone.utc)
+        created_at = (now.astimezone() - timedelta(hours=48)).astimezone(UTC)
         await collection_manager.add_to_short_term(
             texts=["Timezone-aware synthesized memory"],
             metadatas=[

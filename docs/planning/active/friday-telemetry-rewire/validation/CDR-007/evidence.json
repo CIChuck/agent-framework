@@ -1,0 +1,273 @@
+{
+  "outcome": "CHANGES_REQUESTED",
+  "reviewer": "/root/rem004_proposal_reviewer",
+  "model": "GPT-6 family; exact model/version unavailable",
+  "date": "2026-10-05",
+  "mode": "fresh-context read-only proposal readiness; READY means coherent for maintainer approval, never approved construction, waived gate, VERIFIED or acceptance",
+  "candidate": "b264cebf836277d3ab7585d42ed9cbb2626dcef8",
+  "base": "686a5bd17d84fea3ec3a3d329df2d39c70d10c03",
+  "diff": "686a5bd17d84fea3ec3a3d329df2d39c70d10c03..b264cebf836277d3ab7585d42ed9cbb2626dcef8",
+  "checkout": "/private/tmp/telem-01/REM-004/proposal-checkout",
+  "request_sha256": "e788016ee63a92011154f7ddf5e5d83753798081c9d697a8f7fcc6d208b52e31",
+  "authority_inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "d8aed15c6d087dccf367f9ab8a09b5b942a9437cc81aa93bdf5411d1d1d84ec5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "f2b6744654fa71203a1267a6d46d83a01a814b1ca7aca3ff827049cc606b93c9"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "1940d403cb5894f8278e7757f20a95d8380f01644f94ce7182155b69f80d4c4a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "12b064b834091b66c7095434e2f12cb3cfa22b9c5144a064dd3c4c54d65c815a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "sha256": "a3fe515e04e95f7ec56bb2f04d09def2bcbaa6793f3e6f07708bfc1c527097e1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-review-manifest.json",
+      "sha256": "d0e7fd4a0ff80d465fb2d906eeb99cc02cea394b41acafb84996ba5a5958bc81"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "sha256": "1333f97bbfd18440ab4a2e26001b96ea4ea50951424b508ab77533f8a8816310"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "sha256": "27810c32e04a2c6a0d9ee652a3fa70c5a3186eea4db79bff754160b71064a617"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-diagnosis.md",
+      "sha256": "a92e73d2ea606270810b62d45353420f869176e3c0fcc43ed55e7cbd0922bff0"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "sha256": "ca7f1bf31bebc2cb44b547290efdea8d7a791364e8c52a65e78e9fc0b9f261d7"
+    }
+  ],
+  "all_19_input_hashes_match": true,
+  "complete_selected_diff_paths": [
+    "docs/planning/active/friday-telemetry-rewire/README.md",
+    "docs/planning/active/friday-telemetry-rewire/execution-log.md",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/literal-ip-guard.json",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/literal-ip-guard.log.gz",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-after-agent-corrected.json",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-after-agent-corrected.log.gz",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-after-agent.json",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-after-agent.log.gz",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-isolated.json",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/native-isolated.log.gz",
+    "docs/planning/active/friday-telemetry-rewire/execution/REM-004-diagnosis/sha256.json",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-diagnosis.md",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-review-manifest.json",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+    "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md"
+  ],
+  "candidate_checkout_integrity": {
+    "git_ls_tree_command": [
+      "git",
+      "-C",
+      "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "ls-tree",
+      "-r",
+      "-z",
+      "b264cebf836277d3ab7585d42ed9cbb2626dcef8"
+    ],
+    "tracked_files_checked": 2261,
+    "mismatches": []
+  },
+  "product_source_test_lock_delta_from_evidence_candidate": "",
+  "scope_inventory": {
+    "archive_count": 326,
+    "live_count": 133,
+    "live_file_count": 80,
+    "live_rules": {
+      "E501": 11,
+      "I001": 2,
+      "UP017": 71,
+      "UP035": 1,
+      "UP040": 12,
+      "UP041": 19,
+      "UP043": 7,
+      "UP046": 6,
+      "UP047": 4
+    },
+    "all_live_hashes_match": true,
+    "all_archive_hashes_match": true,
+    "ruff_raw_multiset_exact": true,
+    "pytest_27_nodes_and_statuses_exact": true
+  },
+  "independent_mypy_probe": {
+    "purpose": "Read-only independently generated exact proposed source inventory, not a product acceptance run. The required final aggregate set also includes the earlier six governed sources. This 58-file mandatory subset already fails.",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "mypy",
+      "--python-version",
+      "3.13",
+      "--cache-dir=/dev/null",
+      "packages/friday-agent/src/friday_agent/workflows/engine.py",
+      "packages/friday-agent/src/friday_agent/workflows/models.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/commands/memory.py",
+      "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "packages/friday-chat/src/friday_chat/memory_views.py",
+      "packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "packages/friday-chat/src/friday_chat/reorganization/lease.py",
+      "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "packages/friday-cli/src/friday_cli/cancellation.py",
+      "packages/friday-cli/src/friday_cli/commands.py",
+      "packages/friday-cli/src/friday_cli/session.py",
+      "packages/friday-core/src/friday_core/interfaces/context.py",
+      "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "packages/friday-core/src/friday_core/interfaces/tools.py",
+      "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "packages/friday-core/src/friday_core/security/quarantine.py",
+      "packages/friday-llm/src/friday_llm/embeddings.py",
+      "packages/friday-llm/src/friday_llm/service.py",
+      "packages/friday-mcp/src/friday_mcp/server/sse.py",
+      "packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "packages/friday-memory/src/friday_memory/ingestion/mcp.py",
+      "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/models.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+      "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+      "packages/friday-moltbook/src/friday_moltbook/responses.py",
+      "packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+      "packages/friday-sandbox/src/friday_sandbox/docker.py",
+      "packages/friday-sandbox/src/friday_sandbox/mock.py",
+      "packages/friday-sandbox/src/friday_sandbox/models.py",
+      "packages/friday-sandbox/src/friday_sandbox/serialization.py",
+      "packages/friday-sandbox/src/friday_sandbox/subprocess.py",
+      "packages/friday-sandbox/src/friday_sandbox/workspace.py",
+      "packages/friday-speech/src/friday_speech/playback.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py",
+      "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py",
+      "packages/friday-tools/src/friday_tools/filesystem/read.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/base.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py",
+      "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py",
+      "packages/friday-tools/src/friday_tools/shell/command.py",
+      "packages/friday-tools/src/friday_tools/shell/execute.py",
+      "packages/friday-tools/src/friday_tools/text/transform.py",
+      "packages/friday-tools/src/friday_tools/utility/datetime.py",
+      "packages/friday-tools/src/friday_tools/web/validators.py"
+    ],
+    "cwd": "/private/tmp/telem-01/REM-004/proposal-checkout",
+    "environment": {
+      "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin",
+      "UV_NO_SYNC": "true",
+      "UV_OFFLINE": "true",
+      "UV_PYTHON_DOWNLOADS": "never",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/proposal-review/mypy-cache",
+      "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-agent/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-chat/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-cli/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-core/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-finance/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-llm/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-mcp/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-memory/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-moltbook/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-optimization/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-runtime/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-sandbox/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-speech/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-telemetry/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-tools/src:/private/tmp/telem-01/REM-004/proposal-checkout/packages/friday-transcript/src:/private/tmp/telem-01/REM-004/proposal-checkout",
+      "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+      "ANONYMIZED_TELEMETRY": "False"
+    },
+    "guard_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+    "exit_code": 1,
+    "output": "packages/friday-memory/src/friday_memory/llm_completion.py:85: error: Incompatible types in assignment (expression has type \"ChatCompletionResponse\", variable has type \"TypedChatCompletionResponse\")  [assignment]\npackages/friday-chat/src/friday_chat/adapters.py:167: error: Incompatible types in assignment (expression has type \"TypedChatCompletionResponse\", variable has type \"ChatCompletionResponse\")  [assignment]\npackages/friday-chat/src/friday_chat/adapters.py:178: error: \"dict[str, int]\" has no attribute \"model_dump\"  [attr-defined]\nFound 3 errors in 2 files (checked 58 source files)\n",
+    "output_sha256": "b0e0a30f73cbb5528fe91b7b4f1381fc725fdd5654ac386297cf29ff37632826"
+  },
+  "diff_check": {
+    "command": [
+      "git",
+      "-C",
+      "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "diff",
+      "--check",
+      "686a5bd17d84fea3ec3a3d329df2d39c70d10c03",
+      "b264cebf836277d3ab7585d42ed9cbb2626dcef8"
+    ],
+    "exit_code": 0
+  },
+  "findings": [
+    {
+      "id": "REM004-PR-F01",
+      "severity": "high",
+      "title": "Mandatory expanded typing gate has three baseline errors outside the proposed diagnostic-site scope",
+      "affected_paths": [
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+        "packages/friday-chat/src/friday_chat/adapters.py",
+        "packages/friday-memory/src/friday_memory/llm_completion.py"
+      ],
+      "authority": [
+        "independent-validation-policy.md:70-83,225-229",
+        "REM-004-verification-closeout-directive.md:69-77,202-208"
+      ],
+      "required_mitigation": "Add an exact numbered typing remediation component covering the three errors and narrowly bounded typed/legacy response normalization in the two source files. Freeze affected existing regression paths, required positive/negative tests, zero-exit expanded mypy commands and updated diagnosis/scope/manifest hashes. Preserve public response/usage/reasoning/tool semantics and all suppression rules; obtain fresh readiness review before approval/construction."
+    }
+  ],
+  "shared_context_exceptions": [
+    "Controller supplied an external baseline-typing evidence pointer mid-review. Reviewer inspected it and independently rebuilt the scope and reproduced the errors on the frozen proposal checkout; no builder private scripts or reasoning were read.",
+    "A quick generic memory registry search was performed for repository review conventions; all operative authority and conclusions came from current frozen inputs."
+  ],
+  "not_executed": [
+    "No construction/remediation",
+    "No privileged listener execution",
+    "No root/product pytest runs for this proposal-readiness review",
+    "No live services, downloads, synchronization, original runtime state access or repository mutation"
+  ],
+  "residual_risks": [
+    "Changed candidate safety preflight and exact consumer typing/alias regressions must still be frozen after approval.",
+    "WVR-002 remains proposed and currently covers no gate.",
+    "This outcome grants no construction, waiver, VERIFIED, completion, acceptance or delivery authority."
+  ]
+}

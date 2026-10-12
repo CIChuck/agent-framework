@@ -8,11 +8,14 @@ from dataclasses import dataclass, field
 from typing import Any, TypeVar
 from uuid import uuid4
 
+from friday_telemetry import ExecutionContext
+
 from friday_chat.reorganization.gate import (
     MaintenanceAdmissionError,
     MaintenanceAdmissionGate,
 )
 from friday_chat.runtime import FridayRuntime, PendingExtractionTurn
+from friday_chat.turns.telemetry import detached_scope
 
 T = TypeVar("T")
 
@@ -96,6 +99,7 @@ class BackgroundWorkCoordinator:
         user_message: str,
         assistant_message: str,
         budget_status: Any | None = None,
+        correlation_context: ExecutionContext | None = None,
     ) -> None:
         """Schedule background work due after a persisted turn."""
         self.runtime.maintenance.pending_extraction.append(
@@ -103,6 +107,7 @@ class BackgroundWorkCoordinator:
                 turn_id=str(uuid4()),
                 user_message=user_message,
                 assistant_message=assistant_message,
+                correlation_context=correlation_context,
             )
         )
         if self._should_extract(turn_count):
@@ -201,8 +206,9 @@ class BackgroundWorkCoordinator:
         operation_factory: Callable[[], Coroutine[Any, Any, object]],
     ) -> None:
         try:
-            async with self.gate.shared(operation_name):
-                await operation_factory()
+            with detached_scope(self.runtime.telemetry):
+                async with self.gate.shared(operation_name):
+                    await operation_factory()
         except MaintenanceAdmissionError:
             return
 

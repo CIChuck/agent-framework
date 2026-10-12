@@ -1,0 +1,1783 @@
+{
+  "revision": "4ca9baecdcdcf26fc5e8055b326c3a54cda36cb7",
+  "mode": "static source and AST inventory; no product imports or execution",
+  "sources": {
+    "packages/friday-telemetry/src/friday_telemetry/__init__.py": {
+      "sha256": "81fcac4fc205a33c09b5c9ce19aaff89de7eec04a010f780f64c5dfd88b92c32",
+      "calls": [],
+      "public_signatures": [],
+      "whole_file_ignore": false
+    },
+    "packages/friday-telemetry/src/friday_telemetry/models/llm.py": {
+      "sha256": "3aa9dd81de2975cfecec8d39eaed08161ed2303fabbb67d915203967cccbbb5c",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 48,
+          "name": "from_response",
+          "args": "cls, usage_dict: dict[str, Any] | None",
+          "returns": "TokenUsage"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py": {
+      "sha256": "94271c3960f658919193a1f4bc74c216b9d844f6aa42175b35158b8bdd11ecb1",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 48,
+          "name": "classify_error",
+          "args": "error: Exception",
+          "returns": "ErrorCategory"
+        },
+        {
+          "line": 38,
+          "name": "calculate",
+          "args": "self, model: str, input_tokens: int, output_tokens: int",
+          "returns": "CostEstimate"
+        },
+        {
+          "line": 111,
+          "name": "__init__",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 119,
+          "name": "start",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 123,
+          "name": "record_chunk",
+          "args": "self, token_count: int=1",
+          "returns": "None"
+        },
+        {
+          "line": 141,
+          "name": "finish",
+          "args": "self",
+          "returns": "StreamingMetrics"
+        },
+        {
+          "line": 180,
+          "name": "__init__",
+          "args": "self, helper: LLMTelemetryHelper, model: str, context: ConversationContext | None, temperature: float | None, max_tokens: int | None, tool_count: int",
+          "returns": "None"
+        },
+        {
+          "line": 219,
+          "name": "start",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 227,
+          "name": "set_response",
+          "args": "self, response_model: str | None=None, response_id: str | None=None, usage: TokenUsage | None=None, finish_reasons: list[str] | None=None, tool_calls_count: int=0",
+          "returns": "None"
+        },
+        {
+          "line": 253,
+          "name": "set_streaming_metrics",
+          "args": "self, metrics: StreamingMetrics",
+          "returns": "None"
+        },
+        {
+          "line": 257,
+          "name": "set_retry_info",
+          "args": "self, attempt: int, total: int",
+          "returns": "None"
+        },
+        {
+          "line": 268,
+          "name": "set_error",
+          "args": "self, error: Exception",
+          "returns": "None"
+        },
+        {
+          "line": 273,
+          "name": "finish",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 279,
+          "name": "to_metrics",
+          "args": "self",
+          "returns": "LLMCallMetrics"
+        },
+        {
+          "line": 337,
+          "name": "__init__",
+          "args": "self, helper: LLMTelemetryHelper, model: str, text_count: int, total_characters: int, context: ConversationContext | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 370,
+          "name": "start",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 376,
+          "name": "set_response",
+          "args": "self, response_model: str | None=None, embedding_dimensions: int | None=None, batch_count: int=1, usage: TokenUsage | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 398,
+          "name": "set_error",
+          "args": "self, error: Exception",
+          "returns": "None"
+        },
+        {
+          "line": 403,
+          "name": "set_retry_info",
+          "args": "self, attempt_number: int, total_attempts: int",
+          "returns": "None"
+        },
+        {
+          "line": 408,
+          "name": "finish",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 414,
+          "name": "to_metrics",
+          "args": "self",
+          "returns": "EmbeddingMetrics"
+        },
+        {
+          "line": 483,
+          "name": "__init__",
+          "args": "self, telemetry: TelemetryInterface | None=None, cost_calculator: CostCalculatorProtocol | None=None, provider_name: str='litellm'",
+          "returns": "None"
+        },
+        {
+          "line": 502,
+          "name": "track_completion",
+          "args": "self, model: str, context: ConversationContext | None=None, temperature: float | None=None, max_tokens: int | None=None, tool_count: int=0",
+          "returns": "Generator[CompletionTracker]"
+        },
+        {
+          "line": 543,
+          "name": "track_embedding",
+          "args": "self, model: str, text_count: int, total_characters: int, context: ConversationContext | None=None",
+          "returns": "Generator[EmbeddingTracker]"
+        },
+        {
+          "line": 579,
+          "name": "create_streaming_tracker",
+          "args": "self",
+          "returns": "StreamingTracker"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-telemetry/src/friday_telemetry/interface.py": {
+      "sha256": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 29,
+          "name": "capture_event",
+          "args": "self, event_name: str, data: dict[str, Any]",
+          "returns": "None"
+        },
+        {
+          "line": 40,
+          "name": "start_span",
+          "args": "self, name: str, parent_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 54,
+          "name": "end_span",
+          "args": "self, span_id: str, data: dict[str, Any] | None=None",
+          "returns": "None"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-llm/src/friday_llm/service.py": {
+      "sha256": "ab159fc1f9f6d0f754e4ece034b90a3c33d63f8995c49392d29dd236b31b4d2d",
+      "calls": [
+        {
+          "line": 748,
+          "call": "LiteLLMService._next_with_timeout",
+          "keywords": []
+        }
+      ],
+      "public_signatures": [
+        {
+          "line": 108,
+          "name": "__init__",
+          "args": "self, model_name: str, api_key: str | None=None, api_base: str | None=None, max_retries: int | None=None, telemetry: Any | None=None, resilience: ResilienceConfig | None=None, pricing_config: PricingConfig | None=None, thinking_enabled: bool | None=None, transport_target: TransportTarget | None=None, model_target: ModelTarget | None=None, generation_defaults: GenerationConfig | None=None, provider_options_defaults: ProviderOptions | None=None, capability_declaration: OperatorCapabilityDeclaration | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 230,
+          "name": "from_spec",
+          "args": "cls, spec: LLMServiceSpec, *, telemetry: Any | None=None, pricing_config: PricingConfig | None=None",
+          "returns": "LiteLLMService"
+        },
+        {
+          "line": 273,
+          "name": "resilience",
+          "args": "self",
+          "returns": "ResilienceConfig"
+        },
+        {
+          "line": 399,
+          "name": "chat_completion_request",
+          "args": "self, request: ChatCompletionRequest",
+          "returns": "TypedChatCompletionResponse"
+        },
+        {
+          "line": 436,
+          "name": "chat_completion",
+          "args": "self, messages: list[dict[str, Any]], tools: list[dict[str, Any]] | None=None, response_model: type[BaseModel] | None=None, temperature: float=0.7, max_tokens: int | None=None, timeout: float | None=None, conversation_context: ConversationContext | None=None",
+          "returns": "ChatCompletionResponse"
+        },
+        {
+          "line": 544,
+          "name": "chat_completion_stream",
+          "args": "self, messages: list[dict[str, Any]], tools: list[dict[str, Any]] | None=None, temperature: float=0.7, max_tokens: int | None=None, timeout: float | None=None, conversation_context: ConversationContext | None=None",
+          "returns": "AsyncIterator[str]"
+        },
+        {
+          "line": 646,
+          "name": "chat_completion_events",
+          "args": "self, request: ChatCompletionRequest",
+          "returns": "AsyncIterator[StreamEvent]"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-llm/src/friday_llm/embeddings.py": {
+      "sha256": "2e7e782db7485ca855b477416a51aafb6acf293cdbd2bc8f7e38e867d5c1390a",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 71,
+          "name": "__init__",
+          "args": "self, model_name: str='text-embedding-3-small', api_key: str | None=None, api_base: str | None=None, batch_size: int=100, telemetry: Any | None=None, resilience: ResilienceConfig | None=None, pricing_config: PricingConfig | None=None, cache_size: int=100, transport_target: TransportTarget | None=None, model_target: ModelTarget | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 154,
+          "name": "from_spec",
+          "args": "cls, spec: EmbeddingServiceSpec, *, telemetry: Any | None=None, pricing_config: PricingConfig | None=None",
+          "returns": "LiteLLMEmbeddingService"
+        },
+        {
+          "line": 212,
+          "name": "cache_stats",
+          "args": "self",
+          "returns": "dict[str, int]"
+        },
+        {
+          "line": 235,
+          "name": "resilience",
+          "args": "self",
+          "returns": "ResilienceConfig"
+        },
+        {
+          "line": 244,
+          "name": "embed_documents",
+          "args": "self, texts: list[str], timeout: float | None=None",
+          "returns": "list[list[float]]"
+        },
+        {
+          "line": 315,
+          "name": "embed_query",
+          "args": "self, text: str, timeout: float | None=None",
+          "returns": "list[float]"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-llm/src/friday_llm/pricing.py": {
+      "sha256": "52fc54a75b2979f78e278b6f155e2d0682f0b3ab0b528a7a2494a70ab7b0316f",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 123,
+          "name": "__init__",
+          "args": "self, config: PricingConfig | None=None, pricing_table: dict[str, ModelPricing] | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 147,
+          "name": "get_pricing",
+          "args": "self, model: str",
+          "returns": "ModelPricing | None"
+        },
+        {
+          "line": 183,
+          "name": "calculate",
+          "args": "self, model: str, input_tokens: int, output_tokens: int=0",
+          "returns": "CostEstimate"
+        },
+        {
+          "line": 224,
+          "name": "get_available_models",
+          "args": "self",
+          "returns": "list[str]"
+        }
+      ],
+      "whole_file_ignore": true
+    },
+    "packages/friday-llm/src/friday_llm/protocols.py": {
+      "sha256": "877a497af82f0dd2c7ef7ee38236af9582886577ee45064ad3d886b1fd052935",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 16,
+          "name": "chat_completion_request",
+          "args": "self, request: ChatCompletionRequest",
+          "returns": "TypedChatCompletionResponse"
+        },
+        {
+          "line": 23,
+          "name": "chat_completion_events",
+          "args": "self, request: ChatCompletionRequest",
+          "returns": "AsyncIterator[StreamEvent]"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-llm/src/friday_llm/requests.py": {
+      "sha256": "b7689098b4021e26872c0b271f2039f6c492f48a761f3d50c7a27c42cdf75aa5",
+      "calls": [],
+      "public_signatures": [],
+      "whole_file_ignore": false
+    },
+    "packages/friday-llm/src/friday_llm/streaming.py": {
+      "sha256": "1d07c7e9953541d664efe254f4015bc5464e38f6a2f0eaf4f69857e210266399",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 101,
+          "name": "__init__",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 104,
+          "name": "add",
+          "args": "self, event: ToolCallDeltaEvent",
+          "returns": "None"
+        },
+        {
+          "line": 112,
+          "name": "finish",
+          "args": "self",
+          "returns": "tuple[ToolCallCompleteEvent | StreamErrorEvent, ...]"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-chat/src/friday_chat/adapters.py": {
+      "sha256": "621ec6c12affcd884629936b7130b341e3ee70d9596722d6823fc6d584ee7f06",
+      "calls": [
+        {
+          "line": 1697,
+          "call": "LiteLLMEmbeddingService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 2075,
+          "call": "_canonical_chat_service_from_mapping",
+          "keywords": [
+            "default_name"
+          ]
+        },
+        {
+          "line": 2137,
+          "call": "_canonical_chat_service_from_mapping",
+          "keywords": [
+            "default_name"
+          ]
+        },
+        {
+          "line": 2144,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 2168,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 2321,
+          "call": "_canonical_chat_service_from_mapping",
+          "keywords": [
+            "default_name"
+          ]
+        },
+        {
+          "line": 2328,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 2360,
+          "call": "LiteLLMService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 2373,
+          "call": "_canonical_chat_service",
+          "keywords": []
+        },
+        {
+          "line": 1604,
+          "call": "LiteLLMService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 1623,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience",
+            "transport_target",
+            "model_target",
+            "generation_defaults"
+          ]
+        },
+        {
+          "line": 1660,
+          "call": "LiteLLMService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 1674,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience",
+            "thinking_enabled"
+          ]
+        },
+        {
+          "line": 2086,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 2165,
+          "call": "_canonical_chat_service",
+          "keywords": []
+        },
+        {
+          "line": 2295,
+          "call": "_build_smart_file_llm_service",
+          "keywords": [
+            "role",
+            "default_name"
+          ]
+        },
+        {
+          "line": 2300,
+          "call": "_build_smart_file_llm_service",
+          "keywords": [
+            "role",
+            "default_name"
+          ]
+        },
+        {
+          "line": 1642,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience",
+            "thinking_enabled"
+          ]
+        },
+        {
+          "line": 1775,
+          "call": "_build_passage_router",
+          "keywords": []
+        },
+        {
+          "line": 1694,
+          "call": "LiteLLMEmbeddingService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 1979,
+          "call": "_canonical_chat_service",
+          "keywords": []
+        },
+        {
+          "line": 2009,
+          "call": "_build_extraction_llm_service",
+          "keywords": []
+        }
+      ],
+      "public_signatures": [
+        {
+          "line": 1601,
+          "name": "build_framework_chat_model",
+          "args": "config: FridayChatConfig",
+          "returns": "FrameworkChatModel"
+        },
+        {
+          "line": 1652,
+          "name": "build_framework_async_client_lifecycle",
+          "args": "",
+          "returns": "FrameworkAsyncClientLifecycle"
+        },
+        {
+          "line": 1686,
+          "name": "build_framework_embedding_service",
+          "args": "config: FridayChatConfig",
+          "returns": "FrameworkEmbeddingService"
+        },
+        {
+          "line": 1711,
+          "name": "build_framework_memory_adapter",
+          "args": "config: FridayChatConfig, embedding: FrameworkEmbeddingService, *, session_id: str, maintenance_layout: FridayChatMaintenanceLayout",
+          "returns": "FrameworkMemoryAdapter"
+        },
+        {
+          "line": 1783,
+          "name": "build_framework_transcript_adapter",
+          "args": "config: FridayChatConfig, *, session_id: str, maintenance_layout: FridayChatMaintenanceLayout",
+          "returns": "FrameworkTranscriptAdapter"
+        },
+        {
+          "line": 1796,
+          "name": "build_framework_tool_registry",
+          "args": "config: FridayChatConfig",
+          "returns": "FrameworkToolRegistryAdapter"
+        },
+        {
+          "line": 1820,
+          "name": "build_framework_maintenance_adapter",
+          "args": "config: FridayChatConfig, *, session_id: str, memory: FrameworkMemoryAdapter, embedding: FrameworkEmbeddingService, llm_models: dict[str, str], diagnostics: Any, maintenance_layout: FridayChatMaintenanceLayout",
+          "returns": "FrameworkMaintenanceAdapter"
+        },
+        {
+          "line": 2054,
+          "name": "build_framework_workflow_adapter",
+          "args": "config: FridayChatConfig, *, orchestrator: Any",
+          "returns": "FrameworkWorkflowAdapter"
+        },
+        {
+          "line": 138,
+          "name": "close",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 151,
+          "name": "complete",
+          "args": "self, messages: Sequence[Mapping[str, Any]], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "ChatModelResponse"
+        },
+        {
+          "line": 200,
+          "name": "stream_complete",
+          "args": "self, messages: Sequence[Mapping[str, Any]], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "AsyncIterator[str]"
+        },
+        {
+          "line": 250,
+          "name": "embed_text",
+          "args": "self, text: str",
+          "returns": "list[float]"
+        },
+        {
+          "line": 253,
+          "name": "embed_query",
+          "args": "self, text: str",
+          "returns": "list[float]"
+        },
+        {
+          "line": 256,
+          "name": "embed_documents",
+          "args": "self, texts: list[str]",
+          "returns": "list[list[float]]"
+        },
+        {
+          "line": 275,
+          "name": "retrieve",
+          "args": "self, query: str, *, token_limit: int | None=None, include_mcp: bool=True",
+          "returns": "list[str]"
+        },
+        {
+          "line": 295,
+          "name": "prepare_mcp_memory",
+          "args": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy",
+          "returns": "MCPMemoryPreparation"
+        },
+        {
+          "line": 306,
+          "name": "verify_mcp_memory",
+          "args": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy, record_id: str",
+          "returns": "MCPMemoryPreparation"
+        },
+        {
+          "line": 324,
+          "name": "publish_mcp_memory",
+          "args": "self, snapshot: MCPMemorySnapshot",
+          "returns": "bool"
+        },
+        {
+          "line": 327,
+          "name": "discard_mcp_memory",
+          "args": "self, snapshot: MCPMemorySnapshot",
+          "returns": "bool"
+        },
+        {
+          "line": 330,
+          "name": "store_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 343,
+          "name": "clear_session_memory",
+          "args": "self",
+          "returns": "bool"
+        },
+        {
+          "line": 347,
+          "name": "ingest_document",
+          "args": "self, *, source_path: str, description: str | None, content: str",
+          "returns": "int"
+        },
+        {
+          "line": 383,
+          "name": "debug_retrieval",
+          "args": "self, query: str",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 394,
+          "name": "list_entities",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 401,
+          "name": "list_relationships",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 425,
+          "name": "query_memory_statistics",
+          "args": "self",
+          "returns": "MemoryStoreStatistics"
+        },
+        {
+          "line": 570,
+          "name": "query_memory_records",
+          "args": "self, kind: MemoryRecordKind",
+          "returns": "MemoryRecordQueryResult"
+        },
+        {
+          "line": 670,
+          "name": "flush_memory",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 680,
+          "name": "run_lifecycle",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 689,
+          "name": "preview_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 714,
+          "name": "run_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 757,
+          "name": "reorganization_execute_status",
+          "args": "self",
+          "returns": "tuple[bool, str]"
+        },
+        {
+          "line": 761,
+          "name": "reorganize_memory",
+          "args": "self, mode: str",
+          "returns": "None"
+        },
+        {
+          "line": 815,
+          "name": "flush_pending_extraction",
+          "args": "self",
+          "returns": "int"
+        },
+        {
+          "line": 829,
+          "name": "extract_buffered_turns",
+          "args": "self, *, trigger_reason: str",
+          "returns": "int"
+        },
+        {
+          "line": 843,
+          "name": "run_tool_decay",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 847,
+          "name": "run_incremental_graph_maintenance",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 858,
+          "name": "compact",
+          "args": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 899,
+          "name": "reset_store",
+          "args": "self, store: str",
+          "returns": "str"
+        },
+        {
+          "line": 905,
+          "name": "archive_transcripts",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 911,
+          "name": "lifecycle",
+          "args": "self, *, mode: str, dry_run: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1006,
+          "name": "reorganize",
+          "args": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1096,
+          "name": "migrate",
+          "args": "self, *, execute: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1154,
+          "name": "record_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 1158,
+          "name": "record_interaction",
+          "args": "self, turn: ChatInteractionTurn",
+          "returns": "None"
+        },
+        {
+          "line": 1249,
+          "name": "record_mcp_interaction",
+          "args": "self, turn: ChatInteractionTurn",
+          "returns": "MCPTranscriptReceipt"
+        },
+        {
+          "line": 1258,
+          "name": "read_mcp_interaction",
+          "args": "self, turn: ChatInteractionTurn",
+          "returns": "MCPTranscriptReceipt | None"
+        },
+        {
+          "line": 1313,
+          "name": "record_context_log",
+          "args": "self, prompt: str, raw_response: str",
+          "returns": "None"
+        },
+        {
+          "line": 1316,
+          "name": "finalize",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 1319,
+          "name": "query_sessions",
+          "args": "self, *, limit: int=1000, include_archived: bool=False",
+          "returns": "tuple[TranscriptSessionView, ...]"
+        },
+        {
+          "line": 1352,
+          "name": "query_session",
+          "args": "self, session_id: str",
+          "returns": "TranscriptSessionView | None"
+        },
+        {
+          "line": 1361,
+          "name": "query_entries",
+          "args": "self, session_id: str",
+          "returns": "tuple[TranscriptEntryView, ...]"
+        },
+        {
+          "line": 1390,
+          "name": "query_context_logs",
+          "args": "self, session_id: str",
+          "returns": "tuple[TranscriptContextLogView, ...]"
+        },
+        {
+          "line": 1511,
+          "name": "list_tools",
+          "args": "self",
+          "returns": "tuple[ToolDefinition, ...]"
+        },
+        {
+          "line": 1514,
+          "name": "get_context_block",
+          "args": "self",
+          "returns": "str"
+        },
+        {
+          "line": 1520,
+          "name": "call_tool",
+          "args": "self, name: str, arguments: dict[str, Any]",
+          "returns": "str"
+        },
+        {
+          "line": 1539,
+          "name": "list_workflows",
+          "args": "self",
+          "returns": "dict[str, str]"
+        },
+        {
+          "line": 1545,
+          "name": "run_workflow",
+          "args": "self, name: str, arguments: Mapping[str, Any]",
+          "returns": "str"
+        },
+        {
+          "line": 1552,
+          "name": "status",
+          "args": "self",
+          "returns": "str"
+        },
+        {
+          "line": 1561,
+          "name": "approve",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 1574,
+          "name": "skip",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-chat/src/friday_chat/runtime.py": {
+      "sha256": "33cbee217d082c718cf9eaa41a69ff9460a014d652a1158ab6b0b44284a9c77e",
+      "calls": [
+        {
+          "line": 1488,
+          "call": "build_explicit_maintenance_provider_registry",
+          "keywords": []
+        }
+      ],
+      "public_signatures": [
+        {
+          "line": 1207,
+          "name": "build_runtime",
+          "args": "config: FridayChatConfig, *, fake: bool=True, session_identity: SessionIdentity | None=None, session_id: str | None=None, telemetry: TelemetryInterface | None=None",
+          "returns": "FridayRuntime"
+        },
+        {
+          "line": 96,
+          "name": "complete",
+          "args": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "ChatModelResponse"
+        },
+        {
+          "line": 104,
+          "name": "stream_complete",
+          "args": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "AsyncIterator[str]"
+        },
+        {
+          "line": 116,
+          "name": "embed_text",
+          "args": "self, text: str",
+          "returns": "list[float]"
+        },
+        {
+          "line": 123,
+          "name": "close",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 130,
+          "name": "list_tools",
+          "args": "self",
+          "returns": "Sequence[ToolDefinition]"
+        },
+        {
+          "line": 133,
+          "name": "get_context_block",
+          "args": "self",
+          "returns": "str"
+        },
+        {
+          "line": 136,
+          "name": "call_tool",
+          "args": "self, name: str, arguments: dict[str, Any]",
+          "returns": "str"
+        },
+        {
+          "line": 143,
+          "name": "retrieve",
+          "args": "self, query: str, *, token_limit: int | None=None",
+          "returns": "list[str]"
+        },
+        {
+          "line": 151,
+          "name": "store_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 154,
+          "name": "clear_session_memory",
+          "args": "self",
+          "returns": "bool"
+        },
+        {
+          "line": 157,
+          "name": "ingest_document",
+          "args": "self, *, source_path: str, description: str | None, content: str",
+          "returns": "int"
+        },
+        {
+          "line": 166,
+          "name": "debug_retrieval",
+          "args": "self, query: str",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 169,
+          "name": "list_entities",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 172,
+          "name": "list_relationships",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 175,
+          "name": "query_memory_statistics",
+          "args": "self",
+          "returns": "MemoryStoreStatistics"
+        },
+        {
+          "line": 178,
+          "name": "query_memory_records",
+          "args": "self, kind: MemoryRecordKind",
+          "returns": "MemoryRecordQueryResult"
+        },
+        {
+          "line": 195,
+          "name": "prepare_mcp_memory",
+          "args": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy",
+          "returns": "MCPMemoryPreparation"
+        },
+        {
+          "line": 198,
+          "name": "publish_mcp_memory",
+          "args": "self, snapshot: MCPMemorySnapshot",
+          "returns": "bool"
+        },
+        {
+          "line": 199,
+          "name": "discard_mcp_memory",
+          "args": "self, snapshot: MCPMemorySnapshot",
+          "returns": "bool"
+        },
+        {
+          "line": 204,
+          "name": "record_mcp_interaction",
+          "args": "self, turn: InteractionTurn",
+          "returns": "MCPTranscriptReceipt"
+        },
+        {
+          "line": 210,
+          "name": "record_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 213,
+          "name": "record_interaction",
+          "args": "self, turn: InteractionTurn",
+          "returns": "None"
+        },
+        {
+          "line": 216,
+          "name": "record_context_log",
+          "args": "self, prompt: str, raw_response: str",
+          "returns": "None"
+        },
+        {
+          "line": 219,
+          "name": "finalize",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 228,
+          "name": "speak",
+          "args": "self, text: str",
+          "returns": "None"
+        },
+        {
+          "line": 231,
+          "name": "cancel",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 243,
+          "name": "run",
+          "args": "self, instruction: str",
+          "returns": "str"
+        },
+        {
+          "line": 246,
+          "name": "route",
+          "args": "self, agent: str, message: str",
+          "returns": "str"
+        },
+        {
+          "line": 249,
+          "name": "switch",
+          "args": "self, agent: str",
+          "returns": "None"
+        },
+        {
+          "line": 252,
+          "name": "describe_agent",
+          "args": "self, agent: str",
+          "returns": "str"
+        },
+        {
+          "line": 259,
+          "name": "run_workflow",
+          "args": "self, name: str, arguments: Mapping[str, Any]",
+          "returns": "str"
+        },
+        {
+          "line": 262,
+          "name": "list_workflows",
+          "args": "self",
+          "returns": "dict[str, str]"
+        },
+        {
+          "line": 265,
+          "name": "status",
+          "args": "self",
+          "returns": "str"
+        },
+        {
+          "line": 268,
+          "name": "approve",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 271,
+          "name": "skip",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 290,
+          "name": "flush_memory",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 293,
+          "name": "run_lifecycle",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 296,
+          "name": "preview_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 299,
+          "name": "run_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 302,
+          "name": "reorganize_memory",
+          "args": "self, mode: str",
+          "returns": "None"
+        },
+        {
+          "line": 305,
+          "name": "reorganization_execute_status",
+          "args": "self",
+          "returns": "tuple[bool, str]"
+        },
+        {
+          "line": 308,
+          "name": "flush_pending_extraction",
+          "args": "self",
+          "returns": "int"
+        },
+        {
+          "line": 311,
+          "name": "extract_buffered_turns",
+          "args": "self, *, trigger_reason: str",
+          "returns": "int"
+        },
+        {
+          "line": 314,
+          "name": "run_tool_decay",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 317,
+          "name": "run_incremental_graph_maintenance",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 320,
+          "name": "compact",
+          "args": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 331,
+          "name": "reset_store",
+          "args": "self, store: str",
+          "returns": "str"
+        },
+        {
+          "line": 334,
+          "name": "archive_transcripts",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 337,
+          "name": "reorganize",
+          "args": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 350,
+          "name": "lifecycle",
+          "args": "self, *, mode: str, dry_run: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 353,
+          "name": "migrate",
+          "args": "self, *, execute: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 396,
+          "name": "start_mcp_tools",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 403,
+          "name": "stop_mcp_tools",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 418,
+          "name": "complete",
+          "args": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "ChatModelResponse"
+        },
+        {
+          "line": 455,
+          "name": "stream_complete",
+          "args": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "returns": "AsyncIterator[str]"
+        },
+        {
+          "line": 474,
+          "name": "embed_text",
+          "args": "self, text: str",
+          "returns": "list[float]"
+        },
+        {
+          "line": 486,
+          "name": "close",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 511,
+          "name": "retrieve",
+          "args": "self, query: str, *, token_limit: int | None=None",
+          "returns": "list[str]"
+        },
+        {
+          "line": 525,
+          "name": "store_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 528,
+          "name": "clear_session_memory",
+          "args": "self",
+          "returns": "bool"
+        },
+        {
+          "line": 533,
+          "name": "ingest_document",
+          "args": "self, *, source_path: str, description: str | None, content: str",
+          "returns": "int"
+        },
+        {
+          "line": 551,
+          "name": "debug_retrieval",
+          "args": "self, query: str",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 559,
+          "name": "list_entities",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 569,
+          "name": "list_relationships",
+          "args": "self, name: str | None=None",
+          "returns": "list[dict[str, Any]]"
+        },
+        {
+          "line": 586,
+          "name": "record_summary",
+          "args": "self, text: str, metadata: Mapping[str, Any]",
+          "returns": "None"
+        },
+        {
+          "line": 589,
+          "name": "query_memory_statistics",
+          "args": "self",
+          "returns": "MemoryStoreStatistics"
+        },
+        {
+          "line": 660,
+          "name": "query_memory_records",
+          "args": "self, kind: MemoryRecordKind",
+          "returns": "MemoryRecordQueryResult"
+        },
+        {
+          "line": 735,
+          "name": "record_turn",
+          "args": "self, user_message: str, assistant_message: str",
+          "returns": "None"
+        },
+        {
+          "line": 739,
+          "name": "record_interaction",
+          "args": "self, turn: InteractionTurn",
+          "returns": "None"
+        },
+        {
+          "line": 742,
+          "name": "record_context_log",
+          "args": "self, prompt: str, raw_response: str",
+          "returns": "None"
+        },
+        {
+          "line": 746,
+          "name": "finalize",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 750,
+          "name": "query_sessions",
+          "args": "self, *, limit: int=1000, include_archived: bool=False",
+          "returns": "tuple[TranscriptSessionView, ...]"
+        },
+        {
+          "line": 760,
+          "name": "query_session",
+          "args": "self, session_id: str",
+          "returns": "TranscriptSessionView | None"
+        },
+        {
+          "line": 765,
+          "name": "query_entries",
+          "args": "self, session_id: str",
+          "returns": "tuple[TranscriptEntryView, ...]"
+        },
+        {
+          "line": 808,
+          "name": "query_context_logs",
+          "args": "self, session_id: str",
+          "returns": "tuple[TranscriptContextLogView, ...]"
+        },
+        {
+          "line": 859,
+          "name": "speak",
+          "args": "self, text: str",
+          "returns": "None"
+        },
+        {
+          "line": 864,
+          "name": "cancel",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 885,
+          "name": "run",
+          "args": "self, instruction: str",
+          "returns": "str"
+        },
+        {
+          "line": 889,
+          "name": "route",
+          "args": "self, agent: str, message: str",
+          "returns": "str"
+        },
+        {
+          "line": 897,
+          "name": "delegate",
+          "args": "self, agent: str, task: str, **_: Any",
+          "returns": "str"
+        },
+        {
+          "line": 906,
+          "name": "switch",
+          "args": "self, agent: str",
+          "returns": "None"
+        },
+        {
+          "line": 912,
+          "name": "describe_agent",
+          "args": "self, agent: str",
+          "returns": "str"
+        },
+        {
+          "line": 934,
+          "name": "run_workflow",
+          "args": "self, name: str, arguments: Mapping[str, Any]",
+          "returns": "str"
+        },
+        {
+          "line": 942,
+          "name": "list_workflows",
+          "args": "self",
+          "returns": "dict[str, str]"
+        },
+        {
+          "line": 946,
+          "name": "status",
+          "args": "self",
+          "returns": "str"
+        },
+        {
+          "line": 953,
+          "name": "approve",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 961,
+          "name": "skip",
+          "args": "self, approval_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 987,
+          "name": "reorganization_execute_status",
+          "args": "self",
+          "returns": "tuple[bool, str]"
+        },
+        {
+          "line": 991,
+          "name": "flush_memory",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 995,
+          "name": "run_lifecycle",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 999,
+          "name": "preview_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 1010,
+          "name": "run_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 1022,
+          "name": "reorganize_memory",
+          "args": "self, mode: str",
+          "returns": "None"
+        },
+        {
+          "line": 1028,
+          "name": "reset_store",
+          "args": "self, store: str",
+          "returns": "str"
+        },
+        {
+          "line": 1034,
+          "name": "archive_transcripts",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 1038,
+          "name": "reorganize",
+          "args": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1080,
+          "name": "lifecycle",
+          "args": "self, *, mode: str, dry_run: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1102,
+          "name": "migrate",
+          "args": "self, *, execute: bool",
+          "returns": "dict[str, Any]"
+        },
+        {
+          "line": 1126,
+          "name": "flush_pending_extraction",
+          "args": "self",
+          "returns": "int"
+        },
+        {
+          "line": 1135,
+          "name": "extract_buffered_turns",
+          "args": "self, *, trigger_reason: str",
+          "returns": "int"
+        },
+        {
+          "line": 1144,
+          "name": "run_tool_decay",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 1148,
+          "name": "run_incremental_graph_maintenance",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 1152,
+          "name": "compact",
+          "args": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None",
+          "returns": "dict[str, Any]"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-chat/src/friday_chat/telemetry.py": {
+      "sha256": "cd268d221e1b5705751450757d347e5cc52db30a5e8c41cba8986f69714a6318",
+      "calls": [],
+      "public_signatures": [
+        {
+          "line": 78,
+          "name": "__init__",
+          "args": "self, *, enabled: bool, session_id: str, provider: TelemetryInterface | None=None",
+          "returns": "None"
+        },
+        {
+          "line": 101,
+          "name": "enabled",
+          "args": "self",
+          "returns": "bool"
+        },
+        {
+          "line": 104,
+          "name": "snapshot",
+          "args": "self",
+          "returns": "TelemetrySnapshot"
+        },
+        {
+          "line": 119,
+          "name": "emit",
+          "args": "self, name: LifecycleName, *, outcome: Outcome='succeeded', reason: Reason | None=None, count: int=0",
+          "returns": "None"
+        },
+        {
+          "line": 137,
+          "name": "capture_event",
+          "args": "self, event_name: str, data: dict[str, Any]",
+          "returns": "None"
+        },
+        {
+          "line": 182,
+          "name": "start_span",
+          "args": "self, name: str, parent_id: str | None=None",
+          "returns": "str"
+        },
+        {
+          "line": 201,
+          "name": "end_span",
+          "args": "self, span_id: str, data: dict[str, Any] | None=None",
+          "returns": "None"
+        }
+      ],
+      "whole_file_ignore": false
+    },
+    "packages/friday-chat/src/friday_chat/reorganization/mutation.py": {
+      "sha256": "e266a0083db1a3b642f74b76659ca4f233662cdff07dbf75199c82126fe0867d",
+      "calls": [
+        {
+          "line": 356,
+          "call": "LiteLLMService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 361,
+          "call": "LiteLLMService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        },
+        {
+          "line": 399,
+          "call": "LiteLLMEmbeddingService.from_spec",
+          "keywords": []
+        },
+        {
+          "line": 402,
+          "call": "LiteLLMEmbeddingService",
+          "keywords": [
+            "model_name",
+            "api_key",
+            "api_base",
+            "resilience"
+          ]
+        }
+      ],
+      "public_signatures": [
+        {
+          "line": 342,
+          "name": "build_explicit_maintenance_provider_registry",
+          "args": "config: FridayChatConfig",
+          "returns": "ExplicitMaintenanceProviderRegistry"
+        },
+        {
+          "line": 446,
+          "name": "build_memory_synthesis_config",
+          "args": "config: FridayChatConfig",
+          "returns": "SynthesisConfig"
+        },
+        {
+          "line": 451,
+          "name": "build_synthesis_guidance",
+          "args": "config: FridayChatConfig",
+          "returns": "str"
+        },
+        {
+          "line": 91,
+          "name": "reject_unresolved_values",
+          "args": "self",
+          "returns": "MaintenanceProviderConfig"
+        },
+        {
+          "line": 114,
+          "name": "validate_draft",
+          "args": "self",
+          "returns": "SynthesisDraft"
+        },
+        {
+          "line": 154,
+          "name": "validate_outcome",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 170,
+          "name": "probe",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 172,
+          "name": "complete_model",
+          "args": "self, response_model: type[ProviderResponseT], *, system_prompt: str, user_payload: str",
+          "returns": "ProviderResponseT"
+        },
+        {
+          "line": 184,
+          "name": "probe",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 186,
+          "name": "embed_documents",
+          "args": "self, documents: tuple[str, ...]",
+          "returns": "tuple[tuple[float, ...], ...]"
+        },
+        {
+          "line": 194,
+          "name": "preview_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 196,
+          "name": "run_reorganization_lifecycle",
+          "args": "self",
+          "returns": "LifecycleStepReport"
+        },
+        {
+          "line": 216,
+          "name": "probe",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 225,
+          "name": "complete_model",
+          "args": "self, response_model: type[ProviderResponseT], *, system_prompt: str, user_payload: str",
+          "returns": "ProviderResponseT"
+        },
+        {
+          "line": 278,
+          "name": "probe",
+          "args": "self",
+          "returns": "None"
+        },
+        {
+          "line": 283,
+          "name": "embed_documents",
+          "args": "self, documents: tuple[str, ...]",
+          "returns": "tuple[tuple[float, ...], ...]"
+        },
+        {
+          "line": 480,
+          "name": "begin_run",
+          "args": "self, request: ReorganizationRequest",
+          "returns": "None"
+        },
+        {
+          "line": 487,
+          "name": "end_run",
+          "args": "self, request: ReorganizationRequest",
+          "returns": "None"
+        },
+        {
+          "line": 532,
+          "name": "preview",
+          "args": "self, request: ReorganizationRequest, planned_steps: tuple[MutationStep, ...]",
+          "returns": "tuple[MutationStepResult, ...]"
+        },
+        {
+          "line": 579,
+          "name": "preflight",
+          "args": "self, request: ReorganizationRequest, planned_steps: tuple[MutationStep, ...]",
+          "returns": "MutationPreflight"
+        },
+        {
+          "line": 660,
+          "name": "execute_step",
+          "args": "self, request: ReorganizationRequest, step: MutationStep",
+          "returns": "MutationStepResult"
+        },
+        {
+          "line": 1039,
+          "name": "verify_postconditions",
+          "args": "self, request: ReorganizationRequest",
+          "returns": "MutationVerification"
+        }
+      ],
+      "whole_file_ignore": false
+    }
+  }
+}

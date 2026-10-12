@@ -1,0 +1,7 @@
+{
+  "recorded_utc": "2026-10-07T00:58:39.273711+00:00",
+  "controller_confirmation": "Parent confirms creation ofexactexecution/TELEM-02-finalevidence-onlyuntrackeddirectory duringreview from frozenbuilder-handoff190artifacts; noHEAD/index/product/19controlchange; no furtherwrites untilfinalverdict",
+  "builder_handoff_manifest_sha256": "921c79d455f591fe61548d2acbc3e07aa54e79eb8b196053d5f013eefa90287b",
+  "request_sha256": "e5e0dd1c3c0894ad1dfd02008599b952b51375015c354a66743dcc0c81641685",
+  "reviewer_assessment": "Provenance reconciliation of excludeduntracked evidencemetadata only; frozen committedcandidate/authority and isolatedsnapshot bytes unchanged; no builder passingclaim or payload used; continuefinalization with explicit statusdelta"
+}

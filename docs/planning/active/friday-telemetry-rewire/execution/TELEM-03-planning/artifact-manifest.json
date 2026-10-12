@@ -1,0 +1,175 @@
+{
+  "scope": "TELEM03 proposal static evidence; no behavioral validation",
+  "artifacts": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/listener-scope.json",
+      "sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf",
+      "gzip_original_sha256": null
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-board-receipt.json.gz",
+      "sha256": "393bf2a671ef492e49e0cab0521b3de270b06fe92f36a9312338ef25100279d0",
+      "gzip_original_sha256": "4b441c8ca62d6108846fd3088372da3a300c6e94318d11bc7dd9421dec521a3f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-board.log.gz",
+      "sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "gzip_original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-docs-receipt.json.gz",
+      "sha256": "c37dd03a7c0fedb3da2880888de997ac03fa9f0dc71638b902c413ddd3df00de",
+      "gzip_original_sha256": "961542cac98d092b5bb416becc31ec502dcbd70701df78829a5ec2e02b0b2e81"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-docs.log.gz",
+      "sha256": "51885212336254e51eec30cb5e1a1a175ad67bdab6bb8b4062fd705fba37e5e2",
+      "gzip_original_sha256": "1bd7b1241017884dcf9b090517ebba82f9e8073f8439cdd163840aa8c4a4d0fe"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-lock-receipt.json.gz",
+      "sha256": "b3fd6ae8fa1e4fd3a7ac1679fb61fd2a0d61fe523c2f0e99474dcff64c381eea",
+      "gzip_original_sha256": "6e751a7db4077d76d0b72b6a7f84e91718882488c9a4dec8a9d450750a63970c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-lock.log.gz",
+      "sha256": "924c6446d961fbfe77584731288429f540ec9c2cff08cca435f83669e92977ac",
+      "gzip_original_sha256": "facff7319f8a4197db439cdd6d293459fedff4aeddd84a5dcdc8b2a46d290307"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-next-receipt.json.gz",
+      "sha256": "a3dec99f4b823004765a003a32650c9c4e09ec0f6fd9941e235fca1f99870208",
+      "gzip_original_sha256": "576e7df61af9d2397014070c0b32bc9383c09152ae6d94a3a80aff697a853c93"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-next.log.gz",
+      "sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "gzip_original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-ruff-receipt.json.gz",
+      "sha256": "d914ba0fa7f91832ba53d415d6265490825c6ca442ae76e47379af94e202abfe",
+      "gzip_original_sha256": "c502db2cec4b93ab1331e1bcd0209055cc6a041dba0401ff4ecc6dc7165ca7e4"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-ruff.log.gz",
+      "sha256": "fd90dab664aff98a1d9e74ea4d27dc0e770146b77eefef72aaeca34694f3d0ba",
+      "gzip_original_sha256": "4c56669a4bbdde23db1d57441e06c677a83ebf999ad4aebd2cdee5b2db5f3f82"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-show-receipt.json.gz",
+      "sha256": "f72dcdf6077ec4eec1031a6ff4e77da3dece50190dac2b1d7f052d59287c7bf4",
+      "gzip_original_sha256": "6cb03a145a16f119793d8e2d035caf534c5cce847c22172a3ade382537403ec9"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-show.log.gz",
+      "sha256": "13b5f4b17ff390ebb3c6d11bee48f47807618a12c777b8124d81879db8cb7cbc",
+      "gzip_original_sha256": "9e23f22768795a73d4b6a2db0b67ad5babd0562771373ccaf35275a294f40cd1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-unit-typing-receipt.json.gz",
+      "sha256": "39c31992803937eecea36e1afef241a7e3a934c9271d4b990e698fe6bf4d10f7",
+      "gzip_original_sha256": "3b613f93dcc999944d39cfed9004afafd8db98005b823e094f97be08f64e441c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/base-unit-typing.log.gz",
+      "sha256": "9f4ae3af41b45948aff3289c8073f9d90a012ae06843cb12505982a73f3b08cb",
+      "gzip_original_sha256": "88adc7d912a9c0c4fbec1ae833eb2f5fba220180bbcf8ca9110fd732c308313b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/lint-comparison.json.gz",
+      "sha256": "3824dd6071b063aea67720ca217c3abafb21f797bf6925b27d8db6f5e7c24c8e",
+      "gzip_original_sha256": "f638f69b483931767b342d555df348381de2959d3c28af464c04ac9859f91160"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/planning-runner.py.gz",
+      "sha256": "2064455ea3e43bf7fc9c90dedf9353b782fe0162c4bdd452c3529f96b61998f8",
+      "gzip_original_sha256": "2cf221b2f0c31b21b9a5acfed5ce24e6a1fe6e7cf9de9722550ad8703a94c8dd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/preparation-base-snapshot.json.gz",
+      "sha256": "63fa185eae54c83c61abe0aae4cf7d2d02fdc4decce802cbd78ad0c313f6a3df",
+      "gzip_original_sha256": "8116bbe3079a5168a4cdae0fb51c66bccee744d51eeee0cea75958ead97f3d05"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-board-receipt.json.gz",
+      "sha256": "40aaf21e99b45c1e3f2b70291059843e659cd10a6daedceb0bdc6ff64c97048b",
+      "gzip_original_sha256": "eed8f4005bc57fe4d50b2e73e8145175a6f97365617a2e0f8a70f3612dd3eb05"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-board.log.gz",
+      "sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "gzip_original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-docs-receipt.json.gz",
+      "sha256": "4cf7f44fc3395980efc1bf7b35ed3496843246237f59e67e1d24c1fdd764043a",
+      "gzip_original_sha256": "b78a92692c973e84765d183ef808678b993855c2255ba878c67fa1829d81f15e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-docs.log.gz",
+      "sha256": "ff71ae1e3e80990f33259fd7050c247ac08a7e194449c785c3ce66f9b8c74019",
+      "gzip_original_sha256": "589bd4eaa2d9909cd2a4872c92cf7b84dc55a4e36d34aa7d19f639549598189f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-integrity.json.gz",
+      "sha256": "bebd0178a1806bb905649a6255fc1e5a763aa1ef48ec4f6c1028c94fe05bfb85",
+      "gzip_original_sha256": "a10ec9b23fd04b5e798659fd2236a8c02bc429ce25bb6aa30a892536b1322e11"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-render-receipt.json.gz",
+      "sha256": "31df9012d5acbd2234d00d088978c4da302879007b6d50b1c0d12b9947130a40",
+      "gzip_original_sha256": "ec17913c1edb0e602d6e9534f90879dbace9ff4cd90bea2aa7a1fa2057572641"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-render.log.gz",
+      "sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "gzip_original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-ruff-receipt.json.gz",
+      "sha256": "672ee94c8fbe29066c6a1d8efe81151a8536356a9834463522d653b2d92929bf",
+      "gzip_original_sha256": "e03995378e90800de775f43e3e524180b17b0e78ddcce2b65e3f42c8ded08c16"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-ruff.log.gz",
+      "sha256": "77f6317b9cdda79b4ae191336b77e6408749a24ef2a34cb300312485d91e9e08",
+      "gzip_original_sha256": "694be63d187f8bec33ad1837444f965fc6fe0919c9fd8749dd5fb582254a15ff"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-snapshot.json.gz",
+      "sha256": "9863e5f75982b839a26e2f683b542623ab01687e5e7d5538e784f4a44700f503",
+      "gzip_original_sha256": "20293766b06fd76b0ca3432f93229600e03863f2dd451ef7c8ed91b34be2f908"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-whitespace-receipt.json.gz",
+      "sha256": "9678c244eaa64abdffc554f4e4626a7deacfb49969652e19ba4460c121e5cf5b",
+      "gzip_original_sha256": "468c25e4db5c985379f9e9368f9384279742c50dbc21e8136269841adff615b3"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/proposal-whitespace.log.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "gzip_original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/receipts/snapshot-helper.py.gz",
+      "sha256": "8e3977b78ffb0e9fbf8857726058987a48e86e92cae05e8d75c9b4d533ac62ab",
+      "gzip_original_sha256": "cd3963d50f55b5c2c18f2cf83f38a1ac4e13cb9bfc8ae3b3e31522d8492a9586"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/report.md",
+      "sha256": "40f3545fffcc8fb45329797b933e1ef26eade978b73bd91e11a58f21a02a7783",
+      "gzip_original_sha256": null
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.json",
+      "sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd",
+      "gzip_original_sha256": null
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.md",
+      "sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed",
+      "gzip_original_sha256": null
+    }
+  ]
+}

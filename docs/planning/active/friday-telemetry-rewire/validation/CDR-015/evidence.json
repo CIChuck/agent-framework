@@ -1,0 +1,675 @@
+{
+  "verdict": "READY",
+  "review_mode": "fresh-context read-only approved-authority construction readiness; not product VERIFIED",
+  "finding_closures": [
+    {
+      "id": "A02-01",
+      "status": "closed",
+      "new_findings": []
+    }
+  ],
+  "reviewer": "/root/telem02_reconciled_readiness",
+  "model": "Codex based on GPT-6; exact serving version unavailable",
+  "request": {
+    "initiative": "friday-telemetry-rewire",
+    "work_unit": "TELEM-02",
+    "review_mode": "fresh-context read-only approved-authority construction readiness; not product VERIFIED",
+    "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+    "candidate": "d187ce35074697633108ef1e8ad5b404b0de9fcc",
+    "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+    "diff": "e8b075a3861e1e3c1bfac050091a71be60b7e165..d187ce35074697633108ef1e8ad5b404b0de9fcc",
+    "manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+    "manifest_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+    "authority": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+      },
+      {
+        "path": "docs/reference/policies/repository-engineering-policy.md",
+        "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+      },
+      {
+        "path": "docs/reference/policies/development-task-lifecycle.md",
+        "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+      },
+      {
+        "path": "docs/reference/policies/independent-validation-policy.md",
+        "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+        "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+        "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+        "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+        "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+        "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+        "sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+        "sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+        "sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+        "sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+        "sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+        "sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+        "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+        "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b"
+      }
+    ],
+    "directive": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+    "contract": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+    "profile": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+    "lint_proposal": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+    "lint_scope": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+    "packaging_record": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/evidence-packaging.json",
+    "output_directory": "/private/tmp/telem-02/reconciled-readiness",
+    "constraints": "Read-only original checkout/index/product/authority. No SDK activation, pytest tests/collection, network/native collector/channel/TLS/provider/live service/state/credentials/installs/sync/downloads/commits. Guarded private sparse code/docs-only snapshot permitted excluding267protected paths before checkout; source/metadata inspection and offline/no-sync board/docs/Ruff checks permitted. No HOME override. Return READY/CHANGES_REQUESTED/BLOCKED construction readiness; explicit maintainer approvals already granted, execution preflight remains mandatory.",
+    "previous_candidate": "3044daa75e4ba6da593422566ac2aade0c90e406",
+    "previous_review_report": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/report.md",
+    "required_finding_review": "A02-01 label/hash reconciliation; exact JSON non-status equivalence; all approved-scope gates and preserved permissions/expiry. No new maintainer decision required.",
+    "approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md"
+  },
+  "request_sha256": "e5f26efa5da32d51e76afedc12ce3fe361d4970631c38b068ae8174c6b65d9b4",
+  "review_start_utc": "2026-10-07T00:20:33.361340+00:00",
+  "completed_utc": "2026-10-07T00:23:37.369055+00:00",
+  "checks": {
+    "authority_count": 17,
+    "manifest_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+    "all_pins_match": true,
+    "manifest_consistent": true,
+    "current_checkout_pins_match": true,
+    "json_non_status_exact": true,
+    "active_prose_approval_changes_only": true,
+    "raw_lint_counts": {
+      "candidate": 327,
+      "baseline": 579,
+      "approved": 327,
+      "removed": 252
+    },
+    "raw_lint_exact": true,
+    "accepted_control_pins": 19,
+    "accepted_preserved_artifacts": 199,
+    "historical_storage_entries": 305,
+    "protected_omissions_per_snapshot": 267,
+    "full_planning_diff_paths": 389,
+    "sdk_source_hashes_unchanged": 17,
+    "product_diff": []
+  },
+  "commands": {
+    "candidate-board": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-board/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-board",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-board/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-board/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/candidate-board/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.11425113677978516,
+      "stdout_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate-docs": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-docs/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-docs",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-docs/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-docs/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/candidate-docs/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.3059349060058594,
+      "stdout_sha256": "5b80e019ba3c2dc28bec9f0961e5f61c2ca109d660c752c221c01d5d8265e15c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate-root-ruff": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-root-ruff/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-root-ruff",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-root-ruff/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-root-ruff/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/candidate-root-ruff/pytest"
+      },
+      "exit_code": 1,
+      "seconds": 0.09368205070495605,
+      "stdout_sha256": "82dd8d041b92a7c7c6ff96fee52594d4529ce078ff1e7e317185a9a709e0ca50",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate-next": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-next/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-next",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-next/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-next/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/candidate-next/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.10071110725402832,
+      "stdout_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate-show": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-telemetry-rewire"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-show/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-show",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-show/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/candidate-show/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/candidate-show/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.10442900657653809,
+      "stdout_sha256": "ea46d96e2d2b38115c27c4a92e5337156b9f80544962c187ede9ebb6ac04fbff",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-board": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "validate"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/baseline",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-board/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/baseline",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-board",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-board/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-board/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/baseline-board/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.09988236427307129,
+      "stdout_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-docs": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/check-documentation-lifecycle.py"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/baseline",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-docs/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/baseline",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-docs",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-docs/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-docs/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/baseline-docs/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.28711771965026855,
+      "stdout_sha256": "dc778de60916ea3cb75cb3119741244eb6488406cc611b424872eb1b13b76b10",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-root-ruff": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "check",
+        ".",
+        "--output-format=json"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/baseline",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-root-ruff/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/baseline",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-root-ruff",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-root-ruff/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-root-ruff/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/baseline-root-ruff/pytest"
+      },
+      "exit_code": 1,
+      "seconds": 0.09237504005432129,
+      "stdout_sha256": "22212c43733066a650305076d62ced0c5e9fac4160f61011b8fb1a1b95b7e536",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-next": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "next"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/baseline",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-next/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/baseline",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-next",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-next/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-next/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/baseline-next/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.09891605377197266,
+      "stdout_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "baseline-show": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "scripts/friday-dev-board.py",
+        "show",
+        "friday-telemetry-rewire"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/baseline",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-show/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/baseline/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/baseline",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-show",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-show/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/baseline-show/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/baseline-show/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.10346007347106934,
+      "stdout_sha256": "50c4ae03c7fc705241fcca31d6c8db02bad63613eb3f6f495fe5ccbd86f3b9cf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "diff-check": {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/chuckrussell/Dev/gendev/agent-framework",
+        "diff",
+        "--check",
+        "e8b075a3861e1e3c1bfac050091a71be60b7e165..d187ce35074697633108ef1e8ad5b404b0de9fcc"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remediation-diff-check": {
+      "command": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "/Users/chuckrussell/Dev/gendev/agent-framework",
+        "diff",
+        "--check",
+        "3044daa75e4ba6da593422566ac2aade0c90e406..d187ce35074697633108ef1e8ad5b404b0de9fcc"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tool-python": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "python",
+        "--version"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-python/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-python",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-python/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-python/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/tool-python/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.01572108268737793,
+      "stdout_sha256": "026cce652273e45c36e4f52d20a211fe0954ce5d0026a9d663ef3bbfeaa0f19c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tool-ruff": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "ruff",
+        "--version"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-ruff/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-ruff",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-ruff/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-ruff/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/tool-ruff/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.014677047729492188,
+      "stdout_sha256": "5c218bad3d3966fc0a61f2d77271435aacd471038e833636bfa8cf5fe743f4ab",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tool-mypy": {
+      "command": [
+        "/opt/homebrew/bin/uv",
+        "run",
+        "--no-sync",
+        "mypy",
+        "--version"
+      ],
+      "cwd": "/private/tmp/telem-02/reconciled-readiness/candidate",
+      "environment": {
+        "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+        "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+        "UV_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-mypy/uv",
+        "UV_NO_SYNC": "true",
+        "UV_OFFLINE": "true",
+        "UV_PYTHON_DOWNLOADS": "never",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+        "ANONYMIZED_TELEMETRY": "False",
+        "TERM": "xterm-256color",
+        "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-agent/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-cli/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-core/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-finance/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-llm/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-mcp/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-memory/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-moltbook/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-optimization/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-runtime/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-sandbox/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-speech/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-telemetry/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-tools/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-transcript/src:/private/tmp/telem-02/reconciled-readiness/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/reconciled-readiness/candidate",
+        "TMPDIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-mypy",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "RUFF_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-mypy/ruff",
+        "MYPY_CACHE_DIR": "/private/tmp/telem-02/reconciled-readiness/tmp/tool-mypy/mypy",
+        "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-02/reconciled-readiness/tmp/tool-mypy/pytest"
+      },
+      "exit_code": 0,
+      "seconds": 0.13750720024108887,
+      "stdout_sha256": "f8bcaf60bb5bbb2efa43817a206b14b2c239de9d7234edab27cc16360f8b6f2e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "original_preservation": {
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "index_unchanged": true,
+    "exact_porcelain_unchanged": true,
+    "untracked_payloads_uninspected": true
+  },
+  "pre_edit_gates": [
+    "Frozen source/API baselines with scoped dependency mocks and synthetic providers before product edits; retrospective baseline evidence where applicable"
+  ],
+  "pre_collection_gates": [
+    "Final parameter-expanded 13 listener node IDs; import/conftest/helper/fixture/server/client/cleanup/effect hashes; isolated source resolution, safe allowlist, literal loopback targets/options and native guard limitation before collection"
+  ],
+  "future_validation": "Every approved verification-profile command, unit and aggregate manifests, exact final327 reproduction, stable product candidate and fresh TELEM-02 delta plus full2155a0f aggregate validation remain mandatory; construction READY is not product VERIFIED.",
+  "constraints_observed": "Read-only original checkout/index/product/authority. No SDK activation, pytest tests/collection, network/native collector/channel/TLS/provider/live service/state/credentials/installs/sync/downloads/commits. Guarded private sparse code/docs-only snapshot permitted excluding267protected paths before checkout; source/metadata inspection and offline/no-sync board/docs/Ruff checks permitted. No HOME override. Return READY/CHANGES_REQUESTED/BLOCKED construction readiness; explicit maintainer approvals already granted, execution preflight remains mandatory.",
+  "infrastructure_notes": [
+    "Initial pure audit reached a reviewer-local name-shadowing error after metadata version queries; corrected and rerun fully under installed Python3.13.10. No product or authority effect.",
+    "The 18 expected packaged .py deletions emit Git missing-path diagnostics during complete diff inventory fallback to base bytes; these are preserved by gzip and are not check failures."
+  ],
+  "receipts": [
+    "diff-name-status.txt",
+    "baseline-root-ruff.json",
+    "tool-python.json",
+    "tool-mypy.json",
+    "baseline-root-ruff.stdout",
+    "tool-mypy.stderr",
+    "audit.stdout",
+    "tool-python.stderr",
+    "baseline-next.json",
+    "source-sdk-baseline-preservation.json",
+    "candidate-board.stderr",
+    "manifest-consistency.json",
+    "audit.py",
+    "original-before.json",
+    "original-preservation.json",
+    "original-final.json",
+    "report.md",
+    "candidate-show.json",
+    "review_runner.py",
+    "baseline-docs.json",
+    "pin-checks.json",
+    "remediation.diff",
+    "candidate-board.stdout",
+    "historical-review-preservation.json",
+    "baseline-root-ruff.stderr",
+    "candidate-snapshot.json",
+    "tool-mypy.stdout",
+    "finalize.py",
+    "original-after-checks.json",
+    "tool-python.stdout",
+    "audit.stderr",
+    "baseline-next.stderr",
+    "tool-ruff.stderr",
+    "candidate-docs.json",
+    "remediation-diff-check.stdout",
+    "diff-check.stdout",
+    "baseline-show.json",
+    "candidate-next.stdout",
+    "audit-final.stderr",
+    "accepted-storage-hashes.json",
+    "baseline-board.stdout",
+    "candidate-show.stderr",
+    "baseline-docs.stderr",
+    "accepted-artifact-preservation.json",
+    "remediation-diff-check.json",
+    "lint-analysis.json",
+    "candidate-docs.stdout",
+    "tool-ruff.json",
+    "baseline-show.stdout",
+    "candidate-board.json",
+    "candidate-root-ruff.stderr",
+    "candidate.diff",
+    "baseline-snapshot-final.json",
+    "candidate-docs.stderr",
+    "baseline-show.stderr",
+    "candidate-root-ruff.stdout",
+    "baseline-snapshot.json",
+    "candidate-show.stdout",
+    "baseline-docs.stdout",
+    "listener-analysis.json",
+    "baseline-board.stderr",
+    "baseline-board.json",
+    "prose-equivalence.json",
+    "candidate-snapshot-final.json",
+    "candidate-root-ruff.json",
+    "packaging-proof.json",
+    "diff-check.json",
+    "candidate-next.stderr",
+    "full-diff-inventory.json",
+    "audit-final.stdout",
+    "tool-ruff.stdout",
+    "baseline-next.stdout",
+    "candidate-next.json",
+    "diff-check.stderr",
+    "current-checkout-pin-checks.json",
+    "json-status-equivalence.json",
+    "remediation-diff-check.stderr"
+  ]
+}

@@ -6,7 +6,7 @@ import csv
 import io
 import json
 from collections.abc import Sequence
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from friday_chat.commands.contracts import (
@@ -305,7 +305,7 @@ def _write_all_session_export(
     ],
 ) -> TranscriptExportResult:
     root = export_directory(context)
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     directory = _safe_export_path(root, f"transcript-export-{timestamp}")
     directory.mkdir(parents=False, exist_ok=False)
     sessions_path = _safe_export_path(directory, "sessions.csv")

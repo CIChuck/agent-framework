@@ -13,9 +13,13 @@ import asyncio
 import hashlib
 import logging
 from collections import OrderedDict
+from contextlib import nullcontext
 from typing import TYPE_CHECKING, Any
 
 import litellm
+from friday_telemetry import TelemetryInterface
+from friday_telemetry.helpers.safe_llm import BatchTracker, RequestTracker
+from friday_telemetry.models.llm_events import ServiceRole
 from tenacity import (
     RetryError,
     retry,
@@ -33,7 +37,7 @@ from friday_llm.exceptions import (
 )
 from friday_llm.pricing import CostCalculator, PricingConfig
 from friday_llm.targets import ExecutionTarget, ModelTarget, TransportTarget
-from friday_llm.telemetry_helper import LLMTelemetryHelper
+from friday_llm.telemetry import LiteLLMMetrics, response_usage
 from friday_llm.telemetry_models import TokenUsage
 
 logger = logging.getLogger(__name__)
@@ -74,12 +78,13 @@ class LiteLLMEmbeddingService:
         api_key: str | None = None,
         api_base: str | None = None,
         batch_size: int = 100,
-        telemetry: Any | None = None,
+        telemetry: TelemetryInterface | None = None,
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
         cache_size: int = 100,
         transport_target: TransportTarget | None = None,
         model_target: ModelTarget | None = None,
+        *, service_role: ServiceRole = "unspecified",
     ) -> None:
         """
         Initialize the embedding service.
@@ -137,10 +142,8 @@ class LiteLLMEmbeddingService:
 
         # Initialize telemetry helper with cost calculator
         self._cost_calculator = CostCalculator(pricing_config)
-        self._telemetry_helper = LLMTelemetryHelper(
-            telemetry=telemetry,
-            cost_calculator=self._cost_calculator,
-            provider_name=self._detect_provider(model_name),
+        self._telemetry_helper = LiteLLMMetrics(
+            telemetry, self._cost_calculator, model_name, service_role=service_role,
         )
 
         # Query embedding cache (LRU via OrderedDict)
@@ -155,8 +158,9 @@ class LiteLLMEmbeddingService:
         cls,
         spec: EmbeddingServiceSpec,
         *,
-        telemetry: Any | None = None,
+        telemetry: TelemetryInterface | None = None,
         pricing_config: PricingConfig | None = None,
+        service_role: ServiceRole = "unspecified",
     ) -> LiteLLMEmbeddingService:
         """Construct an embedding service from a resolved catalog spec."""
 
@@ -169,6 +173,7 @@ class LiteLLMEmbeddingService:
             api_base=spec.api_base,
             batch_size=spec.batch_size,
             telemetry=telemetry,
+            service_role=service_role,
             resilience=spec.resilience,
             pricing_config=pricing_config,
             cache_size=spec.cache_size,
@@ -264,53 +269,20 @@ class LiteLLMEmbeddingService:
             LLMRetryExhaustedError: If max retries exceeded
             CircuitBreakerOpenError: If circuit breaker is open
         """
-        if not texts:
-            return []
-
-        effective_timeout = timeout or self._resilience.timeout_seconds
-        total_characters = sum(len(t) for t in texts)
-        batch_count = (len(texts) + self.batch_size - 1) // self.batch_size
-
-        with self._telemetry_helper.track_embedding(
-            model=self.model,
-            text_count=len(texts),
-            total_characters=total_characters,
-        ) as tracker:
-            try:
-                all_embeddings: list[list[float]] = []
-                total_tokens = 0
-
-                # Process in batches
-                for i in range(0, len(texts), self.batch_size):
-                    batch = texts[i : i + self.batch_size]
-                    embeddings, usage = await self._embed_batch_with_retry(
-                        batch,
-                        timeout=effective_timeout,
+        with self._telemetry_helper.request("embedding_documents") as tracker:
+            if not texts:
+                tracker.outcome = "empty_input"
+                return []
+            effective_timeout = timeout or self._resilience.timeout_seconds
+            all_embeddings: list[list[float]] = []
+            for i in range(0, len(texts), self.batch_size):
+                batch_texts = texts[i:i + self.batch_size]
+                with tracker.batch(len(batch_texts)) as batch:
+                    embeddings, _usage = await self._embed_batch_with_retry(
+                        batch_texts, timeout=effective_timeout, tracker=tracker, batch=batch,
                     )
                     all_embeddings.extend(embeddings)
-                    total_tokens += usage.input_tokens
-
-                # Get embedding dimensions from first result
-                embedding_dims = len(all_embeddings[0]) if all_embeddings else None
-
-                # Record response details for telemetry
-                tracker.set_response(
-                    response_model=self.model,
-                    usage=TokenUsage(
-                        input_tokens=total_tokens, total_tokens=total_tokens
-                    ),
-                    embedding_dimensions=embedding_dims,
-                    batch_count=batch_count,
-                )
-
-                return all_embeddings
-
-            except LLMRetryExhaustedError as e:
-                tracker.set_retry_info(e.attempts, e.attempts)
-                raise
-
-            except LLMTimeoutError:
-                raise
+            return all_embeddings
 
     async def embed_query(
         self,
@@ -336,55 +308,26 @@ class LiteLLMEmbeddingService:
             LLMRetryExhaustedError: If max retries exceeded
             CircuitBreakerOpenError: If circuit breaker is open
         """
-        # Check cache first
-        cached = self._cache_get(text)
-        if cached is not None:
-            logger.debug(
-                f"Embedding cache hit for query (cache stats: {self.cache_stats})"
-            )
-            return cached
-
-        effective_timeout = timeout or self._resilience.timeout_seconds
-
-        with self._telemetry_helper.track_embedding(
-            model=self.model,
-            text_count=1,
-            total_characters=len(text),
-        ) as tracker:
-            try:
-                embeddings, usage = await self._embed_batch_with_retry(
-                    [text],
-                    timeout=effective_timeout,
+        with self._telemetry_helper.request("embedding_query") as tracker:
+            cached = self._cache_get(text)
+            if cached is not None:
+                logger.debug(f"Embedding cache hit for query (cache stats: {self.cache_stats})")
+                tracker.outcome = "cache_hit"
+                return cached
+            effective_timeout = timeout or self._resilience.timeout_seconds
+            with tracker.batch(1) as batch:
+                embeddings, _usage = await self._embed_batch_with_retry(
+                    [text], timeout=effective_timeout, tracker=tracker, batch=batch,
                 )
-
-                # Get embedding dimensions
-                embedding_dims = len(embeddings[0]) if embeddings else None
-
-                # Record response details for telemetry
-                tracker.set_response(
-                    response_model=self.model,
-                    usage=usage,
-                    embedding_dimensions=embedding_dims,
-                    batch_count=1,
-                )
-
-                # Cache the result
-                result = embeddings[0]
-                self._cache_put(text, result)
-
-                return result
-
-            except LLMRetryExhaustedError as e:
-                tracker.set_retry_info(e.attempts, e.attempts)
-                raise
-
-            except LLMTimeoutError:
-                raise
+            result = embeddings[0]
+            self._cache_put(text, result)
+            return result
 
     async def _embed_batch_with_retry(
         self,
         texts: list[str],
         timeout: float,
+        *, tracker: RequestTracker | None = None, batch: BatchTracker | None = None,
     ) -> tuple[list[list[float]], TokenUsage]:
         """Execute embedding call with retry logic, timeout, and circuit breaker.
 
@@ -419,18 +362,22 @@ class LiteLLMEmbeddingService:
             if self.api_base:
                 kwargs["api_base"] = self.api_base
 
-            try:
-                response = await asyncio.wait_for(
-                    litellm.aembedding(**kwargs),
-                    timeout=timeout,
-                )
-            except asyncio.TimeoutError as e:
-                raise LLMTimeoutError(
-                    f"Embedding call timed out after {timeout}s",
-                    timeout_seconds=timeout,
-                    operation="embedding",
-                    model=self.model,
-                ) from e
+            with tracker.attempt(batch) if tracker is not None else nullcontext():
+                try:
+                    response = await asyncio.wait_for(
+                        litellm.aembedding(**kwargs),
+                        timeout=timeout,
+                    )
+                except TimeoutError as e:
+                    raise LLMTimeoutError(
+                        f"Embedding call timed out after {timeout}s",
+                        timeout_seconds=timeout,
+                        operation="embedding",
+                        model=self.model,
+                    ) from e
+
+            if batch is not None:
+                batch.usage = response_usage(response, embedding=True)
 
             # Extract embeddings from response
             embeddings = [item["embedding"] for item in response.data]

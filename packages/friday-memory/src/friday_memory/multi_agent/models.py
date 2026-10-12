@@ -5,7 +5,7 @@ Models for additive multi-agent memory mode.
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Any
 
@@ -34,7 +34,7 @@ class SharedPromotionProposal(BaseModel):
     metadata: dict = Field(default_factory=dict)
     correlation_id: str | None = None
     transcript_entry_id: str | None = None
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class PromotionJournalEntry(BaseModel):
@@ -47,8 +47,8 @@ class PromotionJournalEntry(BaseModel):
     transcript_entry_id: str | None = None
     promotion_id: str | None = None
     error: str | None = None
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class PromotionJournalEvent(BaseModel):
@@ -64,4 +64,4 @@ class PromotionJournalEvent(BaseModel):
     promotion_id: str | None = None
     error: str | None = None
     details: dict[str, Any] = Field(default_factory=dict)
-    recorded_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    recorded_at: datetime = Field(default_factory=lambda: datetime.now(UTC))

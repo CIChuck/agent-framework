@@ -6,7 +6,7 @@ Ephemeral scratch pad memory for workflow/task execution tracking.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import Enum
 from typing import Any
 
@@ -27,7 +27,7 @@ class ScratchPlanItem(BaseModel):
     task_id: str
     title: str
     status: ScratchPlanItemStatus
-    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
@@ -39,7 +39,7 @@ class ScratchEvent(BaseModel):
     task_id: str | None = None
     correlation_id: str | None = None
     details: dict[str, Any] = Field(default_factory=dict)
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class ScratchPad(BaseModel):
@@ -63,7 +63,7 @@ class ScratchPadStore:
         self._pads: dict[str, ScratchPad] = {}
 
     def ensure_pad(self, scope_id: str) -> ScratchPad:
-        now = datetime.now(timezone.utc)
+        now = datetime.now(UTC)
         self.purge_expired(now=now)
         pad = self._pads.get(scope_id)
         if pad is not None:
@@ -99,7 +99,7 @@ class ScratchPadStore:
                 update={
                     "title": title,
                     "status": status,
-                    "updated_at": datetime.now(timezone.utc),
+                    "updated_at": datetime.now(UTC),
                     "metadata": {**item.metadata, **(metadata or {})},
                 }
             )
@@ -120,7 +120,7 @@ class ScratchPadStore:
         updated = item.model_copy(
             update={
                 "status": status,
-                "updated_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(UTC),
                 "metadata": {**item.metadata, **(metadata or {})},
             }
         )
@@ -158,7 +158,7 @@ class ScratchPadStore:
         return self._pads.get(scope_id)
 
     def purge_expired(self, now: datetime | None = None) -> int:
-        current = now or datetime.now(timezone.utc)
+        current = now or datetime.now(UTC)
         expired = [
             scope_id
             for scope_id, pad in self._pads.items()

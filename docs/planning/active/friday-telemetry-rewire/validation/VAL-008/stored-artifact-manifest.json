@@ -1,0 +1,1536 @@
+{
+  "candidate": "dd543fd6a6819ec0c4fb2529fa384fea886f5509",
+  "reviewer": "/root/telem03_product_validator",
+  "verdict": "VERIFIED",
+  "original_manifest_sha256": "50ed79ce3e639f52c9de2d2d4b7d7295bae5f9fdc67369c1e71f89c9b80b5bcc",
+  "original_report_sha256": "602796deea2fffa681820bd0ed68ff67a2fa2f60b9c722d96361b39b51676654",
+  "gzip_mtime": 0,
+  "artifacts": [
+    {
+      "original": "/private/tmp/telem-03/VAL-008/accepted-nested-authority-checks.json",
+      "stored": "raw/accepted-nested-authority-checks.json.gz",
+      "original_sha256": "61d4598e87f83c8c8fef5fbfe7f11c045be2a77f6eee6840905aeda02eaf8458",
+      "stored_sha256": "ecc87bea3895587acc6de6d42bc05bd68e8a8417dc063eef09cadb7c9030d5ce",
+      "bytes": 13438
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-diff-r1-freeze.json",
+      "stored": "raw/aggregate-diff-r1-freeze.json.gz",
+      "original_sha256": "ce8eb05deccab8890e4cd9df27c0a13987d5bdcf636a83f168b113461ed6ca1a",
+      "stored_sha256": "be5d14d266fe352c6f7417f1882c901ce62d8d346b14f30bc12a47281eafb905",
+      "bytes": 2810
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-diff-r1-receipt.json",
+      "stored": "raw/aggregate-diff-r1-receipt.json.gz",
+      "original_sha256": "c2a15c999731446d133371dd9e41e73d53b24d439e11929533756d631ff2c818",
+      "stored_sha256": "d3d627a1bd790d2e67c06af9283805ecbcc549e86edc4169450f75ababf0e879",
+      "bytes": 3060
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-diff-r1.stderr",
+      "stored": "raw/aggregate-diff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-diff-r1.stdout",
+      "stored": "raw/aggregate-diff-r1.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-mypy-r1-freeze.json",
+      "stored": "raw/aggregate-mypy-r1-freeze.json.gz",
+      "original_sha256": "0ae505253d88295b2b138cd471e29ea6200f94690c6ab6b5b997048c200028d2",
+      "stored_sha256": "2c3a9abc7ac177eb594df8d025c62de13e938324c508575672ce90db3bb4419d",
+      "bytes": 7757
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-mypy-r1-receipt.json",
+      "stored": "raw/aggregate-mypy-r1-receipt.json.gz",
+      "original_sha256": "69a47fb9e84ac9379eb5e51b0d4916a3df8b3bab72a026138a718d276ec9cecd",
+      "stored_sha256": "d9ce24c2a1b1a336e6fc83edd15c64de9823bb79e13ded760fd321a12d6d82cc",
+      "bytes": 8007
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-mypy-r1.stderr",
+      "stored": "raw/aggregate-mypy-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-mypy-r1.stdout",
+      "stored": "raw/aggregate-mypy-r1.stdout.gz",
+      "original_sha256": "4ef32b02733c640ba275e5de2c0f630d3ea2a6293bb124ad0dc2173d46e40541",
+      "stored_sha256": "601057427b9381778c285cf1b0e9aafa210de58b9c7439e2bf44398cda86a744",
+      "bytes": 44
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r1-freeze.json",
+      "stored": "raw/aggregate-owning-r1-freeze.json.gz",
+      "original_sha256": "4b6426fa8a1876d68ecf0a72c0e2d355c9773cde9f3d69a8c9dd58f9c3296db5",
+      "stored_sha256": "12165b9ac7f6f61c63c5ed359fe3fb974d91d7948c16e0f58120d028a5588752",
+      "bytes": 3746
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r1-receipt.json",
+      "stored": "raw/aggregate-owning-r1-receipt.json.gz",
+      "original_sha256": "61f62c0bfa5f6018560ee806ff63064a0d23297c195c7ace7aad50c893f5af60",
+      "stored_sha256": "5441be1e019b6fcd1e5b6ca3068d0961ae2a58423b3754a667f465d12c5eb6ec",
+      "bytes": 3996
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r1-source-audit.json",
+      "stored": "raw/aggregate-owning-r1-source-audit.json.gz",
+      "original_sha256": "1e936cfca59ec0dfb8639ba8e4659097bbe1a3484332a38638b56ffe8bbb1236",
+      "stored_sha256": "393fef665d8b33a32fa4e2a842b8f524f922dc6ba96580a8ee95d3f4298e5071",
+      "bytes": 128232
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r1.stderr",
+      "stored": "raw/aggregate-owning-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r1.stdout",
+      "stored": "raw/aggregate-owning-r1.stdout.gz",
+      "original_sha256": "492bc081e7f2fca4a495cb5d453195ec6653e6fdf53d9634a94b67b0f87231a4",
+      "stored_sha256": "e4073c0fb2b804667844b6bdc02c0b8fbb136bd80a334d4e0750ba9ea9b87323",
+      "bytes": 1562772
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r2-normal-user-freeze.json",
+      "stored": "raw/aggregate-owning-r2-normal-user-freeze.json.gz",
+      "original_sha256": "16e52abc0308805bed4a153e78f11115d4aea81e9d0ec34f139079ce97eddc2e",
+      "stored_sha256": "827a443a1edc3b2e26266547009888004fdbd0d054054deef9d10b07ca47b502",
+      "bytes": 3830
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r2-normal-user-receipt.json",
+      "stored": "raw/aggregate-owning-r2-normal-user-receipt.json.gz",
+      "original_sha256": "770ddef8f8eecfd3046770da24be9bc2e4554beb53365df5c428aa32f9db3e65",
+      "stored_sha256": "c6c01262dfcf7147451108d121596caa3a928a980c8159d53f6f80caafc8369a",
+      "bytes": 4080
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r2-normal-user-source-audit.json",
+      "stored": "raw/aggregate-owning-r2-normal-user-source-audit.json.gz",
+      "original_sha256": "5be6c94718ed7e70d86b561cdb2e990a3e60dbb5368bdafca455b4ba461f95fa",
+      "stored_sha256": "17d7002edc443742ce5e97ad7354f4f47b8d55edd730126ee7f42c524b053c8d",
+      "bytes": 128946
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r2-normal-user.stderr",
+      "stored": "raw/aggregate-owning-r2-normal-user.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-owning-r2-normal-user.stdout",
+      "stored": "raw/aggregate-owning-r2-normal-user.stdout.gz",
+      "original_sha256": "82df97bbb95af6d380870796dd5249e3bce7bba08cd37c23b90cc183747dc521",
+      "stored_sha256": "0019b2f34eccf70eb2dce98c35a24d049361e55f9bfca14d23a91cc5bae1b5db",
+      "bytes": 1542070
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-product.patch",
+      "stored": "raw/aggregate-product.patch.gz",
+      "original_sha256": "ea2f70f16017cece6aebeb27d16c2e0e14433ca8504ec1c33213535a232d29c1",
+      "stored_sha256": "0ebe4be5271deafaaa487e961b3ce31648950841b7f1ebb607db55ea204dd140",
+      "bytes": 983596
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-ruff-r1-freeze.json",
+      "stored": "raw/aggregate-ruff-r1-freeze.json.gz",
+      "original_sha256": "0620dd16f5887d947e677e80dcf5b9139ebc1ad664d44d7131ec1ca86b022b74",
+      "stored_sha256": "b159f23526a168a4e5f5d129183015a3ea9fd5940219bfeacc6681a917d7eff8",
+      "bytes": 10745
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-ruff-r1-receipt.json",
+      "stored": "raw/aggregate-ruff-r1-receipt.json.gz",
+      "original_sha256": "b03c19a1060cbda640f72bfe51d73fd3b97543d7f4b6ac2beadfadd19d53b110",
+      "stored_sha256": "1134e522723d731cbdcb4611386e68632c6d392ee7a5b4e8f037a140a26100bc",
+      "bytes": 10997
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-ruff-r1.stderr",
+      "stored": "raw/aggregate-ruff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/aggregate-ruff-r1.stdout",
+      "stored": "raw/aggregate-ruff-r1.stdout.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api-probe-r1-freeze.json",
+      "stored": "raw/api-probe-r1-freeze.json.gz",
+      "original_sha256": "09122a2cb4c29d17554e899dfe315ed7290d37c7136289566fba745c4efeab71",
+      "stored_sha256": "d7c9e91f8115172a10c1e4ee6f4ae2de5bc89ab7ce3a2191257e1d5f3dd0b074",
+      "bytes": 2802
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api-probe-r1-receipt.json",
+      "stored": "raw/api-probe-r1-receipt.json.gz",
+      "original_sha256": "cda75a518634d3856a7aeb51f360c8ea6ddb862aea2a462803a0c56335ed7d5f",
+      "stored_sha256": "64edbec298cefed9fd28a3eb92c28ff073c9a93864e933fc0ddd6edb6fc6abd4",
+      "bytes": 3053
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api-probe-r1.stderr",
+      "stored": "raw/api-probe-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api-probe-r1.stdout",
+      "stored": "raw/api-probe-r1.stdout.gz",
+      "original_sha256": "5c80e72f8d5be2b7acadbca9cbda15ef5755659960bc051c1978839a3cc0ac3e",
+      "stored_sha256": "55e9c071ca2b37466c9b03c00ab6df0feb95b134d1bea4fc9fe9b19a5fb87060",
+      "bytes": 33
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api-probe-results.json",
+      "stored": "raw/api-probe-results.json.gz",
+      "original_sha256": "7e7ac7213f42f0e470d061840845f2f80238245351da96b194db7e6c42242cfb",
+      "stored_sha256": "9d279d5714220894c3958e0a2b75c6d4bd7cf9dc055b56a1e77ff7ab4f8346c0",
+      "bytes": 11340
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/api_probe.py",
+      "stored": "raw/api_probe.py.gz",
+      "original_sha256": "0564c12395855858897a859caab48129d8801091fd9ea5df4c74cc1ee0c558bd",
+      "stored_sha256": "8a9e6f6e1f023f4136567d08a6de977706aecdea5ce67b0ca514723436816bf3",
+      "bytes": 2668
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/approval-proposal-checks.json",
+      "stored": "raw/approval-proposal-checks.json.gz",
+      "original_sha256": "b6f8cdf9bc305ffaa6b12e4f19d725773f81dba6c7812e19c251c3ff02a0c76f",
+      "stored_sha256": "2618f15e525498338ff5f7a41196dc852a8973754ab5cea42908bcfc11a39fc7",
+      "bytes": 5698
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/authority-check.json",
+      "stored": "raw/authority-check.json.gz",
+      "original_sha256": "cfe8940283ede7dfa4d8d452d877aeb527d293f052435c1fb96f29eb8e94c434",
+      "stored_sha256": "458d3913a6179d6de7447f6caab7ed448065c0110adb60601f8985322f7fe1bd",
+      "bytes": 8424
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/base-root-ruff-r1-freeze.json",
+      "stored": "raw/base-root-ruff-r1-freeze.json.gz",
+      "original_sha256": "999d4b6a1faf320bbe7d861d3c5f06c976b80be16fde40e99a8ccf09dfb01e84",
+      "stored_sha256": "7a034323293b36a3b8c2cff693eea5452c36d7c9073e7cedeec80d442b85fe13",
+      "bytes": 2838
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/base-root-ruff-r1-receipt.json",
+      "stored": "raw/base-root-ruff-r1-receipt.json.gz",
+      "original_sha256": "d4f69212a3065b201aba74d41a4c28b4121f22a7afeeadd0846b224bd8f85e92",
+      "stored_sha256": "4be91053bc51ec8a3423a95a340546733aa7f341d4c1780d93ae1ef36a58d7d8",
+      "bytes": 3090
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/base-root-ruff-r1.stderr",
+      "stored": "raw/base-root-ruff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/base-root-ruff-r1.stdout",
+      "stored": "raw/base-root-ruff-r1.stdout.gz",
+      "original_sha256": "1b001e0ea55a8cb170c379820b1ac5ebffedcf0a7fdb38ef0f2b8a282d19ea6d",
+      "stored_sha256": "0518ce553b71f682da74b15946b78ad2511320007d9849de1565a8187d8f0da7",
+      "bytes": 171572
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/board-r1-freeze.json",
+      "stored": "raw/board-r1-freeze.json.gz",
+      "original_sha256": "796b28394e0ff1f828c04e8ffa89e280c1a4966fad65dce34d5c79d03f31dd5c",
+      "stored_sha256": "720363b31c05794466b3f1d8e19ea5bb0530ef7c4b4ed20e186fbf41db6adbe4",
+      "bytes": 2780
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/board-r1-receipt.json",
+      "stored": "raw/board-r1-receipt.json.gz",
+      "original_sha256": "ce2fa4714df2491bf2a2aabb854b6aebe7dcb3d9369a7772c45552019b60745f",
+      "stored_sha256": "df1a497caf400445cccbba48003343dbe7696f65f8c00124b25c089ba7175b30",
+      "bytes": 3031
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/board-r1.stderr",
+      "stored": "raw/board-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/board-r1.stdout",
+      "stored": "raw/board-r1.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884",
+      "bytes": 46
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/candidate-snapshot.json",
+      "stored": "raw/candidate-snapshot.json.gz",
+      "original_sha256": "977b1f40e2b26d6743f4faeb5e765b5f155c8e1de3e8cb044e5ebed39f594fe4",
+      "stored_sha256": "dc540eb13106f3bb5ed1f8fc32ca9530b70807397d0ae48a38cfcf2622830a3f",
+      "bytes": 600770
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/compatibility_probe.py",
+      "stored": "raw/compatibility_probe.py.gz",
+      "original_sha256": "8423c15858b2a327ba77acf9d3035a4ef0a78bc8104a89d4e913b59b545daff5",
+      "stored_sha256": "6cf8f59d90dfe52fc82b863bb81919684087ddde5930a313b424a9384c22985c",
+      "bytes": 2467
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/compatibility_probe_v2.py",
+      "stored": "raw/compatibility_probe_v2.py.gz",
+      "original_sha256": "98b0a05c91bdfb0fb5a6b079e2ad5b907fa5ac832c683871edb2dadbe9a9c150",
+      "stored_sha256": "f21473b40983efca187daa4291d795718c4ca5e39b0a8aad009e515617d8802a",
+      "bytes": 2557
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/docs-r1-freeze.json",
+      "stored": "raw/docs-r1-freeze.json.gz",
+      "original_sha256": "2a6c4fa88a7b3017d67839f1809d6cd0a922016e99eee963e69c6d1f7ab199cd",
+      "stored_sha256": "b65d72a6c3a65b84fd90d7bcc96c76e54709acb5b6d58b29e223c4f7aac4ac05",
+      "bytes": 2771
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/docs-r1-receipt.json",
+      "stored": "raw/docs-r1-receipt.json.gz",
+      "original_sha256": "988943c13a7cb16a30f62bffc2837de83c056fe0264bab5c13bf2d81c7ef8065",
+      "stored_sha256": "a65dc865cfc0275ffdd01b1c7309da867971806e7ccccee1baca8f89df61ead6",
+      "bytes": 3023
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/docs-r1.stderr",
+      "stored": "raw/docs-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/docs-r1.stdout",
+      "stored": "raw/docs-r1.stdout.gz",
+      "original_sha256": "7cb13c52307baa7c4d1babf2e9a61e39e39af79d616f8bca1b1f080da7f7d5e9",
+      "stored_sha256": "b739a4f30b3645d5809a45aa6eeb0a384cda2a0896f457e4c293ba24ceebabb1",
+      "bytes": 70
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/effect-scan.txt",
+      "stored": "raw/effect-scan.txt.gz",
+      "original_sha256": "966466f3e068e21054e6f0a445c4efff73c8bd34cd0a3ece56ce849d41faa6f8",
+      "stored_sha256": "084a2539ae431acdacfc13d6c47007e629d9ba8f0291d1fee501279182263456",
+      "bytes": 11956
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/escalated_gates.py",
+      "stored": "raw/escalated_gates.py.gz",
+      "original_sha256": "8392b8e9b570b2b4cfd37949a0b2b66499d72040c23f267b02f0ec024900fde7",
+      "stored_sha256": "9f163e2f3a0b16642c4a1630e3db0b2e9ccc1ad83bf0f32823d382ac2c1ef333",
+      "bytes": 120
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/expanded-paths.json",
+      "stored": "raw/expanded-paths.json.gz",
+      "original_sha256": "8ad215a096fa14b6b307abdcdb844798232c55382a144350c505cab05cb56609",
+      "stored_sha256": "96ba613cd7a4322cdff34c2f834b9e3acb2732220f7cc64fa712c6a3eda3fc72",
+      "bytes": 266367
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-contract-r2-freeze.json",
+      "stored": "raw/final-contract-r2-freeze.json.gz",
+      "original_sha256": "f05625bd5391c26806b559d740785646b9220eeab74698da31f0bbecfd74fab3",
+      "stored_sha256": "88e2c62293d9c712a8ce436c88645eb323b79cb33a692caf11096ce6ff59c817",
+      "bytes": 2837
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-contract-r2-probe-freeze.json",
+      "stored": "raw/final-contract-r2-probe-freeze.json.gz",
+      "original_sha256": "88d46bd29bb8483a57b9c80b711b3126f6c2d8b7daaa42364207076697bed4e2",
+      "stored_sha256": "3a01ce76df536799a80dd580d56c8fcc724662b67b2ba32091c983e5b5e4a69d",
+      "bytes": 310
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-contract-r2-receipt.json",
+      "stored": "raw/final-contract-r2-receipt.json.gz",
+      "original_sha256": "6d9f1b8d60e99a585f5f1ef328cb4863773fa762948735bdb6a679adf57f9f32",
+      "stored_sha256": "30a1eadc820a8afec87613c84a374771c2c876346e2e21a38692bda163ef5d37",
+      "bytes": 3089
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-contract-r2.stderr",
+      "stored": "raw/final-contract-r2.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-contract-r2.stdout",
+      "stored": "raw/final-contract-r2.stdout.gz",
+      "original_sha256": "5f5cb279028a43483d36230b77ca25074a38d2e7784363f6424e4e1bcff534fa",
+      "stored_sha256": "fe57d09a5cab564a59e1834dfecdb3010de9f607cc6156743da91579c79a214c",
+      "bytes": 69
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final-stability.json",
+      "stored": "raw/final-stability.json.gz",
+      "original_sha256": "982bc590c0c2fd57a9feb6d6054d2d0bcee7b31ebd47c9247e55aa7a69c12543",
+      "stored_sha256": "9e4e48359b2ff8972c5b722728a2d65b589786d0ac96831be226340ae13a0bf1",
+      "bytes": 9916
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/final_checks.py",
+      "stored": "raw/final_checks.py.gz",
+      "original_sha256": "0ad96511f1182c96dcd289b7ebf6bce111095d794cf6ca2e8bf1650a320726ff",
+      "stored_sha256": "8132c089074c58ec947d8f749ba32111d554df9b87c285ae5735d2549f573f2a",
+      "bytes": 2721
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/finalize-evidence.stdout",
+      "stored": "raw/finalize-evidence.stdout.gz",
+      "original_sha256": "cbe1b76bf5918a0b5904853d9cd10a5b958ca59293cf07fbaebd1ef08038a299",
+      "stored_sha256": "876154aaca60b7add15a9a92078b658f7d363ec7e1e1a90e52ec9a62667d20e9",
+      "bytes": 1313
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/finalize_evidence.py",
+      "stored": "raw/finalize_evidence.py.gz",
+      "original_sha256": "d19611fb35640b1ddabf84fdec2699f032fe6f4f32a11ec9040004a8a64464ff",
+      "stored_sha256": "4781d1fea4556f95edb6d28722a73addc62ae8936748278cc5f2c9e71c9e1ab1",
+      "bytes": 3292
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/gate-summary.json",
+      "stored": "raw/gate-summary.json.gz",
+      "original_sha256": "38b44f274fa29717115e86646e65849356603c318974251cd0aef42dda83129c",
+      "stored_sha256": "9355a38cc9bfa6be96d037e12e5886735a5fad98b8f661b68aeccd2644e8b353",
+      "bytes": 38195
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-candidate-freeze.json",
+      "stored": "raw/generic-CommandRegistry-candidate-freeze.json.gz",
+      "original_sha256": "a46939790e68a3d0fcfa7887ef815fd5dd91b85ce450bf960ca8be2da9d29ee1",
+      "stored_sha256": "27adf30f95da5c73f012e9fd8d081acb7f0b7b398ee635d30685a7a18dd82b77",
+      "bytes": 2743
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-candidate.stderr",
+      "stored": "raw/generic-CommandRegistry-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-candidate.stdout",
+      "stored": "raw/generic-CommandRegistry-candidate.stdout.gz",
+      "original_sha256": "33175c1afa16e1de9c8024c519f9905f665f928840e13fc3cc905c00a2488691",
+      "stored_sha256": "f946ef6aa26386f48d8b6c583b79a61969ebf76dbddef18de240181919cb40d7",
+      "bytes": 371
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-original-freeze.json",
+      "stored": "raw/generic-CommandRegistry-original-freeze.json.gz",
+      "original_sha256": "b94e11676c9fb85adc851987aaeb38352c4eab580bf043d9a4a8bce6c4b907a2",
+      "stored_sha256": "ba7635c031ee062ef1d08074c245ab8089543013077d798be7dc6927144c69ba",
+      "bytes": 2738
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-original.stderr",
+      "stored": "raw/generic-CommandRegistry-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-CommandRegistry-original.stdout",
+      "stored": "raw/generic-CommandRegistry-original.stdout.gz",
+      "original_sha256": "33175c1afa16e1de9c8024c519f9905f665f928840e13fc3cc905c00a2488691",
+      "stored_sha256": "f946ef6aa26386f48d8b6c583b79a61969ebf76dbddef18de240181919cb40d7",
+      "bytes": 371
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-candidate-freeze.json",
+      "stored": "raw/generic-MoltbookResponse-candidate-freeze.json.gz",
+      "original_sha256": "e2a2edd504846eb96294fcdde5ef08a3dbed5d4cdfe97b924b5d4badfc01dd7d",
+      "stored_sha256": "80a449160892bb9c31aee6f74fd4900bb06834089ec1335b8c7fe741132ef5e7",
+      "bytes": 2748
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-candidate.stderr",
+      "stored": "raw/generic-MoltbookResponse-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-candidate.stdout",
+      "stored": "raw/generic-MoltbookResponse-candidate.stdout.gz",
+      "original_sha256": "b1c7ee688b0c75d89e24b3171c69294b66a55937a065c62484c1001782c93c99",
+      "stored_sha256": "4f6f5c9ffc3c13852b1f9de431684592e7f5d7d846a2fc3e5b22c7a6a6e08ab3",
+      "bytes": 375
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-original-freeze.json",
+      "stored": "raw/generic-MoltbookResponse-original-freeze.json.gz",
+      "original_sha256": "e0e39cf4444f7e0ceb2de7569649e1fb18feb7bf0f600975439c4beb47aed588",
+      "stored_sha256": "d557db2305a3f18d02037df5a92ae723e0bde8c78380e3ab77d78c792cffbef6",
+      "bytes": 2743
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-original.stderr",
+      "stored": "raw/generic-MoltbookResponse-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-MoltbookResponse-original.stdout",
+      "stored": "raw/generic-MoltbookResponse-original.stdout.gz",
+      "original_sha256": "b1c7ee688b0c75d89e24b3171c69294b66a55937a065c62484c1001782c93c99",
+      "stored_sha256": "4f6f5c9ffc3c13852b1f9de431684592e7f5d7d846a2fc3e5b22c7a6a6e08ab3",
+      "bytes": 375
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-candidate-freeze.json",
+      "stored": "raw/generic-SessionContext-candidate-freeze.json.gz",
+      "original_sha256": "11d58e438c7a39466e63fdac7d484421a707463007b89514512259524e235f41",
+      "stored_sha256": "65d04de8e997e51d394baf1697bb4bfa52c98da8634e0f0d477c32cb4fa2dc2d",
+      "bytes": 2738
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-candidate.stderr",
+      "stored": "raw/generic-SessionContext-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-candidate.stdout",
+      "stored": "raw/generic-SessionContext-candidate.stdout.gz",
+      "original_sha256": "b911e5d09955f15f38d3065ce7e04904257f369061a81eaa8fa9c1e233ec14df",
+      "stored_sha256": "d17c603460ac64782da3ddca05271bfc5fe4830be6b6461f05a214ee7eb11c3e",
+      "bytes": 367
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-original-freeze.json",
+      "stored": "raw/generic-SessionContext-original-freeze.json.gz",
+      "original_sha256": "a27953a0ddc9cfd5594d74b804dc657a1d00ae28e6a505aa4e3de338876db9f4",
+      "stored_sha256": "a1ac295afdc7968003eea3704c32a01eb29c16745024c3114d67e31c02645e41",
+      "bytes": 2733
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-original.stderr",
+      "stored": "raw/generic-SessionContext-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionContext-original.stdout",
+      "stored": "raw/generic-SessionContext-original.stdout.gz",
+      "original_sha256": "b911e5d09955f15f38d3065ce7e04904257f369061a81eaa8fa9c1e233ec14df",
+      "stored_sha256": "d17c603460ac64782da3ddca05271bfc5fe4830be6b6461f05a214ee7eb11c3e",
+      "bytes": 367
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-candidate-freeze.json",
+      "stored": "raw/generic-SessionManager-candidate-freeze.json.gz",
+      "original_sha256": "1dce47f4defddae213dbd8185e2bec1a008f87a0140a5346868c8d707d2673af",
+      "stored_sha256": "9fc53359ff4dc43129d8e92cfa209a7546f40097648c3570cdcc139eae0f2957",
+      "bytes": 2738
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-candidate.stderr",
+      "stored": "raw/generic-SessionManager-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-candidate.stdout",
+      "stored": "raw/generic-SessionManager-candidate.stdout.gz",
+      "original_sha256": "ce607be2be8bfb98946c86c03532a3d5069bae19828e7d8f119ae4477c732a26",
+      "stored_sha256": "4fd7d10e6bf4495e83d7837057365aab61b65fa91f216446c2c2db601a628fde",
+      "bytes": 367
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-original-freeze.json",
+      "stored": "raw/generic-SessionManager-original-freeze.json.gz",
+      "original_sha256": "51a83b4ec4ca9ab6d1440b97fa76db6d212134b3b228b189f2c757393bcce87a",
+      "stored_sha256": "de2266f42cf2b0fd6ef3b8dfad9391fc4aea477cbdb58551536a5040d5798e53",
+      "bytes": 2733
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-original.stderr",
+      "stored": "raw/generic-SessionManager-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-SessionManager-original.stdout",
+      "stored": "raw/generic-SessionManager-original.stdout.gz",
+      "original_sha256": "ce607be2be8bfb98946c86c03532a3d5069bae19828e7d8f119ae4477c732a26",
+      "stored_sha256": "4fd7d10e6bf4495e83d7837057365aab61b65fa91f216446c2c2db601a628fde",
+      "bytes": 367
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-candidate-freeze.json",
+      "stored": "raw/generic-ToolAdapter-candidate-freeze.json.gz",
+      "original_sha256": "7c0b1d5632e029d08ff7969ef4f9eb5d017da3de4692cc4e3b7b66a6d163e32f",
+      "stored_sha256": "c0a9111e30659b09654a0b45d14f50143b9dbbb8b47904da49b5214704c487a4",
+      "bytes": 2723
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-candidate.stderr",
+      "stored": "raw/generic-ToolAdapter-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-candidate.stdout",
+      "stored": "raw/generic-ToolAdapter-candidate.stdout.gz",
+      "original_sha256": "eb2429ddd3b71b69a3bfa159ea83691de77bc9e7e3fea4b8d159e8e4ff40c112",
+      "stored_sha256": "3263639f5344817c47934ad9a2b556d51e784178a80e2e203242e380dabe66eb",
+      "bytes": 355
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-original-freeze.json",
+      "stored": "raw/generic-ToolAdapter-original-freeze.json.gz",
+      "original_sha256": "441d7c4d9a42238a8376e0e6a0ef13b19966b79f04d8c8fe1e0d2d9d0274f768",
+      "stored_sha256": "74b5a3aff6d2cb5c9ceac00ea91bac5fd2e06855096de9fe67e50252aec6ed26",
+      "bytes": 2718
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-original.stderr",
+      "stored": "raw/generic-ToolAdapter-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-ToolAdapter-original.stdout",
+      "stored": "raw/generic-ToolAdapter-original.stdout.gz",
+      "original_sha256": "eb2429ddd3b71b69a3bfa159ea83691de77bc9e7e3fea4b8d159e8e4ff40c112",
+      "stored_sha256": "3263639f5344817c47934ad9a2b556d51e784178a80e2e203242e380dabe66eb",
+      "bytes": 355
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-compatibility-results.json",
+      "stored": "raw/generic-compatibility-results.json.gz",
+      "original_sha256": "b51d115a7d1ed0a492b0415375ca503d3ec5328cb4b14daf197358c3e4b7c723",
+      "stored_sha256": "71a90b2fbbbb1b9e1d1f3236c86023d48d61f92c05b0f17d8585aa1e6eb563cc",
+      "bytes": 6358
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-compatibility.stdout",
+      "stored": "raw/generic-compatibility.stdout.gz",
+      "original_sha256": "b51d115a7d1ed0a492b0415375ca503d3ec5328cb4b14daf197358c3e4b7c723",
+      "stored_sha256": "71a90b2fbbbb1b9e1d1f3236c86023d48d61f92c05b0f17d8585aa1e6eb563cc",
+      "bytes": 6358
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/CommandRegistry/original/boundary.py",
+      "stored": "raw/generic-consumers/CommandRegistry/original/boundary.py.gz",
+      "original_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "stored_sha256": "a4f880dcc6dcd16fc517045d0295445de8dccf75a65337a3301a0ba11b2a74a0",
+      "bytes": 15348
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/CommandRegistry/original/consumer.py",
+      "stored": "raw/generic-consumers/CommandRegistry/original/consumer.py.gz",
+      "original_sha256": "28f40518cbc4ced0607781c51aecefcbe0daacb7806d521c58621cb198f0d150",
+      "stored_sha256": "99caa9c0d6d3ddf21f039fc4db06b76f94753cc4dcc852358020a76ff12e6168",
+      "bytes": 201
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/MoltbookResponse/original/boundary.py",
+      "stored": "raw/generic-consumers/MoltbookResponse/original/boundary.py.gz",
+      "original_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "stored_sha256": "5c3e182dd64349d3b073b6a03e746ff429c0572b016916ab73e22f9268d498f2",
+      "bytes": 6478
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/MoltbookResponse/original/consumer.py",
+      "stored": "raw/generic-consumers/MoltbookResponse/original/consumer.py.gz",
+      "original_sha256": "561ce6e6467c7d8a83ef4c8bec9f162bde446b32ce5483f5a5cb4cddfb774cfd",
+      "stored_sha256": "639dd9aa7305c020725e5c90097e5975f52da3e71177b869b426e3252f45ebdf",
+      "bytes": 204
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/SessionContext/original/boundary.py",
+      "stored": "raw/generic-consumers/SessionContext/original/boundary.py.gz",
+      "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "stored_sha256": "751a2733632b55ed880903586348c7d11f15d2f73f6e86a471e7438fc9c29484",
+      "bytes": 15061
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/SessionContext/original/consumer.py",
+      "stored": "raw/generic-consumers/SessionContext/original/consumer.py.gz",
+      "original_sha256": "09cb94d0d4ebf4775e3978de872ed7906d71c273615a5352a834acf9a613b0ab",
+      "stored_sha256": "0fe8503099a95a41bfbfd01ec3490ab1771edb7125d1423fd7f9ca92b28bba48",
+      "bytes": 198
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/SessionManager/original/boundary.py",
+      "stored": "raw/generic-consumers/SessionManager/original/boundary.py.gz",
+      "original_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "stored_sha256": "751a2733632b55ed880903586348c7d11f15d2f73f6e86a471e7438fc9c29484",
+      "bytes": 15061
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/SessionManager/original/consumer.py",
+      "stored": "raw/generic-consumers/SessionManager/original/consumer.py.gz",
+      "original_sha256": "de530cca36b06d4620531cadcb78ccf0e9fda54da8151baeb4c6f7d6eaee8f65",
+      "stored_sha256": "dc53cfdb0c410d5f29317a0ef4c2535316cc9392a3adb4361d897adbb560c221",
+      "bytes": 198
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/ToolAdapter/original/boundary.py",
+      "stored": "raw/generic-consumers/ToolAdapter/original/boundary.py.gz",
+      "original_sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d",
+      "stored_sha256": "879ea645381d078bffd23053796a19e222b070145343d442c7375a8361039a6f",
+      "bytes": 7731
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers/ToolAdapter/original/consumer.py",
+      "stored": "raw/generic-consumers/ToolAdapter/original/consumer.py.gz",
+      "original_sha256": "34f5db207ea948b484f45c644474a1675859b7ae688998dfe383401ac2a21650",
+      "stored_sha256": "4d754d44fe9ec6f4769905812f8f183f06190ee7919285c7e82b4dc73fcdbb27",
+      "bytes": 189
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers-v2/MemoryMetric/original/boundary.py",
+      "stored": "raw/generic-consumers-v2/MemoryMetric/original/boundary.py.gz",
+      "original_sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7",
+      "stored_sha256": "6eb0f5711f299c9f22c6203b2dd6d25836e86304a7021b6fdb797fb89ee2b520",
+      "bytes": 6119
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-consumers-v2/MemoryMetric/original/consumer.py",
+      "stored": "raw/generic-consumers-v2/MemoryMetric/original/consumer.py.gz",
+      "original_sha256": "0d38a89226a433a8e93c5a9bcc8fcff1ee7af69c7d15abb797fbe1625165d826",
+      "stored_sha256": "def4f5152601264b0059089681d7ce6059111b4c3165075b9b68eae1ef692087",
+      "bytes": 192
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-memorymetric-results.json",
+      "stored": "raw/generic-memorymetric-results.json.gz",
+      "original_sha256": "368dac00a3f552ac97d4b5acb619786a70805d39abf8e4a2898a0d7881c5d214",
+      "stored_sha256": "24d675bdff55a31dbd7006063827824ddc08cd1b73e081bdcda5804b80feb140",
+      "bytes": 1256
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-memorymetric.stdout",
+      "stored": "raw/generic-memorymetric.stdout.gz",
+      "original_sha256": "368dac00a3f552ac97d4b5acb619786a70805d39abf8e4a2898a0d7881c5d214",
+      "stored_sha256": "24d675bdff55a31dbd7006063827824ddc08cd1b73e081bdcda5804b80feb140",
+      "bytes": 1256
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-candidate-freeze.json",
+      "stored": "raw/generic-v2-MemoryMetric-candidate-freeze.json.gz",
+      "original_sha256": "dd888e5e3e7562db94e627b3308db888357b5a882891632941673c8bf81f859f",
+      "stored_sha256": "efca2c8f319ca174a74f7930780f43bd4eac83810fc44ace8f390e50e0b0a651",
+      "bytes": 2743
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-candidate.stderr",
+      "stored": "raw/generic-v2-MemoryMetric-candidate.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-candidate.stdout",
+      "stored": "raw/generic-v2-MemoryMetric-candidate.stdout.gz",
+      "original_sha256": "298b83a9f8c25d6c43b4f60f4c6f44efbd2b9df5c7209a924d4189678e3ad2b1",
+      "stored_sha256": "65e26654772c122de3eacb4d5aa7ed6ce52903fe93aa42d3489a158f51601f09",
+      "bytes": 359
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-original-freeze.json",
+      "stored": "raw/generic-v2-MemoryMetric-original-freeze.json.gz",
+      "original_sha256": "3c90fa9449998f0a3e2ee1103eaabfd626058b130c7739da85348388be4b99c9",
+      "stored_sha256": "7169654b3490e03fefc555ef344c330fd8688a69c7498cd2e767246c0cd174d3",
+      "bytes": 2738
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-original.stderr",
+      "stored": "raw/generic-v2-MemoryMetric-original.stderr.gz",
+      "original_sha256": "5c5b88f77e7307dc04a95fe2931380040250c758953365e419f4425fda4bbc61",
+      "stored_sha256": "9436a3d64bcc47cbd883649bb692fe12d41657de263269d29f7ecb039ca1c1a8",
+      "bytes": 66
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/generic-v2-MemoryMetric-original.stdout",
+      "stored": "raw/generic-v2-MemoryMetric-original.stdout.gz",
+      "original_sha256": "298b83a9f8c25d6c43b4f60f4c6f44efbd2b9df5c7209a924d4189678e3ad2b1",
+      "stored_sha256": "65e26654772c122de3eacb4d5aa7ed6ce52903fe93aa42d3489a158f51601f09",
+      "bytes": 359
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/lock-r1-freeze.json",
+      "stored": "raw/lock-r1-freeze.json.gz",
+      "original_sha256": "3ec83e1877b89dcd0116f24421863041f5b2aa80503969aab10631bb6568ba2c",
+      "stored_sha256": "eff08c9d627aae3e50ff047683fc2de8ca800bbba8e8ccba33443598850954c7",
+      "bytes": 2727
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/lock-r1-receipt.json",
+      "stored": "raw/lock-r1-receipt.json.gz",
+      "original_sha256": "dc8f3feb5585845061f65c14a22d54704881ccb8336e696cbb963fc626074644",
+      "stored_sha256": "4eb61a16f056f4c82705ff3e98d97b0ca11daa61e95259b56c819e184c0cce7c",
+      "bytes": 2979
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/lock-r1.stderr",
+      "stored": "raw/lock-r1.stderr.gz",
+      "original_sha256": "e73051aa69275cee1ef2f06aca3e595b2d59a453f07c4bd96ffcdc5956f335ef",
+      "stored_sha256": "0882a92b0530ee09d477ecd1e70984fd8735126497a76271399c12120e4215d2",
+      "bytes": 29
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/lock-r1.stdout",
+      "stored": "raw/lock-r1.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/new-tests-r1-freeze.json",
+      "stored": "raw/new-tests-r1-freeze.json.gz",
+      "original_sha256": "e9f1449142dd6bd614193a3dbda88131376f02f96c1b3107606e5c4f258548cb",
+      "stored_sha256": "8c9d79b74f45175a6661666a726b9e185af7950db981f1bdec833404de0e044e",
+      "bytes": 3242
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/new-tests-r1-receipt.json",
+      "stored": "raw/new-tests-r1-receipt.json.gz",
+      "original_sha256": "9541084b3c190fa6c6492c845abebde0cde5734ae6e690bb999bd4dc74737f0d",
+      "stored_sha256": "fee6bb647bc9956f92d76d2b330214ac716620b27ef797c7ce21a574091ff7e9",
+      "bytes": 3492
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/new-tests-r1-source-audit.json",
+      "stored": "raw/new-tests-r1-source-audit.json.gz",
+      "original_sha256": "2f8c4aa12ed414b13a15ff5248f384c8f5941092be37ce8af098abe04b64de35",
+      "stored_sha256": "5add6e38a15578104c061f95630261fd153b0c4042e0024c4a0b5a90161d0f50",
+      "bytes": 87946
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/new-tests-r1.stderr",
+      "stored": "raw/new-tests-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/new-tests-r1.stdout",
+      "stored": "raw/new-tests-r1.stdout.gz",
+      "original_sha256": "2d5609e7cb2e6cb49c4927f299e982db48e01cd110e4969e7255b590f0df9d29",
+      "stored_sha256": "dde27c5609a1bc358e5f698bb421f54dd2e8762cb87a32bc98a891a0b8a9c162",
+      "bytes": 16049
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/next-r1-freeze.json",
+      "stored": "raw/next-r1-freeze.json.gz",
+      "original_sha256": "81fc6d5db798506da184a26a113defd6f1b065ac7dc36c1cb462ac60772f0ad1",
+      "stored_sha256": "23b03d37f74b9a4641df0aef8ccce66b50a39cf0ecaf67e7e570c06a8195dc93",
+      "bytes": 2770
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/next-r1-receipt.json",
+      "stored": "raw/next-r1-receipt.json.gz",
+      "original_sha256": "18d52313d2bafad730507635364c9b84d29e818cb0b46b741563d5b7fa4b6e5b",
+      "stored_sha256": "549e93b1ab8bd40293a666116e2cb01cce3f56303802a4a002badc7bc08af840",
+      "bytes": 3022
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/next-r1.stderr",
+      "stored": "raw/next-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/next-r1.stdout",
+      "stored": "raw/next-r1.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961",
+      "bytes": 73
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/original-after.json",
+      "stored": "raw/original-after.json.gz",
+      "original_sha256": "bc7f8faf64d0ddacd558fa9014ee0765348a1115f7c026cca5bd6edde66e3a99",
+      "stored_sha256": "310eee80e7ac7156d8af8dc6d1fc0c3958e1919763e7f1c17dc10a4adba567a1",
+      "bytes": 768
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/original-before.json",
+      "stored": "raw/original-before.json.gz",
+      "original_sha256": "0ed0bcd6d84b17a58fa968ff85951d39041a6f3da438eaa903464910fe1bd2a2",
+      "stored_sha256": "26eb7b2a1718b5db23e25ccf74e8a2aca416b8e26af1a7b80ef804d4f516984f",
+      "bytes": 880
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/original-raw-artifact-manifest.json",
+      "stored": "raw/original-raw-artifact-manifest.json.gz",
+      "original_sha256": "433ba6b838d72ef28620816c2a2b402c9c89e39b5d5cd601938672081463f1ad",
+      "stored_sha256": "64ec1bfb472c3476cddf3ef9b905d369bd33dd4dac2513574045fb54602964aa",
+      "bytes": 32328
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/precollection-freeze.json",
+      "stored": "raw/precollection-freeze.json.gz",
+      "original_sha256": "4951152d96802d52eaca5cdf051e6058e3b653cd0ca828c1962d422076e30ae2",
+      "stored_sha256": "9aaa40e95351f03ef36c47046803ef32a27f19e35e4f9e4caddcd6d851d5fb1f",
+      "bytes": 87212
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/preflight.py",
+      "stored": "raw/preflight.py.gz",
+      "original_sha256": "9d6c4bf2b7404eb7d9a6b1326bc9110257afe43237dd2ad31e8a12e04d7fb541",
+      "stored_sha256": "0dfb8b2199bcc64048db7b921081b24f1cc814d564ecdb21a6de5ff85d038a06",
+      "bytes": 1366
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/prepare_review.py",
+      "stored": "raw/prepare_review.py.gz",
+      "original_sha256": "176abc397118cd4e1de1656ee0aa08138838b59085065546ffff5bff647fc10a",
+      "stored_sha256": "eb0c7334fb2993b37e2c4eea854e5fe85ca35cbc05036793be27d295fc435e31",
+      "bytes": 2754
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/pytest_source_audit.py",
+      "stored": "raw/pytest_source_audit.py.gz",
+      "original_sha256": "bbcf35eaa1cc3316a7a23fabe6d1fd5ca0ddd6a61d1aba9ce5894b8458fa69a5",
+      "stored_sha256": "d03fed17df0dd2548b4db0c31aa1023f179a959044f25ee3233318d691bb2884",
+      "bytes": 1672
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/render-r1-freeze.json",
+      "stored": "raw/render-r1-freeze.json.gz",
+      "original_sha256": "58e574fc73d255bcfc64c84484d2b318817149e6026b9b58106735485a48e0c0",
+      "stored_sha256": "73e34b68c84e30fac35a100f8ad49a93ebe54da5820cb7c471c5c82de5b34241",
+      "bytes": 2799
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/render-r1-receipt.json",
+      "stored": "raw/render-r1-receipt.json.gz",
+      "original_sha256": "0134e9c86fede7f393c4d48dde31bc649cec89f218cde00aeb6fa8a950606aa3",
+      "stored_sha256": "8158fbf31cbd6b08b899394a9062496b11786a721b050ae69d4854cd7fbd4ea5",
+      "bytes": 3051
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/render-r1.stderr",
+      "stored": "raw/render-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/render-r1.stdout",
+      "stored": "raw/render-r1.stdout.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "bytes": 30
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/report.md",
+      "stored": "raw/report.md.gz",
+      "original_sha256": "602796deea2fffa681820bd0ed68ff67a2fa2f60b9c722d96361b39b51676654",
+      "stored_sha256": "356efc3a7744fd0227f3f49374331db45cd3616f00f03411769db41816ed2ef8",
+      "bytes": 17609
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/reviewer.json",
+      "stored": "raw/reviewer.json.gz",
+      "original_sha256": "c57759201903cea0cc47499890816ae8ee3d01e3b1eadfc1394f999414912873",
+      "stored_sha256": "dbb7c71b9aee045625c7d9966b6c40ba4293207e757f71c04efbc0a5fe5d5986",
+      "bytes": 494
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-collect-r1-freeze.json",
+      "stored": "raw/root-collect-r1-freeze.json.gz",
+      "original_sha256": "3b0596a7fb301f8e740582b03a6d973a81c4f36e14a41f71e54a0b89f7229e01",
+      "stored_sha256": "bf7c5e5a1a5e6c9f19a5e46cf214fc56ae8d2655b606f4b5f3e81707a6712218",
+      "bytes": 3181
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-collect-r1-receipt.json",
+      "stored": "raw/root-collect-r1-receipt.json.gz",
+      "original_sha256": "943056c1cdc775fa0b6c01f7fba843b8ff8ac76015181a37b6eba57f27aef869",
+      "stored_sha256": "2a6e147d1f1fbc3257cae27f62df5121f4b82ca8105262fae61204dfe6592326",
+      "bytes": 3431
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-collect-r1-source-audit.json",
+      "stored": "raw/root-collect-r1-source-audit.json.gz",
+      "original_sha256": "2d5373ccfa70a2eaadb597ab219fa20cd865347d181f169d642d4cfd968ea9b8",
+      "stored_sha256": "236b69ed23c2babfd43165b5587f955405c5c6f763d5dbc7d918b50a5c0fe232",
+      "bytes": 119552
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-collect-r1.stderr",
+      "stored": "raw/root-collect-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-collect-r1.stdout",
+      "stored": "raw/root-collect-r1.stdout.gz",
+      "original_sha256": "39698e7aad071a58a50b8839c2e1b67706ba181da64ce8883944bd4260aa9eaa",
+      "stored_sha256": "645e17946c0fccef5073ba935e1ffcf19ce2f9c77d73dae163217db487d5c86f",
+      "bytes": 1333650
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-ruff-r1-freeze.json",
+      "stored": "raw/root-ruff-r1-freeze.json.gz",
+      "original_sha256": "cc1f0842a473d5ea0880d6ed3c191d91574a8e5f7d626c3c6e206ecec6654c02",
+      "stored_sha256": "3ca7c3caf0c44e0125f7cab5eab844cc79735a6994ca57eeec9dd389a1a4a3dc",
+      "bytes": 2808
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-ruff-r1-receipt.json",
+      "stored": "raw/root-ruff-r1-receipt.json.gz",
+      "original_sha256": "0514359fc0511302ce44c839ed80e775f57edddcecbb52b83fedc2d4b66f7382",
+      "stored_sha256": "ac2c529ec8d96c94df8baaa6fe9ec961fa09465f9aac555efcf6720f9f3c51c5",
+      "bytes": 3060
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-ruff-r1.stderr",
+      "stored": "raw/root-ruff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-ruff-r1.stdout",
+      "stored": "raw/root-ruff-r1.stdout.gz",
+      "original_sha256": "5070e67215b830dc7d9f2a6202543942c6ee1331bca442ab65194936db56eba9",
+      "stored_sha256": "aa3e355db232a5aaddcf885883f763127f4dd750c0e80f162182cd7cc9bc322f",
+      "bytes": 171572
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r1-freeze.json",
+      "stored": "raw/root-tests-r1-freeze.json.gz",
+      "original_sha256": "07c71abf2f010787a57a46fb1dade6e5be0c80f8a3f7663840a0aef0f94d372e",
+      "stored_sha256": "3b04be92ca63940394172336b670062e4a218ce722ef66341791c373ee080f0e",
+      "bytes": 3154
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r1-receipt.json",
+      "stored": "raw/root-tests-r1-receipt.json.gz",
+      "original_sha256": "0f57318eaa0840bed152895b5b2491764c8017390ae282c5c54e6d4eb69d6733",
+      "stored_sha256": "6d616ff7c0715496062b4daff71b41433f278a588a8960653fbb2993929a2fd3",
+      "bytes": 3404
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r1-source-audit.json",
+      "stored": "raw/root-tests-r1-source-audit.json.gz",
+      "original_sha256": "1e936cfca59ec0dfb8639ba8e4659097bbe1a3484332a38638b56ffe8bbb1236",
+      "stored_sha256": "393fef665d8b33a32fa4e2a842b8f524f922dc6ba96580a8ee95d3f4298e5071",
+      "bytes": 128232
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r1.stderr",
+      "stored": "raw/root-tests-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r1.stdout",
+      "stored": "raw/root-tests-r1.stdout.gz",
+      "original_sha256": "d3e8285c547f856298ad67a4d565b13ca01812866f57175e3d7f55d0e37979c1",
+      "stored_sha256": "f8fe83d682224740d35b7c96e7acb5bc481fb2a4d723bfc423f4fabccc8ef966",
+      "bytes": 1565494
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r2-normal-user-freeze.json",
+      "stored": "raw/root-tests-r2-normal-user-freeze.json.gz",
+      "original_sha256": "e8a13db8ea06183ea01310e4c68f83e2752f3121c9f0b1b65bce2344b73176a6",
+      "stored_sha256": "3cb88f39fa9581c3233b2fe7e7a47c585b7d43d8771a58863f32b7f4c8109cde",
+      "bytes": 3239
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r2-normal-user-receipt.json",
+      "stored": "raw/root-tests-r2-normal-user-receipt.json.gz",
+      "original_sha256": "cdd732ac5c28f01380d069a2b7d7ccb93013fabdcd307763b53ac71c3b2b8082",
+      "stored_sha256": "a794f5e49540e718defae7720ffb5d2f464db904ff08b1d7bdb99473cf36ce81",
+      "bytes": 3489
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r2-normal-user-source-audit.json",
+      "stored": "raw/root-tests-r2-normal-user-source-audit.json.gz",
+      "original_sha256": "5be6c94718ed7e70d86b561cdb2e990a3e60dbb5368bdafca455b4ba461f95fa",
+      "stored_sha256": "17d7002edc443742ce5e97ad7354f4f47b8d55edd730126ee7f42c524b053c8d",
+      "bytes": 128946
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r2-normal-user.stderr",
+      "stored": "raw/root-tests-r2-normal-user.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/root-tests-r2-normal-user.stdout",
+      "stored": "raw/root-tests-r2-normal-user.stdout.gz",
+      "original_sha256": "eab0ddc4bc52f0488c56e76fb1b952f110772715f8846e9b98d233e8db5cad77",
+      "stored_sha256": "87a926a98af9dec55d5246cbbb116d91d4e07e860c0f126be6b1ca912d9c7636",
+      "bytes": 1544950
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/run_api.py",
+      "stored": "raw/run_api.py.gz",
+      "original_sha256": "4fa04942217d8e1bcc5671184714b2616501dc8467c82413e6095e65a4d463eb",
+      "stored_sha256": "19baf5aa60122ee3ce37a4712693caaa46f6c9a77421a98361aac7ca40c8e58f",
+      "bytes": 250
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/run_gate.py",
+      "stored": "raw/run_gate.py.gz",
+      "original_sha256": "4f1d367cc49b97778c3cc5c21e9263e54d0f6a38203b599fdbcae3a02910340e",
+      "stored_sha256": "e2ea4a8c497470b1f6eec802390fd70518182ab4fda9d071f730090fe80ebabc",
+      "bytes": 3748
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/run_sdk.py",
+      "stored": "raw/run_sdk.py.gz",
+      "original_sha256": "4f3e280a7d2b83ec619c7710d2292c866d626ecf513b42df72bbee9d26669da9",
+      "stored_sha256": "3aa939116e094c71d64a2f81b4ee8fd93902881add0894700f4bcfd0b9fdbead",
+      "bytes": 462
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/run_sdk_v2.py",
+      "stored": "raw/run_sdk_v2.py.gz",
+      "original_sha256": "88c11019bb094ab6691a87abafa738fcfafb0ab4e55d41ce9eb3d22726575e09",
+      "stored_sha256": "637a4fa7ff3a610e43cba2295cbcb604067a6fedf07d0ef60e5a9f59d53e4950",
+      "bytes": 465
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/run_static_frozen.py",
+      "stored": "raw/run_static_frozen.py.gz",
+      "original_sha256": "c88cbfc7d99ac520cf11c8bdbaaee01f3bd3731d549d66e5d619240afb3904ac",
+      "stored_sha256": "4d6c9f7f79c4c1d7b79d9f8c56e9a9648633d3940a74b82bba5a7a67b1995258",
+      "bytes": 448
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r1-freeze.json",
+      "stored": "raw/sdk-consumer-r1-freeze.json.gz",
+      "original_sha256": "cf392a26b7bdf8695befe6986d8a6deea1416db096a966fac9eca375c8f5f5e6",
+      "stored_sha256": "64dcadc755e04ccf4961eb90da5bbc4b88dd394bb3535cc06176a4aef17c4a0a",
+      "bytes": 2830
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r1-probe-freeze.json",
+      "stored": "raw/sdk-consumer-r1-probe-freeze.json.gz",
+      "original_sha256": "173a4535e3ffe4419f1d5650393902a46e4d1bba3a9d965041862bc4a02f1372",
+      "stored_sha256": "53c03fe0cabd203409a78eaa749083882b346888c3bc99994703b203a0aef525",
+      "bytes": 370
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r1-receipt.json",
+      "stored": "raw/sdk-consumer-r1-receipt.json.gz",
+      "original_sha256": "fe9df06bed39ae60227870b9cc099f3b1403f52f92717b1107cd6c2219a4837e",
+      "stored_sha256": "eb0b73f638a920fb74494100c6a7afc21d1cbf6f43cde7c4c71e7aa8c0fa7609",
+      "bytes": 3080
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r1.stderr",
+      "stored": "raw/sdk-consumer-r1.stderr.gz",
+      "original_sha256": "aa138da87e949e8f6bb896094827f92d28ff61ffd6c519ba0c975c265abfa375",
+      "stored_sha256": "7302a95a05a711cabf86f5a81f08ff16bf2d17dfde2189342cafdce8c78d956a",
+      "bytes": 1077
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r1.stdout",
+      "stored": "raw/sdk-consumer-r1.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r2-freeze.json",
+      "stored": "raw/sdk-consumer-r2-freeze.json.gz",
+      "original_sha256": "a741b83d9e075e84f464cbf75f9d5d2de1ccde03123c4cbb1fb1080d40dd3621",
+      "stored_sha256": "9c67e5e7c2d249b6d1207fdb9388b64c627d691461715a4f62cccf1d30b02d12",
+      "bytes": 2834
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r2-probe-freeze.json",
+      "stored": "raw/sdk-consumer-r2-probe-freeze.json.gz",
+      "original_sha256": "20eff873564886237694d9007717e459c5b6a7d06ee833942b42af40d909efc9",
+      "stored_sha256": "026ab5b12d4bae0ed04cb45510b1205dab786761c401f3a01c2155e1a6891348",
+      "bytes": 370
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r2-receipt.json",
+      "stored": "raw/sdk-consumer-r2-receipt.json.gz",
+      "original_sha256": "18c944f83b24eff543918b45f64f317cdde06ef4dae25054bcdd833395604674",
+      "stored_sha256": "6f0744b045040b86b98331e89462df651b92c1d9d265ed2ace0b4a6feb14ef24",
+      "bytes": 3083
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r2.stderr",
+      "stored": "raw/sdk-consumer-r2.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk-consumer-r2.stdout",
+      "stored": "raw/sdk-consumer-r2.stdout.gz",
+      "original_sha256": "3603422d1de821516e2bbaad69a9d10aa4e6996da378cb14636a569da882c1a0",
+      "stored_sha256": "abaff3f50b2114c3847e403f3bf881d6179cf87b0c8fbfea7f61219230bca9c4",
+      "bytes": 88350
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk_consumer_probe.py",
+      "stored": "raw/sdk_consumer_probe.py.gz",
+      "original_sha256": "daf2f44846fca04370bc3854eac7fb790a0d8f44e0d785505a71d744cab14b26",
+      "stored_sha256": "383eef5047992c50ef08c0fe8bea37593f721cecf34f32c90ce0f40238c0af88",
+      "bytes": 4341
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/sdk_consumer_probe_v2.py",
+      "stored": "raw/sdk_consumer_probe_v2.py.gz",
+      "original_sha256": "6b77ad7cfa886bb7b82dc3e45fce4b48d6b761dcb59e7c7b0b9c5d921b082496",
+      "stored_sha256": "c1811b8f6e724172274f485fdb49f183086564779c0e0559da1c9280041bafa1",
+      "bytes": 4338
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/show-r1-freeze.json",
+      "stored": "raw/show-r1-freeze.json.gz",
+      "original_sha256": "ee7615919da0d0df15770e57303cf1037e68684137627427a502f0b85bb721c0",
+      "stored_sha256": "b3f51d41d02e0d42dbadbbee5a278c7e60fcd60a4a9675a8991bb127e7ea0ae9",
+      "bytes": 2801
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/show-r1-receipt.json",
+      "stored": "raw/show-r1-receipt.json.gz",
+      "original_sha256": "f3b44cec4ec12b395befc2301b911af37f2d2d60197bdc825878d41257ea21b9",
+      "stored_sha256": "71d7f0c0a3ff271bb137f3d6fec6434a6fb202b2209683b3ef0f1167d6e8aca5",
+      "bytes": 3052
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/show-r1.stderr",
+      "stored": "raw/show-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/show-r1.stdout",
+      "stored": "raw/show-r1.stdout.gz",
+      "original_sha256": "6b4199e5bb292c7ff29224c9293c806507fe3c6e43594a74dbda0f061b0f33cc",
+      "stored_sha256": "811f2984fd909cb4683e926b4bc1e94dec5a7b4c1ad1b6a9f4138800132cd4f5",
+      "bytes": 3713
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/snapshot.py",
+      "stored": "raw/snapshot.py.gz",
+      "original_sha256": "57b530aae6de6ddbdb41e18ca8ab448c770ae3689fe6a1aefa667bffef895f04",
+      "stored_sha256": "b9587325cd72b243a520ceb7c6650fc0f631bbb2ce25866cc609e3349c9be7b2",
+      "bytes": 9375
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-checks.json",
+      "stored": "raw/static-checks.json.gz",
+      "original_sha256": "a3acfdb63e03b6d41eb4f1e2af85d84757abc3e7f415cd8e0d3dedf5e6718637",
+      "stored_sha256": "4a545cd71d5a318e8ebd679b59efb275eacf9c5324b922905da7a98bb5283541",
+      "bytes": 15907
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-checks.stdout",
+      "stored": "raw/static-checks.stdout.gz",
+      "original_sha256": "604c159b7efe1f4d16ff1dfbb70f348247b37cdd4aa6afacba81ba8ed218de59",
+      "stored_sha256": "d3e48f4844672ab3edfa8561e3fa858855b336ee876c93f6aee892964f42a4bb",
+      "bytes": 6261
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-contract-r2-freeze.json",
+      "stored": "raw/static-contract-r2-freeze.json.gz",
+      "original_sha256": "8f9230699b072eb0334cddb60423106aa0bbf18743043eb2a6b626c151b148e0",
+      "stored_sha256": "e190231c4925736bac5b79b23a3c09c60897354bba45a3c5bb1f621561dd0d8c",
+      "bytes": 2843
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-contract-r2-probe-freeze.json",
+      "stored": "raw/static-contract-r2-probe-freeze.json.gz",
+      "original_sha256": "7f5a05c125ba3978e695d081e17252a67d59da9ec64b556ed818e76b17437726",
+      "stored_sha256": "fc66fb2f677b823702e6f5f10533362a55b6aae75fdee766708dc9b8565fb535",
+      "bytes": 310
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-contract-r2-receipt.json",
+      "stored": "raw/static-contract-r2-receipt.json.gz",
+      "original_sha256": "04d723334989f2332605f47e2678451acb003de11e3c43a3c7c90c484f342afd",
+      "stored_sha256": "3b4bbb345706ab191069d64c2732eff704b93688938aaf6f8fbc80e4b4124e98",
+      "bytes": 3093
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-contract-r2.stderr",
+      "stored": "raw/static-contract-r2.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static-contract-r2.stdout",
+      "stored": "raw/static-contract-r2.stdout.gz",
+      "original_sha256": "604c159b7efe1f4d16ff1dfbb70f348247b37cdd4aa6afacba81ba8ed218de59",
+      "stored_sha256": "d3e48f4844672ab3edfa8561e3fa858855b336ee876c93f6aee892964f42a4bb",
+      "bytes": 6261
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/static_checks.py",
+      "stored": "raw/static_checks.py.gz",
+      "original_sha256": "a0bce13988fb9ab38f15b5b5892f4bd1410d7e6750fbf0c6c57429a2aefd539a",
+      "stored_sha256": "339a611dc602620bea4a3cc01e0a0001a1e6e9af67ca99c4b340c5b17e472b6b",
+      "bytes": 3500
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/tooling-hashes.json",
+      "stored": "raw/tooling-hashes.json.gz",
+      "original_sha256": "180150d164009cc94f3e321c6921f6388567bafcdb105839e3db489838bd0249",
+      "stored_sha256": "a7c87e2c333546ac7b20dc43017a64f0ab90e384865ac041840dd5b1b36c1bb5",
+      "bytes": 1230
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/tracking-commit-drift.json",
+      "stored": "raw/tracking-commit-drift.json.gz",
+      "original_sha256": "f36edefa63b933b8b75f1f01014a3ceb1dacaf9b7dc31291e302c566a6ec858e",
+      "stored_sha256": "1812115285ff4b854559df0459c263be2d5f4bfb3647487ed1c98e173a4655f2",
+      "bytes": 32377
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-base-snapshot.json",
+      "stored": "raw/unit-base-snapshot.json.gz",
+      "original_sha256": "22947458c807bc7157ee484d3dc267842727b21bad3f02e2765af9ec404f33fc",
+      "stored_sha256": "43e4625d3d02e36218cdca9da3cefe0a5175da376738e7397b9816f46280035b",
+      "bytes": 549156
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-diff-r1-freeze.json",
+      "stored": "raw/unit-diff-r1-freeze.json.gz",
+      "original_sha256": "8fe903d2d6ed1386da67432ab4c977625ef8502a706922edc0c15cec87bf881f",
+      "stored_sha256": "9e9311dd610313f3dfe7b84ea232fdc9bbb19c8d8156330fab3d868c38c67431",
+      "bytes": 2781
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-diff-r1-receipt.json",
+      "stored": "raw/unit-diff-r1-receipt.json.gz",
+      "original_sha256": "e1c0b1921a17b912450e206eab54ea5782dea281e9123b4b329c3cefc05a36f3",
+      "stored_sha256": "d05168abb7b762f1b1d6df27cfb9c3d7c00d5fd0622e4ff3bec9067a55d55e16",
+      "bytes": 3033
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-diff-r1.stderr",
+      "stored": "raw/unit-diff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-diff-r1.stdout",
+      "stored": "raw/unit-diff-r1.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-mypy-r1-freeze.json",
+      "stored": "raw/unit-mypy-r1-freeze.json.gz",
+      "original_sha256": "aa877c18ad4e7353651a7cef2debaa8e75696c1d2ea33b9d4df9c332e32a1d4c",
+      "stored_sha256": "81fb898b2a7ddbae6b11afc56ab9d7bdbb8f55a9e1afe289c4ed14ee8fd8c8fc",
+      "bytes": 3459
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-mypy-r1-receipt.json",
+      "stored": "raw/unit-mypy-r1-receipt.json.gz",
+      "original_sha256": "4890dfa27a743bae016d823a10b0605d1ee93141f822243a6f5911c29e20690f",
+      "stored_sha256": "9d13fcc4b47f3af79d9f11deb077b57d46dfd78b580cc1c4276d6bb42a30e2b5",
+      "bytes": 3709
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-mypy-r1.stderr",
+      "stored": "raw/unit-mypy-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-mypy-r1.stdout",
+      "stored": "raw/unit-mypy-r1.stdout.gz",
+      "original_sha256": "049f51b850512be193c74d3fbb731e25fbc6374a66560d8ec0d6569d79c88ea6",
+      "stored_sha256": "f17975b6e31bcccc608b4448aecc9455f2451f4cf70c0f883c7728b6d01181eb",
+      "bytes": 44
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r1-freeze.json",
+      "stored": "raw/unit-owning-r1-freeze.json.gz",
+      "original_sha256": "5bdccd8d65af3b527a3597a36432e75c2763b7e4310b16c74292ac1574822d79",
+      "stored_sha256": "4edd1d04e1520faaa9b0d87cc85fa0fcb6abe0629d4aa8436497cc5748e104c4",
+      "bytes": 3257
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r1-receipt.json",
+      "stored": "raw/unit-owning-r1-receipt.json.gz",
+      "original_sha256": "359ed1751ce74f0200a4786afcb5e30e981d5c6615349d1e45673d05dda8a5c1",
+      "stored_sha256": "ea4bd5c44ff3f8ddcfd648838373d8b5fc1d2999805298c681681615c25a7c96",
+      "bytes": 3507
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r1-source-audit.json",
+      "stored": "raw/unit-owning-r1-source-audit.json.gz",
+      "original_sha256": "c392bfcf8f7e47416df8e3b894b723f7dae051fafd7529a7c28770964670fe5b",
+      "stored_sha256": "689f28cce35fb6cd7d7badc1153f3cea10d840c9925a333f21694a759dc8c596",
+      "bytes": 107610
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r1.stderr",
+      "stored": "raw/unit-owning-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r1.stdout",
+      "stored": "raw/unit-owning-r1.stdout.gz",
+      "original_sha256": "642e1cc4edbaef316deaf9c0ffeade0e52a94404b02fdbba4b94777056cde45a",
+      "stored_sha256": "d008a56b2fd61170ba8f13c7df985f023b210bc3eb782df018d86d49aebeb292",
+      "bytes": 1289597
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r2-normal-user-freeze.json",
+      "stored": "raw/unit-owning-r2-normal-user-freeze.json.gz",
+      "original_sha256": "982eda191db86e5d0353551475942384960b2fa4143b3dde0b1be92da0e14508",
+      "stored_sha256": "850ae1d2eb22de1c350c629de670a2b028b321615aa68c042cfde76e1fd885d3",
+      "bytes": 3341
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r2-normal-user-receipt.json",
+      "stored": "raw/unit-owning-r2-normal-user-receipt.json.gz",
+      "original_sha256": "6309a2902ccd8deb970bdfa37929af7d32c6cfd1c28cd9defb16ffc3e384f5b6",
+      "stored_sha256": "9f8ecb6b75e3172475ce4207a5f2d4b83635f600fd14cfe1688432d63062e251",
+      "bytes": 3590
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r2-normal-user-source-audit.json",
+      "stored": "raw/unit-owning-r2-normal-user-source-audit.json.gz",
+      "original_sha256": "0a2af3e6895738013bbd268f3bee5074312ca24ee7fd5851dc6dcb8bfd987bcd",
+      "stored_sha256": "ea3d2563ffb7a8763553166e7f6833d578984a4408f10702467304ae74132d72",
+      "bytes": 108324
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r2-normal-user.stderr",
+      "stored": "raw/unit-owning-r2-normal-user.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-owning-r2-normal-user.stdout",
+      "stored": "raw/unit-owning-r2-normal-user.stdout.gz",
+      "original_sha256": "eec6a1fd55444eded46307d2274a4721830e8f2ffff3818630d4de5cd9ff1299",
+      "stored_sha256": "d4c9963e83057c66207e32ca247834a5b8deedf69ad0a8ce1cdec9d8b3fc850f",
+      "bytes": 1268531
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-product.patch",
+      "stored": "raw/unit-product.patch.gz",
+      "original_sha256": "10d579cec7a1ec108a90071842a87c648f0a3e2c3b4144169da77d967ab171b1",
+      "stored_sha256": "64534bcfd099c1b50e0c36f5010bc242550649e00527892eff86fcf26093679a",
+      "bytes": 145548
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-ruff-r1-freeze.json",
+      "stored": "raw/unit-ruff-r1-freeze.json.gz",
+      "original_sha256": "009839edf8f043f7a8b40a453bcb338474852738dfe5ebfb4355728b459fc1e8",
+      "stored_sha256": "31119da21fa121a04a3a07bd8f5cfa6e5013715f9c1809d45f932de046efc9c6",
+      "bytes": 3809
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-ruff-r1-receipt.json",
+      "stored": "raw/unit-ruff-r1-receipt.json.gz",
+      "original_sha256": "fc3f7a37c22160d68ac57e7b92dec2a01c379c9ffc60cf6dc0873227a5231638",
+      "stored_sha256": "6fa3c482b62de3390a8a5d2bed6c136bb725a835fea071f5d6078db7270bd5cc",
+      "bytes": 4060
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-ruff-r1.stderr",
+      "stored": "raw/unit-ruff-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-ruff-r1.stdout",
+      "stored": "raw/unit-ruff-r1.stdout.gz",
+      "original_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "stored_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "bytes": 19
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/unit-scope.json",
+      "stored": "raw/unit-scope.json.gz",
+      "original_sha256": "65c777f555b2422157951c2f526bcb2b5e35b6a50bd12ce2e6676d394c08ba0d",
+      "stored_sha256": "8ddcab80a82cc9196f980ce035827f9fe7ac761cfe258336ec3fd569a2d71394",
+      "bytes": 1200
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/versions-r1-freeze.json",
+      "stored": "raw/versions-r1-freeze.json.gz",
+      "original_sha256": "4e20e16af4e2acf9d57302cdc87a3109d4d38172194e481e42ab667589405977",
+      "stored_sha256": "a59c7e33566d445eff221a0dbc50f4299b2685cf96ac87b096662d5516be2ded",
+      "bytes": 2914
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/versions-r1-receipt.json",
+      "stored": "raw/versions-r1-receipt.json.gz",
+      "original_sha256": "bf4011966fadd3f7dd0149784166aff07a06c34c62aa64c731d60a76f3833d98",
+      "stored_sha256": "5ff3c7732d3b2ce2fba5b83a6dee4238466225e7f0afed9be6bc91e245c38c97",
+      "bytes": 3165
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/versions-r1.stderr",
+      "stored": "raw/versions-r1.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "bytes": 0
+    },
+    {
+      "original": "/private/tmp/telem-03/VAL-008/versions-r1.stdout",
+      "stored": "raw/versions-r1.stdout.gz",
+      "original_sha256": "b6b7e0eb5e1b9ca3dfb908f8d77aec41e3316bd68431249b7066f1c5ea22dfcb",
+      "stored_sha256": "e9091014244bb77451ad081bd70c96daafac34bcde695f0bfb2200a19ed7d990",
+      "bytes": 162
+    }
+  ]
+}

@@ -1,0 +1,2895 @@
+{
+  "base": "e6209e3156216afde1655758e280690229f7d3e6",
+  "manifest": {
+    "existing_source": [
+      "packages/friday-telemetry/src/friday_telemetry/__init__.py",
+      "packages/friday-chat/src/friday_chat/telemetry.py",
+      "packages/friday-chat/src/friday_chat/turns/processor.py",
+      "packages/friday-chat/src/friday_chat/tools/loop.py",
+      "packages/friday-chat/src/friday_chat/runtime.py",
+      "packages/friday-chat/src/friday_chat/adapters.py",
+      "packages/friday-chat/src/friday_chat/background.py",
+      "packages/friday-chat/src/friday_chat/app.py",
+      "packages/friday-chat/src/friday_chat/commands/registry.py"
+    ],
+    "new_source": [
+      "packages/friday-telemetry/src/friday_telemetry/models/execution.py",
+      "packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py",
+      "packages/friday-chat/src/friday_chat/turns/telemetry.py"
+    ],
+    "existing_tests": [
+      "packages/friday-chat/tests_chat/test_telemetry.py",
+      "packages/friday-chat/tests_chat/test_turn_processing.py",
+      "packages/friday-chat/tests_chat/test_background_work.py",
+      "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+      "packages/friday-chat/tests_chat/test_runtime.py",
+      "packages/friday-chat/tests_chat/test_command_foundations.py",
+      "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+      "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "packages/friday-chat/tests_chat/test_mcp_memory.py"
+    ],
+    "new_tests": [
+      "packages/friday-telemetry/tests_telemetry/test_execution_events.py",
+      "packages/friday-telemetry/tests_telemetry/test_correlation.py",
+      "packages/friday-chat/tests_chat/test_turn_telemetry.py",
+      "packages/friday-chat/tests_chat/test_tool_telemetry.py",
+      "packages/friday-chat/tests_chat/test_memory_telemetry.py",
+      "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py"
+    ],
+    "documentation": [
+      "packages/friday-telemetry/README.md",
+      "packages/friday-chat/README.md"
+    ]
+  },
+  "existing": {
+    "packages/friday-telemetry/src/friday_telemetry/__init__.py": {
+      "sha256": "53d9f2be93e7f9142b48c95c16558d2f946e8f7a31bf88250824fd3f1e751c26",
+      "public_api": {},
+      "definitions": [],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/telemetry.py": {
+      "sha256": "7bb345543e8970477c55c5c383ae06d7d85fa6929daf4025040e10af2d622250",
+      "public_api": {
+        "LifecycleEvent": {},
+        "SpanOutcome": {},
+        "DiagnosticEvent": {},
+        "TelemetrySnapshot": {},
+        "ChatTelemetryObserver": {
+          "__init__": "self, *, enabled: bool, session_id: str, provider: TelemetryInterface | None=None",
+          "enabled": "self",
+          "snapshot": "self",
+          "emit": "self, name: LifecycleName, *, outcome: Outcome='succeeded', reason: Reason | None=None, count: int=0",
+          "capture_event": "self, event_name: str, data: dict[str, Any]",
+          "start_span": "self, name: str, parent_id: str | None=None",
+          "end_span": "self, span_id: str, data: dict[str, Any] | None=None"
+        }
+      },
+      "definitions": [
+        {
+          "name": "LifecycleEvent",
+          "line": 28,
+          "end_line": 37
+        },
+        {
+          "name": "SpanOutcome",
+          "line": 40,
+          "end_line": 46
+        },
+        {
+          "name": "DiagnosticEvent",
+          "line": 50,
+          "end_line": 55
+        },
+        {
+          "name": "TelemetrySnapshot",
+          "line": 59,
+          "end_line": 68
+        },
+        {
+          "name": "ChatTelemetryObserver",
+          "line": 71,
+          "end_line": 223
+        },
+        {
+          "name": "__init__",
+          "line": 79,
+          "end_line": 99
+        },
+        {
+          "name": "enabled",
+          "line": 102,
+          "end_line": 103
+        },
+        {
+          "name": "snapshot",
+          "line": 105,
+          "end_line": 118
+        },
+        {
+          "name": "emit",
+          "line": 120,
+          "end_line": 136
+        },
+        {
+          "name": "capture_event",
+          "line": 138,
+          "end_line": 172
+        },
+        {
+          "name": "_record",
+          "line": 174,
+          "end_line": 180
+        },
+        {
+          "name": "_record_failure",
+          "line": 182,
+          "end_line": 188
+        },
+        {
+          "name": "start_span",
+          "line": 190,
+          "end_line": 207
+        },
+        {
+          "name": "end_span",
+          "line": 209,
+          "end_line": 223
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/turns/processor.py": {
+      "sha256": "85d1aff6f072582d466a7f10fc79eaea76067aa7c8b1bdd5f175f02661a3b096",
+      "public_api": {
+        "TurnResult": {},
+        "PreparedTurn": {},
+        "TurnProcessingError": {},
+        "TurnBudgetError": {
+          "__init__": "self, reason: ToolRejectionReason"
+        },
+        "TurnTimeoutError": {
+          "__init__": "self, message: str='LLM turn timed out.', *, timeout_seconds: float | None=None"
+        },
+        "TurnRetryExhaustedError": {},
+        "TurnPersistenceError": {},
+        "TurnCircuitBreakerOpenError": {},
+        "TurnProcessor": {
+          "__init__": "self, runtime: FridayRuntime | None=None, *, config: FridayChatConfig | None=None, circuit_breaker_open: bool=False, heartbeat_factory: HeartbeatFactory | None=None",
+          "process": "self, user_message: str",
+          "stream_process": "self, user_message: str",
+          "process_streaming": "self, user_message: str, *, on_chunk: Callable[[str], Awaitable[None]]"
+        }
+      },
+      "definitions": [
+        {
+          "name": "TurnResult",
+          "line": 42,
+          "end_line": 58
+        },
+        {
+          "name": "PreparedTurn",
+          "line": 62,
+          "end_line": 77
+        },
+        {
+          "name": "TurnProcessingError",
+          "line": 80,
+          "end_line": 81
+        },
+        {
+          "name": "TurnBudgetError",
+          "line": 84,
+          "end_line": 91
+        },
+        {
+          "name": "TurnTimeoutError",
+          "line": 94,
+          "end_line": 104
+        },
+        {
+          "name": "TurnRetryExhaustedError",
+          "line": 107,
+          "end_line": 108
+        },
+        {
+          "name": "TurnPersistenceError",
+          "line": 111,
+          "end_line": 112
+        },
+        {
+          "name": "TurnCircuitBreakerOpenError",
+          "line": 115,
+          "end_line": 116
+        },
+        {
+          "name": "TurnProcessor",
+          "line": 119,
+          "end_line": 652
+        },
+        {
+          "name": "_rollback_fake_memory_turn",
+          "line": 655,
+          "end_line": 664
+        },
+        {
+          "name": "_build_context_text",
+          "line": 667,
+          "end_line": 677
+        },
+        {
+          "name": "_build_tool_context_block",
+          "line": 680,
+          "end_line": 684
+        },
+        {
+          "name": "_build_prompt_text",
+          "line": 687,
+          "end_line": 701
+        },
+        {
+          "name": "_build_model_messages",
+          "line": 704,
+          "end_line": 717
+        },
+        {
+          "name": "_calculate_dynamic_context_budget",
+          "line": 720,
+          "end_line": 735
+        },
+        {
+          "name": "_build_budget_status",
+          "line": 738,
+          "end_line": 759
+        },
+        {
+          "name": "_with_text_tool_calls",
+          "line": 762,
+          "end_line": 779
+        },
+        {
+          "name": "_parse_text_tool_calls",
+          "line": 782,
+          "end_line": 800
+        },
+        {
+          "name": "_parse_text_tool_arguments",
+          "line": 803,
+          "end_line": 819
+        },
+        {
+          "name": "_ensure_chat_response",
+          "line": 822,
+          "end_line": 829
+        },
+        {
+          "name": "_assistant_message_from_response",
+          "line": 832,
+          "end_line": 852
+        },
+        {
+          "name": "_tool_result_messages",
+          "line": 855,
+          "end_line": 866
+        },
+        {
+          "name": "_tool_fallback_message",
+          "line": 869,
+          "end_line": 871
+        },
+        {
+          "name": "_serialize_response",
+          "line": 874,
+          "end_line": 890
+        },
+        {
+          "name": "_int_from_mapping",
+          "line": 893,
+          "end_line": 898
+        },
+        {
+          "name": "_float_from_mapping",
+          "line": 901,
+          "end_line": 906
+        },
+        {
+          "name": "__init__",
+          "line": 87,
+          "end_line": 91
+        },
+        {
+          "name": "__init__",
+          "line": 97,
+          "end_line": 104
+        },
+        {
+          "name": "__init__",
+          "line": 122,
+          "end_line": 139
+        },
+        {
+          "name": "process",
+          "line": 141,
+          "end_line": 196
+        },
+        {
+          "name": "stream_process",
+          "line": 198,
+          "end_line": 207
+        },
+        {
+          "name": "process_streaming",
+          "line": 209,
+          "end_line": 299
+        },
+        {
+          "name": "_prepare_turn",
+          "line": 301,
+          "end_line": 386
+        },
+        {
+          "name": "_complete_model_turn",
+          "line": 388,
+          "end_line": 431
+        },
+        {
+          "name": "_complete_with_retries",
+          "line": 433,
+          "end_line": 468
+        },
+        {
+          "name": "_complete_tool_turn",
+          "line": 470,
+          "end_line": 521
+        },
+        {
+          "name": "_mcp_names",
+          "line": 523,
+          "end_line": 525
+        },
+        {
+          "name": "_safe_model_response",
+          "line": 527,
+          "end_line": 555
+        },
+        {
+          "name": "_execute_tool_calls",
+          "line": 557,
+          "end_line": 588
+        },
+        {
+          "name": "_persist_turn",
+          "line": 590,
+          "end_line": 652
+        },
+        {
+          "name": "capture_chunk",
+          "line": 202,
+          "end_line": 203
+        },
+        {
+          "name": "stop_heartbeat_once",
+          "line": 241,
+          "end_line": 245
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/tools/loop.py": {
+      "sha256": "866e1d095c9db2f6ef89be19b081345f3aa8d8e9e29be1f6522511f9eda015ee",
+      "public_api": {
+        "ToolCallRegistry": {
+          "call_tool": "self, name: str, arguments: dict[str, Any]"
+        },
+        "RecordingToolCallRegistry": {
+          "is_mcp_tool": "self, name: str",
+          "call_tool_record": "self, name: str, arguments: dict[str, Any], *, call_id: str | None=None, used_call_ids: set[str] | None=None"
+        },
+        "ToolLoopResult": {},
+        "ToolLoop": {
+          "__init__": "self, registry: ToolCallRegistry | None=None, *, max_iterations: int=1, heartbeat_factory: HeartbeatFactory | None=None",
+          "run": "self, messages: Sequence[Mapping[str, Any]], tool_schemas: Sequence[ToolDefinition], *, used_call_ids: set[str] | None=None, mcp_tool_names: frozenset[str]=frozenset()"
+        }
+      },
+      "definitions": [
+        {
+          "name": "ToolCallRegistry",
+          "line": 16,
+          "end_line": 20
+        },
+        {
+          "name": "RecordingToolCallRegistry",
+          "line": 24,
+          "end_line": 36
+        },
+        {
+          "name": "ToolLoopResult",
+          "line": 40,
+          "end_line": 48
+        },
+        {
+          "name": "ToolLoop",
+          "line": 51,
+          "end_line": 195
+        },
+        {
+          "name": "_extract_tool_calls",
+          "line": 198,
+          "end_line": 223
+        },
+        {
+          "name": "_estimate_token_usage",
+          "line": 226,
+          "end_line": 236
+        },
+        {
+          "name": "prune_tool_message_pairs",
+          "line": 239,
+          "end_line": 266
+        },
+        {
+          "name": "call_tool",
+          "line": 19,
+          "end_line": 20
+        },
+        {
+          "name": "is_mcp_tool",
+          "line": 27,
+          "end_line": 27
+        },
+        {
+          "name": "call_tool_record",
+          "line": 29,
+          "end_line": 36
+        },
+        {
+          "name": "__init__",
+          "line": 54,
+          "end_line": 63
+        },
+        {
+          "name": "run",
+          "line": 65,
+          "end_line": 195
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/runtime.py": {
+      "sha256": "fc10be33355014da4a07ff4e86d987b08950b7748b546f0e4d9f486513ddad3d",
+      "public_api": {
+        "PendingExtractionTurn": {},
+        "ChatModel": {
+          "complete": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "stream_complete": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()"
+        },
+        "EmbeddingService": {
+          "embed_text": "self, text: str"
+        },
+        "AsyncClientLifecycle": {
+          "close": "self"
+        },
+        "ToolRegistry": {
+          "list_tools": "self",
+          "get_context_block": "self",
+          "call_tool": "self, name: str, arguments: dict[str, Any]"
+        },
+        "MemoryController": {
+          "retrieve": "self, query: str, *, token_limit: int | None=None",
+          "store_turn": "self, user_message: str, assistant_message: str",
+          "clear_session_memory": "self",
+          "ingest_document": "self, *, source_path: str, description: str | None, content: str",
+          "debug_retrieval": "self, query: str",
+          "list_entities": "self, name: str | None=None",
+          "list_relationships": "self, name: str | None=None",
+          "query_memory_statistics": "self",
+          "query_memory_records": "self, kind: MemoryRecordKind"
+        },
+        "MCPTranscriptReceipt": {},
+        "MCPMemoryCapability": {
+          "prepare_mcp_memory": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy",
+          "publish_mcp_memory": "self, snapshot: MCPMemorySnapshot",
+          "discard_mcp_memory": "self, snapshot: MCPMemorySnapshot"
+        },
+        "MCPTranscriptCapability": {
+          "record_mcp_interaction": "self, turn: InteractionTurn"
+        },
+        "TranscriptStore": {
+          "record_turn": "self, user_message: str, assistant_message: str",
+          "record_interaction": "self, turn: InteractionTurn",
+          "record_context_log": "self, prompt: str, raw_response: str",
+          "finalize": "self"
+        },
+        "SpeechAdapter": {
+          "speak": "self, text: str",
+          "cancel": "self"
+        },
+        "Orchestrator": {
+          "run": "self, instruction: str",
+          "route": "self, agent: str, message: str",
+          "switch": "self, agent: str",
+          "describe_agent": "self, agent: str"
+        },
+        "WorkflowEngine": {
+          "run_workflow": "self, name: str, arguments: Mapping[str, Any]",
+          "list_workflows": "self",
+          "status": "self",
+          "approve": "self, approval_id: str | None=None",
+          "skip": "self, approval_id: str | None=None"
+        },
+        "MaintenanceService": {
+          "flush_memory": "self",
+          "run_lifecycle": "self",
+          "preview_reorganization_lifecycle": "self",
+          "run_reorganization_lifecycle": "self",
+          "reorganize_memory": "self, mode: str",
+          "reorganization_execute_status": "self",
+          "flush_pending_extraction": "self",
+          "extract_buffered_turns": "self, *, trigger_reason: str",
+          "run_tool_decay": "self",
+          "run_incremental_graph_maintenance": "self",
+          "compact": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None",
+          "reset_store": "self, store: str",
+          "archive_transcripts": "self",
+          "reorganize": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "lifecycle": "self, *, mode: str, dry_run: bool",
+          "migrate": "self, *, execute: bool"
+        },
+        "RuntimeDiagnostics": {},
+        "FridayRuntime": {
+          "start_mcp_tools": "self",
+          "stop_mcp_tools": "self"
+        },
+        "FakeChatModel": {
+          "complete": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()",
+          "stream_complete": "self, messages: Sequence[Message], *, tools: Sequence[ToolDefinition]=()"
+        },
+        "FakeEmbeddingService": {
+          "embed_text": "self, text: str"
+        },
+        "FakeAsyncClientLifecycle": {
+          "close": "self"
+        },
+        "FakeMemoryController": {
+          "retrieve": "self, query: str, *, token_limit: int | None=None",
+          "store_turn": "self, user_message: str, assistant_message: str",
+          "clear_session_memory": "self",
+          "ingest_document": "self, *, source_path: str, description: str | None, content: str",
+          "debug_retrieval": "self, query: str",
+          "list_entities": "self, name: str | None=None",
+          "list_relationships": "self, name: str | None=None",
+          "record_summary": "self, text: str, metadata: Mapping[str, Any]",
+          "query_memory_statistics": "self",
+          "query_memory_records": "self, kind: MemoryRecordKind"
+        },
+        "FakeTranscriptStore": {
+          "record_turn": "self, user_message: str, assistant_message: str",
+          "record_interaction": "self, turn: InteractionTurn",
+          "record_context_log": "self, prompt: str, raw_response: str",
+          "finalize": "self",
+          "query_sessions": "self, *, limit: int=1000, include_archived: bool=False",
+          "query_session": "self, session_id: str",
+          "query_entries": "self, session_id: str",
+          "query_context_logs": "self, session_id: str"
+        },
+        "FakeSpeechAdapter": {
+          "speak": "self, text: str",
+          "cancel": "self"
+        },
+        "FakeOrchestrator": {
+          "run": "self, instruction: str",
+          "route": "self, agent: str, message: str",
+          "delegate": "self, agent: str, task: str, **_: Any",
+          "switch": "self, agent: str",
+          "describe_agent": "self, agent: str"
+        },
+        "FakeWorkflowEngine": {
+          "run_workflow": "self, name: str, arguments: Mapping[str, Any]",
+          "list_workflows": "self",
+          "status": "self",
+          "approve": "self, approval_id: str | None=None",
+          "skip": "self, approval_id: str | None=None"
+        },
+        "FakeMaintenanceService": {
+          "reorganization_execute_status": "self",
+          "flush_memory": "self",
+          "run_lifecycle": "self",
+          "preview_reorganization_lifecycle": "self",
+          "run_reorganization_lifecycle": "self",
+          "reorganize_memory": "self, mode: str",
+          "reset_store": "self, store: str",
+          "archive_transcripts": "self",
+          "reorganize": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "lifecycle": "self, *, mode: str, dry_run: bool",
+          "migrate": "self, *, execute: bool",
+          "flush_pending_extraction": "self",
+          "extract_buffered_turns": "self, *, trigger_reason: str",
+          "run_tool_decay": "self",
+          "run_incremental_graph_maintenance": "self",
+          "compact": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None"
+        }
+      },
+      "definitions": [
+        {
+          "name": "PendingExtractionTurn",
+          "line": 69,
+          "end_line": 78
+        },
+        {
+          "name": "_configured_nonnegative_int",
+          "line": 81,
+          "end_line": 85
+        },
+        {
+          "name": "_configured_bool",
+          "line": 88,
+          "end_line": 90
+        },
+        {
+          "name": "ChatModel",
+          "line": 93,
+          "end_line": 110
+        },
+        {
+          "name": "EmbeddingService",
+          "line": 113,
+          "end_line": 117
+        },
+        {
+          "name": "AsyncClientLifecycle",
+          "line": 120,
+          "end_line": 124
+        },
+        {
+          "name": "ToolRegistry",
+          "line": 127,
+          "end_line": 137
+        },
+        {
+          "name": "MemoryController",
+          "line": 140,
+          "end_line": 182
+        },
+        {
+          "name": "MCPTranscriptReceipt",
+          "line": 186,
+          "end_line": 188
+        },
+        {
+          "name": "MCPMemoryCapability",
+          "line": 192,
+          "end_line": 199
+        },
+        {
+          "name": "MCPTranscriptCapability",
+          "line": 203,
+          "end_line": 204
+        },
+        {
+          "name": "TranscriptStore",
+          "line": 207,
+          "end_line": 220
+        },
+        {
+          "name": "SpeechAdapter",
+          "line": 223,
+          "end_line": 232
+        },
+        {
+          "name": "Orchestrator",
+          "line": 235,
+          "end_line": 253
+        },
+        {
+          "name": "WorkflowEngine",
+          "line": 256,
+          "end_line": 272
+        },
+        {
+          "name": "MaintenanceService",
+          "line": 275,
+          "end_line": 354
+        },
+        {
+          "name": "RuntimeDiagnostics",
+          "line": 358,
+          "end_line": 364
+        },
+        {
+          "name": "FridayRuntime",
+          "line": 368,
+          "end_line": 405
+        },
+        {
+          "name": "FakeChatModel",
+          "line": 409,
+          "end_line": 465
+        },
+        {
+          "name": "FakeEmbeddingService",
+          "line": 469,
+          "end_line": 477
+        },
+        {
+          "name": "FakeAsyncClientLifecycle",
+          "line": 481,
+          "end_line": 488
+        },
+        {
+          "name": "FakeMemoryController",
+          "line": 492,
+          "end_line": 673
+        },
+        {
+          "name": "_fake_memory_record_view",
+          "line": 676,
+          "end_line": 714
+        },
+        {
+          "name": "FakeTranscriptStore",
+          "line": 718,
+          "end_line": 848
+        },
+        {
+          "name": "FakeSpeechAdapter",
+          "line": 852,
+          "end_line": 866
+        },
+        {
+          "name": "FakeOrchestrator",
+          "line": 870,
+          "end_line": 917
+        },
+        {
+          "name": "FakeWorkflowEngine",
+          "line": 921,
+          "end_line": 967
+        },
+        {
+          "name": "FakeMaintenanceService",
+          "line": 971,
+          "end_line": 1204
+        },
+        {
+          "name": "build_runtime",
+          "line": 1207,
+          "end_line": 1322
+        },
+        {
+          "name": "_apply_startup_speech_prompt",
+          "line": 1325,
+          "end_line": 1329
+        },
+        {
+          "name": "_resolve_maintenance_llms",
+          "line": 1332,
+          "end_line": 1371
+        },
+        {
+          "name": "_build_framework_runtime",
+          "line": 1374,
+          "end_line": 1524
+        },
+        {
+          "name": "_build_budget_monitor",
+          "line": 1527,
+          "end_line": 1543
+        },
+        {
+          "name": "_read_string_sequence",
+          "line": 1546,
+          "end_line": 1551
+        },
+        {
+          "name": "_enabled_tool_categories",
+          "line": 1554,
+          "end_line": 1557
+        },
+        {
+          "name": "__post_init__",
+          "line": 76,
+          "end_line": 78
+        },
+        {
+          "name": "complete",
+          "line": 96,
+          "end_line": 102
+        },
+        {
+          "name": "stream_complete",
+          "line": 104,
+          "end_line": 110
+        },
+        {
+          "name": "embed_text",
+          "line": 116,
+          "end_line": 117
+        },
+        {
+          "name": "close",
+          "line": 123,
+          "end_line": 124
+        },
+        {
+          "name": "list_tools",
+          "line": 130,
+          "end_line": 131
+        },
+        {
+          "name": "get_context_block",
+          "line": 133,
+          "end_line": 134
+        },
+        {
+          "name": "call_tool",
+          "line": 136,
+          "end_line": 137
+        },
+        {
+          "name": "retrieve",
+          "line": 143,
+          "end_line": 149
+        },
+        {
+          "name": "store_turn",
+          "line": 151,
+          "end_line": 152
+        },
+        {
+          "name": "clear_session_memory",
+          "line": 154,
+          "end_line": 155
+        },
+        {
+          "name": "ingest_document",
+          "line": 157,
+          "end_line": 164
+        },
+        {
+          "name": "debug_retrieval",
+          "line": 166,
+          "end_line": 167
+        },
+        {
+          "name": "list_entities",
+          "line": 169,
+          "end_line": 170
+        },
+        {
+          "name": "list_relationships",
+          "line": 172,
+          "end_line": 173
+        },
+        {
+          "name": "query_memory_statistics",
+          "line": 175,
+          "end_line": 176
+        },
+        {
+          "name": "query_memory_records",
+          "line": 178,
+          "end_line": 182
+        },
+        {
+          "name": "prepare_mcp_memory",
+          "line": 195,
+          "end_line": 197
+        },
+        {
+          "name": "publish_mcp_memory",
+          "line": 198,
+          "end_line": 198
+        },
+        {
+          "name": "discard_mcp_memory",
+          "line": 199,
+          "end_line": 199
+        },
+        {
+          "name": "record_mcp_interaction",
+          "line": 204,
+          "end_line": 204
+        },
+        {
+          "name": "record_turn",
+          "line": 210,
+          "end_line": 211
+        },
+        {
+          "name": "record_interaction",
+          "line": 213,
+          "end_line": 214
+        },
+        {
+          "name": "record_context_log",
+          "line": 216,
+          "end_line": 217
+        },
+        {
+          "name": "finalize",
+          "line": 219,
+          "end_line": 220
+        },
+        {
+          "name": "speak",
+          "line": 228,
+          "end_line": 229
+        },
+        {
+          "name": "cancel",
+          "line": 231,
+          "end_line": 232
+        },
+        {
+          "name": "run",
+          "line": 243,
+          "end_line": 244
+        },
+        {
+          "name": "route",
+          "line": 246,
+          "end_line": 247
+        },
+        {
+          "name": "switch",
+          "line": 249,
+          "end_line": 250
+        },
+        {
+          "name": "describe_agent",
+          "line": 252,
+          "end_line": 253
+        },
+        {
+          "name": "run_workflow",
+          "line": 259,
+          "end_line": 260
+        },
+        {
+          "name": "list_workflows",
+          "line": 262,
+          "end_line": 263
+        },
+        {
+          "name": "status",
+          "line": 265,
+          "end_line": 266
+        },
+        {
+          "name": "approve",
+          "line": 268,
+          "end_line": 269
+        },
+        {
+          "name": "skip",
+          "line": 271,
+          "end_line": 272
+        },
+        {
+          "name": "flush_memory",
+          "line": 290,
+          "end_line": 291
+        },
+        {
+          "name": "run_lifecycle",
+          "line": 293,
+          "end_line": 294
+        },
+        {
+          "name": "preview_reorganization_lifecycle",
+          "line": 296,
+          "end_line": 297
+        },
+        {
+          "name": "run_reorganization_lifecycle",
+          "line": 299,
+          "end_line": 300
+        },
+        {
+          "name": "reorganize_memory",
+          "line": 302,
+          "end_line": 303
+        },
+        {
+          "name": "reorganization_execute_status",
+          "line": 305,
+          "end_line": 306
+        },
+        {
+          "name": "flush_pending_extraction",
+          "line": 308,
+          "end_line": 309
+        },
+        {
+          "name": "extract_buffered_turns",
+          "line": 311,
+          "end_line": 312
+        },
+        {
+          "name": "run_tool_decay",
+          "line": 314,
+          "end_line": 315
+        },
+        {
+          "name": "run_incremental_graph_maintenance",
+          "line": 317,
+          "end_line": 318
+        },
+        {
+          "name": "compact",
+          "line": 320,
+          "end_line": 329
+        },
+        {
+          "name": "reset_store",
+          "line": 331,
+          "end_line": 332
+        },
+        {
+          "name": "archive_transcripts",
+          "line": 334,
+          "end_line": 335
+        },
+        {
+          "name": "reorganize",
+          "line": 337,
+          "end_line": 348
+        },
+        {
+          "name": "lifecycle",
+          "line": 350,
+          "end_line": 351
+        },
+        {
+          "name": "migrate",
+          "line": 353,
+          "end_line": 354
+        },
+        {
+          "name": "start_mcp_tools",
+          "line": 396,
+          "end_line": 401
+        },
+        {
+          "name": "stop_mcp_tools",
+          "line": 403,
+          "end_line": 405
+        },
+        {
+          "name": "complete",
+          "line": 418,
+          "end_line": 453
+        },
+        {
+          "name": "stream_complete",
+          "line": 455,
+          "end_line": 465
+        },
+        {
+          "name": "embed_text",
+          "line": 474,
+          "end_line": 477
+        },
+        {
+          "name": "close",
+          "line": 486,
+          "end_line": 488
+        },
+        {
+          "name": "retrieve",
+          "line": 511,
+          "end_line": 523
+        },
+        {
+          "name": "store_turn",
+          "line": 525,
+          "end_line": 526
+        },
+        {
+          "name": "clear_session_memory",
+          "line": 528,
+          "end_line": 531
+        },
+        {
+          "name": "ingest_document",
+          "line": 533,
+          "end_line": 549
+        },
+        {
+          "name": "debug_retrieval",
+          "line": 551,
+          "end_line": 557
+        },
+        {
+          "name": "list_entities",
+          "line": 559,
+          "end_line": 567
+        },
+        {
+          "name": "list_relationships",
+          "line": 569,
+          "end_line": 584
+        },
+        {
+          "name": "record_summary",
+          "line": 586,
+          "end_line": 587
+        },
+        {
+          "name": "query_memory_statistics",
+          "line": 589,
+          "end_line": 658
+        },
+        {
+          "name": "query_memory_records",
+          "line": 660,
+          "end_line": 673
+        },
+        {
+          "name": "record_turn",
+          "line": 735,
+          "end_line": 737
+        },
+        {
+          "name": "record_interaction",
+          "line": 739,
+          "end_line": 740
+        },
+        {
+          "name": "record_context_log",
+          "line": 742,
+          "end_line": 744
+        },
+        {
+          "name": "finalize",
+          "line": 746,
+          "end_line": 748
+        },
+        {
+          "name": "query_sessions",
+          "line": 750,
+          "end_line": 758
+        },
+        {
+          "name": "query_session",
+          "line": 760,
+          "end_line": 763
+        },
+        {
+          "name": "query_entries",
+          "line": 765,
+          "end_line": 806
+        },
+        {
+          "name": "query_context_logs",
+          "line": 808,
+          "end_line": 836
+        },
+        {
+          "name": "_session_view",
+          "line": 838,
+          "end_line": 848
+        },
+        {
+          "name": "speak",
+          "line": 859,
+          "end_line": 862
+        },
+        {
+          "name": "cancel",
+          "line": 864,
+          "end_line": 866
+        },
+        {
+          "name": "run",
+          "line": 885,
+          "end_line": 887
+        },
+        {
+          "name": "route",
+          "line": 889,
+          "end_line": 895
+        },
+        {
+          "name": "delegate",
+          "line": 897,
+          "end_line": 904
+        },
+        {
+          "name": "switch",
+          "line": 906,
+          "end_line": 910
+        },
+        {
+          "name": "describe_agent",
+          "line": 912,
+          "end_line": 917
+        },
+        {
+          "name": "run_workflow",
+          "line": 934,
+          "end_line": 940
+        },
+        {
+          "name": "list_workflows",
+          "line": 942,
+          "end_line": 944
+        },
+        {
+          "name": "status",
+          "line": 946,
+          "end_line": 951
+        },
+        {
+          "name": "approve",
+          "line": 953,
+          "end_line": 959
+        },
+        {
+          "name": "skip",
+          "line": 961,
+          "end_line": 967
+        },
+        {
+          "name": "reorganization_execute_status",
+          "line": 987,
+          "end_line": 989
+        },
+        {
+          "name": "flush_memory",
+          "line": 991,
+          "end_line": 993
+        },
+        {
+          "name": "run_lifecycle",
+          "line": 995,
+          "end_line": 997
+        },
+        {
+          "name": "preview_reorganization_lifecycle",
+          "line": 999,
+          "end_line": 1008
+        },
+        {
+          "name": "run_reorganization_lifecycle",
+          "line": 1010,
+          "end_line": 1020
+        },
+        {
+          "name": "reorganize_memory",
+          "line": 1022,
+          "end_line": 1026
+        },
+        {
+          "name": "reset_store",
+          "line": 1028,
+          "end_line": 1032
+        },
+        {
+          "name": "archive_transcripts",
+          "line": 1034,
+          "end_line": 1036
+        },
+        {
+          "name": "reorganize",
+          "line": 1038,
+          "end_line": 1078
+        },
+        {
+          "name": "lifecycle",
+          "line": 1080,
+          "end_line": 1100
+        },
+        {
+          "name": "migrate",
+          "line": 1102,
+          "end_line": 1124
+        },
+        {
+          "name": "flush_pending_extraction",
+          "line": 1126,
+          "end_line": 1133
+        },
+        {
+          "name": "extract_buffered_turns",
+          "line": 1135,
+          "end_line": 1142
+        },
+        {
+          "name": "run_tool_decay",
+          "line": 1144,
+          "end_line": 1146
+        },
+        {
+          "name": "run_incremental_graph_maintenance",
+          "line": 1148,
+          "end_line": 1150
+        },
+        {
+          "name": "compact",
+          "line": 1152,
+          "end_line": 1200
+        },
+        {
+          "name": "_raise_next_error",
+          "line": 1202,
+          "end_line": 1204
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/adapters.py": {
+      "sha256": "9a265767ee86e4f3f0393d2969d81301c01146e816b44bbc7f8f291bfb634521",
+      "public_api": {
+        "FridayChatStreamProtocolError": {},
+        "MCPSnapshotPublisher": {
+          "publish_mcp_snapshot": "self, snapshot: MCPMemorySnapshot",
+          "discard_mcp_snapshot": "self, snapshot: MCPMemorySnapshot"
+        },
+        "FrameworkAsyncClientLifecycle": {
+          "close": "self"
+        },
+        "FrameworkChatModel": {
+          "complete": "self, messages: Sequence[Mapping[str, Any]], *, tools: Sequence[ToolDefinition]=()",
+          "stream_complete": "self, messages: Sequence[Mapping[str, Any]], *, tools: Sequence[ToolDefinition]=()"
+        },
+        "FrameworkEmbeddingService": {
+          "embed_text": "self, text: str",
+          "embed_query": "self, text: str",
+          "embed_documents": "self, texts: list[str]"
+        },
+        "FrameworkMemoryAdapter": {
+          "retrieve": "self, query: str, *, token_limit: int | None=None, include_mcp: bool=True",
+          "prepare_mcp_memory": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy",
+          "verify_mcp_memory": "self, call: ToolCallRecord, entry_id: str, policy: MCPIngestionPolicy, record_id: str",
+          "publish_mcp_memory": "self, snapshot: MCPMemorySnapshot",
+          "discard_mcp_memory": "self, snapshot: MCPMemorySnapshot",
+          "store_turn": "self, user_message: str, assistant_message: str",
+          "clear_session_memory": "self",
+          "ingest_document": "self, *, source_path: str, description: str | None, content: str",
+          "debug_retrieval": "self, query: str",
+          "list_entities": "self, name: str | None=None",
+          "list_relationships": "self, name: str | None=None",
+          "query_memory_statistics": "self",
+          "query_memory_records": "self, kind: MemoryRecordKind"
+        },
+        "FrameworkMaintenanceAdapter": {
+          "flush_memory": "self",
+          "run_lifecycle": "self",
+          "preview_reorganization_lifecycle": "self",
+          "run_reorganization_lifecycle": "self",
+          "reorganization_execute_status": "self",
+          "reorganize_memory": "self, mode: str",
+          "flush_pending_extraction": "self",
+          "extract_buffered_turns": "self, *, trigger_reason: str",
+          "run_tool_decay": "self",
+          "run_incremental_graph_maintenance": "self",
+          "compact": "self, *, trigger_reason: str, time_budget_ms: int | None=None, current_tokens: int | None=None, available_budget: int | None=None, target_utilization: float | None=None",
+          "reset_store": "self, store: str",
+          "archive_transcripts": "self",
+          "lifecycle": "self, *, mode: str, dry_run: bool",
+          "reorganize": "self, *, mode: str, dry_run: bool, backup_first: bool, skip_synthesis: bool=False, skip_verify: bool=False, skip_lifecycle: bool=False, force_reembed: bool=False",
+          "migrate": "self, *, execute: bool"
+        },
+        "FrameworkTranscriptAdapter": {
+          "record_turn": "self, user_message: str, assistant_message: str",
+          "record_interaction": "self, turn: ChatInteractionTurn",
+          "record_mcp_interaction": "self, turn: ChatInteractionTurn",
+          "read_mcp_interaction": "self, turn: ChatInteractionTurn",
+          "record_context_log": "self, prompt: str, raw_response: str",
+          "finalize": "self",
+          "query_sessions": "self, *, limit: int=1000, include_archived: bool=False",
+          "query_session": "self, session_id: str",
+          "query_entries": "self, session_id: str",
+          "query_context_logs": "self, session_id: str"
+        },
+        "FrameworkToolRegistryAdapter": {
+          "list_tools": "self",
+          "get_context_block": "self",
+          "call_tool": "self, name: str, arguments: dict[str, Any]"
+        },
+        "FrameworkWorkflowAdapter": {
+          "list_workflows": "self",
+          "run_workflow": "self, name: str, arguments: Mapping[str, Any]",
+          "status": "self",
+          "approve": "self, approval_id: str | None=None",
+          "skip": "self, approval_id: str | None=None"
+        }
+      },
+      "definitions": [
+        {
+          "name": "FridayChatStreamProtocolError",
+          "line": 132,
+          "end_line": 133
+        },
+        {
+          "name": "MCPSnapshotPublisher",
+          "line": 136,
+          "end_line": 138
+        },
+        {
+          "name": "FrameworkAsyncClientLifecycle",
+          "line": 142,
+          "end_line": 147
+        },
+        {
+          "name": "FrameworkChatModel",
+          "line": 151,
+          "end_line": 248
+        },
+        {
+          "name": "FrameworkEmbeddingService",
+          "line": 252,
+          "end_line": 264
+        },
+        {
+          "name": "FrameworkMemoryAdapter",
+          "line": 268,
+          "end_line": 647
+        },
+        {
+          "name": "FrameworkMaintenanceAdapter",
+          "line": 651,
+          "end_line": 1150
+        },
+        {
+          "name": "FrameworkTranscriptAdapter",
+          "line": 1154,
+          "end_line": 1457
+        },
+        {
+          "name": "_transcript_session_view",
+          "line": 1460,
+          "end_line": 1474
+        },
+        {
+          "name": "_transcript_entry_view",
+          "line": 1477,
+          "end_line": 1488
+        },
+        {
+          "name": "_transcript_context_log_view",
+          "line": 1491,
+          "end_line": 1502
+        },
+        {
+          "name": "_datetime_sort_key",
+          "line": 1505,
+          "end_line": 1509
+        },
+        {
+          "name": "FrameworkToolRegistryAdapter",
+          "line": 1513,
+          "end_line": 1536
+        },
+        {
+          "name": "FrameworkWorkflowAdapter",
+          "line": 1540,
+          "end_line": 1607
+        },
+        {
+          "name": "build_framework_chat_model",
+          "line": 1610,
+          "end_line": 1660
+        },
+        {
+          "name": "build_framework_async_client_lifecycle",
+          "line": 1663,
+          "end_line": 1665
+        },
+        {
+          "name": "_build_legacy_primary_llm_service",
+          "line": 1668,
+          "end_line": 1696
+        },
+        {
+          "name": "build_framework_embedding_service",
+          "line": 1699,
+          "end_line": 1724
+        },
+        {
+          "name": "build_framework_memory_adapter",
+          "line": 1727,
+          "end_line": 1797
+        },
+        {
+          "name": "build_framework_transcript_adapter",
+          "line": 1800,
+          "end_line": 1810
+        },
+        {
+          "name": "build_framework_tool_registry",
+          "line": 1813,
+          "end_line": 1836
+        },
+        {
+          "name": "build_framework_maintenance_adapter",
+          "line": 1839,
+          "end_line": 2072
+        },
+        {
+          "name": "build_framework_workflow_adapter",
+          "line": 2075,
+          "end_line": 2089
+        },
+        {
+          "name": "_build_passage_router",
+          "line": 2092,
+          "end_line": 2150
+        },
+        {
+          "name": "_build_role_llm_service",
+          "line": 2153,
+          "end_line": 2185
+        },
+        {
+          "name": "_build_extraction_llm_service",
+          "line": 2188,
+          "end_line": 2210
+        },
+        {
+          "name": "_framework_maintenance_config",
+          "line": 2213,
+          "end_line": 2218
+        },
+        {
+          "name": "_compaction_result_to_dict",
+          "line": 2221,
+          "end_line": 2245
+        },
+        {
+          "name": "_access_buffer_count",
+          "line": 2248,
+          "end_line": 2254
+        },
+        {
+          "name": "_configured_tool_specs",
+          "line": 2257,
+          "end_line": 2260
+        },
+        {
+          "name": "_apply_passage_routing",
+          "line": 2263,
+          "end_line": 2294
+        },
+        {
+          "name": "_resolve_workflows_dir",
+          "line": 2297,
+          "end_line": 2306
+        },
+        {
+          "name": "_optional_string",
+          "line": 2309,
+          "end_line": 2310
+        },
+        {
+          "name": "_instantiate_tool",
+          "line": 2313,
+          "end_line": 2343
+        },
+        {
+          "name": "_build_smart_file_llm_service",
+          "line": 2346,
+          "end_line": 2385
+        },
+        {
+          "name": "_canonical_chat_service",
+          "line": 2388,
+          "end_line": 2401
+        },
+        {
+          "name": "_canonical_chat_service_from_mapping",
+          "line": 2404,
+          "end_line": 2416
+        },
+        {
+          "name": "_build_smart_file_processor_config",
+          "line": 2419,
+          "end_line": 2426
+        },
+        {
+          "name": "_definition_from_framework_tool",
+          "line": 2429,
+          "end_line": 2442
+        },
+        {
+          "name": "_format_workflow_execution",
+          "line": 2445,
+          "end_line": 2455
+        },
+        {
+          "name": "_format_workflow_status",
+          "line": 2458,
+          "end_line": 2475
+        },
+        {
+          "name": "_to_openai_tool_schema",
+          "line": 2478,
+          "end_line": 2486
+        },
+        {
+          "name": "_context_payload_to_snippets",
+          "line": 2489,
+          "end_line": 2531
+        },
+        {
+          "name": "_relationship_matches_name",
+          "line": 2534,
+          "end_line": 2541
+        },
+        {
+          "name": "_metadata_text",
+          "line": 2544,
+          "end_line": 2555
+        },
+        {
+          "name": "_sum_available_metrics",
+          "line": 2558,
+          "end_line": 2566
+        },
+        {
+          "name": "_length_metric",
+          "line": 2569,
+          "end_line": 2575
+        },
+        {
+          "name": "_memory_record_view",
+          "line": 2578,
+          "end_line": 2627
+        },
+        {
+          "name": "_bounded_memory_text",
+          "line": 2630,
+          "end_line": 2641
+        },
+        {
+          "name": "_source_memory_ids",
+          "line": 2644,
+          "end_line": 2672
+        },
+        {
+          "name": "_optional_nonnegative_int",
+          "line": 2675,
+          "end_line": 2678
+        },
+        {
+          "name": "_is_nonnegative_int",
+          "line": 2681,
+          "end_line": 2682
+        },
+        {
+          "name": "_optional_confidence",
+          "line": 2685,
+          "end_line": 2689
+        },
+        {
+          "name": "_optional_datetime",
+          "line": 2692,
+          "end_line": 2700
+        },
+        {
+          "name": "_memory_record_sort_key",
+          "line": 2703,
+          "end_line": 2710
+        },
+        {
+          "name": "_nonnegative_mapping_int",
+          "line": 2713,
+          "end_line": 2721
+        },
+        {
+          "name": "_dynamic_context_budget",
+          "line": 2724,
+          "end_line": 2728
+        },
+        {
+          "name": "_int_from_mapping",
+          "line": 2731,
+          "end_line": 2736
+        },
+        {
+          "name": "_chunk_text",
+          "line": 2739,
+          "end_line": 2751
+        },
+        {
+          "name": "publish_mcp_snapshot",
+          "line": 137,
+          "end_line": 137
+        },
+        {
+          "name": "discard_mcp_snapshot",
+          "line": 138,
+          "end_line": 138
+        },
+        {
+          "name": "close",
+          "line": 145,
+          "end_line": 147
+        },
+        {
+          "name": "complete",
+          "line": 158,
+          "end_line": 205
+        },
+        {
+          "name": "stream_complete",
+          "line": 207,
+          "end_line": 248
+        },
+        {
+          "name": "embed_text",
+          "line": 257,
+          "end_line": 258
+        },
+        {
+          "name": "embed_query",
+          "line": 260,
+          "end_line": 261
+        },
+        {
+          "name": "embed_documents",
+          "line": 263,
+          "end_line": 264
+        },
+        {
+          "name": "retrieve",
+          "line": 282,
+          "end_line": 300
+        },
+        {
+          "name": "prepare_mcp_memory",
+          "line": 302,
+          "end_line": 311
+        },
+        {
+          "name": "verify_mcp_memory",
+          "line": 313,
+          "end_line": 329
+        },
+        {
+          "name": "publish_mcp_memory",
+          "line": 331,
+          "end_line": 333
+        },
+        {
+          "name": "discard_mcp_memory",
+          "line": 335,
+          "end_line": 337
+        },
+        {
+          "name": "store_turn",
+          "line": 339,
+          "end_line": 350
+        },
+        {
+          "name": "clear_session_memory",
+          "line": 352,
+          "end_line": 354
+        },
+        {
+          "name": "ingest_document",
+          "line": 356,
+          "end_line": 390
+        },
+        {
+          "name": "debug_retrieval",
+          "line": 392,
+          "end_line": 401
+        },
+        {
+          "name": "list_entities",
+          "line": 403,
+          "end_line": 408
+        },
+        {
+          "name": "list_relationships",
+          "line": 410,
+          "end_line": 432
+        },
+        {
+          "name": "query_memory_statistics",
+          "line": 434,
+          "end_line": 577
+        },
+        {
+          "name": "query_memory_records",
+          "line": 579,
+          "end_line": 629
+        },
+        {
+          "name": "_recall",
+          "line": 631,
+          "end_line": 647
+        },
+        {
+          "name": "flush_memory",
+          "line": 679,
+          "end_line": 687
+        },
+        {
+          "name": "run_lifecycle",
+          "line": 689,
+          "end_line": 696
+        },
+        {
+          "name": "preview_reorganization_lifecycle",
+          "line": 698,
+          "end_line": 721
+        },
+        {
+          "name": "run_reorganization_lifecycle",
+          "line": 723,
+          "end_line": 764
+        },
+        {
+          "name": "reorganization_execute_status",
+          "line": 766,
+          "end_line": 768
+        },
+        {
+          "name": "reorganize_memory",
+          "line": 770,
+          "end_line": 822
+        },
+        {
+          "name": "flush_pending_extraction",
+          "line": 824,
+          "end_line": 836
+        },
+        {
+          "name": "extract_buffered_turns",
+          "line": 838,
+          "end_line": 850
+        },
+        {
+          "name": "run_tool_decay",
+          "line": 852,
+          "end_line": 854
+        },
+        {
+          "name": "run_incremental_graph_maintenance",
+          "line": 856,
+          "end_line": 865
+        },
+        {
+          "name": "compact",
+          "line": 867,
+          "end_line": 906
+        },
+        {
+          "name": "reset_store",
+          "line": 908,
+          "end_line": 912
+        },
+        {
+          "name": "archive_transcripts",
+          "line": 914,
+          "end_line": 918
+        },
+        {
+          "name": "lifecycle",
+          "line": 920,
+          "end_line": 1013
+        },
+        {
+          "name": "reorganize",
+          "line": 1015,
+          "end_line": 1103
+        },
+        {
+          "name": "migrate",
+          "line": 1105,
+          "end_line": 1117
+        },
+        {
+          "name": "_raise_next_error",
+          "line": 1119,
+          "end_line": 1121
+        },
+        {
+          "name": "_extract_turns",
+          "line": 1123,
+          "end_line": 1150
+        },
+        {
+          "name": "record_turn",
+          "line": 1163,
+          "end_line": 1165
+        },
+        {
+          "name": "record_interaction",
+          "line": 1167,
+          "end_line": 1256
+        },
+        {
+          "name": "record_mcp_interaction",
+          "line": 1258,
+          "end_line": 1265
+        },
+        {
+          "name": "read_mcp_interaction",
+          "line": 1267,
+          "end_line": 1320
+        },
+        {
+          "name": "record_context_log",
+          "line": 1322,
+          "end_line": 1323
+        },
+        {
+          "name": "finalize",
+          "line": 1325,
+          "end_line": 1326
+        },
+        {
+          "name": "query_sessions",
+          "line": 1328,
+          "end_line": 1359
+        },
+        {
+          "name": "query_session",
+          "line": 1361,
+          "end_line": 1368
+        },
+        {
+          "name": "query_entries",
+          "line": 1370,
+          "end_line": 1397
+        },
+        {
+          "name": "query_context_logs",
+          "line": 1399,
+          "end_line": 1417
+        },
+        {
+          "name": "_non_archived_session_ids",
+          "line": 1419,
+          "end_line": 1433
+        },
+        {
+          "name": "_ensure_session",
+          "line": 1435,
+          "end_line": 1452
+        },
+        {
+          "name": "_next_turn_number",
+          "line": 1454,
+          "end_line": 1457
+        },
+        {
+          "name": "list_tools",
+          "line": 1520,
+          "end_line": 1521
+        },
+        {
+          "name": "get_context_block",
+          "line": 1523,
+          "end_line": 1527
+        },
+        {
+          "name": "call_tool",
+          "line": 1529,
+          "end_line": 1536
+        },
+        {
+          "name": "list_workflows",
+          "line": 1548,
+          "end_line": 1552
+        },
+        {
+          "name": "run_workflow",
+          "line": 1554,
+          "end_line": 1559
+        },
+        {
+          "name": "status",
+          "line": 1561,
+          "end_line": 1568
+        },
+        {
+          "name": "approve",
+          "line": 1570,
+          "end_line": 1581
+        },
+        {
+          "name": "skip",
+          "line": 1583,
+          "end_line": 1594
+        },
+        {
+          "name": "_describe_workflow",
+          "line": 1596,
+          "end_line": 1607
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/background.py": {
+      "sha256": "9091e8c2b9ac199530af0f72593f0bd3dcf88f8f8beb24f7a156dca03d2751fe",
+      "public_api": {
+        "BackgroundTaskManager": {
+          "__init__": "self",
+          "closed": "self",
+          "pending_count": "self",
+          "create_task": "self, coroutine: Coroutine[Any, Any, T]",
+          "wait_for_all": "self",
+          "close": "self",
+          "cancel_pending": "self"
+        },
+        "BackgroundWorkCoordinator": {
+          "schedule_after_turn": "self, *, turn_count: int, user_message: str, assistant_message: str, budget_status: Any | None=None",
+          "wait_for_inflight_compaction": "self",
+          "preempt_extraction_for_foreground_turn": "self",
+          "extraction_running": "self",
+          "resume_preempted_extraction": "self, *, trigger_reason: str='foreground_resume'"
+        }
+      },
+      "definitions": [
+        {
+          "name": "BackgroundTaskManager",
+          "line": 20,
+          "end_line": 74
+        },
+        {
+          "name": "BackgroundWorkCoordinator",
+          "line": 78,
+          "end_line": 225
+        },
+        {
+          "name": "__init__",
+          "line": 23,
+          "end_line": 26
+        },
+        {
+          "name": "closed",
+          "line": 29,
+          "end_line": 31
+        },
+        {
+          "name": "pending_count",
+          "line": 34,
+          "end_line": 36
+        },
+        {
+          "name": "create_task",
+          "line": 38,
+          "end_line": 46
+        },
+        {
+          "name": "wait_for_all",
+          "line": 48,
+          "end_line": 52
+        },
+        {
+          "name": "close",
+          "line": 54,
+          "end_line": 57
+        },
+        {
+          "name": "cancel_pending",
+          "line": 59,
+          "end_line": 66
+        },
+        {
+          "name": "_record_completion",
+          "line": 68,
+          "end_line": 74
+        },
+        {
+          "name": "schedule_after_turn",
+          "line": 92,
+          "end_line": 127
+        },
+        {
+          "name": "wait_for_inflight_compaction",
+          "line": 129,
+          "end_line": 133
+        },
+        {
+          "name": "preempt_extraction_for_foreground_turn",
+          "line": 135,
+          "end_line": 143
+        },
+        {
+          "name": "extraction_running",
+          "line": 146,
+          "end_line": 148
+        },
+        {
+          "name": "resume_preempted_extraction",
+          "line": 150,
+          "end_line": 161
+        },
+        {
+          "name": "_should_extract",
+          "line": 163,
+          "end_line": 169
+        },
+        {
+          "name": "_schedule_extraction",
+          "line": 171,
+          "end_line": 181
+        },
+        {
+          "name": "_schedule_budget_compaction",
+          "line": 183,
+          "end_line": 196
+        },
+        {
+          "name": "_run_shared",
+          "line": 198,
+          "end_line": 207
+        },
+        {
+          "name": "_run_budget_compaction",
+          "line": 209,
+          "end_line": 225
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/app.py": {
+      "sha256": "a26f81ff3e3d3f14ac70da2cec2233a937768a37b2201ad624ad81305e901a79",
+      "public_api": {
+        "InputSource": {
+          "read": "self"
+        },
+        "OutputSink": {
+          "write": "self, text: str"
+        },
+        "AssistantOutputSink": {
+          "write_assistant_response": "self, text: str, *, assistant_name: str",
+          "begin_assistant_response": "self, *, assistant_name: str",
+          "write_assistant_chunk": "self, text: str"
+        },
+        "TurnHandler": {
+          "process": "self, user_message: str"
+        },
+        "StreamingTurnHandler": {
+          "process_streaming": "self, user_message: str, *, on_chunk: Callable[[str], Awaitable[None]]"
+        },
+        "StreamingProcessMethod": {},
+        "AppRunResult": {},
+        "ListInputSource": {
+          "read": "self"
+        },
+        "ListOutputSink": {
+          "write": "self, text: str"
+        },
+        "ConsoleInputSource": {
+          "__init__": "self, prompt: str='> ', *, prompt_fn: AsyncPromptCallable | None=None",
+          "read": "self"
+        },
+        "ConsoleOutputSink": {
+          "write": "self, text: str",
+          "write_chunk": "self, text: str",
+          "finish_stream": "self"
+        },
+        "AppMaintenanceRuntimeHooks": {
+          "prepare_for_manual_maintenance": "self",
+          "drain_for_manual_maintenance": "self",
+          "resume_after_manual_maintenance": "self",
+          "close_for_shutdown": "self, *, snapshot_requested: bool",
+          "close_async_clients": "self, *, snapshot_requested: bool",
+          "finalize_transcript": "self"
+        },
+        "FridayChatApp": {
+          "__init__": "self, *, config: FridayChatConfig | None=None, runtime: FridayRuntime | None=None, input_source: InputSource | None=None, output_sink: OutputSink | None=None, turn_handler: TurnHandler | None=None, background: BackgroundTaskManager | None=None, background_work: BackgroundWorkCoordinator | None=None, maintenance_gate: MaintenanceAdmissionGate | None=None, reorganization_coordinator: ReorganizationCoordinator | None=None, command_registry: CommandRegistry | None=None, command_context: RegistryCommandContext | None=None, shell_service: ShellService | None=None, session: FridaySession | None=None, display: DisplayController | None=None, version: str='0.1.0a2'",
+          "started": "self",
+          "start": "self",
+          "run": "self"
+        }
+      },
+      "definitions": [
+        {
+          "name": "InputSource",
+          "line": 45,
+          "end_line": 49
+        },
+        {
+          "name": "OutputSink",
+          "line": 52,
+          "end_line": 56
+        },
+        {
+          "name": "AssistantOutputSink",
+          "line": 59,
+          "end_line": 74
+        },
+        {
+          "name": "TurnHandler",
+          "line": 77,
+          "end_line": 81
+        },
+        {
+          "name": "StreamingTurnHandler",
+          "line": 84,
+          "end_line": 93
+        },
+        {
+          "name": "StreamingProcessMethod",
+          "line": 96,
+          "end_line": 105
+        },
+        {
+          "name": "AppRunResult",
+          "line": 109,
+          "end_line": 114
+        },
+        {
+          "name": "ListInputSource",
+          "line": 118,
+          "end_line": 129
+        },
+        {
+          "name": "ListOutputSink",
+          "line": 133,
+          "end_line": 139
+        },
+        {
+          "name": "ConsoleInputSource",
+          "line": 142,
+          "end_line": 155
+        },
+        {
+          "name": "ConsoleOutputSink",
+          "line": 158,
+          "end_line": 170
+        },
+        {
+          "name": "AppMaintenanceRuntimeHooks",
+          "line": 174,
+          "end_line": 272
+        },
+        {
+          "name": "FridayChatApp",
+          "line": 275,
+          "end_line": 698
+        },
+        {
+          "name": "_format_turn_processing_error",
+          "line": 701,
+          "end_line": 718
+        },
+        {
+          "name": "_format_exception_cause",
+          "line": 721,
+          "end_line": 731
+        },
+        {
+          "name": "_root_exception_cause",
+          "line": 734,
+          "end_line": 746
+        },
+        {
+          "name": "_exception_response_body",
+          "line": 749,
+          "end_line": 756
+        },
+        {
+          "name": "read",
+          "line": 48,
+          "end_line": 49
+        },
+        {
+          "name": "write",
+          "line": 55,
+          "end_line": 56
+        },
+        {
+          "name": "write_assistant_response",
+          "line": 62,
+          "end_line": 68
+        },
+        {
+          "name": "begin_assistant_response",
+          "line": 70,
+          "end_line": 71
+        },
+        {
+          "name": "write_assistant_chunk",
+          "line": 73,
+          "end_line": 74
+        },
+        {
+          "name": "process",
+          "line": 80,
+          "end_line": 81
+        },
+        {
+          "name": "process_streaming",
+          "line": 87,
+          "end_line": 93
+        },
+        {
+          "name": "__call__",
+          "line": 99,
+          "end_line": 105
+        },
+        {
+          "name": "read",
+          "line": 124,
+          "end_line": 129
+        },
+        {
+          "name": "write",
+          "line": 138,
+          "end_line": 139
+        },
+        {
+          "name": "__init__",
+          "line": 145,
+          "end_line": 152
+        },
+        {
+          "name": "read",
+          "line": 154,
+          "end_line": 155
+        },
+        {
+          "name": "write",
+          "line": 161,
+          "end_line": 162
+        },
+        {
+          "name": "write_chunk",
+          "line": 164,
+          "end_line": 166
+        },
+        {
+          "name": "finish_stream",
+          "line": 168,
+          "end_line": 170
+        },
+        {
+          "name": "prepare_for_manual_maintenance",
+          "line": 183,
+          "end_line": 188
+        },
+        {
+          "name": "drain_for_manual_maintenance",
+          "line": 190,
+          "end_line": 202
+        },
+        {
+          "name": "resume_after_manual_maintenance",
+          "line": 204,
+          "end_line": 218
+        },
+        {
+          "name": "close_for_shutdown",
+          "line": 220,
+          "end_line": 241
+        },
+        {
+          "name": "close_async_clients",
+          "line": 243,
+          "end_line": 251
+        },
+        {
+          "name": "finalize_transcript",
+          "line": 253,
+          "end_line": 254
+        },
+        {
+          "name": "_run_step",
+          "line": 256,
+          "end_line": 272
+        },
+        {
+          "name": "__init__",
+          "line": 278,
+          "end_line": 381
+        },
+        {
+          "name": "started",
+          "line": 384,
+          "end_line": 386
+        },
+        {
+          "name": "start",
+          "line": 388,
+          "end_line": 403
+        },
+        {
+          "name": "run",
+          "line": 405,
+          "end_line": 454
+        },
+        {
+          "name": "_run_lifecycle",
+          "line": 456,
+          "end_line": 552
+        },
+        {
+          "name": "_process_chat_turn",
+          "line": 554,
+          "end_line": 569
+        },
+        {
+          "name": "_write_assistant_response",
+          "line": 571,
+          "end_line": 584
+        },
+        {
+          "name": "_begin_assistant_response",
+          "line": 586,
+          "end_line": 589
+        },
+        {
+          "name": "_write_response_chunk",
+          "line": 591,
+          "end_line": 600
+        },
+        {
+          "name": "_finish_response_stream",
+          "line": 602,
+          "end_line": 605
+        },
+        {
+          "name": "_shutdown_through_coordinator",
+          "line": 607,
+          "end_line": 643
+        },
+        {
+          "name": "_route_agent_message",
+          "line": 645,
+          "end_line": 657
+        },
+        {
+          "name": "_dispatch_command_effects",
+          "line": 659,
+          "end_line": 673
+        },
+        {
+          "name": "_ensure_session_initialized",
+          "line": 675,
+          "end_line": 681
+        },
+        {
+          "name": "_record_turn_state",
+          "line": 683,
+          "end_line": 698
+        }
+      ],
+      "existing_suppressions": []
+    },
+    "packages/friday-chat/src/friday_chat/commands/registry.py": {
+      "sha256": "4ab71df74cc038ab6fc1161f0a1ff53911942315715081582d2a7d3bbc183cd3",
+      "public_api": {
+        "CommandRegistry": {
+          "__init__": "self",
+          "commands": "self",
+          "register": "self, name: str, *, description: str, category: str, usage: str | None=None, aliases: Iterable[str]=(), arguments: Iterable[CommandArgument]=(), detail: str | None=None, handler: CommandHandler | None=None",
+          "command_names": "self",
+          "canonical_names": "self",
+          "execute": "self, user_input: str, context: CommandContext | None=None",
+          "render_help": "self, command_name: str | None=None"
+        },
+        "_CommandReorganizationProgress": {
+          "for_context": "cls, context: CommandContext",
+          "acknowledge": "self, *, mode: str, dry_run: bool"
+        },
+        "RegistryCommandContext": {},
+        "_ReorganizeUsageError": {},
+        "_ReorganizeInvocation": {},
+        "CommandSpec": {}
+      },
+      "definitions": [
+        {
+          "name": "CommandRegistry",
+          "line": 89,
+          "end_line": 236
+        },
+        {
+          "name": "_placeholder_handler",
+          "line": 239,
+          "end_line": 249
+        },
+        {
+          "name": "_exit_handler",
+          "line": 252,
+          "end_line": 257
+        },
+        {
+          "name": "_clear_handler",
+          "line": 260,
+          "end_line": 268
+        },
+        {
+          "name": "_history_handler",
+          "line": 271,
+          "end_line": 282
+        },
+        {
+          "name": "_context_handler",
+          "line": 285,
+          "end_line": 296
+        },
+        {
+          "name": "_prompt_handler",
+          "line": 299,
+          "end_line": 308
+        },
+        {
+          "name": "_debug_handler",
+          "line": 311,
+          "end_line": 320
+        },
+        {
+          "name": "_debug_budget_handler",
+          "line": 323,
+          "end_line": 337
+        },
+        {
+          "name": "_timing_handler",
+          "line": 340,
+          "end_line": 351
+        },
+        {
+          "name": "_prime_handler",
+          "line": 354,
+          "end_line": 368
+        },
+        {
+          "name": "_debug_retrieval_handler",
+          "line": 371,
+          "end_line": 395
+        },
+        {
+          "name": "_entities_handler",
+          "line": 398,
+          "end_line": 437
+        },
+        {
+          "name": "_reset_handler",
+          "line": 440,
+          "end_line": 482
+        },
+        {
+          "name": "_reorganize_handler",
+          "line": 485,
+          "end_line": 567
+        },
+        {
+          "name": "_format_reorganization_result",
+          "line": 570,
+          "end_line": 635
+        },
+        {
+          "name": "_CommandReorganizationProgress",
+          "line": 639,
+          "end_line": 668
+        },
+        {
+          "name": "_lifecycle_handler",
+          "line": 671,
+          "end_line": 708
+        },
+        {
+          "name": "_migrate_handler",
+          "line": 711,
+          "end_line": 741
+        },
+        {
+          "name": "_compact_handler",
+          "line": 744,
+          "end_line": 783
+        },
+        {
+          "name": "_read_handler",
+          "line": 786,
+          "end_line": 798
+        },
+        {
+          "name": "_ingest_handler",
+          "line": 801,
+          "end_line": 830
+        },
+        {
+          "name": "_list_ingested_handler",
+          "line": 833,
+          "end_line": 849
+        },
+        {
+          "name": "_replay_handler",
+          "line": 852,
+          "end_line": 879
+        },
+        {
+          "name": "_security_handler",
+          "line": 882,
+          "end_line": 908
+        },
+        {
+          "name": "_security_test_handler",
+          "line": 911,
+          "end_line": 939
+        },
+        {
+          "name": "_security_config_handler",
+          "line": 942,
+          "end_line": 978
+        },
+        {
+          "name": "_inject_payload_handler",
+          "line": 981,
+          "end_line": 989
+        },
+        {
+          "name": "_speech_handler",
+          "line": 992,
+          "end_line": 1040
+        },
+        {
+          "name": "_speech_test_handler",
+          "line": 1043,
+          "end_line": 1054
+        },
+        {
+          "name": "_switch_handler",
+          "line": 1057,
+          "end_line": 1071
+        },
+        {
+          "name": "_agents_handler",
+          "line": 1074,
+          "end_line": 1089
+        },
+        {
+          "name": "_agent_handler",
+          "line": 1092,
+          "end_line": 1103
+        },
+        {
+          "name": "_delegate_handler",
+          "line": 1106,
+          "end_line": 1126
+        },
+        {
+          "name": "_status_handler",
+          "line": 1129,
+          "end_line": 1144
+        },
+        {
+          "name": "_workflow_handler",
+          "line": 1147,
+          "end_line": 1183
+        },
+        {
+          "name": "_tools_handler",
+          "line": 1186,
+          "end_line": 1217
+        },
+        {
+          "name": "_run_tool_handler",
+          "line": 1220,
+          "end_line": 1263
+        },
+        {
+          "name": "_recommend_tools_handler",
+          "line": 1266,
+          "end_line": 1291
+        },
+        {
+          "name": "_vars_handler",
+          "line": 1294,
+          "end_line": 1303
+        },
+        {
+          "name": "_set_handler",
+          "line": 1306,
+          "end_line": 1316
+        },
+        {
+          "name": "_help_handler",
+          "line": 1319,
+          "end_line": 1327
+        },
+        {
+          "name": "RegistryCommandContext",
+          "line": 1331,
+          "end_line": 1336
+        },
+        {
+          "name": "build_default_registry",
+          "line": 1339,
+          "end_line": 1377
+        },
+        {
+          "name": "_parse_command_input",
+          "line": 1432,
+          "end_line": 1437
+        },
+        {
+          "name": "_normalize_command_name",
+          "line": 1440,
+          "end_line": 1441
+        },
+        {
+          "name": "_render_command_detail",
+          "line": 1444,
+          "end_line": 1457
+        },
+        {
+          "name": "_render_command_summary",
+          "line": 1460,
+          "end_line": 1471
+        },
+        {
+          "name": "_render_arguments",
+          "line": 1474,
+          "end_line": 1495
+        },
+        {
+          "name": "_build_context_text",
+          "line": 1498,
+          "end_line": 1505
+        },
+        {
+          "name": "_build_prompt_text",
+          "line": 1508,
+          "end_line": 1519
+        },
+        {
+          "name": "_write_export_file",
+          "line": 1522,
+          "end_line": 1527
+        },
+        {
+          "name": "_ReorganizeUsageError",
+          "line": 1553,
+          "end_line": 1554
+        },
+        {
+          "name": "_ReorganizeInvocation",
+          "line": 1558,
+          "end_line": 1565
+        },
+        {
+          "name": "_parse_reorganize_invocation",
+          "line": 1568,
+          "end_line": 1658
+        },
+        {
+          "name": "_reorganization_execute_refusal",
+          "line": 1661,
+          "end_line": 1669
+        },
+        {
+          "name": "_reorganization_failure_output",
+          "line": 1672,
+          "end_line": 1678
+        },
+        {
+          "name": "_classify_error",
+          "line": 1681,
+          "end_line": 1690
+        },
+        {
+          "name": "_format_speech_config",
+          "line": 1693,
+          "end_line": 1705
+        },
+        {
+          "name": "_parse_workflow_inputs",
+          "line": 1708,
+          "end_line": 1715
+        },
+        {
+          "name": "_tool_parameter_names",
+          "line": 1718,
+          "end_line": 1722
+        },
+        {
+          "name": "_parse_tool_parameters",
+          "line": 1725,
+          "end_line": 1746
+        },
+        {
+          "name": "_plain_text_parameter_name",
+          "line": 1749,
+          "end_line": 1762
+        },
+        {
+          "name": "_missing_required_parameters",
+          "line": 1765,
+          "end_line": 1772
+        },
+        {
+          "name": "_sanitize_tool_result",
+          "line": 1775,
+          "end_line": 1785
+        },
+        {
+          "name": "_truncate_tool_output",
+          "line": 1788,
+          "end_line": 1796
+        },
+        {
+          "name": "CommandSpec",
+          "line": 1800,
+          "end_line": 1809
+        },
+        {
+          "name": "_argument",
+          "line": 1812,
+          "end_line": 1826
+        },
+        {
+          "name": "__init__",
+          "line": 92,
+          "end_line": 95
+        },
+        {
+          "name": "commands",
+          "line": 98,
+          "end_line": 100
+        },
+        {
+          "name": "register",
+          "line": 102,
+          "end_line": 155
+        },
+        {
+          "name": "command_names",
+          "line": 157,
+          "end_line": 159
+        },
+        {
+          "name": "canonical_names",
+          "line": 161,
+          "end_line": 163
+        },
+        {
+          "name": "execute",
+          "line": 165,
+          "end_line": 196
+        },
+        {
+          "name": "render_help",
+          "line": 198,
+          "end_line": 228
+        },
+        {
+          "name": "_first_duplicate_name",
+          "line": 230,
+          "end_line": 236
+        },
+        {
+          "name": "for_context",
+          "line": 648,
+          "end_line": 654
+        },
+        {
+          "name": "acknowledge",
+          "line": 656,
+          "end_line": 659
+        },
+        {
+          "name": "__call__",
+          "line": 661,
+          "end_line": 662
+        },
+        {
+          "name": "_emit",
+          "line": 664,
+          "end_line": 668
+        }
+      ],
+      "existing_suppressions": []
+    }
+  },
+  "new_paths_absent": {
+    "packages/friday-telemetry/src/friday_telemetry/models/execution.py": true,
+    "packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py": true,
+    "packages/friday-chat/src/friday_chat/turns/telemetry.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_execution_events.py": true,
+    "packages/friday-telemetry/tests_telemetry/test_correlation.py": true,
+    "packages/friday-chat/tests_chat/test_turn_telemetry.py": true,
+    "packages/friday-chat/tests_chat/test_tool_telemetry.py": true,
+    "packages/friday-chat/tests_chat/test_memory_telemetry.py": true,
+    "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py": true
+  }
+}

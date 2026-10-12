@@ -1,0 +1,342 @@
+{
+  "candidate": "cdb1b8b6a07ff3cedda42b6c165d29b74020aeaf",
+  "base": "1718ed21f6b60c9c51edfcdb288853be557cb9f3",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "scope": "Fresh-context read-only A06/WVR-003 proposal review; READY for maintainer consideration, CHANGES_REQUESTED or BLOCKED; never VERIFIED or approval",
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "6b1df45143e7e92ccf85f03e9f8feeef61cf796c7d6ef2fc795890a477da3b9b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "65e219accefff9a49ede6d8571168ef55300709e8c5ad4c4ba9319ce7bc7cb48"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "sha256": "0ad931d5bf1c0617142b33c43fee09851d3e28df69654fb8780ea91ebd14566b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "sha256": "624a28c385c29a91994d2aba66f99bb4fcc474b5fb32d2b75b12bd09361c30c7"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "sha256": "14fb96bab6f25db1109bea7cee410d74aae0dcf6c47671d5590f7fb4f9a28ca3"
+    },
+    {
+      "path": "docs/planning/README.md",
+      "sha256": "4afb2c562944fefe2eedda47068840310a386cf9dc806162acf7d595d72bf178"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/README.md",
+      "sha256": "f3942457e534babf7aff877edebdeafcbe6f02c10d9b1cac451a2f5dded11fa4"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution-log.md",
+      "sha256": "98125e20de6251e097e25967e321e573ea3224a5838ba7e74dcf7df5d49fca06"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/all-variance.json.gz",
+      "sha256": "71d4d4bc2df015276ea88c61e2f8360924d64539ce22e6191f7c3ff30110c4d7"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/all-variance.log.gz",
+      "sha256": "e9208d7cdedc1e317d481cc9aab1c116e634d996c9494308cbf656a64b1915a1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/all_variance_probe.py.gz",
+      "sha256": "ae284af6a11a9911693ea315b29fd00922e3ccbb3f315f7a6d4405e4c69b3f82"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/annotation-probes.json.gz",
+      "sha256": "a21f8b00794dda77a583345a408548e7b6791cb9b0a5c7b0151403feaef620c4"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/annotation-variance.json.gz",
+      "sha256": "f69a96dd6569a1a417a1dab2d71cd0160f590aa06562d414ec2615e3197002e4"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/annotation-variance.log.gz",
+      "sha256": "ba858ff92437119705643816d92d8d4b49544de63470ae1a499015c51c9fd159"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/annotation_variance_probe.py.gz",
+      "sha256": "437dc68ad8a9edcae01dddc16d9bddf33185a37348b4400f4a0a6fbf0e8b6ac6"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/artifact-manifest.json",
+      "sha256": "cb1826ac2054dae97c2199207c84478e6a72a25dd82356624c8fc43ff2081c6f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/command-registry-conflict-pin.json.gz",
+      "sha256": "2898aaf16d2edb9cf66fa261d2e6b9b7d73e3e71f367e71e149dbf065ba6999c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/command-registry-reviewed-snippet.txt.gz",
+      "sha256": "ac1709870a0db707bccc7412f367f7b02108ca3537479f5429768186ac837a34"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/compatibility-evidence-manifest.json.gz",
+      "sha256": "18027ee0958428abb53532cef5fd2f90be0c3ee8a21d4f47507982b00c6a1ae6"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/compatibility-matrix.json.gz",
+      "sha256": "8c91b81cec9597f441fe79c43a13033fe230301868ad477d900fa0f9e4f63093"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/compatibility-stop.json.gz",
+      "sha256": "3e2f11804562eca9c39e0e9d4569334ba2b6b2f770e7476b6d3abaea77df9a19"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/partial-changes.patch.gz",
+      "sha256": "86ef7e35f5b10809d08ce9b3cd3305e22951db0cb6043f9b268b144900112730"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/partial-checks-preflight.json.gz",
+      "sha256": "293c941db60a45b1385d91cd4ed6fb52039fb15525bf97f4aeb067d729fd0f43"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/partial-regression-preflight.json.gz",
+      "sha256": "228ba45b0adc3f886f417afc76145ae3a2a4c87be26fd06e5cb4ade908cca9ac"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pty-child-diagnosis.json.gz",
+      "sha256": "057a5df8f580bf8689fe3f7cb6e1560a5b5c5008033a1a9d5cda2d1db71a9b95"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pty-child-diagnosis.log.gz",
+      "sha256": "ddd14339dce8988b83b065adb48d3c414f8afa920ed52e49cc280ca7e970bf09"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pty-ready.json.gz",
+      "sha256": "8daf681a0272ed06c2ad24169659c428c6c75dae15b0e99788d6ca5e492fe39c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pty-ready.log.gz",
+      "sha256": "763b0ec0f9fef0f978602b45d4c2fa417cf77a707120531a91c85d5dae584873"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pty_child_diagnosis.py.gz",
+      "sha256": "474b1331b3a6338455b05214bfd7f4bde37ee85217b09fbb1955eb3f8139f367"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pydantic-generic-raw.json.gz",
+      "sha256": "6f8ac94e763c0d2b548f8a20f89be15bbe15c387dd6499a4d6b39838def213fd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pydantic-generic.json.gz",
+      "sha256": "c2993faa6a223ab7897d30f9ed36bad31004a9e23a077331e609fd7ae7a4911e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pydantic-generic.log.gz",
+      "sha256": "2806b919ba424e00e0ff416d3803e0cc474b5ad59e5856c1af0ab16659fb0e10"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/pydantic_generic_probe.py.gz",
+      "sha256": "13d4794c82ab0e68ebd388ebe79170ba5b9e2bf8dd1f350e930abe427ecff403"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/registry-order.json.gz",
+      "sha256": "1b0617f26af81db14ad36f89ebecff6a0dc8543319a75b533b2ffeef606b030f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/registry-order.log.gz",
+      "sha256": "0ee3d1c0cb897d2f9a632cd59929848cb2f10094c04f413a07fff95aa0b4d926"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/report.md",
+      "sha256": "0e2bb8fc4d334d24b01b15cdf275e99290364592a142422044658ff22916a9f2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_command/consumer.py.gz",
+      "sha256": "2dd6c885b58dff0328c45dc32cc4ca73649dcb6576cdfe13d8add238e2877f7b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_command/converted.py.gz",
+      "sha256": "b508808a5995cd3dbfb8c40a03b5da3a7808289eb3eea818a44139858fcf52d3"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_execute/consumer.py.gz",
+      "sha256": "2dd6c885b58dff0328c45dc32cc4ca73649dcb6576cdfe13d8add238e2877f7b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_execute/converted.py.gz",
+      "sha256": "a2d43d50b2194322816655a724c7b2b4cdf65223f37b1702687f4e0c4aded8ed"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_init/consumer.py.gz",
+      "sha256": "2dd6c885b58dff0328c45dc32cc4ca73649dcb6576cdfe13d8add238e2877f7b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/explicit_self_init/converted.py.gz",
+      "sha256": "ed8f70800be0f3ce1f3bd82e78b87fa4d1fbcef2a55a2d97e6566cb26e1dd4b8"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/object_bound/consumer.py.gz",
+      "sha256": "2dd6c885b58dff0328c45dc32cc4ca73649dcb6576cdfe13d8add238e2877f7b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/annotation-probes/object_bound/converted.py.gz",
+      "sha256": "d4d2f5129b322b13e6291c5b7eb4f395a343b7e9aeb9e324c203aa471654048c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/CommandRegistry/consumer.py.gz",
+      "sha256": "581b6474bbf1d19d451b1f8ca0d9961f454e2462b16e7431522828af78bc3aaf"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/CommandRegistry/converted.py.gz",
+      "sha256": "df205ed58affacdf27a9885fe3f653400dd5f093771c4d836331fc61533e142d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/CommandRegistry/original.py.gz",
+      "sha256": "a4f880dcc6dcd16fc517045d0295445de8dccf75a65337a3301a0ba11b2a74a0"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MemoryMetric/consumer.py.gz",
+      "sha256": "3631b02d89e9b386ca484d04e0a5febe520e53ed1329e352364d951ec9f7360c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MemoryMetric/converted.py.gz",
+      "sha256": "46c211fc84df2283f598f21a057e2d2b575dbf418df1b2010ed4278b60a71e83"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MemoryMetric/original.py.gz",
+      "sha256": "6eb0f5711f299c9f22c6203b2dd6d25836e86304a7021b6fdb797fb89ee2b520"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MoltbookResponse/consumer.py.gz",
+      "sha256": "57f5b57c032d853c604f566ddcedbb355e78d9957bcb119e3bce010f02e2bbb3"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MoltbookResponse/converted.py.gz",
+      "sha256": "29b73a46be10aa8548e8f018a0f490f355256e70719b327bf8402c8c065d6474"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/MoltbookResponse/original.py.gz",
+      "sha256": "5c3e182dd64349d3b073b6a03e746ff429c0572b016916ab73e22f9268d498f2"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionContext/consumer.py.gz",
+      "sha256": "4ad521b3077e5404316a47cc5da9c1b3b4edf3573f0538040cb2c449715c51ba"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionContext/converted.py.gz",
+      "sha256": "59758f82f0952f6590296f30471d44612922c34e0d96c465ef500c0b70b29ddb"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionContext/original.py.gz",
+      "sha256": "751a2733632b55ed880903586348c7d11f15d2f73f6e86a471e7438fc9c29484"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionManager/consumer.py.gz",
+      "sha256": "d5f2e6acb0bf4b6b79945dc08173ff716a5820c11b790daafd71ca1471587b3f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionManager/converted.py.gz",
+      "sha256": "50f234351c12004f954e2022be159efc3cabcf02cb24c74d548cf03da4176db1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/SessionManager/original.py.gz",
+      "sha256": "751a2733632b55ed880903586348c7d11f15d2f73f6e86a471e7438fc9c29484"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/ToolAdapter/consumer.py.gz",
+      "sha256": "a0e1137fb3c58ec04f3f82c6443ef40ee5993c8f181f301251c29f244367bf9f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/ToolAdapter/converted.py.gz",
+      "sha256": "e5a65dd66d6d797911018a35cf060390f45f05d85b91e70ac2eceaf33aeacb11"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/sources/variance-matrix-source/ToolAdapter/original.py.gz",
+      "sha256": "879ea645381d078bffd23053796a19e222b070145343d442c7375a8361039a6f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/targeted-tools.json.gz",
+      "sha256": "f5ae594b78cf26e83737580fcb86944ce8be618789b16103f68a102d18d97672"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/targeted-tools.log.gz",
+      "sha256": "20cd68eecb1ffeb7881e89a799ebe77486715d68cb463e6c0f1a7030f53a5531"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/variance-matrix-raw.json.gz",
+      "sha256": "d314b93e6ee16016f7a2ef98a2e978c528e6e26c9ecd4d4cae72c852e13cb5ee"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/variance-tool-versions.json.gz",
+      "sha256": "aa8236a0a99a4f4e9581a01d38044408d4eec7c0df49c03f91e9b01496893e15"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/variance-tool-versions.log.gz",
+      "sha256": "aefdf9067a83c467701b7abe71b23e03303e0c588ad2a53b1cdf75e7b5ccff0c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md",
+      "sha256": "316a78ed99f6aab4564a3648cb1031b83455ee0e6d82cc4e12986e9761b92b9f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json",
+      "sha256": "39966927cee073383647f07f3b688ee40a08eacc8101bdda8223c1d6dfd6f3ae"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md",
+      "sha256": "9c7729f81f625a48d267f2f6749be61630fde9acb17f148d3bcb2fcbf33a4fb2"
+    },
+    {
+      "path": "docs/planning/board.yaml",
+      "sha256": "58baa8f06055a21d87d75ad3e7d4ea44a3f448824853e87cfeaf710fd7b857eb"
+    }
+  ],
+  "output_directory": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review",
+  "constraints": "No product/authority/original writes, no commits/staging, original .env/.friday/data/secrets forbidden, no sync/install/download/network/privileged tests. Dispose private snapshot as needed using runner prepare compatibility-review, no overlays. Required independent source/diagnostic/hash/config/waiver compatibility/consumer review; guarded installed mypy/ruff private probes only after safety preflight. Do not trust builder conclusions, reproduce exact variance directions. Proposals explicitly unapproved; verify current controlling approval unaffected and board reconciles stop. Preserve raw diagnostics, pin all inputs and candidate before/after. Write report.md/evidence.json outside repo."
+}

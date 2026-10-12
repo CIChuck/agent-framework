@@ -2,7 +2,7 @@
 """Tests for workspace management."""
 
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -154,7 +154,7 @@ class TestWorkspaceModel:
             id="test",
             path="/tmp/test",
             ttl_seconds=1,
-            last_accessed_at=datetime.now(timezone.utc) - timedelta(seconds=2),
+            last_accessed_at=datetime.now(UTC) - timedelta(seconds=2),
         )
         assert workspace.is_expired is True
 
@@ -166,7 +166,7 @@ class TestWorkspaceModel:
         workspace = Workspace(
             id="test",
             path="/tmp/test",
-            last_accessed_at=datetime.now(timezone.utc) - timedelta(hours=1),
+            last_accessed_at=datetime.now(UTC) - timedelta(hours=1),
         )
         old_time = workspace.last_accessed_at
 

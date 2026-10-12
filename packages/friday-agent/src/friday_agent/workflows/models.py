@@ -10,7 +10,7 @@ Ref: Phase 1 Build Plan, Step 3
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Any, Literal
 
@@ -720,7 +720,7 @@ class WorkflowExecution(BaseModel):
 
 def _utc_now() -> datetime:
     """Return current UTC time for assignment and dispatch state updates."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class WorkflowPipelineDefinition(BaseModel):

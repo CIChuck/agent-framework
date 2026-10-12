@@ -1,0 +1,352 @@
+{
+  "full_skip_identities": [
+    {
+      "node": "packages/friday-chat/tests_chat/test_live_lmstudio.py::test_live_primary_complete_accepts_supported_controls[disabled]",
+      "reason": "set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+      "gate": "final-chat-telemetry",
+      "baseline": "unchanged opt-in mark/source at preparation-base and frozen prebuild candidate"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_live_lmstudio.py::test_live_primary_complete_accepts_supported_controls[enabled]",
+      "reason": "set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+      "gate": "final-chat-telemetry",
+      "baseline": "unchanged opt-in mark/source at preparation-base and frozen prebuild candidate"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_live_lmstudio.py::test_live_primary_stream_exposes_visible_text_only",
+      "reason": "set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+      "gate": "final-chat-telemetry",
+      "baseline": "unchanged opt-in mark/source at preparation-base and frozen prebuild candidate"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_live_lmstudio.py::test_live_primary_automatic_tool_selection",
+      "reason": "set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+      "gate": "final-chat-telemetry",
+      "baseline": "unchanged opt-in mark/source at preparation-base and frozen prebuild candidate"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_live_lmstudio.py::test_live_bounded_turn_processor_flow",
+      "reason": "set FRIDAY_CHAT_LIVE=1 to authorize loopback LM Studio requests",
+      "gate": "final-chat-telemetry",
+      "baseline": "unchanged opt-in mark/source at preparation-base and frozen prebuild candidate"
+    },
+    {
+      "node": "packages/friday-memory/tests_memory/test_adapters/test_graph.py::TestElementXGraphStore::test_rank_nodes_pagerank",
+      "reason": "could not import 'scipy': No module named 'scipy'",
+      "gate": "final-root-full and final-owning-trees",
+      "baseline": "unchanged importorskip source; accepted REM-004-final/report.md:42 records same optional SciPy skip"
+    }
+  ],
+  "skip_source_hashes": {
+    "packages/friday-chat/tests_chat/test_live_lmstudio.py": "185093850a1000b8caa71cfc3abd2418eff9ad897e3b1cf309d10f562b4ec7de",
+    "packages/friday-memory/tests_memory/test_adapters/test_graph.py": "bf308240fa4b0af92c18bb8ebe7e36202ed3b5ee9773c42a5d6febaa8f210220"
+  },
+  "no_new_skips": true,
+  "exact_13_listener_nodes_passed": [
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_non_streaming_final_http_payload",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[xhigh]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[medium]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[low]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_provider_default_emits_no_reasoning_override",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_disabled_reasoning_reaches_final_http_json",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_named_tool_choice_uses_lm_studio_bounded_wire_form",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+  ],
+  "actual_native_effects": [
+    {
+      "node": "tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62600",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-new-contract.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events"
+    },
+    {
+      "node": "tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62602",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-new-contract.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62749",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-chat-telemetry.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62751",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-chat-telemetry.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62936",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-root-full.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:62938",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-root-full.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:63065",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-owning-trees.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events"
+    },
+    {
+      "node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure",
+      "bind": "127.0.0.1:0",
+      "target": "127.0.0.1:63067",
+      "options": [
+        [
+          "grpc.enable_http_proxy",
+          0
+        ],
+        [
+          "grpc.enable_retries",
+          0
+        ],
+        [
+          "grpc.max_send_message_length",
+          4194304
+        ],
+        [
+          "grpc.max_receive_message_length",
+          4194304
+        ]
+      ],
+      "request_count": 1,
+      "channel_count": 1,
+      "channels_closed_by_owner": true,
+      "server_stopped": true,
+      "executor_workers_remaining": false,
+      "native_guard_covers_all_io": false,
+      "log": "final-owning-trees.log",
+      "canonical_node": "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+    }
+  ],
+  "source_audits": {
+    "final-new-contract": {
+      "receipt": "final-new-contract-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    },
+    "final-original-focused": {
+      "receipt": "final-original-focused-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    },
+    "final-chat-telemetry": {
+      "receipt": "final-chat-telemetry-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    },
+    "final-root-collection": {
+      "receipt": "final-root-collection-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    },
+    "final-root-full": {
+      "receipt": "final-root-full-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    },
+    "final-owning-trees": {
+      "receipt": "final-owning-trees-source-audit.json",
+      "original_product_import_leaks": {},
+      "owned_workers_remaining": []
+    }
+  },
+  "async_cleanup": {
+    "no_new_pending_tasks": true,
+    "both_provider_workers_reaped": true,
+    "first_exported": 3,
+    "second_exported": 3,
+    "no_native_channel_or_listener_created": true,
+    "all_threads_restored": true
+  },
+  "native_guard_limitation": "Python socket guard does not cover all native gRPC I/O; actual intercepted literal loopback targets/options and explicit channel/server/executor cleanup establish the authorized native effects. No remote TLS/native trust-root activation was performed. Existing eleven synthetic HTTP effects retain unchanged helper hashes and approved guard.",
+  "node_normalization": "Package-root focused pytest uses tests_telemetry/...; canonical node prepends packages/friday-telemetry/. Root full logs use canonical nodes directly."
+}

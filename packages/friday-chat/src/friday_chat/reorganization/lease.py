@@ -11,7 +11,7 @@ import stat
 from collections.abc import Iterator
 from contextlib import contextmanager, suppress
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from pathlib import Path
 from typing import Protocol, cast
@@ -465,7 +465,7 @@ class DarwinLayoutLeaseRegistry:
             log_root=layout.log_root,
             journal_id=journal.journal_id,
             journal_path=journal.journal_path,
-            created_at=datetime.now(timezone.utc),
+            created_at=datetime.now(UTC),
         )
 
     def _validate_linked_journal(

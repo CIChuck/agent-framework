@@ -1,0 +1,11 @@
+{
+  "existing_count": 11,
+  "new_count": 2,
+  "unique": true,
+  "fixture_hashes": {
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py": true,
+    "packages/friday-llm/tests_llm/conftest.py": true
+  },
+  "future_precollection_required": true,
+  "native_guard_limitation": true
+}

@@ -1,7 +1,7 @@
 """Contract tests for versioned typed reorganization records."""
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -191,7 +191,7 @@ def test_exit_mode_adapter_disables_cleanly_and_rejects_unknown_values() -> None
 
 
 def test_journal_schema_and_terminal_status_are_closed(tmp_path: Path) -> None:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     run_id = "1" * 32
     recovery_root = tmp_path / "recovery"
     journal = RecoveryJournal(

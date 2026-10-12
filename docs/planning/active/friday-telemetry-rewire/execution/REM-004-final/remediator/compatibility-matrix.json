@@ -1,0 +1,180 @@
+{
+  "tools": {
+    "python": "3.13.10",
+    "mypy": "1.19.1",
+    "ruff": "0.14.10",
+    "pydantic": "2.12.5"
+  },
+  "rows": [
+    {
+      "class": "MemoryMetric",
+      "baseline_sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 30,
+          "row": 34
+        },
+        "location": {
+          "column": 20,
+          "row": 34
+        },
+        "message": "Generic class `MemoryMetric` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-chat/src/friday_chat/memory_views.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "invariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "REJECTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": false,
+      "required_decision": "No variance-policy amendment established by these probes; mandatory package/API checks remain pending."
+    },
+    {
+      "class": "CommandRegistry",
+      "baseline_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 33,
+          "row": 74
+        },
+        "location": {
+          "column": 23,
+          "row": 74
+        },
+        "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/commands.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "contravariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "ACCEPTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": true,
+      "required_decision": "Permit this exact intentional contravariance at CommandRegistry:74, or retain invariant Generic[T] with separately approved exact live UP046 gate exception. Neither currently authorized."
+    },
+    {
+      "class": "SessionContext",
+      "baseline_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 32,
+          "row": 214
+        },
+        "location": {
+          "column": 22,
+          "row": 214
+        },
+        "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/session.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "invariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "REJECTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": false,
+      "required_decision": "No variance-policy amendment established by these probes; mandatory package/API checks remain pending."
+    },
+    {
+      "class": "SessionManager",
+      "baseline_sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 32,
+          "row": 235
+        },
+        "location": {
+          "column": 22,
+          "row": 235
+        },
+        "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/session.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "invariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "REJECTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": false,
+      "required_decision": "No variance-policy amendment established by these probes; mandatory package/API checks remain pending."
+    },
+    {
+      "class": "ToolAdapter",
+      "baseline_sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 39,
+          "row": 127
+        },
+        "location": {
+          "column": 29,
+          "row": 127
+        },
+        "message": "Generic class `ToolAdapter` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-core/src/friday_core/interfaces/tools.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "invariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "REJECTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": false,
+      "required_decision": "No variance-policy amendment established by these probes; mandatory package/API checks remain pending."
+    },
+    {
+      "class": "MoltbookResponse",
+      "baseline_sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da",
+      "diagnostic": {
+        "code": "UP046",
+        "end_location": {
+          "column": 45,
+          "row": 14
+        },
+        "location": {
+          "column": 35,
+          "row": 14
+        },
+        "message": "Generic class `MoltbookResponse` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-moltbook/src/friday_moltbook/responses.py"
+      },
+      "original_variance": "invariant",
+      "converted_variance": "invariant",
+      "directions": {
+        "original_parent_to_child": "REJECTED",
+        "original_child_to_parent": "REJECTED",
+        "converted_parent_to_child": "REJECTED",
+        "converted_child_to_parent": "REJECTED"
+      },
+      "legitimate_explicit_invariant_ruff_variants": "UP046 retained for covariant=False/contravariant=False and infer_variance=False",
+      "actual_conflict": false,
+      "required_decision": "No variance-policy amendment established by these probes; mandatory package/API checks remain pending."
+    }
+  ],
+  "pydantic_schema_contract_equal": true,
+  "construction": "stopped; no further product edits"
+}

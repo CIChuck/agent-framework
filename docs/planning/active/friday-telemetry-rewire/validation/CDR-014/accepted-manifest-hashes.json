@@ -1,0 +1,1001 @@
+{
+  "count": 199,
+  "all_match": true,
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/product-validation-request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-product-freeze.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-expanded.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-integrity.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-normalized.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-disposition.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/concurrent-untracked-state.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final-generic-consumers.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-site-review.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all-six-compatibility-report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation-probes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/command-registry-conflict-pin.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-evidence-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-matrix.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop-report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-evidence-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-02.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-03.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-handoff-report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-02.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-verification-receipts.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-api-probe-results-02.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-diff.patch.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/import-cleanup-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/lint-site-transformations.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-authorized-corrections.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-changes.patch.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-regression-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic-generic-raw.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/source-review-start.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance-matrix-raw.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/network-guard/sitecustomize.py",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-0.log",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-1.log",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/artifact-manifest.pre-packaging.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/retrospective-baselines.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/probe-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock-metadata-whitespace.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/scope-check.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-map.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lint-syntax-metadata.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate-paths.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins-preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta-paths.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-disposition.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preflight.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preservation-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/reviewer-artifact-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.log.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-manifest.pre-packaging.json",
+      "stored_matches": true,
+      "original_matches": true
+    }
+  ]
+}

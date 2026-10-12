@@ -313,10 +313,16 @@ async def _debug_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if not context.last_debug:
+    execution = context.runtime.telemetry.execution_snapshot() if context.runtime is not None and context.runtime.telemetry is not None else None
+    if not context.last_debug and not (execution and execution.turns):
         return CommandResult(output="No debug information recorded.")
     lines = ["Debug information:"]
     lines.extend(f"- {key}: {value}" for key, value in sorted(context.last_debug.items()))
+    if execution and execution.turns:
+        turn = execution.turns[-1]
+        lines.extend([f"- turn: {turn.turn_ref}", f"- outcome: {turn.outcome}",
+                      f"- persistence: {turn.persistence}", f"- completed_tools: {turn.completed_tools}",
+                      f"- failed_tools: {turn.failed_tools}"])
     return CommandResult(output="\n".join(lines))
 
 
@@ -342,12 +348,17 @@ async def _timing_handler(
     _args: tuple[str, ...],
     _metadata: CommandMetadata,
 ) -> CommandResult:
-    if not context.last_timing:
+    execution = context.runtime.telemetry.execution_snapshot() if context.runtime is not None and context.runtime.telemetry is not None else None
+    if not context.last_timing and not (execution and execution.turns):
         return CommandResult(output="No timing data recorded.")
     lines = ["Timing:"]
     lines.extend(
         f"- {key}: {value:.3f}s" for key, value in sorted(context.last_timing.items())
     )
+    if execution and execution.turns:
+        turn = execution.turns[-1]
+        lines.append(f"- observed_turn: {turn.duration_ms / 1000:.3f}s ({turn.outcome}, persistence={turn.persistence})")
+        lines.extend(f"- {kind}/{outcome}: {count}" for kind, outcome, count in execution.counters)
     return CommandResult(output="\n".join(lines))
 
 

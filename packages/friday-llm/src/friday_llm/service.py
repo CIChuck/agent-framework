@@ -14,11 +14,15 @@ import json
 import logging
 import re
 import warnings
-from collections.abc import AsyncIterator, Mapping
+from collections.abc import AsyncGenerator, AsyncIterator, Mapping
+from contextlib import aclosing, nullcontext
 from typing import TYPE_CHECKING, Any
 
 import litellm
 from friday_core.interfaces.llm import ChatCompletionResponse, ToolCall
+from friday_telemetry import TelemetryInterface
+from friday_telemetry.helpers.safe_llm import RequestTracker
+from friday_telemetry.models.llm_events import ServiceRole, UsageMetrics
 from pydantic import BaseModel
 from tenacity import (
     RetryError,
@@ -64,8 +68,13 @@ from friday_llm.streaming import (
     UsageEvent,
 )
 from friday_llm.targets import ExecutionTarget, ModelTarget, TransportTarget
-from friday_llm.telemetry_helper import LLMTelemetryHelper
-from friday_llm.telemetry_models import ConversationContext, TokenUsage
+from friday_llm.telemetry import (
+    LiteLLMMetrics,
+    finish_reason,
+    response_usage,
+    usage_from_raw,
+)
+from friday_llm.telemetry_models import ConversationContext
 from friday_llm.translation import (
     LiteLLMCallSpec,
     TranslationSummary,
@@ -111,7 +120,7 @@ class LiteLLMService:
         api_key: str | None = None,
         api_base: str | None = None,
         max_retries: int | None = None,
-        telemetry: Any | None = None,
+        telemetry: TelemetryInterface | None = None,
         resilience: ResilienceConfig | None = None,
         pricing_config: PricingConfig | None = None,
         thinking_enabled: bool | None = None,
@@ -120,6 +129,8 @@ class LiteLLMService:
         generation_defaults: GenerationConfig | None = None,
         provider_options_defaults: ProviderOptions | None = None,
         capability_declaration: OperatorCapabilityDeclaration | None = None,
+        *,
+        service_role: ServiceRole = "unspecified",
     ) -> None:
         """
         Initialize the LiteLLM service.
@@ -220,10 +231,8 @@ class LiteLLMService:
 
         # Initialize telemetry helper with cost calculator
         self._cost_calculator = CostCalculator(pricing_config)
-        self._telemetry_helper = LLMTelemetryHelper(
-            telemetry=telemetry,
-            cost_calculator=self._cost_calculator,
-            provider_name=self._detect_provider(model_name),
+        self._telemetry_helper = LiteLLMMetrics(
+            telemetry, self._cost_calculator, model_name, service_role=service_role,
         )
 
     @classmethod
@@ -231,8 +240,9 @@ class LiteLLMService:
         cls,
         spec: LLMServiceSpec,
         *,
-        telemetry: Any | None = None,
+        telemetry: TelemetryInterface | None = None,
         pricing_config: PricingConfig | None = None,
+        service_role: ServiceRole = "unspecified",
     ) -> LiteLLMService:
         """Construct a service from a resolved model-library specification."""
 
@@ -244,6 +254,7 @@ class LiteLLMService:
             api_key=api_key,
             api_base=spec.api_base,
             telemetry=telemetry,
+            service_role=service_role,
             resilience=spec.resilience,
             pricing_config=pricing_config,
             transport_target=spec.execution_target.transport,
@@ -401,37 +412,25 @@ class LiteLLMService:
         request: ChatCompletionRequest,
     ) -> TypedChatCompletionResponse:
         """Execute a strict typed completion request."""
-
-        generation = resolve_generation(
-            self.generation_defaults,
-            request.overrides,
-        )
-        self._validate_legacy_reasoning(generation)
-        metadata = self._build_langfuse_metadata(None, "chat_completion_request")
-        spec = self._build_call_spec(
-            messages=request.messages,
-            tools=request.tools,
-            tool_choice=(
-                request.tool_choice.model_dump(mode="json")
-                if isinstance(request.tool_choice, BaseModel)
-                else request.tool_choice
-            ),
-            generation=generation,
-            provider_options=request.provider_options,
-            metadata=metadata,
-            legacy=False,
-        )
-        response = await self._call_with_retry(
-            spec=spec,
-            timeout=request.timeout or self._resilience.timeout_seconds,
-            operation="chat_completion_request",
-        )
-        return self._parse_typed_response(response, spec.summary)
-
-    def _emit_event(self, event_name: str, data: dict[str, Any]) -> None:
-        """Emit telemetry event if configured."""
-        if self.telemetry:
-            self.telemetry.capture_event(event_name, data)
+        with self._telemetry_helper.request("typed_completion") as tracker:
+            generation = resolve_generation(self.generation_defaults, request.overrides)
+            self._validate_legacy_reasoning(generation)
+            metadata = self._build_langfuse_metadata(None, "chat_completion_request")
+            spec = self._build_call_spec(
+                messages=request.messages, tools=request.tools,
+                tool_choice=(request.tool_choice.model_dump(mode="json")
+                             if isinstance(request.tool_choice, BaseModel) else request.tool_choice),
+                generation=generation, provider_options=request.provider_options,
+                metadata=metadata, legacy=False,
+            )
+            response = await self._call_with_retry(
+                spec=spec, timeout=request.timeout or self._resilience.timeout_seconds,
+                operation="chat_completion_request", tracker=tracker,
+            )
+            tracker.usage = response_usage(response)
+            result = self._parse_typed_response(response, spec.summary)
+            tracker.finish_reason = finish_reason(result.finish_reason)
+            return result
 
     async def chat_completion(
         self,
@@ -463,83 +462,33 @@ class LiteLLMService:
             LLMRetryExhaustedError: If max retries exceeded
             CircuitBreakerOpenError: If circuit breaker is open
         """
-        effective_timeout = timeout or self._resilience.timeout_seconds
-
-        langfuse_meta = self._build_langfuse_metadata(
-            conversation_context, "chat_completion"
-        )
-        spec = self._build_call_spec(
-            messages=messages,
-            tools=tools,
-            tool_choice="auto" if tools else None,
-            generation=self._legacy_generation_config(
-                temperature=temperature,
-                max_tokens=max_tokens,
-            ),
-            provider_options=None,
-            metadata=langfuse_meta,
-            legacy=True,
-        )
-
-        with self._telemetry_helper.track_completion(
-            model=self.model,
-            context=conversation_context,
-            temperature=temperature,
-            tool_count=len(tools) if tools else 0,
-        ) as tracker:
+        with self._telemetry_helper.request("legacy_completion") as tracker:
+            effective_timeout = timeout or self._resilience.timeout_seconds
+            langfuse_meta = self._build_langfuse_metadata(conversation_context, "chat_completion")
+            spec = self._build_call_spec(
+                messages=messages, tools=tools, tool_choice="auto" if tools else None,
+                generation=self._legacy_generation_config(temperature=temperature, max_tokens=max_tokens),
+                provider_options=None, metadata=langfuse_meta, legacy=True,
+            )
+            response = await self._call_with_retry(
+                spec=spec, timeout=effective_timeout, operation="chat_completion", tracker=tracker,
+            )
+            tracker.usage = response_usage(response)
+            result = self._parse_response(response)
             try:
-                response = await self._call_with_retry(
-                    spec=spec,
-                    timeout=effective_timeout,
-                    operation="chat_completion",
-                )
-
-                # Parse the response
-                result = self._parse_response(response)
-
-                # Extract finish reasons
-                finish_reasons = []
-                for choice in response.choices:
-                    if hasattr(choice, "finish_reason") and choice.finish_reason:
-                        finish_reasons.append(choice.finish_reason)
-
-                # Record response details for telemetry
-                tracker.set_response(
-                    response_model=getattr(response, "model", self.model),
-                    response_id=getattr(response, "id", None),
-                    usage=TokenUsage.from_response(result.usage),
-                    finish_reasons=finish_reasons,
-                    tool_calls_count=len(result.tool_calls),
-                )
-
-                # Handle structured output if requested
-                if response_model and result.content:
-                    try:
-                        raw = result.content.strip()
-                        # Strip markdown code fences that LLMs
-                        # sometimes wrap around JSON responses
-                        raw = re.sub(
-                            r"^```(?:json)?\s*\n?",
-                            "",
-                            raw,
-                        )
-                        raw = re.sub(r"\n?```\s*$", "", raw)
-                        parsed = response_model.model_validate_json(raw)
-                        result._parsed_model = parsed
-                    except Exception as e:
-                        logger.warning(
-                            "Failed to parse response into model: %s",
-                            e,
-                        )
-
-                return result
-
-            except LLMRetryExhaustedError as e:
-                tracker.set_retry_info(e.attempts, e.attempts)
-                raise
-
-            except LLMTimeoutError:
-                raise
+                tracker.finish_reason = finish_reason(getattr(response.choices[0], "finish_reason", None))
+            except Exception:
+                self._telemetry_helper.safe.diagnose("invalid_event")
+            if response_model and result.content:
+                try:
+                    raw = result.content.strip()
+                    raw = re.sub(r"^```(?:json)?\s*\n?", "", raw)
+                    raw = re.sub(r"\n?```\s*$", "", raw)
+                    parsed = response_model.model_validate_json(raw)
+                    result._parsed_model = parsed
+                except Exception as e:
+                    logger.warning("Failed to parse response into model: %s", e)
+            return result
 
     async def chat_completion_stream(
         self,
@@ -576,115 +525,85 @@ class LiteLLMService:
             async for chunk in llm.chat_completion_stream(messages):
                 print(chunk, end="", flush=True)
         """
-        effective_timeout = timeout or self._resilience.stream_timeout_seconds
-        streaming_tracker = self._telemetry_helper.create_streaming_tracker()
-        langfuse_meta = self._build_langfuse_metadata(
-            conversation_context, "chat_completion_stream"
-        )
-        spec = self._build_call_spec(
-            messages=messages,
-            tools=tools,
-            tool_choice="auto" if tools else None,
-            generation=self._legacy_generation_config(
-                temperature=temperature,
-                max_tokens=max_tokens,
-            ),
-            provider_options=None,
-            metadata=langfuse_meta,
-            legacy=True,
-        )
-
-        with self._telemetry_helper.track_completion(
-            model=self.model,
-            context=conversation_context,
-            temperature=temperature,
-            tool_count=len(tools) if tools else 0,
-        ) as tracker:
-            try:
-                # Setup stream with retry logic
-                response = await self._call_stream_with_retry(
-                    spec=spec,
-                    timeout=effective_timeout,
-                )
-
-                # Start TTFT tracking after connection established
-                streaming_tracker.start()
-
-                # Stream chunks with timeout
-                try:
-                    async for event in self._events_from_response(
-                        self._iterate_with_timeout(response, effective_timeout)
-                    ):
-                        if isinstance(event, TextDeltaEvent):
-                            streaming_tracker.record_chunk(
-                                len(event.text.split())
-                            )
-                            yield event.text
-                except asyncio.TimeoutError as e:
-                    await self._close_stream(response)
-                    raise LLMTimeoutError(
-                        "Streaming response timed out",
-                        timeout_seconds=effective_timeout,
-                        operation="streaming",
-                        model=self.model,
-                    ) from e
-                except asyncio.CancelledError:
-                    await self._close_stream(response)
-                    raise
-
-                # Record streaming metrics
-                tracker.set_streaming_metrics(streaming_tracker.finish())
-                tracker.set_response(response_model=self.model)
-
-            except LLMRetryExhaustedError as e:
-                tracker.set_retry_info(e.attempts, e.attempts)
-                raise
-
-            except LLMTimeoutError:
-                raise
+        with self._telemetry_helper.request("legacy_stream") as tracker:
+            effective_timeout = timeout or self._resilience.stream_timeout_seconds
+            spec = self._build_call_spec(
+                messages=messages, tools=tools, tool_choice="auto" if tools else None,
+                generation=self._legacy_generation_config(temperature=temperature, max_tokens=max_tokens),
+                provider_options=None,
+                metadata=self._build_langfuse_metadata(conversation_context, "chat_completion_stream"),
+                legacy=True,
+            )
+            async with aclosing(self._stream_events(spec, effective_timeout, tracker)) as events:
+                async for event in events:
+                    if isinstance(event, TextDeltaEvent):
+                        tracker.text_seen()
+                        yield event.text
 
     async def chat_completion_events(
         self,
         request: ChatCompletionRequest,
     ) -> AsyncIterator[StreamEvent]:
         """Stream typed text, reasoning, tool, usage, and finish events."""
+        with self._telemetry_helper.request("typed_stream") as tracker:
+            generation = resolve_generation(self.generation_defaults, request.overrides)
+            self._validate_legacy_reasoning(generation)
+            spec = self._build_call_spec(
+                messages=request.messages, tools=request.tools,
+                tool_choice=(request.tool_choice.model_dump(mode="json")
+                             if isinstance(request.tool_choice, BaseModel) else request.tool_choice),
+                generation=generation, provider_options=request.provider_options,
+                metadata=self._build_langfuse_metadata(None, "chat_completion_events"), legacy=False,
+            )
+            timeout = request.timeout or self._resilience.stream_timeout_seconds
+            async with aclosing(self._stream_events(spec, timeout, tracker)) as events:
+                async for event in events:
+                    if isinstance(event, TextDeltaEvent):
+                        tracker.text_seen()
+                    yield event
 
-        generation = resolve_generation(
-            self.generation_defaults,
-            request.overrides,
-        )
-        self._validate_legacy_reasoning(generation)
-        spec = self._build_call_spec(
-            messages=request.messages,
-            tools=request.tools,
-            tool_choice=(
-                request.tool_choice.model_dump(mode="json")
-                if isinstance(request.tool_choice, BaseModel)
-                else request.tool_choice
-            ),
-            generation=generation,
-            provider_options=request.provider_options,
-            metadata=self._build_langfuse_metadata(None, "chat_completion_events"),
-            legacy=False,
-        )
-        timeout = request.timeout or self._resilience.stream_timeout_seconds
-        response = await self._call_stream_with_retry(spec=spec, timeout=timeout)
+    async def _observe_chunks(
+        self, response: AsyncIterator[Any], tracker: RequestTracker,
+    ) -> AsyncIterator[Any]:
+        async for chunk in response:
+            try:
+                raw = getattr(chunk, "usage", None)
+                usage = None if raw is None else usage_from_raw(raw)
+            except Exception:
+                usage = UsageMetrics(usage_state="invalid")
+            tracker.record_chunk(usage)
+            yield chunk
+
+    async def _stream_events(
+        self, spec: LiteLLMCallSpec, timeout: float, tracker: RequestTracker,
+    ) -> AsyncGenerator[StreamEvent]:
+        response = await self._call_stream_with_retry(spec=spec, timeout=timeout, tracker=tracker)
+        primary: BaseException | None = None
         try:
             async for event in self._events_from_response(
-                self._iterate_with_timeout(response, timeout)
+                self._observe_chunks(self._iterate_with_timeout(response, timeout), tracker)
             ):
+                if isinstance(event, FinishEvent):
+                    tracker.finish_reason = finish_reason(event.finish_reason)
                 yield event
-        except asyncio.CancelledError:
-            await self._close_stream(response)
+        except TimeoutError as error:
+            primary = error
+            raise LLMTimeoutError("Streaming response timed out", timeout_seconds=timeout,
+                                  operation="streaming", model=self.model) from error
+        except BaseException as error:
+            primary = error
             raise
-        except asyncio.TimeoutError as error:
-            await self._close_stream(response)
-            raise LLMTimeoutError(
-                "Streaming response timed out",
-                timeout_seconds=timeout,
-                operation="streaming",
-                model=self.model,
-            ) from error
+        finally:
+            try:
+                await self._close_stream(response)
+            except BaseException as cleanup_error:
+                if primary is None and not isinstance(cleanup_error, Exception):
+                    raise
+                # Preserve an active primary exception/cancellation. On normal
+                # exhaustion, best-effort cleanup cannot corrupt delivered data.
+                self._telemetry_helper.safe.diagnose("invalid_event")
+                if primary is None:
+                    tracker.outcome = "error"
 
     async def _events_from_response(self, response: Any) -> AsyncIterator[StreamEvent]:
         assembler = ToolCallAssembler()
@@ -765,7 +684,7 @@ class LiteLLMService:
         if not done:
             pending_read.cancel()
             await asyncio.gather(pending_read, return_exceptions=True)
-            raise asyncio.TimeoutError
+            raise TimeoutError
         return pending_read.result()
 
     @staticmethod
@@ -823,6 +742,7 @@ class LiteLLMService:
         spec: LiteLLMCallSpec,
         timeout: float,
         operation: str,
+        *, tracker: RequestTracker | None = None,
     ) -> Any:
         """Execute LiteLLM call with retry logic, timeout, and circuit breaker."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -850,18 +770,19 @@ class LiteLLMService:
                 kwargs.get("metadata", {}).get("generation_name"),
             )
 
-            try:
-                return await asyncio.wait_for(
-                    litellm.acompletion(**kwargs),
-                    timeout=timeout,
-                )
-            except asyncio.TimeoutError as e:
-                raise LLMTimeoutError(
-                    f"LLM call timed out after {timeout}s",
-                    timeout_seconds=timeout,
-                    operation=operation,
-                    model=self.model,
-                ) from e
+            with tracker.attempt() if tracker is not None else nullcontext():
+                try:
+                    return await asyncio.wait_for(
+                        litellm.acompletion(**kwargs),
+                        timeout=timeout,
+                    )
+                except TimeoutError as e:
+                    raise LLMTimeoutError(
+                        f"LLM call timed out after {timeout}s",
+                        timeout_seconds=timeout,
+                        operation=operation,
+                        model=self.model,
+                    ) from e
 
         try:
             # Execute through circuit breaker
@@ -885,6 +806,7 @@ class LiteLLMService:
         self,
         spec: LiteLLMCallSpec,
         timeout: float,
+        *, tracker: RequestTracker | None = None,
     ) -> Any:
         """Execute streaming call setup with retry on connection errors."""
         retry_exceptions = self._resilience.get_retry_exceptions()
@@ -913,18 +835,19 @@ class LiteLLMService:
                 kwargs.get("metadata", {}).get("generation_name"),
             )
 
-            try:
-                return await asyncio.wait_for(
-                    litellm.acompletion(**kwargs),
-                    timeout=timeout,
-                )
-            except asyncio.TimeoutError as e:
-                raise LLMTimeoutError(
-                    f"Stream setup timed out after {timeout}s",
-                    timeout_seconds=timeout,
-                    operation="streaming",
-                    model=self.model,
-                ) from e
+            with tracker.attempt() if tracker is not None else nullcontext():
+                try:
+                    return await asyncio.wait_for(
+                        litellm.acompletion(**kwargs),
+                        timeout=timeout,
+                    )
+                except TimeoutError as e:
+                    raise LLMTimeoutError(
+                        f"Stream setup timed out after {timeout}s",
+                        timeout_seconds=timeout,
+                        operation="streaming",
+                        model=self.model,
+                    ) from e
 
         try:
             return await self._circuit_breaker.call(_setup_stream)

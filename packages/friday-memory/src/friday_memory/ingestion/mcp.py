@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import html
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Literal, Protocol, runtime_checkable
 from uuid import uuid4
 
@@ -144,7 +144,7 @@ class MCPMemoryIngester:
                 matched_grant=grant,
                 memory_sanitization="sanitized" if normalized != text else "unchanged",
                 stored_size_bytes=stored_size,
-                captured_at=datetime.now(timezone.utc),
+                captured_at=datetime.now(UTC),
             )
             snapshot.encoded_provenance()
             if not stored.startswith(snapshot_label(snapshot) + "\n"):

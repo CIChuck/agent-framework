@@ -1,0 +1,244 @@
+{
+  "review_id": "CDR-002",
+  "review_type": "construction-directive-readiness",
+  "verdict": "READY",
+  "reviewer": {
+    "identity": "/root/cd001_a01_reviewer",
+    "platform": "Codex",
+    "model": "GPT-6 family; exact deployed identifier unavailable",
+    "date": "2026-10-05",
+    "completed_utc": "2026-10-05T16:13:00.527868+00:00",
+    "mode": "fresh-context read-only full directive-readiness review"
+  },
+  "candidate": "6013be5e6c280a3c93f6686e0b53e7d7cd6b9bf3",
+  "amendment_base": "ab7efe8599d315d748015b3761a0b6fad4a9b922",
+  "preparation_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "branch": "feature/friday-telemetry-rewire",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "expected": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "commit_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "working_sha256": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "commit_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "working_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "commit_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "working_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "match": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "commit_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "working_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "match": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "commit_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "working_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "expected": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "commit_sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "working_sha256": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+      "commit_sha256": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+      "working_sha256": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "expected": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "commit_sha256": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "working_sha256": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "expected": "e295302272d8519a8f4f5040e372fbea412c3b317efe7c2a873260eafe4d70e9",
+      "commit_sha256": "e295302272d8519a8f4f5040e372fbea412c3b317efe7c2a873260eafe4d70e9",
+      "working_sha256": "e295302272d8519a8f4f5040e372fbea412c3b317efe7c2a873260eafe4d70e9",
+      "match": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "expected": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "commit_sha256": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "working_sha256": "c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2",
+      "match": true
+    }
+  ],
+  "supplemental_inputs_file": "supplemental-inputs.json",
+  "request_sha256": "891022279bbbc6b576d0a08f2ee30988b9990d4f9baba12fed24fb2e34a28186",
+  "authority_hashes_match_before_and_after": true,
+  "repository_state_equal_before_after": true,
+  "state_files": [
+    "repository-before.json",
+    "repository-after.json"
+  ],
+  "authority_check_files": [
+    "authority-before.json",
+    "authority-after.json"
+  ],
+  "preserved_dirty_path_count": 10,
+  "nested_untracked_directory_fingerprint_limit": "unchanged porcelain status only; not recursively audited",
+  "findings": [],
+  "bounded_corrections": [],
+  "readiness_assessment": "all nine report assessment dimensions supported by frozen source citations",
+  "commands": [
+    {
+      "command": "git status --short; git branch --show-current; git rev-parse HEAD",
+      "result": "feature/friday-telemetry-rewire at frozen candidate; preserved dirty manifest"
+    },
+    {
+      "command": "cat request.yaml; git show <candidate>:<each of ten authority paths>; SHA-256 compare with working path",
+      "result": "10/10 exact matches before and after"
+    },
+    {
+      "command": "cat/nl/sed on frozen AGENTS.md, three policies, directive-builder guidance, MCP WS-07, build/contract/tactical/CD-001/profile and authority-manifest",
+      "result": "complete directive-readiness source review; report contains stable citations"
+    },
+    {
+      "command": "git show <preparation_base>:<listed supplemental paths>; rg selected lifecycle/CLI/runtime seams",
+      "result": "baseline metadata/public interface/feasibility and safety-exclusion review only"
+    },
+    {
+      "command": "git diff <amendment_base> <candidate> -- <four amended authority files>; git diff --name-only <amendment_base> <candidate>",
+      "result": "verification-only controlling-authority delta reviewed; no prior report contents read"
+    },
+    {
+      "command": "git show <candidate>:docs/planning/board.yaml; rg bounded initiative entry",
+      "result": "started/granted; named branch; next gate A01 readiness review"
+    },
+    {
+      "command": "git status --porcelain=v1 -z --untracked-files=all; git diff --binary HEAD; git diff --cached --binary; SHA-256 reported dirty regular files",
+      "result": "repository-before.json exactly equals repository-after.json"
+    },
+    {
+      "command": "rg registry historical telemetry keywords; sed MEMORY.md:70-90",
+      "result": "historical memory context only, not current readiness evidence"
+    },
+    {
+      "command": "test -f docs/methodology/constitution/gendev.md",
+      "result": "optional guidance document absent"
+    }
+  ],
+  "mandatory_execution_checks": [
+    {
+      "check": "focused pytest exact six tests",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "complete Chat and telemetry pytest suites",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "root ruff check .",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "root pytest with exact two live-module exclusions",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "changed Python Ruff",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "changed source mypy Python 3.10",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "changed source mypy Python 3.13",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "board validate",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "documentation lifecycle check",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "git diff --check",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "changed source frozen-script Python 3.10 syntax check",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "changed source Python 3.10 stdlib/dependency API availability review",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    },
+    {
+      "check": "available Python 3.10 synthetic observer/composite runtime smoke",
+      "status": "NOT_RUN",
+      "reason": "directive-readiness review prohibits runtime/tests; command/evidence obligations assessed only"
+    }
+  ],
+  "independence": {
+    "fresh_subagent": true,
+    "builder_reasoning_or_reports_read": false,
+    "prior_CDR_VAL_reports_read": false,
+    "REM_WVR_proposals_read": false,
+    "private_conclusions_read": false,
+    "candidate_product_conformance_reviewed": false,
+    "shared_context_exceptions": [
+      "platform/developer/repository guidance",
+      "controller frozen review task",
+      "historical memory registry lookup; not used for current conclusion"
+    ]
+  },
+  "prohibited_effects": {
+    "runtime_or_pytest_execution": false,
+    "network": false,
+    "credentials_or_real_application_state": false,
+    "providers_exporters": false,
+    "source_docs_config_board_or_git_mutations": false
+  },
+  "writes_confined_to": "/private/tmp/telem-01/CDR-002",
+  "limits": [
+    "Directive readiness only; no code VERIFIED or maintainer acceptance",
+    "Future broad-test safety preflight and isolated environment unresolved by design",
+    "Required baseline/candidate results and changed-code Python 3.10 evidence not assessed",
+    "Optional gendev constitution absent; no authority assumed",
+    "Frozen approval records not independently authenticated"
+  ],
+  "memory_registry_citation": {
+    "file": "MEMORY.md",
+    "lines": "72-82",
+    "rollout_id": "01a1079c-0038-74f0-9319-c89801c7e94e"
+  }
+}

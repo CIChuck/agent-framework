@@ -1,0 +1,213 @@
+{
+  "review_id": "CDR-004",
+  "outcome": "CHANGES_REQUESTED",
+  "reviewer": "fresh-context agent /root/cd001_a03_reviewer",
+  "model": "GPT-6 family; exact runtime version not exposed",
+  "date_utc": "2026-10-05T19:34:01.860056+00:00",
+  "mode": "read-only directive readiness",
+  "candidate": "c3a4c6c68d345f4fe1fe58b001740ad88003d848",
+  "delta_base": "325a0e52f5b292f27f6ecd81fc821097e8405349",
+  "checkout": "/private/tmp/telem-01/REM-002/authority-review",
+  "shared_context_exceptions": [],
+  "builder_reports_or_prior_review_conclusions_used": false,
+  "authority_pins": [
+    {
+      "path": "AGENTS.md",
+      "expected": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+      "actual": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "expected": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+      "actual": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "expected": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "actual": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "expected": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+      "actual": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "expected": "73f716469fbbfab3495cbd64e9cc435bfbe2901ffc2f7cf8e7e924736c6dbf06",
+      "actual": "73f716469fbbfab3495cbd64e9cc435bfbe2901ffc2f7cf8e7e924736c6dbf06"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "expected": "a586686bda13379c13d53922bed8cf6e911b801f8cdb56657ecbe84dd52c683d",
+      "actual": "a586686bda13379c13d53922bed8cf6e911b801f8cdb56657ecbe84dd52c683d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "expected": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "actual": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "expected": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "actual": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5"
+    }
+  ],
+  "hash_count": 12,
+  "all_pins_match": true,
+  "state_check": {
+    "before": "before.json",
+    "after": "after.json",
+    "tracked_count": 2086,
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "tracked_hashes_unchanged": true
+  },
+  "delta_paths": [
+    "docs/planning/README.md",
+    "docs/planning/active/friday-telemetry-rewire/README.md",
+    "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+    "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+    "docs/planning/active/friday-telemetry-rewire/execution-log.md",
+    "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+    "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+    "docs/planning/board.yaml"
+  ],
+  "raw_inputs": "input-evidence.json",
+  "raw_delta": "authority-delta.patch",
+  "checks": [
+    {
+      "id": "C01",
+      "result": "PASS",
+      "scope": "12 pinned hashes, candidate HEAD, initial/final clean status, all 2086 tracked hashes unchanged",
+      "evidence": [
+        "before.json",
+        "after.json",
+        "pinned-hashes.json"
+      ]
+    },
+    {
+      "id": "C02",
+      "result": "PASS",
+      "scope": "Authority delta is eight planning/board artifacts with no product source/test/config changes",
+      "evidence": "authority-delta.patch"
+    },
+    {
+      "id": "C03",
+      "result": "PASS",
+      "scope": "Exact three loopback nodes use ephemeral 127.0.0.1 fixture with cleanup; no privilege extension to other suites",
+      "citations": [
+        "REM-002-verification-directive.md:22-30",
+        "verification-profile.md:76-85",
+        "test_llm_adapter_migration.py:338-351,375-445"
+      ]
+    },
+    {
+      "id": "C04",
+      "result": "PASS",
+      "scope": "Root importlib/helper setup, collection on base/candidate, required reruns, unchanged exclusions, no implicit waiver",
+      "citations": [
+        "verification-profile.md:10-35,127-145",
+        "CD-001-local-telemetry-assembly.md:104-128",
+        "REM-002-verification-directive.md:69-79"
+      ]
+    },
+    {
+      "id": "C05",
+      "result": "PASS",
+      "scope": "Frozen temporary Python3.10 setup limits, existing interpreter only, URL/hash/version evidence, incompatibility stop; lock declares Python >=3.10 branch",
+      "citations": [
+        "REM-002-verification-directive.md:31-40",
+        "verification-profile.md:69-74,115-123",
+        "uv.lock:1-15"
+      ]
+    },
+    {
+      "id": "C06",
+      "result": "FAIL",
+      "scope": "External-service manifest contradicts explicitly permitted PyPI setup",
+      "finding": "CDR-004-F01"
+    }
+  ],
+  "findings": [
+    {
+      "id": "CDR-004-F01",
+      "severity": "medium",
+      "affected_file": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "lines": [
+        39,
+        40
+      ],
+      "requirement": "Frozen authority must consistently identify permitted external effects; conflicting artifacts require reconciliation.",
+      "authority": [
+        "docs/reference/policies/independent-validation-policy.md:64-66",
+        "docs/reference/policies/independent-validation-policy.md:108-119"
+      ],
+      "observation": "Manifest says external_services: none; A03/REM-002/profile explicitly permit locked credential-free public PyPI downloads only to separate temporary Python3.10 environment.",
+      "risk": "An executor or downstream frozen review can apply an incorrect network boundary or receive inconsistent permissions.",
+      "required_mitigation": "Amend only external_services metadata to record the precise existing setup download exception and maintain no vendor/live network during tests; freeze a new stable authority revision and submit fresh readiness review.",
+      "verification": "Verify updated manifest against REM-002:31-40/profile:69-85; recheck pinned hashes, exact docs-only delta, HEAD/status/tracked preservation; no product tests required for metadata correction.",
+      "documentation_impact": "Authority manifest plus existing scoped authority/state records as necessary; no product/config/lock/dependency changes and no new approval needed for already-approved scope."
+    }
+  ],
+  "not_run": [
+    "product tests",
+    "pytest collection",
+    "lint/typecheck/product compatibility runtime",
+    "board/docs executable validation",
+    "installation",
+    "downloads"
+  ],
+  "residual_risk": "Static readiness does not establish test collection, package compatibility, smoke success, broad gate disposition, waiver, implementation VERIFIED, completion or acceptance.",
+  "commands": [
+    {
+      "command": "cat /private/tmp/telem-01/CDR-004/request.yaml",
+      "exit_status": 0,
+      "result": "request read first"
+    },
+    {
+      "command": "git rev-parse HEAD; git status --porcelain=v1 -uall; git ls-files -z; Python hashlib.sha256 of each tracked file before/after",
+      "exit_status": 0,
+      "result": "HEAD/status and all 2086 tracked hashes unchanged"
+    },
+    {
+      "command": "Python hashlib.sha256 of all request-pinned authority files",
+      "exit_status": 0,
+      "result": "12 of 12 hashes match"
+    },
+    {
+      "command": "git diff 325a0e52f5b292f27f6ecd81fc821097e8405349 c3a4c6c68d345f4fe1fe58b001740ad88003d848",
+      "exit_status": 0,
+      "result": "full eight-file delta inspected and retained"
+    },
+    {
+      "command": "cat/nl/sed authority files and fixture, pyproject and uv.lock excerpts; rg bare sibling imports",
+      "exit_status": 0,
+      "result": "static scope/safety/required-gate assessment; raw current inputs retained"
+    },
+    {
+      "command": "nl -ba independent-validation-policy.md | sed -n '45, seventy p' (and '47, seventy p')",
+      "exit_status": 1,
+      "result": "two malformed read-only sed commands; corrected numeric-range command succeeded; no state effects"
+    }
+  ]
+}

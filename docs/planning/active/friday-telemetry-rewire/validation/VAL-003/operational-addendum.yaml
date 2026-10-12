@@ -1,0 +1,13 @@
+original_request_sha256: 38601a3be8194568b5b27234e0ac4bdd8850455bea241df62b24e47b9b8491fc
+baseline_checkout: /private/tmp/telem-01/VAL-003-baseline
+baseline_revision: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735
+baseline_status: ''
+controller_clarification: Existing required tests may generate synthetic ignored outputs
+  only in experiments/prompt_transcript_audit/artifacts within their isolated private/tmp
+  checkouts. Agent-authored review artifacts stay in VAL-003. Track output path/hash
+  manifest; retain outputs; all tracked before/after hashes must remain unchanged.
+  No source/docs/test/config/authority/Git writes, credentials/vendor/live or original
+  data effects. No redirect/patch/exclusion/extra privilege.
+approval_basis: Explicit approval of all REM-002 tasks; current profile synthetic
+  providers and temporary filesystem state; operational clarification without changing
+  product/gate/authority scope

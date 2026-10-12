@@ -1,0 +1,77 @@
+[
+  {
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "Python 3.13.10\n",
+    "stderr": "",
+    "environment": {
+      "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+      "UV_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/uv",
+      "UV_NO_SYNC": "true",
+      "UV_OFFLINE": "true",
+      "UV_PYTHON_DOWNLOADS": "never",
+      "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+      "ANONYMIZED_TELEMETRY": "False",
+      "TERM": "xterm-256color",
+      "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-agent/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-cli/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-core/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-finance/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-llm/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-mcp/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-memory/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-moltbook/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-optimization/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-runtime/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-sandbox/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-speech/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-telemetry/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-tools/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-transcript/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/builder-baseline/approved-candidate",
+      "TMPDIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "RUFF_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/ruff",
+      "MYPY_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/mypy"
+    }
+  },
+  {
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/ruff",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "ruff 0.14.10\n",
+    "stderr": "",
+    "environment": {
+      "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+      "UV_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/uv",
+      "UV_NO_SYNC": "true",
+      "UV_OFFLINE": "true",
+      "UV_PYTHON_DOWNLOADS": "never",
+      "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+      "ANONYMIZED_TELEMETRY": "False",
+      "TERM": "xterm-256color",
+      "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-agent/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-cli/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-core/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-finance/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-llm/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-mcp/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-memory/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-moltbook/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-optimization/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-runtime/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-sandbox/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-speech/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-telemetry/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-tools/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-transcript/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/builder-baseline/approved-candidate",
+      "TMPDIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "RUFF_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/ruff",
+      "MYPY_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/mypy"
+    }
+  },
+  {
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/mypy",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "mypy 1.19.1 (compiled: yes)\n",
+    "stderr": "",
+    "environment": {
+      "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+      "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+      "UV_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/uv",
+      "UV_NO_SYNC": "true",
+      "UV_OFFLINE": "true",
+      "UV_PYTHON_DOWNLOADS": "never",
+      "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+      "ANONYMIZED_TELEMETRY": "False",
+      "TERM": "xterm-256color",
+      "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-agent/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-cli/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-core/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-finance/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-llm/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-mcp/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-memory/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-moltbook/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-optimization/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-runtime/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-sandbox/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-speech/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-telemetry/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-tools/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-transcript/src:/private/tmp/telem-02/builder-baseline/approved-candidate/packages/friday-chat/tests_chat:/private/tmp/telem-02/builder-baseline/approved-candidate",
+      "TMPDIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "RUFF_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/ruff",
+      "MYPY_CACHE_DIR": "/private/tmp/telem-02/builder-baseline/tmp/approved-candidate-fake-probe/mypy"
+    }
+  }
+]

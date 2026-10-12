@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+    "-m",
+    "pytest",
+    "--import-mode=importlib",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_builtin_tools_by_default",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_friday_tools_provider_with_category_filter",
+    "packages/friday-runtime/tests_runtime/test_di.py::test_di_native_registration_defers_mcp_to_async_boot",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools",
+    "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client"
+  ],
+  "cwd": "/private/tmp/telem-01/REM-003/corrected-checkout",
+  "revision": "4c0afdb11b663e11ae08a927950dd3e968bbb566",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "UV_CACHE_DIR": "/private/tmp/friday-uv-cache",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/tmp/native-isolated",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTEST_ADDOPTS": "-o cache_dir=/private/tmp/telem-01/REM-004/tmp/native-isolated/pytest",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-agent/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-chat/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-cli/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-core/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-finance/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-llm/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-mcp/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-memory/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-moltbook/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-optimization/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-runtime/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-sandbox/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-speech/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-telemetry/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-tools/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-transcript/src:/private/tmp/telem-01/REM-003/corrected-checkout/packages/friday-chat/tests_chat:/private/tmp/telem-01/REM-003/corrected-checkout"
+  },
+  "guard_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+  "exit_code": 0,
+  "seconds": 2.984825849533081,
+  "log_sha256": "21a2bc43b97f65ac379b4a73457c8d0e1938977e6c3635169a3bae5c4ffcbdde"
+}

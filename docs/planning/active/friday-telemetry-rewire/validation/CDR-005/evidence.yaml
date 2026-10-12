@@ -1,0 +1,177 @@
+{
+  "review_id": "CDR-005",
+  "outcome": "READY",
+  "reviewer": {
+    "identity": "Codex independent subagent /root/cd001_a03_corrected_reviewer",
+    "model_version": "not exposed",
+    "date": "2026-10-05",
+    "mode": "fresh-context read-only directive readiness",
+    "shared_context": "Parent supplied scope, exact request/candidate and explicit approval; no builder reasoning or conclusions used."
+  },
+  "candidate": "362b66c720ad3681e556aef8fa1a4a069deb8a1f",
+  "checkout": "/private/tmp/telem-01/REM-002/corrected-review",
+  "delta_base": "325a0e52f5b292f27f6ecd81fc821097e8405349",
+  "preparation_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "authority_integrity": {
+    "authority_count": 12,
+    "authority": [
+      {
+        "path": "AGENTS.md",
+        "expected": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+        "actual": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+        "match": true
+      },
+      {
+        "path": "docs/reference/policies/repository-engineering-policy.md",
+        "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+        "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+        "match": true
+      },
+      {
+        "path": "docs/reference/policies/development-task-lifecycle.md",
+        "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+        "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+        "match": true
+      },
+      {
+        "path": "docs/reference/policies/independent-validation-policy.md",
+        "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+        "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+        "match": true
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+        "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+        "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+        "expected": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+        "actual": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+        "expected": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+        "actual": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+        "expected": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+        "actual": "d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+        "expected": "73f716469fbbfab3495cbd64e9cc435bfbe2901ffc2f7cf8e7e924736c6dbf06",
+        "actual": "73f716469fbbfab3495cbd64e9cc435bfbe2901ffc2f7cf8e7e924736c6dbf06",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+        "expected": "a586686bda13379c13d53922bed8cf6e911b801f8cdb56657ecbe84dd52c683d",
+        "actual": "a586686bda13379c13d53922bed8cf6e911b801f8cdb56657ecbe84dd52c683d",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+        "expected": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+        "actual": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+        "match": true
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+        "expected": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+        "actual": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+        "match": true
+      }
+    ],
+    "manifest": {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+      "expected": "6957f986f83d34825c8e5155f8957e0610d2fd4e538ca9c9289f5ae29fc3847f",
+      "actual": "6957f986f83d34825c8e5155f8957e0610d2fd4e538ca9c9289f5ae29fc3847f",
+      "match": true
+    }
+  },
+  "request_manifest_pins_equal": true,
+  "read_only_comparison": {
+    "head_unchanged": true,
+    "status_unchanged": true,
+    "tracked_hashes_unchanged": true,
+    "tracked_count": 2091,
+    "changed_tracked_paths": [],
+    "request_manifest_pins_equal": true
+  },
+  "findings": [],
+  "checks": [
+    {
+      "id": "approval_and_scope",
+      "result": "PASS",
+      "source": "REM-002:3-14,45-49; CD-001:14-17; delta-name-status.txt"
+    },
+    {
+      "id": "root_invocation_and_gates",
+      "result": "PASS",
+      "source": "CD-001:105-126; verification-profile:22-35,125-145"
+    },
+    {
+      "id": "exact_localhost_permission",
+      "result": "PASS",
+      "source": "REM-002:22-30; verification-profile:76-85"
+    },
+    {
+      "id": "locked_python310_environment",
+      "result": "PASS",
+      "source": "REM-002:31-40; verification-profile:69-74,87-123; authority-manifest:39-46"
+    },
+    {
+      "id": "preflight_isolation_and_stop_conditions",
+      "result": "PASS",
+      "source": "verification-profile:53-85; REM-002:41-49"
+    },
+    {
+      "id": "board_packet_agreement",
+      "result": "PASS",
+      "source": "board:381-390,969-976; packet README:12-15,68-71; dashboard:42"
+    },
+    {
+      "id": "product_frozen",
+      "result": "PASS",
+      "source": "git-read-checks.txt; empty product/metadata/test diff from 3a69050"
+    },
+    {
+      "id": "candidate_preserved",
+      "result": "PASS",
+      "source": "before-state.json; after-state.json; read-only-comparison.json"
+    }
+  ],
+  "not_performed": [
+    "tests or collection",
+    "product imports",
+    "installation or downloads",
+    "real application state or credential reads",
+    "vendor service access",
+    "candidate or git mutations",
+    "implementation verification or acceptance"
+  ],
+  "residual_risks": [
+    "Execution preflight and command results remain unestablished by readiness review.",
+    "Locked Python 3.10 compatibility and localhost listener availability must be evidenced during execution.",
+    "Lint and timing failures remain failed and unwaived; required independent delta/aggregate implementation review remains pending."
+  ],
+  "artifacts": {
+    "after-state.json": "74af814ee90b10bf8b7d91f6c26e596c0dc402bd1ac7655815f9c01ecbfa5b1f",
+    "authority-and-board-read.txt": "d178a16c04693ca9c28bb054bee0dc53db1f96e36f19375f280c2910535ea463",
+    "authority-hashes.json": "8681304cc90f18276bffc46bb199554a31f153e77029b127d2a03bb0cd688947",
+    "authority-manifest.txt": "6957f986f83d34825c8e5155f8957e0610d2fd4e538ca9c9289f5ae29fc3847f",
+    "before-state.json": "115e3ab57c143d6341b1d54d207d0a59ef12f1e04d60985b7469c1ae4c69e3be",
+    "delta-name-status.txt": "8c9a4cae2c56f421b7f84fbbf22f030b10ea68c12f7ccafc7314a49ebb36f8f1",
+    "git-read-checks.txt": "315ac80329bcca4e4e8d81c965a6f094e528de681afa7d2f3db0e843dfdca7cb",
+    "read-only-comparison.json": "692313f9d4af555f8cb80b409caa5f678ef152aec14dc629d071b065bb4ce674",
+    "report.md": "1746e0a2dc489990c3705446e6df404076d417fca01c6cd8b9c35e0faaff2e84",
+    "request.yaml": "3f0e9a3a192b01f9eb1e655bc322a7476a2560ed1d1e4dc42b27e59c028bd306",
+    "substantive-delta.patch": "ce720b3bb170080a53e9386baf48dfbd92d7f6ee2f91b6ca05fa7241db01fdf2"
+  }
+}

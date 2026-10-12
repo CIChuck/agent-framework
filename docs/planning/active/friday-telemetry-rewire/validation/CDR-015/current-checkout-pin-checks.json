@@ -1,0 +1,74 @@
+[
+  {
+    "path": "AGENTS.md",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/repository-engineering-policy.md",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/development-task-lifecycle.md",
+    "matches": true
+  },
+  {
+    "path": "docs/reference/policies/independent-validation-policy.md",
+    "matches": true
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+    "matches": true
+  },
+  {
+    "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+    "matches": true
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+    "matches": true
+  }
+]

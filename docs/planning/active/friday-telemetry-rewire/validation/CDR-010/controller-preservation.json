@@ -1,0 +1,14 @@
+{
+  "original_paths_preserved": true,
+  "board_dashboard_unrelated_diff_preserved": true,
+  "partial_paths_preserved": [
+    "packages/friday-agent/tests_agent/conftest.py",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+    "packages/friday-tools/src/friday_tools/web/validators.py",
+    "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+    "packages/friday-tools/tests_tools/test_web_reader.py",
+    "packages/friday-tools/tests_tools/test_web_validators.py"
+  ],
+  "current_head": "cdb1b8b6a07ff3cedda42b6c165d29b74020aeaf",
+  "index_empty": true
+}

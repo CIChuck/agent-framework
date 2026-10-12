@@ -412,7 +412,7 @@ class CommandExecuteTool(FridayTool):
                 error=result.stderr if result.returncode != 0 else None,
             )
 
-        except asyncio.TimeoutError:
+        except TimeoutError:
             return ToolResult(
                 content=f"Command timed out after {args.timeout}s",
                 error=f"Command timed out after {args.timeout}s",

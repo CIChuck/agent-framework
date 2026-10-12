@@ -1,0 +1,406 @@
+{
+  "count": 80,
+  "all_match": true,
+  "files": [
+    {
+      "path": "accepted-artifact-preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "analyze_evidence.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "baseline-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "candidate.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "diff-check.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "diff-check.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "diff-check.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "diff-name-status.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-source-evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/grpc/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/grpc/_channel.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/context/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/context/contextvars_context.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/sdk/resources/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/sdk/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/sdk/trace/sampling.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "installed-sources/opentelemetry/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "lint-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "listener-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "original-after-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "original-after.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "original-before.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "original-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "packaging-proof.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "pin-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "review_runner.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-mypy.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-mypy.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-python.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-python.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-python.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "tool-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "request.json",
+      "stored_matches": true,
+      "original_matches": true
+    }
+  ]
+}

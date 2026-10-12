@@ -1,0 +1,6698 @@
+{
+  "approval_date": "2026-10-05",
+  "approval_evidence": "I approve both REM-004 and WVR-002.",
+  "archived_files": {
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py": "3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e",
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py": "000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd",
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532"
+  },
+  "baseline_head": "686a5bd17d84fea3ec3a3d329df2d39c70d10c03",
+  "evidence_candidate": "4c0afdb11b663e11ae08a927950dd3e968bbb566",
+  "finding": "VAL-005-F01",
+  "live_lint_files": {
+    "experiments/prompt_transcript_audit/runtime.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "fec94343b86714a52dd6c125bbbb51601550ef0d5ccfedbc8274234ebf974f73"
+    },
+    "experiments/provider_memory_smoke/runtime.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "864eb11acf7f2ca8602c72c9998fc77ac5678504bfcd8f9d0dee063f31d48f6f"
+    },
+    "experiments/workflow_artifact_smoke/runtime.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "46a7905fb8f531d77169db351de23d3cff6fc61546a5139e17f53dfa33894ea4"
+    },
+    "packages/friday-agent/src/friday_agent/workflows/engine.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "006c0ba72de6860b6c4d0bbd7d091a22c6b98dbb9810e15b4e2ec7cfa560105d"
+    },
+    "packages/friday-agent/src/friday_agent/workflows/models.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "5b9ae6b73525d0c18fa7b31a396ea92c0803c87e18c6476af6ef33b58c7a8097"
+    },
+    "packages/friday-agent/tests_agent/test_pipeline_dispatch.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "ac50dbfb5d2792f99eb0d2b9869c4966108c33de89bdf2e8af6b15467095b8bd"
+    },
+    "packages/friday-chat/src/friday_chat/adapters.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "9435f76c9f94e088c7a7176d7f90f78a5a113a000c7f34f18ae3a96edc76e813"
+    },
+    "packages/friday-chat/src/friday_chat/commands/memory.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP047"
+      ],
+      "sha256": "b089cb7feb03752fc137126aec5db1f2d0f6e5ad265783545817b6d2e8aef705"
+    },
+    "packages/friday-chat/src/friday_chat/commands/transcript.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "7d161aac62fea14b8ce5ac0aa38d9640215ee84739989139069f2efa06eb55a2"
+    },
+    "packages/friday-chat/src/friday_chat/memory_views.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP046"
+      ],
+      "sha256": "c4ed7e78a9d0513413070e9e741fa322cf05044f09daab903b00bf93d14c05c7"
+    },
+    "packages/friday-chat/src/friday_chat/reorganization/artifacts.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "3c3256bbf84371a419ca56fcae070e3dea047a82bbb7e28fe21af65873bd5805"
+    },
+    "packages/friday-chat/src/friday_chat/reorganization/coordinator.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "f8330c1b937ffd7d18a9c88de6d7aa0a249e7ef3a364b2334b565009ceafcba1"
+    },
+    "packages/friday-chat/src/friday_chat/reorganization/lease.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "551e7db3b40e4bc174245a6c8d7205e1c21434ba794bb935bf858059e46adbdf"
+    },
+    "packages/friday-chat/src/friday_chat/reorganization/mutation.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "096854c0d8fb7369efbbab95731af6c72d7e6743a22dc818a854e6673b9522bc"
+    },
+    "packages/friday-chat/tests_chat/test_command_disposable_uat.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "1d807f011d8cd378480d32d90ca9fb9260ae9cf176585de12023101833dd8ad1"
+    },
+    "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "3da66fe742ae1fc703d05894c7633ffc74e4396514dfa88e69f83f1a4b4c7e5e"
+    },
+    "packages/friday-chat/tests_chat/test_reorganization_contracts.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "19b62a6ce770ead4db8a87e9b350d7ea653245e6a63a7e5cc620103214449bd0"
+    },
+    "packages/friday-chat/tests_chat/test_reorganization_foundations.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "b09771139e1b709c10da9833cbd1abb257933dee7d53fa4e966e446460c21098"
+    },
+    "packages/friday-chat/tests_chat/test_transcript_production_commands.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "2e9c4d41c24b9b19c0f6d8fd4bfe9ab0059036a8f25e5682ed137aa592378840"
+    },
+    "packages/friday-cli/src/friday_cli/cancellation.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP047"
+      ],
+      "sha256": "8d4fbea0456a68a0f3259e6fc04407242e8ada347f7ade11b068fe5cd9e77590"
+    },
+    "packages/friday-cli/src/friday_cli/commands.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP046"
+      ],
+      "sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308"
+    },
+    "packages/friday-cli/src/friday_cli/session.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP046"
+      ],
+      "sha256": "d3d9acc2d9a4e7200c011773242533cde3411569b08cc5bd43fac26d24340149"
+    },
+    "packages/friday-core/src/friday_core/interfaces/context.py": {
+      "diagnostic_count": 4,
+      "rules": [
+        "UP040"
+      ],
+      "sha256": "9714c90cc31450f6f9f642d25a270e0455ca5638704f9e98528b962126dc4b90"
+    },
+    "packages/friday-core/src/friday_core/interfaces/memory.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP040"
+      ],
+      "sha256": "4e6de941a489e50f028af57348c59dc861b61a4ccab2b766d6b1408455357c3d"
+    },
+    "packages/friday-core/src/friday_core/interfaces/tools.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP046"
+      ],
+      "sha256": "a0ebfbf48cf7218665cbc5b7c7890fa0a8387ce6f11d734af5bdc2d966821a1d"
+    },
+    "packages/friday-core/src/friday_core/interfaces/transcript.py": {
+      "diagnostic_count": 4,
+      "rules": [
+        "UP040"
+      ],
+      "sha256": "9539582e5c05d4df7c47576ae107cb6f9c7a8543f0da77506452d8f92479fd2e"
+    },
+    "packages/friday-core/src/friday_core/security/quarantine.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "2946bc2194815967d2b3e4dd18acf76870b22b8818373fed40316e926f8bd5f2"
+    },
+    "packages/friday-core/tests_core/test_mcp_contracts.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "876bdf941d7090cfdd728a903fae0dd25a5b2810b59786a693b21a44d53de2da"
+    },
+    "packages/friday-llm/src/friday_llm/embeddings.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "b4db5f0f50cd9f75a220cff5e8bec1012c82091e69066d03d49632bdd914fe7e"
+    },
+    "packages/friday-llm/src/friday_llm/service.py": {
+      "diagnostic_count": 5,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "b1274ae2e1b9feebf8ce47b863df0008d84dd2f5c719e1aa8f03fbd17a94d92e"
+    },
+    "packages/friday-llm/tests_llm/conftest.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP043"
+      ],
+      "sha256": "c4692d0bf2246dac406a21cea616164b477befa41528ef901ba336e7afeb7188"
+    },
+    "packages/friday-llm/tests_llm/test_resilience.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "b55485a7cb437a1f64c6f31053bb3eb9108d923d7666fc2c9e3b201a11e0bba2"
+    },
+    "packages/friday-mcp/src/friday_mcp/server/sse.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP043"
+      ],
+      "sha256": "893e2c97384956888c3c7574d72720df41f0b109df9130f33bdbf5d2faabaf2a"
+    },
+    "packages/friday-memory/src/friday_memory/adapters/graph.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "daf6136db190ac10e5b682a486ebf047c2b59f9ff8cb0fd2f7432273e6243dad"
+    },
+    "packages/friday-memory/src/friday_memory/ingestion/mcp.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "178edfd91350409c80cc220e5a6a8cae94834ded6b9f1d9d3c8e7c38afe9e2dd"
+    },
+    "packages/friday-memory/src/friday_memory/llm_completion.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP040",
+        "UP047"
+      ],
+      "sha256": "6bc206b1c7ad4b4b6e9ce933d93e5cb34b20d5b6950e213a7b4f417955f5fd2e"
+    },
+    "packages/friday-memory/src/friday_memory/maintenance/mutation.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "9b7101c60056c5cd71327de336cfb161ecb2f165048458efa18b56e6ee0b79d2"
+    },
+    "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP035"
+      ],
+      "sha256": "ee8cb0e640aa1fdda464f8c3e9e470a70d72e6f10702261320094c495f46e99f"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/controller.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "9b6f80a7cacf8d96b20c39cf9f1c28ade878b6a071731d6084d85d3966d3dcfe"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py": {
+      "diagnostic_count": 4,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "034a4cb3d681be31434038c32387349fcceacb45dba735f7bc7000ea0d222e66"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/journal.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "f4dfe8c9da8a0a8aaf330c9160531a70ee0f59dfed8aa2b21523a855a741488c"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/models.py": {
+      "diagnostic_count": 4,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "65ef7f089e5709e0af627c463849c004f5378aa5f42748badc459e2e47d20f99"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/observability.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "37a4a70acbffbe5ce26f27faefc616be9b521b9e36de1fb786fae5d4776f954a"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/policy.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "59f3bdd1485d0c2405e4b9c15ab1de68e0072f86a6838a434a761a4b900bb142"
+    },
+    "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py": {
+      "diagnostic_count": 6,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "a5f14f2caa81c8ee6e02d3d2f2bbdc84b1495bec23a011fe1747a6b065115a21"
+    },
+    "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "bbb4814f9a3bde8bdf5e00a52c94f2bbac40b70accd264c51635c5a2f3a43915"
+    },
+    "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "44b9a44424f3c6fc6b39b2148f57a0b00305428eac73a0885e13ee508f1535a4"
+    },
+    "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "6962b87b0e053d51135253d4095598c679a30adb9341f984de90fd31168ea4ae"
+    },
+    "packages/friday-memory/tests_memory/test_multi_agent.py": {
+      "diagnostic_count": 6,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "8fb1b5831dc5e0749d2271a47f625c4aa451518b6a606b7c942e4ecc99c949bc"
+    },
+    "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "3516cf82f788ad943d422acabbc35bff736a1a55e4663636a0e39fcd7bc9508a"
+    },
+    "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "350036ad8c3e02c39b40aab452c4b9beca51c03aa9cac4f5efebf9c21dc4ba68"
+    },
+    "packages/friday-moltbook/src/friday_moltbook/responses.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP046"
+      ],
+      "sha256": "8acf654bdedd5db0fd705f83ffb62d2479fe47909e86a0c7746f1505cc92b5da"
+    },
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP017",
+        "UP041"
+      ],
+      "sha256": "757044165d07829a04b2fd2416fb4e69f73907906daf85f2947f19a8177ef8c2"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/docker.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "bf109d1e0fc23ca480ee57a57558ce575a53e7e6a1960391186534b64ce7962d"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/mock.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "f709dfb63691c66e1ef712737e7b0e0b6b1cc9d3b3c952cc9968ef5c8aac05e6"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/models.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "99536696b0cced1f51197c0025edb5059feb35bc11d107fa10ffd53c2af8fd3f"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/serialization.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP047"
+      ],
+      "sha256": "60de52cc253caa8ad75fd7a1a7d16805d634e3aa7b8a85a9f7870d17540838d0"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/subprocess.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "E501",
+        "UP041"
+      ],
+      "sha256": "4edff473204e6ca365204c154f3daea5a8e81b894f5a7fb903d746e073f6786e"
+    },
+    "packages/friday-sandbox/src/friday_sandbox/workspace.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "5cdc165337c848b1b5244334e5dc66bb648dda2ff179379aab5187b3b87d49f9"
+    },
+    "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "c3d3a29a29a687305ccabf940eda452bedf01408cfafe91b7a629600f6d9376b"
+    },
+    "packages/friday-speech/src/friday_speech/playback.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "47bd764b0c0d00734875fc83203e7784298c359223ffb5f600f8a03babdb006d"
+    },
+    "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP043"
+      ],
+      "sha256": "36bcb3e43d45025344fd57702eaac53e0aa99e52f6bdec8f3f5870dd5a59dc0a"
+    },
+    "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py": {
+      "diagnostic_count": 3,
+      "rules": [
+        "UP043"
+      ],
+      "sha256": "990e41e2ed3f99f3f583e658d414a778da2183be47134b09973bfe938a75dd1b"
+    },
+    "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "b25cd42cbea4afc582b958c1781d5c83e94276466690775dcb10786028c11338"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/read.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "a3766afe593fd7ac2a8c5032f9fb7a7a4904066c07f4c2a7213803ae31549fc8"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/base.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "26a3d094a16b867f59fe0c8b945a892786b5f51e44c3b9b396ec6e0ed3ce319c"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "ddbe7faf870712c53fb923eeb526b2e165323c59b7daa5672e3e9962e95d766f"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "8dd5b1e2261e6118e001d6fac92f83419f6edb0f5f78856a1bc34ce1f14f4319"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "f03c968e3fcd5ea3b06a51ef7a18aa69d86ff7d8ed72b5795daf97c10cb04b0d"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "2497a525483847299571c8fbfc930eaf3953b2f2dbf9f21f4eafe84487e97db9"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "1ad72889ac10bfdb6714f341513d3756af924db9ab7d9f8926b128a476915960"
+    },
+    "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "4c951a4f372cee9abc33b79221ac32d83908c97b99888ad4bc58712599050fca"
+    },
+    "packages/friday-tools/src/friday_tools/shell/command.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "69f522bf6940f32b114974df0c46ea3f06c7271d12cb979478d356ace1277c92"
+    },
+    "packages/friday-tools/src/friday_tools/shell/execute.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "594045a97e4246e10751b99e3fbac57e51b6a6ebecaf1dd22e1f2c792908ed17"
+    },
+    "packages/friday-tools/src/friday_tools/text/transform.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "E501"
+      ],
+      "sha256": "402b71c8a168a5da688296e0a86311de1fe02e12eab7729342e797d6eb341292"
+    },
+    "packages/friday-tools/src/friday_tools/utility/datetime.py": {
+      "diagnostic_count": 2,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "6753e7fda2dea57ab6a17c5fb16bfe623adab375230536cb0df98406723a9c73"
+    },
+    "scripts/check-package-metadata.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "I001"
+      ],
+      "sha256": "af752d07c16ef3dd4d3dab3490182a67a45873d2d6da6005f78d53814345d004"
+    },
+    "scripts/friday-dev-board.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP017"
+      ],
+      "sha256": "0fb437482bce1cf0c317cdf645dc895bf26be3940fcb9e596bdfecf0ad70303e"
+    },
+    "tests/integration/memory/friday.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "UP041"
+      ],
+      "sha256": "82347fe3c0a9e06d42fec4c85aa6fb535ac5b4f8949a7709fc044e05f1f9c479"
+    },
+    "tests/integration/test_package_cohort_metadata.py": {
+      "diagnostic_count": 1,
+      "rules": [
+        "I001"
+      ],
+      "sha256": "cbe06bcbe7f085b791c97fa71fe9e0fd1ba29202a87c8e3f6f6c7f5f6677df93"
+    }
+  },
+  "root_ruff": {
+    "archived": 326,
+    "diagnostics": [
+      {
+        "code": "I001",
+        "end_location": {
+          "column": 21,
+          "row": 5
+        },
+        "location": {
+          "column": 1,
+          "row": 1
+        },
+        "message": "Import block is un-sorted or un-formatted",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py"
+      },
+      {
+        "code": "SIM115",
+        "end_location": {
+          "column": 25,
+          "row": 8
+        },
+        "location": {
+          "column": 21,
+          "row": 8
+        },
+        "message": "Use a context manager for opening files",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py"
+      },
+      {
+        "code": "I001",
+        "end_location": {
+          "column": 62,
+          "row": 25
+        },
+        "location": {
+          "column": 1,
+          "row": 1
+        },
+        "message": "Import block is un-sorted or un-formatted",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "F401",
+        "end_location": {
+          "column": 44,
+          "row": 16
+        },
+        "location": {
+          "column": 29,
+          "row": 16
+        },
+        "message": "`friday_core.mcp.MCPClientLimits` imported but unused",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "F401",
+        "end_location": {
+          "column": 53,
+          "row": 18
+        },
+        "location": {
+          "column": 39,
+          "row": 18
+        },
+        "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 59
+        },
+        "location": {
+          "column": 23,
+          "row": 59
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 61
+        },
+        "location": {
+          "column": 8,
+          "row": 61
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 62
+        },
+        "location": {
+          "column": 22,
+          "row": 62
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 63
+        },
+        "location": {
+          "column": 9,
+          "row": 63
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 66
+        },
+        "location": {
+          "column": 8,
+          "row": 66
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 67
+        },
+        "location": {
+          "column": 22,
+          "row": 67
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 68
+        },
+        "location": {
+          "column": 9,
+          "row": 68
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 18,
+          "row": 69
+        },
+        "location": {
+          "column": 17,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 50,
+          "row": 69
+        },
+        "location": {
+          "column": 49,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 69
+        },
+        "location": {
+          "column": 67,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 30,
+          "row": 71
+        },
+        "location": {
+          "column": 29,
+          "row": 71
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 72
+        },
+        "location": {
+          "column": 27,
+          "row": 72
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 72
+        },
+        "location": {
+          "column": 91,
+          "row": 72
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 13,
+          "row": 83
+        },
+        "location": {
+          "column": 12,
+          "row": 83
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 84
+        },
+        "location": {
+          "column": 41,
+          "row": 84
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 14,
+          "row": 85
+        },
+        "location": {
+          "column": 13,
+          "row": 85
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 86
+        },
+        "location": {
+          "column": 8,
+          "row": 86
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 38,
+          "row": 87
+        },
+        "location": {
+          "column": 37,
+          "row": 87
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 88
+        },
+        "location": {
+          "column": 9,
+          "row": 88
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 13,
+          "row": 90
+        },
+        "location": {
+          "column": 12,
+          "row": 90
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 91
+        },
+        "location": {
+          "column": 41,
+          "row": 91
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 14,
+          "row": 92
+        },
+        "location": {
+          "column": 13,
+          "row": 92
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 21,
+          "row": 93
+        },
+        "location": {
+          "column": 20,
+          "row": 93
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 33,
+          "row": 106
+        },
+        "location": {
+          "column": 32,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 49,
+          "row": 106
+        },
+        "location": {
+          "column": 48,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 66,
+          "row": 106
+        },
+        "location": {
+          "column": 65,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 95,
+          "row": 106
+        },
+        "location": {
+          "column": 94,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 110
+        },
+        "location": {
+          "column": 22,
+          "row": 110
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 22,
+          "row": 111
+        },
+        "location": {
+          "column": 21,
+          "row": 111
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 32,
+          "row": 118
+        },
+        "location": {
+          "column": 31,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 67,
+          "row": 118
+        },
+        "location": {
+          "column": 66,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 88,
+          "row": 118
+        },
+        "location": {
+          "column": 87,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 106,
+          "row": 118
+        },
+        "location": {
+          "column": 105,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 27,
+          "row": 123
+        },
+        "location": {
+          "column": 26,
+          "row": 123
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 23,
+          "row": 128
+        },
+        "location": {
+          "column": 22,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 47,
+          "row": 128
+        },
+        "location": {
+          "column": 46,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 128
+        },
+        "location": {
+          "column": 59,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 128
+        },
+        "location": {
+          "column": 71,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 39,
+          "row": 131
+        },
+        "location": {
+          "column": 38,
+          "row": 131
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 28,
+          "row": 132
+        },
+        "location": {
+          "column": 27,
+          "row": 132
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 44,
+          "row": 135
+        },
+        "location": {
+          "column": 43,
+          "row": 135
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 137
+        },
+        "location": {
+          "column": 23,
+          "row": 137
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 64,
+          "row": 145
+        },
+        "location": {
+          "column": 63,
+          "row": 145
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "B023",
+        "end_location": {
+          "column": 71,
+          "row": 145
+        },
+        "location": {
+          "column": 64,
+          "row": 145
+        },
+        "message": "Function definition does not bind loop variable `clients`",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 82,
+          "row": 145
+        },
+        "location": {
+          "column": 81,
+          "row": 145
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 22,
+          "row": 146
+        },
+        "location": {
+          "column": 21,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 87,
+          "row": 146
+        },
+        "location": {
+          "column": 86,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 110,
+          "row": 146
+        },
+        "location": {
+          "column": 109,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 134,
+          "row": 146
+        },
+        "location": {
+          "column": 133,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 161,
+          "row": 146
+        },
+        "location": {
+          "column": 160,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 177,
+          "row": 146
+        },
+        "location": {
+          "column": 176,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 191,
+          "row": 146
+        },
+        "location": {
+          "column": 190,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 21,
+          "row": 153
+        },
+        "location": {
+          "column": 20,
+          "row": 153
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 43,
+          "row": 154
+        },
+        "location": {
+          "column": 42,
+          "row": 154
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 31,
+          "row": 166
+        },
+        "location": {
+          "column": 30,
+          "row": 166
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 30,
+          "row": 172
+        },
+        "location": {
+          "column": 29,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 61,
+          "row": 172
+        },
+        "location": {
+          "column": 60,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 93,
+          "row": 172
+        },
+        "location": {
+          "column": 92,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 30,
+          "row": 174
+        },
+        "location": {
+          "column": 29,
+          "row": 174
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 179
+        },
+        "location": {
+          "column": 54,
+          "row": 179
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 73,
+          "row": 179
+        },
+        "location": {
+          "column": 72,
+          "row": 179
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 44,
+          "row": 180
+        },
+        "location": {
+          "column": 43,
+          "row": 180
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 180
+        },
+        "location": {
+          "column": 67,
+          "row": 180
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 184
+        },
+        "location": {
+          "column": 28,
+          "row": 184
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 184
+        },
+        "location": {
+          "column": 54,
+          "row": 184
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 186
+        },
+        "location": {
+          "column": 16,
+          "row": 186
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 187
+        },
+        "location": {
+          "column": 41,
+          "row": 187
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 188
+        },
+        "location": {
+          "column": 17,
+          "row": 188
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 191
+        },
+        "location": {
+          "column": 16,
+          "row": 191
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 192
+        },
+        "location": {
+          "column": 41,
+          "row": 192
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 193
+        },
+        "location": {
+          "column": 17,
+          "row": 193
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 196
+        },
+        "location": {
+          "column": 28,
+          "row": 196
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 48,
+          "row": 199
+        },
+        "location": {
+          "column": 47,
+          "row": 199
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 99,
+          "row": 199
+        },
+        "location": {
+          "column": 98,
+          "row": 199
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 202
+        },
+        "location": {
+          "column": 16,
+          "row": 202
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 43,
+          "row": 203
+        },
+        "location": {
+          "column": 42,
+          "row": 203
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 204
+        },
+        "location": {
+          "column": 17,
+          "row": 204
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 206
+        },
+        "location": {
+          "column": 54,
+          "row": 206
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 207
+        },
+        "location": {
+          "column": 27,
+          "row": 207
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 210
+        },
+        "location": {
+          "column": 25,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 57,
+          "row": 210
+        },
+        "location": {
+          "column": 56,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 89,
+          "row": 210
+        },
+        "location": {
+          "column": 88,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 37,
+          "row": 211
+        },
+        "location": {
+          "column": 36,
+          "row": 211
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 51,
+          "row": 211
+        },
+        "location": {
+          "column": 50,
+          "row": 211
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 213
+        },
+        "location": {
+          "column": 25,
+          "row": 213
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 217
+        },
+        "location": {
+          "column": 54,
+          "row": 217
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 73,
+          "row": 217
+        },
+        "location": {
+          "column": 72,
+          "row": 217
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 122,
+          "row": 218
+        },
+        "location": {
+          "column": 121,
+          "row": 218
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 221
+        },
+        "location": {
+          "column": 28,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 50,
+          "row": 221
+        },
+        "location": {
+          "column": 49,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 221
+        },
+        "location": {
+          "column": 71,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 224
+        },
+        "location": {
+          "column": 16,
+          "row": 224
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 225
+        },
+        "location": {
+          "column": 41,
+          "row": 225
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 226
+        },
+        "location": {
+          "column": 17,
+          "row": 226
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 239
+        },
+        "location": {
+          "column": 25,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 57,
+          "row": 239
+        },
+        "location": {
+          "column": 56,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 89,
+          "row": 239
+        },
+        "location": {
+          "column": 88,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 241
+        },
+        "location": {
+          "column": 25,
+          "row": 241
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 48,
+          "row": 244
+        },
+        "location": {
+          "column": 47,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 64,
+          "row": 244
+        },
+        "location": {
+          "column": 63,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 74,
+          "row": 244
+        },
+        "location": {
+          "column": 73,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 96,
+          "row": 244
+        },
+        "location": {
+          "column": 95,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 24,
+          "row": 246
+        },
+        "location": {
+          "column": 23,
+          "row": 246
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 145,
+          "row": 249
+        },
+        "location": {
+          "column": 144,
+          "row": 249
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 32,
+          "row": 252
+        },
+        "location": {
+          "column": 31,
+          "row": 252
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 52,
+          "row": 257
+        },
+        "location": {
+          "column": 51,
+          "row": 257
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 39,
+          "row": 262
+        },
+        "location": {
+          "column": 38,
+          "row": 262
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 14,
+          "row": 265
+        },
+        "location": {
+          "column": 13,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 265
+        },
+        "location": {
+          "column": 27,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 265
+        },
+        "location": {
+          "column": 59,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 97,
+          "row": 265
+        },
+        "location": {
+          "column": 96,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 128,
+          "row": 265
+        },
+        "location": {
+          "column": 127,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 76,
+          "row": 266
+        },
+        "location": {
+          "column": 75,
+          "row": 266
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 266
+        },
+        "location": {
+          "column": 91,
+          "row": 266
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 56,
+          "row": 267
+        },
+        "location": {
+          "column": 55,
+          "row": 267
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 24,
+          "row": 268
+        },
+        "location": {
+          "column": 23,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 268
+        },
+        "location": {
+          "column": 59,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 268
+        },
+        "location": {
+          "column": 91,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 120,
+          "row": 268
+        },
+        "location": {
+          "column": 119,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 152,
+          "row": 268
+        },
+        "location": {
+          "column": 151,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 269
+        },
+        "location": {
+          "column": 23,
+          "row": 269
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 69,
+          "row": 271
+        },
+        "location": {
+          "column": 68,
+          "row": 271
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 88,
+          "row": 271
+        },
+        "location": {
+          "column": 87,
+          "row": 271
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 71,
+          "row": 273
+        },
+        "location": {
+          "column": 70,
+          "row": 273
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 131,
+          "row": 273
+        },
+        "location": {
+          "column": 130,
+          "row": 273
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 31,
+          "row": 275
+        },
+        "location": {
+          "column": 30,
+          "row": 275
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 64,
+          "row": 276
+        },
+        "location": {
+          "column": 63,
+          "row": 276
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 63,
+          "row": 278
+        },
+        "location": {
+          "column": 62,
+          "row": 278
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 162,
+          "row": 279
+        },
+        "location": {
+          "column": 161,
+          "row": 279
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 283
+        },
+        "location": {
+          "column": 67,
+          "row": 283
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 33,
+          "row": 286
+        },
+        "location": {
+          "column": 32,
+          "row": 286
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 288
+        },
+        "location": {
+          "column": 71,
+          "row": 288
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 46,
+          "row": 289
+        },
+        "location": {
+          "column": 45,
+          "row": 289
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 291
+        },
+        "location": {
+          "column": 9,
+          "row": 291
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 296
+        },
+        "location": {
+          "column": 16,
+          "row": 296
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 35,
+          "row": 297
+        },
+        "location": {
+          "column": 34,
+          "row": 297
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 30,
+          "row": 298
+        },
+        "location": {
+          "column": 29,
+          "row": 298
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 54,
+          "row": 301
+        },
+        "location": {
+          "column": 53,
+          "row": 301
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 61,
+          "row": 302
+        },
+        "location": {
+          "column": 60,
+          "row": 302
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 25,
+          "row": 316
+        },
+        "location": {
+          "column": 24,
+          "row": 316
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 38,
+          "row": 317
+        },
+        "location": {
+          "column": 37,
+          "row": 317
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 318
+        },
+        "location": {
+          "column": 25,
+          "row": 318
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 48,
+          "row": 322
+        },
+        "location": {
+          "column": 47,
+          "row": 322
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 96,
+          "row": 329
+        },
+        "location": {
+          "column": 95,
+          "row": 329
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 48,
+          "row": 333
+        },
+        "location": {
+          "column": 47,
+          "row": 333
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 25,
+          "row": 337
+        },
+        "location": {
+          "column": 24,
+          "row": 337
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 51,
+          "row": 338
+        },
+        "location": {
+          "column": 50,
+          "row": 338
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 339
+        },
+        "location": {
+          "column": 25,
+          "row": 339
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 45,
+          "row": 349
+        },
+        "location": {
+          "column": 44,
+          "row": 349
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 63,
+          "row": 349
+        },
+        "location": {
+          "column": 62,
+          "row": 349
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 45,
+          "row": 350
+        },
+        "location": {
+          "column": 44,
+          "row": 350
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 49,
+          "row": 352
+        },
+        "location": {
+          "column": 48,
+          "row": 352
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 28,
+          "row": 354
+        },
+        "location": {
+          "column": 27,
+          "row": 354
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 22,
+          "row": 355
+        },
+        "location": {
+          "column": 21,
+          "row": 355
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 62,
+          "row": 358
+        },
+        "location": {
+          "column": 61,
+          "row": 358
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 44,
+          "row": 361
+        },
+        "location": {
+          "column": 43,
+          "row": 361
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 44,
+          "row": 369
+        },
+        "location": {
+          "column": 43,
+          "row": 369
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 373
+        },
+        "location": {
+          "column": 28,
+          "row": 373
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 52,
+          "row": 377
+        },
+        "location": {
+          "column": 51,
+          "row": 377
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      },
+      {
+        "code": "I001",
+        "end_location": {
+          "column": 62,
+          "row": 25
+        },
+        "location": {
+          "column": 1,
+          "row": 1
+        },
+        "message": "Import block is un-sorted or un-formatted",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "F401",
+        "end_location": {
+          "column": 44,
+          "row": 16
+        },
+        "location": {
+          "column": 29,
+          "row": 16
+        },
+        "message": "`friday_core.mcp.MCPClientLimits` imported but unused",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "F401",
+        "end_location": {
+          "column": 53,
+          "row": 18
+        },
+        "location": {
+          "column": 39,
+          "row": 18
+        },
+        "message": "`friday_mcp.client.adapter.MCPToolWrapper` imported but unused",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 59
+        },
+        "location": {
+          "column": 23,
+          "row": 59
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 61
+        },
+        "location": {
+          "column": 8,
+          "row": 61
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 62
+        },
+        "location": {
+          "column": 22,
+          "row": 62
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 63
+        },
+        "location": {
+          "column": 9,
+          "row": 63
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 66
+        },
+        "location": {
+          "column": 8,
+          "row": 66
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 67
+        },
+        "location": {
+          "column": 22,
+          "row": 67
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 68
+        },
+        "location": {
+          "column": 9,
+          "row": 68
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 18,
+          "row": 69
+        },
+        "location": {
+          "column": 17,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 50,
+          "row": 69
+        },
+        "location": {
+          "column": 49,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 69
+        },
+        "location": {
+          "column": 67,
+          "row": 69
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 30,
+          "row": 71
+        },
+        "location": {
+          "column": 29,
+          "row": 71
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 72
+        },
+        "location": {
+          "column": 27,
+          "row": 72
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 72
+        },
+        "location": {
+          "column": 91,
+          "row": 72
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 13,
+          "row": 83
+        },
+        "location": {
+          "column": 12,
+          "row": 83
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 84
+        },
+        "location": {
+          "column": 41,
+          "row": 84
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 14,
+          "row": 85
+        },
+        "location": {
+          "column": 13,
+          "row": 85
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 9,
+          "row": 86
+        },
+        "location": {
+          "column": 8,
+          "row": 86
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 38,
+          "row": 87
+        },
+        "location": {
+          "column": 37,
+          "row": 87
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 88
+        },
+        "location": {
+          "column": 9,
+          "row": 88
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 13,
+          "row": 90
+        },
+        "location": {
+          "column": 12,
+          "row": 90
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 91
+        },
+        "location": {
+          "column": 41,
+          "row": 91
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 14,
+          "row": 92
+        },
+        "location": {
+          "column": 13,
+          "row": 92
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 21,
+          "row": 93
+        },
+        "location": {
+          "column": 20,
+          "row": 93
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 33,
+          "row": 106
+        },
+        "location": {
+          "column": 32,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 49,
+          "row": 106
+        },
+        "location": {
+          "column": 48,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 66,
+          "row": 106
+        },
+        "location": {
+          "column": 65,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 95,
+          "row": 106
+        },
+        "location": {
+          "column": 94,
+          "row": 106
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 23,
+          "row": 110
+        },
+        "location": {
+          "column": 22,
+          "row": 110
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 22,
+          "row": 111
+        },
+        "location": {
+          "column": 21,
+          "row": 111
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 32,
+          "row": 118
+        },
+        "location": {
+          "column": 31,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 67,
+          "row": 118
+        },
+        "location": {
+          "column": 66,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 88,
+          "row": 118
+        },
+        "location": {
+          "column": 87,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 106,
+          "row": 118
+        },
+        "location": {
+          "column": 105,
+          "row": 118
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 27,
+          "row": 123
+        },
+        "location": {
+          "column": 26,
+          "row": 123
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 23,
+          "row": 128
+        },
+        "location": {
+          "column": 22,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 47,
+          "row": 128
+        },
+        "location": {
+          "column": 46,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 128
+        },
+        "location": {
+          "column": 59,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 128
+        },
+        "location": {
+          "column": 71,
+          "row": 128
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 39,
+          "row": 131
+        },
+        "location": {
+          "column": 38,
+          "row": 131
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 28,
+          "row": 132
+        },
+        "location": {
+          "column": 27,
+          "row": 132
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 44,
+          "row": 135
+        },
+        "location": {
+          "column": 43,
+          "row": 135
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 137
+        },
+        "location": {
+          "column": 23,
+          "row": 137
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 64,
+          "row": 145
+        },
+        "location": {
+          "column": 63,
+          "row": 145
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "B023",
+        "end_location": {
+          "column": 71,
+          "row": 145
+        },
+        "location": {
+          "column": 64,
+          "row": 145
+        },
+        "message": "Function definition does not bind loop variable `clients`",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 82,
+          "row": 145
+        },
+        "location": {
+          "column": 81,
+          "row": 145
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 22,
+          "row": 146
+        },
+        "location": {
+          "column": 21,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 87,
+          "row": 146
+        },
+        "location": {
+          "column": 86,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 110,
+          "row": 146
+        },
+        "location": {
+          "column": 109,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 134,
+          "row": 146
+        },
+        "location": {
+          "column": 133,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 161,
+          "row": 146
+        },
+        "location": {
+          "column": 160,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 177,
+          "row": 146
+        },
+        "location": {
+          "column": 176,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 191,
+          "row": 146
+        },
+        "location": {
+          "column": 190,
+          "row": 146
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 21,
+          "row": 153
+        },
+        "location": {
+          "column": 20,
+          "row": 153
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 43,
+          "row": 154
+        },
+        "location": {
+          "column": 42,
+          "row": 154
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 31,
+          "row": 166
+        },
+        "location": {
+          "column": 30,
+          "row": 166
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 30,
+          "row": 172
+        },
+        "location": {
+          "column": 29,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 61,
+          "row": 172
+        },
+        "location": {
+          "column": 60,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 93,
+          "row": 172
+        },
+        "location": {
+          "column": 92,
+          "row": 172
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 30,
+          "row": 174
+        },
+        "location": {
+          "column": 29,
+          "row": 174
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 179
+        },
+        "location": {
+          "column": 54,
+          "row": 179
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 73,
+          "row": 179
+        },
+        "location": {
+          "column": 72,
+          "row": 179
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 44,
+          "row": 180
+        },
+        "location": {
+          "column": 43,
+          "row": 180
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 180
+        },
+        "location": {
+          "column": 67,
+          "row": 180
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 184
+        },
+        "location": {
+          "column": 28,
+          "row": 184
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 184
+        },
+        "location": {
+          "column": 54,
+          "row": 184
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 186
+        },
+        "location": {
+          "column": 16,
+          "row": 186
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 187
+        },
+        "location": {
+          "column": 41,
+          "row": 187
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 188
+        },
+        "location": {
+          "column": 17,
+          "row": 188
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 191
+        },
+        "location": {
+          "column": 16,
+          "row": 191
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 192
+        },
+        "location": {
+          "column": 41,
+          "row": 192
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 193
+        },
+        "location": {
+          "column": 17,
+          "row": 193
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 196
+        },
+        "location": {
+          "column": 28,
+          "row": 196
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 48,
+          "row": 199
+        },
+        "location": {
+          "column": 47,
+          "row": 199
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 99,
+          "row": 199
+        },
+        "location": {
+          "column": 98,
+          "row": 199
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 202
+        },
+        "location": {
+          "column": 16,
+          "row": 202
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 43,
+          "row": 203
+        },
+        "location": {
+          "column": 42,
+          "row": 203
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 204
+        },
+        "location": {
+          "column": 17,
+          "row": 204
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 206
+        },
+        "location": {
+          "column": 54,
+          "row": 206
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 207
+        },
+        "location": {
+          "column": 27,
+          "row": 207
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 210
+        },
+        "location": {
+          "column": 25,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 57,
+          "row": 210
+        },
+        "location": {
+          "column": 56,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 89,
+          "row": 210
+        },
+        "location": {
+          "column": 88,
+          "row": 210
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 37,
+          "row": 211
+        },
+        "location": {
+          "column": 36,
+          "row": 211
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 51,
+          "row": 211
+        },
+        "location": {
+          "column": 50,
+          "row": 211
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 213
+        },
+        "location": {
+          "column": 25,
+          "row": 213
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 55,
+          "row": 217
+        },
+        "location": {
+          "column": 54,
+          "row": 217
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 73,
+          "row": 217
+        },
+        "location": {
+          "column": 72,
+          "row": 217
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 122,
+          "row": 218
+        },
+        "location": {
+          "column": 121,
+          "row": 218
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 221
+        },
+        "location": {
+          "column": 28,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 50,
+          "row": 221
+        },
+        "location": {
+          "column": 49,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 221
+        },
+        "location": {
+          "column": 71,
+          "row": 221
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 224
+        },
+        "location": {
+          "column": 16,
+          "row": 224
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 42,
+          "row": 225
+        },
+        "location": {
+          "column": 41,
+          "row": 225
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 18,
+          "row": 226
+        },
+        "location": {
+          "column": 17,
+          "row": 226
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 239
+        },
+        "location": {
+          "column": 25,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 57,
+          "row": 239
+        },
+        "location": {
+          "column": 56,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 89,
+          "row": 239
+        },
+        "location": {
+          "column": 88,
+          "row": 239
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 241
+        },
+        "location": {
+          "column": 25,
+          "row": 241
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 48,
+          "row": 244
+        },
+        "location": {
+          "column": 47,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 64,
+          "row": 244
+        },
+        "location": {
+          "column": 63,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 74,
+          "row": 244
+        },
+        "location": {
+          "column": 73,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 96,
+          "row": 244
+        },
+        "location": {
+          "column": 95,
+          "row": 244
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 24,
+          "row": 246
+        },
+        "location": {
+          "column": 23,
+          "row": 246
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 145,
+          "row": 249
+        },
+        "location": {
+          "column": 144,
+          "row": 249
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 32,
+          "row": 252
+        },
+        "location": {
+          "column": 31,
+          "row": 252
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 52,
+          "row": 257
+        },
+        "location": {
+          "column": 51,
+          "row": 257
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 39,
+          "row": 262
+        },
+        "location": {
+          "column": 38,
+          "row": 262
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 14,
+          "row": 265
+        },
+        "location": {
+          "column": 13,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 28,
+          "row": 265
+        },
+        "location": {
+          "column": 27,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 265
+        },
+        "location": {
+          "column": 59,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 97,
+          "row": 265
+        },
+        "location": {
+          "column": 96,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 128,
+          "row": 265
+        },
+        "location": {
+          "column": 127,
+          "row": 265
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 76,
+          "row": 266
+        },
+        "location": {
+          "column": 75,
+          "row": 266
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 266
+        },
+        "location": {
+          "column": 91,
+          "row": 266
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 56,
+          "row": 267
+        },
+        "location": {
+          "column": 55,
+          "row": 267
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 24,
+          "row": 268
+        },
+        "location": {
+          "column": 23,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 60,
+          "row": 268
+        },
+        "location": {
+          "column": 59,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 92,
+          "row": 268
+        },
+        "location": {
+          "column": 91,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 120,
+          "row": 268
+        },
+        "location": {
+          "column": 119,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 152,
+          "row": 268
+        },
+        "location": {
+          "column": 151,
+          "row": 268
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 24,
+          "row": 269
+        },
+        "location": {
+          "column": 23,
+          "row": 269
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 69,
+          "row": 271
+        },
+        "location": {
+          "column": 68,
+          "row": 271
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 88,
+          "row": 271
+        },
+        "location": {
+          "column": 87,
+          "row": 271
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 71,
+          "row": 273
+        },
+        "location": {
+          "column": 70,
+          "row": 273
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 131,
+          "row": 273
+        },
+        "location": {
+          "column": 130,
+          "row": 273
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 31,
+          "row": 275
+        },
+        "location": {
+          "column": 30,
+          "row": 275
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 64,
+          "row": 276
+        },
+        "location": {
+          "column": 63,
+          "row": 276
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 63,
+          "row": 278
+        },
+        "location": {
+          "column": 62,
+          "row": 278
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 162,
+          "row": 279
+        },
+        "location": {
+          "column": 161,
+          "row": 279
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 68,
+          "row": 283
+        },
+        "location": {
+          "column": 67,
+          "row": 283
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 33,
+          "row": 286
+        },
+        "location": {
+          "column": 32,
+          "row": 286
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 72,
+          "row": 288
+        },
+        "location": {
+          "column": 71,
+          "row": 288
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 46,
+          "row": 289
+        },
+        "location": {
+          "column": 45,
+          "row": 289
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 10,
+          "row": 291
+        },
+        "location": {
+          "column": 9,
+          "row": 291
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 17,
+          "row": 296
+        },
+        "location": {
+          "column": 16,
+          "row": 296
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 35,
+          "row": 297
+        },
+        "location": {
+          "column": 34,
+          "row": 297
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 30,
+          "row": 298
+        },
+        "location": {
+          "column": 29,
+          "row": 298
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 54,
+          "row": 301
+        },
+        "location": {
+          "column": 53,
+          "row": 301
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 61,
+          "row": 302
+        },
+        "location": {
+          "column": 60,
+          "row": 302
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 25,
+          "row": 316
+        },
+        "location": {
+          "column": 24,
+          "row": 316
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 38,
+          "row": 317
+        },
+        "location": {
+          "column": 37,
+          "row": 317
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 318
+        },
+        "location": {
+          "column": 25,
+          "row": 318
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 48,
+          "row": 322
+        },
+        "location": {
+          "column": 47,
+          "row": 322
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 96,
+          "row": 329
+        },
+        "location": {
+          "column": 95,
+          "row": 329
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 48,
+          "row": 333
+        },
+        "location": {
+          "column": 47,
+          "row": 333
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 25,
+          "row": 337
+        },
+        "location": {
+          "column": 24,
+          "row": 337
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 51,
+          "row": 338
+        },
+        "location": {
+          "column": 50,
+          "row": 338
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 26,
+          "row": 339
+        },
+        "location": {
+          "column": 25,
+          "row": 339
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 45,
+          "row": 349
+        },
+        "location": {
+          "column": 44,
+          "row": 349
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 63,
+          "row": 349
+        },
+        "location": {
+          "column": 62,
+          "row": 349
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 45,
+          "row": 350
+        },
+        "location": {
+          "column": 44,
+          "row": 350
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 49,
+          "row": 352
+        },
+        "location": {
+          "column": 48,
+          "row": 352
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 28,
+          "row": 354
+        },
+        "location": {
+          "column": 27,
+          "row": 354
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 22,
+          "row": 355
+        },
+        "location": {
+          "column": 21,
+          "row": 355
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 62,
+          "row": 358
+        },
+        "location": {
+          "column": 61,
+          "row": 358
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 44,
+          "row": 361
+        },
+        "location": {
+          "column": 43,
+          "row": 361
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 44,
+          "row": 369
+        },
+        "location": {
+          "column": 43,
+          "row": 369
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E702",
+        "end_location": {
+          "column": 29,
+          "row": 373
+        },
+        "location": {
+          "column": 28,
+          "row": 373
+        },
+        "message": "Multiple statements on one line (semicolon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "E701",
+        "end_location": {
+          "column": 52,
+          "row": 377
+        },
+        "location": {
+          "column": 51,
+          "row": 377
+        },
+        "message": "Multiple statements on one line (colon)",
+        "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 42,
+          "row": 128
+        },
+        "location": {
+          "column": 30,
+          "row": 128
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "experiments/prompt_transcript_audit/runtime.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 42,
+          "row": 250
+        },
+        "location": {
+          "column": 30,
+          "row": 250
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "experiments/provider_memory_smoke/runtime.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 42,
+          "row": 202
+        },
+        "location": {
+          "column": 30,
+          "row": 202
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "experiments/workflow_artifact_smoke/runtime.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 37,
+          "row": 61
+        },
+        "location": {
+          "column": 25,
+          "row": 61
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-agent/src/friday_agent/workflows/engine.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 37,
+          "row": 723
+        },
+        "location": {
+          "column": 25,
+          "row": 723
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-agent/src/friday_agent/workflows/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 37,
+          "row": 24
+        },
+        "location": {
+          "column": 25,
+          "row": 24
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-agent/tests_agent/test_pipeline_dispatch.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 81,
+          "row": 1495
+        },
+        "location": {
+          "column": 69,
+          "row": 1495
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      },
+      {
+        "code": "UP047",
+        "end_location": {
+          "column": 63,
+          "row": 306
+        },
+        "location": {
+          "column": 5,
+          "row": 306
+        },
+        "message": "Generic function `_metric_text` should use type parameters",
+        "path": "packages/friday-chat/src/friday_chat/commands/memory.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 42,
+          "row": 308
+        },
+        "location": {
+          "column": 30,
+          "row": 308
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/commands/transcript.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 30,
+          "row": 34
+        },
+        "location": {
+          "column": 20,
+          "row": 34
+        },
+        "message": "Generic class `MemoryMetric` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-chat/src/friday_chat/memory_views.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 60,
+          "row": 55
+        },
+        "location": {
+          "column": 48,
+          "row": 55
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/reorganization/artifacts.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 47,
+          "row": 1344
+        },
+        "location": {
+          "column": 35,
+          "row": 1344
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/reorganization/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 40,
+          "row": 1802
+        },
+        "location": {
+          "column": 28,
+          "row": 1802
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/reorganization/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 49,
+          "row": 468
+        },
+        "location": {
+          "column": 37,
+          "row": 468
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/reorganization/lease.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 51,
+          "row": 795
+        },
+        "location": {
+          "column": 39,
+          "row": 795
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/src/friday_chat/reorganization/mutation.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 514
+        },
+        "location": {
+          "column": 33,
+          "row": 514
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/tests_chat/test_command_disposable_uat.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 619
+        },
+        "location": {
+          "column": 33,
+          "row": 619
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 36,
+          "row": 194
+        },
+        "location": {
+          "column": 24,
+          "row": 194
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/tests_chat/test_reorganization_contracts.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 54,
+          "row": 55
+        },
+        "location": {
+          "column": 42,
+          "row": 55
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/tests_chat/test_reorganization_foundations.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 56,
+          "row": 33
+        },
+        "location": {
+          "column": 44,
+          "row": 33
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py"
+      },
+      {
+        "code": "UP047",
+        "end_location": {
+          "column": 2,
+          "row": 150
+        },
+        "location": {
+          "column": 11,
+          "row": 146
+        },
+        "message": "Generic function `run_cancellable` should use type parameters",
+        "path": "packages/friday-cli/src/friday_cli/cancellation.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 33,
+          "row": 74
+        },
+        "location": {
+          "column": 23,
+          "row": 74
+        },
+        "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/commands.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 32,
+          "row": 214
+        },
+        "location": {
+          "column": 22,
+          "row": 214
+        },
+        "message": "Generic class `SessionContext` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/session.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 32,
+          "row": 235
+        },
+        "location": {
+          "column": 22,
+          "row": 235
+        },
+        "message": "Generic class `SessionManager` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-cli/src/friday_cli/session.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 34,
+          "row": 20
+        },
+        "location": {
+          "column": 5,
+          "row": 20
+        },
+        "message": "Type alias `SessionState` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/context.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 6,
+          "row": 23
+        },
+        "location": {
+          "column": 5,
+          "row": 21
+        },
+        "message": "Type alias `ConsolidationReport` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/context.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 36,
+          "row": 24
+        },
+        "location": {
+          "column": 5,
+          "row": 24
+        },
+        "message": "Type alias `ContextPayload` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/context.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 33,
+          "row": 25
+        },
+        "location": {
+          "column": 5,
+          "row": 25
+        },
+        "message": "Type alias `Interaction` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/context.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 37,
+          "row": 23
+        },
+        "location": {
+          "column": 5,
+          "row": 23
+        },
+        "message": "Type alias `InteractionTurn` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/memory.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 31,
+          "row": 24
+        },
+        "location": {
+          "column": 5,
+          "row": 24
+        },
+        "message": "Type alias `GraphNode` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/memory.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 31,
+          "row": 25
+        },
+        "location": {
+          "column": 5,
+          "row": 25
+        },
+        "message": "Type alias `GraphEdge` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/memory.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 39,
+          "row": 127
+        },
+        "location": {
+          "column": 29,
+          "row": 127
+        },
+        "message": "Generic class `ToolAdapter` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-core/src/friday_core/interfaces/tools.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 37,
+          "row": 18
+        },
+        "location": {
+          "column": 5,
+          "row": 18
+        },
+        "message": "Type alias `ContextLogEntry` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/transcript.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 37,
+          "row": 19
+        },
+        "location": {
+          "column": 5,
+          "row": 19
+        },
+        "message": "Type alias `TranscriptEntry` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/transcript.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 39,
+          "row": 20
+        },
+        "location": {
+          "column": 5,
+          "row": 20
+        },
+        "message": "Type alias `TranscriptSession` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/transcript.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 37,
+          "row": 21
+        },
+        "location": {
+          "column": 5,
+          "row": 21
+        },
+        "message": "Type alias `InteractionTurn` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-core/src/friday_core/interfaces/transcript.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 49,
+          "row": 87
+        },
+        "location": {
+          "column": 37,
+          "row": 87
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-core/src/friday_core/security/quarantine.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 66,
+          "row": 379
+        },
+        "location": {
+          "column": 54,
+          "row": 379
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-core/tests_core/test_mcp_contracts.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 427
+        },
+        "location": {
+          "column": 20,
+          "row": 427
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/embeddings.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 44,
+          "row": 623
+        },
+        "location": {
+          "column": 24,
+          "row": 623
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/service.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 680
+        },
+        "location": {
+          "column": 16,
+          "row": 680
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/service.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 39,
+          "row": 768
+        },
+        "location": {
+          "column": 19,
+          "row": 768
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/service.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 858
+        },
+        "location": {
+          "column": 20,
+          "row": 858
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/service.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 921
+        },
+        "location": {
+          "column": 20,
+          "row": 921
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/src/friday_llm/service.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 33,
+          "row": 19
+        },
+        "location": {
+          "column": 6,
+          "row": 19
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-llm/tests_llm/conftest.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 52,
+          "row": 359
+        },
+        "location": {
+          "column": 32,
+          "row": 359
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/tests_llm/test_resilience.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 52,
+          "row": 469
+        },
+        "location": {
+          "column": 32,
+          "row": 469
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-llm/tests_llm/test_resilience.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 69,
+          "row": 104
+        },
+        "location": {
+          "column": 44,
+          "row": 104
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-mcp/src/friday_mcp/server/sse.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 134
+        },
+        "location": {
+          "column": 16,
+          "row": 134
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-memory/src/friday_memory/adapters/graph.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 54,
+          "row": 147
+        },
+        "location": {
+          "column": 42,
+          "row": 147
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/ingestion/mcp.py"
+      },
+      {
+        "code": "UP040",
+        "end_location": {
+          "column": 68,
+          "row": 42
+        },
+        "location": {
+          "column": 1,
+          "row": 42
+        },
+        "message": "Type alias `MemoryLLMClient` uses `TypeAlias` annotation instead of the `type` keyword",
+        "path": "packages/friday-memory/src/friday_memory/llm_completion.py"
+      },
+      {
+        "code": "UP047",
+        "end_location": {
+          "column": 2,
+          "row": 105
+        },
+        "location": {
+          "column": 11,
+          "row": 97
+        },
+        "message": "Generic function `complete_structured_memory_request` should use type parameters",
+        "path": "packages/friday-memory/src/friday_memory/llm_completion.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 1226
+        },
+        "location": {
+          "column": 33,
+          "row": 1226
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/maintenance/mutation.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 71,
+          "row": 1375
+        },
+        "location": {
+          "column": 59,
+          "row": 1375
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/maintenance/mutation.py"
+      },
+      {
+        "code": "UP035",
+        "end_location": {
+          "column": 35,
+          "row": 18
+        },
+        "location": {
+          "column": 1,
+          "row": 18
+        },
+        "message": "Import from `typing` instead: `Self`",
+        "path": "packages/friday-memory/src/friday_memory/maintenance/recovery_models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 53,
+          "row": 92
+        },
+        "location": {
+          "column": 41,
+          "row": 92
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 53,
+          "row": 142
+        },
+        "location": {
+          "column": 41,
+          "row": 142
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 53,
+          "row": 74
+        },
+        "location": {
+          "column": 41,
+          "row": 74
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 53,
+          "row": 75
+        },
+        "location": {
+          "column": 41,
+          "row": 75
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 57,
+          "row": 156
+        },
+        "location": {
+          "column": 45,
+          "row": 156
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 57,
+          "row": 174
+        },
+        "location": {
+          "column": 45,
+          "row": 174
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/coordinator.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 56,
+          "row": 59
+        },
+        "location": {
+          "column": 44,
+          "row": 59
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/journal.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 83,
+          "row": 37
+        },
+        "location": {
+          "column": 71,
+          "row": 37
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 83,
+          "row": 50
+        },
+        "location": {
+          "column": 71,
+          "row": 50
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 83,
+          "row": 51
+        },
+        "location": {
+          "column": 71,
+          "row": 51
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 84,
+          "row": 67
+        },
+        "location": {
+          "column": 72,
+          "row": 67
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 36,
+          "row": 41
+        },
+        "location": {
+          "column": 24,
+          "row": 41
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/observability.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 40,
+          "row": 63
+        },
+        "location": {
+          "column": 28,
+          "row": 63
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/policy.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 62,
+          "row": 67
+        },
+        "location": {
+          "column": 50,
+          "row": 67
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/policy.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 64,
+          "row": 69
+        },
+        "location": {
+          "column": 52,
+          "row": 69
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/policy.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 83,
+          "row": 30
+        },
+        "location": {
+          "column": 71,
+          "row": 30
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 82,
+          "row": 42
+        },
+        "location": {
+          "column": 70,
+          "row": 42
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 40,
+          "row": 66
+        },
+        "location": {
+          "column": 28,
+          "row": 66
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 60,
+          "row": 102
+        },
+        "location": {
+          "column": 48,
+          "row": 102
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 56,
+          "row": 123
+        },
+        "location": {
+          "column": 44,
+          "row": 123
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 51,
+          "row": 161
+        },
+        "location": {
+          "column": 39,
+          "row": 161
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 82,
+          "row": 221
+        },
+        "location": {
+          "column": 70,
+          "row": 221
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 79,
+          "row": 309
+        },
+        "location": {
+          "column": 67,
+          "row": 309
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 79,
+          "row": 142
+        },
+        "location": {
+          "column": 67,
+          "row": 142
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 86,
+          "row": 366
+        },
+        "location": {
+          "column": 74,
+          "row": 366
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 49,
+          "row": 255
+        },
+        "location": {
+          "column": 37,
+          "row": 255
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 381
+        },
+        "location": {
+          "column": 33,
+          "row": 381
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 32
+        },
+        "location": {
+          "column": 33,
+          "row": 32
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 44,
+          "row": 155
+        },
+        "location": {
+          "column": 32,
+          "row": 155
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 156
+        },
+        "location": {
+          "column": 33,
+          "row": 156
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 44,
+          "row": 165
+        },
+        "location": {
+          "column": 32,
+          "row": 165
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 45,
+          "row": 166
+        },
+        "location": {
+          "column": 33,
+          "row": 166
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 36,
+          "row": 398
+        },
+        "location": {
+          "column": 24,
+          "row": 398
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_multi_agent.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 79,
+          "row": 127
+        },
+        "location": {
+          "column": 67,
+          "row": 127
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 79,
+          "row": 69
+        },
+        "location": {
+          "column": 67,
+          "row": 69
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py"
+      },
+      {
+        "code": "UP046",
+        "end_location": {
+          "column": 45,
+          "row": 14
+        },
+        "location": {
+          "column": 35,
+          "row": 14
+        },
+        "message": "Generic class `MoltbookResponse` uses `Generic` subclass instead of type parameters",
+        "path": "packages/friday-moltbook/src/friday_moltbook/responses.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 551
+        },
+        "location": {
+          "column": 16,
+          "row": 551
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-runtime/src/friday_runtime/mcp_loading.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 583
+        },
+        "location": {
+          "column": 20,
+          "row": 583
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-runtime/src/friday_runtime/mcp_loading.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 62,
+          "row": 700
+        },
+        "location": {
+          "column": 50,
+          "row": 700
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-runtime/src/friday_runtime/mcp_loading.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 130
+        },
+        "location": {
+          "column": 16,
+          "row": 130
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-sandbox/src/friday_sandbox/docker.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 239
+        },
+        "location": {
+          "column": 16,
+          "row": 239
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-sandbox/src/friday_sandbox/docker.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 93,
+          "row": 5
+        },
+        "location": {
+          "column": 89,
+          "row": 5
+        },
+        "message": "Line too long (92 > 88)",
+        "path": "packages/friday-sandbox/src/friday_sandbox/mock.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 37,
+          "row": 58
+        },
+        "location": {
+          "column": 25,
+          "row": 58
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 49,
+          "row": 64
+        },
+        "location": {
+          "column": 37,
+          "row": 64
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/models.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 41,
+          "row": 65
+        },
+        "location": {
+          "column": 29,
+          "row": 65
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/models.py"
+      },
+      {
+        "code": "UP047",
+        "end_location": {
+          "column": 2,
+          "row": 138
+        },
+        "location": {
+          "column": 5,
+          "row": 135
+        },
+        "message": "Generic function `validate_return_type` should use type parameters",
+        "path": "packages/friday-sandbox/src/friday_sandbox/serialization.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 93,
+          "row": 5
+        },
+        "location": {
+          "column": 89,
+          "row": 5
+        },
+        "message": "Line too long (92 > 88)",
+        "path": "packages/friday-sandbox/src/friday_sandbox/subprocess.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 145
+        },
+        "location": {
+          "column": 20,
+          "row": 145
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-sandbox/src/friday_sandbox/subprocess.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 37,
+          "row": 27
+        },
+        "location": {
+          "column": 25,
+          "row": 27
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/workspace.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 49,
+          "row": 33
+        },
+        "location": {
+          "column": 37,
+          "row": 33
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/workspace.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 41,
+          "row": 34
+        },
+        "location": {
+          "column": 29,
+          "row": 34
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/src/friday_sandbox/workspace.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 55,
+          "row": 157
+        },
+        "location": {
+          "column": 43,
+          "row": 157
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 55,
+          "row": 169
+        },
+        "location": {
+          "column": 43,
+          "row": 169
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 36,
+          "row": 24
+        },
+        "location": {
+          "column": 24,
+          "row": 24
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-speech/src/friday_speech/playback.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 50,
+          "row": 509
+        },
+        "location": {
+          "column": 10,
+          "row": 509
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 49,
+          "row": 549
+        },
+        "location": {
+          "column": 10,
+          "row": 549
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-telemetry/src/friday_telemetry/helpers/llm.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 51,
+          "row": 433
+        },
+        "location": {
+          "column": 10,
+          "row": 433
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 52,
+          "row": 465
+        },
+        "location": {
+          "column": 10,
+          "row": 465
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py"
+      },
+      {
+        "code": "UP043",
+        "end_location": {
+          "column": 51,
+          "row": 497
+        },
+        "location": {
+          "column": 10,
+          "row": 497
+        },
+        "message": "Unnecessary default type arguments",
+        "path": "packages/friday-telemetry/src/friday_telemetry/helpers/memory.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 76
+        },
+        "location": {
+          "column": 16,
+          "row": 76
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-tools/src/friday_tools/execution/unsandboxed_python.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 114,
+          "row": 6
+        },
+        "location": {
+          "column": 89,
+          "row": 6
+        },
+        "message": "Line too long (113 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/read.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 90,
+          "row": 5
+        },
+        "location": {
+          "column": 89,
+          "row": 5
+        },
+        "message": "Line too long (89 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/base.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 101,
+          "row": 8
+        },
+        "location": {
+          "column": 89,
+          "row": 8
+        },
+        "message": "Line too long (100 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/csv_reader.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 101,
+          "row": 8
+        },
+        "location": {
+          "column": 89,
+          "row": 8
+        },
+        "message": "Line too long (100 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/docx_reader.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 100,
+          "row": 7
+        },
+        "location": {
+          "column": 89,
+          "row": 7
+        },
+        "message": "Line too long (99 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/encoding.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 100,
+          "row": 7
+        },
+        "location": {
+          "column": 89,
+          "row": 7
+        },
+        "message": "Line too long (99 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/factory.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 101,
+          "row": 8
+        },
+        "location": {
+          "column": 89,
+          "row": 8
+        },
+        "message": "Line too long (100 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/pdf_reader.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 101,
+          "row": 8
+        },
+        "location": {
+          "column": 89,
+          "row": 8
+        },
+        "message": "Line too long (100 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/filesystem/readers/xlsx_reader.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 415
+        },
+        "location": {
+          "column": 16,
+          "row": 415
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-tools/src/friday_tools/shell/command.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 92
+        },
+        "location": {
+          "column": 20,
+          "row": 92
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-tools/src/friday_tools/shell/execute.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 40,
+          "row": 204
+        },
+        "location": {
+          "column": 20,
+          "row": 204
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "packages/friday-tools/src/friday_tools/shell/execute.py"
+      },
+      {
+        "code": "E501",
+        "end_location": {
+          "column": 90,
+          "row": 5
+        },
+        "location": {
+          "column": 89,
+          "row": 5
+        },
+        "message": "Line too long (89 > 88)",
+        "path": "packages/friday-tools/src/friday_tools/text/transform.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 48,
+          "row": 84
+        },
+        "location": {
+          "column": 36,
+          "row": 84
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-tools/src/friday_tools/utility/datetime.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 48,
+          "row": 101
+        },
+        "location": {
+          "column": 36,
+          "row": 101
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "packages/friday-tools/src/friday_tools/utility/datetime.py"
+      },
+      {
+        "code": "I001",
+        "end_location": {
+          "column": 15,
+          "row": 11
+        },
+        "location": {
+          "column": 1,
+          "row": 4
+        },
+        "message": "Import block is un-sorted or un-formatted",
+        "path": "scripts/check-package-metadata.py"
+      },
+      {
+        "code": "UP017",
+        "end_location": {
+          "column": 43,
+          "row": 89
+        },
+        "location": {
+          "column": 28,
+          "row": 89
+        },
+        "message": "Use `datetime.UTC` alias",
+        "path": "scripts/friday-dev-board.py"
+      },
+      {
+        "code": "UP041",
+        "end_location": {
+          "column": 36,
+          "row": 7031
+        },
+        "location": {
+          "column": 16,
+          "row": 7031
+        },
+        "message": "Replace aliased errors with `TimeoutError`",
+        "path": "tests/integration/memory/friday.py"
+      },
+      {
+        "code": "I001",
+        "end_location": {
+          "column": 47,
+          "row": 10
+        },
+        "location": {
+          "column": 1,
+          "row": 3
+        },
+        "message": "Import block is un-sorted or un-formatted",
+        "path": "tests/integration/test_package_cohort_metadata.py"
+      }
+    ],
+    "live": 133,
+    "live_rules": {
+      "E501": 11,
+      "I001": 2,
+      "UP017": 71,
+      "UP035": 1,
+      "UP040": 12,
+      "UP041": 19,
+      "UP043": 7,
+      "UP046": 6,
+      "UP047": 4
+    },
+    "total": 459
+  },
+  "root_test_failures": [
+    {
+      "node": "packages/friday-chat/tests_chat/test_reorganization_terminal.py::test_provider_free_pty_acknowledges_before_bounded_progress_completes",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_builtin_tools_by_default",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_loads_friday_tools_provider_with_category_filter",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_di.py::test_di_native_registration_defers_mcp_to_async_boot",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[False]",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_kernel_disabled_or_empty_mcp_preserves_native_tools[True]",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[False]",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-runtime/tests_runtime/test_mcp_loading.py::test_public_kernel_retry_retains_provider_and_stop_releases_every_client[True]",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_filesystem_readers.py::TestDocxReader::test_docx_reader_missing_dependency",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_filesystem_readers.py::TestXlsxReader::test_xlsx_reader_missing_dependency",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_reader.py::TestURLValidation::test_rejects_private_ip",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_10_x",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_172_16_x",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_private_ip_192_168_x",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestSSRFProtection::test_blocks_link_local",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-tools/tests_tools/test_web_validators.py::TestIsSafeUrl::test_unsafe_url_returns_false",
+      "status": "FAILED"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_non_streaming_final_http_payload",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[xhigh]",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[medium]",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[low]",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_provider_default_emits_no_reasoning_override",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_disabled_reasoning_reaches_final_http_json",
+      "status": "ERROR"
+    },
+    {
+      "node": "packages/friday-llm/tests_llm/test_wire_capture.py::test_named_tool_choice_uses_lm_studio_bounded_wire_form",
+      "status": "ERROR"
+    }
+  ],
+  "status": "approved exact scope and WVR-002; immutable diagnostic baseline",
+  "typing_baseline": {
+    "diagnostics": [
+      {
+        "code": "assignment",
+        "line": 85,
+        "message": "Incompatible types in assignment (expression has type \"ChatCompletionResponse\", variable has type \"TypedChatCompletionResponse\")",
+        "path": "packages/friday-memory/src/friday_memory/llm_completion.py"
+      },
+      {
+        "code": "assignment",
+        "line": 167,
+        "message": "Incompatible types in assignment (expression has type \"TypedChatCompletionResponse\", variable has type \"ChatCompletionResponse\")",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      },
+      {
+        "code": "attr-defined",
+        "line": 178,
+        "message": "\"dict[str, int]\" has no attribute \"model_dump\"",
+        "path": "packages/friday-chat/src/friday_chat/adapters.py"
+      }
+    ],
+    "source_count": 58,
+    "status": "three exact pre-existing failures; fix required, no waiver"
+  }
+}

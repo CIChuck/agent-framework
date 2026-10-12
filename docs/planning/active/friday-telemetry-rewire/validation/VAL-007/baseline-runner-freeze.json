@@ -1,0 +1,5 @@
+{
+  "epoch": 1791334414.917071,
+  "helper_sha256": "ad626bdfaa5d228d9556eaf917fbe71f4073da8d81ee80b2f4c3f6bbb14f23a9",
+  "effects": "Same frozen baseline sources and helper/guard;existing11syntheticloopbacknodes;new2nativefilesabsent;retrospective labels only"
+}

@@ -22,7 +22,7 @@ cat <<EOF > pyproject.toml
 name = "friday"
 version = "0.1.0"
 description = "Friday Agentic Framework Workspace"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = []
 
 [tool.uv.workspace]
@@ -67,7 +67,7 @@ cat <<EOF > "$CORE_DIR/pyproject.toml"
 name = "friday-core"
 version = "0.1.0"
 description = "Foundation interfaces and utilities for Friday"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "pydantic>=2.0",
     "pydantic-settings",
@@ -160,7 +160,7 @@ cat <<EOF > "$MEM_DIR/pyproject.toml"
 name = "friday-memory"
 version = "0.1.0"
 description = "Intelligence layer: Storage, Retrieval, and Context Engineering"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "friday-core",
     "chromadb",
@@ -331,7 +331,7 @@ cat <<EOF > "$OPT_DIR/pyproject.toml"
 name = "friday-optimization"
 version = "0.1.0"
 description = "DSPy optimization playground"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "friday-memory",
     "dspy-ai"
@@ -383,7 +383,7 @@ cat <<EOF > "$CLI_DIR/pyproject.toml"
 name = "friday-cli"
 version = "0.1.0"
 description = "The Friday Assistant Runtime"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "friday-memory",
     "typer",
@@ -447,7 +447,7 @@ cat <<EOF > "$LAB_DIR/pyproject.toml"
 name = "friday-lab"
 version = "0.1.0"
 description = "The MRI Suite: Observability and Experiments"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "friday-memory",
     "friday-cli",

@@ -1,0 +1,1383 @@
+{
+  "original_product_import_leaks": {},
+  "owned_workers_remaining": [],
+  "imported_boundary_modules": {
+    "opentelemetry.context.context": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/context/context.py",
+      "sha256": "7c65acfe01cb56e3abdd3602b178665159622012fd5f5cccfd1699b4e65c44a7"
+    },
+    "opentelemetry.environment_variables": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/environment_variables/__init__.py",
+      "sha256": "9af0b0accb8ce41ae977ec9c2da2af369f28a0137fe5af8a6067d31c14602291"
+    },
+    "opentelemetry.util._importlib_metadata": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/_importlib_metadata.py",
+      "sha256": "5d869c26a8848687a2e60123974d017940aab2123c3fa7d89d83e21ebfcfb685"
+    },
+    "opentelemetry.context.contextvars_context": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/context/contextvars_context.py",
+      "sha256": "6074f62ec7694e56c9d1fdbfc5e927805e24d59796f94fbfe27ccf91c67fa41d"
+    },
+    "opentelemetry.context": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/context/__init__.py",
+      "sha256": "f5550bc7ac7eb84baab410fc6e2491921e915057daeba5923cd0c5edddb1fb8c"
+    },
+    "opentelemetry.util.types": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/types.py",
+      "sha256": "320c3420f424b35853906f102f1e808290f77dd6308761985cd2cc65a35d89d5"
+    },
+    "opentelemetry.attributes": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/attributes/__init__.py",
+      "sha256": "41a5bfd18d6b120c31de23f27c0c930f1fb3f297dccf4cb064ca5681c117a563"
+    },
+    "opentelemetry.trace.status": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/trace/status.py",
+      "sha256": "d8aedf44b57b803140829140e00bcc4e325f1147f266315ad8f4375638c70471"
+    },
+    "opentelemetry.trace.span": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/trace/span.py",
+      "sha256": "e1021cd18b8fbe42ec57ccd6a15882a3e0e116385350ec35fca9a2a289a43ccc"
+    },
+    "opentelemetry.trace.propagation": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/trace/propagation/__init__.py",
+      "sha256": "619323d29f88720064c817dc64dd313bede25318bae59f3fcda21919746ee50e"
+    },
+    "opentelemetry.util._decorator": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/_decorator.py",
+      "sha256": "c7f69ef00ac03fdf9e677fda4d90d700ce236607c46f9acb159690515e01423f"
+    },
+    "opentelemetry.util._once": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/_once.py",
+      "sha256": "a93b0f601628a53b00b55b6163cf2077c11047a8cd7bec96cd9077e77fd11036"
+    },
+    "opentelemetry.util._providers": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/_providers.py",
+      "sha256": "511c926b77b5ac2baa344b4c5852a278b058f2a6ad6b95acbc79dd6f1ff4b7f1"
+    },
+    "opentelemetry.trace": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/trace/__init__.py",
+      "sha256": "d03d8682b0e52f30928c956d8acc2a6a0c3a10a42ec3bfebe820ff838d2b5449"
+    },
+    "opentelemetry.sdk.util": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/util/__init__.py",
+      "sha256": "679eef83485882aaa9b51c2ce81af5ee9fa32715efa96d8255d96cb2cb970a14"
+    },
+    "opentelemetry.sdk.environment_variables": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/environment_variables/__init__.py",
+      "sha256": "f8d86e21524ae7634653148d49fb7b3dc318854698ca188f192338864c8a208d"
+    },
+    "opentelemetry.semconv": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/semconv/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.semconv.resource": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/semconv/resource/__init__.py",
+      "sha256": "f305ad8ef142f538ce25e37497d4ca56c6864f67fc3d0d7edd9a0c12bfd0aaec"
+    },
+    "opentelemetry.sdk.resources": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/resources/__init__.py",
+      "sha256": "8a0c61d2fdad040e9128020d1f2ae4c3b34929a4611162e08ffe837117356a1a"
+    },
+    "opentelemetry.sdk.trace.sampling": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/trace/sampling.py",
+      "sha256": "9f9900322cb7184d365036c6b8a175900b292d10a7a8e16d4a9274d0a66f1f0f"
+    },
+    "opentelemetry.sdk.trace.id_generator": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/trace/id_generator.py",
+      "sha256": "61d311101e1470f6dd9e13000c5486d678ebbb83e3c8d1784430a9b63704e8b7"
+    },
+    "opentelemetry.sdk.util.instrumentation": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/util/instrumentation.py",
+      "sha256": "2610c3a6336b1b749b199bfd06eb56d2692e40b60bf7784911fcc93e7aca6e71"
+    },
+    "opentelemetry.semconv.attributes": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/semconv/attributes/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.semconv.attributes.exception_attributes": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/semconv/attributes/exception_attributes.py",
+      "sha256": "84a6b2fa11fa4fdff764a93ed9fbf3f4e2b27a9aea4c1f868603254839fc2112"
+    },
+    "opentelemetry.sdk.trace": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/trace/__init__.py",
+      "sha256": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07"
+    },
+    "friday_telemetry.attributes": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/attributes.py",
+      "sha256": "de0dac7411277bcd8459d510f94f17e0114fd960c3a9a2cfcb8b439e0c1522ba"
+    },
+    "friday_telemetry.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/config.py",
+      "sha256": "29cd66153493b30d00db5f2357251b1968c5cad622780e490266b523b658c19e"
+    },
+    "friday_telemetry.interface": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/interface.py",
+      "sha256": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61"
+    },
+    "friday_telemetry.lifecycle": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/lifecycle.py",
+      "sha256": "db00a35d4b37c20c1e082aefabf55b7a284c8cb9e63771533161a807a20a440a"
+    },
+    "friday_telemetry.providers.composite": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/composite.py",
+      "sha256": "ae77ac4ccd49d577ee869b00ff4cc15cf73d1a33d62f3cd55b550ad278a99de1"
+    },
+    "friday_telemetry.records": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/records.py",
+      "sha256": "59d5dc09c60e467430836857206199fe18813b8b7506c6c424f1d0f79ecb5bc8"
+    },
+    "friday_telemetry.providers.debug": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/debug.py",
+      "sha256": "3b8921c89eb99292fd89808ebbfcf77e011d65b24cf3245e867bbdc5018145bb"
+    },
+    "friday_telemetry.providers.otel": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/otel.py",
+      "sha256": "ad879d2684e8ddde8e9bb62bb8375c558d1c5eb21df3a2bb554ecc279c60cc7d"
+    },
+    "friday_telemetry.providers": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/__init__.py",
+      "sha256": "76f14cc2ed262bcae5382952182ed149f4d25c801487cdf356d820640865f2aa"
+    },
+    "friday_telemetry.factory": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/factory.py",
+      "sha256": "8b96403dcef4583cf1f4fd7d4c9522be4d3b08cdf66adbb598916f352d8acd30"
+    },
+    "friday_telemetry.models.common": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/models/common.py",
+      "sha256": "ed7709385f80e783b5cae4a17ba716794493ccceb269b2607e0de3bfc87ac218"
+    },
+    "friday_telemetry.models.llm": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/models/llm.py",
+      "sha256": "3aa9dd81de2975cfecec8d39eaed08161ed2303fabbb67d915203967cccbbb5c"
+    },
+    "friday_telemetry.models.memory": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/models/memory.py",
+      "sha256": "7431bc2d9a9c6d26e8a73ac4cb4d9fd405749560c5932675228a21e65e51ccc8"
+    },
+    "friday_telemetry.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/models/__init__.py",
+      "sha256": "271d24dfd76a46ca72d60b31ae33322f77885ef57dcde28d81ccd3fc78bb1973"
+    },
+    "friday_telemetry.helpers.llm": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/helpers/llm.py",
+      "sha256": "94271c3960f658919193a1f4bc74c216b9d844f6aa42175b35158b8bdd11ecb1"
+    },
+    "friday_telemetry.helpers.memory": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/helpers/memory.py",
+      "sha256": "263896a3896a88322703ba6a8f1410ea3353075c53e5e031be9825fa9162dbe7"
+    },
+    "friday_telemetry.helpers": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/helpers/__init__.py",
+      "sha256": "2c17d0fb7ed8d86b9d8fd63dc1ad8913a37700bc44962d2b11d64419821ef0b5"
+    },
+    "friday_telemetry.models.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/models/mcp.py",
+      "sha256": "53f7a172f6a5ec7ed31f72a4fe260e2e4e97c932151a43958b8a4dc6e7641fda"
+    },
+    "friday_telemetry.helpers.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/helpers/mcp.py",
+      "sha256": "50bc3cefd7434eec706718e4baa1f168164f434f524bc52f48a9607eaf0f6c42"
+    },
+    "friday_telemetry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/__init__.py",
+      "sha256": "81fcac4fc205a33c09b5c9ce19aaff89de7eec04a010f780f64c5dfd88b92c32"
+    },
+    "opentelemetry.sdk._shared_internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_shared_internal/__init__.py",
+      "sha256": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767"
+    },
+    "opentelemetry.sdk.trace.export": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/trace/export/__init__.py",
+      "sha256": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a"
+    },
+    "friday_core.security.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/config.py",
+      "sha256": "0d38b554911a5c162712d992b60d89875c692058cd19607d8f9ba1471e28460b"
+    },
+    "friday_core.security.markers": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/markers.py",
+      "sha256": "6e6daf8ead5cf2923bd09728c10676e9c67e66ce66d5a7dcd12889a3f7348165"
+    },
+    "friday_core.security.patterns": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/patterns.py",
+      "sha256": "f0bbb570a360399a9e2076bbcc65eb2f845d382c4e45ca97028dd2c2f977b6e7"
+    },
+    "friday_core.logging": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/logging.py",
+      "sha256": "aaf93e9349ce8c34040343f80eee5048775be9d84cba2c173bdf7cb5bb29da53"
+    },
+    "friday_core.security.quarantine": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/quarantine.py",
+      "sha256": "eba6db50a8b08459f59be19772d441efff7e8dc826dbc5bd74825eb5ffaad49d"
+    },
+    "friday_core.security.sanitizer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/sanitizer.py",
+      "sha256": "7f03528576476d01542043b0d64d0b7d8ecfecd4c0408d24be548a908a57a2b6"
+    },
+    "friday_core.security": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/security/__init__.py",
+      "sha256": "9e67c960582aa0c4b602e2d13be50caa43e6d67965038a54fe6c4bca05ea10dd"
+    },
+    "friday_core.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/config.py",
+      "sha256": "9b5b693a8b2b5b50ebbbf839cb2845afc84404e51e3fd28f035cd648ffb0e0a9"
+    },
+    "friday_core.exceptions": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/exceptions.py",
+      "sha256": "b67b11a09243269ecb7c586987381d446d417e1246f855d4f285e49c5c1b2882"
+    },
+    "friday_core.interfaces.agent": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/agent.py",
+      "sha256": "ffdbd18446fded12bce948e7330953ab21bf37fb6cdc59f0599a7f16e0d665da"
+    },
+    "friday_core.interfaces.context": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/context.py",
+      "sha256": "45c15ef905156ee22d6376077fd08882a9441992ee7d1d235ded27cc7c09cf67"
+    },
+    "friday_core.interfaces.lab": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/lab.py",
+      "sha256": "f41fdc146a788d1a08e0f7f4c27fef61f39b9658c38dd03421a8c5c3b1a1cc80"
+    },
+    "friday_core.interfaces.llm": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/llm.py",
+      "sha256": "8074310103ebbea065e1365afad853026bc379a8157127b5bb350211b127402b"
+    },
+    "friday_core.interfaces.memory": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/memory.py",
+      "sha256": "5082f24ab7dda1a1a77e05702e8874cbd656bcbb19b4dabaa96b531b16ed76ac"
+    },
+    "friday_core.interfaces.registry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/registry.py",
+      "sha256": "16168be4ba0856bc5f7440c73c99bfb625d712d902ee2effb04d77e8997eec7e"
+    },
+    "friday_core.interfaces.runtime": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/runtime.py",
+      "sha256": "e5c29481cedfd21e4baf860ceea516a7d6121a8e97f9df54e62b6efd559090cd"
+    },
+    "friday_core.interfaces.tools": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/tools.py",
+      "sha256": "3bd33e99093bc3f544790ee8c236d622c0b4d9488b79a3cb65eb7c79292e6ff6"
+    },
+    "friday_core.interfaces.transcript": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "sha256": "bf584c59562b4d64ad571e10d3f83002ddc696c6d7d3bdd26fb31ed5400664e8"
+    },
+    "friday_core.interfaces": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/interfaces/__init__.py",
+      "sha256": "6d1818b41bc6e5aa959aca80658132c2dac94920f68aeb286221e8819c9e5f7b"
+    },
+    "friday_core.profiles": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/profiles.py",
+      "sha256": "8e6bed2bb0d33f9b1fcb18141827e1e8fb9256f0efae88f353f854d8899b6d75"
+    },
+    "friday_core.telemetry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/telemetry.py",
+      "sha256": "92c85a318c6b52d8073dc370e1b0d9f62063e54d187805d4712e6e84ac8e97ec"
+    },
+    "friday_core": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/__init__.py",
+      "sha256": "2ac93979e7b2fa0105e4d4734cf5bf1480e6765d4198f41f7e3514e70a46755d"
+    },
+    "friday_memory.models.budget": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/budget.py",
+      "sha256": "b10c6fc90d10e57730a22f4542fc706f6152a0cc711336ea814b8d3ee9f5ad16"
+    },
+    "friday_memory.models.graph": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/graph.py",
+      "sha256": "a74e9675846ee9013ee6acf4f53508c88beed080cda0ca0cfb2a12916abaa827"
+    },
+    "friday_memory.models.llm_responses": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/llm_responses.py",
+      "sha256": "fd0761d297db8d690b1f0b10e6387bd98ab753c46b79efb0c019c4066af3d28d"
+    },
+    "friday_memory.models.session": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/session.py",
+      "sha256": "1deef053502c6dc031aef598c6ac4c40c8f10fa8268a691247340d6b54f724e6"
+    },
+    "friday_memory.models.payload": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/payload.py",
+      "sha256": "fdcfabf7002ce040ee8f7e0955329a443b4b90a2172c579bbc25888c42df63c0"
+    },
+    "friday_memory.models.tools": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/tools.py",
+      "sha256": "48e96d1489af7dfe8e5a0bed3ff0cd3a6c9856f2a0b2525b4a2a1fc292ec6b3e"
+    },
+    "friday_memory.models.vector_metadata": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/vector_metadata.py",
+      "sha256": "8bf774590c32ed0631f84a799720bf4acae2dd2f9c2654e159de187f4690050f"
+    },
+    "friday_memory.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/__init__.py",
+      "sha256": "46ca096f85c69d63f2fb1a3e79d86ff75a3121052e38e75a7195fbf48da85931"
+    },
+    "friday_memory.adapters.episodic": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "sha256": "a773ccc75b358dcccb3eedd41093cd1462243aec29ad4a819ecf01d2c2c16b67"
+    },
+    "friday_memory.adapters.graph": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/graph.py",
+      "sha256": "4fdf5135ceadac3183863010744026a76da3622234e1cb8dac7d00d67ba0af87"
+    },
+    "friday_memory.adapters.null_graph": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/null_graph.py",
+      "sha256": "da1405d6946c8773354c6e716d91cb555af58a95a4735e149df787bc31508157"
+    },
+    "friday_memory.adapters.simple_vector": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/simple_vector.py",
+      "sha256": "cf7e817caaec151116ec3c53a1fd3b5cd9fcdf534f5a93063f3976025239dbb5"
+    },
+    "opentelemetry.exporter.otlp.proto.grpc.version": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/grpc/version/__init__.py",
+      "sha256": "22f92cb119012e54400f0117d45b7a68b181eacd89f5b52d565c7bcd8f8389cf"
+    },
+    "opentelemetry.exporter.otlp.proto.grpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/grpc/__init__.py",
+      "sha256": "076d73c7aa85d5560741cae02f897478aac55d8e5f40e68b484fd0ed87f97861"
+    },
+    "grpc._cython": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_cython/__init__.py",
+      "sha256": "c3792a480c9a6603fe5b4f3dd314782f859e04f1abb6c4024097b4154151d0ad"
+    },
+    "grpc._typing": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_typing.py",
+      "sha256": "fb076db86269bd1d7427aaf82d25184c3791096a4cb104e8ebb1f0a306953829"
+    },
+    "grpc._observability": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_observability.py",
+      "sha256": "53b00e0a17bb60eeb58cba39ffca30d2d3bcdf11c89e1ee6411b9773d6a7de6e"
+    },
+    "grpc._cython.cygrpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_cython/cygrpc.cpython-313-darwin.so",
+      "sha256": "f1e49f83aa8ed809a209558cc4bf4b4643acc24670c364f3039a4f99835535d0"
+    },
+    "grpc._compression": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_compression.py",
+      "sha256": "d0ff727cd227df706671098e7673144e881b2c83d1d1e4ff2e69a79b79657058"
+    },
+    "grpc._runtime_protos": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_runtime_protos.py",
+      "sha256": "0a84ad4387b1b66488769c4b2fdb5510c96e31a793c5defaf0849f57cf577fec"
+    },
+    "grpc._grpcio_metadata": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_grpcio_metadata.py",
+      "sha256": "d0a72c1fdf5907b048374f15c9ef06d195bb8be47abe2d7648abfa2713530441"
+    },
+    "grpc.aio._metadata": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_metadata.py",
+      "sha256": "061c5fe9df2bf741507be1cf11410eae8c1f01bf8303fe8e7da41e8dc6098e88"
+    },
+    "grpc.aio._typing": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_typing.py",
+      "sha256": "c4c946df7be7fd491d911bf7f54771e36d4159582de511c2bbc8095c0435f1da"
+    },
+    "grpc.aio._base_call": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_base_call.py",
+      "sha256": "dc1e457874ee3cbc6689511539b9163d1bf4b12a278e97dba4faf39d221fb6f8"
+    },
+    "grpc.aio._base_channel": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_base_channel.py",
+      "sha256": "66e427242421244c228a0a128bf62afe9b0f131ee321445f83e56d5efdab6516"
+    },
+    "grpc.aio._base_server": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_base_server.py",
+      "sha256": "840d31f962d9822bda85f97d9852251e1121cf3ca547e3bf35c328628b1728c1"
+    },
+    "grpc._common": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_common.py",
+      "sha256": "3d07605fcdea106dc15027d7950567aeff6de72143f708c786b724bd7fd491f0"
+    },
+    "grpc.aio._call": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_call.py",
+      "sha256": "37dadbbeef3ed01feb57b46d86d4a5a7e9d96a40e8b211e0a6d3a8cc4b95aad5"
+    },
+    "grpc.aio._utils": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_utils.py",
+      "sha256": "061e7e9503b6c6ccdd65e4c501615f16185a2b2db4965e24b9c0fa7ff6194e58"
+    },
+    "grpc.aio._interceptor": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_interceptor.py",
+      "sha256": "38dbee9cbfc38b88cbed31e97b338ec044ab57e5af0039ec3f8499a507b4487d"
+    },
+    "grpc.aio._channel": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_channel.py",
+      "sha256": "275a29a6943fce4ca1613aa1d1cc68f39b57d78c1d922dea71ca75045494cddd"
+    },
+    "grpc.aio._server": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/_server.py",
+      "sha256": "ffbbf6f96f765b5020d4b20daf10840feeb8ee702ab8615429b8069ca374ebfb"
+    },
+    "grpc.aio": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/aio/__init__.py",
+      "sha256": "f341e8d45a25a6e785a8822fca5edde5bf45260bf0e62959807717c4dd4d994b"
+    },
+    "grpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/__init__.py",
+      "sha256": "28fa25d26f5a955af1e2d76f5991b2bf63f03d9c9993ee6791fc37dcc8453742"
+    },
+    "opentelemetry.exporter.otlp.proto.common.version": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/common/version/__init__.py",
+      "sha256": "22f92cb119012e54400f0117d45b7a68b181eacd89f5b52d565c7bcd8f8389cf"
+    },
+    "opentelemetry.exporter.otlp.proto.common": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/common/__init__.py",
+      "sha256": "616b6abcbf86eb3856e1f7ea2a8ad1617612d8069446dec346c7828aa064261d"
+    },
+    "opentelemetry.proto": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.common": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/common/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.common.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/common/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.common.v1.common_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/common/v1/common_pb2.py",
+      "sha256": "81ab7c87bed1e77a3f4d1740339440db9341510a9e88cfa34fc4185cab68eca6"
+    },
+    "opentelemetry.proto.resource": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/resource/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.resource.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/resource/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.resource.v1.resource_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/resource/v1/resource_pb2.py",
+      "sha256": "f3689981f1b59f1d172d1efbdb68def69d58e99793558590807e9984441c08f5"
+    },
+    "opentelemetry.exporter.otlp.proto.common._internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py",
+      "sha256": "e4a0df434a56b7a0226c944bdab48bee1760bf655b7ff5f442b915c4a1749725"
+    },
+    "opentelemetry.proto.collector": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.collector.trace": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/trace/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.collector.trace.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/trace/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.trace": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/trace/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.trace.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/trace/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.trace.v1.trace_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/trace/v1/trace_pb2.py",
+      "sha256": "1600fadc0eeea5662bc3469e35edea271ae0371376dc897e81a97c4d363db919"
+    },
+    "opentelemetry.proto.collector.trace.v1.trace_service_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py",
+      "sha256": "ffe329abb6b9e85e737eeb7eebb8b8fae99688c88541b883de4974f8aafe97ff"
+    },
+    "opentelemetry.exporter.otlp.proto.common._internal.trace_encoder": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py",
+      "sha256": "8f7d2f614410639943bf412e6f626dc97b35a2731bcc3935b41e7c6ae1f50af5"
+    },
+    "opentelemetry.exporter.otlp.proto.common.trace_encoder": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/common/trace_encoder.py",
+      "sha256": "04b758e45ef7b9e8c040801e3015bb3e68b9b04ee7d466edb79f4fdb6185d239"
+    },
+    "opentelemetry.proto.logs.v1.logs_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/logs/v1/logs_pb2.py",
+      "sha256": "164d4c73a1cc452027759f636d37f899f97b0dc84972d428671376bf155e3c4e"
+    },
+    "opentelemetry.proto.collector.logs.v1.logs_service_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/logs/v1/logs_service_pb2.py",
+      "sha256": "bf3a98f991f639b3f3820e37a387413cf0cf904cd1e2e2adb1178148aa7da575"
+    },
+    "grpc._utilities": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_utilities.py",
+      "sha256": "6de7eb121b0718f7d2b953c431334455a4023f04c3f2d295f3222b81eec8e15a"
+    },
+    "opentelemetry.proto.collector.logs.v1.logs_service_pb2_grpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/logs/v1/logs_service_pb2_grpc.py",
+      "sha256": "8f8d8e07fd57071d58b00428bf33f7b69156f99c362a28d12abe4663ce9ddeeb"
+    },
+    "opentelemetry.proto.collector.metrics": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/metrics/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.collector.metrics.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/metrics/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.metrics": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/metrics/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.metrics.v1": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/metrics/v1/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.proto.metrics.v1.metrics_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/metrics/v1/metrics_pb2.py",
+      "sha256": "dc574a568d66d3572e274eeffd09ce4ed4fed485d349e6437f5062a29b372566"
+    },
+    "opentelemetry.proto.collector.metrics.v1.metrics_service_pb2": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/metrics/v1/metrics_service_pb2.py",
+      "sha256": "98b9d549154bc260e84234892b11d62903492a7ae1e2b3a3d13bde1d6d03cb62"
+    },
+    "opentelemetry.proto.collector.metrics.v1.metrics_service_pb2_grpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/metrics/v1/metrics_service_pb2_grpc.py",
+      "sha256": "59658d92caa517274ffa19beba68dd239e418943294d6c10a355864859163c62"
+    },
+    "opentelemetry.proto.collector.trace.v1.trace_service_pb2_grpc": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py",
+      "sha256": "82f4704d4fc69da3464a2e150b902e3933a65effae7a61856113a64d5ed8896f"
+    },
+    "opentelemetry._logs.severity": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/_logs/severity/__init__.py",
+      "sha256": "ac70085e56d40dd7a06cdcd274bb4a85e5092b7605c0b7d51c76fb83da9a4168"
+    },
+    "opentelemetry._logs._internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/_logs/_internal/__init__.py",
+      "sha256": "f6431b1b34f975890a58870d31bf453b81a8b90c56aaa3255a3a17b538400c26"
+    },
+    "opentelemetry._logs": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/_logs/__init__.py",
+      "sha256": "59d12d9cbff24f13fa2031d9c8ec3e8adf524954201440ff82a1e86451125eb6"
+    },
+    "opentelemetry.semconv._incubating.attributes.code_attributes": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/semconv/_incubating/attributes/code_attributes.py",
+      "sha256": "1adb0cabfe5e1784dc96aa28164c81e4f508dc07e91d9da7517a86769f623e7b"
+    },
+    "opentelemetry.sdk._logs._internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_logs/_internal/__init__.py",
+      "sha256": "bab1e1545613805c2fa33549481abdca833128fe204ab01d7352c6f5ea5d613a"
+    },
+    "opentelemetry.sdk._logs": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_logs/__init__.py",
+      "sha256": "55698acf4ee35ff720086a41e6ce452ab283f91501a6d4c7fc25991da17da312"
+    },
+    "opentelemetry.sdk._logs._internal.export": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_logs/_internal/export/__init__.py",
+      "sha256": "ec9cdcc8b77e63a545bb1afdaac5b6e2282697e655fb17054791e81665c5b15c"
+    },
+    "opentelemetry.sdk._logs._internal.export.in_memory_log_exporter": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_logs/_internal/export/in_memory_log_exporter.py",
+      "sha256": "a45618e42969b9300334d2ecae3d8cc71225deb01b3bb082b3e95af8225c2a1c"
+    },
+    "opentelemetry.sdk._logs.export": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/_logs/export/__init__.py",
+      "sha256": "48eeb43fdac564db24cfd80354839e5e84a14e270d2d69ec754ed8e828220225"
+    },
+    "opentelemetry.metrics._internal.observation": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/metrics/_internal/observation.py",
+      "sha256": "33d67ec06a51d78d2fd5d4a0ed2aacdcdee71c20b57f679156ce2ac71217cec4"
+    },
+    "opentelemetry.metrics._internal.instrument": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/metrics/_internal/instrument.py",
+      "sha256": "1224975fa8cfb5399bdba16258d6ec01cf76cb38212bd709f800028714edd67e"
+    },
+    "opentelemetry.metrics._internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/metrics/_internal/__init__.py",
+      "sha256": "ed585f637a65e062a91268d4da86412c96265fb24696c8e4a0b6ca791f60b288"
+    },
+    "opentelemetry.metrics": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/metrics/__init__.py",
+      "sha256": "3f46c63ac7fdea45278c53d02f452496078029ac931b2b7f8024af0f4405646d"
+    },
+    "opentelemetry.sdk.metrics._internal.exceptions": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exceptions.py",
+      "sha256": "ff46cf837b2e628217289ede0aa1b74bf814295714007a75d6fc13870a7fc808"
+    },
+    "opentelemetry.sdk.metrics._internal.exemplar.exemplar": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exemplar/exemplar.py",
+      "sha256": "3e70ff6682c7e5e2e899679f67276f3db027c391537b004bc92fe06ff95cd97d"
+    },
+    "opentelemetry.sdk.metrics._internal.exemplar.exemplar_filter": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exemplar/exemplar_filter.py",
+      "sha256": "413c8c9f87f1ea9c8fdd59a59fa74942dab8729a6586afc3c38a51aa21843f74"
+    },
+    "opentelemetry.sdk.metrics._internal.exemplar.exemplar_reservoir": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exemplar/exemplar_reservoir.py",
+      "sha256": "8505d0ec536898429642361fb4d7e8c82726a5b83f7ad0988e18f34cec92e16e"
+    },
+    "opentelemetry.sdk.metrics._internal.exemplar": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exemplar/__init__.py",
+      "sha256": "ccfc75caa6da365e8f9d092d2114f358aa9426dba7c2106b07dbba059f12c0b6"
+    },
+    "opentelemetry.sdk.metrics._internal.measurement": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/measurement.py",
+      "sha256": "53d495d52203d2d08ebe251b4f89363749ccb03f1c76c9228483ce490490aca0"
+    },
+    "opentelemetry.sdk.metrics._internal.instrument": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/instrument.py",
+      "sha256": "9dff564d64f5584ea2c8a4536a96ef334bb05893afd55f669146fe954f95e65e"
+    },
+    "opentelemetry.sdk.metrics._internal.sdk_configuration": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/sdk_configuration.py",
+      "sha256": "dd375f2f40d691c78c3703d608cab9b3a8c786e881ef556365457e44381da5c2"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.buckets": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/buckets.py",
+      "sha256": "c179461c702780c50d198e69909f9802878a63ddff7ca0c7af2a8bc6b8438ad5"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.mapping": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/mapping/__init__.py",
+      "sha256": "16a5ebad3914e67818341ff16fa72baba800a6692077c3f4a7f6df0974829ca8"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.mapping.errors": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/mapping/errors.py",
+      "sha256": "e90ea37ec565b842a9e51ffd1022d6f26ab7668a325f4c3d595cf97be60086e6"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.mapping.ieee_754": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/mapping/ieee_754.py",
+      "sha256": "6873f8f73c7a1088e96027c365cc2bce8612931de8935119ac678b1bc4faaab0"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.mapping.exponent_mapping": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/mapping/exponent_mapping.py",
+      "sha256": "93bd28e8577acde768e15708d533932a1d91bab75a01431153cdfbb1de643b9e"
+    },
+    "opentelemetry.sdk.metrics._internal.exponential_histogram.mapping.logarithm_mapping": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/exponential_histogram/mapping/logarithm_mapping.py",
+      "sha256": "ea5f705df0fd4a6b4e1947927c36fca8859dc45f5a4a50e292eab4ff7885f47f"
+    },
+    "opentelemetry.sdk.metrics._internal.point": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/point.py",
+      "sha256": "4b2584dc6416cde4a5964f8f5c77fe32fc20abde76464e8671a97376eb41f849"
+    },
+    "opentelemetry.sdk.metrics._internal.aggregation": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/aggregation.py",
+      "sha256": "da529f9af5a48f9748ff594d5ed1d87320448f866d48a54997d7812c1b678114"
+    },
+    "opentelemetry.sdk.metrics._internal.export": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/export/__init__.py",
+      "sha256": "69b236d3aa8c7228aa6a7600cce1d16b7af18d624808a96aa27fd2fbb44b1efe"
+    },
+    "opentelemetry.sdk.metrics._internal.view": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/view.py",
+      "sha256": "4b0578a4520632883d123648403880206eb756a94818b95cd9abaf0658909a08"
+    },
+    "opentelemetry.sdk.metrics._internal._view_instrument_match": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/_view_instrument_match.py",
+      "sha256": "f1c4cb9c343a16546d4e374cabc578567fcd0fe29aea230f045f1e31e7313c31"
+    },
+    "opentelemetry.sdk.metrics._internal.metric_reader_storage": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/metric_reader_storage.py",
+      "sha256": "382c2f0d4086accc9d93f3a58b8fd436bc0de204f831dc9dc59a4a88046ec7d6"
+    },
+    "opentelemetry.sdk.metrics._internal.measurement_consumer": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/measurement_consumer.py",
+      "sha256": "7d7e3008c0d4901bbcc3766399719806cee35a92f9ef244c6d8808aa6e055adf"
+    },
+    "opentelemetry.sdk.metrics._internal": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/_internal/__init__.py",
+      "sha256": "51d0c1fbfb05b0ad7e981058b0f5c4b509fa34d7663618e81bdee46580743f56"
+    },
+    "opentelemetry.sdk.metrics": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/__init__.py",
+      "sha256": "910e3aed6b7fdee40c6d5b2dbe0ba09ba2c306eb4578310defaa04949879cf7e"
+    },
+    "opentelemetry.sdk.metrics.export": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/sdk/metrics/export/__init__.py",
+      "sha256": "6595c9eaf961e852a9c41e8c169385d24ab2c1b87ffe769ba95c0092eb1fcffb"
+    },
+    "opentelemetry.util.re": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/util/re.py",
+      "sha256": "2b73414271890591281543b63b4e5884bbbb571a2a9be41b6e3178cfac0c998f"
+    },
+    "opentelemetry.exporter.otlp.proto.grpc.exporter": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/grpc/exporter.py",
+      "sha256": "09ce35204768cb21485766150801554e63df8c8df33e3ca65a7326e633e1cadb"
+    },
+    "opentelemetry.exporter.otlp.proto.grpc.trace_exporter": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py",
+      "sha256": "29c71739f14c31a99b607edbd7f8cb1ce35eac95021424653d069b579a23a60d"
+    },
+    "friday_memory.adapters.vector": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/vector.py",
+      "sha256": "6bf75710cdaa384ac2a371dbe214182f07170fd0a9d2dbe46a7b177bf0907833"
+    },
+    "friday_memory.adapters": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/adapters/__init__.py",
+      "sha256": "1049b6afd7c1beb9c481316b55c289d24405fc4d9443d40d44791b1060adea7f"
+    },
+    "friday_memory.context.token_estimator": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/token_estimator.py",
+      "sha256": "235ec8dee646984d52f6054784138feb8400f8636938c151436c7237dfcb0f09"
+    },
+    "friday_memory.context.layout": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/layout.py",
+      "sha256": "d03e59ad60a6f0ee0f520a00ca84c7d329551d089b4c843fcdf8943e3c3b2937"
+    },
+    "friday_llm.exceptions": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/exceptions.py",
+      "sha256": "da04aaee08d58d5c83bdfed27e8e3b1cda5866126deb2f3e1853bcd4b4a1aa38"
+    },
+    "friday_llm.targets": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/targets.py",
+      "sha256": "9815f1a5ee131230d85e0107a4a7f297c8378748ab4ca828ac8aa8fa4d3087fc"
+    },
+    "friday_llm.capabilities": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/capabilities.py",
+      "sha256": "78f1138a39cad74d56abef6fb20828109ce3f9f8f31a5ea7344559c779872b8f"
+    },
+    "friday_llm.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/config.py",
+      "sha256": "cd511a2317cd64eb32a5f2ec6f55c33e875016d60bd0cfcb03a9821d2f3e5bff"
+    },
+    "friday_llm.circuit_breaker": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/circuit_breaker.py",
+      "sha256": "b42ec5b77721dce9d0e09e1032a79d40e4bf393c26f64a035f5b49ab80fdd501"
+    },
+    "friday_llm.telemetry_models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/telemetry_models.py",
+      "sha256": "d86399054c2996eb03e504959d845623bbff96301bf7a992c78e351fed198ea9"
+    },
+    "friday_llm.pricing": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/pricing.py",
+      "sha256": "52fc54a75b2979f78e278b6f155e2d0682f0b3ab0b528a7a2494a70ab7b0316f"
+    },
+    "friday_llm.telemetry_helper": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/telemetry_helper.py",
+      "sha256": "bb155f95a203d48a9cc0acef1310346f927c9b566dd93e355bd6617d57dbbd50"
+    },
+    "friday_llm.embeddings": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/embeddings.py",
+      "sha256": "2e7e782db7485ca855b477416a51aafb6acf293cdbd2bc8f7e38e867d5c1390a"
+    },
+    "friday_llm.generation": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/generation.py",
+      "sha256": "9d12f4d2353155a3ae928b1d080fcdcba27cf034035095eec9037117acaea034"
+    },
+    "friday_llm.langfuse_integration": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/langfuse_integration.py",
+      "sha256": "28f959ad5bd1ef3ae345cc10b04b8e954d4c6cab6df27bf36b745f4322080876"
+    },
+    "friday_llm.lifecycle": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/lifecycle.py",
+      "sha256": "a2dfe03d38d554fd95dd09e908951ce0615a32fa3eb22e290c68abcbf8e699c2"
+    },
+    "friday_llm.provider_options": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/provider_options.py",
+      "sha256": "5b5f418e373fce3abafdcc66accd34f1b5060bd45f3bb77529ced4e677e14c55"
+    },
+    "friday_llm.translation": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/translation.py",
+      "sha256": "2ca3bfaf1adff703cf74766f58d21a4c01303ae95f42c0a481d7b4b85e7174ef"
+    },
+    "friday_llm.model_library": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/model_library.py",
+      "sha256": "754effe6adf32890073866d3192f75bbb7354642c5c32a64df456c22321b6add"
+    },
+    "friday_llm.requests": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/requests.py",
+      "sha256": "b7689098b4021e26872c0b271f2039f6c492f48a761f3d50c7a27c42cdf75aa5"
+    },
+    "friday_llm.streaming": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/streaming.py",
+      "sha256": "1d07c7e9953541d664efe254f4015bc5464e38f6a2f0eaf4f69857e210266399"
+    },
+    "friday_llm.protocols": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/protocols.py",
+      "sha256": "877a497af82f0dd2c7ef7ee38236af9582886577ee45064ad3d886b1fd052935"
+    },
+    "friday_llm.service": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/service.py",
+      "sha256": "ab159fc1f9f6d0f754e4ece034b90a3c33d63f8995c49392d29dd236b31b4d2d"
+    },
+    "friday_llm": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-llm/src/friday_llm/__init__.py",
+      "sha256": "df8c538447bb0b1bf2b2d8e2397e4f16b91f9b258088edac4dcddcf33a4403fc"
+    },
+    "friday_memory.json_response": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/json_response.py",
+      "sha256": "71192624c7d20e7dbad53ec90978e8b86e2c5d6978c301284afa75c30c481e27"
+    },
+    "friday_memory.llm_completion": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/llm_completion.py",
+      "sha256": "e8bd7dd9dfabd8d7924fc1cd0339a050def220a2e067fd78350374052993e9a3"
+    },
+    "friday_memory.context.passage_router": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/passage_router.py",
+      "sha256": "ed19904b36e978f1f766dc77893bad379ab726f908b97d5bd02e8d8dac37ae2c"
+    },
+    "friday_memory.context.tool_manager": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/tool_manager.py",
+      "sha256": "da58b0ca0e6b8606e93f0ed46e4aab2193793bda6bd856250ada12ad22dd6374"
+    },
+    "friday_memory.controller.memory_controller": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "sha256": "8a5708f323e0066eb982d49d43b6bb1c6fc9eb13c05b78f20718ea145ffe3712"
+    },
+    "friday_memory.controller": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/controller/__init__.py",
+      "sha256": "f95c72e70746d0058114f22f53f7829da72ef77c1d7c5c68ef525f5376bd3279"
+    },
+    "friday_memory.temporal": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/temporal.py",
+      "sha256": "ca7bf7b9e1666a6daac94fc9fe23a774f7175f185388c5febfae03ac7497ac24"
+    },
+    "friday_memory.lifecycle.decay": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/decay.py",
+      "sha256": "f1af3e9c99f4516f30d58d6e37eb37d3968cec253f391e4d50d92d226b84fd49"
+    },
+    "friday_memory.lifecycle.stages": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/stages.py",
+      "sha256": "c2246d528f16bba1c3d8ea72640c33b51807fff4a60f0eb4e5582fd79df99e10"
+    },
+    "friday_memory.lifecycle.migration": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/migration.py",
+      "sha256": "d24706f0a25be31fb41b93e9bb2846545c81bf1ecaf0fbcf9f007cf757637a95"
+    },
+    "friday_memory.lifecycle.promotion": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/promotion.py",
+      "sha256": "2c1ab998b1c544767c5873f4c3721a10f66a31d35fc3fa3c585039d95512722c"
+    },
+    "friday_memory.lifecycle.tool_content": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/tool_content.py",
+      "sha256": "df5251f6a4ab9d8bfd9c6294dbcb694be1945db182976e38dc5f449acbe31439"
+    },
+    "friday_memory.lifecycle": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/lifecycle/__init__.py",
+      "sha256": "ae5d0d05cc25ceb074e5f3c2c5497f414ead7ed2af41611d266e45c592ec275c"
+    },
+    "friday_memory.context.assembler": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/assembler.py",
+      "sha256": "e3dffd72311de5589ea30bc0c1da9d2e90dd01c0d76d9dd86761329e13d952f2"
+    },
+    "friday_memory.context.budget_monitor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/budget_monitor.py",
+      "sha256": "be5ba8f26ba6b628188c62cc00b851a65dfdbd260ef593b02b223a628840364c"
+    },
+    "friday_memory.context.cache_config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/cache_config.py",
+      "sha256": "0189710dcce62dfe637c354987dafb1b7ece7b9d23507f48c2f9a9849abef7ad"
+    },
+    "friday_memory.context.consolidator": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "sha256": "d3fe57ce5cc107c29037cb85c6af92fcde2d23c0c47ade2f6575e4f11029e26a"
+    },
+    "friday_memory.context.ontology": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/ontology.py",
+      "sha256": "ccd0197af9c385cfed7a8a4b4a61fc6d93acdf04b52d01f703732da0d12fc52b"
+    },
+    "friday_memory.context.extraction_filter": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/extraction_filter.py",
+      "sha256": "2e33d85e098a0f0a97e47d30fa7b3fb150d50cef771cfcd692bbef5604028911"
+    },
+    "friday_memory.context.extractor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/extractor.py",
+      "sha256": "62cc6d0a2afc5d61a094d20978ec5e1d130f781136f9c75b6d3f24901174bb33"
+    },
+    "friday_memory.context": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/context/__init__.py",
+      "sha256": "907a99812ba1ee6adbe3eab7791df9d93004570ffbaa5d4ec89aacc0625fcd16"
+    },
+    "friday_memory.ingestion.chunker": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/ingestion/chunker.py",
+      "sha256": "3ab2ee869b9706d76b86c4834695fa6948ab10a50685df0566b3f0547c073015"
+    },
+    "friday_memory.ingestion.large_file_processor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "sha256": "a125280d7eeacf842d6420e0030d9a76665196a9fa3e8d47d2115fa01e802e0c"
+    },
+    "friday_memory.ingestion.pipeline": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/ingestion/pipeline.py",
+      "sha256": "d9d649e4d84485494b5bcffd7ce249f4ec0a51fa776a8e790208e594b346da56"
+    },
+    "friday_memory.ingestion.tool_ingester": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/ingestion/tool_ingester.py",
+      "sha256": "e20502fb54d7288ed4ced51fc206d9a1070addf472ac156fc21a42331eea19e7"
+    },
+    "friday_memory.ingestion": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/ingestion/__init__.py",
+      "sha256": "f6f5c726f3f19dc9e5e8d671367a2213f17d2e1a93225c793be1dc7898449cee"
+    },
+    "friday_memory.maintenance.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/models.py",
+      "sha256": "b6dcab86cfaf34fd22cedad185dee2eae35a93c2009dd4fd0cb051d9374bd1be"
+    },
+    "friday_memory.maintenance.analyzer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/analyzer.py",
+      "sha256": "521ba2dead1b363f09d3c8227285a2803110e89caa2ab0a470a86fa4f2daa879"
+    },
+    "friday_memory.maintenance.backup": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/backup.py",
+      "sha256": "ddd37aa5bdcedbaf623321828e26e3af7b1ebbcea9ba041dc0e40b1421ad937b"
+    },
+    "friday_memory.maintenance.compactor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/compactor.py",
+      "sha256": "9a6cfe5f86098288aa4f9e04ccb11364d0008eaff72ede8a5a16481025aba5cf"
+    },
+    "friday_memory.maintenance.fact_checker": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "sha256": "6c229c2c2b9c274715a1dd0bd2ac852566e2e73a6a20167ad270cd3b564fada4"
+    },
+    "friday_memory.maintenance.incremental": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/incremental.py",
+      "sha256": "4d590ae009a5f5aefc11dd8cdc16df7db0e9f6f57a3d79e039cec7ef52ec3c8b"
+    },
+    "friday_memory.maintenance.logger": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/logger.py",
+      "sha256": "f5c06f5d4ba4e89bae182d59dc6d4e61ce16675a671bfdc142b2eb6c462a7dea"
+    },
+    "friday_memory.maintenance.recovery_models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/recovery_models.py",
+      "sha256": "dfb8891534de628cba2bb42495fea644d1e14759d7e11a582b168c3b270f1f95"
+    },
+    "friday_memory.retrieval.access_buffer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/access_buffer.py",
+      "sha256": "145a41177fc2656102fe6aa91f924a71a5822b60543189ae3f399bedc08915d8"
+    },
+    "friday_core.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-core/src/friday_core/mcp.py",
+      "sha256": "78b0065f9c2b27ae7cf7dc52596baf0be5e38a37f7b111c1207d5cdd4585c050"
+    },
+    "friday_memory.models.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/models/mcp.py",
+      "sha256": "ae6f461ff5e59e4348b0edf5b1ecbe41842766c1c68da40d5c45cd7ae050d57e"
+    },
+    "friday_memory.retrieval.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/mcp.py",
+      "sha256": "b499217a670359139b0065bff2f5625e7fd5182256e67079d6d34869a1c6ce36"
+    },
+    "friday_memory.retrieval.collection_manager": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/collection_manager.py",
+      "sha256": "41e85080c2b80545f79685da019549d4462f69c9942d7d13db029f99aff8b8de"
+    },
+    "friday_memory.retrieval.factor_computer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/factor_computer.py",
+      "sha256": "36b51c84c4fda54e845ff3bc59620322196907dfe6bb2f57ea118e7113f6357e"
+    },
+    "friday_memory.retrieval.graph_scorer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/graph_scorer.py",
+      "sha256": "339b9c6859af7c2548e470e36f1ed407cd05837e8d78f0a9fe2656275edac1c3"
+    },
+    "friday_memory.retrieval.inclusion_scorer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/inclusion_scorer.py",
+      "sha256": "9ec4f20bdc67fe6fda97bc654054ea880db6c35eb12b580789ce49422dad1053"
+    },
+    "friday_memory.retrieval": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/retrieval/__init__.py",
+      "sha256": "3fbc7afa8499f6395aa8e31b6734b8c95bc12c7ba7673fba2df6adf52291d7c0"
+    },
+    "friday_memory.maintenance.mutation": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/mutation.py",
+      "sha256": "d307b6f0607cb32ebe1a80a9f5e3d2061dc1af0b497e95f10eb0e40e65095d91"
+    },
+    "friday_memory.maintenance.pruner": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/pruner.py",
+      "sha256": "a36258551ee3c1d5349ca7579d79f6444b9e48f1817858a2f524563e65d0cf9b"
+    },
+    "friday_memory.maintenance.recovery": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/recovery.py",
+      "sha256": "c8c0b7bff6fac81f2d3146a67915bddcd2aae83a587a8ab19bcd03475cc8f954"
+    },
+    "friday_memory.maintenance.synthesizer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "sha256": "44235da056162f223a9f5ee1ede27e565fccba1b653bdd2bd81aaaed7f104b38"
+    },
+    "friday_memory.maintenance.reorganizer": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/reorganizer.py",
+      "sha256": "98d2ac6db8fd835910c49fcd804ac6bf4d4a02e2534cd2d7f0bde683180e7e2c"
+    },
+    "friday_memory.maintenance": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/maintenance/__init__.py",
+      "sha256": "dafff8abfc96c5200b504b07a4981a4f1041dd7559af95ccf501db87ccbdcbf2"
+    },
+    "friday_memory.multi_agent.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/models.py",
+      "sha256": "87d269dd7a3373219d733fe648bb6b09712905e9f9ddc7b4191ed1fbe2a93714"
+    },
+    "friday_memory.multi_agent.journal": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/journal.py",
+      "sha256": "c62877cdbb354e5c9e21c6973ef2ed8f0c923005060bef24e9d7f61ff920316e"
+    },
+    "friday_memory.multi_agent.coordinator": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/coordinator.py",
+      "sha256": "421f1dec3e73accc2d138f061ff1063282a2dfc013d287a6172de317d4c122a0"
+    },
+    "friday_memory.multi_agent.policy": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/policy.py",
+      "sha256": "894242a798bfa51857a2dd488afec152a42c59984ebfd2a6e1fdb686a34e1733"
+    },
+    "friday_memory.multi_agent.controller": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "sha256": "c93088b0ecac9aba6d4cd2258d6c5646a38d0b2dd700242649903a4965cb62ce"
+    },
+    "friday_memory.multi_agent.observability": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/observability.py",
+      "sha256": "df5b9fa0e37544281156d8c87a9dc1ef38460ee37cf8fd08eb1536d9f2863e29"
+    },
+    "friday_memory.multi_agent.scratchpad": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/scratchpad.py",
+      "sha256": "856fb4aeb016cada1a695d85b65e866e123defec4ec3c79579bef2ecf63dc1dd"
+    },
+    "friday_memory.multi_agent": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/multi_agent/__init__.py",
+      "sha256": "aab670f573c293afe9614d03e2ba0569a47f773f722e4842c6159cc9faa9daff"
+    },
+    "friday_memory": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-memory/src/friday_memory/__init__.py",
+      "sha256": "98d4384b674bdfde65c9c4be2756e8099b2c24f1d3b66bbb5cfa44f84301b34a"
+    },
+    "friday_transcript.models.snapshot": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/models/snapshot.py",
+      "sha256": "bd7ac7fc28cbfe2394084b143d56310afa0fc65a4230e54bebf58b12683ca5ef"
+    },
+    "friday_transcript.models.transcript": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/models/transcript.py",
+      "sha256": "43ad71cb39c2b7d5d07b3e5d47c2ca63589d6852f4f0ea8f6b412dce3054f864"
+    },
+    "friday_transcript.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/models/__init__.py",
+      "sha256": "1a9196aa0266f583bfe65dbdd45661dc69a58f4cef75477095b29aa273ca60a5"
+    },
+    "friday_transcript.correlation": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/correlation.py",
+      "sha256": "9081f55e0bb7e8e16957a82a8a1f7e00d4dfd06c1bf25c8592d03dbb6bb627f1"
+    },
+    "friday_transcript.stores.jsonl": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "sha256": "b6401745ea350f38e30a2140046c69785c9852467042615b99d8b678fd67eb61"
+    },
+    "friday_transcript.stores.protocol": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "sha256": "aa3a251bb5df3db00a714f9b29f56279ed2aabb6727b94ae9657b76da89e6b43"
+    },
+    "friday_transcript.stores.sqlite": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "sha256": "17532a3717dc78e81fb17567821c8abbc583814dce417b8c0f00fcc3cab326be"
+    },
+    "friday_transcript.stores": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/stores/__init__.py",
+      "sha256": "c66edf61043694627b6a3d751d885199b200ed500487a903bc4c13e2e60906e3"
+    },
+    "friday_transcript.exporters.csv": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/exporters/csv.py",
+      "sha256": "523f4d3c67b6390c327595139a7349be91c6d7fe323eccca1400dcf882f5c4f1"
+    },
+    "friday_transcript.exporters.jsonl": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/exporters/jsonl.py",
+      "sha256": "8f8782c70c746ebc2b516ab8fee453929566b24be4a4ff5fb6bdd0625e66edd2"
+    },
+    "friday_transcript.exporters.markdown": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/exporters/markdown.py",
+      "sha256": "fd7c95dee50d5a5e95b68fcd8739d7cd0cd6add9222087d0bf6e17cfbdfa9ce2"
+    },
+    "friday_transcript.exporters": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/exporters/__init__.py",
+      "sha256": "48b871c07701f3c6b4586e89396f056edb6bf7d82dbc45edb44ed970f9c2a28b"
+    },
+    "friday_transcript": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-transcript/src/friday_transcript/__init__.py",
+      "sha256": "1eb5adcf7525a4f2ac67b991397bff40d76a04bcac7c0f24b2696ced2a2544bf"
+    },
+    "friday_chat.reorganization.contracts": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/contracts.py",
+      "sha256": "d809ca336c394602b235e41860cf175ce74ed96d8852b0a49e01ebaa826efeb9"
+    },
+    "friday_chat.reorganization.durability": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/durability.py",
+      "sha256": "11e92eb6671a96dbb407b6a4aea1f1d221697a9cb41070f2d12b19a984b2e658"
+    },
+    "friday_chat.reorganization.layout": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/layout.py",
+      "sha256": "61d626242c8160fd86a0e7f287bca0a6b9f123bb8f1ef8d1ed44702b083ea44b"
+    },
+    "friday_chat.reorganization.artifacts": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/artifacts.py",
+      "sha256": "f59634e03c7ef8a5cc762e73b83de254d63092135fd517d9c2df342f5e100853"
+    },
+    "friday_mcp.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/config.py",
+      "sha256": "7a86bb7dad1f75b0bfa7c2d8101b1366f02d6da6e1c9e0d7d1b36ce42b73cc16"
+    },
+    "friday_mcp.protocols": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/protocols.py",
+      "sha256": "00fc02ccd4d694e30fafbee72cbb0944294d275961dc0631967612f30892d394"
+    },
+    "friday_mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/__init__.py",
+      "sha256": "0402d3f6014d2b295b001f345eb23775838316d293c2a3f3a464353324077f7a"
+    },
+    "friday_runtime.model_library": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/model_library.py",
+      "sha256": "702db06d2ffada560d279ba217bf8ac720f6392aecd0f4a78ec56a0c450f3837"
+    },
+    "friday_runtime.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/config.py",
+      "sha256": "fe3f2af96196e801bffd6543fb259933c33ff05bd0a54ada41401d2606ab0a45"
+    },
+    "friday_agent.llm_completion": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/llm_completion.py",
+      "sha256": "678feb65308e3583e3fb93e1644da1bdbf2b6f49a628b89a54a7d76cfd34c4d0"
+    },
+    "friday_agent.security.output_processor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/security/output_processor.py",
+      "sha256": "caf7f945e6db6665046b3380bfa5bc33afa5b0d9e55d8e856447280a3964e960"
+    },
+    "friday_agent.security": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/security/__init__.py",
+      "sha256": "408374f0dc3fc256386ff326e80536cda923bc712eee3ca7177b7c071e12cf84"
+    },
+    "friday_agent.profile": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/profile.py",
+      "sha256": "2517dfeda14c955346fcdd257f4f94d2cc580143b4c55c9b967a6d7b0b4834af"
+    },
+    "friday_agent.prompting": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/prompting.py",
+      "sha256": "ba071a686be62801479ac7c6c4d5a0ab0bc6404e510b78b3399febd4458ee1c8"
+    },
+    "friday_agent.base": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/base.py",
+      "sha256": "506640728f5605ac0d5c1478b052468d498ac352b939627fb0d801e304808e88"
+    },
+    "friday_agent.autonomous": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/autonomous.py",
+      "sha256": "0bffb1637fcbbb522a1ee2dcfe99afc9921b3ef8cfbbb6246d376f9fc3312077"
+    },
+    "friday_agent.repl_base": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/repl_base.py",
+      "sha256": "6148ca00d2223e886669450746bb168b6d37c502158ba82a5983f6591403625a"
+    },
+    "friday_agent.interactive": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/interactive.py",
+      "sha256": "fd7e25391d8ec865cf19a4ea939ea0713e183a05794d08f0b7facf30dfcaffca"
+    },
+    "friday_agent.copilot": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/copilot.py",
+      "sha256": "23e6b0fa29c0a35c3ce4ba1cfd21dec97fbe973aa515d6b881f6278cc0e594ef"
+    },
+    "friday_agent.skills": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/skills.py",
+      "sha256": "fa97a512bf80a95ad3d39cd750dffda510949abcaee022a1eaea9da3fbf5864b"
+    },
+    "friday_agent.loader": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/loader.py",
+      "sha256": "22a9f45e595d885e410da42b06f3f0db3e8d0dce0ae144e4e4f8468070ae5565"
+    },
+    "friday_agent.orchestrator": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/orchestrator.py",
+      "sha256": "4064ad8dbddd55aed12891ea3cdbda11015c98072c27a4cd3a8a79f10efdc635"
+    },
+    "friday_agent.registry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/registry.py",
+      "sha256": "d683ac3e89d1d2bcfbe41ce4562b3491e1b9e07733b4c3f8d59bc8e6fbe49a4e"
+    },
+    "friday_agent.tools.registry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/tools/registry.py",
+      "sha256": "96a10e3359cfd87d2630b22e2a348157509b21522ed7e5cccb9f73819cb86342"
+    },
+    "friday_agent.tools.builtins": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "sha256": "261d4e4964fb0dfa1682c315abddfc7498793c44ebdcd783c691a04de72b8646"
+    },
+    "friday_agent.tools": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/tools/__init__.py",
+      "sha256": "df438e3e7172b78271801b301d19538721b7eae8cad91765e4430e61ca6101c9"
+    },
+    "friday_agent.workflows.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/workflows/models.py",
+      "sha256": "3849c595f105e868e7ff00bb1c648e01f61b1322c07d32f2b8a17e9719466883"
+    },
+    "friday_agent.workflows.engine": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/workflows/engine.py",
+      "sha256": "263fdb778780e6e47cea546b025b87bd616d88c010f70820d40e43fa484fe979"
+    },
+    "friday_agent.workflows.loader": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/workflows/loader.py",
+      "sha256": "c75e42b31027db771d8e8669c06f94c0c4c77259c696d04c91676ea6a7399a2f"
+    },
+    "friday_agent.workflows": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/workflows/__init__.py",
+      "sha256": "2e3a276ab8cce5289d03c78668908aa20eb6ac38977c8bce1ef472f161b371ad"
+    },
+    "friday_agent": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-agent/src/friday_agent/__init__.py",
+      "sha256": "60d267b8369a35ef12e7e095f1901ec9a542d3df94c75a3b48d233f86d34fc57"
+    },
+    "friday_mcp.utils.schema": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/utils/schema.py",
+      "sha256": "7eee15a2d57274fdfba8f32ea53cf9228df593e252ad47a22cb69dca90924a46"
+    },
+    "friday_mcp.utils": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/utils/__init__.py",
+      "sha256": "d1c157afa14049ccf2f2634b3061df0e93187f1a45a8faa9d985ae2bda365615"
+    },
+    "friday_mcp.client.adapter": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/adapter.py",
+      "sha256": "f061af1c437fb73e7eb6823ddc79ccfd4ce8b02b4783d83f90718f4348e8399a"
+    },
+    "friday_mcp.client.base": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/base.py",
+      "sha256": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8"
+    },
+    "friday_mcp.client.sse": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/sse.py",
+      "sha256": "06a13778406c6b00268be77791e287afe185f151c5b66efc3bbd458fdf91e7e0"
+    },
+    "friday_mcp.client.stdio": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/stdio.py",
+      "sha256": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a"
+    },
+    "friday_mcp.client.manager": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/manager.py",
+      "sha256": "335670d905a82a91793675d5c82f5e9b918f7550ed90a1a7cfa01fd74ea9e623"
+    },
+    "friday_mcp.client": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "sha256": "d6b3379c2508aab38fa30a75dfaf7aec87440186a753a8b3ab38037bb5a98c6c"
+    },
+    "friday_runtime.mcp_registration": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/mcp_registration.py",
+      "sha256": "60667d1410bc4a35d91a68e2e5036f48e1883ab36715ccbe8390c9b0f94523c7"
+    },
+    "friday_runtime.tool_loading": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/tool_loading.py",
+      "sha256": "4abcddc568aec149db96a78666b92ec2ed2962a87aa11cc9084950f19f26c2db"
+    },
+    "friday_runtime.mcp_loading": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/mcp_loading.py",
+      "sha256": "ff6a90a92cb2923bcca5a3f9d06b274fb1077a595892acd404ce05adfdc5e4e1"
+    },
+    "friday_runtime.di": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/di.py",
+      "sha256": "8085b142495376bab4ad38465bb7bdb267f598c443e4ed2375329ed8fb670f9c"
+    },
+    "friday_runtime.kernel": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/kernel.py",
+      "sha256": "e208f5736c933cb3ad4eb01edfa8aa050fd6551e8d4406eff8b76dbff18ad6f3"
+    },
+    "friday_runtime": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-runtime/src/friday_runtime/__init__.py",
+      "sha256": "c23916995661fcaee3e947cae1a4c6ee508b2692157b4380f671ef526efcd1ab"
+    },
+    "friday_chat.config": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/config.py",
+      "sha256": "e8063c648cbe34ec22e286d3abc1c94db4e10ce36fb0869dc3ba92d005030f0f"
+    },
+    "friday_chat.reorganization.assembly": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/assembly.py",
+      "sha256": "1c10ea3175792e1092138fd791bc679b9554eb57b7610b3e3441a786a4bc492c"
+    },
+    "friday_chat.reorganization.gate": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/gate.py",
+      "sha256": "df0913a427cb7660a3a21a7fbb0eead2ab07e27240060cd52a0e91459f1484f1"
+    },
+    "friday_chat.reorganization.lease": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/lease.py",
+      "sha256": "f0382474e8e0899ccde0019d8f1b2061ab292fea3ae37896e9b26ba3fc0ef101"
+    },
+    "friday_chat.reorganization.preflight": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/preflight.py",
+      "sha256": "43878c4b681dbb628884f5dcd3be342903a69659675bd624499bd5ab2c68af71"
+    },
+    "friday_chat.reorganization.coordinator": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/coordinator.py",
+      "sha256": "552964efbbf95a3f4f3e537a0ccfaf14b814685273fedff1902ecc701573ecd2"
+    },
+    "friday_chat.reorganization": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/reorganization/__init__.py",
+      "sha256": "f47d1b1f6eeb4f225224f5fde9f38d2b780bd72b2662cc035f81ddabd4d216c3"
+    },
+    "friday_chat": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/__init__.py",
+      "sha256": "3f62b6de525e65a7fb98597133076292f92682065b641e04dffd1fde22e42ff8"
+    },
+    "friday_chat.memory_views": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/memory_views.py",
+      "sha256": "64a87af9b8decf858c4d185fe7081c7a2a0f168f8df229e1e04bbcafab86932f"
+    },
+    "friday_chat.session": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/session.py",
+      "sha256": "18da2913ddda2e6563151f1a1dbfeef3e53405a2979fe0ef78b454a01efee0a4"
+    },
+    "friday_chat.speech": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/speech.py",
+      "sha256": "46859de69bf87588697cd396e0887d3ba7b166be8905269fcc81c7ea5786df56"
+    },
+    "friday_chat.telemetry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/telemetry.py",
+      "sha256": "cd268d221e1b5705751450757d347e5cc52db30a5e8c41cba8986f69714a6318"
+    },
+    "friday_chat.tools": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/__init__.py",
+      "sha256": "7384517198f9b20a20cb71652e8212a22c2eff6fcaa2369a1a5d33b5107d0c9b"
+    },
+    "friday_chat.tools.schemas": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/schemas.py",
+      "sha256": "a19c2f62f0578f4784f3d78dd711781b93d9d156f6f27d49583c49ac40a3f73b"
+    },
+    "friday_chat.tools.output": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/output.py",
+      "sha256": "f57dee6e0d5aec1f5509214244e9225f522d2e99396a96577ca7cf4685ee4c08"
+    },
+    "friday_chat.tools.mcp": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/mcp.py",
+      "sha256": "2c286a81e1f8354bb46fbeb2dc381043493ab13b11237b63835e4f6dbd1f093d"
+    },
+    "friday_chat.tools.registry": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/registry.py",
+      "sha256": "72330b972656ce2e1ecb0abb12e133ceb37c88f22f428a80cee3f2d3129cfff4"
+    },
+    "friday_chat.tools.selection": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/tools/selection.py",
+      "sha256": "4a72bcddf58a3efd9936c71dfe8497d9ca53d1159faf578fab10d7f253ee8904"
+    },
+    "friday_chat.transcripts": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/transcripts.py",
+      "sha256": "dde2f23e4012f39ee0b46b0f913da454e266d03f5bbfe4e63a7b3847e08ec0df"
+    },
+    "friday_chat.turns": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/turns/__init__.py",
+      "sha256": "32afce41fb44aa8f16c95c474ca2bb0a5b7454f2262def663acb97213aef3b68"
+    },
+    "friday_chat.turns.models": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/turns/models.py",
+      "sha256": "d93f3db1bf42de1e222ea1706f42a000faca199266e9aadce41144fe19305775"
+    },
+    "friday_chat.runtime": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-chat/src/friday_chat/runtime.py",
+      "sha256": "33cbee217d082c718cf9eaa41a69ff9460a014d652a1158ab6b0b44284a9c77e"
+    },
+    "friday_telemetry.providers._otel_exporter": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/_otel_exporter.py",
+      "sha256": "ff5708a52fe571577229370ca59e2c3561be737a63af8b3e2abf85d4a833911a"
+    },
+    "friday_telemetry.providers._otel_processor": {
+      "path": "/private/tmp/telem-02/builder-execution/candidate01/packages/friday-telemetry/src/friday_telemetry/providers/_otel_processor.py",
+      "sha256": "c23c006150dbc7c98e60390ca534f62aabfcbcad00fbb3091ca6a8a01639079c"
+    },
+    "grpc._interceptor": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_interceptor.py",
+      "sha256": "e6a88cda541669b6c177c21e47a547cd324a9a1cfb476fd37f79b95e9dc2e98d"
+    },
+    "grpc._server": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_server.py",
+      "sha256": "fa048d008c4ade59034a52a1213c42fd9a98630b748644c3c9a5ac60d7dd6ed7"
+    },
+    "grpc._simple_stubs": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_simple_stubs.py",
+      "sha256": "da12bc2ec6d1756846f244f90d1d69d202cdaf943cd7c5d8a31f12bffff0d30b"
+    },
+    "grpc.experimental": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/experimental/__init__.py",
+      "sha256": "b947106e7b6c5fd44e2a8cd60fa79356701827a0de6bb5544a9186bf52f91f3d"
+    },
+    "grpc._channel": {
+      "path": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/lib/python3.13/site-packages/grpc/_channel.py",
+      "sha256": "b0f55b88f43906e0f1d6b8013e56a35e2f571fde7c5c27861ac29789ed3c4edc"
+    }
+  },
+  "pytest_exitstatus": 0
+}

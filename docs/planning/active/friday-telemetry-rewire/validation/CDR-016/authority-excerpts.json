@@ -1,0 +1,386 @@
+{
+  "docs/planning/active/friday-telemetry-rewire/telem02-contract.md": [
+    {
+      "line": 81,
+      "text": "status, emits only closed failure categories, uses finite RPC deadlines, closes its"
+    },
+    {
+      "line": 82,
+      "text": "channel to cancel in-flight work, and performs no implicit retries for this unit."
+    },
+    {
+      "line": 83,
+      "text": "Pin/test encoder compatibility against installed1.39.1 and real decoded requests."
+    },
+    {
+      "line": 84,
+      "text": "Queue limit512, batch limit128, flush interval200ms, exporter request deadline1s,"
+    },
+    {
+      "line": 85,
+      "text": "flush/shutdown default5s (positive caller budgets capped at5s). Queue overflow is"
+    },
+    {
+      "line": 161,
+      "text": "to when failure becomes observable, never plaintext fallback or raw exceptions."
+    },
+    {
+      "line": 162,
+      "text": "Explicitly supply transport security, timeout and NoCompression; channel options are"
+    },
+    {
+      "line": 163,
+      "text": "limited to grpc.enable_http_proxy=0 and bounded message-size limits. No default_authority"
+    },
+    {
+      "line": 164,
+      "text": "or ssl_target_name_override. The loopback HTTP branch uses insecure_channel only."
+    },
+    {
+      "line": 165,
+      "text": ""
+    },
+    {
+      "line": 166,
+      "text": "Remote HTTPS credential/channel construction is mocked for this unit: assert all"
+    },
+    {
+      "line": 167,
+      "text": "three credential arguments are None, the correct secure branch/target/options and"
+    },
+    {
+      "line": 168,
+      "text": "failure behavior, plus forbidden-loader sentinels and no channel before validation."
+    },
+    {
+      "line": 169,
+      "text": "These tests do not prove native filesystem behavior, real TLS handshake or public"
+    },
+    {
+      "line": 187,
+      "text": "A minimal in-process gRPC TraceService collector binds127.0.0.1:0 and receives only"
+    },
+    {
+      "line": 188,
+      "text": "synthetic ExportTraceServiceRequest values. Two exact test nodes cover successful"
+    },
+    {
+      "line": 189,
+      "text": "roundtrip and deterministic server UNAVAILABLE, using bounded fixtures and joins."
+    },
+    {
+      "line": 190,
+      "text": "No collector executable, Docker, installed service, auth, TLS/network provisioning"
+    },
+    {
+      "line": 191,
+      "text": "or package installation. Python's socket guard cannot intercept all native gRPC I/O;"
+    },
+    {
+      "line": 192,
+      "text": "record that limitation and prove literal-loopback server/target/options by preflight"
+    },
+    {
+      "line": 193,
+      "text": "and constructor interception. Keep the inherited Python guard unchanged. The frozen"
+    },
+    {
+      "line": 194,
+      "text": "allowlist omits native proxy/credential settings. This is explicitly approved"
+    }
+  ],
+  "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md": [
+    {
+      "line": 6,
+      "text": "Preparation base: e8b075a3861e1e3c1bfac050091a71be60b7e165."
+    },
+    {
+      "line": 7,
+      "text": "Maintainer Chuck Russell explicitly approved CD-002 and separately WVR-004 by"
+    },
+    {
+      "line": 8,
+      "text": "responding \"approved\" to the concrete decision after corrected independent CDR-013"
+    },
+    {
+      "line": 9,
+      "text": "READY. The [approval record](CD-002-approval-record.md) binds the exact reviewed scope,"
+    },
+    {
+      "line": 10,
+      "text": "13 synthetic loopback effects and temporary327 lint disposition. Construction begins"
+    },
+    {
+      "line": 77,
+      "text": "live vendor, remote collector, paid calls, external messages, push/merge/deployment."
+    },
+    {
+      "line": 78,
+      "text": "No install/download/sync, interpreter provisioning or dependency update."
+    },
+    {
+      "line": 79,
+      "text": ""
+    },
+    {
+      "line": 80,
+      "text": "Under this approval, permit normal-user sandbox escape only for the eleven exact existing"
+    },
+    {
+      "line": 81,
+      "text": "synthetic HTTP listener nodes recorded in the approved REM-004 inventory and the"
+    },
+    {
+      "line": 82,
+      "text": "two new nodes test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events"
+    },
+    {
+      "line": 83,
+      "text": "and ::test_grpc_unavailable_reports_export_failure. Both new fixtures bind only"
+    },
+    {
+      "line": 84,
+      "text": "127.0.0.1:0; no fixed port, remote destination or third-party collector. Record final"
+    },
+    {
+      "line": 85,
+      "text": "parameter-expanded node IDs and fixture hashes before collection, with unchanged"
+    },
+    {
+      "line": 94,
+      "text": "raw zero. Root Ruff must run unchanged with raw exit recorded; its current327"
+    },
+    {
+      "line": 95,
+      "text": "findings are covered only by separately approved [WVR-004](../validation/WVR-004-telem02-lint-disposition.md)"
+    },
+    {
+      "line": 96,
+      "text": "in the linked approval record, with exact identity/hash reproduction required. No inherited TELEM-01 waiver, PTY waiver, failure skip,"
+    },
+    {
+      "line": 97,
+      "text": "blanket typing relaxation or source-ignore continuation is approved by this directive."
+    },
+    {
+      "line": 98,
+      "text": ""
+    },
+    {
+      "line": 102,
+      "text": "AC02-01\u201308 and accepted AC-01\u201306 regressions. Return VERIFIED/CHANGES_REQUESTED/BLOCKED."
+    },
+    {
+      "line": 103,
+      "text": "A readiness review of this document cannot verify future product. Maintainer"
+    },
+    {
+      "line": 104,
+      "text": "acceptance, live activation and later TELEM-03\u201305 remain separate gates."
+    },
+    {
+      "line": 105,
+      "text": ""
+    },
+    {
+      "line": 106,
+      "text": "Stop for unapproved path, API/config/dependency/sampling/privacy change, arbitrary"
+    }
+  ],
+  "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md": [
+    {
+      "line": 24,
+      "text": "unchanged external network guard, all isolated */src, Chat tests_chat helper, root."
+    },
+    {
+      "line": 25,
+      "text": "Native gRPC bypasses some Python socket hooks: do not claim the guard alone proves"
+    },
+    {
+      "line": 26,
+      "text": "no egress. Preflight and intercepted constructor target/options must prove both new"
+    },
+    {
+      "line": 27,
+      "text": "collector tests use literal127.0.0.1 ephemeral targets and no inherited settings."
+    },
+    {
+      "line": 28,
+      "text": ""
+    },
+    {
+      "line": 30,
+      "text": "exact2 named in CD-002), server/client constructor/teardown/helper hashes, allowlist,"
+    },
+    {
+      "line": 31,
+      "text": "expected effects and native guard limitation. Only approved normal-user sandbox"
+    },
+    {
+      "line": 32,
+      "text": "escape for those effects; no sudo or nonloopback test traffic. Static endpoint"
+    },
+    {
+      "line": 33,
+      "text": "config negative tests must mock construction before SDK opens a channel. All HTTPS"
+    },
+    {
+      "line": 34,
+      "text": "credential/secure-channel construction is mocked: assert root_certificates,"
+    },
+    {
+      "line": 35,
+      "text": "private_key and certificate_chain are each None, native-default-public-root policy,"
+    },
+    {
+      "line": 36,
+      "text": "ordinary hostname verification, approved options and no plaintext fallback. Reject"
+    },
+    {
+      "line": 83,
+      "text": ""
+    },
+    {
+      "line": 84,
+      "text": "At original preparation basee8b075a, root Ruff exits1 with579 findings:327"
+    },
+    {
+      "line": 85,
+      "text": "original debt plus252 raw closeout-script findings. The evidence-only packaging"
+    },
+    {
+      "line": 86,
+      "text": "correction preserves all18 scripts byte-for-byte in gzip, with original manifests"
+    },
+    {
+      "line": 87,
+      "text": "retained. The candidate must reproduce327 after this correction, never"
+    },
+    {
+      "line": 88,
+      "text": "waive the additional252. Record both raw results and the exact compression proof."
+    },
+    {
+      "line": 89,
+      "text": "The corrected327 are separately approved current-unit debt under WVR-004. Independently match"
+    },
+    {
+      "line": 90,
+      "text": "its327 exact identities, four archive hashes, unchanged registry source/AST,"
+    },
+    {
+      "line": 91,
+      "text": "seventeen lint-config hashes, Ruff version and py313 at baseline/final. Every other"
+    },
+    {
+      "line": 92,
+      "text": "finding fails; no global exclusions/ignore changes. Raw root lint is never called"
+    },
+    {
+      "line": 93,
+      "text": "PASS. Both changed-unit and aggregate Ruff must exit0 (registry remains unchanged"
+    },
+    {
+      "line": 101,
+      "text": "outcomes. Historical accepted validation is retained as history, not substituted for"
+    },
+    {
+      "line": 102,
+      "text": "new candidate gates. Documentation-only proposal checks are not product verification."
+    },
+    {
+      "line": 103,
+      "text": ""
+    },
+    {
+      "line": 104,
+      "text": "Freeze separate current-unit authority manifest and stable delta/aggregate requests."
+    },
+    {
+      "line": 105,
+      "text": "Fresh independent readiness follows approvals; separate builder then fresh product"
+    }
+  ],
+  "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md": [
+    {
+      "line": 2,
+      "text": ""
+    },
+    {
+      "line": 3,
+      "text": "Status: approved. Date: 2026-10-06. Maintainer: Chuck Russell."
+    },
+    {
+      "line": 4,
+      "text": "Work unit: TELEM-02. Branch: feature/friday-telemetry-rewire."
+    },
+    {
+      "line": 5,
+      "text": ""
+    },
+    {
+      "line": 6,
+      "text": "The controller presented corrected CD-002 and separately WVR-004 after fresh"
+    },
+    {
+      "line": 8,
+      "text": "The final question was \"Approve CD-002 and WVR-004 to begin TELEM-02?\" The maintainer"
+    },
+    {
+      "line": 9,
+      "text": "responded \"approved\". This approves both exact decisions, including CD-002's13"
+    },
+    {
+      "line": 10,
+      "text": "synthetic loopback listener effects and WVR-004's327 precise temporary lint identities."
+    },
+    {
+      "line": 11,
+      "text": "It does not approve new scope, remote/TLS activation, installs/downloads, credentials,"
+    },
+    {
+      "line": 12,
+      "text": "push/merge/release or acceptance. Accepted TELEM-01 and its authority remain immutable."
+    },
+    {
+      "line": 13,
+      "text": ""
+    },
+    {
+      "line": 14,
+      "text": "The reviewed substantive contract, product/test path manifest, verification,"
+    },
+    {
+      "line": 17,
+      "text": "unit manifest. Historical CDR-012/013 reports and frozen proposals remain unmodified."
+    },
+    {
+      "line": 18,
+      "text": "Fresh approved-authority readiness and source/API baseline preflight must pass"
+    },
+    {
+      "line": 19,
+      "text": "before the separate builder edits product. Final candidate requires fresh product"
+    },
+    {
+      "line": 20,
+      "text": "delta and full2155a0f aggregate validation. Maintainer acceptance is a later gate."
+    },
+    {
+      "line": 21,
+      "text": ""
+    },
+    {
+      "line": 23,
+      "text": "CommandRegistry UP046. Changed-unit and aggregate lint/types/tests remain mandatory;"
+    },
+    {
+      "line": 24,
+      "text": "raw root Ruff remains nonzero and must exactly reproduce approved identities/hashes."
+    },
+    {
+      "line": 25,
+      "text": "Expiry remains TELEM-02 acceptance or any covered content/tool/config/diagnostic drift."
+    }
+  ]
+}

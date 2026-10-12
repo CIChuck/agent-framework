@@ -1,11 +1,28 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for WebReaderTool."""
 
+import socket
+
 import pytest
 import respx
 from httpx import Response
 
 from friday_tools.web import WebConfig, WebReaderInput, WebReaderTool, web_reader
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "host", ["192.168.1.1", "169.254.169.254", "[fc00::1]", "[fe80::1]", "[ff02::1]"],
+)
+async def test_private_literal_rejected_before_transport(host, monkeypatch):
+    def prohibit(*args, **kwargs):
+        pytest.fail("Rejected literals must not use DNS or create a transport")
+
+    monkeypatch.setattr(socket, "getaddrinfo", prohibit)
+    monkeypatch.setattr("friday_tools.web.reader.create_http_client", prohibit)
+    result = await WebReaderTool().run(WebReaderInput(url=f"http://{host}/"))
+    assert result.error is not None
+    assert "private IP" in result.content
 
 
 @pytest.fixture

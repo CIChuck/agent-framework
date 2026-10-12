@@ -1,0 +1,23 @@
+{
+  "status": "STOP: R4-06 CommandRegistry public variance conflict",
+  "revision": "1718ed21f6b60c9c51edfcdb288853be557cb9f3",
+  "paths": [
+    "packages/friday-agent/tests_agent/conftest.py",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+    "packages/friday-tools/src/friday_tools/web/validators.py",
+    "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+    "packages/friday-tools/tests_tools/test_web_reader.py",
+    "packages/friday-tools/tests_tools/test_web_validators.py"
+  ],
+  "sha256": {
+    "packages/friday-agent/tests_agent/conftest.py": "7c9da1881c2d71a3c2d0daa0dceb80edbdd9844bbd0a8e77367b2f3f085009f8",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py": "8781b134b5036389592d19257b71a3f11937f10e5109845dd1740bf86e3ac676",
+    "packages/friday-tools/src/friday_tools/web/validators.py": "72ba51dd45f43c0d5fb3b249293a22b2730c2c11441f6a11b52d7ea8e4c3852d",
+    "packages/friday-tools/tests_tools/test_filesystem_readers.py": "327afe50fe77abc60650dec35ae14e5969e5c340ef8a89162fb2357c58473bb0",
+    "packages/friday-tools/tests_tools/test_web_reader.py": "8e99ec9f7da7ebe838b86bf2826886df8291adaa5426c1eb3dae29e70c22eb12",
+    "packages/friday-tools/tests_tools/test_web_validators.py": "c9902ee5f13cb05be32940294200aa81441d642e8a2618bbb196cb61d1234337"
+  },
+  "patch_sha256": "8a654688b0e8e65b38a60d624df4ff66ac01fa869691cc0e8cc73b6e1a5c4707",
+  "tests": "No product pytest run or candidate claim; only isolated guarded static variance/Ruff probes",
+  "unchanged_archives": true
+}

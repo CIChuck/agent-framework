@@ -7,7 +7,7 @@ import json
 import math
 from collections.abc import Mapping
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Protocol, TypeVar, cast
 
@@ -30,6 +30,8 @@ from friday_memory.json_response import (
     parse_json_object_from_text,
 )
 from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request
+from friday_telemetry import TelemetryInterface
+from friday_telemetry.models.llm_events import ServiceRole
 from pydantic import BaseModel, ConfigDict, Field, ValidationError, model_validator
 
 from friday_chat.config import FridayChatConfig
@@ -341,8 +343,10 @@ def _required_service_name(raw: object, *, key: str) -> str:
 
 def build_explicit_maintenance_provider_registry(
     config: FridayChatConfig,
+    *, telemetry: TelemetryInterface | None = None,
 ) -> ExplicitMaintenanceProviderRegistry:
     """Build providers without consulting primary chat or embedding config."""
+    roles: dict[MaintenanceLlmRole, ServiceRole] = {MaintenanceLlmRole.SYNTHESIZER: "maintenance_synthesizer", MaintenanceLlmRole.CLASSIFIER: "maintenance_classifier", MaintenanceLlmRole.RESEARCHER: "maintenance_researcher", MaintenanceLlmRole.JUDGE: "maintenance_judge"}
     llms: dict[MaintenanceLlmRole, MaintenanceLlmProvider] = {}
     errors: dict[str, str] = {}
     for role in MaintenanceLlmRole:
@@ -354,7 +358,8 @@ def build_explicit_maintenance_provider_registry(
                 service_name = _required_service_name(raw, key="llm_service")
                 provider_config = _canonical_provider_config(config, service_name)
                 service = LiteLLMService.from_spec(
-                    config.llm_service_specs[service_name]
+                    config.llm_service_specs[service_name],
+                    telemetry=telemetry, service_role=roles[role],
                 )
             else:
                 provider_config = _provider_config(raw)
@@ -366,6 +371,7 @@ def build_explicit_maintenance_provider_registry(
                         max_retries=provider_config.max_retries,
                         timeout_seconds=provider_config.timeout_seconds,
                     ),
+                    telemetry=telemetry, service_role=roles[role],
                 )
             llms[role] = LiteLlmMaintenanceProvider(
                 role=role,
@@ -396,7 +402,7 @@ def build_explicit_maintenance_provider_registry(
                     timeout_seconds=spec.resilience.timeout_seconds,
                     max_retries=spec.resilience.max_retries,
                 )
-                embedding_service = LiteLLMEmbeddingService.from_spec(spec)
+                embedding_service = LiteLLMEmbeddingService.from_spec(spec, telemetry=telemetry, service_role="maintenance_embedding")
             else:
                 embedding_config = _provider_config(config.maintenance.embedding)
                 embedding_service = LiteLLMEmbeddingService(
@@ -407,6 +413,7 @@ def build_explicit_maintenance_provider_registry(
                         max_retries=embedding_config.max_retries,
                         timeout_seconds=embedding_config.timeout_seconds,
                     ),
+                    telemetry=telemetry, service_role="maintenance_embedding",
                 )
             embedding = LiteLlmMaintenanceEmbeddingProvider(
                 service=embedding_service,
@@ -792,7 +799,7 @@ class FrameworkMaintenanceMutationAdapter(MaintenanceMutationAdapter):
             vectors = await embedding.embed_documents(
                 tuple(draft.document for draft, _group in accepted)
             )
-            created_at = datetime.now(timezone.utc)
+            created_at = datetime.now(UTC)
             additions = tuple(
                 MemoryVectorAddition(
                     collection=draft.collection,

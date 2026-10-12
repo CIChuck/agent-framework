@@ -1,0 +1,632 @@
+{
+  "review": "CDR-013",
+  "candidate": "3059e139d5d9a041606473c56b2ee72068c381dd",
+  "verdict": "READY",
+  "files": [
+    {
+      "original": "accepted-artifact-preservation.json",
+      "stored": "accepted-artifact-preservation.json",
+      "original_sha256": "2fe03358c14628ea5aea8aa0763ad0a00691720a3c7a83242687cf68a85770bd",
+      "stored_sha256": "2fe03358c14628ea5aea8aa0763ad0a00691720a3c7a83242687cf68a85770bd"
+    },
+    {
+      "original": "accepted-manifest-hashes.json",
+      "stored": "accepted-manifest-hashes.json",
+      "original_sha256": "521cabd392e9a2b074e90acd7f10f886b635185cbe33cccdd977a632d1e6732e",
+      "stored_sha256": "521cabd392e9a2b074e90acd7f10f886b635185cbe33cccdd977a632d1e6732e"
+    },
+    {
+      "original": "analyze_evidence.py",
+      "stored": "analyze_evidence.py.gz",
+      "original_sha256": "6b48aa8eb2454e27e88e48cfee8239e867fba94bcefc5682b4b639362852d64d",
+      "stored_sha256": "6f4c82276ad52f1d7f973e5a9d1c1568663695c32312388b85b558d777f87846"
+    },
+    {
+      "original": "artifact-manifest.json",
+      "stored": "reviewer-artifact-manifest.json",
+      "original_sha256": "3116aef4a92e3469f38ffbce492ed2c3c2f141fa466cb2528669fb56fd816f1a",
+      "stored_sha256": "3116aef4a92e3469f38ffbce492ed2c3c2f141fa466cb2528669fb56fd816f1a"
+    },
+    {
+      "original": "baseline-board.json",
+      "stored": "baseline-board.json",
+      "original_sha256": "1b4d7c0255e4da1ceab4ba42d7ba83210cd6791a9d204c65f31296ad98508e47",
+      "stored_sha256": "1b4d7c0255e4da1ceab4ba42d7ba83210cd6791a9d204c65f31296ad98508e47"
+    },
+    {
+      "original": "baseline-board.stderr",
+      "stored": "baseline-board.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "baseline-board.stdout",
+      "stored": "baseline-board.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884"
+    },
+    {
+      "original": "baseline-docs.json",
+      "stored": "baseline-docs.json",
+      "original_sha256": "71888ec9f8d7941c66dc8cf6cc848d81290f7f26eb00725f8e4c300c96e447ea",
+      "stored_sha256": "71888ec9f8d7941c66dc8cf6cc848d81290f7f26eb00725f8e4c300c96e447ea"
+    },
+    {
+      "original": "baseline-docs.stderr",
+      "stored": "baseline-docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "baseline-docs.stdout",
+      "stored": "baseline-docs.stdout.gz",
+      "original_sha256": "dc778de60916ea3cb75cb3119741244eb6488406cc611b424872eb1b13b76b10",
+      "stored_sha256": "ec0a20cb30a3bc720c87911be0b86c423d2c1b768bd44d46d4a2d6b65815bbfb"
+    },
+    {
+      "original": "baseline-next.json",
+      "stored": "baseline-next.json",
+      "original_sha256": "40cc380c4e03c7bec8e63614c5c937f7cc5e6819241d7a94c8d7ba17948ecb73",
+      "stored_sha256": "40cc380c4e03c7bec8e63614c5c937f7cc5e6819241d7a94c8d7ba17948ecb73"
+    },
+    {
+      "original": "baseline-next.stderr",
+      "stored": "baseline-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "baseline-next.stdout",
+      "stored": "baseline-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961"
+    },
+    {
+      "original": "baseline-root-ruff.json",
+      "stored": "baseline-root-ruff.json",
+      "original_sha256": "5289a842db36a021edee3e920b9ef9e3703035905bb441bb8aaed49cf7a2bb41",
+      "stored_sha256": "5289a842db36a021edee3e920b9ef9e3703035905bb441bb8aaed49cf7a2bb41"
+    },
+    {
+      "original": "baseline-root-ruff.stderr",
+      "stored": "baseline-root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "baseline-root-ruff.stdout",
+      "stored": "baseline-root-ruff.stdout.gz",
+      "original_sha256": "1f73c307eba0e08c407415ffaeadf0530aaaee07058af9a4dd2437a446fdee07",
+      "stored_sha256": "46bb3f57df92f97c9eb930e320b80d407d526163ccae72ec1416c277dd40c238"
+    },
+    {
+      "original": "baseline-show.json",
+      "stored": "baseline-show.json",
+      "original_sha256": "2c2a064ef83c2dcb7b112d0a64775bcdbd785a9715e843e3fbeb9834599b9360",
+      "stored_sha256": "2c2a064ef83c2dcb7b112d0a64775bcdbd785a9715e843e3fbeb9834599b9360"
+    },
+    {
+      "original": "baseline-show.stderr",
+      "stored": "baseline-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "baseline-show.stdout",
+      "stored": "baseline-show.stdout.gz",
+      "original_sha256": "50c4ae03c7fc705241fcca31d6c8db02bad63613eb3f6f495fe5ccbd86f3b9cf",
+      "stored_sha256": "791dd8f99c44c2f7c9d1640a7d58471c651e5f8ba417405b05a136ddfc4a75bb"
+    },
+    {
+      "original": "baseline-snapshot-after.json",
+      "stored": "baseline-snapshot-after.json.gz",
+      "original_sha256": "374a7c9fff50b8466187629150574f3d8fc3444e617f405dc589dfa0edd64b93",
+      "stored_sha256": "d724d2a42394e8d1840c7865a79da3ac88ee7dd67c8d1d713979dee517762373"
+    },
+    {
+      "original": "baseline-snapshot.json",
+      "stored": "baseline-snapshot.json.gz",
+      "original_sha256": "3688bd8fe87ee7ffc7113cd137327adc4ecf3881ae9c4692c5521eca8172a4f8",
+      "stored_sha256": "c1c056f102556cde58a4cc2e607a55f3376ec141bc0995799e4f87feacbaef82"
+    },
+    {
+      "original": "candidate-board.json",
+      "stored": "candidate-board.json",
+      "original_sha256": "7333b8085bd8a1c3df388a4c66b67801b3e209cc60bf8ae49b832ce5b2b13063",
+      "stored_sha256": "7333b8085bd8a1c3df388a4c66b67801b3e209cc60bf8ae49b832ce5b2b13063"
+    },
+    {
+      "original": "candidate-board.stderr",
+      "stored": "candidate-board.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "candidate-board.stdout",
+      "stored": "candidate-board.stdout.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884"
+    },
+    {
+      "original": "candidate-docs.json",
+      "stored": "candidate-docs.json",
+      "original_sha256": "1e4c387c029ebbb6688ff4934bc147126b5b9e9024e7a88bb1233728d816e8a9",
+      "stored_sha256": "1e4c387c029ebbb6688ff4934bc147126b5b9e9024e7a88bb1233728d816e8a9"
+    },
+    {
+      "original": "candidate-docs.stderr",
+      "stored": "candidate-docs.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "candidate-docs.stdout",
+      "stored": "candidate-docs.stdout.gz",
+      "original_sha256": "bff84fe35da3cd9c794cac0dd10451444bbd571b220f585d00afa0c4058d34bd",
+      "stored_sha256": "b4268cc46afd6c26acfb8ec3f48b1664e39dfe9921aa6936288600b0bf9e272a"
+    },
+    {
+      "original": "candidate-next.json",
+      "stored": "candidate-next.json",
+      "original_sha256": "3f2120a75c435caf397e5a26f81b7a2c6a24cc643d45fe3af138def48178cbfa",
+      "stored_sha256": "3f2120a75c435caf397e5a26f81b7a2c6a24cc643d45fe3af138def48178cbfa"
+    },
+    {
+      "original": "candidate-next.stderr",
+      "stored": "candidate-next.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "candidate-next.stdout",
+      "stored": "candidate-next.stdout.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961"
+    },
+    {
+      "original": "candidate-root-ruff.json",
+      "stored": "candidate-root-ruff.json",
+      "original_sha256": "d4a59b64268dcf5d5b944f68b113018ff895b10c33fec676f0739599274bceae",
+      "stored_sha256": "d4a59b64268dcf5d5b944f68b113018ff895b10c33fec676f0739599274bceae"
+    },
+    {
+      "original": "candidate-root-ruff.stderr",
+      "stored": "candidate-root-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "candidate-root-ruff.stdout",
+      "stored": "candidate-root-ruff.stdout.gz",
+      "original_sha256": "275c9e2d59ec980090f534ad170fe7198e33c85d962e52cfb1856f31663d8ee7",
+      "stored_sha256": "4784d5ed09cb92bcbdafe019cad405193f125ba769266596f5e168be1d8092cf"
+    },
+    {
+      "original": "candidate-show.json",
+      "stored": "candidate-show.json",
+      "original_sha256": "b1cd07dbf8b79bd929460a9b8743f038d266e6bc921aa70a1ec29a68b3580c88",
+      "stored_sha256": "b1cd07dbf8b79bd929460a9b8743f038d266e6bc921aa70a1ec29a68b3580c88"
+    },
+    {
+      "original": "candidate-show.stderr",
+      "stored": "candidate-show.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "candidate-show.stdout",
+      "stored": "candidate-show.stdout.gz",
+      "original_sha256": "87588064d7a3067b8a4249c253b221fc054a65784b33e8a5cfb49506af31fd32",
+      "stored_sha256": "aea649fcdfcf06f086fbbe563c98b0d1dd3a7fe7663d94147e1b71525f94f61c"
+    },
+    {
+      "original": "candidate-snapshot-after.json",
+      "stored": "candidate-snapshot-after.json.gz",
+      "original_sha256": "374a7c9fff50b8466187629150574f3d8fc3444e617f405dc589dfa0edd64b93",
+      "stored_sha256": "d724d2a42394e8d1840c7865a79da3ac88ee7dd67c8d1d713979dee517762373"
+    },
+    {
+      "original": "candidate-snapshot.json",
+      "stored": "candidate-snapshot.json.gz",
+      "original_sha256": "c465a10e682b525ab43666652bd8559a3cd03097ce29e2026f5212ef84ba3b5a",
+      "stored_sha256": "ed07f9b254a00c63d24b918b9c6b1102ffed3ca35eb29b0982fbb0f028e05f66"
+    },
+    {
+      "original": "candidate.diff",
+      "stored": "candidate.diff.gz",
+      "original_sha256": "ceaaccdc0ceede154da7ac822b65d8eacf9b2dec1787314cf2e1973f2fda8817",
+      "stored_sha256": "cd2c4b598dad18583c1989fbad2ba66db64735faa8e465c7de665fa34ae208b2"
+    },
+    {
+      "original": "diff-check.json",
+      "stored": "diff-check.json",
+      "original_sha256": "ee3d2bddca8cf0a0c1d85f9098d985a40f143d4c7a333e356a3373e2fb3b56c0",
+      "stored_sha256": "ee3d2bddca8cf0a0c1d85f9098d985a40f143d4c7a333e356a3373e2fb3b56c0"
+    },
+    {
+      "original": "diff-check.stderr",
+      "stored": "diff-check.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "diff-check.stdout",
+      "stored": "diff-check.stdout.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "diff-name-status.txt",
+      "stored": "diff-name-status.txt",
+      "original_sha256": "cea26500bcdbbdf5f68fbfa8ae274e73fb44ad0ce6bc8debb1cf040299a7f8c7",
+      "stored_sha256": "cea26500bcdbbdf5f68fbfa8ae274e73fb44ad0ce6bc8debb1cf040299a7f8c7"
+    },
+    {
+      "original": "evidence.json",
+      "stored": "evidence.json",
+      "original_sha256": "50d53108f7d8439ec11a9530f277112f4733341e56cf8185b62a9a2447a5c063",
+      "stored_sha256": "50d53108f7d8439ec11a9530f277112f4733341e56cf8185b62a9a2447a5c063"
+    },
+    {
+      "original": "full-diff-inventory.json",
+      "stored": "full-diff-inventory.json",
+      "original_sha256": "b97bc20a7eaa31a63e8ec686979d215321e4872d87ac780bcfae7f149faa083c",
+      "stored_sha256": "b97bc20a7eaa31a63e8ec686979d215321e4872d87ac780bcfae7f149faa083c"
+    },
+    {
+      "original": "full_audit.py",
+      "stored": "full_audit.py.gz",
+      "original_sha256": "d73a20a457f27468aa8b52b8068a0beca1b1e5fefb7be00f4e026b2179cf5a27",
+      "stored_sha256": "fbafbc90bf3d8e9948e5e7dc649de0fea8d61eaf5c843b460d62ad9aea30dbb3"
+    },
+    {
+      "original": "installed-source-evidence.json",
+      "stored": "installed-source-evidence.json",
+      "original_sha256": "68d549942688708f0c9ee40469f31eda3df502a2d00d2f29b86cee5586230294",
+      "stored_sha256": "68d549942688708f0c9ee40469f31eda3df502a2d00d2f29b86cee5586230294"
+    },
+    {
+      "original": "installed-sources/grpc/__init__.py",
+      "stored": "installed-sources/grpc/__init__.py.gz",
+      "original_sha256": "28fa25d26f5a955af1e2d76f5991b2bf63f03d9c9993ee6791fc37dcc8453742",
+      "stored_sha256": "be83228999f1e61ae8efa18b2e9d09017e6f8698a33f89af22e34079811cd3e3"
+    },
+    {
+      "original": "installed-sources/grpc/_channel.py",
+      "stored": "installed-sources/grpc/_channel.py.gz",
+      "original_sha256": "b0f55b88f43906e0f1d6b8013e56a35e2f571fde7c5c27861ac29789ed3c4edc",
+      "stored_sha256": "5c91a6230ca8298d9f9bed29d8a018e75e7ca5541d71a60aa21ec1523a7a72e1"
+    },
+    {
+      "original": "installed-sources/opentelemetry/context/__init__.py",
+      "stored": "installed-sources/opentelemetry/context/__init__.py.gz",
+      "original_sha256": "f5550bc7ac7eb84baab410fc6e2491921e915057daeba5923cd0c5edddb1fb8c",
+      "stored_sha256": "36f471aac9356aac09132b7237051feb4cbd7ea894445ec09a538400f65deb0b"
+    },
+    {
+      "original": "installed-sources/opentelemetry/context/contextvars_context.py",
+      "stored": "installed-sources/opentelemetry/context/contextvars_context.py.gz",
+      "original_sha256": "6074f62ec7694e56c9d1fdbfc5e927805e24d59796f94fbfe27ccf91c67fa41d",
+      "stored_sha256": "2827f2e6d13e670cecc316089a99cc790916eadd3a867b03365531434ef1a26d"
+    },
+    {
+      "original": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py",
+      "stored": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz",
+      "original_sha256": "e4a0df434a56b7a0226c944bdab48bee1760bf655b7ff5f442b915c4a1749725",
+      "stored_sha256": "efc82a195e3174a3f6bdb0ad889dae017103bc053f99efa9daae9caaf5b8291f"
+    },
+    {
+      "original": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py",
+      "stored": "installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz",
+      "original_sha256": "8f7d2f614410639943bf412e6f626dc97b35a2731bcc3935b41e7c6ae1f50af5",
+      "stored_sha256": "abf6a18d85997ce26507877abb4a972beec1ef9a27ae9040e3bf809419c54279"
+    },
+    {
+      "original": "installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py",
+      "stored": "installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz",
+      "original_sha256": "04b758e45ef7b9e8c040801e3015bb3e68b9b04ee7d466edb79f4fdb6185d239",
+      "stored_sha256": "7693478525e161be7f6f4f65468bb64aa3473c8abfb02e3fc4e81fec68e626f4"
+    },
+    {
+      "original": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py",
+      "stored": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz",
+      "original_sha256": "09ce35204768cb21485766150801554e63df8c8df33e3ca65a7326e633e1cadb",
+      "stored_sha256": "2eb1a5cffe8f72800219c31754288f108edb41b90a1c6639c853771424a990d7"
+    },
+    {
+      "original": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py",
+      "stored": "installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz",
+      "original_sha256": "29c71739f14c31a99b607edbd7f8cb1ce35eac95021424653d069b579a23a60d",
+      "stored_sha256": "bbe378caebf2723321180cff89b804dee89da1e7ff89613679fda9f2e9a2a671"
+    },
+    {
+      "original": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py",
+      "stored": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz",
+      "original_sha256": "ffe329abb6b9e85e737eeb7eebb8b8fae99688c88541b883de4974f8aafe97ff",
+      "stored_sha256": "77ddfd468fa0b83cde5f7fa340932da692e44a897070c84ab372b21067d2ca5f"
+    },
+    {
+      "original": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py",
+      "stored": "installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz",
+      "original_sha256": "82f4704d4fc69da3464a2e150b902e3933a65effae7a61856113a64d5ed8896f",
+      "stored_sha256": "4d3b8e4a1d50b25d8e9e1a9ede2ea757c0e7790a98c54a7840121ad26e7adaf7"
+    },
+    {
+      "original": "installed-sources/opentelemetry/sdk/_shared_internal/__init__.py",
+      "stored": "installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz",
+      "original_sha256": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767",
+      "stored_sha256": "a6ebde020afb7af0e7508e990c52baaf402fc199487eaccf8b0e65777c6f9f41"
+    },
+    {
+      "original": "installed-sources/opentelemetry/sdk/resources/__init__.py",
+      "stored": "installed-sources/opentelemetry/sdk/resources/__init__.py.gz",
+      "original_sha256": "8a0c61d2fdad040e9128020d1f2ae4c3b34929a4611162e08ffe837117356a1a",
+      "stored_sha256": "d34cf631648e545402427fe360c92163b9a75c241385d8a1e8a74fa804ec59e9"
+    },
+    {
+      "original": "installed-sources/opentelemetry/sdk/trace/__init__.py",
+      "stored": "installed-sources/opentelemetry/sdk/trace/__init__.py.gz",
+      "original_sha256": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07",
+      "stored_sha256": "27ce14de81dd73be00d5a4e591d95a10eb9cecbc9d2ffe8461bbc0d831a53f8e"
+    },
+    {
+      "original": "installed-sources/opentelemetry/sdk/trace/export/__init__.py",
+      "stored": "installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz",
+      "original_sha256": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a",
+      "stored_sha256": "83479776fcd654d9d264f76c3519675531b75fbf70796fc4b9efc5695e25f7ac"
+    },
+    {
+      "original": "installed-sources/opentelemetry/sdk/trace/sampling.py",
+      "stored": "installed-sources/opentelemetry/sdk/trace/sampling.py.gz",
+      "original_sha256": "9f9900322cb7184d365036c6b8a175900b292d10a7a8e16d4a9274d0a66f1f0f",
+      "stored_sha256": "1daf5ead5148f579b48206fc8375a4baa8cb4ea932e714947ddfa24925931815"
+    },
+    {
+      "original": "installed-sources/opentelemetry/trace/__init__.py",
+      "stored": "installed-sources/opentelemetry/trace/__init__.py.gz",
+      "original_sha256": "d03d8682b0e52f30928c956d8acc2a6a0c3a10a42ec3bfebe820ff838d2b5449",
+      "stored_sha256": "db10bba8c73be86d83c9268d38874c9f14bd4a36179822b16af9b6903d626625"
+    },
+    {
+      "original": "lint-analysis.json",
+      "stored": "lint-analysis.json",
+      "original_sha256": "fac9f3a4030ae1e6ee3fb40ff1f314754e6ec4f8fdf0ec2c2b790a01faef66f0",
+      "stored_sha256": "fac9f3a4030ae1e6ee3fb40ff1f314754e6ec4f8fdf0ec2c2b790a01faef66f0"
+    },
+    {
+      "original": "listener-analysis.json",
+      "stored": "listener-analysis.json",
+      "original_sha256": "d87ecab107a3f05c8536f2781dcefd1ce9902b1d8e3392c4ab5a95b304c83ab4",
+      "stored_sha256": "d87ecab107a3f05c8536f2781dcefd1ce9902b1d8e3392c4ab5a95b304c83ab4"
+    },
+    {
+      "original": "manifest-consistency.json",
+      "stored": "manifest-consistency.json",
+      "original_sha256": "0cdc578de893c07b2bf51c6f4d71394ec8f24a076621c9cccd480fc33d992a82",
+      "stored_sha256": "0cdc578de893c07b2bf51c6f4d71394ec8f24a076621c9cccd480fc33d992a82"
+    },
+    {
+      "original": "original-after-checks.json",
+      "stored": "original-after-checks.json",
+      "original_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3",
+      "stored_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3"
+    },
+    {
+      "original": "original-after.json",
+      "stored": "original-after.json",
+      "original_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3",
+      "stored_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3"
+    },
+    {
+      "original": "original-before.json",
+      "stored": "original-before.json",
+      "original_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3",
+      "stored_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3"
+    },
+    {
+      "original": "original-final.json",
+      "stored": "original-final.json",
+      "original_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3",
+      "stored_sha256": "27aeadc04fe561cac0841315ab8559578f64cdbd7393a7c875280df134e4aee3"
+    },
+    {
+      "original": "packaging-proof.json",
+      "stored": "packaging-proof.json",
+      "original_sha256": "d3a414fe0a009b20d27b2945e11c2a13e3a08ea44e3061dcfe3aa9496f6a8385",
+      "stored_sha256": "d3a414fe0a009b20d27b2945e11c2a13e3a08ea44e3061dcfe3aa9496f6a8385"
+    },
+    {
+      "original": "pin-checks.json",
+      "stored": "pin-checks.json",
+      "original_sha256": "4b12ba31ba9b165992a78f11862c54f42049eef3cfe735567416c1ec2600f999",
+      "stored_sha256": "4b12ba31ba9b165992a78f11862c54f42049eef3cfe735567416c1ec2600f999"
+    },
+    {
+      "original": "prior-review-storage-hashes.json",
+      "stored": "prior-review-storage-hashes.json",
+      "original_sha256": "99385958a0cad8a3569f92e5e8a48667b64d2eef00b4efea0127188d4c762820",
+      "stored_sha256": "99385958a0cad8a3569f92e5e8a48667b64d2eef00b4efea0127188d4c762820"
+    },
+    {
+      "original": "report.md",
+      "stored": "report.md",
+      "original_sha256": "c7e9444e957aa9f82cfedff400a0355b1462a423085e69a354afc6ac3696823b",
+      "stored_sha256": "c7e9444e957aa9f82cfedff400a0355b1462a423085e69a354afc6ac3696823b"
+    },
+    {
+      "original": "request.json",
+      "stored": "request.json",
+      "original_sha256": "0d9be5549a5b5d57a89856eb6d7b1b6e5e9e9c9cd35c329c39da7e237955ada9",
+      "stored_sha256": "0d9be5549a5b5d57a89856eb6d7b1b6e5e9e9c9cd35c329c39da7e237955ada9"
+    },
+    {
+      "original": "review_runner.py",
+      "stored": "review_runner.py.gz",
+      "original_sha256": "31cfffc0267eb8525e9d789f56f9baee178be3a7900c30b83c51e9ec9aaca3b8",
+      "stored_sha256": "d0a96017cbbd72c35b9e5c2982cdd3e6022ff412675ac2426d3beb6d55135562"
+    },
+    {
+      "original": "source-inventory-checks.json",
+      "stored": "source-inventory-checks.json",
+      "original_sha256": "43dac16b5e06f2e1283ce4f27bd4c124bf46e5494a840e0e9726936933e2abd4",
+      "stored_sha256": "43dac16b5e06f2e1283ce4f27bd4c124bf46e5494a840e0e9726936933e2abd4"
+    },
+    {
+      "original": "sources/AGENTS.md",
+      "stored": "sources/AGENTS.md.gz",
+      "original_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "stored_sha256": "0e6ae04d51b0af9a5c79e27bd872c438cdc3ffd064edc17cf1266a6fcc400ea3"
+    },
+    {
+      "original": "sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "stored": "sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md.gz",
+      "original_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "stored_sha256": "cdbf52f8dc17088b553742742351aad6b3177139d3a1bdd9363613c2dae43160"
+    },
+    {
+      "original": "sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "stored": "sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md.gz",
+      "original_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "stored_sha256": "65af503cea9ed589753559881f0da73fb524c54770451e40084bbb3faeef3827"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml.gz",
+      "original_sha256": "cf6a4725769687cd19bd37007fbbf506e313660f16388259762d1a14fa9f3f63",
+      "stored_sha256": "60973f151c82b408d13c59e631bc805e5422ee13bb2063c24e8760ec94b4211a"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/build-plan.md.gz",
+      "original_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "stored_sha256": "05ad6f2815b79aaa9c4a8f45f11465a44f7e6b4e8a742ad2aefd5a49734fd0b8"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md.gz",
+      "original_sha256": "c9aca87ce71b3fa62f888c4a7d75d6f6e49e91b4300aa7962c746a16bae12e41",
+      "stored_sha256": "b1af3df599e509993ea2130398bb2282502447373b492c6c8c414f6223a450a3"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json.gz",
+      "original_sha256": "5048c01c0a7b21555ed3d43b2f5eca8cfa6554fb9ac7fe19df76df5c18c1cc97",
+      "stored_sha256": "00d3f896ba8cebfab467fe85e84fd00d7737a6f619d20d48a5db3596ff6f0aba"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md.gz",
+      "original_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "stored_sha256": "3e3d9d115836e95b8c18bfc6db7bef17fb6663ddb0e2ff574ba4abbc7b684c69"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md.gz",
+      "original_sha256": "7cd798fcb92a159042f7c3901b264aba38b5b8440fed358b8ffd6057df222331",
+      "stored_sha256": "fd9a48299959070f16964248271a0dd14d87c7d346a419a2ef2681bd3223c1b5"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md.gz",
+      "original_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "stored_sha256": "a5c4cac76406845b1cafc27482d5cb0494d308916773aa499224190a52c8160a"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md.gz",
+      "original_sha256": "87953838b1718d060b21c75c98b1a146016c77f21eccd294af58574a7d8b3be5",
+      "stored_sha256": "c9a3366d65528d016fd7258328dae7e059d5d0498659e21ec579bda4ecb459bc"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json.gz",
+      "original_sha256": "4b7d980617f5d11b28f25511aede133e9ddd1b21f7b3c444608f7413dee938f3",
+      "stored_sha256": "fe77dec9be6b04241d544d829c2f401f3dce176dd2f7c7c315e3e3623a4c05cf"
+    },
+    {
+      "original": "sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "stored": "sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md.gz",
+      "original_sha256": "584ef0fa2d5dd5c6ecf1268ab5652fa1dcdad56a264efd8163391d58321527c9",
+      "stored_sha256": "3fecde568e733b0663a4a7e51710f1f4f7404797c63ef5deb3263a8c675d00f7"
+    },
+    {
+      "original": "sources/docs/reference/policies/development-task-lifecycle.md",
+      "stored": "sources/docs/reference/policies/development-task-lifecycle.md.gz",
+      "original_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "stored_sha256": "c33353dddf28fe9cb91d0b674ac23e1b81164e9dc704451d4f0bee783cb43e9f"
+    },
+    {
+      "original": "sources/docs/reference/policies/independent-validation-policy.md",
+      "stored": "sources/docs/reference/policies/independent-validation-policy.md.gz",
+      "original_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "stored_sha256": "c83ebcd057d45d6fc71340bf4cf52346f07c49b1f5df6db78191eddbfc7e5845"
+    },
+    {
+      "original": "sources/docs/reference/policies/repository-engineering-policy.md",
+      "stored": "sources/docs/reference/policies/repository-engineering-policy.md.gz",
+      "original_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "stored_sha256": "fb9996f57ab5ee8666f8cd556f65b997bb2317a585b2bed369273aee75f53d45"
+    },
+    {
+      "original": "tool-mypy.json",
+      "stored": "tool-mypy.json",
+      "original_sha256": "53d1705ffa280b85afedbf4ebc47eabad99eb24091e68759e2fbc7ba2b7483d7",
+      "stored_sha256": "53d1705ffa280b85afedbf4ebc47eabad99eb24091e68759e2fbc7ba2b7483d7"
+    },
+    {
+      "original": "tool-mypy.stderr",
+      "stored": "tool-mypy.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "tool-mypy.stdout",
+      "stored": "tool-mypy.stdout.gz",
+      "original_sha256": "f8bcaf60bb5bbb2efa43817a206b14b2c239de9d7234edab27cc16360f8b6f2e",
+      "stored_sha256": "8cd11a7682b7c7183e0ab0e2965eb8c3906c971cc3f176e9705419ce82edcfae"
+    },
+    {
+      "original": "tool-python.json",
+      "stored": "tool-python.json",
+      "original_sha256": "fb0f744ca505f1ebb14efb1b5447c3ce6ac22106338fa9c0a0b94da671b921c0",
+      "stored_sha256": "fb0f744ca505f1ebb14efb1b5447c3ce6ac22106338fa9c0a0b94da671b921c0"
+    },
+    {
+      "original": "tool-python.stderr",
+      "stored": "tool-python.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "tool-python.stdout",
+      "stored": "tool-python.stdout.gz",
+      "original_sha256": "026cce652273e45c36e4f52d20a211fe0954ce5d0026a9d663ef3bbfeaa0f19c",
+      "stored_sha256": "34f57b6cdb0bb01ecbab89fcc5a2cbdc624b07c7f73bc965e9e1e22920d82c38"
+    },
+    {
+      "original": "tool-ruff.json",
+      "stored": "tool-ruff.json",
+      "original_sha256": "99859bffbc151acc1b6247c151687b77b316ac4e8c44fb35e2e4d26d17c4a427",
+      "stored_sha256": "99859bffbc151acc1b6247c151687b77b316ac4e8c44fb35e2e4d26d17c4a427"
+    },
+    {
+      "original": "tool-ruff.stderr",
+      "stored": "tool-ruff.stderr.gz",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "original": "tool-ruff.stdout",
+      "stored": "tool-ruff.stdout.gz",
+      "original_sha256": "5c218bad3d3966fc0a61f2d77271435aacd471038e833636bfa8cf5fe743f4ab",
+      "stored_sha256": "596487241b43cb06172ab2c64d453943be1a3910176306621a016fc12aac6d5a"
+    },
+    {
+      "original": "frozen request",
+      "stored": "request.json",
+      "original_sha256": "0d9be5549a5b5d57a89856eb6d7b1b6e5e9e9c9cd35c329c39da7e237955ada9",
+      "stored_sha256": "0d9be5549a5b5d57a89856eb6d7b1b6e5e9e9c9cd35c329c39da7e237955ada9"
+    }
+  ],
+  "excluded": "private clones, git metadata and temp/cache roots; source snapshots stored compressed"
+}

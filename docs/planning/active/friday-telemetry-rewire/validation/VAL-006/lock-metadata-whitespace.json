@@ -1,0 +1,57 @@
+{
+  "added_lock_version_source_tuples": [],
+  "removed_lock_tuples": 7,
+  "unchanged_litellm": "1.100.1",
+  "project_floors": {
+    "pyproject.toml": ">=3.13.4",
+    "packages/friday-agent/pyproject.toml": ">=3.13.4",
+    "packages/friday-chat/pyproject.toml": ">=3.13.4",
+    "packages/friday-cli/pyproject.toml": ">=3.13.4",
+    "packages/friday-core/pyproject.toml": ">=3.13.4",
+    "packages/friday-finance/pyproject.toml": ">=3.13.4",
+    "packages/friday-llm/pyproject.toml": ">=3.13.4",
+    "packages/friday-mcp/pyproject.toml": ">=3.13.4",
+    "packages/friday-memory/pyproject.toml": ">=3.13.4",
+    "packages/friday-moltbook/pyproject.toml": ">=3.13.4",
+    "packages/friday-optimization/pyproject.toml": ">=3.13.4",
+    "packages/friday-runtime/pyproject.toml": ">=3.13.4",
+    "packages/friday-sandbox/pyproject.toml": ">=3.13.4",
+    "packages/friday-speech/pyproject.toml": ">=3.13.4",
+    "packages/friday-telemetry/pyproject.toml": ">=3.13.4",
+    "packages/friday-tools/pyproject.toml": ">=3.13.4",
+    "packages/friday-transcript/pyproject.toml": ">=3.13.4",
+    "tests/lab/pyproject.toml": ">=3.13.4"
+  },
+  "whitespace": [
+    {
+      "label": "selected",
+      "command": [
+        "git",
+        "-C",
+        "/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+        "diff",
+        "--check",
+        "1b28d373bb613e754947e4b13c7f7280314c560e",
+        "8aedd87c8def5a6c514bdfea7505205e8db78bb6"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    },
+    {
+      "label": "aggregate",
+      "command": [
+        "git",
+        "-C",
+        "/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+        "diff",
+        "--check",
+        "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+        "8aedd87c8def5a6c514bdfea7505205e8db78bb6"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead\n"
+    }
+  ]
+}

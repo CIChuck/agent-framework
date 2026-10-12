@@ -7,7 +7,7 @@ import json
 import shutil
 import tempfile
 from collections.abc import Mapping
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 
@@ -125,7 +125,7 @@ def _install_deterministic_llm(
 
 def _persist_result_artifact(result: PromptTranscriptAuditResult) -> str:
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     artifact_path = ARTIFACTS_DIR / f"prompt-transcript-audit-{timestamp}.json"
     result.artifact_result_path = str(artifact_path)
     artifact_path.write_text(json.dumps(result.to_dict(), indent=2), encoding="utf-8")

@@ -1,0 +1,47 @@
+{
+  "candidate_expected_negative_lines": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    37,
+    38
+  ],
+  "baseline_expected_negative_lines": [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    37,
+    38
+  ],
+  "same_6_classes_invariant_both_directions": true,
+  "same_BaseModel_bounds_rejected": true,
+  "positive_assert_types_have_no_errors": true,
+  "baseline_additional_source_errors": [
+    "llm_completion.py:85",
+    "adapters.py:167",
+    "adapters.py:178"
+  ],
+  "candidate_additional_source_errors": [],
+  "initial_consumer_only_probe": "invalid standalone import-resolution setup; imported packages became Any; preserved and superseded by explicit65sources probe",
+  "historical_probe_exit": 1,
+  "candidate_negative_exit": 1,
+  "baseline_negative_exit": 1
+}

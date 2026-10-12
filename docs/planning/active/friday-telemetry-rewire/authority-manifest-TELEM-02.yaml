@@ -1,0 +1,100 @@
+{
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-02",
+  "directive": "CD-002",
+  "status": "CD-002 and A02 approved; amended transport gate pending fresh approved-amendment readiness",
+  "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "branch": "feature/friday-telemetry-rewire",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+      "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7"
+    }
+  ],
+  "acceptance_criteria": [
+    "AC02-01",
+    "AC02-02",
+    "AC02-03",
+    "AC02-04",
+    "AC02-05",
+    "AC02-06",
+    "AC02-07",
+    "AC02-08"
+  ],
+  "review_mode": "fresh-context read-only approved-authority construction readiness; not product verification",
+  "external_services": "Exactly13 synthetic loopback nodes approved under CD-002, subject to final fixture/effect/import preflight; native gRPC limitation explicit. No remote/TLS activation, credentials, installs/downloads or provider services.",
+  "approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+  "amendment_approval_record": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md"
+}

@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from types import SimpleNamespace
+import io
+import json
 
 import pytest
 from friday_telemetry import (
     DebugTelemetryRecorder,
     MCPEvent,
     MCPTelemetryHelper,
-    OpenTelemetryProvider,
+    TelemetryFactoryConfig,
+    create_telemetry,
     opaque_mcp_ref,
 )
 from pydantic import ValidationError
@@ -26,7 +28,9 @@ def test_closed_event_rejects_payload_and_opaque_refs_are_stable() -> None:
     assert opaque_mcp_ref("server", "peer") != opaque_mcp_ref("tool", "peer")
 
 
-def test_debug_and_otel_export_inputs_exclude_all_untrusted_surfaces() -> None:
+def test_debug_and_otel_export_inputs_exclude_all_untrusted_surfaces(
+    monkeypatch,
+) -> None:
     sentinel = "SENTINEL-RAW-SECRET"
     recorder = DebugTelemetryRecorder()
     helper = MCPTelemetryHelper(recorder)
@@ -43,23 +47,20 @@ def test_debug_and_otel_export_inputs_exclude_all_untrusted_surfaces() -> None:
     assert set(event.data) == {"server_ref", "tool_ref", "reason", "count"}
     assert sentinel not in repr(event)
 
-    captured = []
-    span = SimpleNamespace(
-        is_recording=lambda: True,
-        add_event=lambda name, attributes: captured.append((name, attributes)),
-    )
-    provider = object.__new__(OpenTelemetryProvider)
-    provider._initialized = True
-    provider._trace_module = SimpleNamespace(get_current_span=lambda: span)
-    MCPTelemetryHelper(provider).emit(
-        "tool_skipped",
-        server_id=f"server-{sentinel}",
-        reason="schema_limit",
-    )
-    assert len(captured) == 1
-    assert captured[0][0] == "mcp.tool_skipped"
-    assert sentinel not in repr(captured)
-    assert set(captured[0][1]) == {"server_ref", "reason"}
+    stream = io.StringIO()
+    monkeypatch.setattr("sys.stdout", stream)
+    with create_telemetry(TelemetryFactoryConfig(provider="otel")) as managed:
+        MCPTelemetryHelper(managed.telemetry).emit(
+            "tool_skipped",
+            server_id=f"server-{sentinel}",
+            reason="schema_limit",
+        )
+        assert managed.flush().status == "success"
+        assert sentinel not in repr(managed.snapshot())
+    captured = json.loads(stream.getvalue())
+    assert captured["events"][0]["name"] == "mcp.tool_skipped"
+    assert sentinel not in stream.getvalue()
+    assert set(captured["events"][0]["attributes"]) == {"server_ref", "reason"}
 
 
 def test_disabled_and_throwing_recorders_do_not_change_operation() -> None:

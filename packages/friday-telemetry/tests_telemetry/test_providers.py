@@ -1,11 +1,16 @@
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 """Tests for telemetry providers."""
 
+from types import SimpleNamespace
+from typing import Any
+
+import pytest
 from friday_telemetry import (
     CompositeProvider,
     DebugTelemetryRecorder,
     OpenTelemetryProvider,
 )
+from friday_telemetry.interface import TelemetryInterface
 
 
 class TestDebugTelemetryRecorder:
@@ -122,18 +127,30 @@ class TestDebugTelemetryRecorder:
 class TestOpenTelemetryProvider:
     """Tests for OpenTelemetryProvider."""
 
-    def test_no_op_without_otel(self):
+    def test_no_op_without_otel(self, monkeypatch):
         """Test that provider works in no-op mode without OpenTelemetry."""
         # This test verifies the provider handles missing OTel gracefully
+        import builtins
+
+        original_import = builtins.__import__
+
+        def missing_sdk(name, *args, **kwargs):
+            if name.startswith("opentelemetry"):
+                raise ImportError("synthetic missing SDK")
+            return original_import(name, *args, **kwargs)
+
+        monkeypatch.setattr(builtins, "__import__", missing_sdk)
         provider = OpenTelemetryProvider(service_name="test-service")
 
         # Should not raise even without OTel installed
-        provider.capture_event("test", {"key": "value"})
-        span_id = provider.start_span("test_span")
-        provider.end_span(span_id, {"result": "ok"})
-
-        # span_id should still be valid (for correlation)
-        assert span_id is not None
+        try:
+            provider.capture_event("test", {"key": "value"})
+            span_id = provider.start_span("test_span")
+            provider.end_span(span_id, {"result": "ok"})
+            assert span_id is not None
+            assert not provider.snapshot().available
+        finally:
+            provider.shutdown()
 
 
 class TestCompositeProvider:
@@ -202,3 +219,241 @@ class TestCompositeProvider:
         composite = CompositeProvider([recorder1, recorder2])
 
         assert composite.providers == [recorder1, recorder2]
+
+
+class TestCompositeSpanOwnership:
+    def test_nested_spans_end_in_each_sink(self):
+        first, second = DebugTelemetryRecorder(), DebugTelemetryRecorder()
+        composite = CompositeProvider([first, second])
+        parent = composite.start_span("parent")
+        child = composite.start_span("child", parent)
+        composite.end_span(child, {"outcome": "success"})
+        composite.end_span(parent)
+        for sink in (first, second):
+            root = sink.get_span_by_name("parent")
+            nested = sink.get_span_by_name("child")
+            assert root.end_time is not None
+            assert nested.end_time is not None
+            assert nested.parent_id in sink.spans
+            assert sink.spans[nested.parent_id] is root
+            assert nested.data == {"outcome": "success"}
+        assert first.get_span(parent) is not None
+        assert first.get_span(child) is not None
+
+    def test_membership_is_pinned_and_new_child_has_no_foreign_parent(self):
+        first, second, added = (DebugTelemetryRecorder() for _ in range(3))
+        composite = CompositeProvider([first, second])
+        parent = composite.start_span("parent")
+        composite.remove_provider(first)
+        composite.add_provider(added)
+        child = composite.start_span("child", parent)
+        assert added.get_span_by_name("child").parent_id is None
+        assert second.get_span_by_name("child").parent_id in second.spans
+        composite.end_span(parent)
+        composite.end_span(child)
+        assert len(first.spans) == 1
+        assert all(
+            span.end_time is not None
+            for sink in (first, second, added)
+            for span in sink.spans.values()
+        )
+
+    def test_empty_and_duplicate_end(self):
+        empty = CompositeProvider([])
+        assert empty.start_span("empty")
+        empty.end_span("unknown")
+
+        class Counting(DebugTelemetryRecorder):
+            ends = 0
+
+            def end_span(self, span_id, data=None):
+                self.ends += 1
+                super().end_span(span_id, data)
+
+        sink = Counting()
+        composite = CompositeProvider([sink])
+        span = composite.start_span("test")
+        composite.end_span(span)
+
+        composite.end_span(span)
+        composite.end_span("unknown")
+        assert sink.ends == 1
+
+    def test_payload_mutation_is_isolated(self):
+        class Mutating(DebugTelemetryRecorder):
+            def capture_event(self, event_name, data):
+                data["nested"]["value"] = "changed"
+
+            def end_span(self, span_id, data=None):
+                data["nested"]["value"] = "changed"
+                super().end_span(span_id, data)
+
+        mutating, normal = Mutating(), DebugTelemetryRecorder()
+        composite = CompositeProvider([mutating, normal])
+        data = {"nested": {"value": "original"}}
+        composite.capture_event("event", data)
+        span = composite.start_span("span")
+        composite.end_span(span, data)
+        assert data["nested"]["value"] == "original"
+        assert normal.get_event("event")["nested"]["value"] == "original"
+        assert normal.get_span_by_name("span").data["nested"]["value"] == "original"
+
+    def test_failures_attempt_all_sinks_and_rollback_opened_spans(self):
+        import pytest
+        from friday_telemetry.providers.composite import CompositeDeliveryError
+
+        class Failing(DebugTelemetryRecorder):
+            def capture_event(self, event_name, data):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+            def start_span(self, name, parent_id=None):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+        healthy = DebugTelemetryRecorder()
+        composite = CompositeProvider([Failing(), healthy])
+        with pytest.raises(CompositeDeliveryError) as error:
+            composite.capture_event("event", {"count": 1})
+        assert "PRIVATE_EXCEPTION" not in str(error.value)
+        assert error.value.failure_count == 1
+        assert healthy.get_event("event") == {"count": 1}
+        with pytest.raises(CompositeDeliveryError):
+            composite.start_span("span")
+        assert healthy.get_span_by_name("span").end_time is not None
+
+    def test_failed_end_still_closes_other_sink_once(self):
+        import pytest
+        from friday_telemetry.providers.composite import CompositeDeliveryError
+
+        class FailingEnd(DebugTelemetryRecorder):
+            def end_span(self, span_id, data=None):
+                raise RuntimeError("PRIVATE_EXCEPTION")
+
+        failing, healthy = FailingEnd(), DebugTelemetryRecorder()
+        composite = CompositeProvider([failing, healthy])
+        span = composite.start_span("span")
+        with pytest.raises(CompositeDeliveryError) as error:
+            composite.end_span(span)
+        assert error.value.failure_count == 1
+        assert healthy.get_span_by_name("span").end_time is not None
+        composite.end_span(span)
+
+
+class LocalIdProvider(TelemetryInterface):
+    """Synthetic provider whose IDs are local, deterministic, and reusable."""
+
+    def __init__(self, ids: tuple[str, ...] = ("span-0", "span-1")) -> None:
+        self.ids = iter(ids)
+        self.started: list[tuple[str, str, str | None]] = []
+        self.open_ids: set[str] = set()
+        self.ended: list[tuple[str, dict[str, Any] | None]] = []
+
+    def capture_event(self, event_name: str, data: dict[str, Any]) -> None:
+        return None
+
+    def start_span(self, name: str, parent_id: str | None = None) -> str:
+        span_id = next(self.ids)
+        if span_id in self.open_ids:
+            raise RuntimeError("Synthetic provider cannot alias active local spans")
+        self.open_ids.add(span_id)
+        self.started.append((span_id, name, parent_id))
+        return span_id
+
+    def end_span(self, span_id: str, data: dict[str, Any] | None = None) -> None:
+        if span_id not in self.open_ids:
+            raise RuntimeError("Synthetic provider received an unrelated end")
+        self.open_ids.remove(span_id)
+        self.ended.append((span_id, data))
+
+
+class TestCompositeReusedIds:
+    @pytest.mark.parametrize("old_first", [True, False])
+    def test_replacement_keeps_both_open_spans_addressable(self, old_first):
+        old, replacement = LocalIdProvider(), LocalIdProvider()
+        composite = CompositeProvider([old])
+        old_id = composite.start_span("old")
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        new_id = composite.start_span("new", old_id)
+        assert old_id == "span-0"
+        assert new_id != old_id
+        assert replacement.started == [("span-0", "new", None)]
+
+        first_id, first_sink, second_id, second_sink = (
+            (old_id, old, new_id, replacement)
+            if old_first
+            else (new_id, replacement, old_id, old)
+        )
+        composite.end_span(first_id, {"step": 1})
+        assert first_sink.ended == [("span-0", {"step": 1})]
+        assert second_sink.open_ids == {"span-0"}
+        composite.end_span(first_id)
+        composite.end_span(second_id, {"step": 2})
+        composite.end_span(second_id)
+        assert second_sink.ended == [("span-0", {"step": 2})]
+
+    def test_completed_child_id_is_never_republished(self):
+        sink = LocalIdProvider(("span-0", "span-0"))
+        composite = CompositeProvider([sink])
+        completed = composite.start_span("completed")
+        composite.end_span(completed)
+        current = composite.start_span("current", completed)
+        assert current != completed
+        assert sink.started[-1] == ("span-0", "current", None)
+        composite.end_span(completed)
+        assert sink.open_ids == {"span-0"}
+        assert len(sink.ended) == 1
+        composite.end_span(current)
+        assert len(sink.ended) == 2
+
+    def test_completed_replacement_parent_maps_its_own_local_id(self):
+        old, replacement = LocalIdProvider(), LocalIdProvider()
+        composite = CompositeProvider([old])
+        completed = composite.start_span("completed")
+        composite.end_span(completed)
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        parent = composite.start_span("parent")
+        child = composite.start_span("child", parent)
+        assert parent != completed
+        assert replacement.started[-1] == ("span-1", "child", "span-0")
+        composite.end_span(completed)
+        assert replacement.open_ids == {"span-0", "span-1"}
+        composite.end_span(child)
+        composite.end_span(parent)
+        assert [span_id for span_id, _ in replacement.ended] == ["span-1", "span-0"]
+        assert len(old.ended) == 1
+
+    def test_generated_ids_skip_native_collision_without_randomness(self, monkeypatch):
+        monkeypatch.setattr(
+            "friday_telemetry.providers.composite.uuid4",
+            lambda: SimpleNamespace(hex="reserved"),
+        )
+        old = LocalIdProvider(("reserved:1",))
+        replacement = LocalIdProvider(("reserved:1",))
+        composite = CompositeProvider([old])
+        old_id = composite.start_span("old")
+        composite.remove_provider(old)
+        composite.add_provider(replacement)
+        new_id = composite.start_span("new")
+        assert old_id == "reserved:1"
+        assert new_id == "reserved:2"
+        composite.end_span(old_id)
+        assert replacement.open_ids == {"reserved:1"}
+        composite.end_span(new_id)
+
+    def test_provider_cannot_reuse_published_generated_id(self, monkeypatch):
+        monkeypatch.setattr(
+            "friday_telemetry.providers.composite.uuid4",
+            lambda: SimpleNamespace(hex="reserved"),
+        )
+        composite = CompositeProvider([])
+        completed = composite.start_span("empty")
+        composite.end_span(completed)
+        sink = LocalIdProvider((completed,))
+        composite.add_provider(sink)
+        current = composite.start_span("current")
+        assert current != completed
+        composite.end_span(completed)
+        assert sink.open_ids == {completed}
+        composite.end_span(current)
+        assert sink.ended == [(completed, None)]

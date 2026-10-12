@@ -1,0 +1,12 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "/private/tmp/telem-01/VAL-001/test_independent.py::test_membership_replacement_cannot_overwrite_preexisting_child_ownership"
+  ],
+  "exit_code": 1
+}

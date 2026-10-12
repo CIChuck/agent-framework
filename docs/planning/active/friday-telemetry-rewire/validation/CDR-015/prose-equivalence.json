@@ -1,0 +1,32 @@
+[
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/README.md",
+    "only_declared_approval_wording_changes": true,
+    "before_sha256": "d7354e2ab301bb44d4248a2e0f8b1742ba0ceecc3ad7122f88c5a361d56c865e",
+    "after_sha256": "9eb7aa213918cf6a314a9bd544c019b83ded7efc8cb94824115319793b8d1f0b"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+    "only_declared_approval_wording_changes": true,
+    "before_sha256": "756bc3ae21190393743416c390d6d2dcf00d69fdbabe0d5dba22b0d9be64ee86",
+    "after_sha256": "7bc73fa41b356a26a81b11f493f0e7dc0a21498ddde3fd964e454bb255e80dae"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+    "only_declared_approval_wording_changes": true,
+    "before_sha256": "93a469c723ef302c0714ec38719d1c4f93126c0779cf3362f393fbb5e46a468f",
+    "after_sha256": "d4925de5f794b0e4d496d21c163fffcc2799e3e779ca903ba24c3d5795665f6d"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+    "only_declared_approval_wording_changes": true,
+    "before_sha256": "9ad8de5f441795881cf801f5cd11515d2875cf1dc5e441919e683ec299acb44d",
+    "after_sha256": "6772b2a7e0e223610fc81b2b1be2f2831185cbe2edcd328751638688e2ced9ee"
+  },
+  {
+    "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+    "only_declared_approval_wording_changes": true,
+    "before_sha256": "2a49006d776d6ad22a01ae52c595b4218cf2781fccfaf08990f38217d5a1312c",
+    "after_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce"
+  }
+]

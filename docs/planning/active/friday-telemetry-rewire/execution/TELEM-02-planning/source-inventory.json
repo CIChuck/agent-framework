@@ -1,0 +1,36 @@
+{
+  "head": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "lock_otel_pins": {
+    "opentelemetry-api": "1.39.1",
+    "opentelemetry-exporter-otlp": "1.39.1",
+    "opentelemetry-exporter-otlp-proto-common": "1.39.1",
+    "opentelemetry-exporter-otlp-proto-grpc": "1.39.1",
+    "opentelemetry-exporter-otlp-proto-http": "1.39.1",
+    "opentelemetry-proto": "1.39.1",
+    "opentelemetry-sdk": "1.39.1",
+    "opentelemetry-semantic-conventions": "0.60b1"
+  },
+  "source_hashes": {
+    "packages/friday-telemetry/src/friday_telemetry/providers/otel.py": "dbbf24380c6ff6d3f3d3e9ed6f9a426f5ed12a9629bb4d1031f318bb139151f5",
+    "packages/friday-telemetry/src/friday_telemetry/interface.py": "df84512381b7313e4acddb4c066196bdf8cff23258098e6e3a9e56e7db13da61",
+    "packages/friday-telemetry/src/friday_telemetry/config.py": "dc0d17ff6b3d8b0a07d15473130c3689c105680ef685bcb2e52bcdd7f3b350e5",
+    "packages/friday-telemetry/tests_telemetry/test_providers.py": "9ea8350c74de02a21a9ec299f652d326be8f1bc084dc3182ae1a7bb7d045c416"
+  },
+  "sdk_source_hashes": {
+    "opentelemetry/sdk/trace/__init__.py": "89210c878ec958c694c9301f890ed06473ebf5d8ae181be82e668830f27daa07",
+    "opentelemetry/sdk/_shared_internal/__init__.py": "4458b342b79a4d22ad86f9ae08191f797fc8bb27dec8f35d9e0d3dadfbcae767",
+    "opentelemetry/sdk/trace/export/__init__.py": "6c872686dc138e0c564630fd514ea5f5c8532f76e5bebc5f4ce50b5fc6d0f99a",
+    "grpc/__init__.py": "28fa25d26f5a955af1e2d76f5991b2bf63f03d9c9993ee6791fc37dcc8453742",
+    "grpc/_channel.py": "b0f55b88f43906e0f1d6b8013e56a35e2f571fde7c5c27861ac29789ed3c4edc",
+    "opentelemetry/exporter/otlp/proto/common/_internal/__init__.py": "e4a0df434a56b7a0226c944bdab48bee1760bf655b7ff5f442b915c4a1749725",
+    "opentelemetry/exporter/otlp/proto/grpc/exporter.py": "09ce35204768cb21485766150801554e63df8c8df33e3ca65a7326e633e1cadb"
+  },
+  "observations": [
+    "Global tracer registration",
+    "explicit parent_id ignored",
+    "capture_event only globalcurrent; adapterstart never makescurrent",
+    "SDK shutdown_on_exit defaults true",
+    "batchprocessor shutdown defaults30seconds and then exporter shutdown without public timeout",
+    "Installed gRPC OTLP exporter resolves environment/credential/certificate settings; public grpc.ssl_channel_credentials(None) uses runtime-selected default trust roots. HTTP exporter absent; not source-inspected or proposed."
+  ]
+}

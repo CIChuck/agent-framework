@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-09-29'
+updated: '2026-10-12'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -377,6 +377,82 @@ tasks:
   branch: null
   depends_on: []
   validation: []
+- id: friday-telemetry-rewire
+  title: Friday-telemetry-rewire
+  priority: 25
+  work_state: started
+  condition: normal
+  implementation_authority: closed
+  packet: docs/planning/active/friday-telemetry-rewire/
+  next_gate: 'core TELEM-01–04 accepted and construction closed; draft PR #7 open against master; review before any merge; preserve frozen evidence paths; MCP preparation remains authorized'
+  delivery_state: pushed
+  branch: feature/friday-telemetry-rewire
+  depends_on: []
+  validation:
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-001/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-001/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-002/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-003/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-002/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-004/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-005/evidence.yaml
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-003/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-006/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-004/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-005/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-007/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-008/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-009/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-010/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-011/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-017/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-03.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md
+  - docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-baseline/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
+  - docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
+  - docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-baseline/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
+  - docs/planning/active/friday-telemetry-rewire/validation/VAL-010/report.md
+  - docs/planning/active/friday-telemetry-rewire/execution/REM-005-final/report.md
+  - docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/README.md
+  - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+  approved_by: repository maintainer
+  approved_at: '2026-10-04'
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -864,3 +940,353 @@ events:
   action: delivery pushed -> merged
   note: 'PR #6 merged on GitHub at be0b9e1; remote feature branch deleted; local master fast-forwarded to origin/master'
   evidence: https://github.com/CIChuck/agent-framework/pull/6; merge be0b9e1af6830178221d50f94e2e93774eb0d3a4
+- task: friday-telemetry-rewire
+  at: '2026-10-01'
+  actor: Codex
+  actor_role: agent
+  action: created queued planning packet
+  note: Maintainer requested restoration and improvement of observability from the earlier Friday launcher in the current Friday Chat package; implementation remains unapproved.
+  evidence: docs/planning/queued/friday-telemetry-rewire/build-plan.md
+- task: friday-telemetry-rewire
+  at: '2026-10-01'
+  actor: Codex
+  actor_role: agent
+  action: revised draft scope
+  note: Maintainer clarified that Friday Chat observability must use the existing provider-neutral telemetry adapter; Langfuse is optional and does not gate the core rewire.
+  evidence: docs/planning/queued/friday-telemetry-rewire/build-plan.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05T03:03:39+00:00'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Recorded explicit conversation approval on 2026-10-04 for provider-neutral telemetry direction and first-slice preparation. CD-001 is prepared and awaits its specific approval before source generation.
+  evidence: docs/planning/queued/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05T13:02:24+00:00'
+  actor: Codex
+  actor_role: agent
+  action: transitioned approved -> started
+  note: Maintainer approved CD-001 with explicit proceed on 2026-10-05; first local slice begins on its dedicated branch.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: TELEM-01 implementation checks recorded; candidate preparation
+  note: Focused regression checks and affected typing/lint pass. Full package run reproduces pre-existing terminal failures and sandbox loopback errors. Independent validation remains pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-001 CHANGES_REQUESTED
+  note: Fresh read-only review found VAL-001-F01 provider-local span-ID collision; baseline PTY timing also requires passing evidence or maintainer exception. REM-001 and WVR-001 are proposed; no remediation, completion or acceptance is authorized.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-001/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer-approved CD-001 A01
+  note: Maintainer approved CDR-001/CDR-002 verification-only corrections. Fresh directive review is pending; REM-001 and WVR-001 remain proposed and implementation findings remain unresolved.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-002 READY
+  note: 'Independent directive readiness only: READY. Product validation remains unresolved; REM-001 and WVR-001 remain proposed. New authority requires fresh subsequent implementation review.'
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-002/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer approval of REM-001 and CD-001 A02
+  note: Explicit approval of recommendations authorizes collision remediation and rerun-first sequence. WVR-001 remains proposed; no exception granted. Fresh authority review pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: REM-001 candidate prepared after CDR-003 READY
+  note: Approved collision remediation has focused and minimum-version static evidence. Root lint/collection and test environment baselines remain unwaived; fresh independent delta/aggregate review pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-001-implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-002 CHANGES_REQUESTED
+  note: Independent review supports REM-001 collision fix and AC-01 through AC-05. VAL-002-F01 aggregate gates remain unresolved. REM-002 is proposed; WVR-001 remains unapproved. No source VERIFIED, completion or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-002/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded maintainer approval of REM-002 and A03
+  note: All outlined verification setup tasks approved, including three named localhost nodes and locked temporary Python 3.10 dependency downloads. No waiver or product edits. Fresh readiness review pending.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: corrected CDR-004-F01 authority metadata
+  note: Recorded exact already-approved locked PyPI provisioning exception; no new scope, waiver or product edits. Fresh corrected-authority review required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-004/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: REM-002 verification reruns prepared for independent review
+  note: CDR-005 READY; root collection succeeds, exact permitted localhost nodes pass. Broad failures match baseline; locked3.10 LiteLLM import incompatible. No waiver, dependency/product edit, completion or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-002-implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-003 CHANGES_REQUESTED and REM-002 execution closeout
+  note: Approved tasks performed. Root collection and three localhost nodes pass; Composite3.10 passes. Unwaived root/package/lint gates and frozen Chat dependency incompatibility remain. No completion, acceptance or waiver.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-003/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved REM-003 Python support migration
+  note: Require Python >=3.13.4 and align workspace metadata, tooling, lock and setup docs; no baseline waiver.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: implemented approved Python support migration after CDR-006 READY
+  note: Python >=3.13.4 metadata and tooling aligned; dependency pins preserved; fresh review pending and aggregate gates unresolved.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-implementation-report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-004 and bounded supported-runtime lock correction
+  note: Preserved grpcio selections for Python3.13 and3.14; fresh review required; aggregate AC-06 remains unwaived.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-004/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded VAL-005 and Python minimum migration execution closeout
+  note: Python >=3.13.4 migration supported; dependency selections preserved; remaining aggregate lint/test gates unwaived.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-003-closeout.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 proposal preparation and CDR-008 READY
+  note: Exact fixes and archive exception are reviewable proposals; implementation and WVR-002 await explicit approval; current aggregate result remains CHANGES_REQUESTED.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-008/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved exact REM-004 and separately WVR-002
+  note: I approve both REM-004 and WVR-002. Fresh authority readiness precedes construction; no test/typing/security exception or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-009 READY and dispatched separate REM-004 remediator
+  note: Approved A05 authority and WVR-002 coherent; only bounded source/test remediation released; fresh full-suite preflight and product review required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-009/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded REM-004 generic compatibility stop and exact A06/WVR-003 proposal
+  note: One demonstrated public variance conflict; six partial fixes preserved and advisory checks disclosed; existing approvals retained; proposed live lint exception unapproved.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-004-compatibility/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-05'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-010 compatibility proposal READY
+  note: Independently reproduced exact one-class variance conflict and exact live UP046; A06/WVR-003 await explicit maintainer approval; no construction resumption or product verification.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-010/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: repository maintainer
+  actor_role: maintainer
+  action: approved exact A06 and separately WVR-003
+  note: I approve A06 and WVR-003. Preserve invariant CommandRegistry and one pinned live UP046; all other REM-004 scope and mandatory gates remain required; fresh frozen-authority readiness precedes resumption.
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: recorded CDR-011 approved A06 authority READY and resumed separate remediation
+  note: Exact approved compatibility and original scope coherent; all other required tests, typing, security and aggregate checks remain mandatory; no product verification or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-011/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: recorded independently verified TELEM-01 delta and aggregate closeout
+  note: REM-004 complete at frozen 8aedd87; all mandatory gates pass with exact approved WVR-002/WVR-003 lint disposition. Initiative stays started; maintainer acceptance and later-unit authority remain separate.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted TELEM-01 work unit
+  note: Explicit "accepted" after VERIFIED local telemetry closeout; broader initiative remains started/local for later units. WVR-002 and WVR-003 expire after this decision and are not renewed.
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: prepared TELEM-02 directive and separate lint-disposition proposals
+  note: Maintainer authorized preparation and independent review; no product construction or WVR-004 approval. Byte-preserving closeout script packaging corrects added lint debt; accepted TELEM-01 and original dirty work preserved.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: recorded independent corrected TELEM-02 proposal readiness
+  note: CDR-013 READY for CD-002 and separately WVR-004; R02-01 closed. Explicit maintainer construction and lint decisions pending; not product VERIFIED or approval. Accepted TELEM-01 and unrelated dirty work preserved.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-002 and separately WVR-004
+  note: Explicit approved response to both concrete decisions after CDR-013 READY; exact reviewed TELEM-02 scope and13 synthetic loopback effects plus327 temporary lint identities. Fresh approved-authority readiness and baselines precede construction; no remote activation or acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: released approved TELEM-02 construction after readiness and baselines
+  note: CDR-015 READY closes A02-01; frozen fake-only true pre-build source/API baseline. Exact CD-002 and WVR-004 approved; product checks and fresh delta plus aggregate validation pending. Delivery local and TELEM-01 acceptance retained.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-015/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-002 A02 fixed native retry disablement
+  note: Explicit approved response; one fixed grpc.enable_retries=0 option, unchanged13 listener effects and WVR-004 expiry. Fresh CDR-017 READY preceded implementation.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: proposed TELEM-02 completion after independent verification
+  note: VAL-007 VERIFIED full unit and complete2155a0f aggregate at45f3114; no findings. Root2891, Chat828 and owning2873passed; exact raw327 lint disposition retained. Acceptance pending, initiative started, delivery local, later units separately governed.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted TELEM-02
+  note: Explicit accepted response after VAL-007 VERIFIED at45f3114. WVR-004 expired under existing terms; historical authority unchanged. Initiative stays started/local for TELEM-03–05; next gate is TELEM-03 directive preparation, with separate implementation approval.
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-06'
+  actor: Codex
+  actor_role: agent
+  action: prepared TELEM-03 construction proposal
+  note: Maintainer authorized preparation by proceed. CD-003 and separate WVR-005 are proposals only; accepted TELEM-01/02 and expired WVR-004 remain unchanged. No product edits or new external effects.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md
+- task: friday-telemetry-rewire
+  at: '2026-10-07'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-003 and separately WVR-005
+  note: Explicitly approved exact TELEM-03 scope and327 lint identities. Required independent lint review and pre-build reconciliation precede construction; accepted units and unrelated work unchanged.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-07'
+  actor: Codex
+  actor_role: agent
+  action: released approved TELEM-03 construction
+  note: Independent CDR-018 READY for CD-003 and WVR-005; true fake-only pre-build probes frozen before product edits. Exact28 paths only; final preflight and fresh product validation remain required.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-018/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-07T18:18:18+00:00'
+  actor: controller
+  actor_role: agent
+  action: checkpoint
+  note: Record maintainer-directed TELEM-03 progression acceptance and prepare unapproved CD-004/WVR-006; preserve continuing started/local state.
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T13:44:26+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved CD-004 and separately WVR-006
+  note: Explicit approved response to concrete29-path scope and exact327 lint renewal at1c46336; independent authority reconciliation and pre-build baseline precede construction.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T13:58:24+00:00'
+  actor: controller
+  actor_role: agent
+  action: released approved TELEM-04 construction
+  note: Fresh CDR-019 READY for both authority decisions;12-case true fake pre-build baseline before product edits. Exact29 targets and approved effects only; stable independent product review remains mandatory.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-019/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T14:20:26+00:00'
+  actor: controller
+  actor_role: agent
+  action: freezing TELEM-04 candidate for independent review
+  note: Approved CD-004 construction and mandatory builder gates complete; authority unchanged. Started/local, pending fresh-context product review. Independent verification and maintainer acceptance remain separate.
+  evidence: docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md
+- task: friday-telemetry-rewire
+  at: '2026-10-09T14:54:15+00:00'
+  actor: controller
+  actor_role: agent
+  action: recorded VAL-009 changes requested and proposed REM-005
+  note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15 targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: remediation_approved
+  note: 'Explicitly approved REM-005 specification: i approve rem-005 spec. Resume exact five-finding/15-target remediation with separate remediator and full fresh validation; no scope/effect/waiver expansion or acceptance. Preserve MCP pending priority.'
+  evidence: docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: remediation_released
+  note: CDR-020 READY plus true reproduction of all five findings precedes source release for approved15-target REM-005. Preserve queued work and original findings; require stable candidate and fresh full independent validation.
+  evidence: docs/planning/active/friday-telemetry-rewire/validation/CDR-020/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex controller
+  actor_role: agent
+  action: frozen approved REM-005 candidate for fresh full independent review
+  note: Exact15-path unverified candidate; builder final evidence pending. Require fresh VAL-010 REM/full-unit/aggregate review before proposing completion. Preserve earlier findings, queued work and local delivery.
+  evidence: docs/planning/active/friday-telemetry-rewire/execution/REM-005-candidate/report.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex controller
+  actor_role: agent
+  action: TELEM-04 completion proposed
+  note: Fresh VAL-010 VERIFIED exact5c3a0e6 REM/full-unit/aggregate. Allfive findings resolved,19 gates and supplemental contracts reviewed. Core telemetry completion proposed; maintainer acceptance pending; optional Langfuse does not gate core. Preserve queued priority and local delivery.
+  evidence: docs/planning/active/friday-telemetry-rewire/closeout-TELEM-04.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: TELEM-04 accepted
+  note: Explicit response accepted to verified TELEM-04 completion. Core01–04 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged.
+  evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+- task: friday-telemetry-rewire
+  at: '2026-10-12T15:08:11+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery local -> pushed
+  note: Published exact committed telemetry branch bb83dc0d0ff1b88ed9db54329cd39c7fca49650a; core remains accepted and construction closed. Draft PR creation was rejected by automatic approval review pending explicit GitHub publication approval. No merge.
+  evidence: https://github.com/CIChuck/agent-framework/tree/feature/friday-telemetry-rewire
+- task: friday-telemetry-rewire
+  at: '2026-10-12'
+  actor: Codex
+  actor_role: agent
+  action: draft telemetry delivery PR created
+  note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority unchanged.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/7

@@ -90,6 +90,16 @@ def validate_url(
     # Resolve hostname and check IP
     if not allow_private_ips:
         try:
+            literal_ip = ipaddress.ip_address(hostname)
+        except ValueError:
+            literal_ip = None
+        if literal_ip is not None:
+            if _is_private_ip(str(literal_ip)):
+                raise URLValidationError(
+                    f"Host '{hostname}' is a private IP address: {literal_ip}"
+                )
+            return url
+        try:
             # Get all IP addresses for the hostname
             ip_addresses = socket.getaddrinfo(
                 hostname, None, socket.AF_UNSPEC, socket.SOCK_STREAM

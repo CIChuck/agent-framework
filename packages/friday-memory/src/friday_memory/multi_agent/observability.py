@@ -5,7 +5,7 @@ Operational observability helpers for multi-agent promotion workflows.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from friday_memory.multi_agent.journal import PromotionJournal
 from friday_memory.multi_agent.models import PromotionJournalState
@@ -38,7 +38,7 @@ def build_promotion_ops_snapshot(
     backlog = totals["pending"] + totals["graph_written"] + totals["vector_written"]
     completed = totals["committed"] + totals["failed"] + totals["compensated"]
     failure_rate = (totals["failed"] / completed) if completed > 0 else 0.0
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     stale_cutoff = now - timedelta(seconds=stale_pending_after_seconds)
     stale_backlog = [
         entry

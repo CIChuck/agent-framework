@@ -1,0 +1,13 @@
+{
+  "frozen_epoch": 1791334297.76893,
+  "files": {
+    "registry_probe.py": "2ac07f6f5b369f2a87d4c5c2fcea95444997a9e0289ef6d35696773c328d8806",
+    "static_contract.py": "b3752d3e28e987279bfd82844395a42667b2a14b200a6c3804da53dbe2e91ee5",
+    "metadata.py": "b150b2797184eaed4e88b715ece9a9ade8fb9ec332eb969b04f69d574cd746b9",
+    "independent_sdk_probe.py": "9c8604b2f5944c3c72db27510dadc832cbc89a2dccf6749bc683f24ce9cec153",
+    "validate.py": "97ca154dc712575e3b5b1336fc849b39fa62429ac826a8861f4b8bea29a0dd2b",
+    "pytest_source_audit.py": "4a1dab99056205adf4f31c590a4f376b4201e41712fcec599dc482c0364775c7",
+    "prepare.py": "11e53bc5c3d4ccd093eb8fe3afd635937956380a94f9be44909ffa6e0f5ac398"
+  },
+  "effects": "metadata/AST read only; six private copied tracked generic modules and mypy negative consumers; actualSDK console and fake Chat app synthetic no network,explicitcleanup"
+}

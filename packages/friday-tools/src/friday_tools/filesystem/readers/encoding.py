@@ -4,7 +4,9 @@ Smart encoding detection utilities.
 
 Uses charset-normalizer for robust encoding detection with graceful fallbacks.
 
-Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 1
+Ref:
+docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md -
+Phase 1
 """
 
 from __future__ import annotations

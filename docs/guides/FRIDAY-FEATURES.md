@@ -58,7 +58,7 @@ Friday's tool architecture allows agents to interact with external systems, exec
 #### Investment Considerations
 
 - **Development Stage:** Active development (v0.1.0), suitable for pilot projects and internal tools
-- **Technology Stack:** Python 3.10+, async-first, Pydantic 2.0+ for data validation
+- **Technology Stack:** Python 3.13.4+, async-first, Pydantic 2.0+ for data validation
 - **Deployment:** Runs anywhere Python runs—cloud, on-premise, or edge devices
 - **Licensing:** [Specify your license]
 

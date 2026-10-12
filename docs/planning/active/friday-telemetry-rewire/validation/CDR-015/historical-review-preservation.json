@@ -1,0 +1,1738 @@
+{
+  "count": 305,
+  "all_storage_match": true,
+  "reports": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/report.md",
+      "preserved": true,
+      "comparison": "previous candidate",
+      "sha256": "2095efd0b1b512cea00c724300ac8d4ca8b01cb129b1cb2289be06f4e6738a24"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md",
+      "preserved": true,
+      "comparison": "previous candidate",
+      "sha256": "c7e9444e957aa9f82cfedff400a0355b1462a423085e69a354afc6ac3696823b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/report.md",
+      "preserved": true,
+      "comparison": "original prior-review output",
+      "sha256": "b437b97dee1b3389b2f050d06b86ebf11a738f343e048102d1bcdf0b402dbea3"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/accepted-artifact-preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/analyze_evidence.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-name-status.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-source-evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/grpc/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/grpc/_channel.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/context/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/context/contextvars_context.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/resources/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/sampling.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/lint-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/listener-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-after-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-after.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-before.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/packaging-proof.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/pin-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/review_runner.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/accepted-artifact-preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/accepted-manifest-hashes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/analyze_evidence.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/reviewer-artifact-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-name-status.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/full-diff-inventory.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/full_audit.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-source-evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/grpc/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/grpc/_channel.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/context/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/context/contextvars_context.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/resources/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/sampling.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/lint-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/listener-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/manifest-consistency.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-after-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-after.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-before.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/packaging-proof.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/pin-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/prior-review-storage-hashes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/review_runner.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/source-inventory-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/AGENTS.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/build-plan.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/development-task-lifecycle.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/independent-validation-policy.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/repository-engineering-policy.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/accepted-artifact-preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/accepted-manifest-hashes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/analyze_evidence.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/approval-reconciliation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/approval.delta.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/approval_audit.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/reviewer-artifact-manifest.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-analysis.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-analysis.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-approval.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-approval.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-approval.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-full.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-full.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/audit-full.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-snapshot-final.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/baseline-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-board.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-board.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-board.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-docs.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-docs.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-docs.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-next.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-next.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-next.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-root-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-root-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-root-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-show.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-show.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-show.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-snapshot-after.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-snapshot-final.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate-snapshot.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/candidate.diff.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/diff-check.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/diff-check.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/diff-check.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/diff-name-status.txt",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/full-diff-inventory.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/full_audit.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-source-evidence.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/grpc/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/grpc/_channel.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/context/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/context/contextvars_context.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/sdk/resources/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/sdk/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/sdk/trace/sampling.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/installed-sources/opentelemetry/trace/__init__.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/lint-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/listener-analysis.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/manifest-consistency.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/orchestration-notes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/original-after-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/original-after.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/original-before.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/original-final.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/original-preservation.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/packaging-proof.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/pin-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/prior-review-storage-hashes.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/report.md",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/review_runner.py.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/source-inventory-checks.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/AGENTS.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/build-plan.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/reference/policies/development-task-lifecycle.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/reference/policies/independent-validation-policy.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/sources/docs/reference/policies/repository-engineering-policy.md.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-mypy.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-mypy.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-mypy.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-python.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-python.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-python.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-ruff.json",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-ruff.stderr.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/tool-ruff.stdout.gz",
+      "stored_matches": true,
+      "original_matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/CDR-014/request.json",
+      "stored_matches": true,
+      "original_matches": true
+    }
+  ],
+  "prior_CDR012_CDR013_files_unchanged": {
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/accepted-artifact-preservation.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/analyze_evidence.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/artifact-manifest.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-board.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-docs.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-next.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-root-ruff.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-show.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-snapshot-after.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/baseline-snapshot.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-board.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-docs.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-next.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-root-ruff.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-show.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-snapshot-after.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate-snapshot.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/candidate.diff.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-check.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/diff-name-status.txt": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/evidence.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-source-evidence.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/grpc/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/grpc/_channel.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/context/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/context/contextvars_context.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/resources/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/sdk/trace/sampling.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/installed-sources/opentelemetry/trace/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/lint-analysis.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/listener-analysis.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-after-checks.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-after.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-before.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/original-final.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/packaging-proof.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/pin-checks.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/report.md": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/request.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/review_runner.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-mypy.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-python.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-012/tool-ruff.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/accepted-artifact-preservation.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/accepted-manifest-hashes.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/analyze_evidence.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/artifact-manifest.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-board.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-docs.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-next.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-root-ruff.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-show.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-snapshot-after.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/baseline-snapshot.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-board.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-docs.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-next.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-root-ruff.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-show.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-snapshot-after.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate-snapshot.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/candidate.diff.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-check.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/diff-name-status.txt": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/evidence.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/full-diff-inventory.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/full_audit.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-source-evidence.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/grpc/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/grpc/_channel.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/context/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/context/contextvars_context.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/_internal/trace_encoder/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/common/trace_encoder.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/grpc/exporter.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/exporter/otlp/proto/grpc/trace_exporter/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/proto/collector/trace/v1/trace_service_pb2_grpc.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/_shared_internal/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/resources/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/export/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/sdk/trace/sampling.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/installed-sources/opentelemetry/trace/__init__.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/lint-analysis.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/listener-analysis.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/manifest-consistency.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-after-checks.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-after.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-before.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/original-final.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/packaging-proof.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/pin-checks.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/prior-review-storage-hashes.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/report.md": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/request.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/review_runner.py.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/reviewer-artifact-manifest.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/source-inventory-checks.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/AGENTS.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/build-plan.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/tactical-plan.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/telem02-contract.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/development-task-lifecycle.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/independent-validation-policy.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/sources/docs/reference/policies/repository-engineering-policy.md.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-mypy.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-python.stdout.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.json": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.stderr.gz": true,
+    "docs/planning/active/friday-telemetry-rewire/validation/CDR-013/tool-ruff.stdout.gz": true
+  }
+}

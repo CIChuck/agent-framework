@@ -6,11 +6,14 @@ import json
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Protocol, runtime_checkable
+from uuid import uuid4
 
 from friday_chat.display import HeartbeatFactory, NoopHeartbeatFactory
+from friday_chat.telemetry import ChatTelemetryObserver
 from friday_chat.tools.output import redact_tool_request_message
 from friday_chat.tools.registry import FakeToolRegistry
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
+from friday_chat.turns.telemetry import operation_scope
 
 
 class ToolCallRegistry(Protocol):
@@ -57,10 +60,12 @@ class ToolLoop:
         *,
         max_iterations: int = 1,
         heartbeat_factory: HeartbeatFactory | None = None,
+        observer: ChatTelemetryObserver | None = None,
     ) -> None:
         self._registry = registry or FakeToolRegistry()
         self._max_iterations = max_iterations
         self._heartbeat_factory = heartbeat_factory or NoopHeartbeatFactory()
+        self._observer = observer
 
     async def run(
         self,
@@ -126,6 +131,16 @@ class ToolLoop:
                     name = call.get("name")
                     arguments = call.get("arguments", {})
                     if not isinstance(name, str) or name not in allowed:
+                        if self._observer is not None:
+                            frame = self._observer.correlation.current()
+                            if frame is not None:
+                                self._observer.capture_event("execution.selection", {
+                                    **frame.context.identity().model_dump(), "toolset_ref": uuid4().hex,
+                                    "selected_native": 0, "selected_mcp": 0,
+                                    "rejected_native": int(not (isinstance(name, str) and name in mcp_names)),
+                                    "rejected_mcp": int(isinstance(name, str) and name in mcp_names), "schema_tokens": 0, "context_budget_tokens": 0,
+                                    "rejection_reason": "unknown_tool", "rejection_count": 1,
+                                })
                         consecutive_failures += 1
                         if consecutive_failures >= self._max_iterations:
                             circuit_breaker_open = True
@@ -134,40 +149,48 @@ class ToolLoop:
                     if not isinstance(arguments, dict):
                         arguments = {}
                     try:
-                        raw_id = call.get("id")
-                        identifier = (
-                            raw_id
-                            if isinstance(raw_id, str)
-                            else (
-                                None
-                                if name in mcp_names or raw_id is None
-                                else str(raw_id)
+                        with operation_scope(self._observer, "mcp_tool" if name in mcp_names else "native_tool") as observation:
+                            raw_id = call.get("id")
+                            identifier = (
+                                raw_id
+                                if isinstance(raw_id, str)
+                                else (
+                                    None
+                                    if name in mcp_names or raw_id is None
+                                    else str(raw_id)
+                                )
                             )
-                        )
-                        if recorder is not None:
-                            record = await recorder.call_tool_record(
-                                name,
-                                arguments,
-                                call_id=identifier,
-                                used_call_ids=identifiers,
-                            )
-                        else:
-                            result = await self._registry.call_tool(name, arguments)
-                            record = ToolCallRecord(name, arguments, result, identifier)
-                        if name in mcp_names and (
-                            record.mcp_provenance is None
-                            or record.arguments
-                            or record.name != name
-                            or record.call_id != record.mcp_provenance.call_id
-                            or record.mcp_provenance.tool.canonical_name != name
-                            or record.mcp_provenance.output_sanitization_state
-                            == "not_checked"
-                            or record.mcp_provenance.model_result_size_bytes
-                            != len(record.result.encode("utf-8"))
-                        ):
-                            raise RuntimeError(
-                                "MCP execution requires checked per-call provenance"
-                            )
+                            if recorder is not None:
+                                record = await recorder.call_tool_record(
+                                    name,
+                                    arguments,
+                                    call_id=identifier,
+                                    used_call_ids=identifiers,
+                                )
+                            else:
+                                result = await self._registry.call_tool(name, arguments)
+                                record = ToolCallRecord(name, arguments, result, identifier)
+                            if name in mcp_names and (
+                                record.mcp_provenance is None
+                                or record.arguments
+                                or record.name != name
+                                or record.call_id != record.mcp_provenance.call_id
+                                or record.mcp_provenance.tool.canonical_name != name
+                                or record.mcp_provenance.output_sanitization_state
+                                == "not_checked"
+                                or record.mcp_provenance.model_result_size_bytes
+                                != len(record.result.encode("utf-8"))
+                            ):
+                                raise RuntimeError(
+                                    "MCP execution requires checked per-call provenance"
+                                )
+                            if name in mcp_names and record.mcp_provenance is not None:
+                                facts = record.mcp_provenance
+                                if facts.status != "succeeded":
+                                    observation.outcome = "blocked" if facts.status == "blocked" else "failed"
+                                    observation.reason = facts.failure_code or "execution_error"
+                            observation.count = 1
+                            observation.count_kind = "calls"
                     except KeyError:
                         consecutive_failures += 1
                         if consecutive_failures >= self._max_iterations:

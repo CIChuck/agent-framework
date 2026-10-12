@@ -1,0 +1,64 @@
+{
+  "beforepackagecount": 208,
+  "afterpackagecount": 201,
+  "shared_version_changes": {
+    "networkx": {
+      "before": [
+        "3.4.2",
+        "3.6.1"
+      ],
+      "after": [
+        "3.6.1"
+      ]
+    },
+    "numpy": {
+      "before": [
+        "2.2.6",
+        "2.4.6",
+        "2.5.2"
+      ],
+      "after": [
+        "2.5.2"
+      ]
+    }
+  },
+  "added": [],
+  "removed": [
+    [
+      "async-timeout",
+      "4.0.3",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "backports-asyncio-runner",
+      "1.2.0",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "exceptiongroup",
+      "1.3.1",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "networkx",
+      "3.4.2",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "numpy",
+      "2.2.6",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "numpy",
+      "2.4.6",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ],
+    [
+      "tomli",
+      "2.3.0",
+      "{\"registry\": \"https://pypi.org/simple\"}"
+    ]
+  ],
+  "candidate_lock_sha256": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c"
+}

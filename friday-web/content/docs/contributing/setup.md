@@ -9,7 +9,12 @@ Clone the Friday monorepo, install all dependencies with `uv sync`, run the test
 ## Prerequisites
 
 **Required:**
-- Python 3.10 or higher (3.11+ recommended)
+- Python 3.13.4 or higher
+
+Existing environments using an older Python must be recreated with a supported
+interpreter. Use `uv python install 3.13` if needed, then `uv sync --python 3.13`.
+The minimum patch version is 3.13.4.
+
 - Git
 - `uv` — modern Python package manager
 - SQLite 3.35+ (pre-installed on macOS/Linux)
@@ -182,7 +187,7 @@ Friday enforces consistent style with **Ruff** — a fast Python linter and form
 
 **Configuration:**
 - Line length: 88 characters (Black-compatible)
-- Target: Python 3.10+
+- Target: Python 3.13.4+
 - Rules: E (errors), F (pyflakes), I (import sorting), UP (pyupgrade), B (bugbear), SIM (simplify)
 
 ```bash
@@ -236,7 +241,7 @@ uv run mypy packages/friday-core/
 uv run mypy packages/
 
 # mypy configuration in pyproject.toml:
-# python_version = "3.10"
+# python_version = "3.13"
 # warn_return_any = true
 # disallow_untyped_defs = true
 ```

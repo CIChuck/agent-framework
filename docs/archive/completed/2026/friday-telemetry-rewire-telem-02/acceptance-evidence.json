@@ -1,0 +1,140 @@
+{
+  "work_unit": "TELEM-02",
+  "directive": "CD-002 including approved A02",
+  "status": "accepted",
+  "accepted_by": "Chuck Russell",
+  "accepted_date": "2026-10-06",
+  "timezone": "America/New_York",
+  "recorded_at_utc": "2026-10-07T03:05:22Z",
+  "explicit_response": "accepted",
+  "decision_context": "Response to TELEM-02 independently VERIFIED final report and explicit next gate of maintainer acceptance",
+  "product_candidate": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "evidence_closeout_commit": "10857936715f82049490e2f0e52671df3075e680",
+  "aggregate_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "verdict": "VERIFIED",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+      "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7"
+    }
+  ],
+  "frozen_evidence": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-007/report.md",
+      "sha256": "1d0f77c8a4ad82f1f851e758dd6bc344e34d41e90074354d6a84b5761b8b8c15"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-007/reviewer-report.md.gz",
+      "sha256": "461a6de2c4dcf1eeca94631398717db4eace01cda0623acdf6c15daa6c474868"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-007/evidence.json",
+      "sha256": "40db9ffd7563aeaa95c151e34fcb3188667b514190594c1bc22562e5841dfbf7"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-007/artifact-manifest.json",
+      "sha256": "b926f6cf1a0f6ed6c280048facf1e4efb0397e79b62d852b4c0c5180c00fde73"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/report.md",
+      "sha256": "4304d0f03aa2b4a62fe7aa2d42c9b4e59d2999dd147c46b4b3a1209fbb203dfd"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/builder-report.md.gz",
+      "sha256": "2a6bcb96ac34b581aff94f124c2c9a26f3aa374787392613d5731a585922e36a"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-final/artifact-manifest.json",
+      "sha256": "9079b36684472ca678a67f7623619f8f81be4ae0d6d5a7ce4239784b91071525"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+      "sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+    }
+  ],
+  "original_reviewer_report_sha256": "fcd6ef6b5d0d735476aae5f1b1961efef4dc7bd48c64b9714857d47a9af71d86",
+  "lint_disposition": {
+    "id": "WVR-004",
+    "status": "expired after TELEM-02 acceptance",
+    "raw_exit": 1,
+    "findings": 327,
+    "historical_coverage": "Valid for accepted TELEM-02 candidate; no continuation to TELEM-03",
+    "scope_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731"
+  },
+  "initiative_work_state": "started",
+  "delivery_state": "local",
+  "next_gate": "prepare TELEM-03 safe LLM metrics and role-service injection directive",
+  "later_implementation_authority": "requires its own approved construction directive"
+}

@@ -1,0 +1,46 @@
+{
+  "new_markdown_whitespace_clean": true,
+  "base": "e6209e3156216afde1655758e280690229f7d3e6",
+  "checks": [
+    {
+      "name": "proposal-r3-board-validate",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-board-next",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-board-show",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-board-render",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-docs",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-diff-check",
+      "exit_code": 0
+    },
+    {
+      "name": "proposal-r3-root-ruff",
+      "exit_code": 1
+    }
+  ],
+  "controls_match": 38,
+  "accepted_telem03_controls_match": 24,
+  "product_paths_unique": 29,
+  "product_source_unchanged": true,
+  "new_product_absent": true,
+  "raw_root_ruff_exit": 1,
+  "exact_historical_findings": 327,
+  "unrelated_files_preserved": true,
+  "unrelated_board_objects_identical": true,
+  "proposal_snapshot_unchanged_outside_overlay": true,
+  "scope_approval": false,
+  "independent_verdict": null
+}

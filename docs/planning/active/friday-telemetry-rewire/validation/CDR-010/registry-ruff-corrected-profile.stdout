@@ -1,0 +1,46 @@
+[
+  {
+    "cell": null,
+    "code": "UP046",
+    "end_location": {
+      "column": 33,
+      "row": 74
+    },
+    "filename": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review/candidate-inputs/packages/friday-cli/src/friday_cli/commands.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "[T]",
+          "end_location": {
+            "column": 22,
+            "row": 74
+          },
+          "location": {
+            "column": 22,
+            "row": 74
+          }
+        },
+        {
+          "content": "",
+          "end_location": {
+            "column": 34,
+            "row": 74
+          },
+          "location": {
+            "column": 22,
+            "row": 74
+          }
+        }
+      ],
+      "message": "Use type parameters"
+    },
+    "location": {
+      "column": 23,
+      "row": 74
+    },
+    "message": "Generic class `CommandRegistry` uses `Generic` subclass instead of type parameters",
+    "noqa_row": 74,
+    "url": "https://docs.astral.sh/ruff/rules/non-pep695-generic-class"
+  }
+]

@@ -1,0 +1,1001 @@
+{
+  "count": 199,
+  "all_preserved": true,
+  "files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/artifact-manifest.json",
+      "preserved": true,
+      "kind": "original manifest retained"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-0.log",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-1.log",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/closeout-metadata-checks.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/aggregate-whitespace.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/board-validate.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-mypy.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/changed-ruff.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/chat-telemetry-full.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/documentation-lifecycle.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-integrity.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/final-invariant-consumers.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/focused-telemetry.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/genuine-observer-composite.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/offline-lock.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/owning-packages.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/registry-ordered.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-collect.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-full.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller-raw/root-ruff.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/a06-code-baseline-snapshot.json.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/concurrent-untracked-state.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final-generic-consumers.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_generic_contract.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_integrity.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/final_observer_smoke.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/network-guard/sitecustomize.py",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/product-validation-request.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-expanded.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-a06-final-snapshot.json.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-integrity.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-final-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-product-freeze.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-disposition.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root-ruff-normalized.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/root_final_preflight.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/controller/runner.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/preservation.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-pty-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-registry-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-response-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-after-01/after-tools-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-before-01/regression-before-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/response-final-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-01/scope-ruff-final.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe-02.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/final-api-probe.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-final-02/scope-ruff-final.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/aggregate-mypy-01.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator-raw/remediator-a06-work-02/scope-ruff-02.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-consumer-inventory.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/alias-site-review.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all-six-compatibility-report.md",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/all_variance_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation-probes.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/annotation_variance_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/apply_exact_lint_sites.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/build_partial_preflight.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/command-registry-conflict-pin.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-evidence-manifest.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-matrix.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop-report.md",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/compatibility-stop.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-evidence-manifest.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-02.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-03.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-expanded-lists-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-handoff-report.md",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-02.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-test-preflight-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/completion-verification-receipts.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-api-probe-results-02.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-diff.patch.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final-product-manifest.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/final_api_probe_02.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/import-cleanup-01.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/lint-site-transformations.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-authorized-corrections.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-changes.patch.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/partial-regression-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic-generic-raw.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/pydantic_generic_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/source-review-start.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance-matrix-raw.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/remediator/variance_type_probe.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/REM-004-final/report.md",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate-paths.txt",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/aggregate.diff.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-manifest.json",
+      "preserved": true,
+      "kind": "original manifest retained"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/artifact-map.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-consumer.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-alone.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-native-ordered.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/baseline_moltbook.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/board.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/changed-ruff.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/chat.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/collect.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-disposition.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer-explicit-sources.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/consumer.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta-paths.txt",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/delta.diff.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/docs.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/evidence.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/focused.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lint-syntax-metadata.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock-metadata-whitespace.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/lock.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/metadata.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/mypy.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-after-agent.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/native-alone.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/origins.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/owners.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/preservation-final.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/probe-preflight.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-alone.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/pty-module.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/registry-finally.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/report.md",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/request.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/retrospective-baselines.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/review.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/reviewer-artifact-manifest.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root-ruff.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/root.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/ruff-version.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/scope-check.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/smoke.py",
+      "preserved": true,
+      "kind": "gzip exact bytes"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/snapshot.json.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/tools-contracts.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.json",
+      "preserved": true,
+      "kind": "unchanged"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-006/versions.log.gz",
+      "preserved": true,
+      "kind": "unchanged"
+    }
+  ]
+}

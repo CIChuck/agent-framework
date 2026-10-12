@@ -3,7 +3,7 @@ name = "friday-framework-mcp"
 version = "0.1.0a2"
 description = "MCP (Model Context Protocol) integration for Friday Framework"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "mcp", "model-context-protocol", "llm"]
@@ -65,7 +65,7 @@ friday-framework-agent = { workspace = true }
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]

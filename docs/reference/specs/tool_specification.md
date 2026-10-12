@@ -536,7 +536,7 @@ class ShellSandbox:
 name = "friday-tools"
 version = "0.1.0"
 description = "Comprehensive tool library for AI agents"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = { text = "MIT" }
 authors = [{ name = "Friday Team" }]
 keywords = ["ai", "agents", "tools", "llm", "automation"]

@@ -4,14 +4,14 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Generic, TypeVar
+from typing import Any, TypeVar
 
 from pydantic import BaseModel, Field
 
 T = TypeVar("T")
 
 
-class MoltbookResponse(BaseModel, Generic[T]):
+class MoltbookResponse[T](BaseModel):
     success: bool
     data: T | None = None
     error: str | None = None

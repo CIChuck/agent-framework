@@ -1,4 +1,3 @@
-# mypy: ignore-errors
 """
 Model Pricing Configuration and Cost Calculator.
 
@@ -10,7 +9,10 @@ Ref: Batch 3 Specification - Telemetry
 from __future__ import annotations
 
 from dataclasses import dataclass
+from hashlib import sha256
+from math import isfinite
 
+from friday_telemetry.models.llm_events import CostMetrics, PriceMatch, PriceSource
 from pydantic import BaseModel, Field
 
 from friday_llm.telemetry_models import CostEstimate
@@ -136,9 +138,12 @@ class CostCalculator:
         self._pricing = (
             pricing_table.copy() if pricing_table else DEFAULT_MODEL_PRICING.copy()
         )
+        source: PriceSource = "supplied_table" if pricing_table else "builtin_2025"
+        self._price_sources: dict[str, PriceSource] = dict.fromkeys(self._pricing, source)
 
         # Apply custom overrides from config
         for model, prices in self.config.custom_pricing.items():
+            self._price_sources[model] = "custom_config"
             self._pricing[model] = ModelPricing(
                 input_cost_per_1k=prices.get("input_cost_per_1k", 0.01),
                 output_cost_per_1k=prices.get("output_cost_per_1k", 0.03),
@@ -154,9 +159,15 @@ class CostCalculator:
         Returns:
             ModelPricing if found, None otherwise
         """
-        # Try exact match first
+        found = self._lookup_with_provenance(model)
+        return found[0] if found is not None else None
+
+    def _lookup_with_provenance(
+        self, model: str,
+    ) -> tuple[ModelPricing, PriceSource, PriceMatch] | None:
+        # Preserve the legacy matching order and effective numeric prices.
         if model in self._pricing:
-            return self._pricing[model]
+            return self._pricing[model], self._price_sources[model], "exact"
 
         # Try without provider prefix (e.g., "openai/gpt-4" -> "gpt-4")
         if "/" in model:
@@ -166,19 +177,56 @@ class CostCalculator:
 
             # Check for provider-level pricing (e.g., "ollama" for all Ollama models)
             if provider in self._pricing:
-                return self._pricing[provider]
+                return self._pricing[provider], self._price_sources[provider], "provider"
 
             # Check base model
             if base_model in self._pricing:
-                return self._pricing[base_model]
+                return self._pricing[base_model], self._price_sources[base_model], "base_model"
 
         # Try partial match for versioned models (e.g., "gpt-4-0613" matches "gpt-4")
         model_lower = model.lower()
         for key in sorted(self._pricing.keys(), key=len, reverse=True):
             if model_lower.startswith(key.lower()):
-                return self._pricing[key]
+                return self._pricing[key], self._price_sources[key], "prefix"
 
         return None
+
+    def estimate_with_provenance(
+        self, model: str, input_tokens: int, output_tokens: int = 0,
+    ) -> CostMetrics:
+        """A local estimate with historical/config provenance, never actual billing.
+
+        Unavailable and invalid estimates carry no fabricated zero cost. Raw model
+        and pricing-table keys do not appear in this public safe projection.
+        """
+        if not self.config.enabled:
+            return CostMetrics()
+        if any(type(n) is not int or not 0 <= n <= 2**63 - 1
+               for n in (input_tokens, output_tokens)):
+            return CostMetrics(cost_state="invalid")
+        found = self._lookup_with_provenance(model)
+        if found is None:
+            if not self.config.estimate_unknown:
+                return CostMetrics()
+            rates = ModelPricing(self.config.fallback_input_cost, self.config.fallback_output_cost)
+            source: PriceSource = "fallback"
+            match: PriceMatch = "fallback"
+        else:
+            rates, source, match = found
+        pair = (rates.input_cost_per_1k, rates.output_cost_per_1k)
+        if any(not isfinite(rate) or rate < 0 for rate in pair):
+            return CostMetrics(cost_state="invalid")
+        input_cost = (input_tokens / 1000) * pair[0]
+        output_cost = (output_tokens / 1000) * pair[1]
+        total = input_cost + output_cost
+        if not all(isfinite(value) for value in (input_cost, output_cost, total)):
+            return CostMetrics(cost_state="invalid")
+        # Hash only numeric rates and closed categories, never a model/config name.
+        reference = sha256(f"{pair[0]!r}:{pair[1]!r}:{source}:{match}".encode()).hexdigest()[:16]
+        return CostMetrics(cost_state="estimated", input_cost_usd=round(input_cost, 8),
+                           output_cost_usd=round(output_cost, 8), total_cost_usd=round(total, 8),
+                           currency="USD", price_source=source, price_match=match,
+                           pricing_ref=reference)
 
     def calculate(
         self,

@@ -13,12 +13,12 @@ from friday_core.interfaces.memory import EpisodicStoreAdapter
 
 if TYPE_CHECKING:
     # Forward references to types - avoids circular imports
-    from typing import TypeAlias
 
-    ContextLogEntry: TypeAlias = Any
-    TranscriptEntry: TypeAlias = Any
-    TranscriptSession: TypeAlias = Any
-    InteractionTurn: TypeAlias = Any
+
+    type ContextLogEntry = Any
+    type TranscriptEntry = Any
+    type TranscriptSession = Any
+    type InteractionTurn = Any
 
 
 @runtime_checkable

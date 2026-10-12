@@ -1,0 +1,18 @@
+{
+  "name": "mypy",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "mypy",
+    "--python-version",
+    "3.13",
+    "packages/friday-chat/src/friday_chat/app.py",
+    "packages/friday-chat/src/friday_chat/cli.py",
+    "packages/friday-chat/src/friday_chat/config.py",
+    "packages/friday-chat/src/friday_chat/runtime.py",
+    "packages/friday-chat/src/friday_chat/telemetry.py",
+    "packages/friday-telemetry/src/friday_telemetry/providers/composite.py"
+  ],
+  "exit_code": 0
+}

@@ -14,7 +14,7 @@ import math
 import re
 import struct
 from collections.abc import Iterable, Mapping, Sequence
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from typing import Protocol, runtime_checkable
 
@@ -1223,7 +1223,7 @@ class ExplicitMemoryMutationParticipant:
                             "synthesis_fingerprint": addition.synthesis_fingerprint,
                             "synthesis_version": addition.synthesis_version,
                             "created_at": addition.created_at.astimezone(
-                                timezone.utc
+                                UTC
                             ).isoformat(),
                             "created_at_ts": int(addition.created_at.timestamp()),
                         }
@@ -1372,7 +1372,7 @@ class ExplicitMemoryMutationParticipant:
                         or (metadatas[0] or {}).get("synthesis_version")
                         != addition.synthesis_version
                         or (metadatas[0] or {}).get("created_at")
-                        != addition.created_at.astimezone(timezone.utc).isoformat()
+                        != addition.created_at.astimezone(UTC).isoformat()
                         or (metadatas[0] or {}).get("created_at_ts")
                         != int(addition.created_at.timestamp())
                         or embeddings is None

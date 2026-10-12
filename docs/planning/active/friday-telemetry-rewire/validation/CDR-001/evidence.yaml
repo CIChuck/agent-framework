@@ -1,0 +1,233 @@
+{
+  "review_type": "construction_authority_readiness",
+  "verdict": "CHANGES_REQUESTED",
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-01",
+  "directive": "CD-001",
+  "reviewer": {
+    "agent": "/root/cd001_directive_reviewer",
+    "model_version": "not exposed",
+    "date": "2026-10-05",
+    "mode": "fresh-context read-only"
+  },
+  "head": "ab7efe8599d315d748015b3761a0b6fad4a9b922",
+  "preparation_base": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735",
+  "branch": "feature/friday-telemetry-rewire",
+  "input_integrity": {
+    "all_eight_match_before": true,
+    "all_eight_match_after": true,
+    "supplemental_unchanged": true,
+    "accepted_mcp_pin_match": true,
+    "repository_state_unchanged": true,
+    "index_unchanged": true,
+    "inputs": [
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/AGENTS.md",
+        "expected": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f",
+        "actual": "7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/reference/policies/repository-engineering-policy.md",
+        "expected": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+        "actual": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/reference/policies/development-task-lifecycle.md",
+        "expected": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+        "actual": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/reference/policies/independent-validation-policy.md",
+        "expected": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+        "actual": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/friday-telemetry-rewire/build-plan.md",
+        "expected": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a",
+        "actual": "ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+        "expected": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df",
+        "actual": "ab82f83249385def31cb372a4c252e058a3e5186e11ba6e1ac8e659812c2e8df"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+        "expected": "125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae",
+        "actual": "125c5961a660221a1e51c3a605fa51407bbe3b525b0cfceef8b7b9ed52ff3fae"
+      },
+      {
+        "path": "/Users/chuckrussell/Dev/gendev/agent-framework/docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+        "expected": "513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba",
+        "actual": "513ddd2b3eed0e7ffcf2e460d610d725146842993f41f68a25382fa1fea76cba"
+      }
+    ],
+    "supplemental": [
+      {
+        "path": "docs/dev-skills/ai-construction-directive-builder.md",
+        "expected": "1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259",
+        "actual": "1b984a0b1c2cb083df6ac70cc9f66bc27960699b5378c2f2530751faa46fa259"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+        "expected": "31e02a055acf184c94e637b93b5441ab0495d480a6a9c9929924c15fe41c6f63",
+        "actual": "31e02a055acf184c94e637b93b5441ab0495d480a6a9c9929924c15fe41c6f63"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+        "expected": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+        "actual": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+      }
+    ]
+  },
+  "independence": {
+    "separate_agent": true,
+    "builder_conclusions_read": false,
+    "prior_val_001_reports_read": false,
+    "remediation_or_waiver_proposals_read": false,
+    "repository_mutations": false,
+    "runtime_data_read": false,
+    "vendor_calls": false,
+    "exporters_activated": false,
+    "credential_access": false,
+    "historical_memory_used_for_findings": false,
+    "memory_registry_search": "Lightweight mandatory orientation search only; conclusions independently derived from current pinned authority."
+  },
+  "findings": [
+    {
+      "id": "CDR-001",
+      "severity": "medium",
+      "type": "required_correction",
+      "title": "Reconcile broad repository validation gates",
+      "evidence": [
+        {
+          "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+          "lines": "93-105"
+        },
+        {
+          "path": "docs/reference/policies/repository-engineering-policy.md",
+          "lines": "194-204"
+        },
+        {
+          "path": "AGENTS.md",
+          "lines": "101-109"
+        }
+      ],
+      "violated_requirement": "Repository minimum relevant Ruff/pytest gates plus narrow meaningful validation; lower directive cannot silently substitute conditional expansion.",
+      "impact": "Incomplete frozen check profile forces builder or validator to invent missing required verification.",
+      "bounded_correction": "Add reconciled broad gates or obtain precise safe exclusions/authority decision; preserve focused checks and record baseline/regression separation.",
+      "criteria": [
+        "T01-06",
+        "AC-06"
+      ],
+      "coverage": "Defined deterministic broader profile with explicit permitted exclusions; no real-data/external execution inferred."
+    },
+    {
+      "id": "CDR-002",
+      "severity": "medium",
+      "type": "required_correction",
+      "title": "Verify declared minimum Python compatibility",
+      "evidence": [
+        {
+          "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+          "lines": "45-49,79-85,96"
+        },
+        {
+          "path": "packages/friday-chat/pyproject.toml",
+          "lines": "6",
+          "revision": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735"
+        },
+        {
+          "path": "packages/friday-telemetry/pyproject.toml",
+          "lines": "6",
+          "revision": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735"
+        },
+        {
+          "path": "pyproject.toml",
+          "lines": "125-132",
+          "revision": "2155a0fc51f5b20dea4e35c6cfc70f1d52002735"
+        },
+        {
+          "path": "docs/reference/policies/repository-engineering-policy.md",
+          "lines": "5-12,87-100,181-192"
+        }
+      ],
+      "violated_requirement": "Preserve declared package compatibility and meaningful source typing; metadata scope/version is unchanged.",
+      "impact": "3.13-only typing evidence can miss newly introduced code unavailable on declared supported 3.10 deployments.",
+      "bounded_correction": "Add meaningful changed-source 3.10 typing and compatibility checks alongside installed-target checks; identify baseline limitations or seek exact scoped waiver.",
+      "criteria": [
+        "T01-06",
+        "AC-06"
+      ],
+      "coverage": "Supported-minimum changed-source typing/syntax/API evidence, separately reported from installed-environment checks."
+    }
+  ],
+  "advisories": [
+    {
+      "id": "CDR-A001",
+      "title": "Clarify partial-start rollback and exactly-once cleanup attempts",
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "lines": "58-74",
+      "basis_of_verdict": false
+    },
+    {
+      "id": "CDR-A002",
+      "title": "Clarify observer span admission or deferral and span privacy negatives",
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "lines": "31-54",
+      "basis_of_verdict": false
+    },
+    {
+      "id": "CDR-A003",
+      "title": "Clarify cancellation with cleanup failure and caught-failure lifecycle outcomes",
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "lines": "21",
+      "basis_of_verdict": false
+    }
+  ],
+  "checks_performed": [
+    "SHA-256 before/after for supplied inputs",
+    "Read pinned engineering/lifecycle/independence/directive/planning inputs",
+    "Read applicable directive-builder guidance",
+    "Read existing authority manifest and accepted MCP WS-07 authority",
+    "Inspect branch/HEAD/status/index without mutation",
+    "Read preparation-base telemetry public interfaces, MCP schema/helper, Chat construction/cleanup/config/CLI surfaces and package/root metadata",
+    "Search preparation-base public callers",
+    "Compare final state/index to initial saved inventory"
+  ],
+  "checks_not_run": [
+    "pytest",
+    "Ruff",
+    "mypy",
+    "board commands",
+    "documentation checker",
+    "runtime assembly",
+    "provider calls",
+    "exporter tests"
+  ],
+  "limitations": [
+    "Directive readiness review does not validate current implementation or candidate tests.",
+    "Full-suite safety and actual baseline failures were not determined by runtime execution.",
+    "Approval exchange was not authenticated beyond documentary labels.",
+    "Optional gendev.md guidance file absent.",
+    "A narrow current-source identifier search was observed for interface location only, without implementation-conformance assessment."
+  ],
+  "residual_risks": [
+    "Provider raises after unreturned internal side effect",
+    "Span identifier reuse across changing first providers",
+    "Caller sink retention remains caller-owned",
+    "Cancellation racing cleanup"
+  ],
+  "exit_gate": "Appropriate authority reconciles CDR-001 and CDR-002, freezes revised inputs and obtains a fresh directive review; reviewer neither approves nor authors amendments.",
+  "artifacts": [
+    "report.md",
+    "evidence.yaml",
+    "hash-before.json",
+    "hash-after.json",
+    "supplemental-input-hashes.json",
+    "supplemental-hash-after.json",
+    "repository-state-before.json",
+    "repository-state-after.json",
+    "preparation-base/"
+  ]
+}

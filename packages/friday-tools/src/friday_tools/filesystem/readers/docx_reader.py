@@ -5,7 +5,9 @@ Word document reader adapter.
 Uses python-docx for text extraction from DOCX files.
 Optional dependency: pip install friday-tools[documents]
 
-Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md - Phase 3a
+Ref:
+docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md -
+Phase 3a
 """
 
 from __future__ import annotations

@@ -247,3 +247,20 @@ def test_cli_canonical_llm_config_has_no_migration_diagnostic(
 
     assert result.exit_code == 0
     assert "Config warning [llm]" not in result.output
+
+
+@pytest.mark.parametrize(
+    "enabled,state", [(True, "active (debug)"), (False, "disabled (disabled)")]
+)
+def test_cli_reports_local_telemetry_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, enabled: bool, state: str
+) -> None:
+    path = tmp_path / "config.yaml"
+    path.write_text(
+        f"llm:\n  model: fake/test\ntelemetry:\n  enabled: {str(enabled).lower()}\n"
+    )
+    _install_cli_inputs(monkeypatch, ["/exit"])
+    monkeypatch.setenv("FRIDAY_CHAT_RUNTIME", "fake")
+    result = CliRunner().invoke(app, ["--config", str(path)])
+    assert result.exit_code == 0
+    assert f"Telemetry: {state}" in result.output

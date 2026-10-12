@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-06T01:16:48.056481+00:00",
+  "candidate": "cdb1b8b6a07ff3cedda42b6c165d29b74020aeaf",
+  "guard_sha256": "6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/usr/bin:/bin",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review/guard",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review/tmp",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review/tmp/mypy",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review/tmp/ruff"
+  },
+  "source_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+  "commands_imports": [
+    "asyncio",
+    "re",
+    "collections.abc",
+    "dataclasses",
+    "typing",
+    "__future__"
+  ],
+  "consumer_effects": "Static mypy input only; no runtime import of product modules; no provider/helper/subprocess code executed.",
+  "source_audit": "Exact complete commands.py audited; standard-library imports and declarations only, no top-level file/network/process effects. Consumer imports only private original/converted.",
+  "tools": "Installed mypy and Ruff via installed .venv Python; no uv resolution, sync, download, build or plugin execution.",
+  "write_scope": "/private/tmp/telem-01/REM-004/approved-execution/compatibility-proposal-review",
+  "original_runtime_access": "none",
+  "product_tests": "none required for planning proposal",
+  "profile_correction": "Removed HOME override; initial profile evidence retained. Common system variables are not repurposed."
+}

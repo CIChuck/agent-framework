@@ -1,0 +1,13 @@
+{
+  "head_unchanged": true,
+  "branch_unchanged": true,
+  "index_unchanged": true,
+  "tracked_status_unchanged": true,
+  "full_status_equal": false,
+  "status_added": [
+    "?? .claude/"
+  ],
+  "status_removed": [],
+  "payloads_not_inspected": true,
+  "reviewer_original_writes": false
+}

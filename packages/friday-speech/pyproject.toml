@@ -3,7 +3,7 @@ name = "friday-framework-speech"
 version = "0.1.0a2"
 description = "Speech services (TTS, wake word) for Friday"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 license = "MIT"
 authors = [{ name = "Friday Team" }]
 keywords = ["speech", "tts", "wakeword", "audio", "assistant"]

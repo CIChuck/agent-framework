@@ -120,7 +120,7 @@ class TestLiteLLMService:
                 messages=[{"role": "user", "content": "Test"}],
             )
 
-            assert "llm_completion_success" in recorder.event_names
+            assert "llm.request_finish" in recorder.event_names
 
     @pytest.mark.asyncio
     async def test_usage_tracking(self, service):

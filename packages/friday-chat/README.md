@@ -148,3 +148,79 @@ setting.
 ## License
 
 MIT
+
+### Local telemetry
+
+Chat telemetry defaults to disabled. Enable the local diagnostic provider with:
+
+```yaml
+telemetry:
+  enabled: true
+  provider: debug
+```
+
+The CLI reports telemetry state at startup. Embedded applications can inspect
+`runtime.telemetry.snapshot()` for immutable runtime/application lifecycle and
+validated MCP and LLM event records. The observer retains the newest 256 records and
+cumulative drop, rejection, and delivery-failure counts; these records remain in
+process memory. A failed injected sink remains visible as `failed`, while Chat
+continues operating and local inspection remains available.
+
+`build_runtime(config, telemetry=provider)` accepts any existing
+`TelemetryInterface` implementation as a caller-owned override, including when
+YAML telemetry is disabled. Chat wraps it with the same typed content boundary
+and never closes it. Only allowlisted lifecycle, MCP and closed version-one LLM attributes are
+forwarded. Prompts, responses, reasoning, memory, schemas, arguments, results,
+paths, exception messages, and raw session identifiers are excluded.
+
+The real framework runtime passes the same enabled observer to primary chat,
+embedding, extraction, passage routing, compaction, SmartFileRead and explicit
+maintenance services, through canonical pools and legacy configuration. Disabled
+assembly passes `None`. Construction creates no LLM request or exporter. Roles
+identify constructed services: legacy extraction can alias `maintenance_default`,
+and compaction can alias `maintenance_researcher` or the default. Shared instances
+keep their role rather than being relabelled by concurrent consumers.
+
+LLM events contain generated request/attempt/batch identities, truthful reported
+usage and bounded timing/cost estimates; no LLM span remains open across stream
+yields. Built-in pricing is historical early-2025 data, not current billing, and
+failed attempts may have unknown charges. Turn correlation and local execution
+metrics are described below. Remote exporter assembly and optional Langfuse
+compatibility remain later work. The `langfuse`
+section is not activated by local telemetry. Unsupported telemetry providers and
+fields fail config validation; the shared framework telemetry defaults and
+raw transcript capture settings are unchanged.
+
+## Execution diagnostics
+
+Enabled Chat telemetry links one opaque turn reference across model requests,
+native/MCP dispatch, memory retrieval, and the existing persistence path. Tool
+failure records retain their failed/blocked meaning. Intermediate persistence
+completion is distinct from full-turn success; these observations do not promise
+atomic rollback or durable commit acknowledgements absent from the underlying API.
+The accepted MCP receipt/publication events preserve pending versus published truth.
+
+`TurnResult.correlation_context` and `PendingExtractionTurn.correlation_context`
+are optional, immutable, process-local origin metadata. Background extraction
+rebinds each item's origin independently and preserves retry/requeue behavior,
+including committed extraction followed by cancellation. Old/custom results and
+work items default to uncorrelated behavior. Borrowed sinks remain caller-owned.
+
+Existing `/debug` and `/timing` now include safe last-turn outcome/persistence and
+bounded execution counters, even for failed turns without a result. Snapshots
+retain at most256 event records,32 terminal summaries,128 active spans and fixed
+operation/outcome histogram labels. They contain no prompt, reasoning, tool
+arguments/results/names, memory/document contents, paths, raw IDs or exception text.
+Diagnostics remain available with remote exporters off or failing. Disabled
+telemetry preserves prior invocation behavior and produces no execution events.
+
+
+Execution spans deliver synchronous sink calls in private per-frame contexts.
+Active owned children retain explicit parents; independent background items,
+including explicit absent origins, cannot inherit a foreground sink stack. None
+origins emit session-only facts and do not contribute to foreground accounting.
+Known rejected MCP calls use trusted membership for their closed rejection counts.
+Execution schema versions require actual integer1, including forged-instance entry.
+Acquired close-capable model iterators are explicitly awaited before terminal return
+through direct, legacy and typed stream paths. Cleanup preserves an active callback,
+model or cancellation exception; chunk ordering, heartbeat and buffering stay intact.

@@ -1,0 +1,25 @@
+{
+  "status": "approved by Chuck Russell for TELEM-02; exact scope only",
+  "existing_nodes": [
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_controls_reach_final_http_json",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_chat_adapter_typed_stream_reuses_generation_defaults",
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py::test_provider_option_target_mismatch_fails_before_http",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_non_streaming_final_http_payload",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_streaming_uses_same_translated_fields",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[xhigh]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[medium]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_each_qwen_effort_tier_reaches_final_http_json[low]",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_provider_default_emits_no_reasoning_override",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_disabled_reasoning_reaches_final_http_json",
+    "packages/friday-llm/tests_llm/test_wire_capture.py::test_named_tool_choice_uses_lm_studio_bounded_wire_form"
+  ],
+  "new_nodes": [
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+  ],
+  "existing_fixture_hashes": {
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py": "515ae0988d9888c40b8fe15fae3e24aa9a5033974349ecafb3d90cc6f9aacbd8",
+    "packages/friday-llm/tests_llm/conftest.py": "28ed52fb2b1be1658c4179832a75bcbdedde8f2fb186a43d12c65e2556ee092e"
+  },
+  "effects": "Existing11 synthetic HTTP nodes plus new2 native gRPC nodes; only127.0.0.1:0/fake payloads; normal-user sandbox escape; no other network privileges; finalize all fixtures/helper/node hashes before collection."
+}

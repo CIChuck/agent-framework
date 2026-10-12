@@ -8,7 +8,7 @@ import shutil
 import tempfile
 from array import array
 from collections.abc import AsyncIterator, Iterable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from friday_core.logging import get_logger
@@ -21,7 +21,7 @@ logger = get_logger(__name__)
 
 
 def _timestamp_slug() -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     return now.strftime("%Y%m%d_%H%M%S")
 
 

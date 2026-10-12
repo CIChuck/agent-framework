@@ -114,6 +114,11 @@ def main(
                 loaded_config,
                 fake=resolved_runtime_mode == "fake",
             )
+            if runtime.telemetry is not None:
+                snapshot = runtime.telemetry.snapshot()
+                typer.echo(
+                    f"Telemetry: {snapshot.state} ({snapshot.provider})", err=True
+                )
             asyncio.run(
                 FridayChatApp(
                     runtime=runtime,

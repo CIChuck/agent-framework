@@ -1,0 +1,385 @@
+{
+  "variants": {
+    "original": {
+      "parent_schema": {
+        "$defs": {
+          "Parent": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "title": "Parent",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Parent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Parent]",
+        "type": "object"
+      },
+      "child_schema": {
+        "$defs": {
+          "Child": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              },
+              "extra": {
+                "title": "Extra",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value",
+              "extra"
+            ],
+            "title": "Child",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Child"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Child]",
+        "type": "object"
+      },
+      "parent_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic"
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "child_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic",
+          "extra": 1
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "missing_child_field_rejected": true,
+      "public_subscriptability": true
+    },
+    "converted": {
+      "parent_schema": {
+        "$defs": {
+          "Parent": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "title": "Parent",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Parent"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Parent]",
+        "type": "object"
+      },
+      "child_schema": {
+        "$defs": {
+          "Child": {
+            "properties": {
+              "value": {
+                "title": "Value",
+                "type": "string"
+              },
+              "extra": {
+                "title": "Extra",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "value",
+              "extra"
+            ],
+            "title": "Child",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "success": {
+            "title": "Success",
+            "type": "boolean"
+          },
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/Child"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Error"
+          },
+          "hint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Hint"
+          },
+          "raw": {
+            "additionalProperties": true,
+            "title": "Raw",
+            "type": "object"
+          },
+          "status_code": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Status Code"
+          }
+        },
+        "required": [
+          "success"
+        ],
+        "title": "MoltbookResponse[Child]",
+        "type": "object"
+      },
+      "parent_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic"
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "child_dump": {
+        "success": true,
+        "data": {
+          "value": "synthetic",
+          "extra": 1
+        },
+        "error": null,
+        "hint": null,
+        "raw": {},
+        "status_code": null
+      },
+      "missing_child_field_rejected": true,
+      "public_subscriptability": true
+    }
+  },
+  "schema_dump_contract_equal": true
+}

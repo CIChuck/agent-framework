@@ -1,0 +1,122 @@
+validation_id: VAL-002
+initiative: friday-telemetry-rewire
+work_unit: TELEM-01 / REM-001
+directive: CD-001 A01/A02 and approved REM-001
+candidate: 3a690505c8a82aa2cf8abfb872848e64f084e2b3
+base: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735
+delta_base: 98cc9e74cf40320af08533f4915e394eecf39537
+aggregate_diff: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735..3a690505c8a82aa2cf8abfb872848e64f084e2b3
+delta_diff: 98cc9e74cf40320af08533f4915e394eecf39537..3a690505c8a82aa2cf8abfb872848e64f084e2b3
+review_mode: fresh-context read-only finding delta followed by full aggregate TELEM-01
+checkout: /private/tmp/telem-01/VAL-002-review
+baseline_checkout: /private/tmp/telem-01/REM-001/preparation-base
+authority_manifest: docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml
+authority:
+- path: AGENTS.md
+  sha256: 7fad2b4063a0dc4201d26e353138da6165060077cc88e097dad2ac57551d987f
+- path: docs/reference/policies/repository-engineering-policy.md
+  sha256: 17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff
+- path: docs/reference/policies/development-task-lifecycle.md
+  sha256: d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c
+- path: docs/reference/policies/independent-validation-policy.md
+  sha256: 4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a
+- path: docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md
+  sha256: 4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f
+- path: docs/planning/active/friday-telemetry-rewire/build-plan.md
+  sha256: ddba6460ee01bf9497af48119489a37fa4969420e1b0e46d1dec2ca438d18c8a
+- path: docs/planning/active/friday-telemetry-rewire/telemetry-contract.md
+  sha256: ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17
+- path: docs/planning/active/friday-telemetry-rewire/tactical-plan.md
+  sha256: d9382eee4d3e1f0b63d2b283675960d8a7cda55de01ea72d39ac4ae42191e6bc
+- path: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+  sha256: e332e54dfde73bc0ba334c8932832190a802d4418cb62fdfe6a1c1824efba3e6
+- path: docs/planning/active/friday-telemetry-rewire/verification-profile.md
+  sha256: c1a71f93290066d97e6ed9f2dce2e963028dd4b35ed424a8a08f8f015e0d24d2
+- path: docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md
+  sha256: 0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d
+criteria:
+- AC-01
+- AC-02
+- AC-03
+- AC-04
+- AC-05
+- AC-06
+exact_changed_python:
+- packages/friday-chat/src/friday_chat/app.py
+- packages/friday-chat/src/friday_chat/cli.py
+- packages/friday-chat/src/friday_chat/config.py
+- packages/friday-chat/src/friday_chat/runtime.py
+- packages/friday-chat/src/friday_chat/telemetry.py
+- packages/friday-chat/tests_chat/compat/test_config_compatibility.py
+- packages/friday-chat/tests_chat/test_cli.py
+- packages/friday-chat/tests_chat/test_telemetry.py
+- packages/friday-telemetry/src/friday_telemetry/providers/composite.py
+- packages/friday-telemetry/tests_telemetry/test_providers.py
+exact_changed_source:
+- packages/friday-chat/src/friday_chat/app.py
+- packages/friday-chat/src/friday_chat/cli.py
+- packages/friday-chat/src/friday_chat/config.py
+- packages/friday-chat/src/friday_chat/runtime.py
+- packages/friday-chat/src/friday_chat/telemetry.py
+- packages/friday-telemetry/src/friday_telemetry/providers/composite.py
+required_checks:
+  profile: docs/planning/active/friday-telemetry-rewire/verification-profile.md
+  directive: docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md
+  syntax_script: /private/tmp/telem-01/REM-001/syntax310.py
+  minimum_version_api_review: independently review introduced stdlib/dependency APIs
+    and frozen metadata; do not rely on builder conclusion
+  python310_runtime: attempt actual installed 3.10 synthetic imports/lifecycle without
+    installing/downloading missing dependencies
+permitted_environment:
+  UV_PROJECT_ENVIRONMENT: /Users/chuckrussell/Dev/gendev/agent-framework/.venv
+  UV_CACHE_DIR: /private/tmp/friday-uv-cache
+  UV_NO_SYNC: 'true'
+  UV_OFFLINE: 'true'
+  LITELLM_LOCAL_MODEL_COST_MAP: 'true'
+  ANONYMIZED_TELEMETRY: 'False'
+  TERM: xterm-256color
+  NO_COLOR: absent
+  PYTHONPATH: prepend external network-guard and all isolated package source directories
+  TMPDIR: new reviewer-owned temporary root; never read original runtime state
+safety_preflight: independently inspect collection/import/helper/subprocess paths
+  before pytest; existing builder preflight raw module hashes may be used as inventory
+  only
+network_guard:
+  path: /private/tmp/telem-01/REM-001/network-guard/sitecustomize.py
+  sha256: 6f61ea4ca34c7abef9e0c709eb1e1feb0f3cf7733cbc59bc465d6b01182e9e81
+  purpose: prevent non-loopback DNS/connect/sendto in all test processes; same baseline/candidate
+    conditions
+known_baseline_failures:
+- root Ruff 337 diagnostics in preparation base and provisional remediation checkout
+- root pytest duplicate test_display module collection error at friday-cli/tests_cli/test_display.py
+  in both revisions
+- one unchanged 0.8-second PTY acknowledgement failure in isolated warmed base/candidate
+  reruns
+- three synthetic localhost setup errors from sandbox listener permissions
+- 'installed Python3.10.19 lacks pydantic dependencies: actual package smoke import
+  fails at base and candidate'
+waivers: none approved; WVR-001 remains proposed
+exclusions:
+- exact two live LM Studio modules as named in verification-profile for root suite
+- unrelated dirty files outside frozen candidate
+- later telemetry units/exporters/vendor providers/real conversations/existing .friday/Chroma/transcript
+  data
+prohibited_effects:
+- source/docs/test/board/authority/Git mutations
+- credential access
+- external services and vendor calls
+- privileged test execution or new exclusions without bounded authority
+- builder/private reasoning or reports as conformance evidence
+requirements:
+- verify all authority hashes and complete candidate before/after state
+- review source/directive/accepted MCP contracts independently, delta and aggregate
+- run required deterministic checks; retain all nonzero results without inferring
+  a waiver
+- independent probes for active/completed/generated ID reuse, parent/membership/failure/rollback/privacy/cancellation
+  as needed
+- return exactly VERIFIED, CHANGES_REQUESTED or BLOCKED with stable cited findings,
+  commands/results/limits/residual risk
+- write only external output directory; do not remediate
+- do not read prior validation reports, builder implementation reports or builder
+  conclusion artifacts
+output_directory: /private/tmp/telem-01/VAL-002

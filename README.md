@@ -50,6 +50,16 @@ the current system.
   - Optional local/cloud/hybrid model routing through LiteLLM-compatible
     services.
 
+## Python requirement
+
+Friday requires **Python 3.13.4 or newer**. Python 3.10, 3.11, 3.12 and
+3.13.0–3.13.3 are unsupported. The workspace selects the Python 3.13 series
+through `.python-version`; package metadata enforces the patch minimum.
+
+For an existing checkout using an older interpreter, select Python 3.13.4 or
+newer and recreate the environment with `uv sync --python 3.13`. Dependency
+constraints are unchanged, including LiteLLM 1.100.1.
+
 ## Repository Layout
 
 ```text

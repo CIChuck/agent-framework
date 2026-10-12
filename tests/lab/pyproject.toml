@@ -2,7 +2,7 @@
 name = "friday-lab"
 version = "0.1.0"
 description = "The MRI Suite: Observability and Experiments"
-requires-python = ">=3.10"
+requires-python = ">=3.13.4"
 dependencies = [
     "friday-core",
     "friday-memory",

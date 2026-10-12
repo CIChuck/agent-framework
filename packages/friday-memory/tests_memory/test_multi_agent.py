@@ -1,7 +1,7 @@
 # mypy: ignore-errors
 # mypy: disallow-untyped-defs=False, warn-unused-ignores=False
 # mypy: disallow-untyped-defs=False
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from friday_core.interfaces import ArbitrationDecision, SharedWriteCapability
@@ -29,7 +29,7 @@ def _provenance(author_id: str = "agent-a") -> ProvenanceMetadata:
         source_type="agent",
         author_id=author_id,
         confidence=1.0,
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
 
 
@@ -152,8 +152,8 @@ async def test_shared_write_requires_valid_capability() -> None:
         token_id="t1",
         session_id="s1",
         run_id="r1",
-        issued_at=datetime.now(timezone.utc) - timedelta(minutes=5),
-        expires_at=datetime.now(timezone.utc) - timedelta(minutes=1),
+        issued_at=datetime.now(UTC) - timedelta(minutes=5),
+        expires_at=datetime.now(UTC) - timedelta(minutes=1),
     )
     with pytest.raises(PermissionError):
         await controller.write_shared_fact("shared fact", capability=expired)
@@ -162,8 +162,8 @@ async def test_shared_write_requires_valid_capability() -> None:
         token_id="t2",
         session_id="s1",
         run_id="r1",
-        issued_at=datetime.now(timezone.utc) - timedelta(minutes=1),
-        expires_at=datetime.now(timezone.utc) + timedelta(minutes=5),
+        issued_at=datetime.now(UTC) - timedelta(minutes=1),
+        expires_at=datetime.now(UTC) + timedelta(minutes=5),
     )
     node_id = await controller.write_shared_fact("shared fact", capability=valid)
     assert node_id
@@ -395,7 +395,7 @@ def test_scratchpad_store_ttl_and_quota_enforcement() -> None:
             execution_id="exec",
         )
     # Force expiry and purge
-    now = datetime.now(timezone.utc) + timedelta(seconds=2)
+    now = datetime.now(UTC) + timedelta(seconds=2)
     purged = store.purge_expired(now=now)
     assert purged == 1
     assert store.get_pad("scope-1") is None

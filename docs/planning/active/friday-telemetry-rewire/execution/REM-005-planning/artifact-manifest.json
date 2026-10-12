@@ -1,0 +1,138 @@
+{
+  "status": "proposed remediation, no source changes",
+  "candidate": "1547fae7cac6450ec9ad7440f19d1f1162598fe2",
+  "artifacts": [
+    {
+      "original": "/private/tmp/telem-04/construction/during-independent-review-source-preservation.json",
+      "stored": "raw/during-independent-review-source-preservation.json.gz",
+      "original_sha256": "fde6553ac4da84a0e8998a38d55632eb63cd8df1a34c022023232f51c3698353",
+      "stored_sha256": "80049cf386bf92dad6cc5d91ecdcb880ed8ff2c7f7e862e3b9b732b055e2359d"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-audit.json",
+      "stored": "raw/proposal-audit.json.gz",
+      "original_sha256": "b8dfaa8f146f338c8efe9ed2247ee558f0640bdf152dfc7026ed4f364c28042b",
+      "stored_sha256": "3002441553d94b474ed0a4316c8fdcfbc5c1a23952feda546c0c24f43250d953"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-commit-paths.json",
+      "stored": "raw/proposal-commit-paths.json.gz",
+      "original_sha256": "de11075fa0253c93da99e35c26d0d368dd55fb54cc6904f6e36efe790bb92901",
+      "stored_sha256": "08f577032ec842598e6315456f9aa562d7a3263d51ead180bc4a70d1c3368252"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-contracts-receipt.json",
+      "stored": "raw/proposal-contracts-receipt.json.gz",
+      "original_sha256": "8cfcf10fbc63535ce183d18d3f8d8991314087d22f0f46ff53f97b30ccea89a7",
+      "stored_sha256": "f3326afb57001fad48d969e6060a6e32ad5ccf2942d865c048e9210e793154db"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-contracts.log",
+      "stored": "raw/proposal-contracts.log.gz",
+      "original_sha256": "2c46919f1ad706e282527e788855c9eea520e8bf0a4f50e78746ce3b63f521f9",
+      "stored_sha256": "961681cdcc38e13ea8ece3dee8859144b185fc8af8e052b531b507e9b8f77e5b"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-docs-receipt.json",
+      "stored": "raw/proposal-docs-receipt.json.gz",
+      "original_sha256": "754e3a22306c8837b791b1018cda5944a21d9f5c3fe1ef18ba7c3759811bc5ad",
+      "stored_sha256": "1ee0834cc68945a260497442ebbb2300cd41455aed6ee5d355d9837a43779628"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-docs.log",
+      "stored": "raw/proposal-docs.log.gz",
+      "original_sha256": "a331fa134f8a20a4726176957d8050a0d0bd96321da6fbc9a1ab4678d17af893",
+      "stored_sha256": "ec7154aa076a10219874f5c86c5c2a76a7865a8060efc0b825ea90a6750fa46f"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-lint-disposition.json",
+      "stored": "raw/proposal-lint-disposition.json.gz",
+      "original_sha256": "7640bd58cc8ea7a1a0c6c4dea070249ff48ff592eddc7c8a127877b4909ff903",
+      "stored_sha256": "5b1d81ee5b9a8d8075644633d4f1986d945642f7ddeb59db05f8c7c4f77b839e"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-next-receipt.json",
+      "stored": "raw/proposal-next-receipt.json.gz",
+      "original_sha256": "6f21a337db90ba91ea635d462cbd4e46c876ecc521edae62787212b43a0ab857",
+      "stored_sha256": "0435ba70e8c005628efa184f87902afedf4b39aaa8d36a1645c1ee2ac0ee692c"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-next.log",
+      "stored": "raw/proposal-next.log.gz",
+      "original_sha256": "cb7aee6dd02c82fd53d06c7f693f811106701ec1736c363831bb40a3f11b8830",
+      "stored_sha256": "dd393e8abe499bd4d5d30ec5494c42a965843e1a1714533abb1d70a6a8fb4961"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-render-receipt.json",
+      "stored": "raw/proposal-render-receipt.json.gz",
+      "original_sha256": "d129fcf689abdfdb44147847b1b76ce4e72974647acd4e0c20a405876aa0c358",
+      "stored_sha256": "2c785669a2e266734c777728b93afa5de437c0ec754f86c613db11d5a0d77612"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-render.log",
+      "stored": "raw/proposal-render.log.gz",
+      "original_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "stored_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-root-ruff-receipt.json",
+      "stored": "raw/proposal-root-ruff-receipt.json.gz",
+      "original_sha256": "c18ce38b3db52dde742fef40dd9f368cc6a6e59449ed8da4dfffcc67e1e4a92e",
+      "stored_sha256": "006f2214c0079156cc3ebe88ffa7fde2a9affd73531c57bc7661220772cf847e"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-root-ruff.log",
+      "stored": "raw/proposal-root-ruff.log.gz",
+      "original_sha256": "5a9c10436440f21eed603f58c94f12af1c59ca4097b12a3f3c7f17d3a180fb7f",
+      "stored_sha256": "7d32f80b1b513013e095c7a76637dd161b67d18b932a877e494b980aeba21491"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-show-receipt.json",
+      "stored": "raw/proposal-show-receipt.json.gz",
+      "original_sha256": "b7de550ea2895d9b286fb1d091b6bac08b213d80b1911db0a0c9de4ecfa08626",
+      "stored_sha256": "2e88727191cbcf97921b93e6e0d79575b3b5d81b4fb16310c027b7f8e2e34e44"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-show.log",
+      "stored": "raw/proposal-show.log.gz",
+      "original_sha256": "a53225ffbc6879c69b28c96230e9edc7708b2d925b1e97c346f1e642b3318510",
+      "stored_sha256": "c170e8422925e1f69613615851994c42d5825aa86a7e95f2892e2254e9c15ec3"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-validate-receipt.json",
+      "stored": "raw/proposal-validate-receipt.json.gz",
+      "original_sha256": "c369c91e2dd77d65171b456eadae95e6a33720c442f79ddfd4c378b32db29c04",
+      "stored_sha256": "73e06450d7b56dc7845398eba7e30853a4b2ce9e714ec571f2876c4ca2551493"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposal-validate.log",
+      "stored": "raw/proposal-validate.log.gz",
+      "original_sha256": "c1009c9ffcca29b6f1f3cedf59ec71463569fa61fc90c66358e33e9ea7be3f94",
+      "stored_sha256": "0bf62f871e6e8c391af166427f3765307884e0821f65bc5abb8856aab26bf884"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposed-REM-005-paths.json",
+      "stored": "raw/proposed-REM-005-paths.json.gz",
+      "original_sha256": "6e6b10125bd8fe1752910511919a2261325741f75870bb2ac6c2a4277b104549",
+      "stored_sha256": "cd5b388bd51c235c6e9bbc5180f6ea1f8904ae8c67d877bc5ea20257408056c8"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposed-remediation-contracts.json",
+      "stored": "raw/proposed-remediation-contracts.json.gz",
+      "original_sha256": "60677e9c56eaf9f98ce1e9db04b456593dbe05426a66a6195845557c3f38853f",
+      "stored_sha256": "c20277bd9486f3d5f1ff7356e79099577cd30885926d9c8969d5153a8a8685a2"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/proposed-remediation-snapshot.json",
+      "stored": "raw/proposed-remediation-snapshot.json.gz",
+      "original_sha256": "7a70f6b5c2d74af329c03f3ddea374354759f2abf2a7a2b551d867794080fe75",
+      "stored_sha256": "6da6d7c1e2984727c922bc359d17ccc0f871e22ee8930a4c3786b515d2c744ca"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/store_validation.py",
+      "stored": "raw/store_validation.py.gz",
+      "original_sha256": "8972f23080622d2d59df6e2e8973d4696f0db0495858f7adaa35dc2d2f384a57",
+      "stored_sha256": "f32f255b8345e9719309160548918243242b576f1986f1f465ee6c68ccb9575c"
+    }
+  ]
+}

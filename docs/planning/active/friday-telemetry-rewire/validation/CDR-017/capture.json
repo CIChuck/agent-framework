@@ -1,0 +1,1723 @@
+{
+  "reviewer": "/root/telem02_a02_approved_readiness",
+  "model": "GPT-6 Codex; exact model build unavailable",
+  "captured_at_utc": "2026-10-07T00:42:54.753664+00:00",
+  "request_sha256": "acfd8ffeefb9674af55c3f2268457947504b4c9a34a751749304062052614cb4",
+  "candidate": "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd",
+  "base": "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c",
+  "manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+  "manifest_sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2",
+  "prior_manifest_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+  "pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "actual_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "actual_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "matches": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "actual_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "matches": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "actual_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "actual_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "actual_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "actual_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528",
+      "actual_sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89",
+      "actual_sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc",
+      "actual_sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "actual_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "actual_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "actual_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "actual_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md",
+      "sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "actual_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md",
+      "sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c",
+      "actual_sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7",
+      "actual_sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7",
+      "matches": true
+    }
+  ],
+  "pin_delta": {
+    "prior_count": 17,
+    "current_count": 19,
+    "removed": [],
+    "added": [
+      "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md",
+      "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md"
+    ],
+    "changed": [
+      "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md"
+    ],
+    "unchanged": [
+      "AGENTS.md",
+      "docs/reference/policies/repository-engineering-policy.md",
+      "docs/reference/policies/development-task-lifecycle.md",
+      "docs/reference/policies/independent-validation-policy.md",
+      "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md"
+    ]
+  },
+  "checks": {
+    "manifest_hash_match": true,
+    "request_matches_manifest": true,
+    "all_19_pins_match": true,
+    "accepted_19_controls_match": true,
+    "unchanged_scope_files": true,
+    "covered_object_hashes_match": true,
+    "listener_existing_hashes_match": true
+  },
+  "accepted_manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+  "accepted_manifest_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89",
+  "accepted_pins": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "actual_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "actual_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "actual_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "matches": true
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "actual_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "matches": true
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "actual_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "actual_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "actual_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "actual_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+      "sha256": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478",
+      "actual_sha256": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+      "sha256": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c",
+      "actual_sha256": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+      "sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "actual_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+      "sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "actual_sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+      "sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+      "actual_sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+      "sha256": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828",
+      "actual_sha256": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+      "sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+      "actual_sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+      "sha256": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98",
+      "actual_sha256": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md",
+      "sha256": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd",
+      "actual_sha256": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md",
+      "sha256": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c",
+      "actual_sha256": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c",
+      "matches": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json",
+      "sha256": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2",
+      "actual_sha256": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2",
+      "matches": true
+    }
+  ],
+  "unchanged_files": [
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "base_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "candidate_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "unchanged": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "base_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "candidate_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "unchanged": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "base_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "candidate_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "unchanged": true
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md",
+      "base_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "candidate_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "unchanged": true
+    }
+  ],
+  "covered_hashes": [
+    {
+      "category": "archived_files",
+      "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py",
+      "expected_sha256": "3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e",
+      "actual_sha256": "3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e",
+      "matches": true
+    },
+    {
+      "category": "archived_files",
+      "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py",
+      "expected_sha256": "000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd",
+      "actual_sha256": "000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd",
+      "matches": true
+    },
+    {
+      "category": "archived_files",
+      "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py",
+      "expected_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "actual_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "matches": true
+    },
+    {
+      "category": "archived_files",
+      "path": "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py",
+      "expected_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "actual_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-agent/pyproject.toml",
+      "expected_sha256": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+      "actual_sha256": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-chat/pyproject.toml",
+      "expected_sha256": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+      "actual_sha256": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-cli/pyproject.toml",
+      "expected_sha256": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+      "actual_sha256": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-core/pyproject.toml",
+      "expected_sha256": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+      "actual_sha256": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-finance/pyproject.toml",
+      "expected_sha256": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+      "actual_sha256": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-llm/pyproject.toml",
+      "expected_sha256": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+      "actual_sha256": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-mcp/pyproject.toml",
+      "expected_sha256": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+      "actual_sha256": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-memory/pyproject.toml",
+      "expected_sha256": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+      "actual_sha256": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-moltbook/pyproject.toml",
+      "expected_sha256": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+      "actual_sha256": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-optimization/pyproject.toml",
+      "expected_sha256": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+      "actual_sha256": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-runtime/pyproject.toml",
+      "expected_sha256": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+      "actual_sha256": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-sandbox/pyproject.toml",
+      "expected_sha256": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+      "actual_sha256": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-speech/pyproject.toml",
+      "expected_sha256": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+      "actual_sha256": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-telemetry/pyproject.toml",
+      "expected_sha256": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+      "actual_sha256": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-tools/pyproject.toml",
+      "expected_sha256": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+      "actual_sha256": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "packages/friday-transcript/pyproject.toml",
+      "expected_sha256": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+      "actual_sha256": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+      "matches": true
+    },
+    {
+      "category": "lint_configurations",
+      "path": "pyproject.toml",
+      "expected_sha256": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+      "actual_sha256": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+      "matches": true
+    },
+    {
+      "category": "registry_source",
+      "path": "packages/friday-cli/src/friday_cli/commands.py",
+      "expected_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "actual_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "matches": true
+    }
+  ],
+  "listener_hashes": [
+    {
+      "path": "packages/friday-chat/tests_chat/test_llm_adapter_migration.py",
+      "expected_sha256": "515ae0988d9888c40b8fe15fae3e24aa9a5033974349ecafb3d90cc6f9aacbd8",
+      "actual_sha256": "515ae0988d9888c40b8fe15fae3e24aa9a5033974349ecafb3d90cc6f9aacbd8",
+      "matches": true
+    },
+    {
+      "path": "packages/friday-llm/tests_llm/conftest.py",
+      "expected_sha256": "28ed52fb2b1be1658c4179832a75bcbdedde8f2fb186a43d12c65e2556ee092e",
+      "actual_sha256": "28ed52fb2b1be1658c4179832a75bcbdedde8f2fb186a43d12c65e2556ee092e",
+      "matches": true
+    }
+  ],
+  "listener_counts": {
+    "existing": 11,
+    "new": 2
+  },
+  "wvr_counts": {
+    "diagnostics": 327,
+    "archive": 326,
+    "live": 1,
+    "lint_configs": 17
+  },
+  "wvr_registry_ast_pin": "34336e7c35b598b215dbb6d08e1150c2ef96e22d08cacc17b5f76e3f5be3f3e7",
+  "wvr_tool_pin": {
+    "ruff": "0.14.10",
+    "target": "py313"
+  },
+  "receipts": [
+    {
+      "id": 1,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/001.stdout",
+      "stderr": "raw/001.stderr",
+      "stdout_sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 2,
+      "argv": [
+        "git",
+        "show",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c:docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/002.stdout",
+      "stderr": "raw/002.stderr",
+      "stdout_sha256": "b3a3ceb4c0cba4db89d1a61e5f15ce14efa4008f70147b0cca088cca86514120",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 3,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:AGENTS.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/003.stdout",
+      "stderr": "raw/003.stderr",
+      "stdout_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 4,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/repository-engineering-policy.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/004.stdout",
+      "stderr": "raw/004.stderr",
+      "stdout_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 5,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/development-task-lifecycle.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/005.stdout",
+      "stderr": "raw/005.stderr",
+      "stdout_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 6,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/independent-validation-policy.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/006.stdout",
+      "stderr": "raw/006.stderr",
+      "stdout_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 7,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/007.stdout",
+      "stderr": "raw/007.stderr",
+      "stdout_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 8,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/008.stdout",
+      "stderr": "raw/008.stderr",
+      "stdout_sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 9,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/build-plan.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/009.stdout",
+      "stderr": "raw/009.stderr",
+      "stdout_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 10,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/telemetry-contract.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/010.stdout",
+      "stderr": "raw/010.stderr",
+      "stdout_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 11,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/tactical-plan.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/011.stdout",
+      "stderr": "raw/011.stderr",
+      "stdout_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 12,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/012.stdout",
+      "stderr": "raw/012.stderr",
+      "stdout_sha256": "bc172371fdcbc437f2be0e841596983a0687fcf3385af131fbcce8c8970c6528",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 13,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/telem02-contract.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/013.stdout",
+      "stderr": "raw/013.stderr",
+      "stdout_sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 14,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/014.stdout",
+      "stderr": "raw/014.stderr",
+      "stdout_sha256": "5a4f9fbf87401ed703cd819ccb65acba4f684315c2c486e895f4ff18a5c782bc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 15,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/015.stdout",
+      "stderr": "raw/015.stderr",
+      "stdout_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 16,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/016.stdout",
+      "stderr": "raw/016.stderr",
+      "stdout_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 17,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/017.stdout",
+      "stderr": "raw/017.stderr",
+      "stdout_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 18,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/018.stdout",
+      "stderr": "raw/018.stderr",
+      "stdout_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 19,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-state-reconciliation.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/019.stdout",
+      "stderr": "raw/019.stderr",
+      "stdout_sha256": "a4cf58225012154dde9ce895ff9b596f5b22e2155bb4eae05a8c8fa2b6bc535b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 20,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/020.stdout",
+      "stderr": "raw/020.stderr",
+      "stdout_sha256": "d98cdacb5ac531a03b1a4445e7f7ac9152733f82ce62ee2f339754ddbfabe97c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 21,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-approval-record.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/021.stdout",
+      "stderr": "raw/021.stderr",
+      "stdout_sha256": "0c64a20f193f02a44430f1eabd06d7e95dd34a3f1a78c6db5ee53768cec22cd7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 22,
+      "argv": [
+        "git",
+        "show",
+        "--format=fuller",
+        "--no-patch",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/022.stdout",
+      "stderr": "raw/022.stderr",
+      "stdout_sha256": "2942e073c8300c93efae0766e11c10feed47922ba0c2a564382963ed212670a8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 23,
+      "argv": [
+        "git",
+        "show",
+        "--format=fuller",
+        "--no-patch",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/023.stdout",
+      "stderr": "raw/023.stderr",
+      "stdout_sha256": "6ef802742ca0095d36918dfdae7fb1122cf67e463bc1b900cf09ce3724311a80",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 24,
+      "argv": [
+        "git",
+        "diff",
+        "--name-status",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/024.stdout",
+      "stderr": "raw/024.stderr",
+      "stdout_sha256": "0182ba2eff69f7394767fd16cd5beaa571f4e1a79c099768442ae7b3fc40841f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 25,
+      "argv": [
+        "git",
+        "diff",
+        "--stat",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/025.stdout",
+      "stderr": "raw/025.stderr",
+      "stdout_sha256": "466bd03bc1c9bca304cc5111f923254f63f54a15bea5fb3a78efc0a6edc41514",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 26,
+      "argv": [
+        "git",
+        "diff",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/026.stdout",
+      "stderr": "raw/026.stderr",
+      "stdout_sha256": "8582a422ee330e76313aeb54ce36bf3ec08a556516e601bd1d06739a0caece99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 27,
+      "argv": [
+        "git",
+        "diff",
+        "--check",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/027.stdout",
+      "stderr": "raw/027.stderr",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 28,
+      "argv": [
+        "git",
+        "ls-tree",
+        "-r",
+        "--name-only",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd",
+        "docs"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/028.stdout",
+      "stderr": "raw/028.stderr",
+      "stdout_sha256": "19d6e63c2a985314eb96171ec21157f48e3bb06b31ede96122ca57a32ee64bbb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 29,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/029.stdout",
+      "stderr": "raw/029.stderr",
+      "stdout_sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 30,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:AGENTS.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/030.stdout",
+      "stderr": "raw/030.stderr",
+      "stdout_sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 31,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/repository-engineering-policy.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/031.stdout",
+      "stderr": "raw/031.stderr",
+      "stdout_sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 32,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/development-task-lifecycle.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/032.stdout",
+      "stderr": "raw/032.stderr",
+      "stdout_sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 33,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/reference/policies/independent-validation-policy.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/033.stdout",
+      "stderr": "raw/033.stderr",
+      "stdout_sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 34,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/034.stdout",
+      "stderr": "raw/034.stderr",
+      "stdout_sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 35,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/build-plan.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/035.stdout",
+      "stderr": "raw/035.stderr",
+      "stdout_sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 36,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/telemetry-contract.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/036.stdout",
+      "stderr": "raw/036.stderr",
+      "stdout_sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 37,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/tactical-plan.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/037.stdout",
+      "stderr": "raw/037.stderr",
+      "stdout_sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 38,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/038.stdout",
+      "stderr": "raw/038.stderr",
+      "stdout_sha256": "08ae48de3be017c7170d4a338862d92808a342e44fed67c2a24ac923f879d478",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 39,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/verification-profile.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/039.stdout",
+      "stderr": "raw/039.stderr",
+      "stdout_sha256": "6712c5828b8ae500cb68763401d52ed1c33f0e5d48ec74ef6d38d5a47f1d855c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 40,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/040.stdout",
+      "stderr": "raw/040.stderr",
+      "stdout_sha256": "0fdb0e0f0009d682e40c14797cc1fde4148aee34347d0e20cc5dd46e6ad56c5d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 41,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/041.stdout",
+      "stderr": "raw/041.stderr",
+      "stdout_sha256": "999d67e00c012b2bc3dae64401f099bd1108f8d393282d6e09f14081cab41cf5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 42,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/042.stdout",
+      "stderr": "raw/042.stderr",
+      "stdout_sha256": "b25be056e42ad5d3f5d6b7e93468661246d389968e84627d850888ed804b5203",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 43,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/043.stdout",
+      "stderr": "raw/043.stderr",
+      "stdout_sha256": "f991fd42ebf1e3206c5c112bf6b698dcb29e9f04a992fd5a38a1097a27aef828",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 44,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/044.stdout",
+      "stderr": "raw/044.stderr",
+      "stdout_sha256": "b2d9b956913e445497dd36ddcc38459569cd86252cf9f4e00e0143b33300cb21",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 45,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/045.stdout",
+      "stderr": "raw/045.stderr",
+      "stdout_sha256": "7f05dd3c92ef84fccac8ca748c4fa37c5c5c0827799661137a6813fa42757d98",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 46,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/046.stdout",
+      "stderr": "raw/046.stderr",
+      "stdout_sha256": "8d00d7adda3d85af2e40fa4f5b030e86592baf4f5d6cc91c14baabb3eaa056cd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 47,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/047.stdout",
+      "stderr": "raw/047.stderr",
+      "stdout_sha256": "9c165452c90b09b26e3bd004b919b22711022ec9b0235c50930f105b1c04f06c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 48,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/048.stdout",
+      "stderr": "raw/048.stderr",
+      "stdout_sha256": "2f3e9190ef7b5625f07753febd73d77bed2c3219c051b2fc0dbd7d583dce7ec2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 49,
+      "argv": [
+        "git",
+        "diff",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd",
+        "--",
+        "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/",
+        "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+        "AGENTS.md",
+        "docs/reference/policies/repository-engineering-policy.md",
+        "docs/reference/policies/development-task-lifecycle.md",
+        "docs/reference/policies/independent-validation-policy.md",
+        "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+        "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+        "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+        "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+        "docs/planning/active/friday-telemetry-rewire/directives/CD-001-local-telemetry-assembly.md",
+        "docs/planning/active/friday-telemetry-rewire/verification-profile.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-001-directive.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-002-verification-directive.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-003-python-minimum-directive.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-verification-closeout-directive.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-scope.json",
+        "docs/planning/active/friday-telemetry-rewire/validation/WVR-002-archived-probe-lint.md",
+        "docs/planning/active/friday-telemetry-rewire/remediation/REM-004-A06-command-registry-compatibility.md",
+        "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-variance.md",
+        "docs/planning/active/friday-telemetry-rewire/validation/WVR-003-command-registry-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/049.stdout",
+      "stderr": "raw/049.stderr",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 50,
+      "argv": [
+        "git",
+        "show",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c:docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/050.stdout",
+      "stderr": "raw/050.stderr",
+      "stdout_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 51,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/051.stdout",
+      "stderr": "raw/051.stderr",
+      "stdout_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 52,
+      "argv": [
+        "git",
+        "show",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/052.stdout",
+      "stderr": "raw/052.stderr",
+      "stdout_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 53,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/053.stdout",
+      "stderr": "raw/053.stderr",
+      "stdout_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 54,
+      "argv": [
+        "git",
+        "show",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/054.stdout",
+      "stderr": "raw/054.stderr",
+      "stdout_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 55,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/055.stdout",
+      "stderr": "raw/055.stderr",
+      "stdout_sha256": "1ccb5d7dbf632548c4acd5b122db593cc40ad700734376bf91f2dede546226ce",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 56,
+      "argv": [
+        "git",
+        "show",
+        "e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c:docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/056.stdout",
+      "stderr": "raw/056.stderr",
+      "stdout_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 57,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/directives/CD-002-approval-record.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/057.stdout",
+      "stderr": "raw/057.stderr",
+      "stdout_sha256": "c58499590529798e3106c37430460b56f636fab6dfa2d754a8820f98a8587866",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 58,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/058.stdout",
+      "stderr": "raw/058.stderr",
+      "stdout_sha256": "88eb8ab68372f7cfa6d49192434da577c33ca4f128d2e331046333ae98c6f731",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 59,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/059.stdout",
+      "stderr": "raw/059.stderr",
+      "stdout_sha256": "3de929c600812be00b1f0df552ab04b121d6bdd7d38556950b8e234aa6d6538e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 60,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/060.stdout",
+      "stderr": "raw/060.stderr",
+      "stdout_sha256": "000d4af3b9c7fb10ccde682a8a51b2f2a1b216a86c072cc11855a9a35e644ecd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 61,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/061.stdout",
+      "stderr": "raw/061.stderr",
+      "stdout_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 62,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/062.stdout",
+      "stderr": "raw/062.stderr",
+      "stdout_sha256": "5076019241e4d7a2752f8700becdb97242037e66b3cb433cc8fd39854ae3e532",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 63,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-agent/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/063.stdout",
+      "stderr": "raw/063.stderr",
+      "stdout_sha256": "155343ffc1affe151e5a8b13c898d28f2bb1c23978487a6371fa56c02368aa26",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 64,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-chat/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/064.stdout",
+      "stderr": "raw/064.stderr",
+      "stdout_sha256": "4fa72a6497d637920558b4ebe2cddd13e99fb1191c8a432cb2c7d031a0926de5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 65,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-cli/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/065.stdout",
+      "stderr": "raw/065.stderr",
+      "stdout_sha256": "19a2898a4716ba4f481f8396c7605b7deefa077e536b5b7c6ebb85bb06ca8a00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 66,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-core/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/066.stdout",
+      "stderr": "raw/066.stderr",
+      "stdout_sha256": "001b4d83e69969664d38c91f007d618df82674cc379c2acfa12767703eafa594",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 67,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-finance/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/067.stdout",
+      "stderr": "raw/067.stderr",
+      "stdout_sha256": "c410c9b183df854d6fb1be274cfafaf31d560b4b3faa4bb2c65052f78b711070",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 68,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-llm/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/068.stdout",
+      "stderr": "raw/068.stderr",
+      "stdout_sha256": "672f623315a1113e459cd481f3de4324c7c29767cf31aeb71eab34fa078960a4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 69,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-mcp/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/069.stdout",
+      "stderr": "raw/069.stderr",
+      "stdout_sha256": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 70,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-memory/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/070.stdout",
+      "stderr": "raw/070.stderr",
+      "stdout_sha256": "0f0cfa552fdbd2127d5e186d8847db331a9aaef70175569e9cfe77098798c511",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 71,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-moltbook/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/071.stdout",
+      "stderr": "raw/071.stderr",
+      "stdout_sha256": "136f6278e82471ebaae3a62bdb8379a6f8d7b6b4e4bef5cb78b196ff72886deb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 72,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-optimization/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/072.stdout",
+      "stderr": "raw/072.stderr",
+      "stdout_sha256": "b89bdecd833287a1628c17c84bc61cb03ec8a3c4b7ea27f1476d9a2d997c9bb2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 73,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-runtime/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/073.stdout",
+      "stderr": "raw/073.stderr",
+      "stdout_sha256": "cc426372026847a66dc8f8a43f135a498b1a2e3861b0b24ad14c639807eedbc1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 74,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-sandbox/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/074.stdout",
+      "stderr": "raw/074.stderr",
+      "stdout_sha256": "51c56051ccc351c58ef91aec0a325a643751d824697e0a9293040fe3624b7d25",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 75,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-speech/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/075.stdout",
+      "stderr": "raw/075.stderr",
+      "stdout_sha256": "0bf80e8501cce2e6c3161ac5ef942855269cefc88da2ee598b875de674487ff4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 76,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-telemetry/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/076.stdout",
+      "stderr": "raw/076.stderr",
+      "stdout_sha256": "8b4a0abbbd8c2a76b81d2763176c934c9cf620b864e09e4e3b4663950218e5e9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 77,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-tools/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/077.stdout",
+      "stderr": "raw/077.stderr",
+      "stdout_sha256": "1db7f0c87c7197b5b264e2f4e7f2fbd84e8febbdd040665edba9cd898e715326",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 78,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-transcript/pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/078.stdout",
+      "stderr": "raw/078.stderr",
+      "stdout_sha256": "4a58596abafe3f7ca409084b1a0627f77164aabb48cefa2dcc217211b0ba1679",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 79,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:pyproject.toml"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/079.stdout",
+      "stderr": "raw/079.stderr",
+      "stdout_sha256": "b85b708def24f4f2045a12388f7026ce361bdf6c13490f0f160fdfe3176e3a77",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 80,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-cli/src/friday_cli/commands.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/080.stdout",
+      "stderr": "raw/080.stderr",
+      "stdout_sha256": "15992e7f38fe874f0104a164180679c7e76d7e09413d68152ef5cc77c0f99308",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 81,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/081.stdout",
+      "stderr": "raw/081.stderr",
+      "stdout_sha256": "8e0a1c10c51136808edac08aeae52ea2a4c3403d36074f9e46477992e3fff79e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 82,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-chat/tests_chat/test_llm_adapter_migration.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/082.stdout",
+      "stderr": "raw/082.stderr",
+      "stdout_sha256": "515ae0988d9888c40b8fe15fae3e24aa9a5033974349ecafb3d90cc6f9aacbd8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 83,
+      "argv": [
+        "git",
+        "show",
+        "9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd:packages/friday-llm/tests_llm/conftest.py"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/083.stdout",
+      "stderr": "raw/083.stderr",
+      "stdout_sha256": "28ed52fb2b1be1658c4179832a75bcbdedde8f2fb186a43d12c65e2556ee092e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 84,
+      "argv": [
+        "git",
+        "diff",
+        "db9223e68e11facc74d2b88853ab4c3a2eaeb17b..e600cb29f025f1ffe7290dcb6b0f2b2d5a80d25c",
+        "--",
+        "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/084.stdout",
+      "stderr": "raw/084.stderr",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "id": 85,
+      "argv": [
+        "git",
+        "diff",
+        "db9223e68e11facc74d2b88853ab4c3a2eaeb17b..9f5c4b70b03b105d89e1cf0c9cd65cb3f467e8cd",
+        "--",
+        "docs/planning/active/friday-telemetry-rewire/directives/CD-002-A02-native-retry-disable.md"
+      ],
+      "cwd": "/Users/chuckrussell/Dev/gendev/agent-framework",
+      "exit_code": 0,
+      "stdout": "raw/085.stdout",
+      "stderr": "raw/085.stderr",
+      "stdout_sha256": "8fea4d8d8bcf964e48432f144ac46133253784596de8d9194ebab3584ecfae99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

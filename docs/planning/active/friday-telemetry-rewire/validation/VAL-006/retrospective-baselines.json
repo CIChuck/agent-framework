@@ -1,0 +1,79 @@
+{
+  "Web_and_fixture_prechange": {
+    "receipt": "/private/tmp/telem-01/REM-004/approved-execution/runs/remediator-a06-before-01/regression-before-01.json",
+    "command": [
+      "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python",
+      "-m",
+      "pytest",
+      "--import-mode=importlib",
+      "-q",
+      "packages/friday-runtime/tests_runtime/test_di.py::test_agent_fixture_preserves_decorator_declarations",
+      "packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver",
+      "packages/friday-tools/tests_tools/test_web_validators.py::test_public_literals_accepted_without_resolver",
+      "packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport"
+    ],
+    "revision": "1b28d373bb613e754947e4b13c7f7280314c560e",
+    "exit": 1,
+    "failed": [
+      "FAILED packages/friday-runtime/tests_runtime/test_di.py::test_agent_fixture_preserves_decorator_declarations[False]",
+      "FAILED packages/friday-runtime/tests_runtime/test_di.py::test_agent_fixture_preserves_decorator_declarations[True]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[10.0.0.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[172.16.0.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[192.168.1.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[169.254.169.254]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[[fc00::1]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[[fe80::1]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[[ff02::1]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[127.0.0.2]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[240.0.0.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_private_literals_rejected_without_resolver[224.0.0.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_public_literals_accepted_without_resolver[8.8.8.8]",
+      "FAILED packages/friday-tools/tests_tools/test_web_validators.py::test_public_literals_accepted_without_resolver[[2606:4700:4700::1111]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport[192.168.1.1]",
+      "FAILED packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport[169.254.169.254]",
+      "FAILED packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport[[fc00::1]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport[[fe80::1]]",
+      "FAILED packages/friday-tools/tests_tools/test_web_reader.py::test_private_literal_rejected_before_transport[[ff02::1]]"
+    ],
+    "passed": 1,
+    "source_hashes_independently_match_commit": {
+      "packages/friday-agent/tests_agent/conftest.py": "4d69f907a339be04ef0449ace5b010748b625fcd4e558e4ef12351d62ac77b02",
+      "packages/friday-tools/src/friday_tools/web/validators.py": "77dfb725804d4435c641ebba155714e3e064c6463cda2fc342346588c7f9cd46"
+    },
+    "test_only_overlay": [
+      "packages/friday-agent/tests_agent/test_pipeline_dispatch.py",
+      "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+      "packages/friday-chat/tests_chat/test_llm_adapter_migration.py",
+      "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+      "packages/friday-chat/tests_chat/test_reorganization_contracts.py",
+      "packages/friday-chat/tests_chat/test_reorganization_foundations.py",
+      "packages/friday-chat/tests_chat/test_reorganization_terminal.py",
+      "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "packages/friday-core/tests_core/test_mcp_contracts.py",
+      "packages/friday-llm/tests_llm/conftest.py",
+      "packages/friday-llm/tests_llm/test_resilience.py",
+      "packages/friday-memory/tests_memory/test_lifecycle/test_decay.py",
+      "packages/friday-memory/tests_memory/test_lifecycle/test_promotion.py",
+      "packages/friday-memory/tests_memory/test_llm_completion.py",
+      "packages/friday-memory/tests_memory/test_maintenance/test_mutation_participant.py",
+      "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "packages/friday-memory/tests_memory/test_retrieval/test_factor_computer.py",
+      "packages/friday-memory/tests_memory/test_retrieval/test_inclusion_scorer.py",
+      "packages/friday-runtime/tests_runtime/test_di.py",
+      "packages/friday-sandbox/tests_sandbox/test_workspace_manager.py",
+      "packages/friday-tools/tests_tools/test_filesystem_readers.py",
+      "packages/friday-tools/tests_tools/test_web_reader.py",
+      "packages/friday-tools/tests_tools/test_web_validators.py"
+    ],
+    "log_sha256": "80ebadff30722662dc6d1122dc514a578e15dcb48e1b226ae136e90ff812246a",
+    "kind": "retrospective raw prechange evidence; inspected directly, not independently replayed"
+  },
+  "console_shutdown_baseline": {
+    "baseline": "/private/tmp/telem-01/REM-003/validation-corrected/packages.log",
+    "baseline_log_sha256": "5cd3c209bdfd7354a1d96f1c9cee5b832a2701f93bd337d76e2ae4b1de64d168",
+    "current": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/chat.log",
+    "current_sha256": "b626df2c24ad95852ba8869b39b643b1f25b30d367553847ea227f9e433beff3",
+    "trace_byte_equal": true,
+    "provider_source_unchanged": true
+  }
+}

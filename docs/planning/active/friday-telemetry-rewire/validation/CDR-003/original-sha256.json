@@ -1,0 +1,10 @@
+{
+  "authority-lines.txt": "c5cfd5ab9dcdd5754cc98ef02c3a6a02d6e613d3adfc69bac8e65f17d03f03f4",
+  "evidence.yaml": "fd67f5fe902304a0257a7dbec0cae607c586a91b03920c1b8fe367f9a617e232",
+  "preparation-base-interfaces.txt": "dc71859df39b5398d0e490a42d8444674d8e58d2a5058d1af36cb83c05eec7d9",
+  "report.md": "b4105da743d473e2476a269174c186afc5e9a1fbb455a3bb547f24e4550106c3",
+  "request.yaml": "d8c3220f603f82a2933dabcc8730a7ac73eaea2db96225150fab72473af111d6",
+  "state-after.json": "68640b4fc4789610c53b0474a2a7f282f3d29a12562f84181b67e7ecf9458971",
+  "state-before.json": "668b7045f96ae1449559638e8bd1c3a43c35d5865f377acd0d78fb716536bf86",
+  "state-comparison.json": "d8230bb1aea060ec98bf2f3160297628442783ce216a2294631c48bba4d129ef"
+}

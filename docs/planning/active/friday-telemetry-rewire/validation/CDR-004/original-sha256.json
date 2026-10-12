@@ -1,0 +1,10 @@
+{
+  "after.json": "99147ddae9640682443c32cfbc468b8f5f4db08ee8aa7c2780fa855345a7230e",
+  "authority-delta.patch": "d3a5a4669e911366421df124e9cdc12a116475b302d6897236594f605b39b6f9",
+  "before.json": "99147ddae9640682443c32cfbc468b8f5f4db08ee8aa7c2780fa855345a7230e",
+  "evidence.yaml": "d78d6adaf8a4f5e4d6f90a3479f6a8be6c9d7c07644eb53ab5be79b8ab3b144f",
+  "input-evidence.json": "a59b1d3f79f8c9762a2c3339352d9c74ec953938d871e36371b38d58b6e884de",
+  "pinned-hashes.json": "e77a29dd6cd61c6eb29722e1fb2fd8d3b4866db7866017913b58586c3456182a",
+  "report.md": "ed6fd33abb105915768f4afc4dfeefcbd8f198b51073f1ed49754111bba0e7a6",
+  "request.yaml": "ca8479196a9d142b5eb8adbb6f55a2a9f51c15e7885e2a6b4eb503fcec0965aa"
+}

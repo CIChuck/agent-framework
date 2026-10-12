@@ -73,7 +73,7 @@ class UnsandboxedPythonExecuteTool(BaseTool):
                 timeout=timeout,
             )
             return result
-        except asyncio.TimeoutError:
+        except TimeoutError:
             return f"Error: Execution timed out after {timeout} seconds"
         except Exception as e:
             return f"Error: {e}"

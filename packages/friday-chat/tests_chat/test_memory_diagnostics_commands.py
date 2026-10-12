@@ -6,7 +6,7 @@ import asyncio
 import json
 import socket
 from collections.abc import AsyncIterator, Iterator
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
@@ -616,7 +616,7 @@ def _synthesis_addition(*, memory_id: str, document: str) -> MemoryVectorAdditio
         reasoning="Two diagnostic sources support this meta insight",
         synthesis_fingerprint="b" * 64,
         synthesis_version="1",
-        created_at=datetime.now(timezone.utc),
+        created_at=datetime.now(UTC),
     )
 
 

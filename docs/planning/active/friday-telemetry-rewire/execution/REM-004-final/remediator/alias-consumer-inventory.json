@@ -1,0 +1,2570 @@
+{
+  "MemoryLLMClient": [
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "line": 32,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/reorganization/mutation.py",
+      "line": 213,
+      "text": "service: MemoryLLMClient"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 22,
+      "text": "MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 96,
+      "text": "llm_client: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "line": 38,
+      "text": "MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "line": 162,
+      "text": "llm: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/passage_router.py",
+      "line": 18,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/passage_router.py",
+      "line": 90,
+      "text": "self, llm: MemoryLLMClient, config: PassageRouterConfig | None = None"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "line": 29,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "line": 285,
+      "text": "fallback_llm: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "line": 288,
+      "text": "summarizer_llm: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "line": 289,
+      "text": "synthesizer_llm: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/ingestion/large_file_processor.py",
+      "line": 359,
+      "text": ") -> MemoryLLMClient | None:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/lifecycle/tool_content.py",
+      "line": 18,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/lifecycle/tool_content.py",
+      "line": 103,
+      "text": "llm_client: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "line": 26,
+      "text": "class LegacyMemoryLLMClient(Protocol):"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "line": 42,
+      "text": "type MemoryLLMClient = TypedLLMClient | LegacyMemoryLLMClient"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "line": 54,
+      "text": "client: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/llm_completion.py",
+      "line": 98,
+      "text": "client: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/compactor.py",
+      "line": 39,
+      "text": "MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/compactor.py",
+      "line": 98,
+      "text": "llm_client: MemoryLLMClient,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "line": 25,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "line": 72,
+      "text": "classifier_llm: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "line": 73,
+      "text": "researcher_llm: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/fact_checker.py",
+      "line": 74,
+      "text": "judge_llm: MemoryLLMClient | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "line": 28,
+      "text": "from friday_memory.llm_completion import MemoryLLMClient, complete_memory_request"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/synthesizer.py",
+      "line": 82,
+      "text": "llm_service: MemoryLLMClient | None = None,"
+    }
+  ],
+  "SessionState": [
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 30,
+      "text": "from friday_memory import InteractionTurn, MemoryController, SessionState"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 103,
+      "text": "self.session_state: SessionState | None = None"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 133,
+      "text": ") -> SessionState:"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 144,
+      "text": "Initialized SessionState"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "line": 20,
+      "text": "from friday_memory import MemoryController, SessionState"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "line": 29,
+      "text": "state: \"SessionState\","
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "line": 60,
+      "text": "state: \"SessionState\","
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "line": 215,
+      "text": "state: \"SessionState\","
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/tools/builtins.py",
+      "line": 241,
+      "text": "state: \"SessionState\","
+    },
+    {
+      "path": "packages/friday-agent/tests_agent/test_copilot.py",
+      "line": 14,
+      "text": "from friday_memory.models import ContextPayload, SessionState"
+    },
+    {
+      "path": "packages/friday-agent/tests_agent/test_copilot.py",
+      "line": 53,
+      "text": "return_value=SessionState("
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/agent.py",
+      "line": 54,
+      "text": "SessionState instance for the initialized session."
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 7,
+      "text": "Note: Type references like 'SessionState', 'ConsolidationReport', 'ContextPayload',"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 20,
+      "text": "type SessionState = Any  # Will be friday_memory.models.SessionState"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 51,
+      "text": "async def initialize_session(self, session_id: str, user_id: str) -> \"SessionState\":"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 60,
+      "text": "SessionState containing session metadata and scoped variables"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 65,
+      "text": "async def restore_checkpoint(self, session_id: str, turn_id: str) -> \"SessionState\":"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 73,
+      "text": "2. Reloads the SessionState effective at that time"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 80,
+      "text": "SessionState as it was at the target turn"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 131,
+      "text": "state: \"SessionState\","
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 148,
+      "text": "state: Current SessionState with scoped variables"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 130,
+      "text": "SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 187,
+      "text": "\"SessionState\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 40,
+      "text": "SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 105,
+      "text": "self._sessions: dict[str, SessionState] = {}"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 318,
+      "text": "async def initialize_session(self, session_id: str, user_id: str) -> SessionState:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 327,
+      "text": "SessionState for the session"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 334,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 350,
+      "text": "async def restore_checkpoint(self, session_id: str, turn_id: str) -> SessionState:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 355,
+      "text": "2. Reloads the SessionState effective at that time"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 362,
+      "text": "The restored SessionState"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 376,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 461,
+      "text": "state: SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 57,
+      "text": "from friday_memory.models import ContextPayload, SessionState"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 251,
+      "text": "state: SessionState | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 386,
+      "text": "state: SessionState | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 537,
+      "text": "state: SessionState | None = None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 785,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 856,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 891,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1087,
+      "text": "def _build_section_state(self, state: SessionState | None) -> str:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1139,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1221,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1326,
+      "text": "state: SessionState | None,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1563,
+      "text": "def _format_state_block(self, state: SessionState) -> str:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 16,
+      "text": "- SessionState: Session continuity and scoped variables"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 53,
+      "text": "SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 79,
+      "text": "\"SessionState\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 4,
+      "text": "Defines SessionState, InteractionTurn, and ConsolidationReport."
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 234,
+      "text": "class SessionState(BaseModel):"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 23,
+      "text": "SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 86,
+      "text": "def sample_session_state() -> SessionState:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 88,
+      "text": "return SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 15,
+      "text": "from friday_memory import ContextPayload, PromptArchitect, SessionState"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 178,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 10,
+      "text": "- SessionState scoped variable enforcement"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 25,
+      "text": "SessionState,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 146,
+      "text": "class TestSessionState:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 147,
+      "text": "\"\"\"Tests for SessionState model.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 151,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 164,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 177,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 190,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 203,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 216,
+      "text": "state = SessionState("
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/memory/inspection.py",
+      "line": 6,
+      "text": "from friday_memory import MemoryController, SessionState"
+    },
+    {
+      "path": "packages/friday-tools/src/friday_tools/memory/inspection.py",
+      "line": 24,
+      "text": "self, controller: MemoryController, session_state: SessionState | None = None"
+    },
+    {
+      "path": "packages/friday-tools/tests_tools/test_memory_tools.py",
+      "line": 5,
+      "text": "from friday_memory import MemoryController, SessionState"
+    },
+    {
+      "path": "packages/friday-tools/tests_tools/test_memory_tools.py",
+      "line": 53,
+      "text": "state = MagicMock(spec=SessionState)"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 171,
+      "text": "SessionState,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 820,
+      "text": "self.state: SessionState | None = None"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 197,
+      "text": "SessionState,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 317,
+      "text": "self.state: SessionState | None = None"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 99,
+      "text": "SessionState,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 516,
+      "text": "self.state: SessionState | None = None"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 221,
+      "text": "SessionState,"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 387,
+      "text": "self.state: SessionState | None = None"
+    }
+  ],
+  "ConsolidationReport": [
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 7,
+      "text": "Note: Type references like 'SessionState', 'ConsolidationReport', 'ContextPayload',"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 21,
+      "text": "type ConsolidationReport = ("
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 22,
+      "text": "Any  # Will be friday_memory.models.ConsolidationReport"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 107,
+      "text": "async def consolidate_memory(self, session_id: str) -> \"ConsolidationReport\":"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 121,
+      "text": "ConsolidationReport with statistics on the consolidation"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 124,
+      "text": "ConsolidationReport,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 188,
+      "text": "\"ConsolidationReport\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 37,
+      "text": "ConsolidationReport,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 432,
+      "text": "async def consolidate_memory(self, session_id: str) -> ConsolidationReport:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 441,
+      "text": "ConsolidationReport with telemetry"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 445,
+      "text": "return ConsolidationReport("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 27,
+      "text": "ConsolidationReport,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 136,
+      "text": "async def consolidate(self, session_id: str) -> ConsolidationReport:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 150,
+      "text": "ConsolidationReport with statistics"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 170,
+      "text": "return ConsolidationReport("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 210,
+      "text": "return ConsolidationReport("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/consolidator.py",
+      "line": 221,
+      "text": "return ConsolidationReport("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 17,
+      "text": "- ConsolidationReport: Consolidation cycle telemetry"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 51,
+      "text": "ConsolidationReport,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 80,
+      "text": "\"ConsolidationReport\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 4,
+      "text": "Defines SessionState, InteractionTurn, and ConsolidationReport."
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 324,
+      "text": "class ConsolidationReport(BaseModel):"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 19,
+      "text": "ConsolidationReport,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 306,
+      "text": "class TestConsolidationReport:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 307,
+      "text": "\"\"\"Tests for ConsolidationReport model.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 311,
+      "text": "report = ConsolidationReport("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 326,
+      "text": "report = ConsolidationReport("
+    }
+  ],
+  "ContextPayload": [
+    {
+      "path": "packages/friday-agent/tests_agent/test_copilot.py",
+      "line": 14,
+      "text": "from friday_memory.models import ContextPayload, SessionState"
+    },
+    {
+      "path": "packages/friday-agent/tests_agent/test_copilot.py",
+      "line": 36,
+      "text": "return_value=ContextPayload("
+    },
+    {
+      "path": "packages/friday-agent/tests_agent/test_copilot.py",
+      "line": 59,
+      "text": "return_value=ContextPayload("
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 7,
+      "text": "Note: Type references like 'SessionState', 'ConsolidationReport', 'ContextPayload',"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 24,
+      "text": "type ContextPayload = Any  # Will be friday_memory.models.ContextPayload"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 134,
+      "text": ") -> \"ContextPayload\":"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 155,
+      "text": "ContextPayload with history, passages, entities, facts"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 163,
+      "text": "self, system_prompt: str, payload: \"ContextPayload\""
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 182,
+      "text": "payload: The assembled ContextPayload"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 125,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 189,
+      "text": "\"ContextPayload\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 38,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 465,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 492,
+      "text": "ContextPayload: Strictly budgeted retrieval results with tool context"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 543,
+      "text": "final_payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 584,
+      "text": "self, payload: ContextPayload, query: str"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 585,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 608,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 634,
+      "text": "self, payload: ContextPayload, budget_limit: int, query: str = \"\""
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 635,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 890,
+      "text": "def _filter_decayed(self, payload: ContextPayload) -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 926,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 947,
+      "text": "def _filter_superseded(self, payload: ContextPayload) -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 991,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1011,
+      "text": "def _apply_conditional_summaries(self, payload: ContextPayload) -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1066,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1087,
+      "text": "self, payload: ContextPayload, query: str"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1088,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1229,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1538,
+      "text": "original: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1546,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1548,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1576,
+      "text": "def _estimate_payload_tokens(self, payload: ContextPayload) -> int:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1589,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1676,
+      "text": "original: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1681,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1683,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 1710,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 57,
+      "text": "from friday_memory.models import ContextPayload, SessionState"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 250,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 385,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 536,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 718,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 784,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 855,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 890,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 973,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 986,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1014,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1035,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1056,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1138,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1220,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1325,
+      "text": "payload: ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1413,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1426,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1457,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1478,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/layout.py",
+      "line": 1499,
+      "text": "self, payload: ContextPayload, config: SupportingContextConfig"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 40,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 426,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 450,
+      "text": "ContextPayload with aggregated retrieval results"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 602,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 20,
+      "text": "- ContextPayload: Aggregated retrieval results"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 49,
+      "text": "from friday_memory.models.payload import ContextPayload"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 82,
+      "text": "\"ContextPayload\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/payload.py",
+      "line": 4,
+      "text": "Defines ContextPayload DTO for passing data from Controller to Assembler."
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/payload.py",
+      "line": 21,
+      "text": "class ContextPayload(BaseModel):"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "line": 15,
+      "text": "from friday_memory.models import ContextPayload, GraphNode, ProvenanceMetadata"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "line": 149,
+      "text": "self, payload: ContextPayload, *, include_shared: bool"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/multi_agent/controller.py",
+      "line": 150,
+      "text": ") -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 20,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 89,
+      "text": "\"\"\"Test that assemble_context returns a ContextPayload.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 98,
+      "text": "assert isinstance(payload, ContextPayload)"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 144,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 169,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 190,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 245,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 27,
+      "text": "from friday_memory.models import ContextPayload"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 72,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 95,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 115,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 286,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 316,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 356,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 499,
+      "text": "original = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 15,
+      "text": "from friday_memory import ContextPayload, PromptArchitect, SessionState"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 29,
+      "text": "def empty_payload() -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 31,
+      "text": "return ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 102,
+      "text": "self, architect: PromptArchitect, empty_payload: ContextPayload"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 119,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 141,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_layout.py",
+      "line": 168,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_controller.py",
+      "line": 205,
+      "text": "\"\"\"Test that recall returns a ContextPayload.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 12,
+      "text": "- ContextPayload structure"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 20,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 274,
+      "text": "class TestContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 275,
+      "text": "\"\"\"Tests for ContextPayload model.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 279,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 293,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 9,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 37,
+      "text": "def __init__(self, payload: ContextPayload) -> None:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 42,
+      "text": "async def recall(self, **kwargs) -> ContextPayload:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 93,
+      "text": "payload = ContextPayload("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 125,
+      "text": "payload = ContextPayload()"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 143,
+      "text": "payload = ContextPayload()"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 200,
+      "text": "memory = _FakeMemory(ContextPayload())"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_multi_agent.py",
+      "line": 221,
+      "text": "memory = _FakeMemory(ContextPayload())"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 158,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 821,
+      "text": "self.last_payload: ContextPayload | None = None"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 184,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 318,
+      "text": "self.last_payload: ContextPayload | None = None"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 87,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 517,
+      "text": "self.last_payload: ContextPayload | None = None"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 205,
+      "text": "ContextPayload,"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 388,
+      "text": "self.last_payload: ContextPayload | None = None"
+    }
+  ],
+  "Interaction": [
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 30,
+      "text": "from friday_memory import InteractionTurn, MemoryController, SessionState"
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 450,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-agent/src/friday_agent/base.py",
+      "line": 513,
+      "text": "async def _safe_extract_context(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 45,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 122,
+      "text": "InteractionTurn as ChatInteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 333,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1120,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1158,
+      "text": "async def record_interaction(self, turn: ChatInteractionTurn) -> None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1249,
+      "text": "async def record_mcp_interaction(self, turn: ChatInteractionTurn) -> MCPTranscriptReceipt:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1259,
+      "text": "self, turn: ChatInteractionTurn"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "line": 21,
+      "text": "from friday_chat.turns.models import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "line": 49,
+      "text": "self, turn: InteractionTurn"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "line": 76,
+      "text": "transcript: MCPTranscriptCapability, turn: InteractionTurn"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "line": 89,
+      "text": "turn: InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/memory_mcp.py",
+      "line": 130,
+      "text": "turn: InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 43,
+      "text": "from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCallRequest"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 204,
+      "text": "async def record_mcp_interaction(self, turn: InteractionTurn) -> MCPTranscriptReceipt: ..."
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 213,
+      "text": "async def record_interaction(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 725,
+      "text": "interactions: list[InteractionTurn] = field(default_factory=list)"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 739,
+      "text": "async def record_interaction(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 1569,
+      "text": "\"InteractionTurn\","
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/turns/models.py",
+      "line": 62,
+      "text": "class InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/turns/processor.py",
+      "line": 35,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/turns/processor.py",
+      "line": 622,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 20,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 185,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 658,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 682,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 812,
+      "text": "turn = InteractionTurn(\"entry\", \"user\", \"answer\", \"\", \"\", (), TurnMetrics(0,0,0,0),"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_memory.py",
+      "line": 25,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_memory.py",
+      "line": 85,
+      "text": "return InteractionTurn("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_session_identity.py",
+      "line": 28,
+      "text": "from friday_chat.turns.models import InteractionTurn, TurnMetrics"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_session_identity.py",
+      "line": 192,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 8,
+      "text": "and 'Interaction' are forward references to models that will be defined in"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 25,
+      "text": "type Interaction = Any  # Will be friday_memory.models.Interaction"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/context.py",
+      "line": 88,
+      "text": "self, interaction_turn: \"Interaction\", async_execution: bool = True"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "line": 7,
+      "text": "Note: Type references like 'InteractionTurn', 'GraphNode', 'GraphEdge' are forward"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "line": 23,
+      "text": "type InteractionTurn = Any  # Will be friday_memory.models.InteractionTurn"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "line": 39,
+      "text": "async def add_turn(self, session_id: str, turn: \"InteractionTurn\") -> bool:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "line": 55,
+      "text": ") -> list[\"InteractionTurn\"]:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/memory.py",
+      "line": 72,
+      "text": ") -> list[\"InteractionTurn\"]:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 21,
+      "text": "type InteractionTurn = Any"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 131,
+      "text": "async def add_turn(self, session_id: str, turn: \"InteractionTurn\") -> bool:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 135,
+      "text": "Converts InteractionTurn to TranscriptEntry and appends it."
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 153,
+      "text": "# Convert InteractionTurn to TranscriptEntry"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 213,
+      "text": "turn: \"InteractionTurn\","
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 241,
+      "text": ") -> list[\"InteractionTurn\"]:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 245,
+      "text": "Retrieves TranscriptEntries and converts them to InteractionTurns."
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 249,
+      "text": "from friday_memory import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 270,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 311,
+      "text": ") -> list[\"InteractionTurn\"]:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 319,
+      "text": "from friday_memory import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 330,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 7,
+      "text": "from friday_memory import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 56,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 82,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/01_introductory.py",
+      "line": 6,
+      "text": "- Data models (ProvenanceMetadata, InteractionTurn, GraphNode)"
+    },
+    {
+      "path": "packages/friday-memory/examples/01_introductory.py",
+      "line": 24,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/examples/01_introductory.py",
+      "line": 98,
+      "text": "turn1 = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/01_introductory.py",
+      "line": 106,
+      "text": "turn2 = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/01_introductory.py",
+      "line": 115,
+      "text": "turn3 = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/02_intermediate.py",
+      "line": 40,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/examples/02_intermediate.py",
+      "line": 244,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/02_intermediate.py",
+      "line": 251,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/02_intermediate.py",
+      "line": 258,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/examples/03_advanced.py",
+      "line": 46,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/examples/03_advanced.py",
+      "line": 367,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 128,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/__init__.py",
+      "line": 186,
+      "text": "\"InteractionTurn\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "line": 14,
+      "text": "from friday_memory.models import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "line": 42,
+      "text": "self._sessions: dict[str, list[InteractionTurn]] = defaultdict(list)"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "line": 49,
+      "text": "async def add_turn(self, session_id: str, turn: InteractionTurn) -> bool:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "line": 72,
+      "text": ") -> list[InteractionTurn]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/adapters/episodic.py",
+      "line": 105,
+      "text": "async def get_unconsolidated_turns(self, session_id: str) -> list[InteractionTurn]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 39,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/assembler.py",
+      "line": 400,
+      "text": "interaction_turn: InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "line": 44,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "line": 342,
+      "text": "async def extract(self, turn: InteractionTurn) -> dict[str, Any]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/context/extractor.py",
+      "line": 465,
+      "text": "self, turn: InteractionTurn, extracted: dict[str, Any]"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 43,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 186,
+      "text": "Callable[[str, list[InteractionTurn]], Awaitable[None]] | None"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 539,
+      "text": "prior_history: list[InteractionTurn] = []"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1206,
+      "text": ") -> list[InteractionTurn]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1219,
+      "text": "List of InteractionTurns from prior sessions, ordered chronologically"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1244,
+      "text": "all_prior_turns: list[InteractionTurn] = []"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1251,
+      "text": "# Convert TranscriptEntry to InteractionTurn"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1268,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 1329,
+      "text": ") -> list[InteractionTurn]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 2022,
+      "text": ") -> list[InteractionTurn]:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 2030,
+      "text": "List of unprocessed InteractionTurns"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 2087,
+      "text": "callback: Callable[[str, list[InteractionTurn]], Awaitable[None]],"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/controller/memory_controller.py",
+      "line": 2104,
+      "text": "async def add_turn(self, session_id: str, turn: InteractionTurn) -> bool:"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/maintenance/compactor.py",
+      "line": 470,
+      "text": "turns: List of InteractionTurn objects."
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 14,
+      "text": "- InteractionTurn: Single conversation turn with tool support"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 52,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/__init__.py",
+      "line": 78,
+      "text": "\"InteractionTurn\","
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/payload.py",
+      "line": 15,
+      "text": "from friday_memory.models.session import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/payload.py",
+      "line": 31,
+      "text": "history: list[InteractionTurn] = Field("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/payload.py",
+      "line": 37,
+      "text": "prior_history: list[InteractionTurn] = Field("
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 4,
+      "text": "Defines SessionState, InteractionTurn, and ConsolidationReport."
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 76,
+      "text": "class InteractionTurn(BaseModel):"
+    },
+    {
+      "path": "packages/friday-memory/src/friday_memory/models/session.py",
+      "line": 212,
+      "text": "def sync_provenance_metadata(self) -> InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 20,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 71,
+      "text": "def sample_turn() -> InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/conftest.py",
+      "line": 73,
+      "text": "return InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_episodic.py",
+      "line": 19,
+      "text": "from friday_memory import InMemoryEpisodicStore, InteractionTurn"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_episodic.py",
+      "line": 24,
+      "text": ") -> InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_episodic.py",
+      "line": 26,
+      "text": "return InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_adapters/test_episodic.py",
+      "line": 217,
+      "text": "\"\"\"Test that InteractionTurn.compacted defaults to False.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 21,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 29,
+      "text": ") -> InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler.py",
+      "line": 31,
+      "text": "return InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 454,
+      "text": "\"\"\"Create sample InteractionTurn objects for testing.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 455,
+      "text": "from friday_memory.models import InteractionTurn"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_assembler_lifecycle.py",
+      "line": 458,
+      "text": "InteractionTurn(id=f\"turn_{i}\", session_id=\"test_session\") for i in range(5)"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_consolidator.py",
+      "line": 22,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_consolidator.py",
+      "line": 100,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_extractor_cancellation.py",
+      "line": 13,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_extractor_cancellation.py",
+      "line": 47,
+      "text": "_turn: InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_extractor_cancellation.py",
+      "line": 58,
+      "text": "InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_context/test_extractor_cancellation.py",
+      "line": 106,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_controller.py",
+      "line": 23,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_controller.py",
+      "line": 31,
+      "text": ") -> InteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_controller.py",
+      "line": 33,
+      "text": "return InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 11,
+      "text": "- InteractionTurn with tool calls"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 23,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 228,
+      "text": "class TestInteractionTurn:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 229,
+      "text": "\"\"\"Tests for InteractionTurn model.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 233,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 259,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_models.py",
+      "line": 291,
+      "text": "def test_payload_with_content(self, sample_turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 11,
+      "text": "- InteractionTurn with agent_id"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 21,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 284,
+      "text": "class TestInteractionTurnAgentId:"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 285,
+      "text": "\"\"\"Tests for agent_id field in InteractionTurn.\"\"\""
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 289,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 300,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_provenance.py",
+      "line": 310,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_thread_safety.py",
+      "line": 21,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_thread_safety.py",
+      "line": 229,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "packages/friday-memory/tests_memory/test_thread_safety.py",
+      "line": 264,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 164,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 4671,
+      "text": "async def _background_extract(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 4930,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 190,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 4168,
+      "text": "async def _background_extract(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 4427,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 93,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 2458,
+      "text": "async def _background_extract(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 2543,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 211,
+      "text": "InteractionTurn,"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 421,
+      "text": "self._pending_extraction_turns: list[InteractionTurn] = []"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 5779,
+      "text": "async def _background_save_turn(self, turn: InteractionTurn) -> None:"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 5800,
+      "text": "async def _background_extract_batch(self, turns: list[InteractionTurn]) -> None:"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 5804,
+      "text": "turns: List of InteractionTurn objects to extract."
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 6181,
+      "text": "turn = InteractionTurn("
+    },
+    {
+      "path": "tests/integration/test_mcp_memory_ingestion.py",
+      "line": 17,
+      "text": "from friday_chat.turns.models import ChatModelResponse, InteractionTurn, ToolCallRequest"
+    },
+    {
+      "path": "tests/integration/test_mcp_memory_ingestion.py",
+      "line": 160,
+      "text": "retry_turn = InteractionTurn("
+    }
+  ],
+  "RetentionScore": [],
+  "InsightModel": [],
+  "SummaryModel": [],
+  "TranscriptMetadata": [],
+  "TranscriptMessage": [],
+  "TranscriptPage": [],
+  "TranscriptSession": [
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 79,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 115,
+      "text": "TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1324,
+      "text": ") -> tuple[TranscriptSessionView, ...]:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1352,
+      "text": "async def query_session(self, session_id: str) -> TranscriptSessionView | None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1431,
+      "text": "TranscriptSession("
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1452,
+      "text": "session: TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1455,
+      "text": ") -> TranscriptSessionView:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/adapters.py",
+      "line": 1456,
+      "text": "return TranscriptSessionView("
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 21,
+      "text": "TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 191,
+      "text": "tuple[TranscriptSessionView, tuple[TranscriptEntryView, ...]]"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 223,
+      "text": "sessions: tuple[TranscriptSessionView, ...],"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 254,
+      "text": "session: TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 303,
+      "text": "tuple[TranscriptSessionView, tuple[TranscriptEntryView, ...]],"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 373,
+      "text": "session: TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 433,
+      "text": "session: TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/commands/transcript.py",
+      "line": 507,
+      "text": "session: TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 41,
+      "text": "TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 755,
+      "text": ") -> tuple[TranscriptSessionView, ...]:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 760,
+      "text": "async def query_session(self, session_id: str) -> TranscriptSessionView | None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 838,
+      "text": "def _session_view(self) -> TranscriptSessionView:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/runtime.py",
+      "line": 839,
+      "text": "return TranscriptSessionView("
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/transcripts.py",
+      "line": 12,
+      "text": "class TranscriptSessionView:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/transcripts.py",
+      "line": 71,
+      "text": ") -> tuple[TranscriptSessionView, ...]:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/transcripts.py",
+      "line": 74,
+      "text": "async def query_session(self, session_id: str) -> TranscriptSessionView | None:"
+    },
+    {
+      "path": "packages/friday-chat/src/friday_chat/transcripts.py",
+      "line": 95,
+      "text": "\"TranscriptSessionView\","
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+      "line": 54,
+      "text": "from friday_transcript import TranscriptEntry, TranscriptSession"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_command_disposable_uat.py",
+      "line": 478,
+      "text": "TranscriptSession("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+      "line": 36,
+      "text": "from friday_transcript import TranscriptEntry, TranscriptSession"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_command_production_adapters.py",
+      "line": 380,
+      "text": "TranscriptSession("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 178,
+      "text": "from friday_transcript import TranscriptSession"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_mcp_execution_transcript.py",
+      "line": 192,
+      "text": "historical = TranscriptSession("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+      "line": 34,
+      "text": "from friday_transcript import TranscriptEntry, TranscriptSession"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_memory_diagnostics_commands.py",
+      "line": 594,
+      "text": "TranscriptSession(session_id=SESSION_ID, model_name=\"gate-d-test-chat\")"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_reorganization_coordinator.py",
+      "line": 65,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_reorganization_coordinator.py",
+      "line": 401,
+      "text": "TranscriptSession(session_id=\"session-1\", model_name=\"test-model\")"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 23,
+      "text": "TranscriptSessionView,"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 30,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 114,
+      "text": "TranscriptSession("
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 180,
+      "text": ") -> tuple[TranscriptSessionView, ...]:"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 225,
+      "text": "assert isinstance(fake_sessions[0], TranscriptSessionView)"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 228,
+      "text": "assert isinstance(framework_sessions[0], TranscriptSessionView)"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 518,
+      "text": ") -> tuple[TranscriptSessionView, ...]:"
+    },
+    {
+      "path": "packages/friday-chat/tests_chat/test_transcript_production_commands.py",
+      "line": 521,
+      "text": "async def query_session(self, session_id: str) -> TranscriptSessionView | None:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 20,
+      "text": "type TranscriptSession = Any"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 52,
+      "text": "async def create_session(self, session: \"TranscriptSession\") -> bool:"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 56,
+      "text": "async def get_session(self, session_id: str) -> \"TranscriptSession | None\":"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 117,
+      "text": "from friday_transcript import TranscriptSession"
+    },
+    {
+      "path": "packages/friday-core/src/friday_core/interfaces/transcript.py",
+      "line": 124,
+      "text": "new_session = TranscriptSession("
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 8,
+      "text": "from friday_transcript import TranscriptSession"
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 13,
+      "text": "self.sessions: dict[str, TranscriptSession] = {}"
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 34,
+      "text": "async def create_session(self, session: TranscriptSession) -> bool:"
+    },
+    {
+      "path": "packages/friday-core/tests_core/test_transcript_bridge.py",
+      "line": 38,
+      "text": "async def get_session(self, session_id: str) -> TranscriptSession | None:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/__init__.py",
+      "line": 37,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/__init__.py",
+      "line": 55,
+      "text": "\"TranscriptSession\","
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/csv.py",
+      "line": 20,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/csv.py",
+      "line": 225,
+      "text": "sessions: list[TranscriptSession],"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/csv.py",
+      "line": 277,
+      "text": "def _session_to_row(self, session: TranscriptSession) -> dict[str, Any]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/jsonl.py",
+      "line": 12,
+      "text": "from friday_transcript.models.transcript import TranscriptEntry, TranscriptSession"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/jsonl.py",
+      "line": 162,
+      "text": "def _session_to_dict(self, session: TranscriptSession) -> dict[str, Any]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/markdown.py",
+      "line": 16,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/markdown.py",
+      "line": 111,
+      "text": "self, session: TranscriptSession | None, entry_count: int"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/exporters/markdown.py",
+      "line": 228,
+      "text": "def _render_footer(self, session: TranscriptSession) -> str:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/models/__init__.py",
+      "line": 18,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/models/__init__.py",
+      "line": 23,
+      "text": "\"TranscriptSession\","
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/models/transcript.py",
+      "line": 6,
+      "text": "- TranscriptSession: Session-level metadata and aggregates"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/models/transcript.py",
+      "line": 333,
+      "text": "class TranscriptSession(BaseModel):"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 19,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 50,
+      "text": "self._session_cache: dict[str, TranscriptSession] = {}"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 70,
+      "text": "async def create_session(self, session: TranscriptSession) -> bool:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 105,
+      "text": "async def get_session(self, session_id: str) -> TranscriptSession | None:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 116,
+      "text": ") -> list[TranscriptSession]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 140,
+      "text": "def _session_to_dict(self, session: TranscriptSession) -> dict[str, Any]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 141,
+      "text": "\"\"\"Convert TranscriptSession to dict for JSON serialization.\"\"\""
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 156,
+      "text": "def _dict_to_session(self, data: dict[str, Any]) -> TranscriptSession:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 157,
+      "text": "\"\"\"Convert dict to TranscriptSession.\"\"\""
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/jsonl.py",
+      "line": 158,
+      "text": "return TranscriptSession("
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "line": 18,
+      "text": "from friday_transcript.models.transcript import TranscriptEntry, TranscriptSession"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "line": 34,
+      "text": "async def create_session(self, session: TranscriptSession) -> bool:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "line": 60,
+      "text": "async def get_session(self, session_id: str) -> TranscriptSession | None:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/protocol.py",
+      "line": 78,
+      "text": ") -> list[TranscriptSession]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 42,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 755,
+      "text": "async def create_session(self, session: TranscriptSession) -> bool:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 867,
+      "text": "async def get_session(self, session_id: str) -> TranscriptSession | None:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 890,
+      "text": ") -> list[TranscriptSession]:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 902,
+      "text": "List of TranscriptSession objects"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 930,
+      "text": "def _row_to_session(self, row: aiosqlite.Row) -> TranscriptSession:"
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 931,
+      "text": "\"\"\"Convert database row to TranscriptSession.\"\"\""
+    },
+    {
+      "path": "packages/friday-transcript/src/friday_transcript/stores/sqlite.py",
+      "line": 937,
+      "text": "return TranscriptSession("
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_mcp_provenance.py",
+      "line": 21,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_mcp_provenance.py",
+      "line": 113,
+      "text": "TranscriptSession(session_id=\"session1\", model_name=\"fake\")"
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_mcp_provenance.py",
+      "line": 181,
+      "text": "TranscriptSession(session_id=\"session1\", model_name=\"fake\")"
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_mcp_provenance.py",
+      "line": 267,
+      "text": "await store.create_session(TranscriptSession(session_id=\"ingested\", model_name=\"fake\"))"
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_sqlite_snapshot.py",
+      "line": 16,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "packages/friday-transcript/tests/test_sqlite_snapshot.py",
+      "line": 30,
+      "text": "TranscriptSession(session_id=\"session-1\", model_name=\"test-model\")"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 215,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v2.py",
+      "line": 5986,
+      "text": "transcript_session = TranscriptSession("
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 237,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat-v3.py",
+      "line": 5481,
+      "text": "transcript_session = TranscriptSession("
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 123,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "tests/integration/memory/code-backup/memory-chat.py",
+      "line": 3158,
+      "text": "transcript_session = TranscriptSession("
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 267,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "tests/integration/memory/friday.py",
+      "line": 7762,
+      "text": "transcript_session = TranscriptSession("
+    },
+    {
+      "path": "tests/integration/reorganization/test_reorganization_recovery.py",
+      "line": 61,
+      "text": "TranscriptSession,"
+    },
+    {
+      "path": "tests/integration/reorganization/test_reorganization_recovery.py",
+      "line": 320,
+      "text": "TranscriptSession(session_id=\"session-1\", model_name=\"test-model\")"
+    },
+    {
+      "path": "tests/integration/reorganization/test_reorganization_recovery.py",
+      "line": 481,
+      "text": "TranscriptSession(session_id=\"session-1\", model_name=\"test-model\")"
+    }
+  ]
+}

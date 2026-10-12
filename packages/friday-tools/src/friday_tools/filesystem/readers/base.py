@@ -2,7 +2,8 @@
 """
 Base classes and protocols for file readers.
 
-Ref: docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md
+Ref:
+docs/archive/build-plans/completed/friday-core-legacy/tool-improvement-build-plan.md
 """
 
 from __future__ import annotations

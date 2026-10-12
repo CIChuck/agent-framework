@@ -1,0 +1,15 @@
+{
+  "role": "controller noncontrolling closeout metadata checks",
+  "product_candidate": "45f3114173a7e9ada128c7950fe1f7e63cb2ff28",
+  "independent_product_verdict": "VERIFIED",
+  "snapshot": "metadata-check with explicitly hashed metadata-only overlay; product and controlling authority unchanged",
+  "board_exit": 0,
+  "docs_exit": 0,
+  "docs_count": 454,
+  "root_ruff_raw_exit": 1,
+  "root_ruff_count": 327,
+  "exact_approved_multiset": true,
+  "acceptance": "pending; initiative remains started and delivery local",
+  "original_dirty_preservation": "named original paths and unrelated board/dashboard deltas match",
+  "metadata_artifact_provenance": "controller created execution/TELEM-02-final during review; independent status-drift/reconciliation retained, no reviewed input changed"
+}

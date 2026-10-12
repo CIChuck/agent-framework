@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "packages/friday-chat/tests_chat/test_reorganization_terminal.py"
+  ],
+  "cwd": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/pty-module/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-agent/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-chat/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-cli/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-core/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-finance/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-llm/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-mcp/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-memory/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-moltbook/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-optimization/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-runtime/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-sandbox/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-speech/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-telemetry/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-tools/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-transcript/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/pty-module",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/pty-module/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/pty-module/mypy",
+    "PYTEST_ADDOPTS": "-rA -o cache_dir=/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/pty-module/pytest"
+  },
+  "exit_code": 0,
+  "seconds": 5.292398691177368,
+  "log_sha256": "494d7fe25356db8b389d9a4f3b6c0ede023423b23a1818cc4f24deb604b0e2bc",
+  "tracked_unchanged": true,
+  "preflight_sha256": "434e34fbf7565d0e9107fe4ef6250936ecf0e6b0dba34f082af0818506c806a0"
+}

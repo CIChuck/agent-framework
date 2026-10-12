@@ -1,0 +1,17 @@
+{
+  "name": "controlled",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "-p",
+    "no:cacheprovider",
+    "packages/friday-chat/tests_chat",
+    "packages/friday-telemetry/tests_telemetry"
+  ],
+  "exit_code": 1,
+  "cwd": "/private/tmp/telem-01/review",
+  "TERM": "xterm-256color",
+  "NO_COLOR_present": false
+}

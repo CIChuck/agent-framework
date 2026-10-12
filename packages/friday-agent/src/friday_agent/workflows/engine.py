@@ -14,7 +14,7 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Awaitable, Callable
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import TYPE_CHECKING, Any, Literal, cast
 
 from friday_memory.multi_agent import ScratchPlanItemStatus
@@ -58,7 +58,7 @@ HITLCallback = Callable[[HITLRequest], Awaitable[bool | HITLDecision]]
 
 def _utc_now() -> datetime:
     """Return current UTC time with timezone awareness."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class WorkflowError(Exception):

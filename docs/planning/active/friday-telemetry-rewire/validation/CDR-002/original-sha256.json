@@ -1,0 +1,10 @@
+{
+  "authority-after.json": "770788cea39eebdfc0e4e41dcabc1bdcdd46b0a242fcdcf9428c7036ff3787b2",
+  "authority-before.json": "770788cea39eebdfc0e4e41dcabc1bdcdd46b0a242fcdcf9428c7036ff3787b2",
+  "evidence.yaml": "64c317248a97d854d989fd6121f969aaa759ad45abed25f63e8e4864cf16b14a",
+  "report.md": "98d53e5c9d8a5c09b37c70e0e192d6cfbbe0802937a00ce086e74f1187a68734",
+  "repository-after.json": "ebd05b1f671b8204ed53b152d9767a20f57e9285c058f6f8bbd73a28f8e61f00",
+  "repository-before.json": "ebd05b1f671b8204ed53b152d9767a20f57e9285c058f6f8bbd73a28f8e61f00",
+  "request.yaml": "891022279bbbc6b576d0a08f2ee30988b9990d4f9baba12fed24fb2e34a28186",
+  "supplemental-inputs.json": "7a075a0ca49aba61cfc6f2e9fc6abcd9bd13c8b92457480815efa0622923fbcd"
+}

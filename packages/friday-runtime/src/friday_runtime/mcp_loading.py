@@ -10,7 +10,7 @@ import asyncio
 import json
 from collections.abc import Mapping
 from dataclasses import dataclass, field, replace
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Literal, Protocol
 
@@ -548,7 +548,7 @@ class RuntimeMCPProvider:
                 required=server.required,
             )
             raise
-        except asyncio.TimeoutError:
+        except TimeoutError:
             outcome = "connection_timeout"
         except Exception:
             outcome = "connection_failed"
@@ -580,7 +580,7 @@ class RuntimeMCPProvider:
                     reason="cancelled",
                 )
                 raise
-            except asyncio.TimeoutError:
+            except TimeoutError:
                 outcome = "discovery_timeout"
             except Exception:
                 outcome = "discovery_failed"
@@ -697,7 +697,7 @@ class RuntimeMCPProvider:
                 MCPServerDiscoveryState(
                     server_id=server.name,
                     connection_state=state,
-                    cache_timestamp=datetime.now(timezone.utc)
+                    cache_timestamp=datetime.now(UTC)
                     if state == "connected"
                     else None,
                     rejected_tools=server_rejected,

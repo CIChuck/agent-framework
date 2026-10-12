@@ -1,0 +1,131 @@
+{
+  "interpreter": "3.13.10 (main, Dec  2 2025, 22:01:27) [Clang 21.1.4 ]",
+  "counts": {
+    "candidate": 327,
+    "baseline": 579,
+    "approved": 327,
+    "removed": 252
+  },
+  "exact_multiset": true,
+  "extra": [],
+  "missing": [],
+  "archive_count": 4,
+  "config_count": 17,
+  "covered_hashes": {
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-collision-repro.py": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-peer.py": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008-probes.py": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "docs/archive/completed/2026/friday-mcp/validation/VAL-008-evidence/probes/val008_probes.py": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-agent/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-chat/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-cli/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-core/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-finance/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-llm/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-mcp/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-memory/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-moltbook/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-optimization/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-runtime/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-sandbox/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-speech/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-telemetry/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-tools/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-transcript/pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "pyproject.toml": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    },
+    "packages/friday-cli/src/friday_cli/commands.py": {
+      "candidate": true,
+      "base": true,
+      "previous": true
+    }
+  },
+  "registry_ast_matches": true,
+  "removed_only_packaged_scripts": true,
+  "packaging_diagnostic_counts_match": true,
+  "ruff_version": "0.14.10",
+  "target": "py313"
+}

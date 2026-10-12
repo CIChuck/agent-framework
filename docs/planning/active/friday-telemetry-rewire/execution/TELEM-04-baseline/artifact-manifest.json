@@ -1,0 +1,66 @@
+{
+  "base": "b8d885f3a7e2665257047c7758fd33c94a3338e4",
+  "mode": "true fake-only pre-build baseline",
+  "artifacts": [
+    {
+      "original": "/private/tmp/telem-04/construction/driver.py",
+      "stored": "raw/driver.py.gz",
+      "original_sha256": "468f5e4aa90b8639417b967a75ad032a93fd6a2b83801eaa545ff1a1304546e6",
+      "stored_sha256": "6508dc1c5403623a8fb3d64d4621b9a62a3e6ca89c60c19ae87c46c317e958c1"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/pytest_source_audit.py",
+      "stored": "raw/pytest_source_audit.py.gz",
+      "original_sha256": "5c743f0ef0c0ad98cb3c73f69c4b133ba62df343ac03d6fa39fbcc468bb39c1d",
+      "stored_sha256": "9cf888c892f5c177789907d8e2c01a10ea1bc900c69f3658e7ec9a0aff3a60f7"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/baseline_probe-initial.py",
+      "stored": "raw/baseline_probe-initial.py.gz",
+      "original_sha256": "f27e4c8ec5f5b94ae62a378825a0924a7c4b7991f57ec9bdc977d6f0142e0cab",
+      "stored_sha256": "09b60719803818e747837a49d3b6bcb5e873163add95dccb72099986724af845"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/baseline_probe.py",
+      "stored": "raw/baseline_probe.py.gz",
+      "original_sha256": "ee76360b7afc71103fa13e8ca5c2f70bfed37eb8ffd37efc271be1536d7c11a2",
+      "stored_sha256": "d020baf2cafc2684277a1e89ae9e2ea41e14ecd5d7f2f8774e8635981c3db9c7"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/baseline-snapshot.json",
+      "stored": "raw/baseline-snapshot.json.gz",
+      "original_sha256": "dacb60eb93f09e0e81ef703e7b4a9f593e8a27fae4149d56ceefbf9a75771ef9",
+      "stored_sha256": "36ee2bacfb0e68e12fb6b01c7bedd3969092cd1bb8d8e373d35f4267c8205c09"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/fake-baseline.log",
+      "stored": "raw/fake-baseline.log.gz",
+      "original_sha256": "e18d87f4c5cea6d24903edd258e6696cadbbc0bfaa0fcbb5f92c2ca1a2a965c5",
+      "stored_sha256": "19ca0ea20f817e70e4e40af4cdf6470c1ffe92fc639fd355c9de3436c39be6d4"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/fake-baseline-receipt.json",
+      "stored": "raw/fake-baseline-receipt.json.gz",
+      "original_sha256": "95c28af094bfff690cb0f8da3604914897d18116af514dc93237ae717388e033",
+      "stored_sha256": "4ba83fbf237e5cfdcebfc0ed585a95c63fed0fa561763691e609cd7eeb5e0328"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/fake-baseline-r2.log",
+      "stored": "raw/fake-baseline-r2.log.gz",
+      "original_sha256": "9111d7bc81542ea81e62f1effc9621895725623516784aac1c7d15742ef379d7",
+      "stored_sha256": "bad2746c27383eac72a328182660e2c8d784e80d2cdebb3cc517c1447d2e7347"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/fake-baseline-r2-receipt.json",
+      "stored": "raw/fake-baseline-r2-receipt.json.gz",
+      "original_sha256": "98fb4d8eb5d9e07cb13db180e31c5ed5ae943d847323ba81653160882853cc2c",
+      "stored_sha256": "c3954ee0258e782730dafb54386db753450e58b8ceec73b728e1e2951cf2fddc"
+    },
+    {
+      "original": "/private/tmp/telem-04/construction/baseline-results.json",
+      "stored": "raw/baseline-results.json.gz",
+      "original_sha256": "48dc1eb28f0d4d728146238db4ceab0a1f196a5f6a13889380480d4cd09c6c84",
+      "stored_sha256": "143e7ecc1df109200e3aabd0defb4cbc30af93cce5f4e34578738091ee88e8b0"
+    }
+  ]
+}

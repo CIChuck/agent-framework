@@ -1,0 +1,12 @@
+{
+  "name": "board",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/friday-dev-board.py",
+    "validate"
+  ],
+  "exit_code": 0
+}

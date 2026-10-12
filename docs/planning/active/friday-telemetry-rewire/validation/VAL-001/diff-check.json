@@ -1,0 +1,10 @@
+{
+  "name": "diff-check",
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "2155a0fc51f5b20dea4e35c6cfc70f1d52002735..0c7b6d4c416402443d140a5ee09abed70be34c69"
+  ],
+  "exit_code": 0
+}

@@ -1,105 +1,108 @@
-"""
-Composite Telemetry Provider.
+"""Fan-out telemetry with child span ownership and isolated payloads."""
 
-Fan-out provider that sends telemetry to multiple backends.
-"""
-
+from copy import deepcopy
+from dataclasses import dataclass
 from typing import Any
+from uuid import uuid4
 
 from friday_telemetry.interface import TelemetryInterface
 
 
+class CompositeDeliveryError(RuntimeError):
+    """Content-free aggregate failure after every sink was attempted."""
+
+    def __init__(self, failure_count: int) -> None:
+        self.failure_count = failure_count
+        super().__init__("Composite telemetry delivery failed")
+
+
+@dataclass(frozen=True)
+class _ChildSpan:
+    provider: TelemetryInterface
+    span_id: str
+
+
 class CompositeProvider(TelemetryInterface):
-    """
-    Composite telemetry provider that fans out to multiple backends.
+    """Map each child's span and parent IDs and snapshot span membership.
 
-    Useful for sending telemetry to multiple destinations simultaneously,
-    e.g., both OpenTelemetry for production monitoring and a debug recorder
-    for testing.
-
-    Example:
-        debug = DebugTelemetryRecorder()
-        otel = OpenTelemetryProvider(service_name="friday-agent")
-        composite = CompositeProvider([debug, otel])
-
-        # Events and spans are sent to both providers
-        controller = MemoryController(..., telemetry=composite)
+    A never-published first child ID remains public for caller compatibility.
+    Reused child IDs and empty composites use opaque local IDs. Published IDs
+    stay reserved for this instance's lifetime so stale ends cannot alias later
+    spans. Failing sinks do not prevent delivery to healthy sinks.
     """
 
     def __init__(self, providers: list[TelemetryInterface]) -> None:
-        """
-        Initialize composite provider.
-
-        Args:
-            providers: List of telemetry providers to fan out to
-        """
-        self._providers = providers
+        self._providers = list(providers)
+        self._spans: dict[str, tuple[_ChildSpan, ...]] = {}
+        self._issued_span_ids: set[str] = set()
+        self._span_namespace = uuid4().hex
+        self._next_span_id = 0
 
     def add_provider(self, provider: TelemetryInterface) -> None:
-        """
-        Add a provider to the composite.
-
-        Args:
-            provider: Telemetry provider to add
-        """
         self._providers.append(provider)
 
     def remove_provider(self, provider: TelemetryInterface) -> None:
-        """
-        Remove a provider from the composite.
-
-        Args:
-            provider: Telemetry provider to remove
-        """
         self._providers.remove(provider)
 
     def capture_event(self, event_name: str, data: dict[str, Any]) -> None:
-        """
-        Records an event to all providers.
-
-        Args:
-            event_name: Identifier for the event type
-            data: Event data to record
-        """
-        for provider in self._providers:
-            provider.capture_event(event_name, data)
+        failures = 0
+        for provider in tuple(self._providers):
+            try:
+                provider.capture_event(event_name, deepcopy(data))
+            except Exception:
+                failures += 1
+        if failures:
+            raise CompositeDeliveryError(failures)
 
     def start_span(self, name: str, parent_id: str | None = None) -> str:
-        """
-        Starts a span on all providers.
-
-        Returns the span ID from the first provider. All providers receive
-        the same span_id for correlation.
-
-        Args:
-            name: Name of the operation being traced
-            parent_id: Optional parent span ID
-
-        Returns:
-            Span ID (from first provider)
-        """
-        span_id = ""
-        for i, provider in enumerate(self._providers):
-            if i == 0:
-                span_id = provider.start_span(name, parent_id)
-            else:
-                # For subsequent providers, we still call start_span
-                # but use the first span_id for correlation tracking
-                provider.start_span(name, parent_id)
+        parents = self._spans.get(parent_id, ()) if parent_id is not None else ()
+        children: list[_ChildSpan] = []
+        failures = 0
+        for provider in tuple(self._providers):
+            child_parent = next(
+                (parent.span_id for parent in parents if parent.provider is provider),
+                None,
+            )
+            try:
+                children.append(
+                    _ChildSpan(provider, provider.start_span(name, child_parent))
+                )
+            except Exception:
+                failures += 1
+        if failures:
+            # A failed start cannot return an ID: close opened child resources.
+            for child in children:
+                try:
+                    child.provider.end_span(child.span_id)
+                except Exception:
+                    failures += 1
+            raise CompositeDeliveryError(failures)
+        span_id = children[0].span_id if children else self._new_span_id()
+        if span_id in self._issued_span_ids:
+            span_id = self._new_span_id()
+        self._issued_span_ids.add(span_id)
+        self._spans[span_id] = tuple(children)
         return span_id
 
-    def end_span(self, span_id: str, data: dict[str, Any] | None = None) -> None:
-        """
-        Ends a span on all providers.
+    def _new_span_id(self) -> str:
+        """Allocate without assuming random IDs cannot collide with child IDs."""
+        while True:
+            self._next_span_id += 1
+            span_id = f"{self._span_namespace}:{self._next_span_id}"
+            if span_id not in self._issued_span_ids:
+                return span_id
 
-        Args:
-            span_id: The ID returned by start_span()
-            data: Optional final data to attach
-        """
-        for provider in self._providers:
-            provider.end_span(span_id, data)
+    def end_span(self, span_id: str, data: dict[str, Any] | None = None) -> None:
+        failures = 0
+        for child in self._spans.pop(span_id, ()):
+            try:
+                child.provider.end_span(child.span_id, deepcopy(data))
+            except Exception:
+                failures += 1
+        if failures:
+            raise CompositeDeliveryError(failures)
 
     @property
     def providers(self) -> list[TelemetryInterface]:
-        """Returns the list of registered providers."""
-        return self._providers
+        """Return a membership snapshot; mutation uses add/remove_provider."""
+        return list(self._providers)

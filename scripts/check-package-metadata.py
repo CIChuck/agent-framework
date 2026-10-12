@@ -6,9 +6,8 @@ from __future__ import annotations
 import argparse
 import re
 import sys
-from pathlib import Path
-
 import tomllib
+from pathlib import Path
 
 DEFAULT_VERSION = "0.1.0a2"
 DEFAULT_INTERNAL_VERSION = "0.1.0a2"

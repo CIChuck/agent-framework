@@ -1,0 +1,12 @@
+{
+  "name": "origins",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "python",
+    "-c",
+    "import friday_chat,friday_telemetry,friday_mcp,friday_runtime; print(\"\\n\".join(x.__file__ for x in [friday_chat,friday_telemetry,friday_mcp,friday_runtime]))"
+  ],
+  "exit_code": 0
+}

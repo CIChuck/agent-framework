@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/opt/homebrew/bin/uv",
+    "run",
+    "--no-sync",
+    "pytest",
+    "packages/friday-chat/tests_chat/test_telemetry.py",
+    "packages/friday-chat/tests_chat/test_cli.py",
+    "packages/friday-chat/tests_chat/test_runtime.py",
+    "packages/friday-chat/tests_chat/test_app_lifecycle.py",
+    "packages/friday-chat/tests_chat/compat/test_config_compatibility.py",
+    "packages/friday-telemetry/tests_telemetry/test_providers.py"
+  ],
+  "cwd": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+  "candidate": "8aedd87c8def5a6c514bdfea7505205e8db78bb6",
+  "environment": {
+    "PATH": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "UV_PROJECT_ENVIRONMENT": "/Users/chuckrussell/Dev/gendev/agent-framework/.venv",
+    "UV_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/focused/uv",
+    "UV_NO_SYNC": "true",
+    "UV_OFFLINE": "true",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "LITELLM_LOCAL_MODEL_COST_MAP": "true",
+    "ANONYMIZED_TELEMETRY": "False",
+    "TERM": "xterm-256color",
+    "PYTHONPATH": "/private/tmp/telem-01/REM-001/network-guard:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-agent/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-chat/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-cli/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-core/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-finance/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-llm/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-mcp/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-memory/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-moltbook/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-optimization/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-runtime/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-sandbox/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-speech/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-telemetry/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-tools/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-transcript/src:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate/packages/friday-chat/tests_chat:/private/tmp/telem-01/REM-004/approved-execution/product-validation/candidate",
+    "TMPDIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/focused",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RUFF_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/focused/ruff",
+    "MYPY_CACHE_DIR": "/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/focused/mypy",
+    "PYTEST_ADDOPTS": "-rA -o cache_dir=/private/tmp/telem-01/REM-004/approved-execution/product-validation/tmp/focused/pytest"
+  },
+  "exit_code": 0,
+  "seconds": 3.7417190074920654,
+  "log_sha256": "e869215be42d1f5fce18d4bbd035d52250f277f928854e90ae1f9451e37ec99c",
+  "tracked_unchanged": true,
+  "preflight_sha256": "434e34fbf7565d0e9107fe4ef6250936ecf0e6b0dba34f082af0818506c806a0"
+}

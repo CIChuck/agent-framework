@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from friday_agent.workflows import (
@@ -21,7 +21,7 @@ from pydantic import ValidationError
 
 
 def _now() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 ROLE_BINDINGS = {"reviewer": "review_agent"}

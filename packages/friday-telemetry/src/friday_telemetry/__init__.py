@@ -44,7 +44,8 @@ from friday_telemetry.attributes import (
 )
 
 # Config
-from friday_telemetry.config import TelemetryConfig
+from friday_telemetry.config import OTelConfig, TelemetryConfig, TelemetryFactoryConfig
+from friday_telemetry.factory import ManagedTelemetry, create_telemetry
 
 # Helpers
 from friday_telemetry.helpers import (
@@ -58,11 +59,21 @@ from friday_telemetry.helpers import (
     StreamingTracker,
     classify_error,
 )
+from friday_telemetry.helpers.correlation import CorrelationScope, ExecutionContext
 from friday_telemetry.helpers.mcp import MCPTelemetryHelper, opaque_mcp_ref
+from friday_telemetry.helpers.safe_llm import SafeLLMTelemetry
 from friday_telemetry.interface import TelemetryInterface
+from friday_telemetry.lifecycle import (
+    LifecycleResult,
+    TelemetryInitializationError,
+    TelemetryLifecycle,
+    TelemetryOperationError,
+    TelemetrySnapshot,
+)
 
 # Models - Common
 from friday_telemetry.models.common import RequestContext
+from friday_telemetry.models.execution import ExecutionEvent
 
 # Models - LLM
 from friday_telemetry.models.llm import (
@@ -75,6 +86,7 @@ from friday_telemetry.models.llm import (
     StreamingMetrics,
     TokenUsage,
 )
+from friday_telemetry.models.llm_events import LLMEvent
 from friday_telemetry.models.mcp import MCPEvent, MCPEventName, MCPEventReason
 
 # Models - Memory
@@ -96,6 +108,11 @@ from friday_telemetry.providers import (
 from friday_telemetry.records import EventRecord, SpanRecord
 
 __all__ = [
+    "CorrelationScope",
+    "ExecutionContext",
+    "ExecutionEvent",
+    "LLMEvent",
+    "SafeLLMTelemetry",
     # Interface
     "TelemetryInterface",
     # Records
@@ -144,6 +161,15 @@ __all__ = [
     "MaintenanceTracker",
     # Config
     "TelemetryConfig",
+    "OTelConfig",
+    "TelemetryFactoryConfig",
+    "ManagedTelemetry",
+    "create_telemetry",
+    "TelemetryLifecycle",
+    "LifecycleResult",
+    "TelemetrySnapshot",
+    "TelemetryInitializationError",
+    "TelemetryOperationError",
 ]
 
 __version__ = "0.1.0a2"

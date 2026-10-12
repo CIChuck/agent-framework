@@ -506,7 +506,7 @@ class LLMTelemetryHelper:
         temperature: float | None = None,
         max_tokens: int | None = None,
         tool_count: int = 0,
-    ) -> Generator[CompletionTracker, None, None]:
+    ) -> Generator[CompletionTracker]:
         """
         Context manager for tracking a chat completion.
 
@@ -546,7 +546,7 @@ class LLMTelemetryHelper:
         text_count: int,
         total_characters: int,
         context: ConversationContext | None = None,
-    ) -> Generator[EmbeddingTracker, None, None]:
+    ) -> Generator[EmbeddingTracker]:
         """
         Context manager for tracking an embedding operation.
 

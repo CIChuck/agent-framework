@@ -2,7 +2,8 @@
 """
 Mock sandbox implementation for testing.
 
-Ref: docs/reference/specs/sandbox_specifications.md - Section 8: Alternative Implementations
+Ref: docs/reference/specs/sandbox_specifications.md - Section 8: Alternative
+Implementations
 
 Provides a configurable mock sandbox that returns predefined results
 without actually executing any code. Useful for unit testing tools

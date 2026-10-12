@@ -1,0 +1,81 @@
+{
+  "initiative": "friday-telemetry-rewire",
+  "work_unit": "TELEM-02",
+  "review_mode": "fresh-context read-only construction-directive and separately approvable lint proposal readiness; not product VERIFIED",
+  "repository": "/Users/chuckrussell/Dev/gendev/agent-framework",
+  "candidate": "75aef2272d702e3ce99ec21b520914a5528407e3",
+  "base": "e8b075a3861e1e3c1bfac050091a71be60b7e165",
+  "diff": "e8b075a3861e1e3c1bfac050091a71be60b7e165..75aef2272d702e3ce99ec21b520914a5528407e3",
+  "manifest_path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+  "manifest_sha256": "76938dc77cc42398139d73e72c7c8050d00f4bae84b8ca0c20b969408b03b818",
+  "authority": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+    },
+    {
+      "path": "docs/reference/policies/repository-engineering-policy.md",
+      "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+    },
+    {
+      "path": "docs/reference/policies/development-task-lifecycle.md",
+      "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+    },
+    {
+      "path": "docs/reference/policies/independent-validation-policy.md",
+      "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+      "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+    },
+    {
+      "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+      "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+      "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+      "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+      "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+      "sha256": "8139e5d069d83d3f4fa142fde0a403cafd75ce83ebcb79cfecf19806411a6c8b"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+      "sha256": "e2986776e8ebfce8533e7155b9f18360164b9cab66a425b2d7f0c1274459ef4c"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+      "sha256": "c2dc90bb56b8e2219cf473587fdd850033b200748001acf738cc39709e7da074"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+      "sha256": "87953838b1718d060b21c75c98b1a146016c77f21eccd294af58574a7d8b3be5"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+      "sha256": "4b7d980617f5d11b28f25511aede133e9ddd1b21f7b3c444608f7413dee938f3"
+    },
+    {
+      "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/listener-scope.json",
+      "sha256": "5048c01c0a7b21555ed3d43b2f5eca8cfa6554fb9ac7fe19df76df5c18c1cc97"
+    }
+  ],
+  "directive": "docs/planning/active/friday-telemetry-rewire/directives/CD-002-otel-adapter-lifecycle.md",
+  "contract": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+  "profile": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-02.md",
+  "lint_proposal": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-disposition.md",
+  "lint_scope": "docs/planning/active/friday-telemetry-rewire/validation/WVR-004-telem02-lint-scope.json",
+  "packaging_record": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-02-planning/evidence-packaging.json",
+  "output_directory": "/private/tmp/telem-02/readiness",
+  "constraints": "Read-only original checkout/index/product/authority. No SDK activation/network/native collector/provider/live service/state/credentials/installs/sync/downloads/commits. Private code/docs-only sparse snapshot permitted; omit all protected267tracked runtime paths before checkout. Unchanged external guard and allowlisted offline/no-sync env for docs/ruff tools; no HOME override. Review proposed future permissions only, not approved execution. Return exactly READY/CHANGES_REQUESTED/BLOCKED, distinguish proposal approval readiness from product verification."
+}

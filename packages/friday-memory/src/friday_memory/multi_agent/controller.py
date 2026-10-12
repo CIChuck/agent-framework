@@ -6,7 +6,7 @@ Additive multi-agent memory controller.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from friday_core.interfaces import MultiAgentMemoryInterface, SharedWriteCapability
@@ -89,7 +89,7 @@ class MultiAgentMemoryController(MultiAgentMemoryInterface):
                 source_type="agent",
                 author_id=self._agent_id,
                 confidence=1.0,
-                created_at=datetime.now(timezone.utc),
+                created_at=datetime.now(UTC),
             ),
         )
         await self._memory.store_fact(node)
@@ -139,7 +139,7 @@ class MultiAgentMemoryController(MultiAgentMemoryInterface):
                 source_type="agent",
                 author_id=self._agent_id,
                 confidence=1.0,
-                created_at=datetime.now(timezone.utc),
+                created_at=datetime.now(UTC),
             ),
         )
         await self._memory.store_fact(node)

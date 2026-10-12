@@ -1,0 +1,11 @@
+{
+  "name": "docs",
+  "command": [
+    "uv",
+    "run",
+    "--no-sync",
+    "python",
+    "scripts/check-documentation-lifecycle.py"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,66 @@
+validation_id: VAL-001
+initiative: friday-telemetry-rewire
+work_unit: TELEM-01
+directive: CD-001
+date: '2026-10-05'
+base: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735
+candidate: 0c7b6d4c416402443d140a5ee09abed70be34c69
+diff_range: 2155a0fc51f5b20dea4e35c6cfc70f1d52002735..0c7b6d4c416402443d140a5ee09abed70be34c69
+review_mode: fresh-context read-only full work-unit review
+checkout: /private/tmp/telem-01/review
+authority_manifest: docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml
+acceptance_criteria:
+- AC-01
+- AC-02
+- AC-03
+- AC-04
+- AC-05
+- AC-06
+baseline:
+  mixed_checkout_package_tests: 675 passed, 5 skipped, 2 failures, 3 setup errors
+    before product changes
+  failure_ids:
+  - packages/friday-chat/tests_chat/test_command_disposable_uat.py::test_real_app_cli_pty_command_uat_is_contained_and_provider_free
+  - packages/friday-chat/tests_chat/test_reorganization_terminal.py::test_provider_free_pty_acknowledges_before_bounded_progress_completes
+  setup_errors: Three test_llm_adapter_migration.py fixtures bind localhost and are
+    blocked by sandbox socket permissions
+  legacy_noise: Existing OTel provider test may print console atexit exporter failure
+    after pytest.
+commands:
+- uv run pytest packages/friday-chat/tests_chat/test_telemetry.py packages/friday-chat/tests_chat/test_cli.py
+  packages/friday-chat/tests_chat/test_runtime.py packages/friday-chat/tests_chat/test_app_lifecycle.py
+  packages/friday-chat/tests_chat/compat/test_config_compatibility.py packages/friday-telemetry/tests_telemetry/test_providers.py
+- uv run pytest packages/friday-chat/tests_chat packages/friday-telemetry/tests_telemetry
+- uv run ruff check exact_changed_Python_files
+- uv run mypy --python-version 3.13 exact_changed_source_files
+- uv run python scripts/friday-dev-board.py validate
+- uv run python scripts/check-documentation-lifecycle.py
+- git diff --check base..candidate
+environment:
+  UV_CACHE_DIR: /private/tmp/friday-uv-cache
+  LITELLM_LOCAL_MODEL_COST_MAP: 'true'
+  UV_PROJECT_ENVIRONMENT: /Users/chuckrussell/Dev/gendev/agent-framework/.venv
+  PYTHONPATH: prepend every isolated checkout packages/*/src directory so shared editable
+    installations do not resolve the original checkout
+  uv: use --no-sync to avoid modifying shared environment
+exclusions:
+- Unrelated tool-continuity task/packet, dirty example YAML, backup, audit files,
+  deleted family-tree, .DS_Store are not in candidate
+- Later telemetry units, remote exporter activation, vendor providers, credentials
+  and real runtime data are outside scope
+external_services: No external services or live vendor calls; temporary files and
+  synthetic localhost fixtures only. Socket restrictions may be addressed via narrowly
+  scoped test escalation for loopback fixtures, never vendor traffic.
+reviewer_output_directory: /private/tmp/telem-01/VAL-001
+requirements:
+- Read AGENTS.md and policy, verify authority hashes at candidate, inspect full exact
+  diff independently
+- Do not rely on implementation report, builder reasoning or conclusions
+- Do not modify candidate, source, tests, board, authority, git commits, or original
+  checkout
+- Return exactly VERIFIED, CHANGES_REQUESTED, or BLOCKED with complete evidence-backed
+  report; each mandatory criterion has source/test citations
+- Run missing meaningful probes for failure, ownership, privacy and lifecycle criteria
+  if existing coverage is insufficient; all probes live outside checkout
+- Record fresh reviewer identity/model when available, authority revisions, test commands,
+  limitations, residual risk and current candidate stability

@@ -1,0 +1,136 @@
+{
+  "typed": {
+    "content": "done",
+    "actual_dispatches": 1,
+    "events": [],
+    "sentinel_exported": false
+  },
+  "legacy": {
+    "content": "done",
+    "actual_dispatches": 1,
+    "events": [
+      "llm_completion_success"
+    ],
+    "sentinel_exported": true
+  },
+  "typed_stream": {
+    "delivered_count": 3,
+    "events": [],
+    "chunks_read": 3,
+    "closed": false
+  },
+  "legacy_stream": {
+    "delivered_count": 1,
+    "events": [
+      "llm_completion_success"
+    ],
+    "chunks_read": 3,
+    "closed": false
+  },
+  "typed_stream_cancel": {
+    "cancelled": true,
+    "closed": true,
+    "events": []
+  },
+  "legacy_stream_cancel": {
+    "cancelled": true,
+    "closed": true,
+    "events": [
+      "llm_completion_success"
+    ]
+  },
+  "embedding": {
+    "actual_dispatches": 1,
+    "events": [
+      "embeddings_generated"
+    ],
+    "missing_usage_projected_zero": true
+  },
+  "sink_failure": {
+    "replaced_application_result": true
+  },
+  "extraction_default_alias": true,
+  "pricing_api": [
+    {
+      "model": "gpt-4",
+      "cost": {
+        "input_cost": 0.03,
+        "output_cost": 0.03,
+        "total_cost": 0.06,
+        "currency": "USD",
+        "pricing_model": "gpt-4"
+      }
+    },
+    {
+      "model": "openai/gpt-4",
+      "cost": {
+        "input_cost": 0.03,
+        "output_cost": 0.03,
+        "total_cost": 0.06,
+        "currency": "USD",
+        "pricing_model": "openai/gpt-4"
+      }
+    },
+    {
+      "model": "gpt-4-0613",
+      "cost": {
+        "input_cost": 0.03,
+        "output_cost": 0.03,
+        "total_cost": 0.06,
+        "currency": "USD",
+        "pricing_model": "gpt-4-0613"
+      }
+    },
+    {
+      "model": "unknown",
+      "cost": {
+        "input_cost": 0.01,
+        "output_cost": 0.015,
+        "total_cost": 0.025,
+        "currency": "USD",
+        "pricing_model": "unknown (estimated)"
+      }
+    },
+    {
+      "model": "ollama/local",
+      "cost": {
+        "input_cost": 0.0,
+        "output_cost": 0.0,
+        "total_cost": 0.0,
+        "currency": "USD",
+        "pricing_model": "ollama/local"
+      }
+    },
+    {
+      "model": "gpt-4",
+      "cost": {
+        "input_cost": 0.0,
+        "output_cost": 0.0,
+        "total_cost": 0.0,
+        "currency": "USD",
+        "pricing_model": null
+      }
+    },
+    {
+      "model": "custom",
+      "cost": {
+        "input_cost": 0.1,
+        "output_cost": 0.1,
+        "total_cost": 0.2,
+        "currency": "USD",
+        "pricing_model": "custom"
+      }
+    },
+    {
+      "model": "table",
+      "cost": {
+        "input_cost": 0.3,
+        "output_cost": 0.2,
+        "total_cost": 0.5,
+        "currency": "USD",
+        "pricing_model": "table"
+      }
+    }
+  ],
+  "mode": "true pre-build synthetic probes; patched dispatch; no SDK construction"
+}

@@ -10,11 +10,12 @@ import os
 import warnings
 from collections.abc import AsyncIterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, TypeGuard, cast
+from typing import Any, Protocol, TypeGuard, cast
 from uuid import uuid4
 
+from friday_core.interfaces.llm import ChatCompletionResponse
 from friday_core.mcp import MCPIngestionPolicy, MCPToolCallProvenance
 from friday_llm import (
     ChatCompletionRequest,
@@ -27,6 +28,7 @@ from friday_llm import (
     TextDeltaEvent,
     ToolCallCompleteEvent,
     ToolCallDeltaEvent,
+    TypedChatCompletionResponse,
     UsageEvent,
     close_litellm_async_clients,
 )
@@ -68,6 +70,8 @@ from friday_memory.retrieval.mcp import (
     is_mcp_memory,
     mcp_memory_snippet,
 )
+from friday_telemetry import TelemetryInterface
+from friday_telemetry.models.llm_events import ServiceRole
 from friday_transcript import (
     ContextLogEntry,
     SQLiteTranscriptStore,
@@ -105,6 +109,7 @@ from friday_chat.runtime import (
     MCPTranscriptReceipt,
     PendingExtractionTurn,
 )
+from friday_chat.telemetry import ChatTelemetryObserver
 from friday_chat.tools.schemas import ToolCallRecord, ToolDefinition
 from friday_chat.tools.selection import ToolBudgetCalculator
 from friday_chat.transcripts import (
@@ -119,6 +124,7 @@ from friday_chat.turns.models import (
 from friday_chat.turns.models import (
     InteractionTurn as ChatInteractionTurn,
 )
+from friday_chat.turns.telemetry import closing_stream, detached_scope, operation_scope
 
 _MAX_SOURCE_PROVENANCE_CHARS = 32_000
 _MAX_SOURCE_PROVENANCE_BYTES = 32_000
@@ -127,6 +133,11 @@ _MAX_VISIBLE_SOURCE_IDS = 8
 
 class FridayChatStreamProtocolError(RuntimeError):
     """Raised when a typed stream cannot fit Chat's text-only boundary."""
+
+
+class MCPSnapshotPublisher(Protocol):
+    async def publish_mcp_snapshot(self, snapshot: MCPMemorySnapshot) -> bool: ...
+    async def discard_mcp_snapshot(self, snapshot: MCPMemorySnapshot) -> bool: ...
 
 
 @dataclass(frozen=True)
@@ -154,6 +165,7 @@ class FrameworkChatModel:
     ) -> ChatModelResponse:
         message_values = [dict(message) for message in messages]
         tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
+        response: ChatCompletionResponse | TypedChatCompletionResponse
         if isinstance(self.execution, LegacyLLMExecutionConfig):
             response = await self.service.chat_completion(
                 messages=message_values,
@@ -203,14 +215,16 @@ class FrameworkChatModel:
         message_values = [dict(message) for message in messages]
         tool_values = [_to_openai_tool_schema(tool) for tool in tools] or None
         if isinstance(self.execution, LegacyLLMExecutionConfig):
-            async for chunk in self.service.chat_completion_stream(
+            legacy_iterator = aiter(self.service.chat_completion_stream(
                 messages=message_values,
                 tools=tool_values,
                 temperature=self.execution.temperature,
                 max_tokens=self.execution.max_tokens,
                 timeout=self.config.llm.timeout_seconds,
-            ):
-                yield chunk
+            ))
+            async with closing_stream(legacy_iterator):
+                async for chunk in legacy_iterator:
+                    yield chunk
             return
 
         request = ChatCompletionRequest(
@@ -220,22 +234,24 @@ class FrameworkChatModel:
             provider_options=self.execution.provider_options,
             timeout=self.config.llm.timeout_seconds,
         )
-        async for event in self.service.chat_completion_events(request):
-            if isinstance(event, TextDeltaEvent):
-                yield event.text
-            elif isinstance(event, (ReasoningDeltaEvent, UsageEvent, FinishEvent)):
-                continue
-            elif isinstance(
-                event,
-                (ToolCallDeltaEvent, ToolCallCompleteEvent, StreamErrorEvent),
-            ):
-                raise FridayChatStreamProtocolError(
-                    "Friday Chat's text-only stream received a non-text tool event"
-                )
-            else:
-                raise FridayChatStreamProtocolError(
-                    "Friday Chat received an unknown typed stream event"
-                )
+        event_iterator = aiter(self.service.chat_completion_events(request))
+        async with closing_stream(event_iterator):
+            async for event in event_iterator:
+                if isinstance(event, TextDeltaEvent):
+                    yield event.text
+                elif isinstance(event, (ReasoningDeltaEvent, UsageEvent, FinishEvent)):
+                    continue
+                elif isinstance(
+                    event,
+                    (ToolCallDeltaEvent, ToolCallCompleteEvent, StreamErrorEvent),
+                ):
+                    raise FridayChatStreamProtocolError(
+                        "Friday Chat's text-only stream received a non-text tool event"
+                    )
+                else:
+                    raise FridayChatStreamProtocolError(
+                        "Friday Chat received an unknown typed stream event"
+                    )
 
 
 @dataclass
@@ -268,6 +284,7 @@ class FrameworkMemoryAdapter:
     passage_router: PassageRouter | None = None
     access_buffer: AccessBuffer | None = None
     access_buffer_configured: bool = False
+    observer: ChatTelemetryObserver | None = None
 
     async def retrieve(
         self,
@@ -319,10 +336,12 @@ class FrameworkMemoryAdapter:
         )
 
     async def publish_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:
-        return await self.collection_manager.publish_mcp_snapshot(snapshot)
+        publisher: MCPSnapshotPublisher = self.collection_manager
+        return await publisher.publish_mcp_snapshot(snapshot)
 
     async def discard_mcp_memory(self, snapshot: MCPMemorySnapshot) -> bool:
-        return await self.collection_manager.discard_mcp_snapshot(snapshot)
+        publisher: MCPSnapshotPublisher = self.collection_manager
+        return await publisher.discard_mcp_snapshot(snapshot)
 
     async def store_turn(self, user_message: str, assistant_message: str) -> None:
         await self.controller.add_turn(
@@ -342,6 +361,19 @@ class FrameworkMemoryAdapter:
         return bool(await self.episodic_store.clear_session(self.session_id))
 
     async def ingest_document(
+        self,
+        *,
+        source_path: str,
+        description: str | None,
+        content: str,
+    ) -> int:
+        with operation_scope(self.observer, "memory_ingest_document") as observation:
+            count = await self._ingest_document(source_path=source_path, description=description, content=content)
+            observation.count = count
+            observation.count_kind = "chunks"
+            return count
+
+    async def _ingest_document(
         self,
         *,
         source_path: str,
@@ -663,6 +695,7 @@ class FrameworkMaintenanceAdapter:
     compaction_calls: list[dict[str, Any]] = field(default_factory=list)
     errors: list[BaseException] = field(default_factory=list)
     migration_needed: bool = False
+    observer: ChatTelemetryObserver | None = None
 
     async def flush_memory(self) -> None:
         """Flush memory buffers."""
@@ -815,6 +848,10 @@ class FrameworkMaintenanceAdapter:
         if self.flush_pending_error is not None:
             raise self.flush_pending_error
         if not self.pending_extraction:
+            with operation_scope(self.observer, "memory_extract") as observation:
+                observation.outcome = "skipped"
+                observation.count = 0
+                observation.count_kind = "turns"
             self.actions.append("flush_pending_extraction")
             return 0
         pending = list(self.pending_extraction)
@@ -829,6 +866,10 @@ class FrameworkMaintenanceAdapter:
         if self.flush_pending_error is not None:
             raise self.flush_pending_error
         if not self.pending_extraction:
+            with operation_scope(self.observer, "memory_extract") as observation:
+                observation.outcome = "skipped"
+                observation.count = 0
+                observation.count_kind = "turns"
             self.background_actions.append(f"extract:{trigger_reason}:0")
             return 0
         pending = list(self.pending_extraction)
@@ -1110,23 +1151,37 @@ class FrameworkMaintenanceAdapter:
 
     async def _extract_turns(self, turns: list[PendingExtractionTurn]) -> None:
         if self.extractor is None:
+            for turn in turns:
+                with detached_scope(self.observer), operation_scope(self.observer, "memory_extract", origin=turn.correlation_context) as observation:
+                    observation.outcome = "skipped"
+                    observation.reason = "unavailable"
+                    observation.count = 0
+                    observation.count_kind = "turns"
             return
         for index, pending_turn in enumerate(turns):
             try:
-                result = await self.extractor.extract(
-                    InteractionTurn(
-                        id=pending_turn.turn_id,
-                        session_id=self.session_id,
-                        user_message=pending_turn.user_message,
-                        assistant_message=pending_turn.assistant_message,
-                        model_name=self.config.llm.model,
-                        temperature=self.config.llm.temperature,
-                    )
-                )
-                if isinstance(result, Mapping) and result.get("error"):
-                    raise RuntimeError(
-                        f"Memory extraction failed: {result['error']}"
-                    )
+                with detached_scope(self.observer), operation_scope(self.observer, "memory_extract", origin=pending_turn.correlation_context) as observation:
+                    try:
+                        result = await self.extractor.extract(
+                            InteractionTurn(
+                                id=pending_turn.turn_id,
+                                session_id=self.session_id,
+                                user_message=pending_turn.user_message,
+                                assistant_message=pending_turn.assistant_message,
+                                model_name=self.config.llm.model,
+                                temperature=self.config.llm.temperature,
+                            )
+                        )
+                        if isinstance(result, Mapping) and result.get("error"):
+                            raise RuntimeError(
+                                f"Memory extraction failed: {result['error']}"
+                            )
+                    except ExtractionCommitCompletedUnderCancellation:
+                        observation.persistence_state = "completed"
+                        raise
+                    observation.count = 1
+                    observation.count_kind = "turns"
+                    observation.persistence_state = "completed"
             except ExtractionCommitCompletedUnderCancellation:
                 self.pending_extraction[:0] = turns[index + 1 :]
                 raise asyncio.CancelledError from None
@@ -1492,7 +1547,7 @@ def _transcript_context_log_view(
 
 def _datetime_sort_key(value: datetime) -> float:
     normalized = (
-        value if value.tzinfo is not None else value.replace(tzinfo=timezone.utc)
+        value if value.tzinfo is not None else value.replace(tzinfo=UTC)
     )
     return normalized.timestamp()
 
@@ -1595,10 +1650,10 @@ class FrameworkWorkflowAdapter:
                 return f"Unable to load workflow metadata: {exc}"
 
 
-def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
+def build_framework_chat_model(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> FrameworkChatModel:
     if config.llm_pool is not None:
         spec = config.llm_service_specs[config.llm_pool.default_service]
-        service = LiteLLMService.from_spec(spec)
+        service = LiteLLMService.from_spec(spec, telemetry=telemetry, service_role="primary")
         canonical_execution = TypedLLMExecutionConfig(
             generation=spec.generation_defaults,
             transport_target=spec.execution_target.transport,
@@ -1625,6 +1680,7 @@ def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
             transport_target=execution.transport_target,
             model_target=execution.model_target,
             generation_defaults=execution.generation,
+            telemetry=telemetry, service_role="primary",
         )
     else:
         with warnings.catch_warnings():
@@ -1642,6 +1698,7 @@ def build_framework_chat_model(config: FridayChatConfig) -> FrameworkChatModel:
                 api_base=config.llm.api_base,
                 resilience=resilience,
                 thinking_enabled=execution.thinking_enabled,
+                telemetry=telemetry, service_role="primary",
             )
     return FrameworkChatModel(service=service, config=config, execution=execution)
 
@@ -1651,11 +1708,12 @@ def build_framework_async_client_lifecycle() -> FrameworkAsyncClientLifecycle:
     return FrameworkAsyncClientLifecycle()
 
 
-def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMService:
+def _build_legacy_primary_llm_service(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> LiteLLMService:
     """Build the unchanged fallback used by non-primary Chat consumers."""
     if config.llm_pool is not None:
         return LiteLLMService.from_spec(
-            config.llm_service_specs[config.llm_pool.default_service]
+            config.llm_service_specs[config.llm_pool.default_service],
+            telemetry=telemetry, service_role="maintenance_default",
         )
     thinking_enabled = (
         config.llm.thinking if "thinking" in config.llm.model_fields_set else None
@@ -1677,18 +1735,21 @@ def _build_legacy_primary_llm_service(config: FridayChatConfig) -> LiteLLMServic
                 timeout_seconds=config.llm.timeout_seconds or 30.0,
             ),
             thinking_enabled=thinking_enabled,
+            telemetry=telemetry, service_role="maintenance_default",
         )
 
 
 def build_framework_embedding_service(
     config: FridayChatConfig,
+    *,
+    telemetry: TelemetryInterface | None = None,
 ) -> FrameworkEmbeddingService:
     if config.embedding_pool is not None:
         spec = config.embedding_service_specs[
             config.embedding_pool.default_service
         ]
         return FrameworkEmbeddingService(
-            service=LiteLLMEmbeddingService.from_spec(spec)
+            service=LiteLLMEmbeddingService.from_spec(spec, telemetry=telemetry, service_role="embedding")
         )
 
     service = LiteLLMEmbeddingService(
@@ -1701,6 +1762,7 @@ def build_framework_embedding_service(
             or config.llm.timeout_seconds
             or 30.0,
         ),
+        telemetry=telemetry, service_role="embedding",
     )
     return FrameworkEmbeddingService(service=service)
 
@@ -1711,6 +1773,7 @@ def build_framework_memory_adapter(
     *,
     session_id: str,
     maintenance_layout: FridayChatMaintenanceLayout,
+    telemetry: TelemetryInterface | None = None,
 ) -> FrameworkMemoryAdapter:
     persist_directory = str(maintenance_layout.vector_directory)
     graph_path = str(maintenance_layout.graph_path)
@@ -1769,7 +1832,8 @@ def build_framework_memory_adapter(
         recovery_graph_store=(
             graph_store if isinstance(graph_store, ElementXGraphStore) else None
         ),
-        passage_router=_build_passage_router(config),
+        passage_router=_build_passage_router(config, telemetry=telemetry),
+        observer=telemetry if isinstance(telemetry, ChatTelemetryObserver) else None,
         access_buffer_configured=(
             config.lifecycle.enabled
             and config.lifecycle.access_buffer.get("enabled", True) is not False
@@ -1792,13 +1856,15 @@ def build_framework_transcript_adapter(
 
 def build_framework_tool_registry(
     config: FridayChatConfig,
+    *,
+    telemetry: TelemetryInterface | None = None,
 ) -> FrameworkToolRegistryAdapter:
     tool_specs = _configured_tool_specs(config.tools.registry)
     loaded: dict[str, Any] = {}
     definitions: list[ToolDefinition] = []
     for spec in tool_specs:
         try:
-            tool = _instantiate_tool(spec, config)
+            tool = _instantiate_tool(spec, config, telemetry=telemetry)
         except Exception:
             continue
         configured_name = spec.get("name")
@@ -1823,11 +1889,12 @@ def build_framework_maintenance_adapter(
     llm_models: dict[str, str],
     diagnostics: Any,
     maintenance_layout: FridayChatMaintenanceLayout,
+    telemetry: TelemetryInterface | None = None,
 ) -> FrameworkMaintenanceAdapter:
     """Build real framework maintenance services for FridayV2."""
-    legacy_primary_llm = _build_legacy_primary_llm_service(config)
+    legacy_primary_llm = _build_legacy_primary_llm_service(config, telemetry=telemetry)
     llm_services = {
-        role: _build_role_llm_service(config, role, model)
+        role: _build_role_llm_service(config, role, model, telemetry=telemetry)
         for role, model in llm_models.items()
     }
     promotion_service = None
@@ -1976,6 +2043,7 @@ def build_framework_maintenance_adapter(
                 compaction_llm = _canonical_chat_service(
                     config,
                     compaction_service_name,
+                    telemetry=telemetry, service_role="compaction",
                 )
                 compaction_model_name = config.llm_service_specs[
                     compaction_service_name
@@ -2003,7 +2071,7 @@ def build_framework_maintenance_adapter(
     try:
         extractor = MemoryExtractor(
             memory_controller=memory.controller,
-            llm=_build_extraction_llm_service(config, legacy_primary_llm),
+            llm=_build_extraction_llm_service(config, legacy_primary_llm, telemetry=telemetry),
             prompt_template=(
                 config.extraction.prompt
                 if isinstance(config.extraction.prompt, str)
@@ -2045,6 +2113,7 @@ def build_framework_maintenance_adapter(
         budget_monitor=budget_monitor,
         compactor=compactor,
         extractor=extractor,
+        observer=telemetry if isinstance(telemetry, ChatTelemetryObserver) else None,
     )
 
 
@@ -2065,7 +2134,7 @@ def build_framework_workflow_adapter(
     )
 
 
-def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
+def _build_passage_router(config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> PassageRouter | None:
     router_config = config.memory.passage_router
     if router_config.get("enabled") is not True:
         return None
@@ -2073,6 +2142,7 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
         config,
         router_config,
         default_name="passage_router",
+        telemetry=telemetry, service_role="passage_router",
     )
     router_model = (
         router_config.get("model")
@@ -2096,6 +2166,7 @@ def _build_passage_router(config: FridayChatConfig) -> PassageRouter | None:
             max_retries=_int_from_mapping(router_config, "max_retries", 1),
             timeout_seconds=float(router_config.get("timeout_seconds", 6.0) or 6.0),
         ),
+        telemetry=telemetry, service_role="passage_router",
     )
     fields = (
         "temperature",
@@ -2128,13 +2199,18 @@ def _build_role_llm_service(
     config: FridayChatConfig,
     role: str,
     model: str,
+    *,
+    telemetry: TelemetryInterface | None = None,
 ) -> LiteLLMService:
+    roles: dict[str, ServiceRole] = {"synthesizer": "maintenance_synthesizer", "classifier": "maintenance_classifier", "researcher": "maintenance_researcher", "judge": "maintenance_judge"}
+    service_role = roles.get(role, "unspecified")
     role_config = config.maintenance.llm.get(role)
     role_data = role_config if isinstance(role_config, Mapping) else {}
     canonical_service = _canonical_chat_service_from_mapping(
         config,
         role_data,
         default_name=role,
+        telemetry=telemetry, service_role=service_role,
     )
     if canonical_service is not None:
         return canonical_service
@@ -2150,16 +2226,19 @@ def _build_role_llm_service(
                 role_data.get("timeout_seconds") or config.llm.timeout_seconds or 30.0
             ),
         ),
+        telemetry=telemetry, service_role=service_role,
     )
 
 
 def _build_extraction_llm_service(
     config: FridayChatConfig,
     default_service: LiteLLMService,
+    *,
+    telemetry: TelemetryInterface | None = None,
 ) -> LiteLLMService:
     if config.llm_pool is not None:
         service_name = config.extraction.llm_service or "extraction"
-        return _canonical_chat_service(config, service_name)
+        return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role="extraction")
     if not config.extraction.model:
         return default_service
     return LiteLLMService(
@@ -2172,6 +2251,7 @@ def _build_extraction_llm_service(
             or config.llm.timeout_seconds
             or 30.0,
         ),
+        telemetry=telemetry, service_role="extraction",
     )
 
 
@@ -2275,7 +2355,7 @@ def _optional_string(value: Any) -> str | None:
     return value if isinstance(value, str) and value else None
 
 
-def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig) -> Any:
+def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig, *, telemetry: TelemetryInterface | None = None) -> Any:
     module_name = spec.get("module")
     class_name = spec.get("class")
     if not isinstance(module_name, str) or not isinstance(class_name, str):
@@ -2293,11 +2373,13 @@ def _instantiate_tool(spec: Mapping[str, Any], config: FridayChatConfig) -> Any:
             config,
             role="summarizer",
             default_name="smart_file_summarizer",
+            telemetry=telemetry,
         )
         synthesizer_llm = _build_smart_file_llm_service(
             config,
             role="synthesizer",
             default_name="smart_file_synthesizer",
+            telemetry=telemetry,
         )
         kwargs.setdefault("fallback_llm", summarizer_llm)
         kwargs.setdefault("summarizer_llm", summarizer_llm)
@@ -2311,7 +2393,9 @@ def _build_smart_file_llm_service(
     *,
     role: str = "summarizer",
     default_name: str = "smart_file_summarizer",
+    telemetry: TelemetryInterface | None = None,
 ) -> LiteLLMService:
+    service_role: ServiceRole = "smart_file_summarizer" if role == "summarizer" else "smart_file_synthesizer" if role == "synthesizer" else "unspecified"
     llm_config = config.smart_file.llm
     role_config = llm_config.get(role) if isinstance(llm_config, Mapping) else {}
     role_data = role_config if isinstance(role_config, Mapping) else {}
@@ -2319,6 +2403,7 @@ def _build_smart_file_llm_service(
         config,
         role_data,
         default_name=default_name,
+        telemetry=telemetry, service_role=service_role,
     )
     if canonical_service is not None:
         return canonical_service
@@ -2341,12 +2426,16 @@ def _build_smart_file_llm_service(
                 or 30.0
             ),
         ),
+        telemetry=telemetry, service_role=service_role,
     )
 
 
 def _canonical_chat_service(
     config: FridayChatConfig,
     service_name: str,
+    *,
+    telemetry: TelemetryInterface | None = None,
+    service_role: ServiceRole = "unspecified",
 ) -> LiteLLMService:
     try:
         spec = config.llm_service_specs[service_name]
@@ -2354,7 +2443,7 @@ def _canonical_chat_service(
         raise ValueError(
             f"Unknown canonical LLM service {service_name!r}"
         ) from error
-    return LiteLLMService.from_spec(spec)
+    return LiteLLMService.from_spec(spec, telemetry=telemetry, service_role=service_role)
 
 
 def _canonical_chat_service_from_mapping(
@@ -2362,12 +2451,14 @@ def _canonical_chat_service_from_mapping(
     role_data: Mapping[str, Any],
     *,
     default_name: str,
+    telemetry: TelemetryInterface | None = None,
+    service_role: ServiceRole = "unspecified",
 ) -> LiteLLMService | None:
     if config.llm_pool is None:
         return None
     configured_name = _optional_string(role_data.get("llm_service"))
     service_name = configured_name or default_name
-    return _canonical_chat_service(config, service_name)
+    return _canonical_chat_service(config, service_name, telemetry=telemetry, service_role=service_role)
 
 
 def _build_smart_file_processor_config(config: FridayChatConfig) -> Any:

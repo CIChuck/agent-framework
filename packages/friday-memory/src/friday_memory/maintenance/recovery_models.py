@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Final, Literal
+from typing import Final, Literal, Self
 
 from pydantic import (
     BaseModel,
@@ -15,7 +15,6 @@ from pydantic import (
     field_validator,
     model_validator,
 )
-from typing_extensions import Self
 
 # Chroma 1.4.0 persists embeddings as float32 and its public cosine collection
 # add/get round trip can move a coordinate by up to two float32 ULPs.  The

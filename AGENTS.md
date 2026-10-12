@@ -109,7 +109,7 @@ is [docs/reference/policies/development-task-lifecycle.md](docs/reference/polici
 When a repo-wide validation command fails because of unrelated legacy debt, report the failure and also run the narrowest meaningful validation for the files you changed.
 
 ## Coding Style & Naming Conventions
-- Python 3.10+, 4-space indentation, snake_case for modules/functions, PascalCase for classes/dataclasses.
+- Python 3.13.4+, 4-space indentation, snake_case for modules/functions, PascalCase for classes/dataclasses.
 - Prefer explicit type hints, small functions, and side-effect-aware APIs.
 - Use `friday-core` structured logging utilities when instrumenting runtime code.
 - For runtime/config work, prefer Pydantic models for validated external input and dataclasses for simple internal structures. Current full-stack runtime configuration lives in `friday_runtime.config.RuntimeConfig`; `friday_cli.container.FridayConfig` is compatibility-oriented.

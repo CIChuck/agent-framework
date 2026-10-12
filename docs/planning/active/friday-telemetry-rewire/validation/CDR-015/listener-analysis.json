@@ -1,0 +1,15 @@
+{
+  "existing_count": 11,
+  "new_count": 2,
+  "unique_count": 13,
+  "effects": "Existing11 synthetic HTTP nodes plus new2 native gRPC nodes; only127.0.0.1:0/fake payloads; normal-user sandbox escape; no other network privileges; finalize all fixtures/helper/node hashes before collection.",
+  "fixture_hashes": {
+    "packages/friday-chat/tests_chat/test_llm_adapter_migration.py": true,
+    "packages/friday-llm/tests_llm/conftest.py": true
+  },
+  "new_nodes": [
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_roundtrip_preserves_spans_and_events",
+    "packages/friday-telemetry/tests_telemetry/test_otlp_collector.py::test_grpc_unavailable_reports_export_failure"
+  ],
+  "final_precollection_freeze_required": true
+}

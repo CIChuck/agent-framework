@@ -86,7 +86,7 @@ def _today() -> str:
 
 
 def _now() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    return dt.datetime.now(dt.UTC).isoformat(timespec="seconds")
 
 
 def load_board(root: Path) -> dict[str, Any]:

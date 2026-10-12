@@ -13,7 +13,7 @@ Tests cover:
 - Hours until decay estimation
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 from friday_memory.lifecycle.decay import DecayCalculator, DecayConfig
@@ -218,7 +218,7 @@ class TestDecayCalculator:
         now,
     ) -> None:
         aware_now = now.astimezone()
-        last_accessed = (aware_now - timedelta(hours=24)).astimezone(timezone.utc)
+        last_accessed = (aware_now - timedelta(hours=24)).astimezone(UTC)
 
         score = calculator.calculate_decay(1.0, last_accessed, now)
 
@@ -306,7 +306,7 @@ class TestDecayCalculator:
         now,
     ) -> None:
         aware_now = now.astimezone()
-        created_at = (aware_now - timedelta(hours=25)).astimezone(timezone.utc)
+        created_at = (aware_now - timedelta(hours=25)).astimezone(UTC)
 
         assert calculator.is_eligible_for_promotion_check(created_at, now)
 

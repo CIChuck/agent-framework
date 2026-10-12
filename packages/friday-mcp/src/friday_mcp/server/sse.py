@@ -101,7 +101,7 @@ class SSEMCPServer(MCPServerBase):
 
             logger.debug(f"New SSE session: {session_id}")
 
-            async def event_generator() -> AsyncGenerator[str, None]:
+            async def event_generator() -> AsyncGenerator[str]:
                 # Send endpoint URL as first message
                 base_url = str(request.base_url).rstrip("/")
                 endpoint_url = f"{base_url}{self.path}/message?session={session_id}"
