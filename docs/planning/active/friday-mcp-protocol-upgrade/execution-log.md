@@ -74,3 +74,14 @@ checks before execution. Restore isolated pyproject/lock to original bytes; no
 client/test edits, dependency install, SDK execution or product checks are claimed.
 Started/local; execution_phase planning; validation_state blocked. Approval of
 this bounded exception and renewed frozen controls is the next gate.
+
+
+## 2026-10-12 — A01 approved; dependency verification resumed
+
+Chuck Russell explicitly approved A01 and asked about regression risks. Recorded
+the exact statement and frozen original proposal/dependency evidence in a separate
+receipt; retained original CD-MCP-UP-001 approval bytes. The approved target is
+IDNA 3.20, rather than the distinct older 3.2 release. Permit only IDNA 3.11 to
+3.20 among existing versions. Resume isolated reproduction and supported-context
+comparison before locked installation. No product completion or independent
+validation is claimed.

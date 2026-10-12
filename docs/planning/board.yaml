@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: 'approve CD-MCP-UP-001 A01: necessary IDNA 3.11 to3.20 exception for SDK2.3.0; no client construction until dependency authority is reconciled'
+  next_gate: 'A01 approved: reproduce IDNA 3.20 dependency set, preserve other resolution selections, then construct and validate CD-MCP-UP-001 only'
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1373,3 +1373,10 @@ events:
   action: dependency preparation stop; bounded amendment proposed
   note: Original no-churn resolution cannot satisfy SDK2.3.0 because httpx2>=2.10 requires idna>=3.18 while existing lock pins3.11. Propose only IDNA3.20; restore isolated product bytes. No source build or install.
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T16:11:44.521914+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded SDK dependency amendment A01
+  note: Permit only IDNA 3.11 to 3.20 among existing versions. Original exact scope, validation and no-delivery boundary unchanged; resume isolated verification and construction.
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json

@@ -89,6 +89,38 @@
     {
       "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
       "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-sdk-dependency.md",
+      "sha256": "f3118e48a9c2e80756b39c410db3ecca7f63c7f141cd704f29aaa574386e5e19"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+      "sha256": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/README.md",
+      "sha256": "1a378929a6ef9a69a1001232960623aa9174b3a094833fc054671e30221d95ea"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/report.json",
+      "sha256": "61bb44f1eeae33013ea71a8d3b45067c19fe92e09971d28c6503c614b643b187"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-uv.lock.gz",
+      "sha256": "46da8d70f22930ec8b65182aba5ebd6b568c2b0d3c8d65c7d5c87ce9650246f8"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/proposed-mcp-pyproject.toml.gz",
+      "sha256": "8fed981ee2777ab00a7d41aa4d4cdcf4b0e9efc2fd093991236b36ca72ad146d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/idna-3.20-pypi.json",
+      "sha256": "e7cbd26e23ce60f6cb3a151d2adf3b1b087bb8f10ac2d9d6db70fdccbf3bb041"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/execution/dependency-conflict/mcp-2.3.0-pypi.json",
+      "sha256": "d9348a2813cdf05df82f7852afb9f13d8a8035d62c3a5e07fb9657bc5382aad7"
     }
   ],
   "product_scope": {
@@ -114,5 +146,15 @@
     "complete_captured_sources": 10
   },
   "approved_proposal_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c",
-  "execution_preparation_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c"
+  "execution_preparation_commit": "a3c0cbdc867ca3535f611c2461ff080a991de86c",
+  "amendments": [
+    {
+      "directive": "CD-MCP-UP-001-A01",
+      "status": "approved",
+      "approval": {
+        "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-001-A01-approval.json",
+        "sha256": "cb1b25e5f8bd694c815c5e525216b6aaa33e7e337024e527a75e1490524d53f0"
+      }
+    }
+  ]
 }

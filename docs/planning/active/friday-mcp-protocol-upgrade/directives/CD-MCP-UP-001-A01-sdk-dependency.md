@@ -1,6 +1,7 @@
 # CD-MCP-UP-001 A01: necessary SDK dependency version exception
 
-Status: Proposed for Chuck Russell's approval on 2026-10-12. Not approved.
+Status: Approved by Chuck Russell on 2026-10-12.
+Approval: [exact statement and frozen proposal](CD-MCP-UP-001-A01-approval.json).
 
 ## Decision
 

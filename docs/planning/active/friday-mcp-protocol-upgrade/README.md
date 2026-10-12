@@ -9,10 +9,10 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: approve bounded CD-MCP-UP-001 A01 IDNA dependency exception before construction
+next_gate: reproduce approved dependency set and validate the first client-core slice
 implementation_authority: granted for CD-MCP-UP-001 only
-execution_phase: planning
-validation_state: blocked
+execution_phase: implementation
+validation_state: pending
 ---
 
 ## Current checkpoint
@@ -114,3 +114,14 @@ proposes only IDNA 3.11 to3.20 and preserves all other existing versions.
 Original eight criteria and twelve product paths remain controlling. Private
 product metadata/lock have been restored; no client source edits or SDK installation
 have occurred. Reviewable original diagnostics and full proposed lock are retained.
+
+
+## A01 approved — 2026-10-12
+
+Chuck Russell approved the bounded IDNA 3.11 to 3.20 exception. The
+[separate receipt](directives/CD-MCP-UP-001-A01-approval.json) preserves the exact
+statement and original proposal hashes. Original approval bytes, twelve product
+paths and eight criteria remain unchanged. Resume isolated dependency
+reproduction, supported-context preservation and regression checks, then the
+already-approved client-core construction. No completion or validation verdict
+is implied by approval.
