@@ -178,3 +178,15 @@ fourteen approved paths. Builder evidence and full raw receipts are retained in
 execution/http/report.md and stored-manifest.json. Fresh independent review is
 required; whole initiative remains started/local and later units are unapproved.
 No original authority/index/directive/proposal/acceptance bytes are revised.
+
+
+## 2026-10-12 — HTTP independent review requests four corrections
+
+execution_phase: remediation; validation_state: changes_requested. Fresh full
+VAL-UP02B-01 reviewed candidate 2a3cec520f20442515d3d9a5a1a33eb500bd8846. Original report and
+raw probes/checks are preserved losslessly in validation/VAL-UP02B-01. All required
+checks pass, but four reproduced schema/header/metadata/session-concurrency defects
+prevent VERIFIED or unit completion. REM-MCP-UP-002 is a concrete six-path,
+four-finding proposal; source remediation awaits maintainer authorization.
+Original candidate, controls, approval/proposals and raw builder evidence remain
+unchanged. Whole initiative remains started/local; no acceptance/publication.

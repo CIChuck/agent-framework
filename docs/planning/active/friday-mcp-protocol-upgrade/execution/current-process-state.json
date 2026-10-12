@@ -1,9 +1,9 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-02B",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "next_gate": "Fresh read-only independent CD-MCP-UP-002 validation of committed HTTP candidate",
+  "execution_phase": "remediation",
+  "validation_state": "changes_requested",
+  "next_gate": "Maintainer approval of REM-MCP-UP-002 exact four-finding directive and manifest, then bounded remediation and fresh independent review",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
@@ -22,5 +22,10 @@
   ],
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json",
-  "unit_completion": "not proposed; independent verdict pending"
+  "unit_completion": "not proposed; independent CHANGES_REQUESTED",
+  "reviewed_candidate": "2a3cec520f20442515d3d9a5a1a33eb500bd8846",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md",
+  "independent_report_sha256": "e97e199a556be162ff99a46d6d3ec6db75de3ef61cff5985447b47fbd73487c3",
+  "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
+  "remediation_status": "proposed; approval pending"
 }

@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: fresh independent CD-MCP-UP-002 Streamable HTTP work-unit review; later Runtime/YAML/server/aggregate units remain separately gated
+  next_gate: approve REM-MCP-UP-002 four-finding/six-path remediation, then fresh independent delta and full CD-MCP-UP-002 review; no HTTP unit completion yet
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -469,6 +469,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-01/report.md: CHANGES_REQUESTED'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md: VERIFIED client-core/stdio work unit only'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json: maintainer acceptance of client-core/stdio unit only'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1446,3 +1447,10 @@ events:
   action: froze Streamable HTTP candidate
   note: Fourteen-path approved implementation and stable checks ready for independent review; started/local retained
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/http/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:43:39+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded HTTP changes requested and remediation proposal
+  note: Independent full review finds four bounded defects; exact REM-MCP-UP-002 approval required before corrections; started/local retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md
