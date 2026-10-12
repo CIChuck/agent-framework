@@ -1,6 +1,6 @@
 # Accepted telemetry delivery handoff
 
-Status: branch pushed; draft PR publication awaiting explicit approval;
+Status: branch pushed; draft PR #7 open against master;
 core TELEM-01–04 accepted and construction closed.
 
 The accepted telemetry branch is `feature/friday-telemetry-rewire`. Its accepted
@@ -14,8 +14,9 @@ The subsequent push published exact commit
 `bb83dc0d0ff1b88ed9db54329cd39c7fca49650a` to
 `origin/feature/friday-telemetry-rewire`. Automatic approval review rejected draft
 PR creation because publication of the description and repository links to GitHub
-was not clearly authorized. An explicit publication question is pending. No PR
-or merge is recorded. The prepared draft stays available locally.
+was not clearly authorized. Chuck Russell subsequently approved this specific publication with "yes approved".
+[Draft PR #7](https://github.com/CIChuck/agent-framework/pull/7) is now open against
+`master`; GitHub confirms draft status. No merge is recorded.
 
 ## Delivery sequence
 

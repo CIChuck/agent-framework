@@ -384,7 +384,7 @@ tasks:
   condition: normal
   implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: core TELEM-01–04 accepted and construction closed; branch pushed; draft PR publication awaits explicit approval; preserve frozen evidence paths; MCP preparation remains authorized
+  next_gate: 'core TELEM-01–04 accepted and construction closed; draft PR #7 open against master; review before any merge; preserve frozen evidence paths; MCP preparation remains authorized'
   delivery_state: pushed
   branch: feature/friday-telemetry-rewire
   depends_on: []
@@ -1283,3 +1283,10 @@ events:
   action: delivery local -> pushed
   note: Published exact committed telemetry branch bb83dc0d0ff1b88ed9db54329cd39c7fca49650a; core remains accepted and construction closed. Draft PR creation was rejected by automatic approval review pending explicit GitHub publication approval. No merge.
   evidence: https://github.com/CIChuck/agent-framework/tree/feature/friday-telemetry-rewire
+- task: friday-telemetry-rewire
+  at: '2026-10-12'
+  actor: Codex
+  actor_role: agent
+  action: draft telemetry delivery PR created
+  note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority unchanged.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/7

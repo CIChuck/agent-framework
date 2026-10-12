@@ -16,8 +16,8 @@ implementation_authority: closed
 delivery_state: pushed
 ---
 
-Current delivery: the accepted branch is pushed. Draft PR publication awaits
-explicit approval after automatic approval review rejection; no merge exists.
+Current delivery: the accepted branch is pushed and [draft PR #7](https://github.com/CIChuck/agent-framework/pull/7)
+is open against master after explicit publication approval. No merge exists.
 The parent started label retains historical evidence; construction is closed.
 
 Core telemetry is **accepted and closed** across TELEM-01–04. Chuck Russell
