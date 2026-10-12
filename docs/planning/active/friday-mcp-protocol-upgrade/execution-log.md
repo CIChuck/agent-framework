@@ -156,3 +156,13 @@ hashed additional complete dated sources/schema. Earlier authority/index/source
 bytes remain unchanged. Current next-unit state is planning/not_ready; source
 construction waits for exact directive/manifest approval. Runtime/YAML/server
 and aggregate units remain later gates; Langfuse remains queued after full MCP.
+
+
+## 2026-10-12 — exact HTTP construction directive approved
+
+Chuck Russell explicitly stated “approved” in response to CD-MCP-UP-002.
+Separate approval-UP-02B.json and authority-UP-02B.json pin the immutable draft
+and proposal manifest at 9e00288. Work unit MCP-UP-02B enters construction/not_ready
+on the existing feature branch. Fourteen exact product paths and fixture-only
+effects are authorized; prior frozen evidence and unrelated dirty root changes
+remain preserved. No Runtime/YAML/server or delivery authority is inferred.

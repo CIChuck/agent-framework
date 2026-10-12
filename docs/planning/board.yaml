@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: CD-MCP-UP-001 accepted; review/approve exact CD-MCP-UP-002 Streamable HTTP directive and proposal manifest; UP-02B source authority pending
+  next_gate: 'CD-MCP-UP-002 approved: implement fourteen-path HTTP unit, verify required gates and freeze candidate for fresh independent validation'
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1432,3 +1432,10 @@ events:
   action: prepared separate CD-MCP-UP-002 proposal
   note: Fourteen product paths; dated modern/2025 HTTP profiles and ten criteria; no next-unit construction authority
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T18:32:34+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-002
+  note: 'Exact statement: approved. Fourteen product paths; HTTP unit only; no delivery authority'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json

@@ -1,0 +1,259 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "work_unit": "MCP-UP-02B",
+  "directive": "CD-MCP-UP-002",
+  "status": "approved_execution",
+  "implementation_authority": "granted",
+  "approval": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-02B.json",
+    "sha256": "0506dafaf9c876ecc449bdf8ff8db741dc7c34dcf5ffe531f47e0afab1791534"
+  },
+  "product_baseline": "256d09d2f6a89846b5b77c4ae6436750d9bdbd95",
+  "accepted_core_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
+  "planned_branch": "feature/friday-mcp-protocol-upgrade",
+  "profiles": [
+    "2026-07-28",
+    "2025-11-25"
+  ],
+  "prior_frozen_manifest": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/authority-manifest.json",
+    "sha256": "c202d2d8a3fe83e29187a2273faee7b743471bc0d528f1de8b06ca1b3b0775b2",
+    "note": "All prior frozen controls still apply and remain immutable"
+  },
+  "controls": [
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
+      "sha256": "f69b275dd018e03ed8c7d05fa96f5b7d6ec34439c5c8d49d8f7ab2aab4887ea7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json",
+      "sha256": "b77ef183c7ed1ffdf8a465cebfd293f1f9bdb97bc3deed6e20c4b4dd08a31184"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/manifest.json",
+      "sha256": "6664e309b175da791930e1f026052b884e964dec0cdf200c185dd3bb1de99ad7"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/manifest.json",
+      "sha256": "1f99847e978b50036c2b1b00ba08873ebd899b4f0e9d0d6680ccba035bd3d4b6"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "sha256": "f03955e29f62198dc77c7123811c3bccc8f9431a68027d0984b7c7f9aee38aec"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "sha256": "36168ffae11aadaf6622bc419ca4353ac09a392f0dc4ffd98cdf5d6ea865ec95"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "sha256": "edb24318788ee0dbb472ac8c62183d73ac5ec2e26b2f0f0acc12831be0660e52"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "sha256": "ececcd5dac5a288f0b83e672a17c11a46e0d2eb2876afde5cbd34988be5f35a0"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "sha256": "bf6804e4f57672d51aedd4dda0d513758578b0eb3a5f32a92b136ac58ad65958"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "sha256": "80259cc4cb4b74248ea0591fa061b9cc11ed4592985f639d7a10fba84ad9b091"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "sha256": "0ffcd169eacf5a97d37b5e13a52ebcbb2259977db0975b70766e429e7d1cc43d"
+    },
+    {
+      "path": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f"
+    }
+  ],
+  "product_paths": [
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "baseline_sha256": "6db9a219fda161a8a621d84b237e0fe1959bc40579e7474a687709eaa5ac8a3d",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "baseline_sha256": "da16223ee95b54a732a108a59277718838476466e5ccc1b928fdeca360411d8b",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "baseline_sha256": "d6b3379c2508aab38fa30a75dfaf7aec87440186a753a8b3ab38037bb5a98c6c",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/README.md",
+      "baseline_sha256": "c30f7003e8c969e54026da6d6a20309fc995348b9b69a75a77203107ce7ac216",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/pyproject.toml",
+      "baseline_sha256": "730f687c040a63e2e4347880fb7e17b536d2b0730467b6fb2eec9286ad3b0aa2",
+      "change": "existing"
+    },
+    {
+      "path": "uv.lock",
+      "baseline_sha256": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+      "change": "existing"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/src/friday_mcp/client/http_policy.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "baseline_sha256": null,
+      "change": "new"
+    },
+    {
+      "path": "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py",
+      "baseline_sha256": null,
+      "change": "new"
+    }
+  ],
+  "dependency_change": "Only direct runtime edge httpcore==1.0.9 already locked; no existing selected version/artifact changes",
+  "acceptance_criteria": [
+    "HTTP-AC-01",
+    "HTTP-AC-02",
+    "HTTP-AC-03",
+    "HTTP-AC-04",
+    "HTTP-AC-05",
+    "HTTP-AC-06",
+    "HTTP-AC-07",
+    "HTTP-AC-08",
+    "HTTP-AC-09",
+    "HTTP-AC-10"
+  ],
+  "effects": "Private offline environment; two synthetic literal-loopback HTTP fixtures only; no public network during product verification",
+  "required_review": "Fresh-context read-only independent validation of stable committed candidate",
+  "required_checks": [
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "validate"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "next"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "show",
+      "friday-mcp-protocol-upgrade"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py",
+      "packages/friday-mcp/tests_mcp/client/test_execution.py",
+      "packages/friday-mcp/tests_mcp/client/test_lifecycle.py"
+    ],
+    [
+      "pytest",
+      "packages/friday-mcp/tests_mcp"
+    ],
+    [
+      "pytest",
+      "packages/friday-runtime/tests_runtime",
+      "packages/friday-chat/tests_chat",
+      "packages/friday-telemetry/tests_telemetry"
+    ],
+    [
+      "pytest"
+    ],
+    [
+      "ruff",
+      "check",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_protocol.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_lifecycle.py",
+      "packages/friday-mcp/tests_mcp/client/test_http_interop.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_sdk_server.py",
+      "packages/friday-mcp/tests_mcp/fixtures/http_compat_server.py"
+    ],
+    [
+      "ruff",
+      "check",
+      ".",
+      "--output-format=json"
+    ],
+    [
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp/client/base.py",
+      "packages/friday-mcp/src/friday_mcp/client/protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/__init__.py",
+      "packages/friday-mcp/src/friday_mcp/client/http.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_protocol.py",
+      "packages/friday-mcp/src/friday_mcp/client/http_policy.py"
+    ],
+    [
+      "mypy",
+      "packages/friday-mcp/src/friday_mcp"
+    ],
+    [
+      "python",
+      "scripts/check-documentation-lifecycle.py"
+    ],
+    [
+      "python",
+      "scripts/friday-dev-board.py",
+      "render",
+      "--check"
+    ],
+    [
+      "git",
+      "diff",
+      "--check"
+    ]
+  ],
+  "verification_note": "Requirements only; checks run under frozen private offline guard and against preserved accepted baseline. No implementation/test pass is claimed by planning.",
+  "approved_proposal": {
+    "path": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json",
+    "sha256": "730b21aa4417485d08c1752ae14228b8d1ce9c85579651d8517221661081db0e"
+  },
+  "execution_baseline": "9e00288b4b36632bb82b98955a88dec0545efb47"
+}

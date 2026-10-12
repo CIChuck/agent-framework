@@ -1,15 +1,15 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-02B",
-  "execution_phase": "planning",
+  "execution_phase": "construction",
   "validation_state": "not_ready",
-  "next_gate": "maintainer review/approval of exact CD-MCP-UP-002 and separate proposal manifest before source construction",
+  "next_gate": "Implement exact CD-MCP-UP-002, run required checks, commit stable candidate and dispatch fresh independent validation",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
   "construction_directive": "CD-MCP-UP-002",
-  "directive_status": "proposed",
-  "unit_implementation_authority": "not_granted",
+  "directive_status": "approved",
+  "unit_implementation_authority": "granted",
   "accepted_units": [
     {
       "unit": "MCP-UP-02A",

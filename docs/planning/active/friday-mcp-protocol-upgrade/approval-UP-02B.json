@@ -1,0 +1,13 @@
+{
+  "directive": "CD-MCP-UP-002",
+  "work_unit": "MCP-UP-02B",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved",
+  "recorded_at_utc": "2026-10-12T18:32:34.245404+00:00",
+  "proposal_commit": "9e00288b4b36632bb82b98955a88dec0545efb47",
+  "directive_sha256": "f69b275dd018e03ed8c7d05fa96f5b7d6ec34439c5c8d49d8f7ab2aab4887ea7",
+  "proposal_manifest_sha256": "730b21aa4417485d08c1752ae14228b8d1ce9c85579651d8517221661081db0e",
+  "scope": "Exact fourteen product paths and ten criteria of the referenced immutable proposal; fixture-only effects",
+  "note": "Original proposed directive and manifest bytes retained; this receipt supplies separate exact approval. No delivery or later-unit approval."
+}
