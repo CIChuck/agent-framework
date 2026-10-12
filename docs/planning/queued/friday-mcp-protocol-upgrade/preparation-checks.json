@@ -1,0 +1,45 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "checked_date": "2026-10-12",
+  "status": "planning_checks_passed_not_product_verified",
+  "checks": [
+    {
+      "command": "friday-dev-board.py validate",
+      "exit": 0,
+      "result": "27 tasks"
+    },
+    {
+      "command": "check-documentation-lifecycle.py",
+      "exit": 0,
+      "result": "502 Markdown files"
+    },
+    {
+      "command": "friday-dev-board.py next",
+      "exit": 0,
+      "result": "AWAITING_APPROVAL friday-mcp-protocol-upgrade / CD-MCP-UP-001"
+    },
+    {
+      "command": "ruff check existing first-unit source and test paths",
+      "exit": 0,
+      "result": "no findings"
+    },
+    {
+      "command": "mypy packages/friday-mcp/src/friday_mcp",
+      "exit": 0,
+      "result": "17 source files; existing suppressed modules remain inherited debt"
+    },
+    {
+      "command": "proposal hashes, twelve-path baseline and new packet whitespace",
+      "result": "passed; git no-index check returns 1 for additions without whitespace diagnostics"
+    },
+    {
+      "command": "accepted telemetry/preservation receipt",
+      "exit": 0,
+      "result": "15 product hashes, 46 control hashes and 7 unrelated file/deletion states matched"
+    }
+  ],
+  "product_tests": "not run",
+  "dependency_install": "not performed",
+  "independent_product_validation": "not applicable to planning-only proposal",
+  "git_delivery": "local uncommitted planning changes"
+}

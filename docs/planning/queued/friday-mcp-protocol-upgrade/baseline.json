@@ -1,0 +1,290 @@
+{
+  "initiative": "friday-mcp-protocol-upgrade",
+  "checked_date": "2026-10-12",
+  "head": "46005353046553477417a730f05ff21ead64a00d",
+  "branch": "feature/friday-telemetry-rewire",
+  "target_protocol": "2026-07-28",
+  "status": "planning_only",
+  "sdk_counterpart": {
+    "package": "mcp",
+    "version": "2.3.0",
+    "role": "development_interoperability_only",
+    "release": "https://github.com/modelcontextprotocol/python-sdk/releases/tag/v2.3.0",
+    "installation": "not performed",
+    "artifact_hashes": "must be frozen after construction approval"
+  },
+  "telemetry": {
+    "status": "TELEM-01 through04 accepted and closed",
+    "product_candidate": "5c3a0e6dc8ba995bad9e7dfb8c574f5dfd335bc8",
+    "acceptance_record": "docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json",
+    "acceptance_record_sha256": "db6ffff278434cabdf688839ec988b09e10fff437e8aac6a5c1ead9fac140075",
+    "product_hashes": {
+      "packages/friday-telemetry/src/friday_telemetry/helpers/correlation.py": "241c04fb039684bed5f8394b65c705b84af22e707ad15c34c170d389c6bf98d7",
+      "packages/friday-telemetry/src/friday_telemetry/models/execution.py": "30be7cede8f5b45794a2cb607344e774930cdc2e09a2eb0deb1b9801dd614e37",
+      "packages/friday-chat/src/friday_chat/telemetry.py": "ba0e2aeb2c376449c02e21fbdfc5f569971091f3bee3920457d88de0b68f0e91",
+      "packages/friday-chat/src/friday_chat/turns/telemetry.py": "5c42769fcec1188e6f15810db16f4c68733f5b8868e7f960fc1970438c13d711",
+      "packages/friday-chat/src/friday_chat/adapters.py": "884557cfb3305096d213f2f7de95977de367be02405700bfce1083d3be34228d",
+      "packages/friday-chat/src/friday_chat/tools/loop.py": "d87bb749cea9f6e89fbb76c07b884d39a13aa6ded52a90e3974353ae0972de32",
+      "packages/friday-chat/src/friday_chat/turns/processor.py": "8238bbb873b41b0d7644d3ef34aacba86f4e8f821a83b8d4b7b5cf3d77ccb146",
+      "packages/friday-telemetry/tests_telemetry/test_execution_events.py": "ece2564a36575bbfb876d762730eff2194623cea8392474d8a5ad959e384c5b3",
+      "packages/friday-telemetry/tests_telemetry/test_correlation.py": "728291665806e8381315ed1b8d5ecd532a1fd8c3941a4c4fc223935554aceb84",
+      "packages/friday-chat/tests_chat/test_turn_telemetry.py": "0d97ed24be91018216d41a7b268874c22976c611917ba3880454b212db671b66",
+      "packages/friday-chat/tests_chat/test_tool_telemetry.py": "3cc9aadc5a17f7c444d5b42cb01acf314fc0616d400f600029a480a8e79dbbe5",
+      "packages/friday-chat/tests_chat/test_memory_telemetry.py": "27d1c9d87cbf0c8702bb9d19330dde78e944115daff9f7d4da2a0a89eb715a45",
+      "packages/friday-chat/tests_chat/test_telemetry_diagnostics.py": "1d09187104e453ee20c05f7db19566c2364a05a01fe79fedfc6ff1d10388ffe3",
+      "packages/friday-telemetry/README.md": "f5462f5784082faec1d25ade197aaf1844d09335018dfce78f5b28b4b09466c4",
+      "packages/friday-chat/README.md": "397c72d16f04a6d3b3bea6162b7af1a518fb7a39e23572d847b766fa8c4ea3e8"
+    },
+    "verified_control_hashes": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "02c6360f0e2532a3ea761d7ae228fb105231c60d447146ead69c01c6ff99d152"
+      },
+      {
+        "path": "docs/reference/policies/repository-engineering-policy.md",
+        "sha256": "17b830b8990f74d1b0a25a46fc2cf2f62249f4e0d668f45b96cfe03a6cc76aff"
+      },
+      {
+        "path": "docs/reference/policies/development-task-lifecycle.md",
+        "sha256": "d23f306ab33908f255109152c6c8686423725655184637fe2309e84d8491dc1c"
+      },
+      {
+        "path": "docs/reference/policies/independent-validation-policy.md",
+        "sha256": "4d951418e0f0c96a4c87d4b8a07cb4025dd94738da50893d19a6d2b7a7f82f4a"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-mcp/directives/ws-07-telemetry-diagnostics-health.md",
+        "sha256": "4ab5f003951b096ae13a35ce7873a7fe7a45144145a7c403e860f923486e548f"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-01/README.md",
+        "sha256": "51dd5a860b315f5ef8fa79ad4aacf93e785eb667ec56957fd94c0ce51e2f7a2b"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/build-plan.md",
+        "sha256": "1f98fae4143e70d44a892ea0cf4f36218961147ebc8499d99475400a56a394f1"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telemetry-contract.md",
+        "sha256": "ff35e4464c304149b0ee8bb7f1f4e0cd5e98164053b1b8ce1657da0ed38acc17"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/tactical-plan.md",
+        "sha256": "554a276a66f427f92cbb9fb0520d5a4e12e3cfb8bb92a7a2f9176dff744bd2de"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-02/README.md",
+        "sha256": "9fa124dbafeb71a06dc00c12281767a843fbc5fc2829167268c0341b6928b31c"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-02/acceptance-evidence.json",
+        "sha256": "d48636248178ab4e53daaa038e04d590d8c1d8c65bf18d222a5c3e99b7286d23"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest.yaml",
+        "sha256": "6c959caec631d7388e6c29e431742ee4cbff2bfdd1ed4f98aff39a39f073bd89"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-02.yaml",
+        "sha256": "5eda19c81a429584634ee535e19098264e4735e76fae6da8ac0aa631d8a427c2"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telem02-contract.md",
+        "sha256": "cac50bb463f9ba5b995dec62de3ddf759504ebf5b65eb07abe41d0da0ce10e89"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-003-safe-llm-metrics.md",
+        "sha256": "61dbc5f2fa49680c03f5ee027d7e546ee3a294da53c532a56f9d6a3d831f64fb"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telem03-contract.md",
+        "sha256": "90485994f2acc73f26b2870bb1c4c19a7147d31b4f02fc49cdf22a5c73ff563b"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-03.md",
+        "sha256": "7e1a9961ce2c01cde57192cd804202000fbf2a15572cf153800f6b10e5a5a60a"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-disposition.md",
+        "sha256": "73c54db5719f3f314db25ceb8759e3b3befb7f9105022125640bb0a2f1799ed8"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-005-telem03-lint-scope.json",
+        "sha256": "bc74c39d6823da40af3b087da3265379cdb85b249fe371b23c5760306fbab22a"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.md",
+        "sha256": "fc09ced856206623821175547484947e05f361dc5479f36d46b4e689dcceaaed"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/source-inventory.json",
+        "sha256": "5a6aa3188f88914d88b023330d02fe0e66e65c9a48c585fdebdfec5a5b6acacd"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-03-planning/listener-scope.json",
+        "sha256": "a0aa6a37ae5c8fb54c5c260d9b2fe1c36f0385dd333801352e802bdd2d541aaf"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-record.md",
+        "sha256": "c6ae3950a286fea558e1b59b75ae55c239d20c051b99c2721677b233f9c39e8e"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-003-approval-evidence.json",
+        "sha256": "5a7ff3af3f4c5c6258110b5c699b1a81a49fb871cd39da9f70fa137e6b14cb25"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/authority-manifest-TELEM-03.yaml",
+        "sha256": "62964692726067e8521355229a3c073fc82234d115c013ed43b3caa303ff09cd"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-008/report.md",
+        "sha256": "e513d94d1e5ad3d396415041e736f02694c1674b58008b040edc5ebbbec974de"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-008/stored-artifact-manifest.json",
+        "sha256": "b5e2d70b2d635ece2e9b7861f7ba64a7dc138cca88342352f175ba72b248ecda"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-correlated-execution.md",
+        "sha256": "de736e9cd8bb0fafc07ecd840cf8f1db332204619bb9c83fa67044a809ceff6d"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/telem04-contract.md",
+        "sha256": "100a6c81bdf1875c9beaa0a127df93d4cc9b0f8641da11463f529eedd087d242"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-TELEM-04.md",
+        "sha256": "fdda776093256701480a8e9e202fae73c2a0a2c8215b997fe920b985437ea080"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-disposition.md",
+        "sha256": "0db78d23cad673d4c9382595bfa92d9ecfa44bac8fd8b835e48268a3819ddd52"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/WVR-006-telem04-lint-scope.json",
+        "sha256": "d690d3385ba4e2a73ec18f6d464ad19f7a725c38475082de4b04c3e8dddddd83"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/listener-scope.json",
+        "sha256": "270a79f015766963da5c107e2683b5c6afc93f4cfdef64560ed7d9331ec56cdd"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.json",
+        "sha256": "0e518e019ba1249a98a3097132a2d7de5d686901581b994bf398f8513f37a391"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/source-inventory.md",
+        "sha256": "b2a1fe17a2736835eb11b2b1e9bd5f7362332602625b7632a0352b4a241d6753"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/execution/TELEM-04-planning/report.md",
+        "sha256": "7def4aad735257c24cddb6d78ff10ccaa6307a61da1451637982b7a77eb78226"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-03/README.md",
+        "sha256": "4f05b1fba680718fee3148536fc0409cde867ae51b56c9df3ec26d1435cc4590"
+      },
+      {
+        "path": "docs/archive/completed/2026/friday-telemetry-rewire-telem-03/acceptance-evidence.json",
+        "sha256": "0283012c33a3b51f5b0f9880f19015ab09f2125bd9352b9bfa7a4beeb5fe4363"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-record.md",
+        "sha256": "5e6a92960f4000055a4481499e2cb39e79d932303c5747528a3fd0ea8b020d31"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/directives/CD-004-approval-evidence.json",
+        "sha256": "2b680f11e6e29b1a34fd8d3515317446cf4b27bcb4feb8d4869021c0dc934d7a"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-execution-correlation.md",
+        "sha256": "a1ef632771870931933ea3d0068f1ca6b9018ab50bdc1d53b965b0dba2d2f5ab"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/verification-profile-REM-005.md",
+        "sha256": "e293ccec48e57ac4e2b52a1806f532560727eec98096a59f8180a1a8ebc99eaf"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-009/raw/report.md.gz",
+        "sha256": "1a8f23365359c872ede380ea145081d2af51a517afd154f922ad0f7a3d5e3cab"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/validation/VAL-009/original-artifact-manifest.json",
+        "sha256": "600ced2de3d81d78c6d98bd3dbbcaffb22176725c5887532beab32f31bc0e0e1"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-record.md",
+        "sha256": "fd611bae2cd029a41e952fc77885ce8bebd23efbcfa3cfd878604ca3f9540125"
+      },
+      {
+        "path": "docs/planning/active/friday-telemetry-rewire/remediation/REM-005-approval-evidence.json",
+        "sha256": "624ef663cda53663d4df8e4789e9a54bb45c856c198c3ef451f754accc137972"
+      }
+    ]
+  },
+  "source_inventory": {
+    "packages/friday-mcp/pyproject.toml": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+    "packages/friday-mcp/README.md": "196d54ecc718da8e565e1347312da39dd51a0ca534a8bc22e6c86a645bddd258",
+    "packages/friday-mcp/.pytest_cache/README.md": "73fd6fccdd802c419a6b2d983d6c3173b7da97558ac4b589edec2dfe443db9ad",
+    "packages/friday-mcp/tests_mcp/conftest.py": "aba691c7e10db2900c607ff61b3053a7861629b723f8e125b562453cab1d4d2a",
+    "packages/friday-mcp/tests_mcp/__init__.py": "6908c199c1213bcc21575e6b60c78b9189a7c4f6f9ad046bda91b3c44668aeee",
+    "packages/friday-mcp/tests_mcp/test_framework_contract_import.py": "bfba26373e34fa9a5e5332d63b9752add78d2fada2bc24c9502b66c611c9493b",
+    "packages/friday-mcp/tests_mcp/test_config.py": "b32f6861fbce671d2b60c75da142825691d5ebbb6018b84f4aaa192536e2d21f",
+    "packages/friday-mcp/tests_mcp/test_protocols.py": "c7677950b1850ea50a31ac3102e151ae9e799b5247e2bd946b666902e049ca73",
+    "packages/friday-mcp/src/friday_mcp/config.py": "7a86bb7dad1f75b0bfa7c2d8101b1366f02d6da6e1c9e0d7d1b36ce42b73cc16",
+    "packages/friday-mcp/src/friday_mcp/protocols.py": "00fc02ccd4d694e30fafbee72cbb0944294d275961dc0631967612f30892d394",
+    "packages/friday-mcp/src/friday_mcp/__init__.py": "0402d3f6014d2b295b001f345eb23775838316d293c2a3f3a464353324077f7a",
+    "packages/friday-mcp/src/friday_mcp/server/agent_mode.py": "b59bc4bc1e390889b764d199ecc83ed263362a4d550edd396998ada6320589b0",
+    "packages/friday-mcp/src/friday_mcp/server/__init__.py": "c1e061ecc5b08baade3deca638fb9d0d29d4d26a4ef4df42173255e9a2ab1b9a",
+    "packages/friday-mcp/src/friday_mcp/server/tools_mode.py": "102b3dc523dd66905e82ac043d7cc3a110c4e8a1fd8fce8c4b385e832577fae5",
+    "packages/friday-mcp/src/friday_mcp/server/sse.py": "99971d8c0640bd2046e64c25a79de9719158342e4f68b84edfe5cae41c5228e6",
+    "packages/friday-mcp/src/friday_mcp/server/stdio.py": "fb91fe17317615f7b6b57477fa1619836aa3d37b02b53f33ffebe2c9b8f6b9b8",
+    "packages/friday-mcp/src/friday_mcp/server/base.py": "b2829bdd1873e5c92d44007b4f0bbd5c7f07e2e8502385f13cc50de8e6d72490",
+    "packages/friday-mcp/src/friday_mcp/utils/__init__.py": "d1c157afa14049ccf2f2634b3061df0e93187f1a45a8faa9d985ae2bda365615",
+    "packages/friday-mcp/src/friday_mcp/utils/schema.py": "7eee15a2d57274fdfba8f32ea53cf9228df593e252ad47a22cb69dca90924a46",
+    "packages/friday-mcp/src/friday_mcp/client/adapter.py": "f061af1c437fb73e7eb6823ddc79ccfd4ce8b02b4783d83f90718f4348e8399a",
+    "packages/friday-mcp/src/friday_mcp/client/__init__.py": "d6b3379c2508aab38fa30a75dfaf7aec87440186a753a8b3ab38037bb5a98c6c",
+    "packages/friday-mcp/src/friday_mcp/client/sse.py": "06a13778406c6b00268be77791e287afe185f151c5b66efc3bbd458fdf91e7e0",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a",
+    "packages/friday-mcp/src/friday_mcp/client/manager.py": "335670d905a82a91793675d5c82f5e9b918f7550ed90a1a7cfa01fd74ea9e623",
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8",
+    "packages/friday-mcp/tests_mcp/server/__init__.py": "6dc2ae4f8e085a1dee87a8afc2850a459ab414fed07d0eedd4981d8cbd7f1212",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "d96e139e5495a83ceba66f187b186be452771bff4661e1c05f50384f9f14e169",
+    "packages/friday-mcp/tests_mcp/client/__init__.py": "ea1f45e87eebc1231fd0f5ecfa6c8363e783d1d7125ad665cd15817c23a9fa1e",
+    "packages/friday-mcp/tests_mcp/client/test_adapter.py": "12b30dbc1c15023101bf7bed67408a54c6b596e099d6ae8c6258aeae85a0ab8d",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "842e10a0acdd0d9a05018e44c87288631d690adc83024a1dd920cc9b6b73f6c8",
+    "packages/friday-core/src/friday_core/mcp.py": "78b0065f9c2b27ae7cf7dc52596baf0be5e38a37f7b111c1207d5cdd4585c050",
+    "packages/friday-runtime/src/friday_runtime/config.py": "fe3f2af96196e801bffd6543fb259933c33ff05bd0a54ada41401d2606ab0a45",
+    "packages/friday-runtime/src/friday_runtime/mcp_loading.py": "ff6a90a92cb2923bcca5a3f9d06b274fb1077a595892acd404ce05adfdc5e4e1",
+    "packages/friday-chat/src/friday_chat/tools/mcp.py": "2c286a81e1f8354bb46fbeb2dc381043493ab13b11237b63835e4f6dbd1f093d",
+    "uv.lock": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c"
+  },
+  "proposed_product_paths": {
+    "packages/friday-mcp/src/friday_mcp/client/base.py": "6b31f3c8aa5bda67ef329c241e938fada69fbde3b3751bcf2136710fee007aa8",
+    "packages/friday-mcp/src/friday_mcp/client/stdio.py": "a9e29cbe264de08bea1dafdcfd0609b79093979a120f4ae6c37ceb04df69179a",
+    "packages/friday-mcp/tests_mcp/client/test_execution.py": "842e10a0acdd0d9a05018e44c87288631d690adc83024a1dd920cc9b6b73f6c8",
+    "packages/friday-mcp/tests_mcp/client/test_lifecycle.py": "d96e139e5495a83ceba66f187b186be452771bff4661e1c05f50384f9f14e169",
+    "packages/friday-mcp/pyproject.toml": "fa75cbf3de3ba00fb9f853419a6f9f7f1230c0435de8efbb247814224acdcef2",
+    "packages/friday-mcp/README.md": "196d54ecc718da8e565e1347312da39dd51a0ca534a8bc22e6c86a645bddd258",
+    "uv.lock": "f3ea7b35a63d258035efaee2deb8cc160d0e95a2f5eafbeb8a38c73bceaf106c",
+    "packages/friday-mcp/src/friday_mcp/client/protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_modern_protocol.py": null,
+    "packages/friday-mcp/tests_mcp/client/test_stdio_interop.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/modern_sdk_server.py": null,
+    "packages/friday-mcp/tests_mcp/fixtures/legacy_protocol_server.py": null
+  },
+  "planning_checks": [
+    {
+      "command": "uv run --offline --no-sync ruff check packages/friday-mcp/src/friday_mcp/client/base.py packages/friday-mcp/src/friday_mcp/client/stdio.py --output-format=json",
+      "exit": 0,
+      "result": []
+    },
+    {
+      "command": "uv run --offline --no-sync mypy packages/friday-mcp/src/friday_mcp/client/base.py packages/friday-mcp/src/friday_mcp/client/stdio.py",
+      "exit": 0,
+      "result": "Success: no issues found in 2 source files"
+    }
+  ],
+  "product_tests": "not run during planning",
+  "unrelated_preservation": "seven unrelated file hashes/deletion status checked in private receipt; no unrelated payload copied into packet"
+}

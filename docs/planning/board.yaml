@@ -109,7 +109,7 @@ tasks:
   accepted_at: '2026-09-29'
 - id: memory-v2
   title: Friday Memory V2
-  priority: 4
+  priority: 6
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -122,7 +122,7 @@ tasks:
   legacy_import: true
 - id: tool-governance
   title: Tool governance
-  priority: 5
+  priority: 7
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -135,7 +135,7 @@ tasks:
   legacy_import: true
 - id: framework-validation-and-contracts
   title: Framework validation and contracts
-  priority: 6
+  priority: 8
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -148,7 +148,7 @@ tasks:
   legacy_import: true
 - id: prompt-injection-mitigation
   title: Prompt-injection mitigation
-  priority: 7
+  priority: 9
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -162,7 +162,7 @@ tasks:
   legacy_import: true
 - id: claude-agent-sdk-tools
   title: Claude Agent SDK tools
-  priority: 8
+  priority: 10
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -176,7 +176,7 @@ tasks:
   legacy_import: true
 - id: friday-startup-context
   title: Friday startup context
-  priority: 9
+  priority: 11
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -189,7 +189,7 @@ tasks:
   legacy_import: true
 - id: friday-web-chat
   title: Friday Web Chat
-  priority: 10
+  priority: 12
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -202,7 +202,7 @@ tasks:
   legacy_import: true
 - id: friday-api
   title: Friday API
-  priority: 11
+  priority: 13
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -215,7 +215,7 @@ tasks:
   legacy_import: true
 - id: friday-tui
   title: Friday TUI
-  priority: 12
+  priority: 14
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -228,7 +228,7 @@ tasks:
   legacy_import: true
 - id: friday-speech
   title: Friday Speech
-  priority: 13
+  priority: 15
   work_state: queued
   condition: normal
   implementation_authority: not_granted
@@ -241,7 +241,7 @@ tasks:
   legacy_import: true
 - id: self-evolving-knowledge-graph
   title: Self-Evolving Knowledge Graph
-  priority: 14
+  priority: 16
   work_state: approved
   condition: normal
   implementation_authority: design_only
@@ -254,7 +254,7 @@ tasks:
   legacy_import: true
 - id: nonblocking-chat-input
   title: Nonblocking Friday Chat input
-  priority: 15
+  priority: 17
   work_state: completed
   condition: blocked
   implementation_authority: closed
@@ -268,7 +268,7 @@ tasks:
   legacy_import: true
 - id: human-in-the-loop
   title: Human in the Loop
-  priority: 16
+  priority: 18
   work_state: queued
   condition: blocked
   implementation_authority: not_granted
@@ -281,7 +281,7 @@ tasks:
   legacy_import: true
 - id: model-aware-reasoning-control
   title: Model-aware reasoning control
-  priority: 17
+  priority: 19
   work_state: queued
   condition: deferred
   implementation_authority: not_granted
@@ -294,7 +294,7 @@ tasks:
   legacy_import: true
 - id: agent-scoped-memory-context
   title: Agent-scoped memory context
-  priority: 18
+  priority: 20
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -308,7 +308,7 @@ tasks:
   legacy_import: true
 - id: friday-chat-framework-followups
   title: Friday Chat framework follow-ups
-  priority: 19
+  priority: 21
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -321,7 +321,7 @@ tasks:
   legacy_import: true
 - id: strategic-roadmap
   title: Strategic roadmap notes
-  priority: 20
+  priority: 22
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -334,7 +334,7 @@ tasks:
   legacy_import: true
 - id: tool-capabilities
   title: Tool capability notes
-  priority: 21
+  priority: 23
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -348,7 +348,7 @@ tasks:
   legacy_import: true
 - id: documentation-governance
   title: Documentation information architecture
-  priority: 22
+  priority: 24
   work_state: accepted
   condition: normal
   implementation_authority: closed
@@ -367,7 +367,7 @@ tasks:
   accepted_at: '2026-09-03'
 - id: friday-runtime-skills
   title: Friday runtime skills
-  priority: 23
+  priority: 25
   work_state: queued
   condition: backlog
   implementation_authority: not_granted
@@ -379,13 +379,13 @@ tasks:
   validation: []
 - id: friday-telemetry-rewire
   title: Friday-telemetry-rewire
-  priority: 25
+  priority: 26
   work_state: started
   condition: normal
   implementation_authority: closed
   packet: docs/planning/active/friday-telemetry-rewire/
-  next_gate: 'core TELEM-01–04 accepted and construction closed; draft PR #7 open against master; review before any merge; preserve frozen evidence paths; MCP preparation remains authorized'
-  delivery_state: pushed
+  next_gate: 'core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths'
+  delivery_state: merged
   branch: feature/friday-telemetry-rewire
   depends_on: []
   validation:
@@ -453,6 +453,34 @@ tasks:
   - docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
   approved_by: repository maintainer
   approved_at: '2026-10-04'
+- id: friday-mcp-protocol-upgrade
+  title: Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade
+  priority: 4
+  work_state: approved
+  condition: normal
+  implementation_authority: granted
+  packet: docs/planning/queued/friday-mcp-protocol-upgrade/
+  next_gate: approved controls and dedicated branch prepared from merged telemetry 1302b5f; record start before CD-MCP-UP-001 product construction
+  delivery_state: not_started
+  branch: feature/friday-mcp-protocol-upgrade
+  depends_on:
+  - friday-mcp
+  validation: []
+  approved_by: Chuck Russell
+  approved_at: '2026-10-12'
+- id: friday-langfuse-integration
+  title: Friday Langfuse implementation
+  priority: 5
+  work_state: queued
+  condition: normal
+  implementation_authority: not_granted
+  packet: docs/planning/queued/friday-langfuse-integration/
+  next_gate: after MCP upgrade acceptance, prepare and approve the Langfuse integration contract and exact construction directive
+  delivery_state: not_started
+  branch: null
+  depends_on:
+  - friday-mcp-protocol-upgrade
+  validation: []
 events:
 - task: documentation-governance
   at: '2026-09-03'
@@ -1241,6 +1269,20 @@ events:
   action: recorded VAL-009 changes requested and proposed REM-005
   note: Fresh independent full unit/aggregate review requires five numbered fixes despite passing required suites. Candidate1547fae and original controls unchanged; all original evidence retained. Exact15 targets within original29; no extra effect/waiver. Remediation awaits maintainer preauthorization, separate remediator and fresh full review. Started/local, no acceptance.
   evidence: docs/planning/active/friday-telemetry-rewire/validation/VAL-009/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: queued
+  note: Chuck Russell requested a detailed MCP implementation upgrade and earliest scheduling. Queue modern protocol, Streamable HTTP, remote YAML/security, compatibility, result handling, server migration and independent interoperability validation; product construction remains unauthorized.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: prioritized
+  note: Set priority 4 as the first pending initiative per the maintainer request to move as soon as possible. Increment existing priorities 4 and above by one, preserving their relative order and all state, authority and historical events. Telemetry remains started pending REM-005 and fresh validation.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/README.md
 - task: friday-telemetry-rewire
   at: '2026-10-11'
   actor: Chuck Russell
@@ -1276,6 +1318,27 @@ events:
   action: TELEM-04 accepted
   note: Explicit response accepted to verified TELEM-04 completion. Core01–04 accepted/closed; WVR-006 expired. Optional05 separately governed; current construction authority closed; local delivery unchanged.
   evidence: docs/archive/completed/2026/friday-telemetry-rewire-telem-04/acceptance-evidence.json
+- task: friday-langfuse-integration
+  at: '2026-10-11'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: queued after MCP upgrade
+  note: Explicitly requested Langfuse implementation on the board, to follow MCP. Priority5 and dependency on MCP acceptance; other priorities5+ shift by one preserving order. This is planning/scheduling authority, not product construction approval.
+  evidence: docs/planning/queued/friday-langfuse-integration/README.md
+- task: friday-telemetry-rewire
+  at: '2026-10-11'
+  actor: Codex
+  actor_role: agent
+  action: linked optional TELEM-05 queue item
+  note: Optional Langfuse scope tracked in separate priority5 initiative after MCP. Core01–04 remain accepted/closed and all frozen controls/evidence unchanged; parent construction authority stays closed.
+  evidence: docs/planning/queued/friday-langfuse-integration/README.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T14:19:52+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: transitioned queued -> approved
+  note: Approved MCP-UP-01 contract and exact twelve-path CD-MCP-UP-001; clarified dated normative specification/schema and research mapping. Later directives remain separately scoped.
+  evidence: docs/planning/queued/friday-mcp-protocol-upgrade/approval.json
 - task: friday-telemetry-rewire
   at: '2026-10-12T15:08:11+00:00'
   actor: Codex
@@ -1289,4 +1352,11 @@ events:
   actor_role: agent
   action: draft telemetry delivery PR created
   note: 'Chuck Russell explicitly approved GitHub draft PR publication with yes approved. Created PR #7 against master; verified OPEN and draft. No merge. Core acceptance and closed construction authority unchanged.'
+  evidence: https://github.com/CIChuck/agent-framework/pull/7
+- task: friday-telemetry-rewire
+  at: '2026-10-12T15:19:02+00:00'
+  actor: Codex
+  actor_role: agent
+  action: delivery pushed -> merged
+  note: 'Chuck Russell merged PR #7 and deleted the remote telemetry branch. GitHub confirms mergedBy CIChuck at 2026-10-12T15:16:04Z; merged exact candidate c5b79ba into master as 1302b5fe3091304c08d1df77ea5fb1d2a4ec3666. MCP branch now uses that merged baseline. Core construction remains closed.'
   evidence: https://github.com/CIChuck/agent-framework/pull/7
