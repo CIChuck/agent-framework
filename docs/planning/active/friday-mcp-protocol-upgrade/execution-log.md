@@ -139,3 +139,20 @@ MCP-UP-02A completion; maintainer acceptance remains pending. Whole initiative
 remains started/local because HTTP/runtime/server and aggregate units remain.
 Frozen authority/index/directive/product files remain byte-identical; only
 review evidence and the separately referenced process-only state/board are updated.
+
+
+## 2026-10-12 — maintainer accepted client-core; HTTP directive proposed
+
+Chuck Russell's explicit “accepted” closes CD-MCP-UP-001 / MCP-UP-02A only.
+acceptance/MCP-UP-02A.json records the reviewed candidate, immutable original
+independent report and product/control hashes. Whole initiative stays started/local.
+No delivery or later-unit approval is inferred.
+
+Prepared separate CD-MCP-UP-002 / MCP-UP-02B: fourteen exact product paths,
+2026-07-28 Streamable HTTP and explicit 2025-11-25 compatibility, bounded
+headers/SSE/session/cancellation, no mutating replay, endpoint/connect policy,
+synthetic real-wire fixtures, ten criteria and independent handoff. Captured and
+hashed additional complete dated sources/schema. Earlier authority/index/source
+bytes remain unchanged. Current next-unit state is planning/not_ready; source
+construction waits for exact directive/manifest approval. Runtime/YAML/server
+and aggregate units remain later gates; Langfuse remains queued after full MCP.

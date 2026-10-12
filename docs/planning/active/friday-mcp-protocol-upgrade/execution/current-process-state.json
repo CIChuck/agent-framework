@@ -1,14 +1,25 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
-  "unit": "MCP-UP-02A",
-  "execution_phase": "closeout",
-  "validation_state": "verified",
-  "next_gate": "maintainer acceptance of CD-MCP-UP-001 unit completion proposal; prepare/approve separate HTTP client directive",
+  "unit": "MCP-UP-02B",
+  "execution_phase": "planning",
+  "validation_state": "not_ready",
+  "next_gate": "maintainer review/approval of exact CD-MCP-UP-002 and separate proposal manifest before source construction",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
-  "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
-  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02A-02/report.md",
-  "independent_report_sha256": "ab45d0066927c6d19b842beeb6be9f2b806f942332a823c725fcad4d00020954",
-  "unit_completion": "proposed; maintainer acceptance pending"
+  "construction_directive": "CD-MCP-UP-002",
+  "directive_status": "proposed",
+  "unit_implementation_authority": "not_granted",
+  "accepted_units": [
+    {
+      "unit": "MCP-UP-02A",
+      "directive": "CD-MCP-UP-001",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json"
+    }
+  ],
+  "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
+  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json"
 }

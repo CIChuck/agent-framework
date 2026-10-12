@@ -40,7 +40,7 @@ Directory placement does not grant implementation authority.
 
 | Priority | Initiative | Condition | Authority | Delivery | Next gate |
 | ---: | --- | --- | --- | --- | --- |
-| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | review CD-MCP-UP-001 unit completion proposal (VAL-UP02A-02 VERIFIED), then approve separate Streamable HTTP client directive; whole initiative remains started |
+| 4 | [Friday MCP 2026-07-28 protocol and Streamable HTTP upgrade](active/friday-mcp-protocol-upgrade/) | normal | granted | local | CD-MCP-UP-001 accepted; review/approve exact CD-MCP-UP-002 Streamable HTTP directive and proposal manifest; UP-02B source authority pending |
 | 26 | [Friday-telemetry-rewire](active/friday-telemetry-rewire/) | normal | closed | merged | core TELEM-01–04 accepted; PR #7 merged as 1302b5f; remote and local telemetry branches retired; construction closed; retain frozen evidence paths |
 
 ## Completed
