@@ -213,3 +213,13 @@ remediation-UP02B-002-builder. Original authority/directive/proposal/approval/in
 and historical report/raw bytes remain unchanged. VAL-UP02B-01 is superseded only
 for decision on this new candidate. Fresh independent delta and full CD2 review
 required; whole initiative remains started/local and no completion is inferred.
+
+
+## 2026-10-12 — corrected Streamable HTTP unit independently VERIFIED
+
+execution_phase: closeout; validation_state: verified. Fresh VAL-UP02B-02
+finding-delta and full CD2 review verifies candidate 14dba178feff8789111db88d981f1d0e85e6a748.
+Exact REM-MCP-UP-002 findings VAL-UP02B-001..004 are resolved; original failed
+report and all frozen controls/products remain retained unchanged. Propose HTTP
+unit completion only. Maintainer acceptance and later MCP directives remain
+separate; whole initiative stays started/local and no publication is inferred.
