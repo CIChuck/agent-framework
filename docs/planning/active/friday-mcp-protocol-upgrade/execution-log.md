@@ -190,3 +190,15 @@ prevent VERIFIED or unit completion. REM-MCP-UP-002 is a concrete six-path,
 four-finding proposal; source remediation awaits maintainer authorization.
 Original candidate, controls, approval/proposals and raw builder evidence remain
 unchanged. Whole initiative remains started/local; no acceptance/publication.
+
+
+## 2026-10-12 — bounded HTTP remediation approved
+
+Chuck Russell explicitly stated “approved” in response to REM-MCP-UP-002.
+Separate approval-REM-MCP-UP-002.json and authority-REM-MCP-UP-002.json pin the
+immutable six-path directive/proposal. execution_phase: remediation;
+validation_state: changes_requested until a new candidate reaches fresh review.
+A separate remediator is authorized to correct exactly VAL-UP02B-001..004 and
+run original CD2 gates in the same private guarded fixture profile. All prior
+controls/evidence and unrelated root work remain preserved. No acceptance or
+publication is inferred.

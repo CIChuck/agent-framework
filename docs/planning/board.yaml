@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: approve REM-MCP-UP-002 four-finding/six-path remediation, then fresh independent delta and full CD-MCP-UP-002 review; no HTTP unit completion yet
+  next_gate: 'approved REM-MCP-UP-002: correct four findings within six paths, run full CD2 gates, then fresh independent delta/full review'
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1454,3 +1454,10 @@ events:
   action: recorded HTTP changes requested and remediation proposal
   note: Independent full review finds four bounded defects; exact REM-MCP-UP-002 approval required before corrections; started/local retained
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T19:51:00+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved bounded HTTP remediation
+  note: 'Exact statement: approved. REM-MCP-UP-002 six-path/four-finding scope; separate builder and fresh reviewer; initiative started/local'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-002.json

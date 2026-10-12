@@ -3,7 +3,7 @@
   "unit": "MCP-UP-02B",
   "execution_phase": "remediation",
   "validation_state": "changes_requested",
-  "next_gate": "Maintainer approval of REM-MCP-UP-002 exact four-finding directive and manifest, then bounded remediation and fresh independent review",
+  "next_gate": "Implement approved REM-MCP-UP-002 four-finding six-path correction, complete stable gates and dispatch fresh independent delta/full review",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
@@ -27,5 +27,6 @@
   "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md",
   "independent_report_sha256": "e97e199a556be162ff99a46d6d3ec6db75de3ef61cff5985447b47fbd73487c3",
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
-  "remediation_status": "proposed; approval pending"
+  "remediation_status": "approved",
+  "remediation_implementation_authority": "granted"
 }
