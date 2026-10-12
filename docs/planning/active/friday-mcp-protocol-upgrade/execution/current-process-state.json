@@ -1,15 +1,15 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
-  "unit": "MCP-UP-02B",
-  "execution_phase": "closeout",
-  "validation_state": "verified",
-  "next_gate": "Maintainer acceptance of independently VERIFIED CD-MCP-UP-002 HTTP unit completion proposal; prepare separate Runtime/YAML/Chat directive after acceptance",
+  "unit": "MCP-UP-03",
+  "execution_phase": "planning",
+  "validation_state": "not_ready",
+  "next_gate": "Maintainer review/approval of exact CD-MCP-UP-003, integration contract, verification profile and proposal manifest before source construction",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Process-only current-state record referenced by frozen initiative index; no implementation or acceptance authority.",
-  "construction_directive": "CD-MCP-UP-002",
-  "directive_status": "approved",
-  "unit_implementation_authority": "granted",
+  "construction_directive": "CD-MCP-UP-003",
+  "directive_status": "proposed",
+  "unit_implementation_authority": "not_granted",
   "accepted_units": [
     {
       "unit": "MCP-UP-02A",
@@ -18,23 +18,29 @@
       "validation_state": "verified",
       "reviewed_candidate": "a36142fb41f59a743b72088d8cce749b71b32202",
       "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json"
+    },
+    {
+      "unit": "MCP-UP-02B",
+      "directive": "CD-MCP-UP-002",
+      "status": "accepted",
+      "validation_state": "verified",
+      "reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
+      "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json"
     }
   ],
-  "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-002-streamable-http.md",
-  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-02B-authority-manifest.json",
-  "unit_completion": "proposed; maintainer acceptance pending",
-  "reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
-  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
-  "independent_report_sha256": "3d459bbb406a874ec4df0c3172312ca85af42eae2f275eef16f5bfd0ef04ae63",
+  "unit_completion": "prior HTTP unit accepted; next unit not proposed",
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-002-streamable-http.md",
-  "remediation_status": "implemented and independently verified",
+  "remediation_status": "accepted HTTP unit corrections closed",
   "remediation_implementation_authority": "granted",
-  "builder_product_candidate": "462fa7cf25b16e67d7a98267733b4d9f56274a93",
   "prior_report_decision_status": "VAL-UP02B-01 superseded for decision on the corrected candidate only; original report/raw evidence retained",
   "resolved_findings": [
     "VAL-UP02B-001",
     "VAL-UP02B-002",
     "VAL-UP02B-003",
     "VAL-UP02B-004"
-  ]
+  ],
+  "prior_unit_reviewed_candidate": "14dba178feff8789111db88d981f1d0e85e6a748",
+  "prior_unit_independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
+  "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
+  "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json"
 }

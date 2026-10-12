@@ -223,3 +223,26 @@ Exact REM-MCP-UP-002 findings VAL-UP02B-001..004 are resolved; original failed
 report and all frozen controls/products remain retained unchanged. Propose HTTP
 unit completion only. Maintainer acceptance and later MCP directives remain
 separate; whole initiative stays started/local and no publication is inferred.
+
+
+## 2026-10-12 — maintainer accepted corrected HTTP unit
+
+Chuck Russell's exact “accepted proceed” accepts CD-MCP-UP-002 / MCP-UP-02B
+and its approved REM-MCP-UP-002 fixes following fresh independent VERIFIED
+review. acceptance/MCP-UP-02B.json and the separate accepted-unit archive pin
+the candidate/report/product hashes. Frozen controls and historical raw evidence
+remain unchanged. Whole MCP remains started/local. Current phase planning /
+validation_state not_ready prepares separate CD-MCP-UP-003 Runtime/YAML/Chat
+authority; no later product edits or delivery authority is inferred.
+
+
+## 2026-10-12 — separate Runtime/YAML/Chat construction packet proposed
+
+execution_phase:planning; validation_state:not_ready. CD-MCP-UP-003 / MCP-UP-03
+is proposed with28 exact product paths, strict dated YAML/remote trust/credential
+and network policy, typed factory/lifecycle seam, header-aware safe model-schema
+admission, real Runtime/Chat execution and ten criteria. Private static baseline
+source checks pass; full four-package Mypy retains four exact inherited errors
+in untouched Core profiles. No product edits or new construction approval is
+claimed. Exact proposal/contract/profile hashes control the next approval gate.
+Prior controls, reports, artifacts and accepted product bytes remain unchanged.

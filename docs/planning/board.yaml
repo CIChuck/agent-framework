@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: accept independently VERIFIED CD-MCP-UP-002 HTTP unit completion proposal, then prepare separate Runtime/YAML/Chat directive; whole MCP remains started/local
+  next_gate: HTTP unit accepted; review/approve exact CD-MCP-UP-003 Runtime/YAML/Chat directive, integration contract, verification profile and proposal manifest; UP-03 source authority pending
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -471,6 +471,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02A.json: maintainer acceptance of client-core/stdio unit only'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md: VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json: maintainer acceptance of corrected HTTP unit only'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1476,3 +1477,17 @@ events:
   action: proposed verified HTTP unit completion
   note: Fresh independent delta/full review resolves all four approved findings; unit acceptance and later MCP directives remain separate
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:40:09+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: accepted corrected MCP HTTP unit
+  note: 'Exact statement: accepted proceed. HTTP unit accepted; prepare next Runtime/YAML/Chat directive; initiative remains started/local'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-12T20:47:51+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared separate MCP-UP-03 construction proposal
+  note: 28 product paths and10 criteria; dated YAML/remote policy/typed factory/real Chat integration; planning only, next-unit construction pending
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md
