@@ -9,7 +9,7 @@ work_state: started
 condition: normal
 created: 2026-10-11
 updated: 2026-10-12
-next_gate: reproduce approved dependency set and validate the first client-core slice
+next_gate: install private locked SDK validation dependencies and construct CD-MCP-UP-001
 implementation_authority: granted for CD-MCP-UP-001 only
 execution_phase: implementation
 validation_state: pending
@@ -100,8 +100,9 @@ refresh hardening (UP-04), modern tools server (UP-05), and aggregate docs/verif
 (UP-06). Each later product slice needs its own exact directive. Optional extensions,
 Langfuse, config includes, adaptive tool continuity and live deployment are separate.
 
-Next: commit the approved controls and frozen normative source pins, create
-`feature/friday-mcp-protocol-upgrade`, and record the start. Fresh independent
+The approved controls and frozen normative sources are committed; the named
+`feature/friday-mcp-protocol-upgrade` branch and started transition are recorded.
+Continue the approved first construction slice. Fresh independent
 product validation follows a committed implementation candidate. Planning checks
 are not product VERIFIED, completion, acceptance or delivery authority.
 
@@ -125,3 +126,14 @@ paths and eight criteria remain unchanged. Resume isolated dependency
 reproduction, supported-context preservation and regression checks, then the
 already-approved client-core construction. No completion or validation verdict
 is implied by approval.
+
+
+## Dependency regression checkpoint — 2026-10-12
+
+A01 lock reproduction and static 24-context preservation checks pass. An
+[offline IDNA comparison](execution/idna-regression-assessment.md) records
+352 operations per version, unchanged 57 representative HTTP URL checks and
+concrete stricter/mapping changes on other inputs. No Friday product regression
+has been established. Private locked SDK installation and original client-core
+construction/aggregate/independent checks remain; current shared environment
+stays on IDNA 3.11.

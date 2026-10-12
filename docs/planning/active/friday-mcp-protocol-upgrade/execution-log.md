@@ -85,3 +85,16 @@ IDNA 3.20, rather than the distinct older 3.2 release. Permit only IDNA 3.11 to
 3.20 among existing versions. Resume isolated reproduction and supported-context
 comparison before locked installation. No product completion or independent
 validation is claimed.
+
+
+## 2026-10-12 — A01 dependency reproduction and offline comparison
+
+Reproduced exact approved lock hash from baseline, then verified offline lock
+consistency. All existing selections and edges across24 supported-context
+samples and all other existing artifact records are preserved. Ran352 offline
+IDNA operations per version:57 representative HTTP URL checks unchanged;12
+other semantic changes include stricter remapping/length rules and a rare
+Unicode-to-YARL URL mapping. Full results, raw outputs and script/hash receipts
+are retained in execution/idna-regression. Source construction and official
+SDK/full regression/independent validation remain pending. Shared IDNA3.11 and
+root twelve-path product baseline remain unchanged.

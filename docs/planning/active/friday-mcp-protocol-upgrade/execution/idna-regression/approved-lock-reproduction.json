@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/opt/homebrew/bin/uv",
+    "lock",
+    "--offline",
+    "--upgrade-package",
+    "idna==3.20",
+    "--python",
+    "/Users/chuckrussell/Dev/gendev/agent-framework/.venv/bin/python"
+  ],
+  "cwd": "/private/tmp/friday-mcp-upgrade/work",
+  "environment": {
+    "PATH": "/opt/homebrew/bin:/usr/bin:/bin",
+    "UV_CACHE_DIR": "/private/tmp/friday-mcp-upgrade/cache",
+    "UV_PYTHON_DOWNLOADS": "never",
+    "UV_NO_PROGRESS": "1"
+  },
+  "started_utc": "2026-10-12T16:16:37.107624+00:00",
+  "finished_utc": "2026-10-12T16:16:37.235473+00:00",
+  "exit_code": 0,
+  "lock_sha256": "aab33ed773dcdb50a65dd86af84bd1e6e26dc3486da7b04588082d72a7b18ce2",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "5202bc40649850fe763f24d70334757c0af9d1518ef7080440b12b061e229b74"
+}
