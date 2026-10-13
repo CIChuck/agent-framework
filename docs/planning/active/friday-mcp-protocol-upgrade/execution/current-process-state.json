@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-04",
-  "execution_phase": "construction",
-  "validation_state": "not_ready",
-  "unit_completion": "not proposed",
-  "next_gate": "Implement exact CD-MCP-UP-004, complete all required checks, freeze stable candidate for fresh independent full-unit validation",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "unit_completion": "not proposed; fresh independent full review pending",
+  "next_gate": "Fresh-context read-only independent full CD-MCP-UP-004 result/manual-refresh validation",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-004",
@@ -41,5 +41,6 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-04-authority-manifest.json",
-  "note": "Initiative-level granted status does not authorize a later unseen work unit; current UP-04 unit awaits exact directive approval."
+  "note": "Initiative-level granted status does not authorize a later unseen work unit; current UP-04 unit awaits exact directive approval.",
+  "builder_product_candidate": "8170c26b541433dcd5b9107d44a1c7a4a92fdd83"
 }

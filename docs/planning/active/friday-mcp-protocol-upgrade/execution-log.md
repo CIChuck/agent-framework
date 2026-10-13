@@ -334,3 +334,13 @@ CD-MCP-UP-004 packet. Separate approval-UP-04.json and authority-UP-04.json pin
 the immutable20-path/10-criterion/20-check proposal. Current UP-04 enters
 construction/not_ready/granted. No dependency, later-unit or publication authority
 is inferred. Preserve accepted evidence and all unrelated root changes.
+
+
+## UP-04 stable candidate frozen for independent review
+
+Product 8170c26b541433dcd5b9107d44a1c7a4a92fdd83 implements the approved result/manual-refresh unit.
+All20 required checks and exact inherited-debt/skip/warning comparisons are archived
+under execution/up04, including all prior failed development/profile attempts.
+The typed optional contract preserves custom virtual methods and schema-bound2025
+raw recovery while retiring generation-bound wrappers. Fresh full-unit independent
+validation decides; no completion/acceptance/later-unit/publication is inferred.

@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Implement exact CD-MCP-UP-004, complete all required checks, freeze stable candidate for fresh independent full-unit validation
+  next_gate: Fresh-context read-only independent full CD-MCP-UP-004 result/manual-refresh validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1551,3 +1551,10 @@ events:
   action: approved exact CD-MCP-UP-004
   note: 'Exact statement: approved, continue. Exact20-path UP-04 scope, full checks and independent review; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-04.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T13:15:44+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze UP-04 candidate for independent review
+  note: Exact approved scope and full20-check profile; original evidence/debt preserved; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up04/report.md
