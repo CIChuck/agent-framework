@@ -1,0 +1,16 @@
+{
+  "distribution": "mcp",
+  "version": "2.3.0",
+  "client_source_sha256": "36c91f9dcfff52dcf2a4736db6d570f874d7958806f68331ff2bae3b29639031",
+  "inspected_options": {
+    "mode": "2026-07-28",
+    "cache": null,
+    "sampling_callback": null,
+    "list_roots_callback": null,
+    "elicitation_callback": null,
+    "extensions": null,
+    "log_level": null
+  },
+  "interop_requirement": "Actual wire via SDK public Client/transport/session APIs; no in-process MCPServer shortcut, no synthesized discover as proof; controlled negatives bypass high-level automatic retries/input drivers",
+  "boundary": "Inspected installed pinned public SDK API, no transport or server launched"
+}

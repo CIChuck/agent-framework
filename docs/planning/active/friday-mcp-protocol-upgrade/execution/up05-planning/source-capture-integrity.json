@@ -1,0 +1,139 @@
+{
+  "captures": [
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/index.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--index.md.gz",
+      "artifact_sha256": "ba5b1cdebd99f81b48c400dd263477ecac9be0bb0887bd5dd2d595c76e93ce81",
+      "content_sha256": "f8df03767e5cbdd4921ae569d1d69e8da9e455e1629fadf4d0613cd658dd632f",
+      "bytes": 5817
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--index.md.gz",
+      "artifact_sha256": "e980304353744183e828a00344e250fc9db51c39688447f02161b49495da2589",
+      "content_sha256": "67a62de95bdc816ff96e8d5c69b0fc19237191f42805846e2ec8f8d7063e123e",
+      "bytes": 24001
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--versioning.md.gz",
+      "artifact_sha256": "b8823526205253bec25b8416df2d555e2bdafe5e4b4f27165992b9768b80ba79",
+      "content_sha256": "43b48c19cbc330410beed44da8cf441e100a05652a3654f39eb331bb94f46402",
+      "bytes": 8410
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--discover.md.gz",
+      "artifact_sha256": "fa62da1c05778bfbd8068a5cb2c60d2b9d657dee7d0316b2b8cd31bf94109bd6",
+      "content_sha256": "331489cd2984399cfe4828357fdd5a23e062ef40f69f4815499b055b51e2b82c",
+      "bytes": 3835
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--stdio.md.gz",
+      "artifact_sha256": "dc20b20f4fa591c6a21ff3cc63e62167e358697cae61f4f6158b907250f7dfcb",
+      "content_sha256": "a021917cb77ecd936143aced4fd243e12dd7b5f9a9344546742df97a381277f5",
+      "bytes": 7352
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--transports--streamable-http.md.gz",
+      "artifact_sha256": "c6577a8a16e81f65ff48d00f92b470e880050833b2ad1660d3bdbe87b4fd88f6",
+      "content_sha256": "93daa4bb4e189f0bd51d866950b3b8a3b4e7d0b1e0e6eede5ba1998641d0b955",
+      "bytes": 30407
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--server--tools.md.gz",
+      "artifact_sha256": "97849c034d2a7eada88f431f68b6435afd5ff69e0671ee1e8a0d859f9940a1a6",
+      "content_sha256": "09be49a064940ef288b47f8df09e95e6e3dc087c3f94e466acd60ec66dff25c3",
+      "bytes": 24314
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--patterns--mrtr.md.gz",
+      "artifact_sha256": "a6e04c2f9de8cbaa2ee8ebbad6e831f4611c00ff0722ebad0062505bb7943fc0",
+      "content_sha256": "cfbb4bf592fd0678d9b7e3fdeb5ebc3156c106146e583f55851b3a3c026dc6c9",
+      "bytes": 13364
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/specification--2026-07-28--basic--authorization.md.gz",
+      "artifact_sha256": "e973ccaa554ba125c4533104d13c8fa37b0d5bfe0720e02f5b7380f4bd1b2dcc",
+      "content_sha256": "93fd383906873fedb80119a636b342e25b166ed3f9bee4fa8ae1b3bcb4c2b8f7",
+      "bytes": 25173
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/271ecc9accafdd9b83a3c869fa67c22953b2af80/schema/2026-07-28/schema.ts",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/modelcontextprotocol--modelcontextprotocol--main--schema--2026-07-28--schema.ts.gz",
+      "artifact_sha256": "d9283883c8d95d99ef17c293bd4495788e4cf30bc3134847545f0cbcd8459eb5",
+      "content_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "bytes": 98426
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/index.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--index.md.gz",
+      "artifact_sha256": "f03955e29f62198dc77c7123811c3bccc8f9431a68027d0984b7c7f9aee38aec",
+      "content_sha256": "a504a34039368f1cb715096d664f234ce7e1af4511e6ad3fd41e901d8040b97e",
+      "bytes": 11194
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--lifecycle.md.gz",
+      "artifact_sha256": "36168ffae11aadaf6622bc419ca4353ac09a392f0dc4ffd98cdf5d6ea865ec95",
+      "content_sha256": "8c030bf50b74e562d244916b16baab1bfcd86ae03736d4e5b6e24ed58a913af9",
+      "bytes": 9217
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--transports.md.gz",
+      "artifact_sha256": "edb24318788ee0dbb472ac8c62183d73ac5ec2e26b2f0f0acc12831be0660e52",
+      "content_sha256": "5a86d66ae0ab08f29460229f3b7f56d504388d1f106e21097575621717fc0e7a",
+      "bytes": 16191
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--utilities--cancellation.md.gz",
+      "artifact_sha256": "ececcd5dac5a288f0b83e672a17c11a46e0d2eb2876afde5cbd34988be5f35a0",
+      "content_sha256": "a52208278358eebe5d91061d78122247c8e0b348701547386393aa7fbbabdf2e",
+      "bytes": 2921
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--basic--security_best_practices.md.gz",
+      "artifact_sha256": "bf6804e4f57672d51aedd4dda0d513758578b0eb3a5f32a92b136ac58ad65958",
+      "content_sha256": "27dfdc9c8fb0f29750e52d64797077bc1ba01f25a0d584e3189954f47a2601c7",
+      "bytes": 37327
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2025-11-25--server--tools.md.gz",
+      "artifact_sha256": "80259cc4cb4b74248ea0591fa061b9cc11ed4592985f639d7a10fba84ad9b091",
+      "content_sha256": "b372c48eea58744850f5684b796438f32643402533b24084d82b49b580721aff",
+      "bytes": 14061
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/cancellation.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/modelcontextprotocol.io--specification--2026-07-28--basic--patterns--cancellation.md.gz",
+      "artifact_sha256": "0ffcd169eacf5a97d37b5e13a52ebcbb2259977db0975b70766e429e7d1cc43d",
+      "content_sha256": "5ad380cae6ee6f29f63210694de90400c2aa84efaddc1c8f3f286ea3a36664a3",
+      "bytes": 4627
+    },
+    {
+      "url": "https://raw.githubusercontent.com/modelcontextprotocol/modelcontextprotocol/271ecc9accafdd9b83a3c869fa67c22953b2af80/schema/2025-11-25/schema.ts",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up02b/raw.githubusercontent.com--modelcontextprotocol--modelcontextprotocol--271ecc9accafdd9b83a3c869fa67c22953b2af80--schema--2025-11-25--schema.ts.gz",
+      "artifact_sha256": "967c04a3a2d7bff08a573ece66c9378aa3a580c7f523d7ef682e169b6c13b76f",
+      "content_sha256": "e74b56e73b2e37bdb595f74ba22e428ad7f07aa3519355ba661d681298ed38ac",
+      "bytes": 66671
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks.md",
+      "artifact": "docs/planning/active/friday-mcp-protocol-upgrade/research-sources/up04/specification--2025-11-25--basic--utilities--tasks.md.gz",
+      "artifact_sha256": "decdfbda41a309110b6dbddccd5e4604c3b783170ced636a6da38250575fb992",
+      "content_sha256": "c33da0b5b3912a4826d6e1d8a6a6fdcb3700d9af9f3e66dd4ee14d7440497fb6",
+      "bytes": 35997
+    }
+  ],
+  "count": 19,
+  "boundary": "Current complete capture integrity checked; server-role conformance/test execution not performed"
+}

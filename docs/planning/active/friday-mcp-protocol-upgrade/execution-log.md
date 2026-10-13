@@ -431,3 +431,17 @@ acceptance of CD-MCP-UP-004 and REM004/005, all39 reviewed product/metadata hash
 and the unchanged original report. All three findings are resolved. Whole MCP
 remains started/local. Prepare UP-05 modern tools-only server controls; no later
 construction, dependency change or publication is inferred. Langfuse stays queued.
+
+
+## UP-05 exact modern tools-server proposal
+
+Accepted UP-04 baseline f876603c74d8a90639fb5dc90d287d17ab523705 anchors a parallel strict modern2026
+stdio/StreamableHTTP tools-only server. The18-path/12-criterion/20-command packet
+pins full official captures, current source/dependency hashes, declared registry
+and provider-neutral observation interfaces, private fixture effects and fresh
+independent full-unit validation. Legacy/config/client sources remain preserved.
+All19 captures match;29 server schema declarations and SDK Client options are
+planning references, not field/clause coverage or product verification. The new
+baseline omits267 protected paths before checkout. Full server-role preconstruction
+mapping remains mandatory. No product edits, fixtures, installs or remote effects
+occurred. Exact CD-MCP-UP-005 approval is the next construction gate.

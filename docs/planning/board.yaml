@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Prepare exact UP-05 modern tools-only server directive/contract/profile; no UP-05 construction authority yet
+  next_gate: Maintainer approval of exact CD-MCP-UP-005 modern tools-server directive/contract/profile/18-path manifest before construction
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1618,3 +1618,10 @@ events:
   action: accepted MCP-UP-04 result and refresh unit
   note: 'Exact statement: approved. Acceptance gate explicit; UP-05 planning next, construction separate; local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-04.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T16:38:51+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: prepared exact MCP-UP-05 modern tools-server construction packet
+  note: 18 paths/12 criteria/20 commands; planning only, no product edit or server publication; exact approval gate
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-005-modern-tools-server.md

@@ -1,0 +1,209 @@
+{
+  "definitions": [
+    {
+      "name": "MetaObject",
+      "definition_line": 54,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "RequestMetaObject",
+      "definition_line": 63,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "NotificationMetaObject",
+      "definition_line": 120,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ResultMetaObject",
+      "definition_line": 143,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Request",
+      "definition_line": 184,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Notification",
+      "definition_line": 201,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Result",
+      "definition_line": 223,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Error",
+      "definition_line": 241,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "JSONRPCRequest",
+      "definition_line": 268,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "JSONRPCNotification",
+      "definition_line": 278,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "JSONRPCResultResponse",
+      "definition_line": 287,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "JSONRPCErrorResponse",
+      "definition_line": 298,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "HeaderMismatchError",
+      "definition_line": 463,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "UnsupportedProtocolVersionError",
+      "definition_line": 483,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "DiscoverRequest",
+      "definition_line": 665,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "DiscoverResult",
+      "definition_line": 678,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ClientCapabilities",
+      "definition_line": 716,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ServerCapabilities",
+      "definition_line": 793,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Implementation",
+      "definition_line": 976,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "PaginatedRequest",
+      "definition_line": 1063,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "PaginatedResult",
+      "definition_line": 1068,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ListToolsRequest",
+      "definition_line": 1767,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ListToolsResult",
+      "definition_line": 1779,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "CallToolRequestParams",
+      "definition_line": 1863,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "CallToolRequest",
+      "definition_line": 1882,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "CallToolResult",
+      "definition_line": 1809,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "Tool",
+      "definition_line": 1973,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "ToolAnnotations",
+      "definition_line": 1912,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    },
+    {
+      "name": "CancelledNotification",
+      "definition_line": 648,
+      "upstream_commit": "271ecc9accafdd9b83a3c869fa67c22953b2af80",
+      "complete_schema_sha256": "742750af0bb8c716e7030c4977c992b55d1adc4407e9e66997db5846baedc2cd",
+      "mapping_status": "Selected planning reference; complete dependent-field/variant/assertion mapping mandatory before edits"
+    }
+  ],
+  "count": 29,
+  "boundary": "Reference selection only, no normative clause/field coverage or tests claimed"
+}
