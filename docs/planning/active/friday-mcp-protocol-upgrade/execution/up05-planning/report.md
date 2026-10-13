@@ -20,3 +20,10 @@ all legacy entries and current client/Runtime/Chat behavior. Access-policy/owner
 negatives and actual SDK Client against Friday server are required. Static bearer
 policy is not OAuth. New server construction needs exact approval; whole MCP stays
 started/local. UP06 aggregate verification and Langfuse remain later gates.
+
+Final proposal reconciliation and all five repeated planning checks are retained
+in stored-manifest.json. UP-05 cycle counters start at0; prior UP-04 history is
+preserved separately. The contract admits cooperative async handlers only. The
+initial command-count bookkeeping failure is retained with its exact script/raw
+reproducer output; the bound final profile has20 commands. No product tests or
+server execution are claimed by these planning results.
