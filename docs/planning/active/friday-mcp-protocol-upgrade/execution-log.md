@@ -597,3 +597,14 @@ losslessly under validation/VAL-UP05-02. Process state and board next gate agree
 No completion proposal or source repair authority is inferred; bounded disposition required.
 Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
 Langfuse implementation and publication remain later separate gates.
+
+
+## REM006 cycle1 result and bounded same-scope standard-header continuation
+
+Fresh report preserves64 passing original-finding cases and VAL-UP05-005: plain
+method/version headers with control/DEL/rawUnicode matching body choose incorrect
+wire errors. This is covered by original mandatory header grammar/all12 criteria
+and three of six already-approved files. REM006-R1 records a narrowed separate-
+remediator continuation, not a new maintainer decision or broader source authority.
+Original reports/control/approval bytes remain immutable. Cycle2; a second failed
+formal correction review stops for maintainer disposition.

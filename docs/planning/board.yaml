@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Reconcile independent MCP-UP-05 CHANGES_REQUESTED and prepare exact bounded disposition before product edits
+  next_gate: Separate remediator fixes bounded REM006-R1 standard-header grammar; full20 and fresh delta/full review; stop after second unsuccessful cycle
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1704,3 +1704,10 @@ events:
   action: recorded independent full MCP-UP-05 CHANGES_REQUESTED
   note: Original fresh report/evidence retained; no acceptance/publication inferred; whole MCP started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP05-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T21:21:06+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: bounded REM006 continuation within existing approved header scope
+  note: New standard-header case under original mandatory grammar; three of six files; no new maintainer approval claimed; cycle2 stop applies
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/REM-MCP-UP-006-R1-standard-header-byte-grammar.md
