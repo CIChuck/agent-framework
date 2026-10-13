@@ -484,3 +484,12 @@ metadata, preserving18 paths, all20 checks, immutable controls and independent
 review. No full profile, stable candidate, VERIFIED or completion is claimed.
 No live fixture child remains. Original authority and earlier accepted units
 remain intact; no later-unit or remote delivery is authorized.
+
+
+## 2026-10-13 - UP-05 cache-metadata amendment approved
+
+Chuck Russell explicitly stated “approved” for AMEND-MCP-UP-005-001. Separate
+approval receipt and amended execution authority pin the exact correction.
+Construction resumes within the same18 paths/12 criteria/20 checks/private
+fixture effects. Parent controls remain unchanged. No later-unit, acceptance
+or publication authority is inferred.
