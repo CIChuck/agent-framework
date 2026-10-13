@@ -445,3 +445,11 @@ planning references, not field/clause coverage or product verification. The new
 baseline omits267 protected paths before checkout. Full server-role preconstruction
 mapping remains mandatory. No product edits, fixtures, installs or remote effects
 occurred. Exact CD-MCP-UP-005 approval is the next construction gate.
+
+
+Final UP-05 planning reconciliation resets remediation-cycle counters for the new
+unit (UP-04 history remains in its accepted receipt/process snapshot) and fixes
+the modern handler contract to cooperative async registration only, with no
+thread/executor adaptation. Proposed controls are re-pinned before any approval.
+The reproducible initial planning command-count bookkeeping failure and script
+are retained losslessly; the corrected profile contains20 actual commands.

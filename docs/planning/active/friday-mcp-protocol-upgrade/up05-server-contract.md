@@ -83,8 +83,8 @@ execution. Validate bounded arguments against that definition before the handler
 unknown/removed/filtered names and malformed arguments execute zero times. Invoke
 an async handler once, never retry after disconnect/error/header mismatch. In-flight
 calls retain their captured schemas even if registration changes. Registration of
-synchronous blocking handlers is rejected or explicitly adapted without violating
-owned cancellation; do not add an unbounded thread/executor path.
+synchronous handlers is rejected; the modern API accepts cooperative async
+handlers and the typed async registry bridge. Do not add a thread/executor path.
 
 Return typed complete text/structured results with exact omitted-versus-null
 structuredContent semantics and deterministic content ordering. Validate every

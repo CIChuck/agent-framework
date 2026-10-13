@@ -60,10 +60,6 @@
   "remediation_implementation_authority": "not_granted",
   "remediation_proposal": null,
   "remediation_product_candidate": null,
-  "prior_unsuccessful_remediation_cycles": 1,
-  "prior_finding_disposition": {
-    "VAL-UP04-001": "resolved by fresh final delta and full-unit review",
-    "VAL-UP04-002": "resolved by fresh final full-unit review",
-    "VAL-UP04-003": "resolved by REM005 and fresh delta/full-unit review"
-  }
+  "prior_unsuccessful_remediation_cycles": 0,
+  "prior_finding_disposition": {}
 }
