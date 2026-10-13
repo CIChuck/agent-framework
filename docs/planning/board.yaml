@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Finish amended UP-05 complete modern-field enforcement and mapping, full20-check profile and fresh independent review
+  next_gate: Fresh-context read-only full MCP-UP-05/CD-MCP-UP-005 independent validation against approved AMEND001 and AMEND002
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1660,3 +1660,10 @@ events:
   action: approved exact AMEND-MCP-UP-005-002
   note: 'Exact statement: approved, continue. Correct wire version-error fields and prospective modern-field rebaseline; original scope unchanged, local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-002.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T19:59:45+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: froze amended MCP-UP-05 candidate
+  note: Exact18 paths/12 criteria/20 checks; corrected modern schema mapping; fresh independent full review required; started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up05/amendment002-final/report.md

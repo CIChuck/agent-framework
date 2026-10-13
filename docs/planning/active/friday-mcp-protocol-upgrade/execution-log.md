@@ -534,3 +534,14 @@ supported/requested error data. Historical wrong2025-selected plan remains
 immutable and is not conformance evidence. All18 product paths,12 criteria,
 20 checks, private effects and accepted metadata/products remain controlling.
 Construction resumes; no later unit, acceptance or publication is inferred.
+
+
+## MCP-UP-05 amended stable candidate and independent review gate
+
+Approved AMEND002 construction is complete at 780a42e18b75dc30a61d12e6bab5d2b140b35435.
+Exact18 product paths,12 criteria and20 required checks retained. Corrected2026
+field/clause actual mapping and full raw checks archived losslessly under
+execution/up05/amendment002-final. Wrong historical plan/draft/failed attempts
+remain immutable and do not establish conformance. Full current-baseline debt,
+skip/warning and library comparisons passed. Fresh full-unit independent review
+is required; unit completion is not proposed and no acceptance/publication inferred.
