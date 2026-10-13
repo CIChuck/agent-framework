@@ -1,0 +1,12 @@
+{
+  "directive": "REM-MCP-UP-005",
+  "work_unit": "MCP-UP-04",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "I'll approve that amendment without reservation, continue",
+  "recorded_at_utc": "2026-10-13T14:50:11.842097+00:00",
+  "proposal_commit": "b24c19ed4a2c210d9dc0eef60fa9f869b72a6e36",
+  "proposal_manifest_sha256": "8b769b234214301dbd8f781c4b6c8dfd53493bdd3a29deef38274ab7fef0281e",
+  "scope": "Exact two-file HTTP recovery-publication amendment described to maintainer; preserved full20 profile/guard, fresh separate security remediator and fresh delta plus full independent review",
+  "later_unit_or_delivery_authority": "not granted"
+}

@@ -392,3 +392,11 @@ evidence are retained under validation/VAL-UP04-02. No VERIFIED or completion is
 claimed. REM-MCP-UP-005 binds HTTP source and scoped result-refresh tests only,
 all original20 checks and a fresh separate remediator/reviewer. This is cycle2;
 a second unsuccessful remediation review stops for maintainer disposition.
+
+
+Chuck Russell explicitly stated “I'll approve that amendment without reservation,
+continue” after the two-file recovery correction and continued verification were
+described. The separate REM005 receipt and authority bind the concrete immutable
+proposal, two paths and unchanged original20-check profile. No additional approval
+is requested for this authorized correction. No dependency/later-unit/delivery
+authority is inferred.

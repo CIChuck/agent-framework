@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Record already explicit maintainer approval of exact two-path REM-MCP-UP-005 before fresh separate remediation
+  next_gate: Fresh separate remediator fixes exact REM-MCP-UP-005 two-file scope; full20 checks, stable candidate and fresh delta plus full UP-04 review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1588,3 +1588,10 @@ events:
   action: recorded REM004 CHANGES_REQUESTED and exact REM005 amendment
   note: Original review retained; one unsuccessful remediation cycle; two product paths, local only
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T14:50:11+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact REM-MCP-UP-005 two-file amendment
+  note: 'Exact statement: I''ll approve that amendment without reservation, continue. Two paths; fresh security remediator; full checks and fresh independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-REM-MCP-UP-005.json
