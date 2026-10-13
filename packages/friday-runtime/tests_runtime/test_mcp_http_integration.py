@@ -249,12 +249,15 @@ async def test_real_yaml_kernel_tls_discovery_call_stop(
             )
             assert provider.tool_metadata["mcp_remote_echo"].trust_level == "remote"
             client = provider.manager.get_client("remote")
-            catalog = await client.list_tools()
+            catalog = client.current_catalog_snapshot.tools()
             original = json.dumps(catalog, ensure_ascii=False)
             exported = registry.get("mcp_remote_echo").parameters_schema
             assert "x-mcp-header" not in json.dumps(exported)
             assert await registry.get_callable("mcp_remote_echo")(text="雪\nline")
-            assert json.dumps(await client.list_tools(), ensure_ascii=False) == original
+            assert (
+                json.dumps(client.current_catalog_snapshot.tools(), ensure_ascii=False)
+                == original
+            )
             assert (
                 client.request_timeout_seconds == 1
                 and client.limits.concurrent_requests <= 4
@@ -459,16 +462,23 @@ async def test_2025_runtime_recovery_is_read_only_and_observed_once(
             await provider.register_tools(registry)
             with pytest.raises(MCPToolExecutionError):
                 await registry.get_callable("mcp_remote_echo")(text="first")
+            with pytest.raises(MCPToolExecutionError) as stale:
+                await registry.get_callable("mcp_remote_echo")(text="stale")
+            assert stale.value.failure_code == "catalog_unavailable"
+            assert sum(r["method"] == "tools/call" for r in records(counter)) == 1
+            await provider.stop()
+            await provider.start()
+            await provider.register_tools(registry)
             assert (
                 await registry.get_callable("mcp_remote_echo")(text="explicit second")
                 == "explicit second"
             )
             methods = [r["method"] for r in records(counter)]
-            assert methods.count("initialize") == 2 and methods.count("tools/call") == 2
+            assert methods.count("initialize") == 3 and methods.count("tools/call") == 2
             names = [r.name for r in recorder.events]
             assert (
-                names.count("mcp.tool_call_start") == 2
-                and names.count("mcp.tool_call_failure") == 1
+                names.count("mcp.tool_call_start") == 3
+                and names.count("mcp.tool_call_failure") == 2
                 and names.count("mcp.tool_call_finish") == 1
             )
         finally:
@@ -775,6 +785,13 @@ async def test_runtime_late_2025_404_preserves_healthy_recovered_session(
             and client._generation == generation
             and peer.methods().count("initialize") == 2
         )
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await registry.get_callable("mcp_remote_echo")(text="stale")
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert peer.methods().count("tools/call") == 2
+        await provider.stop()
+        await provider.start()
+        await provider.register_tools(registry)
         assert (
             await registry.get_callable("mcp_remote_echo")(text="healthy") == "healthy"
         )

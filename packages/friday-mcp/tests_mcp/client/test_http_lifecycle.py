@@ -336,6 +336,11 @@ async def test_2025_session_404_reinitializes_once_without_replaying_mutation():
     init_headers = [h for _, h, r in peer.requests if r.get("method") == "initialize"]
     assert all(b"mcp-session-id" not in h for h in init_headers)
     assert client.is_connected
+    with pytest.raises(MCPToolExecutionError) as stale:
+        await client.call_tool("echo", {"text": "stale"})
+    assert stale.value.failure_code == "catalog_unavailable"
+    assert peer.methods().count("tools/call") == 1
+    await client.refresh_tool_catalog()
     assert await client.call_tool("echo", {"text": "next explicit"}) == "next explicit"
     assert peer.requests[-1][1][b"mcp-session-id"] == b"session-2"
     await client.disconnect()
@@ -1048,6 +1053,10 @@ async def test_stale_recovery_waiter_deadline_does_not_invalidate_active_recover
         assert peer.methods().count("initialize") == 2
         assert peer.methods().count("tools/call") == 2
         peer.hook = None
+        with pytest.raises(MCPToolExecutionError):
+            await client.call_tool("echo", {"text": "stale"})
+        assert peer.methods().count("tools/call") == 2
+        await client.refresh_tool_catalog()
         assert await client.call_tool("echo", {"text": "next"}) == "next"
     finally:
         initialize_release.set()
