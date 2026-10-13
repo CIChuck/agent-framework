@@ -587,3 +587,13 @@ retained losslessly with controller full20 checks, exact inherited debt/skip/
 warning comparisons and strict before/after library integrity. Original review
 and controls remain immutable. Fresh remediation delta followed by full UP-05
 review is required; no completion/acceptance/UP06/publication inferred.
+
+
+## REM-MCP-UP-006 independent delta and full UP-05 result
+
+Fresh-context read-only remediation delta then full work-unit review returned CHANGES_REQUESTED for
+2b536516068f9e946572d165636211a24a93638d. Original report and explicit safe raw evidence are retained
+losslessly under validation/VAL-UP05-02. Process state and board next gate agree.
+No completion proposal or source repair authority is inferred; bounded disposition required.
+Whole MCP remains started/local; UP06 aggregate compatibility/migration closeout,
+Langfuse implementation and publication remain later separate gates.
