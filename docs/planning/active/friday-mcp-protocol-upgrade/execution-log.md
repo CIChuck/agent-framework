@@ -524,3 +524,13 @@ completion, acceptance, formal remediation cycle or publication is claimed.
 AMEND001 remains approved; original18 paths/12 criteria/20 checks/private
 effects and every accepted older unit are protected. Next gate is exact
 amendment002 approval, then corrected construction/full profile/fresh review.
+
+
+## 2026-10-13 - exact AMEND002 and prospective rebaseline approved
+
+Chuck Russell explicitly stated “approved, continue” for AMEND-MCP-UP-005-002.
+Separate receipt/authority pin corrected2026 schema planning and exact
+supported/requested error data. Historical wrong2025-selected plan remains
+immutable and is not conformance evidence. All18 product paths,12 criteria,
+20 checks, private effects and accepted metadata/products remain controlling.
+Construction resumes; no later unit, acceptance or publication is inferred.

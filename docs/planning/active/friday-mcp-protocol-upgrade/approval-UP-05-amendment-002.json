@@ -1,0 +1,13 @@
+{
+  "amendment": "AMEND-MCP-UP-005-002",
+  "work_unit": "MCP-UP-05",
+  "status": "approved",
+  "approved_by": "Chuck Russell",
+  "maintainer_statement": "approved, continue",
+  "recorded_at_utc": "2026-10-13T18:57:32.244037+00:00",
+  "proposal_commit": "a3f4e1b107b413313d393a120c2fcbf4f6ffed67",
+  "proposal_manifest_sha256": "6c005ed4ccbf63c51f4f155b637455f2abc550128713e1413c2a2a5d9975daf3",
+  "override": "Unsupported version error data uses required supported/requested; bounded requested protocolVersion only in own wire error. Explicit prospective rebaseline replaces invalid historical2025-selected field plan for further construction; audit all modern fields before fresh review. AMEND001 and original other requirements remain.",
+  "scope": "Original18 product paths/12 criteria/20 commands/private effects; prospective corrected2026 field-plan rebaseline and dependent-field enforcement",
+  "later_unit_or_remote_delivery_authority": "not granted"
+}
