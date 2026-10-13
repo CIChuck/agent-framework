@@ -302,3 +302,13 @@ Reviewed product, exact authority and accepted prior units remain unchanged.
 Propose MCP-UP-03 completion only, with maintainer acceptance pending. Whole
 initiative stays started/local; UP-04, UP-05 and UP-06 require later bounded
 directives. Langfuse remains queued after whole MCP acceptance.
+
+
+## UP-03 maintainer acceptance and UP-04 preparation
+
+Chuck Russell explicitly stated “accepted, continue”. acceptance/MCP-UP-03.json
+records acceptance of independently VERIFIED CD-MCP-UP-003 and the exact guide
+correction, with reviewed product/report/control hashes. Frozen original reports,
+prior authority and accepted product bytes are preserved. Whole MCP stays
+started/local. Proceed with separate UP-04 planning, without later construction
+or publication authority. Langfuse remains queued after whole MCP acceptance.
