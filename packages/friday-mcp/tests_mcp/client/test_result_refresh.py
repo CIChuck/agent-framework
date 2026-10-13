@@ -11,7 +11,12 @@ from friday_mcp.client import MCPCatalogSnapshot, MCPRefreshClient
 from friday_mcp.client.adapter import MCPToolAdapter
 from friday_mcp.client.base import MCPError, MCPToolExecutionError
 from friday_mcp.client.protocol import ProtocolFailure, ProtocolLimits, ToolResult
-from tests_mcp.client.test_http_lifecycle import Peer, make_client
+from tests_mcp.client.test_http_lifecycle import (
+    OrderedExpiryPeer,
+    Peer,
+    Reply,
+    make_client,
+)
 from tests_mcp.client.test_modern_protocol import Client, cached, complete, tool
 
 
@@ -27,6 +32,489 @@ def refresh_peer(profile, budget=4, timeout=30):
 
 def peer_messages(peer):
     return peer.sent if hasattr(peer, "sent") else [r[2] for r in peer.requests]
+
+
+async def assert_recovery_admission_retired(client, peer, old):
+    before = peer.methods().count("tools/call")
+    assert client.current_catalog_snapshot is None
+    with pytest.raises(MCPToolExecutionError) as raw:
+        await client.call_tool("echo", {})
+    assert raw.value.failure_code == "catalog_unavailable"
+    with pytest.raises(MCPToolExecutionError) as wrapper:
+        await old.execute()
+    assert wrapper.value.failure_code == "catalog_unavailable"
+    assert peer.methods().count("tools/call") == before
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("budget", [1, 2, 3, 4])
+@pytest.mark.parametrize("failure", ["limit", "disconnected", "cancel"])
+async def test_recovery_cannot_restore_catalog_retired_during_handshake(
+    budget, failure
+):
+    client, peer = refresh_peer("2025-11-25", budget)
+    gate = asyncio.Event()
+    started = asyncio.Event()
+    pending = []
+    running = None
+    await client.connect()
+    try:
+        adapter = MCPToolAdapter(client)
+        old = (await adapter.get_tools())[0]
+
+        def hook(verb, headers, message):
+            if message.get("method") == "initialize":
+                started.set()
+                return peer.rpc(
+                    message,
+                    {
+                        "protocolVersion": "2025-11-25",
+                        "capabilities": {"tools": {}},
+                        "serverInfo": {"name": "fixture", "version": "1"},
+                    },
+                    stall=gate,
+                    headers=[("MCP-Session-Id", "recovered")],
+                )
+            return None
+
+        peer.hook = hook
+        peer.expire_once = True
+        running = asyncio.create_task(old.execute())
+        await asyncio.wait_for(started.wait(), 1)
+        # Public refresh entry retires synchronously, before owned discovery runs.
+        pending = [
+            asyncio.create_task(client.refresh_tool_catalog())
+            for _ in range(budget if failure == "limit" else 1)
+        ]
+        await asyncio.sleep(0)
+        assert client.outstanding_catalog_owners == len(pending)
+        if failure == "limit":
+            with pytest.raises(ProtocolFailure) as rejected:
+                await client.refresh_tool_catalog()
+            assert rejected.value.failure_code == "limit_exceeded"
+        elif failure == "cancel":
+            pending[0].cancel()
+        outcomes = await asyncio.gather(*pending, return_exceptions=True)
+        assert all(
+            isinstance(
+                value, asyncio.CancelledError if failure == "cancel" else RuntimeError
+            )
+            for value in outcomes
+        )
+        await assert_recovery_admission_retired(client, peer, old)
+        assert client.outstanding_catalog_owners == 0
+        assert client.outstanding_http_owners <= budget
+        gate.set()
+        with pytest.raises(MCPToolExecutionError) as expired:
+            await running
+        assert expired.value.failure_code == "invalid_protocol"
+        assert client.is_connected
+        await assert_recovery_admission_retired(client, peer, old)
+        assert peer.methods().count("tools/call") == 1
+        # Public cache reads must rediscover, rather than return the old wrapper.
+        peer.hook = lambda verb, headers, message: (
+            peer.rpc(message, error={"code": -32603, "message": "synthetic"})
+            if message.get("method") == "tools/list"
+            else None
+        )
+        with pytest.raises(MCPError):
+            await adapter.get_tools()
+        await assert_recovery_admission_retired(client, peer, old)
+        peer.hook = None
+        new = (await adapter.get_tools(refresh=True))[0]
+        assert new is not old
+        assert await new.execute() == "ok"
+        assert peer.methods().count("tools/call") == 2
+    finally:
+        gate.set()
+        await client.disconnect()
+        await asyncio.gather(*pending, return_exceptions=True)
+        if running is not None:
+            await asyncio.gather(running, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+async def test_budget1_refresh_limit_before_recovery_capture_cannot_restore_admission():
+    peer = OrderedExpiryPeer()
+    client, _, _ = make_client(peer, limits=ProtocolLimits(concurrent_requests=1))
+    running = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+        peer.hook = lambda verb, headers, message: (
+            Reply(status=404) if message.get("method") == "tools/call" else None
+        )
+        running = asyncio.create_task(old.execute(text="late"))
+        await asyncio.wait_for(peer.late_issued.wait(), 1)
+        # The issued call owns the sole HTTP slot; discovery cannot issue a page.
+        with pytest.raises(ProtocolFailure) as limited:
+            await client.refresh_tool_catalog()
+        assert limited.value.failure_code == "limit_exceeded"
+        await assert_recovery_admission_retired(client, peer, old)
+        peer.hook = None
+        peer.late_release.set()
+        with pytest.raises(MCPToolExecutionError) as expired:
+            await running
+        assert expired.value.failure_code == "invalid_protocol"
+        await assert_recovery_admission_retired(client, peer, old)
+        assert peer.methods().count("tools/call") == 1
+        new = (await MCPToolAdapter(client).get_tools())[0]
+        assert await new.execute() == "ok"
+    finally:
+        peer.late_release.set()
+        await client.disconnect()
+        if running is not None:
+            await asyncio.gather(running, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "stage,budget",
+    [("before_capture", b) for b in (2, 3, 4)]
+    + [("after_publication", b) for b in (1, 2, 3, 4)],
+)
+@pytest.mark.parametrize("failure", ["error", "partial", "cancel", "deadline"])
+async def test_recovery_refresh_failure_ordering_retains_no_stale_raw_admission(
+    stage, budget, failure
+):
+    peer = OrderedExpiryPeer()
+    client, _, _ = make_client(peer, limits=ProtocolLimits(concurrent_requests=budget))
+    page_started = asyncio.Event()
+    page_gate = asyncio.Event()
+    running = None
+    pending = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+        if stage == "before_capture":
+            peer.hook = lambda verb, headers, message: (
+                Reply(status=404) if message.get("method") == "tools/call" else None
+            )
+            running = asyncio.create_task(old.execute(text="late"))
+            await asyncio.wait_for(peer.late_issued.wait(), 1)
+        else:
+            peer.expire_once = True
+            with pytest.raises(MCPToolExecutionError):
+                await old.execute()
+            assert client.current_catalog_snapshot is None
+            assert await client.call_tool("echo", {}) == "ok"
+        pages = 0
+
+        def hook(verb, headers, message):
+            nonlocal pages
+            if message.get("method") != "tools/list":
+                return None
+            pages += 1
+            if failure == "partial" and pages == 1:
+                return peer.rpc(message, {"tools": peer.tools, "nextCursor": "page2"})
+            page_started.set()
+            if failure in ("error", "partial"):
+                return peer.rpc(message, error={"code": -32603, "message": "synthetic"})
+            return peer.rpc(message, {"tools": []}, stall=page_gate)
+
+        peer.hook = hook
+        # The already-issued call keeps its original30s deadline. Only this
+        # subsequent public refresh receives the shorter configured timeout.
+        if failure == "deadline":
+            client.request_timeout_seconds = 0.05
+        pending = asyncio.create_task(client.refresh_tool_catalog())
+        await asyncio.wait_for(page_started.wait(), 1)
+        await assert_recovery_admission_retired(client, peer, old)
+        if failure == "cancel":
+            pending.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await pending
+        elif failure == "deadline":
+            with pytest.raises(TimeoutError):
+                await pending
+        else:
+            with pytest.raises(MCPError):
+                await pending
+        client.request_timeout_seconds = 30
+        if failure == "partial":
+            assert pages == 2
+        assert client.outstanding_catalog_owners == 0
+        assert client.outstanding_http_owners <= budget
+        await assert_recovery_admission_retired(client, peer, old)
+        page_gate.set()
+        peer.hook = None
+        if running is not None:
+            peer.late_release.set()
+            with pytest.raises(MCPToolExecutionError) as expired:
+                await running
+            assert expired.value.failure_code == "invalid_protocol"
+        await assert_recovery_admission_retired(client, peer, old)
+        assert peer.methods().count("tools/call") == (
+            1 if stage == "before_capture" else 2
+        )
+        # Stop/start settles retained cancellation owners at the lowest budget.
+        await client.disconnect()
+        assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+        await client.connect()
+        new = (await MCPToolAdapter(client).get_tools())[0]
+        assert await new.execute() == "ok"
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await old.execute()
+        assert stale.value.failure_code == "catalog_unavailable"
+    finally:
+        page_gate.set()
+        peer.late_release.set()
+        await client.disconnect()
+        for owned in (pending, running):
+            if owned is not None:
+                await asyncio.gather(owned, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("budget", [1, 2, 3, 4])
+async def test_ordinary_recovery_preserves_only_prior_raw_output_schema(budget):
+    client, peer = refresh_peer("2025-11-25", budget)
+    peer.tools[0]["outputSchema"] = {
+        "type": "object",
+        "properties": {"v": {"type": "integer"}},
+        "required": ["v"],
+    }
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+        peer.expire_once = True
+        with pytest.raises(MCPToolExecutionError) as expired:
+            await old.execute()
+        assert expired.value.failure_code == "invalid_protocol"
+        assert client.current_catalog_snapshot is None
+        assert peer.methods().count("tools/call") == 1
+        # No explicit refresh: the peer's new schema cannot change captured data.
+        peer.tools[0]["outputSchema"]["properties"]["v"] = {"type": "string"}
+        for value, valid in [(7, True), ("new-peer-schema", False)]:
+            peer.hook = lambda verb, headers, message, value=value: (
+                peer.rpc(message, {"content": [], "structuredContent": {"v": value}})
+                if message.get("method") == "tools/call"
+                else None
+            )
+            before = peer.methods().count("tools/call")
+            if valid:
+                assert await client.call_tool("echo", {}) == '{"v":7}'
+            else:
+                with pytest.raises(MCPToolExecutionError) as invalid:
+                    await client.call_tool("echo", {})
+                assert invalid.value.failure_code == "invalid_result"
+            assert peer.methods().count("tools/call") == before + 1
+        before = peer.methods().count("tools/call")
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await old.execute()
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert peer.methods().count("tools/call") == before == 3
+        assert peer.methods().count("initialize") == 2
+    finally:
+        await client.disconnect()
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("budget", [1, 2, 3, 4])
+@pytest.mark.parametrize("handshake", ["success", "failure"])
+async def test_public_disconnect_supersedes_stalled_recovery_and_new_catalog(
+    budget, handshake
+):
+    client, peer = refresh_peer("2025-11-25", budget)
+    started = asyncio.Event()
+    gate = asyncio.Event()
+    running = None
+    stopping = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+
+        def hook(verb, headers, message):
+            if message.get("method") == "initialize":
+                started.set()
+                return peer.rpc(
+                    message,
+                    {
+                        "protocolVersion": (
+                            "2025-11-25" if handshake == "success" else "invalid"
+                        ),
+                        "capabilities": {"tools": {}},
+                        "serverInfo": {"name": "fixture", "version": "1"},
+                    },
+                    stall=gate,
+                )
+            return None
+
+        peer.hook = hook
+        peer.expire_once = True
+        running = asyncio.create_task(old.execute())
+        await asyncio.wait_for(started.wait(), 1)
+        stopping = asyncio.create_task(client.disconnect())
+        await asyncio.sleep(0)
+        await assert_recovery_admission_retired(client, peer, old)
+        gate.set()
+        with pytest.raises(MCPToolExecutionError) as expired:
+            await running
+        assert expired.value.failure_code == "invalid_protocol"
+        await stopping
+        assert not client.is_connected
+        assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+        assert peer.methods().count("tools/call") == 1
+        peer.hook = None
+        await client.connect()
+        new = (await MCPToolAdapter(client).get_tools())[0]
+        current = client.current_catalog_snapshot
+        assert current is not None
+        assert await new.execute() == "ok"
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await old.execute()
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert client.current_catalog_snapshot is current
+        assert peer.methods().count("tools/call") == 2
+    finally:
+        gate.set()
+        await client.disconnect()
+        for owned in (running, stopping):
+            if owned is not None:
+                await asyncio.gather(owned, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("budget", [2, 3, 4])
+@pytest.mark.parametrize("handshake", ["success", "failure"])
+async def test_late_expired_call_cannot_overwrite_new_successful_catalog(
+    budget, handshake
+):
+    peer = OrderedExpiryPeer()
+    client, _, _ = make_client(peer, limits=ProtocolLimits(concurrent_requests=budget))
+    late = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+
+        def hook(verb, headers, message):
+            method = message.get("method")
+            if method == "tools/call":
+                return Reply(status=404)
+            if method == "initialize" and handshake == "failure":
+                return peer.rpc(message, {"protocolVersion": "invalid"})
+            return None
+
+        peer.hook = hook
+        late = asyncio.create_task(old.execute(text="late"))
+        await asyncio.wait_for(peer.late_issued.wait(), 1)
+        with pytest.raises(MCPToolExecutionError) as fast:
+            await old.execute(text="fast")
+        assert fast.value.failure_code == "invalid_protocol"
+        peer.hook = None
+        if handshake == "failure":
+            await client.connect()
+        peer.tools[0]["outputSchema"] = {
+            "type": "object",
+            "properties": {"v": {"type": "string"}},
+            "required": ["v"],
+        }
+        new = (await MCPToolAdapter(client).get_tools())[0]
+        current = client.current_catalog_snapshot
+        assert current is not None
+        initializations = peer.methods().count("initialize")
+        peer.late_release.set()
+        if handshake == "failure":
+            with pytest.raises(asyncio.CancelledError):
+                await late
+        else:
+            with pytest.raises(MCPToolExecutionError) as stale_response:
+                await late
+            assert stale_response.value.failure_code == "invalid_protocol"
+        assert client.current_catalog_snapshot is current
+        assert peer.methods().count("initialize") == initializations
+        assert peer.methods().count("tools/call") == 2
+        peer.hook = lambda verb, headers, message: (
+            peer.rpc(message, {"content": [], "structuredContent": {"v": "new"}})
+            if message.get("method") == "tools/call"
+            else None
+        )
+        assert await new.execute() == '{"v":"new"}'
+        assert client.current_catalog_snapshot is current
+        with pytest.raises(MCPToolExecutionError) as stale:
+            await old.execute()
+        assert stale.value.failure_code == "catalog_unavailable"
+        assert peer.methods().count("tools/call") == 3
+    finally:
+        peer.late_release.set()
+        await client.disconnect()
+        if late is not None:
+            await asyncio.gather(late, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("profile", ["2026-07-28", "2025-11-25"])
+@pytest.mark.parametrize("budget", [1, 2, 3, 4])
+async def test_issued_http_call_keeps_schema_and_wire_headers_through_refresh(
+    profile, budget
+):
+    client, peer = refresh_peer(profile, budget)
+    peer.tools[0]["outputSchema"] = {
+        "type": "object",
+        "properties": {"v": {"type": "integer"}},
+        "required": ["v"],
+    }
+    started = asyncio.Event()
+    gate = asyncio.Event()
+    running = None
+    await client.connect()
+    try:
+        old = (await MCPToolAdapter(client).get_tools())[0]
+
+        def hook(verb, headers, message):
+            if message.get("method") == "tools/call":
+                started.set()
+                return peer.rpc(
+                    message, {"content": [], "structuredContent": {"v": 7}}, stall=gate
+                )
+            return None
+
+        peer.hook = hook
+        running = asyncio.create_task(old.execute(text="captured"))
+        await asyncio.wait_for(started.wait(), 1)
+        peer.tools[0]["outputSchema"]["properties"]["v"] = {"type": "string"}
+        peer.tools[0]["inputSchema"]["properties"]["text"]["x-mcp-header"] = "Changed"
+        if budget == 1:
+            with pytest.raises(ProtocolFailure) as limited:
+                await client.refresh_tool_catalog()
+            assert limited.value.failure_code == "limit_exceeded"
+            await assert_recovery_admission_retired(client, peer, old)
+        else:
+            await client.refresh_tool_catalog()
+            before = peer.methods().count("tools/call")
+            with pytest.raises(MCPToolExecutionError) as stale:
+                await old.execute()
+            assert stale.value.failure_code == "catalog_unavailable"
+            assert peer.methods().count("tools/call") == before
+        gate.set()
+        assert await running == '{"v":7}'
+        calls = [r for r in peer.requests if r[2].get("method") == "tools/call"]
+        assert len(calls) == 1
+        assert calls[0][2]["params"]["arguments"] == {"text": "captured"}
+        if profile == "2026-07-28":
+            assert calls[0][1][b"mcp-param-text"] == b"captured"
+            assert b"mcp-param-changed" not in calls[0][1]
+        else:
+            assert not any(key.startswith(b"mcp-param-") for key in calls[0][1])
+    finally:
+        gate.set()
+        await client.disconnect()
+        if running is not None:
+            await asyncio.gather(running, return_exceptions=True)
+    assert client.outstanding_catalog_owners + client.outstanding_http_owners == 0
+    assert all(stream.closed for stream in peer.streams)
 
 
 @pytest.mark.asyncio

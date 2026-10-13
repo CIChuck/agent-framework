@@ -673,6 +673,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
                         recovery_generation = self._generation
                         self._connected = False
                         self._invalidate_catalog()
+                        recovery_catalog_generation = self._catalog_generation
                         self._bindings.clear()
                         self._session_id = None
                         try:
@@ -682,13 +683,23 @@ class StreamableHTTPMCPClient(MCPClientBase):
                                 # Preserve the accepted explicit 2025 raw call API
                                 # with its prior schema, never a schema-free retry.
                                 # Generation-bound wrappers remain invalid.
-                                self._recovered_call_catalog = prior_call_catalog
+                                # Explicit refresh can retire admission without
+                                # changing the transport generation while this
+                                # read-only handshake awaits its response.
+                                if (
+                                    recovery_catalog_generation
+                                    == self._catalog_generation
+                                ):
+                                    self._recovered_call_catalog = prior_call_catalog
                         except BaseException:
                             if recovery_generation == self._generation:
                                 self._connected = False
                                 self._session_id = None
-                                self._invalidate_catalog()
-                                self._bindings.clear()
+                                if (
+                                    recovery_catalog_generation
+                                    == self._catalog_generation
+                                ):
+                                    self._invalidate_catalog()
                             raise
             except Exception:
                 pass  # Only the recovery owner above may invalidate its state.
