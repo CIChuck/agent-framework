@@ -90,6 +90,32 @@ async def handle(reader, writer):
         elif "id" not in request or "method" not in request:
             status = 202
         elif method == "tools/list":
+            control = os.environ.get("MCP_FIXTURE_CATALOG_CONTROL")
+            refresh_mode = (
+                Path(control).read_text().strip()
+                if control and Path(control).exists()
+                else "good"
+            )
+            if refresh_mode == "fail":
+                encoded = json.dumps(
+                    {
+                        "jsonrpc": "2.0",
+                        "id": request["id"],
+                        "error": {
+                            "code": -32603,
+                            "message": "Synthetic catalog failure",
+                        },
+                    }
+                ).encode()
+                writer.write(
+                    b"HTTP/1.1 200 Synthetic\r\n"
+                    b"Content-Type: application/json\r\nContent-Length: "
+                    + str(len(encoded)).encode()
+                    + b"\r\nConnection: close\r\n\r\n"
+                    + encoded
+                )
+                await writer.drain()
+                return
             result = {
                 "tools": [
                     {"name": "echo", "inputSchema": {"type": "object"}},
@@ -97,6 +123,10 @@ async def handle(reader, writer):
                     {"name": "slow", "inputSchema": {"type": "object"}},
                 ]
             }
+            if refresh_mode == "remove":
+                result["tools"] = [
+                    tool for tool in result["tools"] if tool["name"] != "echo"
+                ]
         elif method == "tools/call":
             name = request["params"]["name"]
             if name == "drop":

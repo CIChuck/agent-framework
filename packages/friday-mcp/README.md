@@ -264,3 +264,59 @@ and invalid entries fail before invocation. The default MCPConfig API retains
 stdio/SSE compatibility. Factories return MCPClientBase; the manager adopts the
 client before connecting and retains incomplete cleanup owners for public retry.
 Runtime uses this typed seam, without injecting clients into private dictionaries.
+
+
+### Explicit manual catalog refresh
+
+The client package exposes the optional typed `MCPRefreshClient` contract and
+immutable `MCPCatalogSnapshot`. `refresh_tool_catalog()` returns the exact complete
+generation produced by that operation; `current_catalog_snapshot` is `None`
+while refresh is in progress or after failure. Exported tool dictionaries are
+independent copies. A generation identifies wire definitions, output schemas
+and HTTP argument-header bindings; it does not grant tool admission.
+
+```python
+from friday_mcp.client import MCPToolAdapter
+
+adapter = MCPToolAdapter(client)  # connected, explicitly configured client
+tools = await adapter.get_tools()
+fresh_tools = await adapter.get_tools(refresh=True)
+```
+
+A failed refresh clears usable cached definitions. Previously created wrappers
+fail with `catalog_unavailable` before issuing a call after failure, removal or
+reconnect. An already-issued call settles once against its captured output schema
+and HTTP header bindings. Refresh never replays a tool call. An explicit successful
+refresh creates new wrappers; code should replace its own programmatic references
+after applying its existing admission rules. Custom clients implementing only the
+original MCPClient contract remain supported, without generation guarantees.
+
+Runtime and Chat retain startup/reconnect discovery and transactional registration.
+They expose no in-place refresh YAML option or automatic list-change subscription.
+Use their public stop/start lifecycle for integrated rediscovery. Existing selection,
+filters, collision and schema/token budgets, provenance, quarantine, transcripts,
+explicit memory opt-in and injected provider-neutral telemetry remain controlling.
+
+### Dated tool results and optional features
+
+Modern MCP2026-07-28 preserves ordered text and structured JSON values, including
+null, scalars and arrays; omitted structured content remains distinct from null.
+Mixed text/structured results use the bounded deterministic JSON envelope. Explicit
+2025-11-25 HTTP structured content remains object-only. Both dated profiles validate
+complete content/tag/metadata shapes before classifying ordinary tool errors. A
+well-formed tool error needs no successful structured output; malformed error
+content is an invalid result. The output-schema subset remains bounded JSON Schema
+2020-12 with no network reference retrieval or regex evaluation.
+
+Valid image/audio/resource-link/embedded content returns `unsupported_content`;
+malformed variants are invalid results. No media decoding, URL retrieval or resource
+fetch occurs. Valid modern input requests return `input_required_unsupported`,
+with no callback, opaque-state forwarding or interactive continuation.
+
+Friday advertises no Tasks capability. In the explicit2025 profile, tools declaring
+`execution.taskSupport: required` are excluded; attempts to call an observed
+excluded tool return `unsupported_task` before I/O. Absent, forbidden and optional
+task support remain ordinary tool candidates. This dated field does not enable a
+modern extension. No Tasks RPC, polling, persistence, subscriptions, automatic
+refresh, cross-call result cache or outgoing trace/baggage is added. This tools-client
+profile and SDK fixture interoperability do not claim whole MCP conformance.

@@ -386,24 +386,7 @@ def validate_compatibility_fields(
             ):
                 raise ProtocolFailure()
     elif method == "tools/call":
-        content = result.get("content")
-        if (
-            not isinstance(content, list)
-            or type(result.get("isError", False)) is not bool
-        ):
-            raise ProtocolFailure("invalid_result")
-        if "structuredContent" in result and not isinstance(
-            result["structuredContent"], dict
-        ):
-            raise ProtocolFailure("invalid_result")
-        for block in content:
-            if not isinstance(block, dict) or not isinstance(block.get("type"), str):
-                raise ProtocolFailure("invalid_result")
-            if block["type"] != "text":
-                raise ProtocolFailure("unsupported_content")
-            if not isinstance(block.get("text"), str):
-                raise ProtocolFailure("invalid_result")
-            _text_optional_fields(block)
+        ToolResult.parse(result, False, limits, compatibility=True)
 
 
 def validate_message(
@@ -482,6 +465,99 @@ def response_from_message(
     )
 
 
+def _validate_input_requests(requests: dict[str, JSONValue]) -> None:
+    for request in requests.values():
+        if not isinstance(request, dict):
+            raise ProtocolFailure("invalid_result")
+        method = request.get("method")
+        params = request.get("params", {})
+        if not isinstance(params, dict):
+            raise ProtocolFailure("invalid_result")
+        if "_meta" in params:
+            _metadata(params["_meta"])
+        if method == "roots/list":
+            continue
+        if method == "sampling/createMessage":
+            messages, tokens = params.get("messages"), params.get("maxTokens")
+            if (
+                not isinstance(messages, list)
+                or isinstance(tokens, bool)
+                or not isinstance(tokens, (int, float))
+            ):
+                raise ProtocolFailure("invalid_result")
+            for message in messages:
+                if not isinstance(message, dict) or message.get("role") not in (
+                    "user",
+                    "assistant",
+                ):
+                    raise ProtocolFailure("invalid_result")
+                content = message.get("content")
+                for block in content if isinstance(content, list) else [content]:
+                    if not isinstance(block, dict):
+                        raise ProtocolFailure("invalid_result")
+                    _validate_content_block(block)
+        elif method == "elicitation/create":
+            if not isinstance(params.get("message"), str):
+                raise ProtocolFailure("invalid_result")
+            if params.get("mode", "form") == "url":
+                if not isinstance(params.get("url"), str):
+                    raise ProtocolFailure("invalid_result")
+            elif params.get("mode", "form") == "form":
+                schema = params.get("requestedSchema")
+                if (
+                    not isinstance(schema, dict)
+                    or schema.get("type") != "object"
+                    or not isinstance(schema.get("properties"), dict)
+                ):
+                    raise ProtocolFailure("invalid_result")
+            else:
+                raise ProtocolFailure("invalid_result")
+        else:
+            raise ProtocolFailure("invalid_result")
+
+
+def _validate_content_block(block: dict[str, JSONValue]) -> bool:
+    """Check all declared mandatory fields before unsupported/error disposition."""
+    kind = block.get("type")
+    _text_optional_fields(block)
+    if kind == "text":
+        if not isinstance(block.get("text"), str):
+            raise ProtocolFailure("invalid_result")
+        return True
+    if kind in ("image", "audio"):
+        if not isinstance(block.get("data"), str) or not isinstance(
+            block.get("mimeType"), str
+        ):
+            raise ProtocolFailure("invalid_result")
+    elif kind == "resource_link":
+        if not isinstance(block.get("uri"), str) or not isinstance(
+            block.get("name"), str
+        ):
+            raise ProtocolFailure("invalid_result")
+        _strings(block, "description", "mimeType", "title")
+        _icons(block)
+        size = block.get("size")
+        if "size" in block and (
+            isinstance(size, bool) or not isinstance(size, (int, float))
+        ):
+            raise ProtocolFailure("invalid_result")
+    elif kind == "resource":
+        resource = block.get("resource")
+        if not isinstance(resource, dict) or not isinstance(resource.get("uri"), str):
+            raise ProtocolFailure("invalid_result")
+        _strings(resource, "mimeType")
+        if "_meta" in resource:
+            _metadata(resource["_meta"])
+        if not isinstance(resource.get("text"), str) and not isinstance(
+            resource.get("blob"), str
+        ):
+            raise ProtocolFailure("invalid_result")
+        _strings(resource, "text", "blob")
+    else:
+        raise ProtocolFailure("invalid_result")
+    return False
+
+
 def complete_result(result: dict[str, JSONValue], modern: bool) -> None:
     if modern and "_meta" in result:
         _metadata(result["_meta"], "result")
@@ -491,10 +567,12 @@ def complete_result(result: dict[str, JSONValue], modern: bool) -> None:
         requests = result.get("inputRequests")
         if (
             (state is None and requests is None)
-            or (state is not None and not isinstance(state, str))
-            or (requests is not None and not isinstance(requests, dict))
+            or ("requestState" in result and not isinstance(state, str))
+            or ("inputRequests" in result and not isinstance(requests, dict))
         ):
             raise ProtocolFailure()
+        if isinstance(requests, dict):
+            _validate_input_requests(requests)
         raise ProtocolFailure("input_required_unsupported")
     if kind != "complete":
         raise ProtocolFailure("invalid_result")
@@ -776,25 +854,40 @@ class ToolResult:
     structured: FrozenJSON | None = field(repr=False)
 
     @classmethod
-    def parse(cls, value: object, modern: bool, limits: ProtocolLimits) -> ToolResult:
+    def parse(
+        cls,
+        value: object,
+        modern: bool,
+        limits: ProtocolLimits,
+        *,
+        compatibility: bool = False,
+    ) -> ToolResult:
         frozen = FrozenJSON.from_value(value, limits, byte_limit=limits.result_bytes)
         result = frozen.object()
         complete_result(result, modern)
         if type(result.get("isError", False)) is not bool:
             raise ProtocolFailure("invalid_result")
-        # Tool failure classification is owned by the existing public adapter.
         content = result.get("content")
         if not isinstance(content, list):
             raise ProtocolFailure("invalid_result")
+        if compatibility:
+            if "_meta" in result:
+                _metadata(result["_meta"])
+            if "structuredContent" in result and not isinstance(
+                result["structuredContent"], dict
+            ):
+                raise ProtocolFailure("invalid_result")
         texts: list[str] = []
         unsupported = False
         for block in content:
-            if isinstance(block, str) and not modern:
+            if isinstance(block, str) and not modern and not compatibility:
                 texts.append(block)
             elif isinstance(block, dict) and isinstance(block.get("type"), str):
-                if block["type"] == "text":
-                    if modern:
-                        _text_optional_fields(block)
+                if modern or compatibility:
+                    supported = _validate_content_block(block)
+                else:
+                    supported = block["type"] == "text"
+                if supported:
                     text = block.get("text")
                     if not isinstance(text, str):
                         raise ProtocolFailure("invalid_result")
@@ -810,7 +903,11 @@ class ToolResult:
             if "structuredContent" in result
             else None
         )
-        if unsupported and (modern or (not any(texts) and structured is None)):
+        if (
+            unsupported
+            and not result.get("isError", False)
+            and (modern or compatibility or (not any(texts) and structured is None))
+        ):
             raise ProtocolFailure("unsupported_content")
         return cls(tuple(texts), structured)
 

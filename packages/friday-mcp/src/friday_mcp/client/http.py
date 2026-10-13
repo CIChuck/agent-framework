@@ -7,11 +7,13 @@ import logging
 import ssl
 import uuid
 from contextlib import suppress
+from contextvars import ContextVar
 from typing import Any
 
 import httpcore
 
 from friday_mcp.client.base import MCPClientBase, MCPError
+from friday_mcp.client.catalog import MCPCatalogSnapshot
 from friday_mcp.client.http_policy import (
     HTTPEndpoint,
     HTTPEndpointPolicy,
@@ -34,7 +36,6 @@ from friday_mcp.client.http_protocol import (
 from friday_mcp.client.protocol import (
     META_PREFIX,
     MODERN_VERSION,
-    CatalogPage,
     Discovery,
     FrozenJSON,
     JSONValue,
@@ -127,6 +128,9 @@ class StreamableHTTPMCPClient(MCPClientBase):
         self._generation = 0
         self._lifecycle = asyncio.Lock()
         self._bindings: dict[str, tuple[HeaderBinding, ...]] = {}
+        self._call_bindings: ContextVar[tuple[HeaderBinding, ...] | None] = ContextVar(
+            "mcp-call-bindings", default=None
+        )
         self._initializing = False
         self._issued = self._backend.issued
         self.rejected_http_tools = 0
@@ -150,7 +154,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
             if self._pool is not None or self.outstanding_http_owners:
                 await self._disconnect_owned()
             safe_http_logging()
-            self._catalog = ()
+            self._invalidate_catalog()
             self._bindings.clear()
             self._session_id = None
             self._generation += 1
@@ -210,6 +214,8 @@ class StreamableHTTPMCPClient(MCPClientBase):
     async def disconnect(self) -> None:
         self._connected = False
         self._generation += 1
+        self._invalidate_catalog()
+        await self._stop_refreshes()
         async with self._lifecycle:
             await self._disconnect_owned()
 
@@ -222,7 +228,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
 
     async def _disconnect_owned(self) -> None:
         self._connected = False
-        self._catalog = ()
+        self._invalidate_catalog()
         self._bindings.clear()
         self._capabilities = FrozenJSON.from_value({}, self.limits)
         self._identity = FrozenJSON.from_value({}, self.limits)
@@ -306,11 +312,14 @@ class StreamableHTTPMCPClient(MCPClientBase):
                 if (
                     not isinstance(name, str)
                     or not isinstance(arguments, dict)
-                    or name not in self._bindings
+                    or (
+                        self._call_bindings.get() is None and name not in self._bindings
+                    )
                 ):
                     raise ProtocolFailure()
                 headers.append((b"Mcp-Name", header_value(name)))
-                for binding in self._bindings[name]:
+                captured = self._call_bindings.get()
+                for binding in self._bindings[name] if captured is None else captured:
                     value = binding.extract(arguments)
                     if value is not None:
                         headers.append(
@@ -661,7 +670,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
                         self._generation += 1
                         recovery_generation = self._generation
                         self._connected = False
-                        self._catalog = ()
+                        self._invalidate_catalog()
                         self._bindings.clear()
                         self._session_id = None
                         try:
@@ -672,7 +681,7 @@ class StreamableHTTPMCPClient(MCPClientBase):
                             if recovery_generation == self._generation:
                                 self._connected = False
                                 self._session_id = None
-                                self._catalog = ()
+                                self._invalidate_catalog()
                                 self._bindings.clear()
                             raise
             except Exception:
@@ -704,100 +713,81 @@ class StreamableHTTPMCPClient(MCPClientBase):
             if not task.done():
                 task.cancel()
 
-    async def list_tools(self) -> list[dict[str, Any]]:
-        deadline = asyncio.get_running_loop().time() + self._timeout()
-        generation = self._generation
-        if not self._connected:
-            raise RuntimeError("MCP HTTP disconnected")
-        if "tools" not in self._capabilities.object():
-            return []
-        self._catalog = ()
+    def _invalidate_catalog(self) -> None:
+        super()._invalidate_catalog()
         self._bindings.clear()
         self.rejected_http_tools = 0
+
+    async def _catalog_request(
+        self, params: dict[str, Any], deadline: float
+    ) -> dict[str, Any]:
+        if not self._connected:
+            raise RuntimeError("MCP HTTP disconnected")
+        return await self._request_budget("tools/list", params, deadline)
+
+    def _make_catalog_snapshot(
+        self,
+        generation: int,
+        tools: tuple[ToolDefinition, ...],
+        excluded: tuple[str, ...],
+    ) -> MCPCatalogSnapshot:
+        retained: list[ToolDefinition] = []
+        bindings_by_name: list[tuple[str, tuple[HeaderBinding, ...]]] = []
+        rejected = 0
+        for tool in tools:
+            schema = tool.definition.object().get("inputSchema")
+            if not isinstance(schema, dict):
+                raise ProtocolFailure()
+            try:
+                bindings = (
+                    header_bindings(schema)
+                    if self._selected_version == MODERN_VERSION
+                    else ()
+                )
+            except ProtocolFailure:
+                rejected += 1
+                continue
+            retained.append(tool)
+            bindings_by_name.append((tool.name, bindings))
+        return MCPCatalogSnapshot(
+            generation,
+            tuple(retained),
+            len(excluded),
+            rejected,
+            excluded,
+            tuple(bindings_by_name),
+        )
+
+    def _publish_catalog(self, snapshot: MCPCatalogSnapshot) -> None:
+        self._bindings = dict(snapshot.bindings)
+        self.rejected_http_tools = snapshot.rejected_http_tools
+        super()._publish_catalog(snapshot)
+
+    async def _request_tool(
+        self, name: str, arguments: dict[str, Any], snapshot: MCPCatalogSnapshot | None
+    ) -> dict[str, Any]:
+        token = self._call_bindings.set(
+            snapshot.headers(name) if snapshot is not None else None
+        )
         try:
-            # Keep every page local until complete validation, and bind the whole
-            # refresh to one session generation and one operation deadline.
-            tools: list[ToolDefinition] = []
-            names: set[str] = set()
-            cursors: set[str] = set()
-            cursor: str | None = None
-            total = 0
-            async with asyncio.timeout_at(deadline):
-                for _ in range(self.limits.catalog_pages):
-                    response = await self._request_budget(
-                        "tools/list",
-                        {"cursor": cursor} if cursor is not None else {},
-                        deadline,
-                    )
-                    if generation != self._generation:
-                        raise ProtocolFailure()
-                    total += (
-                        response.wire_bytes
-                        if isinstance(response, ResultSnapshot)
-                        else len(
-                            encode_json(
-                                response,
-                                self.limits,
-                                byte_limit=self.limits.frame_bytes,
-                            )
-                        )
-                    )
-                    if total > self.limits.catalog_bytes:
-                        raise ProtocolFailure("limit_exceeded")
-                    page = CatalogPage.parse(
-                        FrozenJSON.from_value(response, self.limits).object(),
-                        self._selected_version == MODERN_VERSION,
-                        self.limits,
-                    )
-                    if len(tools) + len(page.tools) > self.limits.catalog_tools:
-                        raise ProtocolFailure("limit_exceeded")
-                    for tool in page.tools:
-                        if tool.name in names:
-                            raise ProtocolFailure()
-                        names.add(tool.name)
-                        tools.append(tool)
-                    cursor = page.cursor
-                    if cursor is None:
-                        break
-                    if cursor in cursors:
-                        raise ProtocolFailure()
-                    cursors.add(cursor)
-                else:
-                    raise ProtocolFailure("limit_exceeded")
-            retained = []
-            bindings_by_name: dict[str, tuple[HeaderBinding, ...]] = {}
-            rejected = 0
-            for tool in tools:
-                schema = tool.definition.object().get("inputSchema")
-                if not isinstance(schema, dict):
-                    raise ProtocolFailure()
-                try:
-                    bindings = (
-                        header_bindings(schema)
-                        if self._selected_version == MODERN_VERSION
-                        else ()
-                    )
-                except ProtocolFailure:
-                    rejected += 1
-                    continue
-                bindings_by_name[tool.name] = bindings
-                retained.append(tool)
-            if asyncio.get_running_loop().time() >= deadline:
-                raise TimeoutError("MCP HTTP timeout")
-            self._catalog = tuple(retained)
-            self._bindings = bindings_by_name
-            self.rejected_http_tools = rejected
-            return [tool.definition.object() for tool in self._catalog]
-        except BaseException:
-            if generation == self._generation:
-                self._catalog = ()
-                self._bindings.clear()
-            raise
+            return await super()._request_tool(name, arguments, snapshot)
+        finally:
+            self._call_bindings.reset(token)
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
         deadline = asyncio.get_running_loop().time() + self._timeout()
         async with asyncio.timeout_at(deadline):
             result = await super().call_tool(name, arguments)
+        if asyncio.get_running_loop().time() >= deadline:
+            raise TimeoutError("MCP HTTP timeout")
+        return result
+
+    async def call_tool_at_generation(
+        self, name: str, arguments: dict[str, Any], generation: int
+    ) -> str:
+        deadline = asyncio.get_running_loop().time() + self._timeout()
+        async with asyncio.timeout_at(deadline):
+            result = await super().call_tool_at_generation(name, arguments, generation)
         if asyncio.get_running_loop().time() >= deadline:
             raise TimeoutError("MCP HTTP timeout")
         return result

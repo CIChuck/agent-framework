@@ -391,7 +391,7 @@ async def test_structured_scalar_array_null_preservation(value):
         ),
         (complete(content=["legacy-string"]), "invalid_result"),
         (
-            complete(content=[{"type": "image", "data": "SENTINEL"}]),
+            complete(content=[{"type": "image", "data": "SENTINEL", "mimeType": "image/png"}]),
             "unsupported_content",
         ),
         (complete(content=[], isError=True), "tool_error"),
@@ -673,7 +673,7 @@ async def test_catalog_accounts_wire_whitespace_and_envelope_bytes():
     client = Client(limits=ProtocolLimits(catalog_bytes=100))
     client._server_capabilities = {"tools": {}}
 
-    async def request(method, params):
+    async def request(method, params, timeout=None):
         return ResultSnapshot(cached(tools=[]), wire_bytes=200)
 
     client._request = request

@@ -6,8 +6,28 @@ import os
 from pathlib import Path
 
 from mcp.server import MCPServer
+from mcp_types import Tool
 
-server = MCPServer("friday-synthetic-sdk", version="fixture", subscriptions=False)
+
+class RefreshFixtureServer(MCPServer):
+    """Public SDK override; failure/removal only under explicit fixture control."""
+
+    async def list_tools(self) -> list[Tool]:
+        control = os.environ.get("MCP_FIXTURE_CATALOG_CONTROL")
+        mode = (
+            Path(control).read_text().strip()
+            if control and Path(control).exists()
+            else "good"
+        )
+        if mode == "fail":
+            raise ValueError("Synthetic catalog failure")
+        tools = await super().list_tools()
+        return [tool for tool in tools if mode != "remove" or tool.name != "echo"]
+
+
+server = RefreshFixtureServer(
+    "friday-synthetic-sdk", version="fixture", subscriptions=False
+)
 
 
 def record(name: str) -> None:

@@ -11,6 +11,7 @@ from types import TracebackType
 from typing import Any, Literal
 
 from friday_mcp import __version__
+from friday_mcp.client.catalog import MCPCatalogSnapshot
 from friday_mcp.client.protocol import (
     LEGACY_VERSION,
     META_PREFIX,
@@ -36,7 +37,9 @@ from friday_mcp.client.protocol import (
 from friday_mcp.protocols import MCPTransport
 
 logger = logging.getLogger(__name__)
-type ToolFailureCode = FailureCode | Literal["tool_error"]
+type ToolFailureCode = (
+    FailureCode | Literal["tool_error", "catalog_unavailable", "unsupported_task"]
+)
 
 
 class MCPError(Exception):
@@ -57,6 +60,10 @@ class MCPToolExecutionError(MCPError):
             super().__init__(-32020, "MCP tool execution failed")
         elif failure_code == "invalid_result":
             super().__init__(-32021, "Invalid MCP tool result")
+        elif failure_code == "catalog_unavailable":
+            super().__init__(-32101, "MCP tool catalog unavailable")
+        elif failure_code == "unsupported_task":
+            super().__init__(-32102, "MCP task execution is unsupported")
         else:
             super().__init__(-32100, str(ProtocolFailure(failure_code)))
 
@@ -86,6 +93,11 @@ class MCPClientBase(ABC):
         self._identity = FrozenJSON.from_value({}, self.limits)
         self._discovery: Discovery | None = None
         self._catalog: tuple[ToolDefinition, ...] = ()
+        self._catalog_snapshot: MCPCatalogSnapshot | None = None
+        self._catalog_generation = 0
+        self._catalog_attempted = False
+        self._catalog_lock = asyncio.Lock()
+        self._refresh_tasks: set[asyncio.Task[MCPCatalogSnapshot]] = set()
         self._pending_requests: dict[str, asyncio.Future[RPCResponse]] = {}
         self._exchange_tasks: dict[str, asyncio.Task[RPCResponse]] = {}
         self._control_tasks: set[asyncio.Task[None]] = set()
@@ -145,7 +157,7 @@ class MCPClientBase(ABC):
             return
         if self._transport is not None or self._exchange_tasks or self._control_tasks:
             await self.disconnect()
-        self._catalog = ()
+        self._invalidate_catalog()
         logger.info("Connecting to MCP server")
         try:
             self._connect_deadline = asyncio.get_running_loop().time() + self._timeout()
@@ -171,6 +183,8 @@ class MCPClientBase(ABC):
 
     async def disconnect(self) -> None:
         self._connected = False
+        self._invalidate_catalog()
+        await self._stop_refreshes()
         receiver = self._receive_task
         if receiver is not None:
             receiver.cancel()
@@ -201,7 +215,7 @@ class MCPClientBase(ABC):
             self._exchange_tasks.clear()
         self._capabilities = FrozenJSON.from_value({}, self.limits)
         self._identity = FrozenJSON.from_value({}, self.limits)
-        self._catalog = ()
+        self._invalidate_catalog()
         self._discovery = None
 
     async def _initialize(self) -> None:
@@ -392,6 +406,7 @@ class MCPClientBase(ABC):
             except Exception:
                 logger.error("MCP receive failed")
                 self._connected = False
+                self._invalidate_catalog()
                 for future in self._pending_requests.values():
                     if not future.done():
                         future.set_exception(ConnectionError("MCP transport closed"))
@@ -434,80 +449,192 @@ class MCPClientBase(ABC):
                 )
         logger.debug("Received MCP server notification")
 
-    async def list_tools(self) -> list[dict[str, Any]]:
-        if "tools" not in self._capabilities.object():
-            return []
-        # Invalidate retained schemas before refreshing; failure exposes no
-        # successful partial catalog and cannot retain stale validation data.
+    @property
+    def current_catalog_snapshot(self) -> MCPCatalogSnapshot | None:
+        return self._catalog_snapshot
+
+    @property
+    def outstanding_catalog_owners(self) -> int:
+        return len(self._refresh_tasks)
+
+    def _invalidate_catalog(self) -> None:
+        self._catalog_generation += 1
+        self._catalog_snapshot = None
         self._catalog = ()
+
+    async def _stop_refreshes(self) -> None:
+        tasks = set(self._refresh_tasks)
+        for task in tasks:
+            task.cancel()
+        if tasks:
+            _, pending = await asyncio.wait(tasks, timeout=0.5)
+            if pending:
+                raise RuntimeError("MCP catalog cleanup incomplete")
+
+    async def refresh_tool_catalog(self) -> MCPCatalogSnapshot:
+        deadline = asyncio.get_running_loop().time() + self._timeout()
+        if len(self._refresh_tasks) >= self.limits.concurrent_requests:
+            raise ProtocolFailure("limit_exceeded")
+        self._catalog_attempted = True
+        task = asyncio.create_task(
+            self._refresh_catalog(deadline), name="mcp-catalog-refresh"
+        )
+        self._refresh_tasks.add(task)
+
+        def settled(done: asyncio.Task[MCPCatalogSnapshot]) -> None:
+            if not done.cancelled():
+                done.exception()
+            self._refresh_tasks.discard(done)
+
+        task.add_done_callback(settled)
+        try:
+            return await task
+        finally:
+            if not task.done():
+                task.cancel()
+
+    async def _refresh_catalog(self, deadline: float) -> MCPCatalogSnapshot:
+        async with asyncio.timeout_at(deadline), self._catalog_lock:
+            self._invalidate_catalog()
+            generation = self._catalog_generation
+            tools, excluded = await self._discover_catalog(deadline)
+            snapshot = self._make_catalog_snapshot(generation, tools, excluded)
+            if generation != self._catalog_generation:
+                raise MCPToolExecutionError("catalog_unavailable")
+            if asyncio.get_running_loop().time() >= deadline:
+                raise TimeoutError("MCP catalog timeout")
+            self._publish_catalog(snapshot)
+            return snapshot
+
+    def _make_catalog_snapshot(
+        self,
+        generation: int,
+        tools: tuple[ToolDefinition, ...],
+        excluded: tuple[str, ...],
+    ) -> MCPCatalogSnapshot:
+        return MCPCatalogSnapshot(
+            generation, tools, len(excluded), excluded_task_names=excluded
+        )
+
+    def _publish_catalog(self, snapshot: MCPCatalogSnapshot) -> None:
+        self._catalog = snapshot.definitions
+        self._catalog_snapshot = snapshot
+
+    async def _catalog_request(
+        self, params: dict[str, Any], deadline: float
+    ) -> dict[str, Any]:
+        return await self._request(
+            "tools/list",
+            params,
+            timeout=max(0.000001, deadline - asyncio.get_running_loop().time()),
+        )
+
+    async def _discover_catalog(
+        self, deadline: float
+    ) -> tuple[tuple[ToolDefinition, ...], tuple[str, ...]]:
+        if "tools" not in self._capabilities.object():
+            return (), ()
         tools: list[ToolDefinition] = []
+        excluded: list[str] = []
         cursors: set[str] = set()
         names: set[str] = set()
         cursor: str | None = None
         total = 0
-        async with asyncio.timeout(self._timeout()):
-            for _ in range(self.limits.catalog_pages):
-                response = await self._request(
-                    "tools/list", {"cursor": cursor} if cursor is not None else {}
-                )
-                total += (
-                    response.wire_bytes
-                    if isinstance(response, ResultSnapshot)
-                    else len(
-                        encode_json(
-                            response, self.limits, byte_limit=self.limits.frame_bytes
-                        )
+        for _ in range(self.limits.catalog_pages):
+            response = await self._catalog_request(
+                {"cursor": cursor} if cursor is not None else {}, deadline
+            )
+            total += (
+                response.wire_bytes
+                if isinstance(response, ResultSnapshot)
+                else len(
+                    encode_json(
+                        response, self.limits, byte_limit=self.limits.frame_bytes
                     )
                 )
-                if total > self.limits.catalog_bytes:
-                    raise ProtocolFailure("limit_exceeded")
-                result = FrozenJSON.from_value(response, self.limits).object()
-                page = CatalogPage.parse(
-                    result, self._selected_version == MODERN_VERSION, self.limits
-                )
-                if len(tools) + len(page.tools) > self.limits.catalog_tools:
-                    raise ProtocolFailure("limit_exceeded")
-                for tool in page.tools:
-                    if tool.name in names:
-                        raise ProtocolFailure()
-                    names.add(tool.name)
-                    tools.append(tool)
-                cursor = page.cursor
-                if cursor is None:
-                    self._catalog = tuple(tools)
-                    return [tool.definition.object() for tool in self._catalog]
-                if cursor in cursors:
+            )
+            if total > self.limits.catalog_bytes:
+                raise ProtocolFailure("limit_exceeded")
+            page = CatalogPage.parse(
+                FrozenJSON.from_value(response, self.limits).object(),
+                self._selected_version == MODERN_VERSION,
+                self.limits,
+            )
+            if len(names) + len(page.tools) > self.limits.catalog_tools:
+                raise ProtocolFailure("limit_exceeded")
+            for tool in page.tools:
+                if tool.name in names:
                     raise ProtocolFailure()
-                cursors.add(cursor)
+                names.add(tool.name)
+                execution = tool.definition.object().get("execution")
+                if (
+                    self._selected_version == "2025-11-25"
+                    and isinstance(execution, dict)
+                    and execution.get("taskSupport") == "required"
+                ):
+                    excluded.append(tool.name)
+                else:
+                    tools.append(tool)
+            cursor = page.cursor
+            if cursor is None:
+                return tuple(tools), tuple(excluded)
+            if cursor in cursors:
+                raise ProtocolFailure()
+            cursors.add(cursor)
         raise ProtocolFailure("limit_exceeded")
 
+    async def list_tools(self) -> list[dict[str, Any]]:
+        return (await self.refresh_tool_catalog()).tools()
+
+    async def call_tool_at_generation(
+        self, name: str, arguments: dict[str, Any], generation: int
+    ) -> str:
+        return await self._call_tool(name, arguments, generation)
+
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
-        # Validate against the schema bound to this call, even if another task
-        # refreshes/invalidates the catalog while the response is outstanding.
-        output_schema = next(
-            (tool.output_schema for tool in self._catalog if tool.name == name), None
-        )
+        return await self._call_tool(name, arguments, None)
+
+    async def _call_tool(
+        self, name: str, arguments: dict[str, Any], generation: int | None
+    ) -> str:
+        snapshot = self.current_catalog_snapshot
+        if generation is not None and (
+            type(generation) is not int
+            or snapshot is None
+            or generation != snapshot.generation
+        ):
+            raise MCPToolExecutionError("catalog_unavailable")
+        if snapshot is not None and name in snapshot.excluded_task_names:
+            raise MCPToolExecutionError("unsupported_task")
+        tool = snapshot.tool(name) if snapshot is not None else None
+        if (snapshot is not None and tool is None) or (
+            self._catalog_attempted and snapshot is None
+        ):
+            raise MCPToolExecutionError("catalog_unavailable")
+        output_schema = tool.output_schema if tool is not None else None
         try:
-            response = await self._request(
-                "tools/call", {"name": name, "arguments": arguments}
-            )
-            # Bound before inspecting even a tool-error result.
+            response = await self._request_tool(name, arguments, snapshot)
             bounded = FrozenJSON.from_value(
                 response, self.limits, byte_limit=self.limits.result_bytes
             ).object()
-            error = bounded.get("isError", False)
-            if type(error) is not bool:
-                raise ProtocolFailure("invalid_result")
-            if error:
-                raise MCPToolExecutionError("tool_error")
             result = ToolResult.parse(
-                bounded, self._selected_version == MODERN_VERSION, self.limits
+                bounded,
+                self._selected_version == MODERN_VERSION,
+                self.limits,
+                compatibility=self._selected_version == "2025-11-25",
             )
+            if bounded.get("isError", False):
+                raise MCPToolExecutionError("tool_error")
             if output_schema is not None:
                 validate_structured(result.structured, output_schema, self.limits)
             return result.text(self.limits)
         except ProtocolFailure as exc:
             raise MCPToolExecutionError(exc.failure_code) from None
+
+    async def _request_tool(
+        self, name: str, arguments: dict[str, Any], snapshot: MCPCatalogSnapshot | None
+    ) -> dict[str, Any]:
+        return await self._request("tools/call", {"name": name, "arguments": arguments})
 
     async def list_prompts(self) -> list[dict[str, Any]]:
         """

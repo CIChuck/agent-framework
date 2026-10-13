@@ -12,6 +12,7 @@ Provides clients for connecting to external MCP servers:
 
 from friday_mcp.client.adapter import MCPToolAdapter, MCPToolWrapper
 from friday_mcp.client.base import MCPClientBase, MCPError
+from friday_mcp.client.catalog import MCPCatalogSnapshot, MCPRefreshClient
 from friday_mcp.client.http import StreamableHTTPMCPClient
 from friday_mcp.client.http_policy import HTTPEndpoint, HTTPEndpointPolicy
 from friday_mcp.client.http_protocol import HTTPLimits, header_bindings
@@ -22,6 +23,8 @@ from friday_mcp.client.stdio import StdioMCPClient
 
 __all__ = [
     "MCPClientBase",
+    "MCPCatalogSnapshot",
+    "MCPRefreshClient",
     "MCPError",
     "StdioMCPClient",
     "SSEMCPClient",
