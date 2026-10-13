@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh-context read-only independent REM-MCP-UP-005 delta review followed by full CD-MCP-UP-004 work-unit validation
+  next_gate: Maintainer acceptance of independently VERIFIED MCP-UP-04/CD-MCP-UP-004 with REM-MCP-UP-005; then prepare separate UP-05 server packet
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -478,6 +478,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/execution/up04-planning/report.md: exact UP-04 planning packet; no product construction authority'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-01/report.md: independent CHANGES_REQUESTED, high refresh-admission and medium input-grammar findings; REM-MCP-UP-004 proposed'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md: independent corrected-candidate CHANGES_REQUESTED; VAL-UP04-003'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md: independent remediation delta and full UP-04 VERIFIED; acceptance pending'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1602,3 +1603,10 @@ events:
   action: froze REM-MCP-UP-005 corrected candidate
   note: Separate two-file remediation; full20 checks archived; fresh delta plus full-unit validation required; started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/rem005/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T15:25:18+00:00'
+  actor: Codex controller
+  actor_role: agent
+  action: recorded independently VERIFIED corrected UP-04 completion proposal
+  note: Fresh delta plus full review; historical report retained; no acceptance or publication inferred; whole MCP started/local
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md

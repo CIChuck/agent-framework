@@ -1,0 +1,11 @@
+{
+  "prior_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md",
+  "prior_report_sha256": "bb68a1ff03a47e30d9e1d7d1f39d6270a1b73b9be36ff1dd736001736fb79692",
+  "prior_outcome": "CHANGES_REQUESTED",
+  "prior_reviewed_candidate": "0fac03d69d0fb74eb52429970e5c0910b65922fe",
+  "new_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md",
+  "new_report_sha256": "db8a4fa27eb677806933f7919817cfbcb0ba978cce35a1587a6dcdf7f034fe27",
+  "new_outcome": "VERIFIED",
+  "corrected_reviewed_candidate": "47fcdb76035306c8aa7494ca1e1962049e984a3d",
+  "boundary": "Historical original report remains immutable; only decision for corrected revision superseded"
+}

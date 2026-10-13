@@ -1,10 +1,10 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-04",
-  "execution_phase": "validation",
-  "validation_state": "in_review",
-  "unit_completion": "not proposed; fresh delta and full-unit review pending",
-  "next_gate": "Fresh-context read-only independent REM-MCP-UP-005 delta review followed by full CD-MCP-UP-004 work-unit validation",
+  "execution_phase": "closeout",
+  "validation_state": "verified",
+  "unit_completion": "proposed; maintainer acceptance pending",
+  "next_gate": "Maintainer acceptance of independently VERIFIED MCP-UP-04/CD-MCP-UP-004 with REM-MCP-UP-005; then prepare separate UP-05 server packet",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-004",
@@ -41,22 +41,21 @@
   "prior_unit_acceptance": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-03.json",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-04-authority-manifest.json",
-  "note": "Exact two-file amendment explicitly approved; fresh separate security remediator authorized; second cycle stop retained",
+  "note": "Fresh independent remediation delta and full UP-04 review VERIFIED; completion proposed, maintainer acceptance separate",
   "builder_product_candidate": "8170c26b541433dcd5b9107d44a1c7a4a92fdd83",
-  "reviewed_candidate": "0fac03d69d0fb74eb52429970e5c0910b65922fe",
-  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-02/report.md",
-  "independent_report_sha256": "bb68a1ff03a47e30d9e1d7d1f39d6270a1b73b9be36ff1dd736001736fb79692",
-  "open_findings": [
-    "VAL-UP04-003"
-  ],
+  "reviewed_candidate": "47fcdb76035306c8aa7494ca1e1962049e984a3d",
+  "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP04-03/report.md",
+  "independent_report_sha256": "db8a4fa27eb677806933f7919817cfbcb0ba978cce35a1587a6dcdf7f034fe27",
+  "open_findings": [],
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-005-recovery-publication.md",
-  "remediation_status": "candidate_frozen",
+  "remediation_status": "verified",
   "remediation_implementation_authority": "granted",
   "remediation_proposal": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/REM-MCP-UP-005-authority-manifest.json",
   "remediation_product_candidate": "a9c913e41cdbd5bd824f36fe7b15001e6c126e17",
   "prior_unsuccessful_remediation_cycles": 1,
   "prior_finding_disposition": {
-    "VAL-UP04-001": "partially resolved; remaining retirement duty tracked by VAL-UP04-003",
-    "VAL-UP04-002": "resolved in independent exercised scope"
+    "VAL-UP04-001": "resolved by fresh final delta and full-unit review",
+    "VAL-UP04-002": "resolved by fresh final full-unit review",
+    "VAL-UP04-003": "resolved by REM005 and fresh delta/full-unit review"
   }
 }

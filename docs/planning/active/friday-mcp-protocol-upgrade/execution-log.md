@@ -410,3 +410,14 @@ report and safe evidence are retained losslessly with all20 controller checks,
 complete debt/skip/warning comparisons and private library integrity. The original
 CHANGES_REQUESTED report and controls remain immutable. Fresh delta followed by
 full UP-04 review is required; no completion, acceptance or publication inferred.
+
+
+## REM-MCP-UP-005 independent verification and UP-04 completion proposal
+
+Fresh-context read-only delta followed by full UP-04 validation returned VERIFIED
+for 47fcdb76035306c8aa7494ca1e1962049e984a3d. Original report and safe raw evidence are losslessly retained
+under validation/VAL-UP04-03; the unchanged prior report is superseded only for
+decision on this corrected candidate. All findings resolve, full required checks
+and all10 criteria verified. Current unit closeout/verified and completion proposed;
+maintainer acceptance remains separate. Whole MCP remains started/local; UP-05/06,
+Langfuse implementation and publication are later separate gates.
