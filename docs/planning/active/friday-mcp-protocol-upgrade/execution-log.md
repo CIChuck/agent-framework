@@ -421,3 +421,13 @@ decision on this corrected candidate. All findings resolve, full required checks
 and all10 criteria verified. Current unit closeout/verified and completion proposed;
 maintainer acceptance remains separate. Whole MCP remains started/local; UP-05/06,
 Langfuse implementation and publication are later separate gates.
+
+
+## UP-04 maintainer acceptance and UP-05 preparation
+
+Chuck Russell stated “approved” following the independently VERIFIED UP-04
+completion proposal and explicit acceptance gate. The exact receipt records
+acceptance of CD-MCP-UP-004 and REM004/005, all39 reviewed product/metadata hashes
+and the unchanged original report. All three findings are resolved. Whole MCP
+remains started/local. Prepare UP-05 modern tools-only server controls; no later
+construction, dependency change or publication is inferred. Langfuse stays queued.
