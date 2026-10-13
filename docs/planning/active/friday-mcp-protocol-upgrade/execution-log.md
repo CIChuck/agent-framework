@@ -325,3 +325,12 @@ probe including its initial import failure and complete dated Tasks capture.
 The exact directive/contract/profile/proposal require approval before UP-04
 construction. Old reports/controls/accepted products are immutable; whole MCP
 stays started/local, UP-05/UP-06 and Langfuse remain later gates.
+
+
+## 2026-10-13 - exact UP-04 construction approved
+
+Chuck Russell explicitly stated “approved, continue” in response to the complete
+CD-MCP-UP-004 packet. Separate approval-UP-04.json and authority-UP-04.json pin
+the immutable20-path/10-criterion/20-check proposal. Current UP-04 enters
+construction/not_ready/granted. No dependency, later-unit or publication authority
+is inferred. Preserve accepted evidence and all unrelated root changes.

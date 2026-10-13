@@ -1,15 +1,15 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-04",
-  "execution_phase": "planning",
-  "validation_state": "not_run",
+  "execution_phase": "construction",
+  "validation_state": "not_ready",
   "unit_completion": "not proposed",
-  "next_gate": "Maintainer approval of exact CD-MCP-UP-004 result/manual-refresh directive, contract, profile and UP-04 proposal before product construction",
+  "next_gate": "Implement exact CD-MCP-UP-004, complete all required checks, freeze stable candidate for fresh independent full-unit validation",
   "work_state": "started",
   "delivery_state": "local",
   "construction_directive": "CD-MCP-UP-004",
-  "directive_status": "proposed",
-  "unit_implementation_authority": "not_granted",
+  "directive_status": "approved",
+  "unit_implementation_authority": "granted",
   "accepted_units": [
     {
       "unit": "MCP-UP-02A",

@@ -1,5 +1,5 @@
 version: 1
-updated: '2026-10-12'
+updated: '2026-10-13'
 tasks:
 - id: development-kanban-governance
   title: Development Kanban governance
@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Maintainer approval of exact CD-MCP-UP-004 result/manual-refresh directive, contract, profile and UP-04 proposal before product construction
+  next_gate: Implement exact CD-MCP-UP-004, complete all required checks, freeze stable candidate for fresh independent full-unit validation
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1544,3 +1544,10 @@ events:
   action: prepared CD-MCP-UP-004 result manual refresh packet
   note: 20 exact product paths,10 criteria,20 full checks; UP-03 accepted; UP-04 construction awaits exact approval
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-004-results-manual-refresh.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T12:35:51+00:00'
+  actor: Chuck Russell
+  actor_role: maintainer
+  action: approved exact CD-MCP-UP-004
+  note: 'Exact statement: approved, continue. Exact20-path UP-04 scope, full checks and independent review; local only'
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-04.json
