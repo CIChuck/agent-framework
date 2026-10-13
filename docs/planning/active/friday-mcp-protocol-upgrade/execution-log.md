@@ -344,3 +344,21 @@ under execution/up04, including all prior failed development/profile attempts.
 The typed optional contract preserves custom virtual methods and schema-bound2025
 raw recovery while retiring generation-bound wrappers. Fresh full-unit independent
 validation decides; no completion/acceptance/later-unit/publication is inferred.
+
+
+## 2026-10-13 - independent UP-04 changes requested; exact remediation proposed
+
+Fresh full-unit review returned CHANGES_REQUESTED for 138fb68e33b94d20c17bbaff79ec6be3c8bfc3fb.
+VAL-UP04-001 is high: a constructor lower-budget concurrent refresh can leave
+a prior wrapper callable after limit rejection. VAL-UP04-002 is medium: sampling
+input content and form-property schemas are misclassified. All20 commands were
+independently reproduced, with root3844/14/15 and exact inherited327/4 debt and
+skip/warning equality. Passing checks do not close these semantic findings.
+Original report and239 safe originals are retained in validation/VAL-UP04-01.
+The reviewed products, metadata and original controls remain unchanged.
+REM-MCP-UP-004 proposes exactly3 existing product paths, both fixes, constructor
+budgets1-4, stdio/HTTP parity, dependent-schema evidence and the full original
+profile. A separate security/architecture remediator and fresh delta/full review
+are mandatory. Exact remediation approval is pending; no corrective source edits
+have been made. Whole MCP remains started/local; no completion, acceptance or
+publication is inferred.
