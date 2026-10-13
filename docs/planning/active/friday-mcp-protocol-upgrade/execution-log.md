@@ -565,3 +565,15 @@ existing private effects and original modern schema constraints. Security/lifecy
 architecture requires a separate remediator. No source change made or authority
 granted; exact maintainer approval is required. Original report/probes/controls
 remain immutable; acceptance/UP06/publication remain later gates.
+
+
+## REM-MCP-UP-006 approved and separate remediation authorized
+
+Chuck Russell stated “approved continue” for the concrete six-file correction
+packet covering VAL-UP05-001/002/003/004. Separate receipt and execution authority
+pin the immutable proposal and original controls, all12 criteria/20 checks and
+approved private fixture effects. A fresh separate remediator is authorized;
+no further approval is required for this exact correction. Fresh delta then full
+UP-05 review remains required before completion proposal; acceptance, UP06,
+Langfuse and publication remain separate. Remediation cycle1; stop after two
+unsuccessful formal remediation cycles under repository policy.
