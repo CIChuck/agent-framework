@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Bounded one-guide VAL-UP03-001 explanation correction under approved INT-AC-10, then fresh independent finding-delta and full UP-03 review
+  next_gate: Fresh-context read-only VAL-UP03-001 delta followed by full corrected UP-03 independent review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1513,3 +1513,10 @@ events:
   action: recorded UP03 documentation finding and bounded correction
   note: Original independent evidence retained; one guide correction within approved INT-AC-10; no runtime scope expansion
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T03:05:29+00:00'
+  actor: Codex
+  actor_role: agent
+  action: froze corrected UP03 guide candidate for fresh review
+  note: Exact one-guide correction; executable products unchanged; original independent report retained
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/validation-request-REM-MCP-UP-003.json

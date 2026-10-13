@@ -1,9 +1,9 @@
 {
   "initiative": "friday-mcp-protocol-upgrade",
   "unit": "MCP-UP-03",
-  "execution_phase": "remediation",
-  "validation_state": "changes_requested",
-  "next_gate": "Bounded one-guide VAL-UP03-001 explanation correction under approved INT-AC-10, then fresh independent finding-delta and full UP-03 review",
+  "execution_phase": "validation",
+  "validation_state": "in_review",
+  "next_gate": "Fresh-context read-only VAL-UP03-001 delta followed by full corrected UP-03 independent review",
   "work_state": "started",
   "delivery_state": "local",
   "note": "Separate exact approval supplies UP-03 construction authority; accepted prior units remain immutable.",
@@ -28,9 +28,9 @@
       "receipt": "docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json"
     }
   ],
-  "unit_completion": "not proposed; independent CHANGES_REQUESTED",
+  "unit_completion": "not proposed; corrected candidate independent review pending",
   "remediation_directive": "docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md",
-  "remediation_status": "bounded existing approved documentation scope; separate remediator pending",
+  "remediation_status": "exact one-guide correction implemented; independent review pending",
   "remediation_implementation_authority": "inherited from approved INT-AC-10 only",
   "prior_report_decision_status": "VAL-UP02B-01 superseded for decision on the corrected candidate only; original report/raw evidence retained",
   "resolved_findings": [],
@@ -38,7 +38,7 @@
   "prior_unit_independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md",
   "next_directive": "docs/planning/active/friday-mcp-protocol-upgrade/directives/CD-MCP-UP-003-runtime-yaml-chat.md",
   "proposal_manifest": "docs/planning/active/friday-mcp-protocol-upgrade/proposals/UP-03-authority-manifest.json",
-  "builder_product_candidate": "b604fe9f8988591dc8bb11712341e564d6d283fc",
+  "builder_product_candidate": "0220500aa8d236d74604f6011bee03a0b13081b7",
   "reviewed_candidate": "a897b3deaa9e007223c8ecbe7cfbfb4750ef10b7",
   "independent_report": "docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md",
   "independent_report_sha256": "12fffb5c48bb0e1529cad29be47146d52004bd9c7e8aead381565a4aed6195ff"

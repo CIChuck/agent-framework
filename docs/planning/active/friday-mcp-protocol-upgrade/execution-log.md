@@ -279,3 +279,13 @@ Original report/probes/raw evidence preserved losslessly. REM-MCP-UP-003 is a
 bounded mechanical one-guide correction implementing already-approved accurate
 docs, with no runtime or controlling-spec change. Separate remediator and fresh
 review required; no completion, acceptance or publication inferred.
+
+
+## 2026-10-12 — corrected guide candidate frozen for fresh UP-03 review
+
+execution_phase: validation; validation_state: in_review. Separate remediator
+implements exact VAL-UP03-001 one-guide correction in product 0220500aa8d236d74604f6011bee03a0b13081b7.
+Executable products, metadata and all controlling inputs remain unchanged;
+original review/failed narrow cache diagnostics retained. A new frozen request
+requires fresh finding delta and full original UP-03 review. No completion or
+acceptance proposed; whole MCP stays started/local.
