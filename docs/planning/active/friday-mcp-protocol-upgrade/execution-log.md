@@ -268,3 +268,14 @@ under execution/up03. Complete dated clause/schema mapping is retained losslessl
 Fresh independent full unit review must decide; no completion/acceptance or later
 unit/publication authority inferred. Original controls and unrelated root changes
 remain preserved.
+
+
+## 2026-10-12 — UP-03 review requests one documentation correction
+
+execution_phase: remediation; validation_state: changes_requested. Fresh full
+VAL-UP03-01 reviewed a897b3deaa9e007223c8ecbe7cfbfb4750ef10b7. All required checks and
+INT-AC-01..09 pass; INT-AC-10 requires correcting inaccurate address-policy wording.
+Original report/probes/raw evidence preserved losslessly. REM-MCP-UP-003 is a
+bounded mechanical one-guide correction implementing already-approved accurate
+docs, with no runtime or controlling-spec change. Separate remediator and fresh
+review required; no completion, acceptance or publication inferred.

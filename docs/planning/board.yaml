@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Fresh-context read-only independent full CD-MCP-UP-003 Runtime/YAML/Chat unit validation
+  next_gate: Bounded one-guide VAL-UP03-001 explanation correction under approved INT-AC-10, then fresh independent finding-delta and full UP-03 review
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -472,6 +472,7 @@ tasks:
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-01/report.md: CHANGES_REQUESTED; four HTTP findings, original candidate retained'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP02B-02/report.md: VERIFIED corrected Streamable HTTP work unit; maintainer acceptance pending'
   - 'docs/planning/active/friday-mcp-protocol-upgrade/acceptance/MCP-UP-02B.json: maintainer acceptance of corrected HTTP unit only'
+  - 'docs/planning/active/friday-mcp-protocol-upgrade/validation/VAL-UP03-01/report.md: CHANGES_REQUESTED; sole bounded guide-accuracy finding; runtime checks pass'
   approved_by: Chuck Russell
   approved_at: '2026-10-12'
 - id: friday-langfuse-integration
@@ -1505,3 +1506,10 @@ events:
   action: froze Runtime YAML Chat candidate for independent review
   note: Approved exact CD-MCP-UP-003 scope; full frozen checks complete; fresh review required, started/local
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/execution/up03/report.md
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T02:58:37+00:00'
+  actor: Codex
+  actor_role: agent
+  action: recorded UP03 documentation finding and bounded correction
+  note: Original independent evidence retained; one guide correction within approved INT-AC-10; no runtime scope expansion
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/remediation/REM-MCP-UP-003-guide-accuracy.md
