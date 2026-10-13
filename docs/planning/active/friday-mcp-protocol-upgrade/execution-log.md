@@ -608,3 +608,13 @@ and three of six already-approved files. REM006-R1 records a narrowed separate-
 remediator continuation, not a new maintainer decision or broader source authority.
 Original reports/control/approval bytes remain immutable. Cycle2; a second failed
 formal correction review stops for maintainer disposition.
+
+
+## REM-MCP-UP-006-R1 stable corrected candidate and fresh review gate
+
+Separate remediator committed a8ef5b78054f1d0008706cc09a265c50a58fc0ac within three authorized paths.
+Its original prospective plan/final mapping/report and safe raw attempts are
+retained losslessly with controller full20 checks, exact inherited debt/skip/
+warning comparisons and strict before/after library integrity. Original review
+and controls remain immutable. Fresh remediation delta followed by full UP-05
+review is required; no completion/acceptance/UP06/publication inferred.
