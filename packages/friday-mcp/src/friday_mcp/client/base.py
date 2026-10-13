@@ -7,6 +7,7 @@ import logging
 import math
 import uuid
 from abc import ABC, abstractmethod
+from contextvars import ContextVar
 from types import TracebackType
 from typing import Any, Literal
 
@@ -96,6 +97,9 @@ class MCPClientBase(ABC):
         self._catalog_snapshot: MCPCatalogSnapshot | None = None
         self._catalog_generation = 0
         self._catalog_attempted = False
+        self._call_generation: ContextVar[int | None] = ContextVar(
+            "mcp-catalog-call-generation", default=None
+        )
         self._catalog_lock = asyncio.Lock()
         self._refresh_tasks: set[asyncio.Task[MCPCatalogSnapshot]] = set()
         self._pending_requests: dict[str, asyncio.Future[RPCResponse]] = {}
@@ -602,10 +606,24 @@ class MCPClientBase(ABC):
     async def call_tool_at_generation(
         self, name: str, arguments: dict[str, Any], generation: int
     ) -> str:
-        return await self._call_tool(name, arguments, generation)
+        snapshot = self.current_catalog_snapshot
+        if (
+            type(generation) is not int
+            or snapshot is None
+            or generation != snapshot.generation
+        ):
+            raise MCPToolExecutionError("catalog_unavailable")
+        token = self._call_generation.set(generation)
+        try:
+            # Preserve the existing virtual public call seam, including optional
+            # application instrumentation, while enforcing the generation again
+            # at the actual wire boundary. Context is local to this logical call.
+            return await self.call_tool(name, arguments)
+        finally:
+            self._call_generation.reset(token)
 
     async def call_tool(self, name: str, arguments: dict[str, Any]) -> str:
-        return await self._call_tool(name, arguments, None)
+        return await self._call_tool(name, arguments, self._call_generation.get())
 
     async def _call_tool(
         self, name: str, arguments: dict[str, Any], generation: int | None
