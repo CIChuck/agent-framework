@@ -493,3 +493,34 @@ approval receipt and amended execution authority pin the exact correction.
 Construction resumes within the same18 paths/12 criteria/20 checks/private
 fixture effects. Parent controls remain unchanged. No later-unit, acceptance
 or publication authority is inferred.
+
+
+## 2026-10-13 - UP-05 draft verification and corrected-schema stop
+
+AMEND001 metadata was implemented within all18 scoped product paths. Stable
+draft product ed8f8cbdc27b469b389487dd931678b4777b13b9 passed381 focused tests,
+5125 root tests and all clean touched/MCP typing and lint checks. All20 commands
+completed; baseline4744/14/15, candidate5125/14/15, full327 Ruff diagnostic/fix
+objects and four Mypy diagnostics including columns match exactly. Both before
+and after22,009 libraries/192 distributions,19 metadata and60 protected products
+match. Raw commands, inherited-debt exits and comparisons are retained.
+
+During final schema audit the controller found a second immutable-contract
+conflict: UnsupportedProtocolVersionError requires supported/requested data,
+not the contract's supportedVersions. A guarded actual-wire audit fails with
+zero handlers/owners. Product edits stopped at discovery. The controller found
+the cause of missed fields: the preconstruction script overwrote the selected
+modern schema with a later2025 capture. Its145/355 field counts are historical
+2025 evidence only and do not fulfill modern preconstruction coverage. All
+original bytes remain unchanged. An explicit SHA-selected prospective plan now
+parses2026 separately (155 declarations/337 field references), with19 source
+captures checked and2025 isolated as historical compatibility evidence.
+
+Proposed AMEND-MCP-UP-005-002 corrects version-error data and explicitly
+rebaselines the unreviewed draft for a complete modern field audit before
+further construction. RequestState and emitted MetaObject format omissions
+remain to be enforced under existing complete-field criteria. No VERIFIED,
+completion, acceptance, formal remediation cycle or publication is claimed.
+AMEND001 remains approved; original18 paths/12 criteria/20 checks/private
+effects and every accepted older unit are protected. Next gate is exact
+amendment002 approval, then corrected construction/full profile/fresh review.

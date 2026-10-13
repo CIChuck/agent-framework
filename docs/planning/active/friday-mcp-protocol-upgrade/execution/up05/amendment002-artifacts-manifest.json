@@ -1,0 +1,1279 @@
+{
+  "artifacts": [
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-01--stdout.gz",
+      "raw_bytes": 420,
+      "raw_sha256": "7952e8602ffe43dad0e6d8b0de154e32350e0845bc7ce7013aa27ece0c84113e",
+      "artifact_sha256": "268b94e2d2e20814345483ff2802c345deaaaa6c32eb538f1e6c2836861e5634",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-01--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-01--receipt.json.gz",
+      "raw_bytes": 2920,
+      "raw_sha256": "5f62ce2d9752de6e8e614dec1de5494465db83b28af9476b74aea4d34304a2f0",
+      "artifact_sha256": "5f4949cdbf758199af0976ea438a972634b0315a35bb78da1fb4d5a752376bfe",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-01--preflight.json.gz",
+      "raw_bytes": 17713,
+      "raw_sha256": "3f03f173bbf3a2939ccff64d00cc9638a4e9782c4be61145ee482064d0def3bf",
+      "artifact_sha256": "247f336933d0f20da1f51deadf023881f105980f4cfb8bb2a8dc4882379d863c",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-02--stdout.gz",
+      "raw_bytes": 420,
+      "raw_sha256": "4e26383a79a899be4f82ab3ae8450fd38ece4566c5b7b4f511360dd60ebf8085",
+      "artifact_sha256": "ce2720429e8f29e59aa726a61e7ec10b5aa722f4a99e38fdd27fd1a0fcc9bdea",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-02--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-02--receipt.json.gz",
+      "raw_bytes": 2920,
+      "raw_sha256": "bdd8e68a24f0d1e726b036866c4730c5110c69d029863171193367b1ef130baa",
+      "artifact_sha256": "a9b1e184965d59cd6fa14d334be0f2b54a4f62a8b4b1a2d7164ec14711b55fc3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-02--preflight.json.gz",
+      "raw_bytes": 17713,
+      "raw_sha256": "ca359f5d2072d1ee1bbe520de7ad432e42d38f42290bac72758e209ed47144de",
+      "artifact_sha256": "ff9d6fd327ac315c259f43e0a65e2a25597f29a6dce13fd348dd77be1f04db61",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-03--stdout.gz",
+      "raw_bytes": 421,
+      "raw_sha256": "360327f2b2beba340df87c17ddc4d4688981cecfcf7a72e4e788b94915a25117",
+      "artifact_sha256": "f71a1f9d8067ec9655ffd32f978a04e8afcfaa2ad5d1e54b33e0c676990ee443",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-03/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-03--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-03/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-03--receipt.json.gz",
+      "raw_bytes": 2920,
+      "raw_sha256": "5467863e4bcb3094eb53cc7718f94ed3c422f517373be8da89fe398009773c96",
+      "artifact_sha256": "5b209ed735bad2198b53a93bd9e88c176197eac9df8dede2a582757a2e841573",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-03/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-03--preflight.json.gz",
+      "raw_bytes": 17775,
+      "raw_sha256": "1e3619172a7350a9fdaf471b221e59bcdfc551da10c67fd5cbd53d072ba53ebf",
+      "artifact_sha256": "7b747de398baa67cc9e179da23b87e66a4cdda90342a6b70167e82e9457b9597",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-03/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-04--stdout.gz",
+      "raw_bytes": 501,
+      "raw_sha256": "5bb0ecb2bfcb8622ccdb083e03eabe941b33db9055d981d3c672b04b7002dd77",
+      "artifact_sha256": "5a3bc7ae97a18748cd1075de2a0e5abba0b69f312aaabd843d62f5b80bc9a140",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-04/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-04--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-04/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-04--receipt.json.gz",
+      "raw_bytes": 2920,
+      "raw_sha256": "730a2e5e43d39bf36765cb0e562901edcd315f7b3a3a60930252624d6620a293",
+      "artifact_sha256": "74ab9c61d95ee40c5a6d56cacc5a24483a8b658bcdcda10f2b70d1ad4c255316",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-04/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-focused-04--preflight.json.gz",
+      "raw_bytes": 17775,
+      "raw_sha256": "4d392578e25815e90f271883a78370236aa3ef9137154a3bae73e4289ca2bd53",
+      "artifact_sha256": "12cd64cc0da00ed1f9328f7c92adae536de25059327c2175d6db938991a46cae",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-focused-04/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-01--stdout.gz",
+      "raw_bytes": 44,
+      "raw_sha256": "ccfab289937a86eb06ba7d052bc6b93f0a5b0da98a02fd09a8dedf672dfa1255",
+      "artifact_sha256": "9882f5febe2752658d05b620ba6018ccfadb1086bc4c438db865c54ef96ee5cf",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-01--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-01--receipt.json.gz",
+      "raw_bytes": 3891,
+      "raw_sha256": "e67b5dbfd10389895e6e66a2636aaab124e21f29d57e12511bfe84d16255ac69",
+      "artifact_sha256": "00ee1c295ff61ae5a853220d3b4bbcd4343daf8bba16984301a5fc6a9c73fc81",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-01--preflight.json.gz",
+      "raw_bytes": 18746,
+      "raw_sha256": "729141936b23dc24cd47337c74a747e88e09caccbe87576c62335e7ef85fbb88",
+      "artifact_sha256": "cc3a7be9e945396a1e17222a13d133797a8f80afae31fd63aaaacf0c138b7bd0",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-02--stdout.gz",
+      "raw_bytes": 45,
+      "raw_sha256": "e6e27028bde45b73fc850f7b5fbdc65e9cab73727f0cf2a5c91a659c8c9cb8ac",
+      "artifact_sha256": "97f36bec7d328494a84ed97d38bf52d81bbb3407e76c407f32badf483186d465",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-02--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-02--receipt.json.gz",
+      "raw_bytes": 3891,
+      "raw_sha256": "9220df4358fca1337afdd504ca74daae9dfea35db469eeecc78a6ae85a3eb438",
+      "artifact_sha256": "d66c02d1c5210a0a11b14959582fa525dcd04ef65520e297acf50c23365b9469",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-format-02--preflight.json.gz",
+      "raw_bytes": 18746,
+      "raw_sha256": "bbe043799a091786c551f137126011b41e2b43d6f12a676a000dff4bbacfabd8",
+      "artifact_sha256": "1972787ba3353dc4e5228120b134b7ece3c436c9b1a14b6434ee6da54cfca8f6",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-format-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-01--stdout.gz",
+      "raw_bytes": 43,
+      "raw_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+      "artifact_sha256": "fdb64fd1b612abf113a7e9d9af21d753210c0b1072a0e772a75c3c30170013eb",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-01--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-01--receipt.json.gz",
+      "raw_bytes": 3274,
+      "raw_sha256": "1787f81eefa3278940d7931379ad007126ef30c54ffa9ec607b48088d35645d3",
+      "artifact_sha256": "4247c18aef3f29798d726f733575aeb30896939555274262750b483b3f838991",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-01--preflight.json.gz",
+      "raw_bytes": 18067,
+      "raw_sha256": "58c7deacd5511d80e7e433842acb3553ea4c62d2ecc933042706f5bf2e557810",
+      "artifact_sha256": "3b81dd1c9b1e0182ec9e18bf0425314ff6f63e886ee4798d9c1a16cbf8543be3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-02--stdout.gz",
+      "raw_bytes": 43,
+      "raw_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+      "artifact_sha256": "fdb64fd1b612abf113a7e9d9af21d753210c0b1072a0e772a75c3c30170013eb",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-02--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-02--receipt.json.gz",
+      "raw_bytes": 3274,
+      "raw_sha256": "5217e33cb68c58791086dcf5a99ae70f6bb029785d0bf6b32a95950aefe7192c",
+      "artifact_sha256": "ed37b50229aba0ddd57f3cf1aaf5a20fe3babbf498cec1a2f53c8399c28d2e3e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-02--preflight.json.gz",
+      "raw_bytes": 18067,
+      "raw_sha256": "44bdeacd58747513f8a7fc1c7083df9f0258472b652488650e8c1ec5c313d527",
+      "artifact_sha256": "f9d601801edad8d263b25b3bc881769ed0e736b9f7378937276a32c933fe889e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-03--stdout.gz",
+      "raw_bytes": 43,
+      "raw_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+      "artifact_sha256": "fdb64fd1b612abf113a7e9d9af21d753210c0b1072a0e772a75c3c30170013eb",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-03/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-03--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-03/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-03--receipt.json.gz",
+      "raw_bytes": 3274,
+      "raw_sha256": "dca3bff73fd29703372908b7c4b4b0c41fbf8571d6f4ff3d5924b4aee8111ea6",
+      "artifact_sha256": "ce02bd2328503e3a12ac2d95bab8183fa688179cc22818549d1821230d63fb20",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-03/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-mypy-03--preflight.json.gz",
+      "raw_bytes": 18129,
+      "raw_sha256": "b8943e3944635f8d19c14943a16bd7468bcb8b63696cb4d4dfeedc173124dccd",
+      "artifact_sha256": "e97d7b819b7b1fddf9169a137591e313dc3344070eda92e2d86908a7cfc9e043",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-mypy-03/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-01--stdout.gz",
+      "raw_bytes": 161857,
+      "raw_sha256": "f758849903093473a3f37af18fe860c950d57a2a4caa338607f355c7b76de7a3",
+      "artifact_sha256": "514ced20d26b80cb151650b54e263d96980aa7e7312f3f05e3581665acf69559",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-01--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-01--receipt.json.gz",
+      "raw_bytes": 3878,
+      "raw_sha256": "e6ffb3678ba09a486b2ebbabc4510309844b7ccbe586c3566782f951fe0ae291",
+      "artifact_sha256": "d7cd955fbbd9e2d0d9792cfde5fded1904edc789ff8fac72b2db9b715cfd8646",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-01--preflight.json.gz",
+      "raw_bytes": 18733,
+      "raw_sha256": "a6e5437a49a5a9970e67af5fe4d487df5504e928c8b3c656ccd8717ce7a09823",
+      "artifact_sha256": "de5cd022ae75c06a6645abf28f2d1c53eca8a3e7edc7ea994f886e3e3099dba7",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-02--stdout.gz",
+      "raw_bytes": 12201,
+      "raw_sha256": "46a7656994848fb3ca360eff42118343d4c9269ff824650b63d3f3dd69592e23",
+      "artifact_sha256": "e6ab8cd3fdf3ee01196646077c62e53831d0e4c3b89e690cdf7e3b53810e8617",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-02--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-02--receipt.json.gz",
+      "raw_bytes": 3878,
+      "raw_sha256": "f7e47a09c01a85a0ce889d65dd0399425264374ffb36e5d6343230480200dbd9",
+      "artifact_sha256": "83a25549ab90db9c02bc706e6ea454c95e96f344b05f82cbd0a812b6eed17cd2",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-02--preflight.json.gz",
+      "raw_bytes": 18733,
+      "raw_sha256": "6bb14fa584c071069811d106d775fafe2f08b1e500f70b4db243de7c0f82d936",
+      "artifact_sha256": "5b23a4fb6cca196c33c8eab5572c0367dcf101a10a2d2c0cb18beb3475a87b9f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-03--stdout.gz",
+      "raw_bytes": 19,
+      "raw_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "artifact_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-03/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-03--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-03/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-03--receipt.json.gz",
+      "raw_bytes": 3878,
+      "raw_sha256": "b9951876c0aa618b02c66ccb476cad9a28e8fdb024643e4e56a303134b834bd5",
+      "artifact_sha256": "7c9faa50e107a83bbcdfd14bddc0a214b6c2c69635d46b7eeee2814206282a9f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-03/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-03--preflight.json.gz",
+      "raw_bytes": 18733,
+      "raw_sha256": "0f5de19125b0de6fe8a3202640db825341eb2020bf5b4ab31ac3804f8a197c0d",
+      "artifact_sha256": "c70ed527a7d07e96a4521991f8731827ec0b89b3b1b93d52dc215ec815155d11",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-03/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-01--stdout.gz",
+      "raw_bytes": 149485,
+      "raw_sha256": "0e4a9008c14ae36f38f89936b717523c3778a259658482a23595d1f5e4bf0154",
+      "artifact_sha256": "637ef8efbed78453abd65cc9bccd6945475cb3a8a3ce0f5a000d76f4b434a502",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-01--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-01--receipt.json.gz",
+      "raw_bytes": 3915,
+      "raw_sha256": "312241978aa66ae9ac04fcbabc014d7a95e222358d842d99062b1d73ab050f3d",
+      "artifact_sha256": "9e1c6940ab9a139395d57cf4d437a755fa2f29bad85da4cab271ada89d8245e9",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-01--preflight.json.gz",
+      "raw_bytes": 18770,
+      "raw_sha256": "a240a47af16d0854f26ec59c6347e63495d9bdbae8ef2c0262b8bd82e770af55",
+      "artifact_sha256": "281282fdd51b1fb997ba9634c8d05fd3685a4b61f8d44c16b79c93b34ed88256",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-02--stdout.gz",
+      "raw_bytes": 9924,
+      "raw_sha256": "35dd920f10d1365ef0b73b4ec2b4bd883edb7f4bf0585053d5f96ed1cf36dede",
+      "artifact_sha256": "4a4f1718def96750e305923d25eaee0a067f912b2191405c321646160c259ec8",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-02/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-02--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-02/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-02--receipt.json.gz",
+      "raw_bytes": 3915,
+      "raw_sha256": "9dc8d4bbfcfa250c769c629dd2587504c06b14b4aa549c8a8432e429f4b00d59",
+      "artifact_sha256": "87add2dc63629578b1257158ae6bff548d6ce3d4cfe175dfdaa2b8ead68de657",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-02/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amended-dev-ruff-fix-02--preflight.json.gz",
+      "raw_bytes": 18770,
+      "raw_sha256": "35654b56bae53bd7454b252f62a7bf7c0180177176060fc8a172abce14dc18f0",
+      "artifact_sha256": "ca17b11eac3e381f52584bc6b0812759f77d3e6cc56267ae1bdec86e6ed2fc3b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amended-dev-ruff-fix-02/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-board--stdout.gz",
+      "raw_bytes": 46,
+      "raw_sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "artifact_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-board/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-board--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-board/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-board--receipt.json.gz",
+      "raw_bytes": 2923,
+      "raw_sha256": "69af43d977486d4d61de86871cef8f12e02ad18cfc4ce6bcbe4853671ec522ad",
+      "artifact_sha256": "bafa1a1bfebae0ecaf24b1c6f8f517debdcb771d47bfde37b36ba922b7abee4a",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-board/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-board--preflight.json.gz",
+      "raw_bytes": 17716,
+      "raw_sha256": "f836e7dfc2e966e9646d5dcbd88c7c5dcbb4b1dd0b1ba03be8463fe813df4a78",
+      "artifact_sha256": "d202f5b99285713a1613aa726fb2df984260b3ca70283205fcd3f17de6e8bfe7",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-board/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-docs--stdout.gz",
+      "raw_bytes": 70,
+      "raw_sha256": "e2cf13ea60a5042a469ead26fe63968b8e4db26b8e7edd781c5d37fa705fecea",
+      "artifact_sha256": "09d48b1ac5f2afda6fb7a7ef58d71a3b28ea57eea6fb11dacc4821f45ffccb7b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-docs/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-docs--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-docs/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-docs--receipt.json.gz",
+      "raw_bytes": 2914,
+      "raw_sha256": "5ff9ee786c1d56bd42da5dddf5d13f4b62bc4d152df2b4d8cdb8905e8f4f7229",
+      "artifact_sha256": "48612fddd4f688ebe06c8906f367688ae5dfe5681032a0e02e9def9a36b3543c",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-docs/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-docs--preflight.json.gz",
+      "raw_bytes": 17707,
+      "raw_sha256": "33a4aea4ebc70cb5219dd3e79255d4705cf9efae1f051e20040b96aa5a53aebd",
+      "artifact_sha256": "0dfb085db3f3401de4e24af0b02ad5e05c384dc6d70b9bc9ba50be70a83d7295",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-docs/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-next--stdout.gz",
+      "raw_bytes": 150,
+      "raw_sha256": "3f002bb067ec4336567c1cee3920256d8a34dc5f5b764718815c192ec8f91f44",
+      "artifact_sha256": "c1b0fbd9257e19ec8e6ca0535b271cce9efd1124ab833b5a4ccd7e183fc24432",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-next/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-next--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-next/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-next--receipt.json.gz",
+      "raw_bytes": 2913,
+      "raw_sha256": "72966400e71418ad5378731f881f394236c45e9453c6296d7f822034451e2f7a",
+      "artifact_sha256": "d4a7b499099df6a4bf727dbdb8838271c9f4c12b9e802f63918776524473aae0",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-next/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-next--preflight.json.gz",
+      "raw_bytes": 17706,
+      "raw_sha256": "952e633969636f626ae1d694072eb35d209800494fb8bd87fd40c20982f8f5f6",
+      "artifact_sha256": "fa3c9eb6729a1444ec89121352c61519327705de5583b16bd26f367755828eba",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-next/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-render--stdout.gz",
+      "raw_bytes": 30,
+      "raw_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "artifact_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-render/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-render--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-render/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-render--receipt.json.gz",
+      "raw_bytes": 2942,
+      "raw_sha256": "bbab3625789df676eae8963453293b6f9ccce195b94025c2bace9bf690ed5e38",
+      "artifact_sha256": "ac40c0e86d5a52883d79965a2e973571d76b8afad94dea5880734e4a6e82b553",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-render/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-render--preflight.json.gz",
+      "raw_bytes": 17735,
+      "raw_sha256": "65aa4cbb49726a65a8fbd163fe1fe44745c0b8b0212182a17d1711dfd80c7727",
+      "artifact_sha256": "2a6983c4ea943cb6246c24c43e10dacc405b01b2326e05bbf04500e654cae3d6",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-render/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-show--stdout.gz",
+      "raw_bytes": 2660,
+      "raw_sha256": "a29a055cdbb13446f5c1f04c04a9b4f822b1a4033a9e7e92d977a1565efddee8",
+      "artifact_sha256": "361342bd01d58777546dcb5e75200b7023faa1ff9cbbe0c53f313e9d7dee3b60",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-show/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-show--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-show/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-show--receipt.json.gz",
+      "raw_bytes": 2948,
+      "raw_sha256": "230f3c0e2b788fdb09db02f736e8369d107cd598e3dcac0d11d41fe12e32ffc1",
+      "artifact_sha256": "6e815c23e1ccd6432ec2cb0a364cd824dc3ba9acd7770364ff570d9cf7cb18b5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-show/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-amendment001-approved-show--preflight.json.gz",
+      "raw_bytes": 17741,
+      "raw_sha256": "9de85330042a6806a94621912b816f675d7ca2e593a25cc68a23d84c9831712c",
+      "artifact_sha256": "53760fc5c68645e2d650ab6d7a9248ce9e8ccdbe858268196d0a58a5e46e9a11",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-amendment001-approved-show/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-baseline-full-mypy-columns--stdout.gz",
+      "raw_bytes": 640,
+      "raw_sha256": "c5ac4092482b3e8cdbca198418a634385f1b87e2a4f1666fa249450e10625a40",
+      "artifact_sha256": "bdea01f2e51d4c862831c76443d5aabd5bb3cb1ac1617592a53c63e4970fff4a",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-baseline-full-mypy-columns/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-baseline-full-mypy-columns--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-baseline-full-mypy-columns/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-baseline-full-mypy-columns--receipt.json.gz",
+      "raw_bytes": 3278,
+      "raw_sha256": "d391682ed1553fec79fa8a636ff9b1ec763e5443103eb7ef9e4c18d93ee0c728",
+      "artifact_sha256": "7358b0e81a069cfd8f556af16018701dce29014350ddddbff13f44a01bc8c2e3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-baseline-full-mypy-columns/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-baseline-full-mypy-columns--preflight.json.gz",
+      "raw_bytes": 17132,
+      "raw_sha256": "2f16b19013d3bd7a9aa3009a08ebf74f9c63bbe3f8fe71f8ef14738cb28b8720",
+      "artifact_sha256": "981d7a9e2b506f71739f5e77aa9c06e98fcf06511686121c0a24f072172202e8",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-baseline-full-mypy-columns/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-full-mypy--stdout.gz",
+      "raw_bytes": 632,
+      "raw_sha256": "0f12b4a8d2a4279d4764bed68c80e3526c18920dd55358577a6e8511b118aa89",
+      "artifact_sha256": "b1e8e9a8002575ee572e9bad4c0d2a1be2c17a038718f1c5346d04d90735b54c",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-full-mypy/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-full-mypy--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-full-mypy/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-full-mypy--receipt.json.gz",
+      "raw_bytes": 3212,
+      "raw_sha256": "118ccb758cc4adc20b5bf5943c53415f1c4e201380c2c2b3b15925a9b0fcf6b8",
+      "artifact_sha256": "7294f919efb8b69e7849060e0d498127206305c53579caa15b8a1ec5990805f8",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-full-mypy/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-full-mypy--preflight.json.gz",
+      "raw_bytes": 17066,
+      "raw_sha256": "3e85feacfd0efdda78f4ef38a96380d98c4a6efadaaaf24211c3758313a0eac9",
+      "artifact_sha256": "7a3e86e7833190ac02e439ae14bb98f2ac314d43374cc95276a91c419289be7e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-full-mypy/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root--stdout.gz",
+      "raw_bytes": 9998,
+      "raw_sha256": "f3922da4d8725a6fb6cf6b2bf0fcc2792f68fe323f58c7250ba52d1831c4fdbf",
+      "artifact_sha256": "c5d9d12b48625b340863b2aff021514cf4c19121876a7c342124112a86955290",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root--receipt.json.gz",
+      "raw_bytes": 3025,
+      "raw_sha256": "272a2b69ba54a04da261457797956c88e6d6ba84f08ba7ce23ba7a119dc035fc",
+      "artifact_sha256": "b6417d2efe71c1cb2904000a0018259be04c78c25404e9d096da30d9d2de803d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root--preflight.json.gz",
+      "raw_bytes": 16879,
+      "raw_sha256": "57a9f2ff70646b978011017291d809bee07127518c607a2a9a2db91fc1cf5551",
+      "artifact_sha256": "fe74ee2c64a81d5e750a71c2b581e39cf9dd376341b116027c44cfd3e7dc2ca1",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root-ruff--stdout.gz",
+      "raw_bytes": 173534,
+      "raw_sha256": "4dabd561ad858a856f2610235cf04171accfd01bc13f6deb6d38f1a60ab040cb",
+      "artifact_sha256": "c624d1cec18457cc7ebc3f7ce812e4a13b749b31830bc9b839c153babf110b71",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root-ruff/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root-ruff--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root-ruff/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root-ruff--receipt.json.gz",
+      "raw_bytes": 3058,
+      "raw_sha256": "de3fad0f3d335f7b5d7e18cc9c60d61893ecc771298642d8ef93fd0eb7aaa34d",
+      "artifact_sha256": "a5a66c69e6d501caddfb1f8b5bc29dfb573f125b4372f62f48047bd4fb132796",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root-ruff/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-baseline-root-ruff--preflight.json.gz",
+      "raw_bytes": 16912,
+      "raw_sha256": "62aa4db9ef111b7d665e7ead92c95f59b2839efe5cd6631754dad2416665c773",
+      "artifact_sha256": "ba06405bfe3f3c779df096b11380e51036cacb87aa62830455f6605e5fa5a881",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-baseline-root-ruff/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-board--stdout.gz",
+      "raw_bytes": 46,
+      "raw_sha256": "f86479667ca73f712d72cac3ab0abf3e4e9e165dc7c65159298cfb8ce281a947",
+      "artifact_sha256": "a8fe0ac655745a8f208c9bac35d6e3f1f21b43eaae46fc65ba4ac7784df9b202",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-board/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-board--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-board/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-board--receipt.json.gz",
+      "raw_bytes": 2821,
+      "raw_sha256": "ef521d62ee4edf556c216f8dea4fe3fc19590661fc00166fde8ced5a3aa2f166",
+      "artifact_sha256": "80ca22ba34ae6bd43377115048007175cf375c9b73a05fb18c37c8ab1e041692",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-board/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-board--preflight.json.gz",
+      "raw_bytes": 17676,
+      "raw_sha256": "5247dbc8bf05da71e6c08681a368771a2b4d2d25a0b4d6169482b80bd29195e7",
+      "artifact_sha256": "1050ad03ef2f09a599e100baa7e8adecaf253a2c87d0a6d045bfe707022ab19e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-board/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-core-runtime-chat-telemetry--stdout.gz",
+      "raw_bytes": 2325,
+      "raw_sha256": "30ffc197ce0c1a795eca08e12cb41e3cbef8f212d312cf19f41ecd275047ded0",
+      "artifact_sha256": "0240cb346436d04232f378144aa59f1794bce0d7f5abf696a811fe68bfdeb84b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-core-runtime-chat-telemetry/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-core-runtime-chat-telemetry--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-core-runtime-chat-telemetry/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-core-runtime-chat-telemetry--receipt.json.gz",
+      "raw_bytes": 3108,
+      "raw_sha256": "57a8930df212a979ba63e1f5ea72dc7fe3f81652acacec44779cd9fa66ef04d4",
+      "artifact_sha256": "92c48cc48e28e1cc8a3509a052f878cb712f9f0dd6778c8fa74a0f3b5d4d9431",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-core-runtime-chat-telemetry/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-core-runtime-chat-telemetry--preflight.json.gz",
+      "raw_bytes": 17963,
+      "raw_sha256": "b4fd7c303165727a866f67d88802671e7579487bd4b0ae44840f5eaca11d5ce2",
+      "artifact_sha256": "dbafcb68441a5863a5cd1811baf89433344381d1ff8f4bf5c0a7731dcfb80ef5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-core-runtime-chat-telemetry/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-docs--stdout.gz",
+      "raw_bytes": 70,
+      "raw_sha256": "037ad821ba0b99799eaac70a9902230acac13ce4f39aaec921c30c59e21e3959",
+      "artifact_sha256": "283b3dd7057cb14cb11b8c1a3c3d4eb2eaede33615bddb3fc9a3387bca21373b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-docs/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-docs--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-docs/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-docs--receipt.json.gz",
+      "raw_bytes": 2812,
+      "raw_sha256": "41ba6e3067cb18ec5194335ce02dd156b6b887098f353af88a12545633c0a414",
+      "artifact_sha256": "61da3ba0ff0550f4b8b71f37b54c3734afde7d6f96f5780081c28df6a0b39415",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-docs/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-docs--preflight.json.gz",
+      "raw_bytes": 17667,
+      "raw_sha256": "727be82f38684672f474d312c8bf39d7d5ae9e2c2c1ec482400aa5bde1ab3abe",
+      "artifact_sha256": "65d53bbf3ca1b9e7d475876d9ad84dba28d9617dc1625d820008704729c3b226",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-docs/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-full-mypy--stdout.gz",
+      "raw_bytes": 632,
+      "raw_sha256": "39c9db55fff7a615da749fd38808310db0d2940fedd7477a3383f11d74d3efb8",
+      "artifact_sha256": "fc360e7597ddeeb1d5747bebd376a6a395ce09b5d53df7ec63a8076fce00cf22",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-full-mypy/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-full-mypy--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-full-mypy/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-full-mypy--receipt.json.gz",
+      "raw_bytes": 2996,
+      "raw_sha256": "2ffe05e613f714108b4a36107285bf35550907247517fe57eee8d05d541d87a3",
+      "artifact_sha256": "8d2ef57cf51b321d3a990bd8ba2276295c082a8eb577e0c08984108884d75f6f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-full-mypy/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-full-mypy--preflight.json.gz",
+      "raw_bytes": 17851,
+      "raw_sha256": "eed15b825bcb388fe697a4d94a3771301d71dfaffd5ec21e162a10e216bd3d42",
+      "artifact_sha256": "f12991cc7f8a6f0e6576cca65ac1da6e51121239325a6bf9f1c8a46adaac3228",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-full-mypy/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp--stdout.gz",
+      "raw_bytes": 2182,
+      "raw_sha256": "87a71c0f3f99c74f325efc35d5ed13e654a3ae37cfaa2807d7798f892c25e906",
+      "artifact_sha256": "5b9e0136ad3cc58475823a7398f6b806c985908ef6f79d9740a04a0bac3debd4",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp--receipt.json.gz",
+      "raw_bytes": 2829,
+      "raw_sha256": "1052c734b9609fa34d26f2e9169eff08b75e22c5d05a86ff7d1770905a90cbc8",
+      "artifact_sha256": "f280a0e2ee5b5d4b90af6edc800deafcd4e2fad9a7c32ceef8856c7c57e031f5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp--preflight.json.gz",
+      "raw_bytes": 17684,
+      "raw_sha256": "62aeee8626d87229914f1536fe2a51c904222a0f7ee8f5a67664fdda1427231b",
+      "artifact_sha256": "12acf3327a8820dbf515d198e3629c139b828eb7d08227652cf19be1d04f9e45",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp-mypy--stdout.gz",
+      "raw_bytes": 44,
+      "raw_sha256": "44323f12010ebbb5daa4cefef4cc4308006fe3b26ad3ced614a993eb79a8b535",
+      "artifact_sha256": "87d6a87c759592d5131016163eea2b37beb27a221e0df4c1f4b7afd904ac81d5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp-mypy/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp-mypy--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp-mypy/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp-mypy--receipt.json.gz",
+      "raw_bytes": 2852,
+      "raw_sha256": "54c9aca05af83af98329fddac81c84cf8168667851dc888f6dd28d547c0d0a37",
+      "artifact_sha256": "b006bc24fafaa15df362f297116668f8b0d4c5c3ada3e5a37e4685636ad514ab",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp-mypy/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mcp-mypy--preflight.json.gz",
+      "raw_bytes": 17707,
+      "raw_sha256": "c3fd7b89e6ef25bcb700ef210880d4916f6186ba193919844a7392d315815089",
+      "artifact_sha256": "b2a1f5094cf8730bda2bf6c74a2723bbf854e9d492dfa9c1ecc608849717c2a0",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mcp-mypy/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mypy-columns--stdout.gz",
+      "raw_bytes": 640,
+      "raw_sha256": "9dfdc2539da028146c709e40c919ff2319dd2c108eecf3bbeecdc14335964566",
+      "artifact_sha256": "5b9d2a116ad3c716105bdd88ba413c3a6f1d51217a6e9b9de5c2ca29142e1c8a",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mypy-columns/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mypy-columns--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mypy-columns/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mypy-columns--receipt.json.gz",
+      "raw_bytes": 3062,
+      "raw_sha256": "3ebf48aa21df5b0e4b4617c0271a8bed3cd719529b0936bc6cd4de7a5b4bccdb",
+      "artifact_sha256": "c821282410dff5862d6eb31dce7ed768ca902d4b7eda02e7b68e8d92e9585098",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mypy-columns/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-mypy-columns--preflight.json.gz",
+      "raw_bytes": 17917,
+      "raw_sha256": "890ed674eed84523ae7e224124f90f5ba8b54b5091cf06f48b9601cc879caeaf",
+      "artifact_sha256": "2dc676e15efc10d2f7312e20a3078c59b5448420d4eae06eec9d55736bf2349d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-mypy-columns/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-narrow-mypy--stdout.gz",
+      "raw_bytes": 43,
+      "raw_sha256": "050c52a2b0c61e8b681ef5c485e0bc03340b8d55148e0acef27d744c8be42033",
+      "artifact_sha256": "fdb64fd1b612abf113a7e9d9af21d753210c0b1072a0e772a75c3c30170013eb",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-narrow-mypy/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-narrow-mypy--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-narrow-mypy/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-narrow-mypy--receipt.json.gz",
+      "raw_bytes": 3256,
+      "raw_sha256": "2d17abc0423f07f3d557f4d85b2b17cb02dd3769d72accfcad726c6082088a2a",
+      "artifact_sha256": "6b111ad90ad8a75dc46439ef8e46a00acfa7f9399622ba9fed1d10b6d993fa8e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-narrow-mypy/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-narrow-mypy--preflight.json.gz",
+      "raw_bytes": 18111,
+      "raw_sha256": "bca6cafd0c02e18c69b7c3b23954666bfcb2a4e052926cc77dabeafe768a5c44",
+      "artifact_sha256": "e4105089d0d275149b83cb93f00998739f83a6399e56ec8a7fe004c9fc98120c",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-narrow-mypy/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-next--stdout.gz",
+      "raw_bytes": 150,
+      "raw_sha256": "3f002bb067ec4336567c1cee3920256d8a34dc5f5b764718815c192ec8f91f44",
+      "artifact_sha256": "c1b0fbd9257e19ec8e6ca0535b271cce9efd1124ab833b5a4ccd7e183fc24432",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-next/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-next--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-next/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-next--receipt.json.gz",
+      "raw_bytes": 2811,
+      "raw_sha256": "07e7ac00e879e2321146423c1fe7d9fd62d621c94f54eb18829e2ac41938161e",
+      "artifact_sha256": "851a6e808a6a58f071588c1c1bc84902678467e383d2a25c30575bb87105e280",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-next/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-next--preflight.json.gz",
+      "raw_bytes": 17666,
+      "raw_sha256": "869667ea673e24dd748e2084ef8a0bd69f9dea513cc782279f3cf89fd3385d77",
+      "artifact_sha256": "6109d5471e80b00bb6aff88b5ec791187f25802ff3154054494ec57b3f1e51c7",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-next/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-original-clients--stdout.gz",
+      "raw_bytes": 1702,
+      "raw_sha256": "a652efcd2e2f9bcf90ccfda6806d3ab08c40efc76bb4b3023c8f66ecdb428f7c",
+      "artifact_sha256": "887be9c8c4a4bcaca207db159feaabfc007f028ac89869eea06429c58b986892",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-original-clients/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-original-clients--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-original-clients/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-original-clients--receipt.json.gz",
+      "raw_bytes": 2914,
+      "raw_sha256": "06acd5ff4d323f095a3e437194615856246292f2d2ff4e90f6b89f1847201652",
+      "artifact_sha256": "ad2b6e7b3bee02de17d0d4ee3922e2bbb2e0aee0ed82799c46f7f43f2e16a2cd",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-original-clients/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-original-clients--preflight.json.gz",
+      "raw_bytes": 17769,
+      "raw_sha256": "788fab97aedf436222712d95cae349f1efb59656eec55ef171dbb02e2e0cc7e4",
+      "artifact_sha256": "9fa3472c9ccf2419a0842f30facd10c774e275ccda451ef0bec3c9f81c39fd86",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-original-clients/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-render--stdout.gz",
+      "raw_bytes": 30,
+      "raw_sha256": "a28df31135633728c76b88ed1a836e90f2c8046e1d72663c8881937c7693ba33",
+      "artifact_sha256": "e388568ff3041b9108cefcafaf433c27f19a88e5e5b16f0a13cef14d13cbcecd",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-render/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-render--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-render/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-render--receipt.json.gz",
+      "raw_bytes": 2840,
+      "raw_sha256": "6a605c6f869c03d92309522e3dea6f8a21fa6533b3358467d343087b5fecfd4f",
+      "artifact_sha256": "103fd6f831828319d4805f16fdbbe9ed19712cf0e66e15b556b9fd27d35dd483",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-render/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-render--preflight.json.gz",
+      "raw_bytes": 17695,
+      "raw_sha256": "ad7b7b9ca48a1ebee1f632513fa2653d50b28b26ba39b806a784c181370061ef",
+      "artifact_sha256": "adc4290f34b6b97263998eaf45dbf773c6380c71f94582a53be2cdf58c297c53",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-render/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root--stdout.gz",
+      "raw_bytes": 10362,
+      "raw_sha256": "92729a6e32bbc839d15d26b6661802a4d3b007321128888fb5d57e4faf53f942",
+      "artifact_sha256": "423afd80b6d8f5060c0d3789a93cc22f398e7d878ef6ab4c59769a8ac19396e3",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root--receipt.json.gz",
+      "raw_bytes": 2809,
+      "raw_sha256": "308a89232fcadba8a6f2e332d16b4ac75ef96d1f27fe4aad9ee9b273d2be3fc4",
+      "artifact_sha256": "cff2650f7a79738b32fd1212ed27aff9b2f5a00c8b98e3d348656b39db25e76f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root--preflight.json.gz",
+      "raw_bytes": 17664,
+      "raw_sha256": "fb2a67f280fb039a5c3e8ee40506299d3bcfa8c907f0a77db8cdacb83cc12ab7",
+      "artifact_sha256": "8fea8e78d6a82e8c0e3d1dc7bbd7d54a3fb53f363ac0c72d0ef25941cb9fc1e5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root-ruff--stdout.gz",
+      "raw_bytes": 170591,
+      "raw_sha256": "0c93bf5f06b18289815373ab38c786bcb506cd92b455e5bc79c5c04a1854b68b",
+      "artifact_sha256": "f5316562999344fb8876255d4f6057ea6b158cacd0aa34dfdfdb51657c7460ce",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root-ruff/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root-ruff--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root-ruff/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root-ruff--receipt.json.gz",
+      "raw_bytes": 2842,
+      "raw_sha256": "9984361f2871b4973e0fa03ee039a8d902b06c58da309c9718bb02026a377a45",
+      "artifact_sha256": "55bc5b03eda7f0216ad15d07a018602b72d49031d7f73056684e79c16c2de996",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root-ruff/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-root-ruff--preflight.json.gz",
+      "raw_bytes": 17697,
+      "raw_sha256": "685014f922fa088e2bb96f85c6a7856266c0af652386c56ac20e6e47d04cda95",
+      "artifact_sha256": "4119b6ba7f0d4e698ece83587559c221d0943b29256111262834df90de168147",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-root-ruff/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-ruff--stdout.gz",
+      "raw_bytes": 19,
+      "raw_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "artifact_sha256": "f3af4d142827f5aad2eb0c72d556d325488a57fb6219aac10afeb51085667d53",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-ruff/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-ruff--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-ruff/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-ruff--receipt.json.gz",
+      "raw_bytes": 3818,
+      "raw_sha256": "bf2f5e82e84642615be1b1319b63cb65bba92424ac38d9c96525beb193ed0d54",
+      "artifact_sha256": "25a79fed19663ac714b7cbf08f6d4e0ebd8e2c427b5b4c3d2a2eb347de73c298",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-ruff/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-ruff--preflight.json.gz",
+      "raw_bytes": 18673,
+      "raw_sha256": "4b7618baa272658a149451a2ada70856d95a4b72b5c81cc96690992b82e18744",
+      "artifact_sha256": "989dd8dfad4748266cadfa1a34d3391fdd7b8c7f34ea552b39554ea735690a50",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-ruff/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-focused--stdout.gz",
+      "raw_bytes": 501,
+      "raw_sha256": "0506f055e1e94bc3b137e4c3fcdd3a86cb0b193c19aae4ccfdd7971e6de3d773",
+      "artifact_sha256": "e08cd8f84f4ac699d76dff001a3094b7fa2e830ee38d6b77549e005e96ca0a8f",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-focused/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-focused--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-focused/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-focused--receipt.json.gz",
+      "raw_bytes": 3397,
+      "raw_sha256": "ff453d7d9f389589fda187cb85b8ea390a57d2b81f8106ba39210d31c688ccd2",
+      "artifact_sha256": "63ea13072e77a89c6c3baf3c3f469535d24262e286428019e27152a391f6b8bf",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-focused/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-focused--preflight.json.gz",
+      "raw_bytes": 18252,
+      "raw_sha256": "055562eb3190e137497240a5189cc63e3b0d4e934848a989f4cc90723dc34bf4",
+      "artifact_sha256": "0d67e02f163525cd8c152d07da7b96146ad1be988c58043a8935a98c0b2b1fc9",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-focused/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-http--stdout.gz",
+      "raw_bytes": 180,
+      "raw_sha256": "82db2709b5daf1a69a130857a018df41c2a53a289c0a29dff02b25d6b6961e09",
+      "artifact_sha256": "8cd1fa90a98ac182d23394c1e2b0f0ebc51759cba9e0f105895ce58ced973e1e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-http/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-http--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-http/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-http--receipt.json.gz",
+      "raw_bytes": 3112,
+      "raw_sha256": "82785d1f6a8a69271f2d623de4d813f5fdbec4512f3d8bda671b170afa8c90e2",
+      "artifact_sha256": "0ca216dcf7b02d5f0b48052e14424a4464b6e711b294fb16abc23da57c228333",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-http/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-server-http--preflight.json.gz",
+      "raw_bytes": 17967,
+      "raw_sha256": "7c438d7ad85079bcd60560de81eb1827f11529c705f96e3562a2c4f18a4fc9f1",
+      "artifact_sha256": "4d9ac4bdc0e5921e391cf83c767464c25de2de2a80f30cded8670ebc40ce131e",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-server-http/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-show--stdout.gz",
+      "raw_bytes": 2660,
+      "raw_sha256": "a29a055cdbb13446f5c1f04c04a9b4f822b1a4033a9e7e92d977a1565efddee8",
+      "artifact_sha256": "361342bd01d58777546dcb5e75200b7023faa1ff9cbbe0c53f313e9d7dee3b60",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-show/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-show--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-show/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-show--receipt.json.gz",
+      "raw_bytes": 2846,
+      "raw_sha256": "497e2f32d4931e7eb2cda911a7b1f26641a2dd50d7d8a3d97cb7a3c400dfcca7",
+      "artifact_sha256": "4217fea9b63dab53817ddbfdaf5e91ce210406689bdf52e601822c35765321b2",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-show/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-show--preflight.json.gz",
+      "raw_bytes": 17701,
+      "raw_sha256": "56a4220cb4ff4349f35dd24422efdd358c30aefbc65f4cf5e4634e4f5c5d72cd",
+      "artifact_sha256": "a672edc4bb5f541490645c225ca54278f4d55a54e51252038444f873fae778ec",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-show/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-whitespace--stdout.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-whitespace/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-whitespace--stderr.gz",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-whitespace/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-whitespace--receipt.json.gz",
+      "raw_bytes": 2843,
+      "raw_sha256": "2ef8ba666b5dfa55bc7b0ecd791c901809b7c9dbba42d952dde967fd6bce9561",
+      "artifact_sha256": "fc6d27c54e0dad0df2cd168931cffe6837f87304fced2baf7925d3ef315b5bcd",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-whitespace/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-full-whitespace--preflight.json.gz",
+      "raw_bytes": 17698,
+      "raw_sha256": "186b77799f61c8a31ba97fb1682c323930aa174d5564554f6c38346cefb1b8cc",
+      "artifact_sha256": "9c547a17c4bb8f94aa499f57e67336f052622be403c206c63106df4ef46ede1b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-full-whitespace/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-wire-error-schema-audit-01--stdout.gz",
+      "raw_bytes": 258,
+      "raw_sha256": "f3b547d72d7b4e8568b5c869df39c42bfd2a536be21363f9b22a390ee05b449d",
+      "artifact_sha256": "4ff2ad89254a25c1f9827e9a9be287f99a271202fe3435c83507e893291706c5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-wire-error-schema-audit-01/stdout"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-wire-error-schema-audit-01--stderr.gz",
+      "raw_bytes": 1358,
+      "raw_sha256": "24b6b2cd3d6578b1b65a66cac5f20c8492d474e4fdfb75aaf9fccffb2be85fd4",
+      "artifact_sha256": "ec615776b70295a2f58ebcd6828c5e39205ea641e2ed3e79d2ea4190025a6af4",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-wire-error-schema-audit-01/stderr"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-wire-error-schema-audit-01--receipt.json.gz",
+      "raw_bytes": 2936,
+      "raw_sha256": "c0e73d149ab21ef139fb3e0cc7c8a3834a332daca41d554a2dea459fb65b4ece",
+      "artifact_sha256": "4d03b66222e7891beeea9e950ad131168ff7ba89da7e8c60ded0265df49fde27",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-wire-error-schema-audit-01/receipt.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-wire-error-schema-audit-01--preflight.json.gz",
+      "raw_bytes": 17791,
+      "raw_sha256": "ac1ad6ba086fe286b929054154a6d2ba7ca41bf82e8d98a00fa02db7ad963b90",
+      "artifact_sha256": "ba821c8b652ee3c1d563f4ef1c9e83ea9c7250e5949a141258f2bf8f881df66d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/checks/up05-wire-error-schema-audit-01/preflight.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/approve_up05_amendment001.py.gz",
+      "raw_bytes": 4999,
+      "raw_sha256": "8dab05bf6829b6c1706995fed36aa8685ccedc5a060fef3c9132c7af26994084",
+      "artifact_sha256": "57df016b58ece42920c4e8b6424f2f359685575f45ea40aa7edd6f8bcaa50414",
+      "provenance": "/private/tmp/friday-mcp-upgrade/approve_up05_amendment001.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/refine_up05_boundaries.py.gz",
+      "raw_bytes": 7994,
+      "raw_sha256": "4df09cc165271208d5407381ab44b61d741eb2fbfd80550f385a6dfb705505db",
+      "artifact_sha256": "1486260e7ed46391d67a84849e1cd364809ecafdf45c96be12bc169c83d6337d",
+      "provenance": "/private/tmp/friday-mcp-upgrade/refine_up05_boundaries.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/commit_up05_product.py.gz",
+      "raw_bytes": 1660,
+      "raw_sha256": "222e15f0c07e64a9e634d561e66ffebec4e33e3f881b465dd29881e4fd6500a2",
+      "artifact_sha256": "052dc2c6879237bb3e3e72cacfc3979b6d012680525f879eb8185a434f7f15b5",
+      "provenance": "/private/tmp/friday-mcp-upgrade/commit_up05_product.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/run_up05_profile.py.gz",
+      "raw_bytes": 2182,
+      "raw_sha256": "c9ee47246d76498af738fad44acba1bfb2a686ff5aed1f67e55577b18bbe7c4a",
+      "artifact_sha256": "bffda08534b6da30ac55fd0e65934dd5f5daf09d0437e7b3145b622c3eaf9f94",
+      "provenance": "/private/tmp/friday-mcp-upgrade/run_up05_profile.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-profile-freeze.json.gz",
+      "raw_bytes": 15375,
+      "raw_sha256": "7e1818e2becc4d788d0450151ec7ca0eee7a16c910505be484173a4d25455d5a",
+      "artifact_sha256": "64970eff8b4e69ff6b62350a89b1b73260bc50a0f3586f7c339886c100df0874",
+      "provenance": "/private/tmp/friday-mcp-upgrade/up05-profile-freeze.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/check_up05_supplements.py.gz",
+      "raw_bytes": 632,
+      "raw_sha256": "f9b936c1e20ddc3a483e4657044d6564480d3c53daa30a56f7168fcff20eecea",
+      "artifact_sha256": "3da6930dc33378e45ca9eca58c57b91502288ff7b915911e237c0bf83a7b8875",
+      "provenance": "/private/tmp/friday-mcp-upgrade/check_up05_supplements.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/compare_up05_checks.py.gz",
+      "raw_bytes": 5247,
+      "raw_sha256": "797c7f9fc5a5549ae4bcc709bcd312cba60249624dd5ee9c6690cd89246f8240",
+      "artifact_sha256": "5fde68cfe22074ec5dab4f21e9114b8cb3271fa159b917472f4f9513122bb486",
+      "provenance": "/private/tmp/friday-mcp-upgrade/compare_up05_checks.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-verification-comparison.json.gz",
+      "raw_bytes": 15104,
+      "raw_sha256": "f65956305f72730b99975dc64c8617a0c6d6f4766c26845a2fc34a4df6276004",
+      "artifact_sha256": "f2cd176529a6ba0bb6df76ed8d4c5293e043db5520cf2d67d0eb869bf73431b4",
+      "provenance": "/private/tmp/friday-mcp-upgrade/up05-verification-comparison.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/rehash_up05_before.py.gz",
+      "raw_bytes": 809,
+      "raw_sha256": "b917401b1f201dc32b731517185c7a19ade65625f814a84b1ad18e438eb038d7",
+      "artifact_sha256": "90560894dbbb7b27e7c3270447d5f3295ff6d357ad6f726ade0df7b9df8fbe3b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/rehash_up05_before.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/rehash_up05_after.py.gz",
+      "raw_bytes": 808,
+      "raw_sha256": "a6e2829ed4addfeb227010af612eadcc33583a7a45467e042188321534a48c8e",
+      "artifact_sha256": "ab333e998f346d24ce221d0d73a848df97a23e3a8a3a3736d7749eb9beb6e679",
+      "provenance": "/private/tmp/friday-mcp-upgrade/rehash_up05_after.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-library-before.json.gz",
+      "raw_bytes": 74,
+      "raw_sha256": "e6777a1df7e53eac15c72c420ba24b9b1e035af99ad1edc04e4635ce5c598fbd",
+      "artifact_sha256": "d1dc6108efd478186a67eb9d807b318f34031492c13c6d6ba2de3f96fbd6d43a",
+      "provenance": "/private/tmp/friday-mcp-upgrade/up05-library-before.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/up05-library-after.json.gz",
+      "raw_bytes": 74,
+      "raw_sha256": "e6777a1df7e53eac15c72c420ba24b9b1e035af99ad1edc04e4635ce5c598fbd",
+      "artifact_sha256": "d1dc6108efd478186a67eb9d807b318f34031492c13c6d6ba2de3f96fbd6d43a",
+      "provenance": "/private/tmp/friday-mcp-upgrade/up05-library-after.json"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/replan_up05_modern_schema.py.gz",
+      "raw_bytes": 6810,
+      "raw_sha256": "5964af382a309a4d8a7dd66d4e645323afeb8c6898822dea6ddd51e55d0d06cf",
+      "artifact_sha256": "c11fca4a695af87835a41f43a0f0180ad293567b0c4951db77e022f0a89bafc4",
+      "provenance": "/private/tmp/friday-mcp-upgrade/replan_up05_modern_schema.py"
+    },
+    {
+      "artifact": "execution/up05/amendment002-artifacts/check_up05_wire_error_shape.py.gz",
+      "raw_bytes": 804,
+      "raw_sha256": "0b354dc5b6e5c2e380c0fccbb6919a204046b97d0c1a0fd0402cb6433352d295",
+      "artifact_sha256": "ff7b0b28cd82a1dc34715f09bf0a10d63882194ddbdbd1d1bf7b6abd0566606b",
+      "provenance": "/private/tmp/friday-mcp-upgrade/check_up05_wire_error_shape.py"
+    }
+  ],
+  "excluded": "Private TLS keys, fixture runtime/counters/HOME/TMP stores, caches and provider environment are not archived"
+}

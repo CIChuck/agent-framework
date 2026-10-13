@@ -460,7 +460,7 @@ tasks:
   condition: normal
   implementation_authority: granted
   packet: docs/planning/active/friday-mcp-protocol-upgrade/
-  next_gate: Complete amended CD-MCP-UP-005, all20 checks and stable candidate for fresh independent full-unit validation
+  next_gate: Maintainer approval of exact AMEND-MCP-UP-005-002 version-error data and prospective2026 schema rebaseline before construction resumes
   delivery_state: local
   branch: feature/friday-mcp-protocol-upgrade
   depends_on:
@@ -1646,3 +1646,10 @@ events:
   action: approved exact AMEND-MCP-UP-005-001
   note: 'Exact statement: approved. Required immediately stale private discovery/list wire metadata; original construction scope unchanged, local only'
   evidence: docs/planning/active/friday-mcp-protocol-upgrade/approval-UP-05-amendment-001.json
+- task: friday-mcp-protocol-upgrade
+  at: '2026-10-13T18:45:18+00:00'
+  actor: Codex
+  actor_role: agent
+  action: prepared exact UP-05 schema and version-error amendment
+  note: Draft profile completed; frozen error-data conflict and invalid historical schema selection prevent conformance. Exact prospective rebaseline proposed; source edits stopped, local only
+  evidence: docs/planning/active/friday-mcp-protocol-upgrade/amendments/AMEND-MCP-UP-005-002-modern-schema-and-version-errors.md
