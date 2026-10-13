@@ -391,7 +391,9 @@ async def test_structured_scalar_array_null_preservation(value):
         ),
         (complete(content=["legacy-string"]), "invalid_result"),
         (
-            complete(content=[{"type": "image", "data": "SENTINEL", "mimeType": "image/png"}]),
+            complete(
+                content=[{"type": "image", "data": "SENTINEL", "mimeType": "image/png"}]
+            ),
             "unsupported_content",
         ),
         (complete(content=[], isError=True), "tool_error"),
